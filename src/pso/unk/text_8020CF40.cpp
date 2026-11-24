@@ -1,9 +1,10 @@
-#include "pso/object/ObjectFactoryTables.h"
-#include "pso/misc/TLobby_8020CFC8.h"
+#include "pso/object/base/ObjectFactoryTables.h"
+#include "pso/unk/TLobby_8020CFC8.h"
 #include "pso/map/FloorArea.h"
 
 #include "types.h"
-#include "pso/map/FloorArea.h"
+#include "pso/player/TObjPlayer_80011014.h"
+
 typedef struct SpawnRecord_8020CC48 {
     s16 type;
     u16 flags;

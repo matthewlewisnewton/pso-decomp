@@ -2,11 +2,12 @@
 #define PSO_OBJECT_TOBJLUKER_H
 
 #include "types.h"
-#include "pso/object/TObjMotion.h"
+#include "pso/object/base/TObjMotion.h"
 
 struct TObjLuker : public TObjBase {
+    TObjLuker(TObject *parent, void *set_data);
     virtual ~TObjLuker();
-    u8 unk_90[0x10];
+    TObject *windows[4];  // one per player, indexed by entity id
     u32 m_a0;
     u32 m_a4;
     u16 m_a8;
@@ -17,14 +18,16 @@ struct TObjLuker : public TObjBase {
     u8 _padB2[0x2];
     u32 m_b4;
     u32 m_b8;
-    void show_part(s32 arg1);
+    void show_part(u16 arg1);
+    void hide_part(u16 part);
     void update_floor_name_windows();
     void open_destination_windows();
     void transfer_to_town();
     virtual void render();
     virtual void run_task();
-    static int get_stat_table_entry(int a0);
+    static const char *get_stat_table_entry(int a0);
+    static void *create(void *set_data);
 };
 
-typedef char TObjLuker_size[sizeof(TObjLuker) == 0xBC ? 1 : -1];
+LAYOUT_ASSERT(TObjLuker_size, sizeof(TObjLuker) == 0xBC);
 #endif

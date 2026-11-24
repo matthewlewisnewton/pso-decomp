@@ -1,32 +1,36 @@
 #ifndef PSO_BOSS_TUNK_804E4BF0_H
 #define PSO_BOSS_TUNK_804E4BF0_H
 #include "types.h"
-#include "pso/TObject.h"
+#include <dolphin/mtx/GeoTypes.h>
+#include "pso/system/task/TObject.h"
 
-struct Vec;
+// The 0x40-byte enemy set entry the Gol Dragon parts are made from; copy_set_entry copies it whole.
+struct TUnk_804E4BF0SetEntry {
+    s16 set_index;  // the parts' set indices count up from the leader's
+    s16 kind;
+    u8 pad_04[0x2];
+    u16 entity_id;  // the parts' entity ids (get_enemy_entity) count up from the leader's
+    u8 pad_08[0x8];
+    Vec position;
+    u8 pad_1C[0x4];
+    s32 angle;
+    u8 pad_24[0x1C];
+};
+LAYOUT_ASSERT(TUnk_804E4BF0SetEntry_size, sizeof(TUnk_804E4BF0SetEntry) == 0x40);
 
-// The first one created is boss8_dragon_leader_part. It holds the set record
-// the dragon's parts spawn from: part n gets the record's type and entity id
-// plus n.
+// The first Gol Dragon part made (boss8_dragon_leader_part); the other parts are numbered from its set entry.
 class TUnk_804E4BF0 : public TObject {
 public:
-    TUnk_804E4BF0(TObject *arg1, void *arg1p);
+    TUnk_804E4BF0(TObject *object, void *arg1p);
     virtual ~TUnk_804E4BF0();
-    void *dt(s16);
     virtual void render();
     virtual void run_task();
-    u16 get_part_entity_id(s32 part);
-    s32 setup_attack_slot(Vec *pos, s32 angle, s32 part, u8 *slot);
-    void *spawn_attack_object(Vec *pos, s32 angle, s32 hp, s32 part);
-    s16 part_type;
-    u8 unk_1E[0x4];
-    u16 first_part_id;
-    u8 unk_24[0x38];
+    s32 spawn_attack_object(Vec *pos, s32 angle, s32 hp, s32 index);
+    s32 setup_attack_slot(Vec *pos, s32 angle, s32 index, TUnk_804E4BF0SetEntry *dst);
+    u16 get_part_entity_id(s32 index);
+    s32 get_part_set_index(s32 index);
+    TUnk_804E4BF0SetEntry set_entry;
 };
-typedef char TUnk_804E4BF0_size[sizeof(TUnk_804E4BF0) == 0x5C ? 1 : -1];
-#include <stddef.h>
-typedef char TUnk_804E4BF0_first_part_id[offsetof(TUnk_804E4BF0, first_part_id) == 0x22 ? 1 : -1];
-
-extern "C" TUnk_804E4BF0 *boss8_dragon_leader_part;
+LAYOUT_ASSERT(TUnk_804E4BF0_size, sizeof(TUnk_804E4BF0) == 0x5C);
 
 #endif

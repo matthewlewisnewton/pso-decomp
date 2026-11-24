@@ -69,12 +69,14 @@ typedef void (*VIRetraceCallback)(u32 retraceCount);
 
 #define VIPadFrameBufferWidth(width) ((u16)(((u16)(width) + 15) & ~15))
 
+struct _GXRenderModeObj;
 void VIConfigure(const struct _GXRenderModeObj *rm);
 
 void VISetBlack(BOOL);
 void VIWaitForRetrace();
 void VIConfigurePan(u16 x_origin, u16 y_origin, u16 width, u16 height);
 u32 VIGetRetraceCount();
+u32 VIGetNextField(void);
 u32 VIGetDTVStatus();
 
 VIRetraceCallback VISetPreRetraceCallback(VIRetraceCallback callback);

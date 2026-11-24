@@ -14,7 +14,6 @@
 #define PADOriginCallback Pad_PADOriginCallback
 #define PADOriginUpdateCallback Pad_PADOriginUpdateCallback
 #define PADProbeCallback Pad_PADProbeCallback
-#define PADRead Dolphin_PADRead
 #define PADReceiveCheckCallback Pad_PADReceiveCheckCallback
 #define PADTypeAndStatusCallback Pad_PADTypeAndStatusCallback
 #define PendingBits lbl_805D7208
@@ -22,8 +21,6 @@
 #define ResetFunctionInfo lbl_804F4AC8
 #define ResettingBits lbl_805D71F8
 #define ResettingChan lbl_805D4558
-#define SIGetTypeAsync Dolphin_SIGetTypeAsync
-#define SIUnregisterPollingHandler Dolphin_SIUnregisterPollingHandler
 #define SPEC0_MakeStatus Pad_SPEC0_MakeStatus
 #define SPEC1_MakeStatus Pad_SPEC1_MakeStatus
 #define SPEC2_MakeStatus Pad_SPEC2_MakeStatus
@@ -77,7 +74,7 @@ BOOL __PADDisableRecalibration(BOOL disable);
     (PAD_BUTTON_LEFT | PAD_BUTTON_RIGHT | PAD_BUTTON_DOWN | PAD_BUTTON_UP | PAD_TRIGGER_Z | PAD_TRIGGER_R              \
      | PAD_TRIGGER_L | PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y | PAD_BUTTON_MENU | 0x2000 | 0x0080)
 
-u16 __OSWirelessPadFixMode : 0x800030E0;
+u16 __OSWirelessPadFixMode AT_ADDRESS(0x800030E0);
 
 
 static BOOL Initialized;

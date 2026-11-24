@@ -34,52 +34,40 @@ typedef union WGPipe_803E26A4 {
     f32 f32;
 } WGPipe_803E26A4;
 
-typedef struct Vtx_803E2810 { f32 x, y, w; f32 s, t; u32 color; } Vtx_803E2810;
-
-typedef union WGPipe_803E2810 {
-    u8 u8;
-    u16 u16;
-    u32 u32;
-    f32 f32;
-} WGPipe_803E2810;
-
 extern "C" {
 s32 GXClearVtxDesc();
-s32 Dolphin_GXSetVtxDesc(int, int);
+s32 GXSetVtxDesc(int, int);
 s32 GXSetVtxAttrFmt(int, int, int, int, int);
 s32 GXSetTevOp(int, int);
 s32 GXSetTevColorIn(int, int, int, int, int);
 s32 GXSetTevColorOp(int, int, int, int, int, int);
 s32 GXSetTevOrder(int, int, int, int);
-s32 GXSetNumTevStages(void *);
+void GXSetNumTevStages(u8 nStages);
 s32 apply_cached_blend_mode(s32 arg0);
 s32 GXSetNumTexGens(s32 arg0);
 s32 GXSetTexCoordGen2(int, int, int, int, int, int);
-void Dolphin_GXInitTexObj(TexObj_803E224C *, void *, u16, u16, s32, s32, s32, u8);
+void GXInitTexObj(TexObj_803E224C *, void *, u16, u16, s32, s32, s32, u8);
 void GXInitTexObjCI(TexObj_803E224C *, void *, u16, u16, s32, s32, s32, u8, u32);
 void GXLoadTexObj(TexObj_803E224C *, s32);
 extern TexObj_803E224C context_texture_obj;
 extern Ctx_803E224C *current_render_context;
 void GXBegin(int, int, u16);
-extern const f32 lbl_805E1070;
 void draw_projected_line_strip__10TObjPlayerFPvii(Vtx_803E26A4 *v, s32 n, s32 mode);
 void GXSetNumChans(u8);
 void GXSetChanCtrl(int, int, int, int, int, int, int);
-extern const f32 lbl_805E1078;
-void draw_textured_vertices__10TObjPlayerFPvii(Vtx_803E2810 *v, s32 n, s32 mode);
 }
 void setup_opaque_color_draw(void) {
-    TObjPlayer__sub_803E24E0();
+    apply_opaque_blend_mode();
     TObjPlayer::setup_vertex_format();
 }
 
-void TObjPlayer__sub_803E21DC(void) {
+void setup_blended_color_draw() {
     TObjPlayer::apply_blend_mode_1();
     TObjPlayer::setup_vertex_format();
 }
 
 void TObjPlayer::setup_render() {
-    TObjPlayer__sub_803E24E0();
+    apply_opaque_blend_mode();
     TObjPlayer::setup_vtx_desc();
 }
 
@@ -88,7 +76,7 @@ void setup_blended_textured_draw(void) {
     TObjPlayer::setup_vtx_desc();
 }
 
-void TObjPlayer__sub_803E2248(void) {
+void end_primitive_draw() {
 
 }
 
@@ -121,15 +109,15 @@ void load_context_texture_obj(void) {
     if (flags & 0x8000) {
         GXInitTexObjCI(&context_texture_obj, hdr->image, hdr->width, hdr->height, hdr->format, wrapS, wrapT, mip, ctx->tlut);
     } else {
-        Dolphin_GXInitTexObj(&context_texture_obj, hdr->image, hdr->width, hdr->height, hdr->format, wrapS, wrapT, mip);
+        GXInitTexObj(&context_texture_obj, hdr->image, hdr->width, hdr->height, hdr->format, wrapS, wrapT, mip);
     }
     GXLoadTexObj(&context_texture_obj, 0);
 }
 
 void TObjPlayer::setup_vertex_format() {
     GXClearVtxDesc();
-    Dolphin_GXSetVtxDesc(9, 1);
-    Dolphin_GXSetVtxDesc(0xB, 1);
+    GXSetVtxDesc(9, 1);
+    GXSetVtxDesc(0xB, 1);
     GXSetVtxAttrFmt(4, 9, 1, 4, 0);
     GXSetVtxAttrFmt(4, 0xB, 1, 5, 0);
     TObjPlayer::setup_color_channels(1);
@@ -138,9 +126,9 @@ void TObjPlayer::setup_vertex_format() {
 }
 void TObjPlayer::setup_vtx_desc() {
     GXClearVtxDesc();
-    Dolphin_GXSetVtxDesc(9, 1);
-    Dolphin_GXSetVtxDesc(0xB, 1);
-    Dolphin_GXSetVtxDesc(0xD, 1);
+    GXSetVtxDesc(9, 1);
+    GXSetVtxDesc(0xB, 1);
+    GXSetVtxDesc(0xD, 1);
     GXSetVtxAttrFmt(4, 9, 1, 4, 0);
     GXSetVtxAttrFmt(4, 0xB, 1, 5, 0);
     GXSetVtxAttrFmt(4, 0xD, 1, 4, 0);
@@ -149,28 +137,29 @@ void TObjPlayer::setup_vtx_desc() {
     TObjPlayer::setup_tex_gen();
 }
 
-s32 TObjPlayer::setup_color_channels(int arg0) {
-    GXSetNumChans(arg0);
+
+void TObjPlayer::setup_color_channels(int total) {
+    GXSetNumChans(total);
     GXSetChanCtrl(4, 0, 0, 1, 0, 0, 2);
-    if (arg0 == 2) {
+    if (total == 2) {
         GXSetChanCtrl(5, 0, 0, 1, 0, 0, 2);
     }
 }
 
-s32 TObjPlayer__sub_803E24E0(void) { return apply_cached_blend_mode(0x0); }
+s32 apply_opaque_blend_mode() { return apply_cached_blend_mode(0x0); }
 
 s32 TObjPlayer::apply_blend_mode_1() { return apply_cached_blend_mode(0x1); }
 
 void TObjPlayer::set_tev_passclr() {
-    GXSetNumTevStages((void *)(1));
+    GXSetNumTevStages(1);
     GXSetTevOrder(0, 0xFF, 0xFF, 4);
     GXSetTevOp(0, 4);
 }
 
 void set_tev_stage_mode(s32 arg0) {
-    s32 temp_r31 = arg0;
-    GXSetNumTevStages((void *) ((u8) temp_r31));
-    switch (temp_r31) {
+    s32 nStages = arg0;
+    GXSetNumTevStages(nStages);
+    switch (nStages) {
     case 1:
         GXSetTevOrder(0, 0, 0, 4);
         GXSetTevOp(0, 0);
@@ -209,60 +198,23 @@ void draw_projected_line_strip__10TObjPlayerFPvii(Vtx_803E26A4 *v, s32 n, s32 mo
     u32 c;
     TObjPlayer::load_screen_space_matrix();
     if (mode != 0) {
-        TObjPlayer__sub_803E21DC();
+        setup_blended_color_draw();
     } else {
         setup_opaque_color_draw();
     }
     GXBegin(0x98, 4, n);
     for (; n > 0; n--) {
-        inv = lbl_805E1070 / v->w;
+        inv = -1.0f / v->w;
         GXPosition3f32_803E26A4(v->x * inv, v->y * inv, inv);
         c = v->color;
         GXColor1u32_803E26A4(((c & 0xFFFFFF) << 8) | ((c & 0xFF000000) >> 24));
         v++;
     }
-    TObjPlayer__sub_803E2248();
+    end_primitive_draw();
 }
 #pragma pop
 
-#pragma push
-#pragma dont_inline off
-#pragma inline_depth(4)
-static inline void GXPosition3f32_803E2810(f32 x, f32 y, f32 z) {
-    (*(volatile WGPipe_803E2810 *)0xCC008000).f32 = x;
-    (*(volatile WGPipe_803E2810 *)0xCC008000).f32 = y;
-    (*(volatile WGPipe_803E2810 *)0xCC008000).f32 = z;
 }
-static inline void GXColor1u32_803E2810(u32 c) {
-    (*(volatile WGPipe_803E2810 *)0xCC008000).u32 = c;
-}
-static inline void GXTexCoord2f32_803E2810(f32 s, f32 t) {
-    (*(volatile WGPipe_803E2810 *)0xCC008000).f32 = s;
-    (*(volatile WGPipe_803E2810 *)0xCC008000).f32 = t;
-}
-void draw_textured_vertices__10TObjPlayerFPvii(Vtx_803E2810 *v, s32 n, s32 mode) {
-    f32 inv;
-    u32 c;
-    TObjPlayer::load_screen_space_matrix();
-    if (mode != 0) {
-        setup_blended_textured_draw();
-    } else {
-        TObjPlayer::setup_render();
-    }
-    load_context_texture_obj();
-    GXBegin(0x98, 4, n);
-    for (; n > 0; n--) {
-        inv = lbl_805E1078 / v->w;
-        GXPosition3f32_803E2810(v->x * inv, v->y * inv, inv);
-        c = v->color;
-        GXColor1u32_803E2810(((c & 0xFFFFFF) << 8) | ((c & 0xFF000000) >> 24));
-        GXTexCoord2f32_803E2810(v->s, v->t);
-        v++;
-    }
-    TObjPlayer__sub_803E2248();
-}
-}
-#pragma pop
 
 #pragma pop
 

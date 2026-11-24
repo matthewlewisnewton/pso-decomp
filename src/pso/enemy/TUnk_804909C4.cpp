@@ -1,51 +1,53 @@
+#define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/enemy/TUnk_804909C4.h"
+
+#include "types.h"
+#include "pso/effect/particle/TParticleCtrl.h"
+#include "pso/enemy/darkgunner/TObjEneDarkGunner.h"
+#include "pso/map/CsnQuery.h"
+#include "pso/math/AngleUnits.h"
+#include "pso/math/MatrixTransforms.h"
+#include "pso/object/base/CollisionActorLookup.h"
+#include "pso/object/base/TObjChara.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjPlayer_80011014.h"
 #include "pso/player/TObjPlayer_801542CC.h"
-#include "pso/map/CsnQuery.h"
-#include "pso/math/MatrixTransforms.h"
-#include "pso/system/NinjaUtil.h"
+#include "pso/render/NinjaUtil.h"
+#include "pso/system/MatrixOps.h"
+#include "pso/system/task/TMainTask.h"
+#include "pso/system/task/TObject.h"
 #include "pso/system/vector.h"
-#include "pso/TParticleCtrl.h"
+#include "pso/object/base/TObjBase.h"
 
-extern "C" {
-void check_enemy_body_collisions(TObjCollidable *);
-s32 TObjPlayer__sub_800A3210(s32);
-void vec3_add_to(Vec *, const Vec *);
-f32 atan2_float(f32, f32);
-void *spawn_particle_effect_with_rotation(void *, void *, s32, int);
-extern TObject *tl_04;
-extern f32 player_scale_factor;
-}
-
-CollisionBody projectile_collision_body = {{0.0f, 0.0f, 0.0f}, 0.0f, 0.0f, 0, 0x8003, {0.0f, 0.0f, 0.0f}, 0.0f};
+CollisionBody dark_gunner_shot_collision_body[] = {
+    {{0.0f, 0.0f, 0.0f}, 0.0f, 0.0f, 0, 0x8003, {0.0f, 0.0f, 0.0f}, 0.0f}
+};
 
 s32 TUnk_804909C4::check_player_hits(u16 id) {
-    TObjCollidable *other;
+    TObjCollidable *owner;
     s32 result = 0;
     s32 i;
-    TObjChara *p;
-    other = find_entity_by_id(id);
-    if (other == NULL) {
+    TObjChara *target;
+    owner = find_entity_by_id(id);
+    if (owner == NULL) {
         return 0;
     }
-    other->bodies->flags &= ~1;
+    owner->bodies->flags &= ~1;
     TObjPlayer::init_all_slots();
     check_object_collisions();
     check_enemy_body_collisions(this);
-    other->bodies->flags |= 1;
+    owner->bodies->flags |= 1;
     if (bodies->flags & 0x180000) {
         for (i = 0; i < 16; i++) {
-            p = (TObjChara *)TObjPlayer::get_battle_param(i);
-            if (p == NULL) {
+            target = (TObjChara *)TObjPlayer::get_battle_param(i);
+            if (target == NULL) {
                 break;
             }
-            if (obj_is_hit_receivable((u8 *)p) != 0 && p != other) {
-                DirectAttackPayload t = {0, 0.0f};
-                t.power = TObjPlayer__sub_800A3210(3);
-                DirectAttackPayload u = t;
-                p->receive_direct_attack(other, u, 0, -1, -1);
-                p->apply_knockback_from_attacker((u8 *)other, 3.0f);
+            if (obj_is_hit_receivable(target) != 0 && target != owner) {
+                DirectAttackPayload hit = {0, 0.0f};
+                hit.power = TObjEneDarkGunner::get_int_parameter(3);
+                target->receive_direct_attack(owner, hit, NULL, -1, -1);
+                target->apply_knockback_from_attacker((u8 *)owner, 3.0f);
                 result = 1;
             }
         }
@@ -56,58 +58,50 @@ s32 TUnk_804909C4::check_player_hits(u16 id) {
 void TUnk_804909C4::run_task() {
     VecCopy(&prev_position, &position);
     vec3_add_to(&position, &velocity);
-    if (effect != NULL) {
-        effect->set_position(&position);
+    if (trail != NULL) {
+        trail->set_position(&position);
     }
     if (check_player_hits(owner_id) != 0) {
         queue_destruction();
         return;
     }
-    s32 remaining = lifetime - 1;
-    lifetime = remaining;
-    if (remaining <= 0) {
+    if (--lifetime <= 0) {
         queue_destruction();
     }
 }
 
 TUnk_804909C4::~TUnk_804909C4() {
     free_collision_body_parts(this);
-    if (effect != NULL) {
-        effect->queue_destruction();
+    if (trail != NULL) {
+        trail->queue_destruction();
     }
 }
 
-TUnk_804909C4::TUnk_804909C4(u8 *owner, const Vec *start, const Vec *target) : TObjCollidable(tl_04) {
-    s32 var_r0;
-    CsnHit *hit;
-    init_collision_body_parts(this, &projectile_collision_body, 1);
-    bodies->radius = 0.75f * player_scale_factor;
-    owner_id = get_entity_id((TObjBase *)owner);
-    if (((TObjPlayer *)owner)->is_flag_set_388_bit26() != 0) {
-        var_r0 = 0xDA;
-    } else {
-        var_r0 = 0xD5;
-    }
-    effect_id = var_r0;
-    room = ((TObjPlayer *)owner)->room;
-    VecCopy(&position, start);
-    VecCopy(&velocity, target);
-    subtract_vector(&velocity, start);
+TUnk_804909C4::TUnk_804909C4(u8 *owner, saddr start, saddr target) : TObjCollidable(tl_04) {
+    CsnHit *wall;
+    init_collision_body_parts(this, dark_gunner_shot_collision_body, 1);
+    bodies->radius = 0.75f * dark_gunner_shot_speed;
+    owner_id = ((TObjBase *)owner)->get_entity_id();
+    trail_particle_id = ((TObjEneDarkGunner *)owner)->is_death_gunner() != 0 ? 0xDA : 0xD5;
+    room = ((TObjBase *)owner)->room;
+    VecCopy(&position, (const Vec *)start);
+    VecCopy(&velocity, (const Vec *)target);
+    subtract_vector(&velocity, (const Vec *)start);
     velocity.y = 0.0f;
-    vec_set_length(&velocity, player_scale_factor);
-    effect_rotation[0] = 0;
-    effect_rotation[1] = (s32)(10430.38043493439 * atan2_float(velocity.x, velocity.z)) + 0x4000;
-    effect_rotation[2] = 0x4000;
-    effect = (TParticleCtrl *)spawn_particle_effect_with_rotation(&position, effect_rotation, effect_id, 0x42);
+    vec_set_length(&velocity, dark_gunner_shot_speed);
+    trail_rotation[0] = 0;
+    trail_rotation[1] = (s32)(RADIANS_TO_ANGLE * atan2_float(velocity.x, velocity.z)) + 0x4000;
+    trail_rotation[2] = 0x4000;
+    trail = (TParticleCtrl *)spawn_particle_effect_with_rotation(&position, trail_rotation, trail_particle_id, 0x42);
     {
         Vec end = velocity;
         vec_set_length(&end, 500.0f);
         vec3_add_to(&end, &position);
-        hit = csnVector(&position, &end, -1);
+        wall = csnVector(&position, &end, -1);
     }
-    if (hit != NULL) {
-        lifetime = (s32)(vec_xz_distance(&position, &hit->contact->point) / player_scale_factor);
+    if (wall != NULL) {
+        lifetime = (s32)(vec_xz_distance(&position, &wall->contact->point) / dark_gunner_shot_speed);
     } else {
-        lifetime = (s32)(500.0f / player_scale_factor);
+        lifetime = (s32)(500.0f / dark_gunner_shot_speed);
     }
 }

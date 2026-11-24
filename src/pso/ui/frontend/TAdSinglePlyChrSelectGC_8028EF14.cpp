@@ -1,0 +1,1042 @@
+#include "pso/system/memory.h"
+#include "pso/ui/charcreate/CharacterPreviewModels.h"
+#include "pso/ui/charcreate/TObjCMMainMenu_8028EA88.h"
+#include "pso/system/BmlAccessors.h"
+#include "types.h"
+#include "pso/ui/charcreate/CharacterAppearanceTables.h"
+#include "pso/system/BmlResourceDescriptor.h"
+#include "pso/system/BmlResource.h"
+#include "pso/system/task/TObject.h"
+#include "pso/unk/TLobby.h"
+#include "pso/object/base/TObjMotion.h"
+#include "pso/object/TCMCharacter.h"
+#include "pso/ui/charcreate/CharacterShape.h"
+#include "pso/ui/charcreate/CharacterCreationTextureCache.h"
+#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
+#include "pso/effect/particle/TParticleCtrl.h"
+#include "pso/enemy/panarms/TObjEnePanarms.h"
+#include "pso/ui/charcreate/TCharaMaking.h"
+#include "pso/quest/TQuestVmDownLoadServer.h"
+#include "pso/object/ambient/TObjFish.h"
+#include "pso/player/TObjPlayer.h"
+#include "pso/render/render_util.h"
+#include "pso/boss/darkfalz/TOBoss4Rock.h"
+#include "pso/unk/text_803D96A8.h"
+
+
+
+struct Opaque_80290088;
+
+s32 find_shape_triangle_region(u8 *arg0);
+TChCrLoadAfsTextureReq *create_ch_cr_load_afs_texture_req(void *figure, void *list, void *slot, void *index);
+void calc_shape_region_coefficients(f32 *point);
+s32 blend_shape_chunk_vertices(void);
+extern "C" {
+f32 vector_length(f32 *v);
+}
+// Ninja chunk model (NJS_CNK_MODEL): vertex chunk list, polygon chunk list, bounds.
+struct CreationShapeModel { s32 *vertex_list; s16 *polygon_list; f32 center[3]; };
+struct CreationShapeNode { u32 eval_flags; CreationShapeModel *model; f32 pos[3]; s32 ang[3]; f32 scl[3]; };
+extern "C" {
+void TAdSinglePlyChrSelectGC__sub_802905A4(void* p, void* q);
+}
+void reset_creation_shape_set(saddr arg0);
+s32 char_select_active_flag;
+int char_creation_figure_draw_flag;
+u32 creation_figure_rotation_y;
+TCMCharacter *creation_figure_object;
+CreationTextureCacheEntry *char_select_current_entry;
+uaddr chara_select_hair_node_a;
+uaddr chara_select_hair_node_b;
+uaddr chara_select_head_node;
+void ***char_creation_data_block;
+saddr chara_select_preview_resource;
+void reset_creation_body_shapes();
+void reset_creation_head_shapes();
+#pragma common off
+CreationHeadModelStates creation_head_shape_destination;
+CreationHeadModelStates creation_head_shape_samples[7];
+CreationBodyModelStates creation_body_shape_destination;
+CreationBodyModelStates creation_body_shape_samples[7];
+CreationShapeBlend creation_shape_blend;
+CreationTextureCacheEntry creation_texture_cache[CREATION_TEXTURE_CACHE_CAPACITY];
+CreationModelPart creation_hair_model_parts[10];
+CreationModelPart creation_cap_model_parts[10];
+CreationModelPart creation_head_model_parts[5];
+__declspec(section ".data") u32 creation_models_ready;
+#pragma common reset
+extern "C" {
+s32 is_entry_equal__23TAdSinglePlyChrSelectGCFPvPv(void *, void *);
+s32 creation_motion_group(CharacterAppearanceFields *);
+void load_creation_shape_rel(TCMCharacter *character);
+void TCharaMaking__sub_8028E3A0();
+void TAdSinglePlyChrSelectGC__sub_80290884(void* p, void* q);
+s32 count_char_diffs__23TAdSinglePlyChrSelectGCFPvPv(void *, void *);
+
+void TAdSinglePlyChrSelectGC__sub_8028ED54(void);
+void blend_creation_proportion_shapes(f32 *);
+void TAdSinglePlyChrSelectGC__sub_8028F084(CreationTextureCacheEntry *entry, CharacterAppearanceFields *appearance);
+void copy_slot_data__23TAdSinglePlyChrSelectGCFPvPv(void *dst, void *src);
+extern s32 lbl_805D49B4;
+
+s32 creation_resource_ready_state;
+void translate_matrix_vec3(u8 *arg0, u8 *arg1);
+void rotate_matrix_y(int, u32);
+int fn_8001ED90(void *p);
+s32 release_texture_list(void *);
+
+#pragma push
+#pragma readonly_strings on
+// empty motion name lists of the character-making BmlResourceDescriptors (inferred)
+const char *lbl_805D3B70[1] = {NULL};
+const char *lbl_805D3B74[1] = {NULL};
+const char *lbl_805D3B78[1] = {NULL};
+const char *lbl_805D3B7C[1] = {NULL};
+const char *lbl_805D3B80[1] = {NULL};
+const char *lbl_805D3B84[1] = {NULL};
+const char *lbl_805D3B88[1] = {NULL};
+const char *lbl_805D3B8C[1] = {NULL};
+const char *lbl_805D3B90[1] = {NULL};
+const char *lbl_805D3B94[1] = {NULL};
+const char *lbl_805D3B98[1] = {NULL};
+const char *lbl_805D3B9C[1] = {NULL};
+const char *lbl_805D3BA0[1] = {NULL};
+const char *lbl_805D3BA4[1] = {NULL};
+const char *lbl_805D3BA8[1] = {NULL};
+const char *lbl_805D3BAC[1] = {NULL};
+const char *lbl_805D3BB0[1] = {NULL};
+const char *lbl_805D3BB4[1] = {NULL};
+const char *lbl_805D3BB8[1] = {NULL};
+const char *lbl_804D3A08[14] = {
+    "plAbdy00.nj", "plAcap06.nj", "plAhai00.nj", "plAhai01.nj",
+    "plAhai02.nj", "plAhai03.nj", "plAhai04.nj", "plAhai05.nj",
+    "plAhai06.nj", "plAhai07.nj", "plAhai08.nj", "plAhai09.nj",
+    "plAhed00.nj", NULL,
+};
+BmlResourceDescriptor lbl_804D3A40 = {"planj.bml", lbl_804D3A08, lbl_805D3B70, 13, 0};
+const char *lbl_804D3A50[13] = {
+    "plBbdy00.nj", "plBhai00.nj", "plBhai01.nj", "plBhai02.nj",
+    "plBhai03.nj", "plBhai04.nj", "plBhai05.nj", "plBhai06.nj",
+    "plBhai07.nj", "plBhai08.nj", "plBhai09.nj", "plBhed00.nj",
+    NULL,
+};
+BmlResourceDescriptor lbl_804D3A84 = {"plbnj.bml", lbl_804D3A50, lbl_805D3B74, 12, 0};
+const char *lbl_804D3A94[7] = {
+    "plCbdy00.nj", "plChed00.nj", "plChed01.nj", "plChed02.nj",
+    "plChed03.nj", "plChed04.nj", NULL,
+};
+BmlResourceDescriptor lbl_804D3AB0 = {"plcnj.bml", lbl_804D3A94, lbl_805D3B78, 6, 0};
+const char *lbl_804D3AC0[23] = {
+    "plDbdy00.nj", "plDcap00.nj", "plDcap01.nj", "plDcap02.nj",
+    "plDcap03.nj", "plDcap04.nj", "plDcap05.nj", "plDcap06.nj",
+    "plDcap07.nj", "plDcap08.nj", "plDcap09.nj", "plDhai00.nj",
+    "plDhai01.nj", "plDhai02.nj", "plDhai03.nj", "plDhai04.nj",
+    "plDhai05.nj", "plDhai06.nj", "plDhai07.nj", "plDhai08.nj",
+    "plDhai09.nj", "plDhed00.nj", NULL,
+};
+BmlResourceDescriptor lbl_804D3B1C = {"pldnj.bml", lbl_804D3AC0, lbl_805D3B7C, 22, 0};
+const char *lbl_804D3B2C[7] = {
+    "plEbdy00.nj", "plEhed00.nj", "plEhed01.nj", "plEhed02.nj",
+    "plEhed03.nj", "plEhed04.nj", NULL,
+};
+BmlResourceDescriptor lbl_804D3B48 = {"plenj.bml", lbl_804D3B2C, lbl_805D3B80, 6, 0};
+const char *lbl_804D3B58[7] = {
+    "plFbdy00.nj", "plFhed00.nj", "plFhed01.nj", "plFhed02.nj",
+    "plFhed03.nj", "plFhed04.nj", NULL,
+};
+BmlResourceDescriptor lbl_804D3B74 = {"plfnj.bml", lbl_804D3B58, lbl_805D3B84, 6, 0};
+const char *lbl_804D3B84[23] = {
+    "plGbdy00.nj", "plGcap00.nj", "plGcap01.nj", "plGcap02.nj",
+    "plGcap03.nj", "plGcap04.nj", "plGcap05.nj", "plGcap06.nj",
+    "plGcap07.nj", "plGcap08.nj", "plGcap09.nj", "plGhai00.nj",
+    "plGhai01.nj", "plGhai02.nj", "plGhai03.nj", "plGhai04.nj",
+    "plGhai05.nj", "plGhai06.nj", "plGhai07.nj", "plGhai08.nj",
+    "plGhai09.nj", "plGhed00.nj", NULL,
+};
+BmlResourceDescriptor lbl_804D3BE0 = {"plgnj.bml", lbl_804D3B84, lbl_805D3B88, 22, 0};
+const char *lbl_804D3BF0[23] = {
+    "plHbdy00.nj", "plHcap00.nj", "plHcap01.nj", "plHcap02.nj",
+    "plHcap03.nj", "plHcap04.nj", "plHcap05.nj", "plHcap06.nj",
+    "plHcap07.nj", "plHcap08.nj", "plHcap09.nj", "plHhai00.nj",
+    "plHhai01.nj", "plHhai02.nj", "plHhai03.nj", "plHhai04.nj",
+    "plHhai05.nj", "plHhai06.nj", "plHhai07.nj", "plHhai08.nj",
+    "plHhai09.nj", "plHhed00.nj", NULL,
+};
+BmlResourceDescriptor lbl_804D3C4C = {"plhnj.bml", lbl_804D3BF0, lbl_805D3B8C, 22, 0};
+const char *lbl_804D3C5C[23] = {
+    "plIbdy00.nj", "plIcap00.nj", "plIcap01.nj", "plIcap02.nj",
+    "plIcap03.nj", "plIcap04.nj", "plIcap05.nj", "plIcap06.nj",
+    "plIcap07.nj", "plIcap08.nj", "plIcap09.nj", "plIhai00.nj",
+    "plIhai01.nj", "plIhai02.nj", "plIhai03.nj", "plIhai04.nj",
+    "plIhai05.nj", "plIhai06.nj", "plIhai07.nj", "plIhai08.nj",
+    "plIhai09.nj", "plIhed00.nj", NULL,
+};
+BmlResourceDescriptor lbl_804D3CB8 = {"plinj.bml", lbl_804D3C5C, lbl_805D3B90, 22, 0};
+const char *lbl_804D3CC8[7] = {
+    "plJbdy00.nj", "plJhed00.nj", "plJhed01.nj", "plJhed02.nj",
+    "plJhed03.nj", "plJhed04.nj", NULL,
+};
+BmlResourceDescriptor lbl_804D3CE4 = {"pljnj.bml", lbl_804D3CC8, lbl_805D3B94, 6, 0};
+const char *lbl_804D3CF4[23] = {
+    "plKbdy00.nj", "plKcap00.nj", "plKcap01.nj", "plKcap02.nj",
+    "plKcap03.nj", "plKcap04.nj", "plKcap05.nj", "plKcap06.nj",
+    "plKcap07.nj", "plKcap08.nj", "plKcap09.nj", "plKhai00.nj",
+    "plKhai01.nj", "plKhai02.nj", "plKhai03.nj", "plKhai04.nj",
+    "plKhai05.nj", "plKhai06.nj", "plKhai07.nj", "plKhai08.nj",
+    "plKhai09.nj", "plKhed00.nj", NULL,
+};
+BmlResourceDescriptor lbl_804D3D50 = {"plknj.bml", lbl_804D3CF4, lbl_805D3B98, 22, 0};
+const char *lbl_804D3D60[23] = {
+    "plLbdy00.nj", "plLcap00.nj", "plLcap01.nj", "plLcap02.nj",
+    "plLcap03.nj", "plLcap04.nj", "plLcap05.nj", "plLcap06.nj",
+    "plLcap07.nj", "plLcap08.nj", "plLcap09.nj", "plLhai00.nj",
+    "plLhai01.nj", "plLhai02.nj", "plLhai03.nj", "plLhai04.nj",
+    "plLhai05.nj", "plLhai06.nj", "plLhai07.nj", "plLhai08.nj",
+    "plLhai09.nj", "plLhed00.nj", NULL,
+};
+BmlResourceDescriptor lbl_804D3DBC = {"pllnj.bml", lbl_804D3D60, lbl_805D3B9C, 22, 0};
+const char *lbl_804D3DCC[4] = {
+    "plSbdy00.nj", "plShai00.nj", "plShed00.nj", NULL,
+};
+BmlResourceDescriptor lbl_804D3DDC = {"plsnj.bml", lbl_804D3DCC, lbl_805D3BA0, 3, 0};
+const char *lbl_804D3DEC[4] = {
+    "plTbdy00.nj", "plThai00.nj", "plThed00.nj", NULL,
+};
+BmlResourceDescriptor lbl_804D3DFC = {"pltnj.bml", lbl_804D3DEC, lbl_805D3BA4, 3, 0};
+const char *lbl_804D3E0C[3] = {
+    "plUbdy00.nj", "plUhed00.nj", NULL,
+};
+BmlResourceDescriptor lbl_804D3E18 = {"plunj.bml", lbl_804D3E0C, lbl_805D3BA8, 2, 0};
+const char *lbl_804D3E28[3] = {
+    "plVbdy00.nj", "plVhed00.nj", NULL,
+};
+BmlResourceDescriptor lbl_804D3E34 = {"plvnj.bml", lbl_804D3E28, lbl_805D3BAC, 2, 0};
+const char *lbl_804D3E44[3] = {
+    "plWbdy00.nj", "plWhed00.nj", NULL,
+};
+BmlResourceDescriptor lbl_804D3E50 = {"plwnj.bml", lbl_804D3E44, lbl_805D3BB0, 2, 0};
+const char *lbl_804D3E60[3] = {
+    "plXbdy00.nj", "plXhed00.nj", NULL,
+};
+BmlResourceDescriptor lbl_804D3E6C = {"plxnj.bml", lbl_804D3E60, lbl_805D3BB4, 2, 0};
+const char *lbl_804D3E7C[3] = {
+    "plYbdy00.nj", "plYhed00.nj", NULL,
+};
+BmlResourceDescriptor lbl_804D3E88 = {"plynj.bml", lbl_804D3E7C, lbl_805D3BB8, 2, 0};
+BmlResourceDescriptor *character_making_resource_descriptor_table[19] = {
+    &lbl_804D3A40, &lbl_804D3A84, &lbl_804D3AB0, &lbl_804D3B1C,
+    &lbl_804D3B48, &lbl_804D3B74, &lbl_804D3BE0, &lbl_804D3C4C,
+    &lbl_804D3CB8, &lbl_804D3CE4, &lbl_804D3D50, &lbl_804D3DBC,
+    &lbl_804D3DDC, &lbl_804D3DFC, &lbl_804D3E18, &lbl_804D3E34,
+    &lbl_804D3E50, &lbl_804D3E6C, &lbl_804D3E88,
+};
+TObjMotionAction character_making_action_table[9] = {
+    { MOTION_MODE_LOOP, 0, 33, 1.0f, 0 },
+    { MOTION_MODE_LOOP, 0, 1, 1.0f, 0 },
+    { MOTION_MODE_LOOP, 0, 0, 1.0f, 0 },
+    { MOTION_MODE_LOOP, 0, 31, 1.0f, 0 },
+    { MOTION_MODE_LOOP, 0, 32, 1.0f, 0 },
+    { MOTION_MODE_LOOP, 0, 30, 1.0f, 0 },
+    { MOTION_MODE_LOOP, 0, 47, 1.0f, 0 },
+    { MOTION_MODE_LOOP, 0, 48, 1.0f, 0 },
+    { MOTION_MODE_LOOP, 0, 46, 1.0f, 0 },
+};
+// TCMCharacter class-name pointer, stored as the object name by TCMCharacter__ct (inferred)
+const char *TCMCharacter__name = "TCMCharacter";
+// empty model part copied into every slot by init_entry_tables (inferred)
+__declspec(section ".rodata") CreationModelPart lbl_80451CD0 = {0, 0};
+#pragma pop
+__declspec(section ".data") CreationModelNodeState creation_empty_model_node = {0,0};
+
+struct Sel_802902CC {
+    u8 pad0[4];
+    saddr a4;
+    saddr a8;
+    s32 c[3];
+    saddr d[3];
+    saddr e[3];
+};
+
+}
+void map_shape_region_samples(s32 region, s32 *samples);
+extern CreationShapeBlend creation_shape_blend;
+s32 clear_creation_shape_eval_masks(f32 *dst, const f32 *a, const f32 *b, const f32 *c);
+s32 scan_creation_resources(void *arg0);
+uaddr relocate_data_block_pointers(uaddr arg0, u32 arg1);
+void reset_character_creation_figure_rotation(void);
+extern "C" {
+
+void TCharaMaking__bind_head_shape_nodes(CharacterAppearanceFields *appearance, void *model);
+void TCharaMaking__bind_body_shape_nodes(CharacterAppearanceFields *appearance, void *model);
+extern s32 creation_region_sample_index_table[24]; extern CreationShapePoint lbl_804D400C[9];
+#pragma defer_codegen on
+TCMCharacter::TCMCharacter(TObject *parent) : TObjMotion(parent) {
+    CreationTextureCacheEntry *p;
+    s32 res;
+    CharacterAppearanceFields *cm;
+
+    m_name = TCMCharacter__name;
+    lbl_805D49B4 = 1;
+    cm = creation_player_character;
+    char_select_active_flag = 0;
+    char_creation_figure_draw_flag = 0;
+    creation_figure_object = this;
+    res = (saddr)new BmlResource(6, ((BmlResourceDescriptor **)character_making_resource_descriptor_table)[character_display_index((uaddr)cm)], 0, 0, NULL);
+    chara_select_preview_resource = res;
+    for (p = ((CreationTextureCacheEntry *)creation_texture_cache); p < ((CreationTextureCacheEntry *)creation_texture_cache) + 0x80; p++) {
+        p->in_use = 0;
+        p->hair_textures.textures.present = 0;
+        p->head_textures.textures.present = 0;
+        p->body_textures.textures.present = 0;
+        p->hair_textures.complete = 0;
+        p->head_textures.complete = 0;
+        p->body_textures.complete = 0;
+    }
+    char_select_current_entry = 0;
+    ((void (*)(int))TAdSinglePlyChrSelectGC__sub_8028ED54)(0);
+    char_select_current_entry = 0;
+    set_action_table(character_making_action_table);
+    set_motion_list(creation_menu_main_obj->motions);
+    requested_action = creation_motion_group(creation_player_character);
+    set_animation(requested_action);
+    joint_matrices = mem_alloc(0xC00);
+    position.z = 0.0f;
+    position.y = 0.0f;
+    position.x = 0.0f;
+    rotation_z = 0;
+    rotation_y = 0;
+    rotation_x = 0;
+    load_creation_shape_rel(this);
+    reset_character_creation_figure_rotation();
+    creation_resource_ready_state = 0;
+}
+TCMCharacter::~TCMCharacter() {
+    CreationTextureCacheEntry *p;
+    CreationTextureCacheEntry *end;
+    for (p = creation_texture_cache, end = creation_texture_cache + 128; p < end; p++) {
+        if (p->in_use != 0) {
+            ((TAdSinglePlyChrSelectGC *)p)->update_char_panels();
+        }
+    }
+    free_field_FC();
+    delete (BmlResource *)chara_select_preview_resource;
+    chara_select_preview_resource = 0;
+    reset_model_parts();
+    chara_select_head_node = 0;
+    chara_select_hair_node_b = 0;
+    chara_select_hair_node_a = 0;
+    model = 0;
+    mem_free(joint_matrices);
+    creation_resource_ready_state = 0;
+    creation_figure_object = 0;
+    lbl_805D49B4 = 0;
+    char_creation_figure_draw_flag = 0;
+}
+}
+
+void TAdSinglePlyChrSelectGC::update_pair(void* p) { TAdSinglePlyChrSelectGC::init_entry_tables(p); ((TCMCharacter *)p)->load_model_parts(); }
+
+extern "C" {
+void TAdSinglePlyChrSelectGC__sub_80290884(void* p, void* q) { *(u32*)((char*)p + 0x0) = *(u32*)((char*)q + 0x0); *(u32*)((char*)p + 0x4) = *(u32*)((char*)q + 0x4); }
+void TAdSinglePlyChrSelectGC::init_entry_tables(void* _w0) {
+    for (s32 i = 0; i < 10; i++) {
+        TAdSinglePlyChrSelectGC__sub_80290884(&creation_hair_model_parts[i], &lbl_80451CD0);
+        TAdSinglePlyChrSelectGC__sub_80290884(&creation_cap_model_parts[i], &lbl_80451CD0);
+    }
+    for (s32 i = 0; i < 5; i++) {
+        TAdSinglePlyChrSelectGC__sub_80290884(&creation_head_model_parts[i], &lbl_80451CD0);
+    }
+}
+void TCMCharacter::load_model_parts() {
+    CharacterAppearanceFields *appearance = creation_player_character;
+    CharacterClassAppearance *entry = &class_appearance_table[character_display_index(reinterpret_cast<uaddr>(creation_player_character))];
+    creation_models_ready = 1;
+    model = (void *)get_bml_model((BmlResource *)chara_select_preview_resource, 0);
+    s32 next = bind_model_parts(&chara_select_hair_node_b, entry->capModels, creation_cap_model_parts, 4, 1);
+    next = bind_model_parts(&chara_select_hair_node_a, entry->hairModels, creation_hair_model_parts, 4, next);
+    bind_model_parts(&chara_select_head_node, entry->headModels, creation_head_model_parts, 3, next);
+    character_display_index(reinterpret_cast<uaddr>(appearance));
+}
+
+s32 TCMCharacter::bind_model_parts(uaddr *selected, const char **names, CreationModelPart *parts,
+                                 s32 part, s32 model_index) {
+    *selected = 0;
+    if (names == NULL) {
+        return model_index;
+    }
+    CharacterAppearanceFields *appearance = (CharacterAppearanceFields *)creation_player_character;
+    s32 count = class_appearance_table[character_display_index(reinterpret_cast<uaddr>(creation_player_character))].counts[part];
+    if (count == 0) {
+        count = 1;
+    }
+    s32 i = 0;
+    while (i < count) {
+        if (*names == NULL) {
+            parts->present = 0;
+            parts->model = 0;
+        } else {
+            parts->present = 1;
+            parts->model = (saddr)get_bml_model((BmlResource *)chara_select_preview_resource, model_index++);
+        }
+        i++;
+        names++;
+        parts++;
+    }
+    chara_select_head_node = parts[(&appearance->costume)[part]].model;
+    return model_index;
+}
+
+void TCMCharacter::reset_model_parts() {
+    for (s32 i = 0; i < 10; i++) {
+        creation_hair_model_parts[i].present = creation_cap_model_parts[i].present = 0;
+    }
+    for (s32 i = 0; i < 5; i++) {
+        creation_head_model_parts[i].present = 0;
+    }
+    creation_models_ready = 0;
+}
+s32 TAdSinglePlyChrSelectGC::is_active() {
+    return (u8)((u8) (char_select_active_flag == 1));
+}
+int get_char_creation_figure_draw_flag(void) { return char_creation_figure_draw_flag; }
+void TAdSinglePlyChrSelectGC__sub_802905A4(void* p, void* q) { *(u32*)((char*)p + 0x0) = *(u32*)((char*)q + 0x0); *(u32*)((char*)p + 0x4) = *(u32*)((char*)q + 0x4); }
+}
+void reset_creation_shape_set(saddr arg0) {
+    TAdSinglePlyChrSelectGC__sub_802905A4((void*)arg0, (void*)((void *)&creation_empty_model_node));
+}
+#pragma push
+#pragma fp_contract on
+#pragma opt_common_subs on
+#pragma scheduling on
+void reset_creation_head_shapes() {
+  CreationModelNodeState *p = creation_head_shape_destination.nodes;
+  s32 i = 0;
+  do
+  {
+    reset_creation_shape_set((saddr)p);
+    ++i;
+    ++p;
+  }
+  while (i < 5);
+  s32 group = 0;
+  do
+  {
+    CreationModelNodeState *q = creation_head_shape_samples[group].nodes;
+    s32 j = 0;
+    do
+    {
+      reset_creation_shape_set((saddr)q);
+      ++j;
+      ++q;
+    }
+    while (j < 5);
+    ++group;
+  }
+  while (group < 7);
+}
+#pragma pop
+
+#pragma push
+#pragma fp_contract on
+#pragma opt_common_subs on
+#pragma scheduling on
+void reset_creation_body_shapes() {
+  CreationModelNodeState *p = creation_body_shape_destination.nodes;
+  s32 i = 0;
+  do
+  {
+    reset_creation_shape_set((saddr)p);
+    ++i;
+    ++p;
+  }
+  while (i < 65);
+  s32 group = 0;
+  do
+  {
+    CreationModelNodeState *q = creation_body_shape_samples[group].nodes;
+    s32 j = 0;
+    do
+    {
+      reset_creation_shape_set((saddr)q);
+      ++j;
+      ++q;
+    }
+    while (j < 65);
+    ++group;
+  }
+  while (group < 7);
+}
+#pragma pop
+
+void TCharaMaking__bind_body_shape_nodes(CharacterAppearanceFields *appearance, void *model) {
+    reset_creation_body_shapes();
+    make_node_flag_table((NJS_OBJECT *)model, (NodeFlagEntry *)&creation_body_shape_destination);
+    for (s32 i = 0; i < 7; ++i) {
+        make_node_flag_table((NJS_OBJECT *)char_creation_data_block[0][i], (NodeFlagEntry *)&creation_body_shape_samples[i]);
+    }
+}
+void TCharaMaking__bind_head_shape_nodes(CharacterAppearanceFields *appearance, void *model) {
+    reset_creation_head_shapes();
+    make_node_flag_table((NJS_OBJECT *)model, (NodeFlagEntry *)&creation_head_shape_destination);
+    s32 head = appearance->head + 1;
+    for (s32 i = 0; i < 7; ++i) {
+        make_node_flag_table((NJS_OBJECT *)char_creation_data_block[head][i], (NodeFlagEntry *)&creation_head_shape_samples[i]);
+    }
+}
+void bind_character_preview_models(const CharacterPreviewModels *models) {
+    s32 i;
+    reset_creation_head_shapes();
+    reset_creation_body_shapes();
+    make_node_flag_table(models->head, (NodeFlagEntry *)((void *)&creation_head_shape_destination));
+    make_node_flag_table(models->body, (NodeFlagEntry *)((void *)&creation_body_shape_destination));
+    for (i = 0; i < 3; i++) {
+        s32 t = models->sample_indices[i];
+        make_node_flag_table(models->head_samples[i], (NodeFlagEntry *)&creation_head_shape_samples[t]);
+        make_node_flag_table(models->body_samples[i], (NodeFlagEntry *)&creation_body_shape_samples[t]);
+    }
+}
+void load_creation_shape_rel(TCMCharacter *character) {
+    s32 rc;
+    character->shape_rel = TQuestVmDownLoadServer::alloc(0x44000);
+    rc = TLobby::request_file_read(
+        chara_select_creation_shape_rel_files[character_display_index(reinterpret_cast<uaddr>(creation_player_character))],
+        character->shape_rel, &character->shape_rel_ready, NULL);
+    character->shape_rel_size = rc;
+    if (rc >= 0) {
+        if (character->shape_rel_size > 0x44000) {
+            return;
+        }
+    }
+}
+void TCMCharacter::free_field_FC() {
+    safe_free(shape_rel);
+    shape_rel = NULL;
+}
+
+void TCMCharacter::run_task() {
+    static void (TCMCharacter::*modes[2])() = {
+        &TCMCharacter::apply_character_appearance, &TCMCharacter::update_chara_preview,
+    };
+    (this->*modes[char_select_active_flag])();
+}
+
+
+// The three shape samples (corners in lbl_804D400C) of each proportion region.
+s32 creation_region_sample_index_table[24] = {
+    1, 3, 0,
+    0, 4, 3,
+    3, 5, 4,
+    1, 3, 2,
+    2, 6, 3,
+    3, 5, 6,
+    2, 6, 7,
+    8, 7, 2,
+};
+// The (width, height) corner of each shape sample in the proportion plane.
+CreationShapePoint lbl_804D400C[9] = {
+    {0.0f, 0.0f}, {1.0f / 3.0f, 0.0f}, {2.0f / 3.0f, 0.0f}, {1.0f / 3.0f, 0.5f}, {0.0f, 1.0f},
+    {1.0f / 3.0f, 1.0f}, {2.0f / 3.0f, 1.0f}, {1.0f, 1.0f}, {1.0f, 0.0f},
+};
+
+
+void TCMCharacter::apply_character_appearance() {
+    struct Opaque_80290088 *app;
+    CharacterAppearanceFields *raw;
+    s32 hair;
+    s32 head;
+    if (fn_8001ED90((void *)chara_select_preview_resource) == 0 || this->shape_rel_ready == 0) {
+        return;
+    }
+    TAdSinglePlyChrSelectGC::update_pair(this);
+    raw = (CharacterAppearanceFields *)creation_player_character;
+    app = (struct Opaque_80290088 *)raw;
+    hair = raw->hair;
+    if ((s32)creation_hair_model_parts[hair].present == 1) {
+        chara_select_hair_node_a = creation_hair_model_parts[hair].model;
+    }
+    if ((s32)creation_cap_model_parts[hair].present == 1) {
+        chara_select_hair_node_b = creation_cap_model_parts[hair].model;
+    }
+    head = ((CharacterAppearanceFields *)app)->head;
+    if ((s32)creation_head_model_parts[head].present == 1) {
+        chara_select_head_node = creation_head_model_parts[head].model;
+    }
+    char_creation_data_block = (void ***)relocate_data_block_pointers(reinterpret_cast<saddr>(this->shape_rel), this->shape_rel_size);
+    TCharaMaking__bind_body_shape_nodes((CharacterAppearanceFields *)((CharacterAppearanceFields *)app), this->model);
+    TCharaMaking__bind_head_shape_nodes((CharacterAppearanceFields *)((CharacterAppearanceFields *)app), (void *)((void *)chara_select_head_node));
+    blend_creation_proportion_shapes(&((CharacterAppearanceFields *)creation_player_character)->width);
+    lbl_805D49B4 = 0;
+    char_select_active_flag = 1;
+}
+
+void TCMCharacter::update_chara_preview() {
+    s32 state;
+    state = TCharaMaking::query_state();
+    TAdSinglePlyChrSelectGC__sub_8028ED54();
+    switch (state) {
+    case 3:
+        if (chara_select_head_node != 0) {
+            TCharaMaking__bind_head_shape_nodes((CharacterAppearanceFields *)((CharacterAppearanceFields *)creation_player_character), (void *)((void *)(chara_select_head_node = creation_head_model_parts[((CharacterAppearanceFields *)creation_player_character)->head].model)));
+        }
+        break;
+    case 4: {
+        s32 hair = ((CharacterAppearanceFields *)creation_player_character)->hair;
+        uaddr a = creation_hair_model_parts[hair].model;
+        uaddr b = creation_cap_model_parts[hair].model;
+        chara_select_hair_node_a = a;
+        chara_select_hair_node_b = b;
+        break;
+    }
+    }
+    blend_creation_proportion_shapes(&((CharacterAppearanceFields *)creation_player_character)->width);
+    this->advance_animation();
+}
+
+void request_creation_motion(s32 motion) {
+    if (creation_figure_object == 0 || creation_player_character == 0) {
+        return;
+    }
+    creation_figure_object->set_requested_action(motion * 3 + creation_motion_group(creation_player_character));
+}
+
+void TCMCharacter::draw_player_model() { set_motion_interpolation_flag(); draw_saving_joints_checked(); }
+void TCMCharacter::render() {
+    if ((s32) char_select_active_flag != 0) {
+        draw_creation_figure();
+    }
+}
+void TCMCharacter::draw_creation_figure() {
+    u32 v;
+    TParticleCtrl::begin_effect_render();
+    if (scan_creation_resources(this) == 0) {
+        char_creation_figure_draw_flag = 0;
+        return;
+    }
+    {
+        char_creation_figure_draw_flag = 1;
+        push_matrix();
+        translate_matrix_vec3(0, (u8 *)&position);
+        rotate_matrix_y(0, creation_figure_rotation_y);
+        TObjFish::set_global_param(reinterpret_cast<NJS_TEXLIST *>((u8 *)char_select_current_entry + 0x460));
+        this->draw_player_model();
+        push_matrix_from((void *)get_joint_matrix(0x3A));
+        TObjFish::set_global_param(reinterpret_cast<NJS_TEXLIST *>((u8 *)char_select_current_entry + 0x2EC));
+        TObjPlayer::play_phase_transition_sound(creation_head_model_parts[*(s16 *)((s8 *)char_select_current_entry + 0xA)].model);
+        pop_matrix();
+        v = creation_cap_model_parts[*(s16 *)((s8 *)char_select_current_entry + 0xC)].model;
+        if (v != 0) {
+            TCharaMaking::enable_making();
+            push_matrix_from((void *)get_joint_matrix(0x3B));
+            TObjFish::set_global_param(reinterpret_cast<NJS_TEXLIST *>((u8 *)char_select_current_entry + 0x178));
+            TObjPlayer::play_phase_transition_sound(v);
+            pop_matrix();
+            TCharaMaking::clear_flag_bit0();
+        }
+        v = creation_hair_model_parts[*(s16 *)((s8 *)char_select_current_entry + 0xC)].model;
+        if (v != 0) {
+            TCharaMaking::enable_making();
+            push_matrix_from((void *)get_joint_matrix(0x3B));
+            TObjFish::set_global_param(reinterpret_cast<NJS_TEXLIST *>((u8 *)char_select_current_entry + 0x178));
+            TCharaMaking::setup_from_data(v, creation_player_character);
+            pop_matrix();
+            TCharaMaking::clear_flag_bit0();
+        }
+        pop_matrix();
+        TParticleCtrl::end_effect_render();
+    }
+}
+s32 scan_creation_resources(void *arg0) {
+    CreationTextureCacheEntry *p;
+    CreationTextureCacheEntry *end;
+    end = &((CreationTextureCacheEntry *)&creation_texture_cache)[0x80];
+    for (p = (CreationTextureCacheEntry *)&creation_texture_cache; p < end; p++) {
+        if (p->in_use == 0) {
+            continue;
+        }
+        if (p->hair_textures.textures.present != 0 && p->hair_textures.complete == 0) {
+            continue;
+        }
+        if (p->head_textures.textures.present != 0 && p->head_textures.complete == 0) {
+            continue;
+        }
+        if (p->body_textures.complete == 0) {
+            continue;
+        }
+        if (is_entry_equal__23TAdSinglePlyChrSelectGCFPvPv(p, (void *)creation_player_character) != 0) {
+            break;
+        }
+    }
+    if (p == end) {
+        if (char_select_current_entry == NULL) {
+            creation_resource_ready_state = 0;
+            return 0;
+        }
+        creation_resource_ready_state = 1;
+        return 1;
+    }
+    char_select_current_entry = p;
+    creation_resource_ready_state = 2;
+    return 1;
+}
+s32 find_shape_triangle_region(u8 *arg0) {
+    f32 temp_f3;
+    f32 temp_f4;
+    f32 temp_f4_2;
+    temp_f3 = *(f32 *)((s8 *)arg0 + 0);
+    if (temp_f3 > 0.6666667f) {
+        if ((3.0f * (temp_f3 - 0.6666667f)) <= *(f32 *)((s8 *)arg0 + 4)) {
+            return 6;
+        }
+        return 7;
+    }
+    if (temp_f3 <= 0.33333334f) {
+        temp_f4 = *(f32 *)((s8 *)arg0 + 4);
+        if (temp_f3 >= (0.6666667f * temp_f4)) {
+            return 0;
+        }
+        if (temp_f3 <= (-0.6666667f * (temp_f4 - 1.0f))) {
+            return 1;
+        }
+        return 2;
+    }
+    temp_f4_2 = *(f32 *)((s8 *)arg0 + 4);
+    if (temp_f3 <= (-0.6666667f * (temp_f4_2 - 1.0f))) {
+        return 3;
+    }
+    if (temp_f3 >= (0.6666667f * temp_f4_2)) {
+        return 4;
+    }
+    return 5;
+}
+void map_shape_region_samples(s32 region, s32 *samples) {
+    s32 i;
+    for (i = 0; i < 3; i++) {
+        s32 sample = creation_region_sample_index_table[i + region * 3];
+        if (sample == 7) {
+            sample = 4;
+        } else if (sample == 8) {
+            sample = 0;
+        }
+        samples[i] = sample;
+    }
+}
+
+void get_sorted_character_proportion_samples(const f32 *point, s32 *samples) {
+    s32 j;
+    s32 y;
+    s32 x;
+    s32 i;
+    TCharaMaking__sub_8028E3A0();
+    map_shape_region_samples(find_shape_triangle_region((u8 *)point), samples);
+    for (i = 0; i < 2; i++) {
+        for (j = 2; j > i; j--) {
+            x = samples[j];
+            y = samples[j - 1];
+            if (x < y) {
+                samples[j - 1] = x;
+                samples[j] = y;
+            }
+        }
+    }
+}
+#pragma push
+#pragma fp_contract on
+// Barycentric weights of point inside the sample triangle of its region (inferred).
+void calc_shape_region_coefficients(f32 *point) {
+    s32 region = find_shape_triangle_region((u8 *)point);
+    s32 i0;
+    s32 i1;
+    s32 i2;
+    f32 u;
+    f32 v;
+    f32 y0;
+    f32 d;
+    f32 *hp;
+    creation_shape_blend.region = region;
+    i0 = creation_region_sample_index_table[region * 3];
+    i1 = creation_region_sample_index_table[region * 3 + 1];
+    i2 = creation_region_sample_index_table[region * 3 + 2];
+    u = lbl_804D400C[i2].width - lbl_804D400C[i0].width;
+    u = (point[0] - lbl_804D400C[i0].width) / u;
+    hp = &lbl_804D400C[0].height;
+    y0 = hp[i0 * 2];
+    v = hp[i1 * 2];
+    v = v;
+    v = v - y0;
+    d = hp[i2 * 2] - y0;
+    d = (point[1] - y0) - d * u;
+    v = d / v;
+    creation_shape_blend.weights[2] = u;
+    creation_shape_blend.weights[1] = v;
+    creation_shape_blend.weights[0] = 1.0f - (v + u);
+}
+s32 clear_creation_shape_eval_masks(f32 *dst, const f32 *a, const f32 *b, const f32 *c) {
+    s32 i;
+    for (i = 0; i < 3; i++) {
+        *dst++ = creation_shape_blend.weights[2] * *c++ + (creation_shape_blend.weights[0] * *a++ + creation_shape_blend.weights[1] * *b++);
+    }
+    return 1;
+}
+
+s32 TAdSinglePlyChrSelectGC::map_button_code(s32 arg0) {
+    switch (arg0) {
+    case 0x29:
+        return 3;
+    case 0x2C:
+        return 4;
+    case 0xFF:
+        return -1;
+    default:
+        return -2;
+    }
+}
+
+// Blends the vertex chunks of the three source models into the destination
+// model's chunk list with the region weights: positions, normals (renormalised)
+// and the upper half of the Ninja flags word.
+s32 blend_shape_chunk_vertices(void) {
+    s32 *a;
+    s32 *b;
+    s32 *c;
+    s32 *d;
+    s32 n;
+    s32 extra;
+    s32 count;
+    s32 k;
+    s32 rest;
+    f32 v[3];
+    f32 fa;
+    f32 fb;
+    f32 fc;
+    CreationModelNodeState *dst = creation_shape_blend.destination;
+    for (k = 0; k < 3; k++) {
+    }
+    d = ((CreationShapeNode *)dst->node)->model->vertex_list;
+    a = ((CreationShapeNode *)creation_shape_blend.sources[0]->node)->model->vertex_list;
+    b = ((CreationShapeNode *)creation_shape_blend.sources[1]->node)->model->vertex_list;
+    c = ((CreationShapeNode *)creation_shape_blend.sources[2]->node)->model->vertex_list;
+    for (n = 1000; n > 0; n--) {
+        extra = TAdSinglePlyChrSelectGC::map_button_code(*d & 0xFF);
+        if (extra < 0) {
+            break;
+        }
+        count = (u32)d[1] >> 16;
+        d += 2;
+        a += 2;
+        b += 2;
+        c += 2;
+        for (; count > 0; count--) {
+            for (k = 3; k > 0; k--) {
+                *d++ = f32_bits(creation_shape_blend.weights[2] * bits_to_f32(*c++) +
+                                (creation_shape_blend.weights[0] * bits_to_f32(*a++) +
+                                 creation_shape_blend.weights[1] * bits_to_f32(*b++)));
+            }
+            rest = extra;
+            if (rest >= 3) {
+                v[0] = creation_shape_blend.weights[2] * bits_to_f32(*c++) +
+                       (creation_shape_blend.weights[0] * bits_to_f32(*a++) + creation_shape_blend.weights[1] * bits_to_f32(*b++));
+                v[1] = creation_shape_blend.weights[2] * bits_to_f32(*c++) +
+                       (creation_shape_blend.weights[0] * bits_to_f32(*a++) + creation_shape_blend.weights[1] * bits_to_f32(*b++));
+                v[2] = creation_shape_blend.weights[2] * bits_to_f32(*c++) +
+                       (creation_shape_blend.weights[0] * bits_to_f32(*a++) + creation_shape_blend.weights[1] * bits_to_f32(*b++));
+                if (vector_length(v) != 0.0f) {
+                    normalize_vector((Vec *)v);
+                }
+                d[0] = f32_bits(v[0]);
+                d[1] = f32_bits(v[1]);
+                d[2] = f32_bits(v[2]);
+                d += 3;
+                rest -= 3;
+            }
+            if (rest >= 1) {
+                fa = (s32)((u32)*a++ >> 16);
+                fb = (s32)((u32)*b++ >> 16);
+                fc = (s32)((u32)*c++ >> 16);
+                *d = ((s32)(creation_shape_blend.weights[2] * fc +
+                            (creation_shape_blend.weights[0] * fa + creation_shape_blend.weights[1] * fb)) << 16) |
+                     (*d & 0xFFFF);
+                d++;
+                rest--;
+            }
+            if (rest > 0) {
+                d += rest;
+                a += rest;
+                b += rest;
+                c += rest;
+            }
+        }
+    }
+    return 1;
+}
+
+void blend_creation_proportion_shapes(f32 *point) {
+    s32 samples[3];
+    u32 flags;
+    s32 n;
+    s32 m;
+    TCharaMaking__sub_8028E3A0();
+    calc_shape_region_coefficients(point);
+    map_shape_region_samples(creation_shape_blend.region, samples);
+    creation_shape_blend.destination = creation_head_shape_destination.nodes;
+    creation_shape_blend.sources[0] = creation_head_shape_samples[samples[0]].nodes;
+    creation_shape_blend.sources[1] = creation_head_shape_samples[samples[1]].nodes;
+    creation_shape_blend.sources[2] = creation_head_shape_samples[samples[2]].nodes;
+    for (n = 5; n > 0; n--) {
+        if (creation_shape_blend.destination->node != NULL) {
+            CreationShapeModel *dst = ((CreationShapeNode *)creation_shape_blend.destination->node)->model;
+            if (dst != NULL) {
+                f32 *a;
+                f32 *b;
+                f32 *c;
+                s32 k;
+                for (k = 0; k < 3; k++) {
+                }
+                a = ((CreationShapeNode *)creation_shape_blend.sources[0]->node)->model->center;
+                b = ((CreationShapeNode *)creation_shape_blend.sources[1]->node)->model->center;
+                c = ((CreationShapeNode *)creation_shape_blend.sources[2]->node)->model->center;
+                dst->center[0] = creation_shape_blend.weights[2] * c[0] + (creation_shape_blend.weights[0] * a[0] + creation_shape_blend.weights[1] * b[0]);
+                dst->center[1] = creation_shape_blend.weights[2] * c[1] + (creation_shape_blend.weights[0] * a[1] + creation_shape_blend.weights[1] * b[1]);
+                dst->center[2] = creation_shape_blend.weights[2] * c[2] + (creation_shape_blend.weights[0] * a[2] + creation_shape_blend.weights[1] * b[2]);
+            }
+            if ((creation_shape_blend.sources[0]->flags | creation_shape_blend.sources[1]->flags | creation_shape_blend.sources[2]->flags) & 1) {
+                ((CreationShapeNode *)creation_shape_blend.destination->node)->eval_flags &= ~1;
+                clear_creation_shape_eval_masks(((CreationShapeNode *)creation_shape_blend.destination->node)->pos,
+                    ((CreationShapeNode *)creation_shape_blend.sources[0]->node)->pos,
+                    ((CreationShapeNode *)creation_shape_blend.sources[1]->node)->pos,
+                    ((CreationShapeNode *)creation_shape_blend.sources[2]->node)->pos);
+            }
+            if (creation_shape_blend.sources[0]->flags & 0x10) {
+                blend_shape_chunk_vertices();
+            }
+        }
+        creation_shape_blend.destination++;
+        creation_shape_blend.sources[0]++;
+        creation_shape_blend.sources[1]++;
+        creation_shape_blend.sources[2]++;
+    }
+    creation_shape_blend.destination = creation_body_shape_destination.nodes;
+    creation_shape_blend.sources[0] = creation_body_shape_samples[samples[0]].nodes;
+    creation_shape_blend.sources[1] = creation_body_shape_samples[samples[1]].nodes;
+    creation_shape_blend.sources[2] = creation_body_shape_samples[samples[2]].nodes;
+    for (m = 64; m > 0; m--) {
+        CreationShapeModel *dst = ((CreationShapeNode *)creation_shape_blend.destination->node)->model;
+        if (dst != NULL) {
+            f32 *a = ((CreationShapeNode *)creation_shape_blend.sources[0]->node)->model->center;
+            f32 *b = ((CreationShapeNode *)creation_shape_blend.sources[1]->node)->model->center;
+            f32 *c = ((CreationShapeNode *)creation_shape_blend.sources[2]->node)->model->center;
+            dst->center[0] = creation_shape_blend.weights[2] * c[0] + (creation_shape_blend.weights[0] * a[0] + creation_shape_blend.weights[1] * b[0]);
+            dst->center[1] = creation_shape_blend.weights[2] * c[1] + (creation_shape_blend.weights[0] * a[1] + creation_shape_blend.weights[1] * b[1]);
+            dst->center[2] = creation_shape_blend.weights[2] * c[2] + (creation_shape_blend.weights[0] * a[2] + creation_shape_blend.weights[1] * b[2]);
+        }
+        flags = creation_shape_blend.sources[0]->flags | creation_shape_blend.sources[1]->flags | creation_shape_blend.sources[2]->flags;
+        if (flags & 1) {
+            ((CreationShapeNode *)creation_shape_blend.destination->node)->eval_flags &= ~1;
+            clear_creation_shape_eval_masks(((CreationShapeNode *)creation_shape_blend.destination->node)->pos,
+                ((CreationShapeNode *)creation_shape_blend.sources[0]->node)->pos,
+                ((CreationShapeNode *)creation_shape_blend.sources[1]->node)->pos,
+                ((CreationShapeNode *)creation_shape_blend.sources[2]->node)->pos);
+        }
+        if (flags & 4) {
+            ((CreationShapeNode *)creation_shape_blend.destination->node)->eval_flags &= ~4;
+            clear_creation_shape_eval_masks(((CreationShapeNode *)creation_shape_blend.destination->node)->scl,
+                ((CreationShapeNode *)creation_shape_blend.sources[0]->node)->scl,
+                ((CreationShapeNode *)creation_shape_blend.sources[1]->node)->scl,
+                ((CreationShapeNode *)creation_shape_blend.sources[2]->node)->scl);
+        }
+        if (flags & 0x10) {
+            blend_shape_chunk_vertices();
+        }
+        creation_shape_blend.destination++;
+        creation_shape_blend.sources[0]++;
+        creation_shape_blend.sources[1]++;
+        creation_shape_blend.sources[2]++;
+    }
+}
+#pragma pop
+
+s32 TAdSinglePlyChrSelectGC::count_remaining_slots() {
+    CreationTextureCacheEntry *p;
+    s32 n;
+    n = 2;
+    for (p = ((CreationTextureCacheEntry *)&creation_texture_cache); p < &((CreationTextureCacheEntry *)&creation_texture_cache)[0x80]; p++) {
+        if (p->in_use != 0) {
+            if (p->hair_textures.textures.present != 0 && p->hair_textures.complete == 0) {
+                n--;
+            }
+            if (p->head_textures.textures.present != 0 && p->head_textures.complete == 0) {
+                n--;
+            }
+            if (p->body_textures.complete == 0) {
+                n--;
+            }
+        }
+    }
+    return n;
+}
+s32 TAdSinglePlyChrSelectGC::has_matching_entry(void *arg0) {
+    CreationTextureCacheEntry *p;
+    CreationTextureCacheEntry *end;
+    end = (CreationTextureCacheEntry *)((u8 *)((CreationTextureCacheEntry *)&creation_texture_cache) + 0x23600);
+    for (p = ((CreationTextureCacheEntry *)&creation_texture_cache); p < end; p++) {
+        if (p->in_use != 0 && is_entry_equal__23TAdSinglePlyChrSelectGCFPvPv(p, arg0) != 0) return 1;
+    }
+    return 0;
+}
+CreationTextureCacheEntry *TAdSinglePlyChrSelectGC::find_free_slot() {
+    CreationTextureCacheEntry *p;
+    for (p = creation_texture_cache; p < (CreationTextureCacheEntry *)((u8 *)creation_texture_cache + 0x23600); p++) {
+        if (p->in_use == 0) return p;
+    }
+    return 0;
+}
+void TAdSinglePlyChrSelectGC__sub_8028F084(CreationTextureCacheEntry *entry, CharacterAppearanceFields *appearance) {
+    CreationTextureLoadSlot *slot;
+    saddr index;
+    TCharaMaking__bind_appearance_texture_lists(&entry->hair_textures.textures, &entry->head_textures.textures, &entry->body_textures.textures, appearance);
+    index = character_display_index(reinterpret_cast<uaddr>(appearance));
+    slot = &entry->hair_textures;
+    if (slot->textures.present != 0) {
+        slot->request = create_ch_cr_load_afs_texture_req((void *)creation_figure_object, &slot->textures.list, slot, (void *)index);
+    }
+    slot = &entry->head_textures;
+    if (slot->textures.present != 0) {
+        slot->request = create_ch_cr_load_afs_texture_req((void *)creation_figure_object, &slot->textures.list, slot, (void *)index);
+    }
+    slot = &entry->body_textures;
+    slot->request = create_ch_cr_load_afs_texture_req((void *)creation_figure_object, &slot->textures.list, slot, (void *)index);
+    entry->in_use = 1;
+    copy_slot_data__23TAdSinglePlyChrSelectGCFPvPv(entry, appearance);
+}
+s32 TAdSinglePlyChrSelectGC::evict_char_entries(s32 arg0) {
+    s32 n;
+    s32 k;
+    CreationTextureCacheEntry *p;
+    TCharaMaking::query_state();
+    n = 0;
+    for (k = 4; k >= 1; k--) {
+        for (p = (CreationTextureCacheEntry *)&creation_texture_cache[127]; p >= (CreationTextureCacheEntry *)creation_texture_cache; p--) {
+            if (p != char_select_current_entry && p->in_use != 0 && (p->hair_textures.textures.present == 0 || p->hair_textures.complete != 0) && (p->head_textures.textures.present == 0 || p->head_textures.complete != 0) && p->body_textures.complete != 0 &&
+                count_char_diffs__23TAdSinglePlyChrSelectGCFPvPv(p, creation_player_character) >= k) {
+                p->in_use = 0;
+                ((TAdSinglePlyChrSelectGC *)p)->update_char_panels();
+                if (++n == arg0) {
+                    return n;
+                }
+            }
+        }
+    }
+    return n;
+}
+void TAdSinglePlyChrSelectGC::update_char_panels() {
+    u8 *arg0 = (u8 *)this;
+    if (((saddr) this->m_down != 0) && ((saddr) this->m_up != 0)) {
+        release_texture_list(arg0 + 0x178);
+    }
+    if (((s32) *(s32 *)((s8 *)arg0 + 0x188) != 0) && ((s32) *(s32 *)((s8 *)arg0 + 0x184) != 0)) {
+        release_texture_list(arg0 + 0x2EC);
+    }
+    if ((s32) *(s32 *)((s8 *)arg0 + 0x2F8) != 0) {
+        release_texture_list(arg0 + 0x460);
+    }
+}
+

@@ -1,7 +1,7 @@
 #ifndef PSO_TEFFSTARLIGHT2D_BASE_H
 #define PSO_TEFFSTARLIGHT2D_BASE_H
 
-#include "pso/object/TObjMotion.h"
+#include "pso/object/base/TObjMotion.h"
 
 class TEffStarLight2D;
 
@@ -16,6 +16,6 @@ public:
     TEffStarLight2D *light;
 };
 
-typedef char TEffStarLight2D_BaseSize[sizeof(TEffStarLight2D_Base) == 0x94 ? 1 : -1];
+LAYOUT_ASSERT(TEffStarLight2D_BaseSize, sizeof(TEffStarLight2D_Base) == 0x94);
 
 #endif

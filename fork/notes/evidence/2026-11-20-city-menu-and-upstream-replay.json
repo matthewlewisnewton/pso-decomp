@@ -1,0 +1,260 @@
+{
+  "actual_upstream": {
+    "previous_head": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+    "merged_master": {
+      "head": "0fa391a887c664abadc00cba75db1f039aceb647",
+      "tree": "12d75f9f2c61f3672aadb60b91e584ec774b7dfa"
+    },
+    "merged_335": {
+      "head": "7f4e8cd2958dc04318b6a14baed3c345ed6d4f9f",
+      "tree": "a2fd5195dce9a553e3ed365b666f5e23028ad837"
+    },
+    "validated_335": {
+      "head": "13827281b08ba519e28655e2b1547987a3c927e7",
+      "tree": "a2fd5195dce9a553e3ed365b666f5e23028ad837"
+    },
+    "previous_prospective_tree": {
+      "head": "28bfbe9f17862f11024ba91ad3f6b4471fe1baa0",
+      "tree": "12d75f9f2c61f3672aadb60b91e584ec774b7dfa"
+    },
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "clean_report_sha256": "e1490cd93a166d93b3845ab3ac4ca71501cd3b08f51e9778e7575508e17ec68e",
+    "previous_replay": {
+      "head": "c5a12df9543a0f2425af0d5b51a085588b8de8cf",
+      "tree": "b8395b0718e0314617d10fc240f71b9288c8e90d"
+    },
+    "upstream_ancestry_refresh": {
+      "head": "74c19e20026aa236deb5966d7f24b005ad554277",
+      "tree": "b8395b0718e0314617d10fc240f71b9288c8e90d"
+    },
+    "merged_prs": [
+      335,
+      333
+    ]
+  },
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "city_replay": {
+    "head": "4d72d5f097a702fd12c4d41cc0f51e7b1cc1627f",
+    "tree": "7a7cb9f92baecd2001bc3724c562b458dadb598c",
+    "base": "74c19e20026aa236deb5966d7f24b005ad554277",
+    "donor": "540e1a91ba6ec917aa50fc1feffb48ed686373dd",
+    "donor_base": "fed9cf8b7186fe725e23b347d1e70314530fdc46",
+    "changed_paths": [
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/ui/city/TCheckRoomSequence.h",
+      "include/pso/ui/city/TShopArmorListWindow.h",
+      "include/pso/ui/city/TShopEquipmentGearSequence.h",
+      "include/pso/ui/city/TShopEquipmentListWindow.h",
+      "include/pso/ui/city/TShopEquipmentSellWindow.h",
+      "include/pso/ui/city/TShopEquipmentSequence.h",
+      "include/pso/ui/city/TShopItemListWindow.h",
+      "include/pso/ui/city/TShopItemTecSequence.h",
+      "include/pso/ui/window/TWindowMenu.h",
+      "include/pso/ui/window/TWindowSubComCard.h",
+      "include/pso/ui/window/TWindowSubComCardList.h",
+      "include/pso/ui/window/TWindowSubComCard_80265410.h",
+      "include/pso/ui/window/WindowLayout.h",
+      "include/pso/ui/window/WindowMenuFactory.h",
+      "include/pso/unk/TLobby.h",
+      "src/pso/network/TPlyJoinLobbyEntry.cpp",
+      "src/pso/object/TObjLuker.cpp",
+      "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+      "src/pso/object/warp/TObjCityMainWarp_80186E24.cpp",
+      "src/pso/object/warp/TObjLaboMapWarp.cpp",
+      "src/pso/object/warp/TObjWarpBossMulti.cpp",
+      "src/pso/object/warp/TObjWarpJungMain.cpp",
+      "src/pso/object/warp/TObjWarpLobby.cpp",
+      "src/pso/player/TPlayerBattleCtrl4P.cpp",
+      "src/pso/quest/QuestOpcodeHandlers.cpp",
+      "src/pso/quest/TQuestThread.cpp",
+      "src/pso/quest/challenge/TChallenge4PItemSelect.cpp",
+      "src/pso/system/save/TCheckMemoryCard.cpp",
+      "src/pso/ui/chat/TUnk_804CE7D0.cpp",
+      "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp",
+      "src/pso/ui/chat/TWindowSubSymbolChat.cpp",
+      "src/pso/ui/city/TCheckRoomSequence.cpp",
+      "src/pso/ui/city/TCheckRoomSequence_8013AD28.cpp",
+      "src/pso/ui/city/TShopArmorListWindow.cpp",
+      "src/pso/ui/city/TShopDeleteItemWindow.cpp",
+      "src/pso/ui/city/TShopEquipmentGearSequence.cpp",
+      "src/pso/ui/city/TShopEquipmentListWindow.cpp",
+      "src/pso/ui/city/TShopEquipmentSellWindow.cpp",
+      "src/pso/ui/city/TShopEquipmentSellWindow_8026CE78.cpp",
+      "src/pso/ui/city/TShopEquipmentSequence.cpp",
+      "src/pso/ui/city/TShopGetItemWindow.cpp",
+      "src/pso/ui/city/TShopItemListWindow.cpp",
+      "src/pso/ui/city/TShopItemTecSequence.cpp",
+      "src/pso/ui/city/TShopKeepItemWindow.cpp",
+      "src/pso/ui/frontend/TAdMultiChgGameModeGC_8036DE10.cpp",
+      "src/pso/ui/frontend/TAdMultiPlyChrSelectGC.cpp",
+      "src/pso/ui/frontend/TAdMultiSelGameModeGC.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8033A8EC.cpp",
+      "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+      "src/pso/ui/frontend/TAdYesNoBaseGC.cpp",
+      "src/pso/ui/window/TObjNewFloorWin.cpp",
+      "src/pso/ui/window/TWindowMakeTeam.cpp",
+      "src/pso/ui/window/TWindowOptionCtrl.cpp",
+      "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp",
+      "src/pso/ui/window/TWindowSubComCard_80265410.cpp",
+      "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp",
+      "src/pso/ui/window/TWindowSubComCard_802A5748.cpp",
+      "src/pso/ui/window/TWindowSubInformationBoard.cpp",
+      "src/pso/ui/window/TWindowSubItem.cpp",
+      "src/pso/ui/window/TWindowSubMag.cpp",
+      "src/pso/ui/window/TWindowSubQuestBoard.cpp",
+      "src/pso/ui/window/TWindowSubShortCut.cpp",
+      "src/pso/ui/window/TWindowSubTechnique.cpp",
+      "src/pso/ui/window/TWindowSubTradeMain_80330A84.cpp",
+      "src/pso/unk/TLobby_800726F0.cpp",
+      "src/pso/unk/TLobby_8007340C.cpp",
+      "src/pso/unk/TLobby_801C25B4.cpp",
+      "src/pso/unk/TLobby_80299C4C.cpp",
+      "src/pso/unk/TUnk_804D1AD0.cpp"
+    ],
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "source_link_check": "pass",
+    "check_sha256": "6944d6cd1824f6f0a095cffc4cc3c1fac8204aa23faf65f6c7a5c9686faa8b3c",
+    "report_sha256": "1cce9801c070a200666f717899bee67eb2c04d999ac7dcb1fab13acc64dd429a",
+    "changed_labels": [
+      {
+        "module": "psov3",
+        "address": "0x8007340C",
+        "before": "set_loss_flag__6TLobbyFv",
+        "after": "set_loss_flag__11TWindowMenuFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8013AD28",
+        "before": "set_ready_flag__18TCheckRoomSequenceFv",
+        "after": "set_ready_flag__11TWindowMenuFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80265E60",
+        "before": "update_layout_height__21TWindowSubComCardListFf",
+        "after": "update_layout_height__11TWindowMenuFf"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80265F60",
+        "before": "calc_window_size__17TWindowSubComCardFv",
+        "after": "calc_window_size__11TWindowMenuFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80266130",
+        "before": "clear_transition_flag__17TWindowSubComCardFv",
+        "after": "clear_transition_flag__11TWindowMenuFv"
+      }
+    ],
+    "coverage_losses": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "data_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "missing_functions": 0,
+      "failures": 0
+    },
+    "exact_functions": 27572,
+    "exact_linked_units": 2448
+  },
+  "standalone_review": {
+    "head": "0157762a98ffc35ce4d30cd88e7a47a07e7f8524",
+    "tree": "f9cbecec87c80139faf228569cfc0ed7bb17e7fb",
+    "base": "0fa391a887c664abadc00cba75db1f039aceb647",
+    "paths": 247,
+    "ui_delta_base": "510be1d79a930f3bf933e4ff1b2df61566c75b47",
+    "conflict_paths": [
+      "src/pso/object/warp/TObjLaboMapWarp.cpp",
+      "src/pso/object/warp/TObjWarpBossMulti.cpp",
+      "src/pso/object/warp/TObjWarpLobby.cpp",
+      "src/pso/ui/chat/TWindowSubSymbolChat.cpp",
+      "src/pso/ui/chat/TWindowSubSymbolChatFaceType.cpp",
+      "src/pso/ui/window/TWindowActionPalette.cpp",
+      "src/pso/ui/window/TWindowCtrlMain.cpp",
+      "src/pso/ui/window/TWindowDD_80340A78.cpp",
+      "src/pso/ui/window/TWindowFukidasi.cpp",
+      "src/pso/ui/window/TWindowInputNumber.cpp",
+      "src/pso/ui/window/TWindowPartyStatus.cpp",
+      "src/pso/ui/window/TWindowSimpleStatus.cpp",
+      "src/pso/ui/window/TWindowStatus.cpp",
+      "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+      "src/pso/ui/window/TWindowSubCustomEquip.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_8025B050.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_8026D740.cpp"
+    ],
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "source_link_check": "pass",
+    "check_sha256": "c77a5b9d168c5e16feaf86209189f94f34dfe22b521a20eb55d2f4cf689ac9c1",
+    "report_sha256": "7612b9b15fed76f3e049ff26242b2b766f5f35e334273b33bb6e694a4a5cc15a",
+    "coverage_losses": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "data_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "missing_functions": 0,
+      "failures": 0
+    }
+  },
+  "fork_workspace": {
+    "previous_layer": {
+      "head": "605c5c79047941b9d3ba32bf6c4ba35c0428a9fd",
+      "tree": "c943a869dbb3a04e7b69e261fd90f1855c1c1a86"
+    },
+    "tested_tree": "a922d8a68e327454f8b6314e4fe5da3ff80a53cb",
+    "workspace_patch_paths": 131,
+    "workspace_patch_sha256": "8cfccac2cef7cee2081bd70158720f6aa770daeca3a720c2805cf7e60b6c967b",
+    "round_trip_non_layer_sha256": "f882689c5e5df0695aa94d4560e00d67aa4b2e2373a9dedee74f5661712183fb",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "tool_tests_passed": 294,
+    "layer_tests_passed": 11,
+    "force_active_names": 27029,
+    "coverage_losses": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "data_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "missing_functions": 0,
+      "failures": 0
+    }
+  },
+  "remaining_source": {
+    "historical_inventory_base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+    "canonical": "83decd2d24dc6104040afd060e0cc2754b110409",
+    "earlier_queue": "47ade105c778197344c29e2d058cd9754a90893c",
+    "outside_replay_before": 1079,
+    "outside_replay_after": 1073,
+    "outside_replay_by_owner": {
+      "ui": 251,
+      "unk": 163,
+      "weapon": 142,
+      "boss": 107,
+      "enemy": 76,
+      "player": 66,
+      "item": 49,
+      "system": 40,
+      "object": 32,
+      "quest": 28,
+      "effect": 26,
+      "render": 20,
+      "camera": 18,
+      "audio": 14,
+      "math": 9,
+      "technique": 8,
+      "network": 7,
+      "map": 4,
+      "npc": 4,
+      "src/musyx": 3,
+      "libs/PowerPC_EABI_Support": 2,
+      "libs/dolphin": 2,
+      "animation": 1,
+      "collision": 1
+    },
+    "outside_both": 86,
+    "method": "Path inventory without rename detection."
+  }
+}

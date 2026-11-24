@@ -1,90 +1,85 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/render/render_util.h"
+#include "pso/ui/window/TWindowCtrlMain.h"
 #include "pso/system/NinjaTypes.h"
 #include "pso/effect/TEffStarLight2D_Base.h"
 #include "pso/effect/TEffStarLight2D.h"
 #include "pso/effect/TEffStarLightChild.h"
 #include "pso/system/vector.h"
 #include "pso/system/MatrixStack.h"
+#include "pso/math/MatrixVector.h"
+#include "pso/player/TObjPlayer_80011014.h"
+#include "pso/system/task/TMainTask.h"
 #include "pso/unk/text_803D853C.h"
-
-extern "C" {
-extern TObject *tl_particle;
-}
-void set_additive_blend();
-void set_default_alpha_blend();
+#include "pso/system/MatrixStack.h"
 
 extern const char TEffStarLightChild_class_name[] = "TEffStarLightChild";
 extern const char TEffStarLight2D_class_name[] = "TEffStarLight2D";
-const char *TEffStarLightChild__name = TEffStarLightChild_class_name;
-const char *TEffStarLight2D__name = TEffStarLight2D_class_name;
+const char *TEffStarLightChild::class_name = TEffStarLightChild_class_name;
+const char *TEffStarLight2D::class_name = TEffStarLight2D_class_name;
 
 __declspec(section ".rodata") NJS_ARGB star_light_2d_base_color = {0.5f, 1.0f, 1.0f, 1.0f};
 
-extern "C" {
-f32 vector_length(const Vec *);
-f32 normalize_vector(Vec *);
-f32 newton_sqrtf(f32);
-}
-
-// Reverse definitions preserve the native function, literal and vtable order.
-// See docs/evidence/starlight-native-unit.md.
 #pragma defer_codegen on
 
 #pragma push
 #pragma fp_contract on
-TEffStarLightChild::TEffStarLightChild(ColorLineVertex *a, ColorLineVertex *b, TObject *parent, f32 width, f32 speed) : TObject(parent) {
-    Vec d;
-    m_name = TEffStarLightChild__name;
+TEffStarLightChild::TEffStarLightChild(ColorLineVertex *from, ColorLineVertex *to, TObject *parent, f32 width,
+                                       f32 speed)
+    : TObject(parent) {
+    Vec direction;
+    m_name = class_name;
     if (speed <= 0.0f) {
         speed = 1.0f;
     }
-    d.x = b->x - a->x;
-    d.y = b->y - a->y;
-    d.z = 0.0f;
-    if (0.0f != vector_length(&d)) {
-        normalize_vector(&d);
+    direction.x = to->x - from->x;
+    direction.y = to->y - from->y;
+    direction.z = 0.0f;
+    if (0.0f != vector_length(&direction)) {
+        normalize_vector(&direction);
     } else {
-        d.x = 0.0f;
-        d.y = 0.0f;
-        d.z = 0.0f;
+        direction.x = 0.0f;
+        direction.y = 0.0f;
+        direction.z = 0.0f;
     }
-    edges[0].x = d.y * width + b->x;
-    edges[0].y = d.x * width + b->y;
-    edges[1].x = -d.y * width + b->x;
-    edges[1].y = -d.x * width + b->y;
+    edges[0].x = direction.y * width + to->x;
+    edges[0].y = direction.x * width + to->y;
+    edges[1].x = -direction.y * width + to->x;
+    edges[1].y = -direction.x * width + to->y;
     if (edges[0].y <= edges[1].y) {
-        f32 t0 = edges[0].y;
-        f32 t1 = edges[1].y;
-        edges[1].y = t0;
-        edges[0].y = t1;
+        f32 low = edges[0].y;
+        f32 high = edges[1].y;
+        edges[1].y = low;
+        edges[0].y = high;
     }
-    shrink_distance = newton_sqrtf((edges[0].x - edges[1].x) * (edges[0].x - edges[1].x) + (edges[0].y - edges[1].y) * (edges[0].y - edges[1].y)) / 2.0f / speed;
+    shrink_distance = newton_sqrtf((edges[0].x - edges[1].x) * (edges[0].x - edges[1].x) +
+                                   (edges[0].y - edges[1].y) * (edges[0].y - edges[1].y)) /
+                      2.0f / speed;
 }
 #pragma pop
 
 TEffStarLightChild::~TEffStarLightChild() {}
 
 void TEffStarLightChild::run_task() {
-    Vec a;
-    Vec b;
-    Vec c;
+    Vec start;
+    Vec end;
+    Vec middle;
     s32 inside = 0;
-    c.z = 0.0f;
-    c.x = 0.5f * (edges[0].x + edges[1].x);
-    c.y = 0.5f * (edges[0].y + edges[1].y);
-    a.z = 0.0f;
-    a.x = edges[0].x;
-    a.y = edges[0].y;
-    b.z = 0.0f;
-    b.x = edges[1].x;
-    b.y = edges[1].y;
-    approach_vector_fixed_distance(&a, &c, &a, shrink_distance);
-    edges[0].x = a.x;
-    edges[0].y = a.y;
-    approach_vector_fixed_distance(&b, &c, &b, shrink_distance);
-    edges[1].x = b.x;
-    edges[1].y = b.y;
+    middle.z = 0.0f;
+    middle.x = 0.5f * (edges[0].x + edges[1].x);
+    middle.y = 0.5f * (edges[0].y + edges[1].y);
+    start.z = 0.0f;
+    start.x = edges[0].x;
+    start.y = edges[0].y;
+    end.z = 0.0f;
+    end.x = edges[1].x;
+    end.y = edges[1].y;
+    approach_vector_fixed_distance(&start, &middle, &start, shrink_distance);
+    edges[0].x = start.x;
+    edges[0].y = start.y;
+    approach_vector_fixed_distance(&end, &middle, &end, shrink_distance);
+    edges[1].x = end.x;
+    edges[1].y = end.y;
     if (edges[0].x >= -100.0f && edges[0].x <= 740.0f) {
         if (edges[0].y >= -100.0f && edges[0].y <= 580.0f) {
             if (edges[1].x >= -100.0f && edges[1].x <= 740.0f) {
@@ -96,7 +91,7 @@ void TEffStarLightChild::run_task() {
     }
     if (inside == 0) {
         queue_destruction();
-    } else if (c.x == b.x && c.y == b.y) {
+    } else if (middle.x == end.x && middle.y == end.y) {
         queue_destruction();
     }
 }
@@ -105,14 +100,14 @@ void TEffStarLightChild::render() {  }
 
 #pragma push
 #pragma opt_common_subs off
-TEffStarLight2D::TEffStarLight2D(void *source_position, void *source_parameters, TObject *parent) : TObject(parent) {
-    ColorLineVertex p;
-    m_name = TEffStarLight2D__name;
-    parameters.copy_from((StarLightParameters *)source_parameters);
-    VecCopy(&position, (const Vec *)source_position);
-    project_world_to_screen(NULL, &position, &p.x);
-    previous_screen_position.x = p.x;
-    previous_screen_position.y = p.y;
+TEffStarLight2D::TEffStarLight2D(Vec *start, StarLightParameters *source, TObject *parent) : TObject(parent) {
+    ColorLineVertex screen;
+    m_name = class_name;
+    parameters.copy_from(source);
+    VecCopy(&position, start);
+    project_world_to_screen(NULL, &position, &screen.x);
+    previous_screen_position.x = screen.x;
+    previous_screen_position.y = screen.y;
     screen_position.x = previous_screen_position.x;
     screen_position.y = previous_screen_position.y;
 }
@@ -121,8 +116,6 @@ TEffStarLight2D::TEffStarLight2D(void *source_position, void *source_parameters,
 
 TEffStarLight2D::~TEffStarLight2D() {}
 
-// The mutable borrow preserves GC/2.6's alternating loads and stores.
-// This copies the parameter subobject, not a TObject prefix.
 void StarLightParameters::copy_from(StarLightParameters *source) {
     width = source->width;
     speed = source->speed;
@@ -134,9 +127,7 @@ void StarLightParameters::copy_from(StarLightParameters *source) {
     alpha_step = source->alpha_step;
 }
 
-void TEffStarLight2D::copy_from_subobject(void *source) {
-    parameters.copy_from((StarLightParameters *)source);
-}
+void TEffStarLight2D::set_parameters(StarLightParameters *source) { parameters.copy_from(source); }
 
 void TEffStarLight2D::run_task() {
     ColorLineVertex screen;
@@ -157,8 +148,8 @@ void TEffStarLight2D::run_task() {
         dx = screen_position.x - previous_screen_position.x;
         dy = screen_position.y - previous_screen_position.y;
         if (dx * dx + dy * dy >= 1.0f) {
-            new TEffStarLightChild(&previous_screen_position, &screen_position, this,
-                                  parameters.width, parameters.speed);
+            new TEffStarLightChild(&previous_screen_position, &screen_position, this, parameters.width,
+                                   parameters.speed);
         }
     }
 }
@@ -199,7 +190,7 @@ void TEffStarLight2D::draw_segment(ColorLineVertex *a, ColorLineVertex *b,
     u8 alpha = parameters.color.channels.a;
     f32 step = parameters.alpha_step;
     f32 start_alpha = (f32)index * step + (f32)alpha;
-    f32 end_alpha = (f32)(index + 1) * step + (f32)alpha;
+    f32 end_alpha = (index + 1) * step + (f32)alpha;
     f32 clamped_start = start_alpha < 0.0f ? 0.0f
         : start_alpha < 255.0f ? start_alpha : 255.0f;
     f32 clamped_end = end_alpha < 0.0f ? 0.0f
@@ -213,7 +204,7 @@ void TEffStarLight2D::draw_segment(ColorLineVertex *a, ColorLineVertex *b,
     start_color.channels.a = clamped_start;
     polygon.verts = vertices;
     polygon.colors = colors;
-    polygon.unk_8 = 0;
+    polygon.tex = 0;
     polygon.count = 4;
     end_color.channels.a = clamped_end;
     polygon.verts[0].x = a->x;
@@ -275,7 +266,7 @@ void TEffStarLight2D_Base::run_task() {
     parameters.color.channels.g = (f32)set_params[1];
     parameters.color.channels.b = (f32)set_params[2];
     parameters.blend_mode = 0;
-    light->copy_from_subobject(&parameters);
+    light->set_parameters(&parameters);
 }
 
 void TEffStarLight2D_Base::render() {

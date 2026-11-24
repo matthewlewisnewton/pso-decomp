@@ -1,73 +1,71 @@
 #include "types.h"
-#include "pso/misc/TWindowSubStatusDisp.h"
+#include "pso/ui/ItemListRow.h"
+#include "pso/ui/window/TWindowSubStatusDisp.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/player/TObjPlayer_801AF2F0.h"
-#include "pso/misc/TWindowSubEquipList.h"
-#include "pso/item/TItem.h"
-#include "pso/item/TItemData.h"
-#include <stddef.h>
-
-// Row initializers still use legacy owner names elsewhere; their receiver is a
-// row returned by the list, not a TWindowSubStatusDisp object.
-struct EquipListRow {
-    u8 unknown_00[8];
-    f32 height;
-    u8 unknown_0c[0x20];
-    u32 color;
-};
-typedef char EquipListRowHeightOffset[offsetof(EquipListRow, height) == 8 ? 1 : -1];
-typedef char EquipListRowColorOffset[offsetof(EquipListRow, color) == 0x2c ? 1 : -1];
+#include "pso/ui/window/TWindowBase.h"
+#include "pso/player/PlayerSlots.h"
 
 extern "C" {
-void init_status_entry__20TWindowSubStatusDispFPvcUii(EquipListRow *, u8, u32, s32);
-void init_item_row__20TWindowSubStatusDispFPvl(EquipListRow *, TItem *, s32);
-extern const f32 lbl_805DD620;
-}
 
-void TWindowSubEquipList::add_status_line(u8 icon, TItem *item, s32 slot) {
-    EquipListRow *row = (EquipListRow *)get_array_entry(entry_count);
-    if (item == NULL) {
-        init_status_entry__20TWindowSubStatusDispFPvcUii(row, icon, 0, slot);
-        row->height += lbl_805DD620;
-        row->color = 0xFFAAAAAA;
+
+
+void TObjPlayer::add_status_line(u8 category_icon, uaddr item, s32 arg3) {
+    void *temp_r31;
+
+    temp_r31 = (void *)((TWindowBase *)this)->get_array_entry(*(s16 *)((s8 *)this + 0x72));
+    if (item == 0U) {
+        ((ItemListRow *)temp_r31)->init_status_entry(category_icon, 0, arg3);
+        *(f32 *)((s8 *)temp_r31 + 8) += 18.0f;
+        reinterpret_cast<ItemListRow *>(temp_r31)->category_style = 0xFFAAAAAA;
     } else {
-        init_item_row__20TWindowSubStatusDispFPvl(row, item, slot);
+        ((ItemListRow *)temp_r31)->init_item_row((void *)item, (s32)arg3);
     }
-    if (icon == 4) {
-        row->height += lbl_805DD620;
+    if (category_icon == 4) {
+        *(f32 *)((s8 *)temp_r31 + 8) += 18.0f;
     }
-    entry_count++;
+    *(s16 *)((s8 *)this + 0x72) = (s16) (*(s16 *)((s8 *)this + 0x72) + 1);
 }
 
-u8 get_class_weapon_icon_index(void *self, u8 *player);
+#pragma push
+#pragma cplusplus off
+void add_status_line__10TObjPlayerFUcUll(void* self, s32 a, void* b, void* c);
+void *get_slot_value__10TObjPlayerFPvi(s32 *arg0, s32 arg1);
+void copy_to_item_data__5TItemFP9TItemData(void* p, void* out);
+s32 get_class_weapon_icon_index__FPvPUc(void* a, u8* self);
+#pragma pop
+#pragma push
+#pragma cplusplus off
+#pragma dont_inline off
 
-void TWindowSubEquipList::build_equipment_list() {
-    // This declaration order preserves CodeWarrior's register allocation.
-    TItem *item;
-    s32 count;
-    s32 i;
-    TObjPlayer *player;
-    u8 icon;
+void build_equipment_list__15TWindowSubEquipFv(void* self) {
+    u8 buf[0x18];
+    void* q;
+    saddr i;
+    s32 n;
+    s32 a;
+    u8* p;
 
-    player = get_player_by_client_id(m_20);
-    if (player != NULL) {
-        icon = get_class_weapon_icon_index(this, (u8 *)player);
-        item = (TItem *)TObjPlayer::get_slot_value(player->equipped_items, 6);
-        add_status_line(icon, item, 6);
-        item = (TItem *)TObjPlayer::get_slot_value(player->equipped_items, 2);
-        add_status_line(0x0b, item, 2);
-        if (item != NULL) {
-            TItemData data;
-            item->copy_to_item_data(&data);
-            count = (s8)data.data1.data_u8[5];
-            for (i = 0; i < count; i++) {
-                item = (TItem *)TObjPlayer::get_slot_value(player->equipped_items, i + 9);
-                add_status_line(4, item, i + 9);
+    p = (u8 *)get_player_by_client_id(*(s16 *)((u8 *)self + 0x20));
+    if (p != NULL) {
+        a = get_class_weapon_icon_index__FPvPUc(self, p);
+        q = (void *)get_slot_value__10TObjPlayerFPvi((s32 *)(p + 0xd04), (s32)(6));
+        add_status_line__10TObjPlayerFUcUll(self, a, q, (void*)6);
+        q = (void *)get_slot_value__10TObjPlayerFPvi((s32 *)(p + 0xd04), (s32)(2));
+        add_status_line__10TObjPlayerFUcUll(self, 0xb, q, (void*)2);
+        if (q != NULL) {
+            copy_to_item_data__5TItemFP9TItemData(q, buf);
+            n = (s8)buf[5];
+            for (i = 0; i < n; i++) {
+                q = (void *)get_slot_value__10TObjPlayerFPvi((s32 *)(p + 0xd04), (s32)(i + 9));
+                add_status_line__10TObjPlayerFUcUll(self, 4, q, (void*)(i + 9));
             }
         }
-        item = (TItem *)TObjPlayer::get_slot_value(player->equipped_items, 3);
-        add_status_line(0x0a, item, 3);
-        item = (TItem *)TObjPlayer::get_slot_value(player->equipped_items, 1);
-        add_status_line(3, item, 1);
+        q = (void *)get_slot_value__10TObjPlayerFPvi((s32 *)(p + 0xd04), (s32)(3));
+        add_status_line__10TObjPlayerFUcUll(self, 0xa, q, (void*)3);
+        q = (void *)get_slot_value__10TObjPlayerFPvi((s32 *)(p + 0xd04), (s32)(1));
+        add_status_line__10TObjPlayerFUcUll(self, 3, q, (void*)1);
     }
+}
+#pragma pop
+
 }

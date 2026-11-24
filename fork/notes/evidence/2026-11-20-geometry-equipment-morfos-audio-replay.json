@@ -1,0 +1,1949 @@
+{
+  "source": "8e7c46d463b9b7368b18447e4c07e9237ad0462f",
+  "landing": "14cb2d035fd3373d10aaac6131776be0f2b86bdd",
+  "working_fork_build": "705916d1c2dfb81e9aba8bf609a3186164f322e9",
+  "previous_source": "c6908ed402b42dc7dbf13907b0b0f71a21dbed4a",
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "source_files": 46,
+  "batches": {
+    "audio": {
+      "head": "1a0214b5dc8d92ff40c56f7a154345d086a2e9c7",
+      "files": 10,
+      "report_sha256": "a7cf4463c33eeccefe249547c8757baa82745ae9f39e430c1708e62fe45fb4e9"
+    },
+    "morfos": {
+      "head": "43891cde472340534320db4eaaf1c9f5d17921e6",
+      "files": 8,
+      "report_sha256": "f932c3a7246aa3d37ddbe1b69181e3b028f6674235fd99e84fd38465320f187d"
+    },
+    "equipment": {
+      "head": "eeee8288b5f393bfad8abedda085046a9514518c",
+      "files": 17,
+      "report_sha256": "d7c673a33289f707abbdb480a3ba3297d695a71e71cb19cae0e69fd9a597a0c3"
+    },
+    "geometry": {
+      "head": "c81f9ce3d6cb1f5e386a906303dec348330c8c11",
+      "files": 15,
+      "report_sha256": "9b39717ccbccb7f27d595b22c1c2c505bb98d1e35ce01477e9ff26b74a61499b"
+    }
+  },
+  "source_coverage": {
+    "fuzzy_match_percent": 99.99999,
+    "total_code": "4353092",
+    "matched_code": "4353092",
+    "matched_code_percent": 100.0,
+    "total_data": "1758510",
+    "matched_data": "1758510",
+    "matched_data_percent": 100.0,
+    "total_functions": 27572,
+    "matched_functions": 27572,
+    "matched_functions_percent": 100.0,
+    "complete_code": "4353092",
+    "complete_code_percent": 100.0,
+    "complete_data": "1758510",
+    "complete_data_percent": 100.0,
+    "total_units": 2449,
+    "complete_units": 2449
+  },
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "fork_only_paths": 133,
+  "layer_tests": 11,
+  "local_tool_tests": 294,
+  "source_audit": {
+    "source": "8e7c46d463b9b7368b18447e4c07e9237ad0462f",
+    "previous": "c6908ed402b42dc7dbf13907b0b0f71a21dbed4a",
+    "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "entries": [
+      {
+        "row": 6,
+        "historical_path": "src/pso/system/AdxManager.cpp",
+        "historical_blob": "1e24cf100c9ad44fc22d399adee469224df6e0d5",
+        "owners": {
+          "src/pso/audio/AdxManager.cpp": "b592231ed99e6ffae0524fb19dde479a7b1e957a",
+          "include/pso/system/CvFsStreamHandle.h": "3569e2026079b21be1c775d6ffb7bc3df7aa33f9",
+          "include/pso/audio/AdxManager.h": "ff37a0b193fae14abd223ddddc9c09fd10874bf6"
+        },
+        "proofs": [
+          {
+            "group": "audio",
+            "evidence": "The complete authored manager unit is retained. MFS and GCD keep their setup order, GCD default selection, error sink, worker and reset sequencing, startup and lock handling. Active registrations and workers use the shared factory and callback declarations.",
+            "details": {
+              "pinned_source": "1a0214b5dc8d92ff40c56f7a154345d086a2e9c7",
+              "historical_blob": "1e24cf100c9ad44fc22d399adee469224df6e0d5",
+              "historical_comparison_base": "fba938223515e7ab721bd5574ee97eba57671de6",
+              "original_blob": null,
+              "authored_delta_sha256": null,
+              "live_blobs": {
+                "src/pso/audio/AdxManager.cpp": "b592231ed99e6ffae0524fb19dde479a7b1e957a",
+                "include/pso/system/CvFsStreamHandle.h": "3569e2026079b21be1c775d6ffb7bc3df7aa33f9",
+                "include/pso/audio/AdxManager.h": "ff37a0b193fae14abd223ddddc9c09fd10874bf6"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7,
+        "historical_path": "src/pso/system/AdxStream.cpp",
+        "historical_blob": "8edc3392706b338f3816d985baf7ab35e9e809c2",
+        "owners": {
+          "src/pso/audio/AdxStream.cpp": "2e83c33b4d58eccaa8569a16f95f31b0e7f6cc37",
+          "include/pso/audio/AdxStreamFile.h": "a9f65c054fc7ec70abc134936fab6040374a8ff4",
+          "include/pso/audio/AdxStream.h": "38b8840d020183010ac74671fd6f1cc35787d005",
+          "include/pso/system/CvFsStreamHandle.h": "3569e2026079b21be1c775d6ffb7bc3df7aa33f9",
+          "include/pso/audio/SjRingBuffer.h": "631ddd1ea282288e107bbb2ef5e1f7558c897c03"
+        },
+        "proofs": [
+          {
+            "group": "audio",
+            "evidence": "The complete authored stream unit uses the original 40-slot pool and native 0x40 requests. All four open ranges retain their slot selection, seek and size behavior. The scheduler reads, aligns and submits the two original ring fragments before completion, state/retry and close handling. The range and progress helpers preserve their actual field offsets and output order.",
+            "details": {
+              "pinned_source": "1a0214b5dc8d92ff40c56f7a154345d086a2e9c7",
+              "historical_blob": "8edc3392706b338f3816d985baf7ab35e9e809c2",
+              "historical_comparison_base": "fba938223515e7ab721bd5574ee97eba57671de6",
+              "original_blob": null,
+              "authored_delta_sha256": null,
+              "live_blobs": {
+                "src/pso/audio/AdxStream.cpp": "2e83c33b4d58eccaa8569a16f95f31b0e7f6cc37",
+                "include/pso/audio/AdxStreamFile.h": "a9f65c054fc7ec70abc134936fab6040374a8ff4",
+                "include/pso/audio/AdxStream.h": "38b8840d020183010ac74671fd6f1cc35787d005",
+                "include/pso/system/CvFsStreamHandle.h": "3569e2026079b21be1c775d6ffb7bc3df7aa33f9",
+                "include/pso/audio/SjRingBuffer.h": "631ddd1ea282288e107bbb2ef5e1f7558c897c03"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 8,
+        "historical_path": "src/pso/system/AdxTalk.cpp",
+        "historical_blob": "64da814765cbd593b8575d168003fe563bfc5cd0",
+        "owners": {
+          "src/pso/audio/AdxTalk.cpp": "4458ed70e4ee5f88e351d331423184a4427fd346",
+          "include/pso/audio/AdxTalk.h": "1a983b6423eb1667f5c6fed68d6af6e9fcfc9c40",
+          "include/pso/audio/AdxStreamRuntime.h": "c49a856ac09e920fef8c7d058daf3d86da4fd072",
+          "include/pso/audio/AdxStreamFile.h": "a9f65c054fc7ec70abc134936fab6040374a8ff4"
+        },
+        "proofs": [
+          {
+            "group": "audio",
+            "evidence": "The whole authored ADXT playback unit remains at the native owner. The original per-player callbacks, factories, two rings, sample rate and position calculations retain their behavior. The recovered numeric constants preserve the original data by address. Playback stop and close now use the actual stream slot at +8.",
+            "details": {
+              "pinned_source": "1a0214b5dc8d92ff40c56f7a154345d086a2e9c7",
+              "historical_blob": "64da814765cbd593b8575d168003fe563bfc5cd0",
+              "historical_comparison_base": "fba938223515e7ab721bd5574ee97eba57671de6",
+              "original_blob": null,
+              "authored_delta_sha256": null,
+              "live_blobs": {
+                "src/pso/audio/AdxTalk.cpp": "4458ed70e4ee5f88e351d331423184a4427fd346",
+                "include/pso/audio/AdxTalk.h": "1a983b6423eb1667f5c6fed68d6af6e9fcfc9c40",
+                "include/pso/audio/AdxStreamRuntime.h": "c49a856ac09e920fef8c7d058daf3d86da4fd072",
+                "include/pso/audio/AdxStreamFile.h": "a9f65c054fc7ec70abc134936fab6040374a8ff4"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 10,
+        "historical_path": "src/pso/system/AdxtServer.cpp",
+        "historical_blob": "99cefc68360717fd7c599e977ead8211e28b3613",
+        "owners": {
+          "src/pso/audio/AdxtServer.cpp": "7a84bdd3358793c5c6f2f2fae6b6ce8eedeb757b",
+          "include/pso/audio/AdxStreamRuntime.h": "c49a856ac09e920fef8c7d058daf3d86da4fd072",
+          "include/pso/audio/SjRingBuffer.h": "631ddd1ea282288e107bbb2ef5e1f7558c897c03"
+        },
+        "proofs": [
+          {
+            "group": "audio",
+            "evidence": "The complete authored ADXT server retains prepare, decode-info, run and end handling, input padding and two-chunk processing. It uses the correct scheduler receiver and real callback/context and keeps original status, range and output updates.",
+            "details": {
+              "pinned_source": "1a0214b5dc8d92ff40c56f7a154345d086a2e9c7",
+              "historical_blob": "99cefc68360717fd7c599e977ead8211e28b3613",
+              "historical_comparison_base": "fba938223515e7ab721bd5574ee97eba57671de6",
+              "original_blob": null,
+              "authored_delta_sha256": null,
+              "live_blobs": {
+                "src/pso/audio/AdxtServer.cpp": "7a84bdd3358793c5c6f2f2fae6b6ce8eedeb757b",
+                "include/pso/audio/AdxStreamRuntime.h": "c49a856ac09e920fef8c7d058daf3d86da4fd072",
+                "include/pso/audio/SjRingBuffer.h": "631ddd1ea282288e107bbb2ef5e1f7558c897c03"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 24,
+        "historical_path": "include/pso/system/AdxStreamRuntime.h",
+        "historical_blob": "225fd4374985cf3b73c5fb3ce46330aaf734199b",
+        "owners": {
+          "include/pso/audio/AdxStreamRuntime.h": "c49a856ac09e920fef8c7d058daf3d86da4fd072",
+          "include/pso/audio/AdxStream.h": "38b8840d020183010ac74671fd6f1cc35787d005",
+          "include/pso/audio/AdxStreamFile.h": "a9f65c054fc7ec70abc134936fab6040374a8ff4",
+          "include/pso/audio/AdxbDecoder.h": "f83910dd6e8ee33df5b1f0bb17f6c48388698f83"
+        },
+        "proofs": [
+          {
+            "group": "audio",
+            "evidence": "Native player slot size and file location, request record, decoder state and stream API are retained at their actual owners. Remaining compatibility declarations in the large historical runtime header stay scoped.",
+            "details": {
+              "pinned_source": "1a0214b5dc8d92ff40c56f7a154345d086a2e9c7",
+              "historical_blob": "225fd4374985cf3b73c5fb3ce46330aaf734199b",
+              "historical_comparison_base": "fba938223515e7ab721bd5574ee97eba57671de6",
+              "original_blob": "e5b766a27ce73243d571eeb3f08f095cf1fb441a",
+              "authored_delta_sha256": "791a8b9fd0099a628578805456d9096800ebde2c060e545ff3e18c190260a5e1",
+              "live_blobs": {
+                "include/pso/audio/AdxStreamRuntime.h": "c49a856ac09e920fef8c7d058daf3d86da4fd072",
+                "include/pso/audio/AdxStream.h": "38b8840d020183010ac74671fd6f1cc35787d005",
+                "include/pso/audio/AdxStreamFile.h": "a9f65c054fc7ec70abc134936fab6040374a8ff4",
+                "include/pso/audio/AdxbDecoder.h": "f83910dd6e8ee33df5b1f0bb17f6c48388698f83"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 26,
+        "historical_path": "src/pso/system/LscServer.cpp",
+        "historical_blob": "a8822db3dd943cb7c0f4f603f33a9a3d1a567de2",
+        "owners": {
+          "src/pso/audio/LscServer.cpp": "dd2ddc065a51603723fffabdef79146920ad83b6",
+          "include/pso/audio/LscStream.h": "c92f6919308950e85ecd62bb69c471d7671cc6c1",
+          "src/pso/audio/AdxStream.cpp": "2e83c33b4d58eccaa8569a16f95f31b0e7f6cc37"
+        },
+        "proofs": [
+          {
+            "group": "audio",
+            "evidence": "The complete LSC poll behavior uses the typed file for waiting, running and completed entries. The end step closes before taking local repeat fields, stores those fields before the queue-empty callback, and uses the original 0x27-byte copy and 16-entry wrap. Initial seek, sector rounding and error paths remain at their original addresses.",
+            "details": {
+              "pinned_source": "1a0214b5dc8d92ff40c56f7a154345d086a2e9c7",
+              "historical_blob": "a8822db3dd943cb7c0f4f603f33a9a3d1a567de2",
+              "historical_comparison_base": "fba938223515e7ab721bd5574ee97eba57671de6",
+              "original_blob": "f28bcc896b999776f71a8e6da905bd32e6da1256",
+              "authored_delta_sha256": "20069b7a17f420dc05cad4442fabb507231ffc3252fd4123c6ab69577ffdcf3c",
+              "live_blobs": {
+                "src/pso/audio/LscServer.cpp": "dd2ddc065a51603723fffabdef79146920ad83b6",
+                "include/pso/audio/LscStream.h": "c92f6919308950e85ecd62bb69c471d7671cc6c1",
+                "src/pso/audio/AdxStream.cpp": "2e83c33b4d58eccaa8569a16f95f31b0e7f6cc37"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 27,
+        "historical_path": "src/pso/system/AdxStreamRuntime.cpp",
+        "historical_blob": "f8c734d8b58848076027feb9b3da8bb2b353b3b3",
+        "owners": {
+          "src/pso/unk/text_803C5B50.cpp": "e0453b0963a9d2b491f083e79f150845be45d97c",
+          "include/pso/audio/AdxEncoder.h": "a89e414599f89ef5c2766d48c643282bad0c6799",
+          "include/pso/audio/SjRingBuffer.h": "631ddd1ea282288e107bbb2ef5e1f7558c897c03"
+        },
+        "proofs": [
+          {
+            "group": "audio",
+            "evidence": "The complete historical runtime edits are retained in the folded owner. The encoder ring uses its original 0x400-byte requests, two scratch streams, chunk-length guards, copy, submit and reverse cleanup. Queue count, AFS segment enqueue and typed error output use the original values and next-state sequence.",
+            "details": {
+              "pinned_source": "1a0214b5dc8d92ff40c56f7a154345d086a2e9c7",
+              "historical_blob": "f8c734d8b58848076027feb9b3da8bb2b353b3b3",
+              "historical_comparison_base": "fba938223515e7ab721bd5574ee97eba57671de6",
+              "original_blob": "f0ff8c55e872bdfab21638e302d140e27c82f4c5",
+              "authored_delta_sha256": "134b9fa78f2e811982da80a3387ef3ed0290c778c494f6eca35a31b0f98e6b82",
+              "live_blobs": {
+                "src/pso/unk/text_803C5B50.cpp": "e0453b0963a9d2b491f083e79f150845be45d97c",
+                "include/pso/audio/AdxEncoder.h": "a89e414599f89ef5c2766d48c643282bad0c6799",
+                "include/pso/audio/SjRingBuffer.h": "631ddd1ea282288e107bbb2ef5e1f7558c897c03"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 30,
+        "historical_path": "src/pso/system/AdxEncoder.cpp",
+        "historical_blob": "d63cc08b2f3f89cf53d3c891ab3ffa974eb2faca",
+        "owners": {
+          "src/pso/audio/AdxEncoder.cpp": "f0299434acb56cd43b8918fad8b8f14d219a24d0",
+          "include/pso/audio/AdxEncoder.h": "a89e414599f89ef5c2766d48c643282bad0c6799",
+          "include/pso/audio/SjRingBuffer.h": "631ddd1ea282288e107bbb2ef5e1f7558c897c03"
+        },
+        "proofs": [
+          {
+            "group": "audio",
+            "evidence": "The full encoder source keeps its typed ring input, output, header and block packing. Size and offsets of the history, channel and encoder records are asserted. Negative quantized samples shift as unsigned before the original mask. The host abs fallback is preserved by the working-fork overlay.",
+            "details": {
+              "pinned_source": "1a0214b5dc8d92ff40c56f7a154345d086a2e9c7",
+              "historical_blob": "d63cc08b2f3f89cf53d3c891ab3ffa974eb2faca",
+              "historical_comparison_base": "fba938223515e7ab721bd5574ee97eba57671de6",
+              "original_blob": "0009b35892e233ff38ca48f048f2067c20c81921",
+              "authored_delta_sha256": "43644e8fad463ccc9a8c7e9b4a635d95af83ae72fd53494b8e16de59dd46387f",
+              "live_blobs": {
+                "src/pso/audio/AdxEncoder.cpp": "f0299434acb56cd43b8918fad8b8f14d219a24d0",
+                "include/pso/audio/AdxEncoder.h": "a89e414599f89ef5c2766d48c643282bad0c6799",
+                "include/pso/audio/SjRingBuffer.h": "631ddd1ea282288e107bbb2ef5e1f7558c897c03"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 63,
+        "historical_path": "src/pso/unk/text_803CD840.cpp",
+        "historical_blob": "262b7ed98ccca1107cfff77d963dcabda2706af0",
+        "owners": {
+          "src/pso/unk/text_803CC294.cpp": "aeb0331e880c37aec594c6ddffc792103071a984",
+          "src/pso/unk/text_803CC134.cpp": "fa1f09f57d57cc0daf8f9aedc1284149675ffec4",
+          "src/pso/unk/text_803CD99C.cpp": "d7dec5bdb8c94f3cb15c58e7f78c3562b6257ea8",
+          "include/pso/audio/AdxfInternal.h": "ee25bc2e1206d2f8d92dee47ee8c4919fdfaabf8"
+        },
+        "proofs": [
+          {
+            "group": "audio",
+            "evidence": "The complete authored AFS open hunk is present after splitting. It validates the same partition index and entry, reports the original errors, passes the real handle through ADXF open, read and close, keeps the 32-byte-aligned buffer and updates both stored pointers. The AIX parser and shared chunk split use their native declarations.",
+            "details": {
+              "pinned_source": "1a0214b5dc8d92ff40c56f7a154345d086a2e9c7",
+              "historical_blob": "262b7ed98ccca1107cfff77d963dcabda2706af0",
+              "historical_comparison_base": "fba938223515e7ab721bd5574ee97eba57671de6",
+              "original_blob": "695292a587a401cf6cd5e9b76c1e23319a7f795c",
+              "authored_delta_sha256": "3bdd0281ebdc17bdcf7ed4250bdfae4eda6baf9135e1ce4b3cf77719a235ab8f",
+              "live_blobs": {
+                "src/pso/unk/text_803CC294.cpp": "aeb0331e880c37aec594c6ddffc792103071a984",
+                "src/pso/unk/text_803CC134.cpp": "fa1f09f57d57cc0daf8f9aedc1284149675ffec4",
+                "src/pso/unk/text_803CD99C.cpp": "d7dec5bdb8c94f3cb15c58e7f78c3562b6257ea8",
+                "include/pso/audio/AdxfInternal.h": "ee25bc2e1206d2f8d92dee47ee8c4919fdfaabf8"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 68,
+        "historical_path": "src/pso/unk/text_803CFEA0.cpp",
+        "historical_blob": "ce624e9090c4583f7248ce37149a8e3d900a9ae4",
+        "owners": {
+          "src/pso/unk/text_803CFEA0.cpp": "dccaa21da493e5396f28955d8ca77d4c0715104a",
+          "include/pso/system/GcciRequests.h": "f2c33e8500b684c1c6cf6613522f9f3914613f81",
+          "src/pso/unk/TLobby_803CFE68.cpp": "0655faac4cbb685dc033a53258d9b99afc94738a",
+          "include/pso/system/CvFsStreamHandle.h": "3569e2026079b21be1c775d6ffb7bc3df7aa33f9"
+        },
+        "proofs": [
+          {
+            "group": "audio",
+            "evidence": "The complete authored DVD request changes are retained. All 40 requests have the SDK file record and command block, cancel and close dispatch uses the actual subobjects, and synchronous and asynchronous reads keep the original descriptor, transfers and result checks. Error arguments retain the original message, context and handle values through the shared device table.",
+            "details": {
+              "pinned_source": "1a0214b5dc8d92ff40c56f7a154345d086a2e9c7",
+              "historical_blob": "ce624e9090c4583f7248ce37149a8e3d900a9ae4",
+              "historical_comparison_base": "fba938223515e7ab721bd5574ee97eba57671de6",
+              "original_blob": "f7a8779588d9d1a5acc3c1e28c134e523df5da24",
+              "authored_delta_sha256": "848902cb7a3bf0586fad3f1002a306e8111407c9330b331fc92bc34fa2700de9",
+              "live_blobs": {
+                "src/pso/unk/text_803CFEA0.cpp": "dccaa21da493e5396f28955d8ca77d4c0715104a",
+                "include/pso/system/GcciRequests.h": "f2c33e8500b684c1c6cf6613522f9f3914613f81",
+                "src/pso/unk/TLobby_803CFE68.cpp": "0655faac4cbb685dc033a53258d9b99afc94738a",
+                "include/pso/system/CvFsStreamHandle.h": "3569e2026079b21be1c775d6ffb7bc3df7aa33f9"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 463,
+        "historical_path": "include/pso/enemy/TObjEneMorfos.h",
+        "historical_blob": "f15271fff07045ac43e96ffd394afff12cd7159f",
+        "owners": {
+          "include/pso/enemy/morfos/TObjEneMorfos.h": "8d6bcfd641a241e1b2faebd40afbecdc45f66e69"
+        },
+        "proofs": [
+          {
+            "group": "morfos",
+            "evidence": "Native typed constructor consumes the common 0x40 placement, factory binds through the original hook, archive accessor returns actual BML, and existing fade/capture layout checks still pass. The fork header also covers broader body methods and state declarations.",
+            "details": {
+              "disposition": "scoped",
+              "authored_diff_sha256": "c28003c9274ddcd3fff34aaed515fcb5276cd6e7b661c8572e7dffa4a802d75f",
+              "anchors": {
+                "include/pso/enemy/morfos/TObjEneMorfos.h": {
+                  "blob": "8d6bcfd641a241e1b2faebd40afbecdc45f66e69",
+                  "anchors": {
+                    "EnemyPlacement *placement": [
+                      20
+                    ],
+                    "get_resources": [
+                      57
+                    ],
+                    "ModelNodePosition": [
+                      47
+                    ],
+                    "MorfosArmPositionOffset": [
+                      97
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 599,
+        "historical_path": "src/pso/enemy/TObjEneMorfos.cpp",
+        "historical_blob": "768319f3b722b583e6a4016b4278ddb12d08c931",
+        "owners": {
+          "src/pso/enemy/morfos/TObjEneMorfos.cpp": "7932349b03da71e30f43e0117ceb1993d78081e7"
+        },
+        "proofs": [
+          {
+            "group": "morfos",
+            "evidence": "Actual parent instantiates the arm and both projectile paths use the two captured positions from their shared owner. Exact earlier body/native factory donor 08ef1750c3 and current shared archive declarations preserved. Whole historical state table and rendering source not asserted.",
+            "details": {
+              "disposition": "scoped",
+              "authored_diff_sha256": "b842d12712239a4e12169fe17662f15b936b052dde2fca0109ec1e0376a2ed26",
+              "anchors": {
+                "src/pso/enemy/morfos/TObjEneMorfos.cpp": {
+                  "blob": "7932349b03da71e30f43e0117ceb1993d78081e7",
+                  "anchors": {
+                    "TObjEneMorfos::TObjEneMorfos": [
+                      653
+                    ],
+                    "invoke_initialization_hook(placement)": [
+                      655
+                    ],
+                    "TObjEneMorfosArm::create(this, this)": [
+                      1469
+                    ],
+                    "new TUnk_804EF130": [
+                      1253,
+                      1396
+                    ],
+                    "register_animated_chunk": [
+                      636
+                    ],
+                    "get_resources": [
+                      1768
+                    ],
+                    "record_model_node_position": [
+                      1631,
+                      1657
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 600,
+        "historical_path": "src/pso/enemy/TObjEneMorfosArm.cpp",
+        "historical_blob": "00db2d9dcfbecbe9900293ae85706823857e92b7",
+        "owners": {
+          "src/pso/enemy/morfos/TObjEneMorfosArm.cpp": "65dbd8611507bff5f2fb9bd44f18a1b03b6a8dd8",
+          "src/pso/enemy/morfos/TObjEneMorfos.cpp": "7932349b03da71e30f43e0117ceb1993d78081e7"
+        },
+        "proofs": [
+          {
+            "group": "morfos",
+            "evidence": "Both original hunks accounted for: the older raw unload entry at 0x8033542C is the actual Arm static function, and 0x80335480 fetches its BML archive through the typed body accessor. The storage now owns BmlResource* directly rather than copying the fork\u2019s intermediate s32.",
+            "details": {
+              "disposition": "full retained",
+              "authored_diff_sha256": "957aeedb311678a8863e9b573ef6405e2a2c642b65134e893b5f603fdc2f45a8",
+              "anchors": {
+                "src/pso/enemy/morfos/TObjEneMorfosArm.cpp": {
+                  "blob": "65dbd8611507bff5f2fb9bd44f18a1b03b6a8dd8",
+                  "anchors": {
+                    "TObjEneMorfosArm::unload_static_data": [
+                      85
+                    ],
+                    "TObjEneMorfosArm::init_global": [
+                      92
+                    ],
+                    "morfos_arm_resources = TObjEneMorfos::get_resources()": [
+                      93
+                    ]
+                  }
+                },
+                "src/pso/enemy/morfos/TObjEneMorfos.cpp": {
+                  "blob": "7932349b03da71e30f43e0117ceb1993d78081e7",
+                  "anchors": {
+                    "BmlResource *TObjEneMorfos::get_resources()": [
+                      1768
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 601,
+        "historical_path": "src/pso/enemy/TObjEneMorfosArm_80335218.cpp",
+        "historical_blob": "199b2b457b64c4798fdf7d7585e2d6f0154e2624",
+        "owners": {
+          "src/pso/enemy/morfos/TObjEneMorfosArm.cpp": "65dbd8611507bff5f2fb9bd44f18a1b03b6a8dd8",
+          "include/pso/enemy/morfos/TObjEneMorfosArm.h": "4527eb795b49b5e866bcee3cf8a64bc4964265b5"
+        },
+        "proofs": [
+          {
+            "group": "morfos",
+            "evidence": "Six historical edit ranges accounted for in the already merged Arm source. Texture owner and yaw pass through the actual providers. The native C++ base initializer takes the parent, the arm uses the two body getters, and model/action/motion fields are set with native archive members. Arm identity and parent task remain as in the original runtime.",
+            "details": {
+              "disposition": "full retained",
+              "authored_diff_sha256": "bf4cbfdcb250312c3d7cc2a08bac15e1433a50a7b50e3593f1db4361701e40af",
+              "anchors": {
+                "src/pso/enemy/morfos/TObjEneMorfosArm.cpp": {
+                  "blob": "65dbd8611507bff5f2fb9bd44f18a1b03b6a8dd8",
+                  "anchors": {
+                    "set_current_texture_list": [
+                      42
+                    ],
+                    "rotation.yaw": [
+                      41,
+                      58,
+                      74
+                    ],
+                    "TObjMotion(parent)": [
+                      69
+                    ],
+                    "body->get_arm_position": [
+                      57
+                    ],
+                    "owner->get_heading": [
+                      58,
+                      74
+                    ],
+                    "set_action_table": [
+                      77
+                    ],
+                    "set_motion_list": [
+                      78
+                    ],
+                    "models[0].model": [
+                      75
+                    ]
+                  }
+                },
+                "include/pso/enemy/morfos/TObjEneMorfosArm.h": {
+                  "blob": "4527eb795b49b5e866bcee3cf8a64bc4964265b5",
+                  "anchors": {
+                    "TObjEneMorfos *owner": [
+                      13,
+                      15
+                    ],
+                    "TObjEneMorfosArmOwnerOffset": [
+                      25
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 602,
+        "historical_path": "src/pso/enemy/TObjEneMorfos_80337500.cpp",
+        "historical_blob": "8923063a1811c2e26ef03aec7da0f56f84be4003",
+        "owners": {
+          "src/pso/enemy/morfos/TObjEneMorfos_80337500.cpp": "77d18f23b19fa5828e505db06c3e3dab3b847936"
+        },
+        "proofs": [
+          {
+            "group": "morfos",
+            "evidence": "The original projectile-owned ground receiver at 0x803375F0, const spawn record at 0x80337824, real body-center query, and latch/timer paths are carried. Canonical retains the already verified aggregate damage payload and uses the actual broad lookup type TObjCollidable* for the owner, rather than the original fork\u2019s narrowing cast. Full named-literal and whole-file source parity is not asserted.",
+            "details": {
+              "disposition": "scoped",
+              "authored_diff_sha256": "853233ab1cc990fad221a37ab8ebe044ab1de166aa614f407f6bc275e9071dfc",
+              "anchors": {
+                "src/pso/enemy/morfos/TObjEneMorfos_80337500.cpp": {
+                  "blob": "77d18f23b19fa5828e505db06c3e3dab3b847936",
+                  "anchors": {
+                    "TUnk_804EF130::snap_to_ground": [
+                      41
+                    ],
+                    "csnVecterUnder(position, 0x16EF)": [
+                      42
+                    ],
+                    "ground_timer > 4": [
+                      63
+                    ],
+                    "owner = find_entity_by_id(owner_id)": [
+                      76
+                    ],
+                    "TUnk_804EF130::TUnk_804EF130(const Vec": [
+                      93
+                    ],
+                    "body_center_position": [
+                      34,
+                      80
+                    ],
+                    "receive_direct_attack": [
+                      36
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 683,
+        "historical_path": "include/pso/enemy/TUnk_804EF130.h",
+        "historical_blob": "e3923b96d750a0f662f91763753c4ecdbdfe8ca3",
+        "owners": {
+          "include/pso/enemy/TUnk_804EF130.h": "08301619ba44c64688c78f22d1c49e54cf1b17b6"
+        },
+        "proofs": [
+          {
+            "group": "morfos",
+            "evidence": "The original header\u2019s authored block are represented by native constructor/destructor/task, damage method, moved projectile-owned ground probe, and real position, velocity, effect, timer and ID layout. The attack method accepts the broad actual TObjCollidable* from entity lookup. Field names differ where canonical already owned the exact same storage.",
+            "details": {
+              "disposition": "full retained",
+              "authored_diff_sha256": "d52c9d7d0c584e5f0d446d5aa3d678e771f300e76e1cc8b7a2d226d373b5fd12",
+              "anchors": {
+                "include/pso/enemy/TUnk_804EF130.h": {
+                  "blob": "08301619ba44c64688c78f22d1c49e54cf1b17b6",
+                  "anchors": {
+                    "TUnk_804EF130(const Vec *": [
+                      14
+                    ],
+                    "virtual void run_task()": [
+                      16
+                    ],
+                    "hit_target_in_range": [
+                      17
+                    ],
+                    "snap_to_ground": [
+                      18
+                    ],
+                    "Vec pos": [
+                      19
+                    ],
+                    "Vec vel": [
+                      20
+                    ],
+                    "TParticleCtrl *effect": [
+                      23
+                    ],
+                    "s32 follow_ground": [
+                      25
+                    ],
+                    "u16 owner_id": [
+                      27
+                    ],
+                    "MorfosProjectileOwnerIdOffset": [
+                      33
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5299,
+        "historical_path": "src/pso/misc/TScene.cpp",
+        "historical_blob": "2b9e40c31e861136439f8bf1cbab47b6f66099b2",
+        "owners": {
+          "src/pso/system/scene/TScene.cpp": "e7513db82fa149db7ec4024fb57d537da5a6adfb"
+        },
+        "proofs": [
+          {
+            "group": "geometry",
+            "evidence": "Both scene-load paths now pass the actual TMapCsnCtrl receiver and the first CsnGroup pointer in the relocated resource. The lobby capacity, quest allocation, reload condition, error and teardown order are byte-identical. Other authored render and resource changes across the TU are outside this cohort.",
+            "details": {
+              "disposition": "scoped",
+              "authored_hunks": [
+                "@@ -0,0 +1 @@",
+                "@@ -4,0 +6 @@",
+                "@@ -14,0 +17 @@",
+                "@@ -203 +206 @@ struct Node_8020533C { u8 pad0[8]; Vec_8020533C pos; Ang_8020533C ang; };",
+                "@@ -210,2 +212,0 @@ void render_projected_shadow_receiver(void *, void *);",
+                "@@ -370 +370,0 @@ void bind_gvm_texture_list(s32 *, u32);",
+                "@@ -814 +814 @@ void TScene::load_current_floor() {",
+                "@@ -845 +845 @@ void TScene::load_scene_data(s32 name) {",
+                "@@ -848 +848 @@ void TScene::load_scene_data(s32 name) {",
+                "@@ -856 +856 @@ void TScene::load_scene_data(s32 name) {",
+                "@@ -868 +868 @@ void TScene::load_scene_data(s32 name) {",
+                "@@ -883 +883 @@ void TScene::load_scene_rel_file(s32 arg0) {",
+                "@@ -887 +887 @@ void TScene::load_scene_rel_file(s32 arg0) {",
+                "@@ -891 +891 @@ void TScene::load_scene_rel_file(s32 arg0) {",
+                "@@ -898 +898 @@ void TScene::load_scene_rel_file(s32 arg0) {",
+                "@@ -922 +922 @@ void TScene::load_supplementary_t_rel(s32 name) {",
+                "@@ -924 +924 @@ void TScene::load_supplementary_t_rel(s32 name) {",
+                "@@ -945 +945 @@ void TScene::load_map_texture_archive(s32 name) {",
+                "@@ -949 +949 @@ void TScene::load_map_texture_archive(s32 name) {",
+                "@@ -953 +953 @@ void TScene::load_map_texture_archive(s32 name) {",
+                "@@ -961 +961 @@ void TScene::load_map_texture_archive(s32 name) {",
+                "@@ -980 +980 @@ void TScene::load_floor_bin_file(s32 name) {",
+                "@@ -983 +983 @@ void TScene::load_floor_bin_file(s32 name) {",
+                "@@ -990 +990 @@ void TScene::load_floor_bin_file(s32 name) {",
+                "@@ -1007 +1007 @@ void TScene::load_file_to_buffer(s32 name) {",
+                "@@ -1010 +1010 @@ void TScene::load_file_to_buffer(s32 name) {",
+                "@@ -1018 +1018 @@ void TScene::load_file_to_buffer(s32 name) {",
+                "@@ -1031 +1031 @@ void TScene::free_scene_resources() {",
+                "@@ -1036 +1036 @@ void TScene::free_scene_resources() {",
+                "@@ -1041 +1041 @@ void TScene::free_scene_resources() {",
+                "@@ -1046 +1046 @@ void TScene::free_scene_resources() {",
+                "@@ -1058 +1058 @@ void TScene::free_scene_resources() {",
+                "@@ -1064 +1064 @@ void TScene::free_scene_resources() {",
+                "@@ -1096 +1096 @@ void load_floor_scene(void) {",
+                "@@ -1119 +1119 @@ void load_scene_collision_file(s32 name) {",
+                "@@ -1127 +1127 @@ void load_scene_collision_file(s32 name) {",
+                "@@ -1140 +1140 @@ void load_scene_map_file(s32 arg0) {",
+                "@@ -1156 +1156 @@ void TScene::load_tam_file(s32 name) {",
+                "@@ -1168 +1168 @@ void TScene::load_floor_rel_file(s32 name) {",
+                "@@ -1428 +1427,0 @@ void TScene::init_material_nodes() {",
+                "@@ -1433 +1431,0 @@ void TScene::init_material_nodes() {",
+                "@@ -1442,5 +1440 @@ void TScene::init_material_nodes() {",
+                "@@ -1465,5 +1459 @@ void TScene::init_material_nodes() {",
+                "@@ -1570 +1560 @@ void TScene::render_map_sections() {",
+                "@@ -1617 +1607 @@ void TScene::render_static_map_section(SceneMaterialSection *scene_material_sect",
+                "@@ -1674 +1664 @@ void TScene::render_static_map_section(SceneMaterialSection *scene_material_sect",
+                "@@ -1699,2 +1689,2 @@ void TScene::render_static_map_section(SceneMaterialSection *scene_material_sect",
+                "@@ -1703 +1693 @@ void TScene::render_static_map_section(SceneMaterialSection *scene_material_sect",
+                "@@ -1727 +1717 @@ void TScene::render_animated_map_section(SceneMaterialSection *scene_material_se",
+                "@@ -1794 +1784 @@ void TScene::render_animated_map_section(SceneMaterialSection *scene_material_se",
+                "@@ -1797,2 +1787,2 @@ void TScene::render_animated_map_section(SceneMaterialSection *scene_material_se",
+                "@@ -1801 +1791 @@ void TScene::render_animated_map_section(SceneMaterialSection *scene_material_se"
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6591,
+        "historical_path": "include/pso/map/CsnQuery.h",
+        "historical_blob": "39e9d1f1ea36af00997fc96d073bd53e79c840d0",
+        "owners": {
+          "include/pso/map/CsnQuery.h": "5449e7943db920385a8a86fa630d1efb045dff70"
+        },
+        "proofs": [
+          {
+            "group": "geometry",
+            "evidence": "Canonical already shared the common ground hit and typed result interfaces. Both new heads use the actual Vec and CsnGroup for selection and the group-list debug callback. Direct keeps its older result and footprint interfaces where no exact complete consumer migration was included.",
+            "details": {
+              "disposition": "scoped",
+              "authored_hunks": [
+                "@@ -4,0 +5,2 @@",
+                "@@ -28,14 +29,0 @@ CsnGroup* select_ground_query_groups(CsnVector* origin, u32 mask);",
+                "@@ -48,2 +35,0 @@ void TObjPlayer__sub_80079108(void);",
+                "@@ -56 +41,0 @@ s32 *csnLookAt(s32 arg0, s32 arg1);",
+                "@@ -61 +46 @@ s32 prepare_wall_query_polygons(void *arg0, f32 r, s32 mask);"
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6668,
+        "historical_path": "src/pso/map/CsnQuery.cpp",
+        "historical_blob": "155472bc6551880cba907ccb11d3691cdeff7c06",
+        "owners": {
+          "src/pso/map/CsnQuery.cpp": "26a1be5e8121cbf29aef079d01d7e7924f8dea1a"
+        },
+        "proofs": [
+          {
+            "group": "geometry",
+            "evidence": "Recovered the original MSL __ctype_map/letter-mask declaration and body directly from d867d1301f lineage. Ground and segment selection now use the actual collision groups and Vec centers, including a true 256-pointer scratch table and a matching debug group-list callback. Existing native ground evaluator, actual cached provider and scratch constants remain. Prepared wall face owner, triangle copy receiver and several deep wall argument adapters remain open.",
+            "details": {
+              "disposition": "scoped",
+              "authored_hunks": [
+                "@@ -0,0 +1,3 @@",
+                "@@ -5,0 +9 @@",
+                "@@ -8 +11,0 @@",
+                "@@ -12,4 +14,0 @@ struct ByteBlock_C { u8 bytes[0xc]; };",
+                "@@ -17 +15,0 @@ struct RecoveredGlobal_800790F0_lbl_804F5800 {",
+                "@@ -27,5 +25 @@ struct Vec_80079608 {",
+                "@@ -41,6 +35 @@ struct Query_80079608 {",
+                "@@ -85,0 +75,18 @@ struct Face_800798A0 {",
+                "@@ -128 +134,0 @@ struct Wall_8007A138 {",
+                "@@ -129,0 +136,5 @@ extern \"C\" {",
+                "@@ -135 +146 @@ void TObjPlayer__sub_80079120(s32);",
+                "@@ -137 +147,0 @@ extern s32 lbl_804389CC[];",
+                "@@ -143,2 +153 @@ extern s32 lbl_804389E8[];",
+                "@@ -147 +156 @@ u32 TObjPlayer__sub_80079DE0(void *, void *);",
+                "@@ -155 +163,0 @@ void TObjPlayer__sub_80079124(void * _w0, void * _w1);",
+                "@@ -160,2 +167,0 @@ void vec3_cross(void *, void *, void *);",
+                "@@ -165 +170,0 @@ extern Vec_800798A0 lbl_8050BF60;",
+                "@@ -166,0 +172,2 @@ extern const f32 lbl_805D91F0;",
+                "@@ -168,2 +175,3 @@ extern const f32 lbl_805D91FC;",
+                "@@ -177,2 +184,0 @@ s32 calc_segment_xz_distance_sq(Vec_8007A138 *c, Vec_8007A138 *o, Vec_8007A138 *",
+                "@@ -180 +185,0 @@ void TObjPlayer__sub_80079110(void);",
+                "@@ -182 +187 @@ s32 get_csn_group_flags(u8 arg0) {",
+                "@@ -186,2 +191,2 @@ void TObjPlayer__sub_80079108(void) {  }",
+                "@@ -231 +235,0 @@ s32 calc_segment_xz_distance_sq(Vec_8007A138 *c, Vec_8007A138 *o, Vec_8007A138 *",
+                "@@ -233 +237 @@ extern s32 lbl_80438988[];",
+                "@@ -235 +238,0 @@ extern s32 lbl_804389A8[];",
+                "@@ -237,3 +239,0 @@ extern E_80079580 *wall_query_scene_buffer;",
+                "@@ -242,0 +243,136 @@ s32 prepare_wall_query_polygons(void *arg0, f32 r, s32 mask);",
+                "@@ -276 +412 @@ s32 select_deepest_wall_ray(Query_80079608 *q, Result_80079608 *r) {",
+                "@@ -283,2 +419,2 @@ s32 select_deepest_wall_ray(Query_80079608 *q, Result_80079608 *r) {",
+                "@@ -305,3 +441,3 @@ s32 query_segment_wall_meshes(void *arg0, void *arg1, u32 arg2, Node_8007970C **",
+                "@@ -320 +456 @@ s32 query_segment_wall_meshes(void *arg0, void *arg1, u32 arg2, Node_8007970C **",
+                "@@ -330,3 +466,3 @@ s32 check_line_hits_walls__10TObjPlayerFPvPviPv(void *arg0, void *arg1, int arg2",
+                "@@ -374,4 +510,4 @@ s32 intersect_wall_triangle_one_sided(void *arg0, void *arg1, void *arg2, E_8007",
+                "@@ -389,3 +525,3 @@ s32 intersect_wall_triangle_one_sided(void *arg0, void *arg1, void *arg2, E_8007",
+                "@@ -396 +532 @@ s32 intersect_wall_triangle_one_sided(void *arg0, void *arg1, void *arg2, E_8007",
+                "@@ -400 +536 @@ s32 intersect_wall_triangle_one_sided(void *arg0, void *arg1, void *arg2, E_8007",
+                "@@ -408 +544 @@ s32 intersect_wall_triangle_one_sided(void *arg0, void *arg1, void *arg2, E_8007",
+                "@@ -415 +551 @@ s32 intersect_wall_triangle_one_sided(void *arg0, void *arg1, void *arg2, E_8007",
+                "@@ -424 +560 @@ s32 intersect_wall_triangle_one_sided(void *arg0, void *arg1, void *arg2, E_8007",
+                "@@ -450,2 +585,0 @@ s32 intersect_wall_triangle_one_sided(void *arg0, void *arg1, void *arg2, E_8007",
+                "@@ -481 +614,0 @@ M_80079C64 *refill_csn_candidate_cache(P_80079C64 *arg0, M_80079C64 **arg1, u32",
+                "@@ -547,2 +680,2 @@ u32 TObjPlayer__sub_80079DE0(void *a, void *b) {",
+                "@@ -566,2 +698,0 @@ u32 TObjPlayer__sub_80079DE0(void *a, void *b) {",
+                "@@ -629 +759,0 @@ s32 prepare_wall_query_polygons(void *arg0, f32 r, s32 mask) {",
+                "@@ -666,3 +796,3 @@ Wall_8007A138 *query_collision_segment_groups(Vec_8007A138 *a, Vec_8007A138 *b,",
+                "@@ -686,2 +816,2 @@ Wall_8007A138 *query_collision_segment_groups(Vec_8007A138 *a, Vec_8007A138 *b,",
+                "@@ -689 +819 @@ void *query_prepared_wall_polygons(void *self) {",
+                "@@ -697,2 +827,2 @@ void *query_prepared_wall_polygons(void *self) {",
+                "@@ -700,2 +830,2 @@ void *query_wall_radial(Obj_8007A32C *self) {",
+                "@@ -713 +843 @@ s32 *csnLookAt(s32 arg0, s32 arg1) {",
+                "@@ -729 +859 @@ s32 *csnVectorUnder(Vec *arg0, u32 *arg1, s32 arg2) {",
+                "@@ -733 +863 @@ s32 *csnVectorUnder(Vec *arg0, u32 *arg1, s32 arg2) {",
+                "@@ -737 +867 @@ s32 *csnVectorUnder(Vec *arg0, u32 *arg1, s32 arg2) {",
+                "@@ -742 +872 @@ s32 *csnVectorUnder(Vec *arg0, u32 *arg1, s32 arg2) {",
+                "@@ -750,2 +880,2 @@ done:",
+                "@@ -754,2 +884,2 @@ s32 *csnVecterUnder(s32 origin, s32 mask) {",
+                "@@ -758 +888 @@ s32 *csnVecterUnder(s32 origin, s32 mask) {"
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6771,
+        "historical_path": "src/pso/object/TObjButterflyLobby_8007A5D8.cpp",
+        "historical_blob": "9e2a07dd0b06410ad5eb8304a2f9362cc4bc52ac",
+        "owners": {
+          "src/pso/map/CsnQuery.cpp": "26a1be5e8121cbf29aef079d01d7e7924f8dea1a"
+        },
+        "proofs": [
+          {
+            "group": "geometry",
+            "evidence": "All authored changes are already covered on canonical by the true const-Vec/u32 to CsnHit segment API and byte-exact paired C++ array operators on the 0x5000 wall buffer. Upstream still uses the compatible legacy allocation aliases and this standalone does not import the array-runtime prerequisite. The separate wall preparation rewrite was never part of the authored hunk.",
+            "details": {
+              "disposition": "whole before on canonical; scoped on direct",
+              "authored_hunks": [
+                "@@ -0,0 +1 @@",
+                "@@ -3,2 +4 @@",
+                "@@ -7 +6,0 @@ extern \"C\" {",
+                "@@ -15,3 +13,0 @@ extern u8 lbl_804FFD40[];",
+                "@@ -19,3 +15,3 @@ void mem_free(void*);",
+                "@@ -23 +19 @@ Hit_8007A5D8 *csnVector(void *from, void *to, u32 mask) {",
+                "@@ -25 +21 @@ Hit_8007A5D8 *csnVector(void *from, void *to, u32 mask) {",
+                "@@ -34 +30 @@ void TObjButterflyLobby::free_singleton_805D4E6C() {",
+                "@@ -38 +34 @@ void TObjButterflyLobby::free_singleton_805D4E6C() {"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7101,
+        "historical_path": "src/pso/object/TObjMapCsn.cpp",
+        "historical_blob": "71a713a202651cd9c570cd14d13874329419748e",
+        "owners": {
+          "src/pso/map/TObjMapCsn.cpp": "4402d7c8e8146e90cd626598543f1b7a52e16d4c"
+        },
+        "proofs": [
+          {
+            "group": "geometry",
+            "evidence": "Historical typed create input/output, class allocation and constructor set-data forwarding were already represented by 64af88f68e and 75b5a6951a on canonical. Both new heads use the actual group at +0xAC, 0x10 model at +0xC4, eight 0x24 faces at +0xD4, and eight Vec vertices at +0x1F4. Direct keeps its upstream factory adapter and original typed-slot consumption.",
+            "details": {
+              "disposition": "whole before on canonical; scoped on direct",
+              "authored_hunks": [
+                "@@ -44 +44 @@ extern s32 TObjMapCsn__class_name;",
+                "@@ -53 +52,0 @@ extern s32 identity_matrix[];",
+                "@@ -150,2 +149,2 @@ s32 TObjMapCsn::build_box_triangles() {",
+                "@@ -153,3 +152,3 @@ s32 TObjMapCsn::create(s32 arg0) {",
+                "@@ -172 +171 @@ u8 *__dt__10TObjMapCsnFv(u8 *arg0, s16 arg1) {",
+                "@@ -178 +177 @@ u8 *TObjMapCsn__ct(TObjMapCsn *map_csn, s32 arg1, s32 arg2) {"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4151,
+        "historical_path": "src/pso/player/TObjPlayer_802790CC.cpp",
+        "historical_blob": "b7fe2ea89ccbfe2d3f16939f2f23d9f0940f6c72",
+        "owners": {
+          "src/pso/player/TObjPlayer_802790CC.cpp": "5787c0a60796d7986a84b0d19556abbcd9fbf428"
+        },
+        "proofs": [
+          {
+            "group": "equipment",
+            "evidence": "The current list methods at 0x802790CC and 0x80279178 use the real equip-list receiver, actual row +8 height and +0x2C color, signed +0x72 count, original equipment slots 6/2/9+n/3/1, signed unit count and native TItem copy. Current initializer variants retain the inherited item-row provider boundary.",
+            "details": {
+              "disposition": "scoped",
+              "anchors": [
+                {
+                  "path": "src/pso/player/TObjPlayer_802790CC.cpp",
+                  "canonical_blob": "5787c0a60796d7986a84b0d19556abbcd9fbf428",
+                  "direct_blob": "59adddb4c4aeffa7b218b45b963f1d55724e3856"
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5551,
+        "historical_path": "src/pso/misc/TWindowHelpItem_80255AB4.cpp",
+        "historical_blob": "708f2977d5d966c2573080731db2a5eba513932f",
+        "owners": {
+          "src/pso/ui/window/TWindowHelpItem_80255AB4.cpp": "7559ef32dd2e2f20383eafa12fe7d7e5ec423ae0",
+          "include/pso/ui/window/TWindowHelpItem.h": "4d5630be92dc1294b8d9251a2a3c6d6bd73a24d2"
+        },
+        "proofs": [
+          {
+            "group": "equipment",
+            "evidence": "Existing constructor and task carry the historical three-page indicator and draw descriptor. The replay adds direct accesses to initialized item pointers, signed keys, and selected equipped/candidate help state. Existing display and render overlays remain.",
+            "details": {
+              "disposition": "scoped",
+              "anchors": [
+                {
+                  "path": "src/pso/ui/window/TWindowHelpItem_80255AB4.cpp",
+                  "canonical_blob": "7559ef32dd2e2f20383eafa12fe7d7e5ec423ae0",
+                  "direct_blob": "a0ffa778eb39acb651f7bb9c89360b78c3066d58"
+                },
+                {
+                  "path": "include/pso/ui/window/TWindowHelpItem.h",
+                  "canonical_blob": "4d5630be92dc1294b8d9251a2a3c6d6bd73a24d2",
+                  "direct_blob": "0e9c187abb211932ea0f6a07fa6779782f6278a1"
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5578,
+        "historical_path": "src/pso/misc/TWindowSubEquip_80263AB0.cpp",
+        "historical_blob": "b71321bfbddd15312e13c7f922cceffe19c7aed6",
+        "owners": {
+          "src/pso/ui/window/TWindowMainMenu.cpp": "f6ddf4a5fe0447051a7086936dc91addfff5f779",
+          "src/pso/ui/window/TWindowSubEquip_80277DF8.cpp": "88ad97049d911bcb551326332fd5a8b32c4b4fff"
+        },
+        "proofs": [
+          {
+            "group": "equipment",
+            "evidence": "Helper 0x80263AF8 still subtracts an unsigned converted slot from the parent depth at +0x58. All three equipment child construction paths now pass that result into TWindowBase::set_depth. Other old shared open-submenu wrappers are outside this proof.",
+            "details": {
+              "disposition": "scoped",
+              "anchors": [
+                {
+                  "path": "src/pso/ui/window/TWindowMainMenu.cpp",
+                  "canonical_blob": "f6ddf4a5fe0447051a7086936dc91addfff5f779",
+                  "direct_blob": "7bee8c30c1ffc1a9593ce9dedf2c244733a0aa64"
+                },
+                {
+                  "path": "src/pso/ui/window/TWindowSubEquip_80277DF8.cpp",
+                  "canonical_blob": "88ad97049d911bcb551326332fd5a8b32c4b4fff",
+                  "direct_blob": "92023fd431c435d4acbf86a5abb594c354685ac7"
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5642,
+        "historical_path": "src/pso/misc/TWindowSubEquip_80279044.cpp",
+        "historical_blob": "fe62c412bab8d51f579d090aa819299a18ff009b",
+        "owners": {
+          "src/pso/ui/window/TWindowSubEquip_80279044.cpp": "457ffd1c8e072b9904d841206c1e309a5106abb4",
+          "include/pso/ui/window/TWindowSubEquipList.h": "927f2ce1b12587953b8d6eefe286eec2fc437a30"
+        },
+        "proofs": [
+          {
+            "group": "equipment",
+            "evidence": "The full authored historical change is carried: include the actual equip-list declaration, bind 0x80279054 as its member, use TWindowMenuIconLine reset in the save/reset/build/clamp sequence, and return u8 for the adjacent 0x80279098 icon accessor. Unchanged 0x80279044 flag helper is also retained.",
+            "details": {
+              "disposition": "complete historical change retained",
+              "anchors": [
+                {
+                  "path": "src/pso/ui/window/TWindowSubEquip_80279044.cpp",
+                  "canonical_blob": "457ffd1c8e072b9904d841206c1e309a5106abb4",
+                  "direct_blob": "457ffd1c8e072b9904d841206c1e309a5106abb4"
+                },
+                {
+                  "path": "include/pso/ui/window/TWindowSubEquipList.h",
+                  "canonical_blob": "927f2ce1b12587953b8d6eefe286eec2fc437a30",
+                  "direct_blob": "db96ed54ec9b9861666f9dc894cdfcea826d4f30"
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5693,
+        "historical_path": "include/pso/misc/TWindowHelpItem.h",
+        "historical_blob": "95a2019c6675c4f39a3bf5e9f63d7f7b568a0132",
+        "owners": {
+          "include/pso/ui/window/TWindowHelpItem.h": "4d5630be92dc1294b8d9251a2a3c6d6bd73a24d2"
+        },
+        "proofs": [
+          {
+            "group": "equipment",
+            "evidence": "The active help class retains the historical native PageIndicator pointer at +0x64 and adds real TItemData copies at +0x74 and +0x88, asserted in both builds. Real signed keys keep -1 and the two special -0xFF/-0x100 encodings. The wider legacy display/callback declarations are outside this comparison.",
+            "details": {
+              "disposition": "scoped",
+              "anchors": [
+                {
+                  "path": "include/pso/ui/window/TWindowHelpItem.h",
+                  "canonical_blob": "4d5630be92dc1294b8d9251a2a3c6d6bd73a24d2",
+                  "direct_blob": "0e9c187abb211932ea0f6a07fa6779782f6278a1"
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5902,
+        "historical_path": "src/pso/misc/TWindowSubEquip_80277E48.cpp",
+        "historical_blob": "3ce592d19c5cfe500cb7527132e92e010bfb5246",
+        "owners": {
+          "src/pso/ui/window/TWindowSubEquip_80277DF8.cpp": "88ad97049d911bcb551326332fd5a8b32c4b4fff",
+          "include/pso/ui/window/TWindowSubEquip.h": "48810d52aa165de0d6b2a5120c3da38d907d443b"
+        },
+        "proofs": [
+          {
+            "group": "equipment",
+            "evidence": "Compared all authored hunks: native sound, base, icon-list and equip-list declarations and calls; status display, close, refresh, decision, cancel and selection then use their actual children; list factories preserve client, extents, and depth. The original cue 0x52F16 and task branch order are retained. Direct has the existing encoded sound call, while canonical calls the shared typed sound provider.",
+            "details": {
+              "disposition": "complete historical change retained in canonical",
+              "anchors": [
+                {
+                  "path": "src/pso/ui/window/TWindowSubEquip_80277DF8.cpp",
+                  "canonical_blob": "88ad97049d911bcb551326332fd5a8b32c4b4fff",
+                  "direct_blob": "92023fd431c435d4acbf86a5abb594c354685ac7"
+                },
+                {
+                  "path": "include/pso/ui/window/TWindowSubEquip.h",
+                  "canonical_blob": "48810d52aa165de0d6b2a5120c3da38d907d443b",
+                  "direct_blob": "48810d52aa165de0d6b2a5120c3da38d907d443b"
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5975,
+        "historical_path": "src/pso/misc/TWindowHelpItem_802531A0.cpp",
+        "historical_blob": "31047e93bfa0c60bdb52b690a1ad18598f6c2840",
+        "owners": {
+          "src/pso/ui/window/TWindowHelpItem_802531A0.cpp": "527762f8dfdbfc36d66d0340ef8bb4a6a477dd2f",
+          "include/pso/ui/window/TWindowHelpItem.h": "4d5630be92dc1294b8d9251a2a3c6d6bd73a24d2"
+        },
+        "proofs": [
+          {
+            "group": "equipment",
+            "evidence": "All seven originally source-linked help routines keep their native array-entry and mag branches. Grade and technique details and the mag helper load the real +0x68 item pointer. Remaining detail initialization and formatting preserve existing source boundaries.",
+            "details": {
+              "disposition": "scoped",
+              "anchors": [
+                {
+                  "path": "src/pso/ui/window/TWindowHelpItem_802531A0.cpp",
+                  "canonical_blob": "527762f8dfdbfc36d66d0340ef8bb4a6a477dd2f",
+                  "direct_blob": "130a0d80d0666c98c3372de9ea420a1295b04d83"
+                },
+                {
+                  "path": "include/pso/ui/window/TWindowHelpItem.h",
+                  "canonical_blob": "4d5630be92dc1294b8d9251a2a3c6d6bd73a24d2",
+                  "direct_blob": "0e9c187abb211932ea0f6a07fa6779782f6278a1"
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5992,
+        "historical_path": "src/pso/misc/TWindowHelpItem_802540AC.cpp",
+        "historical_blob": "b37ea7418a3ce43612a955dd6ccbaeb8676ea0f2",
+        "owners": {
+          "src/pso/ui/window/TWindowHelpItem_802540AC.cpp": "9d3571fdc83a264264c7084bd3a330187d01f270",
+          "include/pso/ui/window/TWindowHelpItem.h": "4d5630be92dc1294b8d9251a2a3c6d6bd73a24d2"
+        },
+        "proofs": [
+          {
+            "group": "equipment",
+            "evidence": "The authored 20-byte descriptor remains. Dispatch 0x80255440 reads the real displayed key and pointer and candidate key using the existing callback/data-byte access. Local wrappers 0x80255850/0x802558D0 keep the find/copy order through asserted snapshot offsets and invoke setters which write typed pointers and signed keys, update selection, then dispatch. Other original formatting hunks retain their prior source ledger evidence.",
+            "details": {
+              "disposition": "scoped",
+              "anchors": [
+                {
+                  "path": "src/pso/ui/window/TWindowHelpItem_802540AC.cpp",
+                  "canonical_blob": "9d3571fdc83a264264c7084bd3a330187d01f270",
+                  "direct_blob": "4ae8159d1a4a94d55e21e1a7012f19159290cd0e"
+                },
+                {
+                  "path": "include/pso/ui/window/TWindowHelpItem.h",
+                  "canonical_blob": "4d5630be92dc1294b8d9251a2a3c6d6bd73a24d2",
+                  "direct_blob": "0e9c187abb211932ea0f6a07fa6779782f6278a1"
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      }
+    ],
+    "closed_rows": [
+      6,
+      7,
+      8,
+      10,
+      26,
+      27,
+      30,
+      63,
+      68,
+      600,
+      601,
+      683,
+      5642,
+      5902,
+      6771,
+      7101
+    ],
+    "remaining": {
+      "Owner comparison required": 473,
+      "Some anchored text changes found": 811
+    }
+  },
+  "upstream_review_candidates": {
+    "standalone-adx-streaming": {
+      "head": "960e608d40f5594babb50c5507bdc882a0b09be9",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "ADX, WAVE, disc archives and movies, native stream files across playback, archive and LSC consumers, and encoder layout",
+      "files": 117,
+      "source_paths": [
+        "config/GPOE8P/psov3/config.yml",
+        "config/GPOE8P/psov3/splits.txt",
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/audio/AdxCallbacks.h",
+        "include/pso/audio/AdxEncoder.h",
+        "include/pso/audio/AdxManager.h",
+        "include/pso/audio/AdxStream.h",
+        "include/pso/audio/AdxStreamFile.h",
+        "include/pso/audio/AdxStreamRuntime.h",
+        "include/pso/audio/AdxTalk.h",
+        "include/pso/audio/AdxbDecoder.h",
+        "include/pso/audio/AdxfInternal.h",
+        "include/pso/audio/AdxmThreadStorage.h",
+        "include/pso/audio/LscStream.h",
+        "include/pso/audio/SoundSlotPitch.h",
+        "include/pso/boss/olgaflow/TBoss6Zanzo.h",
+        "include/pso/item/TItemLoad.h",
+        "include/pso/item/TItemTexLoad.h",
+        "include/pso/system/Adxf.h",
+        "include/pso/system/CvFsStreamHandle.h",
+        "include/pso/system/GcciRequests.h",
+        "include/pso/system/RelModuleBuffer.h",
+        "include/pso/system/TGStream.h",
+        "include/pso/system/movie/Mfci.h",
+        "include/pso/system/movie/TMovie.h",
+        "include/pso/technique/TTecRaFoie.h",
+        "include/pso/ui/charcreate/TChCrLoadAfs.h",
+        "include/pso/ui/charcreate/TChCrLoadAfsTextureReq.h",
+        "include/pso/unk/TLobby.h",
+        "include/pso/unk/TLobby_80227A2C.h",
+        "include/pso/unk/TLobby_8023F734.h",
+        "include/pso/unk/TLobby_803C1A58.h",
+        "include/pso/unk/TLobby_803CE478.h",
+        "include/pso/unk/TLobby_803CFE68.h",
+        "include/pso/unk/TLobby_803D0C28.h",
+        "include/pso/unk/TLobby_803D60A8.h",
+        "include/pso/unk/text_80320358.h",
+        "include/pso/unk/text_803C1780.h",
+        "include/pso/unk/text_803CC294.h",
+        "include/pso/unk/text_803CE568.h",
+        "include/pso/unk/text_803D0C34.h",
+        "include/pso/unk/text_803D2F1C.h",
+        "include/pso/unk/text_803D31A4.h",
+        "src/musyx/runtime/musyx_runtime_b.h",
+        "src/pso/audio/AdxBsc.cpp",
+        "src/pso/audio/AdxEncoder.cpp",
+        "src/pso/audio/AdxError.cpp",
+        "src/pso/audio/AdxManager.cpp",
+        "src/pso/audio/AdxStream.cpp",
+        "src/pso/audio/AdxTalk.cpp",
+        "src/pso/audio/AdxtInit.cpp",
+        "src/pso/audio/AdxtServer.cpp",
+        "src/pso/audio/AdxtStart.cpp",
+        "src/pso/audio/LscServer.cpp",
+        "src/pso/audio/LscStream.cpp",
+        "src/pso/boss/olgaflow/TBoss6Zanzo.cpp",
+        "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+        "src/pso/item/TItemLoad.cpp",
+        "src/pso/item/TItemTexLoad.cpp",
+        "src/pso/item/item_pmt.cpp",
+        "src/pso/object/city/CityDoors.cpp",
+        "src/pso/object/city/CityTraffic.cpp",
+        "src/pso/player/TObjPlayer_8023E480.cpp",
+        "src/pso/system/TGStream.cpp",
+        "src/pso/system/movie/Mfci.cpp",
+        "src/pso/system/movie/TMovie.cpp",
+        "src/pso/system/scene/TSceneSora.cpp",
+        "src/pso/technique/TTecAnti.cpp",
+        "src/pso/technique/TTecBarta.cpp",
+        "src/pso/technique/TTecFoie.cpp",
+        "src/pso/technique/TTecGiBarta.cpp",
+        "src/pso/technique/TTecGiFoie.cpp",
+        "src/pso/technique/TTecGiZonde.cpp",
+        "src/pso/technique/TTecJelin.cpp",
+        "src/pso/technique/TTecMegid.cpp",
+        "src/pso/technique/TTecRaBarta.cpp",
+        "src/pso/technique/TTecRaFoie.cpp",
+        "src/pso/technique/TTecRaZonde_80238C6C.cpp",
+        "src/pso/technique/TTecSifta.cpp",
+        "src/pso/technique/TTecZarua.cpp",
+        "src/pso/technique/TTecZonde.cpp",
+        "src/pso/ui/charcreate/TChCrLoadAfs.cpp",
+        "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801C50A8.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_8025737C.cpp",
+        "src/pso/unk/TLobby_8001EF5C.cpp",
+        "src/pso/unk/TLobby_800F8AA8.cpp",
+        "src/pso/unk/TLobby_800FA100.cpp",
+        "src/pso/unk/TLobby_800FA164.cpp",
+        "src/pso/unk/TLobby_800FA2A0.cpp",
+        "src/pso/unk/TLobby_800FA388.cpp",
+        "src/pso/unk/TLobby_800FA774.cpp",
+        "src/pso/unk/TLobby_80226070.cpp",
+        "src/pso/unk/TLobby_80226C3C.cpp",
+        "src/pso/unk/TLobby_8023F734.cpp",
+        "src/pso/unk/TLobby_803BFE50.cpp",
+        "src/pso/unk/TLobby_803CC0B4.cpp",
+        "src/pso/unk/TLobby_803CC274.cpp",
+        "src/pso/unk/TLobby_803CE478.cpp",
+        "src/pso/unk/TLobby_803CFE68.cpp",
+        "src/pso/unk/TUnk_804CC870.cpp",
+        "src/pso/unk/TUnk_804CCA78.cpp",
+        "src/pso/unk/text_800FA464.cpp",
+        "src/pso/unk/text_8022F258.cpp",
+        "src/pso/unk/text_80320358.cpp",
+        "src/pso/unk/text_803C5B50.cpp",
+        "src/pso/unk/text_803CC134.cpp",
+        "src/pso/unk/text_803CC294.cpp",
+        "src/pso/unk/text_803CD99C.cpp",
+        "src/pso/unk/text_803CE240.cpp",
+        "src/pso/unk/text_803CE568.cpp",
+        "src/pso/unk/text_803CFEA0.cpp",
+        "src/pso/unk/text_803D2F1C.cpp",
+        "src/pso/unk/text_803D31A4.cpp",
+        "src/pso/unk/text_803D4714.cpp",
+        "src/pso/weapon/TUnk_804A69DC.cpp",
+        "src/pso/weapon/WeaponAttackActions.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "09cc3648ad86f2866c0a1205b1133e97bf84756afe94d25388748a41ede5f974",
+      "check_sha256": "9c615f959fa1a7bf9bb3f5f91339497318f3273f801c2308e9946f3f6ba960a9",
+      "previous": "c774c168ebc022a88d096ed9acedd4612d361f35"
+    },
+    "standalone-enemy-registration-and-formations": {
+      "head": "16a76fd4cee6a8e00d8e7bdce1b42aa53440b676",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Enemy registration and formations, Bal Claw and Pan Arms, Morfos body and projectile, and the common camera capture provider",
+      "files": 111,
+      "source_paths": [
+        "config/GPOE8P/psov3/config.yml",
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/boss/goldragon/TBoss8Dragon.h",
+        "include/pso/boss/goldragon/TBoss8Dragon_800BB650.h",
+        "include/pso/boss/volopt/TBoss3Volopt.h",
+        "include/pso/camera/TCameraCtrl_800687BC.h",
+        "include/pso/enemy/EnemyMovement.h",
+        "include/pso/enemy/EnemyPlacement.h",
+        "include/pso/enemy/EnemyTargeting.h",
+        "include/pso/enemy/EnemyUnknownHooks.h",
+        "include/pso/enemy/TObjEnePanBARA.h",
+        "include/pso/enemy/TObjEnemy.h",
+        "include/pso/enemy/TUnk_804EF130.h",
+        "include/pso/enemy/balclaw/TObjEneBalClaw.h",
+        "include/pso/enemy/balclaw/TObjEneBalClawBody.h",
+        "include/pso/enemy/balclaw/TObjEneBalClawClaw.h",
+        "include/pso/enemy/darkgunner/DarkGunner.h",
+        "include/pso/enemy/darkgunner/TObjEneDarkGunCenter.h",
+        "include/pso/enemy/dd/TObjEneDD.h",
+        "include/pso/enemy/dd/TObjEneDD_ST.h",
+        "include/pso/enemy/epsilon/TObjEneEpsilonGuard.h",
+        "include/pso/enemy/epsilon/TObjEneEpsilon_800B92AC.h",
+        "include/pso/enemy/morfos/TObjEneMorfos.h",
+        "include/pso/enemy/morfos/TObjEneMorfosArm.h",
+        "include/pso/enemy/panarms/TObjEnePanarms.h",
+        "include/pso/enemy/panarms/TObjEnePanarmsAtkColli.h",
+        "include/pso/enemy/recon/TObjEneRecobox.h",
+        "include/pso/enemy/recon/TObjEneRecobox_8031FCB0.h",
+        "include/pso/enemy/recon/TObjEneRecon.h",
+        "include/pso/enemy/recon/TObjEneReconBomb.h",
+        "include/pso/enemy/recon/TObjEneRecon_8031D780.h",
+        "include/pso/enemy/recon/TObjEneRecon_8031E574.h",
+        "include/pso/enemy/recon/TObjEneRecon_8031F408.h",
+        "include/pso/enemy/recon/TObjEneRecon_8031F600.h",
+        "include/pso/enemy/recon/TObjEneRecon_8031FACC.h",
+        "include/pso/math/ViewPoint.h",
+        "include/pso/player/TObjPlayer.h",
+        "src/pso/boss/barbaray/TBoss7Crawfish.cpp",
+        "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+        "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+        "src/pso/boss/darkfalz/TBoss4Type3.cpp",
+        "src/pso/boss/darkfalz/TBoss4Zako.cpp",
+        "src/pso/boss/darkfalz/TBoss4Zanzo.cpp",
+        "src/pso/boss/darkfalz/TObjDFHorming.cpp",
+        "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+        "src/pso/boss/derolle/TObjBoss2CeilJunk.cpp",
+        "src/pso/boss/dragon/TBoss1Dragon.cpp",
+        "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+        "src/pso/boss/galgryphon/TObjBoss5PillarSmoke.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+        "src/pso/boss/olgaflow/TBoss6MagMine.cpp",
+        "src/pso/boss/olgaflow/TBoss6Mine.cpp",
+        "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+        "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+        "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+        "src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp",
+        "src/pso/boss/volopt/TBoss3Volopt.cpp",
+        "src/pso/boss/volopt/TBoss3VoloptCore.cpp",
+        "src/pso/boss/volopt/TBoss3VoloptHiraisin.cpp",
+        "src/pso/boss/volopt/TBoss3VoloptMonitor.cpp",
+        "src/pso/boss/volopt/TBoss3VoloptP01.cpp",
+        "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+        "src/pso/boss/volopt/TObjVoloptCage.cpp",
+        "src/pso/camera/TCameraCtrl.cpp",
+        "src/pso/camera/TObjCamera.cpp",
+        "src/pso/effect/photon/PhotonBlastSummon.cpp",
+        "src/pso/enemy/EnemyFactoryTables.cpp",
+        "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+        "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+        "src/pso/enemy/beast/TObjEneBeast_800C4E08.cpp",
+        "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+        "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp",
+        "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+        "src/pso/enemy/darkgunner/DarkGunner.cpp",
+        "src/pso/enemy/darkgunner/TObjEneDarkGunCenter.cpp",
+        "src/pso/enemy/dd/TObjEneDD.cpp",
+        "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+        "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+        "src/pso/enemy/dubchik/TOCtrlDubchik_8015CA74.cpp",
+        "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp",
+        "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+        "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+        "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+        "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+        "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+        "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+        "src/pso/enemy/lappy/TObjEneLappy_800F5DE0.cpp",
+        "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+        "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+        "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+        "src/pso/enemy/morfos/TObjEneMorfosArm.cpp",
+        "src/pso/enemy/morfos/TObjEneMorfos_80337500.cpp",
+        "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+        "src/pso/enemy/panarms/TObjEnePanarmsAtkColli.cpp",
+        "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+        "src/pso/enemy/recon/TObjEneRecobox_8031E800.cpp",
+        "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+        "src/pso/enemy/recon/TObjEneRecon.cpp",
+        "src/pso/enemy/recon/TObjEneReconBomb.cpp",
+        "src/pso/enemy/recon/TObjEneRecon_80320350.cpp",
+        "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+        "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+        "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+        "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp",
+        "src/pso/object/TObjControl.cpp",
+        "src/pso/object/ambient/TObjFish_800E2FFC.cpp",
+        "src/pso/object/collision/TObjFogCollision.cpp",
+        "src/pso/render/TUnk_80490470.cpp",
+        "src/pso/unk/TLobby_800F5CF0.cpp",
+        "src/pso/unk/text_800C2A88.cpp",
+        "src/pso/unk/text_800C2CE0.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "650a699ff07b237111feb49b52e576b52061992d7b87296901ff5c1357d7e3e0",
+      "check_sha256": "84fd193c2bfe098fd5303905c3ff11218a1ae3bb07b89d95764adda6d6f86548",
+      "previous": "15c819b15d2ed24085e60463ffbb51ef5838fbac"
+    },
+    "standalone-stage-doors-fences-and-contacts": {
+      "head": "9832be94b6f3f6b706bfbb5d4e49915bcba5eb2a",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Stage doors, weather, fences and Seabed wrecks, and native terrain registration, collision models and ground and wall candidate queries",
+      "files": 199,
+      "source_paths": [
+        "config/GPOE8P/psov3/config.yml",
+        "config/GPOE8P/psov3/linked_units.txt",
+        "config/GPOE8P/psov3/splits.txt",
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/boss/goldragon/TBoss8Dragon.h",
+        "include/pso/effect/GroundContactSound.h",
+        "include/pso/effect/TUnk_804CCC68.h",
+        "include/pso/enemy/dd/TObjEneDD.h",
+        "include/pso/enemy/gibbles/TObjEneGibbles.h",
+        "include/pso/enemy/mericarol/TObjEneBm9Mericarol.h",
+        "include/pso/enemy/mericarol/TObjEneBm9Mericarol_Bomb.h",
+        "include/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.h",
+        "include/pso/enemy/stelth/TObjEneMe3Stelth.h",
+        "include/pso/map/CsnGeometry.h",
+        "include/pso/map/CsnGroundCandidates.h",
+        "include/pso/map/CsnGroundQuery.h",
+        "include/pso/map/CsnQuery.h",
+        "include/pso/map/TMapCsnCtrl.h",
+        "include/pso/map/TObjMapCsn.h",
+        "include/pso/npc/NpcAnimationBinding.h",
+        "include/pso/object/TOVS2.h",
+        "include/pso/object/TOVS2Wreck01.h",
+        "include/pso/object/TOVS2Wreck02.h",
+        "include/pso/object/TOVS2Wreck03.h",
+        "include/pso/object/TOVS2Wreck04.h",
+        "include/pso/object/TOVS2Wreck05.h",
+        "include/pso/object/TOVS2Wreck06.h",
+        "include/pso/object/TObjParticle.h",
+        "include/pso/object/ambient/TObjCGrass.h",
+        "include/pso/object/ambient/TObjFish.h",
+        "include/pso/object/ambient/TObjGrass.h",
+        "include/pso/object/ambient/TObjRain.h",
+        "include/pso/object/ambient/TObjRainCtrl.h",
+        "include/pso/object/cave/CaveSignRender.h",
+        "include/pso/object/collision/TObjRaderHideCol.h",
+        "include/pso/object/door/TODoorAncient05.h",
+        "include/pso/object/door/TODoorAncient06.h",
+        "include/pso/object/door/TODoorAncient07.h",
+        "include/pso/object/door/TODoorAncient08.h",
+        "include/pso/object/door/TODoorAncient09.h",
+        "include/pso/object/door/TODoorCave01.h",
+        "include/pso/object/door/TODoorCave02.h",
+        "include/pso/object/door/TODoorMachine01.h",
+        "include/pso/object/door/TODoorMachine02.h",
+        "include/pso/object/door/TODoorVS2Door01.h",
+        "include/pso/object/door/TObjDoorJung.h",
+        "include/pso/object/fence/TOBarrierEnergy01.h",
+        "include/pso/object/fence/TOFenceAncient01.h",
+        "include/pso/object/fence/TOFenceAncient02.h",
+        "include/pso/object/fence/TOFenceAncient03.h",
+        "include/pso/object/fence/TOFenceAncient04.h",
+        "include/pso/object/fence/TOVS2Wall01.h",
+        "include/pso/object/fence/TOVS2Wall01_8017BCC8.h",
+        "include/pso/object/fence/TOVS2Wall01_8017C7A4.h",
+        "include/pso/object/fence/TOVS2WallResources.h",
+        "include/pso/object/fence/TObjLazerFenceNorm.h",
+        "include/pso/object/fence/WallHitPacket.h",
+        "include/pso/object/jungle/TOJungleDesign.h",
+        "include/pso/object/key/TODummyKeyCave01.h",
+        "include/pso/object/key/TOKeyAncient03.h",
+        "include/pso/object/key/TOKeyCave01.h",
+        "include/pso/object/key/TOKeyMachine01.h",
+        "include/pso/object/lab/TObjLaboDesignBase.h",
+        "include/pso/object/lobby/TObjCityDoor_Lobby.h",
+        "include/pso/object/mine/TODragonflyMachine01.h",
+        "include/pso/object/mine/TOLightMachine01.h",
+        "include/pso/object/mine/TOSparkMachine01.h",
+        "include/pso/object/seabed/TObjSeabedSuisoBrakable.h",
+        "include/pso/object/switch/TOSensorAncient01.h",
+        "include/pso/object/switch/TOSensorGeneral01.h",
+        "include/pso/object/warp/ForestWarpResources.h",
+        "include/pso/object/warp/TObjAreaWarpEnding.h",
+        "include/pso/object/warp/TObjAreaWarpForest.h",
+        "include/pso/object/warp/TObjAreaWarpQuest.h",
+        "include/pso/object/warp/TObjLaboMapWarp.h",
+        "include/pso/object/warp/TObjLaboMapWarp_80185248.h",
+        "include/pso/object/warp/TObjMapWarpForest.h",
+        "include/pso/object/wreck/TOWreckAncient.h",
+        "include/pso/object/wreck/TOWreckAncientResources.h",
+        "include/pso/player/TObjPlayer.h",
+        "include/pso/render/GinjaTexture.h",
+        "include/pso/unk/TLobby_80140FF4.h",
+        "include/pso/unk/text_8028A820.h",
+        "libs/dolphin/include/libc/ctype.h",
+        "src/pso/boss/barbaray/TBoss7PhotonBullet_802EF26C.cpp",
+        "src/pso/boss/derolle/TBoss2PhotonBullet_80038DCC.cpp",
+        "src/pso/boss/derolle/TObjBoss2CeilJunk.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon_8028A8F8.cpp",
+        "src/pso/effect/TKomorebi.cpp",
+        "src/pso/effect/TUnk_804CCC68.cpp",
+        "src/pso/enemy/berura/TObjEneRe7BeruraPunch.cpp",
+        "src/pso/enemy/dd/TObjEneDD.cpp",
+        "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+        "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+        "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+        "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+        "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+        "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+        "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+        "src/pso/enemy/mericarol/TObjEneBm9Mericarol_Bomb.cpp",
+        "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+        "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+        "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+        "src/pso/enemy/recon/TObjEneRecon.cpp",
+        "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+        "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+        "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+        "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp",
+        "src/pso/map/CsnQuery.cpp",
+        "src/pso/map/TMapCsnCtrl.cpp",
+        "src/pso/map/TObjMapCsn.cpp",
+        "src/pso/network/TGameProtocol.cpp",
+        "src/pso/object/TObjParticle.cpp",
+        "src/pso/object/ambient/TObjCGrass.cpp",
+        "src/pso/object/ambient/TObjFish.cpp",
+        "src/pso/object/ambient/TObjGrass.cpp",
+        "src/pso/object/ambient/TObjRain.cpp",
+        "src/pso/object/ambient/TObjRainCtrl.cpp",
+        "src/pso/object/ambient/TObjRainCtrl_80197CE8.cpp",
+        "src/pso/object/ambient/TObjRain_801977D4.cpp",
+        "src/pso/object/base/ObjectFactoryTables.cpp",
+        "src/pso/object/cave/TOHangceilingCave01.cpp",
+        "src/pso/object/cave/TORockCave.cpp",
+        "src/pso/object/cave/TOSignCave01.cpp",
+        "src/pso/object/cave/TOSignCave02.cpp",
+        "src/pso/object/city/CityDoors.cpp",
+        "src/pso/object/city/CitySeason.cpp",
+        "src/pso/object/collision/TOAttackableCol.cpp",
+        "src/pso/object/collision/TObjRaderCol.cpp",
+        "src/pso/object/container/TOContainerAncientEnemy.cpp",
+        "src/pso/object/container/TObjContainerItem.cpp",
+        "src/pso/object/container/TObjContainerJung.cpp",
+        "src/pso/object/door/TODoorAncient01.cpp",
+        "src/pso/object/door/TODoorAncient03.cpp",
+        "src/pso/object/door/TODoorAncient04.cpp",
+        "src/pso/object/door/TODoorAncient05.cpp",
+        "src/pso/object/door/TODoorAncient06.cpp",
+        "src/pso/object/door/TODoorAncient07.cpp",
+        "src/pso/object/door/TODoorAncient08.cpp",
+        "src/pso/object/door/TODoorAncient09.cpp",
+        "src/pso/object/door/TODoorCave01.cpp",
+        "src/pso/object/door/TODoorCave02.cpp",
+        "src/pso/object/door/TODoorFourLightSpace.cpp",
+        "src/pso/object/door/TODoorJungleMain.cpp",
+        "src/pso/object/door/TODoorLabo.cpp",
+        "src/pso/object/door/TODoorMachine01.cpp",
+        "src/pso/object/door/TODoorMachine02.cpp",
+        "src/pso/object/door/TODoorVS2Door01.cpp",
+        "src/pso/object/door/TObjDoorJung.cpp",
+        "src/pso/object/door/TObjDoorJung_8023DBEC.cpp",
+        "src/pso/object/door/TObjDoorKey.cpp",
+        "src/pso/object/door/TObjDoor_8018E358.cpp",
+        "src/pso/object/fence/TLazerFenceSw.cpp",
+        "src/pso/object/fence/TOBarrierEnergy01.cpp",
+        "src/pso/object/fence/TOFenceAncient01.cpp",
+        "src/pso/object/fence/TOFenceAncient02.cpp",
+        "src/pso/object/fence/TOFenceAncient03.cpp",
+        "src/pso/object/fence/TOFenceAncient04.cpp",
+        "src/pso/object/fence/TOVS2Wall01.cpp",
+        "src/pso/object/fence/TObjLazerFence4.cpp",
+        "src/pso/object/fence/TObjLazerFenceNorm.cpp",
+        "src/pso/object/jungle/TOGrassJungle.cpp",
+        "src/pso/object/jungle/TOJungleDesign.cpp",
+        "src/pso/object/key/TODummyKeyCave01.cpp",
+        "src/pso/object/key/TOKeyAncient01.cpp",
+        "src/pso/object/key/TOKeyAncient02.cpp",
+        "src/pso/object/key/TOKeyAncient03.cpp",
+        "src/pso/object/key/TOKeyCave01.cpp",
+        "src/pso/object/key/TOKeyGenericSw.cpp",
+        "src/pso/object/key/TOKeyMachine01.cpp",
+        "src/pso/object/lab/TObjLaboDesignBase.cpp",
+        "src/pso/object/lobby/LobbyGoGoBall.cpp",
+        "src/pso/object/mine/TODragonflyMachine01.cpp",
+        "src/pso/object/mine/TOLightMachine01.cpp",
+        "src/pso/object/mine/TOSparkMachine01.cpp",
+        "src/pso/object/seabed/TObjSeabedSuisoBrakable.cpp",
+        "src/pso/object/seabed/TObjSuisoChip.cpp",
+        "src/pso/object/switch/TOSensorAncient01.cpp",
+        "src/pso/object/switch/TOSensorGeneral01.cpp",
+        "src/pso/object/trap/TOTrapSeabed01.cpp",
+        "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+        "src/pso/object/warp/TObjLaboMapWarp.cpp",
+        "src/pso/object/warp/TObjWarpJungMain.cpp",
+        "src/pso/object/wreck/TOWreckAncient.cpp",
+        "src/pso/player/TObjPlayer_80011014.cpp",
+        "src/pso/player/TObjPlayer_800C4714.cpp",
+        "src/pso/player/TObjPlayer_801542CC.cpp",
+        "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "src/pso/system/scene/TScene.cpp",
+        "src/pso/ui/window/TWindowSubTradeMain_80187C98.cpp",
+        "src/pso/unk/TLobby_80140FF4.cpp",
+        "src/pso/unk/TLobby_801A3BF4.cpp",
+        "src/pso/unk/TLobby_801F2D2C.cpp",
+        "src/pso/unk/TLobby_8028A7C8.cpp",
+        "src/pso/unk/text_800D8988.cpp",
+        "src/pso/unk/text_80184C2C.cpp",
+        "src/pso/unk/text_801A2B38.cpp",
+        "src/pso/unk/text_8028A714.cpp",
+        "src/pso/unk/text_8028A820.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "69c217748113055b6053dba16c09951806c6c8a4f6fb2fc76b1d30fa4d844fc2",
+      "check_sha256": "42603204d997bfcdef8e4d14eebaac4bd340d29ef68906b948c3bb4cc8972530",
+      "previous": "0d7017a5cf0ca36d7a4e2f2bc18e1817b53a300e"
+    },
+    "standalone-equipment-and-item-list-windows": {
+      "head": "a62dfa4421547be89ffd737b244544d9d0d3d4c3",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Main-menu and Trade lifetimes, equipment and item lists, native help snapshots, Short Mail and related child windows",
+      "files": 167,
+      "source_paths": [
+        "config/GPOE8P/psov3/config.yml",
+        "config/GPOE8P/psov3/linked_units.txt",
+        "config/GPOE8P/psov3/splits.txt",
+        "config/GPOE8P/psov3/symbols.txt",
+        "configure.py",
+        "include/pso/enemy/morfos/TWindowSubTradeMain.h",
+        "include/pso/item/shop/ShopPool.h",
+        "include/pso/item/shop/ShopStock.h",
+        "include/pso/item/shop/ShopWeaponStock.h",
+        "include/pso/player/GuildCardEntry.h",
+        "include/pso/player/TObjPlayer.h",
+        "include/pso/player/TPlyGuildCardTag_8007B7EC.h",
+        "include/pso/system/memory.h",
+        "include/pso/ui/chat/ShortMail.h",
+        "include/pso/ui/chat/TWindowSubShortMail.h",
+        "include/pso/ui/city/TCheckRoomSequence.h",
+        "include/pso/ui/city/TShopDeleteItemWindow.h",
+        "include/pso/ui/city/TShopEquipmentSellWindow.h",
+        "include/pso/ui/city/TShopGetItemWindow.h",
+        "include/pso/ui/city/TShopKeepItemWindow.h",
+        "include/pso/ui/frontend/TAdVIConfigGC.h",
+        "include/pso/ui/keyboard/TKeyBoardControl.h",
+        "include/pso/ui/window/TWindowCtrl.h",
+        "include/pso/ui/window/TWindowDeposit.h",
+        "include/pso/ui/window/TWindowGetComCard.h",
+        "include/pso/ui/window/TWindowGetComCard_8007B54C.h",
+        "include/pso/ui/window/TWindowHelpItem.h",
+        "include/pso/ui/window/TWindowInputNumber.h",
+        "include/pso/ui/window/TWindowKeyBoardBase.h",
+        "include/pso/ui/window/TWindowKeyBoardSoft.h",
+        "include/pso/ui/window/TWindowMainMenu.h",
+        "include/pso/ui/window/TWindowMainMenu1P.h",
+        "include/pso/ui/window/TWindowMainMenu4P.h",
+        "include/pso/ui/window/TWindowMainMenu_802AD538.h",
+        "include/pso/ui/window/TWindowMenu.h",
+        "include/pso/ui/window/TWindowMenuIconLine.h",
+        "include/pso/ui/window/TWindowMenuMainMenu.h",
+        "include/pso/ui/window/TWindowMessageYesNo.h",
+        "include/pso/ui/window/TWindowSubComCard.h",
+        "include/pso/ui/window/TWindowSubComCardList.h",
+        "include/pso/ui/window/TWindowSubComCard_80265410.h",
+        "include/pso/ui/window/TWindowSubEquip.h",
+        "include/pso/ui/window/TWindowSubEquipKind.h",
+        "include/pso/ui/window/TWindowSubEquipList.h",
+        "include/pso/ui/window/TWindowSubEquip_80277E48.h",
+        "include/pso/ui/window/TWindowSubItem.h",
+        "include/pso/ui/window/TWindowSubItemList.h",
+        "include/pso/ui/window/TWindowSubLog.h",
+        "include/pso/ui/window/TWindowSubMagPhoton.h",
+        "include/pso/ui/window/TWindowSubStatusDisp.h",
+        "include/pso/ui/window/TWindowSubStatusDisp_80248BE8.h",
+        "include/pso/ui/window/TWindowSubStatusDisp_802671F0.h",
+        "include/pso/ui/window/TWindowSubTrade.h",
+        "include/pso/ui/window/TWindowSubTradeMain_80330A84.h",
+        "include/pso/ui/window/TWindowSubTradeMessage.h",
+        "include/pso/ui/window/TWindowTradeRequest.h",
+        "include/pso/unk/TLobby.h",
+        "include/pso/unk/TLobby_802230F8.h",
+        "include/pso/unk/text_8020EEFC.h",
+        "include/pso/unk/text_80278460.h",
+        "src/pso/item/shop/ShopToolStock.cpp",
+        "src/pso/item/shop/ShopWeaponStock.cpp",
+        "src/pso/network/TPlyJoinLobbyEntry.cpp",
+        "src/pso/object/warp/TObjCityMainWarpChallenge.cpp",
+        "src/pso/object/warp/TObjLaboMapWarp.cpp",
+        "src/pso/object/warp/TObjWarpBossMulti.cpp",
+        "src/pso/player/TObjPlayer_802790CC.cpp",
+        "src/pso/player/TPlayerBattleCtrl4P.cpp",
+        "src/pso/player/TPlyGuildCardTag_8007B7EC.cpp",
+        "src/pso/quest/QuestOpcodeHandlers.cpp",
+        "src/pso/quest/TQuestListOnline.cpp",
+        "src/pso/ui/chat/ShortMail.cpp",
+        "src/pso/ui/chat/TWindowChat.cpp",
+        "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp",
+        "src/pso/ui/chat/TWindowSubShortMail_802A571C.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChat.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChat_80076F88.cpp",
+        "src/pso/ui/city/TCheckRoomSequence.cpp",
+        "src/pso/ui/city/TCheckRoomSequence_8013AD28.cpp",
+        "src/pso/ui/city/TCheckRoomSequence_80211614.cpp",
+        "src/pso/ui/city/TCheckRoomSequence_80222FC0.cpp",
+        "src/pso/ui/city/THunterGuildSeqOffline_80211FEC.cpp",
+        "src/pso/ui/city/THunterGuildSeqOnlineTask_802156A0.cpp",
+        "src/pso/ui/city/TShopArmorListWindow.cpp",
+        "src/pso/ui/city/TShopDeleteItemWindow.cpp",
+        "src/pso/ui/city/TShopEquipmentGearSequence.cpp",
+        "src/pso/ui/city/TShopEquipmentListWindow.cpp",
+        "src/pso/ui/city/TShopEquipmentSellWindow.cpp",
+        "src/pso/ui/city/TShopEquipmentSellWindow_802115F4.cpp",
+        "src/pso/ui/city/TShopEquipmentSequence.cpp",
+        "src/pso/ui/city/TShopGetItemWindow.cpp",
+        "src/pso/ui/city/TShopItemListWindow.cpp",
+        "src/pso/ui/city/TShopItemTecSequence.cpp",
+        "src/pso/ui/city/TShopKeepItemWindow.cpp",
+        "src/pso/ui/frontend/TAdEnterBaseGC.cpp",
+        "src/pso/ui/frontend/TAdMultiPlyChrSelectGC.cpp",
+        "src/pso/ui/frontend/TAdVIConfigGC.cpp",
+        "src/pso/ui/frontend/TAdVIConfigGC_80248B8C.cpp",
+        "src/pso/ui/window/TWindowComCard.cpp",
+        "src/pso/ui/window/TWindowCtrl.cpp",
+        "src/pso/ui/window/TWindowDD_80342E40.cpp",
+        "src/pso/ui/window/TWindowDeposit.cpp",
+        "src/pso/ui/window/TWindowGetComCard.cpp",
+        "src/pso/ui/window/TWindowGetComCard_8007B54C.cpp",
+        "src/pso/ui/window/TWindowHelpItem_802530D0.cpp",
+        "src/pso/ui/window/TWindowHelpItem_80253154.cpp",
+        "src/pso/ui/window/TWindowHelpItem_802531A0.cpp",
+        "src/pso/ui/window/TWindowHelpItem_80253630.cpp",
+        "src/pso/ui/window/TWindowHelpItem_802540AC.cpp",
+        "src/pso/ui/window/TWindowHelpItem_80255AB4.cpp",
+        "src/pso/ui/window/TWindowInputNumber_802115F4.cpp",
+        "src/pso/ui/window/TWindowMainMenu.cpp",
+        "src/pso/ui/window/TWindowMainMenu4P.cpp",
+        "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+        "src/pso/ui/window/TWindowMainMenu_802AE928.cpp",
+        "src/pso/ui/window/TWindowMakeTeam.cpp",
+        "src/pso/ui/window/TWindowMenuIconLine.cpp",
+        "src/pso/ui/window/TWindowMenuMainMenu.cpp",
+        "src/pso/ui/window/TWindowMenu_8013AD28.cpp",
+        "src/pso/ui/window/TWindowMessageLog.cpp",
+        "src/pso/ui/window/TWindowMessageYesNo.cpp",
+        "src/pso/ui/window/TWindowOptionCtrl.cpp",
+        "src/pso/ui/window/TWindowShop.cpp",
+        "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp",
+        "src/pso/ui/window/TWindowSubComCard.cpp",
+        "src/pso/ui/window/TWindowSubComCard_8007A810.cpp",
+        "src/pso/ui/window/TWindowSubComCard_8007B6D8.cpp",
+        "src/pso/ui/window/TWindowSubComCard_8007BD24.cpp",
+        "src/pso/ui/window/TWindowSubComCard_80265410.cpp",
+        "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp",
+        "src/pso/ui/window/TWindowSubComCard_802A5748.cpp",
+        "src/pso/ui/window/TWindowSubEquip.cpp",
+        "src/pso/ui/window/TWindowSubEquipKind.cpp",
+        "src/pso/ui/window/TWindowSubEquipList.cpp",
+        "src/pso/ui/window/TWindowSubEquip_80277DF8.cpp",
+        "src/pso/ui/window/TWindowSubEquip_80279044.cpp",
+        "src/pso/ui/window/TWindowSubGameEnd.cpp",
+        "src/pso/ui/window/TWindowSubInformationBoard.cpp",
+        "src/pso/ui/window/TWindowSubItem.cpp",
+        "src/pso/ui/window/TWindowSubItemList.cpp",
+        "src/pso/ui/window/TWindowSubLog.cpp",
+        "src/pso/ui/window/TWindowSubMag.cpp",
+        "src/pso/ui/window/TWindowSubMagPhoton.cpp",
+        "src/pso/ui/window/TWindowSubQuestBoard.cpp",
+        "src/pso/ui/window/TWindowSubShortCut.cpp",
+        "src/pso/ui/window/TWindowSubShortCutList.cpp",
+        "src/pso/ui/window/TWindowSubShortCut_80246FB0.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_80248BE8.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp",
+        "src/pso/ui/window/TWindowSubTechnique.cpp",
+        "src/pso/ui/window/TWindowSubTrade.cpp",
+        "src/pso/ui/window/TWindowSubTradeMain_80330A84.cpp",
+        "src/pso/ui/window/TWindowSubTradeMessage.cpp",
+        "src/pso/ui/window/TWindowTradeRequest_802E0170.cpp",
+        "src/pso/unk/TLobby_8001D6A0.cpp",
+        "src/pso/unk/TLobby_8007B858.cpp",
+        "src/pso/unk/TLobby_800FA164.cpp",
+        "src/pso/unk/TLobby_800FA2A0.cpp",
+        "src/pso/unk/TLobby_801C25B4.cpp",
+        "src/pso/unk/TLobby_802230F8.cpp",
+        "src/pso/unk/TLobby_802409AC.cpp",
+        "src/pso/unk/TLobby_803DE778.cpp",
+        "src/pso/unk/text_800FA464.cpp",
+        "src/pso/unk/text_8020E700.cpp",
+        "src/pso/unk/text_80255A38.cpp",
+        "src/pso/unk/text_80275360.cpp",
+        "src/pso/unk/text_80278460.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "6c35929c459e480250deb9fb556e829c690e12df328db66971648c0849e94872",
+      "check_sha256": "f9576f5b867dab72096f3ed70f4b372227e67a1cec2253ba041be6c5a18f849a",
+      "previous": "45d7c79e0bd9868bba5074be01bc701900844988"
+    }
+  },
+  "independent_source_reviews": {
+    "standalone-adx-streaming": {
+      "head": "960e608d40f5594babb50c5507bdc882a0b09be9",
+      "reviewer": "world_batch",
+      "finding": "Verified exact 0x40 stream offsets, threshold and chunk output order, backend re-fetch before close, 0x40 reset, real ADXT, ADXF and LSC calls, exact encoder offsets and unsigned packing. The existing LSC open-failure order and independent player layout adapters remain scoped."
+    },
+    "standalone-enemy-registration-and-formations": {
+      "head": "16a76fd4cee6a8e00d8e7bdce1b42aa53440b676",
+      "reviewer": "display_batch",
+      "finding": "Verified native placement and base constructor, registered floor factory, true BML and linked arm resources, both captured node positions and actual projectile ground receiver. The shared two-argument camera provider serves all 18 verified capture branch sites and preserves the lower transform dispatch. The existing body opacity and rendering dependency remains scoped."
+    },
+    "standalone-stage-doors-fences-and-contacts": {
+      "head": "9832be94b6f3f6b706bfbb5d4e49915bcba5eb2a",
+      "reviewer": "integration and enemy_batch",
+      "finding": "Verified the 0x18 collision group, 0x10 model, 0x24 triangles, object region offsets and eight-face/eight-vertex storage. Reviewed native registration, ordering, terminators, masks, candidate capacity and original ctype table. The larger stage branch cleanly preserves both exact parents. Existing prepared-wall and deeper ray adapters remain scoped."
+    },
+    "standalone-equipment-and-item-list-windows": {
+      "head": "a62dfa4421547be89ffd737b244544d9d0d3d4c3",
+      "reviewer": "integration and world_batch",
+      "finding": "Verified the 0x3C equipment object, real parent and three child pointers, signed row handling, native list append availability and cancellation. Both 0x14 item snapshots keep offsets +0x74 and +0x88 in the 0xBC help window. Candidate and equipped selection ordering, sentinel keys, borrowed shop data, renderer dispatch and reverse close behavior remain identical. The larger branch shares the native menu client and preserves Short Mail\u2019s signed client and true two-float extent."
+    }
+  },
+  "combined_upstream_review": {
+    "head": "7d248c3a537d27618f61cc7b7319e4d1c30196ca",
+    "files": 722,
+    "inputs": [
+      "b75c6f38a72228b2c5dc79f3198981f324474018",
+      "2d03ee13d37f1825d25758cef5486289e1fca276",
+      "b1496a5fbcec5f03a8e34b3430ade92ab6f1bb37",
+      "960e608d40f5594babb50c5507bdc882a0b09be9",
+      "9832be94b6f3f6b706bfbb5d4e49915bcba5eb2a",
+      "a62dfa4421547be89ffd737b244544d9d0d3d4c3",
+      "16a76fd4cee6a8e00d8e7bdce1b42aa53440b676"
+    ],
+    "prior_inputs": {
+      "gryphon": "b75c6f38a72228b2c5dc79f3198981f324474018",
+      "selection": "2d03ee13d37f1825d25758cef5486289e1fca276",
+      "quest": "b1496a5fbcec5f03a8e34b3430ade92ab6f1bb37"
+    },
+    "overlap": [
+      {
+        "left": "2b786d83ef2ec35ec12483adfbaafc2f0f3cca8d",
+        "right": "audio",
+        "head": "960e608d40f5594babb50c5507bdc882a0b09be9",
+        "resolved": [],
+        "conflicts": []
+      },
+      {
+        "left": "aee7947d140a65712f1172b72d80b867201cefbb",
+        "right": "stage",
+        "head": "9832be94b6f3f6b706bfbb5d4e49915bcba5eb2a",
+        "resolved": [
+          "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+          "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+          "src/pso/enemy/recon/TObjEneRecon.cpp",
+          "src/pso/object/city/CityDoors.cpp"
+        ],
+        "conflicts": []
+      },
+      {
+        "left": "7f2b3e366e511ffd17bc6abaecc7fbe25c100b42",
+        "right": "equipment",
+        "head": "a62dfa4421547be89ffd737b244544d9d0d3d4c3",
+        "resolved": [
+          "src/pso/quest/QuestOpcodeHandlers.cpp"
+        ],
+        "conflicts": []
+      },
+      {
+        "left": "4ea6b171a28b505c6889875ee699387257e3e828",
+        "right": "morfos",
+        "head": "16a76fd4cee6a8e00d8e7bdce1b42aa53440b676",
+        "resolved": [
+          "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+          "src/pso/camera/TCameraCtrl.cpp",
+          "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+          "src/pso/enemy/dd/TObjEneDD.cpp",
+          "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp"
+        ],
+        "conflicts": []
+      }
+    ],
+    "independent_overlap_review": {
+      "reviewer": "enemy_batch and world_batch",
+      "head": "7d248c3a537d27618f61cc7b7319e4d1c30196ca",
+      "finding": "Verified the shared Recon/Recobox ground cache and previous behavior, CityDoors geometry and audio bindings, Short Mail native extent and client, and the Quest equipment list path. Confirmed both stage parents are preserved in the 199-file review tree and final callers have no obsolete camera alias. Verified the exact Gryphon Vec stride, unchanged 16-entry capture limit, and the consolidated menu\u2019s native client field."
+    },
+    "coverage": {
+      "upstream": {
+        "functions_lost": 0,
+        "data_lost": 0,
+        "verified_padding": 0
+      },
+      "historical": {
+        "functions_lost": 0,
+        "data_lost": 0,
+        "verified_padding": 30
+      },
+      "previous-joint": {
+        "functions_lost": 0,
+        "data_lost": 0,
+        "verified_padding": 0
+      }
+    }
+  }
+}

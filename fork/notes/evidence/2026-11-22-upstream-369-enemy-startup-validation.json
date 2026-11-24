@@ -1,0 +1,361 @@
+{
+  "upstream": "1698caaa1941302ed6dfc60d886d041bae272e0e",
+  "source": "5d6d72e42e2faf0822f14837733ed14ce67a1142",
+  "source_base": "0ba3f0c4ae1955484af2185a589c481895cb5345",
+  "paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/boss/volopt/TBoss3Volopt.h",
+    "include/pso/enemy/TObjEnePanBARA.h",
+    "include/pso/enemy/TObjEnemy.h",
+    "include/pso/enemy/balclaw/TObjEneBalClaw.h",
+    "include/pso/enemy/balclaw/TObjEneBalClawBody.h",
+    "include/pso/enemy/balclaw/TObjEneBalClawClaw.h",
+    "include/pso/enemy/dolmolm/TObjEneDolmOlm.h",
+    "include/pso/enemy/epsilon/TObjEneEpsilonBody.h",
+    "include/pso/enemy/epsilon/TObjEneEpsilonGuard.h",
+    "include/pso/enemy/fly/TObjEneBm3FlyNest.h",
+    "include/pso/enemy/lappy/TObjEneLappy_800F5DE0.h",
+    "include/pso/enemy/panarms/TObjEnePanarms.h",
+    "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+    "src/pso/boss/darkfalz/TBoss4Type3.cpp",
+    "src/pso/boss/darkfalz/TBoss4Zako.cpp",
+    "src/pso/boss/darkfalz/TBoss4Zanzo.cpp",
+    "src/pso/boss/dragon/TBoss1Dragon.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+    "src/pso/boss/olgaflow/TBoss6Mag.cpp",
+    "src/pso/boss/olgaflow/TBoss6MagMine.cpp",
+    "src/pso/boss/olgaflow/TBoss6Mine.cpp",
+    "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+    "src/pso/boss/volopt/TBoss3Volopt.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptCore.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptHiraisin.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptMonitor.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptP01.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+    "src/pso/boss/volopt/TObjVoloptCage.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClaw.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+    "src/pso/enemy/beast/TObjEneBeast.cpp",
+    "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+    "src/pso/enemy/darkgunner/TObjEneDarkGunCenter.cpp",
+    "src/pso/enemy/dd/TObjEneDD.cpp",
+    "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+    "src/pso/enemy/dimedian/TObjEneDimedian.cpp",
+    "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+    "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+    "src/pso/enemy/epsilon/TObjEneEpsilon.cpp",
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp",
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+    "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+    "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+    "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+    "src/pso/enemy/lappy/TObjEneLappy_800F5DE0.cpp",
+    "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+    "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+    "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+    "src/pso/enemy/sorcerer/TObjEneRe4Bit.cpp",
+    "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+    "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp"
+  ],
+  "placement_constructors": 5,
+  "typed_battle_param_storage_locations": 57,
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "coverage_losses": {
+    "regressions": 0,
+    "data_coverage_lost": 0,
+    "padding_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0
+  },
+  "original_data_bytes": 1147,
+  "original_data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "linker_labels": [
+    {
+      "module": "psov3",
+      "address": "0x8003F0E8",
+      "before": "reset_photon_effect__12TBoss3VoloptFv",
+      "after": "register_by_id__9TObjEnemyFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80090264",
+      "before": "__ct__18TObjEneBalClawBodyFP7TObjectPv",
+      "after": "__ct__18TObjEneBalClawBodyFP7TObjectP14EnemyPlacement"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80091C58",
+      "before": "__ct__18TObjEneBalClawClawFP7TObjectPv",
+      "after": "__ct__18TObjEneBalClawClawFP7TObjectP14EnemyPlacement"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800B3EB8",
+      "before": "__ct__17TObjEneBm3FlyNestFP7TObjectP17Bm3FlyNestSetData",
+      "after": "__ct__17TObjEneBm3FlyNestFP7TObjectP14EnemyPlacement"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800DF2B8",
+      "before": "__ct__14TObjEnePanarmsFP7TObjectPv",
+      "after": "__ct__14TObjEnePanarmsFP7TObjectP14EnemyPlacement"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800E252C",
+      "before": "__ct__14TObjEnePanBARAFP7TObjectPvl",
+      "after": "__ct__14TObjEnePanBARAFP7TObjectP14EnemyPlacementl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800E28F4",
+      "before": "create_bara__14TObjEnePanarmsFPvl",
+      "after": "create_bara__14TObjEnePanarmsFP14EnemyPlacementl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800F5DE8",
+      "before": "initialize_enemy_photon_effect__FPv",
+      "after": "initialize_enemy_photon_effect__FP9TObjEnemy"
+    }
+  ],
+  "runtime": {
+    "placement": {
+      "log_sha256": "c95ae1c6b881cfc3a18f0dd73e22150bb596bcb67ad02c5a37190e0c8d9a9743",
+      "observations": [
+        "PsoV3.dol: reciprocal split links, half state and HP gates, placement fields and factory table entries passed",
+        "psov3.dol: reciprocal split links, half state and HP gates, placement fields and factory table entries passed"
+      ]
+    },
+    "battle": {
+      "log_sha256": "dbd8680887e0e1992debf318722c65245a806306d8e4bff0fa61a8788fcf02ab",
+      "observations": [
+        "PsoV3.dol 384 table lookups, 32 full-file loads and release passed",
+        "PsoV3.dol typed motion fields and HP/TP reload and reset passed",
+        "psov3.dol 384 table lookups, 32 full-file loads and release passed",
+        "psov3.dol typed motion fields and HP/TP reload and reset passed"
+      ]
+    },
+    "registration": {
+      "log_sha256": "c0c26290d1264d56f5101674ccb54fb3392cd9dff0fa4c42aef2736fc0e1381b",
+      "observations": [
+        "PsoV3.dol: both enemy registration entry points pass the original object to the collision owner.",
+        "psov3.dol: both enemy registration entry points pass the original object to the collision owner."
+      ]
+    }
+  },
+  "pan_arms_probe_aliases": [
+    [
+      "create__14TObjEnePanarmsFPv",
+      ".text:0x800DF6E0",
+      "0x68",
+      "create__14TObjEnePanarmsFl"
+    ],
+    [
+      "is_in_state_7_or_8__14TObjEnePanBARAFv",
+      ".text:0x800DFB44",
+      "0x24",
+      "is_dying__14TObjEnePanBARAFv"
+    ],
+    [
+      "is_state_4_timer_expired__14TObjEnePanBARAFv",
+      ".text:0x800DFB74",
+      "0x28",
+      "is_slide_in_done__14TObjEnePanBARAFv"
+    ],
+    [
+      "bind_parts__14TObjEnePanBARAFP14TObjEnePanarmsP14TObjEnePanBARA",
+      ".text:0x800E1C8C",
+      "0xC",
+      "set_links__14TObjEnePanBARAFP14TObjEnePanarmsP14TObjEnePanBARA"
+    ]
+  ],
+  "historical_closure": {
+    "base": "fba938223515e7ab721bd5574ee97eba57671de6",
+    "fork": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "historical_path": "src/pso/boss/TBoss4Zako.cpp",
+    "current_path": "src/pso/boss/darkfalz/TBoss4Zako.cpp",
+    "exact_functions_in_owner": 43,
+    "labels_at_same_address": [
+      {
+        "fork": "get_battle_base_stats",
+        "current": "register_boss__6TLobbyFl",
+        "address": "0x8001e280",
+        "bytes": 40
+      },
+      {
+        "fork": "get_battle_attack_params",
+        "current": "dispatch_shared_handler_b__6TLobbyFl",
+        "address": "0x8001e248",
+        "bytes": 40
+      },
+      {
+        "fork": "get_battle_resistance_params",
+        "current": "register_object__6TLobbyFl",
+        "address": "0x8001e210",
+        "bytes": 40
+      },
+      {
+        "fork": "get_battle_movement_params",
+        "current": "dispatch_shared_handler_a__6TLobbyFl",
+        "address": "0x8001e1d8",
+        "bytes": 40
+      },
+      {
+        "fork": "register_by_id__9TObjEnemyFv",
+        "current": "register_by_id__9TObjEnemyFv",
+        "address": "0x8003f0e8",
+        "bytes": 32
+      },
+      {
+        "fork": "get_instance_count__9TBoss4UroFv",
+        "current": "get_instance_count__9TBoss4UroFv",
+        "address": "0x8004c1a4",
+        "bytes": 8
+      },
+      {
+        "fork": "lbl_805D27E8",
+        "current": "TBoss4Zako__name",
+        "address": "0x805d27e8",
+        "bytes": 4
+      },
+      {
+        "fork": "lbl_805D27EC",
+        "current": "TBoss4Uro__name",
+        "address": "0x805d27ec",
+        "bytes": 4
+      },
+      {
+        "fork": "lbl_805D27F0",
+        "current": "TBoss4Bishi__name",
+        "address": "0x805d27f0",
+        "bytes": 4
+      },
+      {
+        "fork": "lbl_80437898",
+        "current": "TBoss4Zako__class_name_string",
+        "address": "0x80437898",
+        "bytes": 11
+      },
+      {
+        "fork": "lbl_804378A4",
+        "current": "TBoss4Uro__class_name_string",
+        "address": "0x804378a4",
+        "bytes": 10
+      },
+      {
+        "fork": "lbl_804378B0",
+        "current": "TBoss4Bishi__class_name_string",
+        "address": "0x804378b0",
+        "bytes": 12
+      }
+    ],
+    "verified_direct_calls": {
+      "__ct__10TBoss4ZakoFP7TObjectP17TBoss4ZakoSetData": {
+        "register_boss__6TLobbyFl": 1,
+        "dispatch_shared_handler_b__6TLobbyFl": 1,
+        "register_object__6TLobbyFl": 1,
+        "dispatch_shared_handler_a__6TLobbyFl": 2,
+        "get_instance_count__9TBoss4UroFv": 1,
+        "register_by_id__9TObjEnemyFv": 1,
+        "create_particle_emitter": 1
+      },
+      "run_task__10TBoss4ZakoFv": {
+        "update_collisions__14TObjCollidableFv": 1,
+        "submit_cursor_candidate": 1
+      },
+      "update_sink_state__10TBoss4ZakoFv": {
+        "spawn_particle_effect": 1
+      },
+      "run_task__9TBoss4UroFv": {
+        "update_collisions__14TObjCollidableFv": 1,
+        "submit_cursor_candidate": 1
+      },
+      "update_sink_state__9TBoss4UroFv": {
+        "spawn_particle_effect": 1
+      },
+      "run_task__11TBoss4BishiFv": {
+        "update_collisions__14TObjCollidableFv": 1,
+        "submit_cursor_candidate": 1
+      },
+      "update_sink_state__11TBoss4BishiFv": {
+        "spawn_particle_effect": 1
+      }
+    },
+    "declarations": "Native callers use Vec, the shared player, angle, cursor and particle declarations, and the typed Uro archive.",
+    "open_before": 261,
+    "open_after": 260
+  },
+  "matching_note": "Dragon resource loading uses one table cursor for the base and attack rows to preserve register allocation.",
+  "source_quality": {
+    "findings": {
+      "base": 161782,
+      "head": 161765,
+      "added": 0,
+      "removed": 17
+    },
+    "unrelated_receiver_casts_removed": 19,
+    "linker_labels_flagged": 0
+  },
+  "remaining_replay_previews": {
+    "actors": {
+      "donor_paths": 266,
+      "conflicts": 197,
+      "clean_paths": 55,
+      "no_change": 14
+    },
+    "lifecycle": {
+      "donor_paths": 67,
+      "conflicts": 54,
+      "clean_paths": 6,
+      "no_change": 7
+    }
+  },
+  "fork_workspace": {
+    "parent": "5d6d72e42e2faf0822f14837733ed14ce67a1142",
+    "previous_workspace": "abfcc6496ae57c96d055e0d1aaa2c3397d7104d9",
+    "overlay_paths": 130,
+    "retained_linker_labels": 26965,
+    "updated_linker_labels": {
+      "__ct__14TObjEnePanBARAFP7TObjectPvl": "__ct__14TObjEnePanBARAFP7TObjectP14EnemyPlacementl",
+      "__ct__14TObjEnePanarmsFP7TObjectPv": "__ct__14TObjEnePanarmsFP7TObjectP14EnemyPlacement",
+      "__ct__17TObjEneBm3FlyNestFP7TObjectP17Bm3FlyNestSetData": "__ct__17TObjEneBm3FlyNestFP7TObjectP14EnemyPlacement",
+      "__ct__18TObjEneBalClawBodyFP7TObjectPv": "__ct__18TObjEneBalClawBodyFP7TObjectP14EnemyPlacement",
+      "__ct__18TObjEneBalClawClawFP7TObjectPv": "__ct__18TObjEneBalClawClawFP7TObjectP14EnemyPlacement"
+    },
+    "materialized_tree_before_notes_update": "d65e21e6f4ec0d8d69f6bd31615c2d9ae9ed8d5d",
+    "archive_sha256": "18448b58b0d222dbb8da9489d15116008261351c06e819ab1ac93ff409565352",
+    "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "coverage_check": "pass",
+    "tests": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    },
+    "test_log_sha256": {
+      "fork": "13225c1edddbf6d5a5b0509f857f3cbfa9b9c6a129e72d68b4d4ae36f53e3b82",
+      "tool": "b9565af48750df483a4b415d5035b08d87dc2bbe4987ccc71327a86f4087dc4a",
+      "host": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    },
+    "host_executables": [
+      "vector_math_fallbacks",
+      "item_factory_callbacks",
+      "loader_transfer",
+      "ginja_parameter_callbacks",
+      "exi_ethernet_fallbacks"
+    ]
+  }
+}

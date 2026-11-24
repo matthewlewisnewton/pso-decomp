@@ -1,44 +1,29 @@
 #include "types.h"
 #include "pso/unk/text_80290B3C.h"
 #include "pso/item/TUnk_8049C658.h"
-#include "pso/item/TItemDrop.h"
-struct Hdr_80290B3C {
-    u32 off;
-    u32 count;
-    u8 pad[8];
-    u32 end;
-    u8 pad2[0xC];
-};
+#include "pso/item/drop/TItemDrop.h"
 
-struct Ctx_80290B3C {
-    u8 obj[0x1C];
-    u32 base;
-    u32 size;
-    u32 result;
-    u8 pad[0x10];
-};
-
-u32 relocate_data_block_pointers(u32 arg0, u32 arg1) {
-    Ctx_80290B3C c;
+// Relocates a loaded data block in place through a temporary resource file
+// object (the same pass as apply_rel_relocations) and returns its root.
+uaddr relocate_data_block_pointers(uaddr arg0, u32 arg1) {
+    TUnk_8049C658 c;
     u16 *idx;
-    u32 p;
-    Hdr_80290B3C *h;
+    uaddr p;
+    RelFileTrailer *h;
     u32 i;
     u32 n;
-    u32 r;
-    ((TUnk_8049C658 *)(&c))->construct();
-    c.base = arg0;
+    uaddr r;
+    c.data = (u8 *)arg0;
     c.size = arg1;
-    h = (Hdr_80290B3C *)(c.base + c.size) - 1;
-    p = c.base;
-    idx = (u16 *)(h->off + c.base);
-    n = h->count;
+    h = (RelFileTrailer *)((uaddr)c.data + c.size) - 1;
+    p = (uaddr)c.data;
+    idx = (u16 *)(h->reloc_offset + (uaddr)c.data);
+    n = h->reloc_count;
     for (i = 0; i < n; i++) {
         p += *idx++ * 4;
-        *(u32 *)p += c.base;
+        *(u32 *)p += (uaddr)c.data;
     }
-    r = h->end + c.base;
-    c.result = r;
-    ((TUnk_8049C658 *)(&c))->destroy(-1);
+    r = h->root_offset + (uaddr)c.data;
+    c.root = (void *)r;
     return r;
 }

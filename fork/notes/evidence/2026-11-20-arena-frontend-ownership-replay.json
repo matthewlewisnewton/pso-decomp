@@ -1,0 +1,1033 @@
+{
+  "source": "a34560829c3d00a8ab8838df9f0999b67134e572",
+  "landing": "3c36d1e4dbe008750d8ac0f41052b7a3b9f89f43",
+  "working_fork_build": "387334124ca3849aa061f2e4235b6713e4c20e94",
+  "previous_source": "34ed7bfb29de2e978326f154ef43afa032205e11",
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "source_files": 9,
+  "batches": {
+    "derolle-source-final": {
+      "head": "2bac35184fcb8bb571b50ac3a0cc73a45328f10a",
+      "files": 6,
+      "report_sha256": "25ff211051c0a6d260e7fb96b19784714acc5585eeb4c91e09d65ff5217de921"
+    },
+    "gol-source": {
+      "head": "caff1950fa1334df664c54201860b527b974462b",
+      "files": 1,
+      "report_sha256": "de677d0461a36124e1f4aa8ea434b05fca2c2c653ae91c5fde4b53a013848ff4"
+    },
+    "frontend-source": {
+      "head": "dbdf59a132ba69ee391856bda1b2f234ac7bdbbd",
+      "files": 2,
+      "report_sha256": "de677d0461a36124e1f4aa8ea434b05fca2c2c653ae91c5fde4b53a013848ff4"
+    }
+  },
+  "source_coverage": {
+    "fuzzy_match_percent": 99.99999,
+    "total_code": "4353092",
+    "matched_code": "4353092",
+    "matched_code_percent": 100.0,
+    "total_data": "1758510",
+    "matched_data": "1758510",
+    "matched_data_percent": 100.0,
+    "total_functions": 27572,
+    "matched_functions": 27572,
+    "matched_functions_percent": 100.0,
+    "complete_code": "4353092",
+    "complete_code_percent": 100.0,
+    "complete_data": "1758510",
+    "complete_data_percent": 100.0,
+    "total_units": 2449,
+    "complete_units": 2449
+  },
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "fork_only_paths": 133,
+  "layer_tests": 11,
+  "local_tool_tests": 294,
+  "source_audit": {
+    "source": "a34560829c3d00a8ab8838df9f0999b67134e572",
+    "previous": "34ed7bfb29de2e978326f154ef43afa032205e11",
+    "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "entries": [
+      {
+        "row": 951,
+        "historical_path": "src/pso/boss/Boss7DeRolLeCBehavior.cpp",
+        "historical_blob": "101ce307c7730b02596b27649a0873dd5cfb920e",
+        "owners": {
+          "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp": "658cbcaf5f58499db64256e60812ee8c9a80d024",
+          "include/pso/boss/barbaray/TBoss7DeRolLeC.h": "54b0d838bf3f4eaee424b59b7b1c1839e46fe2c8"
+        },
+        "proofs": [
+          {
+            "group": "derolle-source-final",
+            "evidence": "The three original Barba Ray archive functions return their actual motion, model and texture records. The compiler retains the original entries at 0x802E8050, 0x802E8078 and 0x802E80A0 while the actual archive owner exposes the types. Other historical behavior source remains a separate check.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 528,
+        "historical_path": "src/pso/boss/TBoss7TentacleNeedle.cpp",
+        "historical_blob": "a65ad8427cf24d96e7289b4e2234fbc68bb2db2a",
+        "owners": {
+          "src/pso/boss/barbaray/TBoss7TentacleNeedle.cpp": "a7aae52384e8318b8cd57f887b73c915524b6740",
+          "include/pso/boss/barbaray/TBoss7DeRolLeC.h": "54b0d838bf3f4eaee424b59b7b1c1839e46fe2c8"
+        },
+        "proofs": [
+          {
+            "group": "derolle-source-final",
+            "evidence": "All five original motion requests now call the real archive owner. The model and texture lookups follow the same interface without separate return register declarations. The audit remains scoped to archive consumers.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 772,
+        "historical_path": "src/pso/boss/TBoss8DragonDemo.cpp",
+        "historical_blob": "86703ef9ac37fd3f36266de1116f114c14bb58c2",
+        "owners": {
+          "src/pso/boss/goldragon/TBoss8DragonDemo.cpp": "d691a281789413230966283a6e134a76d51e1f6f",
+          "src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp": "8521e7da8619ba3029c3d8d980b785e7293a88c5",
+          "include/pso/camera/CameraPlayback.h": "9c87a1ec00f5268dee8d35e77eeb8be9507503f6"
+        },
+        "proofs": [
+          {
+            "group": "gol-source",
+            "evidence": "The whole authored camera playback and initializer change survives the owner split. The live playback read still tests flags bit 0 before restoring cameras. The complete constructor places bank 1, index 0, flags 0, and the native frame and frame step in CameraPlayback, then forwards 0x3333 through the actual member. The original two Y stores now come from the two typed Vec initializers in the tunnel owner, which still emits the startup function at 0x802F2CC4. The authored class-name pointer remains at 0x805D3FF8 with the same value.",
+            "details": {
+              "native_blobs": {
+                "src/pso/boss/goldragon/TBoss8DragonDemo.cpp": "d691a281789413230966283a6e134a76d51e1f6f",
+                "src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp": "8521e7da8619ba3029c3d8d980b785e7293a88c5",
+                "include/pso/camera/CameraPlayback.h": "9c87a1ec00f5268dee8d35e77eeb8be9507503f6"
+              },
+              "audited_head": "34ed7bfb29de2e978326f154ef43afa032205e11",
+              "addresses": [
+                "0x802F2CC4",
+                "0x802F2D8C",
+                "0x805D3FF8"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 929,
+        "historical_path": "src/pso/boss/TBoss8Dragon_802F3F20.cpp",
+        "historical_blob": "1f8236a4e281f1fdbd63b6aab5e457510aef9d3e",
+        "owners": {
+          "src/pso/boss/goldragon/TBoss8Dragon.cpp": "c53cdd21c993b9e20653fdae6867d89f3a12bde7"
+        },
+        "proofs": [
+          {
+            "group": "gol-source",
+            "evidence": "All authored fade and draw changes survive. Both model slots and the typed Vec, render-task flag, rotation fields, frame and Ginja texture arguments are present. The remaining draw_with_fade scale call now uses the inherited Vec at its checked original offset.",
+            "details": {
+              "native_blobs": {
+                "src/pso/boss/goldragon/TBoss8Dragon.cpp": "c53cdd21c993b9e20653fdae6867d89f3a12bde7"
+              },
+              "audited_head": "34ed7bfb29de2e978326f154ef43afa032205e11",
+              "scale_layout": "offsetof(TObjBase, scale) == 0x68"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2303,
+        "historical_path": "src/pso/ui/TAdSinglePlyChrSelectGC_8001C5E8.cpp",
+        "historical_blob": "279d168a3c643bb9a2b89d7817d96ae39f62c254",
+        "owners": {
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8001C5E8.cpp": "d9ebad11f3663461ec2dc90b37ae651547256f64",
+          "src/pso/system/TLoadCtrl.cpp": "b4e53aca006c5cf9428acb5002a66af4dc892316",
+          "include/pso/system/TLoadCtrl.h": "b2601bc32b901d7960ba3b4500ac0e475dfbc79f"
+        },
+        "proofs": [
+          {
+            "group": "frontend-source",
+            "evidence": "All three original function definitions survive. The byte getter and the signed card block-count getter retain the original globals. The signed setter again checks the real TLoadCtrl pointer and writes its native +0x1C m_1c member.",
+            "details": {
+              "native_blobs": {
+                "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8001C5E8.cpp": "d9ebad11f3663461ec2dc90b37ae651547256f64",
+                "src/pso/system/TLoadCtrl.cpp": "b4e53aca006c5cf9428acb5002a66af4dc892316",
+                "include/pso/system/TLoadCtrl.h": "b2601bc32b901d7960ba3b4500ac0e475dfbc79f"
+              },
+              "original_linked_code": [
+                {
+                  "address": "0x8001C5E8",
+                  "owner": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8001C5E8.cpp",
+                  "name": "get_chr_select_state__23TAdSinglePlyChrSelectGCFv",
+                  "size": 8
+                },
+                {
+                  "address": "0x8001C5F0",
+                  "owner": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8001C5E8.cpp",
+                  "name": "TAdSinglePlyChrSelectGC__sub_8001C5F0",
+                  "size": 8
+                },
+                {
+                  "address": "0x8001C5F8",
+                  "owner": "src/pso/system/TLoadCtrl.cpp",
+                  "name": "set_field1C__9TLoadCtrlFl",
+                  "size": 20
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2340,
+        "historical_path": "src/pso/unk/text_8032AACC.cpp",
+        "historical_blob": "fd4f18f095461952b8b9184c50e70b200b192cf2",
+        "owners": {
+          "src/pso/ui/frontend/TAdEnterBaseGC.cpp": "8e79b97a2188a9bf7cc39dcc219e14ca46da12f1",
+          "include/pso/ui/frontend/TAdPlyChrSelPlateGC.h": "132c3a3eac26be91947705122ccc355db78ba3fb",
+          "include/pso/system/ArrayAllocation.h": "4cb6c1b6e1f6a14ceff5bc91ee034f639b9c71f8",
+          "include/pso/ui/keyboard/TKeyBoardControl.h": "8be25c4517adba37217815ffd3df40ad939a6e30"
+        },
+        "proofs": [
+          {
+            "group": "frontend-source",
+            "evidence": "The only authored substance gives both password field plates the shared draw helper with native position and color sources and changes password copying to the actual keyboard method with array deletion. Both draw calls keep the original six position, size, and color addresses. The live keyboard copy remains at its original 0x80131BC4 address.",
+            "details": {
+              "native_blobs": {
+                "src/pso/ui/frontend/TAdEnterBaseGC.cpp": "8e79b97a2188a9bf7cc39dcc219e14ca46da12f1",
+                "include/pso/ui/frontend/TAdPlyChrSelPlateGC.h": "132c3a3eac26be91947705122ccc355db78ba3fb",
+                "include/pso/system/ArrayAllocation.h": "4cb6c1b6e1f6a14ceff5bc91ee034f639b9c71f8",
+                "include/pso/ui/keyboard/TKeyBoardControl.h": "8be25c4517adba37217815ffd3df40ad939a6e30"
+              },
+              "original_linked_code": [
+                {
+                  "address": "0x8032AACC",
+                  "owner": "src/pso/ui/frontend/TAdEnterBaseGC.cpp",
+                  "name": "draw_masked_password_field__Fl",
+                  "size": 344
+                },
+                {
+                  "address": "0x8032AC24",
+                  "owner": "src/pso/ui/frontend/TAdEnterBaseGC.cpp",
+                  "name": "fn_8032AC24",
+                  "size": 112
+                },
+                {
+                  "address": "0x80131BC4",
+                  "owner": "src/pso/ui/keyboard/TKeyBoardControl_80131BC4.cpp",
+                  "name": "realloc_buffer__16TKeyBoardControlFv",
+                  "size": 76
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2341,
+        "historical_path": "src/pso/unk/text_8032AC9C.cpp",
+        "historical_blob": "9d91ba194ae990257e1330f926cc88f01d7a82ce",
+        "owners": {
+          "src/pso/ui/frontend/TAdEnterBaseGC.cpp": "8e79b97a2188a9bf7cc39dcc219e14ca46da12f1",
+          "include/pso/ui/window/TWindowBase.h": "7c76fcaaba3848f8ce980232ac32b44096b072f1"
+        },
+        "proofs": [
+          {
+            "group": "frontend-source",
+            "evidence": "The full authored code change is the true TWindowBase receiver passing the original window context and the same status-line scale 0.8. The live source includes the actual window header and uses the original localized text inputs, scale value and switch branches. The linked scale remains at 0x805DF778.",
+            "details": {
+              "native_blobs": {
+                "src/pso/ui/frontend/TAdEnterBaseGC.cpp": "8e79b97a2188a9bf7cc39dcc219e14ca46da12f1",
+                "include/pso/ui/window/TWindowBase.h": "7c76fcaaba3848f8ce980232ac32b44096b072f1"
+              },
+              "original_linked_code": [
+                {
+                  "address": "0x8032AC9C",
+                  "owner": "src/pso/ui/frontend/TAdEnterBaseGC.cpp",
+                  "name": "fn_8032AC9C",
+                  "size": 148
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2709,
+        "historical_path": "src/pso/ui/TAdDialingGC_80328210.cpp",
+        "historical_blob": "fb1166c66fdc8dd107db2f0aa077b9d17790d2cf",
+        "owners": {
+          "src/pso/ui/frontend/TAdDialingGC.cpp": "685543993184eb5c40bb6ba7a1f01e1e23a7ec6e"
+        },
+        "proofs": [
+          {
+            "group": "frontend-source",
+            "evidence": "The two authored calls keep the original typed draw-line receiver with index 0x11 and zero depth, and the polling call uses original link-state storage at +0x2C. The latter is now the evidenced NetGetLinkStatus definition at the same 0x803FB184 address with its actual status-record type.",
+            "details": {
+              "native_blobs": {
+                "src/pso/ui/frontend/TAdDialingGC.cpp": "685543993184eb5c40bb6ba7a1f01e1e23a7ec6e"
+              },
+              "original_linked_code": [
+                {
+                  "address": "0x803286AC",
+                  "owner": "src/pso/ui/frontend/TAdDialingGC.cpp",
+                  "name": "show_guide_button__12TAdDialingGCFv",
+                  "size": 132
+                },
+                {
+                  "address": "0x80328558",
+                  "owner": "src/pso/ui/frontend/TAdDialingGC.cpp",
+                  "name": "update_selection__12TAdDialingGCFv",
+                  "size": 104
+                },
+                {
+                  "address": "0x803FB184",
+                  "owner": "src/pso/network/TLobby_803FAEA0.c",
+                  "name": "NetGetLinkStatus",
+                  "size": 32
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5204,
+        "historical_path": "src/pso/misc/TLoadCtrl.cpp",
+        "historical_blob": "1d316bf017f8ccc2d2f52c37c2ec6570655c37f8",
+        "owners": {
+          "src/pso/system/TLoadCtrl.cpp": "b4e53aca006c5cf9428acb5002a66af4dc892316",
+          "include/pso/system/TLoadCtrl.h": "b2601bc32b901d7960ba3b4500ac0e475dfbc79f"
+        },
+        "proofs": [
+          {
+            "group": "frontend-source",
+            "evidence": "The current loading-controller state now stores a real TLoadCtrl pointer, with signed members at +0x1C and +0x20 and direct native pointer operations through allocation, polling and destruction. Other authored contracts in the large TU remain open.",
+            "details": {
+              "native_blobs": {
+                "src/pso/system/TLoadCtrl.cpp": "b4e53aca006c5cf9428acb5002a66af4dc892316",
+                "include/pso/system/TLoadCtrl.h": "b2601bc32b901d7960ba3b4500ac0e475dfbc79f"
+              },
+              "original_linked_code": [
+                {
+                  "address": "0x8001C5F8",
+                  "owner": "src/pso/system/TLoadCtrl.cpp",
+                  "name": "set_field1C__9TLoadCtrlFl",
+                  "size": 20
+                },
+                {
+                  "address": "0x8001C60C",
+                  "owner": "src/pso/system/TLoadCtrl.cpp",
+                  "name": "TLoadCtrl__sub_8001C60C",
+                  "size": 16
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5241,
+        "historical_path": "include/pso/misc/TLoadCtrl.h",
+        "historical_blob": "8fc197b7b9fe007bda28df1791c809614afad655",
+        "owners": {
+          "include/pso/system/TLoadCtrl.h": "b2601bc32b901d7960ba3b4500ac0e475dfbc79f",
+          "src/pso/system/TLoadCtrl.cpp": "b4e53aca006c5cf9428acb5002a66af4dc892316"
+        },
+        "proofs": [
+          {
+            "group": "frontend-source",
+            "evidence": "The two signed member types and actual active instance pointer are recovered. The historical TObject-based constructor and fade-task pointer ABI are separate and remain open in this header audit.",
+            "details": {
+              "native_blobs": {
+                "include/pso/system/TLoadCtrl.h": "b2601bc32b901d7960ba3b4500ac0e475dfbc79f",
+                "src/pso/system/TLoadCtrl.cpp": "b4e53aca006c5cf9428acb5002a66af4dc892316"
+              },
+              "original_linked_code": [
+                {
+                  "address": "0x8001C5F8",
+                  "owner": "src/pso/system/TLoadCtrl.cpp",
+                  "name": "set_field1C__9TLoadCtrlFl",
+                  "size": 20
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5750,
+        "historical_path": "src/pso/ui/TAdDialingMessageWindow.cpp",
+        "historical_blob": "e22c2ad95029671e1754f8c817bfaf661da3ac2f",
+        "owners": {
+          "src/pso/ui/frontend/TAdDialingMessageWindow.cpp": "6ea1d3448ef043ce92d678d975590b6bef9703d7",
+          "include/pso/ui/frontend/TAdDialingGC_80328B20.h": "15662498c6a4b1ce654820aa00a0b04448bbda32"
+        },
+        "proofs": [
+          {
+            "group": "frontend-source",
+            "evidence": "The complete source delta uses the native draw-line return path with the same child, index 17, and zero depth. Render uses the shared rectangle with the same two original points and original detailed status at 23.0 and 356.0. The active point type retains two floats and the linked constants remain at 0x805E0360, 0x805E0364 and 0x805E0368.",
+            "details": {
+              "native_blobs": {
+                "src/pso/ui/frontend/TAdDialingMessageWindow.cpp": "6ea1d3448ef043ce92d678d975590b6bef9703d7",
+                "include/pso/ui/frontend/TAdDialingGC_80328B20.h": "15662498c6a4b1ce654820aa00a0b04448bbda32"
+              },
+              "original_linked_code": [
+                {
+                  "address": "0x8036A174",
+                  "owner": "src/pso/ui/frontend/TAdDialingMessageWindow.cpp",
+                  "name": "set_flag_and_notify__23TAdDialingMessageWindowFv",
+                  "size": 56
+                },
+                {
+                  "address": "0x8036A1D8",
+                  "owner": "src/pso/ui/frontend/TAdDialingMessageWindow.cpp",
+                  "name": "render__23TAdDialingMessageWindowFv",
+                  "size": 112
+                },
+                {
+                  "address": "0x80328B24",
+                  "owner": "src/pso/ui/frontend/TAdDialingGC.cpp",
+                  "name": "draw_dialing_rectangle",
+                  "size": 236
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      }
+    ],
+    "closed_rows": [
+      772,
+      929,
+      2303,
+      2340,
+      2341,
+      2709,
+      5750
+    ],
+    "remaining": {
+      "Owner comparison required": 300,
+      "Some anchored text changes found": 781
+    }
+  },
+  "upstream_review_candidates": {
+    "standalone-derolle-arena-lighting": {
+      "head": "f7a0122c73c00062937eac73bc56ea913630e522",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "De Rol Le and Barba Ray arena lighting, tunnel movement, collision and native archive ownership",
+      "files": 55,
+      "source_paths": [
+        "config/GPOE8P/psov3/config.yml",
+        "config/GPOE8P/psov3/linked_units.txt",
+        "config/GPOE8P/psov3/splits.txt",
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/boss/TUnk_804E4AD4.h",
+        "include/pso/boss/TUnk_804E4B3C.h",
+        "include/pso/boss/barbaray/TBoss7DeRolLeC.h",
+        "include/pso/boss/barbaray/TBoss7Joint.h",
+        "include/pso/boss/barbaray/TBoss7LaserLight.h",
+        "include/pso/boss/barbaray/TBoss7LaserPtcl.h",
+        "include/pso/boss/barbaray/TBoss7PhotonBullet.h",
+        "include/pso/boss/barbaray/TObjBoss7Dust.h",
+        "include/pso/boss/barbaray/TObjBoss7DustCtrl.h",
+        "include/pso/boss/barbaray/TObjBoss7TunnelCol.h",
+        "include/pso/boss/derolle/TBoss2DeRolLe.h",
+        "include/pso/boss/derolle/TBoss2Joint.h",
+        "include/pso/boss/derolle/TBoss2LaserLight.h",
+        "include/pso/boss/derolle/TBoss2Mine.h",
+        "include/pso/boss/derolle/TObjBoss2Tunnel.h",
+        "include/pso/boss/derolle/TObjBoss2Tunnel_8007E418.h",
+        "include/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.h",
+        "include/pso/boss/derolle/TObjBoss2Tunnel_802F2070.h",
+        "include/pso/boss/derolle/TUnk_80482D04.h",
+        "include/pso/boss/derolle/TUnk_80482EC0.h",
+        "include/pso/object/ambient/SceneLightSlot.h",
+        "include/pso/object/ambient/TObjLight.h",
+        "include/pso/player/TObjPlayer.h",
+        "include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h",
+        "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_801334D4.h",
+        "include/pso/unk/text_802F0E24.h",
+        "include/pso/unk/text_802F190C.h",
+        "include/pso/unk/text_802F1D1C.h",
+        "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+        "src/pso/boss/barbaray/TBoss7Joint.cpp",
+        "src/pso/boss/barbaray/TBoss7LaserLight.cpp",
+        "src/pso/boss/barbaray/TBoss7LaserPtcl.cpp",
+        "src/pso/boss/barbaray/TBoss7PhotonBullet_802EF26C.cpp",
+        "src/pso/boss/barbaray/TBoss7TentacleNeedle.cpp",
+        "src/pso/boss/barbaray/TObjBoss7Dust.cpp",
+        "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+        "src/pso/boss/derolle/TBoss2Joint.cpp",
+        "src/pso/boss/derolle/TBoss2LaserLight.cpp",
+        "src/pso/boss/derolle/TBoss2Mine.cpp",
+        "src/pso/boss/derolle/TObjBoss2CeilJunk.cpp",
+        "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+        "src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp",
+        "src/pso/boss/derolle/TObjBoss2Tunnel_803E2BAC.cpp",
+        "src/pso/effect/TBreakUpMdl.cpp",
+        "src/pso/object/ambient/SceneLightSlot.cpp",
+        "src/pso/object/ambient/TObjLight_80133568.cpp",
+        "src/pso/player/TObjPlayer_802E6CA8.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801334D4.cpp",
+        "src/pso/unk/TLobby_803382E4.cpp",
+        "src/pso/unk/text_802F0E24.cpp",
+        "src/pso/unk/text_802F190C.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "3bdee06e4b4998f65aaf810dddb124a7a8ef314e0c3e3b852a624be46138b048",
+      "check_sha256": "3a556eff4e3fc730fb554a47d0888ec99ae0885dc6f7f65a5eb196f73f7a9f22",
+      "previous": "abcbd4176f429823c1d080b41688e338222c4340"
+    },
+    "standalone-gol-dragon-resources-and-formation": {
+      "head": "9a277f6b061ec44eecf9395be11f3112c378a33c",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Gol Dragon arena resources, formation, targeting and inherited draw scale",
+      "files": 50,
+      "source_paths": [
+        "config/GPOE8P/psov3/config.yml",
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/boss/TUnk_804E4BF0.h",
+        "include/pso/boss/derolle/TObjBoss2Tunnel.h",
+        "include/pso/boss/dragon/TBoss1DragonEffTail.h",
+        "include/pso/boss/goldragon/TBoss8Dragon.h",
+        "include/pso/boss/goldragon/TBoss8DragonColli.h",
+        "include/pso/boss/goldragon/TBoss8DragonColli_C.h",
+        "include/pso/boss/goldragon/TBoss8DragonEffBreath.h",
+        "include/pso/boss/goldragon/TBoss8DragonEffBullet.h",
+        "include/pso/boss/goldragon/TBoss8DragonEffTail.h",
+        "include/pso/boss/goldragon/TBoss8Dragon_800BC53C.h",
+        "include/pso/boss/goldragon/TBoss8Dragon_802F3348.h",
+        "include/pso/boss/goldragon/TBoss8Dragon_802F3AB4.h",
+        "include/pso/enemy/AttackTargetHistory.h",
+        "include/pso/system/NinjaHierarchy.h",
+        "include/pso/unk/TUnk_804F1C58.h",
+        "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+        "src/pso/boss/darkfalz/TOBoss4Rock_8035A7FC.cpp",
+        "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+        "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+        "src/pso/boss/dragon/TBoss1Dragon.cpp",
+        "src/pso/boss/dragon/TBoss1DragonEffTail.cpp",
+        "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+        "src/pso/boss/goldragon/TBoss8DragonColli.cpp",
+        "src/pso/boss/goldragon/TBoss8DragonDemo.cpp",
+        "src/pso/boss/goldragon/TBoss8DragonEffBreath.cpp",
+        "src/pso/boss/goldragon/TBoss8DragonEffBullet.cpp",
+        "src/pso/boss/goldragon/TBoss8DragonEffTail.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon_800BC53C.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon_802F3348.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon_802F3504.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon_802F3638.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon_802F36DC.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon_802F376C.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon_802F3AB4.cpp",
+        "src/pso/boss/goldragon/TObjBoss8DemoRoom.cpp",
+        "src/pso/boss/goldragon/TObjBoss8Piller.cpp",
+        "src/pso/enemy/berura/TObjEneRe7BeruraPunch.cpp",
+        "src/pso/enemy/bringer/BringerEffects.cpp",
+        "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp",
+        "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+        "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+        "src/pso/enemy/mericarol/TObjEneBm9Mericarol_Bomb.cpp",
+        "src/pso/object/TObjLiveMonitor.cpp",
+        "src/pso/player/TObjPlayer_800BBE90.cpp",
+        "src/pso/player/TObjPlayer_800C4714.cpp",
+        "src/pso/unk/TLobby_800F795C.cpp",
+        "src/pso/unk/text_802F2E7C.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "06838aa1556b5f9d0d82a864db92b051d4fce4abbed9bf3f920835f4b55bfd16",
+      "check_sha256": "d1bcf866aab60cfadcb232bee7280883f335d3a914288e860b3516020a7967c1",
+      "previous": "9715d2462eed61a584e1afe2b6f8b4cb40d1ea6e"
+    },
+    "character-selection-plates": {
+      "head": "e52f6d435110c179308dcdbaac0a42f975636820",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Character selection, previews, creation actors and the related online setup scenes",
+      "files": 190,
+      "source_paths": [
+        "config/GPOE8P/psov3/config.yml",
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/system/CharacterSaveRecordLookup.h",
+        "include/pso/system/ControllerInputState.h",
+        "include/pso/system/TLoadCtrl.h",
+        "include/pso/system/save/TCheckMemoryCard.h",
+        "include/pso/system/save/TSaveChCr.h",
+        "include/pso/ui/TLevelSelect.h",
+        "include/pso/ui/charcreate/CharacterAppearance.h",
+        "include/pso/ui/charcreate/CharacterLoadBuffer.h",
+        "include/pso/ui/charcreate/CharacterPreviewModels.h",
+        "include/pso/ui/charcreate/TChCrCharSelect.h",
+        "include/pso/ui/charcreate/TChCrEffCtrlPl.h",
+        "include/pso/ui/charcreate/TChCrEffTag.h",
+        "include/pso/ui/charcreate/TChCrEffWall.h",
+        "include/pso/ui/charcreate/TChCrLoadAfs.h",
+        "include/pso/ui/charcreate/TChCrLoadAfsTextureReq.h",
+        "include/pso/ui/charcreate/TChCrLoadGmNjReq.h",
+        "include/pso/ui/charcreate/TChCrLoadReq.h",
+        "include/pso/ui/charcreate/TChCrTag.h",
+        "include/pso/ui/charcreate/TChCrTagInformation.h",
+        "include/pso/ui/charcreate/TChCrTagInformationStr.h",
+        "include/pso/ui/charcreate/TChCrTagName.h",
+        "include/pso/ui/charcreate/TChCrTagOccHeader.h",
+        "include/pso/ui/charcreate/TChCrTagOccupation.h",
+        "include/pso/ui/charcreate/TChCrTagPlBack.h",
+        "include/pso/ui/charcreate/TChCrTagPlGraphic.h",
+        "include/pso/ui/charcreate/TCharaMaking.h",
+        "include/pso/ui/frontend/CharacterSelectionRequest.h",
+        "include/pso/ui/frontend/TAdBackGC.h",
+        "include/pso/ui/frontend/TAdBackGC_8029A6EC.h",
+        "include/pso/ui/frontend/TAdBackGC_8029A7B0.h",
+        "include/pso/ui/frontend/TAdBackTxtGC.h",
+        "include/pso/ui/frontend/TAdChrSelASlotGC.h",
+        "include/pso/ui/frontend/TAdChrSelBSlotGC.h",
+        "include/pso/ui/frontend/TAdChrSelMovePlateGC.h",
+        "include/pso/ui/frontend/TAdChrSelPlyPlateGC.h",
+        "include/pso/ui/frontend/TAdDialingGC.h",
+        "include/pso/ui/frontend/TAdDialingGC_80328B20.h",
+        "include/pso/ui/frontend/TAdEnterSerialAccessGC.h",
+        "include/pso/ui/frontend/TAdEnterSerialAccessGC_8032AD30.h",
+        "include/pso/ui/frontend/TAdGuideTxtGC.h",
+        "include/pso/ui/frontend/TAdMultiPlyChrSelectGC.h",
+        "include/pso/ui/frontend/TAdMultiPlyChrSelectGC_802E0064.h",
+        "include/pso/ui/frontend/TAdMultiPlyChrSelectGC_802E0FC8.h",
+        "include/pso/ui/frontend/TAdPlayerLoadGC.h",
+        "include/pso/ui/frontend/TAdPlyChrSelPlateGC.h",
+        "include/pso/ui/frontend/TAdSelectCurGC.h",
+        "include/pso/ui/frontend/TAdSelectCurGC_802AED98.h",
+        "include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h",
+        "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_801334D4.h",
+        "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.h",
+        "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028D5D4.h",
+        "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_8033A8EC.h",
+        "include/pso/ui/frontend/TitleBackgroundStorage.h",
+        "include/pso/ui/keyboard/TKeyBoardControl.h",
+        "include/pso/ui/window/ProgressMessageWindow.h",
+        "include/pso/ui/window/TWindowBase.h",
+        "include/pso/ui/window/TWindowShortListCtrl.h",
+        "include/pso/ui/window/TWindowSubComCard.h",
+        "include/pso/unk/TLobby.h",
+        "include/pso/unk/TLobby_8028D714.h",
+        "include/pso/unk/TLobby_80291D94.h",
+        "include/pso/unk/TUnk_804C2298.h",
+        "include/pso/unk/text_80309890.h",
+        "libs/dolphin/include/dolphin/card.h",
+        "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+        "src/pso/camera/CreationCamera.cpp",
+        "src/pso/camera/TCameraCtrl.cpp",
+        "src/pso/network/TPlyJoinLobbyEntry.cpp",
+        "src/pso/npc/TNpcPlayer_8028B810.cpp",
+        "src/pso/object/TObjWaitEntryHairMoveSim.cpp",
+        "src/pso/object/ending/TObjOnlineEnding.cpp",
+        "src/pso/player/TObjPlayer_8007B4F8.cpp",
+        "src/pso/player/TObjPlayer_801AEFFC.cpp",
+        "src/pso/player/TObjPlayer_801C7430.cpp",
+        "src/pso/player/TPlayerBattleCtrl4P.cpp",
+        "src/pso/quest/QuestOpcodeHandlers.cpp",
+        "src/pso/quest/TQuestThread.cpp",
+        "src/pso/quest/TQuestVmDownLoadServer.cpp",
+        "src/pso/quest/TQuestVmDownLoadServer_8006FC34.cpp",
+        "src/pso/quest/challenge/ChallengeMode.cpp",
+        "src/pso/system/TLoadCtrl.cpp",
+        "src/pso/system/save/TCheckMemoryCard.cpp",
+        "src/pso/system/save/TSaveChCr.cpp",
+        "src/pso/ui/TLevelSelect.cpp",
+        "src/pso/ui/TLevelSelect_802AEBA8.cpp",
+        "src/pso/ui/charcreate/TChCrCharSelect.cpp",
+        "src/pso/ui/charcreate/TChCrCharSelect_80293D10.cpp",
+        "src/pso/ui/charcreate/TChCrCharSelect_80293D58.cpp",
+        "src/pso/ui/charcreate/TChCrEffCtrlPl.cpp",
+        "src/pso/ui/charcreate/TChCrEffCtrlPl_80339658.cpp",
+        "src/pso/ui/charcreate/TChCrEffTag.cpp",
+        "src/pso/ui/charcreate/TChCrEffWall.cpp",
+        "src/pso/ui/charcreate/TChCrLoadAfs.cpp",
+        "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp",
+        "src/pso/ui/charcreate/TChCrLoadGmNjReq.cpp",
+        "src/pso/ui/charcreate/TChCrLoadReq.cpp",
+        "src/pso/ui/charcreate/TChCrTag.cpp",
+        "src/pso/ui/charcreate/TChCrTagInformation.cpp",
+        "src/pso/ui/charcreate/TChCrTagInformationStr.cpp",
+        "src/pso/ui/charcreate/TChCrTagName.cpp",
+        "src/pso/ui/charcreate/TChCrTagOccHeader.cpp",
+        "src/pso/ui/charcreate/TChCrTagOccupation.cpp",
+        "src/pso/ui/charcreate/TChCrTagPlBack.cpp",
+        "src/pso/ui/charcreate/TChCrTagPlGraphic.cpp",
+        "src/pso/ui/charcreate/TCharaMaking.cpp",
+        "src/pso/ui/charcreate/TObjCMMainMenu_8028EA88.cpp",
+        "src/pso/ui/charcreate/TObjCMName.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChat_80076F88.cpp",
+        "src/pso/ui/city/TCheckRoomSequence.cpp",
+        "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp",
+        "src/pso/ui/frontend/TAdAgreementBaseGC.cpp",
+        "src/pso/ui/frontend/TAdBackGC_8029A6EC.cpp",
+        "src/pso/ui/frontend/TAdBackTxtGC.cpp",
+        "src/pso/ui/frontend/TAdChrSelASlotGC.cpp",
+        "src/pso/ui/frontend/TAdChrSelBSlotGC.cpp",
+        "src/pso/ui/frontend/TAdChrSelMovePlateGC.cpp",
+        "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp",
+        "src/pso/ui/frontend/TAdDialingGC.cpp",
+        "src/pso/ui/frontend/TAdDialingMessageWindow.cpp",
+        "src/pso/ui/frontend/TAdEnterBaseGC.cpp",
+        "src/pso/ui/frontend/TAdEnterPPPPassGC.cpp",
+        "src/pso/ui/frontend/TAdEnterPasswordGC.cpp",
+        "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+        "src/pso/ui/frontend/TAdEnterSerialAccessGC_802E0110.cpp",
+        "src/pso/ui/frontend/TAdEp3Exist.cpp",
+        "src/pso/ui/frontend/TAdGuideTxtGC.cpp",
+        "src/pso/ui/frontend/TAdMcCheckGC.cpp",
+        "src/pso/ui/frontend/TAdMcSelectGC.cpp",
+        "src/pso/ui/frontend/TAdMultiChgGameModeGC.cpp",
+        "src/pso/ui/frontend/TAdMultiChgGameModeGC_8023E7A8.cpp",
+        "src/pso/ui/frontend/TAdMultiChgGameModeGC_8036DE10.cpp",
+        "src/pso/ui/frontend/TAdMultiConfirmGC.cpp",
+        "src/pso/ui/frontend/TAdMultiPlyChrSelectGC.cpp",
+        "src/pso/ui/frontend/TAdMultiPlyChrSelectGC_802B1850.cpp",
+        "src/pso/ui/frontend/TAdMultiPlyChrSelectGC_802C6F88.cpp",
+        "src/pso/ui/frontend/TAdMultiPlyChrSelectGC_802E0064.cpp",
+        "src/pso/ui/frontend/TAdMultiPlyChrSelectGC_802E0FC8.cpp",
+        "src/pso/ui/frontend/TAdMultiSaveGC.cpp",
+        "src/pso/ui/frontend/TAdMultiSelGameModeGC.cpp",
+        "src/pso/ui/frontend/TAdPlayerLoadGC.cpp",
+        "src/pso/ui/frontend/TAdPlayerLoadGC_801E0C30.cpp",
+        "src/pso/ui/frontend/TAdPlayerLoadGC_803F18B8.cpp",
+        "src/pso/ui/frontend/TAdPlyChrSelPlateGC.cpp",
+        "src/pso/ui/frontend/TAdPlyStatusGC.cpp",
+        "src/pso/ui/frontend/TAdSelectCurGC.cpp",
+        "src/pso/ui/frontend/TAdSelectCurGC_802AEA38.cpp",
+        "src/pso/ui/frontend/TAdSelectCurGC_802AED98.cpp",
+        "src/pso/ui/frontend/TAdSelectGameModeGC_802C4748.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801334D4.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80202A68.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C650.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C8E0.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028D5D4.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8033A8EC.cpp",
+        "src/pso/ui/frontend/TAdStorySelectGC_802C3284.cpp",
+        "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+        "src/pso/ui/frontend/TAdWarningBaseGC.cpp",
+        "src/pso/ui/frontend/TAdYesNoBaseGC.cpp",
+        "src/pso/ui/window/TObjBagWarnWin.cpp",
+        "src/pso/ui/window/TWindowCtrlMain_800FC91C.cpp",
+        "src/pso/ui/window/TWindowKeyBoardHard_801A529C.cpp",
+        "src/pso/ui/window/TWindowKeyBoardHard_801FBA48.cpp",
+        "src/pso/ui/window/TWindowMessage.cpp",
+        "src/pso/ui/window/TWindowOptionCtrl_8034C384.cpp",
+        "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp",
+        "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+        "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp",
+        "src/pso/ui/window/TWindowSubComCard_802A559C.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_80071774.cpp",
+        "src/pso/unk/TLobby_8001D6A0.cpp",
+        "src/pso/unk/TLobby_8006F278.cpp",
+        "src/pso/unk/TLobby_80070A00.cpp",
+        "src/pso/unk/TLobby_801F487C.cpp",
+        "src/pso/unk/TLobby_8024A148.cpp",
+        "src/pso/unk/TLobby_80291D94.cpp",
+        "src/pso/unk/TLobby_80300098.cpp",
+        "src/pso/unk/TLobby_8034C23C.cpp",
+        "src/pso/unk/TUnk_804C2298.cpp",
+        "src/pso/unk/text_80072230.cpp",
+        "src/pso/unk/text_80076BC4.cpp",
+        "src/pso/unk/text_801F43B4.cpp",
+        "src/pso/unk/text_8028EC70.cpp",
+        "src/pso/unk/text_802AE978.cpp",
+        "src/pso/unk/text_802AEAA4.cpp",
+        "src/pso/unk/text_80309890.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "c7bc23bf09bbabbe9e41e50ef6c5d3ffa7271c5433a46fa7cb99f6cb136a7f86",
+      "check_sha256": "f40f9acf274d261b97bc909cac5b312820b5313083f448084e9c7d9cbe176f1a",
+      "previous": "0c50b18a3ebe47bd9df0c669a4a2776f31c3b139"
+    }
+  },
+  "independent_source_reviews": {
+    "standalone-derolle-arena-lighting": {
+      "head": "f7a0122c73c00062937eac73bc56ea913630e522",
+      "reviewer": "Great Merge integration reviewer",
+      "finding": "Checked all ten queue overlap paths and all three actual archive entry points. The native array and Ginja/BML interfaces remain intact."
+    },
+    "standalone-gol-dragon-resources-and-formation": {
+      "head": "9a277f6b061ec44eecf9395be11f3112c378a33c",
+      "reviewer": "combat completeness reviewer and Great Merge integration reviewer",
+      "finding": "Independently reconciled the 19-path Gol Dragon overlap. Recovered the inherited draw scale after checking the original authored source and 0x68 layout assertion."
+    },
+    "character-selection-plates": {
+      "head": "e52f6d435110c179308dcdbaac0a42f975636820",
+      "reviewer": "UI completeness reviewer",
+      "finding": "Reviewed character frontend and online setup as one branch. Retains all three keyboard declarations, native ColorLineList and typed selection input. The canonical companion uses the actual TLoadCtrl."
+    }
+  },
+  "combined_upstream_review": {
+    "head": "79e40f909220a3190799b6760e867889b5a22fbb",
+    "tree": "3f549de1e8b672657ecf1f1997160ea2ec731783",
+    "previous": "3e4944633094f0ba6b245a3d679c7aceee8fbbd8",
+    "inputs": [
+      "b75c6f38a72228b2c5dc79f3198981f324474018",
+      "bdc95f97e24a9c0a48f3ed7fec7ca13dd974c8dd",
+      "5fec2a2794b87cf105d2c10473d187633a78ff1b",
+      "9a9d704b899922b8d4439be16dad34a85c23fd97",
+      "c3e7f90c1fd3d467ffef36be945b0d42d832cc59",
+      "5764a00853c353ae4e12371958c2e9712af42798",
+      "bb0a2828e3a31ddc506164215d32f5cd834ff234",
+      "3209cc4330a26b9f88a0527e40d1582a61ae4015",
+      "69f02cb94a507c1dcedc1931aa84a6fa528ac5a6",
+      "c07cce7cc9c08dfee613c5e35c8abc76a2c30ea1",
+      "d855ab55c0e7c4eda2a8d29cbb0a44a0756423bd",
+      "9bbc668b6121ceb6bc03f83427c98aaa931a0d31",
+      "8d5b7beca4d9e492e5c3bb6fca598d54b461829b",
+      "cb7d37f5a25dfec5bac94452f5b8237a893b819b",
+      "ac5aa002909d739722e26f4c3c9aef7f681b4425",
+      "56180c4c261f4076fb3def25d0f995adbcb15400",
+      "b0fdec6d17f48e36cdb4b9e7cf9d6c697d5b5057",
+      "f7a0122c73c00062937eac73bc56ea913630e522",
+      "9a277f6b061ec44eecf9395be11f3112c378a33c",
+      "e52f6d435110c179308dcdbaac0a42f975636820"
+    ],
+    "files": 1848,
+    "prior_inputs": {
+      "0": "b75c6f38a72228b2c5dc79f3198981f324474018",
+      "1": "bdc95f97e24a9c0a48f3ed7fec7ca13dd974c8dd",
+      "2": "5fec2a2794b87cf105d2c10473d187633a78ff1b",
+      "3": "9a9d704b899922b8d4439be16dad34a85c23fd97",
+      "4": "c3e7f90c1fd3d467ffef36be945b0d42d832cc59",
+      "5": "5764a00853c353ae4e12371958c2e9712af42798",
+      "6": "bb0a2828e3a31ddc506164215d32f5cd834ff234",
+      "7": "3209cc4330a26b9f88a0527e40d1582a61ae4015",
+      "8": "69f02cb94a507c1dcedc1931aa84a6fa528ac5a6",
+      "9": "c07cce7cc9c08dfee613c5e35c8abc76a2c30ea1",
+      "10": "d855ab55c0e7c4eda2a8d29cbb0a44a0756423bd",
+      "11": "9bbc668b6121ceb6bc03f83427c98aaa931a0d31",
+      "12": "8d5b7beca4d9e492e5c3bb6fca598d54b461829b",
+      "13": "cb7d37f5a25dfec5bac94452f5b8237a893b819b",
+      "14": "ac5aa002909d739722e26f4c3c9aef7f681b4425",
+      "15": "56180c4c261f4076fb3def25d0f995adbcb15400",
+      "16": "b0fdec6d17f48e36cdb4b9e7cf9d6c697d5b5057"
+    },
+    "overlap": [
+      {
+        "scope": "derolle",
+        "previous": "3e4944633094f0ba6b245a3d679c7aceee8fbbd8",
+        "head": "754a3cba146bf422b6cb32eb40f880a9d9a4ad23",
+        "standalone": "f7a0122c73c00062937eac73bc56ea913630e522",
+        "conflicts": [],
+        "resolved": {
+          "config/GPOE8P/psov3/symbols.txt": {
+            "blob": "41a37168daf7226753b9f26a51ed0a7a6ce8e0c3",
+            "hunks": 1
+          },
+          "include/pso/boss/barbaray/TBoss7DeRolLeC.h": {
+            "blob": "207ae63e9e816eda9a41cf67b2bed2187c1de33f",
+            "hunks": 1
+          },
+          "include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h": {
+            "blob": "f050fe7f66093f74722108b0acc449e5ece9bd1e",
+            "hunks": 1
+          },
+          "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_801334D4.h": {
+            "blob": "fa2d8ff8aca111ba01870b5da03662db00927f15",
+            "hunks": 1
+          },
+          "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp": {
+            "blob": "8896e959878b747e835ae8a21dea5c8ebc5e5f77",
+            "hunks": 6
+          },
+          "src/pso/boss/derolle/TBoss2DeRolLe.cpp": {
+            "blob": "3286745ac4bb6a66cd132550db9cda74e5d38c63",
+            "hunks": 1
+          },
+          "src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp": {
+            "blob": "173ebf5b2506b46e0cbd6a2ad810e72780884f0f",
+            "hunks": 7
+          },
+          "src/pso/effect/TBreakUpMdl.cpp": {
+            "blob": "77a9b02d390bae90a0af5adefb427fb35eccb8f6",
+            "hunks": 1
+          },
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801334D4.cpp": {
+            "blob": "1f813f50cb021b4bab20a4243e4bcb6b7e850cc9",
+            "hunks": 1
+          },
+          "src/pso/unk/text_802F190C.cpp": {
+            "blob": "422d41f2b31a1d82d8014675f8d848327b355abc",
+            "hunks": 1
+          }
+        }
+      },
+      {
+        "scope": "gol",
+        "previous": "754a3cba146bf422b6cb32eb40f880a9d9a4ad23",
+        "standalone": "d236a52412c6913c5757475c7e07069c73e78856",
+        "head": "2ed167c75399218c90e9580b990a776d339bb85c",
+        "conflicts": [],
+        "resolved": {
+          "include/pso/boss/derolle/TObjBoss2Tunnel.h": {
+            "blob": "1b1f035f6b142a388261da7c952fcb13d9d4eb53",
+            "hunks": 1
+          },
+          "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp": {
+            "blob": "b7e626fd6062cd8db52275dc34e6939401c2fc2c",
+            "hunks": 1
+          }
+        }
+      },
+      {
+        "scope": "frontend",
+        "previous": "2ed167c75399218c90e9580b990a776d339bb85c",
+        "standalone": "314967f02ddea2a91447d013a7bcd313a4659684",
+        "head": "79e40f909220a3190799b6760e867889b5a22fbb",
+        "conflicts": [],
+        "resolved": {}
+      }
+    ],
+    "independent_overlap_review": {
+      "head": "79e40f909220a3190799b6760e867889b5a22fbb",
+      "tree": "3f549de1e8b672657ecf1f1997160ea2ec731783",
+      "reviewer": "combat completeness reviewer and Great Merge integration reviewer",
+      "reviewed_head": "6e56d9a1c11bf8080bbd784b233dcb5d01ae2de5",
+      "reviewed_tree": "e948e34b94550518925b938750832d857a4c100d",
+      "followup": [
+        "include/pso/boss/derolle/TObjBoss2Tunnel.h"
+      ],
+      "finding": "Independently reviewed the typed attack history reset, all three native Barba Ray archive accessors and the Gol scale. Removed the sole orphaned tunnel declaration found in that review. The character frontend merge was conflict-free on the arena queue."
+    },
+    "coverage": {
+      "upstream": {
+        "functions_lost": 0,
+        "data_lost": 0,
+        "verified_padding": 0
+      },
+      "historical": {
+        "functions_lost": 0,
+        "data_lost": 0,
+        "verified_padding": 30
+      },
+      "previous-joint": {
+        "functions_lost": 0,
+        "data_lost": 0,
+        "verified_padding": 0
+      }
+    }
+  },
+  "observed_upstream_master": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "arena_resolution": {
+    "head": "ae1cb2276598c4ec0650c39fb4573f7558aae43b",
+    "parent": "3e4944633094f0ba6b245a3d679c7aceee8fbbd8",
+    "standalone": "abcbd4176f429823c1d080b41688e338222c4340",
+    "tree": "881068cbb9f424d4872f6ff25f2c2d408ede828a",
+    "overlaps": {
+      "config/GPOE8P/psov3/symbols.txt": {
+        "blob": "41a37168daf7226753b9f26a51ed0a7a6ce8e0c3",
+        "hunks": 1
+      },
+      "include/pso/boss/barbaray/TBoss7DeRolLeC.h": {
+        "blob": "207ae63e9e816eda9a41cf67b2bed2187c1de33f",
+        "hunks": 1
+      },
+      "include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h": {
+        "blob": "f050fe7f66093f74722108b0acc449e5ece9bd1e",
+        "hunks": 1
+      },
+      "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_801334D4.h": {
+        "blob": "fa2d8ff8aca111ba01870b5da03662db00927f15",
+        "hunks": 1
+      },
+      "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp": {
+        "blob": "8896e959878b747e835ae8a21dea5c8ebc5e5f77",
+        "hunks": 6
+      },
+      "src/pso/boss/derolle/TBoss2DeRolLe.cpp": {
+        "blob": "3286745ac4bb6a66cd132550db9cda74e5d38c63",
+        "hunks": 1
+      },
+      "src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp": {
+        "blob": "173ebf5b2506b46e0cbd6a2ad810e72780884f0f",
+        "hunks": 7
+      },
+      "src/pso/effect/TBreakUpMdl.cpp": {
+        "blob": "77a9b02d390bae90a0af5adefb427fb35eccb8f6",
+        "hunks": 1
+      },
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801334D4.cpp": {
+        "blob": "1f813f50cb021b4bab20a4243e4bcb6b7e850cc9",
+        "hunks": 1
+      },
+      "src/pso/unk/text_802F190C.cpp": {
+        "blob": "422d41f2b31a1d82d8014675f8d848327b355abc",
+        "hunks": 1
+      }
+    }
+  },
+  "gol_scale": {
+    "source": {
+      "head": "caff1950fa1334df664c54201860b527b974462b",
+      "tree": "00199637b448394e1d552f9cfed3334ae56efb93",
+      "base": "34ed7bfb29de2e978326f154ef43afa032205e11",
+      "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+      "blob": "c53cdd21c993b9e20653fdae6867d89f3a12bde7"
+    },
+    "direct": {
+      "head": "9a277f6b061ec44eecf9395be11f3112c378a33c",
+      "tree": "6c207a0de0a2ea65101d339b36b2964b1712dde6",
+      "base": "9715d2462eed61a584e1afe2b6f8b4cb40d1ea6e",
+      "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+      "blob": "0bca42e7212864c79f0fe78c38fc167471e588df"
+    },
+    "queue": {
+      "head": "d236a52412c6913c5757475c7e07069c73e78856",
+      "tree": "0c049b736da24001f297e387a324d617767c2683",
+      "base": "27ffa8eb4216a1a77080faa02447cdd44ddeb20a",
+      "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+      "blob": "9e1552cc728bd204883150a5a14fb95f857b8d41"
+    }
+  }
+}

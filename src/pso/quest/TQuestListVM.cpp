@@ -1,42 +1,38 @@
+#include "pso/system/memory.h"
+#include "pso/system/save/CardFileInfo.h"
+#include "pso/system/save/CardSaveFile.h"
+#include "pso/ui/window/WindowMenuFactory.h"
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include <stdio.h>
 #include <string.h>
 #include "types.h"
 #include "pso/quest/TQuestListVM.h"
-#include "pso/TAdPlayerLoadGC.h"
-#include "pso/TObject.h"
-#include "pso/TShopWindowBase.h"
-#include "pso/misc/TCameraCtrl.h"
-#include "pso/misc/TKeyBoardControl_8000F764.h"
-#include "pso/misc/TLobby.h"
-#include "pso/misc/TQuestVmDownLoadServer.h"
-#include "pso/misc/TShopJudgmentItemWindow_8026DF00.h"
-#include "pso/misc/TWindowMenu.h"
-#include "pso/misc/TWindowMenuIconLine.h"
-#include "pso/misc/TWindowMessage.h"
-#include "pso/misc/TWindowSubComCard_80265410.h"
+#include "pso/ui/frontend/TAdPlayerLoadGC.h"
+#include "pso/system/task/TObject.h"
+#include "pso/ui/city/TShopWindowBase.h"
+#include "pso/camera/TCameraCtrl.h"
+#include "pso/ui/keyboard/TKeyBoardControl_8000F824.h"
+#include "pso/unk/TLobby.h"
+#include "pso/quest/TQuestVmDownLoadServer.h"
+#include "pso/ui/window/TWindowShop.h"
+#include "pso/ui/window/TWindowMenu.h"
+#include "pso/ui/window/TWindowMenuIconLine.h"
+#include "pso/ui/window/TWindowMessage.h"
+#include "pso/ui/window/WindowLayout.h"
+#include "pso/ui/window/TWindowSubComCard_80265410.h"
+#include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjPlayer_80011014.h"
 #include "pso/ui/Language.h"
-#include "pso/ui/TAdSinglePlyChrSelectGC.h"
-#include "pso/ui/TObjBagWarnWin_8006EF24.h"
-
-// A file read from a memory card.
-struct CardFileRead {
-    u8 pad_0[0x58];
-    u8 *data;
-    s32 size;
-};
+#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
+#include "pso/ui/window/TObjBagWarnWin_8006EF24.h"
+#include "pso/object/base/TObjBase.h"
 
 // A window's width and height.
 struct WindowSize {
-    f32 width;
-    f32 height;
+    f32 dimensions[2];
 };
 
 extern "C" {
-s32 TAdPlayerLoadGC__sub_801E1B50(s32 card_slot);
-s32 TAdPlayerLoadGC__sub_801E1538(CardFileRead *file, void *buffer);
-void *get_window_layout_position(s32 index);
 extern s32 evt2_random_enemies_mode;
 }
 
@@ -49,8 +45,8 @@ static const char download_list_title_jp[] = "\x83\x5F\x83\x45\x83\x93\x83\x8D\x
 static const char download_list_title[] = "Down Load";
 static const char tmp_buf_owner_name[] = "quest_vm_load";
 const char *TQuestListVM_class_name = "TQuestListVM";
-static const WindowSize description_window_size = {228.0f, 184.0f};
-static const WindowSize detail_window_size = {332.0f, 210.0f};
+static const WindowSize description_window_size = {{228.0f, 184.0f}};
+static const WindowSize detail_window_size = {{332.0f, 210.0f}};
 static const char quest_file_name_format[] = "%s%02d";
 
 u8 *decrypted_quest_buffer;
@@ -68,7 +64,7 @@ void TWindowMenuIconLine::disable_cancel() {
     state_flags |= 8;
 }
 
-TQuestListVM::TQuestListVM(TObject *parent, TShopWindowBase *owner, TObjBase *player) {
+TQuestListVM::TQuestListVM(TObject *parent, TShopWindowBase *owner, TObjPlayer *player) : TShopWindowBase(parent) {
     m_name = TQuestListVM_class_name;
     entry_count = 0;
     resume_state = 0;
@@ -89,7 +85,7 @@ TQuestListVM::TQuestListVM(TObject *parent, TShopWindowBase *owner, TObjBase *pl
     on_close = NULL;
     on_error = NULL;
     on_finish = NULL;
-    set_field_20(0);
+    set_state(0);
     quest_list_vm_instance = this;
     this->player = player;
     prev_card_mask = 0;
@@ -118,17 +114,17 @@ TQuestListVM::~TQuestListVM() {
         list_window = NULL;
     }
     if (card_buffer != NULL) {
-        TAdSinglePlyChrSelectGC::safe_free((void *)card_buffer);
+        safe_free(card_buffer);
         card_buffer = NULL;
     }
     quest_list_vm_instance = NULL;
     TLobby::tmp_buf_release_if_owner(tmp_buf_owner_name);
 }
 
-void TQuestListVM::vfunc_11() {
+void TQuestListVM::update_state() {
     if (update_load_status() != 0) {
-        display_message((const char *)TQuestVmDownLoadServer__sub_8006EF6C(0x44), 1);
-        set_field_20(0x12);
+        display_message((const char *)get_message_text(0x44), 1);
+        set_state(0x12);
     }
     switch (state) {
     case 0:
@@ -203,7 +199,7 @@ void TQuestListVM::init() {
     described_entry = 0;
     scan_card_error = 0;
     scan_download_error = 0;
-    set_field_20(1);
+    set_state(1);
 }
 
 void TQuestListVM::load_quest_vm() {
@@ -211,8 +207,8 @@ void TQuestListVM::load_quest_vm() {
         tmp_buffer = TLobby::tmp_buf_use_req(tmp_buf_owner_name);
         decrypted_quest_buffer = tmp_buffer;
         decompression_capacity = 0x40000;
-        set_field_20(2);
-        display_message((const char *)TQuestVmDownLoadServer__sub_8006EF6C(0x3F), 1);
+        set_state(2);
+        display_message((const char *)get_message_text(0x3F), 1);
     }
 }
 
@@ -249,7 +245,7 @@ void TQuestListVM::scan_memcard_quest_files() {
             strcpy(entries[entry_count].file_name, file_name);
             entries[entry_count].file_index = scan_index;
             entries[entry_count].card_slot = scan_card_slot;
-            set_field_20(3);
+            set_state(3);
             return;
         case -191:
             scan_card_error = 1;
@@ -279,57 +275,57 @@ void TQuestListVM::scan_memcard_quest_files() {
             return;
         }
         if (scan_card_error != 0) {
-            display_message((const char *)TQuestVmDownLoadServer__sub_8006EF6C(0x66), 1);
+            display_message((const char *)get_message_text(0x66), 1);
             set_state_after_message(5);
             return;
         }
         display_guild_message(0x19, 1);
-        set_field_20(5);
+        set_state(5);
         return;
     }
     if (scan_download_error != 0) {
         display_guild_message(0x1B, 1);
-        set_field_20(0x12);
+        set_state(0x12);
         return;
     }
     if (scan_card_error != 0) {
-        display_message((const char *)TQuestVmDownLoadServer__sub_8006EF6C(0x66), 1);
-        set_field_20(0x12);
+        display_message((const char *)get_message_text(0x66), 1);
+        set_state(0x12);
         return;
     }
-    display_message((const char *)TQuestVmDownLoadServer__sub_8006EF6C(0x44), 1);
-    set_field_20(0x12);
+    display_message((const char *)get_message_text(0x44), 1);
+    set_state(0x12);
 }
 
 void TQuestListVM::load_selected_player_slot() {
     if (card_buffer != NULL) {
-        if (TAdPlayerLoadGC__sub_801E1B50(entries[entry_count].card_slot) == 0) {
+        if (poll_memcard_result(entries[entry_count].card_slot) == 0) {
             if (TAdSinglePlyChrSelectGC::load_player_slot(entries[entry_count].card_slot,
                                                           entries[entry_count].file_name, card_buffer) == 0) {
-                set_field_20(4);
+                set_state(4);
                 return;
             }
             scan_index += 2;
-            set_field_20(2);
+            set_state(2);
         }
     } else {
-        set_field_20(0x12);
+        set_state(0x12);
     }
 }
 
 void TQuestListVM::process_download_entry() {
-    CardFileRead file;
+    CardSaveDescriptor file;
     QuestBinHeader *header;
 
-    if (TAdPlayerLoadGC__sub_801E1B50(entries[entry_count].card_slot) == 0) {
-        switch (TAdPlayerLoadGC__sub_801E1538(&file, card_buffer)) {
+    if (poll_memcard_result(entries[entry_count].card_slot) == 0) {
+        switch (verify_card_save_header(&file, card_buffer)) {
         case 0:
             seed_download_rng(get_download_seed());
             TQuestVmDownLoadServer::unshuffle_and_decrypt(file.data, file.size);
             if (TQuestVmDownLoadServer::verify_checksum(file.data, file.size) == 0) {
                 scan_download_error = 1;
                 scan_index += 2;
-                set_field_20(2);
+                set_state(2);
             } else if (decrypt_quest_data(file.data + 8, file.size - 8, decrypted_quest_buffer,
                                           decompression_capacity) != 0) {
                 header = (QuestBinHeader *)decrypted_quest_buffer;
@@ -340,22 +336,22 @@ void TQuestListVM::process_download_entry() {
                     entry_count++;
                 }
                 scan_index += 2;
-                set_field_20(2);
+                set_state(2);
             } else {
                 scan_download_error = 1;
                 scan_index += 2;
-                set_field_20(2);
+                set_state(2);
             }
             break;
         case -0xDF:
             scan_download_error = 1;
             scan_index += 2;
-            set_field_20(2);
+            set_state(2);
             break;
         case -0xE0:
             scan_download_error = 1;
             scan_index += 2;
-            set_field_20(2);
+            set_state(2);
             break;
         }
     }
@@ -382,20 +378,20 @@ s32 TQuestListVM::is_downloadable_new_entry(QuestBinHeader *header) {
 
 void TQuestListVM::build_download_list() {
     s32 i;
-    if (vfunc_10() != 0) {
+    if (is_message_ready() != 0) {
         if (list_window != NULL) {
             list_window->reset_list();
         } else {
             switch (current_language) {
             case LANGUAGE_JAPANESE:
-                list_window = (TWindowMenuIconLine *)create_item_list_window((s32)download_list_title_jp, 0x40, get_entity_id(player));
+                list_window = create_item_list_window((saddr)download_list_title_jp, 0x40, player->get_entity_id());
                 break;
             case LANGUAGE_ENGLISH:
             case LANGUAGE_GERMAN:
             case LANGUAGE_FRENCH:
             case LANGUAGE_SPANISH:
             default:
-                list_window = (TWindowMenuIconLine *)create_item_list_window((s32)download_list_title, 0x40, get_entity_id(player));
+                list_window = create_item_list_window((saddr)download_list_title, 0x40, player->get_entity_id());
                 break;
             }
         }
@@ -403,23 +399,23 @@ void TQuestListVM::build_download_list() {
             for (i = 0; i < entry_count; i++) {
                 switch (entries[i].episode) {
                 case 0:
-                    list_window->add_list_entry(0x17, (s32)entries[i].title, i);
+                    list_window->add_list_entry(0x17, (saddr)entries[i].title, i);
                     break;
                 case 1:
-                    list_window->add_list_entry(0x31, (s32)entries[i].title, i);
+                    list_window->add_list_entry(0x31, (saddr)entries[i].title, i);
                     break;
                 default:
-                    list_window->add_list_entry(0x17, (s32)entries[i].title, i);
+                    list_window->add_list_entry(0x17, (saddr)entries[i].title, i);
                     break;
                 }
             }
             list_window->calc_content_extent();
-            set_field_20(6);
+            set_state(6);
         }
         if (description_window == NULL) {
             WindowSize size = description_window_size;
-            description_window = (TWindowMessage *)TWindowMessage::create(get_window_layout_position(0x2D), (s32)&size, 1);
-            description_window->append_line((int)entries[0].description, 0x80);
+            description_window = (TWindowMessage *)TWindowMessage::create((const NJS_POINT2 *)get_window_layout_position(0x2D), (const f32 *)&size, 1);
+            description_window->append_line((saddr)entries[0].description, 0x80);
             described_entry = 0;
         }
     }
@@ -429,18 +425,18 @@ void TQuestListVM::update_lobby_selection() {
     s32 index;
 
     if (list_window != NULL && list_window->is_cancelled() != 0) {
-        set_field_20(0x10);
+        set_state(0x10);
         return;
     }
     if (list_window != NULL && list_window->is_decided() != 0) {
         resume_state = 0xA;
-        set_field_20(8);
+        set_state(8);
         return;
     }
     if (list_window != NULL && description_window != NULL) {
         index = list_window->get_cursor_value();
         if (index != described_entry) {
-            description_window->append_line((int)entries[index].description, 0x80);
+            description_window->append_line((saddr)entries[index].description, 0x80);
             described_entry = index;
             if (detail_window != NULL) {
                 detail_window->close();
@@ -453,7 +449,7 @@ void TQuestListVM::update_lobby_selection() {
 void TQuestListVM::quest_vm_load() {
     if (TLobby::tmp_buf_is_free() != 0) {
         tmp_buffer = TLobby::tmp_buf_use_req(tmp_buf_owner_name);
-        set_field_20(resume_state);
+        set_state(resume_state);
     }
 }
 
@@ -461,25 +457,25 @@ void TQuestListVM::load_selected_bin() {
     s32 index;
     if (list_window != NULL && card_buffer != NULL) {
         index = list_window->get_cursor_value();
-        if (TAdPlayerLoadGC__sub_801E1B50(entries[index].card_slot) == 0) {
+        if (poll_memcard_result(entries[index].card_slot) == 0) {
             if (TAdSinglePlyChrSelectGC::load_player_slot(entries[index].card_slot, entries[index].file_name,
                                                           card_buffer) == 0) {
-                set_field_20(9);
+                set_state(9);
                 return;
             }
             display_guild_message(0x19, 1);
             close_windows();
-            set_field_20(5);
+            set_state(5);
         }
     }
 }
 
 void TQuestListVM::poll_quest_download() {
-    CardFileRead file;
+    CardSaveDescriptor file;
     u32 size;
     if (list_window != NULL) {
-        if (TAdPlayerLoadGC__sub_801E1B50(entries[list_window->get_cursor_value()].card_slot) == 0) {
-            switch (TAdPlayerLoadGC__sub_801E1538(&file, card_buffer)) {
+        if (poll_memcard_result(entries[list_window->get_cursor_value()].card_slot) == 0) {
+            switch (verify_card_save_header(&file, card_buffer)) {
             case 0:
                 seed_download_rng(get_download_seed());
                 TQuestVmDownLoadServer::unshuffle_and_decrypt(file.data, file.size);
@@ -494,7 +490,7 @@ void TQuestListVM::poll_quest_download() {
                     if (size != 0) {
                         quest_data_output_cursor = decrypted_quest_buffer + size;
                         quest_decrypt_result_size = decompression_capacity - size;
-                        set_field_20(0xF);
+                        set_state(0xF);
                     } else {
                         display_guild_message(0x1A, 1);
                         set_state_after_message(5);
@@ -505,12 +501,12 @@ void TQuestListVM::poll_quest_download() {
             case -0xDF:
                 display_guild_message(0x1A, 1);
                 close_windows();
-                set_field_20(5);
+                set_state(5);
                 break;
             case -0xE0:
                 display_guild_message(0x1A, 1);
                 close_windows();
-                set_field_20(5);
+                set_state(5);
                 break;
             }
         }
@@ -520,8 +516,8 @@ void TQuestListVM::poll_quest_download() {
 void TQuestListVM::open_confirm_window() {
     if (detail_window == NULL) {
         WindowSize size = detail_window_size;
-        detail_window = (TWindowMessage *)TWindowMessage::create((s32)get_window_layout_position(0x2E), &size, 1, get_entity_id(player));
-        detail_window->append_line((int)((QuestBinHeader *)decrypted_quest_buffer)->long_description, 1);
+        detail_window = (TWindowMessage *)TWindowMessage::create((saddr)get_window_layout_position(0x2E), size.dimensions, 1, player->get_entity_id());
+        detail_window->append_line((saddr)((QuestBinHeader *)decrypted_quest_buffer)->long_description, 1);
         detail_window->set_depth(-13000.0f);
         if (TCameraCtrl::get_camera_id() >= 2) {
             detail_window->set_position_xy(0.75f, 0.75f);
@@ -529,13 +525,13 @@ void TQuestListVM::open_confirm_window() {
     }
     if (detail_window != NULL) {
         if (resume_state != 0xA) {
-            set_field_20(resume_state);
+            set_state(resume_state);
             return;
         }
-        confirm_window = (TWindowMenu *)create_yes_no_window((s32)get_window_layout_position(0x2B), get_entity_id(player), 0, 0);
+        confirm_window = create_yes_no_window((const NJS_POINT2 *)get_window_layout_position(0x2B), player->get_entity_id(), NULL, NULL);
         confirm_window->set_position_xy(get_scale(), get_scale());
         display_guild_message(5, 1);
-        set_field_20(resume_state);
+        set_state(resume_state);
     }
 }
 
@@ -546,7 +542,7 @@ void TQuestListVM::handle_confirm_window() {
             case 0:
                 confirm_window->close();
                 confirm_window = NULL;
-                set_field_20(0xB);
+                set_state(0xB);
                 return;
             case 1:
                 confirm_window->close();
@@ -562,7 +558,7 @@ void TQuestListVM::handle_confirm_window() {
                 decompression_capacity = 0x40000;
                 display_guild_message(0x19, 1);
                 close_windows();
-                set_field_20(5);
+                set_state(5);
                 return;
             }
         }
@@ -580,7 +576,7 @@ void TQuestListVM::handle_confirm_window() {
             decompression_capacity = 0x40000;
             display_guild_message(0x19, 1);
             close_windows();
-            set_field_20(5);
+            set_state(5);
         }
     }
 }
@@ -591,25 +587,25 @@ void TQuestListVM::load_selected_slot() {
     memset(file_name, 0, 0xD);
     if (list_window != NULL && card_buffer != NULL) {
         index = list_window->get_cursor_value();
-        if (TAdPlayerLoadGC__sub_801E1B50(entries[index].card_slot) == 0) {
+        if (poll_memcard_result(entries[index].card_slot) == 0) {
             sprintf(file_name, quest_file_name_format, quest_file_prefix, entries[index].file_index + 1);
             if (TAdSinglePlyChrSelectGC::load_player_slot(entries[index].card_slot, file_name, card_buffer) == 0) {
-                set_field_20(0xC);
+                set_state(0xC);
                 return;
             }
             display_guild_message(0x19, 1);
             close_windows();
-            set_field_20(5);
+            set_state(5);
         }
     }
 }
 
 void TQuestListVM::load_downloaded_quest() {
-    CardFileRead file;
+    CardSaveDescriptor file;
     u32 size;
     if (list_window != NULL) {
-        if (TAdPlayerLoadGC__sub_801E1B50(entries[list_window->get_cursor_value()].card_slot) == 0) {
-            switch (TAdPlayerLoadGC__sub_801E1538(&file, card_buffer)) {
+        if (poll_memcard_result(entries[list_window->get_cursor_value()].card_slot) == 0) {
+            switch (verify_card_save_header(&file, card_buffer)) {
             case 0:
                 seed_download_rng(get_download_seed());
                 TQuestVmDownLoadServer::unshuffle_and_decrypt(file.data, file.size);
@@ -623,7 +619,7 @@ void TQuestListVM::load_downloaded_quest() {
                                               quest_decrypt_result_size);
                     if (size != 0) {
                         quest_decrypt_result_size = size;
-                        set_field_20(0xD);
+                        set_state(0xD);
                     } else {
                         display_guild_message(0x1A, 1);
                         set_state_after_message(5);
@@ -634,12 +630,12 @@ void TQuestListVM::load_downloaded_quest() {
             case -0xDF:
                 display_guild_message(0x1A, 1);
                 close_windows();
-                set_field_20(5);
+                set_state(5);
                 break;
             case -0xE0:
                 display_guild_message(0x1A, 1);
                 close_windows();
-                set_field_20(5);
+                set_state(5);
                 break;
             }
         }
@@ -658,11 +654,11 @@ void TQuestListVM::update_close() {
         }
         display_guild_message(0x19, 1);
         close_windows();
-        set_field_20(5);
+        set_state(5);
         return;
     }
     if (list_window != NULL && list_window->is_decided() != 0) {
-        set_field_20(0x11);
+        set_state(0x11);
     }
 }
 
@@ -700,9 +696,9 @@ void TQuestListVM::invoke_callback_and_queue_destruction() {
 }
 
 void TQuestListVM::wait_for_message() {
-    if (vfunc_10() != 0) {
+    if (is_message_ready() != 0) {
         display_guild_message(0x19, 1);
-        set_field_20(deferred_state);
+        set_state(deferred_state);
     }
 }
 
@@ -713,7 +709,7 @@ void TQuestListVM::load_vm() {
     evt2_random_enemies_mode = 0;
 }
 
-void TQuestListVM::set_enemy_mode_3() {
+void TQuestListVM::set_enemy_mode_3(TObject *) {
     TLobby::set_enemy_mode_flag();
     evt2_random_enemies_mode = 3;
     TKeyBoardControl__sub_8000F950();
@@ -754,9 +750,9 @@ s32 TQuestListVM::update_load_status() {
     return 0;
 }
 
-void TQuestListVM::vfunc_6(s32 index, s32 flags) {
+void TQuestListVM::display_shop_message(s32 id, s32 flags) {
     if (owner != NULL) {
-        owner->vfunc_6(index, flags);
+        owner->display_shop_message(id, flags);
     }
 }
 
@@ -772,12 +768,12 @@ void TQuestListVM::display_guild_message(s32 index, s32 flags) {
     }
 }
 
-int TQuestListVM::vfunc_10() {
+int TQuestListVM::is_message_ready() {
     if (owner != NULL) {
-        if (owner->vfunc_10() == 0) {
+        if (owner->is_message_ready() == 0) {
             return 0;
         }
-        return sub_80223A48() ? 1 : 0;
+        return is_decide_pressed() ? 1 : 0;
     }
     return 1;
 }
@@ -791,6 +787,6 @@ u32 TQuestListVM::get_download_seed() {
 }
 
 void TQuestListVM::set_state_after_message(s32 state) {
-    set_field_20(20);
+    set_state(20);
     deferred_state = state;
 }

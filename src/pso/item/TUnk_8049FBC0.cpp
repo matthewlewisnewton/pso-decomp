@@ -1,8 +1,11 @@
 #include "types.h"
-#include "pso/TMainTask.h"
-#include "pso/unk/TUnk_8049FBC0.h"
+#include "pso/system/task/TMainTask.h"
+#include "pso/item/TUnk_8049FBC0.h"
 #include "pso/player/TObjPlayer_801AEB84.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/unk/text_80104FCC.h"
+#include "pso/player/TObjPlayer_80011014.h"
+#include "pso/object/base/TObjBase.h"
 
 // Written from the last function back (deferred code generation), which also
 // puts the vtable before the switch table.
@@ -12,11 +15,6 @@
 extern "C" s16 calc_base_tp_bonus__FUs();
 extern "C" s16 calc_base_hp_bonus__FUs();
 
-extern "C" {
-s32 get_entity_id(void *);
-s32 check_class_equip_permission(void *, s16);
-u8 get_item_index__5TItemFv();
-}
 
 TItem *create_material_item(u8 *item) {
     if (item != NULL) {
@@ -30,12 +28,12 @@ TUnk_8049FBC0::TUnk_8049FBC0(TObject *parent, u8 *item) : TItemObject(parent, it
 TUnk_8049FBC0::~TUnk_8049FBC0() {}
 
 void TUnk_8049FBC0::apply_use_effect() {
-    switch (get_item_index__5TItemFv()) {
+    switch (((TItem *)this)->get_item_index()) {
     case 0:
         ((TObjPlayer *)(this->owner))->add_stat_and_item(2);
         break;
     case 1:
-        if (check_class_equip_permission((void *)this->owner, 0xD7) == 0) {
+        if (check_class_equip_permission(this->owner, 0xD7) == 0) {
             ((TObjPlayer *)(this->owner))->add_mst_and_item(2);
         }
         break;
@@ -43,14 +41,14 @@ void TUnk_8049FBC0::apply_use_effect() {
         ((TObjPlayer *)(this->owner))->add_evp_material(2);
         break;
     case 3:
-        get_entity_id((void *)this->owner);
+        this->owner->get_entity_id();
         if (calc_base_hp_bonus__FUs() < 0xFA) {
             ((TObjPlayer *)(this->owner))->apply_speed_with_camera_scale((u8)(2));
         }
         break;
     case 4:
-        get_entity_id((void *)this->owner);
-        if ((calc_base_tp_bonus__FUs() < 0xFA) && (check_class_equip_permission((void *)this->owner, 0xD7) == 0)) {
+        this->owner->get_entity_id();
+        if ((calc_base_tp_bonus__FUs() < 0xFA) && (check_class_equip_permission(this->owner, 0xD7) == 0)) {
             ((TObjPlayer *)(this->owner))->set_speed_scaled_by_camera((u8)(2));
         }
         break;

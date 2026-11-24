@@ -1,0 +1,1123 @@
+{
+  "upstream_master": "0fa391a887c664abadc00cba75db1f039aceb647",
+  "historical_donor_base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "scope_donors": {
+    "character_selection_and_save": "f43e9408f5bb61c25d8a7ea2eae8140c6a4cab73",
+    "character_creation_actors_and_archives": "e03302a7034b338e6cfdaf448a1beddd27f97128",
+    "card_save_descriptor": "0266e85f9b9aaec233a8ba24114191db2d3d6e68",
+    "separate_packed_color_renderer": "64ad571ed44a2c5e026c179e19b5a260295aa11b"
+  },
+  "replay_base": "74b91cd5c7fd52c7dacdf62ba76531feb6b1fcdd",
+  "replay_head": "fef0ba01803cc76136391e29bcd9c46fd79216f8",
+  "replay_tree": "071d644b3a21e5df596a44caa5efe6390b37e731",
+  "changed_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/render/render_util.h",
+    "include/pso/system/CharacterSaveRecordLookup.h",
+    "include/pso/system/ControllerInputState.h",
+    "include/pso/system/MainPhaseTable.h",
+    "include/pso/system/TLoadCtrl.h",
+    "include/pso/system/date.h",
+    "include/pso/system/save/TCheckMemoryCard.h",
+    "include/pso/system/save/TSaveChCr.h",
+    "include/pso/ui/TLevelSelect.h",
+    "include/pso/ui/charcreate/CharacterAppearance.h",
+    "include/pso/ui/charcreate/CharacterLoadBuffer.h",
+    "include/pso/ui/charcreate/CharacterPreviewModels.h",
+    "include/pso/ui/charcreate/CreationInput.h",
+    "include/pso/ui/charcreate/TChCrCharSelect.h",
+    "include/pso/ui/charcreate/TChCrEffCtrlPl.h",
+    "include/pso/ui/charcreate/TChCrEffTag.h",
+    "include/pso/ui/charcreate/TChCrEffWall.h",
+    "include/pso/ui/charcreate/TChCrLoadAfs.h",
+    "include/pso/ui/charcreate/TChCrLoadAfsTextureReq.h",
+    "include/pso/ui/charcreate/TChCrLoadGmNjReq.h",
+    "include/pso/ui/charcreate/TChCrLoadReq.h",
+    "include/pso/ui/charcreate/TChCrTag.h",
+    "include/pso/ui/charcreate/TChCrTagInformation.h",
+    "include/pso/ui/charcreate/TChCrTagInformationStr.h",
+    "include/pso/ui/charcreate/TChCrTagName.h",
+    "include/pso/ui/charcreate/TChCrTagOccHeader.h",
+    "include/pso/ui/charcreate/TChCrTagOccupation.h",
+    "include/pso/ui/charcreate/TChCrTagPlBack.h",
+    "include/pso/ui/charcreate/TChCrTagPlGraphic.h",
+    "include/pso/ui/charcreate/TCharaMaking.h",
+    "include/pso/ui/charcreate/TObjCMMainMenu.h",
+    "include/pso/ui/charcreate/TObjCMMainMenu_8028EA88.h",
+    "include/pso/ui/frontend/CharacterSelectionRequest.h",
+    "include/pso/ui/frontend/TAdChrSelASlotGC.h",
+    "include/pso/ui/frontend/TAdChrSelBSlotGC.h",
+    "include/pso/ui/frontend/TAdChrSelMovePlateGC.h",
+    "include/pso/ui/frontend/TAdChrSelPlyPlateGC.h",
+    "include/pso/ui/frontend/TAdDialingGC.h",
+    "include/pso/ui/frontend/TAdDialingGC_80328B20.h",
+    "include/pso/ui/frontend/TAdEnterSerialAccessGC.h",
+    "include/pso/ui/frontend/TAdEnterSerialAccessGC_8032AD30.h",
+    "include/pso/ui/frontend/TAdGuideTxtGC.h",
+    "include/pso/ui/frontend/TAdMultiPlyChrSelectGC.h",
+    "include/pso/ui/frontend/TAdMultiPlyChrSelectGC_802E0064.h",
+    "include/pso/ui/frontend/TAdMultiPlyChrSelectGC_802E0FC8.h",
+    "include/pso/ui/frontend/TAdPlayerLoadGC.h",
+    "include/pso/ui/frontend/TAdPlayerLoadGC_801E0C30.h",
+    "include/pso/ui/frontend/TAdPlyChrSelPlateGC.h",
+    "include/pso/ui/frontend/TAdSelectCurGC.h",
+    "include/pso/ui/frontend/TAdSelectCurGC_802AED98.h",
+    "include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h",
+    "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_801334D4.h",
+    "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.h",
+    "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028D5D4.h",
+    "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_8033A8EC.h",
+    "include/pso/ui/frontend/TitleBackgroundStorage.h",
+    "include/pso/ui/keyboard/TKeyBoardControl.h",
+    "include/pso/ui/keyboard/TKeyBoardControl_803DE9C4.h",
+    "include/pso/ui/window/ProgressMessageWindow.h",
+    "include/pso/ui/window/TWindowBase.h",
+    "include/pso/ui/window/TWindowShortListCtrl.h",
+    "include/pso/ui/window/TWindowSubComCard.h",
+    "include/pso/unk/TLobby.h",
+    "include/pso/unk/TLobby_8028D714.h",
+    "include/pso/unk/TLobby_80291D94.h",
+    "include/pso/unk/TUnk_804C2298.h",
+    "include/pso/unk/text_801E3F24.h",
+    "include/pso/unk/text_80309890.h",
+    "libs/dolphin/include/dolphin/card.h",
+    "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+    "src/pso/camera/CreationCamera.cpp",
+    "src/pso/camera/TCameraCtrl.cpp",
+    "src/pso/network/TPlyJoinLobbyEntry.cpp",
+    "src/pso/npc/TNpcPlayer_8028B810.cpp",
+    "src/pso/object/TObjWaitEntryHairMoveSim.cpp",
+    "src/pso/object/ending/TObjOnlineEnding.cpp",
+    "src/pso/player/TObjPlayer_80011014.cpp",
+    "src/pso/player/TObjPlayer_8007B4F8.cpp",
+    "src/pso/player/TObjPlayer_801AEFFC.cpp",
+    "src/pso/player/TObjPlayer_801C7430.cpp",
+    "src/pso/player/TPlayerBattleCtrl4P.cpp",
+    "src/pso/quest/QuestOpcodeHandlers.cpp",
+    "src/pso/quest/TQuestThread.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer_8006FC34.cpp",
+    "src/pso/quest/challenge/ChallengeMode.cpp",
+    "src/pso/render/render_util.cpp",
+    "src/pso/system/save/TCheckMemoryCard.cpp",
+    "src/pso/system/save/TSaveChCr.cpp",
+    "src/pso/ui/TLevelSelect.cpp",
+    "src/pso/ui/TLevelSelect_802AEBA8.cpp",
+    "src/pso/ui/charcreate/TChCrCharSelect.cpp",
+    "src/pso/ui/charcreate/TChCrCharSelect_80293D10.cpp",
+    "src/pso/ui/charcreate/TChCrCharSelect_80293D58.cpp",
+    "src/pso/ui/charcreate/TChCrEffCtrlPl.cpp",
+    "src/pso/ui/charcreate/TChCrEffCtrlPl_80339658.cpp",
+    "src/pso/ui/charcreate/TChCrEffTag.cpp",
+    "src/pso/ui/charcreate/TChCrEffWall.cpp",
+    "src/pso/ui/charcreate/TChCrLoadAfs.cpp",
+    "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp",
+    "src/pso/ui/charcreate/TChCrLoadGmNjReq.cpp",
+    "src/pso/ui/charcreate/TChCrLoadReq.cpp",
+    "src/pso/ui/charcreate/TChCrTag.cpp",
+    "src/pso/ui/charcreate/TChCrTagInformation.cpp",
+    "src/pso/ui/charcreate/TChCrTagInformationStr.cpp",
+    "src/pso/ui/charcreate/TChCrTagName.cpp",
+    "src/pso/ui/charcreate/TChCrTagOccHeader.cpp",
+    "src/pso/ui/charcreate/TChCrTagOccupation.cpp",
+    "src/pso/ui/charcreate/TChCrTagPlBack.cpp",
+    "src/pso/ui/charcreate/TChCrTagPlGraphic.cpp",
+    "src/pso/ui/charcreate/TCharaMaking.cpp",
+    "src/pso/ui/charcreate/TObjCMMainMenu_8028EA88.cpp",
+    "src/pso/ui/charcreate/TObjCMName.cpp",
+    "src/pso/ui/charcreate/TObjCMProportion.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChat_80076F88.cpp",
+    "src/pso/ui/city/TCheckRoomSequence.cpp",
+    "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp",
+    "src/pso/ui/frontend/TAdAgreementBaseGC.cpp",
+    "src/pso/ui/frontend/TAdChrSelASlotGC.cpp",
+    "src/pso/ui/frontend/TAdChrSelBSlotGC.cpp",
+    "src/pso/ui/frontend/TAdChrSelMovePlateGC.cpp",
+    "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp",
+    "src/pso/ui/frontend/TAdDialingGC.cpp",
+    "src/pso/ui/frontend/TAdDialingMessageWindow.cpp",
+    "src/pso/ui/frontend/TAdEnterBaseGC.cpp",
+    "src/pso/ui/frontend/TAdEnterPPPPassGC.cpp",
+    "src/pso/ui/frontend/TAdEnterPasswordGC.cpp",
+    "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+    "src/pso/ui/frontend/TAdEnterSerialAccessGC_802E0110.cpp",
+    "src/pso/ui/frontend/TAdEp3Exist.cpp",
+    "src/pso/ui/frontend/TAdGuideTxtGC.cpp",
+    "src/pso/ui/frontend/TAdMcCheckGC.cpp",
+    "src/pso/ui/frontend/TAdMultiChgGameModeGC.cpp",
+    "src/pso/ui/frontend/TAdMultiChgGameModeGC_8023E7A8.cpp",
+    "src/pso/ui/frontend/TAdMultiChgGameModeGC_8036DE10.cpp",
+    "src/pso/ui/frontend/TAdMultiConfirmGC.cpp",
+    "src/pso/ui/frontend/TAdMultiPlyChrSelectGC.cpp",
+    "src/pso/ui/frontend/TAdMultiPlyChrSelectGC_802B1850.cpp",
+    "src/pso/ui/frontend/TAdMultiPlyChrSelectGC_802C6F88.cpp",
+    "src/pso/ui/frontend/TAdMultiPlyChrSelectGC_802E0064.cpp",
+    "src/pso/ui/frontend/TAdMultiPlyChrSelectGC_802E0FC8.cpp",
+    "src/pso/ui/frontend/TAdMultiSaveGC.cpp",
+    "src/pso/ui/frontend/TAdMultiSelGameModeGC.cpp",
+    "src/pso/ui/frontend/TAdPlayerLoadGC.cpp",
+    "src/pso/ui/frontend/TAdPlayerLoadGC_801E0C30.cpp",
+    "src/pso/ui/frontend/TAdPlayerLoadGC_803F18B8.cpp",
+    "src/pso/ui/frontend/TAdPlyChrSelPlateGC.cpp",
+    "src/pso/ui/frontend/TAdPlyStatusGC.cpp",
+    "src/pso/ui/frontend/TAdSelectCurGC.cpp",
+    "src/pso/ui/frontend/TAdSelectCurGC_802AEA38.cpp",
+    "src/pso/ui/frontend/TAdSelectCurGC_802AED98.cpp",
+    "src/pso/ui/frontend/TAdSelectGameModeGC_802C4748.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801334D4.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80202A68.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80243218.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C650.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C8E0.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028D5D4.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8033A8EC.cpp",
+    "src/pso/ui/frontend/TAdStorySelectGC_802C3284.cpp",
+    "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+    "src/pso/ui/window/TObjBagWarnWin.cpp",
+    "src/pso/ui/window/TWindowCtrlMain_800FC91C.cpp",
+    "src/pso/ui/window/TWindowKeyBoardHard_801A529C.cpp",
+    "src/pso/ui/window/TWindowOptionCtrl_8034C384.cpp",
+    "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp",
+    "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+    "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp",
+    "src/pso/ui/window/TWindowSubComCard_802A559C.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_80071774.cpp",
+    "src/pso/unk/TLobby_8001D6A0.cpp",
+    "src/pso/unk/TLobby_80070A00.cpp",
+    "src/pso/unk/TLobby_801E2F94.cpp",
+    "src/pso/unk/TLobby_801F487C.cpp",
+    "src/pso/unk/TLobby_8024A148.cpp",
+    "src/pso/unk/TLobby_80291D94.cpp",
+    "src/pso/unk/TLobby_80300098.cpp",
+    "src/pso/unk/TLobby_8034C23C.cpp",
+    "src/pso/unk/TUnk_804C2298.cpp",
+    "src/pso/unk/text_80072230.cpp",
+    "src/pso/unk/text_80076BC4.cpp",
+    "src/pso/unk/text_801F43B4.cpp",
+    "src/pso/unk/text_8028EC70.cpp",
+    "src/pso/unk/text_802AE978.cpp",
+    "src/pso/unk/text_802AEAA4.cpp",
+    "src/pso/unk/text_80309890.cpp"
+  ],
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "exact_linked_units": 2448,
+  "replay_coverage_losses": {
+    "regressions": 0,
+    "data_regressions": 0,
+    "data_coverage_lost": 0,
+    "padding_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0,
+    "missing_functions": 0,
+    "failures": 0
+  },
+  "changed_linker_labels": [
+    {
+      "module": "psov3",
+      "address": "0x801334D4",
+      "before": "get_selected_slot__23TAdSinglePlyChrSelectGCFv",
+      "after": "confirmation_result__14TAdSelectCurGCCFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801334DC",
+      "before": "TAdSinglePlyChrSelectGC__sub_801334DC",
+      "after": "selection_index__14TAdSelectCurGCCFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80142108",
+      "before": "get_current_date_stamp__FP9DateStamp",
+      "after": "get_current_date_stamp__FP13CardWriteDate"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801A5188",
+      "before": "get_card_status_bits__20TWindowShortListCtrlFv",
+      "after": "get_card_status_bits__20TWindowShortListCtrlFl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801E0C30",
+      "before": "reset_load_state__15TAdPlayerLoadGCFPvPv",
+      "after": "reset_load_state__15TAdPlayerLoadGCFlPUx"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801E0CE0",
+      "before": "check_card_result_code__15TAdPlayerLoadGCFv",
+      "after": "check_card_result_code__15TAdPlayerLoadGCFl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801E12B0",
+      "before": "unmount_card_and_clear_flags__15TAdPlayerLoadGCFl",
+      "after": "unmount_card_and_clear_flags__15TAdPlayerLoadGCFll"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801E1530",
+      "before": "get_load_result__15TAdPlayerLoadGCFPv",
+      "after": "get_load_result__15TAdPlayerLoadGCFl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801FE5F8",
+      "before": "copy_selected_characters__23TAdSinglePlyChrSelectGCFPv",
+      "after": "copy_selected_characters"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801FE710",
+      "before": "copy_request__23TAdSinglePlyChrSelectGCFPvPv",
+      "after": "copy_character_selection_request"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80202C08",
+      "before": "clear_slot_lists__23TAdSinglePlyChrSelectGCFv",
+      "after": "clear_slot_lists__25CharacterSelectionRequestFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80202C3C",
+      "before": "reset_slot_lists__23TAdSinglePlyChrSelectGCFv",
+      "after": "reset_slot_lists__25CharacterSelectionRequestFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80244888",
+      "before": "reparent_to_main_ctrl__17TWindowSubComCardFv",
+      "after": "reparent_to_main_ctrl__11TWindowBaseFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8028BC58",
+      "before": "create__12TChCrLoadAfsFPvPv",
+      "after": "create__12TChCrLoadAfsFP7TObjectUlUl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8028C3EC",
+      "before": "__ct__22TChCrLoadAfsTextureReqFP7TObjectPv",
+      "after": "__ct__22TChCrLoadAfsTextureReqFP7TObjectP26TChCrLoadAfsTextureReqArgs"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8028C4BC",
+      "before": "create__22TChCrLoadAfsTextureReqFPvPv",
+      "after": "create__22TChCrLoadAfsTextureReqFP7TObjectP26TChCrLoadAfsTextureReqArgs"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8028C530",
+      "before": "update_model_load__6TLobbyFv",
+      "after": "update_model_load__16TChCrLoadGmNjReqFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8028C650",
+      "before": "start_character_load_task__23TAdSinglePlyChrSelectGCFv",
+      "after": "start_character_load_task__16TChCrLoadGmNjReqFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8028C7BC",
+      "before": "__ct__16TChCrLoadGmNjReqFP7TObjectPv",
+      "after": "__ct__16TChCrLoadGmNjReqFP7TObjectP20TChCrLoadGmNjReqArgs"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8028C858",
+      "before": "create_ch_cr_load_gm_nj_req__FPvPv",
+      "after": "create_ch_cr_load_gm_nj_req__FP7TObjectP20TChCrLoadGmNjReqArgs"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8028C8E0",
+      "before": "try_acquire_slot__23TAdSinglePlyChrSelectGCFv",
+      "after": "try_acquire_slot__16TChCrLoadGmNjReqFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8028C938",
+      "before": "are_all_selections_done__23TAdSinglePlyChrSelectGCFv",
+      "after": "all_preview_loads_complete__12TChCrLoadReqFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8028C9B0",
+      "before": "load_preview_models__23TAdSinglePlyChrSelectGCFv",
+      "after": "load_preview_models__12TChCrLoadReqFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8028CB6C",
+      "before": "start_preview_loads__23TAdSinglePlyChrSelectGCFPv",
+      "after": "start_preview_loads__12TChCrLoadReqFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8028CC28",
+      "before": "request_texture_loads__23TAdSinglePlyChrSelectGCFv",
+      "after": "request_texture_loads__12TChCrLoadReqFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8028CD18",
+      "before": "request_model_loads__23TAdSinglePlyChrSelectGCFv",
+      "after": "request_model_loads__12TChCrLoadReqFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8028CF1C",
+      "before": "try_claim_load_slot__23TAdSinglePlyChrSelectGCFv",
+      "after": "try_claim_load_slot__12TChCrLoadReqFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8028D2C0",
+      "before": "__ct__12TChCrLoadReqFP7TObjectPv",
+      "after": "__ct__12TChCrLoadReqFP7TObjectPC24CharacterPreviewLoadArgs"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8028D31C",
+      "before": "copy__12TChCrLoadReqFPv",
+      "after": "copy_from__24CharacterPreviewLoadArgsFPC24CharacterPreviewLoadArgs"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8028D3F8",
+      "before": "create_ch_cr_load_req__FPvPv",
+      "after": "create_ch_cr_load_req__FP7TObjectPC24CharacterPreviewLoadArgs"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8028D5D4",
+      "before": "is_selection_done__23TAdSinglePlyChrSelectGCFPv",
+      "after": "is_load_complete__12TChCrLoadAfsFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8028D5E8",
+      "before": "get_result__23TAdSinglePlyChrSelectGCFv",
+      "after": "get_load_buffer__12TChCrLoadAfsFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8028D628",
+      "before": "alloc_load_buffer__6TLobbyFl",
+      "after": "advance_character_load_buffer"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8028D714",
+      "before": "start_load_default__6TLobbyFv",
+      "after": "get_character_load_buffer"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8028D738",
+      "before": "TLobby__sub_8028D738",
+      "after": "reset_character_load_buffer"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8028E434",
+      "before": "get_display_index__12TCharaMakingFv",
+      "after": "character_display_index"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8028FAEC",
+      "before": "get_sorted_region_samples__23TAdSinglePlyChrSelectGCFPl",
+      "after": "get_sorted_character_proportion_samples"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802902CC",
+      "before": "reset_creation_parts__23TAdSinglePlyChrSelectGCFv",
+      "after": "bind_character_preview_models"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80292CA4",
+      "before": "count_card_layout_entries__6TLobbyFv",
+      "after": "count_card_layout_entries"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80293D10",
+      "before": "create__15TChCrCharSelectFPv",
+      "after": "create__15TChCrCharSelectFP7TObject"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80293D58",
+      "before": "init_and_create__15TChCrCharSelectFv",
+      "after": "init_and_create__15TChCrCharSelectFP7TObject"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8029737C",
+      "before": "confirm_selection__14TObjCMMainMenuFPv",
+      "after": "confirm_selection__14TObjCMMainMenuFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8029742C",
+      "before": "open_name_menu__14TObjCMMainMenuFPv",
+      "after": "open_name_menu__14TObjCMMainMenuFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8029747C",
+      "before": "open_proportion_menu__14TObjCMMainMenuFPv",
+      "after": "open_proportion_menu__14TObjCMMainMenuFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802974CC",
+      "before": "open_auto_mk_menu__14TObjCMMainMenuFPv",
+      "after": "open_auto_mk_menu__14TObjCMMainMenuFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8029751C",
+      "before": "open_hair_menu__14TObjCMMainMenuFPv",
+      "after": "open_hair_menu__14TObjCMMainMenuFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8029756C",
+      "before": "open_assign_menu__14TObjCMMainMenuFPv",
+      "after": "open_assign_menu__14TObjCMMainMenuFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8029ACB0",
+      "before": "create_TChCrEffTag__FPv",
+      "after": "create_TChCrEffTag__FP7TObject"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802A1B84",
+      "before": "__ct__8TChCrTagFP7TObjectPv",
+      "after": "__ct__8TChCrTagFP7TObjectl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802A1FAC",
+      "before": "__ct__19TChCrTagInformationFP7TObjectPv",
+      "after": "__ct__19TChCrTagInformationFP7TObjectl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802A200C",
+      "before": "create__19TChCrTagInformationFPv",
+      "after": "create__19TChCrTagInformationFl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802A28C0",
+      "before": "__ct__12TChCrTagNameFP7TObjectPv",
+      "after": "__ct__12TChCrTagNameFP7TObjectl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802A2978",
+      "before": "create__12TChCrTagNameFPv",
+      "after": "create__12TChCrTagNameFl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802A2D10",
+      "before": "__ct__17TChCrTagOccHeaderFP7TObjectPv",
+      "after": "__ct__17TChCrTagOccHeaderFP7TObjectl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802A2D6C",
+      "before": "create_ch_cr_tag_occ_header__FPv",
+      "after": "create_ch_cr_tag_occ_header__Fl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802A300C",
+      "before": "__ct__18TChCrTagOccupationFP7TObjectPv",
+      "after": "__ct__18TChCrTagOccupationFP7TObjectl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802A30B0",
+      "before": "create__18TChCrTagOccupationFPv",
+      "after": "create__18TChCrTagOccupationFl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802A3454",
+      "before": "__ct__17TChCrTagPlGraphicFP7TObjectPv",
+      "after": "__ct__17TChCrTagPlGraphicFP7TObjectl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802A34E8",
+      "before": "create__17TChCrTagPlGraphicFPv",
+      "after": "create__17TChCrTagPlGraphicFl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802A54D0",
+      "before": "__ct__14TChCrTagPlBackFP7TObjectPv",
+      "after": "__ct__14TChCrTagPlBackFP7TObjectl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802A552C",
+      "before": "create__14TChCrTagPlBackFPv",
+      "after": "create__14TChCrTagPlBackFl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802AE978",
+      "before": "draw_select_cursor_quads",
+      "after": "draw_quads__14TAdSelectCurGCFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802AEAA4",
+      "before": "fn_802AEAA4",
+      "after": "update_texture_rectangles__14TAdSelectCurGCFl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802AEBA8",
+      "before": "reset_input_state__22TAdEnterSerialAccessGCFv",
+      "after": "reset_entries__14TAdSelectCurGCFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802AEBE4",
+      "before": "add_item_rect__12TLevelSelectFPv",
+      "after": "append_entry__14TAdSelectCurGCFPCv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802AF0E0",
+      "before": "__ct__14TAdSelectCurGCFv",
+      "after": "__ct__14TAdSelectCurGCFP7TObjectPC10NJS_POINT2PC10NJS_POINT2"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802AF274",
+      "before": "TAdSelectCurGC__sub_802AF274",
+      "after": "set_draw_depth__14TAdSelectCurGCFf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802B1850",
+      "before": "set_entry_value__22TAdMultiPlyChrSelectGCFlUl",
+      "after": "set_line__13TAdGuideTxtGCFlPCc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802B19E8",
+      "before": "__ct__13TAdGuideTxtGCFv",
+      "after": "__ct__13TAdGuideTxtGCFP7TObject"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802C4B64",
+      "before": "TAdEnterSerialAccessGC__sub_802C4B64",
+      "after": "draw_selection_plate"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802C4DD0",
+      "before": "push_plate_position__19TAdPlyChrSelPlateGCFPv",
+      "after": "push_plate_position__19TAdPlyChrSelPlateGCFPC21CharacterSlotPosition"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802C5040",
+      "before": "__ct__19TAdPlyChrSelPlateGCFv",
+      "after": "__ct__19TAdPlyChrSelPlateGCFP7TObjectPC17ChrSelPlateLayout"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802C5594",
+      "before": "reset_cursor_state__22TAdMultiPlyChrSelectGCFv",
+      "after": "reset_cursor_state__19TAdChrSelPlyPlateGCFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802C5944",
+      "before": "init_slot_position__22TAdMultiPlyChrSelectGCFlll",
+      "after": "init_slot_position__19TAdChrSelPlyPlateGCFlll"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802C59EC",
+      "before": "clear_slot_entries__22TAdMultiPlyChrSelectGCFl",
+      "after": "clear_slot_entries__19TAdChrSelPlyPlateGCFl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802C5C28",
+      "before": "find_first_open_cell__22TAdMultiPlyChrSelectGCFlPUl",
+      "after": "find_first_open_cell__19TAdChrSelPlyPlateGCFPUl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802D4F2C",
+      "before": "TAdSinglePlyChrSelectGC__ct",
+      "after": "__ct__23TAdSinglePlyChrSelectGCFP7TObject"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802DFF78",
+      "before": "get_or_create__22TAdMultiPlyChrSelectGCFii",
+      "after": "get_or_create__22TAdMultiPlyChrSelectGCFP7TObjectl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802DFFE8",
+      "before": "TAdMultiPlyChrSelectGC__sub_802DFFE8",
+      "after": "get_active_card_slot__19TAdChrSelPlyPlateGCFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802E0008",
+      "before": "set_state_ready__22TAdMultiPlyChrSelectGCFv",
+      "after": "set_state_ready__19TAdChrSelPlyPlateGCFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802E0014",
+      "before": "get_cursor__22TAdMultiPlyChrSelectGCFv",
+      "after": "get_cursor__19TAdChrSelPlyPlateGCFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802E001C",
+      "before": "set_state__22TAdMultiPlyChrSelectGCFl",
+      "after": "set_selection__19TAdChrSelPlyPlateGCFl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802E0024",
+      "before": "TAdMultiPlyChrSelectGC__sub_802E0024",
+      "after": "set_active_card_slot__19TAdChrSelPlyPlateGCFl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802E0044",
+      "before": "get_card_index__22TAdMultiPlyChrSelectGCFv",
+      "after": "get_card_index__19TAdChrSelPlyPlateGCFl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802E0054",
+      "before": "get_selection__22TAdMultiPlyChrSelectGCFv",
+      "after": "get_selection__19TAdChrSelPlyPlateGCFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802E0064",
+      "before": "set_field_4ec__22TAdMultiPlyChrSelectGCFl",
+      "after": "set_cursor_column__19TAdChrSelPlyPlateGCFl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802E006C",
+      "before": "TAdMultiPlyChrSelectGC__sub_802E006C",
+      "after": "set_cursor_fields__19TAdChrSelPlyPlateGCFll"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802E0078",
+      "before": "restore_selection__22TAdMultiPlyChrSelectGCFv",
+      "after": "restore_selection__19TAdChrSelPlyPlateGCFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802E0084",
+      "before": "update_field_4E8__22TAdMultiPlyChrSelectGCFv",
+      "after": "capture_card_index__19TAdChrSelPlyPlateGCFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802E00B4",
+      "before": "get_field_0x530__22TAdMultiPlyChrSelectGCFv",
+      "after": "get_field_0x530__19TAdChrSelPlyPlateGCFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802E0110",
+      "before": "set_active__22TAdEnterSerialAccessGCFv",
+      "after": "lock_navigation__14TAdSelectCurGCFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802E1024",
+      "before": "get_or_create_player__22TAdMultiPlyChrSelectGCFiiii",
+      "after": "get_or_create_player__22TAdMultiPlyChrSelectGCFP7TObjectlll"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80300098",
+      "before": "set_ad_field__6TLobbyFl",
+      "after": "set_selection_index__14TAdSelectCurGCFl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803098F4",
+      "before": "create__22TChCrTagInformationStrFPvPv",
+      "after": "create__22TChCrTagInformationStrFP7TObjectl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8030E284",
+      "before": "__ct__16TAdChrSelASlotGCFP7TObjectPv",
+      "after": "__ct__16TAdChrSelASlotGCFP7TObjectl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8030E2E4",
+      "before": "get_or_create_slot_window__22TAdMultiPlyChrSelectGCFii",
+      "after": "get_or_create_slot_window__22TAdMultiPlyChrSelectGCFP7TObjectl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803218E8",
+      "before": "init__22TAdEnterSerialAccessGCFv",
+      "after": "initialize_serial_input"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803223E4",
+      "before": "get_field20_state__22TAdEnterSerialAccessGCFv",
+      "after": "get_cursor_position__16TKeyBoardControlFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8032242C",
+      "before": "set_state_3__22TAdEnterSerialAccessGCFv",
+      "after": "request_navigation_unlock__14TAdSelectCurGCFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80325764",
+      "before": "add_plate_rect__20TAdChrSelMovePlateGCFPvPv",
+      "after": "add_plate_rect__20TAdChrSelMovePlateGCFP21CharacterSlotPosition"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803258C4",
+      "before": "__ct__20TAdChrSelMovePlateGCFv",
+      "after": "__ct__20TAdChrSelMovePlateGCFP7TObject"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80328360",
+      "before": "update_dial_state__12TAdDialingGCFl",
+      "after": "update_idle_dial_state__12TAdDialingGCFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80328B24",
+      "before": "TAdDialingGC__sub_80328B24",
+      "after": "draw_dialing_rectangle"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8032B12C",
+      "before": "serial_to_hex_string__22TAdEnterSerialAccessGCFi",
+      "after": "serial_to_hex_string__22TAdEnterSerialAccessGCFPCc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8032B2F8",
+      "before": "forward_validate_input",
+      "after": "forward_input__22TAdEnterSerialAccessGCFPvlPCc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80339884",
+      "before": "create__14TChCrEffCtrlPlFv",
+      "after": "create__14TChCrEffCtrlPlFP7TObject"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80339F5C",
+      "before": "close_and_advance__9TSaveChCrFPv",
+      "after": "close_and_advance__9TSaveChCrFl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8033A3D0",
+      "before": "create__9TSaveChCrFPv",
+      "after": "create__9TSaveChCrFl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8033B9D8",
+      "before": "get_field_44__23TAdSinglePlyChrSelectGCFv",
+      "after": "prompt_was_accepted__16TCheckMemoryCardFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8033B9E0",
+      "before": "TAdSinglePlyChrSelectGC__sub_8033B9E0",
+      "after": "enable_prompt__16TCheckMemoryCardFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8033B9EC",
+      "before": "TAdSinglePlyChrSelectGC__sub_8033B9EC",
+      "after": "select_main_window_controller__16TCheckMemoryCardFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8033B9F8",
+      "before": "TAdSinglePlyChrSelectGC__sub_8033B9F8",
+      "after": "is_card_ready__16TCheckMemoryCardFv"
+    }
+  ],
+  "replay_report_sha256": "4ddbe981b9799a86fdd000209d01dff3cb6ae1037b13a59c4bd04c0023d2a819",
+  "replay_check_sha256": "a3989159ba71e2e6a6918d3becce40c36c1a7241b31747ace0dcc068ab3720ed",
+  "original_data_inventory": {
+    "bytes": 1147,
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "upstream_review": {
+    "base": "0fa391a887c664abadc00cba75db1f039aceb647",
+    "card_save_prerequisite": "bbec0f3f2c8cef5253947ec8c0704bc639cddc3a",
+    "head": "d6e66ef2a8f874ab9791efc1628ebd7fc48bdbf5",
+    "tree": "f6b1636fae7e641e43c8b3bb742575e17c0c7184",
+    "paths": 194,
+    "coverage_losses": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "missing_functions": 0,
+      "failures": 0
+    },
+    "report_sha256": "ded01708e59195cac093c870d93220a91a8f5e2a65ea68912826aa5552a120ad",
+    "check_sha256": "83b2ec50785707fb52ccebe4e0400da5b8c4bd8f65cca6b0e0505c9defb2620d",
+    "resolved_overlaps": [
+      "config/GPOE8P/psov3/config.yml",
+      "src/pso/player/TPlayerBattleCtrl4P.cpp",
+      "src/pso/ui/charcreate/TChCrLoadAfs.cpp",
+      "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp",
+      "src/pso/ui/charcreate/TChCrLoadGmNjReq.cpp",
+      "src/pso/ui/charcreate/TObjCMMainMenu_8028EA88.cpp",
+      "src/pso/ui/frontend/TAdChrSelMovePlateGC.cpp",
+      "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp",
+      "src/pso/ui/frontend/TAdEnterPPPPassGC.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C8E0.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+      "src/pso/unk/text_802AE978.cpp"
+    ]
+  },
+  "replay_overlap_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/system/ControllerInputState.h",
+    "include/pso/ui/charcreate/TChCrCharSelect.h",
+    "include/pso/ui/frontend/TAdBackGC.h",
+    "include/pso/ui/frontend/TAdBackTxtGC.h",
+    "include/pso/ui/frontend/TAdChrSelASlotGC.h",
+    "include/pso/ui/frontend/TAdDialingGC.h",
+    "include/pso/ui/frontend/TAdEnterSerialAccessGC.h",
+    "include/pso/ui/frontend/TAdEnterSerialAccessGC_8032AD30.h",
+    "include/pso/ui/frontend/TAdMultiPlyChrSelectGC.h",
+    "include/pso/ui/frontend/TAdPlayerLoadGC.h",
+    "include/pso/ui/frontend/TAdPlayerLoadGC_801E0C30.h",
+    "include/pso/ui/frontend/TAdPlyChrSelPlateGC.h",
+    "include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h",
+    "include/pso/unk/TLobby.h",
+    "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+    "src/pso/network/TPlyJoinLobbyEntry.cpp",
+    "src/pso/object/ending/TObjOnlineEnding.cpp",
+    "src/pso/player/TObjPlayer_80011014.cpp",
+    "src/pso/player/TObjPlayer_801C7430.cpp",
+    "src/pso/player/TPlayerBattleCtrl4P.cpp",
+    "src/pso/quest/QuestOpcodeHandlers.cpp",
+    "src/pso/quest/TQuestThread.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer_8006FC34.cpp",
+    "src/pso/system/TLoadCtrl.cpp",
+    "src/pso/system/save/TCheckMemoryCard.cpp",
+    "src/pso/system/save/TSaveChCr.cpp",
+    "src/pso/ui/TLevelSelect.cpp",
+    "src/pso/ui/TLevelSelect_802AEBA8.cpp",
+    "src/pso/ui/charcreate/TChCrLoadAfs.cpp",
+    "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp",
+    "src/pso/ui/charcreate/TChCrLoadGmNjReq.cpp",
+    "src/pso/ui/charcreate/TObjCMMainMenu_8028EA88.cpp",
+    "src/pso/ui/charcreate/TObjCMName.cpp",
+    "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp",
+    "src/pso/ui/frontend/TAdAgreementBaseGC.cpp",
+    "src/pso/ui/frontend/TAdBackGC_8029A6EC.cpp",
+    "src/pso/ui/frontend/TAdBackTxtGC.cpp",
+    "src/pso/ui/frontend/TAdChrSelASlotGC.cpp",
+    "src/pso/ui/frontend/TAdChrSelBSlotGC.cpp",
+    "src/pso/ui/frontend/TAdChrSelMovePlateGC.cpp",
+    "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp",
+    "src/pso/ui/frontend/TAdDialingGC.cpp",
+    "src/pso/ui/frontend/TAdEnterBaseGC.cpp",
+    "src/pso/ui/frontend/TAdEnterPPPPassGC.cpp",
+    "src/pso/ui/frontend/TAdEnterPasswordGC.cpp",
+    "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+    "src/pso/ui/frontend/TAdEp3Exist.cpp",
+    "src/pso/ui/frontend/TAdMcSelectGC.cpp",
+    "src/pso/ui/frontend/TAdMultiChgGameModeGC.cpp",
+    "src/pso/ui/frontend/TAdMultiChgGameModeGC_8023E7A8.cpp",
+    "src/pso/ui/frontend/TAdMultiChgGameModeGC_8036DE10.cpp",
+    "src/pso/ui/frontend/TAdMultiConfirmGC.cpp",
+    "src/pso/ui/frontend/TAdMultiPlyChrSelectGC.cpp",
+    "src/pso/ui/frontend/TAdMultiSaveGC.cpp",
+    "src/pso/ui/frontend/TAdMultiSelGameModeGC.cpp",
+    "src/pso/ui/frontend/TAdPlayerLoadGC_801E0C30.cpp",
+    "src/pso/ui/frontend/TAdPlyChrSelPlateGC.cpp",
+    "src/pso/ui/frontend/TAdSelectCurGC.cpp",
+    "src/pso/ui/frontend/TAdSelectCurGC_802AED98.cpp",
+    "src/pso/ui/frontend/TAdSelectGameModeGC_802C4748.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80243218.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C8E0.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8033A8EC.cpp",
+    "src/pso/ui/frontend/TAdStorySelectGC_802C3284.cpp",
+    "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+    "src/pso/ui/frontend/TAdWarningBaseGC.cpp",
+    "src/pso/ui/frontend/TAdYesNoBaseGC.cpp",
+    "src/pso/ui/window/TWindowKeyBoardHard_801A529C.cpp",
+    "src/pso/ui/window/TWindowKeyBoardHard_801FBA48.cpp",
+    "src/pso/ui/window/TWindowMessage.cpp",
+    "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_80071774.cpp",
+    "src/pso/unk/TLobby_8006F278.cpp",
+    "src/pso/unk/TLobby_8028EA28.cpp",
+    "src/pso/unk/TLobby_80291D94.cpp",
+    "src/pso/unk/TUnk_804C2298.cpp",
+    "src/pso/unk/text_802AE978.cpp"
+  ],
+  "preserved_symbols": [
+    "TAdPlayerLoadGC::delete_memcard_file",
+    "TAdTimeSetGC::poll_load_status",
+    "has_serial_input__22TAdEnterSerialAccessGCFv",
+    "test_previous_buttons_remapped",
+    "test_controller_flag_4c_color",
+    "TLobby__sub_801E38A0"
+  ],
+  "fork_layer": {
+    "workspace_patch_paths": 131,
+    "workspace_patch_sha256": "98ddbfe10032c2d548db0af9acc2499f08351695a10843d47c78c76f7a54aae8",
+    "materialized_tree": "56f6c5a480b5ae2fd0fe1de1581eb8a02df1de9f",
+    "round_trip_listing_sha256": "61fed08c9852664871126efc370d72736eed419ce74bb83f25947a53d2b40d2a",
+    "force_active_names": 27031,
+    "tool_tests_passed": 294,
+    "layer_tests_passed": 11,
+    "coverage_losses": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "missing_functions": 0,
+      "failures": 0
+    },
+    "card_save_probe": {
+      "images": [
+        "retail",
+        "cumulative",
+        "standalone",
+        "fork_layer"
+      ],
+      "artwork": true,
+      "save_images_per_build": 15,
+      "header_reads_per_build": 30,
+      "result": "pass"
+    }
+  },
+  "historical_path_inventory": {
+    "pinned_base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+    "canonical_source": "83decd2d24dc6104040afd060e0cc2754b110409",
+    "earlier_review_queue": "47ade105c778197344c29e2d058cd9754a90893c",
+    "outside_replay_before": 739,
+    "outside_replay_after": 656,
+    "outside_both_replay_and_queue": 82,
+    "remaining_by_owner": {
+      "ui": 161,
+      "boss": 105,
+      "unk": 98,
+      "enemy": 76,
+      "player": 51,
+      "item": 25,
+      "object": 24,
+      "effect": 22,
+      "system": 19,
+      "render": 16,
+      "camera": 16,
+      "math": 9,
+      "technique": 8,
+      "network": 6,
+      "quest": 4,
+      "map": 4,
+      "weapon": 3,
+      "libs/PowerPC_EABI_Support": 2,
+      "npc": 2,
+      "audio": 2,
+      "collision": 1,
+      "animation": 1,
+      "libs/dolphin": 1
+    },
+    "method": "Path inventory without rename detection."
+  },
+  "encounter_replay_previews": {
+    "boss-arena-drawing": {
+      "donor": "125ed8f5b0",
+      "donor_base": "a5aed4817c",
+      "paths": 25,
+      "overlaps": 15,
+      "paths_outside_current_replay": 8
+    },
+    "dark-falz-cinematics-and-rendering": {
+      "donor": "125ed8f5b0",
+      "donor_base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "paths": 71,
+      "overlaps": 39,
+      "paths_outside_current_replay": 23
+    },
+    "raft-tunnel-and-dust": {
+      "donor": "2032c512f9",
+      "donor_base": "c572111ed6",
+      "paths": 20,
+      "overlaps": 2,
+      "paths_outside_current_replay": 7
+    },
+    "pan-arms-body-and-halves": {
+      "donor": "42e8cdb3d2",
+      "donor_base": "52fb47e4500af657ee229f91105c36434a1c1732",
+      "paths": 15,
+      "overlaps": 9,
+      "paths_outside_current_replay": 8
+    }
+  }
+}

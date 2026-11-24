@@ -1,0 +1,100 @@
+{
+  "upstream_master": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "published_pr_heads": {
+    "333": "7301eadf78b49e8cbe96f1e92b5543c7719eb321",
+    "334": "9f03861d413309966bb1689099353df4922302ca",
+    "335": "98923bc837181b4ec4671b1a24f4bb7aec095173"
+  },
+  "pr_335": {
+    "url": "https://github.com/zeroz41/pso-decomp/pull/335",
+    "previous_head": "1157670533616bf372024b0d2df01efd77e43512",
+    "head": "98923bc837181b4ec4671b1a24f4bb7aec095173",
+    "tree_at_both_heads": "c1b0cb89efa8e2e4184f3a864b115a0c747ee77c"
+  },
+  "fast_forwards": {
+    "great-merge/incoming/pr-335": {
+      "previous": "e546dc7bfff9337eb4abd2c47ba82e94225c2ec0",
+      "head": "b916cd59fba37ca983d6518397040e1d84460702",
+      "tree": "a2fd5195dce9a553e3ed365b666f5e23028ad837"
+    },
+    "great-merge/incoming/prs-333-334-335": {
+      "previous": "e08d32c5f4ab5a6c5356352249438b29dff014fa",
+      "head": "69d2b0ad0e60c41883af35f87fda70573e25514a",
+      "tree": "12d75f9f2c61f3672aadb60b91e584ec774b7dfa"
+    },
+    "great-merge/incoming/replayed-source": {
+      "previous": "696d108dadc33738f0bd2152e67c22abddf0f143",
+      "head": "510be1d79a930f3bf933e4ff1b2df61566c75b47",
+      "tree": "daa6144201e6c744e776bdeba4ec94d639360918"
+    },
+    "great-merge/incoming/layered-replay": {
+      "previous": "90c95cea0d8f377e7d15d63fc2b2361b602091cf",
+      "head": "94b1f933a608c82d12b323b5b9a2791f62ea6929",
+      "tree": "58f6aac7ebd0774c82d66131984d8fc9ea9b3831"
+    }
+  },
+  "validation": {
+    "method": "Git tree identity at every refreshed checkpoint, plus published PR ancestry checks",
+    "prior_source_and_fork_layer_validation": "2026-11-20-bml-archive-lifetime-replay.json",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3"
+  },
+  "source_path_audit": {
+    "canonical": "83decd2d24dc6104040afd060e0cc2754b110409",
+    "prospective_replay": "510be1d79a930f3bf933e4ff1b2df61566c75b47",
+    "canonical_changed_from_master": 2742,
+    "prospective_changed_from_master": 1901,
+    "canonical_paths_identical_to_replay": 260,
+    "canonical_paths_outside_replay_diff": 1148,
+    "outside_replay_diff_by_group": {
+      "ui": 321,
+      "unk": 167,
+      "weapon": 142,
+      "boss": 107,
+      "enemy": 76,
+      "player": 66,
+      "item": 49,
+      "system": 40,
+      "object": 32,
+      "quest": 29,
+      "effect": 26,
+      "render": 20,
+      "camera": 18,
+      "audio": 14,
+      "math": 9,
+      "technique": 8,
+      "network": 7,
+      "map": 4,
+      "npc": 4,
+      "src/musyx": 3,
+      "libs/dolphin": 2,
+      "libs/PowerPC_EABI_Support": 2,
+      "animation": 1,
+      "collision": 1
+    },
+    "changed_by_both_but_different": 1334,
+    "changed_by_both_but_different_by_group": {
+      "ui": 356,
+      "object": 204,
+      "boss": 167,
+      "unk": 131,
+      "enemy": 108,
+      "npc": 65,
+      "player": 64,
+      "effect": 54,
+      "weapon": 44,
+      "technique": 31,
+      "item": 25,
+      "system": 19,
+      "quest": 16,
+      "render": 11,
+      "audio": 10,
+      "map": 9,
+      "camera": 9,
+      "network": 6,
+      "config/GPOE8P": 4,
+      "configure.py": 1
+    },
+    "method": "No rename detection. Counts include moved files and alternate implementations."
+  }
+}

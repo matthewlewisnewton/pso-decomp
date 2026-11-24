@@ -1,0 +1,449 @@
+{
+  "source": "28b1b83ec01487331f6a9597faa0ef3f2c2c24e0",
+  "previous_source": "aa4478e754d63f737cd14166871b8c23d0a698c3",
+  "upstream": "2ea1c02d4c0b7fa917ede02beac56fcaf3f4b87e",
+  "paths": [
+    "src/pso/player/TPlayerFootStamp.cpp"
+  ],
+  "save_quest_and_asset_review": {
+    "head": "773c658eccd69066f6592db2bc4cfc6add2fbb02",
+    "base": "a5d9b6d32225e338cfe71cdcff5184520c9667cd",
+    "paths": 172,
+    "commits": [
+      "acfb6921051ba9f9e4316ed09a430c058b534912",
+      "1aa3644e6cc510953ee91a0f0e9ca261a018e011",
+      "084752e73de9724a630f52015429ca75ce72727c",
+      "37b71fe8272efc9138ad5474ee5d103752cd34d8",
+      "773c658eccd69066f6592db2bc4cfc6add2fbb02"
+    ],
+    "replay_map": [
+      {
+        "donor": "e7c9fa68c7d09b684d88719cba25c6ff60a432eb",
+        "head": "acfb6921051ba9f9e4316ed09a430c058b534912",
+        "tree": "10b34a78936deb24eff780c17c281931d1222bf1"
+      },
+      {
+        "donor": "7d9bb83d2dbb17b3a5c1f13fa77983698e02c1d9",
+        "head": "1aa3644e6cc510953ee91a0f0e9ca261a018e011",
+        "tree": "3c07cdb9ec5b319d0192565457d30068f736431d"
+      },
+      {
+        "donor": "36e138bd4c2e2cb11ecc3c7673065751bb59577e",
+        "head": "084752e73de9724a630f52015429ca75ce72727c",
+        "tree": "62ab2c0b797ca116a9cc46204d03ae6a8da8acc2"
+      },
+      {
+        "donor": "a1138c86719deeb063dc385049c600a64c58767a",
+        "head": "37b71fe8272efc9138ad5474ee5d103752cd34d8",
+        "tree": "8c0298b009271d0e71cc258e1c07e5ebefdfa12d"
+      }
+    ],
+    "components": [
+      "2026-11-22-upstream-365-card-load-validation.json",
+      "2026-11-22-upstream-365-quest-selection-validation.json",
+      "2026-11-22-upstream-365-quest-cache-validation.json",
+      "2026-11-22-upstream-365-asset-io-validation.json"
+    ],
+    "runtime": {
+      "probe-card-selection": {
+        "results": [
+          "psov3.dol: load status, slot geometry, warnings, card polling and file metadata passed."
+        ],
+        "log_sha256": "53d8b591ae2683d066665c3ed24edca4208bdcaec2718b1065c9db2d5cf4fc31"
+      },
+      "probe-aram": {
+        "results": [
+          "/tmp/gm-stage-archive-replay.PGoFTj/upstream-review/build/GPOE8P/psov3.dol: signed handles, ARAM callback ownership, rounded reads, EOF clamping and timeout cleanup passed"
+        ],
+        "log_sha256": "da25a7794e9bfdf030f61413032febfa3998144e8dfec35e78f0eafe831223e5"
+      },
+      "probe-cache": {
+        "results": [
+          "/tmp/gm-stage-archive-replay.PGoFTj/upstream-review/build/GPOE8P/psov3.dol: 128 slots, ten linked pages, 80 buckets, 512 free-list nodes, file reads and page eviction passed"
+        ],
+        "log_sha256": "611b2d5b66a42620743c4188299a54a66279b3a20f5a99f5f700e654b30ad848"
+      },
+      "probe-quest-selection": {
+        "results": [
+          "psov3.dol: Challenge and online titles, complete entry traversal, callbacks and release passed."
+        ],
+        "log_sha256": "8f306b4948f3b4b4f72da0b847caacb6b9e42af514cb88dfd329ce68544be053"
+      },
+      "probe-resources": {
+        "results": [
+          "File queue lifecycle, sector tails and both GVM buffer paths passed.",
+          "GBA filename and destination dispatch at the original size limit passed."
+        ],
+        "log_sha256": "1b01bf7b002baf4258237c2af03533ea26de0c03b4197e131d48589c3b3548be"
+      },
+      "probe-bml": {
+        "results": [
+          "BML initialization, named requests, archive reads, completion and cancellation passed.",
+          "Texture input layout and both entry flag paths passed."
+        ],
+        "log_sha256": "817c1e952f2e96a4540bbf755baddd0e2bcc71952ac044ade0b6f9213ce88d7f"
+      },
+      "probe-footstamp-review": {
+        "results": [
+          "PsoV3.dol: footprint GVM load, culling, texture binding and ordered release passed.",
+          "psov3.dol: footprint GVM load, culling, texture binding and ordered release passed."
+        ],
+        "log_sha256": "baf56c191c207c5648803656a9854761b233004c957f88f2231360b784e12ee8"
+      }
+    }
+  },
+  "residual": {
+    "rehearsal_head": "fffe22a3771deb9e549b04297bfcbe78fd4b09d9",
+    "before": 552,
+    "after": 482,
+    "newly_identical_paths": [
+      "include/pso/quest/OnlineQuestMenuRecords.h",
+      "include/pso/quest/QuestDownloadRecords.h",
+      "include/pso/quest/QuestDownloadServer.h",
+      "include/pso/quest/QuestDownloadText.h",
+      "include/pso/quest/TQuestListOnline.h",
+      "include/pso/quest/TQuestVmDownLoadServer.h",
+      "include/pso/quest/TQuestVmDownLoadServer_803E5668.h",
+      "include/pso/quest/TQuestVmDownLoadServer_803E6970.h",
+      "include/pso/system/BmlResource.h",
+      "include/pso/system/GbaDownloadRuntime.h",
+      "include/pso/system/TLanguage.h",
+      "include/pso/system/TLanguage_801E4874.h",
+      "include/pso/system/save/CardFileInfo.h",
+      "include/pso/ui/frontend/TAdChrSelSlotGC.h",
+      "include/pso/ui/frontend/TAdMcSelectGC.h",
+      "include/pso/ui/frontend/TAdPlayerLoadGC.h",
+      "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.h",
+      "include/pso/unk/TLobby_8001EF5C.h",
+      "include/pso/unk/TLobby_800FA2A0.h",
+      "include/pso/unk/TLobby_800FA848.h",
+      "include/pso/unk/text_800FA464.h",
+      "include/pso/unk/text_802432F0.h",
+      "include/pso/unk/text_8033F314.h",
+      "libs/dolphin/include/dolphin/ar.h",
+      "src/pso/boss/dragon/TObjBoss1Crater.cpp",
+      "src/pso/item/shop/TShopGenerator.cpp",
+      "src/pso/npc/TNpcPlayer_80190E64.cpp",
+      "src/pso/object/door/TObjDoor_8018E358.cpp",
+      "src/pso/object/fence/TLazerFenceSw.cpp",
+      "src/pso/object/warp/TObjMapWarpAncient.cpp",
+      "src/pso/player/TObjPlayer_803DA204.cpp",
+      "src/pso/player/TPlyItem.cpp",
+      "src/pso/quest/QuestDownloadAramFile.cpp",
+      "src/pso/quest/TQuestListOnline.cpp",
+      "src/pso/quest/TQuestVmDownLoadServer_803E5668.cpp",
+      "src/pso/quest/TQuestVmDownLoadServer_803E6970.cpp",
+      "src/pso/quest/TQuestVmDownLoadServer_803E8918.cpp",
+      "src/pso/quest/TQuestVmDownLoadServer_803EB0D8.cpp",
+      "src/pso/system/GbaDownloadRuntime.cpp",
+      "src/pso/system/SwitcherLaunch.cpp",
+      "src/pso/system/save/TCheckMemoryCard.cpp",
+      "src/pso/system/save/TSaveChCr.cpp",
+      "src/pso/system/scene/TSceneSora.cpp",
+      "src/pso/ui/city/THunterGuildSeqOffline_80213788.cpp",
+      "src/pso/ui/frontend/TAdChrSelASlotGC.cpp",
+      "src/pso/ui/frontend/TAdChrSelBSlotGC.cpp",
+      "src/pso/ui/frontend/TAdChrSelSlotGC.cpp",
+      "src/pso/ui/frontend/TAdMcCheckGC.cpp",
+      "src/pso/ui/frontend/TAdMcSelectGC.cpp",
+      "src/pso/ui/frontend/TAdMultiChgGameModeGC_8036DE10.cpp",
+      "src/pso/ui/frontend/TAdPlayerLoadGC.cpp",
+      "src/pso/ui/frontend/TAdPlayerLoadGC_801E0C30.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C650.cpp",
+      "src/pso/ui/frontend/TAdTrialAgreementGC.cpp",
+      "src/pso/unk/TLobby_800FA044.cpp",
+      "src/pso/unk/TLobby_800FA0A4.cpp",
+      "src/pso/unk/TLobby_800FA12C.cpp",
+      "src/pso/unk/TLobby_800FA164.cpp",
+      "src/pso/unk/TLobby_800FA2A0.cpp",
+      "src/pso/unk/TLobby_800FA388.cpp",
+      "src/pso/unk/TLobby_800FA774.cpp",
+      "src/pso/unk/TLobby_800FA848.cpp",
+      "src/pso/unk/TLobby_801A3C48.cpp",
+      "src/pso/unk/text_80066F10.cpp",
+      "src/pso/unk/text_800F9FD0.cpp",
+      "src/pso/unk/text_800FA260.cpp",
+      "src/pso/unk/text_800FA7E0.cpp",
+      "src/pso/unk/text_802432F0.cpp",
+      "src/pso/unk/text_8028A820.cpp",
+      "src/pso/unk/text_8033F314.cpp"
+    ]
+  },
+  "combined_paths_from_upstream": 1210,
+  "validation": {
+    "source": {
+      "baseline": "aa4478e754d63f737cd14166871b8c23d0a698c3",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "b7ef59ce5f05d52a0b99f5c11907f7321b16c8c6c24753265640cf14dc5d402b",
+      "report_sha256": "a7b37de363a8f44007bc7aaee2b9fb5bc0fbea8cef4ce2db6b0a6c9dd6969ca6"
+    },
+    "layer": {
+      "baseline": "28b1b83ec01487331f6a9597faa0ef3f2c2c24e0",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "a7b37de363a8f44007bc7aaee2b9fb5bc0fbea8cef4ce2db6b0a6c9dd6969ca6"
+    },
+    "review-final": {
+      "baseline": "a5d9b6d32225e338cfe71cdcff5184520c9667cd",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8001F018",
+          "before": "load_texture_sub__11BmlResourceFPvl",
+          "after": "load_texture_sub__11BmlResourceFPCcl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8001F128",
+          "before": "load_bml_exec__6TLobbyFPUcPUc",
+          "after": "load_bml_exec__6TLobbyFP11BmlResourcePCc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8001F998",
+          "before": "load_bin_motion_callback__FP20BmlMotionLoadRequest",
+          "after": "load_bin_motion_callback__FPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8001FA1C",
+          "before": "load_bin_model_callback__FP19BmlModelLoadRequest",
+          "after": "load_bin_model_callback__FPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8001FCC4",
+          "before": "load_bin_motion__11BmlResourceFPvl",
+          "after": "load_bin_motion__11BmlResourceFPCcl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8001FD98",
+          "before": "load_bin_model__11BmlResourceFPvl",
+          "after": "load_bin_model__11BmlResourceFPCcl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80020004",
+          "before": "__ct__11BmlResourceFlP21BmlResourceDescriptorllPv",
+          "after": "__ct__11BmlResourceFlP21BmlResourceDescriptorPFPv_vPvPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800FA044",
+          "before": "add_named_entry__6TLobbyFll",
+          "after": "add_named_entry__6TLobbyFP11BmlResourcePCc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800FA164",
+          "before": "create_file_load_entry__6TLobbyFllUllPPv",
+          "after": "create_file_load_entry__6TLobbyFPCcP16GinjaTextureListPFPv_vPCvPPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800FA2A0",
+          "before": "create_named_entry__6TLobbyFiiUiiPv",
+          "after": "create_named_entry__6TLobbyFPCcPvPFPv_vPCvPPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800FA388",
+          "before": "request_file_read__6TLobbyFllPlPPv",
+          "after": "request_file_read__6TLobbyFPCcPvPlPPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800FA7E0",
+          "before": "pop_stack_entry__6TLobbyFs",
+          "after": "pop_stack_entry__6TLobbyFP20AsyncFileReadRequests"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800FA848",
+          "before": "link_into_list__FPv",
+          "after": "link_into_list__FP20AsyncFileReadRequest"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801E4874",
+          "before": "load_gvm_texture_file__Fl",
+          "after": "load_gvm_texture_file__FPCc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801E4A44",
+          "before": "read_file_header__9TLanguageFiPv",
+          "after": "read_file_header__9TLanguageFPUcP13GvmFileHeader"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801E4AB0",
+          "before": "read_into_buffer__9TLanguageFll",
+          "after": "read_into_buffer__9TLanguageFPvl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802C74AC",
+          "before": "init_slot_entry__15TAdChrSelSlotGCFlPv",
+          "after": "init_slot_entry__15TAdChrSelSlotGCFlPC21CharacterSlotPosition"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802C7560",
+          "before": "init_slot__15TAdChrSelSlotGCFlPv",
+          "after": "init_slot__15TAdChrSelSlotGCFlPC21CharacterSlotPosition"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A0A4",
+          "before": "create__13TAdMcSelectGCFPv",
+          "after": "create__13TAdMcSelectGCFP7TObject"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032C854",
+          "before": "send_data__6TLobbyFl",
+          "after": "send_data__6TLobbyFPCc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803E8790",
+          "before": "aram_read_thunk__22TQuestVmDownLoadServerFUli",
+          "after": "aram_read_thunk__22TQuestVmDownLoadServerFlPvl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803F0AB8",
+          "before": "aram_dma_read__22TQuestVmDownLoadServerFPvPvi",
+          "after": "aram_dma_read__22TQuestVmDownLoadServerFlPvl"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "2480819851b3fb819f31017d2dc2d9d8ea41c4a879447e216bdad4eda504ba33",
+      "report_sha256": "5302d24fa16b749f419c70b48eee88b13534ca861c4a30e798ff282c8e8548fb"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "8db2f5f1309bf663c6e910cb1ede2a65ef92913e54c91dc50bff91abc16f9147"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "76f18e8e25fb32f42415da79bbde2aa21b3b3b134fe432726b5108a89e22edfd"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "exact_units": {
+    "source": {
+      "pso/player/TPlayerFootStamp": {
+        "functions": 8,
+        "data_bytes": 408
+      }
+    },
+    "layer": {
+      "pso/player/TPlayerFootStamp": {
+        "functions": 8,
+        "data_bytes": 408
+      }
+    },
+    "review-final": {
+      "pso/player/TPlayerFootStamp": {
+        "functions": 8,
+        "data_bytes": 408
+      }
+    }
+  },
+  "runtime": {
+    "images": [
+      "retail",
+      "source",
+      "materialized fork"
+    ],
+    "checks": {
+      "footstamp": {
+        "probe_sha256": "5884b44bf1fd1d096fbcc518ddc871bf14a94829ba9e4296579e350c95a1595c",
+        "log_sha256": "8a31a4f4cfda091a8372aa9d78a6364ad3b588a72742cab67682eab6dedd30e5"
+      }
+    }
+  },
+  "historical": {
+    "closed": {
+      "4409": {
+        "path": "src/pso/player/TPlayerFootStamp.cpp",
+        "reason": "The native footprint constructor uses the player's original rotation record, class size tables and ground contact. The GVM texture pointer reaches binding and ordered release. Drawing preserves the camera position, culling radius and original strip."
+      }
+    },
+    "scoped": {},
+    "open_rows": 263,
+    "comparison_sha256": "622196a09510139fba1af9ce4564667aa5d5d63ceea8c78287e3805708d62f1d"
+  },
+  "fork_workspace": {
+    "trial": "c854b258b897834188aa1d27c5e2b946bee6de4a",
+    "overlay_paths": 130,
+    "force_active_count": 27033,
+    "keep_list_updates": [],
+    "materialized_tree": "88976f02f25b93fb6f8a996997e11a15c6c2f735",
+    "archive_sha256": "49fdafb0bbe0341b7ce71d15bfcdf068f0a9e6501602ded3b9d0701d73c23a89"
+  }
+}

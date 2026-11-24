@@ -1,0 +1,9 @@
+#ifndef PSO_UI_WINDOW_TWINDOWSUBTECHNIQUE_80286BD4_H
+#define PSO_UI_WINDOW_TWINDOWSUBTECHNIQUE_80286BD4_H
+
+#include "types.h"
+
+extern "C" {
+}
+
+#endif

@@ -2,27 +2,20 @@
 #define PSO_NPC_TOBJNPCARW00_H
 
 #include "types.h"
-#include "pso/npc/TUnk_804A8640.h"
+#include "pso/npc/TObjNpcFemale.h"
 
-struct TObjNpcARW00 : public TUnk_804A8640 {
+struct TObjNpcARW00 : public TObjNpcFemale {
+    TObjNpcARW00(TObject *parent, void *set_data);
     virtual ~TObjNpcARW00();
     virtual void play_voice();
     static void free_resources();
     static void load_resources();
+    static void *create(void *set_data);
+    static const char *name;
+    static void **static_model;
+    static NJS_TEXLIST *gvm_texture_handle;
 };
 
-typedef char TObjNpcARW00_size[sizeof(TObjNpcARW00) == 0x3B8 ? 1 : -1];
-
-extern "C" {
-u8 *TObjNpcARW00__ct(u8 *arg0, s32 arg1, s32 arg2);
-void *__dt__12TObjNpcARW00Fv(void *arg0, s16 arg1);
-}
-
-// --- C functions defined in TObjNpcARW00.cpp ---
-extern "C" {
-u8 *TObjNpcARW00__ct(u8 *arg0, s32 arg1, s32 arg2);
-void *__dt__12TObjNpcARW00Fv(void *arg0, s16 arg1);
-}
-// --- end of C functions
+LAYOUT_ASSERT(TObjNpcARW00_size, sizeof(TObjNpcARW00) == 0x3B8);
 
 #endif

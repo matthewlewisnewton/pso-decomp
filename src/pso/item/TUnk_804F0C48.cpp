@@ -1,28 +1,23 @@
 #include "types.h"
-#include "pso/TMainTask.h"
+#include "pso/system/task/TMainTask.h"
 #include "pso/item/TItem.h"
-#include "pso/unk/TUnk_804F0C48.h"
+#include "pso/item/TUnk_804F0C48.h"
 #include "pso/player/TObjPlayer.h"
 
 #include "pso/item/TItemData.h"
+#include <stdlib.h>
 
 // What the item can turn into: item codes with their weights out of 256.
 struct ItemChoice { u8 code[3]; u8 weight; };
 
 struct ItemChoiceList { s32 count; ItemChoice *choices; };
 
-extern "C" {
-ItemChoiceList *get_item_pmt_entry__10TObjPlayerFUc(u8);
-s32 rand(void);
-static const f32 lbl_805DFE28 = 100.0f;
-static const f32 lbl_805DFE2C = 3.0517578e-05f;
-}
 
 void TUnk_804F0C48::apply_use_effect() {
     ItemChoiceList *list;
-    list = get_item_pmt_entry__10TObjPlayerFUc(this->get_item_index());
+    list = (ItemChoiceList *)TObjPlayer::get_item_pmt_entry(this->get_item_index());
     if (list != NULL) {
-        s32 r = (s32)(lbl_805DFE28 * (lbl_805DFE2C * (f32)rand()));
+        s32 r = (s32)(100.0f * (3.0517578e-05f * (f32)rand()));
         ItemChoice *choice = list->choices;
         s32 i;
         for (i = list->count; i != 0; i++) {
@@ -47,7 +42,7 @@ TUnk_804F0C48::TUnk_804F0C48(TObject *parent, u8 *item) : TItemObject(parent, it
     clear_item_flags(ITEM_FLAG_CONSUMABLE);
 }
 
-TUnk_804F0C48 *TUnk_804F0C48::create(u8 *item) {
+TItem *TUnk_804F0C48::create(u8 *item) {
     if (item != NULL) {
         return new TUnk_804F0C48(tl_05, item);
     }

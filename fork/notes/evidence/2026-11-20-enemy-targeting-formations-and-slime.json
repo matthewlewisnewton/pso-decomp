@@ -1,0 +1,1301 @@
+{
+  "upstream_master": "0fa391a887c664abadc00cba75db1f039aceb647",
+  "historical_donors": [
+    {
+      "scope": "Bal Claw child selection",
+      "commit": "b26cf3e04adfe18843e1f7d30116e212b7caee39"
+    },
+    {
+      "scope": "Shared enemy targeting and actor lookup",
+      "commit": "a9c6341c405fc7b7bfb197a3d963d7be6b8befb0"
+    },
+    {
+      "scope": "Canadin formation and action dispatch",
+      "commit": "aaf31791f645fa9d93571cc957d4632da7d6dfd1"
+    },
+    {
+      "scope": "Slime animation and spawned attacks",
+      "commit": "4d38fbac428eac879a54e375460f5442ff8dbe5e"
+    }
+  ],
+  "scope": [
+    "Share the enemy player-search, attack-search and collision actor lookup declarations across enemy callers.",
+    "Recover the Canadin formation and action methods and typed movement arguments.",
+    "Give Bal Claw the actual body state, child selection, slot-position and claw construction methods.",
+    "Recover typed Slime animation state, child slots, tail-attack poses, and water-bomb behavior while retaining the existing BML resource lifetime and tail-hit method name."
+  ],
+  "replay_checkpoints": [
+    {
+      "head": "519d62273c724c1fa8022b836982550806d68d50",
+      "check_sha256": "18f5cf62e067b415f76b2cca2e281d4fe2a44a9901dbd87b9d1746f38d33de3a"
+    },
+    {
+      "head": "f5977149e6f8e3908241c779ba07811dbda4df71",
+      "check_sha256": "68b489f4f9a4d487e70f29ac2bbd903a1c779b5f2818fac1584a77e3f72f7eaf"
+    },
+    {
+      "head": "4ac68890e0e248449fd8b7975d6516a1556772e1",
+      "check_sha256": "369284c32728fe5e24a61423b68f15e00cea1ad35a06a86cb26276b8c92dc0f4"
+    }
+  ],
+  "replay_base": "d8d3d927b73b20e46e1eea2776c26701773bf9f9",
+  "replay_head": "9a864ea5d003aa8e7eeefdca1df984363eda0d04",
+  "replay_tree": "da526de1c587bc3c909ff3726196bca413153feb",
+  "replay_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/EnemyTargeting.h",
+    "include/pso/enemy/TObjEnePanBARA.h",
+    "include/pso/enemy/TUnk_804909C4.h",
+    "include/pso/enemy/balclaw/TObjEneBalClaw.h",
+    "include/pso/enemy/balclaw/TObjEneBalClawBody.h",
+    "include/pso/enemy/balclaw/TObjEneBalClawClaw.h",
+    "include/pso/enemy/canadin/TObjEneMe1Canadin.h",
+    "include/pso/enemy/canadin/TObjEneMe1CanadinLeader.h",
+    "include/pso/enemy/deldepth/TObjEneDelDepth.h",
+    "include/pso/enemy/panarms/TObjEnePanarms.h",
+    "include/pso/enemy/slime/SlimeAnimationState.h",
+    "include/pso/enemy/slime/TObjEneSlime.h",
+    "include/pso/enemy/slime/TObjEneSlimeOne.h",
+    "include/pso/enemy/slime/TObjEneSlimeOne_800EC394.h",
+    "include/pso/enemy/slime/TObjEneSlimeTailAttack.h",
+    "include/pso/enemy/slime/TObjEneSlimeWaterBomb.h",
+    "include/pso/object/base/CollisionActorLookup.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/player/TObjPlayer_80011014.h",
+    "include/pso/player/TObjPlayer_801542CC.h",
+    "src/pso/enemy/TUnk_804909C4.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+    "src/pso/enemy/beast/TObjEneBeast_800C4E08.cpp",
+    "src/pso/enemy/canadin/CanadinEffects.cpp",
+    "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+    "src/pso/enemy/darkgunner/TObjEneDarkGunCenter.cpp",
+    "src/pso/enemy/deldepth/DelDepthMotion.cpp",
+    "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+    "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+    "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+    "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+    "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+    "src/pso/enemy/gyaranzo/TObjGyaranzoMissile.cpp",
+    "src/pso/enemy/gyaranzo/TObjGyaranzoMissile_800D40D8.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/enemy/lappy/TObjEneLappy.cpp",
+    "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+    "src/pso/enemy/moja/TObjEneMoja.cpp",
+    "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarmsAtkColli.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+    "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+    "src/pso/enemy/recon/TObjEneRecon.cpp",
+    "src/pso/enemy/recon/TObjEneReconBomb.cpp",
+    "src/pso/enemy/slime/TObjEneSlimeOne_800EC394.cpp",
+    "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+    "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+    "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp",
+    "src/pso/player/TObjPlayer_80011014.cpp",
+    "src/pso/player/TObjPlayer_800EBE2C.cpp",
+    "src/pso/player/TObjPlayer_801542CC.cpp"
+  ],
+  "replay_checks": {
+    "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "matched_functions": 27572,
+    "matched_code_bytes": 4353092,
+    "matched_data_bytes": 1758510,
+    "compiled_source_units": 2448,
+    "coverage_losses": {
+      "regressions": 0,
+      "linked_functions_lost": 0,
+      "data_regressions": 0,
+      "data_coverage_lost": 0,
+      "linked_data_lost": 0
+    },
+    "function_label_changes": [
+      {
+        "module": "psov3",
+        "address": "0x8008DCF0",
+        "before": "reset_enemy_state__10TObjPlayerFv",
+        "after": "reset_enemy_state__18TObjEneBalClawBodyFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8008DD14",
+        "before": "TObjPlayer__sub_8008DD14",
+        "after": "sub_8008DD14__18TObjEneBalClawBodyFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8008DE9C",
+        "before": "update_move_to_target__10TObjPlayerFv",
+        "after": "update_move_to_target__18TObjEneBalClawBodyFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8008E098",
+        "before": "TObjPlayer__sub_8008E098",
+        "after": "sub_8008E098__18TObjEneBalClawBodyFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8008E18C",
+        "before": "calc_slot_offset_position__10TObjPlayerFPviPvPv",
+        "after": "calc_slot_offset_position__18TObjEneBalClawBodyFlP3VecPl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8008E254",
+        "before": "TObjPlayer__sub_8008E254",
+        "after": "sub_8008E254__18TObjEneBalClawBodyFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8008E310",
+        "before": "TObjPlayer__sub_8008E310",
+        "after": "sub_8008E310__18TObjEneBalClawBodyFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8008E934",
+        "before": "TObjPlayer__sub_8008E934",
+        "after": "set_form__18TObjEneBalClawBodyFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8008EC3C",
+        "before": "TObjPlayer__sub_8008EC3C",
+        "after": "sub_8008EC3C__18TObjEneBalClawBodyFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8008EDE8",
+        "before": "TObjPlayer__sub_8008EDE8",
+        "after": "sub_8008EDE8__18TObjEneBalClawBodyFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8008F1DC",
+        "before": "TObjPlayer__sub_8008F1DC",
+        "after": "sub_8008F1DC__18TObjEneBalClawBodyFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8008F730",
+        "before": "run_death_sequence__10TObjPlayerFv",
+        "after": "run_death_sequence__18TObjEneBalClawBodyFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8008F910",
+        "before": "TObjPlayer__sub_8008F910",
+        "after": "sub_8008F910__18TObjEneBalClawBodyFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8008FAD0",
+        "before": "TObjPlayer__sub_8008FAD0",
+        "after": "sub_8008FAD0__18TObjEneBalClawBodyFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009097C",
+        "before": "enter_hit_state__18TObjEneBalClawClawFs",
+        "after": "enter_hit_state__18TObjEneBalClawClawFUs"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800918E0",
+        "before": "create__18TObjEneBalClawClawFPvPvPvPvPv",
+        "after": "create_from_body__18TObjEneBalClawClawFP18TObjEneBalClawBodyUslPC3Vecll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80091B98",
+        "before": "__ct__18TObjEneBalClawClawFP7TObjectP14TObjEneBalClawllP3Vecll",
+        "after": "__ct__18TObjEneBalClawClawFP7TObjectP18TObjEneBalClawBodyUslPC3Vecll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009AF54",
+        "before": "update_formation_state__23TObjEneMe1CanadinLeaderFPv",
+        "after": "update_formation_state__23TObjEneMe1CanadinLeaderFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009B1CC",
+        "before": "vfunc_116__23TObjEneMe1CanadinLeaderFv",
+        "after": "vfunc_116__23TObjEneMe1CanadinLeaderFP9TObjChara"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009BFF8",
+        "before": "TObjEneMe1Canadin__sub_8009BFF8",
+        "after": "fn_8009BFF8__17TObjEneMe1CanadinFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009C178",
+        "before": "TObjEneMe1Canadin__sub_8009C178",
+        "after": "fn_8009C178__17TObjEneMe1CanadinFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009C2EC",
+        "before": "TObjEneMe1Canadin__sub_8009C2EC",
+        "after": "fn_8009C2EC__17TObjEneMe1CanadinFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009C510",
+        "before": "TObjEneMe1Canadin__sub_8009C510",
+        "after": "fn_8009C510__17TObjEneMe1CanadinFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009C91C",
+        "before": "TObjEneMe1Canadin__sub_8009C91C",
+        "after": "fn_8009C91C__17TObjEneMe1CanadinFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009CC74",
+        "before": "TObjEneMe1Canadin__sub_8009CC74",
+        "after": "fn_8009CC74__17TObjEneMe1CanadinFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009D320",
+        "before": "TObjEneMe1Canadin__sub_8009D320",
+        "after": "fn_8009D320__17TObjEneMe1CanadinFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009DE90",
+        "before": "TObjEneMe1Canadin__sub_8009DE90",
+        "after": "fn_8009DE90__17TObjEneMe1CanadinFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009E1D4",
+        "before": "fn_8009E1D4",
+        "after": "fn_8009E1D4__17TObjEneMe1CanadinFP3Vec"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009E238",
+        "before": "set_flag3c8_bit40__23TObjEneMe1CanadinLeaderFv",
+        "after": "set_flag3c8_bit40__17TObjEneMe1CanadinFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009E248",
+        "before": "set_flag3c8_bit20__23TObjEneMe1CanadinLeaderFv",
+        "after": "set_flag3c8_bit20__17TObjEneMe1CanadinFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009E258",
+        "before": "TObjEneMe1CanadinLeader__sub_8009E258",
+        "after": "fn_8009E258__17TObjEneMe1CanadinFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009E26C",
+        "before": "set_flag3c8_bit8__23TObjEneMe1CanadinLeaderFv",
+        "after": "set_flag3c8_bit8__17TObjEneMe1CanadinFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009E27C",
+        "before": "TObjEneMe1CanadinLeader__sub_8009E27C",
+        "after": "fn_8009E27C__17TObjEneMe1CanadinFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009E28C",
+        "before": "set_attack_flag__23TObjEneMe1CanadinLeaderFv",
+        "after": "set_attack_flag__17TObjEneMe1CanadinFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009E29C",
+        "before": "set_leader_index__23TObjEneMe1CanadinLeaderFll",
+        "after": "set_leader_index__17TObjEneMe1CanadinFP9TObjCharal"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009E2DC",
+        "before": "fn_8009E2DC",
+        "after": "fn_8009E2DC__17TObjEneMe1CanadinFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009E2F4",
+        "before": "vfunc_116__17TObjEneMe1CanadinFv",
+        "after": "vfunc_116__17TObjEneMe1CanadinFP9TObjChara"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009E300",
+        "before": "fn_8009E300",
+        "after": "fn_8009E300__17TObjEneMe1CanadinFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009E31C",
+        "before": "TObjEneMe1CanadinLeader__sub_8009E31C",
+        "after": "fn_8009E31C__17TObjEneMe1CanadinFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009E334",
+        "before": "TObjEneMe1CanadinLeader__sub_8009E334",
+        "after": "fn_8009E334__17TObjEneMe1CanadinFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009E350",
+        "before": "TObjEneMe1CanadinLeader__sub_8009E350",
+        "after": "fn_8009E350__17TObjEneMe1CanadinFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009E36C",
+        "before": "TObjEneMe1CanadinLeader__sub_8009E36C",
+        "after": "fn_8009E36C__17TObjEneMe1CanadinFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009E378",
+        "before": "fn_8009E378",
+        "after": "fn_8009E378__17TObjEneMe1CanadinFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009E4AC",
+        "before": "TObjEneMe1CanadinLeader__sub_8009E4AC",
+        "after": "fn_8009E4AC__17TObjEneMe1CanadinFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009E504",
+        "before": "update_fade_sequence__23TObjEneMe1CanadinLeaderFPv",
+        "after": "update_fade_sequence__17TObjEneMe1CanadinFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009E76C",
+        "before": "TObjEneMe1Canadin__sub_8009E76C",
+        "after": "fn_8009E76C__17TObjEneMe1CanadinFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009E784",
+        "before": "advance_state_5_to_4__17TObjEneMe1CanadinFPv",
+        "after": "advance_state_5_to_4__17TObjEneMe1CanadinFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009E860",
+        "before": "TObjEneMe1Canadin__sub_8009E860",
+        "after": "fn_8009E860__17TObjEneMe1CanadinFPff"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009E930",
+        "before": "TObjEneMe1Canadin__sub_8009E930",
+        "after": "fn_8009E930__17TObjEneMe1CanadinFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009E948",
+        "before": "TObjEneMe1Canadin__sub_8009E948",
+        "after": "fn_8009E948__17TObjEneMe1CanadinFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009EA08",
+        "before": "update_move__17TObjEneMe1CanadinFPv",
+        "after": "update_move__17TObjEneMe1CanadinFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009EC50",
+        "before": "calc_move_vector__17TObjEneMe1CanadinFiPv",
+        "after": "calc_move_vector__17TObjEneMe1CanadinFP3Vec"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009F4A0",
+        "before": "create_canadin__23TObjEneMe1CanadinLeaderFPvPvPvPv",
+        "after": "create_canadin__23TObjEneMe1CanadinLeaderFP17TObjEneMe1CanadinP3Vecll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800A3290",
+        "before": "sub_800A3290__13TUnk_804909C4Fl",
+        "after": "sub_800A3290__13TUnk_804909C4FUs"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800DFBD0",
+        "before": "find_nearest_enemy_with_flag__14TObjEnePanarmsFlf",
+        "after": "find_nearest_enemy_with_flag__14TObjEnePanarmsFP3Vecf"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800E2F6C",
+        "before": "find_nearest_enemy_with_flag_alt_target__14TObjEnePanBARAFlf",
+        "after": "find_nearest_enemy_with_flag_alt_target__14TObjEnePanBARAFP3Vecf"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800E81B4",
+        "before": "draw_blob_shadows__10TObjPlayerFv",
+        "after": "draw_blob_shadows__22TObjEneSlimeTailAttackFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800E88EC",
+        "before": "create__22TObjEneSlimeTailAttackFiiii",
+        "after": "create__22TObjEneSlimeTailAttackFlPC3VeclP15TObjEneSlimeOne"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800E89BC",
+        "before": "__ct__22TObjEneSlimeTailAttackFP7TObjectP3Vecll",
+        "after": "__ct__22TObjEneSlimeTailAttackFP7TObjectPC3VeclP15TObjEneSlimeOne"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800E8AD0",
+        "before": "water_bomb_hit_nearby__FPUc",
+        "after": "check_hits__21TObjEneSlimeWaterBombFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800E8EA4",
+        "before": "create__21TObjEneSlimeWaterBombFPv",
+        "after": "create__21TObjEneSlimeWaterBombFP15TObjEneSlimeOneP15TObjEneSlimeOne"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800E8F68",
+        "before": "__ct__21TObjEneSlimeWaterBombFP7TObjectPv",
+        "after": "__ct__21TObjEneSlimeWaterBombFP15TObjEneSlimeOneP15TObjEneSlimeOne"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800E9238",
+        "before": "fn_800E9238",
+        "after": "update_trail_position__15TObjEneSlimeOneFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800EACFC",
+        "before": "set_display_mode__15TObjEneSlimeOneFPvi",
+        "after": "set_display_mode__15TObjEneSlimeOneFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800EAD84",
+        "before": "TObjEneSlimeOne__sub_800EAD84",
+        "after": "project_to_ground__15TObjEneSlimeOneFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800EAE0C",
+        "before": "set_random_timer__15TObjEneSlimeOneFPvii",
+        "after": "set_random_timer__15TObjEneSlimeOneFll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800EB3D4",
+        "before": "__ct__15TObjEneSlimeOneFP7TObjectlPvP3Vec",
+        "after": "__ct__15TObjEneSlimeOneFP7TObjectP12TObjEneSlimePvPC3Vec"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800EB4A0",
+        "before": "__ct__15TObjEneSlimeOneFP7TObjectlPv",
+        "after": "__ct__15TObjEneSlimeOneFP7TObjectP12TObjEneSlimePv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800EB654",
+        "before": "try_spawn_child__15TObjEneSlimeOneFPv",
+        "after": "try_spawn_child__12TObjEneSlimeFPv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800EB778",
+        "before": "fn_800EB778",
+        "after": "release_child_slot__12TObjEneSlimeFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800EC428",
+        "before": "find_nearest_enemy_with_flag__15TObjEneSlimeOneFlf",
+        "after": "find_nearest_enemy_with_flag__15TObjEneSlimeOneFP3Vecf"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800EC4A0",
+        "before": "draw_part__15TObjEneSlimeOneFl",
+        "after": "draw__19SlimeAnimationStateFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800EC6D0",
+        "before": "advance_animation_state__15TObjEneSlimeOneFv",
+        "after": "advance__19SlimeAnimationStateFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800EC78C",
+        "before": "is_reached_target_depth__15TObjEneSlimeOneFv",
+        "after": "is_finished__19SlimeAnimationStateFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800EC7F4",
+        "before": "set_motion_state__15TObjEneSlimeOneFl",
+        "after": "set_state__19SlimeAnimationStateFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800EC9EC",
+        "before": "__dt__15TObjEneSlimeOneFis",
+        "after": "__dt__19SlimeAnimationStateFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800ECA28",
+        "before": "fn_800ECA28",
+        "after": "__ct__19SlimeAnimationStateFP15TObjEneSlimeOne"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80316258",
+        "before": "find_nearest_enemy_with_flag__15TObjEneDelDepthFlf",
+        "after": "find_nearest_enemy_with_flag__15TObjEneDelDepthFP3Vecf"
+      }
+    ],
+    "report_sha256": "f2c2f6569971b3e742e01d3e25f90113689e0e3dee3b7cb3a1e4cc95bac1f24f",
+    "check_sha256": "b6d8e34daaf20e96c6cc0cb68ef73ae86f26eb8365d6a1b5aa4cb7418308b550"
+  },
+  "standalone_review": {
+    "branch": "great-merge/prepared/enemy-targeting-formations-and-slime",
+    "head": "72ca918dcb77c677de46932d60cd3cdf32390505",
+    "base": "0fa391a887c664abadc00cba75db1f039aceb647",
+    "tree": "d7425ebe559a1a49440e08095dfea4d340c3b973",
+    "paths": [
+      "config/GPOE8P/psov3/config.yml",
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/enemy/EnemyTargeting.h",
+      "include/pso/enemy/TObjEnePanBARA.h",
+      "include/pso/enemy/TUnk_804909C4.h",
+      "include/pso/enemy/balclaw/TObjEneBalClaw.h",
+      "include/pso/enemy/balclaw/TObjEneBalClawBody.h",
+      "include/pso/enemy/balclaw/TObjEneBalClawClaw.h",
+      "include/pso/enemy/canadin/TObjEneMe1Canadin.h",
+      "include/pso/enemy/canadin/TObjEneMe1CanadinLeader.h",
+      "include/pso/enemy/deldepth/TObjEneDelDepth.h",
+      "include/pso/enemy/panarms/TObjEnePanarms.h",
+      "include/pso/enemy/slime/SlimeAnimationState.h",
+      "include/pso/enemy/slime/TObjEneSlime.h",
+      "include/pso/enemy/slime/TObjEneSlimeOne.h",
+      "include/pso/enemy/slime/TObjEneSlimeOne_800EC394.h",
+      "include/pso/enemy/slime/TObjEneSlimeTailAttack.h",
+      "include/pso/enemy/slime/TObjEneSlimeWaterBomb.h",
+      "include/pso/object/base/CollisionActorLookup.h",
+      "include/pso/player/TObjPlayer.h",
+      "include/pso/player/TObjPlayer_80011014.h",
+      "include/pso/player/TObjPlayer_801542CC.h",
+      "src/pso/enemy/TUnk_804909C4.cpp",
+      "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+      "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+      "src/pso/enemy/beast/TObjEneBeast_800C4E08.cpp",
+      "src/pso/enemy/canadin/CanadinEffects.cpp",
+      "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+      "src/pso/enemy/darkgunner/TObjEneDarkGunCenter.cpp",
+      "src/pso/enemy/deldepth/DelDepthMotion.cpp",
+      "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+      "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+      "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+      "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+      "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+      "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+      "src/pso/enemy/gyaranzo/TObjGyaranzoMissile.cpp",
+      "src/pso/enemy/gyaranzo/TObjGyaranzoMissile_800D40D8.cpp",
+      "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+      "src/pso/enemy/lappy/TObjEneLappy.cpp",
+      "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+      "src/pso/enemy/moja/TObjEneMoja.cpp",
+      "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarmsAtkColli.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+      "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+      "src/pso/enemy/recon/TObjEneRecon.cpp",
+      "src/pso/enemy/recon/TObjEneReconBomb.cpp",
+      "src/pso/enemy/slime/TObjEneSlimeOne_800EC394.cpp",
+      "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+      "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+      "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp",
+      "src/pso/player/TObjPlayer_80011014.cpp",
+      "src/pso/player/TObjPlayer_800EBE2C.cpp",
+      "src/pso/player/TObjPlayer_801542CC.cpp"
+    ],
+    "existing_upstream_interfaces": [
+      "actor motion fields",
+      "archive lookups and lifetime",
+      "model callbacks and texture selection"
+    ],
+    "checks": {
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "matched_code_bytes": 4353092,
+      "matched_data_bytes": 1758510,
+      "compiled_source_units": 2448,
+      "coverage_losses": {
+        "regressions": 0,
+        "linked_functions_lost": 0,
+        "data_regressions": 0,
+        "data_coverage_lost": 0,
+        "linked_data_lost": 0
+      },
+      "function_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8008DCF0",
+          "before": "reset_enemy_state__10TObjPlayerFv",
+          "after": "reset_enemy_state__18TObjEneBalClawBodyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8008DD14",
+          "before": "TObjPlayer__sub_8008DD14",
+          "after": "sub_8008DD14__18TObjEneBalClawBodyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8008DE9C",
+          "before": "update_move_to_target__10TObjPlayerFv",
+          "after": "update_move_to_target__18TObjEneBalClawBodyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8008E098",
+          "before": "TObjPlayer__sub_8008E098",
+          "after": "sub_8008E098__18TObjEneBalClawBodyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8008E18C",
+          "before": "calc_slot_offset_position__10TObjPlayerFPviPvPv",
+          "after": "calc_slot_offset_position__18TObjEneBalClawBodyFlP3VecPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8008E254",
+          "before": "TObjPlayer__sub_8008E254",
+          "after": "sub_8008E254__18TObjEneBalClawBodyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8008E310",
+          "before": "TObjPlayer__sub_8008E310",
+          "after": "sub_8008E310__18TObjEneBalClawBodyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8008E934",
+          "before": "TObjPlayer__sub_8008E934",
+          "after": "set_form__18TObjEneBalClawBodyFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8008EC3C",
+          "before": "TObjPlayer__sub_8008EC3C",
+          "after": "sub_8008EC3C__18TObjEneBalClawBodyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8008EDE8",
+          "before": "TObjPlayer__sub_8008EDE8",
+          "after": "sub_8008EDE8__18TObjEneBalClawBodyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8008F1DC",
+          "before": "TObjPlayer__sub_8008F1DC",
+          "after": "sub_8008F1DC__18TObjEneBalClawBodyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8008F730",
+          "before": "run_death_sequence__10TObjPlayerFv",
+          "after": "run_death_sequence__18TObjEneBalClawBodyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8008F910",
+          "before": "TObjPlayer__sub_8008F910",
+          "after": "sub_8008F910__18TObjEneBalClawBodyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8008FAD0",
+          "before": "TObjPlayer__sub_8008FAD0",
+          "after": "sub_8008FAD0__18TObjEneBalClawBodyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009097C",
+          "before": "enter_hit_state__18TObjEneBalClawClawFs",
+          "after": "enter_hit_state__18TObjEneBalClawClawFUs"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800918E0",
+          "before": "create__18TObjEneBalClawClawFPvPvPvPvPv",
+          "after": "create_from_body__18TObjEneBalClawClawFP18TObjEneBalClawBodyUslPC3Vecll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80091B98",
+          "before": "__ct__18TObjEneBalClawClawFP7TObjectP14TObjEneBalClawllP3Vecll",
+          "after": "__ct__18TObjEneBalClawClawFP7TObjectP18TObjEneBalClawBodyUslPC3Vecll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009AF54",
+          "before": "update_formation_state__23TObjEneMe1CanadinLeaderFPv",
+          "after": "update_formation_state__23TObjEneMe1CanadinLeaderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009B1CC",
+          "before": "vfunc_116__23TObjEneMe1CanadinLeaderFv",
+          "after": "vfunc_116__23TObjEneMe1CanadinLeaderFP9TObjChara"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009BFF8",
+          "before": "TObjEneMe1Canadin__sub_8009BFF8",
+          "after": "fn_8009BFF8__17TObjEneMe1CanadinFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009C178",
+          "before": "TObjEneMe1Canadin__sub_8009C178",
+          "after": "fn_8009C178__17TObjEneMe1CanadinFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009C2EC",
+          "before": "TObjEneMe1Canadin__sub_8009C2EC",
+          "after": "fn_8009C2EC__17TObjEneMe1CanadinFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009C510",
+          "before": "TObjEneMe1Canadin__sub_8009C510",
+          "after": "fn_8009C510__17TObjEneMe1CanadinFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009C91C",
+          "before": "TObjEneMe1Canadin__sub_8009C91C",
+          "after": "fn_8009C91C__17TObjEneMe1CanadinFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009CC74",
+          "before": "TObjEneMe1Canadin__sub_8009CC74",
+          "after": "fn_8009CC74__17TObjEneMe1CanadinFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009D320",
+          "before": "TObjEneMe1Canadin__sub_8009D320",
+          "after": "fn_8009D320__17TObjEneMe1CanadinFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009DE90",
+          "before": "TObjEneMe1Canadin__sub_8009DE90",
+          "after": "fn_8009DE90__17TObjEneMe1CanadinFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009E1D4",
+          "before": "fn_8009E1D4",
+          "after": "fn_8009E1D4__17TObjEneMe1CanadinFP3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009E238",
+          "before": "set_flag3c8_bit40__23TObjEneMe1CanadinLeaderFv",
+          "after": "set_flag3c8_bit40__17TObjEneMe1CanadinFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009E248",
+          "before": "set_flag3c8_bit20__23TObjEneMe1CanadinLeaderFv",
+          "after": "set_flag3c8_bit20__17TObjEneMe1CanadinFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009E258",
+          "before": "TObjEneMe1CanadinLeader__sub_8009E258",
+          "after": "fn_8009E258__17TObjEneMe1CanadinFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009E26C",
+          "before": "set_flag3c8_bit8__23TObjEneMe1CanadinLeaderFv",
+          "after": "set_flag3c8_bit8__17TObjEneMe1CanadinFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009E27C",
+          "before": "TObjEneMe1CanadinLeader__sub_8009E27C",
+          "after": "fn_8009E27C__17TObjEneMe1CanadinFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009E28C",
+          "before": "set_attack_flag__23TObjEneMe1CanadinLeaderFv",
+          "after": "set_attack_flag__17TObjEneMe1CanadinFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009E29C",
+          "before": "set_leader_index__23TObjEneMe1CanadinLeaderFll",
+          "after": "set_leader_index__17TObjEneMe1CanadinFP9TObjCharal"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009E2DC",
+          "before": "fn_8009E2DC",
+          "after": "fn_8009E2DC__17TObjEneMe1CanadinFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009E2F4",
+          "before": "vfunc_116__17TObjEneMe1CanadinFv",
+          "after": "vfunc_116__17TObjEneMe1CanadinFP9TObjChara"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009E300",
+          "before": "fn_8009E300",
+          "after": "fn_8009E300__17TObjEneMe1CanadinFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009E31C",
+          "before": "TObjEneMe1CanadinLeader__sub_8009E31C",
+          "after": "fn_8009E31C__17TObjEneMe1CanadinFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009E334",
+          "before": "TObjEneMe1CanadinLeader__sub_8009E334",
+          "after": "fn_8009E334__17TObjEneMe1CanadinFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009E350",
+          "before": "TObjEneMe1CanadinLeader__sub_8009E350",
+          "after": "fn_8009E350__17TObjEneMe1CanadinFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009E36C",
+          "before": "TObjEneMe1CanadinLeader__sub_8009E36C",
+          "after": "fn_8009E36C__17TObjEneMe1CanadinFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009E378",
+          "before": "fn_8009E378",
+          "after": "fn_8009E378__17TObjEneMe1CanadinFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009E4AC",
+          "before": "TObjEneMe1CanadinLeader__sub_8009E4AC",
+          "after": "fn_8009E4AC__17TObjEneMe1CanadinFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009E504",
+          "before": "update_fade_sequence__23TObjEneMe1CanadinLeaderFPv",
+          "after": "update_fade_sequence__17TObjEneMe1CanadinFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009E76C",
+          "before": "TObjEneMe1Canadin__sub_8009E76C",
+          "after": "fn_8009E76C__17TObjEneMe1CanadinFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009E784",
+          "before": "advance_state_5_to_4__17TObjEneMe1CanadinFPv",
+          "after": "advance_state_5_to_4__17TObjEneMe1CanadinFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009E860",
+          "before": "TObjEneMe1Canadin__sub_8009E860",
+          "after": "fn_8009E860__17TObjEneMe1CanadinFPff"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009E930",
+          "before": "TObjEneMe1Canadin__sub_8009E930",
+          "after": "fn_8009E930__17TObjEneMe1CanadinFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009E948",
+          "before": "TObjEneMe1Canadin__sub_8009E948",
+          "after": "fn_8009E948__17TObjEneMe1CanadinFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009EA08",
+          "before": "update_move__17TObjEneMe1CanadinFPv",
+          "after": "update_move__17TObjEneMe1CanadinFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009EC50",
+          "before": "calc_move_vector__17TObjEneMe1CanadinFiPv",
+          "after": "calc_move_vector__17TObjEneMe1CanadinFP3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009F4A0",
+          "before": "create_canadin__23TObjEneMe1CanadinLeaderFPvPvPvPv",
+          "after": "create_canadin__23TObjEneMe1CanadinLeaderFP17TObjEneMe1CanadinP3Vecll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800A3290",
+          "before": "sub_800A3290__13TUnk_804909C4Fl",
+          "after": "sub_800A3290__13TUnk_804909C4FUs"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800DFBD0",
+          "before": "find_nearest_enemy_with_flag__14TObjEnePanarmsFlf",
+          "after": "find_nearest_enemy_with_flag__14TObjEnePanarmsFP3Vecf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800E2F6C",
+          "before": "find_nearest_enemy_with_flag_alt_target__14TObjEnePanBARAFlf",
+          "after": "find_nearest_enemy_with_flag_alt_target__14TObjEnePanBARAFP3Vecf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800E81B4",
+          "before": "draw_blob_shadows__10TObjPlayerFv",
+          "after": "draw_blob_shadows__22TObjEneSlimeTailAttackFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800E88EC",
+          "before": "create__22TObjEneSlimeTailAttackFiiii",
+          "after": "create__22TObjEneSlimeTailAttackFlPC3VeclP15TObjEneSlimeOne"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800E89BC",
+          "before": "__ct__22TObjEneSlimeTailAttackFP7TObjectP3Vecll",
+          "after": "__ct__22TObjEneSlimeTailAttackFP7TObjectPC3VeclP15TObjEneSlimeOne"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800E8AD0",
+          "before": "water_bomb_hit_nearby__FPUc",
+          "after": "check_hits__21TObjEneSlimeWaterBombFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800E8EA4",
+          "before": "create__21TObjEneSlimeWaterBombFPv",
+          "after": "create__21TObjEneSlimeWaterBombFP15TObjEneSlimeOneP15TObjEneSlimeOne"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800E8F68",
+          "before": "__ct__21TObjEneSlimeWaterBombFP7TObjectPv",
+          "after": "__ct__21TObjEneSlimeWaterBombFP15TObjEneSlimeOneP15TObjEneSlimeOne"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800E9238",
+          "before": "fn_800E9238",
+          "after": "update_trail_position__15TObjEneSlimeOneFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800EACFC",
+          "before": "set_display_mode__15TObjEneSlimeOneFPvi",
+          "after": "set_display_mode__15TObjEneSlimeOneFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800EAD84",
+          "before": "TObjEneSlimeOne__sub_800EAD84",
+          "after": "project_to_ground__15TObjEneSlimeOneFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800EAE0C",
+          "before": "set_random_timer__15TObjEneSlimeOneFPvii",
+          "after": "set_random_timer__15TObjEneSlimeOneFll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800EB3D4",
+          "before": "__ct__15TObjEneSlimeOneFP7TObjectlPvP3Vec",
+          "after": "__ct__15TObjEneSlimeOneFP7TObjectP12TObjEneSlimePvPC3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800EB4A0",
+          "before": "__ct__15TObjEneSlimeOneFP7TObjectlPv",
+          "after": "__ct__15TObjEneSlimeOneFP7TObjectP12TObjEneSlimePv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800EB654",
+          "before": "try_spawn_child__15TObjEneSlimeOneFPv",
+          "after": "try_spawn_child__12TObjEneSlimeFPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800EB778",
+          "before": "fn_800EB778",
+          "after": "release_child_slot__12TObjEneSlimeFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800EC428",
+          "before": "find_nearest_enemy_with_flag__15TObjEneSlimeOneFlf",
+          "after": "find_nearest_enemy_with_flag__15TObjEneSlimeOneFP3Vecf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800EC4A0",
+          "before": "draw_part__15TObjEneSlimeOneFl",
+          "after": "draw__19SlimeAnimationStateFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800EC6D0",
+          "before": "advance_animation_state__15TObjEneSlimeOneFv",
+          "after": "advance__19SlimeAnimationStateFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800EC78C",
+          "before": "is_reached_target_depth__15TObjEneSlimeOneFv",
+          "after": "is_finished__19SlimeAnimationStateFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800EC7F4",
+          "before": "set_motion_state__15TObjEneSlimeOneFl",
+          "after": "set_state__19SlimeAnimationStateFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800EC9EC",
+          "before": "__dt__15TObjEneSlimeOneFis",
+          "after": "__dt__19SlimeAnimationStateFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800ECA28",
+          "before": "fn_800ECA28",
+          "after": "__ct__19SlimeAnimationStateFP15TObjEneSlimeOne"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80316258",
+          "before": "find_nearest_enemy_with_flag__15TObjEneDelDepthFlf",
+          "after": "find_nearest_enemy_with_flag__15TObjEneDelDepthFP3Vecf"
+        }
+      ],
+      "report_sha256": "4c859974157035881205676a4466498bd1c9fe32897d26d59ea582f3f6bb5f87",
+      "check_sha256": "b6d8e34daaf20e96c6cc0cb68ef73ae86f26eb8365d6a1b5aa4cb7418308b550"
+    },
+    "author_and_committer": "matthewlewisnewton <19641807+matthewlewisnewton@users.noreply.github.com>",
+    "codex_attribution_entries": 0,
+    "published": false
+  },
+  "published_pr_merge_previews": [
+    {
+      "pr": 336,
+      "head": "ec81bd9ce7a2194860e8a0034f31727dfd4ad56f",
+      "conflicting_paths": []
+    },
+    {
+      "pr": 337,
+      "head": "297a9697815b0f66207b5515fd9743bdc04c82d9",
+      "conflicting_paths": []
+    },
+    {
+      "pr": 338,
+      "head": "2572238636c01c0f1defac4338a4df6836c18276",
+      "conflicting_paths": []
+    },
+    {
+      "pr": 339,
+      "head": "5e0a443edde59d3af778d496b8503e0b1358f5e2",
+      "conflicting_paths": []
+    },
+    {
+      "pr": 340,
+      "head": "d6e66ef2a8f874ab9791efc1628ebd7fc48bdbf5",
+      "conflicting_paths": []
+    },
+    {
+      "pr": 341,
+      "head": "0266af6bf4c860315be75d4785c45abf6da0a6ff",
+      "conflicting_paths": [
+        "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+        "src/pso/enemy/panarms/TObjEnePanarmsAtkColli.cpp",
+        "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+      ]
+    },
+    {
+      "pr": 342,
+      "head": "17d35ad696f409a696c7f94105170619d18e5106",
+      "conflicting_paths": []
+    },
+    {
+      "pr": null,
+      "head": "98b8dc9b749921f22ae2256890e22dca8be9e01f",
+      "scope": "Boss projectiles and raft effects",
+      "conflicting_paths": []
+    },
+    {
+      "pr": null,
+      "head": "9081bb020ce98ca2fb4e48c9eacaa609b3db6ae6",
+      "scope": "Action-palette controls and Word Select",
+      "conflicting_paths": []
+    }
+  ],
+  "historical_ranges": {
+    "upstream_master": {
+      "address_ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "great_merge_replay": {
+      "address_ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "standalone_review": {
+      "address_ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "fork_tooling": {
+      "address_ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    }
+  },
+  "fork_layer": {
+    "workspace_patch_paths": 131,
+    "workspace_patch_sha256": "bb9b21bae20e2eef7e2d068173d5670a8b772e662025cc310e6fac5f576d8121",
+    "materialized_tree": "22ae511e06710ace475ee21173946f67977f847d",
+    "round_trip_listing_sha256": "9ae04cfde4df4b35532a02d260c998700bc4ac6f9942eafde651da8244b119c9",
+    "force_active": "force_active: 27031 listed, +0 unreferenced symbol(s) in linked units, -0 stale",
+    "tool_tests_passed": 294,
+    "layer_tests_passed": 11,
+    "dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "coverage_losses": {
+      "regressions": 0,
+      "linked_functions_lost": 0,
+      "data_regressions": 0,
+      "data_coverage_lost": 0,
+      "linked_data_lost": 0
+    },
+    "probes": {
+      "images": [
+        "retail",
+        "great_merge_replay",
+        "standalone_review",
+        "fork_tooling"
+      ],
+      "enemy_state_cases_per_image": 34,
+      "player_target_cases_per_image": 19,
+      "probe_updates": "Aligned existing harness calls to four current symbols at the same retail addresses."
+    }
+  },
+  "historical_path_inventory": {
+    "pinned_base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+    "canonical_source": "83decd2d24dc6104040afd060e0cc2754b110409",
+    "earlier_review_queue": "47ade105c778197344c29e2d058cd9754a90893c",
+    "outside_replay_before": 580,
+    "outside_replay_after": 568,
+    "outside_both_replay_and_queue": 82,
+    "paths_newly_in_replay_diff": [
+      "include/pso/enemy/EnemyTargeting.h",
+      "include/pso/enemy/TUnk_804909C4.h",
+      "include/pso/enemy/balclaw/TObjEneBalClaw.h",
+      "include/pso/enemy/balclaw/TObjEneBalClawBody.h",
+      "include/pso/enemy/balclaw/TObjEneBalClawClaw.h",
+      "include/pso/enemy/canadin/TObjEneMe1CanadinLeader.h",
+      "include/pso/enemy/deldepth/TObjEneDelDepth.h",
+      "include/pso/enemy/slime/SlimeAnimationState.h",
+      "include/pso/enemy/slime/TObjEneSlimeOne_800EC394.h",
+      "include/pso/object/base/CollisionActorLookup.h",
+      "src/pso/enemy/darkgunner/TObjEneDarkGunCenter.cpp",
+      "src/pso/player/TObjPlayer_800EBE2C.cpp"
+    ],
+    "remaining_by_owner": {
+      "ui": 153,
+      "unk": 92,
+      "enemy": 63,
+      "boss": 57,
+      "player": 48,
+      "item": 25,
+      "effect": 21,
+      "object": 20,
+      "camera": 16,
+      "system": 15,
+      "render": 15,
+      "math": 9,
+      "technique": 8,
+      "network": 6,
+      "quest": 4,
+      "map": 4,
+      "weapon": 3,
+      "libs/PowerPC_EABI_Support": 2,
+      "audio": 2,
+      "npc": 2,
+      "libs/dolphin": 1,
+      "collision": 1,
+      "animation": 1
+    },
+    "method": "Compare changed path sets with rename detection disabled. An intersecting path can still contain unreplayed hunks."
+  }
+}

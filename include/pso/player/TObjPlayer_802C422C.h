@@ -3,16 +3,15 @@
 
 #include "types.h"
 
-struct TObjPlayer;
+class TPlyCharData;
 extern "C" {
 int TObjPlayer__sub_802C46E0(void *p);
-void export_player_record__10TObjPlayerFPvPv(TObjPlayer *arg0, u8 *arg1);
+void export_player_record__10TObjPlayerFPvPv(TPlyCharData *record, u8 *arg1);
 }
 int init_character_action_config(void *p);
 extern "C" {
-s32 sync_state__10TObjPlayerFi(s32 arg0);
-s32 try_assign_battle_ctrl__10TObjPlayerFiUs(s32 arg0, u16 arg1);
-s32 update_battle__10TObjPlayerFi(s32 arg0);
+s32 sync_state__10TObjPlayerFi(saddr arg0);
+s32 update_battle__10TObjPlayerFi(saddr arg0);
 }
 
 #endif

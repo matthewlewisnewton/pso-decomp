@@ -1,31 +1,26 @@
 // One original TU runs from calc_triangle_normal (0x801412D0) to the weak inline copies at
 // 0x80142624-0x80142770, but its out-of-line copy of sqrt_double sits at the TU end while the
 // copy's constants sit between the tev tables and the pulse constants. No compiler here emits
-// that (a copy follows its first caller, its constants with it), so the TU is built as three
-// units: render_util_head.cpp, this one (set_cull_none to save_model_draw_state) and
-// render_util_tail.cpp.
+// that (a copy follows its first caller, its constants with it), so the TU is built as two
+// units: render_util_head.cpp and this one (set_cull_none to the weak copies at the end).
 
 #include "pso/render/render_util.h"
 #include <dolphin/gx.h>
-#include "pso/enemy/TObjEneMe3Stelth_803DC82C.h"
+#include "pso/enemy/stelth/TObjEneMe3Stelth_803DC82C.h"
 #include "pso/math/AngleLookup.h"
 #include "pso/math/MatrixVector.h"
-#include "pso/math/ScratchVectorStorage.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjPlayer_80011014.h"
 #include "pso/player/TObjPlayer_803DC834.h"
 #include "pso/render/model_render_state.h"
-#include "pso/system/ChunkMaterialState.h"
-#include "pso/system/MaterialAlphaCompare.h"
-#include "pso/system/ModelDrawContext.h"
+#include "pso/render/ChunkMaterialState.h"
+#include "pso/render/MaterialAlphaCompare.h"
+#include "pso/render/ModelDrawContext.h"
 
 #define RAD_TO_ANGLE (32768.0 / 3.141592f)
-
-extern "C" {
-void normalize_vector(Vec *v);
-f32 vector_length(Vec *v);
-s32 TCameraCtrl__sub_8006B370(f32 value);
-}
+#include "pso/render/render_util_tail.h"
+#include "pso/unk/text_803D96A8.h"
+#include "pso/camera/TCameraCtrl.h"
 
 NJS_ARGB chunk_material_color_half_alpha_f32 = {0.5f, 0.0f, 0.0f, 0.0f};
 NJS_ARGB debug_color_purple_half_alpha = {0.5f, 0.5f, 0.0f, 0.5f};
@@ -57,8 +52,8 @@ void set_shadow_material_state() {
 
 NJS_ARGB saved_model_draw_color;
 NJS_ARGB lbl_8050BED0; // no reference in the game
-ScratchVectorStorage scratch_vec;
-ScratchVectorStorage lbl_8050BF00;
+f32 scratch_vec[8];
+f32 lbl_8050BF00[8];
 u32 lbl_8050BF20[8];
 u32 lbl_8050BF40[8];
 f32 lbl_8050BF60[16];
@@ -101,8 +96,8 @@ void install_depth_alpha_state() {
     depth_buffer_settings.draw_list_mask = 1;
     depth_buffer_config_copy.copy(&depth_buffer_settings);
     saved_depth_alpha_scene_state.copy(&depth_buffer_settings);
-    TObjPlayer::set_global_state((s32)((void *)restore_saved_depth_alpha_state));
-    set_ginja_draw_end_callback((s32)restore_saved_depth_alpha_state);
+    TObjPlayer::set_global_state((saddr)((void *)restore_saved_depth_alpha_state));
+    set_ginja_draw_end_callback(restore_saved_depth_alpha_state);
 }
 
 void restore_draw_list_mask() {
@@ -208,9 +203,9 @@ u32 calc_pulse_flash_color(u8 r, u8 g, u8 b, s32 frame, s32 period, s32 start, s
 
 extern "C" {
 
-s32 TObjMapWarp__sub_80141C68(s32 self, s16 del) {
-    if (self != 0 && del > 0) {
-        operator delete((void *)self);
+void *delete_object_if_delete_flag(void *self, s16 del) {
+    if (self != NULL && del > 0) {
+        operator delete(self);
     }
     return self;
 }
@@ -219,24 +214,25 @@ void TObjMapWarp__sub_80141CA4(void *self) { *(s32 *)self = 0; }
 
 // Debug-draw entry points; their bodies are compiled out of the release game.
 void debug_draw_line(const Vec *from, const Vec *to, u32 from_color, u32 to_color) {}
-void fn_80141CB4(void) {}
-void fn_80141CB8(void) {}
+void fn_80141CB4(const Vec *pos, f32 size) {}
+void fn_80141CB8(const Vec *pos, const s32 *rotation, const Vec *size, const NJS_ARGB *color) {}
 
-void fn_80141CBC(const Vec *pos, const NJS_ARGB *color, f32 size) {
+void debug_draw_uniform_scaled(const Vec *pos, const NJS_ARGB *color, f32 size) {
     Vec scale;
     scale.x = size;
     scale.y = size;
     scale.z = size;
-    fn_80141CF0(pos, &scale, color);
+    debug_draw_scaled(pos, &scale, color);
 }
 
-void fn_80141CF0(const Vec *pos, Vec *scale, const NJS_ARGB *color) {}
+void debug_draw_scaled(const Vec *pos, Vec *scale, const NJS_ARGB *color) {}
 void debug_draw_sphere(const Vec *pos, const NJS_ARGB *color, f32 radius) {}
 
 f32 horizontal_distance_squared(const Vec *a, const Vec *b) {
     f32 dx = b->x - a->x;
     f32 dz = b->z - a->z;
     return dx * dx + dz * dz;
+}
 }
 
 // Normalizes v and returns 1, or returns 0 when v is (nearly) zero.
@@ -246,8 +242,6 @@ s32 normalize_if_nonzero(Vec *v) {
     }
     normalize_vector(v);
     return 1;
-}
-
 }
 
 void calc_direction_vector(s32 angle, Vec *out, f32 length) {
@@ -266,8 +260,6 @@ s32 calc_angle_to(Vec *from, Vec *to) {
     return RAD_TO_ANGLE * atan2_float(to->x - from->x, to->z - from->z);
 }
 
-extern "C" {
-
 s32 f32_bits(f32 value) {
     union {
         f32 f;
@@ -284,8 +276,6 @@ f32 bits_to_f32(s32 bits) {
     } u;
     u.i = bits;
     return u.f;
-}
-
 }
 
 void set_inverse_alpha_blend() { set_color_blending_mode(0, 5); set_color_blending_mode(1, 6); }
@@ -350,7 +340,7 @@ s32 clamp_s32(s32 value, s32 min, s32 max) {
     return value;
 }
 
-void get_current_date_stamp(DateStamp *out) {
+void get_current_date_stamp(CardWriteDate *out) {
     DateStamp now;
     getDateStamp(&now);
     out->year = now.year;
@@ -431,7 +421,7 @@ f32 vec_distance_squared(u8 *a, u8 *b) {
 }
 
 // The original pools +1e-5f before -1e-5f although it loads -1e-5f first, which no source
-// order reproduces here; the two constants are read by address (see render_util_head.cpp).
+// order reproduces here; the two constants are read by address and defined at the end of this file.
 extern "C" const f32 lbl_805DB15C; // 1e-5f
 extern "C" const f32 lbl_805DB160; // -1e-5f
 
@@ -444,8 +434,8 @@ s32 is_near_zero(f32 value) {
 
 s32 vec_has_nonfinite(Vec *v) {
     bool result = false;
-    if (TCameraCtrl__sub_8006B370(v->x) != 0 || TCameraCtrl__sub_8006B370(v->y) != 0 ||
-        TCameraCtrl__sub_8006B370(v->z) != 0) {
+    if (is_float_nonfinite(v->x) != 0 || is_float_nonfinite(v->y) != 0 ||
+        is_float_nonfinite(v->z) != 0) {
         result = true;
     }
     return result;
@@ -485,3 +475,60 @@ void save_model_draw_state(void *owner) {
     save_model_material_color(owner);
     save_chunk_polygon_masks(owner);
 }
+
+// The end of the TU: the original's out-of-line copies of its inline helpers, in definition
+// order. sqrt_double cannot pool its constants where the original has them (before the pulse
+// constants above), so it reads the three doubles by address.
+extern const f32 __float_nan[];
+extern const f32 __float_huge[];
+extern const f64 lbl_8043F298[]; // 0.0
+extern const f64 lbl_8043F2A0[]; // 0.5
+extern const f64 lbl_8043F2A8[]; // 3.0
+
+// MSL's double sqrt.
+f64 sqrt_double(f64 x) {
+    if (x > lbl_8043F298[0]) {
+        f64 guess = __frsqrte(x);
+        guess = lbl_8043F2A0[0] * guess * (lbl_8043F2A8[0] - x * (guess * guess));
+        guess = lbl_8043F2A0[0] * guess * (lbl_8043F2A8[0] - x * (guess * guess));
+        guess = lbl_8043F2A0[0] * guess * (lbl_8043F2A8[0] - x * (guess * guess));
+        guess = lbl_8043F2A0[0] * guess * (lbl_8043F2A8[0] - x * (guess * guess));
+        return x * guess;
+    }
+    if (lbl_8043F298[0] == x) {
+        return lbl_8043F298[0];
+    }
+    if (x != lbl_8043F298[0]) {
+        return __float_nan[0];
+    }
+    return __float_huge[0];
+}
+
+void set_global_draw_flag_bits(void *owner, u32 bits) {
+    model_render_flags |= bits;
+}
+
+void restore_model_render_flags(void *owner) { model_render_flags = color_draw_saved_render_flags; }
+
+void restore_model_material_color(void *owner) {
+    copy_argb(&model_material_color, &color_draw_saved_color);
+}
+
+void restore_chunk_polygon_masks(void *owner) {
+    chunk_polygon_flags_and_mask = color_draw_saved_and_mask;
+    chunk_polygon_flags_or_mask = color_draw_saved_or_mask;
+}
+
+void save_chunk_polygon_masks(void *owner) {
+    color_draw_saved_and_mask = chunk_polygon_flags_and_mask;
+    color_draw_saved_or_mask = chunk_polygon_flags_or_mask;
+}
+
+void save_model_material_color(void *owner) {
+    copy_argb(&color_draw_saved_color, &model_material_color);
+}
+
+void save_model_render_flags(void *owner) { color_draw_saved_render_flags = model_render_flags; }
+
+__declspec(section ".sdata2") extern const f32 lbl_805DB15C = 1e-05f;
+__declspec(section ".sdata2") extern const f32 lbl_805DB160 = -1e-05f;

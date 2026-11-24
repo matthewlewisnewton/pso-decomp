@@ -1,82 +1,85 @@
 #include "types.h"
-#include "pso/system/BmlResourceClass.h"
-#include "pso/npc/TObjNpcExpertBase.h"
-#include "pso/unk/text_8014B8A4.h"
-#include "pso/npc/TUnk_804A9F50.h"
+#include "pso/object/TObjControl.h"
 #include "pso/npc/TObjNpcConnoisseur.h"
-#include "pso/TFontSmallTask.h"
+#include "pso/npc/TObjNpcExpertBase.h"
+#include "pso/npc/TObjNpcMale.h"
+
+#include "pso/ui/font/TFontSmallTask.h"
 #include "pso/npc/TObjNpcBase.h"
 #include "pso/npc/TObjNpcLappy.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/system/BmlResourceDescriptor.h"
+#include "pso/system/BmlResource.h"
+#include "pso/system/task/TObject.h"
+#include "pso/system/task/TMainTask.h"
 
-struct RecoveredGlobal_801499DC___vt__18TObjNpcConnoisseur {
-    s32 value;
-    u8 remaining[0x174];
+void *TObjNpcConnoisseur::create(void *set_data) {
+    TObjControl *control = new TObjControl(tl_04);
+    return new TObjNpcConnoisseur(control, set_data);
+}
+
+const char *bm_n_kanteib_i_body_motion_names[1] = { NULL };
+__declspec(section ".data") const char *bm_n_kanteib_i_body_model_names[2] = { "n_kanteib_i_body_1.nj", NULL };
+BmlResourceDescriptor bm_n_kanteib_i_body_resource_descriptor = { "bm_n_kanteib_i_body.bml", bm_n_kanteib_i_body_model_names, bm_n_kanteib_i_body_motion_names, 1, 0 };
+const char *bm_n_kanteib2_i_body_motion_names[1] = { NULL };
+__declspec(section ".data") const char *bm_n_kanteib2_i_body_model_names[2] = { "n_kanteib2_i_body.nj", NULL };
+BmlResourceDescriptor bm_n_kanteib2_i_body_resource_descriptor = { "bm_n_kanteib2_i_body.bml", bm_n_kanteib2_i_body_model_names, bm_n_kanteib2_i_body_motion_names, 1, 0 };
+const char *bm_n_kanteif_i_body_motion_names[1] = { NULL };
+__declspec(section ".data") const char *bm_n_kanteif_i_body_model_names[2] = { "n_kanteif_i_body.nj", NULL };
+BmlResourceDescriptor bm_n_kanteif_i_body_resource_descriptor = { "bm_n_kanteif_i_body.bml", bm_n_kanteif_i_body_model_names, bm_n_kanteif_i_body_motion_names, 1, 0 };
+const char *bm_n_kanteif2_i_body_motion_names[1] = { NULL };
+__declspec(section ".data") const char *bm_n_kanteif2_i_body_model_names[2] = { "n_kanteif2_i_body.nj", NULL };
+BmlResourceDescriptor bm_n_kanteif2_i_body_resource_descriptor = { "bm_n_kanteif2_i_body.bml", bm_n_kanteif2_i_body_model_names, bm_n_kanteif2_i_body_motion_names, 1, 0 };
+const char *bm_n_kanteifs_i_body_motion_names[1] = { NULL };
+__declspec(section ".data") const char *bm_n_kanteifs_i_body_model_names[2] = { "n_kanteifs_i_body.nj", NULL };
+BmlResourceDescriptor bm_n_kanteifs_i_body_resource_descriptor = { "bm_n_kanteifs_i_body.bml", bm_n_kanteifs_i_body_model_names, bm_n_kanteifs_i_body_motion_names, 1, 0 };
+const char *bm_n_kanteifs2_i_body_motion_names[1] = { NULL };
+__declspec(section ".data") const char *bm_n_kanteifs2_i_body_model_names[2] = { "n_kanteifs2_i_body.nj", NULL };
+BmlResourceDescriptor bm_n_kanteifs2_i_body_resource_descriptor = { "bm_n_kanteifs2_i_body.bml", bm_n_kanteifs2_i_body_model_names, bm_n_kanteifs2_i_body_motion_names, 1, 0 };
+const char *bm_n_kanteio_i_body_motion_names[1] = { NULL };
+__declspec(section ".data") const char *bm_n_kanteio_i_body_model_names[2] = { "n_kanteio_i_body.nj", NULL };
+BmlResourceDescriptor bm_n_kanteio_i_body_resource_descriptor = { "bm_n_kanteio_i_body.bml", bm_n_kanteio_i_body_model_names, bm_n_kanteio_i_body_motion_names, 1, 0 };
+const char *bm_n_kanteio2_i_body_motion_names[1] = { NULL };
+__declspec(section ".data") const char *bm_n_kanteio2_i_body_model_names[2] = { "n_kanteio2_i_body.nj", NULL };
+BmlResourceDescriptor bm_n_kanteio2_i_body_resource_descriptor = { "bm_n_kanteio2_i_body.bml", bm_n_kanteio2_i_body_model_names, bm_n_kanteio2_i_body_motion_names, 1, 0 };
+const char *bm_n_kanteit_i_body_motion_names[1] = { NULL };
+__declspec(section ".data") const char *bm_n_kanteit_i_body_model_names[2] = { "n_kanteit_i_body.nj", NULL };
+BmlResourceDescriptor bm_n_kanteit_i_body_resource_descriptor = { "bm_n_kanteit_i_body.bml", bm_n_kanteit_i_body_model_names, bm_n_kanteit_i_body_motion_names, 1, 0 };
+const char *bm_n_kanteit2_i_body_motion_names[1] = { NULL };
+__declspec(section ".data") const char *bm_n_kanteit2_i_body_model_names[2] = { "n_kanteit2_i_body.nj", NULL };
+BmlResourceDescriptor bm_n_kanteit2_i_body_resource_descriptor = { "bm_n_kanteit2_i_body.bml", bm_n_kanteit2_i_body_model_names, bm_n_kanteit2_i_body_motion_names, 1, 0 };
+BmlResourceDescriptor *tekker_descriptor_selector_table[10] = {
+    &bm_n_kanteifs_i_body_resource_descriptor, &bm_n_kanteif_i_body_resource_descriptor,
+    &bm_n_kanteifs2_i_body_resource_descriptor, &bm_n_kanteib_i_body_resource_descriptor,
+    &bm_n_kanteif2_i_body_resource_descriptor, &bm_n_kanteit_i_body_resource_descriptor,
+    &bm_n_kanteio_i_body_resource_descriptor, &bm_n_kanteit2_i_body_resource_descriptor,
+    &bm_n_kanteio2_i_body_resource_descriptor, &bm_n_kanteib2_i_body_resource_descriptor,
 };
+const char *TObjNpcConnoisseur::name = "TObjNpcConnoisseur";
 
-extern "C" {
-extern s32 __vt__18TObjNpcConnoisseur[];
-extern s32 TObjNpcConnoisseur__name;
-extern u32 TObjNpcConnoisseur__instance;
-extern s32 tekker_descriptor_selector_table[];
-extern u8 TLobby__data_805011D8[];
-extern s32 lbl_805D5748;
-void *__ct__11TObjControlFP7TObject(void *, void *);
-void __dl__7TObjectFPv(void *);
-void *__nw__7TObjectFUl(int);
+s32 TObjNpcConnoisseur::section_id;
+BmlResource *TObjNpcConnoisseur::instance;
 
 void TObjNpcConnoisseur::destroy_instance() {
-    if ((u32) TObjNpcConnoisseur__instance != 0U) {
-        delete (BmlResource *)((void*)TObjNpcConnoisseur__instance);
-        TObjNpcConnoisseur__instance = 0U;
+    if (instance != NULL) {
+        delete instance;
+        instance = NULL;
     }
 }
 
 void TObjNpcConnoisseur::load_section_motion() {
-    void *o;
-    lbl_805D5748 = ((TFontSmallTask *)TLobby__data_805011D8)->get_task_id();
-    o = new BmlResource(1, (BmlResourceDescriptor *)(tekker_descriptor_selector_table[lbl_805D5748]), 0, 0, (void *)(0));
-    TObjNpcConnoisseur__instance = (u32)o;
+    section_id = leader_selection.get_section_id();
+    instance = new BmlResource(1, (BmlResourceDescriptor *)tekker_descriptor_selector_table[section_id], 0, 0, NULL);
 }
 
-void *__dt__18TObjNpcConnoisseurFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__18TObjNpcConnoisseur;
-        ((TUnk_804A9F50 *)arg0)->destroy_npc_lappy_base(0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
+TObjNpcConnoisseur::~TObjNpcConnoisseur() {}
+
+TObjNpcConnoisseur::TObjNpcConnoisseur(TObject *parent, void *set_data) : TObjNpcMale(parent) {
+    this->m_name = name;
+    this->apply_set_data(set_data);
+    init_position_vectors();
+    model = instance->models->model;
+    texlist = instance->models->texlist;
+    this->setup_common();
 }
 
-extern void *tl_04;
-
-typedef char RecoveredGlobal_801499DC___vt__18TObjNpcConnoisseur_size[sizeof(RecoveredGlobal_801499DC___vt__18TObjNpcConnoisseur) == 0x178 ? 1 : -1];
-u8 *TObjNpcConnoisseur__ct(u8 *player, s32 arg1, s32 arg2) {
-    construct_male_npc_base((player));
-    *(s32 **)((s8 *)player + 0x18) = &(*(RecoveredGlobal_801499DC___vt__18TObjNpcConnoisseur *)&__vt__18TObjNpcConnoisseur).value;
-    *(s32 *)((s8 *)player + 0) = (s32) TObjNpcConnoisseur__name;
-    ((TObjNpcConnoisseur *)(player))->apply_set_data((void *)arg2);
-    ((TObjChara *)player)->initialize_position_copies();
-    *(s32 *)((s8 *)player + 0x34) = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjNpcConnoisseur__instance) + 0x42C)) + 8);
-    ((TObjNpcConnoisseur *)player)->texlist = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjNpcConnoisseur__instance) + 0x42C)) + 0xC);
-    ((TObjNpcBase *)player)->setup_common();
-    return player;
-}
-
-void * TObjNpcExpertBase__create(void *arg0) {
-    void *o;
-    void *o2;
-    o = __nw__7TObjectFUl(0x20);
-    if (o != NULL) {
-        o = __ct__11TObjControlFP7TObject(o, tl_04);
-    }
-    o2 = __nw__7TObjectFUl(0x3B8);
-    if (o2 != NULL) {
-        o2 = TObjNpcExpertBase__ct((u8 *)o2, (s32)o, (s32)arg0);
-    }
-    return o2;
-}
-
-}

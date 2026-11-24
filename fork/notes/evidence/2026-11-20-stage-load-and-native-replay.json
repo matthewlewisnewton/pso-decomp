@@ -1,0 +1,1139 @@
+{
+  "source": "081bc64d5286e6272b9bfeaab6085655e2661f7b",
+  "previous_source": "6bb217d8743621973dab0030b3a9196edeb3f75b",
+  "landing": "d08a56367ddcbf54ea6c365f57103d68993c5c06",
+  "working_fork_build": "d617d76a3b5cc8af1a55131744b6902cf9e4564d",
+  "source_files": 23,
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "review_queue": {
+    "head": "39cf9fce76dc2bf4662e93f48cbfe41bb8c170ea",
+    "tree": "754a84e46337fc95c75108ee18d424e8b6e0b725",
+    "previous": "be07110eb4406ad71fcd333d070fa4978d02ff4d",
+    "inputs": [
+      "b75c6f38a72228b2c5dc79f3198981f324474018",
+      "a4d7a8d2d908dc795ed2d7e929357d807e547955",
+      "fd611e40a68f1c82795e3cabd46f87c61131ade4",
+      "9a9d704b899922b8d4439be16dad34a85c23fd97",
+      "c3e7f90c1fd3d467ffef36be945b0d42d832cc59",
+      "d9e7ee7f3dfdbb7018ef9d50b394972b625fd72e",
+      "bb0a2828e3a31ddc506164215d32f5cd834ff234",
+      "cdfbc9ea796425975e1c113c20af714744ff6061",
+      "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
+      "f05429eb8e62847890602a9bf209cd4a59181a27",
+      "cf1cb4ba7a329a83c766b7fb93dc61e9108c448a",
+      "9bbc668b6121ceb6bc03f83427c98aaa931a0d31",
+      "a5aed4817c6718d9ea584baaa3f5f29fdd72d1ee",
+      "ac5aa002909d739722e26f4c3c9aef7f681b4425",
+      "12bdb900e51d333a482062d8cd0d9edab5a09a80",
+      "7bdbdaf5ba01344982227ac6b25f5315e800d9f5",
+      "f7a0122c73c00062937eac73bc56ea913630e522",
+      "9a277f6b061ec44eecf9395be11f3112c378a33c",
+      "ba580a76cbb0992a985eb947d48a178cbb36d1b2",
+      "04e0a137422e25a50c7ea48df4c35c9bcc7b14fb",
+      "182fb702e6a21c01f05a822fa77a49c1e484d0bd",
+      "0895f1cbb38bc55767e2428439e698a94b5bccf4",
+      "b18e36657fcb0ddb6227ce1cd1f5b869f53cdab8",
+      "8f26a3c7a707d4076bf84134da09276bc62991f9",
+      "501edde10f0683bd47469495199a13dd0ebeacb1",
+      "ae3da5ccb25c52f727ab0f41adcc3a3afbf0c4ef",
+      "a0c6dc4253dbf22cb0984501536a32673fa9b9e8",
+      "d90619b7c15b4300567435fdee477df7c1796a25",
+      "bd20994aa3698ab8f8f0098410b4da11d0ba0d2c"
+    ],
+    "files": 2128,
+    "reviews": {
+      "standalone-enemy-registration-and-formations": {
+        "head": "cf1cb4ba7a329a83c766b7fb93dc61e9108c448a",
+        "previous": "8ef18368c09b800b88fa31f06bc791835952df65",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 234,
+        "create": false,
+        "live_tip": "8ef18368c09b800b88fa31f06bc791835952df65",
+        "queue_input": "cf1cb4ba7a329a83c766b7fb93dc61e9108c448a",
+        "report": "/dev/shm/gm-enemy-20565490-review/bringer-standalone-report.json.gz",
+        "strict": "/dev/shm/gm-enemy-20565490-review/bringer-standalone-strict.json"
+      },
+      "standalone-stage-containers-and-floor-events": {
+        "head": "bd20994aa3698ab8f8f0098410b4da11d0ba0d2c",
+        "previous": "b30fd3471e813bfbe16321cfef4372149f99d593",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 28,
+        "create": false,
+        "live_tip": "b30fd3471e813bfbe16321cfef4372149f99d593",
+        "queue_input": "bd20994aa3698ab8f8f0098410b4da11d0ba0d2c",
+        "report": "/dev/shm/gm-ancient-spawn.4GZoz5/direct-report.json.gz",
+        "strict": "/dev/shm/gm-ancient-spawn.4GZoz5/direct-check.json"
+      },
+      "standalone-camera-and-radar": {
+        "head": "fd611e40a68f1c82795e3cabd46f87c61131ade4",
+        "previous": "5fec2a2794b87cf105d2c10473d187633a78ff1b",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 119,
+        "create": false,
+        "live_tip": "5fec2a2794b87cf105d2c10473d187633a78ff1b",
+        "queue_input": "fd611e40a68f1c82795e3cabd46f87c61131ade4",
+        "report": "/dev/shm/gm-hud-warnings-20261120/direct/display-report.json.gz",
+        "strict": "/dev/shm/gm-hud-warnings-20261120/direct/display-strict.json"
+      }
+    },
+    "replays": {
+      "bringer": {
+        "canonical": "76428e9db4e8678a8973ba28a67bcd547734f0c6",
+        "standalone": "cf1cb4ba7a329a83c766b7fb93dc61e9108c448a",
+        "queue": "5cb1448fe2e1d01dd2d86109afb564d729fe05d8"
+      },
+      "ancient": {
+        "canonical": "940a5957b7dada4176f1c18091a92972182afc7b",
+        "standalone": "bd20994aa3698ab8f8f0098410b4da11d0ba0d2c",
+        "queue": "be84efd7b8a80b1eeee56f5856347e25d2ac0396"
+      },
+      "hud": {
+        "canonical": "24f32dd8cdff390ef43531ab079311c636e61c53",
+        "standalone": "fd611e40a68f1c82795e3cabd46f87c61131ade4",
+        "queue": "f3e29a036214852fd48a851a4757804592c57dc9"
+      }
+    },
+    "increment": 26
+  },
+  "reviews": {
+    "standalone-enemy-registration-and-formations": {
+      "head": "cf1cb4ba7a329a83c766b7fb93dc61e9108c448a",
+      "previous": "8ef18368c09b800b88fa31f06bc791835952df65",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 234,
+      "create": false,
+      "live_tip": "8ef18368c09b800b88fa31f06bc791835952df65",
+      "queue_input": "cf1cb4ba7a329a83c766b7fb93dc61e9108c448a",
+      "report_sha256": "34012bb5c304e6ecf8a460e1d24d67ab580e67146ce09160f53294c31686bff4",
+      "strict_sha256": "7e3db00e44935b8829e47a278e2be7c635840fbf9e42d29f0a113f3e87097d4b"
+    },
+    "standalone-stage-containers-and-floor-events": {
+      "head": "bd20994aa3698ab8f8f0098410b4da11d0ba0d2c",
+      "previous": "b30fd3471e813bfbe16321cfef4372149f99d593",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 28,
+      "create": false,
+      "live_tip": "b30fd3471e813bfbe16321cfef4372149f99d593",
+      "queue_input": "bd20994aa3698ab8f8f0098410b4da11d0ba0d2c",
+      "report_sha256": "b38afd8b7a47cd278125801b6b6ce9658fa6f7083f9ccc3dd82ddb08fe32ba5f",
+      "strict_sha256": "06a475a1c8dfe62ff478a81d3c1d9e44ad3037b561600b581583e66718abe576"
+    },
+    "standalone-camera-and-radar": {
+      "head": "fd611e40a68f1c82795e3cabd46f87c61131ade4",
+      "previous": "5fec2a2794b87cf105d2c10473d187633a78ff1b",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 119,
+      "create": false,
+      "live_tip": "5fec2a2794b87cf105d2c10473d187633a78ff1b",
+      "queue_input": "fd611e40a68f1c82795e3cabd46f87c61131ade4",
+      "report_sha256": "ea9d526d2717a7382dae4e9b70b2c1a6ba7ff97a0660ee01b0dd199d48a77a3e",
+      "strict_sha256": "87393ece58067d19718fc5df8b433fa052a8b9202eb88b4d2424cbac59f3568c"
+    }
+  },
+  "source_audit": {
+    "source": "081bc64d5286e6272b9bfeaab6085655e2661f7b",
+    "previous": "6bb217d8743621973dab0030b3a9196edeb3f75b",
+    "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "entries": [
+      {
+        "row": 559,
+        "historical_path": "src/pso/enemy/BringerEffects.cpp",
+        "historical_blob": "cae45705f392717a5ab17c1017f48f8669278e9c",
+        "owners": {
+          "src/pso/enemy/bringer/BringerEffects.cpp": "7d0c3dc6ac700a351c8983864056833a62c50c0b"
+        },
+        "proofs": [
+          {
+            "group": "bringer-source",
+            "evidence": "All eight authored changes in the Bringer effects source survive: checked vector normalization, the native yaw and sine/cosine lookups, both exact trail strips, and the original vector and color tables. The active rush effect also carries the actual Bringer and hit recipient through its native methods.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 585,
+        "historical_path": "src/pso/enemy/TObjEneDf2Bringer_80097100.cpp",
+        "historical_blob": "6b1b46c86885d2c94d429f657d625f1f471980a7",
+        "owners": {
+          "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp": "2da74279af2248cc2f13dc22dc996700c7ba87f0"
+        },
+        "proofs": [
+          {
+            "group": "bringer-source",
+            "evidence": "The historical Bringer texture call now uses the typed BML list at its real owner. Both original floating constants retain their exact linked code and data values.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 986,
+        "historical_path": "src/pso/enemy/TObjEneDf2Bringer_800972B0.cpp",
+        "historical_blob": "cf5aa0bccdb09dda9e5e33834fac1393438c7079",
+        "owners": {
+          "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp": "2da74279af2248cc2f13dc22dc996700c7ba87f0"
+        },
+        "proofs": [
+          {
+            "group": "bringer-source",
+            "evidence": "The active Bringer has the original rush construction, explicit hit target, attack history and projectile lifetime on their actual class. The broader lifecycle and action source remains scoped.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6290,
+        "historical_path": "include/pso/TObjChip.h",
+        "historical_blob": "d30c1aee6d806d8d2415072b326bbd5626003184",
+        "owners": {
+          "include/pso/object/TObjChip.h": "b77cd11203952bcaaefc6340ee6caec7bcf7f044"
+        },
+        "proofs": [
+          {
+            "group": "ancient-source",
+            "evidence": "The complete common-fork-point edit adds the static typed copy declaration and removes the redundant forward declaration. Both are represented by the native TObjChip class and TObjChipParams include.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6413,
+        "historical_path": "src/pso/misc/TLazerFenceSw.cpp",
+        "historical_blob": "d63af2e030e3ba3cb71ed770f200ebe9d3f3206b",
+        "owners": {
+          "src/pso/object/container/TContainerAncient01_8018A55C.cpp": "8dcf561def7bce2142994c3694ac846b478dfac4",
+          "src/pso/object/container/TObjContainerItem.cpp": "805df4ff3c5a38878417282f57dafa5027ac1b82"
+        },
+        "proofs": [
+          {
+            "group": "ancient-source",
+            "evidence": "All original source edits are accounted for. The particle factory gets a const Vec pointer and integral effect ID at the original 0x8018A55C wrapper. The three no-ops moved into TObjContainerItem in both fork and canonical at 0x8018A548, 0x8018A54C and 0x8018A550. The 0x8018A554 fade limit setter moved to the same owner in both; both of its callers remain sourced. New source also identifies the actual rare container receiver and retains the upstream trigger_spawn spelling.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6632,
+        "historical_path": "include/pso/object/TObjChip.h",
+        "historical_blob": "95f5877f06a3bcf7d153d6c33b00573c6e7347bd",
+        "owners": {
+          "include/pso/object/TObjChip.h": "b77cd11203952bcaaefc6340ee6caec7bcf7f044",
+          "include/pso/object/TObjChipParams.h": "881dcecfde7ecd948e86cb237221529bb9243b8c",
+          "src/pso/object/TObjChip.cpp": "aa6959eebacb518bec4a4f032447fba693852501"
+        },
+        "proofs": [
+          {
+            "group": "ancient-source",
+            "evidence": "All authored header edits are present. Native parameters carry Vec position and spread at +0x0C and +0x18, and the 0x64 typed spawn envelope embeds the 0x4C parameters followed by the +0x4C, +0x50 and +0x54 words and the original tail. The public original raw copy_transform declaration is replaced by the typed static declaration.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6721,
+        "historical_path": "src/pso/object/TObjChip.cpp",
+        "historical_blob": "88bc4593225c969a0c7a1cdd640c93821267e95b",
+        "owners": {
+          "include/pso/object/TObjChipParams.h": "881dcecfde7ecd948e86cb237221529bb9243b8c",
+          "src/pso/object/TObjChip.cpp": "aa6959eebacb518bec4a4f032447fba693852501"
+        },
+        "proofs": [
+          {
+            "group": "ancient-source",
+            "evidence": "The two genuine VecCopy calls, original xyz helper, scalar float/integer copy order, and ordered clears +0x54,+0x50,+0x4C all match the authored copy_transform body. The shared header supplies the typed records, the previous skipped inline directives and raw public entry are gone, and rendering calls the shared texture-list setter at its original address.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6953,
+        "historical_path": "src/pso/misc/TOMonumentAncient01.cpp",
+        "historical_blob": "6e5c93bd245bfbf311c09cd1a2778bda4b211764",
+        "owners": {
+          "src/pso/object/ruins/TOMonumentAncient01.cpp": "e0829271024927628d07e571a4a40af19ca4f554"
+        },
+        "proofs": [
+          {
+            "group": "ancient-source",
+            "evidence": "The full small authored adapter patch is present: draw activation uses shared texture binding and the actor rotation.yaw, kind-5 BML loads and deletes through the native resource owner, and texture selection reads original archive slot 2 using the shared accessor.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7010,
+        "historical_path": "src/pso/item/TObjContainerIdo_8018BEE4.cpp",
+        "historical_blob": "1819f47dcd7ab09ccc7900056c47c202c7281bb0",
+        "owners": {
+          "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp": "b915f837396d8b2cb70a2e2b93fba019f81e6858"
+        },
+        "proofs": [
+          {
+            "group": "ancient-source",
+            "evidence": "All original typed resource and effect changes are present at this native owner: nullable texture bind, yaw for both archive draw slots 0/1, unchanged persistent 0x4B717 and one-shot 0x4C118 calls with real vector addresses, two 0x42 particle emissions from the same Vec, GVM can release before safe_free, and typed native kind-5 BML construction/deletion.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7055,
+        "historical_path": "src/pso/misc/TOCapsuleAncient01.cpp",
+        "historical_blob": "84a29ff3022c45b99c9cce86c64237beb586e71c",
+        "owners": {
+          "src/pso/object/ruins/TOCapsuleAncient01.cpp": "abae7195ee2e49e25f79f6a86a2f0498a1206adf"
+        },
+        "proofs": [
+          {
+            "group": "ancient-source",
+            "evidence": "The originally authored yaw, shared texture-list and native model pointer draws, kind-1 native BML constructor and deletion order, and actual texture field of models[0] are represented in the native owner.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7056,
+        "historical_path": "src/pso/misc/TOMonumentAncient02.cpp",
+        "historical_blob": "39cb8f6861e659a8dd030ec72f8003e2ae4259d0",
+        "owners": {
+          "src/pso/object/ruins/TOMonumentAncient02.cpp": "6ae8d2f1ffbaae78dc37c96991d51ba7f5a74bf2"
+        },
+        "proofs": [
+          {
+            "group": "ancient-source",
+            "evidence": "The authored persistent sound call passes its original task and Vec position. Shared texture-list and native model pointer draws use the same yaw. Three historical floor-specific descriptors still construct the kind-5 resource natively and release it through its destructor. The original models[0] texture-list member remains the source.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7208,
+        "historical_path": "src/pso/misc/TContainerAncient01.cpp",
+        "historical_blob": "1e629b7adfd8fe35e5d39a5dcd0f17e9dc4ec307",
+        "owners": {
+          "include/pso/object/container/TContainerAncient01.h": "cc595a5557aaf31950ed6408c100a0068b6815fb",
+          "include/pso/object/container/TContainerAncient01R.h": "f2df8fb75aec316806657435ce0a11943284fa55",
+          "src/pso/object/container/TContainerAncient01.cpp": "6e457490d58c88de7e982a1039ca286b082328ea",
+          "src/pso/object/container/TContainerAncient01_8018A55C.cpp": "8dcf561def7bce2142994c3694ac846b478dfac4"
+        },
+        "proofs": [
+          {
+            "group": "ancient-source",
+            "evidence": "Typed factory, all fourteen helper callers, and eight native Vec sound origins are established in exact code. Ordinary endpoints +0x344/+0x350 and rare endpoints +0x348/+0x354 are real Vec records. The rare constructor is the actual receiver of init_positions at 0x8018A9D8; regular spawn_effect remains at 0x8018B158. Both opening effect choices and thresholds, lower and upper call order, period loads, initial y offsets, matrix scale initialization and subsequent fading retain retail instructions. The complete historical archive, motion, combat and split-source rows are broader and remain scoped to prior evidence.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5593,
+        "historical_path": "src/pso/object/TObjBagWarnWin4P.cpp",
+        "historical_blob": "9e29dfa9206c58ccb5c9132e617228df996e5180",
+        "owners": {
+          "src/pso/ui/window/TObjBagWarnWin.cpp": "4f85d4e3f1611b2191ba1a7175d3193b4c183ad6",
+          "include/pso/ui/window/TObjBagWarnWin4P.h": "e83d3dbfb64d5c3e6ddf5846096b0195af3aa80c",
+          "include/pso/ui/WarningWindowState.h": "251cc7433530b772cdeca245e76b9df65a3eb587",
+          "include/pso/ui/WarningWindowUpdate.h": "a1dead5d62bf91e44786e33742a935b40d6aa00f"
+        },
+        "proofs": [
+          {
+            "group": "hud-source",
+            "evidence": "All five historically split bodies are carried at their original addresses: predicate, run, create, destruction, and construction. The predicate consumes the actual actor lookup into the native player ID and checks both menu conditions before its guild/saved-level gates. The folded factory uses original layout 0x5B, message 0x69, row count and client; the constructor takes the actual task parent.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5594,
+        "historical_path": "src/pso/ui/TObjBagWarnWin.cpp",
+        "historical_blob": "791960395f6d4a7f0f4d4d2735840fab93784e53",
+        "owners": {
+          "src/pso/ui/window/TObjBagWarnWin.cpp": "4f85d4e3f1611b2191ba1a7175d3193b4c183ad6",
+          "include/pso/ui/window/TObjBagWarnWin.h": "7e425da2abd9dee0d884245cf66da18ab87cd930",
+          "include/pso/ui/WarningWindowState.h": "251cc7433530b772cdeca245e76b9df65a3eb587",
+          "include/pso/ui/WarningWindowUpdate.h": "a1dead5d62bf91e44786e33742a935b40d6aa00f"
+        },
+        "proofs": [
+          {
+            "group": "hud-source",
+            "evidence": "The original single-player predicate checks mode, warning exclusions, both floor-specific coordinate bounds and the original threshold. The window uses layout 0x38, message 0x59, original draw depth and the camera-4 content scale. Run and destructor retain original lifecycle. Standalone and queue use their existing content-scale symbol.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5595,
+        "historical_path": "src/pso/ui/TObjBagWarnWin_8006EED4.cpp",
+        "historical_blob": "005dd87fae3c7a37392e76c75b459b127c856ca5",
+        "owners": {
+          "src/pso/ui/window/TObjBagWarnWin.cpp": "4f85d4e3f1611b2191ba1a7175d3193b4c183ad6",
+          "include/pso/ui/window/TObjBagWarnWin.h": "7e425da2abd9dee0d884245cf66da18ab87cd930",
+          "include/pso/ui/WarningWindowState.h": "251cc7433530b772cdeca245e76b9df65a3eb587"
+        },
+        "proofs": [
+          {
+            "group": "hud-source",
+            "evidence": "The full historically separate 80-byte constructor is emitted by the actual class. It takes the parent, uses its original class name, initializes the pointer at +0x1C to null and the countdown at +0xA0 to zero.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5592,
+        "historical_path": "src/pso/misc/TWindowTimer.cpp",
+        "historical_blob": "7aa4ea9dd578d8f15c1c198b78f114895d212937",
+        "owners": {
+          "src/pso/ui/window/TWindowTimer.cpp": "aa9cdc3f6878b0cc9eb0301e3e01645d0c2990ed",
+          "include/pso/ui/window/TWindowTimer.h": "8a33f11b9bbde67c3e32dcf194a2f9e4e99be6a5"
+        },
+        "proofs": [
+          {
+            "group": "hud-source",
+            "evidence": "Native draw-tab and render use the real context, the outer rectangle at +0 and inner rectangle at +0x10, and the original group and depth. Position updates target the actual fields and all previous timer format/creation functions remain linked. The full mixed historical source row is outside this scoped proof.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5650,
+        "historical_path": "include/pso/misc/TWindowTimer.h",
+        "historical_blob": "6b4c9572a4293a7c22eba813cdd63c6ae9fa1b84",
+        "owners": {
+          "include/pso/ui/window/TWindowTimer.h": "8a33f11b9bbde67c3e32dcf194a2f9e4e99be6a5",
+          "src/pso/ui/window/TWindowTimer.cpp": "aa9cdc3f6878b0cc9eb0301e3e01645d0c2990ed"
+        },
+        "proofs": [
+          {
+            "group": "hud-source",
+            "evidence": "Native ctor, member draw-tab, both layout initializers and the original flag at +0x60 are present everywhere. Canonical and queue carry the physical base layout, while the narrower camera/radar standalone retains equivalent inherited storage through its local legacy layout. The standalone carries the verified display call and retains its prior renderer storage.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6005,
+        "historical_path": "src/pso/unk/text_80287AD8.cpp",
+        "historical_blob": "24b2965e47e4275610e0aa28eeac991505d21de9",
+        "owners": {
+          "src/pso/ui/window/TWindowTimer.cpp": "aa9cdc3f6878b0cc9eb0301e3e01645d0c2990ed",
+          "include/pso/ui/window/TWindowTimer.h": "8a33f11b9bbde67c3e32dcf194a2f9e4e99be6a5"
+        },
+        "proofs": [
+          {
+            "group": "hud-source",
+            "evidence": "All three historically separate functions are present: the two initializers set/clear the original flag, measure the exact timer string, and center the actual first entry with 48 minus half-width. The original 0.21 easing now reads and writes actual target/current positions at +0x30/+0x40.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5789,
+        "historical_path": "src/pso/misc/TWindowSubAreaMap.cpp",
+        "historical_blob": "0d3520297dac65045c3b6d1051f6198c712add79",
+        "owners": {
+          "src/pso/ui/window/TWindowSubAreaMap.cpp": "31c8d68aa7007c8cab7218b746ac0162efd21d7a",
+          "include/pso/ui/window/TWindowSubAreaMap.h": "1c479afdda93a6b16a68006eb55bf4b35cd1866d",
+          "include/pso/ui/window/TWindowSubAreaMapDisp.h": "3901f16e859821aae5ff277525639d6bed969c9e"
+        },
+        "proofs": [
+          {
+            "group": "hud-source",
+            "evidence": "The substantive old diff uses native allocation for the original map child and typed pan/zoom floats with the same three damped axes. The actual map child at +0x24 is now also closed through its native receiver. The shared sound declaration still binds the selected retail call.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5631,
+        "historical_path": "src/pso/misc/TWindowSubAreaMapDisp.cpp",
+        "historical_blob": "4b779b42609974611a9bed89e099910a9a788e19",
+        "owners": {
+          "src/pso/ui/window/TWindowSubAreaMapDisp.cpp": "9b0d2bbd39e9365f370c35898461a531b9e927b8",
+          "include/pso/ui/window/TWindowSubAreaMapDisp.h": "3901f16e859821aae5ff277525639d6bed969c9e",
+          "include/pso/ui/window/TWindowSubAreaMap.h": "1c479afdda93a6b16a68006eb55bf4b35cd1866d"
+        },
+        "proofs": [
+          {
+            "group": "hud-source",
+            "evidence": "Viewport visibility keeps the original full-register result and explicit receiver, pan and zoom at +0x60/+0x64/+0x68, and the original owned heading/text pointers at +0x70/+0x74. Creation copies the terminator-inclusive text and constructs the same heading; destructor keeps its title teardown and allocator. The mixed renderer and external layout-provider changes stay scoped.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5913,
+        "historical_path": "src/pso/object/TObjDeadListWin.cpp",
+        "historical_blob": "c5aa2f6021bdc54a2fa524b05f93f3da217d13f7",
+        "owners": {
+          "src/pso/ui/window/TObjDeadListWin.cpp": "268ace3033b037700d551206126b34a8cbcf2153",
+          "include/pso/ui/window/TObjDeadListWin.h": "53c2c694217eb457030f89e44bdb5cb6e8245f03"
+        },
+        "proofs": [
+          {
+            "group": "hud-source",
+            "evidence": "The entire historical semantic delta corrects the countdown guard to the actual TObjPlayer receiver. The guarded predicate still targets the retail func at 0x800495BC; the direct review keeps the old linker label with an explicit TObjPlayer* argument. All variants additionally copy the native player name and retain the original owned message child and countdown.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      }
+    ],
+    "closed_rows": [
+      559,
+      585,
+      5593,
+      5594,
+      5595,
+      5650,
+      5789,
+      5913,
+      6005,
+      6290,
+      6413,
+      6632,
+      6721,
+      6953,
+      7010,
+      7055,
+      7056
+    ],
+    "remaining": {
+      "Owner comparison required": 246,
+      "Some anchored text changes found": 690
+    }
+  },
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "data_ranges": 90,
+  "local_tool_tests": 294,
+  "layer_tests": 11,
+  "fork_only_paths": 133,
+  "replay_validation": {
+    "bringer-source": {
+      "head": "76428e9db4e8678a8973ba28a67bcd547734f0c6",
+      "report_sha256": "ba48bc68fbd4a375e2ded95757cccacfb88fa13d5e9eb7d5bc4f8aef43f9da6d",
+      "strict_sha256": "7e3db00e44935b8829e47a278e2be7c635840fbf9e42d29f0a113f3e87097d4b"
+    },
+    "ancient-source": {
+      "head": "940a5957b7dada4176f1c18091a92972182afc7b",
+      "report_sha256": "ae0c201f9c5d309afcacb62346d2469cf065104d04877c79d091a94bbfbad2e9",
+      "strict_sha256": "06a475a1c8dfe62ff478a81d3c1d9e44ad3037b561600b581583e66718abe576"
+    },
+    "hud-source": {
+      "head": "24f32dd8cdff390ef43531ab079311c636e61c53",
+      "report_sha256": "00e01ef2761ef8eebc21d353c601b91ef3f5194890c42e9228e9b1d4f69e0584",
+      "strict_sha256": "09cde302f77e3542e51fa2c2fc930e5dd64b8244f07a287199f807e7fb0685c3"
+    }
+  },
+  "combined_validation": {
+    "combined-source": {
+      "report_sha256": "0ec603dc05808a98ec2e6ccef3f65a678da2868ae0ee556eb27994d4a295c7ca",
+      "strict_sha256": "74bbd5d8ce13df7c4a63a6ac81508a7281e9af82270fb1406a3af82b5a8d4c97"
+    },
+    "direct-union": {
+      "report_sha256": "ebb5925b2394563da42d89c3cc853050d9d4411d61183c44b41686de67856556",
+      "strict_sha256": "51c512ad9f247385dfd7945dec12c771fdf36af9c14c435a04dfc69ec1cc15ff"
+    },
+    "working-final": {
+      "report_sha256": "0ec603dc05808a98ec2e6ccef3f65a678da2868ae0ee556eb27994d4a295c7ca",
+      "strict_sha256": "a57122528d981d3d1494c03152edf784967ea0bd0214ab34e3598b58c1f34f89"
+    }
+  },
+  "stage_loading_review": {
+    "head": "69ee8013f8eb4ced49699e18e648614decdd11fc",
+    "base": "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
+    "master_review": "3dc510fe52b5319658798b68a56d011d53eae1fd",
+    "files": 178,
+    "resolved_initial_overlaps": [
+      "include/pso/render/GinjaMaterialState.h",
+      "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+      "src/pso/boss/olgaflow/TBoss6CrushRock.cpp",
+      "src/pso/boss/olgaflow/TBoss6RockChase.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptMonitor.cpp",
+      "src/pso/effect/TEffIndirectCtrl.cpp",
+      "src/pso/effect/TKomorebi.cpp",
+      "src/pso/effect/particle/TParticleCtrl_80086884.cpp",
+      "src/pso/object/TMotorcycle.cpp",
+      "src/pso/object/TOBind_801586B8.cpp",
+      "src/pso/object/TObjBigTuitate.cpp",
+      "src/pso/object/TObjComputer.cpp",
+      "src/pso/object/TObjDoaEx01.cpp",
+      "src/pso/object/TObjLiveMonitor.cpp",
+      "src/pso/object/TObjTank.cpp",
+      "src/pso/object/TObjTombstone.cpp",
+      "src/pso/object/ambient/TObjFish.cpp",
+      "src/pso/object/cave/TOHangceilingCave01.cpp",
+      "src/pso/object/container/TContainerAncient01.cpp",
+      "src/pso/object/container/TOContainerAncientEnemy.cpp",
+      "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp",
+      "src/pso/object/container/TObjContainerItem.cpp",
+      "src/pso/object/container/TObjContainerJung.cpp",
+      "src/pso/object/door/TODoorJungleMain.cpp",
+      "src/pso/object/door/TODoorLabo.cpp",
+      "src/pso/object/door/TObjDoorJung.cpp",
+      "src/pso/object/door/TObjDoorKey.cpp",
+      "src/pso/object/door/TObjDoor_8018E358.cpp",
+      "src/pso/object/ending/TObjOnlineEnding_802E4B80.cpp",
+      "src/pso/object/fence/TLazerFenceSw.cpp",
+      "src/pso/object/fence/TOBarrierEnergy01.cpp",
+      "src/pso/object/fence/TOVS2Wall01.cpp",
+      "src/pso/object/fence/TObjLazerFence4.cpp",
+      "src/pso/object/fence/TObjLazerFenceNorm.cpp",
+      "src/pso/object/jungle/TOGrassJungle.cpp",
+      "src/pso/object/jungle/TOJungleDesign.cpp",
+      "src/pso/object/key/TODummyKeyCave01.cpp",
+      "src/pso/object/key/TOKeyAncient02.cpp",
+      "src/pso/object/lobby/LobbyGoGoBall.cpp",
+      "src/pso/object/lobby/LobbyPigeonPath.cpp",
+      "src/pso/object/lobby/TObjButterflyLobby_80350958.cpp",
+      "src/pso/object/mine/TOLightMachine01.cpp",
+      "src/pso/object/seabed/TObjSeabedSuisoBrakable.cpp",
+      "src/pso/object/trap/TOMine.cpp",
+      "src/pso/object/trap/TOMineIcon01.cpp",
+      "src/pso/object/trap/TOMineIcon02.cpp",
+      "src/pso/object/trap/TOMineIcon03.cpp",
+      "src/pso/object/trap/TOMineIcon04.cpp",
+      "src/pso/object/trap/TOTrapAncient01.cpp",
+      "src/pso/object/trap/TOTrapChainSawEdge.cpp",
+      "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+      "src/pso/object/warp/TObjLaboMapWarp.cpp",
+      "src/pso/object/warp/TObjMapWarpAncient.cpp",
+      "src/pso/object/warp/TObjWarpBossMulti.cpp",
+      "src/pso/object/warp/TObjWarpJungMain.cpp",
+      "src/pso/object/wreck/TOWreckAncient.cpp",
+      "src/pso/player/TObjPlayer_80357B2C.cpp",
+      "src/pso/system/scene/TSceneSora.cpp",
+      "src/pso/unk/text_8028A714.cpp"
+    ],
+    "confirmed_retained": {
+      "original-stage": {
+        "coverage_lost": [],
+        "padding_coverage_lost": [],
+        "delta_sha256": "285216c3b12548e177bdf3bdbd9012fd59df2e66e9fd937737d5bf1657855717"
+      },
+      "independent-loading": {
+        "coverage_lost": [],
+        "padding_coverage_lost": [],
+        "delta_sha256": "55ceeb961dff889d26cf315d172a01441792f2358c7506c984cbb7af863cf14d"
+      }
+    },
+    "strict_sha256": "6fb1f87bb3f7c54b3436d3d8414a7fee4124d631cc297641b152a02d061311a5",
+    "report_sha256": "edc4150662ce092043eaf91c6197d4521148c37975af424cdd44a20efb4e83c2",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "linker_label_changes": [
+      {
+        "module": "psov3",
+        "address": "0x8001EF8C",
+        "before": "alloc_load_data__6TLobbyFPviii",
+        "after": "allocate_bml_chunk"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801FB9A4",
+        "before": "init_map_ptr__13TRaderMapCoreFv",
+        "after": "init_map_ptr__13TRaderMapCoreFPCll"
+      }
+    ],
+    "original_1147_bytes": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "inventory_ranges": 90,
+    "master_review_files": 179,
+    "paths_already_present_on_stage": [
+      "include/pso/render/GinjaMaterialState.h"
+    ],
+    "overlap_resolution": [
+      {
+        "path": "include/pso/render/GinjaMaterialState.h",
+        "stage_blob": "ff13b39b3e6856ce7e7cc65c176c30c2f592909d",
+        "loading_blob": "19d49b360b5e420b7abe7586caaf884c3ffa254b",
+        "resolved_blob": "ff13b39b3e6856ce7e7cc65c176c30c2f592909d",
+        "already_present_on_stage": true
+      },
+      {
+        "path": "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+        "stage_blob": "00fb7517dd3c9c87b80b002ce6a3523bdaa4a720",
+        "loading_blob": "57bebc7e2be1758b09dc3935d9fa810f9f704fb6",
+        "resolved_blob": "3de3032cf94bba59d57cc10275653f2b05da3fd9",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/boss/olgaflow/TBoss6CrushRock.cpp",
+        "stage_blob": "506bd48ef557b45c76c8eda3822df08b20a8203e",
+        "loading_blob": "c89c984d4250a9c1de42a2a38a34e5c6050ca96d",
+        "resolved_blob": "d89037ddf7ebb4fb522325d2bd787e77f61606a5",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/boss/olgaflow/TBoss6RockChase.cpp",
+        "stage_blob": "bc20053a41f823edd47748a0fe853531ef1d517c",
+        "loading_blob": "88c691ded9e61780dfe27148a8d2d1dd9f61fe6b",
+        "resolved_blob": "454860758bdbc96402e5581f8d5a4dfb03dc79ff",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/boss/volopt/TBoss3VoloptMonitor.cpp",
+        "stage_blob": "7922fd40e4ae2848ca94dfc6885d681ea686bc0e",
+        "loading_blob": "5d9e25342a98ebf73d50a2eb589fc93dd7f69e84",
+        "resolved_blob": "caee36ca681f01eda1d7982e2705463ae1eeaaa3",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/effect/TEffIndirectCtrl.cpp",
+        "stage_blob": "d72af9ed0fa59180e633d1a6a790d8af0ef4fe72",
+        "loading_blob": "3cedd7ceadf3739e979ea55e2a9ea1ad86c90516",
+        "resolved_blob": "8c8730981a892eb6b77dbfe33a2ccecfc42a6806",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/effect/TKomorebi.cpp",
+        "stage_blob": "c45eae9f8d813699e3ae10037868a1d8a1b36810",
+        "loading_blob": "3880ad87137c03af9b4b56f7590ac5d0ea98f030",
+        "resolved_blob": "ba8cd8f758e28f06d4cc9818325ee0e92a8caf68",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/effect/particle/TParticleCtrl_80086884.cpp",
+        "stage_blob": "2939cffcef0d53fa04f7426f6623a30711a89d7a",
+        "loading_blob": "076937abb41b449c9e15261f79e356b5ef157876",
+        "resolved_blob": "c156ba82bf6b4cf698bc7c6436479b808a88f5ab",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/TMotorcycle.cpp",
+        "stage_blob": "391fd280fbc0cb8ebdb10b1d049ac8ceafd5978b",
+        "loading_blob": "9486c84c5a9039acdf64774e3a9ade35648946f7",
+        "resolved_blob": "dd9f88b3ff879f3e9d143087036ca1924542d806",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/TOBind_801586B8.cpp",
+        "stage_blob": "4467bd0e7ee780c3a75114457282c5b7d0a2d81a",
+        "loading_blob": "e4593b24399398b841065422a2b901d3f6c61e66",
+        "resolved_blob": "6fce8bc2f2265d9f894d6c60c17ceae8ee61bd8e",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/TObjBigTuitate.cpp",
+        "stage_blob": "b75c604e20e91f2226de9c60140dcd5581ba6517",
+        "loading_blob": "438f7b7b7648a6fabcd9fd27ab62db9c3df90295",
+        "resolved_blob": "2f2f699f13e79088b0329ace982f5cd7e9fbd658",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/TObjComputer.cpp",
+        "stage_blob": "d259328f071ea7cec38e8c9d72a962e05b2f80ff",
+        "loading_blob": "f26d3c3d8fc26bfd50e06df7551682c4e2c88339",
+        "resolved_blob": "935f2f563f2efaffb389d1c6ba57686b679d2f8e",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/TObjDoaEx01.cpp",
+        "stage_blob": "dfe83e8aefa565c33df8d1a4a7b44d19689c667e",
+        "loading_blob": "33fdc2aea203a13950b7d9002c4d950d07b5b267",
+        "resolved_blob": "abb978180762cb572a0e2d04ee23a870d397a095",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/TObjLiveMonitor.cpp",
+        "stage_blob": "6a9bc7263e1bc1109eb4eb53e8f6d578e9dbcb0a",
+        "loading_blob": "660942b831307a3474b261bf8a9f974c7c12c578",
+        "resolved_blob": "52c70489944f8888f8dd7d36e6dbe1cfb513ddbf",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/TObjTank.cpp",
+        "stage_blob": "8e530aeb2adccd03de2aab9666ac6034e9b0dd64",
+        "loading_blob": "ec751c2581be57c4de923fd5827d239daa5282e0",
+        "resolved_blob": "82ef679677425037a6365caf0b5a36250dc42e3c",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/TObjTombstone.cpp",
+        "stage_blob": "5912fe1fbfe479a070fb6bbc16a9c7a26c26646e",
+        "loading_blob": "f2049ba8d70f1ccaf36f01fc940879b057bf0841",
+        "resolved_blob": "030cfbd4f64de49ce837f61fc242af4e56ec3266",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/ambient/TObjFish.cpp",
+        "stage_blob": "bbf1a15a57d6ad47955e33669d0b17bf25a75f76",
+        "loading_blob": "1d0f27dc0cf05813797f96bd10209bc16ce512e8",
+        "resolved_blob": "b37c3d826e32ee84b83d328493ef919f9d7a699d",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/cave/TOHangceilingCave01.cpp",
+        "stage_blob": "529b77b20675fd827df0bcd2d70848039c6fde80",
+        "loading_blob": "9f4a8084d6cd49af0fc46294605e8f6eb5273992",
+        "resolved_blob": "2db653863a48515d9d5323dfded79d97802cd8c0",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/container/TContainerAncient01.cpp",
+        "stage_blob": "4e0a63ef2106d45fb3e22ca685548e1d5ca6eff2",
+        "loading_blob": "e0799ce60401b5a2f64310524b1346c4faea8952",
+        "resolved_blob": "4458c2be1c1e1758d569766bbffc9b2b215318a6",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/container/TOContainerAncientEnemy.cpp",
+        "stage_blob": "58313b3040bf9591ad8fec8feed0a60bcdb902ce",
+        "loading_blob": "abcdfaa185ea7c2e51388c2390e5ed5464134d18",
+        "resolved_blob": "6f740283537217f3ed1a79849bbc5ea238263bef",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp",
+        "stage_blob": "66e495e087a2bc305d1d648bd23dc80625d51972",
+        "loading_blob": "78c95ff55500322fb7b8b405f001943fb6c1fac1",
+        "resolved_blob": "8c41b9fdba4d456d7e1e4dafbd9518a87350decb",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/container/TObjContainerItem.cpp",
+        "stage_blob": "c5c1e8ec9bf9e12f42e3a3415668ff25e311f25e",
+        "loading_blob": "23ad7cbe1436bffc3fb3365bebfa5c6910727305",
+        "resolved_blob": "049a3d56919c26d9807533328122ca4ec16e8c66",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/container/TObjContainerJung.cpp",
+        "stage_blob": "e3f0cc7141837a4b0d7af7f949e15d40858f6963",
+        "loading_blob": "d7f873c629668713082f962ea4552a7bdef3d9c6",
+        "resolved_blob": "5d1782daa9f018481230fe0bfbfd2ea7151b7334",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/door/TODoorJungleMain.cpp",
+        "stage_blob": "4c7c01eac716a21411416226c264572af952336c",
+        "loading_blob": "6591eb812625506c88d0fec514b2f5e9e83aa92f",
+        "resolved_blob": "860d89ea11a9396c74d808d6239275deb9c24516",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/door/TODoorLabo.cpp",
+        "stage_blob": "c1c1070bd6ac5c461ae45aad33ff7e23e755ae82",
+        "loading_blob": "a2c5b08d1d0c69c1fb51b230b90777d42268b301",
+        "resolved_blob": "a61a1008dac7cbbc9bf6e8e2f0be4be79826f40d",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/door/TObjDoorJung.cpp",
+        "stage_blob": "97d3f0b0240aad97cb81ce3d51b8a85f880c9d15",
+        "loading_blob": "520f027ba14850ca793493708cf4457a86dfe845",
+        "resolved_blob": "98a1edbb92f41c635f05f2ff430bf7e63f53e6f8",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/door/TObjDoorKey.cpp",
+        "stage_blob": "914ef6024b4121eb38a4486df3bc86b24aca342f",
+        "loading_blob": "6f92ec1b386b07fd57911d9aafbea51f80c2afc9",
+        "resolved_blob": "a511a9bdc09b848702680fe841a3927bee96f3b3",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/door/TObjDoor_8018E358.cpp",
+        "stage_blob": "64102492ddf5c412497678b81ceeeb4b7184827e",
+        "loading_blob": "0e648b6bb529adad0db773bea8954285253ba7c9",
+        "resolved_blob": "89d7187ca8bc598bf8c901cedbe73864868bd265",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/ending/TObjOnlineEnding_802E4B80.cpp",
+        "stage_blob": "e1b41f627b620c5e93051bb8534e66d7813fad05",
+        "loading_blob": "0b42a2fcf8e5688feccc4433d4d0862bc675b32d",
+        "resolved_blob": "ae1068ac0bad186099a9f35b9f7aa670746ae897",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/fence/TLazerFenceSw.cpp",
+        "stage_blob": "f8900188cc0f5d6f854808ac58aa2d6ad6509e74",
+        "loading_blob": "43131f7a1cf9206ae29342f2b8a33b6e327f1a07",
+        "resolved_blob": "bb3f90d4414c3f30c5ca2fa1e1423ebbe612bc47",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/fence/TOBarrierEnergy01.cpp",
+        "stage_blob": "118dfe44bba3345b2ef09c4bf223da796d480478",
+        "loading_blob": "da6324b763e1b33c1fd2017c2d429f10ed6766f0",
+        "resolved_blob": "f3b3b8dc1340c253caf4ffe0b07d93a7bdb4acb7",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/fence/TOVS2Wall01.cpp",
+        "stage_blob": "972a0e00ae0b4ff450b60d10082766fb1365a3b9",
+        "loading_blob": "cd8a11ad7c5560e6fc431ec114606dc6ed785503",
+        "resolved_blob": "3bbcb5af163c283ced9d7da8c1426859a1af2d48",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/fence/TObjLazerFence4.cpp",
+        "stage_blob": "6745fad591ede7d24290dc859b33deb6bc30935d",
+        "loading_blob": "eb3d0278f44ecb807f9f176aaee2b70e10daf163",
+        "resolved_blob": "646b9fbbe1bc0b9fa7cc988af2c585b2ed1b2c3f",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/fence/TObjLazerFenceNorm.cpp",
+        "stage_blob": "ab6a254a83947cce10d7cdfb067d8ed41b858f52",
+        "loading_blob": "1e37a7e0bd9c1fcbf8213c654dfd7e3567663dac",
+        "resolved_blob": "77eaf0e39a0580f2c95af219a85932626f44ba68",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/jungle/TOGrassJungle.cpp",
+        "stage_blob": "167abbe250d8881933a30285ffe6f4dbf61bd7d4",
+        "loading_blob": "d36098c839df77669114ccbc311a3f208b895c60",
+        "resolved_blob": "c03d342070d653709b4b36fa9c85174e4e95be51",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/jungle/TOJungleDesign.cpp",
+        "stage_blob": "e6c229957e14a4d1fa2ae149d295560f9ef302ff",
+        "loading_blob": "95d9fad5f8b1f1537288734cea69128400267572",
+        "resolved_blob": "8f60e25241bfc6591dcf2486810a70ac40ee4b10",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/key/TODummyKeyCave01.cpp",
+        "stage_blob": "741afc484f99edf989fe642a400d2e85a4a7e2ca",
+        "loading_blob": "e30992c2af7d07692c154ae0e4180b78d7a4e7aa",
+        "resolved_blob": "e63f8cf238255cf602771803dcce483324ef66cf",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/key/TOKeyAncient02.cpp",
+        "stage_blob": "7116e1aa961546d590f785dfcdd10cfa6225513f",
+        "loading_blob": "e52645dfece97551f135e384677a87b6954ea92b",
+        "resolved_blob": "0055998c6f9d44a954a5d0c8e0ceb61ebfcdf098",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/lobby/LobbyGoGoBall.cpp",
+        "stage_blob": "75d8bef3a3511b6fb661051c800112aaaece59be",
+        "loading_blob": "b9441367ff5a06689904827b884fc8a406e3431f",
+        "resolved_blob": "9b94ff95475560b4d6d459dc76effe15bd3138ce",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/lobby/LobbyPigeonPath.cpp",
+        "stage_blob": "98c45f38e6c9fc9da35db4143cae9c2f9e257621",
+        "loading_blob": "0fc4bdab93729ba5c5b86f4579058894eae09e34",
+        "resolved_blob": "b72cf3c6e4805042c250923b6ade54485e3dbf92",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/lobby/TObjButterflyLobby_80350958.cpp",
+        "stage_blob": "011b2126878b5274096058afb923b3ec02114c22",
+        "loading_blob": "53592cebd2874d7cc52d6363417fe56350f2c6d3",
+        "resolved_blob": "e4744526929d15eeaee117733065e712bfe6fea3",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/mine/TOLightMachine01.cpp",
+        "stage_blob": "b787d917955e272d4406e3044dd796c77289fa57",
+        "loading_blob": "dfc9500052d4c2667154af2ee9e4855e63b81d9a",
+        "resolved_blob": "53afd93dbe9a46bb02dd2588f301465ccb18670e",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/seabed/TObjSeabedSuisoBrakable.cpp",
+        "stage_blob": "8b0f5d9ec72fce6d03dfaff61cda8ffe736c7a35",
+        "loading_blob": "bf19bdab476c10cb06754e13587293debe7792b0",
+        "resolved_blob": "af45fd1aeb54bd60c685dc81e00dc3a2ddb4d0fc",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/trap/TOMine.cpp",
+        "stage_blob": "13f3ba10c2180460adbbd8b17e52c13d197c0dad",
+        "loading_blob": "4a36b44dcf6559b733ad1d8445a2b85c94844bf4",
+        "resolved_blob": "563f20ef79c3562af3c2419ad603bd8279fddbca",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/trap/TOMineIcon01.cpp",
+        "stage_blob": "bc46380eddae0b8cddebc19736a6cb7a69e41c12",
+        "loading_blob": "c21d726ad4a8bc29534fd4413a014a123ecba7ad",
+        "resolved_blob": "e8effc2f966382ad161a03958c726836c160b17c",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/trap/TOMineIcon02.cpp",
+        "stage_blob": "2799ae8bfccf54adefc1f249293b1738f09fe096",
+        "loading_blob": "c5031ebebc898d2f2ff6e141ec4f8f278a9d23b0",
+        "resolved_blob": "081fcf92632a53534558349387d1fffca0e8682e",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/trap/TOMineIcon03.cpp",
+        "stage_blob": "755efa916ac1fa2c00ea305009bf741c1de4bb8f",
+        "loading_blob": "7c607cd31a3a391f53bfe59e84dd2bcb6272c2fe",
+        "resolved_blob": "ac27bd387b2d53de7c906e90c53fab1397e2deaf",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/trap/TOMineIcon04.cpp",
+        "stage_blob": "32dd2b1814450c94d78bf4e0e5721804c1fb6743",
+        "loading_blob": "196a5cebe557e0dea1b332a831d64539975dbbe4",
+        "resolved_blob": "0071f77f11c6bc22816db2a4bb858b7519da56b3",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/trap/TOTrapAncient01.cpp",
+        "stage_blob": "2863c29492e9d043d4ddd96cf58a610b655bf4c5",
+        "loading_blob": "37a2ceb621e80ab94b1093fd7f5547833705032a",
+        "resolved_blob": "d5bdb8370482446b83bc20d96c1222e5fb095db5",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/trap/TOTrapChainSawEdge.cpp",
+        "stage_blob": "ec5f3647cd4f97cb915971ae56e8f62ad5bd5544",
+        "loading_blob": "9c64c257284eafbfc00a49d0b25c00873c741e27",
+        "resolved_blob": "0a60c56acf7864aa0553841f280c2ed8cd600321",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+        "stage_blob": "c72a941b0a0b485494031c442bc4d46016e2aad8",
+        "loading_blob": "794cc3d19dc852e9b0e3b375d0f3e8c7edd718a0",
+        "resolved_blob": "def43a6302e570c42a8da89d5b9c2f73fe5918c3",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/warp/TObjLaboMapWarp.cpp",
+        "stage_blob": "d66b6881e7c0f43946fac3968c8d7aaaf6b87d91",
+        "loading_blob": "babab254eea56b56e3f5de894b7ca48d479fb757",
+        "resolved_blob": "dba9519bd7eee9fe5ebdcc8e8b1d66cc392865e2",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/warp/TObjMapWarpAncient.cpp",
+        "stage_blob": "83c2384e24f45fbe40e68034f2ae613d6de911cb",
+        "loading_blob": "2559d0ecad250c484076405e74f446d30a23d8db",
+        "resolved_blob": "a0030191078691bc46b9407815c666d575779b7a",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/warp/TObjWarpBossMulti.cpp",
+        "stage_blob": "cd63fda1d492772fd450dd43c347433fe61a8922",
+        "loading_blob": "58fa93533f513de895f18feed09667a47d29f4c7",
+        "resolved_blob": "f59c949420a7585cf874a0bef3a67cf62376c2d5",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/warp/TObjWarpJungMain.cpp",
+        "stage_blob": "57c9ae40dc5f3e5cf82d7fa6c04fa728e3a9a0bf",
+        "loading_blob": "1819f7710c8c5ea53ed941f24f2e32c8752f42d3",
+        "resolved_blob": "1a51ebae539ed134b29966fea4b47664a3102ddf",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/object/wreck/TOWreckAncient.cpp",
+        "stage_blob": "d1ba6ef15df733b13f31ac2fb5421de5a38563d6",
+        "loading_blob": "f205dc0b7a3eaf20cc5ef3f5fa73e7ffd326703e",
+        "resolved_blob": "ab8132f23b93f3b525eb539310f703ce06324bf0",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/player/TObjPlayer_80357B2C.cpp",
+        "stage_blob": "b1bd1c16ca43227824d44ad11e17cc4294a22346",
+        "loading_blob": "f0d7d440ff2a3ee9416f215a3183beb90d31f3c9",
+        "resolved_blob": "04704f4b87df86965fe82a64b4cc9372d3cfdfa2",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/system/scene/TSceneSora.cpp",
+        "stage_blob": "412407c1de063136ee226ad1a5ec5d0a40642817",
+        "loading_blob": "772251c0daa7df9402508929b62b7338dc0b5244",
+        "resolved_blob": "574a130962a8acd767332a1e9d376cd433c29da6",
+        "already_present_on_stage": false
+      },
+      {
+        "path": "src/pso/unk/text_8028A714.cpp",
+        "stage_blob": "68f3b984efaa62b0ab631f9047730213972687d5",
+        "loading_blob": "b511beb4fb0e1ffa1a104469613d2f547739dd93",
+        "resolved_blob": "20ee60096e754e04ca31a82930748bad38072de6",
+        "already_present_on_stage": false
+      }
+    ]
+  },
+  "increment_label_audit": {
+    "bringer": [
+      {
+        "module": "psov3",
+        "address": "0x80099248",
+        "before": "TObjEneDf2Bringer__sub_80099248",
+        "after": "sub_80099248__17TObjEneDf2BringerFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009AA64",
+        "before": "construct_bringer_rush_effect__FPUclPUclf",
+        "after": "__ct__26TObjEneDf2Bringer_Eff_RushFP7TObjectP8TObjBaseP9TObjCharaf"
+      }
+    ],
+    "ancient": [
+      {
+        "module": "psov3",
+        "address": "0x8018A55C",
+        "before": "trigger_spawn__19TContainerAncient01FPvPvPv",
+        "after": "trigger_spawn__20TContainerAncient01RFPC3Vecl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8018A9D8",
+        "before": "init_positions__19TContainerAncient01Fv",
+        "after": "init_positions__20TContainerAncient01RFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8018B158",
+        "before": "spawn_effect__19TContainerAncient01FPvPvPv",
+        "after": "spawn_effect__19TContainerAncient01FPC3Vecl"
+      }
+    ],
+    "hud": [
+      {
+        "module": "psov3",
+        "address": "0x8006EB74",
+        "before": "__ct__16TObjBagWarnWin4PFv",
+        "after": "__ct__16TObjBagWarnWin4PFP7TObject"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80287DD8",
+        "before": "draw_tab__12TWindowTimerFll",
+        "after": "draw_tab__12TWindowTimerFP17WindowDrawContext"
+      }
+    ],
+    "hud_restored_upstream_fields": [
+      "TObjBagWarnWin::message_text",
+      "TObjBagWarnWin::open_delay"
+    ]
+  }
+}

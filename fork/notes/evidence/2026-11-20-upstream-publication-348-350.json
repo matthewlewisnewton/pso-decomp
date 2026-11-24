@@ -1,0 +1,362 @@
+{
+  "verified_at": "2026-11-21T06:24:22+00:00",
+  "upstream_master": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+  "author_and_committer": "matthewlewisnewton",
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_source_units": 2448,
+  "pr_commits_audited": 29,
+  "prs": [
+    {
+      "number": 336,
+      "title": "Recover native stage objects, map collision, and ending scenes",
+      "url": "https://github.com/zeroz41/pso-decomp/pull/336",
+      "branch": "recover-native-stage-objects-and-ending-scenes",
+      "head": "01ec31c94f7c487297bc9a3ced472e96df503524",
+      "tree": "a15a7fc8bb070f31802f440b6c21b8b33b776036",
+      "action": "fast-forward",
+      "files": 40,
+      "commits": [
+        "ec81bd9ce7a2194860e8a0034f31727dfd4ad56f",
+        "01ec31c94f7c487297bc9a3ced472e96df503524"
+      ],
+      "mergeable": true,
+      "ready_for_review": true,
+      "codex_attribution_entries": 0,
+      "latest_checks": [
+        {
+          "name": "match-gate",
+          "status": "queued",
+          "conclusion": null,
+          "details_url": "https://github.com/zeroz41/pso-decomp/actions/runs/44875241814/job/136758385753"
+        }
+      ]
+    },
+    {
+      "number": 337,
+      "title": "Recover native item factories and shared projectile interfaces",
+      "url": "https://github.com/zeroz41/pso-decomp/pull/337",
+      "branch": "recover-native-weapon-factories-and-projectiles",
+      "head": "46a0677d7fb10da1923e6dc6ed251a3d14de6564",
+      "tree": "b0759c63c2adc11775f114140303eeb32c94d6ef",
+      "action": "fast-forward",
+      "files": 271,
+      "commits": [
+        "297a9697815b0f66207b5515fd9743bdc04c82d9",
+        "46a0677d7fb10da1923e6dc6ed251a3d14de6564"
+      ],
+      "mergeable": true,
+      "ready_for_review": true,
+      "codex_attribution_entries": 0,
+      "latest_checks": [
+        {
+          "name": "match-gate",
+          "status": "queued",
+          "conclusion": null,
+          "details_url": "https://github.com/zeroz41/pso-decomp/actions/runs/44875240299/job/136758380545"
+        }
+      ]
+    },
+    {
+      "number": 338,
+      "title": "Recover native ADX streaming, disc reads, and callback contracts",
+      "url": "https://github.com/zeroz41/pso-decomp/pull/338",
+      "branch": "recover-native-adx-streaming-and-disc-reads",
+      "head": "cc3fe0caf0b48ad3e84028be540f12a0256c074f",
+      "tree": "00db49658bc7a4ca6577c1a840e05f11e3361c97",
+      "action": "fast-forward",
+      "files": 89,
+      "commits": [
+        "2572238636c01c0f1defac4338a4df6836c18276",
+        "cc3fe0caf0b48ad3e84028be540f12a0256c074f"
+      ],
+      "mergeable": true,
+      "ready_for_review": true,
+      "codex_attribution_entries": 0,
+      "latest_checks": [
+        {
+          "name": "match-gate",
+          "status": "in_progress",
+          "conclusion": null,
+          "details_url": "https://github.com/zeroz41/pso-decomp/actions/runs/44875240104/job/136758380278"
+        }
+      ]
+    },
+    {
+      "number": 339,
+      "title": "Recover native online quest transfers, cache records, and selection windows",
+      "url": "https://github.com/zeroz41/pso-decomp/pull/339",
+      "branch": "recover-native-online-quest-transfers",
+      "head": "10799b0e23aee1e854a7626c51a96ce8ce9fb12f",
+      "tree": "04d969b0ab95b9b8804b1048d88364f353f8b6cd",
+      "action": "fast-forward",
+      "files": 133,
+      "commits": [
+        "5e0a443edde59d3af778d496b8503e0b1358f5e2",
+        "10799b0e23aee1e854a7626c51a96ce8ce9fb12f"
+      ],
+      "mergeable": true,
+      "ready_for_review": true,
+      "codex_attribution_entries": 0,
+      "latest_checks": [
+        {
+          "name": "match-gate",
+          "status": "queued",
+          "conclusion": null,
+          "details_url": "https://github.com/zeroz41/pso-decomp/actions/runs/44875240243/job/136758380340"
+        }
+      ]
+    },
+    {
+      "number": 340,
+      "title": "Recover native character selection, card saves, and creation actors",
+      "url": "https://github.com/zeroz41/pso-decomp/pull/340",
+      "branch": "recover-native-character-selection-and-card-saves",
+      "head": "19d635c87e6c0d99656f5c939ee52001e85e49f2",
+      "tree": "80d44c9f0a0e622e9a4d66f6032c8f4f80919e96",
+      "action": "fast-forward",
+      "files": 194,
+      "commits": [
+        "bbec0f3f2c8cef5253947ec8c0704bc639cddc3a",
+        "d6e66ef2a8f874ab9791efc1628ebd7fc48bdbf5",
+        "19d635c87e6c0d99656f5c939ee52001e85e49f2"
+      ],
+      "mergeable": true,
+      "ready_for_review": true,
+      "codex_attribution_entries": 0,
+      "latest_checks": [
+        {
+          "name": "match-gate",
+          "status": "queued",
+          "conclusion": null,
+          "details_url": "https://github.com/zeroz41/pso-decomp/actions/runs/44875240097/job/136758380324"
+        }
+      ]
+    },
+    {
+      "number": 341,
+      "title": "Recover Dark Falz and Olga Flow phase actors, hazards, and drawing",
+      "url": "https://github.com/zeroz41/pso-decomp/pull/341",
+      "branch": "recover-dark-falz-and-olga-flow",
+      "head": "dbe8717a524311abbe4a239f82089cd9867c3e9d",
+      "tree": "2d471c0b37dca4fca563033ddd6024b23e88e166",
+      "action": "fast-forward",
+      "files": 134,
+      "commits": [
+        "117e4f7411c75761bda6dad27742016554597e40",
+        "0266af6bf4c860315be75d4785c45abf6da0a6ff",
+        "dbe8717a524311abbe4a239f82089cd9867c3e9d"
+      ],
+      "mergeable": true,
+      "ready_for_review": true,
+      "codex_attribution_entries": 0,
+      "latest_checks": [
+        {
+          "name": "match-gate",
+          "status": "queued",
+          "conclusion": null,
+          "details_url": "https://github.com/zeroz41/pso-decomp/actions/runs/44875240374/job/136758380959"
+        }
+      ]
+    },
+    {
+      "number": 342,
+      "title": "Recover native window layout, keyboard input, and challenge results",
+      "url": "https://github.com/zeroz41/pso-decomp/pull/342",
+      "branch": "recover-native-window-layout-and-results",
+      "head": "35fb9e4386575c4e815b8d90ff62e977e833b34c",
+      "tree": "188e0da80c6baf9cf45a6c7b83890d281712fee3",
+      "action": "fast-forward",
+      "files": 262,
+      "commits": [
+        "0157762a98ffc35ce4d30cd88e7a47a07e7f8524",
+        "17d35ad696f409a696c7f94105170619d18e5106",
+        "35fb9e4386575c4e815b8d90ff62e977e833b34c"
+      ],
+      "mergeable": true,
+      "ready_for_review": true,
+      "codex_attribution_entries": 0,
+      "latest_checks": [
+        {
+          "name": "match-gate",
+          "status": "queued",
+          "conclusion": null,
+          "details_url": "https://github.com/zeroz41/pso-decomp/actions/runs/44875240326/job/136758380967"
+        }
+      ]
+    },
+    {
+      "number": 344,
+      "title": "Recover native boss projectiles and raft effects",
+      "url": "https://github.com/zeroz41/pso-decomp/pull/344",
+      "branch": "recover-boss-projectiles-and-raft-effects",
+      "head": "45a7ef21ae04c51ba723642a77dcbb53bbc7d3dd",
+      "tree": "7bdfc4d0a9a066868cb60c8e5f425beead39c184",
+      "action": "already-open",
+      "files": 59,
+      "commits": [
+        "98b8dc9b749921f22ae2256890e22dca8be9e01f",
+        "45a7ef21ae04c51ba723642a77dcbb53bbc7d3dd"
+      ],
+      "mergeable": true,
+      "ready_for_review": true,
+      "codex_attribution_entries": 0,
+      "latest_checks": [
+        {
+          "name": "match-gate",
+          "status": "completed",
+          "conclusion": "success",
+          "details_url": "https://github.com/zeroz41/pso-decomp/actions/runs/44864671691/job/136725570529"
+        }
+      ]
+    },
+    {
+      "number": 345,
+      "title": "Recover native action-palette controls and Word Select records",
+      "url": "https://github.com/zeroz41/pso-decomp/pull/345",
+      "branch": "recover-action-palette-and-word-select",
+      "head": "95334b8d7519c9802fea016416db22356fc284b5",
+      "tree": "59cc2676a1370fda0dc27521d8f5fb602ec29d2d",
+      "action": "already-open",
+      "files": 35,
+      "commits": [
+        "9081bb020ce98ca2fb4e48c9eacaa609b3db6ae6",
+        "95334b8d7519c9802fea016416db22356fc284b5"
+      ],
+      "mergeable": true,
+      "ready_for_review": true,
+      "codex_attribution_entries": 0,
+      "latest_checks": [
+        {
+          "name": "match-gate",
+          "status": "completed",
+          "conclusion": "success",
+          "details_url": "https://github.com/zeroz41/pso-decomp/actions/runs/44864671336/job/136725568754"
+        }
+      ]
+    },
+    {
+      "number": 346,
+      "title": "Recover native enemy targeting, formations, and Slime attacks",
+      "url": "https://github.com/zeroz41/pso-decomp/pull/346",
+      "branch": "recover-enemy-targeting-formations-and-slime",
+      "head": "8c6e2163eecaa29e63b8cf7200fa614179199fbc",
+      "tree": "b46ee03ed3c4e7a7dd1f0bda9d309b0ac6583968",
+      "action": "already-open",
+      "files": 56,
+      "commits": [
+        "72ca918dcb77c677de46932d60cd3cdf32390505",
+        "8c6e2163eecaa29e63b8cf7200fa614179199fbc"
+      ],
+      "mergeable": true,
+      "ready_for_review": true,
+      "codex_attribution_entries": 0,
+      "latest_checks": [
+        {
+          "name": "match-gate",
+          "status": "completed",
+          "conclusion": "success",
+          "details_url": "https://github.com/zeroz41/pso-decomp/actions/runs/44864671168/job/136725568372"
+        }
+      ]
+    },
+    {
+      "number": 347,
+      "title": "Recover native main menu controls and trade windows",
+      "url": "https://github.com/zeroz41/pso-decomp/pull/347",
+      "branch": "recover-main-menu-and-trade",
+      "head": "63636bea0a8143b8f77fba9b46c32d9fbf43db08",
+      "tree": "b5aac2d77025d2ee1ddb2e1c0914f45be943cdb2",
+      "action": "already-open",
+      "files": 69,
+      "commits": [
+        "8e9e9ffd4227f9acaa6bbde0cdf92d4a2e9c13d0",
+        "63636bea0a8143b8f77fba9b46c32d9fbf43db08"
+      ],
+      "mergeable": true,
+      "ready_for_review": true,
+      "codex_attribution_entries": 0,
+      "latest_checks": [
+        {
+          "name": "match-gate",
+          "status": "completed",
+          "conclusion": "success",
+          "details_url": "https://github.com/zeroz41/pso-decomp/actions/runs/44864671858/job/136725570514"
+        }
+      ]
+    },
+    {
+      "number": 348,
+      "title": "Recover Ginja material layouts and Ninja model callbacks",
+      "url": "https://github.com/zeroz41/pso-decomp/pull/348",
+      "branch": "recover-ginja-materials-and-ninja-models",
+      "head": "7af1ccc64fb772d47d6d837da15e09481b2305c8",
+      "tree": "817ba9eceb56bf1a12e77b5a2aae525e5eacfe45",
+      "action": "open",
+      "files": 141,
+      "commits": [
+        "1e9ecd5dc2c346634b41866ed9947b98c690f3ae",
+        "7af1ccc64fb772d47d6d837da15e09481b2305c8"
+      ],
+      "mergeable": true,
+      "ready_for_review": true,
+      "codex_attribution_entries": 0,
+      "latest_checks": [
+        {
+          "name": "match-gate",
+          "status": "queued",
+          "conclusion": null,
+          "details_url": "https://github.com/zeroz41/pso-decomp/actions/runs/44875304277/job/136758582944"
+        }
+      ]
+    },
+    {
+      "number": 349,
+      "title": "Recover native BML archive lifetimes and load requests",
+      "url": "https://github.com/zeroz41/pso-decomp/pull/349",
+      "branch": "recover-bml-archive-lifetimes-and-loads",
+      "head": "abb5022ed6179626aae2de1cf42a23c6c09bf96f",
+      "tree": "ad734abcb3074ab0f8f87df9878c17b117f2a802",
+      "action": "open",
+      "files": 317,
+      "commits": [
+        "abb5022ed6179626aae2de1cf42a23c6c09bf96f"
+      ],
+      "mergeable": true,
+      "ready_for_review": true,
+      "codex_attribution_entries": 0,
+      "latest_checks": [
+        {
+          "name": "match-gate",
+          "status": "queued",
+          "conclusion": null,
+          "details_url": "https://github.com/zeroz41/pso-decomp/actions/runs/44875308415/job/136758596318"
+        }
+      ]
+    },
+    {
+      "number": 350,
+      "title": "Recover typed particle factories and sprite definitions",
+      "url": "https://github.com/zeroz41/pso-decomp/pull/350",
+      "branch": "recover-particle-factories-and-sprites",
+      "head": "6d9f7bffe56d8670e798dc613287ef9415983ce2",
+      "tree": "0f2218f0074b201d79523238fa13eb999a278a65",
+      "action": "open",
+      "files": 191,
+      "commits": [
+        "6d9f7bffe56d8670e798dc613287ef9415983ce2"
+      ],
+      "mergeable": true,
+      "ready_for_review": true,
+      "codex_attribution_entries": 0,
+      "latest_checks": [
+        {
+          "name": "match-gate",
+          "status": "queued",
+          "conclusion": null,
+          "details_url": "https://github.com/zeroz41/pso-decomp/actions/runs/44875311605/job/136758605987"
+        }
+      ]
+    }
+  ]
+}

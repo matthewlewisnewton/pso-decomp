@@ -1,15 +1,10 @@
 #include "types.h"
-#include <dolphin/mtx/GeoTypes.h>
-
-struct ProjectionLine {
-    Vec o;
-    Vec d;
-};
+#include "pso/player/TObjPlayer_803E18C0.h"
 
 #pragma push
 #pragma scheduling off
 
-extern "C" f32 project_point_onto_line(Vec *p, ProjectionLine *l, Vec *out) {
+f32 project_point_onto_line(Vec *p, Line *l, Vec *out) {
     f32 t;
     f32 x;
     f32 r;

@@ -1,0 +1,85 @@
+# Posts CI's results on the pull request as a single comment, updated on every push.
+#
+# CI (ci.yml) builds fork code with a read-only token, so it can't comment itself. It
+# uploads the gate's results as the `ci-result` artifact; this workflow runs after it
+# in the base repository's context, where the token may write PR comments.
+#
+# It never checks out or runs pull request code: the renderer comes from main and
+# treats the artifact as untrusted data, and the PR number comes from the triggering
+# run's head branch and commit, not from the artifact.
+#
+# workflow_run only fires for workflow files on the default branch, so changes to this
+# file take effect once they are merged.
+
+name: CI comment
+
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+
+permissions:
+  actions: read
+  contents: read
+  pull-requests: write
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  comment:
+    if: >-
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion != 'cancelled' &&
+      github.event.workflow_run.conclusion != 'skipped'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+      REPO: ${{ github.repository }}
+      HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+      HEAD_OWNER: ${{ github.event.workflow_run.head_repository.owner.login }}
+      HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
+      RUN_URL: ${{ github.event.workflow_run.html_url }}
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          sparse-checkout: tools/ci_comment.py
+          sparse-checkout-cone-mode: false
+
+      - name: Download results
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: ci-result
+          path: ci-result
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ github.token }}
+
+      - name: Find the pull request
+        id: pr
+        run: |
+          pr=$(gh api -X GET "repos/$REPO/pulls" -f state=open -f head="$HEAD_OWNER:$HEAD_BRANCH" \
+                 --jq "[.[] | select(.head.sha == \"$HEAD_SHA\")][0].number // empty")
+          if [ -z "$pr" ]; then
+            echo "No open pull request has head $HEAD_OWNER:$HEAD_BRANCH at $HEAD_SHA; a newer push supersedes this run."
+          fi
+          echo "number=$pr" >> "$GITHUB_OUTPUT"
+
+      - name: Post or update the comment
+        if: steps.pr.outputs.number != ''
+        env:
+          PR: ${{ steps.pr.outputs.number }}
+        run: |
+          python3 tools/ci_comment.py ci-result/result.json --sha "$HEAD_SHA" --run-url "$RUN_URL" > comment.md
+          cat comment.md >> "$GITHUB_STEP_SUMMARY"
+          id=$(gh api --paginate "repos/$REPO/issues/$PR/comments" \
+                 --jq '.[] | select(.user.login == "github-actions[bot]" and (.body | startswith("<!-- pso-ci -->"))) | .id' \
+               | head -n 1)
+          if [ -n "$id" ]; then
+            gh api -X PATCH "repos/$REPO/issues/comments/$id" -F body=@comment.md > /dev/null
+          else
+            gh api -X POST "repos/$REPO/issues/$PR/comments" -F body=@comment.md > /dev/null
+          fi

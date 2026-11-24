@@ -1,0 +1,1979 @@
+{
+  "source": "026e0e3daf695efa35eac8df334df585823cb4b0",
+  "previous_source": "7a642c8396bbd4ab01bd4bb67c0b0170e6ee9d66",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/network/ModemRuntime.h",
+    "include/pso/network/NetworkTransport.h",
+    "include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h",
+    "src/pso/network/ModemRuntime.cpp",
+    "src/pso/network/NetworkTransport.c",
+    "src/pso/network/TLobby_803FAEA0.c"
+  ],
+  "combined_paths_from_upstream": 1275,
+  "validation": {
+    "source": {
+      "baseline": "7a642c8396bbd4ab01bd4bb67c0b0170e6ee9d66",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8042BF48",
+          "before": "wake_load_thread__23TAdSinglePlyChrSelectGCFv",
+          "after": "wake_load_thread__23TAdSinglePlyChrSelectGCFlP9OSContext"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8042E768",
+          "before": "copy_default_and_get_state__23TAdSinglePlyChrSelectGCFv",
+          "after": "copy_default_and_get_state"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8042E84C",
+          "before": "send_modem_hangup__23TAdSinglePlyChrSelectGCFl",
+          "after": "send_modem_hangup__23TAdSinglePlyChrSelectGCFi"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "11b80fcb4719a6c601a72944ac46d493deaed53982a20d4f67d01ed0c9827e34",
+      "report_sha256": "5651baaad2c4967d332d56742930c0b22cf7931fa2ccc9dbbb0713f2360f124b"
+    },
+    "layer": {
+      "baseline": "026e0e3daf695efa35eac8df334df585823cb4b0",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "0d0505ff2d6750e611c1caeddd6c815b7e23c1307e306f42ee8cc59bb78deb14",
+      "report_sha256": "5651baaad2c4967d332d56742930c0b22cf7931fa2ccc9dbbb0713f2360f124b"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "1b6ced3db496e750ebfd6b1353829b063ebcc220dfb0feb2e4f3cb0d0235b5d4"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "9cf1054fe66ddd0458131457fd69f6cefee5e9b783d4c8916bc982985ffefb41"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "program_sha256": "657831b542faf37b6a8ecabe573bade97f4c85ddb3a64f9a505a1be86fdef85e",
+    "logs": {
+      "source": "2dc155a9ff455a922c1113d6851848cb701ff40085afb49ade058d0148ccf56f",
+      "workspace": "7816787a5d9facb0987da6e7711c99d552f67cdf7e0d24c7b26be37f0663f3c3"
+    },
+    "images": [
+      "retail",
+      "source",
+      "materialized fork workspace"
+    ],
+    "cases": {
+      "transfer_setup": 3,
+      "connection_status": 6,
+      "command_table_entries": 22,
+      "command_filter_and_mutation": 3,
+      "dial_outcomes": 5,
+      "ring_geometries": 4
+    }
+  },
+  "units": {
+    "src/pso/network/NetworkTransport.c": {
+      "functions": 34,
+      "code": "4044",
+      "data": "24584"
+    },
+    "src/pso/network/ModemRuntime.cpp": {
+      "functions": 25,
+      "code": "10620",
+      "data": "892"
+    },
+    "src/pso/network/TLobby_803FAEA0.c": {
+      "functions": 16,
+      "code": "4824",
+      "data": "568"
+    },
+    "src/pso/network/TLobby_803F86BC.c": {
+      "functions": 34,
+      "code": "1868",
+      "data": "61968"
+    }
+  },
+  "original_modem_commands": {
+    "0x805D489C": "41545a0d00",
+    "0x805D48A4": "41542b4743493d00",
+    "0x805D48AC": "0d00",
+    "0x805D48B0": "415445300d00",
+    "0x805D48B8": "5a00",
+    "0x805D48BC": "2b5600",
+    "0x805D48C0": "2b4700",
+    "0x805D48C4": "264600",
+    "0x805D48C8": "265900",
+    "0x805D48CC": "265700",
+    "0x805D48D0": "265a00",
+    "0x805D48D4": "4500",
+    "0x805D48D8": "5100",
+    "0x805D48DC": "5600",
+    "0x805D48E0": "5700",
+    "0x805D48E4": "4c00",
+    "0x805D48E8": "4d00",
+    "0x805D48EC": "265600",
+    "0x805D48F0": "5c5600",
+    "0x805D48F4": "2a4200",
+    "0x805D48F8": "2a4400",
+    "0x805D48FC": "2b4d533f00",
+    "0x805D4904": "23554400",
+    "0x805D4908": "53323400",
+    "0x805D490C": "53393500",
+    "0x805D4910": "2100",
+    "0x805D4914": "415400",
+    "0x805D4918": "415448300d00",
+    "0x805D4920": "4154445400",
+    "0x805D4928": "41542650300d00",
+    "0x805D4930": "4154445000",
+    "0x805D4938": "41542650320d00"
+  },
+  "original_filter_table": [
+    "0x805D48B8",
+    "0x805D48BC",
+    "0x805D48C0",
+    "0x805D48C4",
+    "0x805D48C8",
+    "0x805D48CC",
+    "0x805D48D0",
+    "0x805D48D4",
+    "0x805D48D8",
+    "0x805D48DC",
+    "0x805D48E0",
+    "0x805D48E4",
+    "0x805D48E8",
+    "0x805D48EC",
+    "0x805D48F0",
+    "0x805D48F4",
+    "0x805D48F8",
+    "0x805D48FC",
+    "0x805D4904",
+    "0x805D4908",
+    "0x805D490C",
+    "0x805D4910"
+  ],
+  "current_modem_labels": {
+    "0x8042CD64": "modem_wait_ok_or_error__Fv",
+    "0x8042CEF8": "modem_init",
+    "0x8042D49C": "modem_send_at_command",
+    "0x8042D6A4": "modem_write_string",
+    "0x8042E320": "modem_dial",
+    "0x8042E8B8": "fn_8042E8B8"
+  },
+  "historical": {
+    "closed_rows": [
+      {
+        "row": 2977,
+        "fork_path": "src/pso/network/NetworkTransport.cpp",
+        "owner": "src/pso/network/NetworkTransport.c",
+        "detail": "The C owner retains the typed queue key and thread state, signed mode, shared resolver and SDK calls, mutable ring bytes, original status record, and typed modem send and dial callbacks.",
+        "authored_change_blocks": [
+          {
+            "old_lines": [
+              1,
+              0
+            ],
+            "fork_lines": [
+              1,
+              1
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "# include \"pso/network/NetworkRecordConfig.h\""
+            ]
+          },
+          {
+            "old_lines": [
+              3,
+              2
+            ],
+            "fork_lines": [
+              4,
+              6
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "# include \"pso/network/ModemRuntime.h\"",
+              "# include \"dolphin/os/OSThread.h\"",
+              "# include \"stddef.h\""
+            ]
+          },
+          {
+            "old_lines": [
+              31,
+              31
+            ],
+            "fork_lines": [
+              35,
+              36
+            ],
+            "result": "compare",
+            "old": [
+              "u8 remaining [ 0xC ] ;"
+            ],
+            "fork": [
+              "NetThreadHandle thread_handle ;",
+              "u8 remaining [ 8 ] ;"
+            ]
+          },
+          {
+            "old_lines": [
+              34,
+              34
+            ],
+            "fork_lines": [
+              39,
+              38
+            ],
+            "result": "compare",
+            "old": [
+              "struct P_803F7A90 { s32 a ; s32 b ; } ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              112,
+              112
+            ],
+            "fork_lines": [
+              116,
+              115
+            ],
+            "result": "compare",
+            "old": [
+              "extern s32 queue_thread_handle ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              135,
+              137
+            ],
+            "fork_lines": [
+              138,
+              137
+            ],
+            "result": "compare",
+            "old": [
+              "s32 TAdSinglePlyChrSelectGC__sub_8042DD70 ( s32 arg0 , s32 arg1 , s32 arg2 ) ;",
+              "s32 TAdSinglePlyChrSelectGC__sub_8042E184 ( void ) ;",
+              "s32 modem_dial ( s32 , s32 , void * ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              149,
+              149
+            ],
+            "fork_lines": [
+              149,
+              148
+            ],
+            "result": "compare",
+            "old": [
+              "s32 OSIsThreadSuspended ( s32 ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              152,
+              153
+            ],
+            "fork_lines": [
+              151,
+              150
+            ],
+            "result": "compare",
+            "old": [
+              "s32 modem_init ( char * ) ;",
+              "void TAdSinglePlyChrSelectGC__sub_8042E488 ( s32 ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              162,
+              164
+            ],
+            "fork_lines": [
+              159,
+              158
+            ],
+            "result": "compare",
+            "old": [
+              "s32 modem_send_at_command ( int ) ;",
+              "s32 configure_modem_options ( s32 arg0 , s32 arg1 , s32 arg2 , s32 n , s32 p ) ;",
+              "s32 TAdSinglePlyChrSelectGC__sub_8042D7E0 ( void * ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              356,
+              355
+            ],
+            "fork_lines": [
+              350,
+              350
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "typedef char NetworkTransport_thread_handle_offset [ offsetof ( RecoveredGlobal_803F7A30_lbl_805C18A0 , thread_handle ) == 4 ? 1 : - 1 ] ;"
+            ]
+          },
+          {
+            "old_lines": [
+              364,
+              364
+            ],
+            "fork_lines": [
+              359,
+              360
+            ],
+            "result": "compare",
+            "old": [
+              "if ( TLobby__sub_803F96AC ( ( ( P_803F7A90 * ) & lbl_805C18A0 ) ) < 0 || TLobby__sub_803F9B94 ( run_net_thread_loop , & ( ( P_803F7A90 * ) & lbl_805C18A0 ) [ 0 ] . b ) < 0 ) {"
+            ],
+            "fork": [
+              "if ( TLobby__sub_803F96AC ( & lbl_805C18A0 . value ) < 0 ||",
+              "TLobby__sub_803F9B94 ( run_net_thread_loop , & lbl_805C18A0 . thread_handle ) < 0 ) {"
+            ]
+          },
+          {
+            "old_lines": [
+              367,
+              367
+            ],
+            "fork_lines": [
+              363,
+              363
+            ],
+            "result": "compare",
+            "old": [
+              "NetResumeThread ( ( ( P_803F7A90 * ) & lbl_805C18A0 ) [ 0 ] . b ) ;"
+            ],
+            "fork": [
+              "NetResumeThread ( lbl_805C18A0 . thread_handle ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              380,
+              380
+            ],
+            "fork_lines": [
+              376,
+              376
+            ],
+            "result": "compare",
+            "old": [
+              "if ( TAdSinglePlyChrSelectGC__sub_8042DD70 ( ( s32 ) p -> a , ( s32 ) p -> b , ( s32 ) subtract_network_queue_timeout ) == 1 ) {"
+            ],
+            "fork": [
+              "if ( TAdSinglePlyChrSelectGC__sub_8042DD70 ( ( u8 * ) p -> a , p -> b , subtract_network_queue_timeout ) == 1 ) {"
+            ]
+          },
+          {
+            "old_lines": [
+              433,
+              433
+            ],
+            "fork_lines": [
+              429,
+              429
+            ],
+            "result": "compare",
+            "old": [
+              "if ( OSIsThreadSuspended ( thread ) == 1 ) {"
+            ],
+            "fork": [
+              "if ( OSIsThreadSuspended ( ( OSThread * ) thread ) == 1 ) {"
+            ]
+          },
+          {
+            "old_lines": [
+              451,
+              451
+            ],
+            "fork_lines": [
+              447,
+              447
+            ],
+            "result": "compare",
+            "old": [
+              "if ( OSIsThreadSuspended ( thread ) == 1 ) {"
+            ],
+            "fork": [
+              "if ( OSIsThreadSuspended ( ( OSThread * ) thread ) == 1 ) {"
+            ]
+          },
+          {
+            "old_lines": [
+              463,
+              463
+            ],
+            "fork_lines": [
+              459,
+              459
+            ],
+            "result": "compare",
+            "old": [
+              "s32 TLobby :: map_state_to_mode_id ( ) {"
+            ],
+            "fork": [
+              "s16 TLobby :: map_state_to_mode_id ( ) {"
+            ]
+          },
+          {
+            "old_lines": [
+              485,
+              485
+            ],
+            "fork_lines": [
+              481,
+              481
+            ],
+            "result": "compare",
+            "old": [
+              "s32 TLobby :: map_state_to_code ( s32 arg0 , s16 arg1 ) {"
+            ],
+            "fork": [
+              "s32 TLobby :: map_state_to_code ( const char * number , s16 arg1 ) {"
+            ]
+          },
+          {
+            "old_lines": [
+              498,
+              498
+            ],
+            "fork_lines": [
+              494,
+              494
+            ],
+            "result": "compare",
+            "old": [
+              "if ( modem_dial ( arg0 , v , ( void * ) set_lobby_map_state_code ) != 1 ) {"
+            ],
+            "fork": [
+              "if ( modem_dial ( number , v , set_lobby_map_state_code ) != 1 ) {"
+            ]
+          },
+          {
+            "old_lines": [
+              549,
+              549
+            ],
+            "fork_lines": [
+              545,
+              545
+            ],
+            "result": "compare",
+            "old": [
+              "r = modem_send_at_command ( p ) ;"
+            ],
+            "fork": [
+              "r = modem_send_at_command ( ( char * ) p ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              606,
+              606
+            ],
+            "fork_lines": [
+              602,
+              602
+            ],
+            "result": "compare",
+            "old": [
+              "s32 r = TAdSinglePlyChrSelectGC__sub_8042D7E0 ( lobby ) ;"
+            ],
+            "fork": [
+              "s32 r = TAdSinglePlyChrSelectGC__sub_8042D7E0 ( ( u8 * ) lobby ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              653,
+              653
+            ],
+            "fork_lines": [
+              649,
+              649
+            ],
+            "result": "compare",
+            "old": [
+              "TLobby :: deactivate_entry_by_key ( ( u32 ) queue_thread_handle ) ;"
+            ],
+            "fork": [
+              "TLobby :: deactivate_entry_by_key ( queue_thread_handle ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              807,
+              808
+            ],
+            "fork_lines": [
+              803,
+              804
+            ],
+            "result": "compare",
+            "old": [
+              "void TLobby :: init_net_config ( ) {",
+              "Cfg_803F86C0 * c = ( Cfg_803F86C0 * ) this ;"
+            ],
+            "fork": [
+              "void init_net_config ( Cfg_803F86C0 * self ) {",
+              "Cfg_803F86C0 * c = ( Cfg_803F86C0 * ) self ;"
+            ]
+          },
+          {
+            "old_lines": [
+              836,
+              835
+            ],
+            "fork_lines": [
+              832,
+              840
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "extern \"C\" {",
+              "s32 lobby_ring_buffer_write_pos ;",
+              "s32 lobby_send_ring_read_pos ;",
+              "s32 lobby_send_ring_pending_bytes ;",
+              "Q_803F7AF4 TLobby__next_send_chunk ;",
+              "s32 lobby_map_state_code ;",
+              "s32 TLobby__queue_timeout_remaining ;",
+              "s16 network_pppoe_transport_enabled ;",
+              "}"
+            ]
+          }
+        ],
+        "owner_blob": "c0f7abf2a81ffd48e38bef4443e4dcd3b3b55926"
+      },
+      {
+        "row": 2986,
+        "fork_path": "include/pso/network/ModemRuntime.h",
+        "owner": "src/pso/network/ModemRuntime.cpp",
+        "detail": "The shared C and C++ header carries the modem boundary types and the native owner retains the related routines at their original addresses. The launch getter returns its actual context pointer.",
+        "authored_change_blocks": [
+          {
+            "old_lines": [
+              4,
+              3
+            ],
+            "fork_lines": [
+              4,
+              4
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "# include \"dolphin/os/OSContext.h\""
+            ]
+          },
+          {
+            "old_lines": [
+              5,
+              7
+            ],
+            "fork_lines": [
+              6,
+              16
+            ],
+            "result": "compare",
+            "old": [
+              "s32 TAdSinglePlyChrSelectGC__sub_8042DD70 ( s32 arg0 , s32 arg1 , s32 arg2 ) ;",
+              "void TAdSinglePlyChrSelectGC__sub_8042DDE4 ( int _w0 , int _w1 ) ;",
+              "s32 fn_8042E8B8 ( void ) ;"
+            ],
+            "fork": [
+              "s32 modem_init ( char * country ) ;",
+              "s32 TAdSinglePlyChrSelectGC__sub_8042DD70 ( u8 * data , s32 length , void ( * callback ) ( s32 ) ) ;",
+              "s32 TAdSinglePlyChrSelectGC__sub_8042E184 ( void ) ;",
+              "s32 TAdSinglePlyChrSelectGC__sub_8042D7E0 ( u8 * buffer ) ;",
+              "void TAdSinglePlyChrSelectGC__sub_8042DDE4 ( s32 channel , OSContext * context ) ;",
+              "void modem_write_string ( char * command ) ;",
+              "s32 modem_wait_ok_or_error__Fv ( void ) ;",
+              "s32 modem_send_at_command ( char * command ) ;",
+              "s32 modem_dial ( const char * number , s32 mode , void ( * callback ) ( s32 result ) ) ;",
+              "void TAdSinglePlyChrSelectGC__sub_8042E488 ( s32 value ) ;",
+              "u32 fn_8042E8B8 ( void ) ;"
+            ]
+          }
+        ],
+        "owner_blob": "4dafb0b7a5ff2ec873b45c245afd0779fb7cfb25"
+      },
+      {
+        "row": 2999,
+        "fork_path": "src/pso/network/ModemRuntime.cpp",
+        "owner": "src/pso/network/ModemRuntime.cpp",
+        "detail": "The native owner retains the EXI, reset, receive, transmit and command handling paths. The callback and connection records have their original layout. All 32 historical command strings and the 22 pointer entries have their original contents and addresses.",
+        "authored_change_blocks": [
+          {
+            "old_lines": [
+              5,
+              4
+            ],
+            "fork_lines": [
+              5,
+              7
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "# include \"dolphin/exi.h\"",
+              "# include \"dolphin/os/OSInterrupt.h\"",
+              "# include \"dolphin/os/OSThread.h\""
+            ]
+          },
+          {
+            "old_lines": [
+              6,
+              5
+            ],
+            "fork_lines": [
+              9,
+              10
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "# include \"dolphin/os/OSCache.h\"",
+              "# include \"stddef.h\""
+            ]
+          },
+          {
+            "old_lines": [
+              17,
+              18
+            ],
+            "fork_lines": [
+              22,
+              22
+            ],
+            "result": "compare",
+            "old": [
+              "# pragma inline_depth ( 1 )",
+              "# pragma auto_inline off"
+            ],
+            "fork": [
+              "# pragma inline_depth ( 3 )"
+            ]
+          },
+          {
+            "old_lines": [
+              29,
+              45
+            ],
+            "fork_lines": [
+              33,
+              44
+            ],
+            "result": "compare",
+            "old": [
+              "struct ModemExiState {",
+              "s32 f0 ;",
+              "s32 f4 ;",
+              "s32 f8 ;",
+              "s32 fC ;",
+              "u8 pad_10 [ 0x18 ] ;",
+              "s32 f28 ;",
+              "u8 pad_2C [ 0x10 ] ;",
+              "s32 f3C ;",
+              "s32 f40 ;",
+              "s32 f44 ;",
+              "u8 pad_48 [ 0x10 ] ;",
+              "s32 f58 ;",
+              "s32 f5C ;",
+              "s32 f60 ;",
+              "s32 f64 ;",
+              "u8 pad_68 [ 8 ] ;"
+            ],
+            "fork": [
+              "struct ModemSendState {",
+              "s32 busy ;",
+              "u8 * data ;",
+              "s32 remaining ;",
+              "s32 length ;",
+              "u8 * head ;",
+              "s32 head_length ;",
+              "u8 * body ;",
+              "s32 body_length ;",
+              "u8 * tail ;",
+              "s32 tail_length ;",
+              "void ( * callback ) ( s32 length ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              47,
+              46
+            ],
+            "fork_lines": [
+              46,
+              67
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "struct ModemReceiveState {",
+              "u8 * buffer ;",
+              "u8 * head ;",
+              "u8 * body ;",
+              "u8 * tail ;",
+              "s32 f10 ;",
+              "s32 f14 ;",
+              "s32 received ;",
+              "s32 length ;",
+              "s32 head_length ;",
+              "s32 body_length ;",
+              "s32 tail_length ;",
+              "s32 available ;",
+              "s32 capacity ;",
+              "s32 f34 ;",
+              "s32 f38 ;",
+              "void ( * callback ) ( s32 received ) ;",
+              "} ;",
+              "typedef char ModemSendState_size [ sizeof ( ModemSendState ) == 0x2C ? 1 : - 1 ] ;",
+              "typedef char ModemReceiveState_size [ sizeof ( ModemReceiveState ) == 0x40 ? 1 : - 1 ] ;",
+              "typedef char ModemReceiveState_callback_offset [ offsetof ( ModemReceiveState , callback ) == 0x3C ? 1 : - 1 ] ;",
+              "typedef char ModemSendState_callback_offset [ offsetof ( ModemSendState , callback ) == 0x28 ? 1 : - 1 ] ;"
+            ]
+          },
+          {
+            "old_lines": [
+              62,
+              65
+            ],
+            "fork_lines": [
+              83,
+              82
+            ],
+            "result": "compare",
+            "old": [
+              "} ;",
+              "struct RecoveredGlobal_8042DD70_lbl_805D1D20 {",
+              "s32 value ;",
+              "u8 remaining [ 0x18 ] ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              98,
+              103
+            ],
+            "fork_lines": [
+              115,
+              119
+            ],
+            "result": "compare",
+            "old": [
+              "extern u8 lbl_805CF240 [ 0xA0 ] ;",
+              "extern u8 pppoe_message_queue [ 0xA0 ] ;",
+              "extern u8 lbl_805CF380 [ 0x48 ] ;",
+              "s32 OSWakeupThread ( void * ) ;",
+              "extern s32 lbl_805D7CA0 ;",
+              "s32 EXILock ( s32 , u32 , u32 ) ;"
+            ],
+            "fork": [
+              "extern OSThreadQueue lbl_805D7CA0 ;",
+              "void TAdSinglePlyChrSelectGC__sub_8042BF6C ( s32 length ) ;",
+              "void TAdSinglePlyChrSelectGC__sub_8042C2E4 ( s32 channel , OSContext * context ) ;",
+              "void parse_modem_command_response__Fv ( void ) ;",
+              "void TAdSinglePlyChrSelectGC__sub_8042C124 ( s32 channel , OSContext * context ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              105,
+              104
+            ],
+            "fork_lines": [
+              121,
+              121
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "void TAdSinglePlyChrSelectGC__sub_8042DF4C ( s32 channel , OSContext * context ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              112,
+              116
+            ],
+            "fork_lines": [
+              129,
+              136
+            ],
+            "result": "compare",
+            "old": [
+              "s32 EXIUnlock ( s32 ) ;",
+              "void modem_write_string ( char * str ) ;",
+              "extern s32 lbl_805D4918 ;",
+              "extern u8 lbl_805CF380 [ ] ;",
+              "extern u8 pppoe_message_queue [ ] ;"
+            ],
+            "fork": [
+              "extern char lbl_805D489C [ 5 ] ;",
+              "extern char lbl_805D48A4 [ 8 ] ;",
+              "extern char lbl_805D48B0 [ 6 ] ;",
+              "extern char lbl_805D4918 [ 6 ] ;",
+              "extern char lbl_805D4920 [ 5 ] ;",
+              "extern char lbl_805D4928 [ 7 ] ;",
+              "extern char lbl_805D4930 [ 5 ] ;",
+              "extern char lbl_805D4938 [ 7 ] ;"
+            ]
+          },
+          {
+            "old_lines": [
+              125,
+              125
+            ],
+            "fork_lines": [
+              145,
+              144
+            ],
+            "result": "compare",
+            "old": [
+              "extern u8 lbl_805CF240 [ ] ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              128,
+              128
+            ],
+            "fork_lines": [
+              147,
+              146
+            ],
+            "result": "compare",
+            "old": [
+              "s32 modem_send_at_command ( char * cmd ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              139,
+              145
+            ],
+            "fork_lines": [
+              157,
+              156
+            ],
+            "result": "compare",
+            "old": [
+              "s32 OSDisableInterrupts ( void ) ;",
+              "s32 OSRestoreInterrupts ( s32 ) ;",
+              "s32 OSSleepThread ( void * ) ;",
+              "s32 EXISelect ( s32 , u32 , s32 ) ;",
+              "s32 EXIImm ( s32 , void * , s32 , u32 , u32 ) ;",
+              "s32 EXISync ( s32 ) ;",
+              "s32 EXIDeselect ( s32 ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              148,
+              148
+            ],
+            "fork_lines": [
+              159,
+              160
+            ],
+            "result": "compare",
+            "old": [
+              "static ModemExiState modem_exi_state ;"
+            ],
+            "fork": [
+              "static ModemSendState modem_send_state ;",
+              "static ModemReceiveState modem_recv_state ;"
+            ]
+          },
+          {
+            "old_lines": [
+              153,
+              153
+            ],
+            "fork_lines": [
+              165,
+              165
+            ],
+            "result": "compare",
+            "old": [
+              "extern char lbl_805D4914 [ 4 ] ;"
+            ],
+            "fork": [
+              "extern char lbl_805D4914 [ 3 ] ;"
+            ]
+          },
+          {
+            "old_lines": [
+              155,
+              155
+            ],
+            "fork_lines": [
+              167,
+              166
+            ],
+            "result": "compare",
+            "old": [
+              "s32 modem_wait_ok_or_error__Fv ( void ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              157,
+              169
+            ],
+            "fork_lines": [
+              168,
+              167
+            ],
+            "result": "compare",
+            "old": [
+              "void TAdSinglePlyChrSelectGC__sub_8042E488 ( u8 value ) ;",
+              "# pragma push",
+              "# pragma opt_propagation off",
+              "# pragma pop",
+              "# pragma push",
+              "# pragma dont_inline off",
+              "# pragma inline_depth ( 4 )",
+              "# pragma pop",
+              "# define arg0 ( ( s32 ) argp )",
+              "# undef arg0",
+              "# pragma push",
+              "# pragma dont_inline on",
+              "# pragma pop"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              174,
+              174
+            ],
+            "fork_lines": [
+              172,
+              172
+            ],
+            "result": "compare",
+            "old": [
+              "void TAdSinglePlyChrSelectGC :: wake_load_thread ( ) {"
+            ],
+            "fork": [
+              "void TAdSinglePlyChrSelectGC :: wake_load_thread ( s32 , OSContext * ) {"
+            ]
+          },
+          {
+            "old_lines": [
+              178,
+              178
+            ],
+            "fork_lines": [
+              176,
+              176
+            ],
+            "result": "compare",
+            "old": [
+              "( OSResetFunction ) TAdSinglePlyChrSelectGC :: send_modem_hangup , 127"
+            ],
+            "fork": [
+              "TAdSinglePlyChrSelectGC :: send_modem_hangup , 127"
+            ]
+          },
+          {
+            "old_lines": [
+              180,
+              179
+            ],
+            "fork_lines": [
+              178,
+              391
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "static inline s32 ModemMin ( s32 a , s32 b ) {",
+              "if ( a < b ) {",
+              "return a ;",
+              "}",
+              "return b ;",
+              "}",
+              "static inline u8 ModemReadRegister ( u8 reg ) {",
+              "BOOL selected ;",
+              "u16 cmd = reg << 8 ;",
+              "u8 value ;",
+              "selected = EXISelect ( 0 , 2 , 4 ) ;",
+              "EXIImm ( 0 , & cmd , 2 , EXI_WRITE , NULL ) ;",
+              "EXISync ( 0 ) ;",
+              "EXIImm ( 0 , & value , 1 , EXI_READ , NULL ) ;",
+              "EXISync ( 0 ) ;",
+              "EXIDeselect ( 0 ) ;",
+              "return value ;",
+              "}",
+              "static inline u8 ModemReadFifoByte ( void ) {",
+              "u32 cmd = 0x23000100 ;",
+              "u8 value ;",
+              "EXISelect ( 0 , 2 , 4 ) ;",
+              "EXIImm ( 0 , & cmd , 4 , EXI_WRITE , NULL ) ;",
+              "EXISync ( 0 ) ;",
+              "EXIImm ( 0 , & value , 1 , EXI_READ , NULL ) ;",
+              "EXISync ( 0 ) ;",
+              "EXIDeselect ( 0 ) ;",
+              "return value ;",
+              "}",
+              "static inline BOOL ModemWriteRegister ( u8 reg , u8 value ) {",
+              "BOOL selected ;",
+              "u16 cmd = ( reg | 0x40 ) << 8 ;",
+              "selected = EXISelect ( 0 , 2 , 4 ) ;",
+              "EXIImm ( 0 , & cmd , 2 , EXI_WRITE , NULL ) ;",
+              "EXISync ( 0 ) ;",
+              "EXIImm ( 0 , & value , 1 , EXI_WRITE , NULL ) ;",
+              "EXISync ( 0 ) ;",
+              "EXIDeselect ( 0 ) ;",
+              "return selected ;",
+              "}",
+              "static inline void ModemLockExi ( void ) {",
+              "BOOL enabled = OSDisableInterrupts ( ) ;",
+              "for ( ; ; ) {",
+              "if ( EXILock ( 0 , 2 , TAdSinglePlyChrSelectGC :: wake_load_thread ) == 1 ) {",
+              "OSRestoreInterrupts ( enabled ) ;",
+              "break ;",
+              "}",
+              "OSSleepThread ( & lbl_805D7CA0 ) ;",
+              "OSRestoreInterrupts ( enabled ) ;",
+              "}",
+              "}",
+              "void TAdSinglePlyChrSelectGC__sub_8042BF6C ( s32 length ) {",
+              "BOOL selected ;",
+              "u32 cmd ;",
+              "u8 * body ;",
+              "u8 * tail ;",
+              "s32 offset ;",
+              "s32 count ;",
+              "modem_recv_state . length = length ;",
+              "modem_recv_state . tail = NULL ;",
+              "modem_recv_state . body = NULL ;",
+              "modem_recv_state . head = NULL ;",
+              "modem_recv_state . tail_length = 0 ;",
+              "modem_recv_state . body_length = 0 ;",
+              "modem_recv_state . head_length = 0 ;",
+              "body = ( u8 * ) ( ( ( size_t ) modem_recv_state . buffer + 31 ) & ~ ( size_t ) 31 ) ;",
+              "tail = ( u8 * ) ( ( size_t ) ( modem_recv_state . buffer + modem_recv_state . length ) & ~ ( size_t ) 31 ) ;",
+              "if ( body >= tail ) {",
+              "modem_recv_state . head = modem_recv_state . buffer ;",
+              "modem_recv_state . head_length = modem_recv_state . length ;",
+              "} else {",
+              "if ( modem_recv_state . buffer != body ) {",
+              "modem_recv_state . head = modem_recv_state . buffer ;",
+              "modem_recv_state . head_length = body - modem_recv_state . buffer ;",
+              "}",
+              "modem_recv_state . body = body ;",
+              "modem_recv_state . body_length = tail - body ;",
+              "if ( tail < modem_recv_state . buffer + modem_recv_state . length ) {",
+              "modem_recv_state . tail = tail ;",
+              "modem_recv_state . tail_length = modem_recv_state . buffer + modem_recv_state . length - tail ;",
+              "}",
+              "}",
+              "cmd = 0x28000000 | ( ( u16 ) modem_recv_state . length << 8 ) ;",
+              "selected = EXISelect ( 0 , 2 , 4 ) ;",
+              "EXIImm ( 0 , & cmd , 4 , EXI_WRITE , NULL ) ;",
+              "EXISync ( 0 ) ;",
+              "for ( offset = 0 ; modem_recv_state . head_length > 0 ; modem_recv_state . head_length -= 4 ) {",
+              "count = ModemMin ( modem_recv_state . head_length , 4 ) ;",
+              "EXIImm ( 0 , modem_recv_state . head + offset , count , EXI_READ , NULL ) ;",
+              "EXISync ( 0 ) ;",
+              "offset += 4 ;",
+              "}",
+              "if ( modem_recv_state . body_length > 0 ) {",
+              "EXIDma ( 0 , modem_recv_state . body , modem_recv_state . body_length , EXI_READ ,",
+              "TAdSinglePlyChrSelectGC__sub_8042C124 ) ;",
+              "} else {",
+              "TAdSinglePlyChrSelectGC__sub_8042C124 ( 0 , NULL ) ;",
+              "}",
+              "}",
+              "void TAdSinglePlyChrSelectGC__sub_8042C124 ( s32 chan , OSContext * context ) {",
+              "s32 offset ;",
+              "s32 count ;",
+              "void ( * callback ) ( s32 ) ;",
+              "for ( offset = 0 ; modem_recv_state . tail_length > 0 ; modem_recv_state . tail_length -= 4 ) {",
+              "count = ModemMin ( modem_recv_state . tail_length , 4 ) ;",
+              "EXIImm ( 0 , modem_recv_state . tail + offset , count , EXI_READ , NULL ) ;",
+              "EXISync ( 0 ) ;",
+              "offset += 4 ;",
+              "}",
+              "if ( modem_recv_state . body_length > 0 ) {",
+              "DCInvalidateRange ( modem_recv_state . body , modem_recv_state . body_length ) ;",
+              "modem_recv_state . body_length = 0 ;",
+              "}",
+              "modem_recv_state . received += modem_recv_state . length ;",
+              "modem_recv_state . buffer += modem_recv_state . length ;",
+              "EXIDeselect ( 0 ) ;",
+              "ModemWriteRegister ( 1 , lbl_805D7C90 . f4 ) ;",
+              "EXIUnlock ( 0 ) ;",
+              "if ( modem_recv_state . capacity - modem_recv_state . received < lbl_805D7C90 . f0 || modem_recv_state . f10 == 1 ) {",
+              "modem_recv_state . f10 = 0 ;",
+              "modem_recv_state . f14 = 0 ;",
+              "if ( modem_recv_state . callback != NULL ) {",
+              "callback = modem_recv_state . callback ;",
+              "modem_recv_state . callback = NULL ;",
+              "lbl_805D7C9C = 1 ;",
+              "callback ( modem_recv_state . received ) ;",
+              "lbl_805D7C9C = 0 ;",
+              "}",
+              "modem_recv_state . received = 0 ;",
+              "}",
+              "}",
+              "static inline u32 ModemLeadingZeroCount ( u8 status ) {",
+              "# ifdef __MWERKS__",
+              "return __cntlzw ( status ) ;",
+              "# else",
+              "u32 count = 32 ;",
+              "for ( u32 value = status ; value != 0 ; value >>= 1 ) {",
+              "-- count ;",
+              "}",
+              "return count ;",
+              "# endif",
+              "}",
+              "void TAdSinglePlyChrSelectGC__sub_8042C2E4 ( s32 channel , OSContext * context ) {",
+              "u8 status ;",
+              "u32 cmd ;",
+              "s32 count ;",
+              "if ( EXILock ( 0 , 2 , TAdSinglePlyChrSelectGC__sub_8042C2E4 ) != 0 ) {",
+              "status = ModemReadRegister ( 2 ) ;",
+              "status & = lbl_805D7C90 . f4 ;",
+              "if ( status == 0 ) {",
+              "EXIUnlock ( 0 ) ;",
+              "} else {",
+              "ModemWriteRegister ( 1 , 0 ) ;",
+              "switch ( ModemLeadingZeroCount ( status ) ) {",
+              "case 27 :",
+              "TAdSinglePlyChrSelectGC__sub_8042DE20 ( ) ;",
+              "break ;",
+              "case 26 :",
+              "if ( modem_recv_state . f34 == 0 ) {",
+              "modem_recv_state . f38 = 1 ;",
+              "lbl_805D7C90 . f4 & = ~ 0x20 ;",
+              "ModemWriteRegister ( 1 , lbl_805D7C90 . f4 ) ;",
+              "EXIUnlock ( 0 ) ;",
+              "} else if ( modem_recv_state . f14 != 0 ) {",
+              "TAdSinglePlyChrSelectGC__sub_8042BF6C ( lbl_805D7C90 . f0 ) ;",
+              "} else {",
+              "lbl_805D7C90 . f4 & = ~ 0x20 ;",
+              "ModemWriteRegister ( 1 , lbl_805D7C90 . f4 ) ;",
+              "EXIUnlock ( 0 ) ;",
+              "}",
+              "break ;",
+              "case 25 :",
+              "modem_recv_state . available = ModemReadRegister ( 0x0B ) << 8 ;",
+              "modem_recv_state . available += ModemReadRegister ( 0x0C ) ;",
+              "if ( modem_recv_state . available == 0 || modem_recv_state . f14 == 0 ) {",
+              "ModemWriteRegister ( 1 , lbl_805D7C90 . f4 ) ;",
+              "EXIUnlock ( 0 ) ;",
+              "} else {",
+              "if ( modem_recv_state . capacity - modem_recv_state . received < modem_recv_state . available ) {",
+              "modem_recv_state . available = modem_recv_state . capacity - modem_recv_state . received ;",
+              "}",
+              "modem_recv_state . f10 = 1 ;",
+              "TAdSinglePlyChrSelectGC__sub_8042BF6C ( modem_recv_state . available ) ;",
+              "}",
+              "break ;",
+              "case 30 :",
+              "modem_command_response_state . fifo_count = ModemReadRegister ( 5 ) ;",
+              "cmd = 0x23000000 | ( ( u8 ) modem_command_response_state . fifo_count << 8 ) ;",
+              "EXISelect ( 0 , 2 , 4 ) ;",
+              "EXIImm ( 0 , & cmd , 4 , EXI_WRITE , NULL ) ;",
+              "EXISync ( 0 ) ;",
+              "while ( modem_command_response_state . fifo_count > 0 ) {",
+              "count = ModemMin ( modem_command_response_state . fifo_count , 4 ) ;",
+              "EXIImm ( 0 , modem_command_response_state . buf + modem_command_response_state . length , count ,",
+              "EXI_READ , NULL ) ;",
+              "EXISync ( 0 ) ;",
+              "modem_command_response_state . fifo_count -= count ;",
+              "modem_command_response_state . length += count ;",
+              "}",
+              "EXIDeselect ( 0 ) ;",
+              "parse_modem_command_response__Fv ( ) ;",
+              "ModemWriteRegister ( 1 , lbl_805D7C90 . f4 ) ;",
+              "EXIUnlock ( 0 ) ;",
+              "if ( modem_command_response_state . done == 1 && modem_command_response_state . callback != NULL ) {",
+              "modem_command_response_state . done = 0 ;",
+              "lbl_805D7C9C = 1 ;",
+              "modem_command_response_state . callback ( modem_command_response_state . result ) ;",
+              "lbl_805D7C9C = 0 ;",
+              "}",
+              "break ;",
+              "}",
+              "}",
+              "}",
+              "}"
+            ]
+          },
+          {
+            "old_lines": [
+              270,
+              269
+            ],
+            "fork_lines": [
+              482,
+              639
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "s32 modem_wait_ok_or_error__Fv ( void ) {",
+              "u8 count ;",
+              "s32 i ;",
+              "s32 saw_o ;",
+              "s32 error_index ;",
+              "const char * error ;",
+              "saw_o = 0 ;",
+              "error_index = 0 ;",
+              "error = \"ERROR\" ;",
+              "for ( ; ; ) {",
+              "count = ModemReadRegister ( 5 ) ;",
+              "if ( count == 0 ) {",
+              "OSYieldThread ( ) ;",
+              "continue ;",
+              "}",
+              "for ( i = 0 ; i < count ; i ++ ) {",
+              "u8 c = ModemReadFifoByte ( ) ;",
+              "modem_command_response_state . buf [ modem_command_response_state . length ++ ] = c ;",
+              "if ( c == error [ error_index ] ) {",
+              "if ( ++ error_index == 5 ) {",
+              "return - 6 ;",
+              "}",
+              "} else {",
+              "error_index = 0 ;",
+              "}",
+              "if ( c == 0x4F ) {",
+              "saw_o = 1 ;",
+              "} else if ( saw_o == 1 && c == 0x4B ) {",
+              "return 1 ;",
+              "} else {",
+              "saw_o = 0 ;",
+              "}",
+              "}",
+              "}",
+              "}",
+              "static inline s32 ModemRunCommand ( char * command ) {",
+              "s32 result ;",
+              "modem_write_string ( command ) ;",
+              "result = modem_wait_ok_or_error__Fv ( ) ;",
+              "return result ;",
+              "}",
+              "static inline BOOL ModemWriteCommand ( u16 command ) {",
+              "BOOL selected ;",
+              "selected = EXISelect ( 0 , 2 , 4 ) ;",
+              "EXIImm ( 0 , & command , 2 , EXI_WRITE , NULL ) ;",
+              "EXISync ( 0 ) ;",
+              "EXIDeselect ( 0 ) ;",
+              "return selected ;",
+              "}",
+              "static inline char * ModemBuildCountryCommand ( char * buf , const char * country ) {",
+              "char * result ;",
+              "result = strcpy ( buf , lbl_805D48A4 ) ;",
+              "strcat ( buf , country ) ;",
+              "strcat ( buf , lbl_805D48AC ) ;",
+              "return result ;",
+              "}",
+              "static char modem_setup_commands [ ] [ 12 ] = {",
+              "\"ATW1\\\\V0\\r\" , \"ATS95=44\\r\"",
+              "} ;",
+              "static inline BOOL ModemSetupCommands ( char * buf , char * country ) {",
+              "u8 value ;",
+              "BOOL selected ;",
+              "u16 cmd ;",
+              "ModemRunCommand ( lbl_805D489C ) ;",
+              "ModemBuildCountryCommand ( buf , country ) ;",
+              "ModemRunCommand ( buf ) ;",
+              "ModemRunCommand ( lbl_805D48B0 ) ;",
+              "ModemRunCommand ( modem_setup_commands [ 0 ] ) ;",
+              "ModemRunCommand ( modem_setup_commands [ 1 ] ) ;",
+              "value = lbl_805D7C90 . f4 ;",
+              "cmd = 0x4100 ;",
+              "selected = EXISelect ( 0 , 2 , 4 ) ;",
+              "EXIImm ( 0 , & cmd , 2 , EXI_WRITE , NULL ) ;",
+              "EXISync ( 0 ) ;",
+              "EXIImm ( 0 , & value , 1 , EXI_WRITE , NULL ) ;",
+              "EXISync ( 0 ) ;",
+              "EXIDeselect ( 0 ) ;",
+              "return selected ;",
+              "}",
+              "s32 modem_init ( char * country ) {",
+              "u64 command_buffer [ 0x88 / sizeof ( u64 ) ] ;",
+              "u16 cmd ;",
+              "u32 id ;",
+              "ModemLockExi ( ) ;",
+              "lbl_805D7C98 = 0 ;",
+              "lbl_805D7C90 . f0 = 0x1E0 ;",
+              "lbl_805D7C90 . f2 = 0x21 ;",
+              "lbl_805D7C90 . f4 = 0x62 ;",
+              "lbl_805D7C90 . f5 = 5 ;",
+              "memset ( & modem_connection_info , 0 , sizeof ( modem_connection_info ) ) ;",
+              "memset ( & modem_recv_state , 0 , sizeof ( modem_recv_state ) ) ;",
+              "memset ( & modem_send_state , 0 , sizeof ( modem_send_state ) ) ;",
+              "OSInitThreadQueue ( & lbl_805D7CA0 ) ;",
+              "lbl_805D7C9C = 0 ;",
+              "modem_recv_state . f10 = 0 ;",
+              "modem_command_response_state . done = 0 ;",
+              "modem_command_response_state . length = 0 ;",
+              "lbl_805D7C98 = 1 ;",
+              "modem_recv_state . f14 = 0 ;",
+              "modem_recv_state . f38 = 0 ;",
+              "modem_send_state . busy = 0 ;",
+              "modem_recv_state . capacity = 0 ;",
+              "modem_recv_state . f34 = 1 ;",
+              "EXISelect ( 0 , 2 , 0 ) ;",
+              "cmd = 0 ;",
+              "EXIImm ( 0 , & cmd , 2 , EXI_WRITE , NULL ) ;",
+              "EXISync ( 0 ) ;",
+              "EXIImm ( 0 , & id , 4 , EXI_READ , NULL ) ;",
+              "EXISync ( 0 ) ;",
+              "EXIDeselect ( 0 ) ;",
+              "if ( id != 0x02020000 ) {",
+              "EXIUnlock ( 0 ) ;",
+              "return - 1 ;",
+              "}",
+              "ModemWriteCommand ( 0x8000 ) ;",
+              "ModemWriteRegister ( 0x13 , lbl_805D7C90 . f5 ) ;",
+              "ModemWriteRegister ( 0x06 , 0x32 ) ;",
+              "ModemWriteRegister ( 0x07 , 0x40 ) ;",
+              "ModemWriteRegister ( 0x10 , lbl_805D7C90 . f0 >> 8 ) ;",
+              "ModemWriteRegister ( 0x11 , lbl_805D7C90 . f0 ) ;",
+              "ModemWriteRegister ( 0x0E , lbl_805D7C90 . f2 >> 8 ) ;",
+              "ModemWriteRegister ( 0x0F , lbl_805D7C90 . f2 ) ;",
+              "ModemSetupCommands ( ( char * ) command_buffer , country ) ;",
+              "EXISetExiCallback ( 2 , TAdSinglePlyChrSelectGC__sub_8042C2E4 ) ;",
+              "OSRegisterResetFunction ( & modem_reset_function_info ) ;",
+              "EXIUnlock ( 0 ) ;",
+              "return 1 ;",
+              "}",
+              "s32 modem_send_at_command ( char * cmd ) {",
+              "u32 length ;",
+              "u32 i ;",
+              "char c ;",
+              "s32 result ;",
+              "length = strlen ( cmd ) ;",
+              "if ( length <= 1 || cmd [ length - 1 ] != '\\r' ) {",
+              "return - 8 ;",
+              "}",
+              "for ( i = 0 ; i < length ; i ++ ) {",
+              "c = cmd [ i ] ;",
+              "if ( c >= 'a' && c <= 'z' ) {",
+              "c -= 'a' - 'A' ;",
+              "}",
+              "cmd [ i ] = c ;",
+              "}",
+              "if ( memcmp ( cmd , lbl_805D4914 , 2 ) != 0 ) {",
+              "return - 8 ;",
+              "}",
+              "for ( i = 0 ; i < 22 ; i ++ ) {",
+              "if ( memcmp ( cmd + 2 , modem_exi_ptr_table [ i ] , strlen ( modem_exi_ptr_table [ i ] ) ) == 0 ) {",
+              "return - 8 ;",
+              "}",
+              "}",
+              "ModemLockExi ( ) ;",
+              "modem_write_string ( cmd ) ;",
+              "result = modem_wait_ok_or_error__Fv ( ) ;",
+              "EXIUnlock ( 0 ) ;",
+              "return result ;",
+              "}"
+            ]
+          },
+          {
+            "old_lines": [
+              276,
+              276
+            ],
+            "fork_lines": [
+              646,
+              646
+            ],
+            "result": "compare",
+            "old": [
+              "if ( EXILock ( 0 , 2 , ( u32 ) TAdSinglePlyChrSelectGC :: wake_load_thread ) == 1 ) {"
+            ],
+            "fork": [
+              "if ( EXILock ( 0 , 2 , TAdSinglePlyChrSelectGC :: wake_load_thread ) == 1 ) {"
+            ]
+          },
+          {
+            "old_lines": [
+              283,
+              290
+            ],
+            "fork_lines": [
+              653,
+              769
+            ],
+            "result": "compare",
+            "old": [
+              "modem_write_string ( ( char * ) & lbl_805D4918 ) ;",
+              "EXIUnlock ( 0 ) ;",
+              "}",
+              "# pragma push",
+              "# pragma opt_common_subs off",
+              "typedef char RecoveredGlobal_8042DD70_lbl_805D1D20_size [ sizeof ( RecoveredGlobal_8042DD70_lbl_805D1D20 ) == 0x1C ? 1 : - 1 ] ;",
+              "s32 TAdSinglePlyChrSelectGC__sub_8042DD70 ( s32 arg0 , s32 arg1 , s32 arg2 ) {",
+              "if ( ( s32 ) * ( s32 * ) ( ( s8 * ) ( & ( * ( RecoveredGlobal_8042DD70_lbl_805D1D20 * ) & modem_connection_info ) . value ) + 0xB0 ) != 0 ) {"
+            ],
+            "fork": [
+              "modem_write_string ( lbl_805D4918 ) ;",
+              "EXIUnlock ( 0 ) ;",
+              "}",
+              "void modem_write_string ( char * str ) {",
+              "s32 length ;",
+              "u32 cmd ;",
+              "s32 count ;",
+              "length = strlen ( str ) ;",
+              "while ( ModemReadRegister ( 4 ) > 0x40 - length ) {",
+              "}",
+              "cmd = 0x63000000 | ( ( u16 ) length << 8 ) ;",
+              "EXISelect ( 0 , 2 , 4 ) ;",
+              "EXIImm ( 0 , & cmd , 4 , EXI_WRITE , NULL ) ;",
+              "EXISync ( 0 ) ;",
+              "while ( length > 0 ) {",
+              "count = length > 4 ? 4 : length ;",
+              "EXIImm ( 0 , str , count , EXI_WRITE , NULL ) ;",
+              "EXISync ( 0 ) ;",
+              "length -= 4 ;",
+              "str += 4 ;",
+              "}",
+              "EXIDeselect ( 0 ) ;",
+              "}",
+              "s32 TAdSinglePlyChrSelectGC__sub_8042D7E0 ( u8 * buf ) {",
+              "u8 * head ;",
+              "u8 * body ;",
+              "u8 * tail ;",
+              "s32 head_len ;",
+              "s32 body_len ;",
+              "s32 tail_len ;",
+              "u8 * body_end ;",
+              "u8 * head_end ;",
+              "u32 cmd ;",
+              "BOOL selected ;",
+              "s32 len ;",
+              "s32 count ;",
+              "if ( modem_recv_state . f14 != 0 ) {",
+              "return - 5 ;",
+              "}",
+              "if ( modem_recv_state . f34 == 0 ) {",
+              "if ( modem_recv_state . f38 == 0 ) {",
+              "return 0 ;",
+              "}",
+              "ModemLockExi ( ) ;",
+              "} else {",
+              "modem_recv_state . f34 = 0 ;",
+              "modem_recv_state . f38 = 0 ;",
+              "ModemLockExi ( ) ;",
+              "lbl_805D7C90 . f4 | = 0x20 ;",
+              "ModemWriteRegister ( 0x01 , lbl_805D7C90 . f4 ) ;",
+              "ModemWriteRegister ( 0x13 , 0 ) ;",
+              "ModemWriteRegister ( 0x10 , 0 ) ;",
+              "ModemWriteRegister ( 0x11 , 1 ) ;",
+              "}",
+              "modem_recv_state . f38 = 0 ;",
+              "len = ModemReadRegister ( 0x0B ) << 8 ;",
+              "len += ModemReadRegister ( 0x0C ) ;",
+              "if ( len == 0 ) {",
+              "EXIUnlock ( 0 ) ;",
+              "return 0 ;",
+              "}",
+              "cmd = 0x28000000 | ( ( len << 8 ) & 0xFFFF00 ) ;",
+              "selected = EXISelect ( 0 , 2 , 4 ) ;",
+              "EXIImm ( 0 , & cmd , 4 , EXI_WRITE , NULL ) ;",
+              "EXISync ( 0 ) ;",
+              "head_end = ( u8 * ) ( ( ( size_t ) buf + 31 ) & ~ ( size_t ) 31 ) ;",
+              "body_end = ( u8 * ) ( ( size_t ) ( buf + len ) & ~ ( size_t ) 31 ) ;",
+              "tail = NULL ;",
+              "body = NULL ;",
+              "head = NULL ;",
+              "tail_len = 0 ;",
+              "body_len = 0 ;",
+              "head_len = 0 ;",
+              "if ( head_end >= body_end ) {",
+              "head = buf ;",
+              "head_len = len ;",
+              "} else {",
+              "if ( buf != head_end ) {",
+              "head = buf ;",
+              "head_len = head_end - buf ;",
+              "}",
+              "body = head_end ;",
+              "body_len = body_end - head_end ;",
+              "if ( body_end < buf + len ) {",
+              "tail = body_end ;",
+              "tail_len = ( buf + len ) - body_end ;",
+              "}",
+              "}",
+              "while ( head_len > 0 ) {",
+              "count = head_len > 4 ? 4 : head_len ;",
+              "EXIImm ( 0 , head , count , EXI_READ , NULL ) ;",
+              "EXISync ( 0 ) ;",
+              "head_len -= 4 ;",
+              "head += 4 ;",
+              "}",
+              "if ( body_len > 0 ) {",
+              "EXIDma ( 0 , body , body_len , EXI_READ , NULL ) ;",
+              "EXISync ( 0 ) ;",
+              "}",
+              "while ( tail_len > 0 ) {",
+              "count = tail_len > 4 ? 4 : tail_len ;",
+              "EXIImm ( 0 , tail , count , EXI_READ , NULL ) ;",
+              "EXISync ( 0 ) ;",
+              "tail_len -= 4 ;",
+              "tail += 4 ;",
+              "}",
+              "if ( body_len > 0 ) {",
+              "DCInvalidateRange ( body , body_len ) ;",
+              "}",
+              "EXIDeselect ( 0 ) ;",
+              "lbl_805D7C90 . f4 | = 0x20 ;",
+              "ModemWriteRegister ( 0x01 , lbl_805D7C90 . f4 ) ;",
+              "EXIUnlock ( 0 ) ;",
+              "return len ;",
+              "}",
+              "s32 TAdSinglePlyChrSelectGC__sub_8042DD70 ( u8 * data , s32 length , void ( * callback ) ( s32 ) ) {",
+              "if ( modem_send_state . busy != 0 ) {"
+            ]
+          },
+          {
+            "old_lines": [
+              293,
+              293
+            ],
+            "fork_lines": [
+              772,
+              772
+            ],
+            "result": "compare",
+            "old": [
+              "if ( ( s32 ) lbl_805D7C98 != 3 ) {"
+            ],
+            "fork": [
+              "if ( lbl_805D7C98 != 3 ) {"
+            ]
+          },
+          {
+            "old_lines": [
+              296,
+              306
+            ],
+            "fork_lines": [
+              775,
+              784
+            ],
+            "result": "compare",
+            "old": [
+              "* ( s32 * ) ( ( s8 * ) ( & ( * ( RecoveredGlobal_8042DD70_lbl_805D1D20 * ) & modem_connection_info ) . value ) + 0xB0 ) = 1 ;",
+              "* ( s32 * ) ( ( s8 * ) ( & ( * ( RecoveredGlobal_8042DD70_lbl_805D1D20 * ) & modem_connection_info ) . value ) + 0xB4 ) = arg0 ;",
+              "* ( s32 * ) ( ( s8 * ) ( & ( * ( RecoveredGlobal_8042DD70_lbl_805D1D20 * ) & modem_connection_info ) . value ) + 0xBC ) = arg1 ;",
+              "* ( s32 * ) ( ( s8 * ) ( & ( * ( RecoveredGlobal_8042DD70_lbl_805D1D20 * ) & modem_connection_info ) . value ) + 0xB8 ) = arg1 ;",
+              "* ( s32 * ) ( ( s8 * ) ( & ( * ( RecoveredGlobal_8042DD70_lbl_805D1D20 * ) & modem_connection_info ) . value ) + 0xD8 ) = arg2 ;",
+              "TAdSinglePlyChrSelectGC__sub_8042DDE4 ( 0 , 0 ) ;",
+              "return 1 ;",
+              "}",
+              "# pragma pop",
+              "void TAdSinglePlyChrSelectGC__sub_8042DDE4 ( int _w0 , int _w1 ) {",
+              "if ( EXILock ( 0 , 2U , ( u32 ) TAdSinglePlyChrSelectGC__sub_8042DDE4 ) != 0 ) {"
+            ],
+            "fork": [
+              "modem_send_state . busy = 1 ;",
+              "modem_send_state . data = data ;",
+              "modem_send_state . length = length ;",
+              "modem_send_state . remaining = length ;",
+              "modem_send_state . callback = callback ;",
+              "TAdSinglePlyChrSelectGC__sub_8042DDE4 ( 0 , NULL ) ;",
+              "return 1 ;",
+              "}",
+              "void TAdSinglePlyChrSelectGC__sub_8042DDE4 ( s32 , OSContext * ) {",
+              "if ( EXILock ( 0 , 2U , TAdSinglePlyChrSelectGC__sub_8042DDE4 ) != 0 ) {"
+            ]
+          },
+          {
+            "old_lines": [
+              309,
+              308
+            ],
+            "fork_lines": [
+              787,
+              925
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "}",
+              "void TAdSinglePlyChrSelectGC__sub_8042DE20 ( void ) {",
+              "s32 length ;",
+              "u8 * data ;",
+              "u8 * body ;",
+              "u8 * tail ;",
+              "s32 max ;",
+              "u32 cmd ;",
+              "data = modem_send_state . data ;",
+              "max = 0x201 - lbl_805D7C90 . f2 ;",
+              "length = modem_send_state . remaining ;",
+              "if ( length >= max ) {",
+              "length = max ;",
+              "}",
+              "modem_send_state . remaining -= length ;",
+              "modem_send_state . tail = NULL ;",
+              "modem_send_state . body = NULL ;",
+              "modem_send_state . head = NULL ;",
+              "modem_send_state . tail_length = 0 ;",
+              "modem_send_state . body_length = 0 ;",
+              "modem_send_state . head_length = 0 ;",
+              "body = ( u8 * ) ( ( ( size_t ) data + 31 ) & ~ ( size_t ) 31 ) ;",
+              "tail = ( u8 * ) ( ( size_t ) ( data + length ) & ~ ( size_t ) 31 ) ;",
+              "if ( body >= tail ) {",
+              "modem_send_state . head = data ;",
+              "modem_send_state . head_length = length ;",
+              "} else {",
+              "if ( data != body ) {",
+              "modem_send_state . head = data ;",
+              "modem_send_state . head_length = body - data ;",
+              "}",
+              "modem_send_state . body = body ;",
+              "modem_send_state . body_length = tail - body ;",
+              "DCStoreRange ( modem_send_state . body , modem_send_state . body_length ) ;",
+              "if ( tail < data + length ) {",
+              "modem_send_state . tail = tail ;",
+              "modem_send_state . tail_length = ( data + length ) - tail ;",
+              "}",
+              "}",
+              "EXISelect ( 0 , 2 , 4 ) ;",
+              "cmd = 0x68000000 | ( ( u16 ) length << 8 ) ;",
+              "EXIImm ( 0 , & cmd , 4 , EXI_WRITE , TAdSinglePlyChrSelectGC__sub_8042DF4C ) ;",
+              "}",
+              "void TAdSinglePlyChrSelectGC__sub_8042DF4C ( s32 chan , OSContext * context ) {",
+              "s32 offset ;",
+              "s32 count ;",
+              "void ( * callback ) ( s32 ) ;",
+              "for ( offset = 0 ; modem_send_state . head_length > 0 ; modem_send_state . head_length -= 4 ) {",
+              "count = ModemMin ( modem_send_state . head_length , 4 ) ;",
+              "EXIImm ( 0 , modem_send_state . head + offset , count , EXI_WRITE , NULL ) ;",
+              "EXISync ( 0 ) ;",
+              "offset += 4 ;",
+              "}",
+              "if ( modem_send_state . body_length > 0 ) {",
+              "EXIDma ( 0 , modem_send_state . body , modem_send_state . body_length , EXI_WRITE ,",
+              "TAdSinglePlyChrSelectGC__sub_8042DF4C ) ;",
+              "modem_send_state . body_length = 0 ;",
+              "return ;",
+              "}",
+              "for ( offset = 0 ; modem_send_state . tail_length > 0 ; modem_send_state . tail_length -= 4 ) {",
+              "count = ModemMin ( modem_send_state . tail_length , 4 ) ;",
+              "EXIImm ( 0 , modem_send_state . tail + offset , count , EXI_WRITE , NULL ) ;",
+              "EXISync ( 0 ) ;",
+              "offset += 4 ;",
+              "}",
+              "EXIDeselect ( 0 ) ;",
+              "if ( modem_send_state . remaining > 0 ) {",
+              "modem_send_state . data += 0x201 - lbl_805D7C90 . f2 ;",
+              "lbl_805D7C90 . f4 | = 0x10 ;",
+              "} else {",
+              "modem_send_state . busy = 0 ;",
+              "modem_send_state . data = NULL ;",
+              "lbl_805D7C90 . f4 & = ~ 0x10 ;",
+              "}",
+              "ModemWriteRegister ( 1 , lbl_805D7C90 . f4 ) ;",
+              "EXIUnlock ( 0 ) ;",
+              "if ( modem_send_state . remaining == 0 && modem_send_state . callback != NULL ) {",
+              "callback = modem_send_state . callback ;",
+              "modem_send_state . callback = NULL ;",
+              "lbl_805D7C9C = 1 ;",
+              "callback ( modem_send_state . length ) ;",
+              "lbl_805D7C9C = 0 ;",
+              "}",
+              "}",
+              "s32 TAdSinglePlyChrSelectGC__sub_8042E184 ( void ) {",
+              "u16 space ;",
+              "if ( modem_send_state . busy == 1 ) {",
+              "return 1 ;",
+              "}",
+              "if ( lbl_805D7C9C == 0 ) {",
+              "ModemLockExi ( ) ;",
+              "}",
+              "space = ModemReadRegister ( 9 ) << 8 ;",
+              "space += ModemReadRegister ( 0xA ) ;",
+              "if ( lbl_805D7C9C == 0 ) {",
+              "EXIUnlock ( 0 ) ;",
+              "}",
+              "if ( space < lbl_805D7C90 . f2 ) {",
+              "return 0 ;",
+              "}",
+              "return 1 ;",
+              "}",
+              "s32 modem_dial ( const char * number , s32 mode , void ( * callback ) ( s32 result ) ) {",
+              "char buf [ 0x40 ] ;",
+              "s32 result ;",
+              "memset ( & modem_connection_info , 0 , sizeof ( modem_connection_info ) ) ;",
+              "if ( mode <= 0 || mode > 3 ) {",
+              "return - 2 ;",
+              "}",
+              "if ( lbl_805D7C98 == 3 ) {",
+              "return - 3 ;",
+              "}",
+              "modem_command_response_state . callback = callback ;",
+              "switch ( mode ) {",
+              "case 1 :",
+              "strcpy ( buf , lbl_805D4920 ) ;",
+              "break ;",
+              "case 2 :",
+              "result = modem_send_at_command ( lbl_805D4928 ) ;",
+              "strcpy ( buf , lbl_805D4930 ) ;",
+              "break ;",
+              "case 3 :",
+              "result = modem_send_at_command ( lbl_805D4938 ) ;",
+              "strcpy ( buf , lbl_805D4930 ) ;",
+              "break ;",
+              "}",
+              "strcat ( buf , number ) ;",
+              "strcat ( buf , lbl_805D48AC ) ;",
+              "lbl_805D7C98 = 2 ;",
+              "ModemLockExi ( ) ;",
+              "modem_write_string ( buf ) ;",
+              "EXIUnlock ( 0 ) ;",
+              "return 1 ;",
+              "}",
+              "void TAdSinglePlyChrSelectGC__sub_8042E488 ( s32 value ) {",
+              "lbl_805D7C90 . f5 = value ;",
+              "ModemLockExi ( ) ;",
+              "ModemWriteRegister ( 0x13 , lbl_805D7C90 . f5 ) ;",
+              "EXIUnlock ( 0 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              370,
+              370
+            ],
+            "fork_lines": [
+              987,
+              987
+            ],
+            "result": "compare",
+            "old": [
+              "s32 TAdSinglePlyChrSelectGC :: send_modem_hangup ( s32 arg0 ) {"
+            ],
+            "fork": [
+              "BOOL TAdSinglePlyChrSelectGC :: send_modem_hangup ( BOOL arg0 ) {"
+            ]
+          },
+          {
+            "old_lines": [
+              373,
+              376
+            ],
+            "fork_lines": [
+              990,
+              993
+            ],
+            "result": "compare",
+            "old": [
+              "if ( EXILock ( 0 , 2U , 0U ) == 0 ) {",
+              "return 1 ;",
+              "}",
+              "modem_write_string ( ( char * ) & lbl_805D4918 ) ;"
+            ],
+            "fork": [
+              "if ( EXILock ( 0 , 2U , NULL ) == 0 ) {",
+              "return 1 ;",
+              "}",
+              "modem_write_string ( lbl_805D4918 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              383,
+              383
+            ],
+            "fork_lines": [
+              1000,
+              1000
+            ],
+            "result": "compare",
+            "old": [
+              "s32 fn_8042E8B8 ( void ) {"
+            ],
+            "fork": [
+              "u32 fn_8042E8B8 ( void ) {"
+            ]
+          },
+          {
+            "old_lines": [
+              387,
+              386
+            ],
+            "fork_lines": [
+              1004,
+              1067
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "extern \"C\" {",
+              "char lbl_805D489C [ 5 ] = \"ATZ\\r\" ;",
+              "char lbl_805D48A4 [ 8 ] = \"AT+GCI=\" ;",
+              "char lbl_805D48AC [ 2 ] = \"\\r\" ;",
+              "char lbl_805D48B0 [ 6 ] = \"ATE0\\r\" ;",
+              "char lbl_805D48B8 [ 2 ] = \"Z\" ;",
+              "char lbl_805D48BC [ 3 ] = \"+V\" ;",
+              "char lbl_805D48C0 [ 3 ] = \"+G\" ;",
+              "char lbl_805D48C4 [ 3 ] = \"&F\" ;",
+              "char lbl_805D48C8 [ 3 ] = \"&Y\" ;",
+              "char lbl_805D48CC [ 3 ] = \"&W\" ;",
+              "char lbl_805D48D0 [ 3 ] = \"&Z\" ;",
+              "char lbl_805D48D4 [ 2 ] = \"E\" ;",
+              "char lbl_805D48D8 [ 2 ] = \"Q\" ;",
+              "char lbl_805D48DC [ 2 ] = \"V\" ;",
+              "char lbl_805D48E0 [ 2 ] = \"W\" ;",
+              "char lbl_805D48E4 [ 2 ] = \"L\" ;",
+              "char lbl_805D48E8 [ 2 ] = \"M\" ;",
+              "char lbl_805D48EC [ 3 ] = \"&V\" ;",
+              "char lbl_805D48F0 [ 3 ] = \"\\\\V\" ;",
+              "char lbl_805D48F4 [ 3 ] = \"*B\" ;",
+              "char lbl_805D48F8 [ 3 ] = \"*D\" ;",
+              "char lbl_805D48FC [ 5 ] = \"+MS?\" ;",
+              "char lbl_805D4904 [ 4 ] = \"#UD\" ;",
+              "char lbl_805D4908 [ 4 ] = \"S24\" ;",
+              "char lbl_805D490C [ 4 ] = \"S95\" ;",
+              "char lbl_805D4910 [ 2 ] = \"!\" ;",
+              "char lbl_805D4914 [ 3 ] = \"AT\" ;",
+              "char lbl_805D4918 [ 6 ] = \"ATH0\\r\" ;",
+              "char lbl_805D4920 [ 5 ] = \"ATDT\" ;",
+              "char lbl_805D4928 [ 7 ] = \"AT&P0\\r\" ;",
+              "char lbl_805D4930 [ 5 ] = \"ATDP\" ;",
+              "char lbl_805D4938 [ 7 ] = \"AT&P2\\r\" ;",
+              "char * modem_exi_ptr_table [ 22 ] = {",
+              "lbl_805D48B8 ,",
+              "lbl_805D48BC ,",
+              "lbl_805D48C0 ,",
+              "lbl_805D48C4 ,",
+              "lbl_805D48C8 ,",
+              "lbl_805D48CC ,",
+              "lbl_805D48D0 ,",
+              "lbl_805D48D4 ,",
+              "lbl_805D48D8 ,",
+              "lbl_805D48DC ,",
+              "lbl_805D48E0 ,",
+              "lbl_805D48E4 ,",
+              "lbl_805D48E8 ,",
+              "lbl_805D48EC ,",
+              "lbl_805D48F0 ,",
+              "lbl_805D48F4 ,",
+              "lbl_805D48F8 ,",
+              "lbl_805D48FC ,",
+              "lbl_805D4904 ,",
+              "lbl_805D4908 ,",
+              "lbl_805D490C ,",
+              "lbl_805D4910 ,",
+              "} ;",
+              "}",
+              "extern \"C\" {",
+              "ModemRegs_805D7C90 lbl_805D7C90 ;",
+              "s32 lbl_805D7C98 ;",
+              "s32 lbl_805D7C9C ;",
+              "OSThreadQueue lbl_805D7CA0 ;",
+              "}"
+            ]
+          }
+        ],
+        "owner_blob": "4dafb0b7a5ff2ec873b45c245afd0779fb7cfb25"
+      }
+    ],
+    "scoped_rows": [
+      {
+        "row": 2963,
+        "fork_path": "src/pso/misc/TLobby_803FAEA0.cpp",
+        "owner": "src/pso/network/TLobby_803FAEA0.c"
+      }
+    ],
+    "open_rows": 315,
+    "switcher_declaration_trial": {
+      "row": 2330,
+      "variants": 54,
+      "compatible_return_type_matches_retail": false,
+      "log_sha256": "295dd01793577ddaf44e4378a05726de974469abfbaafb5b91b078015c49a463"
+    }
+  },
+  "fork_workspace": {
+    "trial": "56813dbfe8a7a7fa3c463c50e1a6d378f1fc8205",
+    "overlay_paths": 130,
+    "updated_overlay_paths": [
+      "config/GPOE8P/psov3/config.yml",
+      "src/pso/network/ModemRuntime.cpp",
+      "tools/tests/test_modem_receive.py"
+    ],
+    "archive_sha256": "8a11c6ff1dbfeda0779bd33cb8e9d55c708414d562815c877d548734a338e683",
+    "materialized_tree": "38ad72001a58dd80af9be67b35f8d403339857a0",
+    "force_active": 27029
+  }
+}

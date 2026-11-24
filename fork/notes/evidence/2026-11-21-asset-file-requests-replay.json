@@ -1,0 +1,1158 @@
+{
+  "source": "52b5e0bb2c4054799dd9f83da27803065ec5dab4",
+  "previous_source": "3f8b2039e18b698df4cf35ddabeda9b9fa13ff32",
+  "upstream": "5a4e7ced56fe7072359b6d279e94f4be3b8453c0",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "source_paths": 1164,
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/system/GbaDownloadRuntime.h",
+    "include/pso/system/ResourceFile.h",
+    "include/pso/system/TLanguage.h",
+    "include/pso/system/TLanguage_801E4874.h",
+    "include/pso/unk/TLobby.h",
+    "include/pso/unk/TLobby_8001EF5C.h",
+    "include/pso/unk/TLobby_800FA2A0.h",
+    "include/pso/unk/TLobby_800FA848.h",
+    "include/pso/unk/text_800FA464.h",
+    "src/pso/boss/dragon/TObjBoss1Crater.cpp",
+    "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+    "src/pso/boss/galgryphon/TBoss5GryphonLightningEff.cpp",
+    "src/pso/boss/goldragon/TBoss8DragonEffTail.cpp",
+    "src/pso/boss/olgaflow/TBoss6Rock.cpp",
+    "src/pso/boss/olgaflow/TBoss6Tube.cpp",
+    "src/pso/effect/TBGLightningCtrl.cpp",
+    "src/pso/effect/particle/TParticleCtrl_800874F4.cpp",
+    "src/pso/enemy/darkgunner/DarkGunner.cpp",
+    "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+    "src/pso/enemy/lappy/TObjEneLappy.cpp",
+    "src/pso/npc/TObjNpcAHM01.cpp",
+    "src/pso/npc/TObjNpcARM00.cpp",
+    "src/pso/npc/TObjNpcARW00.cpp",
+    "src/pso/npc/TObjNpcHFW00.cpp",
+    "src/pso/npc/TObjNpcHFW01.cpp",
+    "src/pso/npc/TObjNpcHHM00.cpp",
+    "src/pso/npc/TObjNpcHRM00.cpp",
+    "src/pso/npc/TObjNpcHRM01.cpp",
+    "src/pso/npc/TObjNpcNFM00.cpp",
+    "src/pso/npc/TObjNpcNFM01.cpp",
+    "src/pso/npc/TObjNpcNFW00.cpp",
+    "src/pso/npc/TObjNpcNFW01.cpp",
+    "src/pso/npc/TObjNpcNHW00.cpp",
+    "src/pso/npc/TObjNpcNHW01.cpp",
+    "src/pso/object/TMotorcycle.cpp",
+    "src/pso/object/TObjComputer.cpp",
+    "src/pso/object/TObjTank.cpp",
+    "src/pso/object/cave/TOHangceilingCave01.cpp",
+    "src/pso/object/city/CityDoors.cpp",
+    "src/pso/object/container/TOContainerAncientEnemy.cpp",
+    "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp",
+    "src/pso/object/container/TObjContainerItem.cpp",
+    "src/pso/object/door/TODoorAncient01.cpp",
+    "src/pso/object/door/TODoorAncient03.cpp",
+    "src/pso/object/door/TODoorAncient04.cpp",
+    "src/pso/object/door/TODoorAncient05.cpp",
+    "src/pso/object/door/TODoorAncient06.cpp",
+    "src/pso/object/door/TODoorAncient07.cpp",
+    "src/pso/object/door/TODoorAncient08.cpp",
+    "src/pso/object/door/TODoorAncient09.cpp",
+    "src/pso/object/door/TODoorCave01.cpp",
+    "src/pso/object/door/TODoorCave02.cpp",
+    "src/pso/object/door/TODoorJungleMain.cpp",
+    "src/pso/object/door/TODoorLabo.cpp",
+    "src/pso/object/door/TODoorMachine01.cpp",
+    "src/pso/object/door/TODoorMachine02.cpp",
+    "src/pso/object/door/TODoorVS2Door01.cpp",
+    "src/pso/object/door/TObjDoorKey.cpp",
+    "src/pso/object/door/TObjDoor_8018E358.cpp",
+    "src/pso/object/fence/TLazerFenceSw.cpp",
+    "src/pso/object/fence/TOBarrierEnergy01.cpp",
+    "src/pso/object/fence/TOFenceAncient01.cpp",
+    "src/pso/object/fence/TOFenceAncient02.cpp",
+    "src/pso/object/fence/TOFenceAncient03.cpp",
+    "src/pso/object/fence/TOFenceAncient04.cpp",
+    "src/pso/object/fence/TObjLazerFenceNorm.cpp",
+    "src/pso/object/jungle/TOGrassJungle.cpp",
+    "src/pso/object/jungle/TORockJungleL01.cpp",
+    "src/pso/object/key/TOKeyAncient01.cpp",
+    "src/pso/object/key/TOKeyAncient02.cpp",
+    "src/pso/object/key/TOKeyAncient03.cpp",
+    "src/pso/object/key/TOKeyCave01.cpp",
+    "src/pso/object/key/TOKeyGenericSw.cpp",
+    "src/pso/object/key/TOKeyMachine01.cpp",
+    "src/pso/object/lobby/LobbyGoGoBall.cpp",
+    "src/pso/object/lobby/LobbyPigeonPath.cpp",
+    "src/pso/object/seabed/TObjSeabedSuisoBrakable.cpp",
+    "src/pso/object/switch/TOSensorAncient01.cpp",
+    "src/pso/object/switch/TOSensorGeneral01.cpp",
+    "src/pso/object/trap/TOTrapSeabed01.cpp",
+    "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+    "src/pso/object/warp/TObjMapWarpAncient.cpp",
+    "src/pso/player/TPlayerFootStamp.cpp",
+    "src/pso/quest/QuestOpcodeHandlers.cpp",
+    "src/pso/render/BlobShadow.cpp",
+    "src/pso/system/GbaDownloadRuntime.cpp",
+    "src/pso/system/SwitcherLaunch.cpp",
+    "src/pso/system/TLanguage_80132A5C.cpp",
+    "src/pso/technique/TTecCtrl.cpp",
+    "src/pso/ui/hud/TRaderMapCore.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp",
+    "src/pso/unk/TLobbyEventTheme.cpp",
+    "src/pso/unk/TLobby_8001EF5C.cpp",
+    "src/pso/unk/TLobby_800FA044.cpp",
+    "src/pso/unk/TLobby_800FA0A4.cpp",
+    "src/pso/unk/TLobby_800FA12C.cpp",
+    "src/pso/unk/TLobby_800FA164.cpp",
+    "src/pso/unk/TLobby_800FA2A0.cpp",
+    "src/pso/unk/TLobby_800FA388.cpp",
+    "src/pso/unk/TLobby_800FA73C.cpp",
+    "src/pso/unk/TLobby_800FA774.cpp",
+    "src/pso/unk/TLobby_800FA848.cpp",
+    "src/pso/unk/TLobby_801E43E4.cpp",
+    "src/pso/unk/TLobby_803382E4.cpp",
+    "src/pso/unk/text_80066F10.cpp",
+    "src/pso/unk/text_800F9FD0.cpp",
+    "src/pso/unk/text_800FA260.cpp",
+    "src/pso/unk/text_800FA464.cpp",
+    "src/pso/unk/text_800FA7E0.cpp",
+    "src/pso/unk/text_8028A820.cpp"
+  ],
+  "author": {
+    "name": "matthewlewisnewton",
+    "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+    "coauthor_trailers": 0
+  },
+  "gvm_calls": {
+    "target": "0x801e4874",
+    "source_callers": {
+      "src/pso/boss/dragon/TObjBoss1Crater.cpp": "2",
+      "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp": "1",
+      "src/pso/boss/galgryphon/TBoss5GryphonLightningEff.cpp": "1",
+      "src/pso/boss/goldragon/TBoss8DragonEffTail.cpp": "1",
+      "src/pso/boss/olgaflow/TBoss6Rock.cpp": "1",
+      "src/pso/boss/olgaflow/TBoss6Tube.cpp": "1",
+      "src/pso/effect/TBGLightningCtrl.cpp": "1",
+      "src/pso/effect/particle/TParticleCtrl_800874F4.cpp": "1",
+      "src/pso/enemy/darkgunner/DarkGunner.cpp": "1",
+      "src/pso/enemy/dubchik/TObjEneDubchik.cpp": "2",
+      "src/pso/enemy/lappy/TObjEneLappy.cpp": "2",
+      "src/pso/npc/TObjNpcAHM01.cpp": "1",
+      "src/pso/npc/TObjNpcARM00.cpp": "1",
+      "src/pso/npc/TObjNpcARW00.cpp": "1",
+      "src/pso/npc/TObjNpcHFW00.cpp": "1",
+      "src/pso/npc/TObjNpcHFW01.cpp": "1",
+      "src/pso/npc/TObjNpcHHM00.cpp": "1",
+      "src/pso/npc/TObjNpcHRM00.cpp": "1",
+      "src/pso/npc/TObjNpcHRM01.cpp": "1",
+      "src/pso/npc/TObjNpcNFM00.cpp": "1",
+      "src/pso/npc/TObjNpcNFM01.cpp": "1",
+      "src/pso/npc/TObjNpcNFW00.cpp": "1",
+      "src/pso/npc/TObjNpcNFW01.cpp": "1",
+      "src/pso/npc/TObjNpcNHW00.cpp": "1",
+      "src/pso/npc/TObjNpcNHW01.cpp": "1",
+      "src/pso/object/TMotorcycle.cpp": "1",
+      "src/pso/object/TObjComputer.cpp": "2",
+      "src/pso/object/TObjTank.cpp": "1",
+      "src/pso/object/cave/TOHangceilingCave01.cpp": "2",
+      "src/pso/object/city/CityDoors.cpp": "1",
+      "src/pso/object/container/TOContainerAncientEnemy.cpp": "9",
+      "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp": "1",
+      "src/pso/object/container/TObjContainerItem.cpp": "5",
+      "src/pso/object/door/TODoorAncient01.cpp": "1",
+      "src/pso/object/door/TODoorAncient03.cpp": "1",
+      "src/pso/object/door/TODoorAncient04.cpp": "1",
+      "src/pso/object/door/TODoorAncient05.cpp": "1",
+      "src/pso/object/door/TODoorAncient06.cpp": "2",
+      "src/pso/object/door/TODoorAncient07.cpp": "2",
+      "src/pso/object/door/TODoorAncient08.cpp": "1",
+      "src/pso/object/door/TODoorAncient09.cpp": "1",
+      "src/pso/object/door/TODoorCave01.cpp": "2",
+      "src/pso/object/door/TODoorCave02.cpp": "2",
+      "src/pso/object/door/TODoorJungleMain.cpp": "1",
+      "src/pso/object/door/TODoorLabo.cpp": "12",
+      "src/pso/object/door/TODoorMachine01.cpp": "2",
+      "src/pso/object/door/TODoorMachine02.cpp": "2",
+      "src/pso/object/door/TODoorVS2Door01.cpp": "1",
+      "src/pso/object/door/TObjDoorKey.cpp": "1",
+      "src/pso/object/door/TObjDoor_8018E358.cpp": "1",
+      "src/pso/object/fence/TLazerFenceSw.cpp": "3",
+      "src/pso/object/fence/TOBarrierEnergy01.cpp": "1",
+      "src/pso/object/fence/TOFenceAncient01.cpp": "3",
+      "src/pso/object/fence/TOFenceAncient02.cpp": "3",
+      "src/pso/object/fence/TOFenceAncient03.cpp": "3",
+      "src/pso/object/fence/TOFenceAncient04.cpp": "3",
+      "src/pso/object/fence/TObjLazerFenceNorm.cpp": "2",
+      "src/pso/object/jungle/TOGrassJungle.cpp": "1",
+      "src/pso/object/jungle/TORockJungleL01.cpp": "3",
+      "src/pso/object/key/TOKeyAncient01.cpp": "3",
+      "src/pso/object/key/TOKeyAncient02.cpp": "1",
+      "src/pso/object/key/TOKeyAncient03.cpp": "1",
+      "src/pso/object/key/TOKeyCave01.cpp": "2",
+      "src/pso/object/key/TOKeyGenericSw.cpp": "2",
+      "src/pso/object/key/TOKeyMachine01.cpp": "1",
+      "src/pso/object/lobby/LobbyGoGoBall.cpp": "9",
+      "src/pso/object/lobby/LobbyPigeonPath.cpp": "4",
+      "src/pso/object/seabed/TObjSeabedSuisoBrakable.cpp": "2",
+      "src/pso/object/switch/TOSensorAncient01.cpp": "3",
+      "src/pso/object/switch/TOSensorGeneral01.cpp": "1",
+      "src/pso/object/trap/TOTrapSeabed01.cpp": "1",
+      "src/pso/object/warp/TObjAreaWarpEndingJung.cpp": "1",
+      "src/pso/object/warp/TObjMapWarpAncient.cpp": "1",
+      "src/pso/player/TPlayerFootStamp.cpp": "1",
+      "src/pso/render/BlobShadow.cpp": "1",
+      "src/pso/system/TLanguage_80132A5C.cpp": "5",
+      "src/pso/technique/TTecCtrl.cpp": "1",
+      "src/pso/ui/hud/TRaderMapCore.cpp": "1",
+      "src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp": "1",
+      "src/pso/unk/TLobbyEventTheme.cpp": "1",
+      "src/pso/unk/TLobby_803382E4.cpp": "1",
+      "src/pso/unk/text_80066F10.cpp": "1",
+      "src/pso/unk/text_8028A820.cpp": "2"
+    },
+    "direct_calls": [
+      {
+        "address": "0x8002c1d0",
+        "link_register": true
+      },
+      {
+        "address": "0x8002c1fc",
+        "link_register": true
+      },
+      {
+        "address": "0x80065ce0",
+        "link_register": true
+      },
+      {
+        "address": "0x80066f44",
+        "link_register": true
+      },
+      {
+        "address": "0x80088764",
+        "link_register": true
+      },
+      {
+        "address": "0x800a2e84",
+        "link_register": true
+      },
+      {
+        "address": "0x800aa8c4",
+        "link_register": true
+      },
+      {
+        "address": "0x800aa8d4",
+        "link_register": true
+      },
+      {
+        "address": "0x800c1a8c",
+        "link_register": true
+      },
+      {
+        "address": "0x800c1aa0",
+        "link_register": true
+      },
+      {
+        "address": "0x800f0b34",
+        "link_register": true
+      },
+      {
+        "address": "0x80132ba4",
+        "link_register": true
+      },
+      {
+        "address": "0x80132c0c",
+        "link_register": true
+      },
+      {
+        "address": "0x80132c74",
+        "link_register": true
+      },
+      {
+        "address": "0x80132cdc",
+        "link_register": true
+      },
+      {
+        "address": "0x80132d44",
+        "link_register": true
+      },
+      {
+        "address": "0x80147ba8",
+        "link_register": true
+      },
+      {
+        "address": "0x80147dbc",
+        "link_register": true
+      },
+      {
+        "address": "0x80147fc8",
+        "link_register": true
+      },
+      {
+        "address": "0x8014addc",
+        "link_register": true
+      },
+      {
+        "address": "0x8014afb0",
+        "link_register": true
+      },
+      {
+        "address": "0x8014b184",
+        "link_register": true
+      },
+      {
+        "address": "0x8014b358",
+        "link_register": true
+      },
+      {
+        "address": "0x8014b52c",
+        "link_register": true
+      },
+      {
+        "address": "0x8014c964",
+        "link_register": true
+      },
+      {
+        "address": "0x8014cb38",
+        "link_register": true
+      },
+      {
+        "address": "0x8014cd0c",
+        "link_register": true
+      },
+      {
+        "address": "0x8014cee0",
+        "link_register": true
+      },
+      {
+        "address": "0x8014d0b4",
+        "link_register": true
+      },
+      {
+        "address": "0x8014d288",
+        "link_register": true
+      },
+      {
+        "address": "0x801580dc",
+        "link_register": true
+      },
+      {
+        "address": "0x8015c708",
+        "link_register": true
+      },
+      {
+        "address": "0x8015c720",
+        "link_register": true
+      },
+      {
+        "address": "0x8015c738",
+        "link_register": true
+      },
+      {
+        "address": "0x8015c7b0",
+        "link_register": true
+      },
+      {
+        "address": "0x8015c7c8",
+        "link_register": true
+      },
+      {
+        "address": "0x8015c7e0",
+        "link_register": true
+      },
+      {
+        "address": "0x8015c834",
+        "link_register": true
+      },
+      {
+        "address": "0x8015c84c",
+        "link_register": true
+      },
+      {
+        "address": "0x8015c864",
+        "link_register": true
+      },
+      {
+        "address": "0x8015e104",
+        "link_register": true
+      },
+      {
+        "address": "0x8015e5b0",
+        "link_register": true
+      },
+      {
+        "address": "0x8015ea5c",
+        "link_register": true
+      },
+      {
+        "address": "0x8015ef34",
+        "link_register": true
+      },
+      {
+        "address": "0x8015f494",
+        "link_register": true
+      },
+      {
+        "address": "0x8015f4ac",
+        "link_register": true
+      },
+      {
+        "address": "0x8015fa0c",
+        "link_register": true
+      },
+      {
+        "address": "0x8015fa24",
+        "link_register": true
+      },
+      {
+        "address": "0x80160618",
+        "link_register": true
+      },
+      {
+        "address": "0x80161148",
+        "link_register": true
+      },
+      {
+        "address": "0x80161b00",
+        "link_register": true
+      },
+      {
+        "address": "0x80161b4c",
+        "link_register": true
+      },
+      {
+        "address": "0x80162188",
+        "link_register": true
+      },
+      {
+        "address": "0x801621d4",
+        "link_register": true
+      },
+      {
+        "address": "0x80163074",
+        "link_register": true
+      },
+      {
+        "address": "0x801630c0",
+        "link_register": true
+      },
+      {
+        "address": "0x8016367c",
+        "link_register": true
+      },
+      {
+        "address": "0x801636c8",
+        "link_register": true
+      },
+      {
+        "address": "0x801642bc",
+        "link_register": true
+      },
+      {
+        "address": "0x80166ca8",
+        "link_register": true
+      },
+      {
+        "address": "0x80166cc0",
+        "link_register": true
+      },
+      {
+        "address": "0x80166cd8",
+        "link_register": true
+      },
+      {
+        "address": "0x80167088",
+        "link_register": true
+      },
+      {
+        "address": "0x801670a0",
+        "link_register": true
+      },
+      {
+        "address": "0x801670b8",
+        "link_register": true
+      },
+      {
+        "address": "0x8016742c",
+        "link_register": true
+      },
+      {
+        "address": "0x80167444",
+        "link_register": true
+      },
+      {
+        "address": "0x8016745c",
+        "link_register": true
+      },
+      {
+        "address": "0x801677c4",
+        "link_register": true
+      },
+      {
+        "address": "0x801677dc",
+        "link_register": true
+      },
+      {
+        "address": "0x801677f4",
+        "link_register": true
+      },
+      {
+        "address": "0x80168b9c",
+        "link_register": true
+      },
+      {
+        "address": "0x80168bb4",
+        "link_register": true
+      },
+      {
+        "address": "0x8016afec",
+        "link_register": true
+      },
+      {
+        "address": "0x8016b004",
+        "link_register": true
+      },
+      {
+        "address": "0x8016b01c",
+        "link_register": true
+      },
+      {
+        "address": "0x8016b610",
+        "link_register": true
+      },
+      {
+        "address": "0x8016bcec",
+        "link_register": true
+      },
+      {
+        "address": "0x8016c4f0",
+        "link_register": true
+      },
+      {
+        "address": "0x8016c564",
+        "link_register": true
+      },
+      {
+        "address": "0x8016ce14",
+        "link_register": true
+      },
+      {
+        "address": "0x8016ced4",
+        "link_register": true
+      },
+      {
+        "address": "0x8016d768",
+        "link_register": true
+      },
+      {
+        "address": "0x80175d74",
+        "link_register": true
+      },
+      {
+        "address": "0x80175d8c",
+        "link_register": true
+      },
+      {
+        "address": "0x80175da4",
+        "link_register": true
+      },
+      {
+        "address": "0x80176370",
+        "link_register": true
+      },
+      {
+        "address": "0x8017d264",
+        "link_register": true
+      },
+      {
+        "address": "0x80181a94",
+        "link_register": true
+      },
+      {
+        "address": "0x801883c8",
+        "link_register": true
+      },
+      {
+        "address": "0x80188418",
+        "link_register": true
+      },
+      {
+        "address": "0x8018a300",
+        "link_register": true
+      },
+      {
+        "address": "0x8018a348",
+        "link_register": true
+      },
+      {
+        "address": "0x8018a460",
+        "link_register": true
+      },
+      {
+        "address": "0x8018a4ec",
+        "link_register": true
+      },
+      {
+        "address": "0x8018a4fc",
+        "link_register": true
+      },
+      {
+        "address": "0x8018c730",
+        "link_register": true
+      },
+      {
+        "address": "0x8018f354",
+        "link_register": true
+      },
+      {
+        "address": "0x80190210",
+        "link_register": true
+      },
+      {
+        "address": "0x80193088",
+        "link_register": true
+      },
+      {
+        "address": "0x801930d0",
+        "link_register": true
+      },
+      {
+        "address": "0x80193d24",
+        "link_register": true
+      },
+      {
+        "address": "0x80193d78",
+        "link_register": true
+      },
+      {
+        "address": "0x80193d8c",
+        "link_register": true
+      },
+      {
+        "address": "0x80195100",
+        "link_register": true
+      },
+      {
+        "address": "0x80198f9c",
+        "link_register": true
+      },
+      {
+        "address": "0x80198fb0",
+        "link_register": true
+      },
+      {
+        "address": "0x80198fc8",
+        "link_register": true
+      },
+      {
+        "address": "0x80198fe0",
+        "link_register": true
+      },
+      {
+        "address": "0x80198ff8",
+        "link_register": true
+      },
+      {
+        "address": "0x80199010",
+        "link_register": true
+      },
+      {
+        "address": "0x80199028",
+        "link_register": true
+      },
+      {
+        "address": "0x80199040",
+        "link_register": true
+      },
+      {
+        "address": "0x80199058",
+        "link_register": true
+      },
+      {
+        "address": "0x8019aa00",
+        "link_register": true
+      },
+      {
+        "address": "0x8019dbfc",
+        "link_register": true
+      },
+      {
+        "address": "0x801fb94c",
+        "link_register": true
+      },
+      {
+        "address": "0x8022f134",
+        "link_register": true
+      },
+      {
+        "address": "0x8028a898",
+        "link_register": true
+      },
+      {
+        "address": "0x8028a8e0",
+        "link_register": true
+      },
+      {
+        "address": "0x8029b410",
+        "link_register": true
+      },
+      {
+        "address": "0x8029cbf8",
+        "link_register": true
+      },
+      {
+        "address": "0x8029cc0c",
+        "link_register": true
+      },
+      {
+        "address": "0x8029cc20",
+        "link_register": true
+      },
+      {
+        "address": "0x8029cd54",
+        "link_register": true
+      },
+      {
+        "address": "0x8029f9c4",
+        "link_register": true
+      },
+      {
+        "address": "0x8029f9d4",
+        "link_register": true
+      },
+      {
+        "address": "0x8029fcd0",
+        "link_register": true
+      },
+      {
+        "address": "0x8029fce0",
+        "link_register": true
+      },
+      {
+        "address": "0x8029ff70",
+        "link_register": true
+      },
+      {
+        "address": "0x8029ff80",
+        "link_register": true
+      },
+      {
+        "address": "0x8029ffc8",
+        "link_register": true
+      },
+      {
+        "address": "0x8029ffd8",
+        "link_register": true
+      },
+      {
+        "address": "0x802a0268",
+        "link_register": true
+      },
+      {
+        "address": "0x802a0278",
+        "link_register": true
+      },
+      {
+        "address": "0x802a02c0",
+        "link_register": true
+      },
+      {
+        "address": "0x802a02d0",
+        "link_register": true
+      },
+      {
+        "address": "0x802a7000",
+        "link_register": true
+      },
+      {
+        "address": "0x802a70b4",
+        "link_register": true
+      },
+      {
+        "address": "0x802a9d28",
+        "link_register": true
+      },
+      {
+        "address": "0x802b01ec",
+        "link_register": true
+      },
+      {
+        "address": "0x802b17ac",
+        "link_register": true
+      },
+      {
+        "address": "0x802c1410",
+        "link_register": true
+      },
+      {
+        "address": "0x802c1be4",
+        "link_register": true
+      },
+      {
+        "address": "0x802c228c",
+        "link_register": true
+      },
+      {
+        "address": "0x802c29a0",
+        "link_register": true
+      },
+      {
+        "address": "0x802ca868",
+        "link_register": true
+      },
+      {
+        "address": "0x802fe8f0",
+        "link_register": true
+      },
+      {
+        "address": "0x80325648",
+        "link_register": true
+      },
+      {
+        "address": "0x80338728",
+        "link_register": true
+      },
+      {
+        "address": "0x8035207c",
+        "link_register": true
+      },
+      {
+        "address": "0x80354b60",
+        "link_register": true
+      },
+      {
+        "address": "0x8036dc50",
+        "link_register": true
+      }
+    ],
+    "retail_and_rebuilt_equal": true
+  },
+  "request_layout": {
+    "size": 104,
+    "id": 4,
+    "next": 56,
+    "callback": 64,
+    "params": 68,
+    "params_bytes": 32,
+    "mode": 100
+  },
+  "historical_comparison": {
+    "prior_open_rows": 477,
+    "open_rows": 465,
+    "closed_rows": [
+      {
+        "row": 5221,
+        "description": "Keep the existing analog stick comments and second bank declaration. The second bank now has typed live consumers, and its historical declaration removal carries no useful source change.",
+        "historical_path": "include/pso/system/ControllerInputState.h",
+        "current_path": "include/pso/system/ControllerInputState.h",
+        "fork_blob": "eea7812ded5d1d053159dabd5efc7eefbd57f2a9",
+        "current_blob": "3c26594d78b0e4f77edd0d2ace18dec288ad823b",
+        "authored_diff_sha256": "d79d2de414bf8b459e2165068ee4f4eda089c04335334d029f0e9b608bc0c707"
+      },
+      {
+        "row": 5222,
+        "description": "Each request contains the real DVDFileInfo at 0x28. The checked field, block and length offsets and the existing gcCiOpen declaration cover the historical edit at the original provider address.",
+        "historical_path": "include/pso/system/GcciRequests.h",
+        "current_path": "include/pso/system/GcciRequests.h",
+        "fork_blob": "5fc9eb7594ff29a0483a2b35ac82b66ec7127717",
+        "current_blob": "c6811193e0ce49033f6983fa765d8d9ae6e8ecbc",
+        "authored_diff_sha256": "99e55978ff4ffb4f66a8c0db52d162e52bb3bdb8ee6c1822a26365954d2fcd46"
+      },
+      {
+        "row": 5237,
+        "description": "The loader owns the typed filename, byte cursor and header, texture-list entries, the heap and scratch-buffer branches, and the shared archive binder. It retains the texture-wave setter and draw calls at their original addresses.",
+        "historical_path": "src/pso/misc/TLanguage_801E4874.cpp",
+        "current_path": "src/pso/unk/TLobby_801E43E4.cpp",
+        "fork_blob": "4e3086f13c25798d6be0fed0271658e38de5cbfc",
+        "current_blob": "863acab52b798aa0d6314f5b979f6bef14f4e088",
+        "authored_diff_sha256": "f5658353040b204f0ec3e1e5937a9b0cb7c157f7ea20154630427c3f48e8c69e"
+      },
+      {
+        "row": 5293,
+        "description": "send_data takes the filename and forwards the original byte buffer through the shared disc declaration. The quest VM uses the same destination in both download paths. The size limit and rejection paths preserve the original instructions.",
+        "historical_path": "src/pso/misc/GbaDownloadRuntime.cpp",
+        "current_path": "src/pso/system/GbaDownloadRuntime.cpp",
+        "fork_blob": "4bebba038edf7f3892169efdc52363111b6a3bdc",
+        "current_blob": "c846c5d5623dc092a5d54c2e4fbf9664d10e5894",
+        "authored_diff_sha256": "10fac918858fc8b99b4aec85e99f00a7bd295fdc296f0c3b84ec82a38b331c6a"
+      },
+      {
+        "row": 5325,
+        "description": "The texture enqueue entry uses the filename, typed texture list, original ADXF length and sector count, the callback pointer and its full eight-word copy through the common request.",
+        "historical_path": "src/pso/misc/TLobby_800FA164.cpp",
+        "current_path": "src/pso/unk/TLobby_800FA164.cpp",
+        "fork_blob": "9a5415826f295c172b2acc4a6ad251c34413ba8e",
+        "current_blob": "bd25d1859a5470ad7b683a2c9e2a18251be37d8a",
+        "authored_diff_sha256": "3ad31a71cbbd47d31045e53de9a9670954f9ef7125f4bd8a36c736a4489a799e"
+      },
+      {
+        "row": 5326,
+        "description": "The named enqueue entry uses the shared layout and actual callback ABI with the original destination, file size, sector count, completion field and 32-byte context.",
+        "historical_path": "src/pso/misc/TLobby_800FA2A0.cpp",
+        "current_path": "src/pso/unk/TLobby_800FA2A0.cpp",
+        "fork_blob": "287e3b12f21e858eb4a5883ad0a0cf92637dbec8",
+        "current_blob": "215ba124519a6a202f4a3dd11153097bae9ee949",
+        "authored_diff_sha256": "1cc9ee65f71e4ec4ef29dff3f1bcdfd70d3868ff347a58db34725c647afad6d8"
+      },
+      {
+        "row": 5329,
+        "description": "The native TGStream constructor, read, destructor and file-size entry points provide the historical archive setup. The two allocation paths and pointer release use the original scratch tag and frees.",
+        "historical_path": "src/pso/misc/TLobby_800F9690.cpp",
+        "current_path": "src/pso/unk/TLobby_800F8AA8.cpp",
+        "fork_blob": "81b3ee507a482c1415ce42bf61c2f8b6f78a3778",
+        "current_blob": "6cc5eba4a0639911420760c1d510d8b4147d5011",
+        "authored_diff_sha256": "552e6d1ea3ba8933e058c09427771e6c63fc43256de1e191338a717cf18d1f54"
+      },
+      {
+        "row": 5332,
+        "description": "The active stream handle and both buffers are typed. Texture parsing, sequential sector reads and the final word, halfword or byte copies preserve the original call addresses. The scratch tag stays in its owning routine.",
+        "historical_path": "src/pso/unk/text_800FA464.cpp",
+        "current_path": "src/pso/unk/text_800FA464.cpp",
+        "fork_blob": "e1a51dd7225aef368535e9cffabf0d5e53da6666",
+        "current_blob": "0cc294f65be7fa7b3ef40365cbb39c42b7d368ed",
+        "authored_diff_sha256": "ff90a2e0ef212bf2367dbe601d75a88ecade747e334308b5c75db51e52e645e0"
+      },
+      {
+        "row": 5334,
+        "description": "Switcher loading uses the shared filename and byte buffer and forwards the DOL image at the same address. The message table and existing optimization level reproduce retail.",
+        "historical_path": "src/pso/unk/text_8007F8D0.cpp",
+        "current_path": "src/pso/system/SwitcherLaunch.cpp",
+        "fork_blob": "5c746d98783c25a972659e68e8fa797afd349236",
+        "current_blob": "93722104810001dd73b0fa794955cdebf76748e5",
+        "authored_diff_sha256": "43d0b067c4b3fe85c45281c2566ab123916eabd46f90e3235a3a4da746639ef7"
+      },
+      {
+        "row": 5339,
+        "description": "The native ADXF handle references and destination slots cover setters, resets and flushes. The font scratch release, full-screen quad and disc error branches use the original routines and linked data.",
+        "historical_path": "src/pso/misc/TLobby_800F8AA8.cpp",
+        "current_path": "src/pso/unk/TLobby_800F8AA8.cpp",
+        "fork_blob": "81cf78d392976d0913f8ea6cb5c524dfa911f0be",
+        "current_blob": "6cc5eba4a0639911420760c1d510d8b4147d5011",
+        "authored_diff_sha256": "d9ddae70f5ed518f19a857c5cd92162e067f9c2eb2416919fbb89b9a6756314d"
+      },
+      {
+        "row": 5340,
+        "description": "The existing header forwards to the native TLobby declaration. The duplicate legacy prototypes are accounted for.",
+        "historical_path": "include/pso/misc/TLobby_800FA2A0.h",
+        "current_path": "src/pso/unk/TLobby_800FA2A0.cpp",
+        "fork_blob": "92af83c063a0a2bb904b9b07d9a75b83af4f9489",
+        "current_blob": "215ba124519a6a202f4a3dd11153097bae9ee949",
+        "authored_diff_sha256": "eb345bed771d95a5f74b24f793a4d7e3a9118c501980b75fa07431bfe11604b6"
+      },
+      {
+        "row": 7316,
+        "description": "The typed disc read records its filename and calls the same whole-file reader. The ADXF open, size and close sequence and native fade task checks retain their original providers.",
+        "historical_path": "src/pso/misc/TLobby_800F9DA0.cpp",
+        "current_path": "src/pso/unk/TLobby_800F8AA8.cpp",
+        "fork_blob": "c651240ba6ad32aee8a696134819f048d7477246",
+        "current_blob": "6cc5eba4a0639911420760c1d510d8b4147d5011",
+        "authored_diff_sha256": "e9f518ea93f3f0ae566741625480e8743b493ec2141dcfdd3229cdb0d64d7c16"
+      }
+    ],
+    "partial_rows": {
+      "5328": "The model, motion and texture completion callbacks now share the native queue signature and typed enqueue methods. The other BML constructor, state and temporary-buffer changes remain under review."
+    },
+    "same_address_names": {
+      "0x800F9D80": [
+        "update_lobby_scene__6TSceneFPCv",
+        "get_resource_file_size"
+      ],
+      "0x800F9DA0": [
+        "get_file_size__6TLobbyFPCv",
+        "get_disc_file_size"
+      ],
+      "0x800F9DF4": [
+        "read_disc_file",
+        "read_disc_file"
+      ],
+      "0x801E35C4": [
+        "draw_tri_fan_2d__13ColorLineListFllf",
+        "draw_polygon_2d__FP13ColorLineListlUlf"
+      ],
+      "0x803CCB5C": [
+        "read_checked_align__6TLobbyFPvlPv",
+        "ADXF_ReadNw"
+      ],
+      "0x803D08E0": [
+        "TLobby__sub_803D08E0",
+        "gcCiOpen"
+      ],
+      "0x803DE084": [
+        "load_gvm_texture_archive",
+        "load_gvm_texture_archive"
+      ]
+    }
+  },
+  "validation": {
+    "stock": {
+      "baseline": "3f8b2039e18b698df4cf35ddabeda9b9fa13ff32",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8001F128",
+          "before": "load_bml_exec__6TLobbyFPUcPUc",
+          "after": "load_bml_exec__6TLobbyFP11BmlResourcePCc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8001F998",
+          "before": "load_bin_motion_callback__FP20BmlMotionLoadRequest",
+          "after": "load_bin_motion_callback__FPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8001FA1C",
+          "before": "load_bin_model_callback__FP19BmlModelLoadRequest",
+          "after": "load_bin_model_callback__FPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800FA044",
+          "before": "add_named_entry__6TLobbyFll",
+          "after": "add_named_entry__6TLobbyFP11BmlResourcePCc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800FA164",
+          "before": "create_file_load_entry__6TLobbyFllUllPPv",
+          "after": "create_file_load_entry__6TLobbyFPCcP16GinjaTextureListPFPv_vPCvPPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800FA2A0",
+          "before": "create_named_entry__6TLobbyFiiUiiPv",
+          "after": "create_named_entry__6TLobbyFPCcPvPFPv_vPCvPPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800FA7E0",
+          "before": "pop_stack_entry__6TLobbyFs",
+          "after": "pop_stack_entry__6TLobbyFP20AsyncFileReadRequests"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800FA848",
+          "before": "link_into_list__FPv",
+          "after": "link_into_list__FP20AsyncFileReadRequest"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801E4874",
+          "before": "load_gvm_texture_file__Fl",
+          "after": "load_gvm_texture_file__FPCc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801E4A44",
+          "before": "read_file_header__9TLanguageFiPv",
+          "after": "read_file_header__9TLanguageFPUcP13GvmFileHeader"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801E4AB0",
+          "before": "read_into_buffer__9TLanguageFll",
+          "after": "read_into_buffer__9TLanguageFPvl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032C854",
+          "before": "send_data__6TLobbyFl",
+          "after": "send_data__6TLobbyFPCc"
+        }
+      ],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "47e01f85c7567f32715f635c66a432098c34d91ab90c13fb834034b3c9ad5e92",
+      "report_sha256": "0f0fdfda084765c2c10833e426167c4005d9a381dd49078631bdba518407a59a"
+    },
+    "workspace": {
+      "baseline": "52b5e0bb2c4054799dd9f83da27803065ec5dab4",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "0f0fdfda084765c2c10833e426167c4005d9a381dd49078631bdba518407a59a"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "dd9e6bdb29cc8af49a2382a8b54896ba6e2a166efd865537101f3c86f0a2f9ce"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "c460bbf65c48406e86e67b047e27bde79f4c0cfdee5f1032429af93aa06597cb"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    },
+    "resource_io": {
+      "results": [
+        "File queue lifecycle, sector tails and both GVM buffer paths passed.",
+        "GBA filename and destination dispatch at the original size limit passed."
+      ],
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "log_sha256": "94764164cf82dd6602064f3e911ebbc18b9a923e5726d1838e06910e6c69cb6c",
+      "probe_sha256": "102f11ae2db8b1c102aa5eab8f15bf7c5cd7ccf6030f3a548fe196759f294a31"
+    }
+  },
+  "fork_workspace": {
+    "overlay_paths": 130,
+    "overlay_patch_sha256": "e8b89525bbbe1c073527d9d9ec9fe516efbfdeeba40680e4310bf2c00db848ea",
+    "updated_overlay_paths": [
+      "config/GPOE8P/psov3/config.yml"
+    ],
+    "force_active_names": 27033,
+    "force_active_symbol_changes": [
+      "-  - load_bin_model_callback__FP19BmlModelLoadRequest",
+      "+  - load_bin_model_callback__FPv",
+      "-  - load_bin_motion_callback__FP20BmlMotionLoadRequest",
+      "+  - load_bin_motion_callback__FPv",
+      "-  - read_file_header__9TLanguageFiPv",
+      "+  - read_file_header__9TLanguageFPUcP13GvmFileHeader",
+      "-  - read_into_buffer__9TLanguageFll",
+      "+  - read_into_buffer__9TLanguageFPvl"
+    ],
+    "archive_test_head": "0b39456ebc77e086075498a7bfebdeda9adbdc17",
+    "tested_materialized_tree": "ad6110cedb3c7e5f31ecdae57adba4092176b41d"
+  }
+}

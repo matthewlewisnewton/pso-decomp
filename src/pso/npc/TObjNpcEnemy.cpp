@@ -1,107 +1,149 @@
-#include "pso/system/CurrentTextureList.h"
 #include "types.h"
+#include <string.h>
+#include "pso/npc/TObjNpcEnemy.h"
 #include "pso/player/TObjPlayer_803E4954.h"
-#include "pso/boss/TBoss3VoloptHiraisin.h"
+#include "pso/boss/volopt/TBoss3VoloptHiraisin.h"
 #include "pso/math/MatrixVector.h"
-#include "pso/object/TObjLight_80133568.h"
-#include "pso/system/GinjaMaterial.h"
+#include "pso/object/ambient/TObjLight_80133568.h"
+#include "pso/render/GinjaMaterial.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/unk/text_803E2D70.h"
-#include "pso/player/TObjChara.h"
+#include "pso/object/base/TObjChara.h"
 #include "pso/enemy/TObjEnemy.h"
-#include "pso/npc/TObjNpcEnemy.h"
-#include "pso/npc/NpcModelEntry.h"
-#include "pso/object/TObjFish.h"
+#include "pso/object/ambient/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/render/render_util.h"
+#include "pso/system/task/TObject.h"
+#include "pso/system/MatrixStack.h"
+#include "pso/enemy/stelth/TObjEneMe3Stelth.h"
+#include "pso/unk/TLobby.h"
+#include "pso/npc/TObjNpcBase.h"
+#include "pso/object/TObjControl.h"
+#include "pso/system/task/TMainTask.h"
+#include "pso/unk/text_803D853C.h"
+#include "pso/unk/text_803D8F74.h"
+#include "pso/player/TObjPlayer_801542CC.h"
+#include "pso/math/MatrixTransforms.h"
+#include "pso/render/GinjaTextureMatrices.h"
 
-struct RecoveredGlobal_802D72E4_TObjNpcEnemy__data_80540FF0 {
-    s32 value;
-    u8 remaining[0x23C];
-};
+#pragma readonly_strings on
 
-struct RecoveredGlobal_802D78A0_lbl_804A7CB8 {
-    s32 value;
-    u8 remaining[0x20];
-};
+CollisionBody TObjNpcEnemy::collision_body_parts = {{0.0f, 7.5f, 0.0f}, 7.0f, 0.0f, 0, 0x30203, {0.0f, 0.0f, 0.0f}, 0.0f};
+const char *TObjNpcEnemy::name = "TObjNpcEnemy";
 
-struct RecoveredGlobal_802D78A0_lbl_804A7CDC {
-    s32 value;
-    u8 remaining[0x44];
-};
-
-struct RecoveredGlobal_802D78A0_lbl_804E2680 {
-    s32 value;
-    u8 remaining[0x28];
-};
-
-struct RecoveredGlobal_802D78A0___vt__12TObjNpcEnemy {
-    s32 value;
-    u8 remaining[0x178];
-};
-
-struct Ent_802D732C { s16 id; u8 rest[0x22]; };
-
-extern "C" {
-extern RecoveredGlobal_802D72E4_TObjNpcEnemy__data_80540FF0 TObjNpcEnemy__entry_table;
-s32 TObjNpcBase__ct(void *);
-s32 init_collision_body_parts(void *, void *, int);
-extern RecoveredGlobal_802D78A0_lbl_804A7CB8 npc_default_battle_stats;
-extern RecoveredGlobal_802D78A0_lbl_804A7CDC npc_movement_parameters;
-extern RecoveredGlobal_802D78A0_lbl_804E2680 TObjNpcEnemy__collision_body_parts;
-extern s32 __vt__12TObjNpcEnemy[];
-extern s32 TObjNpcEnemy_class_name;
-u8 *TObjNpcEnemy__ct(u8 *arg0, s32 arg1, s32 arg2);
-s32 draw_debug_info__11TObjNpcBaseFv();
-void debug_printf_at(s32, const char *, ...);
-extern char lbl_80472600[];
-extern char lbl_80472610[];
-extern char lbl_80472620[];
-void *memmove(void *, const void *, u32);
-struct NpcBase_802d7748_802D745C { char pad[0x18]; };
-struct NpcV_802d7748_802D745C : NpcBase_802d7748_802D745C {
-    virtual s32 m0(); virtual s32 m1(); virtual s32 m2();
-    virtual s32 m3(); virtual s32 m4(); virtual s32 m5();
-    virtual s32 m6(); virtual s32 m7();
-    virtual s32 m8(f32 a, f32 b);
-};
-
-void * TObjNpcEnemy__create(void *arg0);
-void *__dt__12TObjNpcEnemyFv(void *arg0, s16 arg1);
-void *__ct__11TObjControlFP7TObject(void *, void *);
-s32 rotate_matrix_y(int, int);
-s32 translate_matrix(int, int, f32, f32, f32);
-void __dl__7TObjectFPv(void *);
-void *__dt__11TObjNpcBaseFv(void *arg0, s16 arg1);
-void *__nw__7TObjectFUl(int);
-s32 init_motion__10TObjMotionFP16TObjMotionActionP14BmlMotionEntrys(void *, s32, s32, s16);
-
-typedef char RecoveredGlobal_802D72E4_TObjNpcEnemy__data_80540FF0_size[sizeof(RecoveredGlobal_802D72E4_TObjNpcEnemy__data_80540FF0) == 0x240 ? 1 : -1];
-s16 *TObjNpcEnemy::get_entry_by_index(s16 arg0) {
-    s16 *temp_r3;
-    if (arg0 < 0) {
-        return NULL;
-    }
-    if (arg0 >= 0x10) {
-        return NULL;
-    }
-    temp_r3 = (s16 *)((u8 *)&TObjNpcEnemy__entry_table.value + (arg0 * 0x24));
-    if (*(s16 *)((s8 *)temp_r3 + 0) == 0) {
-        return NULL;
-    }
-    return temp_r3;
+void TObjNpcEnemyEntry::reset() {
+    id = 0;
+    kind = 4;
+    y_offset = 0.0f;
+    model = 0;
+    texlist = 0;
+    radius = 0.0f;
+    animation.motions = NULL;
+    animation.actions = NULL;
+    animation.default_action = 0;
+    animation.mode2_action = 0;
+    animation.debug_action_limit = 0;
 }
 
-s16 *TObjNpcEnemy::insert_slot_by_id(s16 arg0) {
+void TObjNpcEnemy::register_animated_ginja(s16 id, NJS_OBJECT *model, NJS_TEXLIST *texlist,
+                                              const NpcAnimationBinding *animation, f32 radius, f32 y_offset) {
+    TObjNpcEnemyEntry *entry = insert_slot_by_id(id);
+    if (entry != NULL) {
+        entry->id = id;
+        entry->kind = 3;
+        entry->y_offset = y_offset;
+        entry->model = model;
+        entry->texlist = texlist;
+        entry->radius = radius;
+        entry->animation = *animation;
+    }
+}
+
+#pragma push
+#pragma scheduling off
+NpcAnimationBinding &NpcAnimationBinding::operator=(const NpcAnimationBinding &other) {
+    motions = other.motions;
+    actions = other.actions;
+    default_action = other.default_action;
+    mode2_action = other.mode2_action;
+    debug_action_limit = other.debug_action_limit;
+    return *this;
+}
+#pragma pop
+
+void TObjNpcEnemy::register_ginja(s16 id, NJS_OBJECT *model, NJS_TEXLIST *texlist, f32 radius, f32 y_offset) {
+    TObjNpcEnemyEntry *entry = insert_slot_by_id(id);
+    if (entry != NULL) {
+        entry->id = id;
+        entry->kind = 2;
+        entry->y_offset = y_offset;
+        entry->model = model;
+        entry->texlist = texlist;
+        entry->radius = radius;
+        entry->animation.motions = 0;
+        entry->animation.actions = 0;
+        entry->animation.default_action = 0;
+        entry->animation.mode2_action = 0;
+        entry->animation.debug_action_limit = 0;
+    }
+}
+
+void TObjNpcEnemy::register_animated_chunk(s16 id, NJS_OBJECT *model, NJS_TEXLIST *texlist,
+                                               const NpcAnimationBinding *animation, f32 radius, f32 y_offset) {
+    TObjNpcEnemyEntry *entry = insert_slot_by_id(id);
+    if (entry != NULL) {
+        entry->id = id;
+        entry->kind = 1;
+        entry->y_offset = y_offset;
+        entry->model = model;
+        entry->texlist = texlist;
+        entry->radius = radius;
+        entry->animation = *animation;
+    }
+}
+
+void TObjNpcEnemy::register_chunk(s16 id, NJS_OBJECT *model, NJS_TEXLIST *texlist, f32 radius, f32 y_offset) {
+    TObjNpcEnemyEntry *entry = insert_slot_by_id(id);
+    if (entry != NULL) {
+        entry->id = id;
+        entry->kind = 0;
+        entry->y_offset = y_offset;
+        entry->model = model;
+        entry->texlist = texlist;
+        entry->radius = radius;
+        entry->animation.motions = 0;
+        entry->animation.actions = 0;
+        entry->animation.default_action = 0;
+        entry->animation.mode2_action = 0;
+        entry->animation.debug_action_limit = 0;
+    }
+}
+
+TObjNpcEnemyEntry *TObjNpcEnemy::get_entry_by_index(s16 index) {
+    TObjNpcEnemyEntry *entry;
+    if (index < 0) {
+        return NULL;
+    }
+    if (index >= 0x10) {
+        return NULL;
+    }
+    entry = &entry_table[index];
+    if (entry->id == 0) {
+        return NULL;
+    }
+    return entry;
+}
+
+TObjNpcEnemyEntry *TObjNpcEnemy::insert_slot_by_id(s16 id) {
     s32 i;
-    Ent_802D732C *e;
+    TObjNpcEnemyEntry *e;
     for (i = 0; i < 0x10; i++) {
-        e = &((Ent_802D732C *)&TObjNpcEnemy__entry_table)[i];
+        e = &entry_table[i];
         if (e->id == 0) {
-            return (s16 *)e;
+            return e;
         }
-        if (e->id >= arg0) {
-            if (e->id == arg0) {
+        if (e->id >= id) {
+            if (e->id == id) {
                 return NULL;
             }
             break;
@@ -110,112 +152,107 @@ s16 *TObjNpcEnemy::insert_slot_by_id(s16 arg0) {
     if (i >= 0x10) {
         return NULL;
     }
-    if (((Ent_802D732C *)&TObjNpcEnemy__entry_table)[15].id != 0) {
+    if (entry_table[15].id != 0) {
         return NULL;
     }
     if (i < 0xF) {
-        memmove(e + 1, e, (0xF - i) * 0x24);
+        memmove(e + 1, e, (0xF - i) * sizeof(TObjNpcEnemyEntry));
     }
-    ((NpcModelEntry *)e)->reset();
-    return (s16 *)e;
+    e->reset();
+    return e;
 }
 
 void TObjNpcEnemy::reset_all_anim_fields() {
     s32 i;
     for (i = 0; i < 0x10; i++) {
-        ((NpcModelEntry *)(&((Ent_802D732C *)&TObjNpcEnemy__entry_table)[i]))->reset();
+        entry_table[i].reset();
     }
 }
 
-s32 TObjNpcEnemy::sub_802D7444() {
-    return (**(s16 * *)&this->m_3b8 != 0x3F) ? 1 : 0;
+s32 TObjNpcEnemy::is_not_jungle_grass() {
+    return (this->entry->id != 0x3F) ? 1 : 0;
 }
 
-void TObjNpcEnemy::vfunc_88() {
-    void *temp_r4;
-
-    temp_r4 = *(void * *)&this->m_3b8;
+void TObjNpcEnemy::request_action(s32) {
+    TObjNpcEnemyEntry *entry = this->entry;
     if ((s16) this->mode != 2) {
-        this->requested_action = (s16) *(s16 *)((s8 *)temp_r4 + 0x1C);
+        this->requested_action = entry->animation.default_action;
         return;
     }
-    this->requested_action = (s16) *(s16 *)((s8 *)temp_r4 + 0x1E);
+    this->requested_action = entry->animation.mode2_action;
 }
 
-extern const f32 lbl_805DE7D8;
 
-void TObjNpcEnemy::set_npc_data(void *arg1) {
-    void *temp_r5;
+void TObjNpcEnemy::set_npc_data(TObjNpcEnemyEntry *data) {
+    TObjNpcEnemyEntry *entry;
 
-    *(void * *)&this->m_3b8 = arg1;
-    temp_r5 = *(void * *)&this->m_3b8;
-    if (temp_r5 == NULL) {
+    this->entry = data;
+    entry = this->entry;
+    if (entry == NULL) {
         this->model = 0;
         this->texlist = 0;
         this->requested_action = 0;
-        *(f32 *)((s8 *)this->bodies + 0xC) = (f32) lbl_805DE7D8;
+        this->bodies->radius = 0.0f;
         return;
     }
-    *(s32 *)&this->model = (s32) *(s32 *)((s8 *)temp_r5 + 8);
-    this->texlist = (s32) *(s32 *)(this->m_3b8 + 0xC);
-    this->requested_action = (s16) *(s16 *)((s8 *)temp_r5 + 0x1C);
-    switch ((s32) (*(u16 *)(this->m_3b8 + 2))) {
+    this->model = entry->model;
+    this->texlist = this->entry->texlist;
+    this->requested_action = entry->animation.default_action;
+    switch (this->entry->kind) {
     case 0:
     case 2:
     case 4:
         break;
     case 1:
     case 3:
-        init_motion__10TObjMotionFP16TObjMotionActionP14BmlMotionEntrys(this, *(s32 *)((s8 *)temp_r5 + 0x18), *(s32 *)((s8 *)temp_r5 + 0x14), this->requested_action);
+        init_motion(entry->animation.actions, entry->animation.motions, requested_action);
         break;
     }
-    *(f32 *)((s8 *)this->bodies + 0xC) = (f32) *(f32 *)(this->m_3b8 + 0x10);
+    this->bodies->radius = this->entry->radius;
 }
 
 void TObjNpcEnemy::draw_debug_info() {
-    u8 *arg0 = (u8 *)this;
-    s16 *p;
-    draw_debug_info__11TObjNpcBaseFv();
+    TObjNpcEnemyEntry *p;
+    TObjNpcBase::draw_debug_info();
     TObjNpcEnemy::set_global_count(0xFF00FF);
-    debug_printf_at(0x130018, lbl_80472600);
-    debug_printf_at(0x13001A, lbl_80472610);
+    debug_printf_at(0x130018, "<- ENEMY NUMBER");
+    debug_printf_at(0x13001A, "<- MOTION TEST");
     TObjNpcEnemy::set_global_count(0xF0F0F0FF);
-    p = TObjNpcEnemy::get_entry_by_index((s16) this->rotation.pitch);
-    if (p != *(s16 * *)&this->m_3b8) {
-        ((TObjNpcEnemy *)arg0)->set_npc_data(p);
+    p = TObjNpcEnemy::get_entry_by_index((s16) this->rotation_x);
+    if (p != this->entry) {
+        set_npc_data(p);
     }
-    p = *(s16 * *)&this->m_3b8;
+    p = this->entry;
     if (p == NULL) {
         TObjNpcEnemy::set_global_count(0xFF0000FF);
-        debug_printf_at(0x240018, lbl_80472620);
+        debug_printf_at(0x240018, "ERROR");
         TObjNpcEnemy::set_global_count(0xF0F0F0FF);
         return;
     }
-    switch (((u16 *) p)[1]) {
+    switch (p->kind) {
     case 0:
     case 2:
     case 4:
         break;
     case 1:
     case 3:
-        if (p[0x10] <= this->rotation.roll || this->rotation.roll < 0) {
+        if (p->animation.debug_action_limit <= this->rotation_z || this->rotation_z < 0) {
             TObjNpcEnemy::set_global_count(0xFF0000FF);
-            debug_printf_at(0x24001A, lbl_80472620);
+            debug_printf_at(0x24001A, "ERROR");
             TObjNpcEnemy::set_global_count(0xF0F0F0FF);
             this->requested_action = 0;
         } else {
-            this->requested_action = this->rotation.roll;
+            this->requested_action = this->rotation_z;
         }
-        ((TObjMotion *)arg0)->advance_animation();
+        advance_animation();
         break;
     }
 }
 
 void TObjNpcEnemy::update_state() {
-    void *sp4;
+    TObjNpcEnemyEntry *entry = this->entry;
 
-    sp4 = *(void * *)&this->m_3b8;
-    switch ((s32) (*(u16 *)((s8 *)sp4 + 2))) {
+    switch (entry->kind) {
     case 0:
         set_motion_packed_rotation();
         draw_chunk_object(this->model);
@@ -238,81 +275,51 @@ void TObjNpcEnemy::update_state() {
     }
 }
 
-extern s32 model_render_flags;
-
 void TObjNpcEnemy::render() {
-    u8 *arg0 = (u8 *)this;
-    u8 *temp_r4;
+    TObjNpcEnemyEntry *entry;
 
-    if (((void *) *(void * *)&this->m_3b8 != NULL) && (((NpcV_802d7748_802D745C *)arg0)->m8(*(f32 *)&this->unk_398, this->m_39c) != 0) && ((s32) *(s32 *)&this->m_390 == 1)) {
-        select_actor_lighting((s32)arg0);
-        if (((TObjNpcEnemy *)arg0)->sub_802D7444() != 0) {
+    if ((this->entry != NULL) && (this->update_object_view_visibility(this->view_distance, this->view_radius) != 0) && ((s32) this->visible == 1)) {
+        select_actor_lighting(this);
+        if (is_not_jungle_grass() != 0) {
             model_render_flags |= 1;
         }
-        set_current_texture_list((GinjaTextureList *)(this->texlist));
+        TObjFish::set_global_param(reinterpret_cast<NJS_TEXLIST *>(this->texlist));
         push_matrix_from(0);
         translate_matrix_vec3(0, ((u8 *)&this->position));
-        temp_r4 = (unsigned char *) (this->m_3b8);
-        translate_matrix(0, (int)temp_r4, (f32)lbl_805DE7D8, (f32) (*(f32 *)((s8 *)temp_r4 + 4)), (f32)lbl_805DE7D8);
-        rotate_matrix_y(0, this->rotation.yaw);
+        entry = this->entry;
+        translate_matrix(0, 0.0f, entry->y_offset, 0.0f);
+        rotate_matrix_y(0, this->rotation_y);
         update_state();
         pop_matrix();
-        if (((TObjNpcEnemy *)arg0)->sub_802D7444() != 0) {
-            model_render_flags &= 0xFFFFFFFE;
+        if (is_not_jungle_grass() != 0) {
+            model_render_flags &= ~1;
         }
         restore_scene_lighting();
-        ((TObjEnemy *)arg0)->draw_ground_shadow(0, 0);
+        draw_ground_shadow(0, 0);
     }
 }
 
-void *__dt__12TObjNpcEnemyFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__12TObjNpcEnemy;
-        __dt__11TObjNpcBaseFv(arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
+TObjNpcEnemy::~TObjNpcEnemy() {}
+
+
+TObjNpcEnemy::TObjNpcEnemy(TObject *parent, void *set_data) : TObjNpcBase(parent) {
+    m_name = name;
+    apply_set_data(set_data);
+    init_position_vectors();
+    apply_set_params(0, 1);
+    movementParameters = &npc_movement_parameters;
+    set_motion_params(&npc_default_battle_stats);
+    init_collision_body_parts(this, &collision_body_parts, 1);
+    register_object_by_id();
+    update_prev_position();
+    copy_position();
+    set_npc_data(get_entry_by_index((s16)rotation_x));
 }
 
-extern void *tl_04;
-
-typedef char RecoveredGlobal_802D78A0_lbl_804A7CB8_size[sizeof(RecoveredGlobal_802D78A0_lbl_804A7CB8) == 0x24 ? 1 : -1];
-typedef char RecoveredGlobal_802D78A0_lbl_804A7CDC_size[sizeof(RecoveredGlobal_802D78A0_lbl_804A7CDC) == 0x48 ? 1 : -1];
-typedef char RecoveredGlobal_802D78A0_lbl_804E2680_size[sizeof(RecoveredGlobal_802D78A0_lbl_804E2680) == 0x2C ? 1 : -1];
-typedef char RecoveredGlobal_802D78A0___vt__12TObjNpcEnemy_size[sizeof(RecoveredGlobal_802D78A0___vt__12TObjNpcEnemy) == 0x17C ? 1 : -1];
-u8 *TObjNpcEnemy__ct(u8 *arg0, s32 arg1, s32 arg2) {
-    TObjNpcBase__ct(arg0);
-    *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_802D78A0___vt__12TObjNpcEnemy *)&__vt__12TObjNpcEnemy).value;
-    *(s32 *)((s8 *)arg0 + 0) = (s32) TObjNpcEnemy_class_name;
-    ((TObjNpcEnemy *)(arg0))->apply_set_data((void *)arg2);
-    ((TObjChara *)arg0)->initialize_position_copies();
-    ((TObjNpcEnemy *)(arg0))->apply_set_params(0, 1);
-    ((TObjNpcEnemy *)arg0)->movementParameters = &npc_movement_parameters.value;
-    ((TObjChara *)arg0)->set_motion_params(&npc_default_battle_stats.value);
-    init_collision_body_parts(arg0, &TObjNpcEnemy__collision_body_parts.value, 1);
-    ((TObjPlayer *)arg0)->register_object_by_id();
-    ((TObjEnemy *)arg0)->update_prev_position();
-    ((TObjChara *)arg0)->copy_body_to_center();
-    ((TObjNpcEnemy *)arg0)->set_npc_data((void *)((int) (((s32)TObjNpcEnemy::get_entry_by_index((s16)((int) ((s16) *(s32 *)((s8 *)arg0 + 0x5C))))))));
-    return arg0;
+void *TObjNpcEnemy::create(void *set_data) {
+    TObjControl *control = new TObjControl(tl_04);
+    return new TObjNpcEnemy(control, set_data);
 }
 
-void * TObjNpcEnemy__create(void *arg0) {
-    void *o;
-    void *o2;
-    o = __nw__7TObjectFUl(0x20);
-    if (o != NULL) {
-        o = __ct__11TObjControlFP7TObject(o, tl_04);
-    }
-    o2 = __nw__7TObjectFUl(0x3BC);
-    if (o2 != NULL) {
-        o2 = TObjNpcEnemy__ct((u8 *)o2, (s32)o, (s32)arg0);
-    }
-    return o2;
-}
 
-}
-
-RecoveredGlobal_802D72E4_TObjNpcEnemy__data_80540FF0 TObjNpcEnemy__entry_table;
+TObjNpcEnemyEntry TObjNpcEnemy::entry_table[16];

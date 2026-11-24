@@ -1,7 +1,8 @@
 #include "types.h"
+#include <string.h>
 #include "pso/network/NetworkInfoLoader.h"
 #include "pso/unk/text_803F4D84.h"
-#include "pso/misc/TLobby.h"
+#include "pso/unk/TLobby.h"
 typedef struct Ent_803F4D84 {
     s16 v;
     u8 pad[0x26];
@@ -606,12 +607,8 @@ typedef struct Big_803F53A0 {
     Rec_803F53A0 rec[6];
 } Big_803F53A0;
 
-extern "C" {
-void *memset(void *, int, u32);
-char *strncpy(char *, const char *, u32);
-u32 strlen(const char *);
+
 extern Big_803F4D84 *lobby_net_config_buffer;
-void *memcpy(void *, const void *, u32);
 #pragma push
 #pragma scheduling off
 #pragma peephole off
@@ -1208,5 +1205,3 @@ s32 TLobby__sub_803F6270(u16 *arg0) {
     return 0;
 }
 #pragma pop
-
-}

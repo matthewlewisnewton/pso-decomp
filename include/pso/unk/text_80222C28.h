@@ -3,11 +3,16 @@
 
 #include "types.h"
 
-s32 get_appraisal_text(s32 arg0);
-s32 get_guild_text(s32 arg0);
+saddr get_appraisal_text(s32 index);
+saddr get_guild_text(s32 index);
 extern "C" {
-s32 get_quest_list_text(s32 arg0, s32 arg1);
-s32 get_shop_text(s32 arg0);
+saddr get_quest_list_text(s32 group, s32 index);
+saddr get_shop_text(s32 index);
+}
+
+extern "C" {
+// The client's own slot when the screen is split, else slot 0.
+u16 get_client_split_screen_slot(u16 client);
 }
 
 #endif

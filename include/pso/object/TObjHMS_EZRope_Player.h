@@ -1,35 +1,38 @@
 #ifndef PSO_OBJECT_TOBJHMS_EZROPE_PLAYER_H
 #define PSO_OBJECT_TOBJHMS_EZROPE_PLAYER_H
 #include "types.h"
-#include "pso/TObjEZRopeBase.h"
+#include "pso/object/TObjEZRopeBase.h"
 
-class TObjPlayer;
-
-struct RopePlayerSegmentSource {
-    s8 type;
-    u8 pad1[0x13];
-    u8 *data;
+// One rope of the hair: hung at pos on the owner's bone, twisted by twist_offset from the owner's
+// facing and drawn with segment. The list ends at a negative bone.
+struct TObjHMSRopeSpec {
+    s8 bone;
+    s32 twist_offset;
+    Vec pos;
+    TObjEZRopeSegment *segment;
 };
 
-struct RopePlayerSphereSource {
-    s8 type;
-    u8 pad1[0x13];
+// A collision sphere carried by the owner's bone; the list ends at a negative bone.
+struct TObjHMSColliderSpec {
+    s8 bone;
+    f32 radius;
+    Vec center;
 };
 
 class TObjHMS_EZRope_Player : public TObjEZRopeBase {
 public:
-    TObjHMS_EZRope_Player(TObjPlayer *player, void *segment_sources, void *sphere_sources);
+    TObjHMS_EZRope_Player(TObject *parent, TObjHMSRopeSpec *ropes, TObjHMSColliderSpec *colliders);
     virtual ~TObjHMS_EZRope_Player();
     virtual void run_task();
     virtual void render();
     void sub_800FF2D0();
-    TObjPlayer *player;
-    RopePlayerSegmentSource *segment_sources;
-    RopePlayerSphereSource *sphere_sources;
-    RopeSegment *segment_storage;
-    RopeAnchor *anchor_storage;
-    RopeCollisionSphere *sphere_storage;
+    TObject *owner;
+    TObjHMSRopeSpec *rope_specs;
+    TObjHMSColliderSpec *collider_specs;
+    TObjEZRopeSegment *segment_buffer;
+    TObjEZRopeEnd *end_buffer;
+    TObjEZRopeCollider *collider_buffer;
 };
-typedef char TObjHMS_EZRope_Player_size[sizeof(TObjHMS_EZRope_Player) == 0x48 ? 1 : -1];
+LAYOUT_ASSERT(TObjHMS_EZRope_Player_size, sizeof(TObjHMS_EZRope_Player) == 0x48);
 
 #endif

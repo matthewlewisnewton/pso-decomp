@@ -1,0 +1,222 @@
+{
+  "source": "f36ec2ba511cc1d01bac263efbd751f94c881940",
+  "previous_source": "3486f459ab70e3ec45eaabeec3345c7b70647010",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/quest/QuestDownloadRecords.h",
+    "include/pso/quest/QuestDownloadServer.h",
+    "include/pso/quest/QuestDownloadText.h",
+    "include/pso/quest/TQuestVmDownLoadServer.h",
+    "include/pso/quest/TQuestVmDownLoadServer_803E5668.h",
+    "include/pso/quest/TQuestVmDownLoadServer_803E6970.h",
+    "libs/dolphin/include/dolphin/ar.h",
+    "src/pso/quest/QuestDownloadAramFile.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer_803E5668.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer_803E6970.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer_803E8918.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer_803EB0D8.cpp"
+  ],
+  "combined_paths_from_upstream": 1042,
+  "historical_donors": {
+    "native_cache_and_text_records": "96e12501e15a4340f8516a312337ce3f26b98786",
+    "aram_transfer": "1a9ea0eb0b8a1ccf30d38f2ec9ffb5a49a13e15d",
+    "signed_handles_and_conversion_buffer": "3e0ea227b44545182b30428eb3f6b234eed2865d"
+  },
+  "historical_linkage": {
+    "fork_tip": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "function_counts": {
+      "TQuestVmDownLoadServer_803E5668.cpp": 32,
+      "TQuestVmDownLoadServer_803E6970.cpp": 59,
+      "TQuestVmDownLoadServer_803E9A24.cpp": 59,
+      "TQuestVmDownLoadServer_803ED0CC.cpp": 55
+    },
+    "function_owners_by_range": {
+      "TQuestVmDownLoadServer_803E5668.cpp": [
+        "src/pso/quest/TQuestVmDownLoadServer_803E5668.cpp"
+      ],
+      "TQuestVmDownLoadServer_803E6970.cpp": [
+        "src/pso/quest/TQuestVmDownLoadServer_803E6970.cpp",
+        "src/pso/quest/TQuestVmDownLoadServer_803E8918.cpp"
+      ],
+      "TQuestVmDownLoadServer_803E9A24.cpp": [
+        "src/pso/quest/TQuestVmDownLoadServer_803E9A24.cpp",
+        "src/pso/quest/TQuestVmDownLoadServer_803EB0D8.cpp"
+      ],
+      "TQuestVmDownLoadServer_803ED0CC.cpp": [
+        "src/pso/quest/QuestDownloadAramFile.cpp",
+        "src/pso/quest/TQuestVmDownLoadServer_803EB0D8.cpp"
+      ]
+    },
+    "matched_address_map_sha256": "d3392eb62031825f1a0211e9c16569caaee3ac5cb86e38e3df06cc427aa78837",
+    "data": {
+      "0x8047F0F8": {
+        "label": "quest_download_lz_match_strings",
+        "size": 243
+      },
+      "0x8047F1EC": {
+        "label": "quest_download_lz_match_entry_table",
+        "size": 1532
+      },
+      "0x8047F7E8": {
+        "label": "quest_download_lz_match_index_table",
+        "size": 192
+      },
+      "0x8047F8A8": {
+        "label": "quest_download_lz_default_tokens",
+        "size": 16
+      },
+      "0x8058DD88": {
+        "label": "quest_convert_string",
+        "size": 128
+      },
+      "0x805A06C0": {
+        "label": "quest_download_aram_dma_buffer",
+        "size": 8288
+      },
+      "0x805D7914": {
+        "label": "quest_download_aram_file",
+        "size": 8
+      }
+    }
+  },
+  "source_scope": [
+    "typed SDK request and buffer ownership at the original DMA offsets",
+    "signed handles through open, seek, read, close and the cache read thunk",
+    "the aligned 128-byte conversion buffer and stable cached-name stack slot",
+    "shared slot, text-fragment and request layout checks"
+  ],
+  "validation": {
+    "source": {
+      "baseline": "3486f459ab70e3ec45eaabeec3345c7b70647010",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x803E8790",
+          "before": "aram_read_thunk__22TQuestVmDownLoadServerFUli",
+          "after": "aram_read_thunk__22TQuestVmDownLoadServerFlPvl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803F0AB8",
+          "before": "aram_dma_read__22TQuestVmDownLoadServerFPvPvi",
+          "after": "aram_dma_read__22TQuestVmDownLoadServerFlPvl"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "9bcd037df26860bc81b25f1a47ffe2958e3cce5e581c9a5fef7489ff1e8ab583",
+      "report_sha256": "3eb34d0632cb9b1dce75e75d7290488bdb46ed74f8e6e1385fabfd2c5b6cd2ec"
+    },
+    "layer": {
+      "baseline": "f36ec2ba511cc1d01bac263efbd751f94c881940",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "52e7b7c44c895ea98e91fe1a9ea21805885753879d1966b15b6b684ebe565d0b",
+      "report_sha256": "3eb34d0632cb9b1dce75e75d7290488bdb46ed74f8e6e1385fabfd2c5b6cd2ec"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "de7087b3c0f6d2fcafe8d5e4484c93faebe5fb43be1fddcfc5a2de61714825ff"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "059ca2b90d2b834ebb601f5540f945a3067fd72aed91b21fd9b472c568c8f746"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "images": [
+      "retail",
+      "source",
+      "materialized fork workspace"
+    ],
+    "aram": {
+      "coverage": "signed handles, ARAM callback ownership, rounded reads, EOF clamping and timeout cleanup passed",
+      "probe_sha256": "69c80b611dd01a5c36b09e13dcd5c9fee14eef99391943a425723e888dfff176",
+      "log_sha256": "161e4a597fd6131d3b4139eb8a26de6bb67a9b74c2b20ec479f0c485503f64a1"
+    },
+    "cache": {
+      "coverage": "128 slots, ten linked pages, 80 buckets, 512 free-list nodes, file reads and page eviction passed",
+      "probe_sha256": "dd0c5d8dc6ae31caf08b3678eea642922abae20f43cda131c6f1ab9f57f2eff0",
+      "log_sha256": "4a41b537886bb6ca83f3936fb616e07a7a5078c9f18476859429d1c16bd6dd64"
+    }
+  },
+  "historical": {
+    "open_rows": 397,
+    "scoped_rows": [
+      [
+        6481,
+        "src/pso/misc/TQuestVmDownLoadServer_803E6970.cpp",
+        "src/pso/quest/TQuestVmDownLoadServer_803E6970.cpp"
+      ],
+      [
+        6482,
+        "src/pso/misc/TQuestVmDownLoadServer_803E9A24.cpp",
+        "src/pso/quest/TQuestVmDownLoadServer_803E9A24.cpp"
+      ],
+      [
+        6483,
+        "src/pso/misc/TQuestVmDownLoadServer_803ED0CC.cpp",
+        "src/pso/quest/TQuestVmDownLoadServer_803EB0D8.cpp"
+      ],
+      [
+        7299,
+        "include/pso/misc/QuestDownloadInternal.h",
+        "include/pso/quest/QuestDownloadServer.h"
+      ]
+    ]
+  },
+  "fork_workspace": {
+    "trial": "46ac468aa4754300cfee2d921f15deaf92987586",
+    "overlay_paths": 130,
+    "updated_overlay_paths": [
+      "include/pso/quest/QuestDownloadServer.h"
+    ],
+    "archive_sha256": "c5a20c5bee4db520087ead94090ea8b8dd312aa218d9cfc56f08263e2128c3ac",
+    "materialized_tree": "867025e55281daccdcdbf369baa65ced867ef5cb",
+    "force_active": 27027
+  }
+}

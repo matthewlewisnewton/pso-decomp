@@ -1,10 +1,10 @@
 #include "types.h"
-#include "pso/TMainTask.h"
+#include "pso/system/task/TMainTask.h"
 #include "pso/item/TItemData.h"
-#include "pso/enemy/TUnk_804E6FA8.h"
+#include "pso/item/TUnk_804E6FA8.h"
 
 void TUnk_804E6FA8::apply_use_effect() {
-    TItem *armor = (TItem *)((TItemData *)(*(s32 *)((s8 *)this + 0xF0)))->get_item_field_2();
+    TItem *armor = (TItem *)((TItemData *)(*(saddr *)((s8 *)this + 0xF0)))->get_item_field_2();
     if (armor != NULL) {
         armor->add_slot();
     }

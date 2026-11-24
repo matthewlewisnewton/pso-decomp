@@ -7,9 +7,10 @@ public:
     TEffHit(const Vec* position);
     virtual ~TEffHit();
     virtual void run_task();
+    static const char *class_name;
 
     s32 state;
 };
-typedef char HitEffectSize[(sizeof(TEffHit) == 0x74) ? 1 : -1];
-typedef char HitEffectStateOffset[(offsetof(TEffHit, state) == 0x70) ? 1 : -1];
+LAYOUT_ASSERT(HitEffectSize, sizeof(TEffHit) == 0x74);
+LAYOUT_ASSERT(HitEffectStateOffset, offsetof(TEffHit, state) == 0x70);
 #endif

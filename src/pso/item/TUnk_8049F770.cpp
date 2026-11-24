@@ -1,11 +1,12 @@
 #include "types.h"
-#include "pso/TMainTask.h"
+#include "pso/item/TItem.h"
+#include "pso/system/task/TMainTask.h"
 #include "pso/item/TUnk_8049F770.h"
-#include "pso/item/TItemProShield.h"
+#include "pso/object/base/TObjChara.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/player/TObjPlayer_80011014.h"
 
 extern "C" {
-s32 add_actor_hp(u8 *arg0, s16 arg1);
 s32 get_item_index__5TItemFv(void *);
 extern s32 game_difficulty_selection;
 }
@@ -22,11 +23,11 @@ void TUnk_8049F770::apply_use_effect() {
     t = get_pmt_amount();
     new_var = game_difficulty_selection;
     new_var = t + (new_var * (t / 2));
-    add_actor_hp((u8 *)this->owner, new_var);
+    add_actor_hp((TObjChara *)this->owner, new_var);
   }
   else
   {
-    add_actor_hp((u8 *)this->owner, ((TItemProShield *)(this->owner))->get_field_2b8());
+    add_actor_hp((TObjChara *)this->owner, ((TObjChara *)(this->owner))->get_hpmax());
   }
 }
 
@@ -34,7 +35,7 @@ TUnk_8049F770::~TUnk_8049F770() {}
 
 TUnk_8049F770::TUnk_8049F770(TObject *parent, u8 *item) : TItemObject(parent, item) {}
 
-TUnk_8049F770 *TUnk_8049F770::create(u8 *item) {
+TItem *TUnk_8049F770::create(u8 *item) {
     if (item != NULL) {
         return new TUnk_8049F770(tl_05, item);
     }

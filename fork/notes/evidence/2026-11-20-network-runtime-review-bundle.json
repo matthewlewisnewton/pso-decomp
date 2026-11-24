@@ -1,0 +1,141 @@
+{
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "head": "23bb9724a585213c4fb65356453d06d3f06206a5",
+  "component_heads": [
+    "26184e69dd7a6b799cbcc2d9c13a40b967b0691e",
+    "cb7d37f5a25dfec5bac94452f5b8237a893b819b"
+  ],
+  "review_files": 66,
+  "queue": "f5a316144966bd8136d6a5b04339e27b6fa78545",
+  "prior_queue": "5125b31c4dfcd5cbd3dd30f4fd8162729236b399",
+  "queue_tree": "63b9957a38c8a2e0feb62702f5ff7b37bc20f2f0",
+  "queue_paths": 1994,
+  "queue_groups": 24,
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "identical_code_paths": 64,
+  "config_symbol_addresses": [
+    {
+      "section": "text",
+      "address": "0x80078378"
+    },
+    {
+      "section": "text",
+      "address": "0x803F3DD4"
+    },
+    {
+      "section": "text",
+      "address": "0x803F86C0"
+    },
+    {
+      "section": "text",
+      "address": "0x803F87E0"
+    },
+    {
+      "section": "text",
+      "address": "0x803F8868"
+    },
+    {
+      "section": "text",
+      "address": "0x803F88E4"
+    },
+    {
+      "section": "text",
+      "address": "0x803F895C"
+    },
+    {
+      "section": "text",
+      "address": "0x803F8A28"
+    },
+    {
+      "section": "text",
+      "address": "0x803F8AD8"
+    },
+    {
+      "section": "text",
+      "address": "0x803F8B7C"
+    },
+    {
+      "section": "text",
+      "address": "0x80406FA8"
+    },
+    {
+      "section": "text",
+      "address": "0x80406FB8"
+    },
+    {
+      "section": "text",
+      "address": "0x80406FC8"
+    },
+    {
+      "section": "text",
+      "address": "0x804072C4"
+    },
+    {
+      "section": "text",
+      "address": "0x8040B6E4"
+    },
+    {
+      "section": "text",
+      "address": "0x8040B790"
+    },
+    {
+      "section": "text",
+      "address": "0x8040BF38"
+    },
+    {
+      "section": "text",
+      "address": "0x8040C540"
+    },
+    {
+      "section": "text",
+      "address": "0x8040DB34"
+    },
+    {
+      "section": "text",
+      "address": "0x8040DBFC"
+    },
+    {
+      "section": "text",
+      "address": "0x8040ECEC"
+    },
+    {
+      "section": "text",
+      "address": "0x804196EC"
+    },
+    {
+      "section": "text",
+      "address": "0x80424910"
+    }
+  ],
+  "linked_configuration_change": {
+    "previous": "- handle_socket_event__10TUdpSocketFsP14UdpSocketEvent",
+    "current": "- handle_socket_event__10TUdpSocketFsP11UdpDatagram"
+  },
+  "strict_report_digest": "2264f6180af5b76064776501b7f0dde52ed54d764a8ce1e920ce8765808e0450",
+  "queue_inputs": [
+    "b75c6f38a72228b2c5dc79f3198981f324474018",
+    "bdc95f97e24a9c0a48f3ed7fec7ca13dd974c8dd",
+    "5fec2a2794b87cf105d2c10473d187633a78ff1b",
+    "9a9d704b899922b8d4439be16dad34a85c23fd97",
+    "c3e7f90c1fd3d467ffef36be945b0d42d832cc59",
+    "5764a00853c353ae4e12371958c2e9712af42798",
+    "bb0a2828e3a31ddc506164215d32f5cd834ff234",
+    "3209cc4330a26b9f88a0527e40d1582a61ae4015",
+    "7dad678f24aa49d3d608e7ce5e6803df206305de",
+    "ba07a809ce6102e9df43231af05cb668dc60b736",
+    "61a820b0e25920c32e11fe06ce92932f6ac5c8a1",
+    "9bbc668b6121ceb6bc03f83427c98aaa931a0d31",
+    "8d5b7beca4d9e492e5c3bb6fca598d54b461829b",
+    "ac5aa002909d739722e26f4c3c9aef7f681b4425",
+    "56180c4c261f4076fb3def25d0f995adbcb15400",
+    "7bdbdaf5ba01344982227ac6b25f5315e800d9f5",
+    "f7a0122c73c00062937eac73bc56ea913630e522",
+    "9a277f6b061ec44eecf9395be11f3112c378a33c",
+    "ba580a76cbb0992a985eb947d48a178cbb36d1b2",
+    "04e0a137422e25a50c7ea48df4c35c9bcc7b14fb",
+    "182fb702e6a21c01f05a822fa77a49c1e484d0bd",
+    "23bb9724a585213c4fb65356453d06d3f06206a5",
+    "272af7b2aba835c5d5ae4c9879881fcecd7b9d9a",
+    "8f26a3c7a707d4076bf84134da09276bc62991f9"
+  ]
+}

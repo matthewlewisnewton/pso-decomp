@@ -1,0 +1,618 @@
+{
+  "source": "6bb217d8743621973dab0030b3a9196edeb3f75b",
+  "previous_source": "9a27677f8696d4071f35ba68a01676e3280862b0",
+  "landing": "a2789f20c59667a559952786219c7c3703d80d70",
+  "working_fork_build": "db434a9d725666c828ab85b044ba0ab78e74b5e9",
+  "source_files": 51,
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "review_queue": {
+    "head": "be07110eb4406ad71fcd333d070fa4978d02ff4d",
+    "tree": "0acfb9a81cc6cbb381fc78c2d9d7f4a5f8ad4401",
+    "previous": "da428093d140028a63ba3617a4f4eb7e952a939b",
+    "inputs": [
+      "b75c6f38a72228b2c5dc79f3198981f324474018",
+      "a4d7a8d2d908dc795ed2d7e929357d807e547955",
+      "5fec2a2794b87cf105d2c10473d187633a78ff1b",
+      "9a9d704b899922b8d4439be16dad34a85c23fd97",
+      "c3e7f90c1fd3d467ffef36be945b0d42d832cc59",
+      "d9e7ee7f3dfdbb7018ef9d50b394972b625fd72e",
+      "bb0a2828e3a31ddc506164215d32f5cd834ff234",
+      "cdfbc9ea796425975e1c113c20af714744ff6061",
+      "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
+      "f05429eb8e62847890602a9bf209cd4a59181a27",
+      "8ef18368c09b800b88fa31f06bc791835952df65",
+      "9bbc668b6121ceb6bc03f83427c98aaa931a0d31",
+      "a5aed4817c6718d9ea584baaa3f5f29fdd72d1ee",
+      "ac5aa002909d739722e26f4c3c9aef7f681b4425",
+      "12bdb900e51d333a482062d8cd0d9edab5a09a80",
+      "7bdbdaf5ba01344982227ac6b25f5315e800d9f5",
+      "f7a0122c73c00062937eac73bc56ea913630e522",
+      "9a277f6b061ec44eecf9395be11f3112c378a33c",
+      "ba580a76cbb0992a985eb947d48a178cbb36d1b2",
+      "04e0a137422e25a50c7ea48df4c35c9bcc7b14fb",
+      "182fb702e6a21c01f05a822fa77a49c1e484d0bd",
+      "0895f1cbb38bc55767e2428439e698a94b5bccf4",
+      "b18e36657fcb0ddb6227ce1cd1f5b869f53cdab8",
+      "8f26a3c7a707d4076bf84134da09276bc62991f9",
+      "501edde10f0683bd47469495199a13dd0ebeacb1",
+      "ae3da5ccb25c52f727ab0f41adcc3a3afbf0c4ef",
+      "a0c6dc4253dbf22cb0984501536a32673fa9b9e8",
+      "d90619b7c15b4300567435fdee477df7c1796a25"
+    ],
+    "files": 2114,
+    "reviews": {
+      "standalone-bml-archive-accessors": {
+        "head": "8b4edc76ebd9aec24da9f3043fe791d1acdd9def",
+        "previous": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 161,
+        "create": true,
+        "live_tip": null,
+        "queue_input": "12bdb900e51d333a482062d8cd0d9edab5a09a80",
+        "report": "/dev/shm/gm-ppp-frame-contract.xC7MSw/archive-and-dispatch-wave/bml-state-direct-report.json",
+        "strict": "/dev/shm/gm-ppp-frame-contract.xC7MSw/archive-and-dispatch-wave/bml-state-direct-check.json"
+      },
+      "standalone-enemy-registration-and-formations": {
+        "head": "8ef18368c09b800b88fa31f06bc791835952df65",
+        "previous": "23248abd7b4e9a0aab2f9294690cff0da309d409",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 231,
+        "create": false,
+        "live_tip": "23248abd7b4e9a0aab2f9294690cff0da309d409",
+        "queue_input": "8ef18368c09b800b88fa31f06bc791835952df65",
+        "report": "/dev/shm/gm-enemy-20565490-review/names-standalone-report.json.gz",
+        "strict": "/dev/shm/gm-enemy-20565490-review/names-standalone-strict.json"
+      },
+      "standalone-ground-effects-and-scenery": {
+        "head": "d90619b7c15b4300567435fdee477df7c1796a25",
+        "previous": "e38e1451981db0ba066371c38196d9e6f712905f",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 69,
+        "create": false,
+        "live_tip": "e38e1451981db0ba066371c38196d9e6f712905f",
+        "queue_input": "d90619b7c15b4300567435fdee477df7c1796a25",
+        "report": "/dev/shm/gm-csn-upstream-spelling.37ikGc/direct-report.json.gz",
+        "strict": "/dev/shm/gm-csn-upstream-spelling.37ikGc/direct-check.json"
+      },
+      "standalone-main-menu-and-child-windows": {
+        "head": "a0c6dc4253dbf22cb0984501536a32673fa9b9e8",
+        "previous": "592b79a3fb7e79a38452d656de25a7dc46d89868",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 150,
+        "create": false,
+        "live_tip": "592b79a3fb7e79a38452d656de25a7dc46d89868",
+        "queue_input": "a0c6dc4253dbf22cb0984501536a32673fa9b9e8",
+        "report": "/dev/shm/gm-main-menu-name-review-20261120/direct/report.json.gz",
+        "strict": "/dev/shm/gm-main-menu-name-review-20261120/direct/strict.json"
+      }
+    },
+    "replays": {
+      "bml": {
+        "canonical": "01a5ecb5cc34f14383b9f9870db7d92e680af773",
+        "standalone": "8b4edc76ebd9aec24da9f3043fe791d1acdd9def",
+        "queue": "4f67da62fb46224b2cf510e66f117e26e5c02469"
+      },
+      "gunner": {
+        "canonical": "0364dc24856e4459f02768289609ba7d7b12ddda",
+        "standalone": "8ef18368c09b800b88fa31f06bc791835952df65",
+        "queue": "644e2f5fcaac9a813f114919639547586b2863e7"
+      },
+      "wall": {
+        "canonical": "ae146d9a08aa65626ea94d755f6ecd6c9511227c",
+        "standalone": "d90619b7c15b4300567435fdee477df7c1796a25",
+        "queue": "6b3c5841981d990a31f327207cf6353438b7d09c"
+      },
+      "menu": {
+        "canonical": "526e18e53652130ac35806ee71fa472e956d739b",
+        "standalone": "a0c6dc4253dbf22cb0984501536a32673fa9b9e8",
+        "queue": "d1a85b6d15c3e6b536edc78e70b87a1f2294c498"
+      }
+    },
+    "increment": 52
+  },
+  "reviews": {
+    "standalone-bml-archive-accessors": {
+      "head": "8b4edc76ebd9aec24da9f3043fe791d1acdd9def",
+      "previous": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 161,
+      "create": true,
+      "live_tip": null,
+      "queue_input": "12bdb900e51d333a482062d8cd0d9edab5a09a80",
+      "report_sha256": "cd9254991acecffc7ff826d3d4e5f81ef4c435dfd3c24f5b0bae77f1f046ae1b",
+      "strict_sha256": "6a3c8ef1b5dbef698bbc00addbdfd675ced3509db30370d04a1b8df7901dbf3b"
+    },
+    "standalone-enemy-registration-and-formations": {
+      "head": "8ef18368c09b800b88fa31f06bc791835952df65",
+      "previous": "23248abd7b4e9a0aab2f9294690cff0da309d409",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 231,
+      "create": false,
+      "live_tip": "23248abd7b4e9a0aab2f9294690cff0da309d409",
+      "queue_input": "8ef18368c09b800b88fa31f06bc791835952df65",
+      "report_sha256": "7bfe3f089f29eaa974bc3bafc57a4b7553053457207e7b5d7cf30689bfa0e82f",
+      "strict_sha256": "51a7780887f99706e846d3394d75f71d189c880c82953154d25083e96e37f625"
+    },
+    "standalone-ground-effects-and-scenery": {
+      "head": "d90619b7c15b4300567435fdee477df7c1796a25",
+      "previous": "e38e1451981db0ba066371c38196d9e6f712905f",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 69,
+      "create": false,
+      "live_tip": "e38e1451981db0ba066371c38196d9e6f712905f",
+      "queue_input": "d90619b7c15b4300567435fdee477df7c1796a25",
+      "report_sha256": "d49fcf29c795e272355310961e6e370ee853f1cc30c1d12cc2f69d773f525c78",
+      "strict_sha256": "e83eae8ca4fe0169939bb007f5bd2938238654883a6c9c3bfc15ff53b00d294e"
+    },
+    "standalone-main-menu-and-child-windows": {
+      "head": "a0c6dc4253dbf22cb0984501536a32673fa9b9e8",
+      "previous": "592b79a3fb7e79a38452d656de25a7dc46d89868",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 150,
+      "create": false,
+      "live_tip": "592b79a3fb7e79a38452d656de25a7dc46d89868",
+      "queue_input": "a0c6dc4253dbf22cb0984501536a32673fa9b9e8",
+      "report_sha256": "f8328e2b44405a9376f5a2d0bed79774d905f04405a95202aeb210afe82ea3c8",
+      "strict_sha256": "9c615f959fa1a7bf9bb3f5f91339497318f3273f801c2308e9946f3f6ba960a9"
+    }
+  },
+  "source_audit": {
+    "source": "6bb217d8743621973dab0030b3a9196edeb3f75b",
+    "previous": "9a27677f8696d4071f35ba68a01676e3280862b0",
+    "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "entries": [
+      {
+        "row": 5328,
+        "historical_path": "src/pso/misc/TLobby_8001EF5C.cpp",
+        "historical_blob": "1a190efb09543834a02b379bec0449dc9ccbc625",
+        "owners": {
+          "src/pso/unk/TLobby_8001EF5C.cpp": "2cecd4a47225f9db98f4b4144465728280a0d272",
+          "include/pso/system/BmlResource.h": "9fd646fcb925b1221c64d9daab787b281434bedc",
+          "include/pso/system/BmlAccessors.h": "5bd98af25852adf6a9cc95dafa43a8d51c54a7ea"
+        },
+        "proofs": [
+          {
+            "group": "bml-source",
+            "evidence": "The asynchronous archive loader at 0x8001F128 uses its original 0x440-byte BmlResource receiver and 0x40-byte file records through model, motion, decompression, texture and cancellation phases. It retains the original sector operations, status values, read-buffer release paths and upstream linkage. Other functions in the historical archive unit remain scoped.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6513,
+        "historical_path": "src/pso/object/TObjFish_8001ED90.cpp",
+        "historical_blob": "c6ac6786be0b1dc13ab5df03bd3569feab35edba",
+        "owners": {
+          "src/pso/unk/TLobby_8001EF5C.cpp": "2cecd4a47225f9db98f4b4144465728280a0d272",
+          "include/pso/system/BmlResource.h": "9fd646fcb925b1221c64d9daab787b281434bedc",
+          "include/pso/object/ambient/TObjFish_8001ED90.h": "7f52b1bc946f6c7afc8f11a3e764f37e694544a4",
+          "include/pso/system/BmlAccessors.h": "5bd98af25852adf6a9cc95dafa43a8d51c54a7ea"
+        },
+        "proofs": [
+          {
+            "group": "bml-source",
+            "evidence": "All nine original functions from 0x8001ED90 through 0x8001EEFC are exact at the consolidated owner. The flag query, typed model/motion/texture accessors, handle insertion, owner-name comparison, two releases, availability test and acquisition preserve their original layouts, return behavior, messages and shared 32-byte name storage.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6766,
+        "historical_path": "include/pso/object/TObjFish_8001ED90.h",
+        "historical_blob": "0b7493edeb49037818515ef86fb8f08f9bb01f6e",
+        "owners": {
+          "include/pso/object/ambient/TObjFish_8001ED90.h": "7f52b1bc946f6c7afc8f11a3e764f37e694544a4",
+          "include/pso/system/BmlAccessors.h": "5bd98af25852adf6a9cc95dafa43a8d51c54a7ea",
+          "src/pso/unk/TLobby_8001EF5C.cpp": "2cecd4a47225f9db98f4b4144465728280a0d272"
+        },
+        "proofs": [
+          {
+            "group": "bml-source",
+            "evidence": "The native archive access headers declare all historical interfaces: the flag query, borrowed motion, model and texture pointers, signed index, archive receiver and C linkage. Their original 0x8001ED90, 0x8001ED9C, 0x8001EDB0 and 0x8001EDC4 implementations are exact. The texture getter keeps the upstream spelling.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 1188,
+        "historical_path": "src/pso/unk/text_8004AA04.cpp",
+        "historical_blob": "f386bfc2f73e9f0f1ba18bfbe91100698fd1c4b0",
+        "owners": {
+          "src/pso/unk/text_8004AA04.cpp": "95eb4c1e68220187a9041db8ba603dde51733cc6",
+          "include/pso/unk/ModelNodeTables.h": "31d6191cce44e558d7904b54417ff314425d16eb",
+          "include/pso/system/StripBufferPair.h": "d4ee353c2724a3a17b4a77fc040d4e96e053d9de",
+          "include/pso/system/BmlAccessors.h": "5bd98af25852adf6a9cc95dafa43a8d51c54a7ea"
+        },
+        "proofs": [
+          {
+            "group": "bml-source",
+            "evidence": "Both historic model-node table routines are present at 0x8004AA04 and 0x8004AA80. They use the native model pointer, typed StripBufferPair pointer entries, original array allocation and release, and placement of every child through the real constructor at its original target.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4486,
+        "historical_path": "src/pso/misc/TLobby_80082048.cpp",
+        "historical_blob": "12116366862351cf83f0f87cf2f717e42c0c564c",
+        "owners": {
+          "src/pso/unk/TUnk_8048E1A4.cpp": "d035de3cdd3137619953f1d6aedf301a26cfbb13",
+          "include/pso/system/BmlResource.h": "9fd646fcb925b1221c64d9daab787b281434bedc",
+          "include/pso/system/BmlAccessors.h": "5bd98af25852adf6a9cc95dafa43a8d51c54a7ea"
+        },
+        "proofs": [
+          {
+            "group": "bml-source",
+            "evidence": "The freeze-shell resource keeps all four archive/model/motion strings and both floating-point values at their original linked addresses. Its archive constructor and destructor are native, and the exact freeze-shell constructor borrows model index 1 through the shared BML accessor.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6727,
+        "historical_path": "src/pso/object/TObjLiveMonitorSmall.cpp",
+        "historical_blob": "ed31bf2087676d4e7b96922ad6a2b319a53732d9",
+        "owners": {
+          "src/pso/object/TObjLiveMonitor.cpp": "8cad436b45374df92bb49250be11826b8646b3c4",
+          "include/pso/object/TObjLiveMonitor.h": "31315892794cd0fc0cdf1a517ee391ffe96a66bb",
+          "include/pso/system/BmlAccessors.h": "5bd98af25852adf6a9cc95dafa43a8d51c54a7ea"
+        },
+        "proofs": [
+          {
+            "group": "bml-source",
+            "evidence": "The full authored live-monitor change is retained. Fish spawning takes the real BML model pointer at 0x8030B1B0 and the exact screen renderer reads the draw argument as a pointer from its node record. Split-screen and matrix-stack calls retain their real interfaces and retail branch targets.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 1053,
+        "historical_path": "src/pso/enemy/DarkGunner.cpp",
+        "historical_blob": "4cec24062553c780dd8e544c433ab406cb6a11c6",
+        "owners": {
+          "src/pso/enemy/darkgunner/DarkGunner.cpp": "8c93c3a0d03bda81c6aa856c8a4367774060397b",
+          "include/pso/enemy/darkgunner/TObjEneDarkGunner.h": "25a889b98ff1135d380555b1ab67c9f477cb14d5"
+        },
+        "proofs": [
+          {
+            "group": "gunner-source",
+            "evidence": "Actor-owned movement, hide timer and transition, shadow, projectile origin, 0xA2 factory and constructor linkage. Raw firing-state dispatcher and broad lifecycle overlays remain. Both registration records and visible movement now use the real actors. The firing dispatcher and other actor lifecycle source remain open.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5064,
+        "historical_path": "src/pso/misc/TeneFakeTecThunderEff.cpp",
+        "historical_blob": "957b98f1fc11e23d90d910c93229cb8321cb18c2",
+        "owners": {
+          "src/pso/effect/enemy/TeneFakeTecThunderEff.cpp": "8d2d2063892e772c20e7ab12246d3abd325813fe",
+          "src/pso/effect/enemy/TeneFakeTecThunderEffSdata2.cpp": "085ca6af48b7cd0bd5bd42814907f32e6f186614",
+          "include/pso/effect/enemy/TeneFakeTecThunderEff.h": "cf89e27be85d13555c76737989948507ef2ba4c2"
+        },
+        "proofs": [
+          {
+            "group": "gunner-source",
+            "evidence": "The five authored bodies retain the three original normalizations, and all seven pooled constants remain source linked at the existing owner. Dark Gunner and the Dubchik attachment now call the native beam constructor with a task parent and const vector endpoints.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6591,
+        "historical_path": "include/pso/map/CsnQuery.h",
+        "historical_blob": "39e9d1f1ea36af00997fc96d073bd53e79c840d0",
+        "owners": {
+          "include/pso/map/CsnQuery.h": "3b9aaa2add4ae18361ce8b0206afd39ad21d3105",
+          "include/pso/map/CsnGroundQuery.h": "ff83cf5e83edf2f63f865328f268a14dcd8c85ce",
+          "include/pso/map/CsnGeometry.h": "ccf24c4204396bf2abab276fbfad0a892cd51b67"
+        },
+        "proofs": [
+          {
+            "group": "wall-source",
+            "evidence": "Every authored fork-point declaration edit has a live canonical owner. Ground/contact types and the coordinate query come from CsnGroundQuery.h, the prepared query returns the real WallRayResult, and debug selectors use typed contact/hit parameters. There are no obsolete duplicate ground declarations in canonical. This wave also replaces the prepared wall Vec/mask, real face record, and segment result declarations across all their live uses.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6668,
+        "historical_path": "src/pso/map/CsnQuery.cpp",
+        "historical_blob": "155472bc6551880cba907ccb11d3691cdeff7c06",
+        "owners": {
+          "src/pso/map/CsnQuery.cpp": "9bf75e6dcef2779dfa4ccfe3f12c1f1a74dd4aab",
+          "include/pso/map/CsnGeometry.h": "ccf24c4204396bf2abab276fbfad0a892cd51b67",
+          "include/pso/map/CsnGroundQuery.h": "ff83cf5e83edf2f63f865328f268a14dcd8c85ce"
+        },
+        "proofs": [
+          {
+            "group": "wall-source",
+            "evidence": "Connected scope includes the two mesh traversals, typed signed/unsigned mask and result words, the common one-sided intersection, the 0x5000 array lifecycle, original 0x24 face copy and independent vertex-list word. Older matched ground evaluation, nearest/contact-mask publication and scratch vectors remain intact. The larger historical compiler-policy and all legacy debug parameter edits remain unclaimed.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7253,
+        "historical_path": "src/pso/misc/TDeadSpot.cpp",
+        "historical_blob": "560eab9f7c877af643a6602b388bc36a358faae3",
+        "owners": {
+          "src/pso/object/TDeadSpot.cpp": "6fb1ebb4b859d9276cff514859cdc8fcf5c71c89",
+          "include/pso/map/CsnGroundQuery.h": "ff83cf5e83edf2f63f865328f268a14dcd8c85ce",
+          "include/pso/unk/text_803D8DE0.h": "1f40329e8ff8ec4bfd089d7fefd924f9bdbc39dd",
+          "include/pso/render/CurrentTextureList.h": "ced69b099a5995e16a6e70376e49c11c9a215375"
+        },
+        "proofs": [
+          {
+            "group": "wall-source",
+            "evidence": "Canonical now contains the complete authored edit interval: shared ground interface and in-place adjust call, shared current-texture-list render bind, real Vec[2] orientation basis, shared fn_803D8DE0 rotation declaration, and both initial and corner csnVecterUnder probes using the native CsnHit/contact. Direct keeps its older unrelated adjust and ground-result naming at those inherited boundaries while using the original shared basis transform.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 262,
+        "historical_path": "src/pso/misc/TWindowFukidasi.cpp",
+        "historical_blob": "0666de1a4e13ff6f413caccaa5ae4344c19cb2aa",
+        "owners": {
+          "src/pso/ui/window/TWindowFukidasi.cpp": "b45054ea91637d80adf21ad2d5f77e8aa5561e29",
+          "include/pso/ui/window/TUnk_804CF0B8.h": "fbbeb24e9627359a312b3d767b79780d4772e1fa",
+          "include/pso/ui/window/TWindowFukidasi.h": "cb4ba90325ef980207c1098fcf9194d7b9baf0e5",
+          "src/pso/ui/window/TWindowCtrl_8024A1A8.cpp": "449f7086aca6f3b2d20bd79d89cb623b40003786"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "Message kind at +0x72 and the s16 reveal countdown at +0x74 belong to the physical balloon. The repeated-card, rearm, ready and complete paths use the actual balloon receiver and its inherited target extents/open tick. The same allocation, halfword writes, reveal resets, flags and exact call targets are retained. The mixed draw/text file stays open.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5678,
+        "historical_path": "src/pso/misc/TWindowCtrl_8024A1A8.cpp",
+        "historical_blob": "8dd84bcbf0ba2cc269b0d1ac91c15fe0377cdeb9",
+        "owners": {
+          "src/pso/ui/window/TWindowCtrl_8024A1A8.cpp": "449f7086aca6f3b2d20bd79d89cb623b40003786",
+          "include/pso/object/base/TObjMotion.h": "3c1414d807386974c2808221904ca72a5cf03591",
+          "include/pso/ui/window/TUnk_804CF0B8.h": "fbbeb24e9627359a312b3d767b79780d4772e1fa"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "The consolidated standalone now carries the prior typed main-menu callbacks and the speech lookup/four-slot chain together. Canonical and queue further use the actual actor position at +0x38/+0x3C/+0x40 in the original squared-distance provider, preserve its symbol, and call the true card match/rearm methods. This is a scoped receipt for the menu and speech portions of the mixed controller file.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      }
+    ],
+    "closed_rows": [
+      1188,
+      4486,
+      5064,
+      6513,
+      6591,
+      6727,
+      6766,
+      7253
+    ],
+    "remaining": {
+      "Owner comparison required": 249,
+      "Some anchored text changes found": 704
+    }
+  },
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "data_ranges": 90,
+  "local_tool_tests": 294,
+  "layer_tests": 11,
+  "fork_only_paths": 133,
+  "replay_validation": {
+    "bml-source": {
+      "head": "01a5ecb5cc34f14383b9f9870db7d92e680af773",
+      "report_sha256": "5a63f7b32918b69891d9c720e4958ab5c53b22758ca2dc44aeb7ed5f877cca95",
+      "strict_sha256": "9c615f959fa1a7bf9bb3f5f91339497318f3273f801c2308e9946f3f6ba960a9"
+    },
+    "gunner-source": {
+      "head": "0364dc24856e4459f02768289609ba7d7b12ddda",
+      "report_sha256": "a378c6e3f5ccedf0891421d12cf90eec36ce4387ae9dadbc27b2916f5901e569",
+      "strict_sha256": "51a7780887f99706e846d3394d75f71d189c880c82953154d25083e96e37f625"
+    },
+    "wall-source": {
+      "head": "ae146d9a08aa65626ea94d755f6ecd6c9511227c",
+      "report_sha256": "c95de7ff31438dcfde9f7a38af761f31844b59d993ae767faef7da40dbe21fdc",
+      "strict_sha256": "e83eae8ca4fe0169939bb007f5bd2938238654883a6c9c3bfc15ff53b00d294e"
+    },
+    "menu-source": {
+      "head": "526e18e53652130ac35806ee71fa472e956d739b",
+      "report_sha256": "6cc7e284e4df378f1c9833a614a5c877d570f3ec5bce07f7b81d62a9e32d913c",
+      "strict_sha256": "9c615f959fa1a7bf9bb3f5f91339497318f3273f801c2308e9946f3f6ba960a9"
+    }
+  },
+  "combined_validation": {
+    "combined-source": {
+      "report_sha256": "cb74d54262a7794fcebcabfb5842b1d9bc73e3b6957d6118c86e0661d081a81d",
+      "strict_sha256": "fad9753ec9954c5bbe673506b048cbc939b34cc2d16f4a01085dfd78d4963c94"
+    },
+    "direct-union": {
+      "report_sha256": "970c8af50c68d0ffe7915e88117fd33ef7d89bf2b56232dcfafa0c79cf1b017d",
+      "strict_sha256": "ef851b7cdc8f64d2a61e391fde3f91863c24f8c95bbfd63a64a4b4e3ea7e2024"
+    },
+    "working-final": {
+      "report_sha256": "cb74d54262a7794fcebcabfb5842b1d9bc73e3b6957d6118c86e0661d081a81d",
+      "strict_sha256": "c1d09cea57a6c46d234cc81ee39d4727f95aca83474825ba6f1fc234aac9f9c3"
+    }
+  },
+  "standalone_review_scope": {
+    "bml": {
+      "standalone": "8b4edc76ebd9aec24da9f3043fe791d1acdd9def",
+      "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "paths": 161,
+      "prior_aggregate": "12bdb900e51d333a482062d8cd0d9edab5a09a80",
+      "prior_paths": 422,
+      "stage_overlap": 75,
+      "stage_textual_conflicts": 57
+    },
+    "menu": {
+      "standalone": "a0c6dc4253dbf22cb0984501536a32673fa9b9e8",
+      "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "paths": 150,
+      "main_menu_parent": "592b79a3fb7e79a38452d656de25a7dc46d89868",
+      "equipment_reference": "f05429eb8e62847890602a9bf209cd4a59181a27",
+      "prior_paths": 532
+    },
+    "combined_archive_and_texture_loading": {
+      "head": "3dc510fe52b5319658798b68a56d011d53eae1fd",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "components": [
+        "8b4edc76ebd9aec24da9f3043fe791d1acdd9def",
+        "d41b1747d443d80e080cdd13eecbb2a379f8c315"
+      ],
+      "files": 179,
+      "symbol_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8001EF8C",
+          "before": "alloc_load_data__6TLobbyFPviii",
+          "after": "allocate_bml_chunk",
+          "reason": "The chunk allocator uses the real BmlResource arena and typed data, seek offset, and tag output."
+        },
+        {
+          "module": "psov3",
+          "address": "0x801FB9A4",
+          "before": "init_map_ptr__13TRaderMapCoreFv",
+          "after": "init_map_ptr__13TRaderMapCoreFPCll",
+          "reason": "The radar initializer takes the original const long pointer and count, retaining its method name."
+        }
+      ],
+      "report_sha256": "cd9254991acecffc7ff826d3d4e5f81ef4c435dfd3c24f5b0bae77f1f046ae1b",
+      "strict_sha256": "6a3c8ef1b5dbef698bbc00addbdfd675ced3509db30370d04a1b8df7901dbf3b",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "stage_textual_conflicts": 59
+    }
+  },
+  "upstream_name_audit": {
+    "gunner": {
+      "source": "0364dc24856e4459f02768289609ba7d7b12ddda",
+      "standalone": "8ef18368c09b800b88fa31f06bc791835952df65",
+      "queue": "644e2f5fcaac9a813f114919639547586b2863e7",
+      "restored_linker_names": [
+        {
+          "module": "psov3",
+          "address": "0x80027634",
+          "before": "TBoss1Dragon__sub_80027634",
+          "after": "get_dragon_crater_attack_power"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8008FC0C",
+          "before": "sub_8008FC0C__18TObjEneBalClawBodyFv",
+          "after": "fn_8008FC0C__18TObjEneBalClawBodyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800ACA60",
+          "before": "clamp_stat_354__11TObjEneMojaFv",
+          "after": "clamp_appearance_parameter__11TObjEneMojaFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803326C4",
+          "before": "get_instance__13TObjEneMorfosFv",
+          "after": "get_resources__13TObjEneMorfosFv"
+        }
+      ],
+      "exact_report_sha256": "7bfe3f089f29eaa974bc3bafc57a4b7553053457207e7b5d7cf30689bfa0e82f",
+      "restored_fields": {
+        "balclaw/TObjEneBalClawBody": {
+          "action_timer": "m_3d4"
+        },
+        "flower/TObjEneRe2Flower_EffCurse3": {
+          "age": "m_20"
+        },
+        "fly/TObjEneBm3FlyNest": {
+          "attachment_points": "unk_3c8",
+          "carrier_points": "unk_3e0"
+        },
+        "moja/TObjEneMoja": {
+          "fades": "unknown_39C"
+        },
+        "morfos/TObjEneMorfosArm": {
+          "owner_id": "m_100"
+        },
+        "recon/TObjEneRecon": {
+          "recobox_id": "m_434",
+          "pad_436": "_pad436"
+        },
+        "recon/TObjEneReconBomb": {
+          "owner_entity_id": "m_338"
+        }
+      },
+      "restored_callables": {
+        "fn_8008FC0C": "sub_8008FC0C",
+        "clamp_appearance_parameter": "clamp_stat_354",
+        "TObjEneMorfos::get_resources": "TObjEneMorfos::get_instance (retain BmlResource* return)",
+        "get_dragon_crater_attack_power": "TBoss1Dragon__sub_80027634 (retain const TBoss1Dragon* argument)"
+      }
+    },
+    "wall": {
+      "source": "ae146d9a08aa65626ea94d755f6ecd6c9511227c",
+      "standalone": "d90619b7c15b4300567435fdee477df7c1796a25",
+      "queue": "6b3c5841981d990a31f327207cf6353438b7d09c",
+      "restored_linker_names": [
+        {
+          "module": "psov3",
+          "address": "0x800D8988",
+          "before": "TObjEneGibbles__sub_800D8988",
+          "after": "play_floor_area_ground_sound"
+        }
+      ],
+      "exact_report_sha256": "d49fcf29c795e272355310961e6e370ee853f1cc30c1d12cc2f69d773f525c78",
+      "restored_field": {
+        "owner": "TObjEneBm9Mericarol_Bomb",
+        "previous": "ground_normal",
+        "upstream": "shadow_pos",
+        "offset": "0xD8"
+      }
+    },
+    "menu": {
+      "source": "526e18e53652130ac35806ee71fa472e956d739b",
+      "standalone": "a0c6dc4253dbf22cb0984501536a32673fa9b9e8",
+      "queue": "d1a85b6d15c3e6b536edc78e70b87a1f2294c498",
+      "restored_linker_names": [],
+      "exact_report_sha256": "f8328e2b44405a9376f5a2d0bed79774d905f04405a95202aeb210afe82ea3c8",
+      "restored_fields": {
+        "all": [
+          "TWindowSubShortMail::m_1c"
+        ],
+        "standalone": [
+          "TWindowMenuMainMenu::depth",
+          "TWindowMenuMainMenu::m_2c"
+        ],
+        "standalone_padding_offsets": [
+          "0x1C",
+          "0x58"
+        ]
+      }
+    },
+    "total_restored": 20
+  }
+}

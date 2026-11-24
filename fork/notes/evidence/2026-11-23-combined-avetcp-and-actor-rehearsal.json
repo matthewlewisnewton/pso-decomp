@@ -1,0 +1,565 @@
+{
+  "upstream_master": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "published_reviews": {
+    "377": "39848c3108c370a24eff842e241a1ea0d70a2da8",
+    "378": "5cdc5937e9dc917c26d4429734184e47855d3fc4"
+  },
+  "cumulative_with_avetcp": {
+    "head": "e2913472a9a6404e69b95a43c4a761486a927037",
+    "tree": "76d91e5d45caa72df187bc71bb528f4dc3331072",
+    "baseline": "0fb594fe92b966e1c36cc46fb9959231d19b43c8",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "matched_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "function_label_changes": 36,
+    "fork_inventory": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "reports_sha256": {
+      "source-report.json": "dbf987fced8ba988b9bab31fc7a0a86a0fd996dbdd24c74589511e56342b18bb",
+      "source-check.json": "c40b1e005da0dd9aa8d6f1363a9d0aae4489a7308a46c8cd5990611637fc330d"
+    }
+  },
+  "actor_and_saves_with_both_open_reviews": {
+    "head": "ef324afa73ae0084d47529f5a7322053d9a99c4e",
+    "tree": "9fcc214e797e44a34a6d950f96ea2a125c30529d",
+    "baseline": "77b449105051a32128d73765cafaee27719d38c6",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "matched_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "function_label_changes": 36,
+    "fork_inventory": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "reports_sha256": {
+      "queue-report.json": "8aaae324dc4b8802e86235ea3aa026786ad7c025020f33c1332746dc03842b71",
+      "queue-check.json": "c40b1e005da0dd9aa8d6f1363a9d0aae4489a7308a46c8cd5990611637fc330d"
+    }
+  },
+  "materialized_fork_with_avetcp": {
+    "head": "92ba8383bad44724c23bd72be1a0ac23dc25158c",
+    "tree": "3eccc29a18745ac767fe5dde9f96275883f2ba29",
+    "baseline": "e2913472a9a6404e69b95a43c4a761486a927037",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "matched_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "function_label_changes": 0,
+    "fork_inventory": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "reports_sha256": {
+      "private-report.json": "dbf987fced8ba988b9bab31fc7a0a86a0fd996dbdd24c74589511e56342b18bb",
+      "private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011"
+    }
+  },
+  "ave_replay_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/network/NetDhcp.h",
+    "include/pso/network/NetTcpState.h",
+    "include/pso/network/NetworkMessageTransport.h",
+    "include/pso/network/NetworkTransport.h",
+    "include/pso/network/TLobby_803FAEA0.h",
+    "include/pso/network/TLobby_803FC178.h",
+    "include/pso/network/TLobby_803FCF44.h",
+    "include/pso/network/TLobby_80428374.h",
+    "include/pso/network/text_80421620.h",
+    "include/pso/unk/TLobby.h",
+    "src/pso/network/NetAuthSecrets.c",
+    "src/pso/network/NetDhcp.c",
+    "src/pso/network/NetDns.c",
+    "src/pso/network/NetTcp.c",
+    "src/pso/network/NetUdp.c",
+    "src/pso/network/NetworkMessageTransport.c",
+    "src/pso/network/NetworkTransport.c",
+    "src/pso/network/PppControl.c",
+    "src/pso/network/PppIpcp.c",
+    "src/pso/network/PppLcp.c",
+    "src/pso/network/PppPap.c",
+    "src/pso/network/SocketProtocolRuntime.c",
+    "src/pso/network/TLobby_803F86BC.c",
+    "src/pso/network/TLobby_803FAEA0.c",
+    "src/pso/network/TLobby_803FC178.c",
+    "src/pso/network/TLobby_803FCF44.c",
+    "src/pso/network/TLobby_804050DC.c",
+    "src/pso/network/TLobby_80428374.c",
+    "src/pso/network/text_80421620.c",
+    "src/pso/unk/TLobby_801461EC.cpp"
+  ],
+  "fork_tooling": {
+    "patch_paths": 130,
+    "retention_updates": {
+      "flush_pending_flag2__6TLobbyFv": "remove_default_route__6TLobbyFv",
+      "set_battle_flag__6TLobbyFl": "set_default_gateway__6TLobbyFl",
+      "TLobby__sub_803FF384": "ipcp_opening",
+      "dhcp_begin_discover": "DHCP_request",
+      "modem_script_wait": "go_wait",
+      "modem_script_dial": "go_dial",
+      "TLobby__sub_804293B0": "WaitNstrRecv",
+      "lbl_805C2F94": "dhcp_domain_name",
+      "lobby_connect_battle_flag": "lobby_gateway_addr",
+      "TLobby__battle_flag": "lobby_default_gateway",
+      "lbl_805D7B28": "dhcp_client_addr",
+      "lbl_805D7B2C": "dhcp_netmask",
+      "lbl_805D7B30": "dhcp_broadcast",
+      "lbl_805D7B34": "dhcp_dns1",
+      "lbl_805D7B38": "dhcp_dns2",
+      "lbl_805D7B3C": "dhcp_router",
+      "lbl_805D7B40": "dhcp_client_addr_out",
+      "lbl_805D7B44": "dhcp_netmask_out",
+      "lbl_805D7B48": "dhcp_broadcast_out",
+      "lbl_805D7B58": "dhcp_requested_lease",
+      "lobby_connect_mode": "ether_nego_mode"
+    },
+    "newly_stale_entries": 0,
+    "checks": {
+      "fork": 11,
+      "tooling": 294,
+      "host": 5
+    },
+    "evidence_sha256": {
+      "private-retention.log": "b3325169ce9d5755b2340e455b52eb7ac52edcb6fa173dc4f2486f46f713350c",
+      "private-fork-tests.log": "7886c400172272a6f2230a693dd359f8506987714e8dca0ada787f5f182c6ff5",
+      "private-tool-tests.log": "2ec84a98045fbcfcad798a88dbd285cd466612f172bf19305628008c1a6167c0",
+      "private-host-tests.log": "56f699c9d8ff5a32cc196940d8bb95e7f6799e211464315f7d77688b6ab4fccc",
+      "overlay-after.patch": "f0da9a744c37bdf835f6f9bc2da1ed577dda80b93a013742395860b7c42e0c55"
+    }
+  },
+  "runtime": {
+    "camera_cases_per_image": 8,
+    "status_window_suite_per_image": 1,
+    "status_probe_symbol_map": "The earlier validated status candidate supplies the probe aliases at the same retail addresses.",
+    "evidence_sha256": {
+      "actor-probes.log": "c11758ee2d880875a27560dff536e0fce9a9127106f9a272a196d48983759cf2",
+      "status-probes.log": "652bb7b7b80d5754c324271647bee0eafe61beffe8461f7f6abe53562a62c7ca"
+    }
+  },
+  "historical_source": {
+    "closed_paths": {
+      "src/pso/misc/TPlyPhotonChair.cpp": {
+        "owner": "src/pso/player/TPlyPhotonChair.cpp",
+        "before_blob": "dde1550406ce89c592b0739822f391bc0669c73c",
+        "fork_blob": "b8a8e2583b281558f85335e73d6d8e454d18c5e9",
+        "current_blob": "f4f3c107efe1d142e59b0525eb758d06193d1d78",
+        "changed_source": [
+          "The BML constructor takes the shared descriptor with mode 5. Both frees call the native destructor, clear their pointer, and keep the null check.",
+          "The renderer binds a typed Ginja texture list at the historical texture setter address. The constructor uses texture row 1 and model and motion rows 1 then 0 from that same BML owner.",
+          "Native C++ constructors and destructors preserve base and member construction, both animation objects, and cursor cleanup at its actual owner. The explicit vtable and deleting-destructor casts are redundant.",
+          "The original filename strings, 2-model and 2-motion descriptor, section-color array and class-name pointer retain their typed declarations. The fork moved those values into opaque external labels without a source improvement."
+        ],
+        "functions": {
+          "0x8035B058": {
+            "earlier_label": "render__15TPlyPhotonChairFv",
+            "fork_label": "render__15TPlyPhotonChairFv",
+            "current_label": "render__15TPlyPhotonChairFv",
+            "size": 348,
+            "owner": "src/pso/player/TPlyPhotonChair.cpp"
+          },
+          "0x8035B1B4": {
+            "earlier_label": "run_task__15TPlyPhotonChairFv",
+            "fork_label": "run_task__15TPlyPhotonChairFv",
+            "current_label": "run_task__15TPlyPhotonChairFv",
+            "size": 240,
+            "owner": "src/pso/player/TPlyPhotonChair.cpp"
+          },
+          "0x8035B2A4": {
+            "earlier_label": "free_static_model__15TPlyPhotonChairFv",
+            "fork_label": "free_static_model__15TPlyPhotonChairFv",
+            "current_label": "free_static_model__15TPlyPhotonChairFv",
+            "size": 56,
+            "owner": "src/pso/player/TPlyPhotonChair.cpp"
+          },
+          "0x8035B2DC": {
+            "earlier_label": "load_resources__15TPlyPhotonChairFv",
+            "fork_label": "load_resources__15TPlyPhotonChairFv",
+            "current_label": "load_resources__15TPlyPhotonChairFv",
+            "size": 100,
+            "owner": "src/pso/player/TPlyPhotonChair.cpp"
+          },
+          "0x8035B340": {
+            "earlier_label": "__dt__15TPlyPhotonChairFv",
+            "fork_label": "__dt__15TPlyPhotonChairFv",
+            "current_label": "__dt__15TPlyPhotonChairFv",
+            "size": 128,
+            "owner": "src/pso/player/TPlyPhotonChair.cpp"
+          },
+          "0x8035B3C0": {
+            "earlier_label": "TPlyPhotonChair__ct",
+            "fork_label": "TPlyPhotonChair__ct",
+            "current_label": "__ct__15TPlyPhotonChairFlP7TObject",
+            "size": 352,
+            "owner": "src/pso/player/TPlyPhotonChair.cpp"
+          },
+          "0x8035B520": {
+            "earlier_label": "TPlyPhotonChair__sub_8035B520",
+            "fork_label": "TPlyPhotonChair__sub_8035B520",
+            "current_label": "TPlyPhotonChair__sub_8035B520",
+            "size": 16,
+            "owner": "src/pso/player/TPlyPhotonChair.cpp"
+          },
+          "0x8035B530": {
+            "earlier_label": "sub_8035B530__15TPlyPhotonChairFv",
+            "fork_label": "sub_8035B530__15TPlyPhotonChairFv",
+            "current_label": "sub_8035B530__15TPlyPhotonChairFv",
+            "size": 8,
+            "owner": "src/pso/player/TPlyPhotonChair.cpp"
+          },
+          "0x8035B538": {
+            "earlier_label": "set_field90__15TPlyPhotonChairFl",
+            "fork_label": "set_field90__15TPlyPhotonChairFl",
+            "current_label": "set_field90__15TPlyPhotonChairFl",
+            "size": 8,
+            "owner": "src/pso/player/TPlyPhotonChair.cpp"
+          },
+          "0x8035B540": {
+            "earlier_label": "render__15TPlyPhotonChairFPvPv",
+            "fork_label": "render__15TPlyPhotonChairFPvPv",
+            "current_label": "render__15TPlyPhotonChairFPvPv",
+            "size": 44,
+            "owner": "src/pso/player/TPlyPhotonChair.cpp"
+          },
+          "0x8035B56C": {
+            "earlier_label": "TPlyPhotonChair__sub_8035B56C",
+            "fork_label": "TPlyPhotonChair__sub_8035B56C",
+            "current_label": "TPlyPhotonChair__sub_8035B56C",
+            "size": 8,
+            "owner": "src/pso/player/TPlyPhotonChair.cpp"
+          },
+          "0x8035B574": {
+            "earlier_label": "set_state_ready__15TPlyPhotonChairFv",
+            "fork_label": "set_state_ready__15TPlyPhotonChairFv",
+            "current_label": "set_state_ready__15TPlyPhotonChairFv",
+            "size": 12,
+            "owner": "src/pso/player/TPlyPhotonChair.cpp"
+          },
+          "0x8035B580": {
+            "earlier_label": "sync_field10_from_child__15TPlyPhotonChairFv",
+            "fork_label": "sync_field10_from_child__15TPlyPhotonChairFv",
+            "current_label": "sync_field10_from_child__15TPlyPhotonChairFv",
+            "size": 60,
+            "owner": "src/pso/player/TPlyPhotonChair.cpp"
+          },
+          "0x8035B5BC": {
+            "earlier_label": "set_field_8__15TPlyPhotonChairFl",
+            "fork_label": "set_field_8__15TPlyPhotonChairFl",
+            "current_label": "set_field_8__15TPlyPhotonChairFl",
+            "size": 8,
+            "owner": "src/pso/player/TPlyPhotonChair.cpp"
+          },
+          "0x8035B5C4": {
+            "earlier_label": "set_type__15TPlyPhotonChairFl",
+            "fork_label": "set_type__15TPlyPhotonChairFl",
+            "current_label": "set_type__15TPlyPhotonChairFl",
+            "size": 8,
+            "owner": "src/pso/player/TPlyPhotonChair.cpp"
+          },
+          "0x8035B5CC": {
+            "earlier_label": "init__13TUnk_804A7478Fv",
+            "fork_label": "init__13TUnk_804A7478Fv",
+            "current_label": "init__13TUnk_804A7478Fv",
+            "size": 68,
+            "owner": "src/pso/player/TPlyPhotonChair.cpp"
+          },
+          "0x8035B610": {
+            "earlier_label": "sub_8035B610__13TUnk_804A7478Fv",
+            "fork_label": "sub_8035B610__13TUnk_804A7478Fv",
+            "current_label": "sub_8035B610__13TUnk_804A7478Fv",
+            "size": 32,
+            "owner": "src/pso/player/TPlyPhotonChair.cpp"
+          },
+          "0x8035B630": {
+            "earlier_label": "init_parts__13TUnk_804A7488Fv",
+            "fork_label": "init_parts__13TUnk_804A7488Fv",
+            "current_label": "init_parts__13TUnk_804A7488Fv",
+            "size": 60,
+            "owner": "src/pso/player/TPlyPhotonChair.cpp"
+          },
+          "0x8035B66C": {
+            "earlier_label": "sub_8035B66C__13TUnk_804A7488Fv",
+            "fork_label": "sub_8035B66C__13TUnk_804A7488Fv",
+            "current_label": "sub_8035B66C__13TUnk_804A7488Fv",
+            "size": 12,
+            "owner": "src/pso/player/TPlyPhotonChair.cpp"
+          },
+          "0x8035B678": {
+            "earlier_label": "free_instance__15TPlyPhotonChairFv",
+            "fork_label": "free_instance__15TPlyPhotonChairFv",
+            "current_label": "free_instance__15TPlyPhotonChairFv",
+            "size": 56,
+            "owner": "src/pso/player/TPlyPhotonChair.cpp"
+          }
+        },
+        "calls": {
+          "0x8035B058": [
+            {
+              "call": "0x8035B120",
+              "target": "0x803DA798",
+              "label": "set_global_param__8TObjFishFP16GinjaTextureList"
+            }
+          ],
+          "0x8035B2A4": [
+            {
+              "call": "0x8035B2C0",
+              "target": "0x8001FE7C",
+              "label": "__dt__11BmlResourceFv"
+            }
+          ],
+          "0x8035B2DC": [
+            {
+              "call": "0x8035B310",
+              "target": "0x80020004",
+              "label": "__ct__11BmlResourceFlP21BmlResourceDescriptorPFPv_vPvPv"
+            }
+          ],
+          "0x8035B340": [
+            {
+              "call": "0x8035B370",
+              "target": "0x8013F1A8",
+              "label": "__dt__13TUnk_804A7254Fv"
+            }
+          ],
+          "0x8035B3C0": [
+            {
+              "call": "0x8035B468",
+              "target": "0x8001EDB0",
+              "label": "get_bml_texlist"
+            },
+            {
+              "call": "0x8035B478",
+              "target": "0x8001EDC4",
+              "label": "get_bml_model"
+            },
+            {
+              "call": "0x8035B490",
+              "target": "0x8001ED9C",
+              "label": "get_bml_motion"
+            },
+            {
+              "call": "0x8035B4C4",
+              "target": "0x8001EDC4",
+              "label": "get_bml_model"
+            },
+            {
+              "call": "0x8035B4DC",
+              "target": "0x8001ED9C",
+              "label": "get_bml_motion"
+            }
+          ],
+          "0x8035B678": [
+            {
+              "call": "0x8035B694",
+              "target": "0x8001FE7C",
+              "label": "__dt__11BmlResourceFv"
+            }
+          ]
+        },
+        "strings": {
+          "0x804796E0": "fs_obj_isu_meka.nj",
+          "0x804796F4": "fs_obj_lobby_isu.nj",
+          "0x80479708": "fs_obj_isu_meka.njm",
+          "0x8047971C": "fs_obj_lobby_isu.njm",
+          "0x80479734": "bm_ply_photon_chair.bml",
+          "0x8047974C": "TPlyPhotonChair"
+        },
+        "table_values": {
+          "0x804F1CA0": [
+            2152175328,
+            2152175348,
+            0
+          ],
+          "0x804F1CAC": [
+            2152175368,
+            2152175388,
+            0
+          ],
+          "0x804F1CB8": [
+            2152175412,
+            2152668320,
+            2152668332,
+            2,
+            2
+          ],
+          "0x805D4418": [
+            2152175436
+          ]
+        }
+      },
+      "include/pso/misc/TWindowSubStatusDisp.h": {
+        "owner": "include/pso/ui/window/TWindowSubStatusDisp.h",
+        "before_blob": "8310820c2c48f8df06f7c675e2554ee665a405cc",
+        "fork_blob": "ab3cbb9204bdf3b584dec81b906f675a81ae5fdc",
+        "current_blob": "727ff1e95c9c8be27eeff29a83665b6e14097824",
+        "changed_source": [
+          "The 0x60 inherited WindowBase layout replaces the old duplicate prefix. The status window retains the native constructor and PageIndicator pointer at 0x68. The page, scales, and total size match their layout assertions.",
+          "The chart remains at vt4. The old get_record_slot helper was inline, and vt4 still maps the two base records to 0/1 or 2/3 according to page == 2.",
+          "The title draw method belongs to TAdTitleTexGC and the layout entry is a native TUnk_804CF998 constructor with an s32 argument. The fork's status-member declarations would use a wrong owner and argument type.",
+          "The deleted status member declarations map to the native checkbox, PageIndicator, keyboard base, info menu, icon row, scroll bar and shop owners. The status destructor keeps its native C++ form.",
+          "The four render and allocation utilities retain their live declarations and original addresses. The fork exposes equivalent helper bodies under different labels or declarations. Current callers keep the established working interfaces."
+        ],
+        "functions": {
+          "0x800FC3E0": {
+            "earlier_label": "render_forward__20TWindowSubStatusDispFv",
+            "fork_label": "begin_small_font_draw",
+            "current_label": "render_forward__20TWindowSubStatusDispFv",
+            "size": 32,
+            "owner": "src/pso/ui/font/TFontSmallHelp.cpp"
+          },
+          "0x800FC400": {
+            "earlier_label": "begin_render__20TWindowSubStatusDispFv",
+            "fork_label": "bind_small_font_texture_list",
+            "current_label": "begin_render__20TWindowSubStatusDispFv",
+            "size": 36,
+            "owner": "src/pso/ui/font/TFontSmallHelp.cpp"
+          },
+          "0x80145508": {
+            "earlier_label": "end_render_forward__20TWindowSubStatusDispFv",
+            "fork_label": "end_render_forward__20TWindowSubStatusDispFPv",
+            "current_label": "end_render_forward__20TWindowSubStatusDispFv",
+            "size": 32,
+            "owner": "src/pso/ui/font/TNECFontEORFunction.cpp"
+          },
+          "0x80248C6C": {
+            "earlier_label": "render_status_and_children__20TWindowSubStatusDispFv",
+            "fork_label": "render__13TUnk_804CE7E8Fv",
+            "current_label": "render__15TWindowCheckBoxFv",
+            "size": 136,
+            "owner": "src/pso/ui/window/TWindowSubStatusDisp_80248BE8.cpp"
+          },
+          "0x80248CF4": {
+            "earlier_label": "handle_input__20TWindowSubStatusDispFv",
+            "fork_label": "run_task__13TUnk_804CE7E8Fv",
+            "current_label": "run_task__15TWindowCheckBoxFv",
+            "size": 696,
+            "owner": "src/pso/ui/window/TWindowSubStatusDisp_80248BE8.cpp"
+          },
+          "0x8024F688": {
+            "earlier_label": "get_type__20TWindowSubStatusDispFv",
+            "fork_label": "get_type__13PageIndicatorFv",
+            "current_label": "get_type__13PageIndicatorFv",
+            "size": 8,
+            "owner": "src/pso/ui/window/PageIndicator.cpp"
+          },
+          "0x8024FBA8": {
+            "earlier_label": "set_input_mode__20TWindowSubStatusDispFUc",
+            "fork_label": "set_input_mode__19TWindowKeyBoardBaseFl",
+            "current_label": "set_input_mode__19TWindowKeyBoardBaseFl",
+            "size": 8,
+            "owner": "src/pso/ui/window/TWindowSubStatusDisp_8024FBA8.cpp"
+          },
+          "0x80258100": {
+            "earlier_label": "init_layout_entry_rect__20TWindowSubStatusDispFPUcl",
+            "fork_label": "init_layout_entry_rect__20TWindowSubStatusDispFPUcs",
+            "current_label": "__ct__13TUnk_804CF998FPUcl",
+            "size": 100,
+            "owner": "src/pso/unk/TUnk_804CF998.cpp"
+          },
+          "0x80268310": {
+            "earlier_label": "destroy_item_list_resources__20TWindowSubStatusDispFs",
+            "fork_label": "__dt__19TWindowMenuIconLineFv",
+            "current_label": "__dt__19TWindowMenuIconLineFv",
+            "size": 116,
+            "owner": "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp"
+          },
+          "0x80268D08": {
+            "earlier_label": "handle_choice_input__20TWindowSubStatusDispFv",
+            "fork_label": "run_task__13TUnk_804D0658Fv",
+            "current_label": "run_task__21TWindowMenuInfomationFv",
+            "size": 648,
+            "owner": "src/pso/ui/window/TWindowChoiceSetting.cpp"
+          },
+          "0x8026D9C0": {
+            "earlier_label": "increment_counter__20TWindowSubStatusDispFv",
+            "fork_label": "fn_8026D9C0",
+            "current_label": "increment_counter__15WindowScrollBarFv",
+            "size": 16,
+            "owner": "src/pso/ui/window/TWindowSubStatusDisp_8026D740.cpp"
+          },
+          "0x8026D9D0": {
+            "earlier_label": "destroy_allocation__20TWindowSubStatusDispFls",
+            "fork_label": "fn_8026D9D0",
+            "current_label": "destroy_allocation__20TWindowSubStatusDispFls",
+            "size": 60,
+            "owner": "src/pso/ui/window/TWindowSubStatusDisp_8026D740.cpp"
+          },
+          "0x8026DA0C": {
+            "earlier_label": "reset_selection__20TWindowSubStatusDispFv",
+            "fork_label": "__ct__15Scroll_8026D790FPv",
+            "current_label": "__ct__15WindowScrollBarFPv",
+            "size": 56,
+            "owner": "src/pso/ui/window/TWindowSubStatusDisp_8026D740.cpp"
+          },
+          "0x8026E0B8": {
+            "earlier_label": "deleting_dtor__20TWindowSubStatusDispFs",
+            "fork_label": "__dt__13TUnk_804D0948Fv",
+            "current_label": "__dt__11TWindowShopFv",
+            "size": 88,
+            "owner": "src/pso/ui/window/TWindowShop.cpp"
+          },
+          "0x8026E110": {
+            "earlier_label": "ct_helper__20TWindowSubStatusDispFllll",
+            "fork_label": "__ct__13TUnk_804D0948FPvlUlPUc",
+            "current_label": "__ct__11TWindowShopFPUclUlPUc",
+            "size": 88,
+            "owner": "src/pso/ui/window/TWindowShop.cpp"
+          },
+          "0x8026E168": {
+            "earlier_label": "construct_item_list__20TWindowSubStatusDispFlls",
+            "fork_label": "__ct__13TUnk_804D0948FlUll",
+            "current_label": "__ct__11TWindowShopFlUll",
+            "size": 108,
+            "owner": "src/pso/ui/window/TWindowShop.cpp"
+          },
+          "0x8027FF6C": {
+            "earlier_label": "vt4__20TWindowSubStatusDispFv",
+            "fork_label": "init_challenge_records_page__20TWindowSubStatusDispFv",
+            "current_label": "vt4__20TWindowSubStatusDispFv",
+            "size": 1348,
+            "owner": "src/pso/ui/window/TWindowSubStatusDisp_8027FD88.cpp"
+          },
+          "0x802816F8": {
+            "earlier_label": "dt__20TWindowSubStatusDispFs",
+            "fork_label": "__dt__20TWindowSubStatusDispFv",
+            "current_label": "__dt__20TWindowSubStatusDispFv",
+            "size": 104,
+            "owner": "src/pso/ui/window/TWindowSubStatusDisp_8027FD88.cpp"
+          },
+          "0x80281760": {
+            "earlier_label": "TWindowSubStatusDisp__ct",
+            "fork_label": "__ct__20TWindowSubStatusDispFl",
+            "current_label": "__ct__20TWindowSubStatusDispFl",
+            "size": 180,
+            "owner": "src/pso/ui/window/TWindowSubStatusDisp_8027FD88.cpp"
+          },
+          "0x802A4DE8": {
+            "earlier_label": "render_status_pair__13TAdTitleTexGCFl",
+            "fork_label": "render_status_pair__20TWindowSubStatusDispFl",
+            "current_label": "render_status_pair__13TAdTitleTexGCFl",
+            "size": 132,
+            "owner": "src/pso/ui/frontend/TAdTitleTexGC.cpp"
+          }
+        }
+      }
+    },
+    "remaining": 114,
+    "automated_comparison": {
+      "rows": 116,
+      "partial_token_matches": 53,
+      "automatic_closures": 0,
+      "evidence_sha256": {
+        "all-owner-token-coverage.json": "31161e23c11411db6fc3893338cc9232db4b3c4fa437aaea73e4e9b4f5005a12",
+        "current-exact-merge.json": "5c2afd1a8022206b83c1b1e37714303337f48cafef83b334a5d49b86bf9ee728"
+      }
+    }
+  }
+}

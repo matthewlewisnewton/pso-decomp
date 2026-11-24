@@ -1,10 +1,11 @@
-#include "pso/misc/ParticleFactory.h"
+#define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/effect/TEffHit.h"
-#include "pso/object/TObject_80019A50.h"
-#include "pso/unk/text_80087278.h"
+#include "pso/system/task/TObject_80019A50.h"
 #include "pso/system/vector.h"
+#include "pso/system/task/TObject.h"
 #pragma readonly_strings on
-const char* TEffHit__class_name = "TEffHit";
+const char *TEffHit::class_name = "TEffHit";
 
 void TEffHit::run_task() {
     Vec shifted_position;
@@ -30,7 +31,7 @@ void TEffHit::run_task() {
     case 1:
         age++;
         if (age > 60) {
-            queue_destruction__7TObjectFv(this);
+            queue_destruction();
         }
         return;
     }
@@ -39,7 +40,7 @@ void TEffHit::run_task() {
 TEffHit::~TEffHit() {}
 
 TEffHit::TEffHit(const Vec* initial_position) : TEffect() {
-    m_name = TEffHit__class_name;
+    m_name = class_name;
     VecCopy(&position, initial_position);
     state = 0;
 }

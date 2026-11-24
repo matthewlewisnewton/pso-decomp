@@ -1,0 +1,329 @@
+{
+  "upstream": "6aee940ecaf4775ef71659a74534127a49cf9412",
+  "source": "98865a1351252050ca41f19ccfc3bd1d247f812b",
+  "source_base": "34ad1fb875f86d39a84bfd1ca5c5c377f6f19824",
+  "review": "a27e2abd333929138af541047de7983200e679ac",
+  "review_base": "6077e29d1cedfbbba0565de112f08aa67bbe6270",
+  "tree": "fc36d0fe915cc379daafcce14a7bdb7080cf88e1",
+  "paths": 109,
+  "donor_base": "51dcfa48517072596f00ff88b6705642a0caf4dc",
+  "donor_head": "0883eb0aa9b0371bdbb18c429af0bf98025993ba",
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "original_data_ranges": 90,
+  "original_data_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "coverage_losses": {
+    "regressions": 0,
+    "data_regressions": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0,
+    "data_coverage_lost": 0,
+    "padding_coverage_lost": 0
+  },
+  "linker_labels": [
+    {
+      "module": "psov3",
+      "address": "0x800825B4",
+      "before": "__ct__12TEffCliticalFPv",
+      "after": "__ct__12TEffCliticalFPC3Vec"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80082634",
+      "before": "create__12TEffCliticalFv",
+      "after": "create__12TEffCliticalFPC3Vec"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80152C48",
+      "before": "finalize_and_send_packet__10TNpcPlayerFv",
+      "after": "finalize_and_send_packet__20G_CastTechnique_6x47Fv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80152C8C",
+      "before": "byteswap_positions__10TNpcPlayerFv",
+      "after": "byteswap_positions__20G_CastTechnique_6x47Fv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80152CE8",
+      "before": "get_6x47_cast_packet_size__FPUc",
+      "after": "get_6x47_cast_packet_size__FP20G_CastTechnique_6x47"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80152D04",
+      "before": "init_cast_technique_cmd__10TNpcPlayerFv",
+      "after": "init_cast_technique_cmd__20G_CastTechnique_6x47Fv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80152EB4",
+      "before": "byteswap_pos__10TNpcPlayerFv",
+      "after": "byteswap_pos__15TechniqueTargetFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801B5200",
+      "before": "send_code_45_1__10TObjPlayerFl",
+      "after": "send_code_45_1__10TObjPlayerFP10TObjPlayer"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801BFD90",
+      "before": "init_subobjects__10TObjPlayerFv",
+      "after": "initialize__16PlayerScaleStateFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801BFDD4",
+      "before": "init_player_scale_state__FP10TObjPlayer",
+      "after": "reset__16PlayerScaleStateFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801BFE1C",
+      "before": "set_speed__10TObjPlayerFf",
+      "after": "set_scalar__16PlayerScaleStateFf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801BFE40",
+      "before": "set_scale_xyz__10TObjPlayerFf",
+      "after": "set_model_scale__16PlayerScaleStateFf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801BFE50",
+      "before": "init_pair__10TObjPlayerFv",
+      "after": "clear__24PlayerScaleCameraOffsetsFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801C011C",
+      "before": "set_technique_id__10TObjPlayerFs",
+      "after": "set_technique_id__18TechniqueCastStateFs"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801C6A14",
+      "before": "clear_shrink_flag__10TObjPlayerFv",
+      "after": "clear_shrink_flag__16PlayerScaleStateFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801C6B1C",
+      "before": "handle_6x87_shrink__10TObjPlayerFf",
+      "after": "apply_shrink__16PlayerScaleStateFf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801C6FF0",
+      "before": "get_obj_type__10TObjPlayerFv",
+      "after": "get_actor_id__16PlayerScaleStateFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801C72B4",
+      "before": "restore_shrunken_font__10TObjPlayerFv",
+      "after": "copy_from__23PlayerRestoreSizePacketFRC23PlayerRestoreSizePacket"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801C72E4",
+      "before": "init_6x88_packet__10TObjPlayerFv",
+      "after": "initialize__23PlayerRestoreSizePacketFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801C72F8",
+      "before": "send_font_update_60__10TObjPlayerFv",
+      "after": "send__23PlayerRestoreSizePacketFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801C732C",
+      "before": "bswap_shrink__10TObjPlayerFv",
+      "after": "byte_swap__18PlayerShrinkPacketFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801C7360",
+      "before": "TObjPlayer__sub_801C7360",
+      "after": "copy_from__18PlayerShrinkPacketFRC18PlayerShrinkPacket"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801C739C",
+      "before": "init_shrink_effect__10TObjPlayerFv",
+      "after": "initialize__18PlayerShrinkPacketFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801C73B8",
+      "before": "update_and_send_60__10TObjPlayerFv",
+      "after": "send__18PlayerShrinkPacketFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801CC7E4",
+      "before": "copy_tech_params__10TObjPlayerFPvPv",
+      "after": "copy_tech_params__FP15TechniqueTargetP15TechniqueTarget"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801D2C7C",
+      "before": "set_technique_id__10TObjPlayerFUc",
+      "after": "set_technique_id__18TechniqueCastStateFUc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801D2CCC",
+      "before": "get_technique_data__10TObjPlayerFPv",
+      "after": "get_technique_data__18TechniqueCastStateFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801D95B8",
+      "before": "get_section_clamped__10TObjPlayerFv",
+      "after": "get_section_clamped__18TechniqueCastStateFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801D95DC",
+      "before": "get_or_init_field_4__10TObjPlayerFv",
+      "after": "get_or_init_field_4__18TechniqueCastStateFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801D968C",
+      "before": "get_valid_technique__10TObjPlayerFv",
+      "after": "get_valid_technique__18TechniqueCastStateFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801D96CC",
+      "before": "get_castable_technique_level__10TObjPlayerFv",
+      "after": "get_castable_technique_level__18TechniqueCastStateFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801D9A44",
+      "before": "check_technique_level__10TObjPlayerFllUc",
+      "after": "check_technique_level__18TechniqueCastStateFlUc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801D9B18",
+      "before": "set_tech_level__10TObjPlayerFs",
+      "after": "set_tech_level__18TechniqueCastStateFs"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80230A98",
+      "before": "create__11TTecGiBartaFPvPvPvl",
+      "after": "create__11TTecGiBartaFPvP3VecP3Vecl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80230AF0",
+      "before": "create_ex__11TTecGiBartaFPvPvll",
+      "after": "create_ex__11TTecGiBartaFPvP3Vecll"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802389E0",
+      "before": "create__10TTecRaFoieFPvPvl",
+      "after": "create__10TTecRaFoieFP7TObjectP3VecP3Vecl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8023DA10",
+      "before": "construct_bolt_effect__9TTecZondeFPUcPUcPUcllff",
+      "after": "construct_bolt_effect__12TTecZondeEffFP7TObjectPC3VecPC3Vecllff"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8036BDA0",
+      "before": "validate_6x47_cast_technique__FPUc",
+      "after": "validate_6x47_cast_technique__FP20G_CastTechnique_6x47"
+    }
+  ],
+  "runtime": {
+    "targets": {
+      "results": [
+        "PsoV3.dol: state setters, target records, packet size, send bytes and validation passed.",
+        "psov3.dol: state setters, target records, packet size, send bytes and validation passed."
+      ],
+      "log_sha256": "ed4a143cef01495082a92a9fb3242f76ae3ee64fcfec48acdbbbbbc8f7ebd01c"
+    },
+    "effects": {
+      "results": [
+        "PsoV3.dol: resource records, lightning and Gi-Barta construction, and band sound passed.",
+        "psov3.dol: resource records, lightning and Gi-Barta construction, and band sound passed."
+      ],
+      "log_sha256": "9e836f74fdef940593effbe85f2db931c87e8c495333780a0ac24c8eba2e72ca"
+    },
+    "owners": {
+      "results": [
+        "PsoV3.dol: 22 technique cases passed.",
+        "psov3.dol: 22 technique cases passed."
+      ],
+      "log_sha256": "aee306f5c1ff843b58dd158f5da36e53cd666a36d28d8e4b5669153f35662bc8"
+    },
+    "hold": {
+      "results": [
+        "PsoV3.dol: hold packet halfwords, X and Z, squared radius, null target, and state gate passed.",
+        "psov3.dol: hold packet halfwords, X and Z, squared radius, null target, and state gate passed."
+      ],
+      "log_sha256": "1216d38ea2adb3453717ef62471e51709dcdc7f4d3db6e5b905e6378b4f30642"
+    },
+    "scale": {
+      "results": [
+        "PsoV3.dol: scale state, position access, camera offsets, wire packets, and shrink and restore gates passed.",
+        "psov3.dol: scale state, position access, camera offsets, wire packets, and shrink and restore gates passed."
+      ],
+      "log_sha256": "c57fe0f335e9f0192b7f5a88822c7e9add0627dcc776857e795349d09a3c5cf5"
+    },
+    "critical": {
+      "results": [
+        "PsoV3.dol: critical-hit allocation, state, particles, and texture frame passed.",
+        "psov3.dol: critical-hit allocation, state, particles, and texture frame passed."
+      ],
+      "log_sha256": "3d9fe7a19fd9c9420e82e31764ba476328320c4ee1678e16e7f167fd7ef3c683"
+    }
+  },
+  "probe_symbol_alias": "construct_actor_light__9TObjLightFlllllfffl = .text:0x80235E9C; // type:function size:0xC4",
+  "probe_symbol_target": "__ct__13TUnk_804CCAA8FfffP8NJS_ARGBP3VeclP8TObjBaseP7TObject = .text:0x80235E9C; // type:function size:0xC4",
+  "review_attribution": "matthewlewisnewton <19641807+matthewlewisnewton@users.noreply.github.com>",
+  "remaining_replay_previews": {
+    "boss-and-enemy-actors": {
+      "paths": 255,
+      "conflicting_paths": 193
+    },
+    "enemy-lifecycle": {
+      "paths": 64,
+      "conflicting_paths": 54
+    },
+    "population": {
+      "paths": 108,
+      "conflicting_paths": 87
+    },
+    "olga-flow": {
+      "paths": 32,
+      "conflicting_paths": 21
+    }
+  },
+  "replay_decisions": [
+    "Use the existing Vec camera fields in the recovered player scale camera record.",
+    "Keep the current Dark Falz, Ill Gill, Sinow, Hamon, and Gyaranzo owners.",
+    "Use the current native light constructor with the original static color and direction records.",
+    "Share the existing band pitch logic and type effect factories, packets and state receivers."
+  ]
+}

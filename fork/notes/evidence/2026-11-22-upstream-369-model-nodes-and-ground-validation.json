@@ -1,0 +1,211 @@
+{
+  "upstream": "1698caaa1941302ed6dfc60d886d041bae272e0e",
+  "source_base": "5d6d72e42e2faf0822f14837733ed14ce67a1142",
+  "model_source": "d26db618a18bb0b9a7dd84891eed1f933431d53a",
+  "source": "e4f26f2957b0b31d392445510b423b441f6d5027",
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "original_data_bytes": 1147,
+  "original_data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "model_hierarchy": {
+    "paths": [
+      "config/GPOE8P/psov3/config.yml",
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/boss/dragon/TBoss1Dragon.h",
+      "include/pso/system/NinjaTypes.h",
+      "src/pso/boss/barbaray/TBoss7TentacleNeedle.cpp",
+      "src/pso/boss/derolle/TBoss2Tentacle.cpp",
+      "src/pso/boss/dragon/TBoss1Dragon.cpp",
+      "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+      "src/pso/object/door/TODoorAncient05.cpp",
+      "src/pso/object/door/TODoorAncient06.cpp",
+      "src/pso/object/door/TODoorAncient07.cpp"
+    ],
+    "coverage_losses": {
+      "regressions": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0
+    },
+    "linker_labels": [
+      {
+        "module": "psov3",
+        "address": "0x8002AC4C",
+        "before": "cloneModelHierarchy__12TBoss1DragonFP15DragonModelNodeP15DragonModelNodePv",
+        "after": "cloneModelHierarchy__12TBoss1DragonFP10NJS_OBJECTP10NJS_OBJECTPv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8002AD54",
+        "before": "countModelNodes__12TBoss1DragonFP15DragonModelNode",
+        "after": "countModelNodes__12TBoss1DragonFP10NJS_OBJECT"
+      }
+    ],
+    "matching_note": "copy_model_node disables scheduling locally to preserve the retail load and store order.",
+    "copy_and_clone": {
+      "log_sha256": "30d0680ae5326b82e2ee33b05c80e509039fbe8b0537ccbd48713a6f5caa11c0",
+      "observations": [
+        "PsoV3.dol: model node copy, in-place copy, count, and Dragon and Gol Dragon hierarchy cloning passed",
+        "psov3.dol: model node copy, in-place copy, count, and Dragon and Gol Dragon hierarchy cloning passed"
+      ]
+    },
+    "traversal": {
+      "log_sha256": "0bfc1969d1fdd0a8b174de9f174eb84435376c08737f112a6fe2895000cf57d9",
+      "observations": [
+        "PsoV3.dol: child-before-sibling traversal and missing-node behavior passed",
+        "psov3.dol: child-before-sibling traversal and missing-node behavior passed"
+      ]
+    }
+  },
+  "actor_ground": {
+    "paths": [
+      "include/pso/map/CsnGroundQuery.h",
+      "include/pso/object/base/TObjMotion.h",
+      "include/pso/player/TObjPlayer_801542CC.h",
+      "src/pso/enemy/dd/TObjEneDD.cpp",
+      "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+      "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+      "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+      "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+      "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+      "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+      "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+      "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+      "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+      "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+      "src/pso/enemy/recon/TObjEneRecon.cpp",
+      "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+      "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+      "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+      "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp",
+      "src/pso/object/ambient/TObjGrass.cpp",
+      "src/pso/player/TObjPlayer_80011014.cpp",
+      "src/pso/player/TObjPlayer_801542CC.cpp",
+      "src/pso/player/TObjPlayer_801AF2F0.cpp"
+    ],
+    "coverage_losses": {
+      "regressions": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0
+    },
+    "linker_labels": [],
+    "redundant_cache_pointer_casts_removed": 28,
+    "ground_query": {
+      "log_sha256": "ad2e7b185978574e7aab7b0763dc3166525c75b4064024b8b39c5392ebf2ef9f",
+      "observations": [
+        "PsoV3.dol: all 16 cache, room-mask, hit and optional-normal combinations plus cache reset passed",
+        "psov3.dol: all 16 cache, room-mask, hit and optional-normal combinations plus cache reset passed"
+      ]
+    },
+    "actor_motion": {
+      "log_sha256": "6be8cbdf2c03bbbcf1517cf8a27b63af287318ffc87cb515fac1d6aada307ca3",
+      "observations": [
+        "PsoV3.dol: ground-hit masks, contact propagation, aliasing, wall destinations and derived flags passed.",
+        "psov3.dol: ground-hit masks, contact propagation, aliasing, wall destinations and derived flags passed."
+      ]
+    }
+  },
+  "source_quality": {
+    "base": 161765,
+    "head": 161745,
+    "added": 3,
+    "removed": 23
+  },
+  "historical_audit": {
+    "open_before": 260,
+    "open_after": 259,
+    "resolved": [
+      {
+        "path": "src/pso/player/TObjPlayer_803E1A58.cpp",
+        "historical_path": "src/pso/player/TObjPlayer_803E1A58.cpp",
+        "original_to_current": {
+          "xyz_distance": {
+            "name": "xyz_distance",
+            "address": "0x803e1a58",
+            "size": 196
+          },
+          "calc_bounds_min_max__10TObjPlayerFPvPvPv": {
+            "name": "calc_box_bounds",
+            "address": "0x803e1b1c",
+            "size": 192
+          },
+          "calc_bounds__10TObjPlayerFPUcPUc": {
+            "name": "calc_sphere_bounds",
+            "address": "0x803e1bdc",
+            "size": 100
+          },
+          "lbl_805E1038": {
+            "name": "lbl_805E1038",
+            "address": "0x805e1038",
+            "size": 4
+          },
+          "lbl_805E103C": {
+            "name": "lbl_805E103C",
+            "address": "0x805e103c",
+            "size": 4
+          },
+          "lbl_805E1040": {
+            "name": "lbl_805E1040",
+            "address": "0x805e1040",
+            "size": 8
+          },
+          "lbl_805E1048": {
+            "name": "lbl_805E1048",
+            "address": "0x805e1048",
+            "size": 8
+          }
+        },
+        "native_callers": true,
+        "exact_functions": 3,
+        "retail_and_fork_probe": {
+          "log_sha256": "80cf6f70f00565cd927df958a4dab7b1e46f7348b0da831409ae5cdd224e21a6",
+          "observations": [
+            "PsoV3.dol: distance threshold, box and sphere bounds, and impact body selection and output aliasing passed",
+            "psov3.dol: distance threshold, box and sphere bounds, and impact body selection and output aliasing passed"
+          ]
+        }
+      }
+    ]
+  },
+  "fork_workspace": {
+    "parent": "e4f26f2957b0b31d392445510b423b441f6d5027",
+    "previous_workspace": "26922e799e16a738f75ba6ad6297885bf2a4f1d1",
+    "overlay_paths": 130,
+    "retained_linker_labels": 26965,
+    "updated_linker_labels": {
+      "cloneModelHierarchy__12TBoss1DragonFP15DragonModelNodeP15DragonModelNodePv": "cloneModelHierarchy__12TBoss1DragonFP10NJS_OBJECTP10NJS_OBJECTPv",
+      "countModelNodes__12TBoss1DragonFP15DragonModelNode": "countModelNodes__12TBoss1DragonFP10NJS_OBJECT"
+    },
+    "materialized_tree_before_notes_update": "bd1142c67d020620ddaa39dd28c8c55f0aaff2fe",
+    "archive_sha256": "1c95f6e50e72e31b28b0c7af49d8e6dff4b3358e78b6b8b99a69e412350d52f2",
+    "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "coverage_check": "pass",
+    "tests": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    },
+    "test_log_sha256": {
+      "fork": "faf3d9508c9dcbaa295c776c7a2de88342a458cc4cdf0ac9c2d3d7d8948333e5",
+      "tool": "76e0c3e8b30a7c791d36cb17482fcf5c4a8d040430fb0e97ec5731b8f48f1c4c",
+      "host": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    },
+    "host_executables": [
+      "vector_math_fallbacks",
+      "item_factory_callbacks",
+      "loader_transfer",
+      "ginja_parameter_callbacks",
+      "exi_ethernet_fallbacks"
+    ]
+  }
+}

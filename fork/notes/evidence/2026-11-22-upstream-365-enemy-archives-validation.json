@@ -1,0 +1,188 @@
+{
+  "source": "1ed779d8c4391f2361943e2d72a6319f0466642b",
+  "previous_source": "544f0644c989e4791da2a7cfad7e6312ad45c88c",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/epsilon/TObjEneEpsilonGuard.h",
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp",
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+    "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+    "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+    "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+    "src/pso/unk/text_803626A8.cpp"
+  ],
+  "combined_paths_from_upstream": 1328,
+  "validation": {
+    "source": {
+      "baseline": "544f0644c989e4791da2a7cfad7e6312ad45c88c",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x803626A8",
+          "before": "sub_803626A8__19TObjEneEpsilonGuardFll",
+          "after": "sub_803626A8__19TObjEneEpsilonGuardFP3Vecl"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "bea3ff7eaea290ba5236b50ebc62b5a2f95c8d92a7c78013b7173c004405342d",
+      "report_sha256": "f940fdffa65e9ea8ab6842210d722a6be7a90e35374d4eb0585d83bb0a46fca6"
+    },
+    "layer": {
+      "baseline": "1ed779d8c4391f2361943e2d72a6319f0466642b",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "f940fdffa65e9ea8ab6842210d722a6be7a90e35374d4eb0585d83bb0a46fca6"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "e21bca317f54946a489e640baea3b720d9d64246931783a4c53903a7ec8bbd4b"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "461925d5209a7845247027fac7cf5cfa3f3b398fc25be189c45b38ce2877609b"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "exact_units": {
+    "pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68": 39,
+    "pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8": 55,
+    "pso/unk/text_803626A8": 5,
+    "pso/enemy/gee/TObjEneMe1Gee": 102,
+    "pso/enemy/gibbles/TObjEneGibbles": 54,
+    "pso/enemy/mericarol/TObjEneBm9Mericarol": 42,
+    "pso/ui/frontend/TAdPlyPltAnimGC": 10,
+    "pso/ui/frontend/TAdAgreementBaseGC": 11,
+    "pso/ui/frontend/TAdEp3Exist": 16,
+    "pso/ui/charcreate/TChCrLoadReq": 10,
+    "pso/unk/TUnk_804C2298": 11
+  },
+  "runtime": {
+    "images": [
+      "retail",
+      "source",
+      "materialized fork"
+    ],
+    "checks": {
+      "archives": {
+        "probe_sha256": "1c5d74bc67906fb54300e64ef841f177266d0b66c7cbcb693448a879a1415546",
+        "log_sha256": "d3a090b801472179b75deaed05280fe36124aab71f3a8e156027e9c7a9c9c65b"
+      },
+      "panarms-contacts": {
+        "probe_sha256": "275f7e2eae75d858c354ef563e4a6d85ef8395a2e0241cf1802b75fb9d030c55",
+        "log_sha256": "9b1c1691a89bef7bc8b3b89b9bebe6f9d19b1584054cb1cc20eefcae3f60e421"
+      }
+    }
+  },
+  "historical": {
+    "closed": {
+      "2296": {
+        "path": "src/pso/ui/frontend/TAdPlyPltAnimGC.cpp",
+        "reason": "The plate animation binds the native Ginja texture list directly and retains all six literal values, including the depth, midpoint and alpha calculations.",
+        "constants": {
+          "0x805dffc8": 0.99,
+          "0x805dffcc": 0.001,
+          "0x805dffd0": 0.5,
+          "0x805dffd4": 1.0,
+          "0x805dffd8": 255.0,
+          "0x805dffdc": 0.0
+        }
+      },
+      "2559": {
+        "path": "src/pso/ui/frontend/TAdAgreementBaseGC.cpp",
+        "reason": "Agreement drawing accepts the borrowed window and frame context, calls the native frame method, and closes through the window. The renderer and update use the original five float constants.",
+        "constants": {
+          "0x805df700": 320.0,
+          "0x805df704": 394.0,
+          "0x805df708": 20.0,
+          "0x805df70c": 0.8,
+          "0x805df710": 4.5
+        }
+      },
+      "2634": {
+        "path": "src/pso/ui/frontend/TAdEp3Exist.cpp",
+        "reason": "The Episode III notice passes its native callback, retains the named cursor bounds and object name, and keeps its frame, text and 4.5-frame transition constants.",
+        "constants": {
+          "0x805e0440": 320.0,
+          "0x805e0444": 394.0,
+          "0x805e0448": 0.8,
+          "0x805e044c": 4.5
+        }
+      },
+      "2644": {
+        "path": "src/pso/ui/charcreate/TChCrLoadReq.cpp",
+        "reason": "The native character load request uses the original name pointer and takes its slot from the typed inputs record. The buffer reset has the shared one-argument signature.",
+        "constants": {}
+      },
+      "2730": {
+        "path": "src/pso/unk/TUnk_804C2298.cpp",
+        "reason": "The current save check uses the typed system-file task, appends the original message with mode 1, closes the same window and retains the 7.5-frame limit.",
+        "constants": {
+          "0x805dc0a8": 7.5
+        }
+      }
+    },
+    "scoped": {
+      "587": "Gibbles stores and uses its battle stat and object pointers in the native types throughout resource loading and construction.",
+      "590": "Gee shares the three typed battle registration tables with its constructor. The animation binding uses the existing model and motion records.",
+      "718": "The shared Epsilon archive, both breakup pointers, and all nine polygon byte pointers use their real types. The body draw passes its native BML node to the renderer.",
+      "934": "Mericarol passes its typed phase registration outputs to the actor constructor. The shared animation binding draws its motion and model data directly from BML.",
+      "987": "Mericarol passes its typed phase registration outputs to the actor constructor. The shared animation binding draws its motion and model data directly from BML.",
+      "1058": "Mericarol passes its typed phase registration outputs to the actor constructor. The shared animation binding draws its motion and model data directly from BML."
+    },
+    "open_rows": 275,
+    "comparison_sha256": "622196a09510139fba1af9ce4564667aa5d5d63ceea8c78287e3805708d62f1d"
+  },
+  "fork_workspace": {
+    "trial": "dfff08b52cc9fedb5a516ce64db97adbd76eefe4",
+    "overlay_paths": 130,
+    "force_active_count": 27033,
+    "keep_list_updates": [],
+    "materialized_tree": "8aed12f492db45b97eb780283b0a8013ea290ca9",
+    "archive_sha256": "895a91481a1387fb129edf011801890f39bee3989b28334b879cf6cda22cff2a"
+  }
+}

@@ -3,6 +3,9 @@
 
 #include "types.h"
 
+struct TWindowMessage;
+struct TWindowMessageQuest;
+
 enum quest_suspend_reason {
     QST_RUNNING                = 0,
     QST_SUSPEND_SYNC           = 1,  // yield until next frame
@@ -19,22 +22,11 @@ enum quest_suspend_reason {
     QST_WAIT_ITEM_CHOICE       = 12, // item id to a register, -1 on cancel
 };
 
-// Argument opcodes determine each slot's active alternative. In particular,
-// arg_pushs writes a string, and filename/text consumers read that alternative.
-union QuestVmArgument {
-    s32 integer;
-    const char *string;
-
-    operator s32() const { return integer; }
-};
-
-typedef char QuestVmArgumentSize[sizeof(QuestVmArgument) == 4 ? 1 : -1];
-
 struct QuestVmContext {
     u8 *code;
     s32 *function_table;
     s32 *registers;
-    void *message_window;
+    TWindowMessageQuest *message_window;
     void *list_window;
     u8 result_register;
     s32 unk18;
@@ -44,7 +36,7 @@ struct QuestVmContext {
     s32 unk28;
     s32 message_speaker;
     s32 arg_count;
-    QuestVmArgument args[8];
+    saddr args[8];
     s32 call_stack[64];
     u8 unk154;
     u8 unk155;
@@ -69,19 +61,19 @@ extern "C" {
 extern u8 *qst_code;
 extern s32 *qst_function_table;
 // Byte offset of the next instruction in qst_code.
-extern s32 qst_pc;
+extern saddr qst_pc;
 extern s32 qst_call_stack[64];
 extern s32 qst_call_stack_depth;
 // r0-r255 / f0-f255 quest VM register table
 extern s32 *qst_registers;
-extern QuestVmArgument qst_args[8];
+extern saddr qst_args[8];
 extern s32 qst_arg_count;
 extern quest_suspend_reason qst_suspend_reason;
 // register a finished wait writes its result into
 extern u8 qst_result_register;
 
-extern void *qst_message_window;
-extern void *qst_message_window_qb;
+extern TWindowMessageQuest *qst_message_window;
+extern TWindowMessage *qst_message_window_qb;
 extern s32 qst_message_speaker;
 extern void *qst_list_window;
 extern void *qst_item_name_entry;

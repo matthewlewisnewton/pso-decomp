@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "pso/item/TItem.h"
-#include "pso/system/FlagWord.h"
+#include "pso/system/data/FlagWord.h"
 #include "pso/player/PlayerAttackParams.h"
 
 class TItemHeapObject;
@@ -90,13 +90,13 @@ struct TItemEquipBase : public TItem {
     s16 model_resource_id;           // TItemLoad resource, -1 while none
     TItemHeapObject *effect_objects; // parent of the objects the equip effects create
     FlagWord effect_flags;
-    void *model_motion;              // drawn with draw_model_motion
+    NJS_MOTION *model_motion;              // drawn with draw_model_motion
     void *model_data[2];
     NJS_OBJECT *second_model;
 };
 
-typedef char TItemEquipBaseFlagsOffset[(offsetof(TItemEquipBase, effect_flags) == 0x178) ? 1 : -1];
-typedef char TItemEquipBase_size[sizeof(TItemEquipBase) == 0x18C ? 1 : -1];
+LAYOUT_ASSERT(TItemEquipBaseFlagsOffset, offsetof(TItemEquipBase, effect_flags) == 0x178);
+LAYOUT_ASSERT(TItemEquipBase_size, sizeof(TItemEquipBase) == 0x18C);
 
 // A weapon's hit callback: a small burst at the target hit.
 void play_target_impact_effect(s32 unused0, s32 unused1, u16 actor_id, s16 collider);

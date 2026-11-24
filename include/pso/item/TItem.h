@@ -3,9 +3,9 @@
 
 #include "types.h"
 #include <stddef.h>
-#include "pso/object/TObjMotion.h"
+#include "pso/object/base/TObjMotion.h"
 #include "pso/system/NinjaTypes.h"
-#include "pso/system/FlagWord.h"
+#include "pso/system/data/FlagWord.h"
 
 struct TItemData;
 class TPlyInventoryItem;
@@ -54,7 +54,7 @@ struct TItem : public TObjCollidable {
     virtual s32 update_object_view_visibility(f32 depth, f32 radius);
     virtual const char *get_name();
     // The player interacting with the item: try to pick it up.
-    virtual void interact(s32 client);
+    virtual void interact(u16 client);
     virtual void update_owned();
     virtual void update_in_inventory();
     virtual void update_equipped();
@@ -145,15 +145,14 @@ struct TItem : public TObjCollidable {
     // the requirement it falls short on.
     s32 check_equip_requirements(TObjPlayer *player, s16 *result);
     void draw_model();
-    void draw_model_nodes(u8 *matrices);
-    void apply_sign_effect(u8 *matrices);
-    void visit_model_nodes(u8 *matrices);
+    void draw_model_nodes(GC_Mtx *matrices);
+    void apply_sign_effect(GC_Mtx *matrices);
+    void visit_model_nodes(GC_Mtx *matrices);
     s32 get_max_stack_size();
     void set_owner_client(u16 client);
     s32 unregister_item();
     s32 insert_sorted_by_id();
     s32 copy_to_item_data(TItemData *data);
-    // Writes the 0x1C inventory record: mode, flags, then TItemData.
     s32 export_inventory_entry(TPlyInventoryItem *dest);
     void snap_to_ground();
     void send_field_state(s16 floor, TObjPlayer *player);
@@ -196,11 +195,11 @@ struct TItem : public TObjCollidable {
     NJS_OBJECT *item_model;        // the object tree drawn for it
 };
 
-typedef char TItemCollisionOffset[(offsetof(TItem, collision_body) == 0xAC) ? 1 : -1];
-typedef char TItemIdOffset[(offsetof(TItem, item_id) == 0xD8) ? 1 : -1];
-typedef char TItemModeOffset[(offsetof(TItem, mode) == 0xEB) ? 1 : -1];
-typedef char TItemModelOffset[(offsetof(TItem, drop_model) == 0xEF) ? 1 : -1];
-typedef char TItemSize[(sizeof(TItem) == 0xF8) ? 1 : -1];
+LAYOUT_ASSERT(TItemCollisionOffset, offsetof(TItem, collision_body) == 0xAC);
+LAYOUT_ASSERT(TItemIdOffset, offsetof(TItem, item_id) == 0xD8);
+LAYOUT_ASSERT(TItemModeOffset, offsetof(TItem, mode) == 0xEB);
+LAYOUT_ASSERT(TItemModelOffset, offsetof(TItem, drop_model) == 0xEF);
+LAYOUT_ASSERT(TItemSize, sizeof(TItem) == 0xF8);
 
 extern NJS_ARGB item_box_primary_colors[6];
 extern NJS_ARGB item_box_secondary_colors[6];
@@ -219,7 +218,7 @@ extern int item_system_generation;
 // is set each node's matrix is stored there.
 extern void (*model_node_draw_callback)(void *model);
 extern void (*model_node_visit_callback)(NJS_OBJECT *object);
-extern u8 *model_node_matrix_output_cursor;
+extern GC_Mtx *model_node_matrix_output_cursor;
 extern s32 model_node_counter;
 
 // Empty in this build: the inventory of a player record is decoded when
@@ -235,7 +234,7 @@ s32 consume_item_by_id(s32 id);
 s32 is_item_stackable(s32 type, s32 kind);
 void handle_6x59_pick_up_item(G_PickUpItem_6x59 *cmd);
 TItem *find_equipped_item(s32 id);
-void scroll_item_model_uvs(NJS_OBJECT *object, s16 du, s16 dv, u16 mesh);
+void scroll_item_model_uvs(NJS_OBJECT *object, s32 du, s32 dv, u16 mesh);
 s32 feed_item_to_mag(TItem *mag, TItem *item);
 void give_item_to_client(u16 client, TItemData *data);
 void replace_item_with_new_code(const TItemData *data, TItem *item);

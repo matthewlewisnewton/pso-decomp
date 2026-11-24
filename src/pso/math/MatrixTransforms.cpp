@@ -1,55 +1,49 @@
-#include "pso/math/MatrixCopy.h"
+#include "pso/system/MatrixStack.h"
 #include "types.h"
 #include "pso/math/MatrixTransforms.h"
+#include "pso/unk/text_803D9650.h"
 #include "dolphin/mtx.h"
-#include "pso/player/TObjPlayer.h"
-
-struct Matrix34 { f32 elements[3][4]; };
+#include "pso/render/RenderSbssGlobals.h"
+#include "pso/system/MatrixOps.h"
 
 extern "C" {
-s32 matrix_apply_translation(int, f32, f32, f32);
-extern u32 current_matrix;
 f32 sin_table_lookup(int);
 f32 cos_table_lookup(int);
 
-__declspec(section ".sdata2") extern const f64 lbl_805E0F08;
-__declspec(section ".sdata2") extern const f64 lbl_805E0F10;
-__declspec(section ".sdata2") extern const f64 lbl_805E0F18;
-
-void rotate_matrix_z(Matrix34* matrix, s32 angle) {
-    // One turn is 65536 units. The conversion uses the legacy single-precision pi value.
-    const f64 radiansPerAngleUnit = 2.0 * 3.141592f / 65536.0;
-    Matrix34 rotation;
-    Matrix34* selected;
+void rotate_matrix_z(MtxP matrix, s32 angle) {
+    // Game angles have 65536 units per turn. The original uses a single-precision pi.
+    const f64 radians_per_angle_unit = 2.0 * 3.141592f / 65536.0;
+    GC_Mtx rotation;
+    MtxP selected;
     if (angle != 0) {
-        if (matrix == NULL) selected = (Matrix34*)current_matrix;
+        if (matrix == NULL) selected = *current_matrix;
         else selected = matrix;
-        PSMTXRotRad(rotation.elements, 'z', (f32)(radiansPerAngleUnit * (f64)angle));
-        PSMTXConcat(selected->elements, rotation.elements, selected->elements);
+        PSMTXRotRad(rotation, 'z', (f32)(radians_per_angle_unit * (f64)angle));
+        PSMTXConcat(selected, rotation, selected);
     }
 }
 
-}
-
-extern "C" void copy_matrix(MtxP dest, const f32 (*source)[4]) {
-    u32 var_r0;
-    u32 var_r3;
+#pragma push
+#pragma peephole off
+void copy_matrix(MtxP dest, const f32 (*source)[4]) {
+    MtxP dst;
+    uaddr source_address;
     if (dest == NULL) {
-        var_r0 = current_matrix;
+        dst = *current_matrix;
     } else {
-        var_r0 = (u32)dest;
+        dst = dest;
     }
+    // Keep the source address in the original register across the null fallback.
     if (source == NULL) {
-        var_r3 = current_matrix;
+        source_address = reinterpret_cast<uaddr>(*current_matrix);
     } else {
-        var_r3 = (u32)source;
+        source_address = reinterpret_cast<uaddr>(source);
     }
-    PSMTXCopy((MtxP)var_r3, (MtxP)var_r0);
+    PSMTXCopy(reinterpret_cast<const f32 (*)[4]>(source_address), dst);
 }
+}
+#pragma pop
 
-// Upstream zeroz41/pso-decomp #180 (squash 9575dbb7c), unchanged. Scalar rewrite pending.
-// Fork scalar C++ (#306, not a match: the original is paired-single psq_l/ps_sub/psq_st):
-//   v->x -= sub->x; v->y -= sub->y; v->z -= sub->z;
 asm void subtract_vector(Vec *v, const Vec *sub) {
 #include "orig_asm/pso/math/MatrixTransforms/subtract_vector.inc"
 }
@@ -92,13 +86,13 @@ void euler_yxz_to_quaternion(u8 *arg0, u8 *arg1) {
     *(f32 *)((s8 *)arg1 + 0xC) = (f32) ((temp_f29 * (-temp_f1 * temp_f27)) + (temp_f30 * (temp_f31 * temp_f28)));
 }
 
-void translate_matrix(u32 arg0, f32 x, f32 y, f32 z) {
-    u32 var_r3;
-    u32 phi_r3;
-    var_r3 = arg0;
-    phi_r3 = var_r3;
-    if (var_r3 == 0U) {
-        phi_r3 = current_matrix;
+#pragma push
+
+void translate_matrix(uaddr arg0, f32 x, f32 y, f32 z) {
+    MtxP m = (MtxP)arg0;
+    if (m == NULL) {
+        m = *current_matrix;
     }
-    matrix_apply_translation(phi_r3, x, y, z);
+    matrix_apply_translation(m, x, y, z);
 }
+#pragma pop

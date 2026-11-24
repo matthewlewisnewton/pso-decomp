@@ -3,14 +3,13 @@
 
 #include "types.h"
 
-extern "C" {
-s32 fn_802A1020(void);
-}
+// Set by verify_game_file_integrity when a disc file's size or CRC differs from file_integrity_table.
+extern s32 game_files_modified_flag;
+
+s32 verify_game_file_integrity(void);
 
 // --- C functions defined in text_802A1020.cpp ---
-extern "C" {
-s32 fn_802A1020(void);
-}
+s32 verify_game_file_integrity(void);
 // --- end of C functions
 
 #endif

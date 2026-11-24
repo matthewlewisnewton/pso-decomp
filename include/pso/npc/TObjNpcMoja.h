@@ -5,10 +5,15 @@
 #include "pso/npc/TObjNpcBase.h"
 
 struct TObjNpcMoja : public TObjNpcBase {
+    TObjNpcMoja(TObject *parent, void *set_data);
     virtual ~TObjNpcMoja();
-    virtual void vfunc_88();
-    static void *create(void *arg0);
+    virtual void render();
+    virtual void request_action(s32);
+    static void *create(void *set_data);
+
+    static const char *name;
+    static CollisionBody collision_body_parts;
 };
 
-typedef char TObjNpcMoja_size[sizeof(TObjNpcMoja) == 0x3B8 ? 1 : -1];
+LAYOUT_ASSERT(TObjNpcMoja_size, sizeof(TObjNpcMoja) == 0x3B8);
 #endif

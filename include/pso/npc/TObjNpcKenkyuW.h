@@ -2,26 +2,20 @@
 #define PSO_NPC_TOBJNPCKENKYUW_H
 
 #include "types.h"
-#include "pso/npc/TUnk_804A9F50.h"
+#include "pso/npc/TObjNpcMale.h"
 
-struct TObjNpcKenkyuW : public TUnk_804A9F50 {
+struct BmlResource;
+
+struct TObjNpcKenkyuW : public TObjNpcMale {
+    TObjNpcKenkyuW(TObject *parent, void *set_data);
     virtual ~TObjNpcKenkyuW();
     static void destroy_instance();
     static void load_resource_instance();
+    static const char *class_name;
+    static BmlResource *model_resource;
+    static void *create(void *set_data);
 };
 
-typedef char TObjNpcKenkyuW_size[sizeof(TObjNpcKenkyuW) == 0x3B8 ? 1 : -1];
-
-extern "C" {
-u8 *TObjNpcKenkyuW__ct(u8 *arg0, s32 arg1, s32 arg2);
-void *__dt__14TObjNpcKenkyuWFv(void *arg0, s16 arg1);
-}
-
-// --- C functions defined in TObjNpcKenkyuW.cpp ---
-extern "C" {
-u8 *TObjNpcKenkyuW__ct(u8 *player, s32 arg1, s32 arg2);
-void *__dt__14TObjNpcKenkyuWFv(void *arg0, s16 arg1);
-}
-// --- end of C functions
+LAYOUT_ASSERT(TObjNpcKenkyuW_size, sizeof(TObjNpcKenkyuW) == 0x3B8);
 
 #endif

@@ -1,0 +1,3470 @@
+{
+  "upstream": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+  "previous_reconciled_review": "4edf25aeade61392fd79d8f65ef46e3447d0f329",
+  "review": "0d4c0812e7f2dc93649511ae0881831305555c31",
+  "review_ref": "great-merge/consolidated/after-upstream-351",
+  "review_tree": "6f98d4332fb0cceaa2c210ea0718fce2bfa6d49d",
+  "new_files_changed": 176,
+  "total_review_files_changed": 860,
+  "commits": {
+    "adx": {
+      "head": "edd5b63d54fe3cdd2507f78a699d591e6fa7000c",
+      "subject": "Recover native ADX decoder and archive partition arguments",
+      "build_retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "2730cc5256616c9bdda199efed9ffe3919c7f6cb9385892f6eba01874e2fdd3f",
+      "baseline": "4edf25aeade61392fd79d8f65ef46e3447d0f329",
+      "function_labels": [
+        {
+          "module": "psov3",
+          "address": "0x803C0F98",
+          "before": "convert_pcm_u8_to_s16__6TLobbyFv",
+          "after": "convert_pcm_u8_to_s16__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3974",
+          "before": "get_field_a0__6TLobbyFv",
+          "after": "get_field_a0__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C397C",
+          "before": "get_field_0xa4__6TLobbyFv",
+          "after": "get_field_0xa4__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A1C",
+          "before": "init_scroll__6TLobbyFll",
+          "after": "init_scroll__11AdxbDecoderFPUcl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A8C",
+          "before": "get_entry_id__6TLobbyFv",
+          "after": "get_entry_id__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A94",
+          "before": "get_field_34__6TLobbyFv",
+          "after": "get_field_34__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A9C",
+          "before": "get_field30__6TLobbyFv",
+          "after": "get_field30__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3AA4",
+          "before": "get_field_2c__6TLobbyFv",
+          "after": "get_field_2c__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3AAC",
+          "before": "get_field_28__6TLobbyFv",
+          "after": "get_field_28__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3AB4",
+          "before": "get_slot__6TLobbyFv",
+          "after": "get_slot__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3ACC",
+          "before": "get_packet_flag_for_state__6TLobbyFv",
+          "after": "get_packet_flag_for_state__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3B4C",
+          "before": "get_field_a8__6TLobbyFv",
+          "after": "get_field_a8__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3B54",
+          "before": "get_field_0x3c__6TLobbyFv",
+          "after": "get_field_0x3c__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803CD840",
+          "before": "adxf_open_file__6TLobbyFiPviPv",
+          "after": "adxf_open_file__6TLobbyFiPCciP13AdxfPartition"
+        }
+      ]
+    },
+    "gameplay-sound": {
+      "head": "9c7bd5ddd6fe2d266a0813d92052b661e6a3e68d",
+      "subject": "Recover typed ADX stream players and gameplay sound packet dispatch",
+      "build_retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "c8429bbca82750544a75d6a3ca779aae0431f2e10b7b21f2d5be1213533058b9",
+      "baseline": "4edf25aeade61392fd79d8f65ef46e3447d0f329",
+      "function_labels": [
+        {
+          "module": "psov3",
+          "address": "0x80227B70",
+          "before": "handle_6xB2_play_sound_from_player__FPv",
+          "after": "handle_6xB2_play_sound_from_player"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C0F98",
+          "before": "convert_pcm_u8_to_s16__6TLobbyFv",
+          "after": "convert_pcm_u8_to_s16__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3974",
+          "before": "get_field_a0__6TLobbyFv",
+          "after": "get_field_a0__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C397C",
+          "before": "get_field_0xa4__6TLobbyFv",
+          "after": "get_field_0xa4__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A1C",
+          "before": "init_scroll__6TLobbyFll",
+          "after": "init_scroll__11AdxbDecoderFPUcl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A8C",
+          "before": "get_entry_id__6TLobbyFv",
+          "after": "get_entry_id__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A94",
+          "before": "get_field_34__6TLobbyFv",
+          "after": "get_field_34__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A9C",
+          "before": "get_field30__6TLobbyFv",
+          "after": "get_field30__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3AA4",
+          "before": "get_field_2c__6TLobbyFv",
+          "after": "get_field_2c__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3AAC",
+          "before": "get_field_28__6TLobbyFv",
+          "after": "get_field_28__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3AB4",
+          "before": "get_slot__6TLobbyFv",
+          "after": "get_slot__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3ACC",
+          "before": "get_packet_flag_for_state__6TLobbyFv",
+          "after": "get_packet_flag_for_state__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3B4C",
+          "before": "get_field_a8__6TLobbyFv",
+          "after": "get_field_a8__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3B54",
+          "before": "get_field_0x3c__6TLobbyFv",
+          "after": "get_field_0x3c__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C96A0",
+          "before": "set_field_6d__6TLobbyFSc",
+          "after": "set_field_6d__12Ent_803C9608FSc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C96B8",
+          "before": "set_field_40_and_notify__6TLobbyFl",
+          "after": "set_field_40_and_notify__12Ent_803C9608Fl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803CBF70",
+          "before": "trigger_sub_task__6TLobbyFv",
+          "after": "trigger_sub_task__11GcrnaStreamFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803CD840",
+          "before": "adxf_open_file__6TLobbyFiPviPv",
+          "after": "adxf_open_file__6TLobbyFiPCciP13AdxfPartition"
+        }
+      ]
+    },
+    "memory-combat": {
+      "head": "a518d951097c9165241e7973a2a9f1d124c25759",
+      "subject": "Recover typed memory-card selection and Photon Blast result records",
+      "build_retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "92ff05891f3baf6fea6aec7d36aa1a036d2b3eeec535dd5cf4d291462b23ff75",
+      "baseline": "4edf25aeade61392fd79d8f65ef46e3447d0f329",
+      "function_labels": [
+        {
+          "module": "psov3",
+          "address": "0x801A8618",
+          "before": "is_photon_blast_presentation_admitted__FUlPv",
+          "after": "is_photon_blast_presentation_admitted__FUlP15PhotonBlastSlot"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A86E0",
+          "before": "apply_photon_blast_action_hold__Flll",
+          "after": "apply_photon_blast_action_hold__FP13TUnk_804C349Cll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A8868",
+          "before": "admit_photon_blast_sequence__FPUcPv",
+          "after": "admit_photon_blast_sequence__FP15PhotonBlastSlotP8TObjBase"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A9E10",
+          "before": "__ct__13TUnk_804C349CFlPUcPlll",
+          "after": "__ct__13TUnk_804C349CFlP15PhotonBlastSlotPClll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80227B70",
+          "before": "handle_6xB2_play_sound_from_player__FPv",
+          "after": "handle_6xB2_play_sound_from_player"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802C7560",
+          "before": "init_slot__13TAdMcSelectGCFlPv",
+          "after": "init_slot__15TAdChrSelSlotGCFlPC21CharacterSlotPosition"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A154",
+          "before": "get_slot_index__13TAdMcSelectGCFv",
+          "after": "get_slot_index__19TAdMcSelectCursorGCFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A168",
+          "before": "set_field_13c__13TAdMcSelectGCFl",
+          "after": "set_field_13c__19TAdMcSelectCursorGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A170",
+          "before": "set_field_0x1c__13TAdMcSelectGCFl",
+          "after": "set_field_0x1c__15TAdMcSelectMcGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A178",
+          "before": "set_select_index__13TAdMcSelectGCFl",
+          "after": "set_select_index__15TAdChrSelSlotGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A188",
+          "before": "set_field_134__13TAdMcSelectGCFl",
+          "after": "set_field_134__10TAdTitleGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A610",
+          "before": "get_instance__19TAdMcSelectCursorGCFl",
+          "after": "get_instance__19TAdMcSelectCursorGCFP7TObject"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8033F2A4",
+          "before": "__ct__12TAdMcCheckGCFP7TObjectPv",
+          "after": "__ct__12TAdMcCheckGCFP7TObjectl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C0F98",
+          "before": "convert_pcm_u8_to_s16__6TLobbyFv",
+          "after": "convert_pcm_u8_to_s16__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3974",
+          "before": "get_field_a0__6TLobbyFv",
+          "after": "get_field_a0__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C397C",
+          "before": "get_field_0xa4__6TLobbyFv",
+          "after": "get_field_0xa4__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A1C",
+          "before": "init_scroll__6TLobbyFll",
+          "after": "init_scroll__11AdxbDecoderFPUcl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A8C",
+          "before": "get_entry_id__6TLobbyFv",
+          "after": "get_entry_id__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A94",
+          "before": "get_field_34__6TLobbyFv",
+          "after": "get_field_34__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A9C",
+          "before": "get_field30__6TLobbyFv",
+          "after": "get_field30__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3AA4",
+          "before": "get_field_2c__6TLobbyFv",
+          "after": "get_field_2c__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3AAC",
+          "before": "get_field_28__6TLobbyFv",
+          "after": "get_field_28__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3AB4",
+          "before": "get_slot__6TLobbyFv",
+          "after": "get_slot__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3ACC",
+          "before": "get_packet_flag_for_state__6TLobbyFv",
+          "after": "get_packet_flag_for_state__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3B4C",
+          "before": "get_field_a8__6TLobbyFv",
+          "after": "get_field_a8__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3B54",
+          "before": "get_field_0x3c__6TLobbyFv",
+          "after": "get_field_0x3c__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C96A0",
+          "before": "set_field_6d__6TLobbyFSc",
+          "after": "set_field_6d__12Ent_803C9608FSc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C96B8",
+          "before": "set_field_40_and_notify__6TLobbyFl",
+          "after": "set_field_40_and_notify__12Ent_803C9608Fl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803CBF70",
+          "before": "trigger_sub_task__6TLobbyFv",
+          "after": "trigger_sub_task__11GcrnaStreamFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803CD840",
+          "before": "adxf_open_file__6TLobbyFiPviPv",
+          "after": "adxf_open_file__6TLobbyFiPCciP13AdxfPartition"
+        }
+      ]
+    },
+    "target": {
+      "head": "8e77f8239184ebc98235fd325a49c29058b68237",
+      "subject": "Use the shared typed character target throughout combat",
+      "build_retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "92ff05891f3baf6fea6aec7d36aa1a036d2b3eeec535dd5cf4d291462b23ff75",
+      "baseline": "4edf25aeade61392fd79d8f65ef46e3447d0f329",
+      "function_labels": [
+        {
+          "module": "psov3",
+          "address": "0x801A8618",
+          "before": "is_photon_blast_presentation_admitted__FUlPv",
+          "after": "is_photon_blast_presentation_admitted__FUlP15PhotonBlastSlot"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A86E0",
+          "before": "apply_photon_blast_action_hold__Flll",
+          "after": "apply_photon_blast_action_hold__FP13TUnk_804C349Cll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A8868",
+          "before": "admit_photon_blast_sequence__FPUcPv",
+          "after": "admit_photon_blast_sequence__FP15PhotonBlastSlotP8TObjBase"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A9E10",
+          "before": "__ct__13TUnk_804C349CFlPUcPlll",
+          "after": "__ct__13TUnk_804C349CFlP15PhotonBlastSlotPClll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80227B70",
+          "before": "handle_6xB2_play_sound_from_player__FPv",
+          "after": "handle_6xB2_play_sound_from_player"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802C7560",
+          "before": "init_slot__13TAdMcSelectGCFlPv",
+          "after": "init_slot__15TAdChrSelSlotGCFlPC21CharacterSlotPosition"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A154",
+          "before": "get_slot_index__13TAdMcSelectGCFv",
+          "after": "get_slot_index__19TAdMcSelectCursorGCFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A168",
+          "before": "set_field_13c__13TAdMcSelectGCFl",
+          "after": "set_field_13c__19TAdMcSelectCursorGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A170",
+          "before": "set_field_0x1c__13TAdMcSelectGCFl",
+          "after": "set_field_0x1c__15TAdMcSelectMcGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A178",
+          "before": "set_select_index__13TAdMcSelectGCFl",
+          "after": "set_select_index__15TAdChrSelSlotGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A188",
+          "before": "set_field_134__13TAdMcSelectGCFl",
+          "after": "set_field_134__10TAdTitleGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A610",
+          "before": "get_instance__19TAdMcSelectCursorGCFl",
+          "after": "get_instance__19TAdMcSelectCursorGCFP7TObject"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8033F2A4",
+          "before": "__ct__12TAdMcCheckGCFP7TObjectPv",
+          "after": "__ct__12TAdMcCheckGCFP7TObjectl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C0F98",
+          "before": "convert_pcm_u8_to_s16__6TLobbyFv",
+          "after": "convert_pcm_u8_to_s16__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3974",
+          "before": "get_field_a0__6TLobbyFv",
+          "after": "get_field_a0__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C397C",
+          "before": "get_field_0xa4__6TLobbyFv",
+          "after": "get_field_0xa4__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A1C",
+          "before": "init_scroll__6TLobbyFll",
+          "after": "init_scroll__11AdxbDecoderFPUcl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A8C",
+          "before": "get_entry_id__6TLobbyFv",
+          "after": "get_entry_id__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A94",
+          "before": "get_field_34__6TLobbyFv",
+          "after": "get_field_34__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A9C",
+          "before": "get_field30__6TLobbyFv",
+          "after": "get_field30__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3AA4",
+          "before": "get_field_2c__6TLobbyFv",
+          "after": "get_field_2c__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3AAC",
+          "before": "get_field_28__6TLobbyFv",
+          "after": "get_field_28__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3AB4",
+          "before": "get_slot__6TLobbyFv",
+          "after": "get_slot__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3ACC",
+          "before": "get_packet_flag_for_state__6TLobbyFv",
+          "after": "get_packet_flag_for_state__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3B4C",
+          "before": "get_field_a8__6TLobbyFv",
+          "after": "get_field_a8__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3B54",
+          "before": "get_field_0x3c__6TLobbyFv",
+          "after": "get_field_0x3c__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C96A0",
+          "before": "set_field_6d__6TLobbyFSc",
+          "after": "set_field_6d__12Ent_803C9608FSc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C96B8",
+          "before": "set_field_40_and_notify__6TLobbyFl",
+          "after": "set_field_40_and_notify__12Ent_803C9608Fl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803CBF70",
+          "before": "trigger_sub_task__6TLobbyFv",
+          "after": "trigger_sub_task__11GcrnaStreamFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803CD840",
+          "before": "adxf_open_file__6TLobbyFiPviPv",
+          "after": "adxf_open_file__6TLobbyFiPCciP13AdxfPartition"
+        }
+      ]
+    },
+    "groups": {
+      "head": "e12066d57300842fc7d6578005557a2f5f93cc43",
+      "subject": "Put group links, experience and drops on the enemy base class",
+      "build_retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "a3b0504b544b7bb9f530abc4efe12187d914ca1acca6bf7d0fb7d311111feeab",
+      "baseline": "4edf25aeade61392fd79d8f65ef46e3447d0f329",
+      "function_labels": [
+        {
+          "module": "psov3",
+          "address": "0x800F6B14",
+          "before": "refresh_lobby_state__10TObjPlayerFv",
+          "after": "refresh_lobby_state__9TObjEnemyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800F6B48",
+          "before": "query_lobby_state__10TObjPlayerFv",
+          "after": "query_lobby_state__9TObjEnemyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800F6E2C",
+          "before": "link_chain_nodes__10TObjPlayerFPvPvPv",
+          "after": "link_chain_nodes__9TObjEnemyFP9TObjEnemyP9TObjEnemy"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800F7428",
+          "before": "is_action_available__10TObjPlayerFv",
+          "after": "is_action_available__9TObjEnemyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A8618",
+          "before": "is_photon_blast_presentation_admitted__FUlPv",
+          "after": "is_photon_blast_presentation_admitted__FUlP15PhotonBlastSlot"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A86E0",
+          "before": "apply_photon_blast_action_hold__Flll",
+          "after": "apply_photon_blast_action_hold__FP13TUnk_804C349Cll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A8868",
+          "before": "admit_photon_blast_sequence__FPUcPv",
+          "after": "admit_photon_blast_sequence__FP15PhotonBlastSlotP8TObjBase"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A9E10",
+          "before": "__ct__13TUnk_804C349CFlPUcPlll",
+          "after": "__ct__13TUnk_804C349CFlP15PhotonBlastSlotPClll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80227B70",
+          "before": "handle_6xB2_play_sound_from_player__FPv",
+          "after": "handle_6xB2_play_sound_from_player"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802C7560",
+          "before": "init_slot__13TAdMcSelectGCFlPv",
+          "after": "init_slot__15TAdChrSelSlotGCFlPC21CharacterSlotPosition"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A154",
+          "before": "get_slot_index__13TAdMcSelectGCFv",
+          "after": "get_slot_index__19TAdMcSelectCursorGCFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A168",
+          "before": "set_field_13c__13TAdMcSelectGCFl",
+          "after": "set_field_13c__19TAdMcSelectCursorGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A170",
+          "before": "set_field_0x1c__13TAdMcSelectGCFl",
+          "after": "set_field_0x1c__15TAdMcSelectMcGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A178",
+          "before": "set_select_index__13TAdMcSelectGCFl",
+          "after": "set_select_index__15TAdChrSelSlotGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A188",
+          "before": "set_field_134__13TAdMcSelectGCFl",
+          "after": "set_field_134__10TAdTitleGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A610",
+          "before": "get_instance__19TAdMcSelectCursorGCFl",
+          "after": "get_instance__19TAdMcSelectCursorGCFP7TObject"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8033F2A4",
+          "before": "__ct__12TAdMcCheckGCFP7TObjectPv",
+          "after": "__ct__12TAdMcCheckGCFP7TObjectl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C0F98",
+          "before": "convert_pcm_u8_to_s16__6TLobbyFv",
+          "after": "convert_pcm_u8_to_s16__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3974",
+          "before": "get_field_a0__6TLobbyFv",
+          "after": "get_field_a0__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C397C",
+          "before": "get_field_0xa4__6TLobbyFv",
+          "after": "get_field_0xa4__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A1C",
+          "before": "init_scroll__6TLobbyFll",
+          "after": "init_scroll__11AdxbDecoderFPUcl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A8C",
+          "before": "get_entry_id__6TLobbyFv",
+          "after": "get_entry_id__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A94",
+          "before": "get_field_34__6TLobbyFv",
+          "after": "get_field_34__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A9C",
+          "before": "get_field30__6TLobbyFv",
+          "after": "get_field30__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3AA4",
+          "before": "get_field_2c__6TLobbyFv",
+          "after": "get_field_2c__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3AAC",
+          "before": "get_field_28__6TLobbyFv",
+          "after": "get_field_28__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3AB4",
+          "before": "get_slot__6TLobbyFv",
+          "after": "get_slot__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3ACC",
+          "before": "get_packet_flag_for_state__6TLobbyFv",
+          "after": "get_packet_flag_for_state__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3B4C",
+          "before": "get_field_a8__6TLobbyFv",
+          "after": "get_field_a8__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3B54",
+          "before": "get_field_0x3c__6TLobbyFv",
+          "after": "get_field_0x3c__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C96A0",
+          "before": "set_field_6d__6TLobbyFSc",
+          "after": "set_field_6d__12Ent_803C9608FSc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C96B8",
+          "before": "set_field_40_and_notify__6TLobbyFl",
+          "after": "set_field_40_and_notify__12Ent_803C9608Fl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803CBF70",
+          "before": "trigger_sub_task__6TLobbyFv",
+          "after": "trigger_sub_task__11GcrnaStreamFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803CD840",
+          "before": "adxf_open_file__6TLobbyFiPviPv",
+          "after": "adxf_open_file__6TLobbyFiPCciP13AdxfPartition"
+        }
+      ]
+    },
+    "encounters": {
+      "head": "685c2648f75255e75c41526b9126c9b964ea8c21",
+      "subject": "Recover native Recon, Recobox, Flower and Dragon trail owners",
+      "build_retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "03342214be3997fcc8b43a18991c0c5c45caae0c9b03179049092733d59e3357",
+      "baseline": "4edf25aeade61392fd79d8f65ef46e3447d0f329",
+      "function_labels": [
+        {
+          "module": "psov3",
+          "address": "0x8002D308",
+          "before": "is_dragon_trail_damaging__FPUc",
+          "after": "is_dragon_trail_damaging__FPC23TObjBoss1MokoHill_SoloM"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8002D324",
+          "before": "set_field_3c__12TBoss8DragonFv",
+          "after": "set_field_3c__23TObjBoss1MokoHill_SoloMFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8002D358",
+          "before": "set_field_1c__12TBoss8DragonFv",
+          "after": "set_field_1c__23TObjBoss1MokoHill_SoloMFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8002D364",
+          "before": "spawn_child_object__12TBoss8DragonFv",
+          "after": "spawn_child_object__23TObjBoss1MokoHill_SoloMFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C32DC",
+          "before": "fn_800C32DC",
+          "after": "fn_800C32DC__16TObjEneRe2FlowerFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C34FC",
+          "before": "state_chase_target__9TObjEneDDFl",
+          "after": "state_chase_target__16TObjEneRe2FlowerFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C37D8",
+          "before": "handle_flower_state_change__FP9TObjEneDDl",
+          "after": "handle_flower_state_change__16TObjEneRe2FlowerFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C38D0",
+          "before": "handle_state__9TObjEneDDFl",
+          "after": "handle_state__16TObjEneRe2FlowerFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800F6B14",
+          "before": "refresh_lobby_state__10TObjPlayerFv",
+          "after": "refresh_lobby_state__9TObjEnemyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800F6B48",
+          "before": "query_lobby_state__10TObjPlayerFv",
+          "after": "query_lobby_state__9TObjEnemyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800F6E2C",
+          "before": "link_chain_nodes__10TObjPlayerFPvPvPv",
+          "after": "link_chain_nodes__9TObjEnemyFP9TObjEnemyP9TObjEnemy"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800F7428",
+          "before": "is_action_available__10TObjPlayerFv",
+          "after": "is_action_available__9TObjEnemyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A8618",
+          "before": "is_photon_blast_presentation_admitted__FUlPv",
+          "after": "is_photon_blast_presentation_admitted__FUlP15PhotonBlastSlot"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A86E0",
+          "before": "apply_photon_blast_action_hold__Flll",
+          "after": "apply_photon_blast_action_hold__FP13TUnk_804C349Cll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A8868",
+          "before": "admit_photon_blast_sequence__FPUcPv",
+          "after": "admit_photon_blast_sequence__FP15PhotonBlastSlotP8TObjBase"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A9E10",
+          "before": "__ct__13TUnk_804C349CFlPUcPlll",
+          "after": "__ct__13TUnk_804C349CFlP15PhotonBlastSlotPClll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80227B70",
+          "before": "handle_6xB2_play_sound_from_player__FPv",
+          "after": "handle_6xB2_play_sound_from_player"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802C7560",
+          "before": "init_slot__13TAdMcSelectGCFlPv",
+          "after": "init_slot__15TAdChrSelSlotGCFlPC21CharacterSlotPosition"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031E69C",
+          "before": "create__12TObjEneReconFPvPvPvPvPv",
+          "after": "create__12TObjEneReconFP14TObjEneRecoboxUslPC3VecPC3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031E7F0",
+          "before": "get_field_4d4__12TObjEneReconFv",
+          "after": "get_field_4d4__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031E7F8",
+          "before": "get_field_4d0__12TObjEneReconFv",
+          "after": "get_field_4d0__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EDBC",
+          "before": "remove_tracked_id__12TObjEneReconFl",
+          "after": "remove_tracked_id__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EDF8",
+          "before": "alloc_child_id__12TObjEneReconFv",
+          "after": "alloc_child_id__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EF00",
+          "before": "is_anim_6__12TObjEneReconFv",
+          "after": "is_anim_6__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EF14",
+          "before": "remove_child_entity__12TObjEneReconFPUc",
+          "after": "remove_child_entity__14TObjEneRecoboxFP12TObjEneRecon"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EFAC",
+          "before": "remove_tracked_target__12TObjEneReconFPvPv",
+          "after": "remove_tracked_target__14TObjEneRecoboxFP12TObjEneRecon"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F070",
+          "before": "has_child_in_anim_5__12TObjEneReconFv",
+          "after": "has_child_in_anim_5__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F0F0",
+          "before": "is_below_child_limit__12TObjEneReconFUs",
+          "after": "is_below_child_limit__14TObjEneRecoboxFUs"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F374",
+          "before": "handle_death_state__12TObjEneReconFl",
+          "after": "handle_death_state__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F4A8",
+          "before": "handle_action_state__12TObjEneReconFl",
+          "after": "handle_action_state__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F550",
+          "before": "update_state__12TObjEneReconFl",
+          "after": "update_state__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F748",
+          "before": "handle_state__12TObjEneReconFl",
+          "after": "handle_state__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F8C4",
+          "before": "update_child_spawn__12TObjEneReconFv",
+          "after": "update_child_spawn__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031FA64",
+          "before": "is_out_of_range__12TObjEneReconFv",
+          "after": "is_out_of_range__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031FC2C",
+          "before": "restore_position__12TObjEneReconFv",
+          "after": "restore_position__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80320350",
+          "before": "get_field_38_ptr__12TObjEneReconFv",
+          "after": "get_field_38_ptr__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A154",
+          "before": "get_slot_index__13TAdMcSelectGCFv",
+          "after": "get_slot_index__19TAdMcSelectCursorGCFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A168",
+          "before": "set_field_13c__13TAdMcSelectGCFl",
+          "after": "set_field_13c__19TAdMcSelectCursorGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A170",
+          "before": "set_field_0x1c__13TAdMcSelectGCFl",
+          "after": "set_field_0x1c__15TAdMcSelectMcGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A178",
+          "before": "set_select_index__13TAdMcSelectGCFl",
+          "after": "set_select_index__15TAdChrSelSlotGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A188",
+          "before": "set_field_134__13TAdMcSelectGCFl",
+          "after": "set_field_134__10TAdTitleGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A610",
+          "before": "get_instance__19TAdMcSelectCursorGCFl",
+          "after": "get_instance__19TAdMcSelectCursorGCFP7TObject"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8033F2A4",
+          "before": "__ct__12TAdMcCheckGCFP7TObjectPv",
+          "after": "__ct__12TAdMcCheckGCFP7TObjectl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C0F98",
+          "before": "convert_pcm_u8_to_s16__6TLobbyFv",
+          "after": "convert_pcm_u8_to_s16__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3974",
+          "before": "get_field_a0__6TLobbyFv",
+          "after": "get_field_a0__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C397C",
+          "before": "get_field_0xa4__6TLobbyFv",
+          "after": "get_field_0xa4__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A1C",
+          "before": "init_scroll__6TLobbyFll",
+          "after": "init_scroll__11AdxbDecoderFPUcl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A8C",
+          "before": "get_entry_id__6TLobbyFv",
+          "after": "get_entry_id__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A94",
+          "before": "get_field_34__6TLobbyFv",
+          "after": "get_field_34__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A9C",
+          "before": "get_field30__6TLobbyFv",
+          "after": "get_field30__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3AA4",
+          "before": "get_field_2c__6TLobbyFv",
+          "after": "get_field_2c__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3AAC",
+          "before": "get_field_28__6TLobbyFv",
+          "after": "get_field_28__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3AB4",
+          "before": "get_slot__6TLobbyFv",
+          "after": "get_slot__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3ACC",
+          "before": "get_packet_flag_for_state__6TLobbyFv",
+          "after": "get_packet_flag_for_state__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3B4C",
+          "before": "get_field_a8__6TLobbyFv",
+          "after": "get_field_a8__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3B54",
+          "before": "get_field_0x3c__6TLobbyFv",
+          "after": "get_field_0x3c__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C96A0",
+          "before": "set_field_6d__6TLobbyFSc",
+          "after": "set_field_6d__12Ent_803C9608FSc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C96B8",
+          "before": "set_field_40_and_notify__6TLobbyFl",
+          "after": "set_field_40_and_notify__12Ent_803C9608Fl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803CBF70",
+          "before": "trigger_sub_task__6TLobbyFv",
+          "after": "trigger_sub_task__11GcrnaStreamFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803CD840",
+          "before": "adxf_open_file__6TLobbyFiPviPv",
+          "after": "adxf_open_file__6TLobbyFiPCciP13AdxfPartition"
+        }
+      ]
+    },
+    "breakup": {
+      "head": "f57ba637e929815f43512d853a385e0c0b4dd188",
+      "subject": "Recover typed Vol Opt and shared breakup model records",
+      "build_retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "32b5467c315c16b884691e95add940e992b6f8d912bc5df71a090e6dd352dcbb",
+      "baseline": "4edf25aeade61392fd79d8f65ef46e3447d0f329",
+      "function_labels": [
+        {
+          "module": "psov3",
+          "address": "0x8002D308",
+          "before": "is_dragon_trail_damaging__FPUc",
+          "after": "is_dragon_trail_damaging__FPC23TObjBoss1MokoHill_SoloM"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8002D324",
+          "before": "set_field_3c__12TBoss8DragonFv",
+          "after": "set_field_3c__23TObjBoss1MokoHill_SoloMFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8002D358",
+          "before": "set_field_1c__12TBoss8DragonFv",
+          "after": "set_field_1c__23TObjBoss1MokoHill_SoloMFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8002D364",
+          "before": "spawn_child_object__12TBoss8DragonFv",
+          "after": "spawn_child_object__23TObjBoss1MokoHill_SoloMFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800970C4",
+          "before": "copy__11TBreakUpMdlFPv",
+          "after": "copy_from__25TBoss3VoloptBreakupParamsFPC25TBoss3VoloptBreakupParams"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C32DC",
+          "before": "fn_800C32DC",
+          "after": "fn_800C32DC__16TObjEneRe2FlowerFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C34FC",
+          "before": "state_chase_target__9TObjEneDDFl",
+          "after": "state_chase_target__16TObjEneRe2FlowerFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C37D8",
+          "before": "handle_flower_state_change__FP9TObjEneDDl",
+          "after": "handle_flower_state_change__16TObjEneRe2FlowerFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C38D0",
+          "before": "handle_state__9TObjEneDDFl",
+          "after": "handle_state__16TObjEneRe2FlowerFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800D8ACC",
+          "before": "create_breakup_mdl__12TBoss3VoloptFlllll",
+          "after": "create_breakup_mdl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800F6B14",
+          "before": "refresh_lobby_state__10TObjPlayerFv",
+          "after": "refresh_lobby_state__9TObjEnemyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800F6B48",
+          "before": "query_lobby_state__10TObjPlayerFv",
+          "after": "query_lobby_state__9TObjEnemyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800F6E2C",
+          "before": "link_chain_nodes__10TObjPlayerFPvPvPv",
+          "after": "link_chain_nodes__9TObjEnemyFP9TObjEnemyP9TObjEnemy"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800F7428",
+          "before": "is_action_available__10TObjPlayerFv",
+          "after": "is_action_available__9TObjEnemyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A8618",
+          "before": "is_photon_blast_presentation_admitted__FUlPv",
+          "after": "is_photon_blast_presentation_admitted__FUlP15PhotonBlastSlot"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A86E0",
+          "before": "apply_photon_blast_action_hold__Flll",
+          "after": "apply_photon_blast_action_hold__FP13TUnk_804C349Cll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A8868",
+          "before": "admit_photon_blast_sequence__FPUcPv",
+          "after": "admit_photon_blast_sequence__FP15PhotonBlastSlotP8TObjBase"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A9E10",
+          "before": "__ct__13TUnk_804C349CFlPUcPlll",
+          "after": "__ct__13TUnk_804C349CFlP15PhotonBlastSlotPClll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80227B70",
+          "before": "handle_6xB2_play_sound_from_player__FPv",
+          "after": "handle_6xB2_play_sound_from_player"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802C7560",
+          "before": "init_slot__13TAdMcSelectGCFlPv",
+          "after": "init_slot__15TAdChrSelSlotGCFlPC21CharacterSlotPosition"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031E69C",
+          "before": "create__12TObjEneReconFPvPvPvPvPv",
+          "after": "create__12TObjEneReconFP14TObjEneRecoboxUslPC3VecPC3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031E7F0",
+          "before": "get_field_4d4__12TObjEneReconFv",
+          "after": "get_field_4d4__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031E7F8",
+          "before": "get_field_4d0__12TObjEneReconFv",
+          "after": "get_field_4d0__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EDBC",
+          "before": "remove_tracked_id__12TObjEneReconFl",
+          "after": "remove_tracked_id__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EDF8",
+          "before": "alloc_child_id__12TObjEneReconFv",
+          "after": "alloc_child_id__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EF00",
+          "before": "is_anim_6__12TObjEneReconFv",
+          "after": "is_anim_6__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EF14",
+          "before": "remove_child_entity__12TObjEneReconFPUc",
+          "after": "remove_child_entity__14TObjEneRecoboxFP12TObjEneRecon"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EFAC",
+          "before": "remove_tracked_target__12TObjEneReconFPvPv",
+          "after": "remove_tracked_target__14TObjEneRecoboxFP12TObjEneRecon"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F070",
+          "before": "has_child_in_anim_5__12TObjEneReconFv",
+          "after": "has_child_in_anim_5__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F0F0",
+          "before": "is_below_child_limit__12TObjEneReconFUs",
+          "after": "is_below_child_limit__14TObjEneRecoboxFUs"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F374",
+          "before": "handle_death_state__12TObjEneReconFl",
+          "after": "handle_death_state__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F4A8",
+          "before": "handle_action_state__12TObjEneReconFl",
+          "after": "handle_action_state__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F550",
+          "before": "update_state__12TObjEneReconFl",
+          "after": "update_state__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F748",
+          "before": "handle_state__12TObjEneReconFl",
+          "after": "handle_state__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F8C4",
+          "before": "update_child_spawn__12TObjEneReconFv",
+          "after": "update_child_spawn__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031FA64",
+          "before": "is_out_of_range__12TObjEneReconFv",
+          "after": "is_out_of_range__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031FC2C",
+          "before": "restore_position__12TObjEneReconFv",
+          "after": "restore_position__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80320350",
+          "before": "get_field_38_ptr__12TObjEneReconFv",
+          "after": "get_field_38_ptr__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A154",
+          "before": "get_slot_index__13TAdMcSelectGCFv",
+          "after": "get_slot_index__19TAdMcSelectCursorGCFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A168",
+          "before": "set_field_13c__13TAdMcSelectGCFl",
+          "after": "set_field_13c__19TAdMcSelectCursorGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A170",
+          "before": "set_field_0x1c__13TAdMcSelectGCFl",
+          "after": "set_field_0x1c__15TAdMcSelectMcGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A178",
+          "before": "set_select_index__13TAdMcSelectGCFl",
+          "after": "set_select_index__15TAdChrSelSlotGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A188",
+          "before": "set_field_134__13TAdMcSelectGCFl",
+          "after": "set_field_134__10TAdTitleGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A610",
+          "before": "get_instance__19TAdMcSelectCursorGCFl",
+          "after": "get_instance__19TAdMcSelectCursorGCFP7TObject"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8033F2A4",
+          "before": "__ct__12TAdMcCheckGCFP7TObjectPv",
+          "after": "__ct__12TAdMcCheckGCFP7TObjectl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C0F98",
+          "before": "convert_pcm_u8_to_s16__6TLobbyFv",
+          "after": "convert_pcm_u8_to_s16__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3974",
+          "before": "get_field_a0__6TLobbyFv",
+          "after": "get_field_a0__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C397C",
+          "before": "get_field_0xa4__6TLobbyFv",
+          "after": "get_field_0xa4__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A1C",
+          "before": "init_scroll__6TLobbyFll",
+          "after": "init_scroll__11AdxbDecoderFPUcl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A8C",
+          "before": "get_entry_id__6TLobbyFv",
+          "after": "get_entry_id__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A94",
+          "before": "get_field_34__6TLobbyFv",
+          "after": "get_field_34__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A9C",
+          "before": "get_field30__6TLobbyFv",
+          "after": "get_field30__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3AA4",
+          "before": "get_field_2c__6TLobbyFv",
+          "after": "get_field_2c__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3AAC",
+          "before": "get_field_28__6TLobbyFv",
+          "after": "get_field_28__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3AB4",
+          "before": "get_slot__6TLobbyFv",
+          "after": "get_slot__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3ACC",
+          "before": "get_packet_flag_for_state__6TLobbyFv",
+          "after": "get_packet_flag_for_state__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3B4C",
+          "before": "get_field_a8__6TLobbyFv",
+          "after": "get_field_a8__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3B54",
+          "before": "get_field_0x3c__6TLobbyFv",
+          "after": "get_field_0x3c__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C96A0",
+          "before": "set_field_6d__6TLobbyFSc",
+          "after": "set_field_6d__12Ent_803C9608FSc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C96B8",
+          "before": "set_field_40_and_notify__6TLobbyFl",
+          "after": "set_field_40_and_notify__12Ent_803C9608Fl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803CBF70",
+          "before": "trigger_sub_task__6TLobbyFv",
+          "after": "trigger_sub_task__11GcrnaStreamFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803CD840",
+          "before": "adxf_open_file__6TLobbyFiPviPv",
+          "after": "adxf_open_file__6TLobbyFiPCciP13AdxfPartition"
+        }
+      ]
+    },
+    "stage-archives": {
+      "head": "bb2c87b4efa74c00efd1f3ce6a33cbb31f3aa20b",
+      "subject": "Keep native BML archive pointers across stage resource owners",
+      "build_retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "32b5467c315c16b884691e95add940e992b6f8d912bc5df71a090e6dd352dcbb",
+      "baseline": "4edf25aeade61392fd79d8f65ef46e3447d0f329",
+      "function_labels": [
+        {
+          "module": "psov3",
+          "address": "0x8002D308",
+          "before": "is_dragon_trail_damaging__FPUc",
+          "after": "is_dragon_trail_damaging__FPC23TObjBoss1MokoHill_SoloM"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8002D324",
+          "before": "set_field_3c__12TBoss8DragonFv",
+          "after": "set_field_3c__23TObjBoss1MokoHill_SoloMFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8002D358",
+          "before": "set_field_1c__12TBoss8DragonFv",
+          "after": "set_field_1c__23TObjBoss1MokoHill_SoloMFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8002D364",
+          "before": "spawn_child_object__12TBoss8DragonFv",
+          "after": "spawn_child_object__23TObjBoss1MokoHill_SoloMFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800970C4",
+          "before": "copy__11TBreakUpMdlFPv",
+          "after": "copy_from__25TBoss3VoloptBreakupParamsFPC25TBoss3VoloptBreakupParams"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C32DC",
+          "before": "fn_800C32DC",
+          "after": "fn_800C32DC__16TObjEneRe2FlowerFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C34FC",
+          "before": "state_chase_target__9TObjEneDDFl",
+          "after": "state_chase_target__16TObjEneRe2FlowerFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C37D8",
+          "before": "handle_flower_state_change__FP9TObjEneDDl",
+          "after": "handle_flower_state_change__16TObjEneRe2FlowerFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C38D0",
+          "before": "handle_state__9TObjEneDDFl",
+          "after": "handle_state__16TObjEneRe2FlowerFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800D8ACC",
+          "before": "create_breakup_mdl__12TBoss3VoloptFlllll",
+          "after": "create_breakup_mdl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800F6B14",
+          "before": "refresh_lobby_state__10TObjPlayerFv",
+          "after": "refresh_lobby_state__9TObjEnemyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800F6B48",
+          "before": "query_lobby_state__10TObjPlayerFv",
+          "after": "query_lobby_state__9TObjEnemyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800F6E2C",
+          "before": "link_chain_nodes__10TObjPlayerFPvPvPv",
+          "after": "link_chain_nodes__9TObjEnemyFP9TObjEnemyP9TObjEnemy"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800F7428",
+          "before": "is_action_available__10TObjPlayerFv",
+          "after": "is_action_available__9TObjEnemyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A8618",
+          "before": "is_photon_blast_presentation_admitted__FUlPv",
+          "after": "is_photon_blast_presentation_admitted__FUlP15PhotonBlastSlot"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A86E0",
+          "before": "apply_photon_blast_action_hold__Flll",
+          "after": "apply_photon_blast_action_hold__FP13TUnk_804C349Cll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A8868",
+          "before": "admit_photon_blast_sequence__FPUcPv",
+          "after": "admit_photon_blast_sequence__FP15PhotonBlastSlotP8TObjBase"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A9E10",
+          "before": "__ct__13TUnk_804C349CFlPUcPlll",
+          "after": "__ct__13TUnk_804C349CFlP15PhotonBlastSlotPClll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80227B70",
+          "before": "handle_6xB2_play_sound_from_player__FPv",
+          "after": "handle_6xB2_play_sound_from_player"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802C7560",
+          "before": "init_slot__13TAdMcSelectGCFlPv",
+          "after": "init_slot__15TAdChrSelSlotGCFlPC21CharacterSlotPosition"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031E69C",
+          "before": "create__12TObjEneReconFPvPvPvPvPv",
+          "after": "create__12TObjEneReconFP14TObjEneRecoboxUslPC3VecPC3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031E7F0",
+          "before": "get_field_4d4__12TObjEneReconFv",
+          "after": "get_field_4d4__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031E7F8",
+          "before": "get_field_4d0__12TObjEneReconFv",
+          "after": "get_field_4d0__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EDBC",
+          "before": "remove_tracked_id__12TObjEneReconFl",
+          "after": "remove_tracked_id__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EDF8",
+          "before": "alloc_child_id__12TObjEneReconFv",
+          "after": "alloc_child_id__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EF00",
+          "before": "is_anim_6__12TObjEneReconFv",
+          "after": "is_anim_6__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EF14",
+          "before": "remove_child_entity__12TObjEneReconFPUc",
+          "after": "remove_child_entity__14TObjEneRecoboxFP12TObjEneRecon"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EFAC",
+          "before": "remove_tracked_target__12TObjEneReconFPvPv",
+          "after": "remove_tracked_target__14TObjEneRecoboxFP12TObjEneRecon"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F070",
+          "before": "has_child_in_anim_5__12TObjEneReconFv",
+          "after": "has_child_in_anim_5__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F0F0",
+          "before": "is_below_child_limit__12TObjEneReconFUs",
+          "after": "is_below_child_limit__14TObjEneRecoboxFUs"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F374",
+          "before": "handle_death_state__12TObjEneReconFl",
+          "after": "handle_death_state__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F4A8",
+          "before": "handle_action_state__12TObjEneReconFl",
+          "after": "handle_action_state__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F550",
+          "before": "update_state__12TObjEneReconFl",
+          "after": "update_state__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F748",
+          "before": "handle_state__12TObjEneReconFl",
+          "after": "handle_state__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F8C4",
+          "before": "update_child_spawn__12TObjEneReconFv",
+          "after": "update_child_spawn__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031FA64",
+          "before": "is_out_of_range__12TObjEneReconFv",
+          "after": "is_out_of_range__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031FC2C",
+          "before": "restore_position__12TObjEneReconFv",
+          "after": "restore_position__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80320350",
+          "before": "get_field_38_ptr__12TObjEneReconFv",
+          "after": "get_field_38_ptr__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A154",
+          "before": "get_slot_index__13TAdMcSelectGCFv",
+          "after": "get_slot_index__19TAdMcSelectCursorGCFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A168",
+          "before": "set_field_13c__13TAdMcSelectGCFl",
+          "after": "set_field_13c__19TAdMcSelectCursorGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A170",
+          "before": "set_field_0x1c__13TAdMcSelectGCFl",
+          "after": "set_field_0x1c__15TAdMcSelectMcGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A178",
+          "before": "set_select_index__13TAdMcSelectGCFl",
+          "after": "set_select_index__15TAdChrSelSlotGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A188",
+          "before": "set_field_134__13TAdMcSelectGCFl",
+          "after": "set_field_134__10TAdTitleGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A610",
+          "before": "get_instance__19TAdMcSelectCursorGCFl",
+          "after": "get_instance__19TAdMcSelectCursorGCFP7TObject"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8033F2A4",
+          "before": "__ct__12TAdMcCheckGCFP7TObjectPv",
+          "after": "__ct__12TAdMcCheckGCFP7TObjectl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C0F98",
+          "before": "convert_pcm_u8_to_s16__6TLobbyFv",
+          "after": "convert_pcm_u8_to_s16__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3974",
+          "before": "get_field_a0__6TLobbyFv",
+          "after": "get_field_a0__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C397C",
+          "before": "get_field_0xa4__6TLobbyFv",
+          "after": "get_field_0xa4__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A1C",
+          "before": "init_scroll__6TLobbyFll",
+          "after": "init_scroll__11AdxbDecoderFPUcl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A8C",
+          "before": "get_entry_id__6TLobbyFv",
+          "after": "get_entry_id__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A94",
+          "before": "get_field_34__6TLobbyFv",
+          "after": "get_field_34__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A9C",
+          "before": "get_field30__6TLobbyFv",
+          "after": "get_field30__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3AA4",
+          "before": "get_field_2c__6TLobbyFv",
+          "after": "get_field_2c__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3AAC",
+          "before": "get_field_28__6TLobbyFv",
+          "after": "get_field_28__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3AB4",
+          "before": "get_slot__6TLobbyFv",
+          "after": "get_slot__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3ACC",
+          "before": "get_packet_flag_for_state__6TLobbyFv",
+          "after": "get_packet_flag_for_state__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3B4C",
+          "before": "get_field_a8__6TLobbyFv",
+          "after": "get_field_a8__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3B54",
+          "before": "get_field_0x3c__6TLobbyFv",
+          "after": "get_field_0x3c__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C96A0",
+          "before": "set_field_6d__6TLobbyFSc",
+          "after": "set_field_6d__12Ent_803C9608FSc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C96B8",
+          "before": "set_field_40_and_notify__6TLobbyFl",
+          "after": "set_field_40_and_notify__12Ent_803C9608Fl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803CBF70",
+          "before": "trigger_sub_task__6TLobbyFv",
+          "after": "trigger_sub_task__11GcrnaStreamFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803CD840",
+          "before": "adxf_open_file__6TLobbyFiPviPv",
+          "after": "adxf_open_file__6TLobbyFiPCciP13AdxfPartition"
+        }
+      ]
+    },
+    "boss-archives": {
+      "head": "0d4c0812e7f2dc93649511ae0881831305555c31",
+      "subject": "Use the native Dark Falz archive and rotation records in callers",
+      "build_retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "32b5467c315c16b884691e95add940e992b6f8d912bc5df71a090e6dd352dcbb",
+      "baseline": "4edf25aeade61392fd79d8f65ef46e3447d0f329",
+      "function_labels": [
+        {
+          "module": "psov3",
+          "address": "0x8002D308",
+          "before": "is_dragon_trail_damaging__FPUc",
+          "after": "is_dragon_trail_damaging__FPC23TObjBoss1MokoHill_SoloM"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8002D324",
+          "before": "set_field_3c__12TBoss8DragonFv",
+          "after": "set_field_3c__23TObjBoss1MokoHill_SoloMFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8002D358",
+          "before": "set_field_1c__12TBoss8DragonFv",
+          "after": "set_field_1c__23TObjBoss1MokoHill_SoloMFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8002D364",
+          "before": "spawn_child_object__12TBoss8DragonFv",
+          "after": "spawn_child_object__23TObjBoss1MokoHill_SoloMFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800970C4",
+          "before": "copy__11TBreakUpMdlFPv",
+          "after": "copy_from__25TBoss3VoloptBreakupParamsFPC25TBoss3VoloptBreakupParams"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C32DC",
+          "before": "fn_800C32DC",
+          "after": "fn_800C32DC__16TObjEneRe2FlowerFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C34FC",
+          "before": "state_chase_target__9TObjEneDDFl",
+          "after": "state_chase_target__16TObjEneRe2FlowerFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C37D8",
+          "before": "handle_flower_state_change__FP9TObjEneDDl",
+          "after": "handle_flower_state_change__16TObjEneRe2FlowerFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C38D0",
+          "before": "handle_state__9TObjEneDDFl",
+          "after": "handle_state__16TObjEneRe2FlowerFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800D8ACC",
+          "before": "create_breakup_mdl__12TBoss3VoloptFlllll",
+          "after": "create_breakup_mdl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800F6B14",
+          "before": "refresh_lobby_state__10TObjPlayerFv",
+          "after": "refresh_lobby_state__9TObjEnemyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800F6B48",
+          "before": "query_lobby_state__10TObjPlayerFv",
+          "after": "query_lobby_state__9TObjEnemyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800F6E2C",
+          "before": "link_chain_nodes__10TObjPlayerFPvPvPv",
+          "after": "link_chain_nodes__9TObjEnemyFP9TObjEnemyP9TObjEnemy"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800F7428",
+          "before": "is_action_available__10TObjPlayerFv",
+          "after": "is_action_available__9TObjEnemyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A8618",
+          "before": "is_photon_blast_presentation_admitted__FUlPv",
+          "after": "is_photon_blast_presentation_admitted__FUlP15PhotonBlastSlot"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A86E0",
+          "before": "apply_photon_blast_action_hold__Flll",
+          "after": "apply_photon_blast_action_hold__FP13TUnk_804C349Cll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A8868",
+          "before": "admit_photon_blast_sequence__FPUcPv",
+          "after": "admit_photon_blast_sequence__FP15PhotonBlastSlotP8TObjBase"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A9E10",
+          "before": "__ct__13TUnk_804C349CFlPUcPlll",
+          "after": "__ct__13TUnk_804C349CFlP15PhotonBlastSlotPClll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80227B70",
+          "before": "handle_6xB2_play_sound_from_player__FPv",
+          "after": "handle_6xB2_play_sound_from_player"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802C7560",
+          "before": "init_slot__13TAdMcSelectGCFlPv",
+          "after": "init_slot__15TAdChrSelSlotGCFlPC21CharacterSlotPosition"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031E69C",
+          "before": "create__12TObjEneReconFPvPvPvPvPv",
+          "after": "create__12TObjEneReconFP14TObjEneRecoboxUslPC3VecPC3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031E7F0",
+          "before": "get_field_4d4__12TObjEneReconFv",
+          "after": "get_field_4d4__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031E7F8",
+          "before": "get_field_4d0__12TObjEneReconFv",
+          "after": "get_field_4d0__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EDBC",
+          "before": "remove_tracked_id__12TObjEneReconFl",
+          "after": "remove_tracked_id__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EDF8",
+          "before": "alloc_child_id__12TObjEneReconFv",
+          "after": "alloc_child_id__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EF00",
+          "before": "is_anim_6__12TObjEneReconFv",
+          "after": "is_anim_6__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EF14",
+          "before": "remove_child_entity__12TObjEneReconFPUc",
+          "after": "remove_child_entity__14TObjEneRecoboxFP12TObjEneRecon"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EFAC",
+          "before": "remove_tracked_target__12TObjEneReconFPvPv",
+          "after": "remove_tracked_target__14TObjEneRecoboxFP12TObjEneRecon"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F070",
+          "before": "has_child_in_anim_5__12TObjEneReconFv",
+          "after": "has_child_in_anim_5__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F0F0",
+          "before": "is_below_child_limit__12TObjEneReconFUs",
+          "after": "is_below_child_limit__14TObjEneRecoboxFUs"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F374",
+          "before": "handle_death_state__12TObjEneReconFl",
+          "after": "handle_death_state__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F4A8",
+          "before": "handle_action_state__12TObjEneReconFl",
+          "after": "handle_action_state__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F550",
+          "before": "update_state__12TObjEneReconFl",
+          "after": "update_state__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F748",
+          "before": "handle_state__12TObjEneReconFl",
+          "after": "handle_state__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F8C4",
+          "before": "update_child_spawn__12TObjEneReconFv",
+          "after": "update_child_spawn__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031FA64",
+          "before": "is_out_of_range__12TObjEneReconFv",
+          "after": "is_out_of_range__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031FC2C",
+          "before": "restore_position__12TObjEneReconFv",
+          "after": "restore_position__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80320350",
+          "before": "get_field_38_ptr__12TObjEneReconFv",
+          "after": "get_field_38_ptr__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A154",
+          "before": "get_slot_index__13TAdMcSelectGCFv",
+          "after": "get_slot_index__19TAdMcSelectCursorGCFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A168",
+          "before": "set_field_13c__13TAdMcSelectGCFl",
+          "after": "set_field_13c__19TAdMcSelectCursorGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A170",
+          "before": "set_field_0x1c__13TAdMcSelectGCFl",
+          "after": "set_field_0x1c__15TAdMcSelectMcGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A178",
+          "before": "set_select_index__13TAdMcSelectGCFl",
+          "after": "set_select_index__15TAdChrSelSlotGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A188",
+          "before": "set_field_134__13TAdMcSelectGCFl",
+          "after": "set_field_134__10TAdTitleGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A610",
+          "before": "get_instance__19TAdMcSelectCursorGCFl",
+          "after": "get_instance__19TAdMcSelectCursorGCFP7TObject"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8033F2A4",
+          "before": "__ct__12TAdMcCheckGCFP7TObjectPv",
+          "after": "__ct__12TAdMcCheckGCFP7TObjectl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C0F98",
+          "before": "convert_pcm_u8_to_s16__6TLobbyFv",
+          "after": "convert_pcm_u8_to_s16__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3974",
+          "before": "get_field_a0__6TLobbyFv",
+          "after": "get_field_a0__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C397C",
+          "before": "get_field_0xa4__6TLobbyFv",
+          "after": "get_field_0xa4__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A1C",
+          "before": "init_scroll__6TLobbyFll",
+          "after": "init_scroll__11AdxbDecoderFPUcl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A8C",
+          "before": "get_entry_id__6TLobbyFv",
+          "after": "get_entry_id__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A94",
+          "before": "get_field_34__6TLobbyFv",
+          "after": "get_field_34__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3A9C",
+          "before": "get_field30__6TLobbyFv",
+          "after": "get_field30__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3AA4",
+          "before": "get_field_2c__6TLobbyFv",
+          "after": "get_field_2c__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3AAC",
+          "before": "get_field_28__6TLobbyFv",
+          "after": "get_field_28__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3AB4",
+          "before": "get_slot__6TLobbyFv",
+          "after": "get_slot__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3ACC",
+          "before": "get_packet_flag_for_state__6TLobbyFv",
+          "after": "get_packet_flag_for_state__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3B4C",
+          "before": "get_field_a8__6TLobbyFv",
+          "after": "get_field_a8__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C3B54",
+          "before": "get_field_0x3c__6TLobbyFv",
+          "after": "get_field_0x3c__11AdxbDecoderFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C96A0",
+          "before": "set_field_6d__6TLobbyFSc",
+          "after": "set_field_6d__12Ent_803C9608FSc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803C96B8",
+          "before": "set_field_40_and_notify__6TLobbyFl",
+          "after": "set_field_40_and_notify__12Ent_803C9608Fl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803CBF70",
+          "before": "trigger_sub_task__6TLobbyFv",
+          "after": "trigger_sub_task__11GcrnaStreamFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803CD840",
+          "before": "adxf_open_file__6TLobbyFiPviPv",
+          "after": "adxf_open_file__6TLobbyFiPCciP13AdxfPartition"
+        }
+      ]
+    }
+  },
+  "new_review_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/audio/AdxStreamRuntime.h",
+    "include/pso/audio/AdxTalk.h",
+    "include/pso/audio/AdxbDecoder.h",
+    "include/pso/audio/AdxfInternal.h",
+    "include/pso/audio/AdxfPartition.h",
+    "include/pso/audio/GcrnaStream.h",
+    "include/pso/audio/SoundRequestVoice.h",
+    "include/pso/boss/darkfalz/TBoss4Uro.h",
+    "include/pso/boss/derolle/TObjBoss2Tunnel_8007EA74.h",
+    "include/pso/boss/dragon/TBoss1Dragon.h",
+    "include/pso/boss/dragon/TObjBoss1MokoHill_SoloM.h",
+    "include/pso/boss/goldragon/TBoss8Dragon.h",
+    "include/pso/boss/goldragon/TBoss8Dragon_8002CC48.h",
+    "include/pso/boss/olgaflow/Boss6Type2Data.h",
+    "include/pso/boss/volopt/TBoss3Volopt.h",
+    "include/pso/boss/volopt/TBoss3VoloptP01.h",
+    "include/pso/boss/volopt/TObjVoloptCage.h",
+    "include/pso/boss/volopt/TObjVoloptShutter.h",
+    "include/pso/effect/BreakupModelParams.h",
+    "include/pso/effect/TBreakUpMdl.h",
+    "include/pso/enemy/TObjEnemy.h",
+    "include/pso/enemy/TUnk_80493450.h",
+    "include/pso/enemy/dd/TObjEneDD.h",
+    "include/pso/enemy/flower/TObjEneRe2Flower.h",
+    "include/pso/enemy/recon/TObjEneRecobox.h",
+    "include/pso/enemy/recon/TObjEneRecobox_8031FCB0.h",
+    "include/pso/enemy/recon/TObjEneRecon.h",
+    "include/pso/enemy/recon/TObjEneRecon_8031D780.h",
+    "include/pso/enemy/recon/TObjEneRecon_8031E574.h",
+    "include/pso/network/protocol/GameplaySoundPacket.h",
+    "include/pso/object/base/TObjChara.h",
+    "include/pso/player/PhotonBlastResults.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/ui/frontend/TAdChrSelBSlotGC.h",
+    "include/pso/ui/frontend/TAdChrSelSlotGC.h",
+    "include/pso/ui/frontend/TAdMcCheckGC.h",
+    "include/pso/ui/frontend/TAdMcSelectCursorGC.h",
+    "include/pso/ui/frontend/TAdMcSelectCursorGC_8032A610.h",
+    "include/pso/ui/frontend/TAdMcSelectGC.h",
+    "include/pso/ui/frontend/TAdMcSelectMcGC.h",
+    "include/pso/ui/frontend/TAdTitleGC.h",
+    "include/pso/unk/TLobby.h",
+    "include/pso/unk/TLobby_801E2F94.h",
+    "include/pso/unk/TLobby_80227A2C.h",
+    "include/pso/unk/TLobby_80227AA0.h",
+    "include/pso/unk/TLobby_8023F734.h",
+    "include/pso/unk/TLobby_803BFE50.h",
+    "include/pso/unk/TLobby_803C1A58.h",
+    "include/pso/unk/TUnk_804C349C.h",
+    "include/pso/unk/text_800C3088.h",
+    "include/pso/unk/text_8033F314.h",
+    "include/pso/unk/text_803C1780.h",
+    "include/pso/unk/text_803C5B50.h",
+    "src/pso/audio/AdxBsc.cpp",
+    "src/pso/audio/AdxTalk.cpp",
+    "src/pso/audio/AdxtServer.cpp",
+    "src/pso/audio/AdxtStart.cpp",
+    "src/pso/boss/darkfalz/TBoss4Thanks.cpp",
+    "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+    "src/pso/boss/darkfalz/TBoss4Type3.cpp",
+    "src/pso/boss/darkfalz/TBoss4Zako.cpp",
+    "src/pso/boss/darkfalz/TBoss4ZakoDraw.cpp",
+    "src/pso/boss/darkfalz/TBoss4ZakoDraw_8030AD58.cpp",
+    "src/pso/boss/darkfalz/TBoss4Zanzo.cpp",
+    "src/pso/boss/darkfalz/TObjDFDemo1.cpp",
+    "src/pso/boss/darkfalz/TObjDFDemo2.cpp",
+    "src/pso/boss/darkfalz/TObjDFDemo3.cpp",
+    "src/pso/boss/darkfalz/TObjDFDemo4.cpp",
+    "src/pso/boss/darkfalz/TObjDFDemo5.cpp",
+    "src/pso/boss/darkfalz/TObjDFDemoF_80050134.cpp",
+    "src/pso/boss/darkfalz/TObjDFHorming.cpp",
+    "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+    "src/pso/boss/dragon/TBoss1Dragon.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon_8002CC48.cpp",
+    "src/pso/boss/volopt/TBoss3Volopt.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptCore.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptHiraisin.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptP01.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+    "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp",
+    "src/pso/boss/volopt/TObjVoloptCage.cpp",
+    "src/pso/boss/volopt/TObjVoloptPillar.cpp",
+    "src/pso/boss/volopt/TObjVoloptShutter.cpp",
+    "src/pso/effect/TBreakUpMdl.cpp",
+    "src/pso/enemy/TObjEnemyCustom.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+    "src/pso/enemy/beast/TObjEneBeast_800C4E08.cpp",
+    "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+    "src/pso/enemy/darkgunner/DarkGunner.cpp",
+    "src/pso/enemy/darkgunner/TObjEneDarkGunCenter.cpp",
+    "src/pso/enemy/dd/TObjEneDD.cpp",
+    "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+    "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp",
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+    "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+    "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+    "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+    "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+    "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+    "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/enemy/lappy/TObjEneLappy.cpp",
+    "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+    "src/pso/enemy/moja/TObjEneMoja.cpp",
+    "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+    "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+    "src/pso/enemy/recon/TObjEneRecon.cpp",
+    "src/pso/enemy/recon/TObjEneReconBomb.cpp",
+    "src/pso/enemy/recon/TObjEneRecon_80320350.cpp",
+    "src/pso/enemy/saver/SaverLifecycle.cpp",
+    "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+    "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+    "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+    "src/pso/item/TItemLoad.cpp",
+    "src/pso/item/TItemTexLoad.cpp",
+    "src/pso/network/TGameProtocol.cpp",
+    "src/pso/npc/TObjNpcBase.cpp",
+    "src/pso/object/TObjControl.cpp",
+    "src/pso/object/TObjDoaEx01.cpp",
+    "src/pso/object/TObjLiveMonitor.cpp",
+    "src/pso/object/TObjTombstone.cpp",
+    "src/pso/object/ambient/TButterfly.cpp",
+    "src/pso/object/ambient/TObjGrass.cpp",
+    "src/pso/object/door/TODoorJungleMain.cpp",
+    "src/pso/object/door/TODoorLabo.cpp",
+    "src/pso/object/door/TObjDoorJung.cpp",
+    "src/pso/object/door/TObjDoorKey.cpp",
+    "src/pso/object/door/TObjDoor_8018E358.cpp",
+    "src/pso/object/ending/TObjOnlineEnding_802E4B80.cpp",
+    "src/pso/object/fence/TLazerFenceSw.cpp",
+    "src/pso/object/fence/TOVS2Wall01.cpp",
+    "src/pso/object/fence/TObjLazerFenceNorm.cpp",
+    "src/pso/object/lobby/LobbyPigeonPath.cpp",
+    "src/pso/object/trap/TOExplosiveMachine.cpp",
+    "src/pso/object/trap/TOMine.cpp",
+    "src/pso/object/trap/TOTrap.cpp",
+    "src/pso/object/trap/TOTrapAncient01.cpp",
+    "src/pso/object/trap/TOTrapAncient02.cpp",
+    "src/pso/object/trap/TOTrapSeabed01.cpp",
+    "src/pso/object/wreck/TOWreckAncient.cpp",
+    "src/pso/player/PhotonBlastResults.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TObjPlayer_801C7430.cpp",
+    "src/pso/ui/charcreate/TCharaMaking.cpp",
+    "src/pso/ui/frontend/TAdChrSelASlotGC.cpp",
+    "src/pso/ui/frontend/TAdChrSelBSlotGC.cpp",
+    "src/pso/ui/frontend/TAdChrSelSlotGC.cpp",
+    "src/pso/ui/frontend/TAdMcCheckGC.cpp",
+    "src/pso/ui/frontend/TAdMcSelectCursorGC.cpp",
+    "src/pso/ui/frontend/TAdMcSelectGC.cpp",
+    "src/pso/ui/frontend/TAdMcSelectMcGC.cpp",
+    "src/pso/unk/TLobby_801E2F94.cpp",
+    "src/pso/unk/TLobby_80226070.cpp",
+    "src/pso/unk/TLobby_80226C3C.cpp",
+    "src/pso/unk/TLobby_80227AA0.cpp",
+    "src/pso/unk/TLobby_8023F734.cpp",
+    "src/pso/unk/TLobby_803BFE50.cpp",
+    "src/pso/unk/TLobby_803CBF50.cpp",
+    "src/pso/unk/text_8004AA04.cpp",
+    "src/pso/unk/text_8004D9A8.cpp",
+    "src/pso/unk/text_8023F660.cpp",
+    "src/pso/unk/text_8033F314.cpp",
+    "src/pso/unk/text_803626A8.cpp",
+    "src/pso/unk/text_803C5B50.cpp",
+    "src/pso/unk/text_803CC134.cpp",
+    "src/pso/unk/text_803CC294.cpp",
+    "src/pso/unk/text_803CE240.cpp",
+    "src/pso/unk/text_803D4448.cpp"
+  ],
+  "attribution": {
+    "new_commits": 9,
+    "codex_attribution": 0,
+    "coauthor_trailers": 0
+  },
+  "closed_path_comparisons": [
+    "include/pso/audio/AdxStreamRuntime.h",
+    "include/pso/audio/AdxTalk.h",
+    "include/pso/audio/AdxbDecoder.h",
+    "include/pso/audio/AdxfInternal.h",
+    "include/pso/audio/AdxfPartition.h",
+    "include/pso/audio/GcrnaStream.h",
+    "include/pso/audio/SoundRequestVoice.h",
+    "include/pso/boss/darkfalz/TBoss4Uro.h",
+    "include/pso/boss/derolle/TObjBoss2Tunnel_8007EA74.h",
+    "include/pso/boss/dragon/TBoss1Dragon.h",
+    "include/pso/boss/dragon/TObjBoss1MokoHill_SoloM.h",
+    "include/pso/boss/goldragon/TBoss8Dragon.h",
+    "include/pso/boss/goldragon/TBoss8Dragon_8002CC48.h",
+    "include/pso/boss/olgaflow/Boss6Type2Data.h",
+    "include/pso/boss/volopt/TBoss3Volopt.h",
+    "include/pso/boss/volopt/TBoss3VoloptP01.h",
+    "include/pso/boss/volopt/TObjVoloptCage.h",
+    "include/pso/boss/volopt/TObjVoloptShutter.h",
+    "include/pso/effect/TBreakUpMdl.h",
+    "include/pso/enemy/TUnk_80493450.h",
+    "include/pso/enemy/dd/TObjEneDD.h",
+    "include/pso/enemy/flower/TObjEneRe2Flower.h",
+    "include/pso/enemy/recon/TObjEneRecobox.h",
+    "include/pso/enemy/recon/TObjEneRecobox_8031FCB0.h",
+    "include/pso/enemy/recon/TObjEneRecon.h",
+    "include/pso/enemy/recon/TObjEneRecon_8031D780.h",
+    "include/pso/enemy/recon/TObjEneRecon_8031E574.h",
+    "include/pso/network/protocol/GameplaySoundPacket.h",
+    "include/pso/player/PhotonBlastResults.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/ui/frontend/TAdMcCheckGC.h",
+    "include/pso/ui/frontend/TAdMcSelectCursorGC.h",
+    "include/pso/ui/frontend/TAdMcSelectCursorGC_8032A610.h",
+    "include/pso/ui/frontend/TAdMcSelectGC.h",
+    "include/pso/ui/frontend/TAdMcSelectMcGC.h",
+    "include/pso/ui/frontend/TAdTitleGC.h",
+    "include/pso/unk/TLobby_801E2F94.h",
+    "include/pso/unk/TLobby_80227A2C.h",
+    "include/pso/unk/TLobby_80227AA0.h",
+    "include/pso/unk/TLobby_8023F734.h",
+    "include/pso/unk/TLobby_803BFE50.h",
+    "include/pso/unk/TLobby_803C1A58.h",
+    "include/pso/unk/TUnk_804C349C.h",
+    "include/pso/unk/text_800C3088.h",
+    "include/pso/unk/text_8033F314.h",
+    "include/pso/unk/text_803C1780.h",
+    "include/pso/unk/text_803C5B50.h",
+    "src/pso/audio/AdxBsc.cpp",
+    "src/pso/audio/AdxTalk.cpp",
+    "src/pso/audio/AdxtServer.cpp",
+    "src/pso/audio/AdxtStart.cpp",
+    "src/pso/boss/darkfalz/TBoss4Zako.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon_8002CC48.cpp",
+    "src/pso/enemy/TObjEnemyCustom.cpp",
+    "src/pso/enemy/beast/TObjEneBeast_800C4E08.cpp",
+    "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+    "src/pso/enemy/dd/TObjEneDD.cpp",
+    "src/pso/enemy/recon/TObjEneReconBomb.cpp",
+    "src/pso/enemy/recon/TObjEneRecon_80320350.cpp",
+    "src/pso/item/TItemTexLoad.cpp",
+    "src/pso/network/TGameProtocol.cpp",
+    "src/pso/npc/TObjNpcAHM01.cpp",
+    "src/pso/npc/TObjNpcARM00.cpp",
+    "src/pso/npc/TObjNpcARW00.cpp",
+    "src/pso/npc/TObjNpcCloakroomBase.cpp",
+    "src/pso/npc/TObjNpcConnoisseur.cpp",
+    "src/pso/npc/TObjNpcExpertBase.cpp",
+    "src/pso/npc/TObjNpcFemaleBase.cpp",
+    "src/pso/npc/TObjNpcFemaleChild.cpp",
+    "src/pso/npc/TObjNpcFemaleDwarf.cpp",
+    "src/pso/npc/TObjNpcFemaleFat.cpp",
+    "src/pso/npc/TObjNpcFemaleMacho.cpp",
+    "src/pso/npc/TObjNpcFemaleOld.cpp",
+    "src/pso/npc/TObjNpcFemaleTall.cpp",
+    "src/pso/npc/TObjNpcGovernorBase.cpp",
+    "src/pso/npc/TObjNpcHFW00.cpp",
+    "src/pso/npc/TObjNpcHFW01.cpp",
+    "src/pso/npc/TObjNpcHHM00.cpp",
+    "src/pso/npc/TObjNpcHRM00.cpp",
+    "src/pso/npc/TObjNpcHRM01.cpp",
+    "src/pso/npc/TObjNpcHosa.cpp",
+    "src/pso/npc/TObjNpcHosa2.cpp",
+    "src/pso/npc/TObjNpcKenkyu.cpp",
+    "src/pso/npc/TObjNpcKenkyu2.cpp",
+    "src/pso/npc/TObjNpcKenkyuW.cpp",
+    "src/pso/npc/TObjNpcMaleBase.cpp",
+    "src/pso/npc/TObjNpcMaleChild.cpp",
+    "src/pso/npc/TObjNpcMaleDwarf.cpp",
+    "src/pso/npc/TObjNpcMaleFat.cpp",
+    "src/pso/npc/TObjNpcMaleMacho.cpp",
+    "src/pso/npc/TObjNpcMaleOld.cpp",
+    "src/pso/npc/TObjNpcMaleTall.cpp",
+    "src/pso/npc/TObjNpcNFM00.cpp",
+    "src/pso/npc/TObjNpcNFM01.cpp",
+    "src/pso/npc/TObjNpcNFW00.cpp",
+    "src/pso/npc/TObjNpcNFW01.cpp",
+    "src/pso/npc/TObjNpcNHW00.cpp",
+    "src/pso/npc/TObjNpcNHW01.cpp",
+    "src/pso/npc/TObjNpcNgcBase.cpp",
+    "src/pso/npc/TObjNpcNurseBase.cpp",
+    "src/pso/npc/TObjNpcSecretaryBase.cpp",
+    "src/pso/npc/TObjNpcSoldierBase.cpp",
+    "src/pso/npc/TObjNpcSoldierMacho.cpp",
+    "src/pso/npc/TObjNpcSoutokufu.cpp",
+    "src/pso/object/TObjDoaEx01.cpp",
+    "src/pso/object/TObjLiveMonitor.cpp",
+    "src/pso/object/TObjTombstone.cpp",
+    "src/pso/object/ambient/TButterfly.cpp",
+    "src/pso/object/door/TODoorJungleMain.cpp",
+    "src/pso/object/door/TODoorLabo.cpp",
+    "src/pso/object/door/TObjDoorJung.cpp",
+    "src/pso/object/door/TObjDoorKey.cpp",
+    "src/pso/object/door/TObjDoor_8018E358.cpp",
+    "src/pso/object/ending/TObjOnlineEnding_802E4B80.cpp",
+    "src/pso/object/fence/TLazerFenceSw.cpp",
+    "src/pso/object/fence/TOVS2Wall01.cpp",
+    "src/pso/object/fence/TObjLazerFenceNorm.cpp",
+    "src/pso/object/lobby/LobbyPigeonPath.cpp",
+    "src/pso/object/trap/TOExplosiveMachine.cpp",
+    "src/pso/object/trap/TOMine.cpp",
+    "src/pso/object/trap/TOTrapSeabed01.cpp",
+    "src/pso/object/wreck/TOWreckAncient.cpp",
+    "src/pso/player/TObjPlayer_801C7430.cpp",
+    "src/pso/ui/charcreate/TCharaMaking.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChatFaceType.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChatPartsSet.cpp",
+    "src/pso/ui/frontend/TAdMcCheckGC.cpp",
+    "src/pso/ui/frontend/TAdMcSelectCursorGC.cpp",
+    "src/pso/ui/frontend/TAdMcSelectGC.cpp",
+    "src/pso/ui/frontend/TAdMcSelectMcGC.cpp",
+    "src/pso/ui/window/TWindowLockOn_80262C3C.cpp",
+    "src/pso/ui/window/TWindowMainMenu.cpp",
+    "src/pso/ui/window/TWindowMessageLog.cpp",
+    "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp",
+    "src/pso/ui/window/TWindowSubComCard_80265410.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_80248BE8.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp",
+    "src/pso/unk/TLobby_800FA164.cpp",
+    "src/pso/unk/TLobby_800FA2A0.cpp",
+    "src/pso/unk/TLobby_80226070.cpp",
+    "src/pso/unk/TLobby_80226C3C.cpp",
+    "src/pso/unk/TLobby_80227AA0.cpp",
+    "src/pso/unk/TLobby_8023F734.cpp",
+    "src/pso/unk/TLobby_803BFE50.cpp",
+    "src/pso/unk/TLobby_803CBF50.cpp",
+    "src/pso/unk/text_8004AA04.cpp",
+    "src/pso/unk/text_800FA464.cpp",
+    "src/pso/unk/text_8023F660.cpp",
+    "src/pso/unk/text_8033F314.cpp",
+    "src/pso/unk/text_803626A8.cpp",
+    "src/pso/unk/text_803C5B50.cpp",
+    "src/pso/unk/text_803CC134.cpp",
+    "src/pso/unk/text_803CE240.cpp",
+    "src/pso/unk/text_803D4448.cpp"
+  ],
+  "prior_open_path_comparisons": 398,
+  "open_path_comparisons": 244,
+  "original_data_coverage": {
+    "source": {
+      "report_sha256": "1a4560a4a80a6ac63abf5dcb247d77b3e1a16d3d23ea3e8d550b86ef6b3ec978",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "fork": {
+      "report_sha256": "1a4560a4a80a6ac63abf5dcb247d77b3e1a16d3d23ea3e8d550b86ef6b3ec978",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    }
+  },
+  "linked_source_units": 2448,
+  "exact_functions": 27572,
+  "runtime_probes": {
+    "enemy-slot-probe.log": "ace3b73b087ccb7f34311f4671dab59972f58c00eb2edac64bbe780cb84ced70",
+    "layer-enemy-slot-probe.log": "798dc4d2c0789ebd852358ab27f19c20fbe40ce34b291302451605a30bed926f"
+  },
+  "probe_scope": [
+    "enemy chain links for empty and populated destination groups",
+    "experience and drop dispatch",
+    "memory-card cursor and slot field offsets"
+  ],
+  "rename_only_paths": {
+    "src/pso/boss/darkfalz/TBoss4Zako.cpp": {
+      "replay_blob": "100644:77117cb7ea8e0bac0cf7da26a62382d6af96310a",
+      "historical_blob": "100644:f77b177f9339b51227d038db0245780d61c65160",
+      "identifier_correspondence": [
+        {
+          "kept": "reset_photon_effect",
+          "skipped": "register_by_id",
+          "occurrences": 1
+        }
+      ]
+    },
+    "src/pso/enemy/beast/TObjEneBeast_800C4E08.cpp": {
+      "replay_blob": "100644:598792dcd479eebec632ef3f6046ccbcda3ab7d1",
+      "historical_blob": "100644:2a1b8c54ba19e889317a41b451a83c80fa0701e7",
+      "identifier_correspondence": [
+        {
+          "kept": "copy_position",
+          "skipped": "copy_body_to_center",
+          "occurrences": 1
+        },
+        {
+          "kept": "is_action_available",
+          "skipped": "has_group",
+          "occurrences": 1
+        },
+        {
+          "kept": "refresh_lobby_state",
+          "skipped": "distribute_experience_and_request_drop",
+          "occurrences": 1
+        }
+      ]
+    },
+    "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp": {
+      "replay_blob": "100644:f9fe1f23dab48b00646adeefb228c464a81233eb",
+      "historical_blob": "100644:78f7bae6bfc7b8412482fcbf873ec6fec597eb22",
+      "identifier_correspondence": [
+        {
+          "kept": "refresh_lobby_state",
+          "skipped": "distribute_experience_and_request_drop",
+          "occurrences": 1
+        },
+        {
+          "kept": "trigger_dell_biter_events",
+          "skipped": "spawn_breakup_particles",
+          "occurrences": 1
+        }
+      ]
+    },
+    "src/pso/enemy/dd/TObjEneDD.cpp": {
+      "replay_blob": "100644:81f0c74207ada8303cdb6f9f612a2466bae7b326",
+      "historical_blob": "100644:dc757adf3b4d4240d9da614b75cc30e9bb32d0dd",
+      "identifier_correspondence": [
+        {
+          "kept": "refresh_lobby_state",
+          "skipped": "distribute_experience_and_request_drop",
+          "occurrences": 1
+        },
+        {
+          "kept": "reset_photon_effect",
+          "skipped": "register_by_id",
+          "occurrences": 1
+        }
+      ]
+    },
+    "src/pso/item/TItemTexLoad.cpp": {
+      "replay_blob": "100644:f72988230dfdbd7cd9ef2b298f841e0b205d84ee",
+      "historical_blob": "100644:f2674e79edc692fbfbe9868d62fcfbb5e08b773c",
+      "identifier_correspondence": [
+        {
+          "kept": "ADXF_GetFsizeSct",
+          "skipped": "adxf_get_fsize_sct",
+          "occurrences": 1
+        },
+        {
+          "kept": "ADXF_GetStat",
+          "skipped": "adxf_get_stat",
+          "occurrences": 1
+        }
+      ]
+    },
+    "src/pso/ui/chat/TWindowSubSymbolChatFaceType.cpp": {
+      "replay_blob": "100644:8488c907209dd9ceca0d3fc89823f5851eadaac4",
+      "historical_blob": "100644:c9a0a2fd585a3f9e359197bfe551cbbce11561dc",
+      "identifier_correspondence": [
+        {
+          "kept": "client_index",
+          "skipped": "m_20",
+          "occurrences": 1
+        },
+        {
+          "kept": "open_tick",
+          "skipped": "m_5c",
+          "occurrences": 2
+        },
+        {
+          "kept": "window_flags",
+          "skipped": "m_2c",
+          "occurrences": 1
+        }
+      ]
+    },
+    "src/pso/ui/chat/TWindowSubSymbolChatPartsSet.cpp": {
+      "replay_blob": "100644:b9e4d8a0f2b88e54c6487183da9a54db4b046405",
+      "historical_blob": "100644:4088ee4527f03a086d2a9b148d4d4fafa245fcff",
+      "identifier_correspondence": [
+        {
+          "kept": "client_index",
+          "skipped": "m_20",
+          "occurrences": 1
+        },
+        {
+          "kept": "open_tick",
+          "skipped": "m_5c",
+          "occurrences": 3
+        },
+        {
+          "kept": "window_flags",
+          "skipped": "m_2c",
+          "occurrences": 2
+        }
+      ]
+    },
+    "src/pso/ui/window/TWindowLockOn_80262C3C.cpp": {
+      "replay_blob": "100644:1b1e580dfe46e5363b0aabb0491334dc3872a88e",
+      "historical_blob": "100644:5c0d552f8843938401b03667f3360cb38d35e794",
+      "identifier_correspondence": [
+        {
+          "kept": "client_index",
+          "skipped": "m_20",
+          "occurrences": 4
+        },
+        {
+          "kept": "open_tick",
+          "skipped": "m_5c",
+          "occurrences": 1
+        }
+      ]
+    },
+    "src/pso/ui/window/TWindowMainMenu.cpp": {
+      "replay_blob": "100644:953a269c5ae074d90024e4a88a5b80601fb9c57a",
+      "historical_blob": "100644:517d89fadd42e45d01bbc019a1c91dea361d4c78",
+      "identifier_correspondence": [
+        {
+          "kept": "client_index",
+          "skipped": "m_54",
+          "occurrences": 5
+        }
+      ]
+    },
+    "src/pso/ui/window/TWindowMessageLog.cpp": {
+      "replay_blob": "100644:e07a1438c7955d81fa0973f14dcdbb66aeba1da4",
+      "historical_blob": "100644:46db3a618cb69f3acf893f24eb0df8c358407446",
+      "identifier_correspondence": [
+        {
+          "kept": "open_tick",
+          "skipped": "m_5c",
+          "occurrences": 2
+        },
+        {
+          "kept": "window_flags",
+          "skipped": "m_2c",
+          "occurrences": 3
+        }
+      ]
+    },
+    "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp": {
+      "replay_blob": "100644:c1f3d300e4e54776da730b69ccee8462dce278ce",
+      "historical_blob": "100644:c7d35fd63bb7de10cc19dc05bb7f7c6bfe04a3f7",
+      "identifier_correspondence": [
+        {
+          "kept": "open_tick",
+          "skipped": "m_5c",
+          "occurrences": 4
+        }
+      ]
+    },
+    "src/pso/ui/window/TWindowSubComCard_80265410.cpp": {
+      "replay_blob": "100644:bdbc7ef0e2eae8616f7f63910e40fa43a374c5ef",
+      "historical_blob": "100644:0ef7bf4cfd060d93c0196370f5ac142ecbfe962c",
+      "identifier_correspondence": [
+        {
+          "kept": "client_index",
+          "skipped": "m_20",
+          "occurrences": 1
+        },
+        {
+          "kept": "open_tick",
+          "skipped": "m_5c",
+          "occurrences": 3
+        },
+        {
+          "kept": "window_flags",
+          "skipped": "m_2c",
+          "occurrences": 5
+        }
+      ]
+    },
+    "src/pso/ui/window/TWindowSubStatusDisp_80248BE8.cpp": {
+      "replay_blob": "100644:5ff74ee446cea6d19b324ec2d212554dd158655e",
+      "historical_blob": "100644:b8748a682f892452bbb1f5153baa8136c44f778c",
+      "identifier_correspondence": [
+        {
+          "kept": "client_index",
+          "skipped": "m_20",
+          "occurrences": 1
+        },
+        {
+          "kept": "open_tick",
+          "skipped": "m_5c",
+          "occurrences": 1
+        }
+      ]
+    },
+    "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp": {
+      "replay_blob": "100644:c38f14d61b8b3ae8df8f190346b5eaa10822f265",
+      "historical_blob": "100644:a24419295ef2731328c1ce7c347594fe8fb9609d",
+      "identifier_correspondence": [
+        {
+          "kept": "client_index",
+          "skipped": "m_20",
+          "occurrences": 3
+        },
+        {
+          "kept": "open_tick",
+          "skipped": "m_5c",
+          "occurrences": 1
+        },
+        {
+          "kept": "window_flags",
+          "skipped": "m_2c",
+          "occurrences": 5
+        }
+      ]
+    },
+    "src/pso/unk/TLobby_800FA164.cpp": {
+      "replay_blob": "100644:f50fc6b84b4f5e91c7eed5a4f3bc51653988519b",
+      "historical_blob": "100644:902f2524e1708d2a8e5b84ed9ce9c4a3e96c8dd2",
+      "identifier_correspondence": [
+        {
+          "kept": "ADXF_GetFsizeSct",
+          "skipped": "adxf_get_fsize_sct",
+          "occurrences": 1
+        }
+      ]
+    },
+    "src/pso/unk/TLobby_800FA2A0.cpp": {
+      "replay_blob": "100644:741124cdf4890b10c2413eb55b5209d4872871a5",
+      "historical_blob": "100644:910fdc95d19b5d6cbabcd7ce678a4f5f6fd94ac4",
+      "identifier_correspondence": [
+        {
+          "kept": "ADXF_GetFsizeSct",
+          "skipped": "adxf_get_fsize_sct",
+          "occurrences": 1
+        }
+      ]
+    },
+    "src/pso/unk/TLobby_8023F734.cpp": {
+      "replay_blob": "100644:5acbbe2a678300a8c0e03c1e16ee6d5c595b4231",
+      "historical_blob": "100644:c5e6b6893eab27f11bf866434f184880247d1c13",
+      "identifier_correspondence": [
+        {
+          "kept": "ADXF_GetStat",
+          "skipped": "adxf_get_stat",
+          "occurrences": 2
+        }
+      ]
+    },
+    "src/pso/unk/text_800FA464.cpp": {
+      "replay_blob": "100644:3e55f58abc4f51b2656e5360fc6537ac4bb60e07",
+      "historical_blob": "100644:3cf694ad55b139b9a2b41290ceb5a59d00ab5d85",
+      "identifier_correspondence": [
+        {
+          "kept": "ADXF_GetStat",
+          "skipped": "adxf_get_stat",
+          "occurrences": 3
+        }
+      ]
+    }
+  },
+  "equivalent_npc_calls": {
+    "src/pso/npc/TObjNpcAHM01.cpp": {
+      "replay_blob": "100644:c8549d73382b85738222d7b4e636d702ef286bdf",
+      "historical_blob": "100644:66c98eb481e7cf4e7487333ed519c4fa8ad38b50",
+      "constructor": "TObjNpcAHM01::TObjNpcAHM01(TObject *parent, void *arg2) : TUnk_804A9F50(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcARM00.cpp": {
+      "replay_blob": "100644:bf6020aff72c6ae18601416df141100e0a47322d",
+      "historical_blob": "100644:93b144b0ae3d95aa63897cb4faba1ccbfad654ae",
+      "constructor": "TObjNpcARM00::TObjNpcARM00(TObject *parent, void *arg2) : TUnk_804A9F50(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcARW00.cpp": {
+      "replay_blob": "100644:55b9aeb04c5059c8aad0478ccf65b0bc27ac52d8",
+      "historical_blob": "100644:6e2a835db2afa9250d1052ef1eaa3213b6f4470d",
+      "constructor": "TObjNpcARW00::TObjNpcARW00(TObject *parent, void *arg2) : TUnk_804A8640(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcCloakroomBase.cpp": {
+      "replay_blob": "100644:6dd6b5b071a9640d3d84594e941099265820ec7e",
+      "historical_blob": "100644:dabc608d0f8275c124a19c3d935af74535e9e279",
+      "constructor": "TObjNpcCloakroomBase::TObjNpcCloakroomBase(TObject *parent, void *arg2) : TUnk_804A8640(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcConnoisseur.cpp": {
+      "replay_blob": "100644:b9eb77936a72f4bcccd2f4b70e02d94533925f79",
+      "historical_blob": "100644:1482a13a1287fb7b74420593b8df9678ecdb28f4",
+      "constructor": "TObjNpcConnoisseur::TObjNpcConnoisseur(TObject *parent, void *arg2) : TUnk_804A9F50(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcExpertBase.cpp": {
+      "replay_blob": "100644:c64656363a03ca7a62025097f5b549b885c6f01d",
+      "historical_blob": "100644:93a613b6692066c2137de801eb1030bd19a1bc7c",
+      "constructor": "TObjNpcExpertBase::TObjNpcExpertBase(TObject *parent, void *arg2) : TUnk_804A9F50(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcFemaleBase.cpp": {
+      "replay_blob": "100644:26f1d51d0d4e75e5c3a94caa4256f3f9f300162d",
+      "historical_blob": "100644:592d2ac10984b68e39633a56a22339a9ddd02240",
+      "constructor": "TObjNpcFemaleBase::TObjNpcFemaleBase(TObject *parent, void *set_data) : TUnk_804A8640(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcFemaleChild.cpp": {
+      "replay_blob": "100644:31a58f6cfe7e7e8d6206728207aa21df69084769",
+      "historical_blob": "100644:9460709ebf2fcd1f6538f2cd568872cdc0e0280e",
+      "constructor": "TObjNpcFemaleChild::TObjNpcFemaleChild(TObject *parent, void *set_data) : TUnk_804A8640(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcFemaleDwarf.cpp": {
+      "replay_blob": "100644:b0d6bce0e2cdb935b2501ce5646f70fc0a33aefb",
+      "historical_blob": "100644:e894cef24404e004b6dc0dd7865f91edb8332810",
+      "constructor": "TObjNpcFemaleDwarf::TObjNpcFemaleDwarf(TObject *parent, void *set_data) : TUnk_804A8640(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcFemaleFat.cpp": {
+      "replay_blob": "100644:06a2eabf2ccf149b7b723fab6a78f43354080901",
+      "historical_blob": "100644:f7284726938e7bb8530d9ddfb6ff2ce9ea6d884f",
+      "constructor": "TObjNpcFemaleFat::TObjNpcFemaleFat(TObject *parent, void *set_data) : TUnk_804A8640(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcFemaleMacho.cpp": {
+      "replay_blob": "100644:9f7f8f37d20de4f9c3f635a339daddf0ae7ce6f0",
+      "historical_blob": "100644:06984ef5d05d8e2718b652584e5746c8633542d4",
+      "constructor": "TObjNpcFemaleMacho::TObjNpcFemaleMacho(TObject *parent, void *set_data) : TUnk_804A8640(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcFemaleOld.cpp": {
+      "replay_blob": "100644:54fa66a9be774553182226c24a99df8fd56d8cb9",
+      "historical_blob": "100644:0314a5cd5963d0b5d79431483ee7490e9f1abafa",
+      "constructor": "TObjNpcFemaleOld::TObjNpcFemaleOld(TObject *parent, void *set_data) : TUnk_804A8640(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcFemaleTall.cpp": {
+      "replay_blob": "100644:3418c97d168b621b689b24f0c41a4e9419019833",
+      "historical_blob": "100644:0823763848292fd09a73214befe7c4fe406109f3",
+      "constructor": "TObjNpcFemaleTall::TObjNpcFemaleTall(TObject *parent, void *set_data) : TUnk_804A8640(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcGovernorBase.cpp": {
+      "replay_blob": "100644:cc022bcdfb19e33cff3b3699af20c826db8cff0e",
+      "historical_blob": "100644:914e0899b5596de6ef62c68ec2d2b980720a236e",
+      "constructor": "TObjNpcGovernorBase::TObjNpcGovernorBase(TObject *parent, void *arg2) : TUnk_804A9F50(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcHFW00.cpp": {
+      "replay_blob": "100644:020005c1f2c421b606b6b82b4dab33d23329c503",
+      "historical_blob": "100644:799840da55e884ee1e1079a0899a80530dfd47ea",
+      "constructor": "TObjNpcHFW00::TObjNpcHFW00(TObject *parent, void *arg2) : TUnk_804A92A8(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcHFW01.cpp": {
+      "replay_blob": "100644:ebb54752e134cd7b9d14a990791868281b4650f2",
+      "historical_blob": "100644:cf0611d4a718a40a1e8d5ddbf031f1f2bcaf9aa3",
+      "constructor": "TObjNpcHFW01::TObjNpcHFW01(TObject *parent, void *arg2) : TUnk_804A92A8(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcHHM00.cpp": {
+      "replay_blob": "100644:aa6190bd4de38041be78ba9d1a3b2d38850f65fb",
+      "historical_blob": "100644:a99f0c4db9df51668670743d64dde4f61d8f2990",
+      "constructor": "TObjNpcHHM00::TObjNpcHHM00(TObject *parent, void *set_data) : TUnk_804A9F50(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcHRM00.cpp": {
+      "replay_blob": "100644:2b04aa77560159dfe0743e112ee9d1c0f5607cd1",
+      "historical_blob": "100644:15207d6a3e812df37b4ece80d2fd4d349377f264",
+      "constructor": "TObjNpcHRM00::TObjNpcHRM00(TObject *parent, void *set_data) : TUnk_804A9F50(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcHRM01.cpp": {
+      "replay_blob": "100644:399a602b7ecf10bf63b4ef53d89824a73fd0003e",
+      "historical_blob": "100644:d78117df4489d074a6a501a5b76ee205a9c36df1",
+      "constructor": "TObjNpcHRM01::TObjNpcHRM01(TObject *parent, void *set_data) : TUnk_804A9F50(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcHosa.cpp": {
+      "replay_blob": "100644:2ebe9010b251304608ef8948bb6ee2380e645915",
+      "historical_blob": "100644:b76ee794b9ab9b0d6af4eb807110672a91838b5a",
+      "constructor": "TObjNpcHosa::TObjNpcHosa(TObject *parent, void *arg2) : TUnk_804A9F50(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcHosa2.cpp": {
+      "replay_blob": "100644:6fe58852183487dc18603cf3fe06abb13dfab305",
+      "historical_blob": "100644:a98dbffa072510d57c32a31d76a4868a0ae1bddd",
+      "constructor": "TObjNpcHosa2::TObjNpcHosa2(TObject *parent, void *arg2) : TUnk_804A9F50(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcKenkyu.cpp": {
+      "replay_blob": "100644:fdf6342232a501a004fdcea9ef0d2b2075ac406e",
+      "historical_blob": "100644:5c4a3100eeb26ff8403b716648fc62be7fa0df2e",
+      "constructor": "TObjNpcKenkyu::TObjNpcKenkyu(TObject *parent, void *arg2) : TUnk_804A9F50(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcKenkyu2.cpp": {
+      "replay_blob": "100644:140b9fef79d9825edd09ee0ada60c4bcc2b7acd6",
+      "historical_blob": "100644:b19c686e06f681cf7de9f888bb3cc357fc562c32",
+      "constructor": "TObjNpcKenkyu2::TObjNpcKenkyu2(TObject *parent, void *arg2) : TUnk_804A9F50(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcKenkyuW.cpp": {
+      "replay_blob": "100644:d4d628bb856d89565654850089d4fa671fd2bec1",
+      "historical_blob": "100644:c12ae2b23f52f6280eec3f7ed59cf28f9f42a2da",
+      "constructor": "TObjNpcKenkyuW::TObjNpcKenkyuW(TObject *parent, void *arg2) : TUnk_804A9F50(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcMaleBase.cpp": {
+      "replay_blob": "100644:9340572f18837cd07feaf4f507cd3bcbbcc5f3a0",
+      "historical_blob": "100644:8a074318dfbd688902686ba76d566640e11d619f",
+      "constructor": "TObjNpcMaleBase::TObjNpcMaleBase(TObject *parent, void *set_data) : TUnk_804A9F50(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcMaleChild.cpp": {
+      "replay_blob": "100644:6ed5f47886618ad4b33c80f79897c7059746c4a3",
+      "historical_blob": "100644:b872a581db1b16e3c8ba5f3a94ec887edfaa595d",
+      "constructor": "TObjNpcMaleChild::TObjNpcMaleChild(TObject *parent, void *set_data) : TUnk_804A9F50(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcMaleDwarf.cpp": {
+      "replay_blob": "100644:b77f5e7ad72976157c1c60b88ef778d940a59a13",
+      "historical_blob": "100644:be1a0081bbc9c706c62d548c8835cc764f0cd149",
+      "constructor": "TObjNpcMaleDwarf::TObjNpcMaleDwarf(TObject *parent, void *set_data) : TUnk_804A9F50(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcMaleFat.cpp": {
+      "replay_blob": "100644:892c2d5473b908f3520f7dd38c3b3b10a3da2894",
+      "historical_blob": "100644:f3c2a640d47192e0320135659c94a31ed4460815",
+      "constructor": "TObjNpcMaleFat::TObjNpcMaleFat(TObject *parent, void *set_data) : TUnk_804A9F50(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcMaleMacho.cpp": {
+      "replay_blob": "100644:0a3a4132262d04d5c64ae24584d485f2b0881616",
+      "historical_blob": "100644:0fc998022662e90c02eef8122f7a71d54bd2a93e",
+      "constructor": "TObjNpcMaleMacho::TObjNpcMaleMacho(TObject *parent, void *set_data) : TUnk_804A9F50(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcMaleOld.cpp": {
+      "replay_blob": "100644:c6a66824ecfa88dcd26d1f6ec844a08d4b6cb68a",
+      "historical_blob": "100644:178a41a1e1c524e7e8fa309afa190d0bc055cf85",
+      "constructor": "TObjNpcMaleOld::TObjNpcMaleOld(TObject *parent, void *set_data) : TUnk_804A9F50(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcMaleTall.cpp": {
+      "replay_blob": "100644:6123d0f9d520b216c2d16ff3d5a8b5e90c7f1f1a",
+      "historical_blob": "100644:5f0d668f30efe83312c05ed2118da1a4e6765319",
+      "constructor": "TObjNpcMaleTall::TObjNpcMaleTall(TObject *parent, void *set_data) : TUnk_804A9F50(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcNFM00.cpp": {
+      "replay_blob": "100644:0199433009b8eebb7c8f27150a968160804a8b13",
+      "historical_blob": "100644:52ad13a3f6825a767f62f6b3864b2ca143184bf8",
+      "constructor": "TObjNpcNFM00::TObjNpcNFM00(TObject *parent, void *set_data) : TUnk_804A9F50(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcNFM01.cpp": {
+      "replay_blob": "100644:39f108e7eee00ba22bde2ee8c170dd9988b861d9",
+      "historical_blob": "100644:83e6b30e071eff019a749d6c2973f75d3fd3593c",
+      "constructor": "TObjNpcNFM01::TObjNpcNFM01(TObject *parent, void *set_data) : TUnk_804A9F50(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcNFW00.cpp": {
+      "replay_blob": "100644:d5ef79931da897cedc6e8a875232ec73d44f0a13",
+      "historical_blob": "100644:c690db61d80b07f85ef57549c2af7f62acf8430c",
+      "constructor": "TObjNpcNFW00::TObjNpcNFW00(TObject *parent, void *set_data) : TUnk_804A8640(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcNFW01.cpp": {
+      "replay_blob": "100644:e97deb4c9fffc839f3fba57cda4497c4294797e6",
+      "historical_blob": "100644:a83fc0547578240fbea0b32b02cff41203e772a9",
+      "constructor": "TObjNpcNFW01::TObjNpcNFW01(TObject *parent, void *set_data) : TUnk_804A8640(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcNHW00.cpp": {
+      "replay_blob": "100644:45f1ea60db7c6fcab1bc48d718cbd675a843b249",
+      "historical_blob": "100644:647be513fcae0e6d09aeae85d229f3b97607eeaf",
+      "constructor": "TObjNpcNHW00::TObjNpcNHW00(TObject *parent, void *set_data) : TUnk_804A8640(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcNHW01.cpp": {
+      "replay_blob": "100644:0649e842f1996964a47aab71258a1ff9fc24e78e",
+      "historical_blob": "100644:6f6e9b300a9f795a0a753d9b68075f1c29cb50e2",
+      "constructor": "TObjNpcNHW01::TObjNpcNHW01(TObject *parent, void *set_data) : TUnk_804A8640(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcNgcBase.cpp": {
+      "replay_blob": "100644:879e0c9d9d5727b4f33b2cb62bf613347ec6bc7c",
+      "historical_blob": "100644:8d3e5fe84ab0c92605b1f43984788fff101e7d86",
+      "constructor": "TObjNpcNgcBase::TObjNpcNgcBase(TObject *parent, void *set_data, void *resource) : TUnk_804A9F50(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcNurseBase.cpp": {
+      "replay_blob": "100644:b65cf73b96701c0294e22c4369b206d486a892c4",
+      "historical_blob": "100644:755efa549beca586c9c79ad18569bd1fa64201d0",
+      "constructor": "TObjNpcNurseBase::TObjNpcNurseBase(TObject *parent, void *set_data) : TUnk_804A8640(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcSecretaryBase.cpp": {
+      "replay_blob": "100644:d159b772cbb20bacaf73d48b942d8b3a70aba7c4",
+      "historical_blob": "100644:58d0a0d563e2eb4e5c52195a9b5cc2e326a63f7a",
+      "constructor": "TObjNpcSecretaryBase::TObjNpcSecretaryBase(TObject *parent, void *set_data) : TUnk_804A8640(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcSoldierBase.cpp": {
+      "replay_blob": "100644:1b6bccc16c496a869cf5aa772269cfb623f6020b",
+      "historical_blob": "100644:e997fac659412ce69bb511f95ad1965ce5c0c959",
+      "constructor": "TObjNpcSoldierBase::TObjNpcSoldierBase(TObject *parent, void *set_data) : TUnk_804A9F50(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcSoldierMacho.cpp": {
+      "replay_blob": "100644:94f3c94b2ec4390a89fdab9f7be19e02e1abd15e",
+      "historical_blob": "100644:2a03f7bc4bd2098bf7afb3f63298e16e98469eaf",
+      "constructor": "TObjNpcSoldierMacho::TObjNpcSoldierMacho(TObject *parent, void *set_data) : TUnk_804A9F50(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    },
+    "src/pso/npc/TObjNpcSoutokufu.cpp": {
+      "replay_blob": "100644:392d47c201d58e007f44a04adb517cbf1498f7b6",
+      "historical_blob": "100644:f080f786fcf68a4e08d58d0db4b77241130ae6a6",
+      "constructor": "TObjNpcSoutokufu::TObjNpcSoutokufu(TObject *parent, void *arg2) : TUnk_804A9F50(parent) {",
+      "historical_receiver": "((TObjChara *)this)->init_position_vectors();",
+      "retained_receiver": "init_position_vectors();"
+    }
+  },
+  "native_archive_source_retaining_style": {
+    "src/pso/object/TObjDoaEx01.cpp": {
+      "replay_blob": "100644:01ad95b36c9eeb459c0cfa6c0343c218dfa7ef0b",
+      "historical_blob": "100644:f1d4e10d8bea4af473a5bcb3efda7e5c3ff7ac29",
+      "retained_source_style": [
+        "original position of the current texture-list header",
+        "direct include of the archive descriptor already consumed by the wrapper"
+      ]
+    },
+    "src/pso/object/TObjLiveMonitor.cpp": {
+      "replay_blob": "100644:b40e2a73ed3f4c23b74cdbe41ab6fd8f14f9866a",
+      "historical_blob": "100644:52637992e27b4058d620edf8f332ce05d30837d2",
+      "retained_source_style": [
+        "direct include of the archive descriptor already consumed by the wrapper"
+      ]
+    },
+    "src/pso/object/TObjTombstone.cpp": {
+      "replay_blob": "100644:cdb318f2058f83fead96708bb051e7ba81e64960",
+      "historical_blob": "100644:b63b4567a29cb76a424336cc73f7e30cfcba482c",
+      "retained_source_style": [
+        "original position of the current texture-list header",
+        "direct include of the archive descriptor already consumed by the wrapper",
+        "existing explicit cast for the texture-list pointer"
+      ]
+    },
+    "src/pso/object/ambient/TButterfly.cpp": {
+      "replay_blob": "100644:c3f6dfa0deaafbc479554c87a0fa5b983fe092a4",
+      "historical_blob": "100644:3e8616b24fd3c17eedb4f82b0246798424c0a712",
+      "retained_source_style": [
+        "original position of the current texture-list header",
+        "direct include of the archive descriptor already consumed by the wrapper"
+      ]
+    },
+    "src/pso/object/door/TODoorJungleMain.cpp": {
+      "replay_blob": "100644:d05e2a3392436067c927162520496909c5270401",
+      "historical_blob": "100644:59e39e195b684fe5e6a59a5f9c6ebbf7eb64aabe",
+      "retained_source_style": [
+        "original position of the current texture-list header",
+        "direct include of the archive descriptor already consumed by the wrapper",
+        "existing explicit cast for the texture-list pointer"
+      ]
+    },
+    "src/pso/object/door/TODoorLabo.cpp": {
+      "replay_blob": "100644:eca9cb49a40172d6f6c99e28af65cefa543e1248",
+      "historical_blob": "100644:69670053f9e47b81bab194b6b29fc299f026a09e",
+      "retained_source_style": [
+        "original position of the current texture-list header",
+        "direct include of the archive descriptor already consumed by the wrapper"
+      ]
+    },
+    "src/pso/object/door/TObjDoorJung.cpp": {
+      "replay_blob": "100644:7466a3f46decc21c3de2bca58d2e903835e91e98",
+      "historical_blob": "100644:21785519ebb3b00a5e368ff8453e347017a96236",
+      "retained_source_style": [
+        "original position of the current texture-list header",
+        "direct include of the archive descriptor already consumed by the wrapper",
+        "existing explicit cast for the texture-list pointer"
+      ]
+    },
+    "src/pso/object/door/TObjDoorKey.cpp": {
+      "replay_blob": "100644:60d26fb4d334169c47dc6c38dcece55e2346a679",
+      "historical_blob": "100644:031332e56c16b263a0076bf0776eb54e14e5f36f",
+      "retained_source_style": [
+        "original position of the current texture-list header",
+        "direct include of the archive descriptor already consumed by the wrapper",
+        "existing explicit cast for the texture-list pointer"
+      ]
+    },
+    "src/pso/object/door/TObjDoor_8018E358.cpp": {
+      "replay_blob": "100644:15244a9473efdf796755a91b671a736f1d1cae76",
+      "historical_blob": "100644:49db3f5967ed47ae9ec6f08fb04cc4779985cdb4",
+      "retained_source_style": [
+        "original position of the current texture-list header",
+        "direct include of the archive descriptor already consumed by the wrapper",
+        "existing explicit cast for the texture-list pointer"
+      ]
+    },
+    "src/pso/object/ending/TObjOnlineEnding_802E4B80.cpp": {
+      "replay_blob": "100644:0b82e20abc1ec2ff1a182f02519f4d23ddc8ddd1",
+      "historical_blob": "100644:6ae978fb5b7f0b4091023c725dc5a030d8ce84a7",
+      "retained_source_style": [
+        "original position of the current texture-list header",
+        "direct include of the archive descriptor already consumed by the wrapper",
+        "existing explicit cast for the texture-list pointer"
+      ]
+    },
+    "src/pso/object/fence/TLazerFenceSw.cpp": {
+      "replay_blob": "100644:27089331f37c900215c5e548e9b1053b07127ab3",
+      "historical_blob": "100644:191d003a4f8d3da1612644e5b58c76c4fab21dd6",
+      "retained_source_style": [
+        "original position of the current texture-list header",
+        "direct include of the archive descriptor already consumed by the wrapper",
+        "existing explicit cast for the texture-list pointer"
+      ]
+    },
+    "src/pso/object/fence/TOVS2Wall01.cpp": {
+      "replay_blob": "100644:84bf78db6bef93bc2cbfebb0fff8c9634d3210e5",
+      "historical_blob": "100644:b902412d1393c83b21b1287782a57fb7bf5538b4",
+      "retained_source_style": [
+        "original position of the current texture-list header",
+        "direct include of the archive descriptor already consumed by the wrapper",
+        "existing explicit cast for the texture-list pointer"
+      ]
+    },
+    "src/pso/object/fence/TObjLazerFenceNorm.cpp": {
+      "replay_blob": "100644:9d1da7bae2981fd11f9c97e65240ee91fea948ff",
+      "historical_blob": "100644:d2aa813fdbeb35fd7f174096e0ab1d3c4834ffa4",
+      "retained_source_style": [
+        "original position of the current texture-list header",
+        "direct include of the archive descriptor already consumed by the wrapper",
+        "existing explicit cast for the texture-list pointer"
+      ]
+    },
+    "src/pso/object/lobby/LobbyPigeonPath.cpp": {
+      "replay_blob": "100644:5dca492b42c2b857db14d681d6b16abce0b7fce7",
+      "historical_blob": "100644:0add14bdc6200bd5d49405d23608247edf8fa6e1",
+      "retained_source_style": [
+        "original position of the current texture-list header",
+        "direct include of the archive descriptor already consumed by the wrapper",
+        "existing explicit cast for the texture-list pointer"
+      ]
+    },
+    "src/pso/object/trap/TOExplosiveMachine.cpp": {
+      "replay_blob": "100644:a303c36161d36d3411d7e88f91f98ba356392a83",
+      "historical_blob": "100644:687bfdcacae82f03472ba5534a223b2d1a14fb00",
+      "retained_source_style": [
+        "original position of the current texture-list header",
+        "direct include of the archive descriptor already consumed by the wrapper",
+        "existing explicit cast for the texture-list pointer"
+      ]
+    },
+    "src/pso/object/trap/TOMine.cpp": {
+      "replay_blob": "100644:7bdaef5cfa4635d09e0c3ccf0a2c87e696a3f808",
+      "historical_blob": "100644:bf1cc77606f4ffcaab66ac2e8a616a15e0e5a384",
+      "retained_source_style": [
+        "original position of the current texture-list header",
+        "direct include of the archive descriptor already consumed by the wrapper",
+        "existing explicit cast for the texture-list pointer",
+        "existing explicit cast at the actor position initializer"
+      ]
+    },
+    "src/pso/object/wreck/TOWreckAncient.cpp": {
+      "replay_blob": "100644:14a628495a37cd91a6299b87ab91770b69f3bee6",
+      "historical_blob": "100644:d8f3d1e2d6a4f4f7cf52491d6ec4dae94965a8f9",
+      "retained_source_style": [
+        "original position of the current texture-list header",
+        "direct include of the archive descriptor already consumed by the wrapper",
+        "existing explicit cast for the texture-list pointer"
+      ]
+    }
+  },
+  "upstream_names_retained": [
+    "refresh_lobby_state",
+    "query_lobby_state",
+    "is_action_available",
+    "link_chain_nodes",
+    "create_breakup_mdl",
+    "trigger_dell_biter_events",
+    "TBoss4Uro::get_instance_count",
+    "ADXF_GetStat",
+    "ADXF_GetFsizeSct"
+  ],
+  "fork_workspace_ref": "great-merge/consolidated/after-upstream-351-fork-workspace",
+  "fork_tool_overlay_paths": 130,
+  "fork_overlay_sha256": "eb3b26f6963c3d5303e59514c2b93450c71f21e96f0c1001c70d3a155fccc9fb",
+  "retained_symbols": 27033,
+  "fork_validation": {
+    "build_retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "check_sha256": "294d5d4e65e3db3407ceff097811cede09728d2c21c1257d66d17135be0bdc4b",
+    "baseline": "0d4c0812e7f2dc93649511ae0881831305555c31",
+    "function_labels": []
+  },
+  "fork_workspace_tests": {
+    "tool": {
+      "count": 294,
+      "sha256": "9b08bd0af76174315f91698fa89c8e7a9ab1498dd1befcc365f14da84570e7f5"
+    },
+    "fork": {
+      "count": 11,
+      "sha256": "5ed82d91f9524bab30352b3cae18b7dc057c9416833c533a9a8c7e6fc333e1de"
+    },
+    "host": {
+      "paths": [
+        "./vector_math_fallbacks",
+        "./item_factory_callbacks",
+        "./loader_transfer",
+        "./ginja_parameter_callbacks",
+        "./exi_ethernet_fallbacks"
+      ],
+      "sha256": "66ef2acfa6c6db047a5c7b3bf41d68b6ec2e14ebf4e7b2f68506f88d2311c018"
+    }
+  },
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "existing_full_cutover_preview": "e4135b0c555e633bcd53f555eca1df6059afaf53",
+  "public_refs_changed": false
+}

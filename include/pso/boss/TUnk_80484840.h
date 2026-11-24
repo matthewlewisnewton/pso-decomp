@@ -2,7 +2,7 @@
 #define PSO_BOSS_TUNK_80484840_H
 
 #include "types.h"
-#include "pso/TObject.h"
+#include "pso/system/task/TObject.h"
 #include <dolphin/mtx.h>
 
 struct VoloptLineColor {
@@ -37,6 +37,6 @@ public:
     virtual void render();
 };
 
-typedef char TUnk_80484840_size[sizeof(TUnk_80484840) == 0x44 ? 1 : -1];
+LAYOUT_ASSERT(TUnk_80484840_size, sizeof(TUnk_80484840) == 0x44);
 
 #endif

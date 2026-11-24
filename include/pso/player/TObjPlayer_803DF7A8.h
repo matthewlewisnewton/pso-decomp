@@ -2,25 +2,17 @@
 #define PSO_PLAYER_TOBJPLAYER_803DF7A8_H
 
 #include "types.h"
+
 struct Vec;
 
-extern "C" {
-// The straight-line distance between a and b.
-f32 xyz_distance(Vec *a, Vec *b);
-}
+// One row per box face: its four corner indices, or (the adjacent-face table) the face across each of its edges.
+struct BoxFaces { s32 v[6][4]; };
 
-void load_current_pos_matrix(s32 arg0);
-void load_current_tex_matrix(s32 i);
-void load_list_texture(s32 idx, s32 wrapS, s32 wrapT, s32 map);
-struct CollisionVector_80155C54 {
-    f32 x;
-    f32 y;
-    f32 z;
-};
-struct CollisionSphere_80155C54 {
-    CollisionVector_80155C54 center;
-    f32 radius;
-};
-s32 spheres_overlap(CollisionSphere_80155C54 *arg0, CollisionSphere_80155C54 *arg1);
+extern "C" {
+// 1 if the boxes minA..maxA and minB..maxB (axis-aligned) overlap.
+s32 test_aabb_overlap(Vec *minA, Vec *maxA, Vec *minB, Vec *maxB);
+// 1 if two boxes (eight corners each, as built by build_collision_box_corners) touch.
+s32 test_box_overlap(Vec *cornersA, Vec *cornersB);
+}
 
 #endif

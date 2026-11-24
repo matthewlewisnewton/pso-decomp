@@ -1,0 +1,123 @@
+# Fork documentation and local tools
+
+The fork follows upstream's game source and keeps its documentation and private tooling under `fork/`. The [Great Merge plan](notes/evidence/2026-11-18-upstream-matchpasses.md) records the current review, source and cutover checkpoints. The [source index](notes/evidence/2026-11-18-upstream-source-groups.tsv) records the earlier subsystem drafts.
+
+After syncing the fork to upstream, verify that its differences are confined to the fork layer. With the `upstream` remote set to `zeroz41/pso-decomp`, run the check from the repository root.
+
+```sh
+python3 fork/tools/check_layer.py main --upstream upstream/master --expect-clean
+```
+
+The private tooling workspace applies the fork's tools, probes and host build settings in a separate checkout. See the [tooling guide](tooling/README.md) for materialization and tests. The [original tooling inventory](notes/evidence/2026-11-18-original-fork-tools.tsv) locates historical tool changes, including their archival copies under `fork/tooling/original/`.
+
+Start recovery branches from fork `main` and merge reviewed work back with `--no-ff`. Keep source changes and fork-only documentation in their respective paths. The exporter creates an upstream-based branch with the source diff. Build and run the upstream checks on that export before proposing it for review.
+
+```sh
+python3 fork/tools/export_patch.py recovery-branch -m 'Recover the typed interface' --name review/recovery-branch
+git diff --exit-code upstream/master...review/recovery-branch -- fork/ tools/ ports/ .github/ docs/
+```
+
+Historical evidence that was reworked for the integration has its original versions under [`docs/original/`](docs/original/), including the [original root README](docs/original/root-README.md). The [original fork snapshot](https://github.com/matthewlewisnewton/pso-decomp/tree/3342e42983535b393148deb5b719202b9bf4b7d8) provides the paths referenced by those files.
+
+The [project README](../README.md) describes the upstream checkout. The historical fork README follows.
+
+---
+
+# Phantasy Star Online Episode I & II Plus
+
+A work-in-progress matching decompilation of *Phantasy Star Online Episode I & II Plus* for the Nintendo
+GameCube, USA version 1.02 (`GPOE8P`): C and C++ source that compiles to the same code as the game's executable,
+function for function, in its original translation units.
+
+Nothing from the game is included here. You need your own copy of the game to build it; see [Legal](#legal).
+
+## Progress
+
+<!-- progress-table -->
+| | Matched | Linked |
+|:--|--:|--:|
+| Code | 99.99% (4,352,676 of 4,353,092) | 99.99% (4,352,676 of 4,353,092) |
+| Data | 88.53% (1,558,896 of 1,760,896) | 88.54% (1,559,116 of 1,760,896) |
+| Functions | 99.97% (27,565 of 27,572) | |
+| Units | | 72.23% (3,637 of 5,035) |
+<!-- /progress-table -->
+
+Measured on `PsoV3.dol` on 2026-11-18 at validated source commit
+[`34120b34d9`](https://github.com/matthewlewisnewton/pso-decomp/commit/34120b34d9fae0160ad2ae5aef325ac20e2255b4).
+The README-only publication commit records the measurements of its parent source tree.
+A function is matched when it compiles to the original's exact bytes. Code, data and
+units are linked when the build takes them from compiled source instead of the original. Data includes `.bss`.
+The build still uses 1,387 original-object fallback units; matched functions in those units are not counted as
+source-linked coverage. Unit counts can change when translation units are consolidated.
+
+## Target
+
+| | |
+|---|---|
+| Game | Phantasy Star Online Episode I & II Plus, USA v1.02 (`GPOE8P`) |
+| Disc | SHA-1 `0ff155311f4cc57951c03baeb1a8cc15de5fe1cd` |
+| Executable | `files/PsoV3.dol`, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3` |
+| Compiler | Metrowerks CodeWarrior for GameCube: GC/2.0 for the linker and most game code, older versions for library and game profiles |
+
+## Building
+
+You need Python 3.10 or newer, [Ninja](https://ninja-build.org/) and your own dump of the disc.
+
+1. Put the disc image (ISO, GCM, RVZ, WIA, GCZ or CISO) in `orig/GPOE8P/`.
+2. Run:
+
+       python configure.py
+       ninja
+
+The first build downloads the compilers, [decomp-toolkit](https://github.com/encounter/decomp-toolkit),
+[objdiff](https://github.com/encounter/objdiff) and binutils into `build/`. On Linux and macOS the compilers run
+through [wibo](https://github.com/decompals/wibo); to use Wine instead, pass its path to `configure.py --wrapper`.
+
+`ninja` rebuilds `PsoV3.dol` and checks it against the original's SHA-1, along with the 648 relocatable data files
+and the language files the game loads. Code that is not decompiled yet still comes from the disc, so a passing
+build does not mean the decompilation is complete. The same goes for the functions Nintendo and Metrowerks wrote
+in assembly: `tools/orig_asm.py` rebuilds their bodies from your disc before anything is compiled.
+
+## Objdiff and the progress page
+
+`ninja` also writes `objdiff.json` in the repository folder and the objdiff progress report,
+`build/GPOE8P/report.json`.
+
+- **objdiff.** Download [objdiff](https://github.com/encounter/objdiff/releases) and open the repository folder
+  in it. It reads `objdiff.json`, rebuilds a unit when you save its source and shows each function next to the
+  original.
+- **Progress page.** Turn the report into a page you can browse by unit and function:
+
+      python tools/progress_map.py build/GPOE8P/report.json -o build/progress
+
+  Then open `build/progress/index.html`, or `build/progress/treemap.html` for the treemap, in a browser.
+  Add `--readme README.md` to refresh the table above from the supplied report.
+
+## Working on it
+
+- **Check for regressions.** Run `ninja baseline` before a change and `python tools/check_pr.py` after it. It
+  rebuilds, compares the reports by original address, so renaming, folding or splitting units never hides a lost
+  match, and checks that every linked unit still links from source.
+
+[CONTRIBUTING.md](CONTRIBUTING.md) covers what a change can do and the rules for it.
+[docs/architecture.md](docs/architecture.md) describes how the executable and the source tree are laid out.
+The [documentation index](docs/README.md) links to contributor guides and recovery evidence.
+
+## Credits
+
+Built with [decomp-toolkit](https://github.com/encounter/decomp-toolkit), [objdiff](https://github.com/encounter/objdiff)
+and [dtk-template](https://github.com/encounter/dtk-template). The Dolphin SDK and runtime sources are adapted from
+other GameCube decompilations; [third_party/](third_party/README.md) lists them.
+
+## Legal
+
+This repository contains no game assets, no game files, no assembly and no code copied from the game. Every line of
+source was written by hand, by this project's contributors or by the open-source projects credited above, to
+compile into the same machine code as the original. Everything else the build needs comes from your own legally
+obtained copy of the game, on your machine, when you build.
+
+*Phantasy Star Online* is a trademark of SEGA. This project is not affiliated with or endorsed by SEGA or Nintendo.
+
+## License
+
+[MIT](https://github.com/matthewlewisnewton/pso-decomp/blob/8937534387e0ee55dc2bdce311b90642d922ea4a/LICENSE). Code adapted from other projects keeps its original notices.

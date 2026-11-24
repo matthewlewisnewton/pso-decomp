@@ -1,0 +1,517 @@
+{
+  "source": "96d68f7de83eec04930c0ed7bd6757f9a1374ed4",
+  "previous_source": "648050122c3b75ab0cd5dd22e9adf3a539283e1e",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/player/PlayerHoldPacket.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/player/TObjPlayer_801AF2F0.h",
+    "src/pso/boss/volopt/TObjVoloptCage.cpp",
+    "src/pso/npc/TNpcPlayer_8034DAA0.cpp",
+    "src/pso/npc/TObjNpcBase.cpp",
+    "src/pso/object/TOHealGeneral.cpp",
+    "src/pso/object/trap/TOTrap.cpp",
+    "src/pso/object/trap/TOTrapAncient01.cpp",
+    "src/pso/object/trap/TOTrapAncient02.cpp",
+    "src/pso/object/trap/TOTrapSeabed01.cpp",
+    "src/pso/object/warp/TObjCityMainWarp_80186C44.cpp",
+    "src/pso/object/warp/TObjWarpBossMulti.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TObjPlayer_801D95B8.cpp",
+    "src/pso/player/TPlayerBattleCtrl4P.cpp",
+    "src/pso/player/TPlyItem.cpp",
+    "src/pso/quest/TOQuestTalkBase.cpp",
+    "src/pso/quest/challenge/TChallenge4PItemSelect.cpp",
+    "src/pso/unk/TLobby_800726F0.cpp",
+    "src/pso/unk/TLobby_801C25B4.cpp",
+    "src/pso/unk/TLobby_80299C4C.cpp",
+    "src/pso/unk/text_802233F8.cpp"
+  ],
+  "combined_paths_from_upstream": 1131,
+  "replay_preview": {
+    "base": "b91b12324e",
+    "donor": "21be236e7f",
+    "live": "648050122c3b75ab0cd5dd22e9adf3a539283e1e",
+    "paths": {
+      "config/GPOE8P/psov3/symbols.txt": "conflict",
+      "include/pso/player/TObjPlayer.h": "conflict",
+      "include/pso/player/TObjPlayer_801C00C4.h": "conflict",
+      "include/pso/player/TechniqueCastState.h": "separate owner comparison",
+      "src/pso/boss/volopt/TObjVoloptCage.cpp": "clean",
+      "src/pso/item/TItem.cpp": "already mapped",
+      "src/pso/item/armor/TItemProUnit.cpp": "same blob",
+      "src/pso/npc/TNpcPlayer_8034DAA0.cpp": "clean",
+      "src/pso/npc/TObjNpcBase.cpp": "clean",
+      "src/pso/object/TObjLuker.cpp": "conflict",
+      "src/pso/object/trap/TOTrap.cpp": "clean",
+      "src/pso/object/trap/TOTrapAncient01.cpp": "clean",
+      "src/pso/object/trap/TOTrapAncient02.cpp": "clean",
+      "src/pso/object/trap/TOTrapSeabed01.cpp": "clean",
+      "src/pso/object/warp/TObjCityMainWarp_80186C44.cpp": "clean",
+      "src/pso/object/warp/TObjWarpBossMulti.cpp": "clean",
+      "src/pso/player/PhotonBlastResults.cpp": "already mapped",
+      "src/pso/player/TObjPlayer_801AF2F0.cpp": "conflict",
+      "src/pso/player/TObjPlayer_801BC194.cpp": "conflict",
+      "src/pso/player/TObjPlayer_801C00C4.cpp": "already mapped",
+      "src/pso/player/TObjPlayer_801C7430.cpp": "conflict",
+      "src/pso/player/TObjPlayer_801D95B8.cpp": "conflict",
+      "src/pso/player/TObjPlayer_801D9A04.cpp": "conflict",
+      "src/pso/player/TPlayerBattleCtrl4P.cpp": "clean",
+      "src/pso/player/TPlyItem.cpp": "conflict",
+      "src/pso/quest/TOQuestTalkBase.cpp": "clean",
+      "src/pso/quest/challenge/TChallenge4PItemSelect.cpp": "conflict",
+      "src/pso/technique/TTecLuker.cpp": "already mapped",
+      "src/pso/unk/TLobby_800726F0.cpp": "clean",
+      "src/pso/unk/TLobby_801C25B4.cpp": "clean",
+      "src/pso/unk/TLobby_80299C4C.cpp": "clean",
+      "src/pso/unk/text_801D9870.cpp": "same blob",
+      "src/pso/unk/text_802233F8.cpp": "conflict"
+    }
+  },
+  "validation": {
+    "source": {
+      "baseline": "648050122c3b75ab0cd5dd22e9adf3a539283e1e",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x801B5200",
+          "before": "send_code_45_1__10TObjPlayerFl",
+          "after": "send_code_45_1__10TObjPlayerFP10TObjPlayer"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "6cc603d363828afac0bd467ac7ba92aaf394e4041343f17bcc8ea2cb50f8c12c",
+      "report_sha256": "cded87394cecc6ca4922821303f21f4814ddb509dea03ebbc6191f9eae38693a"
+    },
+    "layer": {
+      "baseline": "96d68f7de83eec04930c0ed7bd6757f9a1374ed4",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "52e7b7c44c895ea98e91fe1a9ea21805885753879d1966b15b6b684ebe565d0b",
+      "report_sha256": "cded87394cecc6ca4922821303f21f4814ddb509dea03ebbc6191f9eae38693a"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "49fef21d122d259daefa162f324da507afa1accab4aaf7eebb1bbc44f469c218"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "0c9ce0a2e0141282aa89da0eedc2485969dec01b6c758553476a3c0c6ea1e122"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "images": [
+      "retail",
+      "source",
+      "materialized fork workspace"
+    ],
+    "probes": {
+      "interaction_dispatch": {
+        "program_sha256": "fce47071dfb3af1fe754c6e37ae36ab7584e75190852824dc475583287bd23dd",
+        "logs_sha256": {
+          "source": "cd10f3151f40ff0bd8ab1288c967aa09ea4010fc865fd9dffc5e52a7f7726fdc",
+          "workspace": "131edcca060bfecdb21c52c63b1b372cdbf210e1b6717fff33e19ee54ddeb900"
+        }
+      },
+      "hold_packet": {
+        "program_sha256": "7be161dd28800b49226f3056f62d8a9ae07633c5c2c99169f427143b2934ef42",
+        "logs_sha256": {
+          "source": "1216d38ea2adb3453717ef62471e51709dcdc7f4d3db6e5b905e6378b4f30642",
+          "workspace": "4e4f963b0b7896070854d113facc476a32f62682927d97b4d0984e99f65c84e1"
+        },
+        "emulator_handling": "The harness skips the paired-single f31 spills. Adjacent scalar f31 saves and restores cover the arithmetic used by the sender."
+      }
+    },
+    "original_sender_branch_addresses": {
+      "hold": [
+        "0x80048fa4",
+        "0x80169468",
+        "0x80178d90",
+        "0x80179b40",
+        "0x8017b090",
+        "0x801b53f0",
+        "0x801b5438",
+        "0x802ca0e8",
+        "0x802ca114"
+      ],
+      "release": [
+        "0x800493e4",
+        "0x80072d78",
+        "0x80148970",
+        "0x80169ddc",
+        "0x80178cd4",
+        "0x8017900c",
+        "0x8017945c",
+        "0x801794ac",
+        "0x8017aea8",
+        "0x80186d30",
+        "0x8019e728",
+        "0x801b4984",
+        "0x801b4c1c",
+        "0x801c40ec",
+        "0x801d3848",
+        "0x801d3890",
+        "0x801d38c4",
+        "0x8022344c",
+        "0x8029a06c",
+        "0x802c9d88",
+        "0x802c9dd8",
+        "0x80310b74",
+        "0x8034b5a8",
+        "0x8034e134"
+      ]
+    },
+    "window_branches": {
+      "0x8024d7d8": "0x8024edf8",
+      "0x8024d894": "0x80269c6c"
+    }
+  },
+  "historical": {
+    "closed_rows": [
+      {
+        "row": 4181,
+        "fork_path": "src/pso/player/TObjPlayer_803E4954.cpp",
+        "owner": "src/pso/player/TObjPlayer_803E4954.cpp",
+        "detail": "Both callback sites use the shared Berura declaration and pass native model pointers. The three model state setup calls pass the original model or child through the native static method.",
+        "authored_change_blocks": [
+          {
+            "old_lines": [
+              7,
+              7
+            ],
+            "fork_lines": [
+              7,
+              7
+            ],
+            "result": "compare",
+            "old": [
+              "typedef void ( * RecoveredCallback_1268626c296b ) ( void * ) ;"
+            ],
+            "fork": [
+              "# include \"pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h\""
+            ]
+          },
+          {
+            "old_lines": [
+              16,
+              16
+            ],
+            "fork_lines": [
+              16,
+              15
+            ],
+            "result": "compare",
+            "old": [
+              "s32 setup_model_draw_state__10TObjPlayerFPv ( ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              29,
+              29
+            ],
+            "fork_lines": [
+              28,
+              27
+            ],
+            "result": "retained",
+            "old": [
+              "extern RecoveredCallback_1268626c296b chunk_model_node_callback ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              59,
+              59
+            ],
+            "fork_lines": [
+              57,
+              57
+            ],
+            "result": "compare",
+            "old": [
+              "chunk_model_node_callback ( arg0 ) ;"
+            ],
+            "fork": [
+              "chunk_model_node_callback ( ( NJS_OBJECT * ) arg0 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              73,
+              73
+            ],
+            "fork_lines": [
+              71,
+              71
+            ],
+            "result": "compare",
+            "old": [
+              "setup_model_draw_state__10TObjPlayerFPv ( ) ;"
+            ],
+            "fork": [
+              "TObjPlayer :: setup_model_draw_state ( arg0 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              78,
+              78
+            ],
+            "fork_lines": [
+              76,
+              76
+            ],
+            "result": "compare",
+            "old": [
+              "setup_model_draw_state__10TObjPlayerFPv ( ) ;"
+            ],
+            "fork": [
+              "TObjPlayer :: setup_model_draw_state ( arg0 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              83,
+              83
+            ],
+            "fork_lines": [
+              81,
+              81
+            ],
+            "result": "compare",
+            "old": [
+              "setup_model_draw_state__10TObjPlayerFPv ( ) ;"
+            ],
+            "fork": [
+              "TObjPlayer :: setup_model_draw_state ( child ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              108,
+              108
+            ],
+            "fork_lines": [
+              106,
+              106
+            ],
+            "result": "compare",
+            "old": [
+              "chunk_model_node_callback ( arg0 ) ;"
+            ],
+            "fork": [
+              "chunk_model_node_callback ( ( NJS_OBJECT * ) arg0 ) ;"
+            ]
+          }
+        ],
+        "owner_blob": "6c16f69a44817e9b1e18c71c2fe04b765fe9cd81"
+      },
+      {
+        "row": 5533,
+        "fork_path": "src/pso/misc/TWindowCtrlMain.cpp",
+        "owner": "src/pso/ui/window/TWindowCtrlMain.cpp",
+        "detail": "Reset uses the native WindowDrawContext singleton at 0x8024EDF8. The child at +0x2c still calls the window message append helper at 0x80269C6C when present. Both original branch sites are verified.",
+        "authored_change_blocks": [
+          {
+            "old_lines": [
+              6,
+              6
+            ],
+            "fork_lines": [
+              6,
+              6
+            ],
+            "result": "compare",
+            "old": [
+              "# include \"pso/ui/window/TWindowKeyBoardSoft.h\""
+            ],
+            "fork": [
+              "# include \"pso/misc/TWindowDrawContext.h\""
+            ]
+          },
+          {
+            "old_lines": [
+              40,
+              40
+            ],
+            "fork_lines": [
+              40,
+              40
+            ],
+            "result": "compare",
+            "old": [
+              "int send_and_handle__6TLobbyFii ( void * ) ;"
+            ],
+            "fork": [
+              "int append_line__14TWindowMessageFii ( void * ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              162,
+              162
+            ],
+            "fork_lines": [
+              162,
+              162
+            ],
+            "result": "compare",
+            "old": [
+              "TWindowKeyBoardSoft :: get_or_create_instance ( ) ;"
+            ],
+            "fork": [
+              "TWindowDrawContext :: get_or_create_instance ( ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              179,
+              179
+            ],
+            "fork_lines": [
+              179,
+              179
+            ],
+            "result": "compare",
+            "old": [
+              "void TWindowCtrlMain :: update_child_2c ( ) { void * m = * ( void * * ) ( ( char * ) this + 0x2c ) ; if ( m ) send_and_handle__6TLobbyFii ( m ) ; }"
+            ],
+            "fork": [
+              "void TWindowCtrlMain :: update_child_2c ( ) { void * m = * ( void * * ) ( ( char * ) this + 0x2c ) ; if ( m ) append_line__14TWindowMessageFii ( m ) ; }"
+            ]
+          }
+        ],
+        "owner_blob": "520018347d896cc4192781756642201e6fe9bb19"
+      }
+    ],
+    "scoped_rows": [
+      [
+        932,
+        "src/pso/object/TObjVoloptCage.cpp",
+        "src/pso/boss/volopt/TObjVoloptCage.cpp"
+      ],
+      [
+        3637,
+        "src/pso/misc/TPlayerBattleCtrl4P_80311800.cpp",
+        "src/pso/player/TPlayerBattleCtrl4P.cpp"
+      ],
+      [
+        3963,
+        "src/pso/unk/text_801D40D4.cpp",
+        "src/pso/player/TPlyItem.cpp"
+      ],
+      [
+        3998,
+        "include/pso/player/TObjPlayer.h",
+        "include/pso/player/TObjPlayer.h"
+      ],
+      [
+        4121,
+        "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "src/pso/player/TObjPlayer_801AF2F0.cpp"
+      ],
+      [
+        4183,
+        "src/pso/player/TPlyItem.cpp",
+        "src/pso/player/TPlyItem.cpp"
+      ],
+      [
+        4212,
+        "src/pso/misc/TPlayerBattleCtrl4P_8031012C.cpp",
+        "src/pso/player/TPlayerBattleCtrl4P.cpp"
+      ],
+      [
+        4510,
+        "src/pso/misc/TLobby_801C25B4.cpp",
+        "src/pso/unk/TLobby_801C25B4.cpp"
+      ],
+      [
+        6058,
+        "src/pso/misc/TLobby_800726F0.cpp",
+        "src/pso/unk/TLobby_800726F0.cpp"
+      ],
+      [
+        6061,
+        "src/pso/misc/TLobby_80299A60.cpp",
+        "src/pso/unk/TLobby_80299C4C.cpp"
+      ],
+      [
+        6450,
+        "src/pso/misc/TOTrapAncient01.cpp",
+        "src/pso/object/trap/TOTrapAncient01.cpp"
+      ],
+      [
+        6451,
+        "src/pso/misc/TOTrapAncient02.cpp",
+        "src/pso/object/trap/TOTrapAncient02.cpp"
+      ],
+      [
+        6452,
+        "src/pso/misc/TOTrapSeabed01.cpp",
+        "src/pso/object/trap/TOTrapSeabed01.cpp"
+      ],
+      [
+        7213,
+        "src/pso/object/TObjWarpBossMulti.cpp",
+        "src/pso/object/warp/TObjWarpBossMulti.cpp"
+      ]
+    ],
+    "open_rows": 344
+  },
+  "fork_workspace": {
+    "trial": "1706ebcff405a391779d1539bcd9fc63ad39d749",
+    "overlay_paths": 130,
+    "updated_overlay_paths": [],
+    "archive_sha256": "01929041ff7fd42153be631b4397bbd8bdbdae03deb03610ea20e57ec2a7a63b",
+    "materialized_tree": "ed98cba7733b5db17ed298219e4092a48ce22b04",
+    "force_active": 27027
+  }
+}

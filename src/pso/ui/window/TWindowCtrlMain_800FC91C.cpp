@@ -1,0 +1,178 @@
+#define TOBJECT_OUT_OF_LINE_HELPERS
+#include "types.h"
+#include "pso/ui/font/TUnk_8049CA54.h"
+#include "pso/ui/window/TWindowCtrlMain_800FC91C.h"
+#include "pso/ui/font/TFontSmallTask.h"
+#include "pso/unk/text_800FCC78.h"
+#include "pso/ui/window/TWindowSubStatusDisp.h"
+#include "pso/ui/font/TFontSmallHelp.h"
+#include "pso/ui/font/TFontSmallLobby.h"
+#include "pso/ui/window/TWindowCtrlMain.h"
+#include "pso/system/task/TObject.h"
+
+#include "pso/ui/window/TWindowShortListCtrl.h"
+#include "pso/player/PlayerSlots.h"
+#include "pso/player/TObjPlayer.h"
+
+struct VBase_18_7b3651 { char pad[0x18]; };
+
+struct VObj_18_7b3651 : VBase_18_7b3651 {
+    virtual void m0();
+    virtual void m1();
+    virtual void m2();
+    virtual void m3();
+    virtual void m4();
+    virtual void m5();
+    virtual void m6();
+    virtual void m7();
+    virtual void m8();
+    virtual void m9();
+    virtual char *m10();
+    virtual void m11();
+    virtual void m12();
+    virtual void m13();
+    virtual s32 m14();
+};
+
+typedef struct Ent_800FC968 { u8 pad0[4]; char name[0x100]; u16 a; u8 pad106[6]; u16 b; u8 pad10E[0x11C - 0x10E]; } Ent_800FC968;
+
+extern "C" {
+s32 get_shared_text_buffer(void);
+char *TWindowSubStatusDisp__sub_80071820(char *);
+void text_builder_append_int(s32);
+void text_builder_append(const char *);
+}
+void append_text_space(void);
+void append_padded_number(s32 v, u8 n);
+void text_builder_reset(void);
+const char *TFontSmallLobby__name = "TFontSmallLobby";
+
+// One letter per language (J/E/G/F/S), appended after the player name.
+char *status_text_label_table[5] = { "J", "E", "G", "F", "S" };
+extern Ent_800FC968 lobby_player_status_records[];
+extern "C" {
+
+s32 get_status_index_or_default__20TWindowSubStatusDispFPUs(void *, s32);
+
+    extern int TWindowCtrlMain__instance;
+saddr TWindowCtrlMain::get_instance() {  return TWindowCtrlMain__instance; }
+
+void TWindowCtrlMain::advance_card_status(s32 local_client_id) {
+    s32 card_status_bits;
+
+    card_status_bits = TWindowShortListCtrl::get_card_status_bits(local_client_id) + 1;
+    if (card_status_bits >= 5) {
+        card_status_bits = 0;
+    }
+    update_card_window_flags(local_client_id, card_status_bits);
+}
+s32 TWindowSubStatusDisp::build_status_text(s32 client_id) {
+    s32 mode;
+    char *name;
+    u8 *info;
+    s32 idx;
+    s32 lvl;
+    VObj_18_7b3651 *p;
+    mode = TWindowShortListCtrl::get_card_status_bits(client_id);
+    p = (VObj_18_7b3651 *)get_player_by_client_id(client_id);
+    if (p == NULL) {
+        return 0;
+    }
+    info = (u8 *)p + 0x85C;
+    if (info == NULL) {
+        return 0;
+    }
+    name = p->m10();
+    idx = ((TObjPlayer *)p)->get_language();
+    lvl = p->m14();
+    text_builder_reset();
+    switch (mode) {
+    case 0:
+        text_builder_append(name);
+        break;
+    case 1:
+        text_builder_append(name);
+        append_text_space();
+        text_builder_append(status_text_label_table[idx]);
+        append_padded_number(lvl + 1, 3);
+        break;
+    case 2:
+        if ((s8)info[0x33] < 2) {
+            return 0;
+        }
+        text_builder_append("W:");
+        text_builder_append_int(lobby_player_status_records[client_id].a);
+        text_builder_append(" D:");
+        text_builder_append_int(lobby_player_status_records[client_id].b);
+        break;
+    case 3:
+        if ((s8)info[0x33] < 2) {
+            return 0;
+        }
+        text_builder_append(TWindowSubStatusDisp__sub_80071820(lobby_player_status_records[client_id].name));
+        break;
+    case 4:
+        return 0;
+    }
+    return get_shared_text_buffer();
+}
+
+void *TFontSmallLobby::create(s32 id) {
+    void *o = TObject::operator new(0x64);
+    if (o != NULL) {
+        o = fn_800FCC78((u8 *)o, id);
+    }
+    return o;
+}
+
+void TUnk_8049CA54::run_task() {
+    s32 status_bits;
+    s32 temp_r4;
+    uaddr text_source;
+    saddr player;
+
+    player = (saddr)get_player_by_client_id((s32)this->player_id);
+    if (player == 0) {
+        queue_destruction();
+        return;
+    }
+    status_bits = TWindowShortListCtrl::get_card_status_bits((s32)this->player_id);
+    if (this->card_status_bits != status_bits) {
+        this->card_status_bits = status_bits;
+        text_source = (u32)TWindowSubStatusDisp::build_status_text((s32)this->player_id);
+        set_help_text((const char *)text_source);
+        if (text_source != 0U) {
+            if (this->card_status_bits == 3) {
+                temp_r4 = (s32)this->player_id;
+                set_color(get_status_index_or_default__20TWindowSubStatusDispFPUs((s8 *)lobby_player_status_records + (temp_r4 * 0x11C) + 4, temp_r4));
+            } else {
+                set_color(get_player_status_color((void *)player));
+            }
+        }
+    }
+    TFontSmallHelp::run_task();
+}
+
+
+}
+TUnk_8049CA54::~TUnk_8049CA54() {
+
+}
+
+struct RecoveredGlobal_800FCC78_lbl_8049CA54 {
+    s32 value;
+    u8 remaining[0x18];
+};
+
+extern "C" {
+u8 * __ct__14TFontSmallHelpFUlUllUl(void *, s32, s32, s32, s32);
+extern RecoveredGlobal_800FCC78_lbl_8049CA54 __vt__13TUnk_8049CA54;
+LAYOUT_ASSERT(RecoveredGlobal_800FCC78_lbl_8049CA54_size, sizeof(RecoveredGlobal_800FCC78_lbl_8049CA54) == 0x1C);
+u8 *fn_800FCC78(u8 *arg0, s32 id) {
+    __ct__14TFontSmallHelpFUlUllUl(arg0, id, -1, -1, 0);
+    *(s32 **)((s8 *)arg0 + 0x18) = &__vt__13TUnk_8049CA54.value;
+    *(s32 *)((s8 *)arg0 + 0x60) = 5;
+    return arg0;
+}
+
+}

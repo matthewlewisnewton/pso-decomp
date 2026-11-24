@@ -1,0 +1,24 @@
+#include "pso/unk/TWindowLayoutEntry.h"
+#include "types.h"
+#include "pso/ui/ItemListRow.h"
+#include "pso/ui/city/THunterGuildSeqOffline.h"
+#include "pso/ui/window/TWindowBase.h"
+#include "pso/ui/window/TWindowSubItem.h"
+#include "pso/ui/window/TWindowSubStatusDisp.h"
+
+struct Obj_80248A14 { u8 pad[0x76]; s16 count; };
+
+void THunterGuildSeqOffline::advance_matching_entries(s32 arg1, s32 arg2) {
+    s32 i;
+    saddr e;
+    for (i = 0; i < ((Obj_80248A14 *)this)->count; i++) {
+        e = reinterpret_cast<saddr>(((TWindowBase *)this)->get_array_entry(i));
+        if (e != 0 && ((TWindowLayoutEntry *)e)->is_flag_4_set() != 0 && arg2 == ((ItemListRow *)e)->get_item()) {
+            if (arg1 != 0) {
+                ((ItemListRow *)e)->finalize_state();
+            } else {
+                ((ItemListRow *)e)->advance_state();
+            }
+        }
+    }
+}

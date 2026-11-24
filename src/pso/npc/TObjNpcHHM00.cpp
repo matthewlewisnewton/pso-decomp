@@ -1,91 +1,50 @@
+#include "pso/system/memory.h"
 #include "types.h"
-#include "pso/misc/TLanguage_801E4874.h"
-#include "pso/npc/TObjNpcHRM00.h"
-#include "pso/unk/text_800F9B84.h"
-#include "pso/unk/text_8014B8A4.h"
-#include "pso/npc/TUnk_804A9F50.h"
 #include "pso/npc/TObjNpcHHM00.h"
-#include "pso/misc/TLobby.h"
-#include "pso/npc/TObjNpcBase.h"
-#include "pso/npc/TObjNpcLappy.h"
+#include "pso/object/TObjControl.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/render/GinjaTexture.h"
+#include "pso/system/TLanguage_801E4874.h"
+#include "pso/system/task/TMainTask.h"
+#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
+#include "pso/unk/TLobby.h"
+#include "pso/unk/text_800F9B84.h"
 
 #pragma readonly_strings on
 
-extern "C" {
-const char *TObjNpcHHM00__name = "TObjNpcHHM00";
-u32 TObjNpcHHM00__model_object;
-u32 TObjNpcHHM00__body_texture_gvm_handle;
+const char *TObjNpcHHM00::name = "TObjNpcHHM00";
+void **TObjNpcHHM00::model_object;
+NJS_TEXLIST *TObjNpcHHM00::body_texture_gvm_handle;
+
+void *TObjNpcHHM00::create(void *set_data) {
+    TObjControl *control = new TObjControl(tl_04);
+    return new TObjNpcHHM00(control, set_data);
 }
 
-struct RecoveredGlobal_8014B1F4___vt__12TObjNpcHHM00 {
-    s32 value;
-    u8 remaining[0x174];
-};
-
-extern "C" {
-extern s32 __vt__12TObjNpcHHM00[];
-void release_texture_list(void*);
-void *__ct__11TObjControlFP7TObject(void *, void *);
-void __dl__7TObjectFPv(void *);
-void *__nw__7TObjectFUl(int);
-
 void TObjNpcHHM00::free_resources() {
-    if ((u32) TObjNpcHHM00__body_texture_gvm_handle != 0U) {
-        release_texture_list((void*)TObjNpcHHM00__body_texture_gvm_handle);
-        TAdSinglePlyChrSelectGC::safe_free((void *)TObjNpcHHM00__body_texture_gvm_handle);
-        TObjNpcHHM00__body_texture_gvm_handle = 0U;
+    if (body_texture_gvm_handle != NULL) {
+        release_texture_list(body_texture_gvm_handle);
+        safe_free(body_texture_gvm_handle);
+        body_texture_gvm_handle = NULL;
     }
-    if ((u32) TObjNpcHHM00__model_object != 0U) {
-        TLobby::free_nodes_with_id((u32)((void*)TObjNpcHHM00__model_object));
-        TObjNpcHHM00__model_object = 0U;
+    if (model_object != NULL) {
+        TLobby::free_nodes_with_id(reinterpret_cast<uaddr>(model_object));
+        model_object = NULL;
     }
 }
 
 void TObjNpcHHM00::load_resources() {
-    TObjNpcHHM00__model_object = (u32)create_named_object((s32)"npc_a00_data.rel");
-    TObjNpcHHM00__body_texture_gvm_handle = (u32)load_gvm_texture_file("n_a00_w_body.gvm");
+    model_object = static_cast<void **>(create_named_object("npc_a00_data.rel"));
+    body_texture_gvm_handle = load_gvm_texture_file("n_a00_w_body.gvm");
 }
 
-void *__dt__12TObjNpcHHM00Fv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__12TObjNpcHHM00;
-        ((TUnk_804A9F50 *)arg0)->destroy_npc_lappy_base(0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
-}
+TObjNpcHHM00::~TObjNpcHHM00() {}
 
-extern void *tl_04;
-
-typedef char RecoveredGlobal_8014B1F4___vt__12TObjNpcHHM00_size[sizeof(RecoveredGlobal_8014B1F4___vt__12TObjNpcHHM00) == 0x178 ? 1 : -1];
-u8 *TObjNpcHHM00__ct(u8 *player, s32 arg1, s32 arg2) {
-    construct_male_npc_base((player));
-    *(s32 **)((s8 *)player + 0x18) = &(*(RecoveredGlobal_8014B1F4___vt__12TObjNpcHHM00 *)&__vt__12TObjNpcHHM00).value;
-    *(s32 *)((s8 *)player + 0) = (s32) TObjNpcHHM00__name;
-    ((TObjNpcHHM00 *)(player))->apply_set_data((void *)arg2);
-    ((TObjChara *)player)->initialize_position_copies();
-    *(s32 *)((s8 *)player + 0x34) = (s32) *(*(s32 * *)&TObjNpcHHM00__model_object);
-    ((TObjNpcHHM00 *)player)->texlist = (s32) (*(s32 *)&TObjNpcHHM00__body_texture_gvm_handle);
-    ((TObjNpcBase *)player)->setup_common();
-    return player;
-}
-
-void * TObjNpcHRM00__create(void *arg0) {
-    void *o;
-    void *o2;
-    o = __nw__7TObjectFUl(0x20);
-    if (o != NULL) {
-        o = __ct__11TObjControlFP7TObject(o, tl_04);
-    }
-    o2 = __nw__7TObjectFUl(0x3B8);
-    if (o2 != NULL) {
-        o2 = TObjNpcHRM00__ct((u8 *)o2, (s32)o, (s32)arg0);
-    }
-    return o2;
-}
-
+TObjNpcHHM00::TObjNpcHHM00(TObject *parent, void *set_data) : TObjNpcMale(parent) {
+    this->m_name = name;
+    this->apply_set_data(set_data);
+    init_position_vectors();
+    this->model = *model_object;
+    this->texlist = body_texture_gvm_handle;
+    this->setup_common();
 }

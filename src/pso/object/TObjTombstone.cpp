@@ -1,5 +1,5 @@
-#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
+#include "pso/system/BmlAccessors.h"
 #include "types.h"
 // TObject's helpers are out-of-line functions for this TU (run_task calls
 // TObject::queue_destruction, defined elsewhere).
@@ -8,22 +8,20 @@
 #include "pso/object/TObjTombstone.h"
 #include "pso/system/vector.h"
 #include "pso/system/BmlResourceDescriptor.h"
-#include "pso/system/BmlResourceClass.h"
-#include "pso/misc/TLobby.h"
-#include "pso/misc/TCameraCtrl.h"
-#include "pso/misc/TRaderMapCore.h"
-#include "pso/misc/TWindowSubStatusDisp.h"
-#include "pso/misc/TWindowSubComCard.h"
+#include "pso/unk/TLobby.h"
+#include "pso/camera/TCameraCtrl.h"
+#include "pso/ui/hud/TRaderMapCore.h"
+#include "pso/ui/window/TWindowSubStatusDisp.h"
+#include "pso/ui/window/TWindowSubComCard.h"
 #include "pso/object/TObjLuker_801329B0.h"
-#include "pso/object/TObjFish.h"
-#include "pso/system/CurrentTextureList.h"
+#include "pso/object/ambient/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjPlayer_801AF2F0.h"
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/item/TItem.h"
 #include "pso/item/TItemData.h"
 #include "pso/math/AngleLookup.h"
-#include "pso/system/GinjaMaterial.h"
+#include "pso/render/GinjaMaterial.h"
 #include "pso/network/client_id.h"
 #include "pso/ui/Language.h"
 #include <string.h>
@@ -34,30 +32,26 @@
 #include "pso/system/MatrixOps.h"
 #include "pso/unk/text_803D96A8.h"
 #include "pso/unk/text_803D8F74.h"
-#include "pso/system/GinjaUvScroll.h"
+#include "pso/render/GinjaUvScroll.h"
 #include "pso/unk/text_803D853C.h"
-#include "pso/misc/TLobby_80291D94.h"
+#include "pso/unk/TLobby_80291D94.h"
 #include "pso/player/TObjPlayer_80011014.h"
+#include "pso/player/TObjPlayer_803E1A58.h"
+#include "pso/ui/window/TWindowCtrlMain_8024CB7C.h"
+#include "pso/player/PlayerSlots.h"
 
 struct Off_800753DC { s16 x, y; };
-struct P_800753DC { f32 x, y; };
 
 extern "C" {
-f32 xyz_distance(Vec *a, Vec *b);
-// Upstream declares these in MatrixVector.h / text_803D853C.h.
-f32 vector_length(const Vec *v);
-f32 vec3_dot(const Vec *a, const Vec *b);
-extern s32 TLobby__designated_client_id;
+
+
 s32 PPCSync();
 u32 calc_text_width(const char *);
 void draw_menu_font_string(const char *, u32, s32, f32, f32, f32);
-const char *TQuestVmDownLoadServer__sub_8006EF6C(s32);
-s32 TWindowCtrlMain__sub_8024CE58();
-void fn_80074E04(s32 i, Vec *pos);
-void TObjTombstone__sub_80075DFC(TObjTombstone *self);
+const char *get_message_text(s32);
+void set_tombstone_position(s32 i, Vec *pos);
+void TObjTombstone__drop_recovery_items(TObjTombstone *self);
 }
-
-extern "C" TCameraCtrl *camera_ctrl_instance;
 
 __declspec(section ".data") const char *re_b_mark_base_model_names[2] = { "re_b_mark_base.gj", NULL };
 __declspec(section ".sdata") const char *re_b_mark_base_motion_names[1] = { NULL };
@@ -88,18 +82,24 @@ Vec tombstone_position_table[4];
 }
 
 // The unit is compiled -inline off,deferred, which emits functions last-defined
-// first: they are written here from the last (0x8007666C) back to the first.
-void *TObjTombstone::create(void *arg0, void *arg1, void *arg2) {
-    return new TObjTombstone((TObject *)arg0, (s32)arg1, (TObjTombstoneRecord *)arg2);
+// first: they are written here from the last back to the first.
+s32 TCameraCtrl::get_viewport_x() { return TCameraCtrl::viewport_x; }
+
+s32 TCameraCtrl::get_viewport_y() { return TCameraCtrl::viewport_y; }
+
+TObjTombstone *TObjTombstone::create(TObject *parent, s32 client, const TObjTombstoneRecord *record) {
+    return new TObjTombstone(parent, client, record);
 }
 
-void *TLobby::create_tombstone(void *arg0, void *arg1, void *arg2) {
-    return new TObjTombstone((TObject *)arg0, (s32)arg1, (TObjTombstoneSpot *)arg2);
+TObjTombstone *TLobby::create_tombstone(TObject *parent, s32 client, const TObjTombstoneSpot *spot) {
+    return new TObjTombstone(parent, client, spot);
 }
 
 void TObjTombstone::load_resources() {
-    if (TObjTombstone__shared_resource_object == 0) {
-        TObjTombstone__shared_resource_object = new BmlResource(1, &tombstone_resource_descriptor, 0, 0, NULL);
+    BmlResource *res;
+    if (TObjTombstone__shared_resource_object == NULL) {
+        res = new BmlResource(1, &tombstone_resource_descriptor, 0, 0, NULL);
+        TObjTombstone__shared_resource_object = res;
         TObjTombstone::reset_matrix();
     }
 }
@@ -112,7 +112,7 @@ void TObjTombstone::destroy() {
     }
 }
 
-TObjTombstone::TObjTombstone(TObject *parent, s32 client, TObjTombstoneRecord *src) : TObjCollidable(parent) {
+TObjTombstone::TObjTombstone(TObject *parent, s32 client, const TObjTombstoneRecord *src) : TObjCollidable(parent) {
     this->m_name = TObjTombstone__class_name;
     if (TObjTombstone__shared_resource_object == NULL) {
         return;
@@ -120,41 +120,43 @@ TObjTombstone::TObjTombstone(TObject *parent, s32 client, TObjTombstoneRecord *s
     setup(client, src);
     init_parts();
     this->m_234 = 0;
-    if (local_client_id != TLobby__designated_client_id) {
+    if (local_client_id != designated_client_id) {
         this->m_234 = 1;
     }
 }
 
 // Spawns the tombstone from a short spot record (TLobby::create_tombstone).
-TObjTombstone::TObjTombstone(TObject *parent, s32 client, TObjTombstoneSpot *spot)
+TObjTombstone::TObjTombstone(TObject *parent, s32 client, const TObjTombstoneSpot *spot)
     : TObjCollidable(parent) {
     TObjTombstoneRecord record;
     this->m_name = TObjTombstone__class_name;
     if (TObjTombstone__shared_resource_object == NULL) {
         return;
     }
-    record.unk_0 = spot->unk_0;
-    record.unk_1 = spot->unk_1;
-    record.floor = spot->unk_2;
+    volatile TObjTombstoneRecord &output = record;
+    const volatile TObjTombstoneSpot *input = spot;
+    output.phase = input->phase;
+    output.layout = input->layout;
+    output.floor = input->floor;
     VecCopy(&record.position, &spot->position);
     setup(client, &record);
     reset_entries_and_format_name();
     this->m_234 = 0;
 }
 
-void TObjTombstone::setup(s32 client, TObjTombstoneRecord *src) {
-    this->texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)TObjTombstone__shared_resource_object, 0);
-    this->model = (void *)get_bml_model(TObjTombstone__shared_resource_object, 0);
+void TObjTombstone::setup(s32 client, const TObjTombstoneRecord *src) {
+    this->texlist = get_bml_texlist(TObjTombstone__shared_resource_object, 0);
+    this->model = get_bml_model(TObjTombstone__shared_resource_object, 0);
     this->client_id = client;
     this->record = *src;
     VecCopy(&this->position, &this->record.position);
-    this->rotation.yaw = this->client_id << 0xD;
+    this->rotation_y = this->client_id << 0xD;
     this->m_b0 = 0.0f;
     this->m_b4 = 0.0f;
     this->m_b8 = 0.0f;
     this->m_bc = 0.0f;
     this->m_230 = 0;
-    fn_80074E04(this->client_id, &this->position);
+    set_tombstone_position(this->client_id, &this->position);
 }
 
 TObjTombstone::~TObjTombstone() {
@@ -168,7 +170,7 @@ void TObjTombstone::run_task() {
     this->m_b0 = get_distance_to_local_player_xz();
     update_rise();
     if (is_player_nearby() != 0) {
-        TObjTombstone__sub_80075DFC(this);
+        TObjTombstone__drop_recovery_items(this);
     }
     this->m_230 = this->m_230 + 1;
     tombstone_first_run_flag = 0;
@@ -194,7 +196,7 @@ s32 TObjTombstone::is_player_nearby() {
     TObjPlayer *player;
     if (this->m_234 != 0) {
         return 0;
-    } else if (local_client_id != TLobby__designated_client_id) {
+    } else if (local_client_id != designated_client_id) {
         this->m_234 = 1;
         return 0;
     }
@@ -218,7 +220,7 @@ s32 TObjTombstone::is_player_nearby() {
 }
 
 // Drops recovery items around the tombstone, once.
-extern "C" void TObjTombstone__sub_80075DFC(TObjTombstone *self) {
+extern "C" void TObjTombstone__drop_recovery_items(TObjTombstone *self) {
     s32 count;
     s32 players;
     s32 kind;
@@ -262,7 +264,7 @@ extern "C" void TObjTombstone__sub_80075DFC(TObjTombstone *self) {
             sum += rate[1];
         }
         if (kind != -1) {
-            s32 angle = self->rotation.yaw - ((count - 1) * 0x2000) / 2;
+            s32 angle = self->rotation_y - ((count - 1) * 0x2000) / 2;
             TItemData item = lbl_8048D278[kind];
             s32 dropped = 0;
             s32 step;
@@ -271,7 +273,7 @@ extern "C" void TObjTombstone__sub_80075DFC(TObjTombstone *self) {
                 pos.x += 7.5f * cos_table_lookup(angle);
                 pos.z += 7.5f * sin_table_lookup(angle);
                 pos.y += 10.0f;
-                if (project_actor_to_ground(self, &pos, 0) != 0) {
+                if (project_actor_to_ground((TObjChara *)self, &pos, 0) != 0) {
                     pos.y += 10.0f;
                     item.id = 0xFFFFFFFF;
                     drop_stacked_item(&item, local_client_id, &pos.x);
@@ -297,7 +299,7 @@ void TObjTombstone::init_parts() {
 void TObjTombstone::reset_entries_and_format_name() {
     s32 i;
     for (i = 0; i < 6; i++) {
-        this->name_lines[i][0] = 0;
+        this->labels[i][0] = 0;
     }
     format_player_name();
 }
@@ -306,7 +308,7 @@ void TObjTombstone::format_player_name() {
     char buf[0x30];
     char *p;
     TObjPlayer *player;
-    char *dst = this->name_lines[0];
+    char *dst = this->labels[0];
     player = get_player_by_client_id(this->client_id);
     dst[0] = 0;
     if (player != NULL) {
@@ -321,29 +323,29 @@ void TObjTombstone::format_player_name() {
 }
 
 void TObjTombstone::format_label() {
-    sprintf(this->name_lines[1], "%s%d", TQuestVmDownLoadServer__sub_8006EF6C(0x4D), this->record.unk_4);
-    this->name_lines[1][0x2F] = 0;
+    sprintf(this->labels[1], "%s%d", get_message_text(0x4D), this->record.unk_4);
+    this->labels[1][0x2F] = 0;
 }
 
 void TObjTombstone::build_name_text() {
-    char *buf = this->name_lines[2];
-    if (this->record.unk_1C[0] == 0 || TWindowSubComCard::contains_profanity(this->record.unk_1C) != 0) {
+    char *buf = this->labels[2];
+    if (this->record.display_name[0] == 0 || TWindowSubComCard::contains_profanity(this->record.display_name) != 0) {
         buf[0] = 0;
     } else {
-        sprintf(buf, "%s%s", TQuestVmDownLoadServer__sub_8006EF6C(0x4C), this->record.unk_1C);
+        sprintf(buf, "%s%s", get_message_text(0x4C), this->record.display_name);
     }
     buf[0x2F] = 0;
 }
 
 void TObjTombstone::format_enemy_text() {
     char fmt[0x30];
-    char *text = this->name_lines[3];
+    char *text = this->labels[3];
     s32 name;
     text[0] = 0;
     if (this->record.rt_index > 0) {
         name = enemy_name_for_rt_index(this->record.rt_index);
         if (name != 0) {
-            strncpy(fmt, TQuestVmDownLoadServer__sub_8006EF6C(0x4E), 0x2F);
+            strncpy(fmt, get_message_text(0x4E), 0x2F);
             fmt[0x2F] = 0;
             sprintf(text, fmt, name);
         }
@@ -352,11 +354,11 @@ void TObjTombstone::format_enemy_text() {
 }
 
 void TObjTombstone::format_quoted_name() {
-    char *buf = this->name_lines[4];
-    if (this->record.unk_30[0] == 0 || TWindowSubComCard::contains_profanity(this->record.unk_30) != 0) {
+    char *buf = this->labels[4];
+    if (this->record.unit_name[0] == 0 || TWindowSubComCard::contains_profanity(this->record.unit_name) != 0) {
         buf[0] = 0;
     } else {
-        sprintf(buf, "\"%s\"", this->record.unk_30);
+        sprintf(buf, "\"%s\"", this->record.unit_name);
     }
     buf[0x2F] = 0;
 }
@@ -369,7 +371,7 @@ void TObjTombstone::format_date_text() {
     s32 minute;
     s32 year;
     u32 d;
-    text = this->name_lines[5];
+    text = this->labels[5];
     text[0] = 0;
     if (this->client_id != local_client_id) {
         return;
@@ -431,41 +433,45 @@ s32 TObjTombstone::check_all_players_active() {
     s32 i;
     TObjPlayer *player;
 
-    if (TWindowCtrlMain__sub_8024CE58() == 0) {
+    if (has_window_task_root() == 0) {
         return 0;
     }
-    for (i = 0; i < 4; i++) {
-        player = get_player_by_client_id(i);
-        if (player != NULL && player->obj_testFlags30(0x02000000) != 0) {
-            return 0;
-        }
+    i = 0;
+loop_3:
+    player = get_player_by_client_id(i);
+    if (player != NULL && player->test_actor_flags(0x02000000) != 0) {
+        return 0;
     }
-    return 1;
+    i += 1;
+    if (i >= 4) {
+        return 1;
+    }
+    goto loop_3;
 }
 
 void TObjTombstone::update_render_flags() {
-    NJS_OBJECT *node;
+    NJS_OBJECT *material;
     u32 *flags;
 
     if (TObjTombstone__shared_resource_object != NULL) {
         if (tombstone_first_run_flag == 0) {
-            scroll_ginja_mesh_uvs(((NJS_OBJECT *)this->model)->child->sibling->model, -8, 0, 0, 1);
+            scroll_ginja_mesh_uvs(static_cast<GinjaModel *>(static_cast<NJS_OBJECT *>(model)->child->sibling->model), -8, 0, 0, 1);
             tombstone_first_run_flag = 1;
             PPCSync();
         }
-        node = ((NJS_OBJECT *)this->model)->child->sibling->sibling;
-        flags = &node->sibling->evalflags;
+        material = static_cast<NJS_OBJECT *>(model)->child->sibling->sibling;
+        flags = &material->sibling->evalflags;
         if (this->m_230 & 0x10) {
-            node->evalflags &= ~NJD_EVAL_HIDE;
+            material->evalflags &= ~NJD_EVAL_HIDE;
             *flags |= NJD_EVAL_HIDE;
         } else {
-            node->evalflags |= NJD_EVAL_HIDE;
+            material->evalflags |= NJD_EVAL_HIDE;
             *flags &= ~NJD_EVAL_HIDE;
         }
         push_matrix();
         post_translate_matrix(&this->position.x);
-        rotate_matrix_y(0, this->rotation.yaw);
-        set_current_texture_list((GinjaTextureList *)this->texlist);
+        rotate_matrix_y(0, this->rotation_y);
+        TObjFish::set_global_param(reinterpret_cast<NJS_TEXLIST *>(this->texlist));
         draw_ginja_object(this->model);
         pop_matrix();
     }
@@ -474,7 +480,7 @@ void TObjTombstone::update_render_flags() {
 void TObjTombstone::draw_name_labels() {
     u32 c2;
     u32 c1;
-    P_800753DC screen;
+    NJS_POINT2 screen;
     Vec pos;
     f32 m;
     f32 a;
@@ -483,10 +489,10 @@ void TObjTombstone::draw_name_labels() {
     if (0.0f == this->m_b4) return;
     VecCopy(&pos, &this->position);
     pos.y += 14.0f;
-    if (TObjTombstone::project_to_screen(this, &screen.x, &pos) == 0) return;
+    if (TObjTombstone::project_to_screen(this, &screen, &pos) == 0) return;
     m = 0.0f;
     for (s32 i = 0; i < 6; i++) {
-        f32 w = calc_text_width(this->name_lines[i]);
+        f32 w = calc_text_width(this->labels[i]);
         if (m < w) m = w;
     }
     m *= 0.5f;
@@ -504,8 +510,8 @@ void TObjTombstone::draw_name_labels() {
     c2 = ((u32)(alpha * b) << 24) | 0xFFFFFF;
     for (s32 i = 0; i < 6; i++) {
         char *name;
-        P_800753DC p = screen;
-        name = this->name_lines[i];
+        NJS_POINT2 p = screen;
+        name = this->labels[i];
         if (strlen(name) != 0) {
             p.x -= 0.5f * TWindowSubStatusDisp::calc_text_width(name);
             if (a > 0.0f) {
@@ -540,28 +546,28 @@ void TObjTombstone::update_fade_by_distance() {
     }
 }
 
-s32 TObjTombstone::project_to_screen(void *arg0, f32 *arg1, Vec *arg2) {
+s32 TObjTombstone::project_to_screen(const TObjTombstone *, NJS_POINT2 *screen, const Vec *point) {
     Vec d;
     Vec v = { 0.0f, 0.0f, -1.0f };
     push_matrix_from(identity_matrix);
-    rotate_matrix_y(0, camera_ctrl_instance->m_194);
-    rotate_matrix_x(0, camera_ctrl_instance->m_190);
-    rotate_matrix_z(0, camera_ctrl_instance->m_198);
+    rotate_matrix_y(0, camera_ctrl_instance->yaw);
+    rotate_matrix_x(0, camera_ctrl_instance->pitch);
+    rotate_matrix_z(0, camera_ctrl_instance->roll);
     rotate_vector_by_matrix(0, &v, &v);
     pop_matrix();
-    VecCopy(&d, arg2);
-    subtract_vector(&d, &camera_ctrl_instance->position);
+    VecCopy(&d, point);
+    subtract_vector(&d, &camera_ctrl_instance->pos);
     if (vec3_dot(&v, &d) <= 0.0f) {
         return 0;
     }
     push_matrix();
-    project_world_to_screen(0, arg2, arg1);
+    project_world_to_screen(NULL, point, &screen->x);
     pop_matrix();
     if (is_split_screen() != 0) {
-        arg1[0] -= (f32)TCameraCtrl::get_screen_height();
-        arg1[0] /= TCameraCtrl::get_view_scale();
-        arg1[1] -= (f32)TCameraCtrl::get_screen_width();
-        arg1[1] /= TCameraCtrl::get_fov();
+        screen->x -= (f32)TCameraCtrl::get_viewport_x();
+        screen->x /= TCameraCtrl::get_view_scale();
+        screen->y -= (f32)TCameraCtrl::get_viewport_y();
+        screen->y /= TCameraCtrl::get_fov();
     }
     return 1;
 }
@@ -620,39 +626,43 @@ void handle_6x96(void) {}
 
 void TObjTombstone::reset_matrix() {
     TObjTombstoneDropRates rates = { { 0.0f, 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f } };
-    TObjTombstone__base_matrix.copy_matrix(rates.count);
+    TObjTombstone__base_matrix.copy_matrix(&rates);
 }
 
-void TObjTombstoneDropRates::copy_matrix(f32 *src) {
-    count[0] = src[0];
-    count[1] = src[1];
-    count[2] = src[2];
-    count[3] = src[3];
-    kind[0] = src[4];
-    kind[1] = src[5];
-    kind[2] = src[6];
-    kind[3] = src[7];
-    kind[4] = src[8];
-    kind[5] = src[9];
+void TObjTombstoneDropRates::copy_matrix(const TObjTombstoneDropRates *src) {
+    volatile TObjTombstoneDropRates *out = this;
+    const volatile TObjTombstoneDropRates *in = src;
+    out->count[0] = in->count[0];
+    out->count[1] = in->count[1];
+    out->count[2] = in->count[2];
+    out->count[3] = in->count[3];
+    out->kind[0] = in->kind[0];
+    out->kind[1] = in->kind[1];
+    out->kind[2] = in->kind[2];
+    out->kind[3] = in->kind[3];
+    out->kind[4] = in->kind[4];
+    out->kind[5] = in->kind[5];
 }
 
 // Sets the drop rates (inferred: called by qst_op_set_cmode_grave_rates), unless
 // a weight is negative or a group adds up to more than 1.
-extern "C" void TObjTombstone__sub_80074E74(f32 *w) {
+extern "C" void set_tombstone_drop_rates(TObjTombstoneDropRates *rates) {
+    const f32 *count = rates->count;
+    const f32 *kind = rates->kind;
     f32 one;
     f32 sum;
 
-    sum = w[0] + w[1] + w[2] + w[3];
-    if (w[0] < 0.0f || w[1] < 0.0f || w[2] < 0.0f || w[3] < 0.0f || sum > 1.0f) {
+    sum = count[0] + count[1] + count[2] + count[3];
+    if (count[0] < 0.0f || count[1] < 0.0f || count[2] < 0.0f || count[3] < 0.0f || sum > 1.0f) {
         return;
     }
-    sum = w[4] + w[5] + w[6] + w[7] + w[8] + w[9];
+    sum = kind[0] + kind[1] + kind[2] + kind[3] + kind[4] + kind[5];
     one = 1.0f;
-    if (w[4] < 0.0f || w[5] < 0.0f || w[6] < 0.0f || w[7] < 0.0f || w[8] < 0.0f || w[9] < 0.0f ||
+    if (kind[0] < 0.0f || kind[1] < 0.0f || kind[2] < 0.0f || kind[3] < 0.0f || kind[4] < 0.0f || kind[5] < 0.0f ||
         sum > one) {
         return;
     }
-    TObjTombstone__base_matrix.copy_matrix(w);
+    TObjTombstone__base_matrix.copy_matrix(rates);
 }
 
 void TLobby::reset_tombstone_values() {
@@ -663,7 +673,7 @@ void TLobby::reset_tombstone_values() {
 }
 
 extern "C" {
-void fn_80074E04(s32 i, Vec *pos) {
+void set_tombstone_position(s32 i, Vec *pos) {
     if (i < 0 || i >= 4) {
         return;
     }

@@ -1,14 +1,16 @@
-#include "pso/protocol/protocol_types.h"
+#pragma readonly_strings on
+
+#include "pso/network/protocol/protocol_types.h"
 #include "types.h"
-#include "pso/misc/TLobby_801E43E4.h"
+#include "pso/unk/TLobby_801E43E4.h"
 #include "pso/unk/text_801F3774.h"
 #include "pso/unk/text_801F4560.h"
 #include "pso/unk/text_801F469C.h"
 #include "pso/system/byteswap.h"
-#include "pso/misc/TLobby.h"
-#include "pso/misc/TQuestVmDownLoadServer.h"
-#include "pso/misc/TScene.h"
-#include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/unk/TLobby.h"
+#include "pso/quest/TQuestVmDownLoadServer.h"
+#include "pso/system/scene/TScene.h"
+#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include "pso/ui/Language.h"
 
 struct Stack_801F37CC {
@@ -27,11 +29,8 @@ struct Stack_801F3778 {
     s16 sp12;
 };
 
-extern "C" {
+
 extern s32 game_difficulty_selection;
-extern char offline_quest_filename_buffer_a[],offline_quest_filename_buffer_b[];
-extern char lbl_80449CD8[],lbl_80449CE0[],lbl_80449CE8[],lbl_80449CF0[],lbl_80449CF8[],lbl_80449D00[];
-void replace_file_extension__6TLobbyFPvPvPv(char*,const char*,const char*);
 
 void TLobby__sub_801F3774(void) {  }
 
@@ -54,7 +53,6 @@ void TLobby::send_6x75_quest_flag_cur_difficulty(s16 arg0, s16 arg1) {
     stack.sp12 = 0;
     send_and_handle_6x75((TLobby *)&stack.sp8);
 }
-}
 
 void handle_6x75_update_quest_flag_dc(TLobby *lobby) {
     u16 id;
@@ -71,14 +69,14 @@ void handle_6x75_update_quest_flag_dc(TLobby *lobby) {
 
 void prepare_offline_quest_filenames(const char* identity) {
  switch(current_language) {
- case LANGUAGE_JAPANESE:replace_file_extension__6TLobbyFPvPvPv(offline_quest_filename_buffer_a,identity,lbl_80449CD8);break;
- case LANGUAGE_ENGLISH:replace_file_extension__6TLobbyFPvPvPv(offline_quest_filename_buffer_a,identity,lbl_80449CE0);break;
- case LANGUAGE_GERMAN:replace_file_extension__6TLobbyFPvPvPv(offline_quest_filename_buffer_a,identity,lbl_80449CE8);break;
- case LANGUAGE_FRENCH:replace_file_extension__6TLobbyFPvPvPv(offline_quest_filename_buffer_a,identity,lbl_80449CF0);break;
- case LANGUAGE_SPANISH:replace_file_extension__6TLobbyFPvPvPv(offline_quest_filename_buffer_a,identity,lbl_80449CF8);break;
- default:replace_file_extension__6TLobbyFPvPvPv(offline_quest_filename_buffer_a,identity,lbl_80449CE0);break;
+ case LANGUAGE_JAPANESE:TLobby::replace_file_extension(offline_quest_filename_buffer_a, (char *)identity, (char *)"_j.bin");break;
+ case LANGUAGE_ENGLISH:TLobby::replace_file_extension(offline_quest_filename_buffer_a, (char *)identity, (char *)"_e.bin");break;
+ case LANGUAGE_GERMAN:TLobby::replace_file_extension(offline_quest_filename_buffer_a, (char *)identity, (char *)"_g.bin");break;
+ case LANGUAGE_FRENCH:TLobby::replace_file_extension(offline_quest_filename_buffer_a, (char *)identity, (char *)"_f.bin");break;
+ case LANGUAGE_SPANISH:TLobby::replace_file_extension(offline_quest_filename_buffer_a, (char *)identity, (char *)"_s.bin");break;
+ default:TLobby::replace_file_extension(offline_quest_filename_buffer_a, (char *)identity, (char *)"_e.bin");break;
  }
- replace_file_extension__6TLobbyFPvPvPv(offline_quest_filename_buffer_b,identity,lbl_80449D00);
+ TLobby::replace_file_extension(offline_quest_filename_buffer_b, (char *)identity, (char *)"_j.dat");
 }
 
 void send_and_handle_6x75(TLobby *lobby) {
@@ -96,7 +94,6 @@ void TLobby::byteswap_6x75_packet() {
 
 void build_6x75_update_quest_flag_dc(void* p) { *(u8*)((char*)p + 0x0) = 117; *(u8*)((char*)p + 0x1) = 3; }
 
-extern "C" {
+
 char offline_quest_filename_buffer_a[0x20];
 char offline_quest_filename_buffer_b[0x20];
-}

@@ -1,0 +1,373 @@
+{
+  "upstream": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "previous_source": "c2c00dc55b2d808504d3f44afd4f493e0382eb81",
+  "source": "3316bed6684957ca0e3937ca486ca32743454775",
+  "source_tree": "aebeec719c5e52f91add01f941d847f4801e0ef4",
+  "source_review_files": 977,
+  "recovered_paths": [
+    {
+      "path": "config/GPOE8P/psov3/config.yml",
+      "previous_blob": "100644:f0e9d93d39eeff8de52b0f782abfb20b882a408b",
+      "review_blob": "100644:d7f138ecbb08c75e34cca572f0760a5e5e672488",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "config/GPOE8P/psov3/symbols.txt",
+      "previous_blob": "100644:f11c7947651cfb6b1c182e62a6092e0957e8821c",
+      "review_blob": "100644:96c5fb3af9ec3db22e8fbe9b63300e0baffaaeb9",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "include/pso/boss/darkfalz/DarkFalzActionsMessage.h",
+      "previous_blob": "",
+      "review_blob": "100644:8a4d75a6068273e27a4deb4918e12c1c4ac4b8ad",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/boss/darkfalz/DarkFalzPhaseSpawn.h",
+      "previous_blob": "",
+      "review_blob": "100644:218ec9c03e67bc44a8336c5c8c78549188219df0",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/boss/darkfalz/TBoss4DarkFalz.h",
+      "previous_blob": "100644:8cae3034fccb1519574f879e616d866cdec9681e",
+      "review_blob": "100644:c2d369ffec086558902796d5b5dcf58c3533eed4",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "include/pso/boss/darkfalz/TBoss4Type1.h",
+      "previous_blob": "100644:e8b17c17feb8c961ed7f7537436ff53cf1dd0f5b",
+      "review_blob": "100644:42b784f5af08643dc5040b80c20b7f525713228d",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "include/pso/boss/darkfalz/TBoss4Type2.h",
+      "previous_blob": "100644:ad89311caa723e32c6fb0931ee720775c34ba1f4",
+      "review_blob": "100644:b8bc94620565a46c0b1f49a378ce05cab0c6381e",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "include/pso/boss/darkfalz/TBoss4Type3.h",
+      "previous_blob": "100644:f4119703207bcd0f3345727de5256a091a523189",
+      "review_blob": "100644:a0580e747a33267d0fbf5c571cf0d9bb50b35e19",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "include/pso/boss/darkfalz/TBoss4Zanzo.h",
+      "previous_blob": "100644:f23aaf893ca6c95394cd91ed61e20106682a7812",
+      "review_blob": "100644:880f071c884a6a35311a0d4384c22a6a4f7f6cf6",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "include/pso/boss/darkfalz/TObjDFJisin.h",
+      "previous_blob": "100644:4562ce2064c1dd5d6a64a3cb04cdf057da2648f6",
+      "review_blob": "100644:b3f399a496d2e54b814bf74b8024a017b69d574e",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/enemy/TUnk_80486924.h",
+      "previous_blob": "100644:288013b0bdded26d0eacb6ef39f71e17f5caac4d",
+      "review_blob": "100644:87783f5f2aae49107cff209cc440c687b96ac55e",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp",
+      "previous_blob": "100644:5a5c96ebec6ec5c87aa14d0348b791bc92af25dd",
+      "review_blob": "100644:48ccd205b4c04851be8068b5e4fbf7bdba26d05b",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+      "previous_blob": "100644:baeb02e9d54adfcf2ebd2b53faa1316bda5f9689",
+      "review_blob": "100644:e08eefcefd31622ab2c90b2f8bf9390ec7b5534e",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/boss/darkfalz/TBoss4Type3.cpp",
+      "previous_blob": "100644:c2ad0f9bbc04f49f427c39f1eeb5411822b25fcc",
+      "review_blob": "100644:824e124558d85aa194b9ec6ec306f2ce4e1663ca",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/boss/darkfalz/TBoss4Zanzo.cpp",
+      "previous_blob": "100644:4f425ccdc30a457f9087953b4982b2d5cacb3e5c",
+      "review_blob": "100644:e129fe3edfc9bc00085dffb0d431862d69df33b7",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/boss/darkfalz/TOBoss4.cpp",
+      "previous_blob": "100644:9e6db694b394e34c2bf6acdda824f4929a289abc",
+      "review_blob": "100644:ffe3c87173683dd1fbe70f8a369c81f752a39b98",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/boss/darkfalz/TObjDFHorming.cpp",
+      "previous_blob": "100644:16fbada39e8948872264acf52157d1f62c1c5184",
+      "review_blob": "100644:cf1c1fdbada6264e41b94e1cc398f3d4f52f5d35",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/boss/darkfalz/TObjDFJisin.cpp",
+      "previous_blob": "100644:b0f786050dbbe23799a2837f72235ba80231bd6f",
+      "review_blob": "100644:9e192710e75f33a4d8e685c0ea031bea44488abb",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    }
+  ],
+  "checks": {
+    "scene": {
+      "head": "c389e503e1392a51b9a07b7f2339acbe9be84bb7",
+      "baseline": "c2c00dc55b2d808504d3f44afd4f493e0382eb81",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 9,
+      "check_sha256": "6bb7f39835d70b9081a97cb3c6ffcc77f2559b4001c9f7dbe7a4d01f1f407c83"
+    },
+    "models": {
+      "head": "9d27f3f03e3c26e1593b7e3c04c0a817ca223afa",
+      "baseline": "c389e503e1392a51b9a07b7f2339acbe9be84bb7",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068"
+    },
+    "effects": {
+      "head": "3316bed6684957ca0e3937ca486ca32743454775",
+      "baseline": "9d27f3f03e3c26e1593b7e3c04c0a817ca223afa",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 2,
+      "check_sha256": "5fd02306f7b981ab73f8323306c9f3441de56a535909666241f32b04bc9493f0"
+    },
+    "full-review": {
+      "head": "3316bed6684957ca0e3937ca486ca32743454775",
+      "baseline": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 389,
+      "check_sha256": "30715e615b72999bb310b6190c7119f4263ade13320a12b22958af0a3373c318"
+    },
+    "layer": {
+      "head": "17a91f9885e59996161effa088492552d052e1e3",
+      "baseline": "3316bed6684957ca0e3937ca486ca32743454775",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "294d5d4e65e3db3407ceff097811cede09728d2c21c1257d66d17135be0bdc4b"
+    }
+  },
+  "release_data": {
+    "effects": {
+      "sha256": "5aa35d3d6007e5e7bfc16241596301454545d25d127267edd485e00043966422",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "layer": {
+      "sha256": "5aa35d3d6007e5e7bfc16241596301454545d25d127267edd485e00043966422",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    }
+  },
+  "typed_linker_labels": [
+    {
+      "module": "psov3",
+      "address": "0x8004C244",
+      "before": "swap_and_send__14TBoss4DarkFalzFv",
+      "after": "swap_and_send__22DarkFalzActionsMessageFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8004C278",
+      "before": "swap_bytes__14TBoss4DarkFalzFv",
+      "after": "swap_bytes__22DarkFalzActionsMessageFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8004C2C4",
+      "before": "set_code_25_4__14TBoss4DarkFalzFv",
+      "after": "set_code_25_4__22DarkFalzActionsMessageFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80054A1C",
+      "before": "__ct__11TBoss4Type1FP7TObjectPl",
+      "after": "__ct__11TBoss4Type1FP7TObjectP18DarkFalzPhaseSpawn"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80054D40",
+      "before": "create__11TBoss4Type1Fl",
+      "after": "create__11TBoss4Type1FP18DarkFalzPhaseSpawn"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800579A0",
+      "before": "__ct__13TUnk_80486924FP7TObjectPl",
+      "after": "__ct__13TUnk_80486924FP7TObjectP18DarkFalzPhaseSpawn"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80057CA0",
+      "before": "create__11TBoss4Type2Fl",
+      "after": "create__11TBoss4Type2FP18DarkFalzPhaseSpawn"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8005AE60",
+      "before": "__ct__11TBoss4Type3FP7TObjectPl",
+      "after": "__ct__11TBoss4Type3FP7TObjectP18DarkFalzPhaseSpawn"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8005B1AC",
+      "before": "create__11TBoss4Type3Fl",
+      "after": "create__11TBoss4Type3FP18DarkFalzPhaseSpawn"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8004AB90",
+      "before": "push_players_out_of_zone__14TBoss4DarkFalzFll",
+      "after": "push_players_out_of_zone__14TBoss4DarkFalzFl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80050D74",
+      "before": "damage_players_near_point__FlP3Vec",
+      "after": "damage_players_near_point__FP11TObjDFJisinP3Vec"
+    }
+  ],
+  "closed_historical_rows": [
+    {
+      "row": 853,
+      "fork_path": "src/pso/misc/TOBoss4.cpp",
+      "fork_blob": "966e112f660b074db0d70b69cd018349da2846d8",
+      "historical_delta_sha256": "55aaaaa386cb04cf8ca818116116fd8a811fb9366ab9c6022bf7f96fd2a0524f",
+      "owner": "src/pso/boss/darkfalz/TOBoss4.cpp",
+      "owner_blob": "ffe3c87173683dd1fbe70f8a369c81f752a39b98",
+      "final_comparison_sha256": "2d24bb978d82b4c33e1868ee39b5abfc823dfb2d14e18a05431208e87c85de0b",
+      "status": "Typed historical integration validated",
+      "rationale": "The archive has its native constructor and destructor. Bird, tower and rock bind their model and texture through the typed BML accessors, and rock stores its arrays as model and texture pointers. Allocation, release and texture binding retain the current source names at the same addresses. The historical rotation and scratch-vector access use the shared upstream layouts at the original addresses."
+    }
+  ],
+  "historical_ledger_sha256_before": "65d049cf5abda5bc47b9bc7a7fbb6fed697ac14ab5255a4f3dc72abcc9dbae33",
+  "historical_ledger_sha256": "e5b0a7066fdaa61afa4466916eaebb97837a022a92f8a21a0a6062911388cbf2",
+  "historical_rows_open": 543,
+  "partially_reconciled_rows": [
+    {
+      "row": 794,
+      "path": "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp",
+      "current_blob": "48ccd205b4c04851be8068b5e4fbf7bdba26d05b",
+      "scope": "The three phase factories now receive the native 0x44-byte spawn record. The controller also passes the real scene to the phase-two ring setup and uses its native collision push method. Other scene and cinematic helpers remain under review. The broader historical row is still open."
+    },
+    {
+      "row": 913,
+      "path": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+      "current_blob": "e08eefcefd31622ab2c90b2f8bf9390ec7b5534e",
+      "scope": "The first form uses typed rows for animation modes, transitions and model slots. Timing reads and writes native fields, and part drawing uses its live capture data. Other first-form and collider changes remain under review. The broader historical row is still open."
+    },
+    {
+      "row": 944,
+      "path": "src/pso/boss/darkfalz/TObjDFHorming.cpp",
+      "current_blob": "cf1c1fdbada6264e41b94e1cc398f3d4f52f5d35",
+      "scope": "Both outbound paths and the receiver share the actual 16-byte packet. Arena collision reads the player position and collision-body flags through the existing owners. Other controller initialization and helper changes remain under review. The broader historical row is still open."
+    },
+    {
+      "row": 1069,
+      "path": "src/pso/boss/darkfalz/TObjDFJisin.cpp",
+      "current_blob": "9e192710e75f33a4d8e685c0ea031bea44488abb",
+      "scope": "The recover ball and fire ring access their native fields and emitters. The fire ring uses the original player and direct-attack interfaces. The wider Homing, Tenchu and tower changes remain under review. The broader historical row is still open."
+    },
+    {
+      "row": 1139,
+      "path": "src/pso/boss/darkfalz/TBoss4Zanzo.cpp",
+      "current_blob": "e129fe3edfc9bc00085dffb0d431862d69df33b7",
+      "scope": "The second form reads typed animation rows in its own timer, model drawing and afterimage copy paths. The afterimage carries real model, texture and motion pointers. Other phase-two callbacks remain under review. The broader historical row is still open."
+    },
+    {
+      "row": 1149,
+      "path": "src/pso/boss/darkfalz/TBoss4Type3.cpp",
+      "current_blob": "824e124558d85aa194b9ec6ec306f2ce4e1663ca",
+      "scope": "The third form creates and destroys native helpers and samples its animation nodes using the typed table and model. Other third-form state behavior remains under review. The broader historical row is still open."
+    }
+  ],
+  "symbol_aliases": {
+    "0x8001EDB0": {
+      "historical": "TObjFish__sub_8001EDB0",
+      "current": "get_bml_texlist",
+      "size": "0x14"
+    },
+    "0x80147A80": {
+      "historical": "__dla__FPv",
+      "current": "mem_free",
+      "size": "0x28"
+    },
+    "0x80147AA8": {
+      "historical": "__nwa__FUl",
+      "current": "mem_alloc",
+      "size": "0x20"
+    },
+    "0x803DA798": {
+      "historical": "set_current_texture_list",
+      "current": "set_global_param",
+      "size": "0x10"
+    }
+  },
+  "compiler_sensitive_forms": {
+    "damage_point": "A const Vec parameter changes the three word loads in CodeWarrior. The typed routine keeps the original writable Vec argument and copies it before checking player positions.",
+    "motion_sample": "The existing sampling interface receives the same resource motion pointer through its NJS_MOTION view."
+  },
+  "runtime_probe": {
+    "builds": [
+      "retail",
+      "stock",
+      "fork"
+    ],
+    "sha256": "fb14c5964f0c159d4141db5c45dec76f75df37c2cd194a4532158a95eef1226a",
+    "source_sha256": "fa4eb9576c90418c1629a6daa4ebb1a4812a6f992ed7e5cea40bec2c51de9f74",
+    "scope": "The probe covers action header, endianness and sent values, full set-record copying, first-form spawn owner and ID overrides, and all three first-form motion transition modes. Sending, factory allocation and player camera/equipment calls use controlled fixtures."
+  },
+  "overlay_paths": 130,
+  "overlay_sha256": "93c666314106d5804c58b6f75876c48d9570455b99a339cf1e9a10b34552c252",
+  "retained_symbols": 27033,
+  "workspace_checks": {
+    "tool": {
+      "count": 294,
+      "sha256": "97d1d8f396388d0e5eafc6db77b91843314dc56bc58270592c60603a79b9793d"
+    },
+    "fork": {
+      "count": 11,
+      "sha256": "efafdc66e4d0e000e60ed95caf9c5befceb7497cd31d2c733de191ccc9b85635"
+    },
+    "host": {
+      "checks": [
+        "./vector_math_fallbacks",
+        "./item_factory_callbacks",
+        "./loader_transfer",
+        "./ginja_parameter_callbacks",
+        "./exi_ethernet_fallbacks"
+      ],
+      "sha256": "ad1227e7d6dde3aea88d51f241949b30f3d1fe42ec4c3abf078bd6309ee9bbdb"
+    }
+  },
+  "review_commit_attribution": {
+    "commits": 86,
+    "codex_attribution": 0,
+    "coauthor_trailers": 0
+  },
+  "public_refs_changed": false
+}

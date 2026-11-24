@@ -1,0 +1,524 @@
+{
+  "cumulative": {
+    "comparison_to_previous_complete_source_sha256": "40016f86f9be2411ed14bc8385b0a6d15317c3211267a8be53f234f610b73841",
+    "head": "d3599c2228d6b51bc6f344791a02465cd50cfe39",
+    "manual_overlaps": [
+      "include/pso/quest/QuestDownloadServer.h",
+      "include/pso/quest/TQuestVmDownLoadServer.h",
+      "include/pso/quest/TQuestVmDownLoadServer_803E6970.h",
+      "src/pso/quest/TQuestVmDownLoadServer.cpp",
+      "src/pso/quest/TQuestVmDownLoadServer_803E6970.cpp",
+      "src/pso/quest/TQuestVmDownLoadServer_803EB0D8.cpp",
+      "src/pso/ui/font/TNECFontEORFunction.cpp",
+      "src/pso/ui/frontend/TAdMultiPlyChrSelectGC.cpp",
+      "src/pso/weapon/SpecialProjectileWeapons.cpp",
+      "src/pso/weapon/TItemAttacker.cpp"
+    ],
+    "paths_changed_by_refresh": 49,
+    "private_head": "e861d9423f2786e0df2f0aeaddaefa158ceec795",
+    "source_paths_ahead_of_current_upstream": 1202,
+    "updated_private_retention_labels": {
+      "TFontSmallLobby__sub_801D67AC": "is_photon_blast_charge_full",
+      "TFontSmallLobby__sub_801D6804": "load_subcommand_header",
+      "TFontSmallLobby__sub_801D698C": "init_subcommand_6x38",
+      "TFontSmallTask__name": "font_small_task_class_name",
+      "TNECFontEORFunction__name": "nec_font_eor_class_name",
+      "TQuestVmDownLoadServer__data_804C8690": "quest_card_file_name",
+      "__ct__14TFontSmallTaskFv": "__ct__14TFontSmallTaskFPCfUlllPCcl",
+      "calc_small_font_scale__Fv": "calc_font_scale__14TFontSmallTaskFv",
+      "fn_801D6AB4": "damage_weight",
+      "lbl_805D3F68": "TAdMultiPlyChrSelectGC__name",
+      "lbl_805D78A0": "quest_page_node_head",
+      "lbl_805D78A4": "quest_page_text_limit",
+      "lbl_805D78AC": "quest_download_free_cell_count",
+      "lbl_805D78B0": "quest_download_free_list"
+    },
+    "workspace_patch_paths": 130,
+    "workspace_patch_sha256": "d4db82b0f565c1611b9ec4ca97c2712da538bd3df27d10eca22c052f0cefaff3"
+  },
+  "current_fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "current_upstream_master": "31bb8ea5f01b0e02b609fb59411f4805308106bf",
+  "first_upstream_review": {
+    "base": "31bb8ea5f01b0e02b609fb59411f4805308106bf",
+    "benchmark": {
+      "added": 26,
+      "base": 144316,
+      "head": 143289,
+      "removed": 1053
+    },
+    "branch": "great-merge/review/after-381/saves-quests-and-assets",
+    "flagged_labels": 0,
+    "head": "06f05041eba0f87c018fd20e2e4d947b96d4f6ba",
+    "label_changes": [
+      {
+        "address": "0x8001F018",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "load_texture_sub__11BmlResourceFPCcl",
+        "old": "load_texture_sub__11BmlResourceFPvl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8001F128",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "load_bml_exec__6TLobbyFP11BmlResourcePCc",
+        "old": "load_bml_exec__6TLobbyFPUcPUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8001FCC4",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "load_bin_motion__11BmlResourceFPCcl",
+        "old": "load_bin_motion__11BmlResourceFPvl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8001FD98",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "load_bin_model__11BmlResourceFPCcl",
+        "old": "load_bin_model__11BmlResourceFPvl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80020004",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "__ct__11BmlResourceFlP21BmlResourceDescriptorPFPv_vPvPv",
+        "old": "__ct__11BmlResourceFlP21BmlResourceDescriptorllPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800FA044",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "add_named_entry__6TLobbyFP11BmlResourcePCc",
+        "old": "add_named_entry__6TLobbyFll",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800FA164",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "create_file_load_entry__6TLobbyFPCcP16GinjaTextureListPFPv_vPCvPPv",
+        "old": "create_file_load_entry__6TLobbyFllUllPPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800FA2A0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "create_named_entry__6TLobbyFPCcPvPFPv_vPCvPPv",
+        "old": "create_named_entry__6TLobbyFiiUiiPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800FA388",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "request_file_read__6TLobbyFPCcPvPlPPv",
+        "old": "request_file_read__6TLobbyFllPlPPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800FA7E0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "pop_stack_entry__6TLobbyFP20AsyncFileReadRequests",
+        "old": "pop_stack_entry__6TLobbyFs",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800FA848",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "link_into_list__FP20AsyncFileReadRequest",
+        "old": "link_into_list__FPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801BCF04",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "load_character_state__10TObjPlayerFP12TPlyCharData",
+        "old": "load_character_state__10TObjPlayerFPUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801BD928",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "construct_player_instance__10TObjPlayerFlllP12TPlyCharData",
+        "old": "construct_player_instance__10TObjPlayerFlllPUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801BDEF8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "create_player_object__FllP12TPlyCharData",
+        "old": "create_player_object__FllPUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801C2214",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "get_items__13TPlyInventoryFv",
+        "old": "get_ptr_4__10TObjPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801E4874",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "load_gvm_texture_file__FPCc",
+        "old": "load_gvm_texture_file__Fl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801E4A44",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "read_file_header__9TLanguageFPUcP13GvmFileHeader",
+        "old": "read_file_header__9TLanguageFiPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801E4AB0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "read_into_buffer__9TLanguageFPvl",
+        "old": "read_into_buffer__9TLanguageFll",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80208D98",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "add_player__6TLobbyFlPCUcl",
+        "old": "add_player__6TLobbyFlll",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8024E548",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "__ct__14TWindowDepositFs",
+        "old": "TWindowDeposit__ct",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802C74AC",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "init_slot_entry__15TAdChrSelSlotGCFlPC21CharacterSlotPosition",
+        "old": "init_slot_entry__15TAdChrSelSlotGCFlPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802C7560",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "init_slot__15TAdChrSelSlotGCFlPC21CharacterSlotPosition",
+        "old": "init_slot__15TAdChrSelSlotGCFlPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8032A0A4",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "create__13TAdMcSelectGCFP7TObject",
+        "old": "create__13TAdMcSelectGCFPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8032C854",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "send_data__6TLobbyFPCc",
+        "old": "send_data__6TLobbyFl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803E7E3C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "has_name_mismatch__22TQuestVmDownLoadServerFlPUc",
+        "old": "has_name_mismatch__22TQuestVmDownLoadServerFPUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803E7EE4",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "find_name_index__22TQuestVmDownLoadServerFPCc",
+        "old": "find_name_index__22TQuestVmDownLoadServerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803E8004",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "is_char_allowed__22TQuestVmDownLoadServerFPCUcs",
+        "old": "is_char_allowed__22TQuestVmDownLoadServerFs",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803E875C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "set_file_info_name__22TQuestVmDownLoadServerFPCc",
+        "old": "set_file_info_name__22TQuestVmDownLoadServerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803E8790",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "aram_read_thunk__22TQuestVmDownLoadServerFlPvl",
+        "old": "aram_read_thunk__22TQuestVmDownLoadServerFUli",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803E8B1C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "lookup_name_entry__22TQuestVmDownLoadServerFPcsP21QuestNameLookupResult",
+        "old": "lookup_name_entry__22TQuestVmDownLoadServerFsP12Out_803E8C2C",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803E90A8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "append_message_text__22TQuestVmDownLoadServerFPUclP20QuestDownloadRequestUc",
+        "old": "append_message_text__22TQuestVmDownLoadServerFlP12Req_803EEF2CUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803E9190",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "build_message_packet__22TQuestVmDownLoadServerFPUclP20QuestDownloadRequestUc",
+        "old": "build_message_packet__22TQuestVmDownLoadServerFPviPvUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803E92C0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "calc_text_length__20QuestDownloadRequestCFv",
+        "old": "calc_text_length__22TQuestVmDownLoadServerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803E9348",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "calc_message_length__20QuestDownloadRequestCFv",
+        "old": "calc_message_length__22TQuestVmDownLoadServerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803E9DE0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "find_longest_match_entry__22TQuestVmDownLoadServerFPUclPl",
+        "old": "find_longest_match_entry__22TQuestVmDownLoadServerFPviPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803EBD38",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "build_text_node_chain__22TQuestVmDownLoadServerFP23QuestDownloadTextRecordPC21QuestDownloadItemNodelPP21QuestDownloadTextNodePP21QuestDownloadTextNode",
+        "old": "build_text_node_chain__22TQuestVmDownLoadServerFPvPC21QuestDownloadItemNodelPP21QuestDownloadTextNodePP21QuestDownloadTextNode",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803EEB10",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "format_number_text__22TQuestVmDownLoadServerFPCUclP23QuestDownloadTextRecordl",
+        "old": "format_number_text__22TQuestVmDownLoadServerFiiPvi",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803EFBDC",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "find_insert_position__22TQuestVmDownLoadServerFPUclll",
+        "old": "find_insert_position__22TQuestVmDownLoadServerFlll",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803F0138",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "find_symbol_entry__22TQuestVmDownLoadServerFPCcsP23QuestSymbolLookupResult",
+        "old": "find_symbol_entry__22TQuestVmDownLoadServerFsP13Info_803F0138",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803F0AB8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "aram_dma_read__22TQuestVmDownLoadServerFlPvl",
+        "old": "aram_dma_read__22TQuestVmDownLoadServerFPvPvi",
+        "section": ".text",
+        "type": "function"
+      }
+    ],
+    "manually_reconciled_quest_paths": [
+      "include/pso/quest/QuestDownloadServer.h",
+      "include/pso/quest/TQuestVmDownLoadServer.h",
+      "include/pso/quest/TQuestVmDownLoadServer_803E6970.h",
+      "src/pso/quest/TQuestVmDownLoadServer_803E6970.cpp",
+      "src/pso/quest/TQuestVmDownLoadServer_803EB0D8.cpp"
+    ],
+    "newly_stale_retention_entries": 0,
+    "paths": 218,
+    "previous_head": "740c6fbfb076baadbe20e5f07bf71ea636f6f039"
+  },
+  "next_actor_replay": {
+    "base": "06f05041eba0f87c018fd20e2e4d947b96d4f6ba",
+    "conflicts": 0,
+    "head": "558251bd9023ac69829cfc063e651397e881642e",
+    "matching_build_pending": true
+  },
+  "original_fork_data": {
+    "private": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "saves": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "source": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    }
+  },
+  "previous_conditional_stack": "2026-11-23-complete-local-review-stack.json",
+  "previous_master": "412b3b3cf562c5cb4b4655b747ff328777b32969",
+  "private_tests": {
+    "fork_tools": 11,
+    "host_suites": 5,
+    "tools": 294
+  },
+  "retail_and_coverage": {
+    "master": {
+      "check_sha256": "5792d50f6d38f4cafde4e07b83faf9c55dd49c850229971233abb6b8cadfb2bd",
+      "coverage_regressions": 0,
+      "dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "head": "31bb8ea5f01b0e02b609fb59411f4805308106bf",
+      "linked_units": 2368,
+      "matched_functions": 27572,
+      "report_sha256": "264430a6624dfcf855e8292e73fbd3f196d7376e63a76a299de778acb0cbf5da",
+      "tree": "f5aa43c7037737e930df3807aea409d46d7476f5"
+    },
+    "private": {
+      "check_sha256": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011",
+      "coverage_regressions": 0,
+      "dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "head": "e861d9423f2786e0df2f0aeaddaefa158ceec795",
+      "linked_units": 2368,
+      "matched_functions": 27572,
+      "report_sha256": "ac3f6156481899d89e790b2d59560ceeb80275e3c777a42fc0e1ce8f7c8ee465",
+      "tree": "06a95327230c7cc2011dd600069fbb6970a5c582"
+    },
+    "saves": {
+      "check_sha256": "a0ca125a83d7bc469a8af9e487c40b7a927f359549396aa150bcffdb972d96ae",
+      "coverage_regressions": 0,
+      "dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "head": "06f05041eba0f87c018fd20e2e4d947b96d4f6ba",
+      "linked_units": 2368,
+      "matched_functions": 27572,
+      "report_sha256": "f226992b4bc759d52d5dfe587ea5cfb32c43fdc227d6ddf88042467afa086135",
+      "tree": "a0c2e7b84f444e6384136f772eb7bda172183ad1"
+    },
+    "source": {
+      "check_sha256": "ad792b353d7bc6349b06b9ee118c8b614f257149c5167071fcc3bcee6ad94ac0",
+      "coverage_regressions": 0,
+      "dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "head": "d3599c2228d6b51bc6f344791a02465cd50cfe39",
+      "linked_units": 2368,
+      "matched_functions": 27572,
+      "report_sha256": "ac3f6156481899d89e790b2d59560ceeb80275e3c777a42fc0e1ce8f7c8ee465",
+      "tree": "79fbf1db9a19d8b526c1884f621c94bf139c1ac8"
+    }
+  },
+  "saves_runtime_probes": [
+    "File queue lifecycle, sector tails and both GVM buffer paths passed.",
+    "GBA filename and destination dispatch at the original size limit passed.",
+    "BML initialization, named requests, archive reads, completion and cancellation passed.",
+    "Texture input layout and both entry flag paths passed.",
+    "saves.dol: footprint GVM load, culling, texture binding and ordered release passed.",
+    "saves.dol: load status, slot geometry, warnings, card polling and file metadata passed.",
+    "saves.dol: Challenge and online titles, complete entry traversal, callbacks and release passed.",
+    "saves.dol: 128 slots, ten linked pages, 80 buckets, 512 free-list nodes, file reads and page eviction passed",
+    "saves.dol: signed handles, ARAM callback ownership, rounded reads, EOF clamping and timeout cleanup passed",
+    "saves.dol: name lookup boundaries, mixed-width request counts, four number formats and closed-handle gating passed"
+  ],
+  "upstream_pr_375": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "upstream_updates": [
+    {
+      "commit": "b21bd3641e6fa355038920bb40fd6445d0cfe2ea",
+      "pr": 379
+    },
+    {
+      "commit": "b14d742e27ab29079b0274adcbe3f3b3ac0271f4",
+      "pr": 380
+    },
+    {
+      "commit": "31bb8ea5f01b0e02b609fb59411f4805308106bf",
+      "pr": 381
+    }
+  ]
+}

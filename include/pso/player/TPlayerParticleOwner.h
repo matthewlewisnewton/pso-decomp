@@ -1,6 +1,6 @@
 #ifndef PSO_PLAYER_TPLAYERPARTICLEOWNER_H
 #define PSO_PLAYER_TPLAYERPARTICLEOWNER_H
-#include "pso/TObject.h"
+#include "pso/system/task/TObject.h"
 class TParticleCtrl;
 struct TObjPlayer;
 class TPlayerParticleOwner : public TObject {
@@ -11,5 +11,5 @@ public:
     u16 player_id;
     TParticleCtrl* particle;
 };
-typedef char TPlayerParticleOwner_size[sizeof(TPlayerParticleOwner) == 0x24 ? 1 : -1];
+LAYOUT_ASSERT(TPlayerParticleOwner_size, sizeof(TPlayerParticleOwner) == 0x24);
 #endif

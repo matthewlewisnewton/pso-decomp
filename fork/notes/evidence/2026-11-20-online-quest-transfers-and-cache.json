@@ -1,0 +1,596 @@
+{
+  "upstream_master": "0fa391a887c664abadc00cba75db1f039aceb647",
+  "historical_donor_base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical_quest_tip": "96e12501e15a4340f8516a312337ce3f26b98786",
+  "replay_base": "bb96c1926870ca5ce4a68ca598307b4370c618bc",
+  "replay_head": "74b91cd5c7fd52c7dacdf62ba76531feb6b1fcdd",
+  "replay_tree": "609f1a9f37fbe419e4e270f62c7b9728b4d444b5",
+  "changed_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/npc/TNpcPlayer_8034DAA0.h",
+    "include/pso/object/TObjMesBase.h",
+    "include/pso/object/base/ObjectSetData.h",
+    "include/pso/object/quest/TObjQuestCol2.h",
+    "include/pso/object/quest/TObjQuestColALock2.h",
+    "include/pso/object/switch/TOChatSensor.h",
+    "include/pso/quest/OnlineQuestDownloadState.h",
+    "include/pso/quest/OnlineQuestMenuRecords.h",
+    "include/pso/quest/QuestDownloadCacheTypes.h",
+    "include/pso/quest/QuestDownloadRecords.h",
+    "include/pso/quest/QuestDownloadServer.h",
+    "include/pso/quest/QuestDownloadText.h",
+    "include/pso/quest/QuestDownloadWorkspace.h",
+    "include/pso/quest/QuestOpcodeTables.h",
+    "include/pso/quest/QuestScriptFormat.h",
+    "include/pso/quest/QuestVm.h",
+    "include/pso/quest/TOQuestTalkBase.h",
+    "include/pso/quest/TQuestColCtrl.h",
+    "include/pso/quest/TQuestListChallenge.h",
+    "include/pso/quest/TQuestListOnline.h",
+    "include/pso/quest/TQuestListVM.h",
+    "include/pso/quest/TQuestThread.h",
+    "include/pso/quest/TQuestVmDownLoadServer.h",
+    "include/pso/quest/TQuestVmDownLoadServer_803E6970.h",
+    "include/pso/system/task/TObject.h",
+    "include/pso/ui/city/THunterGuildSeqOffline.h",
+    "include/pso/ui/frontend/TAdLdQuestPrtGC.h",
+    "include/pso/ui/frontend/TAdLoadQuestCellGC.h",
+    "include/pso/ui/frontend/TAdLoadQuestGC.h",
+    "include/pso/ui/frontend/TAdLoadQuestLineGC.h",
+    "include/pso/ui/frontend/TAdLoadQuestPrtTxtGC.h",
+    "include/pso/ui/frontend/TAdLoadQuestPrtTxtGC_8034A090.h",
+    "include/pso/ui/window/MessageWindowSettingsAbi.h",
+    "include/pso/ui/window/TWindowCost.h",
+    "include/pso/ui/window/TWindowMessageQuest.h",
+    "include/pso/ui/window/TWindowMessageScroll.h",
+    "include/pso/ui/window/TWindowShortCut.h",
+    "include/pso/unk/TLobby.h",
+    "include/pso/unk/TLobby_801F2D2C.h",
+    "include/pso/unk/TLobby_8026B06C.h",
+    "include/pso/unk/TUnk_804C8678.h",
+    "src/pso/item/TItemLoad.cpp",
+    "src/pso/item/TItemTexLoad.cpp",
+    "src/pso/item/mag/TItemMag.cpp",
+    "src/pso/network/TPlyJoinLobbyEntry.cpp",
+    "src/pso/npc/TNpcPlayer_8034DAA0.cpp",
+    "src/pso/npc/TObjNpcBase.cpp",
+    "src/pso/object/TOBind.cpp",
+    "src/pso/object/TObjLuker.cpp",
+    "src/pso/object/TObjMesBase.cpp",
+    "src/pso/object/base/ObjectFactoryTables.cpp",
+    "src/pso/object/collision/TOAttackableCol.cpp",
+    "src/pso/object/collision/TObjBgmColCtrl.cpp",
+    "src/pso/object/quest/TObjQuestCol.cpp",
+    "src/pso/object/switch/TOChatSensor.cpp",
+    "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+    "src/pso/object/warp/TObjWarpBossMulti.cpp",
+    "src/pso/player/PhotonBlastResults.cpp",
+    "src/pso/player/TPlayerBattleCtrl4P.cpp",
+    "src/pso/player/TPlyGuildCardTag_8013ABCC.cpp",
+    "src/pso/quest/QuestDownloadAramFile.cpp",
+    "src/pso/quest/QuestDownloadBuffers.cpp",
+    "src/pso/quest/QuestOpcodeHandlers.cpp",
+    "src/pso/quest/QuestOpcodeTables.cpp",
+    "src/pso/quest/TOQuestTalkBase.cpp",
+    "src/pso/quest/TQuestBgmCtrl.cpp",
+    "src/pso/quest/TQuestListChallenge.cpp",
+    "src/pso/quest/TQuestListOnline.cpp",
+    "src/pso/quest/TQuestListVM.cpp",
+    "src/pso/quest/TQuestListVM_801F4398.cpp",
+    "src/pso/quest/TQuestThread.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer_80080788.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer_803E5668.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer_803E6970.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer_803E8918.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer_803E9A24.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer_803EB0D8.cpp",
+    "src/pso/system/TGStream.cpp",
+    "src/pso/system/TLanguage_80132A5C.cpp",
+    "src/pso/system/TLoadCtrl.cpp",
+    "src/pso/ui/city/THunterGuildSeqOffline.cpp",
+    "src/pso/ui/city/THunterGuildSeqOffline_8021250C.cpp",
+    "src/pso/ui/city/THunterGuildSeqOffline_80212564.cpp",
+    "src/pso/ui/city/THunterGuildSeqOffline_80212644.cpp",
+    "src/pso/ui/city/THunterGuildSeqOffline_8021269C.cpp",
+    "src/pso/ui/city/THunterGuildSeqOffline_802126C4.cpp",
+    "src/pso/ui/city/THunterGuildSeqOffline_8021277C.cpp",
+    "src/pso/ui/city/THunterGuildSeqOffline_8021282C.cpp",
+    "src/pso/ui/city/THunterGuildSeqOffline_80213788.cpp",
+    "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp",
+    "src/pso/ui/city/TShopArmorListWindow.cpp",
+    "src/pso/ui/city/TShopEquipmentListWindow.cpp",
+    "src/pso/ui/city/TShopEquipmentSellWindow.cpp",
+    "src/pso/ui/city/TShopItemListWindow.cpp",
+    "src/pso/ui/frontend/TAdLdQuestPrtGC.cpp",
+    "src/pso/ui/frontend/TAdLoadQuestCellGC.cpp",
+    "src/pso/ui/frontend/TAdLoadQuestGC.cpp",
+    "src/pso/ui/frontend/TAdLoadQuestLineGC.cpp",
+    "src/pso/ui/frontend/TAdLoadQuestPrtTxtGC.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80336054.cpp",
+    "src/pso/ui/frontend/TAdVIConfigGC.cpp",
+    "src/pso/ui/window/TMessageWindowController.cpp",
+    "src/pso/ui/window/TWindowCost.cpp",
+    "src/pso/ui/window/TWindowCtrl.cpp",
+    "src/pso/ui/window/TWindowCtrlMain.cpp",
+    "src/pso/ui/window/TWindowMessage.cpp",
+    "src/pso/ui/window/TWindowMessageLog.cpp",
+    "src/pso/ui/window/TWindowMessagePage.cpp",
+    "src/pso/ui/window/TWindowMessageQuest.cpp",
+    "src/pso/ui/window/TWindowMessageScroll.cpp",
+    "src/pso/ui/window/TWindowShortCut.cpp",
+    "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+    "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp",
+    "src/pso/unk/TLobby_8001EF5C.cpp",
+    "src/pso/unk/TLobby_800F8AA8.cpp",
+    "src/pso/unk/TLobby_801A2D90.cpp",
+    "src/pso/unk/TLobby_801A3C48.cpp",
+    "src/pso/unk/TLobby_801C25B4.cpp",
+    "src/pso/unk/TLobby_801E43E4.cpp",
+    "src/pso/unk/TLobby_801F2D2C.cpp",
+    "src/pso/unk/TLobby_801F3A24.cpp",
+    "src/pso/unk/TLobby_80207DA8.cpp",
+    "src/pso/unk/TLobby_8026B06C.cpp",
+    "src/pso/unk/TLobby_8035D540.cpp",
+    "src/pso/unk/text_800FA464.cpp",
+    "src/pso/unk/text_801A3014.cpp",
+    "src/pso/unk/text_80269FE8.cpp",
+    "src/pso/unk/text_8034D3D0.cpp",
+    "src/pso/weapon/TItemAttacker.cpp"
+  ],
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "exact_linked_units": 2448,
+  "replay_coverage_losses": {
+    "regressions": 0,
+    "data_regressions": 0,
+    "data_coverage_lost": 0,
+    "padding_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0,
+    "missing_functions": 0,
+    "failures": 0
+  },
+  "changed_linker_labels": [
+    {
+      "module": "psov3",
+      "address": "0x80080788",
+      "before": "clear_flag4_bit4__22TQuestVmDownLoadServerFv",
+      "after": "clear_update_suspension__7TObjectFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801EF560",
+      "before": "qst_op_npc_text_clear_all__FPv",
+      "after": "qst_op_npc_text_clear_all__Fv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801EF788",
+      "before": "qst_op_npc_chkwarp__FPv",
+      "after": "qst_op_npc_chkwarp__Fv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801F5630",
+      "before": "__ct__17TQuestThreadBoardFP7TObjectl",
+      "after": "__ct__17TQuestThreadBoardFP13TUnk_804C8678l"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801F5CB0",
+      "before": "__ct__12TQuestThreadFP7TObjectl",
+      "after": "__ct__12TQuestThreadFP13TUnk_804C8678l"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801F5DD0",
+      "before": "clear_buffer__12TQuestThreadFPv",
+      "after": "clear_buffer__12TQuestThreadFP13TUnk_804C8678"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801F5EAC",
+      "before": "get_register__12TQuestThreadFPvi",
+      "after": "get_register__12TQuestThreadFPC13TUnk_804C8678i"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8021250C",
+      "before": "set_state_close__22THunterGuildSeqOfflineFv",
+      "after": "set_state_close__22THunterGuildSeqOfflineFP15TShopWindowBase"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80212564",
+      "before": "set_state_4__22THunterGuildSeqOfflineFv",
+      "after": "set_state_4__22THunterGuildSeqOfflineFP15TShopWindowBase"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80212710",
+      "before": "create_quest_list_vm__22THunterGuildSeqOfflineFv",
+      "after": "create_quest_list_vm__22THunterGuildSeqOfflineFP15TShopWindowBase"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8021277C",
+      "before": "set_state_close2__22THunterGuildSeqOfflineFv",
+      "after": "set_state_close2__22THunterGuildSeqOfflineFP15TShopWindowBase"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80212858",
+      "before": "request_close__22THunterGuildSeqOfflineFv",
+      "after": "request_close__22THunterGuildSeqOfflineFP15TShopWindowBase"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802150E8",
+      "before": "begin_file_download__16TQuestListOnlineFv",
+      "after": "begin_file_download__16TQuestListOnlineFR17TRecvDownloadHead"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80215380",
+      "before": "receive_quest_info__16TQuestListOnlineFPv",
+      "after": "receive_quest_info__16TQuestListOnlineFR13TPlyText<288>"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80217714",
+      "before": "decompress_quest_buffer__16TQuestListOnlineFl",
+      "after": "decompress_quest_buffer__16TQuestListOnlineFPCUcl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8026B06C",
+      "before": "set_field_90__6TLobbyFl",
+      "after": "set_frame_mode__19TWindowMessageQuestFl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8026B074",
+      "before": "dispatch_message_window_text__FPvii",
+      "after": "dispatch_message_window_text"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8026B0C4",
+      "before": "create_quest_message_window_at__Fll",
+      "after": "create_quest_message_window_at"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80288B5C",
+      "before": "close_windows__19TQuestListChallengeFPv",
+      "after": "close_windows__19TQuestListChallengeFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802890AC",
+      "before": "TQuestListChallenge__vt9",
+      "after": "vfunc_11__19TQuestListChallengeFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80289200",
+      "before": "TQuestListChallenge__ct",
+      "after": "__ct__19TQuestListChallengeFP7TObjectP15TShopWindowBaseP8TObjBase"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80309598",
+      "before": "__ct__11TWindowCostFlll",
+      "after": "__ct__11TWindowCostFPvll"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80309788",
+      "before": "TAdLoadQuestGC__ct",
+      "after": "__ct__14TAdLoadQuestGCFP7TObject"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8030984C",
+      "before": "TAdLoadQuestGC__sub_8030984C",
+      "after": "cleanup__14TAdLoadQuestGCFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80309850",
+      "before": "TAdLoadQuestGC__sub_80309850",
+      "after": "setup__14TAdLoadQuestGCFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80309854",
+      "before": "TAdLoadQuestGC__sub_80309854",
+      "after": "get_cell__14TAdLoadQuestGCFi"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80309868",
+      "before": "TAdLoadQuestGC__sub_80309868",
+      "after": "get_line__14TAdLoadQuestGCFi"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8030987C",
+      "before": "TAdLoadQuestGC__sub_8030987C",
+      "after": "get_text__14TAdLoadQuestGCFi"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80349ACC",
+      "before": "__ct__18TAdLoadQuestCellGCFP7TObjectPv",
+      "after": "__ct__18TAdLoadQuestCellGCFP7TObjectl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80349B20",
+      "before": "get_or_create_cell__14TAdLoadQuestGCFii",
+      "after": "get_or_create_cell__14TAdLoadQuestGCFi"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80349FCC",
+      "before": "__ct__18TAdLoadQuestLineGCFP7TObjectPv",
+      "after": "__ct__18TAdLoadQuestLineGCFP7TObjectl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8034A020",
+      "before": "get_or_create_line__14TAdLoadQuestGCFii",
+      "after": "get_or_create_line__14TAdLoadQuestGCFi"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8034A5D0",
+      "before": "get_or_create_prt_txt__14TAdLoadQuestGCFii",
+      "after": "get_or_create_prt_txt__14TAdLoadQuestGCFi"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8035D540",
+      "before": "set_timer__6TLobbyFf",
+      "after": "set_scroll_speed__20TWindowMessageScrollFf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8035D548",
+      "before": "open_message_scroll_window__6TLobbyFlll",
+      "after": "open_message_scroll_window"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803E9DE0",
+      "before": "find_longest_match_entry__22TQuestVmDownLoadServerFlPl",
+      "after": "find_longest_match_entry__22TQuestVmDownLoadServerFPviPv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803E9FA4",
+      "before": "insert_sorted_node__22TQuestVmDownLoadServerFP10N_803E9FA4",
+      "after": "insert_quest_download_entry"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803EB328",
+      "before": "count_fitting_entries__22TQuestVmDownLoadServerFP13Node_803EB328",
+      "after": "count_fitting_entries__22TQuestVmDownLoadServerFP21QuestDownloadTextNode"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803EB794",
+      "before": "advance_nodes__22TQuestVmDownLoadServerFl",
+      "after": "advance_quest_text_entries"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803EB844",
+      "before": "count_chain_nodes__22TQuestVmDownLoadServerFv",
+      "after": "count_quest_text_entries"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803EB878",
+      "before": "TQuestVmDownLoadServer__sub_803EB878",
+      "after": "next_quest_text_entry"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803EB894",
+      "before": "detach_node_chain__22TQuestVmDownLoadServerFv",
+      "after": "detach_quest_text_tail"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803EBD38",
+      "before": "build_text_node_chain__22TQuestVmDownLoadServerFPvPvlPvPv",
+      "after": "build_text_node_chain__22TQuestVmDownLoadServerFPvPC21QuestDownloadItemNodelPP21QuestDownloadTextNodePP21QuestDownloadTextNode"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803ECD54",
+      "before": "free_node_list__22TQuestVmDownLoadServerFv",
+      "after": "free_quest_text_chain"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803ECFC0",
+      "before": "push_download_entry__22TQuestVmDownLoadServerFPl",
+      "after": "push_download_entry__22TQuestVmDownLoadServerFPv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803ED26C",
+      "before": "calc_item_entry_cost__22TQuestVmDownLoadServerFUcUcl",
+      "after": "calc_quest_download_item_cost"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803ED63C",
+      "before": "calc_entry_cost__22TQuestVmDownLoadServerFPvPv",
+      "after": "calc_quest_download_entry_cost"
+    }
+  ],
+  "replay_report_sha256": "7cead965d29e360f4d456a32431bd93ccb2ee7c320c3d2e1cd1580aecdd01ac6",
+  "replay_check_sha256": "a84d10282d94351fd7ccbc2140f5a87024e7f86356c46958df7787ebd88c5f29",
+  "original_data_inventory": {
+    "bytes": 1147,
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "upstream_review": {
+    "base": "0fa391a887c664abadc00cba75db1f039aceb647",
+    "head": "5e0a443edde59d3af778d496b8503e0b1358f5e2",
+    "tree": "6889e0d6b96d2b796441ce302028a77fe5e8ffaf",
+    "coverage_losses": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "missing_functions": 0,
+      "failures": 0
+    },
+    "report_sha256": "a5822210a6c65be947b158c090ba5e4b98733e6c9cdd140e9c4faa7d9e559352",
+    "check_sha256": "e91fcaf26d7f58ed4f9a2c80d595754ea64b1716f25f75f1015436440ec80abf",
+    "resolved_overlaps": [
+      "config/GPOE8P/psov3/config.yml",
+      "src/pso/object/collision/TOAttackableCol.cpp",
+      "src/pso/player/TPlayerBattleCtrl4P.cpp",
+      "src/pso/quest/QuestOpcodeHandlers.cpp",
+      "src/pso/quest/TQuestListVM.cpp",
+      "src/pso/ui/city/TShopArmorListWindow.cpp",
+      "src/pso/ui/city/TShopItemListWindow.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80336054.cpp",
+      "src/pso/ui/window/TWindowMessageQuest.cpp",
+      "src/pso/ui/window/TWindowMessageScroll.cpp",
+      "src/pso/unk/TLobby_8001EF5C.cpp",
+      "src/pso/unk/TLobby_800F8AA8.cpp"
+    ]
+  },
+  "cumulative_replay_overlaps": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/object/base/TObjMotion.h",
+    "include/pso/ui/window/TWindowCost.h",
+    "include/pso/ui/window/TWindowMessageQuest.h",
+    "include/pso/unk/TLobby.h",
+    "src/pso/item/TItemLoad.cpp",
+    "src/pso/npc/TObjNpcBase.cpp",
+    "src/pso/object/base/ObjectFactoryTables.cpp",
+    "src/pso/object/collision/TOAttackableCol.cpp",
+    "src/pso/object/collision/TObjBgmColCtrl.cpp",
+    "src/pso/object/switch/TOChatSensor.cpp",
+    "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+    "src/pso/player/TPlayerBattleCtrl4P.cpp",
+    "src/pso/quest/QuestOpcodeHandlers.cpp",
+    "src/pso/quest/TQuestListChallenge.cpp",
+    "src/pso/quest/TQuestListOnline.cpp",
+    "src/pso/quest/TQuestListVM.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer_803EB0D8.cpp",
+    "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp",
+    "src/pso/ui/city/TShopArmorListWindow.cpp",
+    "src/pso/ui/city/TShopEquipmentListWindow.cpp",
+    "src/pso/ui/city/TShopEquipmentSellWindow.cpp",
+    "src/pso/ui/city/TShopEquipmentSellWindow_803094E8.cpp",
+    "src/pso/ui/city/TShopItemListWindow.cpp",
+    "src/pso/ui/frontend/TAdLoadQuestGC.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80336054.cpp",
+    "src/pso/ui/window/TMessageWindowController.cpp",
+    "src/pso/ui/window/TWindowCost.cpp",
+    "src/pso/ui/window/TWindowMessage.cpp",
+    "src/pso/ui/window/TWindowMessageLog.cpp",
+    "src/pso/ui/window/TWindowMessagePage.cpp",
+    "src/pso/ui/window/TWindowMessageQuest.cpp",
+    "src/pso/ui/window/TWindowMessageScroll.cpp",
+    "src/pso/unk/TLobby_8001EF5C.cpp",
+    "src/pso/unk/TLobby_800F8AA8.cpp",
+    "src/pso/unk/TLobby_801F2D2C.cpp",
+    "src/pso/unk/TLobby_8026B06C.cpp",
+    "src/pso/unk/TLobby_8035D540.cpp",
+    "src/pso/unk/text_80269FE8.cpp"
+  ],
+  "retained_names": [
+    "TLobby__sub_80207F30",
+    "TLobby__sub_801F3500",
+    "TAdLoadQuestGC::get_or_create_prt_txt",
+    "TWindowCost::set_cost"
+  ],
+  "fork_layer": {
+    "workspace_patch_paths": 131,
+    "workspace_patch_sha256": "07e38006943310ab902c3fd00efb2716ee8049051979624ebab8e00eac5aed36",
+    "materialized_tree": "01f3f6db8e5e0faa125f11cc5636f8e2b257301f",
+    "round_trip_listing_sha256": "350a07fa1597eefe5a5626e5c263866dea5d1bfd285762a1fef2972ddf89ed64",
+    "force_active_names": 27031,
+    "tool_tests_passed": 294,
+    "layer_tests_passed": 11,
+    "coverage_losses": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "missing_functions": 0,
+      "failures": 0
+    },
+    "quest_cache_probe": {
+      "images": [
+        "retail",
+        "cumulative",
+        "standalone",
+        "fork_layer"
+      ],
+      "slots": 128,
+      "pages": 10,
+      "buckets": 80,
+      "pool_nodes": 512,
+      "result": "pass",
+      "file_reads": true,
+      "page_eviction": true
+    }
+  },
+  "historical_path_inventory": {
+    "pinned_base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+    "canonical_source": "83decd2d24dc6104040afd060e0cc2754b110409",
+    "earlier_review_queue": "47ade105c778197344c29e2d058cd9754a90893c",
+    "outside_replay_before": 790,
+    "outside_replay_after": 739,
+    "outside_both_replay_and_queue": 82,
+    "remaining_by_owner": {
+      "ui": 219,
+      "unk": 110,
+      "boss": 105,
+      "enemy": 76,
+      "player": 52,
+      "item": 25,
+      "system": 25,
+      "object": 25,
+      "effect": 22,
+      "render": 18,
+      "camera": 17,
+      "math": 9,
+      "technique": 8,
+      "network": 6,
+      "quest": 4,
+      "map": 4,
+      "npc": 3,
+      "weapon": 3,
+      "audio": 2,
+      "libs/dolphin": 2,
+      "libs/PowerPC_EABI_Support": 2,
+      "animation": 1,
+      "collision": 1
+    },
+    "method": "Path inventory without rename detection."
+  }
+}

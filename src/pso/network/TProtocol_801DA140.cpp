@@ -1,9 +1,9 @@
-#include "pso/TProtocol.h"
+#include "pso/network/TProtocol.h"
 #include "pso/network/TProtocol_801DA140.h"
 
 extern "C" void bswap__17TSendDownloadHeadFv(TSendDownloadHead *);
 
-void fn_801DA140(TProtocol *self, s8 flags, const char *filename) {
+void send_download_head_d7(TProtocol *self, s8 flags, const char *filename) {
     TSendDownloadHead pkt;
     memset(&pkt, 0, sizeof(pkt));
     pkt.header.command = 0xD7;

@@ -2,6 +2,7 @@
 #define PSO_MAP_CHALLENGE_ENEMY_SET_H
 
 #include "types.h"
+#include <stddef.h>
 
 enum {
     ChallengeEnemyBufferSize = 0x9000,
@@ -54,6 +55,11 @@ struct ChallengeEventCommand {
 
     void append() const;
 };
+
+LAYOUT_ASSERT(ChallengeEventHeaderSize, sizeof(ChallengeEventHeader) == 0x10);
+LAYOUT_ASSERT(ChallengeRandomEventSize, sizeof(ChallengeRandomEvent) == 0x18);
+LAYOUT_ASSERT(ChallengeFixedEventSize, sizeof(ChallengeFixedEvent) == 0x14);
+LAYOUT_ASSERT(ChallengeFixedEventCommandOffset, offsetof(ChallengeFixedEvent, commandOffset) == 0x10);
 
 extern "C" {
 extern u8 *challenge_event_source;

@@ -1,0 +1,413 @@
+{
+  "source": "ca5a3f1e2d272592c14a408c0ded2a6d839181c0",
+  "previous_source": "32e60b52ccd854c3014e05eb25cca5fd0042a17d",
+  "upstream": "5a4e7ced56fe7072359b6d279e94f4be3b8453c0",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "source_paths": 1258,
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/ui/window/TUnk_804D0658.h",
+    "include/pso/ui/window/TWindowChoiceSetting.h",
+    "include/pso/ui/window/TWindowMakeTeam.h",
+    "include/pso/ui/window/TWindowSubComCard.h",
+    "include/pso/ui/window/TWindowSubInformationBoard.h",
+    "src/pso/ui/window/TWindowBreakIn.cpp",
+    "src/pso/ui/window/TWindowChoiceSetting.cpp",
+    "src/pso/ui/window/TWindowChoiceSetting_80249078.cpp",
+    "src/pso/ui/window/TWindowMakeTeam.cpp",
+    "src/pso/ui/window/TWindowSubComCard_80265410.cpp",
+    "src/pso/ui/window/TWindowSubComCard_80268494.cpp",
+    "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp",
+    "src/pso/ui/window/TWindowSubInformationBoard.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_80248BE8.cpp"
+  ],
+  "author": {
+    "name": "matthewlewisnewton",
+    "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+    "coauthor_trailers": 0
+  },
+  "individually_checked_objects": {
+    "TWindowBreakIn": {
+      "functions": 4,
+      "objdiff_sha256": "6a0cffb3d0ada2e6666bcaabd4df1ee77ec2076d8f515aad92805c7a4d91eb9d"
+    },
+    "TWindowChoiceSetting": {
+      "functions": 15,
+      "objdiff_sha256": "86732ef5a746d15cc292189dcce99d7c044a3b309138b2d59e9af9974def2b39"
+    },
+    "TWindowChoiceSetting_80249078": {
+      "functions": 9,
+      "objdiff_sha256": "f8dfd6a1dcd1fd1a992ad6130853c5d628ba9463ab1ebfe797ba18194d9c0bd5"
+    },
+    "TWindowMakeTeam": {
+      "functions": 15,
+      "objdiff_sha256": "56e9a6d6aa7a35b7e4d28b71ec0c55b1d058c173d8fee1225799566d3c6fa573"
+    },
+    "TWindowSubComCard_80265410": {
+      "functions": 50,
+      "objdiff_sha256": "7394a7f4dd04ee03c93e7508593e2422aaf8b13472d7a1b66b99287bfdff9e49"
+    },
+    "TWindowSubComCard_80268494": {
+      "functions": 6,
+      "objdiff_sha256": "ae90f685d6cd91143deb153c5ad5c3d328bce42e6ed10430d89c8ab94bbb2dbc"
+    },
+    "TWindowSubComCard_80271E7C": {
+      "functions": 57,
+      "objdiff_sha256": "b3a2cb7661f46740bc889a83c4b46c5bb8a792bd11aac8c8b7576f915a3b4298"
+    },
+    "TWindowSubInformationBoard": {
+      "functions": 11,
+      "objdiff_sha256": "c9ab2ead2c046c80fc7623e1e5a81e69d1a8ed0ea58bb1ad967ffd81df5ae895"
+    },
+    "TWindowSubStatusDisp_80248BE8": {
+      "functions": 6,
+      "objdiff_sha256": "dfc0a1e08cc7e1cf0a3a76e9b574f77d2fdc8ad9385ccd6f813c141fb29fd6dc"
+    }
+  },
+  "preserved_names": {
+    "0x800FC3E0": {
+      "fork": "begin_small_font_draw",
+      "current": "render_forward__20TWindowSubStatusDispFv",
+      "size": "0x20"
+    },
+    "0x800FC400": {
+      "fork": "bind_small_font_texture_list",
+      "current": "begin_render__20TWindowSubStatusDispFv",
+      "size": "0x24"
+    },
+    "0x80131A80": {
+      "fork": "set_keyboard_depth__16TKeyBoardControlFf",
+      "current": "set_depth__16TKeyBoardControlFf",
+      "size": "0x24"
+    },
+    "0x80131B54": {
+      "fork": "set_composer_position__16TKeyBoardControlFPUc",
+      "current": "set_sub_position__16TKeyBoardControlFPUc",
+      "size": "0x4C"
+    },
+    "0x80131BC4": {
+      "fork": "allocate_text_copy__16TKeyBoardControlFv",
+      "current": "realloc_buffer__16TKeyBoardControlFv",
+      "size": "0x4C"
+    },
+    "0x80131C10": {
+      "fork": "is_keyboard_active__16TKeyBoardControlFv",
+      "current": "is_cancelled__16TKeyBoardControlFv",
+      "size": "0x24"
+    },
+    "0x80131C34": {
+      "fork": "is_key_active__16TKeyBoardControlFv",
+      "current": "is_confirmed__16TKeyBoardControlFv",
+      "size": "0x24"
+    },
+    "0x80147A80": {
+      "fork": "__dla__FPv",
+      "current": "mem_free",
+      "size": "0x28"
+    },
+    "0x80244364": {
+      "fork": "get_draw_context__11TWindowBaseFPv",
+      "current": "get_draw_context__15TWindowAdditionFv",
+      "size": "0x50"
+    },
+    "0x80265410": {
+      "fork": "set_keyboard_flag62_bit4__16TKeyBoardControlFv",
+      "current": "set_composer_flag62_bit4__16TKeyBoardControlFv",
+      "size": "0x2C"
+    },
+    "0x80269CC0": {
+      "fork": "create__14TWindowMessageFlPCvUll",
+      "current": "create__14TWindowMessageFlPCfUll",
+      "size": "0x64"
+    },
+    "0x8026D9C0": {
+      "fork": "fn_8026D9C0",
+      "current": "increment_counter__20TWindowSubStatusDispFv",
+      "size": "0x10"
+    },
+    "0x803DA798": {
+      "fork": "set_current_texture_list",
+      "current": "set_global_param",
+      "size": "0x10"
+    }
+  },
+  "historical_comparison": {
+    "prior_open_rows": 424,
+    "open_rows": 419,
+    "closed": [
+      5752,
+      5771,
+      5799,
+      5903,
+      5923
+    ],
+    "touched_rows": [
+      {
+        "row": 5672,
+        "description": "The choice window initializer and factory use the actual signed entry fields and typed owner. The original selected-entry forwarding helper still needs its C declaration recovered.",
+        "historical_path": "src/pso/misc/TWindowChoiceSetting.cpp",
+        "current_path": "src/pso/ui/window/TWindowChoiceSetting.cpp",
+        "fork_blob": "b288f6f8e1bbae5a0a80cd1a409a473b91b9051e",
+        "current_blob": "99207b1d645095023456f09e00e2e1c574bb04f8",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 5752,
+        "description": "The native TWindowCheckBox factory, render, run task and destructor cover the historical changes. Its renderer uses the real frame context, entry list, status display and scrollbar. The original 7.5 threshold and frame counter retain their linked behavior.",
+        "historical_path": "src/pso/misc/TWindowSubStatusDisp_80248BE8.cpp",
+        "current_path": "src/pso/ui/window/TWindowSubStatusDisp_80248BE8.cpp",
+        "fork_blob": "dae107c459833f40704fda158b28cf0f94713395",
+        "current_blob": "1351e78f734d518421f5a0da47490a68fe310292",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete native checkbox rendering and input historical source reconciled",
+        "authored_delta_sha256": "58a586d901b64a06ee86fcdb99d2a22fc08c57890da409da661b509a526c4e9c"
+      },
+      {
+        "row": 5771,
+        "description": "The native team task uses its actual keyboard, team name, comment and choice menu. The original editor methods use the existing upstream names and addresses, and the returned buffer shares retail's allocator and release path.",
+        "historical_path": "src/pso/misc/TWindowMakeTeam_80264DF4.cpp",
+        "current_path": "src/pso/ui/window/TWindowMakeTeam.cpp",
+        "fork_blob": "3f0b3a46469624f547372afd18f35e6215070341",
+        "current_blob": "04d1839d394c3cc10ee6c22f57c112715a8f58da",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete native lobby team keyboard and choice ownership historical source reconciled",
+        "authored_delta_sha256": "1cfe39f9ff45e5255e409df841e91c735014296871ab48f4244d83ee6d930b1c"
+      },
+      {
+        "row": 5799,
+        "description": "The two font-stage calls retain their original addresses and bind the same localized texture list. The source uses the existing camera yaw, pitch, roll and position fields at the historical offsets and emits the exact renderer.",
+        "historical_path": "src/pso/misc/TWindowSubStatusDisp_800FC3E0.cpp",
+        "current_path": "src/pso/ui/font/TFontSmallHelp.cpp",
+        "fork_blob": "13405544bbca4d2c034e5394d6fc758da2526fcf",
+        "current_blob": "f54a88c5c6b287937e934b498e2ff2fffeac472b",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete existing small-font draw and camera names historical source reconciled",
+        "authored_delta_sha256": "e210ebd398c4f1bbb820a882227427f6519259549d1628a2bccdee8364022990"
+      },
+      {
+        "row": 5854,
+        "description": "The information window owns its cancellation flag and heading release at their existing offsets. The wider menu and scrollbar comparisons remain open.",
+        "historical_path": "src/pso/misc/TWindowSubComCard_80265410.cpp",
+        "current_path": "src/pso/ui/window/TWindowSubComCard_80265410.cpp",
+        "fork_blob": "7f28b6c73aaa8cfbb044ac0788331406e2723f9a",
+        "current_blob": "ad2bad9ea791234e4d792f5eb17ebb3a6802384d",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 5903,
+        "description": "The open and teardown path stores the native keyboard pointer. Scheduled state checks, text transfer, release, sound and menu selection retain their retail calls under upstream's names.",
+        "historical_path": "src/pso/misc/TWindowSubInformationBoard.cpp",
+        "current_path": "src/pso/ui/window/TWindowSubInformationBoard.cpp",
+        "fork_blob": "ba87fd20acbddb4a2c658082bf286a27b2637ed2",
+        "current_blob": "9f3a1a515462f483aba9301861756c3f5c98faa4",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete native Information Board keyboard owner historical source reconciled",
+        "authored_delta_sha256": "134256ffd37b072020dd410dce0c4959498c385d1e96c8bc61b5fc0f75cb6568"
+      },
+      {
+        "row": 5923,
+        "description": "The existing native destructor closes the three windows and invokes TObject's destructor. The category table retains its original address and size, and its arrays are defined locally. The type-correct message creation and one-shot sound calls retain the linked path.",
+        "historical_path": "src/pso/misc/TWindowSubTechnique.cpp",
+        "current_path": "src/pso/ui/window/TWindowSubTechnique.cpp",
+        "fork_blob": "438abaab2f2dccc7368b61cc811a405719ff288c",
+        "current_blob": "5d1726bfa9316019872eaeed39ad8f9db45cabc6",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete native technique submenu lifetime historical source reconciled",
+        "authored_delta_sha256": "7ce7ee169d8795a96b64e28ffeed9e02fefe9a2f15e15f7684e6e01973dc23fa"
+      },
+      {
+        "row": 5941,
+        "description": "Both Guild Card choice list paths use the actual selector base, signed entry IDs, row state, scrolling and label edits. Other Guild Card flow changes remain open.",
+        "historical_path": "src/pso/misc/TWindowSubComCard_80271E7C.cpp",
+        "current_path": "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp",
+        "fork_blob": "9ca0d5928dfb04eb206742d708874c9f6ebf58cf",
+        "current_blob": "dbb481fb84770bd09c814856c2c320573d800176",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      }
+    ]
+  },
+  "validation": {
+    "stock": {
+      "baseline": "32e60b52ccd854c3014e05eb25cca5fd0042a17d",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x80249120",
+          "before": "begin_scroll__17TWindowSubComCardFf",
+          "after": "begin_scroll__20TWindowChoiceSettingFf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8026543C",
+          "before": "get_flag__17TWindowSubComCardFv",
+          "after": "get_flag__13TUnk_804D0658Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80265448",
+          "before": "clear_flag_and_release2__17TWindowSubComCardFv",
+          "after": "clear_flag_and_release2__13TUnk_804D0658Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80268494",
+          "before": "update_selected_entry__17TWindowSubComCardFv",
+          "after": "update_selected_entry__13TUnk_804D0658Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802684BC",
+          "before": "find_entry_value_by_id__17TWindowSubComCardFl",
+          "after": "find_entry_value_by_id__13TUnk_804D0658Fl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8026853C",
+          "before": "mark_entry_by_id__17TWindowSubComCardFl",
+          "after": "mark_entry_by_id__13TUnk_804D0658Fl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802685C4",
+          "before": "disable_entry_by_id__17TWindowSubComCardFl",
+          "after": "disable_entry_by_id__13TUnk_804D0658Fl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80268650",
+          "before": "set_entry_string_by_id__15TWindowMakeTeamFPvl",
+          "after": "set_entry_string_by_id__13TUnk_804D0658FPvl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802686D4",
+          "before": "update_next_entry__17TWindowSubComCardFlll",
+          "after": "update_next_entry__13TUnk_804D0658Flll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80275290",
+          "before": "set_flag_10__17TWindowSubComCardFv",
+          "after": "set_flag_10__13TUnk_804D0658Fv"
+        }
+      ],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "67f64fdf2b509d4d6eb0262e7661771db3334807e13019c14eed16c38cb56db9",
+      "report_sha256": "8bf65d8728c8f2c6b24a6d39c58ef11867f49b647ba16c91df23d3def4d4f95d"
+    },
+    "workspace": {
+      "baseline": "ca5a3f1e2d272592c14a408c0ded2a6d839181c0",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "8bf65d8728c8f2c6b24a6d39c58ef11867f49b647ba16c91df23d3def4d4f95d"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "0416e7a02fd0a2ee3f4500c811970350e4aa0bf3c4649b3bff72f546314cbcc1"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "7011bbd1146b23367b1e8ae2a6b11dddcd1813eaf989db3c67f778ce032cfd28"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    },
+    "choice-windows_runtime": {
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "checks": [
+        "Lookup past a null row, selected ID and missing ID",
+        "Original label index, next-row write and full capacity guard",
+        "Row enable and disable colors, flag updates and heading state",
+        "Scroll flag, height and three tick interpolation",
+        "Checkbox context and entries with optional status and scrollbar"
+      ],
+      "log_sha256": "c14de5d37913c535d9c372eeeb79daab4fc2aa0964b787adeb06cdf2475b482b",
+      "probe_sha256": "e5127d3d68aef0001a3e0ee639c2eabc34995c5a5c4646534f2a717e114034b0"
+    },
+    "window-readouts_runtime": {
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "checks": [
+        "Existing lobby constructor and accessor checks with the new choice-label owner",
+        "Readouts, timer easing, meseta lookup and texture binding"
+      ],
+      "log_sha256": "67fd000d190ac9d667f57689574841302b2f448a8136c5dcaf4f5d1389093f8b",
+      "probe_sha256": "395ab64eb4168a4966a492ce8c5e59710ff3ec232a6d7d94f13cbb0bf1938a31"
+    }
+  },
+  "fork_workspace": {
+    "overlay_paths": 130,
+    "overlay_patch_sha256": "75f0ea6347b7c8bc82cd7583e4912f6f0d43b5e959c1c8fe651ba67de245db0e",
+    "updated_overlay_paths": [
+      "config/GPOE8P/psov3/config.yml"
+    ],
+    "force_active": {
+      "before": 27033,
+      "after": 27033,
+      "mappings": {
+        "set_flag_10__17TWindowSubComCardFv": "set_flag_10__13TUnk_804D0658Fv"
+      }
+    },
+    "archive_test_head": "ba2787767f288dd7e9d63b5ffed947a5945bce7f",
+    "tested_materialized_tree": "57d6cf00316c3e8e47d1c4bf2dbbbd2b9d04d17f",
+    "only_added_directory": "fork/",
+    "non_layer_differences": 0,
+    "workflow_original": ".github/workflows/fork-source-checks.yml",
+    "workflow_archive": "fork/tooling/workflows/fork-source-checks.yml",
+    "workflow_blob": "a65a054c88a2f51f97588206106e6ff86f374652",
+    "archived_workflow_inactive": true,
+    "previous_folder_only_checkpoint": "fc36450e33c05411eb0686d5d40430dd46fb87e7"
+  }
+}

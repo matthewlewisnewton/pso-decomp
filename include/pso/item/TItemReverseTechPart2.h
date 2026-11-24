@@ -1,16 +1,29 @@
 #ifndef PSO_ITEM_TITEMREVERSETECHPART2_H
 #define PSO_ITEM_TITEMREVERSETECHPART2_H
 
+#include "pso/system/task/TObject.h"
+#include "pso/item/TItemReverseTechBG.h"
 #include "types.h"
 
-extern "C" {
-u8 *__ct__21TItemReverseTechPart2Fv(u8 *arg0, s32 arg1, s32 arg2);
-}
+class TItemReverseTechPart2 : public TObject {
+public:
+    TItemReverseTechPart2(TObject *parent, NJS_TEXLIST *texlist);
+    virtual ~TItemReverseTechPart2();
+    virtual void run_task();
+    virtual void render();
+public:
+    static void destroy_and_flag(TObject *fade);
 
-// --- C functions defined in TItemReverseTechPart2.cpp ---
-extern "C" {
-u8 *__ct__21TItemReverseTechPart2Fv(u8 *object, s32 arg1, s32 arg2);
-}
-// --- end of C functions
+    TItemReverseTechPicture picture_0;
+    TItemReverseTechPicture picture_1;
+    TItemReverseTechPicture picture_2;
+    TItemReverseTechPicture picture_3;
+    TItemReverseTechPicture picture_4;
+    TItemReverseTechPicture picture_5;
+    TItemReverseTechPicture picture_6;
+    s32 frame;
+    s32 shown_count;
+};
+LAYOUT_ASSERT(TItemReverseTechPart2Size, sizeof(TItemReverseTechPart2) == 0x158);
 
 #endif

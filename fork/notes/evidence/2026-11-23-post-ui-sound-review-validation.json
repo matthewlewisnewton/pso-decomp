@@ -1,0 +1,759 @@
+{
+  "builds": {
+    "native": {
+      "check_pr_sha256": "381bd2e286b7bab2f2f1e9dc67b6336ca326eb5216d8e65865066089e528dbf2",
+      "commit": "6e64253b42307a9ea82494d16f27beb0928cd213",
+      "coverage_regressions": 0,
+      "dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "linked_units": 2368,
+      "matched_functions": 27572,
+      "report_sha256": "5555d59e1b1e69729bd4f2b4359203e6b7d28bf5606357fb8d316c25676312ab",
+      "tree": "0196c2febeef5e89a510264b65c5e99264a4f6d9"
+    },
+    "private": {
+      "check_pr_sha256": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011",
+      "commit": "1fd9fb664547faffc77a720e8f13a39c852b3733",
+      "coverage_regressions": 0,
+      "dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "linked_units": 2368,
+      "matched_functions": 27572,
+      "report_sha256": "b220a2c5263829c4cb318b65dd1c37679e7e2f73b0979e452aa2a2525575a0c8",
+      "tree": "945eaf8c64bca3ca9efb23f1d1fe41b6067f3e32"
+    },
+    "source": {
+      "check_pr_sha256": "51080db0399cf8074149a277707427289277a31d191f9323b0280011de40a5b9",
+      "commit": "93b4567e8c201b2ee15cc979b153843c03d9c6d8",
+      "coverage_regressions": 0,
+      "dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "linked_units": 2368,
+      "matched_functions": 27572,
+      "report_sha256": "b220a2c5263829c4cb318b65dd1c37679e7e2f73b0979e452aa2a2525575a0c8",
+      "tree": "832717566b716c1a21917517dcb8c63f7d4ea8bb"
+    }
+  },
+  "cumulative_rehearsal": {
+    "additional_overlap": "The sound control millisecond getter and the typed Guild Card reply remain independent functions.",
+    "head": "93b4567e8c201b2ee15cc979b153843c03d9c6d8",
+    "historical_replay_overlaps": {
+      "src/pso/boss/TUnk_80484A94.cpp": {
+        "overlap_hunks": 1,
+        "resolved_blob": "22605c03313572e27e12d858e95a66fa4a622b01"
+      },
+      "src/pso/boss/TUnk_80484AFC.cpp": {
+        "overlap_hunks": 1,
+        "resolved_blob": "c0f5f01694cd8e2ace5c6fb8055957a005cee9ad"
+      },
+      "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp": {
+        "overlap_hunks": 1,
+        "resolved_blob": "3dffdeb567124198a170be413e041f0e05d72b4f"
+      },
+      "src/pso/boss/dragon/TBoss1Dragon.cpp": {
+        "overlap_hunks": 1,
+        "resolved_blob": "b568dbb3fd0ae43cf710ec5a8a29bff775a8bbbc"
+      },
+      "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp": {
+        "overlap_hunks": 1,
+        "resolved_blob": "178d67c665e3bfd06100b63c2c8e554bda1f8609"
+      },
+      "src/pso/boss/goldragon/TBoss8Dragon.cpp": {
+        "overlap_hunks": 1,
+        "resolved_blob": "f41424447e632d36e6d89e915c4c4ca031a412c0"
+      },
+      "src/pso/boss/olgaflow/TBoss6Tube.cpp": {
+        "overlap_hunks": 1,
+        "resolved_blob": "b7047be5bdad0f0b3ea33441fd8381a3150f5bbf"
+      },
+      "src/pso/boss/olgaflow/TBoss6Type2.cpp": {
+        "overlap_hunks": 1,
+        "resolved_blob": "e33f38695a0079a9fdbb9cbe39fbcf83067edfff"
+      },
+      "src/pso/boss/volopt/TBoss3Volopt.cpp": {
+        "overlap_hunks": 1,
+        "resolved_blob": "69517c352e13b8f83b17809c2b006d49e8483331"
+      },
+      "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp": {
+        "overlap_hunks": 1,
+        "resolved_blob": "3513edd17da2617d6025c39079f7a60051712950"
+      },
+      "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp": {
+        "overlap_hunks": 1,
+        "resolved_blob": "7057f5f6dfef8e6a41ef5347673cd5403825b14e"
+      },
+      "src/pso/enemy/darkgunner/DarkGunner.cpp": {
+        "overlap_hunks": 1,
+        "resolved_blob": "b97fa9cbaac7a7398319f7c09774185397d5dcdc"
+      },
+      "src/pso/enemy/fly/TObjEneBm3Fly.cpp": {
+        "overlap_hunks": 1,
+        "resolved_blob": "3a1878c92e39b2fad1f9991fd7d5f3ae379a793f"
+      },
+      "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp": {
+        "overlap_hunks": 1,
+        "resolved_blob": "55f0dc4b2f40db3d32c09794de6df8ab5d355415"
+      },
+      "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp": {
+        "overlap_hunks": 6,
+        "resolved_blob": "33904ec827527bd448b5d89f900bc3ce7b426b7c"
+      },
+      "src/pso/enemy/illgill/TObjEneIllGill.cpp": {
+        "overlap_hunks": 2,
+        "resolved_blob": "842a59056e41ae70b1980f0ad0c7b19866ba1d34"
+      },
+      "src/pso/item/TItemMenuCtrl.cpp": {
+        "overlap_hunks": 1,
+        "resolved_blob": "22c7ad441e887ddb3c26e1a98af8120a7f2c88b1"
+      },
+      "src/pso/npc/TObjNpcARM00.cpp": {
+        "overlap_hunks": 1,
+        "resolved_blob": "97f4f9160aad41cafb72c91abb724b778d138244"
+      },
+      "src/pso/object/TObjLuker.cpp": {
+        "overlap_hunks": 1,
+        "resolved_blob": "37ea12c0dc0da28511ab45ffc16759611e96836d"
+      },
+      "src/pso/object/ambient/TObjEnvSoundGlobal.cpp": {
+        "overlap_hunks": 4,
+        "resolved_blob": "ec3eda5a9e8ec8e23e7e7d5388c599f2a259256c"
+      },
+      "src/pso/object/ambient/TObjGrass.cpp": {
+        "overlap_hunks": 2,
+        "resolved_blob": "64d634705dc2e1b8fbb63c578092690e1b481143"
+      },
+      "src/pso/object/cave/TOHangceilingCave01.cpp": {
+        "overlap_hunks": 1,
+        "resolved_blob": "548e9073ca4fc9a95ac11983f26c99961cc124bc"
+      },
+      "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp": {
+        "overlap_hunks": 1,
+        "resolved_blob": "4c9bbfda7f5afe553c63865094040f7eebcbe819"
+      },
+      "src/pso/object/door/TODoorJungleMain.cpp": {
+        "overlap_hunks": 1,
+        "resolved_blob": "1cef89469d2ba7ae75931e88a788aaac1d800a6f"
+      },
+      "src/pso/object/fence/TOBarrierEnergy01.cpp": {
+        "overlap_hunks": 1,
+        "resolved_blob": "880d643d775115e5418f34608f29c6a50bebdb53"
+      },
+      "src/pso/player/TObjPlayer_80011014.cpp": {
+        "overlap_hunks": 1,
+        "resolved_blob": "f4404420fa483dd4f1352dae7f440ab8ec85117b"
+      },
+      "src/pso/player/TObjPlayer_801C7430.cpp": {
+        "overlap_hunks": 1,
+        "resolved_blob": "a303582b8480a72e4cf1bcf85ddf2e1ddcf45dc8"
+      },
+      "src/pso/quest/QuestOpcodeHandlers.cpp": {
+        "overlap_hunks": 1,
+        "resolved_blob": "8ebc2841b860bca3c85592739d5593057e0cb0a6"
+      },
+      "src/pso/technique/TTecBarta.cpp": {
+        "overlap_hunks": 1,
+        "resolved_blob": "821deea36d0effb4cce903232058e907cc9323ee"
+      },
+      "src/pso/technique/TTecGiBarta.cpp": {
+        "overlap_hunks": 1,
+        "resolved_blob": "6bfe305bf21283cade03521ca7927c6c28bf408d"
+      },
+      "src/pso/technique/TTecLuker.cpp": {
+        "overlap_hunks": 2,
+        "resolved_blob": "720d57d09f674df64899b7faf65d39ff4ebbbadd"
+      },
+      "src/pso/technique/TTecMegid.cpp": {
+        "overlap_hunks": 1,
+        "resolved_blob": "6d437253164238f79429f60fcf9158878a48ee04"
+      },
+      "src/pso/technique/TTecRaBarta.cpp": {
+        "overlap_hunks": 1,
+        "resolved_blob": "62a24f49e9bf4f824151459f31e020ef87f0b04e"
+      },
+      "src/pso/technique/TTecZonde.cpp": {
+        "overlap_hunks": 2,
+        "resolved_blob": "5bde0e78cfc36a0a2b0be55b19ad3b021c1e0520"
+      },
+      "src/pso/unk/TUnk_804CC870.cpp": {
+        "overlap_hunks": 2,
+        "resolved_blob": "6c1aa58ea777c29db6f45cb44c211800124c782b"
+      },
+      "src/pso/unk/text_8026C664.cpp": {
+        "overlap_hunks": 1,
+        "resolved_blob": "a4e46a75cd60455d45848390b1ded35ce3c8f8ec"
+      }
+    },
+    "paths_above_assumed_upstream": 754,
+    "previous_tree_changes": [
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/audio/SoundRequestVoice.h",
+      "include/pso/unk/TLobby.h",
+      "include/pso/unk/TLobby_8023F734.h",
+      "src/pso/unk/TLobby_8023F734.cpp",
+      "src/pso/unk/TLobby_802409AC.cpp"
+    ],
+    "private_head": "1fd9fb664547faffc77a720e8f13a39c852b3733",
+    "private_retention_changes": {
+      "clamp_params__6TLobbyFv": "clamp_params__17SoundRequestVoiceFv",
+      "get_field_308__6TLobbyFv": "get_field_308__17SoundControlStateFv",
+      "send_voice_controller_updates__FPUc": "send_voice_controller_updates__FP17SoundRequestVoice",
+      "update__6TLobbyFPv": "update__17SoundRequestVoiceFv"
+    },
+    "private_workspace_patch_sha256": "31f3e363c624bd930d23e302fc04f682df73a7a9835f10e5e8fec10af6b6839a",
+    "private_workspace_path_count": 130,
+    "redundant_changes_declined": {
+      "src/pso/effect/TEffGuard.cpp": "The positional sound declaration is already included.",
+      "src/pso/ui/window/TWindowFukidasi.cpp": "The existing independently validated UI source supplies both headers."
+    }
+  },
+  "current_fork_cutover_candidate": "aa50b74f1922e940e821e6824e991f24a43600fa",
+  "current_upstream_master": "412b3b3cf562c5cb4b4655b747ff328777b32969",
+  "focused_probe_results": [
+    "native.dol: 8 one-shot sound cases passed",
+    "native.dol: persistent slot checks and four dispatch routines on all 36 floors passed",
+    "native.dol: voice reuse, distinct identity and full-pool rejection passed",
+    "native.dol: 13 voice cases, three Guild Card replies, four text cases and three PPPoE name cases passed.",
+    "source.dol: 8 one-shot sound cases passed",
+    "source.dol: persistent slot checks and four dispatch routines on all 36 floors passed",
+    "source.dol: voice reuse, distinct identity and full-pool rejection passed",
+    "source.dol: 13 voice cases, three Guild Card replies, four text cases and three PPPoE name cases passed."
+  ],
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "private_tests": {
+    "fork_tools": 11,
+    "native_host_suites": 5,
+    "tools": 294
+  },
+  "sound_review": {
+    "benchmark": {
+      "added": 0,
+      "base": 143000,
+      "head": 142754,
+      "removed": 246
+    },
+    "by_category": [
+      {
+        "added": 0,
+        "base": 7428,
+        "category": "Linkage",
+        "example": "extern \"C\" void TEnemy__update(void *);",
+        "group": "linkage",
+        "head": 7394,
+        "key": "extern_c",
+        "name": "extern \"C\" declarations",
+        "removed": 34
+      },
+      {
+        "added": 0,
+        "base": 1520,
+        "category": "Linkage",
+        "example": "void heap_free(void *);",
+        "group": "linkage",
+        "head": 1520,
+        "key": "local_decl",
+        "name": "Prototypes and externs in source files",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 6853,
+        "category": "Linkage",
+        "example": "update__6TEnemyFv",
+        "group": "linkage",
+        "head": 6846,
+        "key": "mangled_member",
+        "name": "Hand-mangled member names",
+        "removed": 7
+      },
+      {
+        "added": 0,
+        "base": 304,
+        "category": "Linkage",
+        "example": "helper__Fv",
+        "group": "linkage",
+        "head": 304,
+        "key": "mangled_free",
+        "name": "Hand-mangled free functions",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 0,
+        "category": "Linkage",
+        "example": "_ZN6TEnemy6updateEv",
+        "group": "linkage",
+        "head": 0,
+        "key": "mangled_itanium",
+        "name": "Itanium-mangled names",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 10689,
+        "category": "Linkage",
+        "example": "TEnemy__update",
+        "group": "linkage",
+        "head": 10689,
+        "key": "flat_name",
+        "name": "Members spelled as C names",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 9261,
+        "category": "Layout",
+        "example": "(u8 *)p + 0x30",
+        "group": "layout",
+        "head": 9176,
+        "key": "raw_offset",
+        "name": "Byte-pointer offsets",
+        "removed": 85
+      },
+      {
+        "added": 0,
+        "base": 900,
+        "category": "Layout",
+        "example": "(Vec *)(p + 0x178)",
+        "group": "layout",
+        "head": 890,
+        "key": "offset_cast",
+        "name": "Casts of pointer plus offset",
+        "removed": 10
+      },
+      {
+        "added": 0,
+        "base": 2070,
+        "category": "Layout",
+        "example": "*(f32 *)&x, *(s32 *)(p + 0x18)",
+        "group": "layout",
+        "head": 2070,
+        "key": "punned_deref",
+        "name": "Type-punned dereferences",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 14180,
+        "category": "Layout",
+        "example": "unk_30, m_c, field_96, set_field_378",
+        "group": "layout",
+        "head": 14176,
+        "key": "offset_member",
+        "name": "Offset-named fields",
+        "removed": 4
+      },
+      {
+        "added": 0,
+        "base": 2136,
+        "category": "Types",
+        "example": "((void (*)(T *))p)(x)",
+        "group": "types",
+        "head": 2135,
+        "key": "fp_cast",
+        "name": "Function-pointer casts",
+        "removed": 1
+      },
+      {
+        "added": 0,
+        "base": 49,
+        "category": "Types",
+        "example": "(saddr)\"file.gvm\"",
+        "group": "types",
+        "head": 49,
+        "key": "string_cast",
+        "name": "Strings cast to integers",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 0,
+        "category": "Types",
+        "example": "undefined4",
+        "group": "types",
+        "head": 0,
+        "key": "ghidra_type",
+        "name": "Ghidra types",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 14469,
+        "category": "Types",
+        "example": "TUnk_804806E8",
+        "group": "types",
+        "head": 14463,
+        "key": "address_type",
+        "name": "Address-named types",
+        "removed": 6
+      },
+      {
+        "added": 0,
+        "base": 39,
+        "category": "Types",
+        "example": "#define g (*(T *)&g)",
+        "group": "types",
+        "head": 39,
+        "key": "retype_macro",
+        "name": "Re-typing macros",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 11102,
+        "category": "Decompiler output",
+        "example": "temp_r3, var_f31",
+        "group": "decompiler",
+        "head": 11102,
+        "key": "decomp_temp",
+        "name": "m2c temporaries",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 2223,
+        "category": "Decompiler output",
+        "example": "sp1C",
+        "group": "decompiler",
+        "head": 2223,
+        "key": "stack_local",
+        "name": "Stack-slot locals",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 25008,
+        "category": "Decompiler output",
+        "example": "arg0, farg1",
+        "group": "decompiler",
+        "head": 24912,
+        "key": "arg_name",
+        "name": "Numbered parameters",
+        "removed": 96
+      },
+      {
+        "added": 0,
+        "base": 26,
+        "category": "Decompiler output",
+        "example": "iVar1, param_1",
+        "group": "decompiler",
+        "head": 26,
+        "key": "ghidra_temp",
+        "name": "Ghidra temporaries",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 0,
+        "category": "Decompiler output",
+        "example": "M2C_FIELD",
+        "group": "decompiler",
+        "head": 0,
+        "key": "m2c_macro",
+        "name": "m2c macros",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 258,
+        "category": "Decompiler output",
+        "example": "// moved from 0x8043E828",
+        "group": "decompiler",
+        "head": 258,
+        "key": "address_comment",
+        "name": "Address comments",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 10334,
+        "category": "Names",
+        "example": "lbl_8045A010",
+        "group": "names",
+        "head": 10334,
+        "key": "data_label",
+        "name": "Address-named data",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 12910,
+        "category": "Names",
+        "example": "fn_80123456, TEnemy__sub_80123456",
+        "group": "names",
+        "head": 12910,
+        "key": "function_placeholder",
+        "name": "Address-named functions",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 23,
+        "category": "Names",
+        "example": "call_36A90_with_1",
+        "group": "names",
+        "head": 23,
+        "key": "address_in_name",
+        "name": "Names built on an address",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 295,
+        "category": "Vtables",
+        "example": "__vt__6TEnemy",
+        "group": "vtables",
+        "head": 295,
+        "key": "vtable_symbol",
+        "name": "Vtable symbols in source",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 23,
+        "category": "Vtables",
+        "example": "void *TEnemy_vtable[] = {",
+        "group": "vtables",
+        "head": 23,
+        "key": "hand_vtable",
+        "name": "Hand-written vtables",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 66,
+        "category": "Vtables",
+        "example": "virtual void reserved_3();",
+        "group": "vtables",
+        "head": 66,
+        "key": "filler_virtual",
+        "name": "Filler virtuals",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 1485,
+        "category": "Vtables",
+        "example": "vfunc_67, TEnemy__vt82",
+        "group": "vtables",
+        "head": 1485,
+        "key": "slot_name",
+        "name": "Slot-numbered names",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 4192,
+        "category": "Vtables",
+        "example": "virtual void draw();",
+        "group": "vtables",
+        "head": 4192,
+        "key": "local_virtual",
+        "name": "Virtuals in source files",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 1145,
+        "category": "Units and classes",
+        "example": "TEnemy_80123456.cpp",
+        "group": "placement",
+        "head": 1145,
+        "key": "address_unit",
+        "name": "Units named after an address",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 3836,
+        "category": "Units and classes",
+        "example": "struct EnemyView : TObject {",
+        "group": "placement",
+        "head": 3833,
+        "key": "local_class",
+        "name": "Classes declared in source files",
+        "removed": 3
+      },
+      {
+        "added": 0,
+        "base": 154,
+        "category": "Units and classes",
+        "example": "class TEnemy {",
+        "group": "placement",
+        "head": 154,
+        "key": "duplicate_class",
+        "name": "Classes declared in more than one file",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 22,
+        "category": "Assembly",
+        "example": "asm { ... }",
+        "group": "asm",
+        "head": 22,
+        "key": "inline_asm",
+        "name": "Inline assembly",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 1937,
+        "category": "Members in the wrong class (not in the total)",
+        "example": "((TObjPlayer *)this)->f()",
+        "group": "ownership",
+        "head": 1936,
+        "key": "this_cast",
+        "name": "Casts of this to an unrelated class",
+        "removed": 1
+      },
+      {
+        "added": 0,
+        "base": 105,
+        "category": "Members in the wrong class (not in the total)",
+        "example": "TEnemy__f((char *)this + 0x3C)",
+        "group": "ownership",
+        "head": 105,
+        "key": "subobject_call",
+        "name": "Own member called on a sub-object",
+        "removed": 0
+      }
+    ],
+    "flagged_labels": 0,
+    "head": "6e64253b42307a9ea82494d16f27beb0928cd213",
+    "name": "Recover native gameplay sound positions and request state",
+    "newly_stale_retention_entries": 0,
+    "parent": "e514a054a05b6191d42d1c1505d9d2da1fcd7b83",
+    "paths": 216,
+    "pragmas_added": 0,
+    "source_paths": 214,
+    "symbol_label_changes": [
+      {
+        "address": "0x80226534",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "check_trigger_flag__15TOTrapAncient01FPC3Vecl",
+        "old": "check_trigger_flag__15TOTrapAncient01Fll",
+        "rationale": "The trap accepts an actual position vector when checking its trigger.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80227B70",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "handle_6xB2_play_sound_from_player__FP19game_command_header",
+        "old": "handle_6xB2_play_sound_from_player__FPv",
+        "rationale": "The network sound handler receives the game command header used for packet dispatch.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80227D5C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "normalize_sound_request__FUlPCvPC3Vecll",
+        "old": "normalize_sound_request__FUlllll",
+        "rationale": "Request normalization now takes the actual actor pointer and position vector.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8023F944",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "alloc_looping_sound_slot__FUlPCvPC3Vecll",
+        "old": "alloc_looping_sound_slot__FUllPCvll",
+        "rationale": "The looping allocator keeps a typed actor pointer and world position.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8023FA8C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "alloc_one_shot_sound_slot__FUlPC3Vecll",
+        "old": "alloc_one_shot_sound_slot__FUlPCvll",
+        "rationale": "The one-shot allocator keeps a typed world position.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802409AC",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "set_field0__17SoundRequestVoiceFP17SoundControlState",
+        "old": "set_field0__6TLobbyFPv",
+        "rationale": "Voice initialization sets the SoundControlState owner on the actual SoundRequestVoice.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802409B4",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "clamp_reverb__17SoundRequestVoiceFf",
+        "old": "clamp_field9c__6TLobbyFf",
+        "rationale": "The method clamps reverb on the actual SoundRequestVoice.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80240A50",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "update__17SoundRequestVoiceFv",
+        "old": "update__6TLobbyFPv",
+        "rationale": "The pitch update runs on SoundRequestVoice and uses the actual sound controller.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80240B40",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "set_voice_pitch_slide__FP17SoundRequestVoicell",
+        "old": "set_voice_pitch_slide__FPUcll",
+        "rationale": "The pitch-slide helper writes fields of SoundRequestVoice directly.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80241AD8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "send_voice_controller_updates__FP17SoundRequestVoice",
+        "old": "send_voice_controller_updates__FPUc",
+        "rationale": "Volume, pan and surround updates use the actual SoundRequestVoice.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80241BA8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "clamp_params__17SoundRequestVoiceFv",
+        "old": "clamp_params__6TLobbyFv",
+        "rationale": "The clamping method reads voice parameters and the controller gain through their real owners.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8024219C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "get_field_308__17SoundControlStateFv",
+        "old": "get_field_308__6TLobbyFv",
+        "rationale": "The existing time getter reads SoundControlState::ms through the actual receiver.",
+        "section": ".text",
+        "type": "function"
+      }
+    ]
+  },
+  "unpublished_prerequisites": {
+    "actors_motion_and_resources": "8b985966132b918f3e7daaccfbfe25dd436dda2e",
+    "saves_quest_and_assets": "740c6fbfb076baadbe20e5f07bf71ea636f6f039",
+    "windows_chat_and_frontend": "e514a054a05b6191d42d1c1505d9d2da1fcd7b83"
+  },
+  "upstream_pr_375": {
+    "candidate_paths_also_touched_by_pr_375": 105,
+    "contained_in_candidate": true,
+    "merged_at": "72029bba4d78953c3e329e60426305cdfdf7dee8"
+  }
+}

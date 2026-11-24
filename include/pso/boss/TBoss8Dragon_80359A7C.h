@@ -1,6 +1,0 @@
-#ifndef PSO_BOSS_TBOSS8DRAGON_80359A7C_H
-#define PSO_BOSS_TBOSS8DRAGON_80359A7C_H
-
-#include "types.h"
-
-#endif

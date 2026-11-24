@@ -1,0 +1,90 @@
+{
+  "source": "bc3d32eb3ffe91bb920d62ef1dc1e2b15b097e4f",
+  "base": "9ff02ce4e47915af3f387e4fae33ee53376297a3",
+  "ordered_full_source": "d49c2b851116712ffcba5785bf928839d1581bc6",
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "adx_source_check_sha256": "cdb697914981dd091fee2f963846861f8a84e0ba5d563740593e5754d84f3644",
+  "packet_source_check_sha256": "93aee949420a577d34679e345d2a9b6f4e2278fc5dce702490b0a690ca66c728",
+  "layer_check_sha256": "b4d93864c6c48b13733e46b7a31e201ac7304fc2d7522904a7365cf68fa6b312",
+  "label_changes_for_recovered_interfaces": [
+    {
+      "module": "psov3",
+      "address": "0x803C96A0",
+      "before": "set_field_6d__6TLobbyFSc",
+      "after": "set_field_6d__12Ent_803C9608FSc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803C96B8",
+      "before": "set_field_40_and_notify__6TLobbyFl",
+      "after": "set_field_40_and_notify__12Ent_803C9608Fl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CBF70",
+      "before": "trigger_sub_task__6TLobbyFv",
+      "after": "trigger_sub_task__11GcrnaStreamFl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80227B70",
+      "before": "handle_6xB2_play_sound_from_player__FPv",
+      "after": "handle_6xB2_play_sound_from_player"
+    }
+  ],
+  "tool_tests": 294,
+  "fork_tests": 11,
+  "host_tests": [
+    "./vector_math_fallbacks",
+    "./item_factory_callbacks",
+    "./loader_transfer",
+    "./ginja_parameter_callbacks",
+    "./exi_ethernet_fallbacks"
+  ],
+  "compiled_source_changes": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/audio/AdxStreamRuntime.h",
+    "include/pso/audio/AdxTalk.h",
+    "include/pso/audio/GcrnaStream.h",
+    "include/pso/audio/SoundRequestVoice.h",
+    "include/pso/boss/derolle/TObjBoss2Tunnel_8007EA74.h",
+    "include/pso/network/protocol/GameplaySoundPacket.h",
+    "include/pso/unk/TLobby.h",
+    "include/pso/unk/TLobby_80227A2C.h",
+    "include/pso/unk/TLobby_80227AA0.h",
+    "include/pso/unk/TLobby_8023F734.h",
+    "include/pso/unk/text_803C5B50.h",
+    "src/pso/audio/AdxTalk.cpp",
+    "src/pso/audio/AdxtServer.cpp",
+    "src/pso/audio/AdxtStart.cpp",
+    "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+    "src/pso/network/TGameProtocol.cpp",
+    "src/pso/unk/TLobby_80226070.cpp",
+    "src/pso/unk/TLobby_80226C3C.cpp",
+    "src/pso/unk/TLobby_80227AA0.cpp",
+    "src/pso/unk/TLobby_8023F734.cpp",
+    "src/pso/unk/TLobby_803CBF50.cpp",
+    "src/pso/unk/text_8023F660.cpp",
+    "src/pso/unk/text_803C5B50.cpp",
+    "src/pso/unk/text_803CE240.cpp",
+    "src/pso/unk/text_803D4448.cpp"
+  ],
+  "completed_historical_rows": {
+    "src/pso/misc/TLobby_80227A2C.cpp": {
+      "historical_blob": "ba726babfdac1b590801ff590a031c83d132261b",
+      "current_owning_blob": "26fd1cf1b58a07441684d5d9a1d65ce72b375ff1",
+      "evidence": "The folded owner preserves the MusyX free, allocation and retrace hooks and the startup gain. The substantive fork declaration now passes a typed Vec through TLobby__sub_80227AF8 to the existing voice position member. The superseded copies of moved code are covered by the native owners."
+    },
+    "src/pso/misc/TLoadCtrl_80227390.cpp": {
+      "historical_blob": "1b0d27eb827ab50d1cea41d5100f766f3c360d84",
+      "current_owning_blob": "26fd1cf1b58a07441684d5d9a1d65ce72b375ff1",
+      "evidence": "The current native owner keeps the same three player slots, 0x2D1E4, 0xA924 and 0xA000 allocations, ADX startup, ARAM and MusyX sequence, diagnostics and buffer release. The pointer and filename uses retain the upstream declarations. The factory, start and release calls now share the stream player type."
+    },
+    "src/pso/misc/TLobby_802268F4.cpp": {
+      "historical_blob": "42d5d2c1a76d55847f97fa07eb058ef75930bde0",
+      "current_owning_blob": "26fd1cf1b58a07441684d5d9a1d65ce72b375ff1",
+      "evidence": "The introduction at 2a243adfd9 matches the imported side-parent blob. The subsequent authored edits resolve to four original stream names, six ARAM values, three player handles and the exact 18 passage arrays, nine program records and program dispatch order, with the existing sequencer consumers."
+    }
+  },
+  "historical_review_rows_remaining": 659
+}

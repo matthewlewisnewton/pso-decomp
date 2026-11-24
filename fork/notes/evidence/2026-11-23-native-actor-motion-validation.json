@@ -1,0 +1,340 @@
+{
+  "builds": {
+    "source": {
+      "head": "82f1ed395fd3a271876030107538f1d24463eafd",
+      "tree": "e813b8c76d6e8eea8a4e4efa62c33e4703e817ed",
+      "coverage_baseline": "0eb9a4f0baa466b7065ddd2d2e17156e50544e75",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "source-report.json": "21281a3959c9b312d15c02cedea6c4c0d356dbb6f6aba661e1f2405c9c610e23",
+        "source-check.json": "ec167389dbd490e17ac3a61384def77d8d58a7485e34e9bf913ffed6e489dc0a",
+        "source-quality.json": "8b70ddea2c43ec59fba800e26b10898a1d9437567c24cf60ccae4bc0e7f66443"
+      },
+      "quality": {
+        "removed": 4,
+        "added": 0,
+        "changed_labels": 0,
+        "flagged_labels": 0,
+        "newly_stale_retention": 0,
+        "findings": []
+      }
+    },
+    "direct": {
+      "head": "1d9d60ce82b7307903fe4b0cdd72d2d7dd9d240e",
+      "tree": "02641ef84e5f2b178f80cbeb476bee4e29953962",
+      "coverage_baseline": "41db0911ec9636e49a8af652cd2b9221950c0cd8",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "direct-report.json": "17f21655ee327ba32f61b978aef75e27606b108f5a53358042c4631170d208b1",
+        "direct-check.json": "4e604b850c1f0e91a721799f62a54cbf006e6233600ff84a3c2c1893d8438687"
+      },
+      "incremental_quality": {
+        "removed": 7,
+        "added": 0,
+        "changed_labels": 2,
+        "flagged_labels": 0
+      },
+      "quality_on_master": {
+        "base": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+        "removed": 503,
+        "added": 5,
+        "changed_labels": 39,
+        "flagged_labels": 0,
+        "newly_stale_retention": 0,
+        "remaining_findings": [
+          {
+            "key": "slot_name",
+            "path": "src/pso/enemy/mericarol/TObjEneBm9Mericarol_Bomb.cpp",
+            "line": 120,
+            "text": "vfunc_16"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/object/TObjControl.cpp",
+            "line": 356,
+            "text": "m_2f6"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/object/TObjControl.cpp",
+            "line": 358,
+            "text": "m_2fa"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/player/TObjPlayer_800C4714.cpp",
+            "line": 205,
+            "text": "Hit_800C4A5C"
+          },
+          {
+            "key": "local_decl",
+            "path": "src/pso/player/TObjPlayer_8035A778.cpp",
+            "line": 11,
+            "text": "extern GC_Mtx *node_matrix_array_base"
+          }
+        ],
+        "evidence_sha256": {
+          "direct-quality.json": "cdfae5d3b1e24e42bec5713038858df209e6fb94b87473271f4305c4d7e3c2a2",
+          "direct-delta-quality.json": "d8a6b2a03589262515c99ecc181953c63b9beef40e58ba0cfa0f27c438b17438",
+          "direct-master-coverage.json": "a16ffe8f6809b040f35d0c81ff3ef898404c04b69b58849d5f84eae09d00e0f3"
+        }
+      }
+    },
+    "queue": {
+      "head": "d188731c39143af0e758673b68f8f760a96f4f67",
+      "tree": "1787cbbb7135572a178beec5767ac8b5717825a5",
+      "coverage_baseline": "b8e66fbf4c5556b09dbf51ef7befb84e4647f05b",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "queue-report.json": "9762dd00f997e0ab580afb8cf160702bf6a399772da7a34ca8cf190616dc3ea5",
+        "queue-check.json": "4e604b850c1f0e91a721799f62a54cbf006e6233600ff84a3c2c1893d8438687"
+      }
+    },
+    "ave": {
+      "head": "3a74a88c0019fa13062cd2c6f042fb1776fccf43",
+      "tree": "24ec1142a33a46703c152a93847f15bb0ce2ada1",
+      "coverage_baseline": "c5efbf0513a74831845a4359331ef906b8752127",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "ave-report.json": "0e24d31fc43335f983cc2dca441a9627133c5b1de4679a4721da477763f0f9d3",
+        "ave-check.json": "ec167389dbd490e17ac3a61384def77d8d58a7485e34e9bf913ffed6e489dc0a"
+      }
+    },
+    "private": {
+      "head": "fde8138e490f2943d67ca27875b6f26481c2ce1a",
+      "tree": "187bd20d05550e51cc60871c7befc36c759ae8f0",
+      "coverage_baseline": "2ec9b917e75314586bcd1c3acf94e44641dbe24e",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "private-report.json": "21281a3959c9b312d15c02cedea6c4c0d356dbb6f6aba661e1f2405c9c610e23",
+        "private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011"
+      }
+    },
+    "ave-private": {
+      "head": "0476425d05e16dc7c2c49726efa6aaf35d4ae1d7",
+      "tree": "b441209c6db062f9f54d1783a064d01c7f47c284",
+      "coverage_baseline": "0934871062d52fb4c79bc4ea8c3dc7aad8aac783",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "ave-private-report.json": "0e24d31fc43335f983cc2dca441a9627133c5b1de4679a4721da477763f0f9d3",
+        "ave-private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011"
+      }
+    }
+  },
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "effects_overlap": {
+    "cumulative_shared_paths": [
+      "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+      "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+      "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+      "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+      "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+      "src/pso/enemy/darkgunner/DarkGunner.cpp",
+      "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+      "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+      "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+      "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+      "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+      "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+      "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+      "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+      "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+      "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+      "src/pso/enemy/recon/TObjEneRecon.cpp",
+      "src/pso/enemy/saver/SaverLifecycle.cpp",
+      "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+      "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+      "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+      "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp",
+      "src/pso/object/container/TContainerAncient01.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp"
+    ],
+    "cumulative_effects_added_lines_removed": 0,
+    "standalone_and_queue_shared_paths": [
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/object/base/TObjMotion.h",
+      "src/pso/boss/barbaray/TBoss7Crawfish.cpp",
+      "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+      "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+      "src/pso/boss/dragon/TBoss1Dragon.cpp",
+      "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+      "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptCore.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptHiraisin.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptP01.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+      "src/pso/effect/photon/TPhotonEstlla.cpp",
+      "src/pso/effect/photon/TPhotonFarlla.cpp",
+      "src/pso/effect/photon/TPhotonGolla.cpp",
+      "src/pso/effect/photon/TPhotonLeilla.cpp",
+      "src/pso/effect/photon/TPhotonMylla.cpp",
+      "src/pso/effect/photon/TPhotonPilla.cpp",
+      "src/pso/effect/photon/TPhotonYoulla.cpp",
+      "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+      "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+      "src/pso/enemy/beast/TObjEneBeast.cpp",
+      "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+      "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp",
+      "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+      "src/pso/enemy/darkgunner/DarkGunner.cpp",
+      "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+      "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+      "src/pso/enemy/dimedian/TObjEneDimedian.cpp",
+      "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+      "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+      "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp",
+      "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+      "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+      "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+      "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+      "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+      "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+      "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+      "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+      "src/pso/enemy/gigue/TObjEneMe1GiGueBarrier.cpp",
+      "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+      "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+      "src/pso/enemy/lappy/TObjEneLappy.cpp",
+      "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+      "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+      "src/pso/enemy/moja/TObjEneMoja.cpp",
+      "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+      "src/pso/enemy/morfos/TObjEneMorfosArm.cpp",
+      "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+      "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+      "src/pso/enemy/recon/TObjEneRecon.cpp",
+      "src/pso/enemy/saver/SaverLifecycle.cpp",
+      "src/pso/enemy/shark/TObjEneShark.cpp",
+      "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+      "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+      "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+      "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+      "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+      "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp",
+      "src/pso/object/ambient/TObjCGrass.cpp",
+      "src/pso/object/ambient/TObjGrass.cpp",
+      "src/pso/object/base/TObjMotion.cpp",
+      "src/pso/object/container/TContainerAncient01.cpp",
+      "src/pso/player/TObjPlayer_801AF2F0.cpp",
+      "src/pso/player/TObjPlayer_801BCFBC.cpp",
+      "src/pso/player/TObjPlayer_801C7430.cpp",
+      "src/pso/ui/frontend/TAdMultiConfirmGC_802E03D0.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp"
+    ],
+    "motion_setter_lines_replaced": 122,
+    "evidence_sha256": {
+      "direct-effects-intersection.tsv": "1f5eb86663b4b06d12bb4ddb27657db5beca42e9d4e0576bafc83dcf38959207",
+      "source-effects-paths": "cd775e7361610f94b2ef255cffc535b91d1ebf218baa22e9a3d955a1a0154e77"
+    }
+  },
+  "runtime": {
+    "action_records": 63,
+    "pan_arms_half_pointers": 2,
+    "setter_cases": 4,
+    "images": 7,
+    "evidence_sha256": {
+      "probe-motion-tables.py": "d4afafc89d24d36c9b4c93611c472bf03025940edfe4d1b146fcfd7197999c25",
+      "all-probes.log": "5436df24c73e9411f90d6bd48fcefa9c881f6862f32d00e73d0dd1446363d566"
+    }
+  },
+  "fork_tooling": {
+    "patched_paths": 130,
+    "retention_entries": 27007,
+    "tests": 310,
+    "evidence_sha256": {
+      "private-overlay.patch": "765a274e1b96a5ca5dcd4c6a5a441cede24374c418f9c79464655b816aa0c31b",
+      "ave-private-overlay.patch": "2989b62b45c2839fb3a0767ebc3a205ee25dd049cf961aa21ad3358c652d7897",
+      "ave-private-fork-tests.log": "e1ee6d840a4da60104351e9997fd3f059ed29c5b62c669427e6bc7ec3db2a476",
+      "ave-private-tool-tests.log": "5b3b3b042d117ad30c2cf6c9791511e7928ca9822c47b3c2f5b0914d9dbf57d4",
+      "ave-private-host-tests.log": "56f699c9d8ff5a32cc196940d8bb95e7f6799e211464315f7d77688b6ab4fccc"
+    }
+  },
+  "open_historical_source_comparisons": 110,
+  "remaining_tree_difference": {
+    "base": "d188731c39143af0e758673b68f8f760a96f4f67",
+    "head": "3a74a88c0019fa13062cd2c6f042fb1776fccf43",
+    "paths": 1006,
+    "paths_by_family": {
+      "config": 2,
+      "configure.py": 1,
+      "animation": 2,
+      "audio": 1,
+      "boss": 95,
+      "camera": 4,
+      "collision": 1,
+      "effect": 42,
+      "enemy": 104,
+      "item": 30,
+      "map": 8,
+      "math": 3,
+      "network": 13,
+      "npc": 32,
+      "object": 139,
+      "player": 82,
+      "render": 11,
+      "system": 19,
+      "technique": 28,
+      "ui": 199,
+      "unk": 135,
+      "weapon": 45,
+      "runtime": 2,
+      "quest": 8
+    }
+  },
+  "source_decisions": [
+    "The two TObjMotion setters keep the names and source owners from PR #375. The pointer parameters account for both linker label changes in this pass.",
+    "The standalone actors keep their existing Dragon resource record and player virtual bridges at the old interfaces. The casts at those boundaries feed the shared typed setters.",
+    "The Gal Gryphon, Slime, Pan Arms and character-creation action data use their exact byte layouts and names. The Pan Arms particle callback reads speed from the action record."
+  ]
+}

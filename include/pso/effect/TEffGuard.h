@@ -8,10 +8,11 @@ public:
     virtual ~TEffGuard();
     virtual void run_task();
 
-    static void create(const Vec* position);
+    static void create(Vec *position);
+    static const char *class_name;
 
     s32 state;
 };
-typedef char GuardEffectSize[(sizeof(TEffGuard) == 0x74) ? 1 : -1];
-typedef char GuardEffectStateOffset[(offsetof(TEffGuard, state) == 0x70) ? 1 : -1];
+LAYOUT_ASSERT(GuardEffectSize, sizeof(TEffGuard) == 0x74);
+LAYOUT_ASSERT(GuardEffectStateOffset, offsetof(TEffGuard, state) == 0x70);
 #endif

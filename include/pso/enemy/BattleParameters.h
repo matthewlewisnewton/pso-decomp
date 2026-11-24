@@ -1,34 +1,48 @@
 #ifndef PSO_ENEMY_BATTLEPARAMETERS_H
 #define PSO_ENEMY_BATTLEPARAMETERS_H
 
-#include "types.h"
+#include "pso/player/PlayerAttackParams.h"
+#include "pso/player/TPlyDispData.h"
 
-struct AttackParams;
-struct ActorParamBlock;
-
-// Each enemy interprets its movement parameters independently.
-struct BattleMovementParams {
-    f32 m_00;
-    f32 m_04;
-    f32 m_08;
-    f32 m_0c;
-    f32 m_10;
-    f32 m_14;
-    s32 m_18;
-    s32 m_1c;
-    s32 m_20;
-    s32 m_24;
-    s32 m_28;
-    s32 m_2c;
+// Movement parameters contain six float words followed by six integer words.
+union BattleMovementParams {
+    struct {
+        f32 floats[6];
+        s32 integers[6];
+    } values;
+    struct {
+        u32 floats[6];
+        u32 integers[6];
+    } words;
 };
-// The base-stat record's individual fields remain to be established.
-struct BattleBaseStats;
+
+struct BattleParameterBank {
+    player_stats stats[96];
+    AttackParams attacks[96];
+    ActorParamBlock resistances[96];
+    BattleMovementParams movement[96];
+};
+
+struct BattleParameterFile {
+    player_stats stats[4][96];
+    AttackParams attacks[4][96];
+    ActorParamBlock resistances[4][96];
+    BattleMovementParams movement[4][96];
+};
+
+LAYOUT_ASSERT(BattleParameterResistanceSize, sizeof(ActorParamBlock) == 0x20);
+LAYOUT_ASSERT(BattleParameterMovementSize, sizeof(BattleMovementParams) == 0x30);
+LAYOUT_ASSERT(BattleParameterBankSize, sizeof(BattleParameterBank) == 0x3D80);
+LAYOUT_ASSERT(BattleParameterFileSize, sizeof(BattleParameterFile) == 0xF600);
 
 extern "C" {
-BattleMovementParams *get_battle_movement_params(s32 index);
-ActorParamBlock *get_battle_resistance_params(s32 index);
-AttackParams *get_battle_attack_params(s32 index);
-BattleBaseStats *get_battle_base_stats(s32 index);
+extern BattleParameterBank *battle_parameter_buffer;
+extern player_stats *battle_param_stats;
+extern AttackParams *battle_param_attacks;
+extern ActorParamBlock *battle_param_resistances;
+extern BattleMovementParams *battle_param_movement;
+extern s32 battle_parameter_difficulty;
+extern s32 battle_param_lab_variant;
 }
 
 #endif

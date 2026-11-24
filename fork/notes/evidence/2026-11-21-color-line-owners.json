@@ -1,0 +1,272 @@
+{
+  "source": "17b19caeb1f00ecf7031116e5fb47db363b141cf",
+  "previous_source": "58df2eb79101047c00f43a0bb084e8e53511c0cc",
+  "combat_ref": "great-merge/consolidated/ordered-combat-with-color-line-owners",
+  "combat_review": "32abb51b376787fcc5624f0c2b54861fafa50987",
+  "full_ref": "great-merge/consolidated/ordered-full-with-color-line-owners",
+  "full_review": "688b3165c3608f7b00456ad3e8bb38b5c30ec560",
+  "single_review": {
+    "ref": "great-merge/consolidated/single-review-with-color-line-owners",
+    "head": "6be15e734d8e9a29fe6563237b395750ef1ef30d",
+    "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+    "tree": "54448c8aa97b94308cd07da60f2dcda6298939d7",
+    "tree_equivalent_to": "688b3165c3608f7b00456ad3e8bb38b5c30ec560",
+    "commits": [
+      {
+        "head": "8890b7fd8b4fbcf9ef7d6d35e4f88f7397ae9bf6",
+        "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+        "tree": "572c96b50f200895bc094534dc75a4a84a87f5d3",
+        "checked_tree": "79892d85f89f6432c95e35a80f47dc8c9ee080fb",
+        "files_changed": 655,
+        "insertions": 10713,
+        "deletions": 12247
+      },
+      {
+        "head": "6329e26030728a01a738ace16e508e695d54e358",
+        "base": "8890b7fd8b4fbcf9ef7d6d35e4f88f7397ae9bf6",
+        "tree": "45fa96298115b9562d192a314385cf2bd8a571a7",
+        "checked_tree": "f5f594cd647fb33b063f2571ede16a0a95249741",
+        "files_changed": 679,
+        "insertions": 5762,
+        "deletions": 6298
+      },
+      {
+        "head": "ece831cbb5775a0b8aaf056548dd69af9240ce0f",
+        "base": "6329e26030728a01a738ace16e508e695d54e358",
+        "tree": "1d6aa0c3d829cd5727261129dd530ea4d0929c0d",
+        "checked_tree": "c2a19c01fd8c17f858fd056d2b0a701d7d2775e5",
+        "files_changed": 969,
+        "insertions": 12609,
+        "deletions": 13420
+      },
+      {
+        "head": "acf253728a1db1b8e7c30d0bcb900144a776118d",
+        "base": "ece831cbb5775a0b8aaf056548dd69af9240ce0f",
+        "tree": "c00afacf3ba5a5c639f291d61e73ef50ee4d312a",
+        "checked_tree": "ee4f9c055c4dbe46dbc02c1f5fc4c824459b1e70",
+        "files_changed": 24,
+        "insertions": 331,
+        "deletions": 396
+      },
+      {
+        "head": "29ade702bb003eccc22e9540951a4299121f4a74",
+        "base": "acf253728a1db1b8e7c30d0bcb900144a776118d",
+        "tree": "f98b61ead346348e9c50413b875851a0e08c6881",
+        "checked_tree": "32abb51b376787fcc5624f0c2b54861fafa50987",
+        "files_changed": 38,
+        "insertions": 646,
+        "deletions": 735
+      },
+      {
+        "head": "6be15e734d8e9a29fe6563237b395750ef1ef30d",
+        "base": "29ade702bb003eccc22e9540951a4299121f4a74",
+        "tree": "54448c8aa97b94308cd07da60f2dcda6298939d7",
+        "checked_tree": "688b3165c3608f7b00456ad3e8bb38b5c30ec560",
+        "files_changed": 12,
+        "insertions": 136,
+        "deletions": 139
+      }
+    ],
+    "commit_attribution": {
+      "audited_commits": 6,
+      "codex_attribution": 0,
+      "coauthor_trailers": 0
+    },
+    "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+    "files_changed": 1771,
+    "insertions": 29498,
+    "deletions": 32536
+  },
+  "historical_donor": "3b8fd12a2f",
+  "source_fixes": [
+    "Polygon, line and strip callers use one typed sixteen-byte vertex and packed-color descriptor.",
+    "The strip swap receives the actual color list and copy4 takes its real destination and read-only source.",
+    "The fork host byte-order fix remains in the local overlay. The warp packed colors remain writable at the original data address.",
+    "Three linked labels reflect the actual receiver or parameter types. The drawing function names are preserved."
+  ],
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/render/ColorCopy.h",
+    "include/pso/render/ColorLineList.h",
+    "include/pso/render/Draw2D.h",
+    "include/pso/ui/frontend/TAdChrMoveEffectGC.h",
+    "include/pso/ui/window/TWindowCtrlMain.h",
+    "include/pso/unk/TLobby_801E2F94.h",
+    "src/pso/boss/darkfalz/TBoss4Fade.cpp",
+    "src/pso/boss/olgaflow/TBoss6EmptyWarp_802B0E2C.cpp",
+    "src/pso/boss/olgaflow/TBoss6Zanzo.cpp",
+    "src/pso/camera/TCineCtrl.cpp",
+    "src/pso/effect/TEffStarLight2D_Base.cpp",
+    "src/pso/object/ending/TObjOnlineEndingHexLine.cpp",
+    "src/pso/render/TDLGraph.cpp",
+    "src/pso/ui/charcreate/TChCrEffFade.cpp",
+    "src/pso/ui/charcreate/TChCrEffWall.cpp",
+    "src/pso/ui/charcreate/TObjCMName.cpp",
+    "src/pso/ui/frontend/TAdBackGC_8029A6EC.cpp",
+    "src/pso/ui/frontend/TAdChrMoveEffectGC.cpp",
+    "src/pso/ui/frontend/TAdDialingGC.cpp",
+    "src/pso/ui/frontend/TAdFadeGC.cpp",
+    "src/pso/ui/frontend/TAdPlyChrSelPlateGC.cpp",
+    "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+    "src/pso/ui/hud/TRaderMapCore.cpp",
+    "src/pso/ui/window/TWindowCtrlMain.cpp",
+    "src/pso/ui/window/TWindowFukidasi.cpp",
+    "src/pso/ui/window/TWindowKeyBoardBase.cpp",
+    "src/pso/ui/window/TWindowKeyBoardSoft.cpp",
+    "src/pso/ui/window/TWindowSimpleStatus.cpp",
+    "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+    "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_8025737C.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp",
+    "src/pso/unk/TLobby_800F8AA8.cpp",
+    "src/pso/unk/TLobby_801E2F94.cpp",
+    "src/pso/unk/text_800F7DAC.cpp",
+    "src/pso/unk/text_8034960C.cpp",
+    "src/pso/unk/text_80349B8C.cpp"
+  ],
+  "patch_sha256": "8ef0e5f31e9544de1c97d2fe9e5f198176fd3f8bcd6c87899febb2ba2da5a866",
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "matched_functions": 27572,
+  "compiled_source_units": 2448,
+  "historical_rows_closed": {
+    "798": "The fade owns its packed quad colors and typed fullscreen vertices. The fade scale of 255 and draw depth of -1 are represented by the original matched float pools.",
+    "2526": "The movement effect uses the typed 2D descriptor and the shared four-byte color copy. The native constructor and its source-owned tables retain the original fields and the 1e-05 and -1.01 draw constants.",
+    "2742": "The quest panels and letterbox bars use the shared typed descriptor with their original -490 draw depth. The border helper retains the original -500 depth and all six float constants.",
+    "4353": "The implementation remains at the active loader owner. free_data_file and node teardown use safe_free, and load_data_file uses load_disc_file, the linked address 0x800F9D38 used by the fork wrapper.",
+    "4971": "The native graph has the progress and packed bar colors with the 0x64 class layout. draw_progress_bar takes typed position and size references at the fork wrapper address 0x8007F27C. Its C++ destructor is declared.",
+    "5846": "The color swap is declared and implemented on ColorLineList. The TWindowCtrlMain declaration is gone and its controller callers use the shared primitive."
+  },
+  "historical_rows_with_added_evidence": {
+    "230": "The keyboard draw helpers use the shared packed-color list for all glyph quads",
+    "262": "The balloon tail uses the shared three-vertex descriptor and matches its original depth",
+    "268": "The soft keyboard uses the shared color line declaration and native descriptor",
+    "763": "The full-screen warp uses the typed quad and a writable packed-color array at the retail data address",
+    "2397": "The character layout uses the typed footer, hair color and proportion primitives",
+    "2602": "The radar backdrop now draws a native ColorLineList through the upstream polygon entry point",
+    "5107": "Both 2D drawing functions use the actual color-list type and the strip swap is a native method",
+    "5521": "The split-screen status dividers use the same typed quad and packed colors",
+    "5533": "The menu backdrop, screen quad and guideline all use the shared descriptor",
+    "5651": "The backdrop and packed color data use the native rectangle descriptor",
+    "5680": "The quest board selector uses the shared descriptor and C declaration for its guide line",
+    "5760": "The gauge color copy uses a shared byte-copy interface for all four channels at 0x80257720",
+    "5829": "The card row guide line uses the native ColorLineList and the shared declaration",
+    "6012": "Both fade renderers use the typed descriptor with their original color and depth"
+  },
+  "historical_rows_open": 606,
+  "validation": {
+    "combat": {
+      "check_sha256": "98b8957eccf7b5151d7ac70a05f51f16c06c25e4890f701707124b4204cb3304",
+      "source_report_sha256": "76ba44dfe560cfe4fa5400c0c4aebc0182af0588321c92bf092cba546684c5ac",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x801E352C",
+          "before": "draw_strip_swap_color__15TWindowCtrlMainFllf",
+          "after": "draw_strip_swap_color__13ColorLineListFllf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801E35C4",
+          "before": "draw_polygon_2d__FP13NJS_POINT2COLlUlf",
+          "after": "draw_polygon_2d__FP13ColorLineListlUlf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80257720",
+          "before": "copy4__18TAdChrMoveEffectGCFPv",
+          "after": "copy4__FPvPCv"
+        }
+      ]
+    },
+    "full": {
+      "check_sha256": "98b8957eccf7b5151d7ac70a05f51f16c06c25e4890f701707124b4204cb3304",
+      "source_report_sha256": "76ba44dfe560cfe4fa5400c0c4aebc0182af0588321c92bf092cba546684c5ac",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x801E352C",
+          "before": "draw_strip_swap_color__15TWindowCtrlMainFllf",
+          "after": "draw_strip_swap_color__13ColorLineListFllf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801E35C4",
+          "before": "draw_polygon_2d__FP13NJS_POINT2COLlUlf",
+          "after": "draw_polygon_2d__FP13ColorLineListlUlf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80257720",
+          "before": "copy4__18TAdChrMoveEffectGCFPv",
+          "after": "copy4__FPvPCv"
+        }
+      ]
+    },
+    "linear-full": {
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+      "source_report_sha256": "76ba44dfe560cfe4fa5400c0c4aebc0182af0588321c92bf092cba546684c5ac",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "linker_label_changes": []
+    },
+    "layer": {
+      "check_sha256": "22d3f24c9dba5a0609e61725007a693a62eb48d51d97da40dec89e353d33ac0b",
+      "source_report_sha256": "76ba44dfe560cfe4fa5400c0c4aebc0182af0588321c92bf092cba546684c5ac",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x801E352C",
+          "before": "draw_strip_swap_color__15TWindowCtrlMainFllf",
+          "after": "draw_strip_swap_color__13ColorLineListFllf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801E35C4",
+          "before": "draw_polygon_2d__FP13NJS_POINT2COLlUlf",
+          "after": "draw_polygon_2d__FP13ColorLineListlUlf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80257720",
+          "before": "copy4__18TAdChrMoveEffectGCFPv",
+          "after": "copy4__FPvPCv"
+        }
+      ]
+    }
+  },
+  "fork_overlay_paths": 130,
+  "fork_overlay_sha256": "5878561308823077e0a2611e7349e9d902bfadc9e9a6867597c337e9f16de4a1",
+  "retained_symbols": 27031,
+  "tool_tests": 294,
+  "fork_layer_tests": 11,
+  "host_checks": [
+    "./vector_math_fallbacks",
+    "./item_factory_callbacks",
+    "./loader_transfer",
+    "./ginja_parameter_callbacks",
+    "./exi_ethernet_fallbacks"
+  ],
+  "public_refs_changed": false
+}

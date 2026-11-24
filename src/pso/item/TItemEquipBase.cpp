@@ -1,49 +1,34 @@
-#include "pso/misc/ParticleFactory.h"
+#include "pso/effect/particle/ParticleFactory.h"
 #include "types.h"
+#include "string.h"
 #include "pso/item/TItemEquipBase.h"
 #include "pso/item/TItem.h"
 #include "pso/item/TItemData.h"
 #include "pso/item/TItemHeapObject.h"
-#include "pso/item/TItemLoad_80110010.h"
 #include "pso/item/TItemTimerEvent.h"
-#include "pso/menu/TAdRicoRing_8001BEE8.h"
-#include "pso/misc/TOKeyMachine01.h"
+#include "pso/ui/frontend/TAdRicoRing_8001BEE8.h"
+#include "pso/object/key/TOKeyMachine01.h"
 #include "pso/quest/TQuestListVM.h"
-#include "pso/misc/TechniqueBoost.h"
+#include "pso/technique/TechniqueBoost.h"
 #include "pso/player/PlayerAttackParams.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/player/TObjChara.h"
-#include "pso/system/FlagWord.h"
+#include "pso/object/base/TObjChara.h"
+#include "pso/system/data/FlagWord.h"
 #include "pso/map/FloorArea.h"
 #include "pso/system/vector.h"
-#include "pso/unk/text_80087278.h"
-#include "pso/TItemLoad.h"
-#include "pso/TItemLockCountCtrl.h"
+#include "pso/item/TItemLoad.h"
+#include "pso/item/TItemLockCountCtrl.h"
 
-// A loaded item model as TItemLoad::find_node_by_id hands it out.
-struct ItemModelResource {
-    NJS_OBJECT *model;
-    NJS_OBJECT *second_model;
-    void *data[2];
-    s32 texture_id;
-    void *motion;
-};
 
 const char *item_equip_base_class_name = "TItemEquipBase";
 
-// The owner joint each attach slot hangs the equipped model from.
-extern s16 item_equip_attach_equip_flag_table[];
-
 extern "C" {
-// The attack parameter getters (TObjPlayer_80011014.cpp), seen here as
+// The attack parameter getters (TObjChara.cpp), seen here as
 // returning int: the stat helpers take the values without re-extending them.
 s32 get_attack_params_atp_min(AttackParams *params);
 s32 get_attack_params_atp_max(AttackParams *params);
-s32 TObjPlayer__sub_800194E8(AttackParams *params);
+s32 get_ata__12AttackParamsFv(AttackParams *params);
 void *resolve_hittable_target(u16 actor_id, s32 collider);
-s32 add_actor_hp_bonus(void *actor, s32 amount);
-s32 add_actor_tp_bonus(void *actor, s32 amount);
-void *memset(void *dst, int value, unsigned long size);
 }
 
 void play_target_impact_effect(s32 unused0, s32 unused1, u16 actor_id, s16 collider) {
@@ -51,9 +36,9 @@ void play_target_impact_effect(s32 unused0, s32 unused1, u16 actor_id, s16 colli
     TObjChara *target = (TObjChara *)resolve_hittable_target(actor_id, collider);
     if (target != NULL) {
         VecCopy(&pos, &target->position);
-        pos.y = target->body_center_position.y;
+        pos.y = target->body_center.y;
     }
-    spawn_particle_effect((const Vec *)(&pos), 0x45);
+    spawn_particle_effect(&pos, 0x45);
 }
 
 EquipHpTpBonus *TItemEquipBase::get_stat_bonus_ptr() { return &hp_tp_bonus; }
@@ -69,14 +54,14 @@ void TItemEquipBase::bind_loaded_resources() {
     if (item_model == NULL) {
         s16 id = model_resource_id;
         if ((id != -1) && (TItemLoad::has_resource_id(id) == 1)) {
-            resource = (ItemModelResource *)TItemLoad::find_node_by_id(model_resource_id);
+            resource = TItemLoad::find_node_by_id(model_resource_id);
             if (resource != NULL) {
-                item_model = resource->model;
-                second_model = resource->second_model;
-                texlist = resource->texture_id;
+                item_model = resource->models[0];
+                second_model = resource->models[1];
+                texlist = resource->texlist;
                 model_motion = resource->motion;
-                model_data[0] = resource->data[0];
-                model_data[1] = resource->data[1];
+                model_data[0] = resource->models[2];
+                model_data[1] = resource->models[3];
                 on_model_loaded();
             }
         }
@@ -128,7 +113,7 @@ void TItemEquipBase::apply_equip_effects() {
         TItemLockCountCtrl::lock_effect(get_owner_client(), 0);
     }
     if (start_effect(0x20, 0x40)) {
-        ((PlayerAttackState *)&owner->attack_state)->set_item_effect();
+        owner->attack_state.set_item_effect();
     }
     if (start_effect(0x80, 0x100)) {
         TItemLockCountCtrl::lock_effect(get_owner_client(), 1);
@@ -163,7 +148,7 @@ void TItemEquipBase::remove_equip_effects() {
     if (stop_effect(0x40)) {
         TObjPlayer *player = owner;
         if (player != NULL) {
-            ((PlayerAttackState *)&player->attack_state)->clear_item_effect();
+            player->attack_state.clear_item_effect();
         }
     }
     if (stop_effect(0x100)) {
@@ -222,7 +207,7 @@ void TItemEquipBase::subtract_equip_stats(void *atp, s16 *stats, s16 *stats2) {
     if (attack != NULL) {
         attack->sub_atp_min(get_attack_params_atp_min(&attack_bonus));
         attack->sub_atp_max(get_attack_params_atp_max(&attack_bonus));
-        attack->sub_ata(TObjPlayer__sub_800194E8(&attack_bonus));
+        attack->sub_ata(get_ata__12AttackParamsFv(&attack_bonus));
     }
     if (params != NULL) {
         params->values[0] -= param_bonus.values[0];
@@ -251,7 +236,7 @@ void TItemEquipBase::subtract_item_stat_bonus(s32 player, s32 unused, s16 *stats
     copy_to_item_data(&data);
     memset(&bonus, 0, sizeof(bonus));
     memset(&hp_tp, 0, sizeof(hp_tp));
-    data.apply_equip_effects((s32)owner, player, unused, (s32)&bonus, (s32)&hp_tp);
+    data.apply_equip_effects((saddr)owner, player, unused, (saddr)&bonus, (saddr)&hp_tp);
     if (stats != NULL) {
         stats[0] -= bonus.atp;
         stats[1] -= bonus.mst;
@@ -312,16 +297,16 @@ void TItemEquipBase::add_equip_stats(s32 apply) {
     TItemData data;
     AttackParams *attack;
     ActorParamBlock *params;
-    s32 item = (s32)this;
+    s32 item = (saddr)this;
     if (owner != NULL) {
         copy_to_item_data(&data);
-        data.apply_equip_effects((s32)owner, (s32)&attack_bonus, (s32)&param_bonus, (s32)&stat_bonus,
-                                 (s32)&hp_tp_bonus);
+        data.apply_equip_effects((saddr)owner, (saddr)&attack_bonus, (saddr)&param_bonus, (saddr)&stat_bonus,
+                                 (saddr)&hp_tp_bonus);
         attack = get_actor_attack_params(owner);
         if (attack != NULL) {
             attack->add_atp_min(get_attack_params_atp_min(&attack_bonus));
             attack->add_atp_max(get_attack_params_atp_max(&attack_bonus));
-            attack->add_ata(TObjPlayer__sub_800194E8(&attack_bonus));
+            attack->add_ata(get_ata__12AttackParamsFv(&attack_bonus));
         }
         params = get_actor_param_block(owner);
         if (params != NULL) {
@@ -423,9 +408,9 @@ void TechniqueBoost::clear() {
     amount = 0.0f;
 }
 
-void PlayerAttackState::set_item_effect() { flags.set(0x20); }
+void PlayerAttackController::set_item_effect() { ((FlagWord *)&flags)->set(0x20); }
 
-void PlayerAttackState::clear_item_effect() { flags.clear(0x20); }
+void PlayerAttackController::clear_item_effect() { ((FlagWord *)&flags)->clear(0x20); }
 
 void AttackParams::sub_ata(s32 amount) { ata -= amount; }
 
@@ -433,9 +418,9 @@ void AttackParams::sub_atp_max(s32 amount) { atp_max -= amount; }
 
 void AttackParams::sub_atp_min(s32 amount) { atp_min -= amount; }
 
-ActorParamBlock *get_actor_param_block(TObjChara *actor) { return *(ActorParamBlock **)actor->unk_31C; }
+ActorParamBlock *get_actor_param_block(TObjChara *actor) { return actor->param_block; }
 
-AttackParams *get_actor_attack_params(TObjChara *actor) { return (AttackParams *)actor->m_318; }
+AttackParams *get_actor_attack_params(TObjChara *actor) { return actor->attack_params; }
 
 void AttackParams::add_ata(s32 amount) { ata += amount; }
 

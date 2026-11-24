@@ -5,56 +5,83 @@
 #include "pso/network/BufferRef.h"
 #include "pso/network/IPv6.h"
 
-struct NetPacketFragment {
+typedef struct NetPacketFragment {
     s16 length;
     u8 padding_02[2];
     NetBufferRef buffer;
-};
+} NetPacketFragment;
 
-struct NetPacket {
+typedef struct NetPacket {
     s16 in_use;
     u8 padding_02[2];
-    s32 fragment_count;
+    u32 fragment_count;
     u32 total_bytes;
     NetPacketFragment fragments[12];
-};
+} NetPacket;
 
-struct NetIPv6SendParameters {
+/* The packet records (alloc_free_entry, release_entry); TLobby__sub_803F8A0C sets the count and the array. */
+typedef struct NetPacketPool {
+    s16 count;
+    u8 pad2[2];
+    NetPacket *packets;         /* 0x04: in_use 1 = allocated */
+} NetPacketPool;
+LAYOUT_ASSERT(NetPacketPool_size_check, sizeof(NetPacketPool) == 8);
+LAYOUT_ASSERT(NetPacket_size_check, sizeof(NetPacket) == 0x9C);
+
+typedef struct NetIPv6SendParameters {
     IPv6Address source;
     IPv6Address destination;
     u32 flow_label;
     u16 traffic_class_bits;
     u8 hop_limit;
     u8 next_header;
-};
+} NetIPv6SendParameters;
 
-struct NetLinkLayerAddressBuffer {
+/* Per-socket IPv6 send options; NULL selects all zeroes. */
+typedef struct NetIPv6SendOptions {
+    u8 traffic_class_bits;
+    u8 pad1[3];
+    u32 flow_label;
+    u8 hop_limit;
+    u8 pad9[3];
+} NetIPv6SendOptions;
+LAYOUT_ASSERT(NetIPv6SendOptions_size_check, sizeof(NetIPv6SendOptions) == 0xC);
+
+typedef struct NetLinkLayerAddressBuffer {
     u8 bytes[32];
-};
+} NetLinkLayerAddressBuffer;
 
-struct NetSourceLinkLayerOption {
+typedef struct NetSourceLinkLayerOption {
     u8 type;
     u8 length_units;
     NetLinkLayerAddressBuffer address;
-};
+} NetSourceLinkLayerOption;
 
-struct NetIcmpv6Header {
+typedef struct NetIcmpv6Header {
     u8 type;
     u8 code;
     u16 checksum;
     u32 reserved;
-};
+} NetIcmpv6Header;
 
-struct NetIcmpv6NeighborSolicitation {
+typedef struct NetIcmpv6NeighborSolicitation {
     NetIcmpv6Header header;
     IPv6Address target;
-};
+} NetIcmpv6NeighborSolicitation;
 
-struct NetIcmpv6RouterSolicitation {
+typedef struct NetIcmpv6RouterSolicitation {
     NetIcmpv6Header header;
-};
+} NetIcmpv6RouterSolicitation;
 
-extern "C" void NetReleasePacket(NetPacket *packet);
-extern "C" u16 NetPacketChecksum(NetPacket *packet, s16 flag);
+typedef struct NetIcmpv6RouterAdvertisement {
+    u8 type;
+    u8 code;
+    u16 checksum;
+    u8 cur_hop_limit;
+    u8 flags;
+    u16 router_lifetime; /* seconds */
+    u32 reachable_time;  /* ms */
+    u32 retrans_timer;   /* ms */
+} NetIcmpv6RouterAdvertisement;
 
 #endif

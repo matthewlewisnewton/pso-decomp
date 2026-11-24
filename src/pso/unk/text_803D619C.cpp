@@ -1,8 +1,8 @@
 #include "types.h"
 #include "pso/unk/text_803D619C.h"
-#include "pso/boss/TBoss8Dragon.h"
+#include "pso/boss/goldragon/TBoss8Dragon.h"
 
-extern f32 lbl_805D76A8;
+f32 lbl_805D76A8;
 
 #pragma push
 #pragma optimize_for_size off
@@ -60,8 +60,6 @@ inline float modff_803D6308(float x, float *iptr) {
     return frac;
 }
 #pragma push
-#pragma dont_inline off
-#pragma inline_depth(4)
 #pragma peephole off
 #pragma scheduling off
 f32 fn_803D6308(f32 x) {

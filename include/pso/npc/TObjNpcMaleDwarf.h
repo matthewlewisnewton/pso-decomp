@@ -2,28 +2,20 @@
 #define PSO_NPC_TOBJNPCMALEDWARF_H
 
 #include "types.h"
-#include "pso/npc/TUnk_804A9F50.h"
+#include "pso/npc/TObjNpcMale.h"
 
-struct TObjNpcMaleDwarf : public TUnk_804A9F50 {
+struct BmlResource;
+
+struct TObjNpcMaleDwarf : public TObjNpcMale {
+    TObjNpcMaleDwarf(TObject *parent, void *set_data);
     virtual ~TObjNpcMaleDwarf();
     static void unload_static_data();
     static void load_shared_resource();
+    static void *create(void *set_data);
+    static const char *name;
+    static BmlResource *shared_model_resource;
 };
 
-typedef char TObjNpcMaleDwarf_size[sizeof(TObjNpcMaleDwarf) == 0x3B8 ? 1 : -1];
-
-extern "C" {
-u8 *TObjNpcMaleDwarf__ct(u8 *arg0, s32 arg1, s32 arg2);
-void *TObjNpcMaleFat__create(void *arg0);
-void *__dt__16TObjNpcMaleDwarfFv(void *arg0, s16 arg1);
-}
-
-// --- C functions defined in TObjNpcMaleDwarf.cpp ---
-extern "C" {
-u8 *TObjNpcMaleDwarf__ct(u8 *player, s32 arg1, s32 arg2);
-void *TObjNpcMaleFat__create(void *arg0);
-void *__dt__16TObjNpcMaleDwarfFv(void *arg0, s16 arg1);
-}
-// --- end of C functions
+LAYOUT_ASSERT(TObjNpcMaleDwarf_size, sizeof(TObjNpcMaleDwarf) == 0x3B8);
 
 #endif

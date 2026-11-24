@@ -1,26 +1,29 @@
 #ifndef PSO_EFFECT_TEFFCLITICAL_H
 #define PSO_EFFECT_TEFFCLITICAL_H
 
+#include "types.h"
 #include "pso/effect/TEffect.h"
 
+// The ring and particle burst of a critical hit.
 class TEffClitical : public TEffect {
 public:
-    TEffClitical(const Vec *position);
+    TEffClitical(Vec *pos);
     virtual ~TEffClitical();
     virtual void run_task();
     virtual void render();
-    static void create(const Vec *position);
+    static void create(Vec *pos);
 
-    s32 texture_frame;
-    s32 spawn_state;
+    static f32 alpha_approach_step;
+    static const char *class_name;
+
+    s32 frame;  // frame of the ring texture, 0..6
+    s32 phase;  // 0 until the burst particles are spawned
 };
-typedef char EffCliticalSize[sizeof(TEffClitical) == 0x78 ? 1 : -1];
-typedef char EffCliticalFrameOffset[offsetof(TEffClitical, texture_frame) == 0x70 ? 1 : -1];
-typedef char EffCliticalSpawnOffset[offsetof(TEffClitical, spawn_state) == 0x74 ? 1 : -1];
 
-extern "C" {
-void approach_position_if_far(u8 *arg0, u8 *arg1, f32 farg0);
-void init_texture_copy_rect(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
-}
+LAYOUT_ASSERT(TEffCliticalSize, sizeof(TEffClitical) == 0x78);
+
+void init_texture_copy_rect(TextureFrameSlot *slot, NJS_TEXLIST *texlist, NJS_TEXLIST *frames, s32 slot_index,
+                            s32 frame);
+void approach_position_if_far(Vec *from, Vec *to, f32 rate);
 
 #endif

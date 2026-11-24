@@ -1,42 +1,30 @@
-#include "musyx/runtime/musyx_runtime_b.h"
+#pragma dont_inline on
+#include <dolphin/ar.h>
+#include <dolphin/os/OSCache.h>
+#include <dolphin/os/OSInterrupt.h>
+#include "musyx/runtime/musyx_internal.h"
 
-#define synthInfo_voiceNum (((u8 *)synthInfo)[0x210])
-#define CLAMP(value, min, max) ((value) > (max) ? (max) : (value) < (min) ? (min) : (value))
-#define CLAMP_INV(value, min, max) ((value) < (min) ? (min) : (value) > (max) ? (max) : (value))
-#define MIN(a, b) ((a) > (b) ? (b) : (a))
-#define SLOTS_803BD694 (*(Slot_803BD694 **)&lbl_805D748C)
-#define userCallback lbl_805D74E8
-#define salAIBufferBase lbl_805D74EC
-#define salDspIsDone (*(volatile u32 *)&lbl_805D74F0)
-#define salLogicIsWaiting (*(volatile u32 *)&lbl_805D74F4)
-#define salLogicActive (*(volatile u32 *)&lbl_805D74F8)
-#define salLastTick (*(volatile u32 *)&lbl_805D74FC)
-#define salAIBufferIndex lbl_805D750C
-#define OSCachedToPhysical(caddr) ((u32)((u8 *)(caddr) - 0x80000000))
 extern "C" {
 
-static ARAMTransferQueue_803BDCD0 aramQueueLo;
-static ARAMTransferQueue_803BDCD0 aramQueueHi;
-static StreamBuffer_803BDCD0 aramStreamBuffers[64];
+static ARAMTransferQueue aramQueueLo;
+static ARAMTransferQueue aramQueueHi;
+static ARAMStreamBuffer aramStreamBuffers[64];
 
-u32 lbl_805D74C8;
-s32 lbl_805D74CC;
-s32 lbl_805D74D0;
-RecoveredCallback_fa840eeea008 lbl_805D74D4;
-u32 lbl_805D74D8;
-Rec_803BE1EC *lbl_805D74DC;
-Rec_803BE1EC *lbl_805D74E0;
-Rec_803BE1EC *lbl_805D74E4;
-#define lbl_8056E158 (*(AramQueues_803BDCD0 *)&aramQueueLo)
-#define lbl_8056E3DC (*(Obj_803BDCB8 *)&aramQueueHi)
-#define lbl_8056E660 ((Rec_803BE1EC *)aramStreamBuffers)
+u32 aramTop;
+u32 aramWrite;
+u32 aramStream;
+ARAMUploadCallback aramUploadCallback;
+u32 aramUploadChunkSize; // MusyX hw_aramdma.c name
+ARAMStreamBuffer *aramUsedStreamBuffers;
+ARAMStreamBuffer *aramFreeStreamBuffers;
+ARAMStreamBuffer *aramIdleStreamBuffers;
 
-void aramQueueCallback(u32 ptr) {
+void aramQueueCallback(uaddr ptr) {
     u32 i;
-    ARQRequest_803BDCD0 *arq;
-    ARAMTransferQueue_803BDCD0 *aramQueue;
+    ARQRequest *arq;
+    ARAMTransferQueue *aramQueue;
 
-    arq = (ARQRequest_803BDCD0 *)ptr;
+    arq = (ARQRequest *)ptr;
     aramQueue = arq->priority == 1 ? &aramQueueHi : &aramQueueLo;
     for (i = 0; i < 16; ++i) {
         if (arq == &aramQueue->queue[i].arq && aramQueue->queue[i].callback) {
@@ -47,25 +35,27 @@ void aramQueueCallback(u32 ptr) {
 }
 
 void aramUploadData(u8 *src, u32 dst, u32 len, s32 dir, void *cb, void *arg) {
-    Q_803BDAE4 *q;
+    ARAMTransferQueue *q;
     s32 lvl;
-    q = (u32)dir != 0 ? (Q_803BDAE4 *)&lbl_8056E3DC : (Q_803BDAE4 *)&lbl_8056E158;
+    q = (u32)dir != 0 ? &aramQueueHi : &aramQueueLo;
     while (1) {
         lvl = OSDisableInterrupts();
-        if (q->count < 16) {
-            q->reqs[q->wp].owner = 0x2A;
-            q->reqs[q->wp].type = 0;
-            q->reqs[q->wp].prio = (u32)dir != 0 ? 1 : 0;
-            q->reqs[q->wp].src = src;
-            q->reqs[q->wp].dst = dst;
-            q->reqs[q->wp].len = len;
-            q->reqs[q->wp].cb = (void *)aramQueueCallback;
-            q->reqs[q->wp].f20 = cb;
-            q->reqs[q->wp].f24 = arg;
-            ARQPostRequest(&q->reqs[q->wp], q->reqs[q->wp].owner, q->reqs[q->wp].type, q->reqs[q->wp].prio,
-                           q->reqs[q->wp].src, q->reqs[q->wp].dst, q->reqs[q->wp].len, q->reqs[q->wp].cb);
-            q->count++;
-            q->wp = (q->wp + 1) % 16;
+        if (q->valid < 16) {
+            q->queue[q->write].arq.owner = 0x2A;
+            q->queue[q->write].arq.type = 0;
+            q->queue[q->write].arq.priority = (u32)dir != 0 ? 1 : 0;
+            q->queue[q->write].arq.source = (uaddr)src;
+            q->queue[q->write].arq.dest = dst;
+            q->queue[q->write].arq.length = len;
+            q->queue[q->write].arq.callback = aramQueueCallback;
+            q->queue[q->write].callback = (ARAMTransferCallback)cb;
+            q->queue[q->write].user = (u32)arg;
+            ARQPostRequest(&q->queue[q->write].arq, q->queue[q->write].arq.owner,
+                           q->queue[q->write].arq.type, q->queue[q->write].arq.priority,
+                           q->queue[q->write].arq.source, q->queue[q->write].arq.dest,
+                           q->queue[q->write].arq.length, q->queue[q->write].arq.callback);
+            q->valid++;
+            q->write = (q->write + 1) % 16;
             OSRestoreInterrupts(lvl);
             return;
         }
@@ -74,7 +64,7 @@ void aramUploadData(u8 *src, u32 dst, u32 len, s32 dir, void *cb, void *arg) {
 }
 
 void aramSyncTransferQueue(void) {
-    while (lbl_8056E158.lo.valid != 0) {
+    while (aramQueueLo.valid != 0) {
     }
 }
 
@@ -83,12 +73,12 @@ void aramSyncTransferQueue(void) {
 #pragma bool off
 #pragma dont_inline off
 #pragma inline_depth(4)
-static inline void aramQueueInit_803BDCD0(void) {
+static inline void aramQueueInit(void) {
     aramQueueLo.write = aramQueueLo.valid = 0;
     aramQueueHi.write = aramQueueHi.valid = 0;
 }
 
-static inline void aramSyncTransferQueue_803BDCD0(void) {
+static inline void aramSyncTransferQueueInline(void) {
     while (aramQueueLo.valid != 0) {
     }
 }
@@ -107,17 +97,17 @@ void aramInit(u32 length) {
     }
 
     DCFlushRange(tmpMem, sizeof(s16) * 640);
-    aramQueueInit_803BDCD0();
+    aramQueueInit();
     aramUploadData((u8 *)tmpMem, aramBase, sizeof(s16) * 640, 0, 0, 0);
-    aramSyncTransferQueue_803BDCD0();
-    salFree((s32)tmpMem);
-    lbl_805D74C8 = aramBase + length;
-    if (lbl_805D74C8 > ARGetSize()) {
-        lbl_805D74C8 = ARGetSize();
+    aramSyncTransferQueueInline();
+    salFree((saddr)tmpMem);
+    aramTop = aramBase + length;
+    if (aramTop > ARGetSize()) {
+        aramTop = ARGetSize();
     }
 
-    *(u32 *)&lbl_805D74CC = aramBase + sizeof(s16) * 640;
-    lbl_805D74D4 = 0;
+    aramWrite = aramBase + sizeof(s16) * 640;
+    aramUploadCallback = 0;
     InitStreamBuffers();
 }
 #pragma pop
@@ -132,91 +122,91 @@ s32 aramStoreData(u8 *src, u32 size) {
     u8 *buf;
     u32 len;
     len = (size + 0x1F) & ~0x1F;
-    start = lbl_805D74CC;
-    if (lbl_805D74D4 == 0) {
+    start = aramWrite;
+    if (aramUploadCallback == 0) {
         DCFlushRange(src, len);
-        aramUploadData((u8 *)(src), (u32)(lbl_805D74CC), (u32)(len), (s32)(0), (void *)(0), (void *)(0));
-        lbl_805D74CC += len;
+        aramUploadData(src, aramWrite, len, 0, 0, 0);
+        aramWrite += len;
         return start;
     } else {
         while (len != 0) {
-            chunk = len >= lbl_805D74D8 ? lbl_805D74D8 : len;
-            buf = lbl_805D74D4(src, chunk);
+            chunk = len >= aramUploadChunkSize ? aramUploadChunkSize : len;
+            buf = aramUploadCallback(src, chunk);
             DCFlushRange(buf, chunk);
-            aramUploadData((u8 *)(buf), (u32)(lbl_805D74CC), (u32)(chunk), (s32)(0), (void *)(0), (void *)(0));
+            aramUploadData(buf, aramWrite, chunk, 0, 0, 0);
             len -= chunk;
             src += chunk;
-            lbl_805D74CC += chunk;
+            aramWrite += chunk;
         }
     }
     return start;
 }
 
-void aramRemoveData(s32 arg0, s32 arg1) {
-    lbl_805D74CC -= (arg1 + 0x1F) & 0xFFFFFFE0;
+void aramRemoveData(s32 addr, s32 size) {
+    aramWrite -= (size + 0x1F) & 0xFFFFFFE0;
 }
 
 void InitStreamBuffers(void) {
     u32 i;
-    *(StreamBuffer_803BDCD0 **)&lbl_805D74DC = 0;
-    *(StreamBuffer_803BDCD0 **)&lbl_805D74E0 = 0;
-    *(StreamBuffer_803BDCD0 **)&lbl_805D74E4 = aramStreamBuffers;
+    aramUsedStreamBuffers = 0;
+    aramFreeStreamBuffers = 0;
+    aramIdleStreamBuffers = aramStreamBuffers;
     for (i = 1; i < 64; ++i) {
         aramStreamBuffers[i - 1].next = &aramStreamBuffers[i];
     }
     aramStreamBuffers[i - 1].next = 0;
-    *(u32 *)&lbl_805D74D0 = lbl_805D74C8;
+    aramStream = aramTop;
 }
 
-void *aramAllocateStreamBuffer(u32 arg0) {
-    Rec_803BE1EC *p;
-    Rec_803BE1EC *found;
-    Rec_803BE1EC *prev;
+u8 aramAllocateStreamBuffer(u32 len) {
+    ARAMStreamBuffer *p;
+    ARAMStreamBuffer *found;
+    ARAMStreamBuffer *prev;
     u32 best;
     u32 size;
-    p = lbl_805D74E0;
-    size = (arg0 + 0x1F) & ~0x1F;
+    p = aramFreeStreamBuffers;
+    size = (len + 0x1F) & ~0x1F;
     found = NULL;
     prev = NULL;
     best = -1;
     while (p != NULL) {
-        if (p->fc == size) {
+        if (p->allocLength == size) {
             found = p;
             break;
         }
-        if (p->fc > size && best > p->fc) {
+        if (p->allocLength > size && best > p->allocLength) {
             found = p;
-            best = p->fc;
+            best = p->allocLength;
         }
         prev = p;
-        p = (Rec_803BE1EC *)p->f0;
+        p = p->next;
     }
     if (found == NULL) {
-        p = lbl_805D74E4;
-        if (p != NULL && (u32)(lbl_805D74D0 - size) >= (u32)lbl_805D74CC) {
+        p = aramIdleStreamBuffers;
+        if (p != NULL && aramStream - size >= aramWrite) {
             found = p;
-            lbl_805D74E4 = (Rec_803BE1EC *)p->f0;
-            p->fc = size;
-            p->f8 = size;
-            lbl_805D74D0 -= size;
-            p->f4 = lbl_805D74D0;
-            p->f0 = (u32)lbl_805D74DC;
-            lbl_805D74DC = p;
+            aramIdleStreamBuffers = p->next;
+            p->allocLength = size;
+            p->length = size;
+            aramStream -= size;
+            p->aram = aramStream;
+            p->next = aramUsedStreamBuffers;
+            aramUsedStreamBuffers = p;
         }
     } else {
         if (prev != NULL) {
-            prev->f0 = found->f0;
+            prev->next = found->next;
         } else {
-            lbl_805D74E0 = (Rec_803BE1EC *)found->f0;
+            aramFreeStreamBuffers = found->next;
         }
-        found->f8 = size;
-        found->f0 = (u32)lbl_805D74DC;
-        lbl_805D74DC = found;
+        found->length = size;
+        found->next = aramUsedStreamBuffers;
+        aramUsedStreamBuffers = found;
     }
     if (found == NULL) {
-        return (void *)0xFF;
+        return 0xFF;
     }
-    return (void *)(u8)(found - lbl_8056E660);
+    return found - aramStreamBuffers;
 }
 
 u32 aramGetStreamBufferAddress(u8 i, u32 *out) {
@@ -226,18 +216,11 @@ u32 aramGetStreamBufferAddress(u8 i, u32 *out) {
     return aramStreamBuffers[i].aram;
 }
 
-#define aramTop lbl_805D74C8
-#define aramWrite (*(u32 *)&lbl_805D74CC)
-#define aramStream (*(u32 *)&lbl_805D74D0)
-#define aramUploadCallback lbl_805D74D4
-#define aramUsedStreamBuffers (*(StreamBuffer_803BDCD0 **)&lbl_805D74DC)
-#define aramFreeStreamBuffers (*(StreamBuffer_803BDCD0 **)&lbl_805D74E0)
-#define aramIdleStreamBuffers (*(StreamBuffer_803BDCD0 **)&lbl_805D74E4)
 void aramFreeStreamBuffer(u8 id) {
-    StreamBuffer_803BDCD0 *fSb;
-    StreamBuffer_803BDCD0 *sb;
-    StreamBuffer_803BDCD0 *lastSb;
-    StreamBuffer_803BDCD0 *nextSb;
+    ARAMStreamBuffer *fSb;
+    ARAMStreamBuffer *sb;
+    ARAMStreamBuffer *lastSb;
+    ARAMStreamBuffer *nextSb;
     u32 minAddr;
 
     fSb = &aramStreamBuffers[id];
@@ -293,19 +276,5 @@ void aramFreeStreamBuffer(u8 id) {
     fSb->next = aramFreeStreamBuffers;
     aramFreeStreamBuffers = fSb;
 }
-#undef aramTop
-#undef aramWrite
-#undef aramStream
-#undef aramUploadCallback
-#undef aramUsedStreamBuffers
-#undef aramFreeStreamBuffers
-#undef aramIdleStreamBuffers
-#undef userCallback
-#undef salAIBufferBase
-#undef salDspIsDone
-#undef salLogicIsWaiting
-#undef salLogicActive
-#undef salLastTick
-#undef salAIBufferIndex
 
 }

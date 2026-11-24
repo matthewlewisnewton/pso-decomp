@@ -1,46 +1,50 @@
+#include "pso/player/GuildCardEntry.h"
+#include "pso/ui/window/PageIndicator.h"
 #include "types.h"
-#include "pso/misc/TWindowSubComCardList.h"
-#include "pso/misc/TWindowSubComCard.h"
-#include "pso/misc/TWindowSubStatusDisp.h"
-#include "pso/misc/TWindowSubComCard_80265410.h"
-#include "pso/misc/ShortMail.h"
+#include "pso/unk/TLobby.h"
+#include "pso/ui/window/TWindowSubComCardList.h"
+#include "pso/ui/window/TWindowSubComCard.h"
+#include "pso/ui/window/TWindowSubStatusDisp.h"
+#include "pso/ui/window/TWindowSubComCard_80265410.h"
+#include "pso/ui/chat/ShortMail.h"
+#include "pso/object/warp/TObjCityMainWarp.h"
+#include "pso/ui/window/TWindowMenu.h"
 
-extern "C" {
-void TWindowSubComCardList__sub_80275360(TWindowSubComCardList *list) {
-    TWindowSubComCard *card;
+
+void TWindowSubComCardList::sub_80275360() {
+    GuildCardEntry *card;
     s32 n;
     s32 index;
-    s32 msg;
+    saddr msg;
 
-    list->reset_entries();
-    index = ((PageIndicator *)list->m_8c)->get_type();
+    this->reset_entries();
+    index = storage->get_type();
     index *= 7;
     for (n = 0; n < 7; n++, index++) {
-        if (index >= (s32)list->m_98) {
+        if (index >= (s32)this->card_count) {
             break;
         }
-        if (list->m_90 != 0) {
-            card = (TWindowSubComCard *)(list->m_90 + index * 0x90);
-        } else if (list->m_94 != 0) {
-            card = (TWindowSubComCard *)(list->m_94 + index * 0x100);
+        if (this->cards != 0) {
+            card = (GuildCardEntry *)(this->cards + index * 0x90);
+        } else if (this->card_slots != 0) {
+            card = (GuildCardEntry *)(this->card_slots + index * 0x100);
         } else {
             return;
         }
         if (card->is_active() == 0) {
             break;
         }
-        forward_trade_action_default__16TObjCityMainWarpFPviii(list, (int)get_com_card_list__6TLobbyFPv(card), 7, index);
+        this->add_text_entry((saddr)card->get_name(), 7, index);
     }
-    if (list->get_field_72() <= 0) {
-        switch ((s8)list->m_9c) {
+    if (this->get_field_72() <= 0) {
+        switch ((s8)this->empty_message) {
         case 0:
-            msg = (s32)TWindowSubStatusDisp::get_message_10(0xD4);
+            msg = (saddr)TWindowSubStatusDisp::get_message_10(0xD4);
             break;
         case 1:
-            msg = (s32)TWindowSubStatusDisp::get_message_10(0xD2);
+            msg = (saddr)TWindowSubStatusDisp::get_message_10(0xD2);
             break;
         }
-        TWindowSubComCard::draw_text_gray((s32)list, msg, 4, -1);
+        add_gray_text_entry((TWindowMenu *)this, (const char *)msg, 4, -1);
     }
-}
 }

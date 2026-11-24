@@ -1,134 +1,120 @@
-#include "pso/system/CurrentTextureList.h"
+#include "pso/render/GvmTextureArchive.h"
+#include "pso/render/GinjaTexture.h"
+#include "pso/system/Adxf.h"
+#include "pso/system/ResourceFile.h"
 #include "types.h"
+#include <string.h>
+#include <stdio.h>
+#include "pso/object/ambient/TObjFish.h"
 #include "pso/player/TObjPlayer_8023E480.h"
 #include "pso/unk/text_800F7DAC.h"
-#include "pso/misc/TLobby.h"
+#include "pso/unk/TLobby.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/misc/TQuestVmDownLoadServer.h"
-#include "pso/misc/TScene.h"
-#include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/quest/TQuestVmDownLoadServer.h"
+#include "pso/system/scene/TScene.h"
+#include "pso/unk/text_803DD5E0.h"
+#include "pso/system/memory.h"
 
 #pragma readonly_strings on
 
 extern "C" {
 char texture_prs_disc_filename_buffer[128];
 char texture_prs_stream_filename_buffer[128];
-s32 lbl_805D63C0;
+NJS_TEXNAME *lbl_805D63C0;
 s32 lbl_805D63C4;
-}
-
-
-
-extern "C" {
-s32 set_stream_and_load_file__6TLobbyFPCv(void *);
-s32 sprintf(char *, const char *, ...);
-void load_gvm_texture_archive(s32, s32);
-extern char texture_prs_stream_filename_buffer[];
-s32 read_disc_file(void *, s32);
-s32 xmalloc__FUl(s32);
-void xfree__FPv(s32);
-extern char texture_prs_disc_filename_buffer[];
-void TObjPlayer__sub_803DD5E8(void *, s32, s32, s32);
-s32 memset(s32, s32, s32);
-extern s32 lbl_805D63C0;
-extern s32 lbl_805D63C4;
-int release_texture_list();
-s32 load_texture_list();
 
 }
 
-s32 set_texlist(u32 texlist) {
-    if (texlist == 0U) {
+s32 set_texlist(NJS_TEXLIST *texlist) {
+    if (texlist == NULL) {
         return 0;
     }
-    set_current_texture_list((GinjaTextureList *)(texlist));
+    TObjFish::set_global_param(texlist);
     return 1;
 }
 
-extern "C" {
 
-s32 TLobby__sub_8023E4B4(s32 arg0, s32 arg1) {
-    s32 h;
-    s32 buf;
-    sprintf(texture_prs_stream_filename_buffer, "%s.prs", arg0);
-    h = set_stream_and_load_file__6TLobbyFPCv(texture_prs_stream_filename_buffer);
+s32 load_streamed_prs_texture(saddr name, saddr texlist) {
+    saddr h;
+    saddr buf;
+    sprintf(texture_prs_stream_filename_buffer, "%s.prs", name);
+    h = (saddr)load_disc_file(texture_prs_stream_filename_buffer);
     if (h == 0) {
-        TAdSinglePlyChrSelectGC::safe_free((void *)h);
+        safe_free(reinterpret_cast<void *>(h));
         return 0;
     }
-    buf = (s32)TQuestVmDownLoadServer::alloc(0x100000);
+    buf = (saddr)TQuestVmDownLoadServer::alloc(0x100000);
     prs_decompress_buffer(h, buf);
-    load_gvm_texture_archive(buf, arg1);
-    TAdSinglePlyChrSelectGC::safe_free((void *)buf);
-    TAdSinglePlyChrSelectGC::safe_free((void *)h);
+    load_gvm_texture_archive((void *)buf, (NJS_TEXLIST *)texlist);
+    safe_free(reinterpret_cast<void *>(buf));
+    safe_free(reinterpret_cast<void *>(h));
     return 1;
 }
 
-s32 TLobby__sub_8023E554(s32 arg0, s32 arg1) {
-    AdxfHandle *a;
-    s32 b;
-    s32 c;
-    sprintf(texture_prs_disc_filename_buffer, "%s.prs", arg0);
-    if (TScene::update_lobby_scene(texture_prs_disc_filename_buffer) != -1) {
-        a = ADXF_Open(texture_prs_disc_filename_buffer, 0);
-        b = ADXF_GetFsizeSct(a);
-        ADXF_Close(a);
-        b = xmalloc__FUl((s32)(b << 11));
-        if (read_disc_file(texture_prs_disc_filename_buffer, b) != -1) {
-            c = xmalloc__FUl(0x200000);
+s32 load_disc_prs_texture(saddr name, saddr texlist) {
+    AdxfHandle *file;
+    saddr b;
+    saddr c;
+    sprintf(texture_prs_disc_filename_buffer, "%s.prs", name);
+    if (get_resource_file_size(texture_prs_disc_filename_buffer) != -1) {
+        file = ADXF_Open(texture_prs_disc_filename_buffer, 0);
+        b = ADXF_GetFsizeSct(file);
+        ADXF_Close(file);
+        b = (saddr)xmalloc((s32)(b << 11));
+        if (read_disc_file(texture_prs_disc_filename_buffer, (void *)b) != -1) {
+            c = (saddr)xmalloc(0x200000);
             prs_decompress_buffer(b, c);
-            load_gvm_texture_archive(c, arg1);
-            xfree__FPv(c);
+            load_gvm_texture_archive((void *)c, (NJS_TEXLIST *)texlist);
+            xfree((void *)c);
         }
-        xfree__FPv(b);
+        xfree((void *)b);
         return 1;
     }
     return 0;
 }
 
-s32 bind_gvm_texture_list(const char *name, GinjaTextureList *texlist) {
-    u8 m_texture_list[8];
-    GinjaTextureEntry *d;
+s32 bind_gvm_texture_list(const char *name, NJS_TEXLIST *texlist) {
+    NJS_TEXLIST temporary_texture_list;
+    NJS_TEXNAME *d;
     s32 i;
     s32 n;
     if (name == NULL || texlist == NULL) {
         return 0;
     }
     memset(lbl_805D63C0, 0, 0x1800);
-    TObjPlayer__sub_803DD5E8(m_texture_list, lbl_805D63C0, lbl_805D63C4, 0x200);
-    if (TLobby::load_texture_pvm_file(name, (s32)m_texture_list) == -1) {
+    TObjPlayer__sub_803DD5E8(&temporary_texture_list, lbl_805D63C0, lbl_805D63C4, 0x200);
+    if (TLobby::load_texture_pvm_file(name, &temporary_texture_list) == -1) {
         return 0;
     }
-    n = texlist->count;
-    d = texlist->entries;
+    n = texlist->nbTexture;
+    d = texlist->textures;
     for (i = 0; i < n; i++) {
-        d[i].texture = ((GinjaTextureEntry *)lbl_805D63C0)[i].texture;
-        d[i].value04 = ((GinjaTextureEntry *)lbl_805D63C0)[i].value04;
+        d[i].texture = lbl_805D63C0[i].texture;
+        d[i].attr = lbl_805D63C0[i].attr;
     }
     return 1;
 }
 
-s32 free_texture_if_valid(u32 arg0) {
-    if (arg0 == 0U) {
+s32 free_texture_if_valid(NJS_TEXLIST *texlist) {
+    if (texlist == NULL) {
         return 0;
     }
-    release_texture_list();
+    release_texture_list(texlist);
     return 1;
 }
 
-s32 fn_8023E734(u32 arg0) {
-    if (arg0 == 0U) {
+s32 load_texture_if_valid(NJS_TEXLIST *texlist) {
+    if (texlist == NULL) {
         return 0;
     }
-    load_texture_list();
+    load_texture_list(texlist);
     return 1;
 }
 
 void init_buffers(void) {
-    s32 p = xmalloc__FUl(0x1800);
-    lbl_805D63C0 = p;
-    memset(p, 0, 0x1800);
-    lbl_805D63C4 = xmalloc__FUl(0x3800);
+    NJS_TEXNAME *entries = static_cast<NJS_TEXNAME *>(xmalloc(0x1800));
+    lbl_805D63C0 = entries;
+    memset(entries, 0, 0x1800);
+    lbl_805D63C4 = (saddr)xmalloc(0x3800);
 }
 
-}

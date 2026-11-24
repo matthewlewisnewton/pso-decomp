@@ -2,27 +2,29 @@
 #define PSO_NETWORK_ETHERNET_RECEIVE_FILTER_H
 #include "types.h"
 
-struct EthernetProtocolRegistration {
+typedef struct EthernetProtocolRegistration {
     u16 delivery_mode;
     u16 ether_type;
-};
-struct EthernetMulticastEntry {
+} EthernetProtocolRegistration;
+typedef struct EthernetMulticastEntry {
     s16 references;
     u8 address[6];
-};
-struct EthernetReceiveFilter {
+} EthernetMulticastEntry;
+typedef struct EthernetReceiveFilter {
     u8 local_address[6];
     EthernetMulticastEntry multicast[6];
     s16 protocol_count;
     EthernetProtocolRegistration protocols[5];
-};
-struct EthernetFrameHeader {
+    u16 filter_types[5];        /* 0x4C: the registered EtherTypes, passed to the driver's filter */
+} EthernetReceiveFilter;
+typedef struct EthernetFrameHeader {
     u8 destination[6];
     u8 source[6];
     u16 ether_type;
-};
+} EthernetFrameHeader;
 
 #include <stddef.h>
-typedef char EthernetProtocolsOffset[offsetof(EthernetReceiveFilter, protocols) == 0x38 ? 1 : -1];
-typedef char EthernetTypeOffset[offsetof(EthernetFrameHeader, ether_type) == 0x0C ? 1 : -1];
+LAYOUT_ASSERT(EthernetProtocolsOffset, offsetof(EthernetReceiveFilter, protocols) == 0x38);
+LAYOUT_ASSERT(EthernetReceiveFilterSize, sizeof(EthernetReceiveFilter) == 0x56);
+LAYOUT_ASSERT(EthernetTypeOffset, offsetof(EthernetFrameHeader, ether_type) == 0x0C);
 #endif

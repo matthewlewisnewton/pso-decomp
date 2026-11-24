@@ -2,15 +2,20 @@
 #define PSO_NPC_TOBJNPCFEMALEBASE_H
 
 #include "types.h"
-#include "pso/npc/TUnk_804A8640.h"
+#include "pso/npc/TObjNpcFemale.h"
 
-struct TObjNpcFemaleBase : public TUnk_804A8640 {
+struct BmlResource;
+
+struct TObjNpcFemaleBase : public TObjNpcFemale {
+    TObjNpcFemaleBase(TObject *parent, void *set_data);
     virtual ~TObjNpcFemaleBase();
     static void free_static_data();
     static void load_shared_resource();
-    void request_action(s32 arg1);
-    void handle_message_event(u16 arg1);
+    static void *create(void *set_data);
+    static const char *name;
+    static BmlResource *shared_resource_obj;
 };
 
-typedef char TObjNpcFemaleBase_size[sizeof(TObjNpcFemaleBase) == 0x3B8 ? 1 : -1];
+LAYOUT_ASSERT(TObjNpcFemaleBase_size, sizeof(TObjNpcFemaleBase) == 0x3B8);
+
 #endif

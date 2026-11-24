@@ -1,5 +1,5 @@
-#include "pso/system/ArrayAllocation.h"
 #include "pso/enemy/TEnemyTaskList.h"
+#include "pso/boss/darkfalz/TOBoss4Rock.h"
 
 extern "C" {
 extern const char TEnemyTaskList_class_name[] = "TEnemyTaskList";
@@ -20,8 +20,8 @@ s32 TEnemyTaskList::has_undefeated_entry() {
 }
 
 TEnemyTaskList::~TEnemyTaskList() {
-    ::operator delete[](m_records);
-    ::operator delete[](m_enemies);
+    mem_free(m_records);
+    mem_free(m_enemies);
 }
 
 TEnemyTaskList::TEnemyTaskList(TObject* parent, s32 capacity) : TObject(parent) {
@@ -29,8 +29,8 @@ TEnemyTaskList::TEnemyTaskList(TObject* parent, s32 capacity) : TObject(parent) 
     m_name = TEnemyTaskList_name;
     m_capacity = capacity;
     m_count = 0;
-    m_enemies = (TObjEnemy**)::operator new[](m_capacity * 4);
-    m_records = (EnemySetRecord**)::operator new[](m_capacity * 4);
+    m_enemies = (TObjEnemy**)mem_alloc(m_capacity * 4);
+    m_records = (EnemySetRecord**)mem_alloc(m_capacity * 4);
     for (i = 0; i < m_capacity; i++) {
         m_enemies[i] = 0;
         m_records[i] = 0;

@@ -3,6 +3,10 @@
 
 #include <dolphin/os/OSSerial.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define PAD_CHAN0_BIT 0x80000000
 #define PAD_CHAN1_BIT 0x40000000
 #define PAD_CHAN2_BIT 0x20000000
@@ -57,11 +61,15 @@ typedef void (*SITypeAndStatusCallback)(s32 chan, u32 type);
 
 BOOL SITransfer(s32 chan, void *output, u32 outputBytes, void *input, u32 inputBytes,
                 SICallback callback, OSTime delay);
-u32 SIGetCommand(long chan);
+u32 SIGetCommand(s32 chan);
 u32 SIEnablePolling(u32 poll);
 u32 SIDisablePolling(u32 poll);
 u32 SISetXY(u32 x, u32 y);
 void SITransferCommands(void);
 BOOL SIBusy(void);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

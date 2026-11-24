@@ -1,0 +1,659 @@
+{
+  "historical_fork": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "source": "9ff02ce4e47915af3f387e4fae33ee53376297a3",
+  "source_of_pre_patch_elf": "00594bf9b479592635627b169f7ce55aa14144d9",
+  "fork_split_coverage": {
+    "total_historical_intervals": 7345,
+    "total_historical_bytes": 5911908,
+    "historical_linked_intervals": 7332,
+    "historical_linked_bytes": 5911800
+  },
+  "all_alignment_gaps": [
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805d7d14",
+      "size": 4,
+      "historical_owner": "pso/misc/TKeyBoardControl_8000F764.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sbss",
+      "address": "0x805d4b4c",
+      "size": 4,
+      "historical_owner": "pso/boss/TBoss1DragonEffBullet.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805d815c",
+      "size": 4,
+      "historical_owner": "pso/boss/DragonTailCraterConstants.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805d8564",
+      "size": 4,
+      "historical_owner": "pso/boss/TBoss2Tentacle.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805d8a2c",
+      "size": 4,
+      "historical_owner": "pso/boss/DarkFalzDemoConstants.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": false
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805d8ef4",
+      "size": 4,
+      "historical_owner": "pso/boss/TBoss5GryphonShockWave.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805d8f1c",
+      "size": 4,
+      "historical_owner": "pso/boss/TObjBoss5Ctrl.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805d8f64",
+      "size": 4,
+      "historical_owner": "pso/misc/TCameraCtrl_80067C88.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805d8fa4",
+      "size": 4,
+      "historical_owner": "pso/misc/CameraControllerConstants.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805d93b4",
+      "size": 4,
+      "historical_owner": "pso/effect/TEffClitical.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": false
+    },
+    {
+      "module": "psov3",
+      "section": ".sbss",
+      "address": "0x805d4edc",
+      "size": 4,
+      "historical_owner": "pso/effect/TEffect.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805d9524",
+      "size": 4,
+      "historical_owner": "pso/misc/ParticleBallistic.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": false
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805d9554",
+      "size": 4,
+      "historical_owner": "pso/misc/ParticleOrbit.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": false
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805d9e5c",
+      "size": 4,
+      "historical_owner": "pso/enemy/TObjEneBm5Wolf.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805d9e7c",
+      "size": 4,
+      "historical_owner": "pso/unk/data_805D9E78.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": false
+    },
+    {
+      "module": "psov3",
+      "section": ".sbss",
+      "address": "0x805d5324",
+      "size": 4,
+      "historical_owner": "pso/system/ChunkTextureStripCollector.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805dafec",
+      "size": 4,
+      "historical_owner": "pso/item/TUnk_804A67D0.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805dbacc",
+      "size": 4,
+      "historical_owner": "pso/object/TObjMapWarpAncient.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805dbb9c",
+      "size": 4,
+      "historical_owner": "pso/object/TObjChip.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805dbecc",
+      "size": 4,
+      "historical_owner": "pso/object/TObjMapCsn.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805dbf9c",
+      "size": 4,
+      "historical_owner": "pso/object/TObjSinBoard.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805dc1dc",
+      "size": 4,
+      "historical_owner": "pso/misc/TPhotonLine.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sbss",
+      "address": "0x805d5e5c",
+      "size": 4,
+      "historical_owner": "original_unclaimed_805D5E5C",
+      "historically_linked": false,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata",
+      "address": "0x805d35ac",
+      "size": 4,
+      "historical_owner": "pso/misc/TQuadSpriteNormal.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805dc46c",
+      "size": 4,
+      "historical_owner": "pso/misc/TQuadSpriteNormal.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805dc73c",
+      "size": 4,
+      "historical_owner": "pso/misc/ShopWeaponStock.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805dcb74",
+      "size": 4,
+      "historical_owner": "pso/misc/TWindowChallengeResult.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805dcdc4",
+      "size": 4,
+      "historical_owner": "pso/misc/TWindowFukidasi.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".data",
+      "address": "0x804d001c",
+      "size": 4,
+      "historical_owner": "original_07_804D001C_data",
+      "historically_linked": false,
+      "current_padding_rule": true,
+      "historical_padding_rule": false
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805dd9fc",
+      "size": 4,
+      "historical_owner": "pso/misc/TChCrEffFade.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805ddcac",
+      "size": 4,
+      "historical_owner": "original_unclaimed_805DDCAC",
+      "historically_linked": false,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805dddc4",
+      "size": 4,
+      "historical_owner": "pso/misc/TODoorLabo.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805dddfc",
+      "size": 4,
+      "historical_owner": "pso/ui/TAdSelectTxtGC.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".data",
+      "address": "0x804de38c",
+      "size": 4,
+      "historical_owner": "original_07_804DE38C_data",
+      "historically_linked": false,
+      "current_padding_rule": true,
+      "historical_padding_rule": false
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805de134",
+      "size": 4,
+      "historical_owner": "pso/misc/TWindowEffectLight.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".data",
+      "address": "0x804e079c",
+      "size": 4,
+      "historical_owner": "pso/unk/text_802BFBF4.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": false
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805de7bc",
+      "size": 4,
+      "historical_owner": "pso/ui/TUnk_804E24F0.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805deba4",
+      "size": 4,
+      "historical_owner": "pso/boss/Boss7DeRolLeCBehavior.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata",
+      "address": "0x805d416c",
+      "size": 4,
+      "historical_owner": "pso/ui/TAdLdQuestPrtGC.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": false
+    },
+    {
+      "module": "psov3",
+      "section": ".sbss",
+      "address": "0x805d6c3d",
+      "size": 3,
+      "historical_owner": "pso/ui/TAdLdQuestPrtGC.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805df6fc",
+      "size": 4,
+      "historical_owner": "pso/ui/TAdDialingGC_80328B20.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805df90c",
+      "size": 4,
+      "historical_owner": "original_padding_805DF90C",
+      "historically_linked": false,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805dfcfc",
+      "size": 4,
+      "historical_owner": "pso/ui/TAdChrMoveEffectGC.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805dfecc",
+      "size": 4,
+      "historical_owner": "pso/player/TObjPlayer_80351748.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805dff2c",
+      "size": 4,
+      "historical_owner": "pso/misc/TEndingPic.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805e043c",
+      "size": 4,
+      "historical_owner": "pso/ui/TAdMultiChgGameModeGC_8036DE10.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805e0dfc",
+      "size": 4,
+      "historical_owner": "original_unclaimed_805E0DFC",
+      "historically_linked": false,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    },
+    {
+      "module": "psov3",
+      "section": ".sdata2",
+      "address": "0x805e0e0c",
+      "size": 4,
+      "historical_owner": "pso/misc/TCameraCtrl_803D6538.cpp",
+      "historically_linked": true,
+      "current_padding_rule": true,
+      "historical_padding_rule": true
+    }
+  ],
+  "historical_retention": {
+    "historical_force_active_entries": 21228,
+    "source_force_active_entries": 17852,
+    "additional_relocation_blocks": [
+      {
+        "source": 2152159824
+      },
+      {
+        "source": 2152170160
+      }
+    ],
+    "dispositions_by_symbol_placement": {
+      "same address and extent in ELF": 3060,
+      "original name and extent in ELF": 18057,
+      "current owner has an ELF symbol at address": 103,
+      "same address in current symbol configuration": 10,
+      "address covered by binary without a standalone symbol": 5
+    },
+    "historic_names_without_config_symbol": [],
+    "covered_without_standalone_symbol": [
+      [
+        "bm_fe_obj_rb2_liwa_resource_bundle",
+        ".data",
+        2152414032,
+        44,
+        "address covered by binary without a standalone symbol"
+      ],
+      [
+        "bm_fe_obj_rb3_liwa_resource_bundle",
+        ".data",
+        2152414076,
+        44,
+        "address covered by binary without a standalone symbol"
+      ],
+      [
+        "bm_fe_obj_rb_liwa_resource_bundle",
+        ".data",
+        2152413988,
+        44,
+        "address covered by binary without a standalone symbol"
+      ],
+      [
+        "bm_o_rock_cave02_resource_bundle",
+        ".data",
+        2152413912,
+        44,
+        "address covered by binary without a standalone symbol"
+      ],
+      [
+        "bm_o_rock_cave03_resource_bundle",
+        ".data",
+        2152413956,
+        32,
+        "address covered by binary without a standalone symbol"
+      ]
+    ],
+    "configured_without_symbol_at_exact_address": [
+      [
+        "TObjRaderHideCol__class_name",
+        ".rodata",
+        2151964480,
+        20,
+        "same address in current symbol configuration"
+      ],
+      [
+        "forest_console_texture_filename",
+        ".rodata",
+        2151960392,
+        16,
+        "same address in current symbol configuration"
+      ],
+      [
+        "lbl_8044543C",
+        ".rodata",
+        2151961660,
+        20,
+        "same address in current symbol configuration"
+      ],
+      [
+        "lbl_8047CF04",
+        ".rodata",
+        2152189700,
+        44,
+        "same address in current symbol configuration"
+      ],
+      [
+        "lbl_805D6F00",
+        ".sbss",
+        2153606912,
+        8,
+        "same address in current symbol configuration"
+      ],
+      [
+        "lbl_805D9330",
+        ".sdata2",
+        2153616176,
+        8,
+        "same address in current symbol configuration"
+      ],
+      [
+        "lbl_805D93B0",
+        ".sdata2",
+        2153616304,
+        8,
+        "same address in current symbol configuration"
+      ],
+      [
+        "lbl_805D9520",
+        ".sdata2",
+        2153616672,
+        8,
+        "same address in current symbol configuration"
+      ],
+      [
+        "lbl_805D9550",
+        ".sdata2",
+        2153616720,
+        8,
+        "same address in current symbol configuration"
+      ],
+      [
+        "lbl_805DA7E8",
+        ".sdata2",
+        2153621480,
+        8,
+        "same address in current symbol configuration"
+      ]
+    ],
+    "historical_symbol_extents_include_alignment_padding": {
+      "lbl_805D93B0": 4,
+      "lbl_805D9520": 4,
+      "lbl_805D9550": 4
+    }
+  },
+  "original_compiler_profile_blob": "5dd2f5489ad7bfc60cb96c1220a898f88f0be7ab",
+  "fork_only_profile": "fork/tooling/original/configure.py",
+  "maintained_local_dsp_setup_blob": "0d43abda3501c3493b6b779af16012e0097ab7fb",
+  "historical_review_rows_closed": {
+    "config/GPOE8P/psov3/linked_units.txt": "Verified all 7,332 intervals of 3,637 historical selected units. The current 2,448 exact source owners cover every non-padding byte, with 167 bytes of alignment padding omitted.",
+    "config/GPOE8P/psov3/splits.txt": "Verified 7,345 intervals. The current source covers all historical code and non-padding data across merged translation units. Every gap meets the retail alignment-padding rule.",
+    "config/GPOE8P/psov3/config.yml": "Verified all historical force-active placements at their original addresses or within exact linked source ranges. Three old constant extents each include four bytes of alignment padding. Five separate cave resource labels are fields of the native 0xF0 table. The current configuration keeps all nine historical relocation blocks.",
+    "configure.py": "The historical GC/2.0 compiler and linker profile is preserved byte for byte in fork/tooling/original/configure.py. The current ordinary build uses the upstream profile. The local workspace preserves the original MusyX DSP build function and passes matching.",
+    "src/pso/ui/TAdChrSelBSlotGC.cpp": "9ff02ce4e4 The typed B slot allocates all four original children at 0x8030FD54. The reset at 0x8030FE04 and the exact plate dimensions, row positions, color, and class name remain in the same native unit.",
+    "include/pso/ui/TAdChrSelBSlotGC.h": "Compared the full fork-point header delta. The current header provides the same two plate pointer types and also types the icon and item children while retaining the 0x80-byte class layout.",
+    "src/pso/unk/text_8042E9FC.cpp": "The five original restore instructions occupy the same 0x14-byte interval in the trial modem unit. The identical step_loader_restore implementation lives in the materialized local tree in src/pso/unk/text_8042E8C4.cpp and passes the loader transfer host checks.",
+    "src/pso/unk/text_8042EA10.cpp": "The native routine at 0x8042EA10 uses the same name literal, zeroed size, 0x674 record size, nine defaults and final flag clear in the typed reset_connect_param helper. The original 0xC4 bytes match."
+  },
+  "historical_review_rows_remaining": 662,
+  "slot_recovery_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/ui/frontend/TAdChrSelASlotGC.h",
+    "include/pso/ui/frontend/TAdChrSelBSlotGC.h",
+    "include/pso/ui/frontend/TAdChrSelSlotGC.h",
+    "include/pso/ui/frontend/TAdSubPlyItemGC.h",
+    "src/pso/ui/frontend/TAdChrSelASlotGC.cpp",
+    "src/pso/ui/frontend/TAdChrSelBSlotGC.cpp",
+    "src/pso/ui/frontend/TAdChrSelSlotGC.cpp",
+    "src/pso/ui/frontend/TAdSubPlyItemGC_802D6BEC.cpp"
+  ],
+  "tooling_checks": {
+    "tool": 294,
+    "fork": 11
+  },
+  "host_checks": 5,
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "layer_check_sha256": "b4d93864c6c48b13733e46b7a31e201ac7304fc2d7522904a7365cf68fa6b312"
+}

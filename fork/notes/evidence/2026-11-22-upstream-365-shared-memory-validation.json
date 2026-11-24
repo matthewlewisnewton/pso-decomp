@@ -1,0 +1,2713 @@
+{
+  "source": "6475f5efcd3851b926c96866f42e045366302e0d",
+  "previous_source": "a16cfb53215a668857449c2b6b7818f24ea140e3",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/boss/darkfalz/TOBoss4Rock.h",
+    "include/pso/system/memory.h",
+    "include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h",
+    "include/pso/unk/TLobby_803DE778.h",
+    "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+    "src/pso/boss/darkfalz/TOBoss4.cpp",
+    "src/pso/boss/darkfalz/TOBoss4Rock.cpp",
+    "src/pso/boss/darkfalz/TOBoss4Rock_8035A7FC.cpp",
+    "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+    "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+    "src/pso/boss/dragon/TBoss1Dragon.cpp",
+    "src/pso/boss/dragon/TBoss1DragonColli.cpp",
+    "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+    "src/pso/boss/galgryphon/TBoss5GryphonColli.cpp",
+    "src/pso/boss/galgryphon/TBoss5GryphonLightningEff.cpp",
+    "src/pso/boss/galgryphon/TBoss5GryphonSnarl.cpp",
+    "src/pso/boss/galgryphon/TObjBoss5PillarCtrl.cpp",
+    "src/pso/boss/galgryphon/TObjBoss5PillarSmoke.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+    "src/pso/boss/goldragon/TBoss8DragonColli.cpp",
+    "src/pso/boss/goldragon/TBoss8DragonEffTail.cpp",
+    "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+    "src/pso/boss/olgaflow/TBoss6Rock.cpp",
+    "src/pso/boss/olgaflow/TBoss6Tube.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+    "src/pso/boss/volopt/TBoss3Volopt.cpp",
+    "src/pso/effect/TBGLightningCtrl.cpp",
+    "src/pso/effect/item/TItemEffectWeapon.cpp",
+    "src/pso/effect/particle/TParticleCtrl_800874F4.cpp",
+    "src/pso/effect/photon/PhotonBlastSummon.cpp",
+    "src/pso/enemy/TEnemyTaskList.cpp",
+    "src/pso/enemy/beast/TObjEneBeast.cpp",
+    "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+    "src/pso/enemy/canadin/CanadinEffects.cpp",
+    "src/pso/enemy/dimedian/TObjEneDimedian.cpp",
+    "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+    "src/pso/enemy/flower/TObjEneRe2Flower_800C4B78.cpp",
+    "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+    "src/pso/enemy/lappy/TObjEneLappy.cpp",
+    "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+    "src/pso/enemy/moja/TObjEneMoja.cpp",
+    "src/pso/enemy/saver/SaverLifecycle.cpp",
+    "src/pso/enemy/shark/TObjEneShark.cpp",
+    "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+    "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+    "src/pso/item/TItem.cpp",
+    "src/pso/item/TItemBuff.cpp",
+    "src/pso/item/TItemLoad.cpp",
+    "src/pso/item/TItemLockCountCtrl.cpp",
+    "src/pso/item/TItemReverseTech.cpp",
+    "src/pso/item/TItemTexLoad.cpp",
+    "src/pso/item/drop/TItemDrop_80105D0C.cpp",
+    "src/pso/item/shop/ShopToolStock.cpp",
+    "src/pso/item/shop/ShopWeaponStock.cpp",
+    "src/pso/map/AreaEventSet.cpp",
+    "src/pso/map/CsnQuery.cpp",
+    "src/pso/map/TSetManager.cpp",
+    "src/pso/network/TPlyJoinLobbyEntry.cpp",
+    "src/pso/npc/TObjNpcAHM01.cpp",
+    "src/pso/npc/TObjNpcARM00.cpp",
+    "src/pso/npc/TObjNpcARW00.cpp",
+    "src/pso/npc/TObjNpcHFW00.cpp",
+    "src/pso/npc/TObjNpcHFW01.cpp",
+    "src/pso/npc/TObjNpcHHM00.cpp",
+    "src/pso/npc/TObjNpcHRM00.cpp",
+    "src/pso/npc/TObjNpcHRM01.cpp",
+    "src/pso/npc/TObjNpcNFM00.cpp",
+    "src/pso/npc/TObjNpcNFM01.cpp",
+    "src/pso/npc/TObjNpcNFW00.cpp",
+    "src/pso/npc/TObjNpcNFW01.cpp",
+    "src/pso/npc/TObjNpcNHW00.cpp",
+    "src/pso/npc/TObjNpcNHW01.cpp",
+    "src/pso/object/TMotorcycle.cpp",
+    "src/pso/object/TObjComputer.cpp",
+    "src/pso/object/TObjHMS_EZRope_Player.cpp",
+    "src/pso/object/TObjSinBoard.cpp",
+    "src/pso/object/TObjTank.cpp",
+    "src/pso/object/ambient/TObjCGrass.cpp",
+    "src/pso/object/ambient/TObjFish.cpp",
+    "src/pso/object/ambient/TObjGrass.cpp",
+    "src/pso/object/ambient/TObjLight_80133568.cpp",
+    "src/pso/object/cave/TOHangceilingCave01.cpp",
+    "src/pso/object/city/CityDoors.cpp",
+    "src/pso/object/collision/TOSymbolchatColli.cpp",
+    "src/pso/object/container/TOContainerAncientEnemy.cpp",
+    "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp",
+    "src/pso/object/container/TObjContainerItem.cpp",
+    "src/pso/object/door/TODoorAncient01.cpp",
+    "src/pso/object/door/TODoorAncient03.cpp",
+    "src/pso/object/door/TODoorAncient04.cpp",
+    "src/pso/object/door/TODoorAncient05.cpp",
+    "src/pso/object/door/TODoorAncient06.cpp",
+    "src/pso/object/door/TODoorAncient07.cpp",
+    "src/pso/object/door/TODoorAncient08.cpp",
+    "src/pso/object/door/TODoorAncient09.cpp",
+    "src/pso/object/door/TODoorCave01.cpp",
+    "src/pso/object/door/TODoorCave02.cpp",
+    "src/pso/object/door/TODoorJungleMain.cpp",
+    "src/pso/object/door/TODoorLabo.cpp",
+    "src/pso/object/door/TODoorMachine01.cpp",
+    "src/pso/object/door/TODoorMachine02.cpp",
+    "src/pso/object/door/TODoorVS2Door01.cpp",
+    "src/pso/object/fence/TOBarrierEnergy01.cpp",
+    "src/pso/object/fence/TOFenceAncient01.cpp",
+    "src/pso/object/fence/TOFenceAncient02.cpp",
+    "src/pso/object/fence/TOFenceAncient03.cpp",
+    "src/pso/object/fence/TOFenceAncient04.cpp",
+    "src/pso/object/fence/TObjLazerFenceNorm.cpp",
+    "src/pso/object/jungle/TOGrassJungle.cpp",
+    "src/pso/object/jungle/TORockJungleL01.cpp",
+    "src/pso/object/key/TOKeyAncient01.cpp",
+    "src/pso/object/key/TOKeyAncient02.cpp",
+    "src/pso/object/key/TOKeyAncient03.cpp",
+    "src/pso/object/key/TOKeyCave01.cpp",
+    "src/pso/object/key/TOKeyGenericSw.cpp",
+    "src/pso/object/key/TOKeyMachine01.cpp",
+    "src/pso/object/lobby/LobbyPigeonPath.cpp",
+    "src/pso/object/seabed/TObjSeabedSuisoBrakable.cpp",
+    "src/pso/object/switch/TOChatSensor.cpp",
+    "src/pso/object/switch/TOSensorAncient01.cpp",
+    "src/pso/object/switch/TOSensorGeneral01.cpp",
+    "src/pso/object/trap/TOTrapSeabed01.cpp",
+    "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+    "src/pso/player/TObjPlayer_801542CC.cpp",
+    "src/pso/player/TObjPlayer_8023E480.cpp",
+    "src/pso/player/TObjPlayer_802E6CA8.cpp",
+    "src/pso/player/TObjPlayer_8033E910.cpp",
+    "src/pso/player/TPlayerFootStamp.cpp",
+    "src/pso/quest/QuestOpcodeHandlers.cpp",
+    "src/pso/quest/TQuestListVM.cpp",
+    "src/pso/quest/TQuestListVM_8007EAF8.cpp",
+    "src/pso/quest/TQuestThread.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer.cpp",
+    "src/pso/render/BlobShadow.cpp",
+    "src/pso/render/ChunkMaterialState.cpp",
+    "src/pso/render/TFogCtrl.cpp",
+    "src/pso/system/TGStream.cpp",
+    "src/pso/system/TLanguage_80132A5C.cpp",
+    "src/pso/system/scene/TScene.cpp",
+    "src/pso/technique/TTecBarta.cpp",
+    "src/pso/technique/TTecCtrl.cpp",
+    "src/pso/technique/TTecFoie.cpp",
+    "src/pso/technique/TTecGiBarta.cpp",
+    "src/pso/technique/TTecGiFoie.cpp",
+    "src/pso/technique/TTecMegid.cpp",
+    "src/pso/technique/TTecRaBarta.cpp",
+    "src/pso/technique/TTecRaZonde_80238C6C.cpp",
+    "src/pso/ui/charcreate/TChCrLoadAfs.cpp",
+    "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp",
+    "src/pso/ui/charcreate/TObjCMName.cpp",
+    "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChat.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChat_80076F88.cpp",
+    "src/pso/ui/city/TCheckRoomSequence.cpp",
+    "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp",
+    "src/pso/ui/frontend/TAdChrSelPlayerGC.cpp",
+    "src/pso/ui/frontend/TAdEnterBaseGC.cpp",
+    "src/pso/ui/frontend/TAdEnterPPPPassGC.cpp",
+    "src/pso/ui/frontend/TAdEnterPasswordGC.cpp",
+    "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+    "src/pso/ui/frontend/TAdMultiConfirmGC_802E03D0.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80145778.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801E4CF0.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C8E0.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028D5D4.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8033A8EC.cpp",
+    "src/pso/ui/hud/TRaderMapCore.cpp",
+    "src/pso/ui/keyboard/TKeyBoardControl_80131BC4.cpp",
+    "src/pso/ui/window/TWindowDD_80341A08.cpp",
+    "src/pso/ui/window/TWindowDD_803430BC.cpp",
+    "src/pso/ui/window/TWindowFukidasi.cpp",
+    "src/pso/ui/window/TWindowKeyBoardBase.cpp",
+    "src/pso/ui/window/TWindowKeyBoardHard_801A529C.cpp",
+    "src/pso/ui/window/TWindowKeyBoardHard_801FBA48.cpp",
+    "src/pso/ui/window/TWindowMakeTeam.cpp",
+    "src/pso/ui/window/TWindowMessage.cpp",
+    "src/pso/ui/window/TWindowSnapShot_802A5B2C.cpp",
+    "src/pso/ui/window/TWindowSubAreaMapDisp.cpp",
+    "src/pso/ui/window/TWindowSubComCard_80265410.cpp",
+    "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp",
+    "src/pso/ui/window/TWindowSubInformationBoard.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_80257BC0.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_80258164.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_80338740.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp",
+    "src/pso/unk/TLobbyEventTheme.cpp",
+    "src/pso/unk/TLobby_8001D6A0.cpp",
+    "src/pso/unk/TLobby_8001EF5C.cpp",
+    "src/pso/unk/TLobby_8002C140.cpp",
+    "src/pso/unk/TLobby_800F5CF0.cpp",
+    "src/pso/unk/TLobby_800F8AA8.cpp",
+    "src/pso/unk/TLobby_800FA73C.cpp",
+    "src/pso/unk/TLobby_80103F5C.cpp",
+    "src/pso/unk/TLobby_801C25B4.cpp",
+    "src/pso/unk/TLobby_801E2F94.cpp",
+    "src/pso/unk/TLobby_801E43E4.cpp",
+    "src/pso/unk/TLobby_801F3A24.cpp",
+    "src/pso/unk/TLobby_80207DA8.cpp",
+    "src/pso/unk/TLobby_80209524.cpp",
+    "src/pso/unk/TLobby_80226C3C.cpp",
+    "src/pso/unk/TLobby_8028A7C8.cpp",
+    "src/pso/unk/TLobby_802A7290.cpp",
+    "src/pso/unk/TLobby_80328F7C.cpp",
+    "src/pso/unk/TLobby_803382E4.cpp",
+    "src/pso/unk/TLobby_8036B204.cpp",
+    "src/pso/unk/TLobby_803DE778.cpp",
+    "src/pso/unk/TUnk_804CC870.cpp",
+    "src/pso/unk/TUnk_804DDD28.cpp",
+    "src/pso/unk/text_8004AA04.cpp",
+    "src/pso/unk/text_800FA464.cpp",
+    "src/pso/unk/text_80103674.cpp",
+    "src/pso/unk/text_801A5778.cpp",
+    "src/pso/unk/text_801E4F04.cpp",
+    "src/pso/unk/text_8020B5CC.cpp",
+    "src/pso/unk/text_8020E700.cpp",
+    "src/pso/unk/text_802A1020.cpp",
+    "src/pso/unk/text_802D1C84.cpp",
+    "src/pso/unk/text_803D96A8.cpp",
+    "src/pso/unk/text_803DA798.cpp",
+    "src/pso/unk/text_803DAFA8.cpp",
+    "src/pso/unk/text_803DD5E0.cpp",
+    "src/pso/unk/text_803DE7E0.cpp",
+    "src/pso/weapon/TItemAttacker.cpp"
+  ],
+  "combined_paths_from_upstream": 1218,
+  "validation": {
+    "source": {
+      "baseline": "a16cfb53215a668857449c2b6b7818f24ea140e3",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8007EBB4",
+          "before": "safe_free__23TAdSinglePlyChrSelectGCFPv",
+          "after": "safe_free__FPv"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "4e57e0107944c0141919ae79df00d1155605384d3cc603233c502fe561040bc2",
+      "report_sha256": "5127739752f28bd97f0afaa5d2a56faae969fc137cfa4a73331f86803189f62e"
+    },
+    "layer": {
+      "baseline": "6475f5efcd3851b926c96866f42e045366302e0d",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "52e7b7c44c895ea98e91fe1a9ea21805885753879d1966b15b6b684ebe565d0b",
+      "report_sha256": "5127739752f28bd97f0afaa5d2a56faae969fc137cfa4a73331f86803189f62e"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "d99f84bf52c1fdbf8a71b3953e21e07df97af7d38f76c7e300dbab660f7b08f2"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "2ea108e52151cd0c86b2b5b812cb6343a761fc9d86e0ac2efd2323b80562a332"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "program_sha256": "fbbf31b2842f1b9f4e8ba3e2f9745d8e2113278bed6d9aa6f39a8fcff6bf88e1",
+    "logs_sha256": {
+      "source": "f80ea1b2a513acd5f8d752648a453a2c7b143741c114acd9a91268f345a0d40a",
+      "workspace": "4a89a0fd16a2061a3f0015cc4560c14a9594c2c5b0762d5bc3a72c629962b602"
+    },
+    "images": [
+      "retail",
+      "source",
+      "materialized fork workspace"
+    ],
+    "cases": {
+      "byte_moves": 11,
+      "word_moves": 7,
+      "allocator_calls": 3,
+      "release_calls": 4
+    }
+  },
+  "shared_interface_migration": {
+    "qualified_safe_free_references": 193,
+    "mem_free": 15,
+    "mem_alloc": 14,
+    "selection_dependencies_removed": 67
+  },
+  "direct_branch_counts": {
+    "safe_free__FPv": 192,
+    "mem_free": 251,
+    "mem_alloc": 228,
+    "move_data": 59,
+    "move_words__FPvPCvl": 9
+  },
+  "direct_branch_addresses": {
+    "safe_free__FPv": [
+      "0x8001f3fc",
+      "0x8001f5ac",
+      "0x8001f870",
+      "0x80020294",
+      "0x80020364",
+      "0x80020470",
+      "0x8002a3c4",
+      "0x8002c160",
+      "0x80065bf0",
+      "0x80066ee0",
+      "0x80077580",
+      "0x8007cfb4",
+      "0x80088600",
+      "0x800c1774",
+      "0x800f0b04",
+      "0x800f9548",
+      "0x800f95b0",
+      "0x800f9864",
+      "0x800f98b8",
+      "0x800f9974",
+      "0x800fa750",
+      "0x800fdc60",
+      "0x800ff000",
+      "0x800ff018",
+      "0x800ff030",
+      "0x800ff9ec",
+      "0x80107880",
+      "0x80107890",
+      "0x8011a338",
+      "0x80132a8c",
+      "0x80133e60",
+      "0x801457f0",
+      "0x80147b50",
+      "0x80147d64",
+      "0x80147f70",
+      "0x8014ad84",
+      "0x8014af58",
+      "0x8014b12c",
+      "0x8014b300",
+      "0x8014b4d4",
+      "0x8014c90c",
+      "0x8014cae0",
+      "0x8014ccb4",
+      "0x8014ce88",
+      "0x8014d05c",
+      "0x8014d230",
+      "0x80178a0c",
+      "0x80181a1c",
+      "0x80188320",
+      "0x8018a254",
+      "0x8018a3a8",
+      "0x8018c6b0",
+      "0x80192ffc",
+      "0x80195080",
+      "0x80197f44",
+      "0x80197f5c",
+      "0x80197f90",
+      "0x8019a980",
+      "0x8019db84",
+      "0x801a57ac",
+      "0x801e477c",
+      "0x801e485c",
+      "0x801e4924",
+      "0x801e4a18",
+      "0x801e4d4c",
+      "0x801f3a68",
+      "0x801f4320",
+      "0x801f5f20",
+      "0x801f6fb0",
+      "0x801f708c",
+      "0x801f7214",
+      "0x801f7394",
+      "0x801f74bc",
+      "0x801f7630",
+      "0x801f7750",
+      "0x801f8348",
+      "0x801f8514",
+      "0x801f8620",
+      "0x801f8628",
+      "0x801f87ac",
+      "0x801f87b4",
+      "0x801f8d70",
+      "0x801f8d8c",
+      "0x801f8da8",
+      "0x801f8dc4",
+      "0x801f8e8c",
+      "0x801f8ea8",
+      "0x801f8ec4",
+      "0x801f8ee0",
+      "0x801fb8cc",
+      "0x801fbe00",
+      "0x801fbe2c",
+      "0x801fbec8",
+      "0x801fbed0",
+      "0x801fc09c",
+      "0x801fc758",
+      "0x801fc7b0",
+      "0x801fc818",
+      "0x801fc834",
+      "0x801fcf9c",
+      "0x801fcff0",
+      "0x801fd0c0",
+      "0x801fd110",
+      "0x801fd388",
+      "0x801fd3e8",
+      "0x801fd4c4",
+      "0x801fd51c",
+      "0x801fd558",
+      "0x801ff764",
+      "0x801ff7c4",
+      "0x801ff8a0",
+      "0x801ff8f8",
+      "0x801ff934",
+      "0x80200d6c",
+      "0x80200dcc",
+      "0x80200e94",
+      "0x80200ed0",
+      "0x80201494",
+      "0x802014d4",
+      "0x802015cc",
+      "0x8020699c",
+      "0x802069b4",
+      "0x802069cc",
+      "0x802069e4",
+      "0x80206a24",
+      "0x80206a40",
+      "0x802083d8",
+      "0x8020a234",
+      "0x8020a23c",
+      "0x8020a24c",
+      "0x8020b054",
+      "0x8020b928",
+      "0x8020bad0",
+      "0x8020dfa4",
+      "0x8020dfbc",
+      "0x8020dff0",
+      "0x8020e008",
+      "0x8020e058",
+      "0x8020e070",
+      "0x80210714",
+      "0x802154f4",
+      "0x8021550c",
+      "0x80219d8c",
+      "0x802277f4",
+      "0x8022f0b4",
+      "0x8023e4f8",
+      "0x8023e530",
+      "0x8023e538",
+      "0x8025eb34",
+      "0x8028a7e8",
+      "0x8028bba0",
+      "0x8028beac",
+      "0x8028c280",
+      "0x8028ca14",
+      "0x8028ca64",
+      "0x8028ca98",
+      "0x8028cb44",
+      "0x8028d824",
+      "0x8028d89c",
+      "0x80290230",
+      "0x8029b390",
+      "0x8029cb58",
+      "0x8029ccd4",
+      "0x8029e420",
+      "0x8029f924",
+      "0x8029f944",
+      "0x8029fc30",
+      "0x8029fc50",
+      "0x8029feb4",
+      "0x8029fed4",
+      "0x802a01ac",
+      "0x802a01cc",
+      "0x802a108c",
+      "0x802a10f0",
+      "0x802a6f60",
+      "0x802a9cf8",
+      "0x802b01bc",
+      "0x802b1740",
+      "0x802c1390",
+      "0x802c1b64",
+      "0x802c220c",
+      "0x802c2920",
+      "0x802ca7e8",
+      "0x802fd9f4",
+      "0x802fe89c",
+      "0x80325618",
+      "0x803384a8",
+      "0x803384b0",
+      "0x8033a948",
+      "0x8035204c",
+      "0x80354afc",
+      "0x8036dbe4"
+    ],
+    "mem_free": [
+      "0x8001ddf0",
+      "0x8001e370",
+      "0x8001ff68",
+      "0x8001ffa4",
+      "0x8002d590",
+      "0x8002d5a0",
+      "0x8002db30",
+      "0x8002db40",
+      "0x80035498",
+      "0x800355c4",
+      "0x8004aa60",
+      "0x8007a684",
+      "0x80081054",
+      "0x80081140",
+      "0x80088598",
+      "0x800885c4",
+      "0x80092364",
+      "0x8009237c",
+      "0x80092394",
+      "0x800923ac",
+      "0x80095974",
+      "0x80096a98",
+      "0x80096e88",
+      "0x8009fbf4",
+      "0x8009fc04",
+      "0x800a70d0",
+      "0x800a8060",
+      "0x800a8078",
+      "0x800a8090",
+      "0x800a80a8",
+      "0x800ac260",
+      "0x800ac278",
+      "0x800ac290",
+      "0x800ac2a8",
+      "0x800af4d0",
+      "0x800af4e8",
+      "0x800af500",
+      "0x800af518",
+      "0x800b8ec4",
+      "0x800bc6b0",
+      "0x800bf5fc",
+      "0x800c4d6c",
+      "0x800d6ce4",
+      "0x800d6cfc",
+      "0x800d6d14",
+      "0x800d6d2c",
+      "0x800d9a88",
+      "0x800e7b38",
+      "0x800f538c",
+      "0x800f5cac",
+      "0x800f5cbc",
+      "0x800f7c44",
+      "0x800f7c4c",
+      "0x800fbc24",
+      "0x80102b20",
+      "0x80103590",
+      "0x80103648",
+      "0x80104048",
+      "0x80104058",
+      "0x8010406c",
+      "0x8010407c",
+      "0x80104098",
+      "0x801064a8",
+      "0x801064b8",
+      "0x801078c0",
+      "0x8010f18c",
+      "0x8010f53c",
+      "0x8010fdd4",
+      "0x8010fe40",
+      "0x80110040",
+      "0x801105bc",
+      "0x80110964",
+      "0x8011a234",
+      "0x8011a244",
+      "0x8011a330",
+      "0x8011b030",
+      "0x8011b040",
+      "0x8011d274",
+      "0x8011d38c",
+      "0x8011d39c",
+      "0x80135604",
+      "0x801357e0",
+      "0x80135ac8",
+      "0x80135b80",
+      "0x80135bb8",
+      "0x80135c80",
+      "0x80135cc0",
+      "0x80135d8c",
+      "0x80135dcc",
+      "0x80138dc0",
+      "0x801457e0",
+      "0x801457e8",
+      "0x80152518",
+      "0x801526dc",
+      "0x80156748",
+      "0x80156760",
+      "0x80158040",
+      "0x80158f2c",
+      "0x80158f3c",
+      "0x80158f4c",
+      "0x80158f5c",
+      "0x80158f6c",
+      "0x80158f7c",
+      "0x801599c8",
+      "0x801599d8",
+      "0x8015aaa8",
+      "0x8015c644",
+      "0x8015e064",
+      "0x8015e510",
+      "0x8015e9bc",
+      "0x8015ee68",
+      "0x8015ee94",
+      "0x8015f3d0",
+      "0x8015f408",
+      "0x8015f948",
+      "0x8015f980",
+      "0x80160578",
+      "0x801610a8",
+      "0x80161a5c",
+      "0x801620e4",
+      "0x80162fd0",
+      "0x801635d8",
+      "0x8016421c",
+      "0x80166c04",
+      "0x80166fe4",
+      "0x80167388",
+      "0x80167724",
+      "0x80168a70",
+      "0x8016af48",
+      "0x8016b564",
+      "0x8016bc4c",
+      "0x8016c43c",
+      "0x8016ccbc",
+      "0x8016d6dc",
+      "0x80175cd4",
+      "0x801762d0",
+      "0x801789b8",
+      "0x801a5488",
+      "0x801a7734",
+      "0x801bdf90",
+      "0x801bdfa8",
+      "0x801d46a8",
+      "0x801e4f30",
+      "0x801e4f40",
+      "0x801f4fac",
+      "0x801f4fdc",
+      "0x801f4ff4",
+      "0x80209544",
+      "0x8020d964",
+      "0x8020d980",
+      "0x8020edec",
+      "0x802112d0",
+      "0x80214d58",
+      "0x80214d78",
+      "0x80214e9c",
+      "0x80214ebc",
+      "0x802154bc",
+      "0x802154dc",
+      "0x80224574",
+      "0x80225660",
+      "0x8022ba60",
+      "0x802301b0",
+      "0x80230bbc",
+      "0x802312ac",
+      "0x80232e88",
+      "0x80235708",
+      "0x80237b10",
+      "0x80238f48",
+      "0x80252b34",
+      "0x80257d20",
+      "0x802581e8",
+      "0x8025820c",
+      "0x802592a8",
+      "0x80259884",
+      "0x802598ac",
+      "0x8025a304",
+      "0x8025a55c",
+      "0x8025ac90",
+      "0x8025af58",
+      "0x8025b4bc",
+      "0x8025b538",
+      "0x8025b5cc",
+      "0x8025b7b0",
+      "0x8025b7b8",
+      "0x8025e994",
+      "0x80265040",
+      "0x8026514c",
+      "0x802652c4",
+      "0x802652cc",
+      "0x80266a10",
+      "0x80269ec4",
+      "0x80271ca0",
+      "0x80272228",
+      "0x80273b7c",
+      "0x80273f10",
+      "0x8027e6a0",
+      "0x8027f8b8",
+      "0x802834fc",
+      "0x8028af2c",
+      "0x8028af34",
+      "0x8028b204",
+      "0x80290968",
+      "0x80294c0c",
+      "0x802a5d48",
+      "0x802a7658",
+      "0x802a7978",
+      "0x802a7bf0",
+      "0x802ac2b8",
+      "0x802b67e8",
+      "0x802bb14c",
+      "0x802d1cac",
+      "0x802db788",
+      "0x802e0bb8",
+      "0x802e7510",
+      "0x802edd68",
+      "0x802ede04",
+      "0x803026cc",
+      "0x803026e4",
+      "0x803026fc",
+      "0x80302714",
+      "0x8031b1e4",
+      "0x80320980",
+      "0x803209a4",
+      "0x803209b8",
+      "0x803213ac",
+      "0x80321cc4",
+      "0x80321f00",
+      "0x80327c40",
+      "0x80327c58",
+      "0x8032925c",
+      "0x8032ab4c",
+      "0x8032b714",
+      "0x8032b8ec",
+      "0x80338ad4",
+      "0x80339124",
+      "0x803392dc",
+      "0x8033ece4",
+      "0x80341f14",
+      "0x803422b0",
+      "0x80344008",
+      "0x80344020",
+      "0x80344038",
+      "0x80344050",
+      "0x80344068",
+      "0x80344080",
+      "0x8034d238",
+      "0x8035a828",
+      "0x80363a78",
+      "0x80363a80",
+      "0x8036b3e4",
+      "0x803966e0"
+    ],
+    "mem_alloc": [
+      "0x8001dccc",
+      "0x8001e3b0",
+      "0x80020064",
+      "0x800200c8",
+      "0x80020620",
+      "0x800206a0",
+      "0x8002b548",
+      "0x8002d91c",
+      "0x8002da1c",
+      "0x8002dbcc",
+      "0x8002dbf0",
+      "0x80035834",
+      "0x80035b30",
+      "0x8004aad0",
+      "0x80066458",
+      "0x8007a6b0",
+      "0x800810cc",
+      "0x80088630",
+      "0x80088714",
+      "0x8009257c",
+      "0x80092588",
+      "0x80092594",
+      "0x800925a0",
+      "0x80095a98",
+      "0x80096b8c",
+      "0x80096ee4",
+      "0x8009fc8c",
+      "0x8009fc9c",
+      "0x800a7330",
+      "0x800a82c4",
+      "0x800a82d0",
+      "0x800a82dc",
+      "0x800a82e8",
+      "0x800ac450",
+      "0x800ac45c",
+      "0x800ac468",
+      "0x800ac474",
+      "0x800af680",
+      "0x800af68c",
+      "0x800af698",
+      "0x800af6a4",
+      "0x800b9018",
+      "0x800bc644",
+      "0x800bf7c0",
+      "0x800c4da4",
+      "0x800d6e08",
+      "0x800d6e14",
+      "0x800d6e20",
+      "0x800d6e2c",
+      "0x800d9b58",
+      "0x800e7c14",
+      "0x800f5458",
+      "0x800f5d28",
+      "0x800f5d38",
+      "0x800f7cc8",
+      "0x800f7cd8",
+      "0x800fbce8",
+      "0x80102b5c",
+      "0x801035fc",
+      "0x801036a0",
+      "0x801040d0",
+      "0x801040f4",
+      "0x80104100",
+      "0x8010410c",
+      "0x80104120",
+      "0x801064e4",
+      "0x801064f0",
+      "0x8010795c",
+      "0x8010f1e8",
+      "0x8010f604",
+      "0x8010fe00",
+      "0x8010fea4",
+      "0x801100a4",
+      "0x801106c8",
+      "0x801109e0",
+      "0x8011a290",
+      "0x8011a2a8",
+      "0x8011a2fc",
+      "0x8011b08c",
+      "0x8011b098",
+      "0x8011d314",
+      "0x8011d3c8",
+      "0x8011d3d4",
+      "0x80131be0",
+      "0x801355b8",
+      "0x801357a0",
+      "0x801359dc",
+      "0x80135afc",
+      "0x80135b20",
+      "0x80135bec",
+      "0x80135c2c",
+      "0x80135cf4",
+      "0x80135d38",
+      "0x80145900",
+      "0x8014597c",
+      "0x801524c0",
+      "0x80152854",
+      "0x801567b0",
+      "0x8015680c",
+      "0x801580cc",
+      "0x801590d0",
+      "0x801590e0",
+      "0x801590f0",
+      "0x80159100",
+      "0x80159110",
+      "0x80159120",
+      "0x80159b44",
+      "0x80159b54",
+      "0x8015ab3c",
+      "0x8015c6f8",
+      "0x8015c7a0",
+      "0x8015c824",
+      "0x8015e0e0",
+      "0x8015e58c",
+      "0x8015ea38",
+      "0x8015ef10",
+      "0x8015ef44",
+      "0x8015f484",
+      "0x8015f4bc",
+      "0x8015f9fc",
+      "0x8015fa34",
+      "0x801605f4",
+      "0x80161124",
+      "0x80161aa4",
+      "0x8016212c",
+      "0x80163018",
+      "0x80163620",
+      "0x80164298",
+      "0x80166c84",
+      "0x80167064",
+      "0x80167408",
+      "0x801677a0",
+      "0x80168b10",
+      "0x80168b8c",
+      "0x8016afc8",
+      "0x8016b5e8",
+      "0x8016bcc8",
+      "0x8016c4e0",
+      "0x8016c554",
+      "0x8016cdd4",
+      "0x8016ce94",
+      "0x8016d758",
+      "0x80175d50",
+      "0x8017634c",
+      "0x801789e8",
+      "0x801a54c4",
+      "0x801a7784",
+      "0x801bdfe4",
+      "0x801bdffc",
+      "0x801c3aac",
+      "0x801d46f8",
+      "0x801e4fb8",
+      "0x801e4fc4",
+      "0x802095bc",
+      "0x8020da6c",
+      "0x8020ee90",
+      "0x8020eeb0",
+      "0x80211398",
+      "0x802113d4",
+      "0x802152bc",
+      "0x80215338",
+      "0x80224618",
+      "0x80224638",
+      "0x80225798",
+      "0x802257c4",
+      "0x8022b588",
+      "0x8022fcec",
+      "0x802304e8",
+      "0x8023137c",
+      "0x802313d8",
+      "0x80232f64",
+      "0x802351fc",
+      "0x802374d0",
+      "0x80238c9c",
+      "0x80251e5c",
+      "0x80257da8",
+      "0x802592cc",
+      "0x8025a328",
+      "0x8025acb8",
+      "0x8025b4e8",
+      "0x8025b55c",
+      "0x8025b5f0",
+      "0x8025eaac",
+      "0x80266ab4",
+      "0x80269f6c",
+      "0x80271da0",
+      "0x8028b004",
+      "0x8028b014",
+      "0x8028b2cc",
+      "0x80290ae8",
+      "0x802a5d80",
+      "0x802a7684",
+      "0x802a7914",
+      "0x802a7c94",
+      "0x802ac328",
+      "0x802b65cc",
+      "0x802bb090",
+      "0x802d1ce4",
+      "0x802db858",
+      "0x802e0f94",
+      "0x802e74c8",
+      "0x802ee0f8",
+      "0x802ee30c",
+      "0x802f3260",
+      "0x803028d8",
+      "0x803028e4",
+      "0x803028f0",
+      "0x803028fc",
+      "0x8031b2b0",
+      "0x80320a5c",
+      "0x80320a88",
+      "0x80320abc",
+      "0x80327cd4",
+      "0x80327ce4",
+      "0x80329288",
+      "0x8033879c",
+      "0x8033ed54",
+      "0x80342038",
+      "0x80344184",
+      "0x80344190",
+      "0x803441bc",
+      "0x803441d4",
+      "0x8034421c",
+      "0x80344228",
+      "0x8035a8b4",
+      "0x80363ab0",
+      "0x80363abc",
+      "0x8036b44c"
+    ],
+    "move_data": [
+      "0x8001dcfc",
+      "0x8001dd34",
+      "0x8001dd6c",
+      "0x8001dda4",
+      "0x8003caa8",
+      "0x8003cca0",
+      "0x8003e7e4",
+      "0x8003e9f0",
+      "0x80077578",
+      "0x8007d44c",
+      "0x800fa69c",
+      "0x800fdb80",
+      "0x800fe06c",
+      "0x8019800c",
+      "0x801e38d8",
+      "0x801e38f0",
+      "0x801e3ae0",
+      "0x801e3b28",
+      "0x801e3b64",
+      "0x801e3b90",
+      "0x801e3bfc",
+      "0x801e3c38",
+      "0x801e3c54",
+      "0x801e3c70",
+      "0x801e4acc",
+      "0x801ea644",
+      "0x801eb550",
+      "0x801eb6a0",
+      "0x801f84f0",
+      "0x801f85cc",
+      "0x801f8618",
+      "0x801f8758",
+      "0x801f87a4",
+      "0x80208e00",
+      "0x80209748",
+      "0x80209790",
+      "0x8020a10c",
+      "0x8020a12c",
+      "0x8020a158",
+      "0x8020a170",
+      "0x802111f8",
+      "0x8021126c",
+      "0x803d9838",
+      "0x803d9d18",
+      "0x803da824",
+      "0x803db010",
+      "0x803dde68",
+      "0x803de364",
+      "0x803de37c",
+      "0x803de548",
+      "0x803de590",
+      "0x803de5cc",
+      "0x803de5f8",
+      "0x803de664",
+      "0x803de6a8",
+      "0x803de6c4",
+      "0x803de6e0",
+      "0x803de994",
+      "0x803dece8"
+    ],
+    "move_words__FPvPCvl": [
+      "0x80077180",
+      "0x8007ac4c",
+      "0x8007b5e0",
+      "0x800fa238",
+      "0x800fa360",
+      "0x800fa67c",
+      "0x80225b0c",
+      "0x8024271c",
+      "0x8026a744"
+    ]
+  },
+  "historical": {
+    "closed_rows": [
+      {
+        "row": 2658,
+        "fork_path": "src/pso/ui/TAdEnterPPPPassGC.cpp",
+        "owner": "src/pso/ui/frontend/TAdEnterPPPPassGC.cpp",
+        "detail": "Password entry uses the native keyboard receiver for text copies, confirmation and flag clearing, closes both native windows, and releases the same buffers through the shared raw allocator.",
+        "authored_change_blocks": [
+          {
+            "old_lines": [
+              1,
+              0
+            ],
+            "fork_lines": [
+              1,
+              3
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "# include \"pso/ui/keyboard/TKeyBoardControl.h\"",
+              "# include \"pso/system/ArrayAllocation.h\"",
+              "# include \"pso/system/SoundEffect.h\""
+            ]
+          },
+          {
+            "old_lines": [
+              2,
+              1
+            ],
+            "fork_lines": [
+              5,
+              5
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "# include \"pso/ui/window/TWindowBase.h\""
+            ]
+          },
+          {
+            "old_lines": [
+              37,
+              37
+            ],
+            "fork_lines": [
+              41,
+              40
+            ],
+            "result": "compare",
+            "old": [
+              "void TWindow__close ( u8 * arg0 ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              56,
+              57
+            ],
+            "fork_lines": [
+              59,
+              58
+            ],
+            "result": "compare",
+            "old": [
+              "char * realloc_buffer__17TWindowSubComCardFv ( u8 * ) ;",
+              "void mem_free ( void * ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              60,
+              60
+            ],
+            "fork_lines": [
+              61,
+              60
+            ],
+            "result": "compare",
+            "old": [
+              "void play_sound_effect ( int , int , int , int ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              79,
+              79
+            ],
+            "fork_lines": [
+              79,
+              79
+            ],
+            "result": "retained",
+            "old": [
+              "TWindow__close ( temp_r3 ) ;"
+            ],
+            "fork": [
+              "( ( TWindowBase * ) temp_r3 ) -> close ( ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              84,
+              84
+            ],
+            "fork_lines": [
+              84,
+              84
+            ],
+            "result": "retained",
+            "old": [
+              "TWindow__close ( temp_r3_2 ) ;"
+            ],
+            "fork": [
+              "( ( TWindowBase * ) temp_r3_2 ) -> close ( ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              104,
+              104
+            ],
+            "fork_lines": [
+              104,
+              104
+            ],
+            "result": "compare",
+            "old": [
+              "buf = realloc_buffer__17TWindowSubComCardFv ( password_entry_keyboard_control ) ;"
+            ],
+            "fork": [
+              "buf = ( ( TKeyBoardControl * ) password_entry_keyboard_control ) -> allocate_text_copy ( ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              107,
+              107
+            ],
+            "fork_lines": [
+              107,
+              107
+            ],
+            "result": "compare",
+            "old": [
+              "mem_free ( buf ) ;"
+            ],
+            "fork": [
+              ":: operator delete [ ] ( buf ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              115,
+              115
+            ],
+            "fork_lines": [
+              115,
+              115
+            ],
+            "result": "compare",
+            "old": [
+              "if ( ( ( TWindowSubComCard * ) password_entry_keyboard_control ) -> update_keyboard ( ) != 0 ) {"
+            ],
+            "fork": [
+              "if ( ( ( TKeyBoardControl * ) password_entry_keyboard_control ) -> is_key_active ( ) != 0 ) {"
+            ]
+          },
+          {
+            "old_lines": [
+              118,
+              118
+            ],
+            "fork_lines": [
+              118,
+              118
+            ],
+            "result": "compare",
+            "old": [
+              "free_menu_object ( password_entry_keyboard_control ) ;"
+            ],
+            "fork": [
+              "( ( TKeyBoardControl * ) ( password_entry_keyboard_control ) ) -> clear_keyboard_flag60_bit1 ( ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              124,
+              124
+            ],
+            "fork_lines": [
+              124,
+              124
+            ],
+            "result": "compare",
+            "old": [
+              "free_menu_object ( password_entry_keyboard_control ) ;"
+            ],
+            "fork": [
+              "( ( TKeyBoardControl * ) ( password_entry_keyboard_control ) ) -> clear_keyboard_flag60_bit1 ( ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              151,
+              151
+            ],
+            "fork_lines": [
+              151,
+              151
+            ],
+            "result": "compare",
+            "old": [
+              "( ( TWindowSubComCard * ) password_entry_keyboard_control ) -> update_keyboard ( ) != 0 ) {"
+            ],
+            "fork": [
+              "( ( TKeyBoardControl * ) password_entry_keyboard_control ) -> is_key_active ( ) != 0 ) {"
+            ]
+          },
+          {
+            "old_lines": [
+              157,
+              157
+            ],
+            "fork_lines": [
+              157,
+              157
+            ],
+            "result": "compare",
+            "old": [
+              "mem_free ( buf ) ;"
+            ],
+            "fork": [
+              ":: operator delete [ ] ( buf ) ;"
+            ]
+          }
+        ],
+        "owner_blob": "ece83bf083030b8713b56b03c986b30b25eec123"
+      },
+      {
+        "row": 2732,
+        "fork_path": "src/pso/unk/text_802A1020.cpp",
+        "owner": "src/pso/unk/text_802A1020.cpp",
+        "detail": "File integrity checks use string paths and retain the original size and load entries. Both outcomes release the file buffer through the generic nullable helper.",
+        "authored_change_blocks": [
+          {
+            "old_lines": [
+              3,
+              2
+            ],
+            "fork_lines": [
+              3,
+              3
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "# include \"pso/unk/TLobby.h\""
+            ]
+          },
+          {
+            "old_lines": [
+              5,
+              5
+            ],
+            "fork_lines": [
+              6,
+              6
+            ],
+            "result": "compare",
+            "old": [
+              "s32 file ;"
+            ],
+            "fork": [
+              "const char * file ;"
+            ]
+          },
+          {
+            "old_lines": [
+              10,
+              11
+            ],
+            "fork_lines": [
+              11,
+              11
+            ],
+            "result": "compare",
+            "old": [
+              "u8 * set_stream_and_load_file__6TLobbyFi ( s32 ) ;",
+              "u32 get_file_size__6TLobbyFv ( s32 ) ;"
+            ],
+            "fork": [
+              "u8 * load_disc_file ( const char * ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              23,
+              23
+            ],
+            "fork_lines": [
+              23,
+              23
+            ],
+            "result": "compare",
+            "old": [
+              "size = get_file_size__6TLobbyFv ( file_integrity_table [ i ] . file ) ;"
+            ],
+            "fork": [
+              "size = TLobby :: get_file_size ( file_integrity_table [ i ] . file ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              29,
+              29
+            ],
+            "fork_lines": [
+              29,
+              29
+            ],
+            "result": "compare",
+            "old": [
+              "buf = set_stream_and_load_file__6TLobbyFi ( file_integrity_table [ i ] . file ) ;"
+            ],
+            "fork": [
+              "buf = load_disc_file ( file_integrity_table [ i ] . file ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              31,
+              31
+            ],
+            "fork_lines": [
+              31,
+              31
+            ],
+            "result": "compare",
+            "old": [
+              "TAdSinglePlyChrSelectGC :: safe_free ( ( u32 ) buf ) ;"
+            ],
+            "fork": [
+              "TAdSinglePlyChrSelectGC :: safe_free ( ( void * ) buf ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              46,
+              46
+            ],
+            "fork_lines": [
+              46,
+              46
+            ],
+            "result": "compare",
+            "old": [
+              "TAdSinglePlyChrSelectGC :: safe_free ( ( u32 ) buf ) ;"
+            ],
+            "fork": [
+              "TAdSinglePlyChrSelectGC :: safe_free ( ( void * ) buf ) ;"
+            ]
+          }
+        ],
+        "owner_blob": "8012a556da9f20cb00aab9c5615847137d503778"
+      },
+      {
+        "row": 4366,
+        "fork_path": "src/pso/misc/TTecRaBarta.cpp",
+        "owner": "src/pso/technique/TTecRaBarta.cpp",
+        "detail": "RaBarta's effect emitter uses the typed BML, particle and sound calls. Its buffer size, lifetime, positioned sound requests and pitch adjustment retain the original operations.",
+        "authored_change_blocks": [
+          {
+            "old_lines": [
+              1,
+              0
+            ],
+            "fork_lines": [
+              1,
+              5
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "# include \"pso/system/BmlResource.h\"",
+              "# include \"pso/system/ArrayAllocation.h\"",
+              "# include \"pso/system/SoundSlotPitch.h\"",
+              "# include \"pso/effect/particle/ParticleFactory.h\"",
+              "# include \"pso/system/SoundEffect.h\""
+            ]
+          },
+          {
+            "old_lines": [
+              138,
+              138
+            ],
+            "fork_lines": [
+              143,
+              142
+            ],
+            "result": "compare",
+            "old": [
+              "void * get_bml_model ( void * , int ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              140,
+              140
+            ],
+            "fork_lines": [
+              144,
+              143
+            ],
+            "result": "compare",
+            "old": [
+              "void * mem_alloc ( u32 size ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              148,
+              148
+            ],
+            "fork_lines": [
+              151,
+              150
+            ],
+            "result": "compare",
+            "old": [
+              "s32 play_sound_effect ( s32 , s32 , s32 , s32 ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              150,
+              150
+            ],
+            "fork_lines": [
+              152,
+              151
+            ],
+            "result": "compare",
+            "old": [
+              "s32 set_sound_pitch_request ( s32 , s32 , s32 ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              178,
+              178
+            ],
+            "fork_lines": [
+              179,
+              179
+            ],
+            "result": "compare",
+            "old": [
+              "self -> emitters = ( void * * ) mem_alloc ( rabarta_band_emitter_table [ self -> band ] . count * 4 ) ;"
+            ],
+            "fork": [
+              "self -> emitters = ( void * * ) :: operator new [ ] ( rabarta_band_emitter_table [ self -> band ] . count * 4 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              198,
+              198
+            ],
+            "fork_lines": [
+              199,
+              199
+            ],
+            "result": "compare",
+            "old": [
+              "attach_particle_model ( ( u8 * ) self -> emitters [ i ] , ( s32 ) ( get_bml_model ( technique_effect_bml , mid ) ) , ( s32 ) lbl_805D63B0 , 0 , 0 , ( f32 ) ( 1.0f ) ) ;"
+            ],
+            "fork": [
+              "attach_particle_model ( ( u8 * ) self -> emitters [ i ] , ( s32 ) ( ( void * ) get_bml_model ( ( BmlResource * ) technique_effect_bml , mid ) ) , ( s32 ) lbl_805D63B0 , 0 , 0 , ( f32 ) ( 1.0f ) ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              217,
+              217
+            ],
+            "fork_lines": [
+              218,
+              218
+            ],
+            "result": "compare",
+            "old": [
+              "emitter = spawn_particle_effect ( & point2 , b2 -> entry ) ;"
+            ],
+            "fork": [
+              "emitter = spawn_particle_effect ( ( const Vec * ) ( & point2 ) , ( s32 ) ( b2 -> entry ) ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              221,
+              221
+            ],
+            "fork_lines": [
+              222,
+              222
+            ],
+            "result": "compare",
+            "old": [
+              "attach_particle_model ( ( u8 * ) emitter , ( s32 ) ( get_bml_model ( technique_effect_bml , id ) ) , ( s32 ) lbl_805D63B0 , ( s32 ) ( get_bml_motion ( technique_effect_bml , 1 ) ) , 0 , ( f32 ) ( 1.0f ) ) ;"
+            ],
+            "fork": [
+              "attach_particle_model ( ( u8 * ) emitter , ( s32 ) ( ( void * ) get_bml_model ( ( BmlResource * ) technique_effect_bml , id ) ) , ( s32 ) lbl_805D63B0 , ( s32 ) ( get_bml_motion ( technique_effect_bml , 1 ) ) , 0 , ( f32 ) ( 1.0f ) ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              230,
+              230
+            ],
+            "fork_lines": [
+              231,
+              231
+            ],
+            "result": "compare",
+            "old": [
+              "this -> m_ec = play_sound_effect ( 0x4002A706 , this -> source + 0x2FC , 0 , 0 ) ;"
+            ],
+            "fork": [
+              "this -> m_ec = play_sound_effect ( 0x4002A706 , ( const Vec * ) ( this -> source + 0x2FC ) , 0 , 0 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              237,
+              237
+            ],
+            "fork_lines": [
+              238,
+              238
+            ],
+            "result": "compare",
+            "old": [
+              "this -> m_ec = play_sound_effect ( 0x4002A706 , this -> source + 0x2FC , 0 , 0 ) ;"
+            ],
+            "fork": [
+              "this -> m_ec = play_sound_effect ( 0x4002A706 , ( const Vec * ) ( this -> source + 0x2FC ) , 0 , 0 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              241,
+              241
+            ],
+            "fork_lines": [
+              242,
+              242
+            ],
+            "result": "compare",
+            "old": [
+              "this -> m_ec = play_sound_effect ( 0x4002A706 , this -> source + 0x2FC , 0 , 0 ) ;"
+            ],
+            "fork": [
+              "this -> m_ec = play_sound_effect ( 0x4002A706 , ( const Vec * ) ( this -> source + 0x2FC ) , 0 , 0 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              248,
+              248
+            ],
+            "fork_lines": [
+              249,
+              249
+            ],
+            "result": "compare",
+            "old": [
+              "this -> m_ec = play_sound_effect ( 0x4002A706 , this -> source + 0x2FC , 0 , 0 ) ;"
+            ],
+            "fork": [
+              "this -> m_ec = play_sound_effect ( 0x4002A706 , ( const Vec * ) ( this -> source + 0x2FC ) , 0 , 0 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              255,
+              255
+            ],
+            "fork_lines": [
+              256,
+              256
+            ],
+            "result": "compare",
+            "old": [
+              "this -> m_ec = play_sound_effect ( 0x4002A706 , this -> source + 0x2FC , 0 , 0 ) ;"
+            ],
+            "fork": [
+              "this -> m_ec = play_sound_effect ( 0x4002A706 , ( const Vec * ) ( this -> source + 0x2FC ) , 0 , 0 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              358,
+              358
+            ],
+            "fork_lines": [
+              359,
+              358
+            ],
+            "result": "compare",
+            "old": [
+              "void mem_free ( void * p ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              387,
+              387
+            ],
+            "fork_lines": [
+              387,
+              387
+            ],
+            "result": "compare",
+            "old": [
+              "mem_free ( self -> objs ) ;"
+            ],
+            "fork": [
+              ":: operator delete [ ] ( self -> objs ) ;"
+            ]
+          }
+        ],
+        "owner_blob": "f5157f74f8d4cfe47ff59d4e1980a685882e8419"
+      },
+      {
+        "row": 4376,
+        "fork_path": "src/pso/item/TItemEffectWeapon.cpp",
+        "owner": "src/pso/effect/item/TItemEffectWeapon.cpp",
+        "detail": "The weapon trail uses the native strip interface and typed buffer and bitmap. Both allocations and releases use the shared raw allocator with the original sizes and order.",
+        "authored_change_blocks": [
+          {
+            "old_lines": [
+              1,
+              0
+            ],
+            "fork_lines": [
+              1,
+              2
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "# include \"pso/system/TrailStrip.h\"",
+              "# include \"pso/system/ArrayAllocation.h\""
+            ]
+          },
+          {
+            "old_lines": [
+              15,
+              15
+            ],
+            "fork_lines": [
+              17,
+              16
+            ],
+            "result": "compare",
+            "old": [
+              "void * mem_alloc ( u32 size ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              22,
+              22
+            ],
+            "fork_lines": [
+              23,
+              22
+            ],
+            "result": "compare",
+            "old": [
+              "void mem_free ( void * p ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              41,
+              41
+            ],
+            "fork_lines": [
+              41,
+              40
+            ],
+            "result": "retained",
+            "old": [
+              "void draw_untextured_trail_strip ( void * arg0 , void * arg1 ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              138,
+              138
+            ],
+            "fork_lines": [
+              137,
+              137
+            ],
+            "result": "retained",
+            "old": [
+              "draw_untextured_trail_strip ( ( void * ) vertices , ( void * ) vertex_count ) ;"
+            ],
+            "fork": [
+              "draw_untextured_trail_strip ( vertices , vertex_count ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              179,
+              180
+            ],
+            "fork_lines": [
+              178,
+              179
+            ],
+            "result": "compare",
+            "old": [
+              "mem_free ( weapon_trail_slot_bitmap ) ;",
+              "mem_free ( item_weapon_trail_vertex_buffer ) ;"
+            ],
+            "fork": [
+              ":: operator delete [ ] ( weapon_trail_slot_bitmap ) ;",
+              ":: operator delete [ ] ( item_weapon_trail_vertex_buffer ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              185,
+              186
+            ],
+            "fork_lines": [
+              184,
+              185
+            ],
+            "result": "compare",
+            "old": [
+              "item_weapon_trail_vertex_buffer = ( TrailVertex * ) mem_alloc ( 16 * 32 * sizeof ( TrailVertex ) ) ;",
+              "weapon_trail_slot_bitmap = ( s32 * ) mem_alloc ( 16 * sizeof ( s32 ) ) ;"
+            ],
+            "fork": [
+              "item_weapon_trail_vertex_buffer = ( TrailVertex * ) :: operator new [ ] ( 16 * 32 * sizeof ( TrailVertex ) ) ;",
+              "weapon_trail_slot_bitmap = ( s32 * ) :: operator new [ ] ( 16 * sizeof ( s32 ) ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              191,
+              190
+            ],
+            "fork_lines": [
+              190,
+              193
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "extern \"C\" {",
+              "TItemEffectWeapon :: TrailVertex * item_weapon_trail_vertex_buffer ;",
+              "s32 * weapon_trail_slot_bitmap ;",
+              "}"
+            ]
+          }
+        ],
+        "owner_blob": "9ecab0fc87467c99816373ffa4920649ba816c6c"
+      },
+      {
+        "row": 4378,
+        "fork_path": "src/pso/misc/TTecRaZonde_80238C6C.cpp",
+        "owner": "src/pso/technique/TTecRaZonde_80238C6C.cpp",
+        "detail": "RaZonde uses the native bolt receiver and shared particle, sound and memory declarations. The band buffer and positional sounds preserve the original requests and releases.",
+        "authored_change_blocks": [
+          {
+            "old_lines": [
+              1,
+              0
+            ],
+            "fork_lines": [
+              1,
+              4
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "# include \"pso/system/ArrayAllocation.h\"",
+              "# include \"pso/system/SoundSlotPitch.h\"",
+              "# include \"pso/effect/particle/ParticleFactory.h\"",
+              "# include \"pso/system/SoundEffect.h\""
+            ]
+          },
+          {
+            "old_lines": [
+              2,
+              1
+            ],
+            "fork_lines": [
+              6,
+              6
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "# include \"pso/technique/TTecZondeEff.h\""
+            ]
+          },
+          {
+            "old_lines": [
+              70,
+              71
+            ],
+            "fork_lines": [
+              75,
+              74
+            ],
+            "result": "compare",
+            "old": [
+              "void set_sound_pitch_request ( s32 handle , s32 pitch , s32 c ) ;",
+              "s32 play_sound_effect ( s32 id , void * pos , s32 a , s32 b ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              161,
+              162
+            ],
+            "fork_lines": [
+              164,
+              163
+            ],
+            "result": "compare",
+            "old": [
+              "void set_sound_pitch_request ( s32 , s32 , s32 ) ;",
+              "s32 play_sound_effect ( s32 , void * , s32 , s32 ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              164,
+              164
+            ],
+            "fork_lines": [
+              165,
+              164
+            ],
+            "result": "compare",
+            "old": [
+              "void * mem_alloc ( u32 size ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              176,
+              176
+            ],
+            "fork_lines": [
+              176,
+              176
+            ],
+            "result": "compare",
+            "old": [
+              "self -> emitters = ( s32 * ) mem_alloc ( TTecRaZonde__band_profile_table [ self -> band ] . count * 4 ) ;"
+            ],
+            "fork": [
+              "self -> emitters = ( s32 * ) :: operator new [ ] ( TTecRaZonde__band_profile_table [ self -> band ] . count * 4 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              220,
+              220
+            ],
+            "fork_lines": [
+              220,
+              219
+            ],
+            "result": "compare",
+            "old": [
+              "void spawn_particle_effect ( void * , s32 , void * ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              238,
+              240
+            ],
+            "fork_lines": [
+              237,
+              236
+            ],
+            "result": "retained",
+            "old": [
+              "extern \"C\" {",
+              "void mem_free ( void * ) ;",
+              "}"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              249,
+              249
+            ],
+            "fork_lines": [
+              245,
+              245
+            ],
+            "result": "compare",
+            "old": [
+              "mem_free ( ( ( Self_80238EC8 * ) this ) -> objs ) ;"
+            ],
+            "fork": [
+              ":: operator delete [ ] ( ( ( Self_80238EC8 * ) this ) -> objs ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              268,
+              268
+            ],
+            "fork_lines": [
+              264,
+              264
+            ],
+            "result": "compare",
+            "old": [
+              "spawn_particle_effect ( ( u8 * ) self -> source + 0x2FC , ( ( RProfile_80238F84 * ) TTecRaZonde__band_profile_table ) [ self -> band ] . entries [ i ] . entry , self -> source ) ;"
+            ],
+            "fork": [
+              "spawn_particle_effect ( ( const Vec * ) ( ( u8 * ) self -> source + 0x2FC ) , ( s32 ) ( ( ( RProfile_80238F84 * ) TTecRaZonde__band_profile_table ) [ self -> band ] . entries [ i ] . entry ) ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              324,
+              324
+            ],
+            "fork_lines": [
+              320,
+              320
+            ],
+            "result": "compare",
+            "old": [
+              "( ( TTecZonde * ) o ) -> construct_bolt_effect ( ( u8 * ) tl_07 , ( u8 * ) & a , ( u8 * ) & b , 0x14000000 , 6 , len , ( 5.0f ) ) ;"
+            ],
+            "fork": [
+              "( ( TTecZondeEff * ) o ) -> construct_bolt_effect ( ( u8 * ) tl_07 , ( u8 * ) & a , ( u8 * ) & b , 0x14000000 , 6 , len , ( 5.0f ) ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              330,
+              330
+            ],
+            "fork_lines": [
+              326,
+              326
+            ],
+            "result": "compare",
+            "old": [
+              "( ( TTecZonde * ) o ) -> construct_bolt_effect ( ( u8 * ) tl_07 , ( u8 * ) & a , ( u8 * ) & b , 0x14000000 , 6 , len , ( 0.5f ) ) ;"
+            ],
+            "fork": [
+              "( ( TTecZondeEff * ) o ) -> construct_bolt_effect ( ( u8 * ) tl_07 , ( u8 * ) & a , ( u8 * ) & b , 0x14000000 , 6 , len , ( 0.5f ) ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              336,
+              336
+            ],
+            "fork_lines": [
+              332,
+              332
+            ],
+            "result": "compare",
+            "old": [
+              "s32 h = play_sound_effect ( 0x4002A50A , & self -> pos , 0 , 0 ) ;"
+            ],
+            "fork": [
+              "s32 h = play_sound_effect ( 0x4002A50A , ( const Vec * ) ( & self -> pos ) , 0 , 0 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              343,
+              343
+            ],
+            "fork_lines": [
+              339,
+              339
+            ],
+            "result": "compare",
+            "old": [
+              "play_sound_effect ( 0x4002A50A , & self -> pos , 0 , 0 ) ;"
+            ],
+            "fork": [
+              "play_sound_effect ( 0x4002A50A , ( const Vec * ) ( & self -> pos ) , 0 , 0 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              347,
+              347
+            ],
+            "fork_lines": [
+              343,
+              343
+            ],
+            "result": "compare",
+            "old": [
+              "s32 h = play_sound_effect ( 0x4002A50A , & self -> pos , 0 , 0 ) ;"
+            ],
+            "fork": [
+              "s32 h = play_sound_effect ( 0x4002A50A , ( const Vec * ) ( & self -> pos ) , 0 , 0 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              354,
+              354
+            ],
+            "fork_lines": [
+              350,
+              350
+            ],
+            "result": "compare",
+            "old": [
+              "s32 h = play_sound_effect ( 0x4002A50A , & self -> pos , 0 , 0 ) ;"
+            ],
+            "fork": [
+              "s32 h = play_sound_effect ( 0x4002A50A , ( const Vec * ) ( & self -> pos ) , 0 , 0 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              361,
+              361
+            ],
+            "fork_lines": [
+              357,
+              357
+            ],
+            "result": "compare",
+            "old": [
+              "s32 h = play_sound_effect ( 0x4002A50A , & self -> pos , 0 , 0 ) ;"
+            ],
+            "fork": [
+              "s32 h = play_sound_effect ( 0x4002A50A , ( const Vec * ) ( & self -> pos ) , 0 , 0 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              381,
+              381
+            ],
+            "fork_lines": [
+              377,
+              377
+            ],
+            "result": "compare",
+            "old": [
+              "h = play_sound_effect ( 0x4002AB0E , self -> pos , 0 , 0 ) ;"
+            ],
+            "fork": [
+              "h = play_sound_effect ( 0x4002AB0E , ( const Vec * ) ( self -> pos ) , 0 , 0 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              388,
+              388
+            ],
+            "fork_lines": [
+              384,
+              384
+            ],
+            "result": "compare",
+            "old": [
+              "play_sound_effect ( 0x4002AB0E , self -> pos , 0 , 0 ) ;"
+            ],
+            "fork": [
+              "play_sound_effect ( 0x4002AB0E , ( const Vec * ) ( self -> pos ) , 0 , 0 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              392,
+              392
+            ],
+            "fork_lines": [
+              388,
+              388
+            ],
+            "result": "compare",
+            "old": [
+              "h = play_sound_effect ( 0x4002AB0E , self -> pos , 0 , 0 ) ;"
+            ],
+            "fork": [
+              "h = play_sound_effect ( 0x4002AB0E , ( const Vec * ) ( self -> pos ) , 0 , 0 ) ;"
+            ]
+          }
+        ],
+        "owner_blob": "c6dbc5bc909105741e08c4aa079fb5a8edf5344f"
+      },
+      {
+        "row": 4512,
+        "fork_path": "src/pso/unk/TUnk_804CC870.cpp",
+        "owner": "src/pso/unk/TUnk_804CC870.cpp",
+        "detail": "The effect task uses typed particle positions, BML model selection and a texture list. The destructor releases the original buffer through the shared heap interface.",
+        "authored_change_blocks": [
+          {
+            "old_lines": [
+              1,
+              0
+            ],
+            "fork_lines": [
+              1,
+              4
+            ],
+            "result": "compare",
+            "old": [],
+            "fork": [
+              "# include \"pso/system/BmlResource.h\"",
+              "# include \"pso/system/ArrayAllocation.h\"",
+              "# include \"pso/effect/particle/ParticleFactory.h\"",
+              "# include \"pso/system/CurrentTextureList.h\""
+            ]
+          },
+          {
+            "old_lines": [
+              23,
+              23
+            ],
+            "fork_lines": [
+              27,
+              26
+            ],
+            "result": "compare",
+            "old": [
+              "s32 get_bml_model ( s32 , u32 ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              90,
+              90
+            ],
+            "fork_lines": [
+              93,
+              92
+            ],
+            "result": "compare",
+            "old": [
+              "void mem_free ( void * ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              96,
+              96
+            ],
+            "fork_lines": [
+              98,
+              97
+            ],
+            "result": "compare",
+            "old": [
+              "void * spawn_particle_effect ( void * pos , s32 id ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              114,
+              114
+            ],
+            "fork_lines": [
+              115,
+              115
+            ],
+            "result": "compare",
+            "old": [
+              "mem_free ( ( ( Obj_80232E0C * ) this ) -> items ) ;"
+            ],
+            "fork": [
+              ":: operator delete [ ] ( ( ( Obj_80232E0C * ) this ) -> items ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              135,
+              135
+            ],
+            "fork_lines": [
+              136,
+              136
+            ],
+            "result": "compare",
+            "old": [
+              "r = ( s32 ) spawn_particle_effect ( obj + 0x38 , e -> a ) ;"
+            ],
+            "fork": [
+              "r = ( s32 ) spawn_particle_effect ( ( const Vec * ) ( obj + 0x38 ) , ( s32 ) ( e -> a ) ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              137,
+              137
+            ],
+            "fork_lines": [
+              138,
+              138
+            ],
+            "result": "compare",
+            "old": [
+              "attach_particle_model ( ( u8 * ) r , ( s32 ) ( get_bml_model ( technique_effect_bml , technique_effect_entry_table [ ( ( Ctl_80232C50 * ) this ) -> kind ] . ents [ i ] . flags >> 16 ) ) , ( s32 ) lbl_805D63B0 , 0 , 1 , ( f32 ) 1.0f ) ;"
+            ],
+            "fork": [
+              "attach_particle_model ( ( u8 * ) r , ( s32 ) ( ( s32 ) get_bml_model ( ( BmlResource * ) technique_effect_bml , technique_effect_entry_table [ ( ( Ctl_80232C50 * ) this ) -> kind ] . ents [ i ] . flags >> 16 ) ) , ( s32 ) lbl_805D63B0 , 0 , 1 , ( f32 ) 1.0f ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              140,
+              140
+            ],
+            "fork_lines": [
+              141,
+              141
+            ],
+            "result": "compare",
+            "old": [
+              "spawn_particle_effect ( obj + 0x38 , e -> a ) ;"
+            ],
+            "fork": [
+              "spawn_particle_effect ( ( const Vec * ) ( obj + 0x38 ) , ( s32 ) ( e -> a ) ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              231,
+              232
+            ],
+            "fork_lines": [
+              232,
+              233
+            ],
+            "result": "compare",
+            "old": [
+              "TObjFish :: set_global_param ( ( s32 ) lbl_804CC868 ) ;",
+              "get_bml_model ( technique_effect_bml , 10 ) ;"
+            ],
+            "fork": [
+              "set_global_param__8TObjFishFP16GinjaTextureList ( ( GinjaTextureList * ) ( lbl_804CC868 ) ) ;",
+              "( s32 ) get_bml_model ( ( BmlResource * ) technique_effect_bml , 10 ) ;"
+            ]
+          }
+        ],
+        "owner_blob": "3c60a2f1c7b5ce84d263ba807ffbdc297cb77f8c"
+      }
+    ],
+    "scoped_rows": [
+      {
+        "row": 230,
+        "fork_path": "src/pso/misc/TWindowKeyBoardBase.cpp",
+        "owner": "src/pso/ui/window/TWindowKeyBoardBase.cpp"
+      },
+      {
+        "row": 262,
+        "fork_path": "src/pso/misc/TWindowFukidasi.cpp",
+        "owner": "src/pso/ui/window/TWindowFukidasi.cpp"
+      },
+      {
+        "row": 292,
+        "fork_path": "src/pso/misc/TWindowSubShortMail_8027E620.cpp",
+        "owner": "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp"
+      },
+      {
+        "row": 293,
+        "fork_path": "src/pso/misc/TWindowSubSymbolChat_80281814.cpp",
+        "owner": "src/pso/ui/chat/TWindowSubSymbolChat.cpp"
+      },
+      {
+        "row": 587,
+        "fork_path": "src/pso/enemy/TObjEneGibbles.cpp",
+        "owner": "src/pso/enemy/gibbles/TObjEneGibbles.cpp"
+      },
+      {
+        "row": 598,
+        "fork_path": "src/pso/enemy/TObjEneMerillLia.cpp",
+        "owner": "src/pso/enemy/merilllia/TObjEneMerillLia.cpp"
+      },
+      {
+        "row": 608,
+        "fork_path": "src/pso/enemy/TObjEneRe7Berura.cpp",
+        "owner": "src/pso/enemy/berura/TObjEneRe7Berura.cpp"
+      },
+      {
+        "row": 635,
+        "fork_path": "src/pso/enemy/TObjEneShark.cpp",
+        "owner": "src/pso/enemy/shark/TObjEneShark.cpp"
+      },
+      {
+        "row": 778,
+        "fork_path": "src/pso/enemy/TObjEneMe3Shinowa.cpp",
+        "owner": "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp"
+      },
+      {
+        "row": 802,
+        "fork_path": "src/pso/enemy/TObjEneDolmOlm.cpp",
+        "owner": "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp"
+      },
+      {
+        "row": 813,
+        "fork_path": "src/pso/enemy/TObjEneMoja.cpp",
+        "owner": "src/pso/enemy/moja/TObjEneMoja.cpp"
+      },
+      {
+        "row": 814,
+        "fork_path": "src/pso/enemy/TObjEneMe3SinowZoa.cpp",
+        "owner": "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp"
+      },
+      {
+        "row": 842,
+        "fork_path": "src/pso/boss/TObjBoss2Tunnel.cpp",
+        "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+      },
+      {
+        "row": 874,
+        "fork_path": "src/pso/boss/TBoss8Dragon.cpp",
+        "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+      },
+      {
+        "row": 948,
+        "fork_path": "src/pso/enemy/TObjEneLappy.cpp",
+        "owner": "src/pso/enemy/lappy/TObjEneLappy.cpp"
+      },
+      {
+        "row": 958,
+        "fork_path": "src/pso/enemy/TObjEneMe3Stelth.cpp",
+        "owner": "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp"
+      },
+      {
+        "row": 992,
+        "fork_path": "src/pso/boss/Boss5GryphonBehavior.cpp",
+        "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+      },
+      {
+        "row": 1026,
+        "fork_path": "src/pso/enemy/TObjEneBeast.cpp",
+        "owner": "src/pso/enemy/beast/TObjEneBeast.cpp"
+      },
+      {
+        "row": 1055,
+        "fork_path": "src/pso/enemy/TObjEneDimedian.cpp",
+        "owner": "src/pso/enemy/dimedian/TObjEneDimedian.cpp"
+      },
+      {
+        "row": 1076,
+        "fork_path": "src/pso/boss/TBoss6Type2.cpp",
+        "owner": "src/pso/boss/olgaflow/TBoss6Type2.cpp"
+      },
+      {
+        "row": 1084,
+        "fork_path": "src/pso/boss/TBoss1Dragon.cpp",
+        "owner": "src/pso/boss/dragon/TBoss1Dragon.cpp"
+      },
+      {
+        "row": 1116,
+        "fork_path": "src/pso/enemy/SaverLifecycle.cpp",
+        "owner": "src/pso/enemy/saver/SaverLifecycle.cpp"
+      },
+      {
+        "row": 1125,
+        "fork_path": "src/pso/boss/TBoss2DeRolLe.cpp",
+        "owner": "src/pso/boss/derolle/TBoss2DeRolLe.cpp"
+      },
+      {
+        "row": 1129,
+        "fork_path": "src/pso/boss/TBoss3Volopt.cpp",
+        "owner": "src/pso/boss/volopt/TBoss3Volopt.cpp"
+      },
+      {
+        "row": 2397,
+        "fork_path": "src/pso/object/TObjCMName.cpp",
+        "owner": "src/pso/ui/charcreate/TObjCMName.cpp"
+      },
+      {
+        "row": 2436,
+        "fork_path": "src/pso/misc/TChCrLoadAfs.cpp",
+        "owner": "src/pso/ui/charcreate/TChCrLoadAfs.cpp"
+      },
+      {
+        "row": 2577,
+        "fork_path": "src/pso/ui/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+        "owner": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp"
+      },
+      {
+        "row": 2623,
+        "fork_path": "src/pso/ui/TAdEnterSerialAccessGC.cpp",
+        "owner": "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp"
+      },
+      {
+        "row": 2699,
+        "fork_path": "src/pso/misc/TCheckRoomSequence.cpp",
+        "owner": "src/pso/ui/city/TCheckRoomSequence.cpp"
+      },
+      {
+        "row": 2714,
+        "fork_path": "src/pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+        "owner": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp"
+      },
+      {
+        "row": 3061,
+        "fork_path": "src/pso/misc/TPlyJoinLobbyEntry.cpp",
+        "owner": "src/pso/network/TPlyJoinLobbyEntry.cpp"
+      },
+      {
+        "row": 4042,
+        "fork_path": "src/pso/item/TItem.cpp",
+        "owner": "src/pso/item/TItem.cpp"
+      },
+      {
+        "row": 4161,
+        "fork_path": "src/pso/player/TObjPlayer_802E6CA8.cpp",
+        "owner": "src/pso/player/TObjPlayer_802E6CA8.cpp"
+      },
+      {
+        "row": 4244,
+        "fork_path": "src/pso/misc/TTecGiFoie.cpp",
+        "owner": "src/pso/technique/TTecGiFoie.cpp"
+      },
+      {
+        "row": 4286,
+        "fork_path": "src/pso/misc/TTecGiBarta.cpp",
+        "owner": "src/pso/technique/TTecGiBarta.cpp"
+      },
+      {
+        "row": 4398,
+        "fork_path": "src/pso/misc/TTecCtrl.cpp",
+        "owner": "src/pso/technique/TTecCtrl.cpp"
+      },
+      {
+        "row": 4399,
+        "fork_path": "src/pso/item/TItemAttacker.cpp",
+        "owner": "src/pso/weapon/TItemAttacker.cpp"
+      },
+      {
+        "row": 4409,
+        "fork_path": "src/pso/misc/TPlayerFootStamp.cpp",
+        "owner": "src/pso/player/TPlayerFootStamp.cpp"
+      },
+      {
+        "row": 4424,
+        "fork_path": "src/pso/item/TItemDrop_80105D0C.cpp",
+        "owner": "src/pso/item/drop/TItemDrop_80105D0C.cpp"
+      },
+      {
+        "row": 4510,
+        "fork_path": "src/pso/misc/TLobby_801C25B4.cpp",
+        "owner": "src/pso/unk/TLobby_801C25B4.cpp"
+      },
+      {
+        "row": 5042,
+        "fork_path": "src/pso/system/ChunkMaterialState.cpp",
+        "owner": "src/pso/render/ChunkMaterialState.cpp"
+      },
+      {
+        "row": 5087,
+        "fork_path": "src/pso/misc/TLobby_803382E4.cpp",
+        "owner": "src/pso/unk/TLobby_803382E4.cpp"
+      },
+      {
+        "row": 5107,
+        "fork_path": "src/pso/misc/TLobby_801E2F94.cpp",
+        "owner": "src/pso/unk/TLobby_801E2F94.cpp"
+      },
+      {
+        "row": 5545,
+        "fork_path": "src/pso/misc/TWindowDD_803430BC.cpp",
+        "owner": "src/pso/ui/window/TWindowDD_803430BC.cpp"
+      },
+      {
+        "row": 5588,
+        "fork_path": "src/pso/misc/TWindowSubStatusDisp_80257BC0.cpp",
+        "owner": "src/pso/ui/window/TWindowSubStatusDisp_80257BC0.cpp"
+      },
+      {
+        "row": 5619,
+        "fork_path": "src/pso/misc/TWindowDD_80341A08.cpp",
+        "owner": "src/pso/ui/window/TWindowDD_80341A08.cpp"
+      },
+      {
+        "row": 5631,
+        "fork_path": "src/pso/misc/TWindowSubAreaMapDisp.cpp",
+        "owner": "src/pso/ui/window/TWindowSubAreaMapDisp.cpp"
+      },
+      {
+        "row": 5818,
+        "fork_path": "src/pso/misc/TWindowMessage.cpp",
+        "owner": "src/pso/ui/window/TWindowMessage.cpp"
+      },
+      {
+        "row": 5844,
+        "fork_path": "src/pso/misc/TWindowSubStatusDisp_80338740.cpp",
+        "owner": "src/pso/ui/window/TWindowSubStatusDisp_80338740.cpp"
+      },
+      {
+        "row": 5854,
+        "fork_path": "src/pso/misc/TWindowSubComCard_80265410.cpp",
+        "owner": "src/pso/ui/window/TWindowSubComCard_80265410.cpp"
+      },
+      {
+        "row": 5941,
+        "fork_path": "src/pso/misc/TWindowSubComCard_80271E7C.cpp",
+        "owner": "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp"
+      },
+      {
+        "row": 6023,
+        "fork_path": "src/pso/unk/text_803D96A8.cpp",
+        "owner": "src/pso/unk/text_803D96A8.cpp"
+      },
+      {
+        "row": 6027,
+        "fork_path": "src/pso/misc/TLobby_80207DA8.cpp",
+        "owner": "src/pso/unk/TLobby_80207DA8.cpp"
+      },
+      {
+        "row": 6421,
+        "fork_path": "src/pso/misc/TOContainerAncientEnemy.cpp",
+        "owner": "src/pso/object/container/TOContainerAncientEnemy.cpp"
+      },
+      {
+        "row": 6452,
+        "fork_path": "src/pso/misc/TOTrapSeabed01.cpp",
+        "owner": "src/pso/object/trap/TOTrapSeabed01.cpp"
+      },
+      {
+        "row": 6512,
+        "fork_path": "src/pso/object/TObjFish.cpp",
+        "owner": "src/pso/object/ambient/TObjFish.cpp"
+      },
+      {
+        "row": 6722,
+        "fork_path": "src/pso/object/TObjComputer.cpp",
+        "owner": "src/pso/object/TObjComputer.cpp"
+      },
+      {
+        "row": 6742,
+        "fork_path": "src/pso/quest/QuestOpcodeHandlers.cpp",
+        "owner": "src/pso/quest/QuestOpcodeHandlers.cpp"
+      },
+      {
+        "row": 6751,
+        "fork_path": "src/pso/quest/TQuestThread.cpp",
+        "owner": "src/pso/quest/TQuestThread.cpp"
+      },
+      {
+        "row": 6841,
+        "fork_path": "src/pso/item/TObjContainerItem.cpp",
+        "owner": "src/pso/object/container/TObjContainerItem.cpp"
+      },
+      {
+        "row": 6950,
+        "fork_path": "src/pso/object/TObjGrass.cpp",
+        "owner": "src/pso/object/ambient/TObjGrass.cpp"
+      },
+      {
+        "row": 7030,
+        "fork_path": "src/pso/object/LobbyPigeonPath.cpp",
+        "owner": "src/pso/object/lobby/LobbyPigeonPath.cpp"
+      },
+      {
+        "row": 7343,
+        "fork_path": "src/pso/misc/TLobby_801F3A24.cpp",
+        "owner": "src/pso/unk/TLobby_801F3A24.cpp"
+      }
+    ],
+    "open_rows": 334,
+    "allocator_disposition": "Raw byte allocation and release use upstream's mem_alloc and mem_free symbols."
+  },
+  "fork_workspace": {
+    "trial": "286a647810e3d1d766421cae6c2b88451d4bf4bb",
+    "overlay_paths": 130,
+    "updated_overlay_paths": [
+      "src/pso/map/CsnQuery.cpp",
+      "src/pso/ui/charcreate/TObjCMName.cpp",
+      "src/pso/unk/text_803D96A8.cpp"
+    ],
+    "archive_sha256": "ec6fdeeb390f43fea408ea2b2ea71b0cf984b1d14e3d4f1385ddd03deb033a69",
+    "materialized_tree": "4aedba33c080f9b09dc3d22b8f1992d41b7b808b",
+    "force_active": 27027,
+    "resolved_overlap": "The host-only vector fallback retains its existing patch and uses the shared memory header."
+  }
+}

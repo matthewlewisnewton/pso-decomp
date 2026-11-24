@@ -1,0 +1,403 @@
+{
+  "upstream": "6aee940ecaf4775ef71659a74534127a49cf9412",
+  "asset_donor": "ab0eb740942e43b9d29d7d776510c8478798f38a",
+  "asset_replay": {
+    "head": "34ad1fb875f86d39a84bfd1ca5c5c377f6f19824",
+    "base": "7532966bcf28367c015d49217ad5974207edf0a5",
+    "tree": "6d35eb4dc08a55ea422fa1d5824d42ced445092f",
+    "paths": 121,
+    "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2417,
+    "coverage_losses": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0
+    },
+    "linker_labels": [
+      {
+        "module": "psov3",
+        "address": "0x8001F018",
+        "before": "load_texture_sub__11BmlResourceFPvl",
+        "after": "load_texture_sub__11BmlResourceFPCcl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8001F128",
+        "before": "load_bml_exec__6TLobbyFPUcPUc",
+        "after": "load_bml_exec__6TLobbyFP11BmlResourcePCc"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8001F998",
+        "before": "load_bin_motion_callback__FP20BmlMotionLoadRequest",
+        "after": "load_bin_motion_callback__FPv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8001FA1C",
+        "before": "load_bin_model_callback__FP19BmlModelLoadRequest",
+        "after": "load_bin_model_callback__FPv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8001FCC4",
+        "before": "load_bin_motion__11BmlResourceFPvl",
+        "after": "load_bin_motion__11BmlResourceFPCcl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8001FD98",
+        "before": "load_bin_model__11BmlResourceFPvl",
+        "after": "load_bin_model__11BmlResourceFPCcl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80020004",
+        "before": "__ct__11BmlResourceFlP21BmlResourceDescriptorllPv",
+        "after": "__ct__11BmlResourceFlP21BmlResourceDescriptorPFPv_vPvPv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800FA044",
+        "before": "add_named_entry__6TLobbyFll",
+        "after": "add_named_entry__6TLobbyFP11BmlResourcePCc"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800FA164",
+        "before": "create_file_load_entry__6TLobbyFllUllPPv",
+        "after": "create_file_load_entry__6TLobbyFPCcP16GinjaTextureListPFPv_vPCvPPv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800FA2A0",
+        "before": "create_named_entry__6TLobbyFiiUiiPv",
+        "after": "create_named_entry__6TLobbyFPCcPvPFPv_vPCvPPv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800FA388",
+        "before": "request_file_read__6TLobbyFllPlPPv",
+        "after": "request_file_read__6TLobbyFPCcPvPlPPv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800FA7E0",
+        "before": "pop_stack_entry__6TLobbyFs",
+        "after": "pop_stack_entry__6TLobbyFP20AsyncFileReadRequests"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800FA848",
+        "before": "link_into_list__FPv",
+        "after": "link_into_list__FP20AsyncFileReadRequest"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801E4874",
+        "before": "load_gvm_texture_file__Fl",
+        "after": "load_gvm_texture_file__FPCc"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801E4A44",
+        "before": "read_file_header__9TLanguageFiPv",
+        "after": "read_file_header__9TLanguageFPUcP13GvmFileHeader"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801E4AB0",
+        "before": "read_into_buffer__9TLanguageFll",
+        "after": "read_into_buffer__9TLanguageFPvl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8032C854",
+        "before": "send_data__6TLobbyFl",
+        "after": "send_data__6TLobbyFPCc"
+      }
+    ]
+  },
+  "combined_review": {
+    "head": "6077e29d1cedfbbba0565de112f08aa67bbe6270",
+    "base": "61a66013a179485ff5923b6248c8b2b2d4b6de60",
+    "tree": "6d35eb4dc08a55ea422fa1d5824d42ced445092f",
+    "paths": 174,
+    "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2417,
+    "coverage_losses": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0
+    },
+    "linker_labels": [
+      {
+        "module": "psov3",
+        "address": "0x8001F018",
+        "before": "load_texture_sub__11BmlResourceFPvl",
+        "after": "load_texture_sub__11BmlResourceFPCcl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8001F128",
+        "before": "load_bml_exec__6TLobbyFPUcPUc",
+        "after": "load_bml_exec__6TLobbyFP11BmlResourcePCc"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8001F998",
+        "before": "load_bin_motion_callback__FP20BmlMotionLoadRequest",
+        "after": "load_bin_motion_callback__FPv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8001FA1C",
+        "before": "load_bin_model_callback__FP19BmlModelLoadRequest",
+        "after": "load_bin_model_callback__FPv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8001FCC4",
+        "before": "load_bin_motion__11BmlResourceFPvl",
+        "after": "load_bin_motion__11BmlResourceFPCcl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8001FD98",
+        "before": "load_bin_model__11BmlResourceFPvl",
+        "after": "load_bin_model__11BmlResourceFPCcl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80020004",
+        "before": "__ct__11BmlResourceFlP21BmlResourceDescriptorllPv",
+        "after": "__ct__11BmlResourceFlP21BmlResourceDescriptorPFPv_vPvPv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800FA044",
+        "before": "add_named_entry__6TLobbyFll",
+        "after": "add_named_entry__6TLobbyFP11BmlResourcePCc"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800FA164",
+        "before": "create_file_load_entry__6TLobbyFllUllPPv",
+        "after": "create_file_load_entry__6TLobbyFPCcP16GinjaTextureListPFPv_vPCvPPv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800FA2A0",
+        "before": "create_named_entry__6TLobbyFiiUiiPv",
+        "after": "create_named_entry__6TLobbyFPCcPvPFPv_vPCvPPv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800FA388",
+        "before": "request_file_read__6TLobbyFllPlPPv",
+        "after": "request_file_read__6TLobbyFPCcPvPlPPv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800FA7E0",
+        "before": "pop_stack_entry__6TLobbyFs",
+        "after": "pop_stack_entry__6TLobbyFP20AsyncFileReadRequests"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800FA848",
+        "before": "link_into_list__FPv",
+        "after": "link_into_list__FP20AsyncFileReadRequest"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801E4874",
+        "before": "load_gvm_texture_file__Fl",
+        "after": "load_gvm_texture_file__FPCc"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801E4A44",
+        "before": "read_file_header__9TLanguageFiPv",
+        "after": "read_file_header__9TLanguageFPUcP13GvmFileHeader"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801E4AB0",
+        "before": "read_into_buffer__9TLanguageFll",
+        "after": "read_into_buffer__9TLanguageFPvl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802C74AC",
+        "before": "init_slot_entry__15TAdChrSelSlotGCFlPv",
+        "after": "init_slot_entry__15TAdChrSelSlotGCFlPC21CharacterSlotPosition"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802C7560",
+        "before": "init_slot__15TAdChrSelSlotGCFlPv",
+        "after": "init_slot__15TAdChrSelSlotGCFlPC21CharacterSlotPosition"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8032A0A4",
+        "before": "create__13TAdMcSelectGCFPv",
+        "after": "create__13TAdMcSelectGCFP7TObject"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8032C854",
+        "before": "send_data__6TLobbyFl",
+        "after": "send_data__6TLobbyFPCc"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803E8790",
+        "before": "aram_read_thunk__22TQuestVmDownLoadServerFUli",
+        "after": "aram_read_thunk__22TQuestVmDownLoadServerFlPvl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803F0AB8",
+        "before": "aram_dma_read__22TQuestVmDownLoadServerFPvPvi",
+        "after": "aram_dma_read__22TQuestVmDownLoadServerFlPvl"
+      }
+    ]
+  },
+  "original_data_ranges": 90,
+  "original_data_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "runtime": {
+    "resources": {
+      "results": [
+        "File queue lifecycle, sector tails and both GVM buffer paths passed.",
+        "GBA filename and destination dispatch at the original size limit passed.",
+        "File queue lifecycle, sector tails and both GVM buffer paths passed.",
+        "GBA filename and destination dispatch at the original size limit passed."
+      ],
+      "log_sha256": "c9223bf156f3e72d1f73b59d59d8dafa53d54d76a25ad93615d9e4b02a374e06"
+    },
+    "bml": {
+      "results": [
+        "BML initialization, named requests, archive reads, completion and cancellation passed.",
+        "Texture input layout and both entry flag paths passed.",
+        "BML initialization, named requests, archive reads, completion and cancellation passed.",
+        "Texture input layout and both entry flag paths passed."
+      ],
+      "log_sha256": "413468fee061dba939767d88602fdf41da816327e5a5baa3c23a8cad6f9cfd97"
+    },
+    "footstamp": {
+      "results": [
+        "PsoV3.dol: footprint GVM load, culling, texture binding and ordered release passed.",
+        "psov3.dol: footprint GVM load, culling, texture binding and ordered release passed."
+      ],
+      "log_sha256": "baf56c191c207c5648803656a9854761b233004c957f88f2231360b784e12ee8"
+    },
+    "card": {
+      "results": [
+        "PsoV3.dol: load status, slot geometry, warnings, card polling and file metadata passed.",
+        "psov3.dol: load status, slot geometry, warnings, card polling and file metadata passed."
+      ],
+      "log_sha256": "9465ab550e36a5e4ac0cf9c314375789dac6ba664ecfcb0e418efa25858c2625"
+    },
+    "quest": {
+      "results": [
+        "PsoV3.dol: Challenge and online titles, complete entry traversal, callbacks and release passed.",
+        "psov3.dol: Challenge and online titles, complete entry traversal, callbacks and release passed."
+      ],
+      "log_sha256": "7110b73f6b79e5ec97e532b5db64b378f896a84a76e0f8aa57c10599a6399612"
+    },
+    "cache": {
+      "results": [
+        "orig/GPOE8P/files/PsoV3.dol: 128 slots, ten linked pages, 80 buckets, 512 free-list nodes, file reads and page eviction passed",
+        "build/GPOE8P/psov3.dol: 128 slots, ten linked pages, 80 buckets, 512 free-list nodes, file reads and page eviction passed"
+      ],
+      "log_sha256": "fae97a725ebe216900f2879cad3959f1b1fafa0ce0aad866f51a86eb8557182b"
+    },
+    "aram": {
+      "results": [
+        "orig/GPOE8P/files/PsoV3.dol: signed handles, ARAM callback ownership, rounded reads, EOF clamping and timeout cleanup passed",
+        "build/GPOE8P/psov3.dol: signed handles, ARAM callback ownership, rounded reads, EOF clamping and timeout cleanup passed"
+      ],
+      "log_sha256": "3649ea0a7999bc429d7b905b3b60810de44b8e3b81326c46306f65c49843b715"
+    }
+  },
+  "probe_symbol_alias": "safe_free__23TAdSinglePlyChrSelectGCFPv = .text:0x8007EBB4; // type:function size:0x28",
+  "review_commits": [
+    "1fb22aa1596c15ac1b42c0cfc4b6ed40e1490022",
+    "6077e29d1cedfbbba0565de112f08aa67bbe6270"
+  ],
+  "replay_decisions": [
+    "Use the existing BmlResource structure for both descriptor and filename-list construction.",
+    "Keep the current model-list names, shared memory helpers, and native enemy and boss resource owners.",
+    "Maintain the allocation, callback and cancellation contracts through the typed file request.",
+    "Use native Ginja texture lists and the shared loader declaration in the moved callers."
+  ],
+  "fork_workspace": {
+    "parent": "34ad1fb875f86d39a84bfd1ca5c5c377f6f19824",
+    "previous_workspace": "c4aa4741547a4d3143f11080dfb111e2699e2409",
+    "overlay_paths": 130,
+    "retained_linker_labels": 26963,
+    "updated_linker_labels": {
+      "TItemEffEquip__ct": "__ct__13TItemEffEquipFP7TObjectUslll",
+      "TObjPlayer__sub_801D4678": "__dt__13List_801D4744Fv",
+      "TObjPlayer__sub_801D46D4": "__ct__13List_801D4744Fl",
+      "TObjPlayer__sub_801D4730": "__ct__12Ent_801D4744Fv",
+      "TObjPlayer__sub_801D47D8": "__as__12Ent_801D4744FR12Ent_801D4744",
+      "__ct__13TObjEneMorfosFP7TObjectPv": "__ct__13TObjEneMorfosFP7TObjectP14EnemyPlacement",
+      "__ct__13TUnk_8049F038FP7TObjectsl": "__ct__13TUnk_8049F038FP7TObjectUsl",
+      "__ct__14TObjEneGibblesFP7TObjectPv": "__ct__14TObjEneGibblesFP7TObjectP14EnemyPlacement",
+      "__ct__15TItemEffBringerFv": "__ct__15TItemEffBringerFPvPC3VecPC3Vecf",
+      "__ct__15TObjEneGyaranzoFP7TObjectPv": "__ct__15TObjEneGyaranzoFP7TObjectP14EnemyPlacement",
+      "__ct__16TObjEneMorfosArmFP7TObjectPv": "__ct__16TObjEneMorfosArmFP7TObjectP13TObjEneMorfos",
+      "check_switch_available__6TLobbyFPvi": "check_switch_available__10TObjPlayerFl",
+      "is_item_valid__9TItemListFl": "is_item_valid__9TItemListFP9TItemList",
+      "load_bin_model__11BmlResourceFPvl": "load_bin_model__11BmlResourceFPCcl",
+      "load_bin_model_callback__FP19BmlModelLoadRequest": "load_bin_model_callback__FPv",
+      "load_bin_motion__11BmlResourceFPvl": "load_bin_motion__11BmlResourceFPCcl",
+      "load_bin_motion_callback__FP20BmlMotionLoadRequest": "load_bin_motion_callback__FPv",
+      "load_texture_sub__11BmlResourceFPvl": "load_texture_sub__11BmlResourceFPCcl",
+      "read_file_header__9TLanguageFiPv": "read_file_header__9TLanguageFPUcP13GvmFileHeader",
+      "read_into_buffer__9TLanguageFll": "read_into_buffer__9TLanguageFPvl",
+      "reduce_child_item_amounts__6TLobbyFv": "reduce_child_item_amounts__9TItemListFv",
+      "reduce_item_amount__6TLobbyFlll": "reduce_item_amount__8TPlyItemFP10TObjPlayerP9TItemListl",
+      "reduce_owner_matched_items__6TLobbyFv": "reduce_owner_matched_items__9TItemListFv",
+      "remove_equipped_item__8TPlyItemFlPv": "remove_equipped_item__8TPlyItemFP10TObjPlayerP9TItemList",
+      "snap_to_ground__13TObjEneMorfosFll": "snap_to_ground__13TUnk_804EF130FP3Vec",
+      "sort_by_key__10TObjPlayerFv": "sort_by_key__13List_801D4744Fv"
+    },
+    "materialized_tree_before_notes_update": "0c8e08c56236ffb339fbfe0c1178e71e096e3912",
+    "archive_sha256": "55d9494896228485b89408efac80a70c4e7bed75778e5c1f5cd0b24ac650e471",
+    "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "coverage_check": "pass",
+    "tests": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    },
+    "test_log_sha256": {
+      "fork": "ff1851ab26d9b43653faca38df0edb8e32dc0e0144329773b3ec7c696e357a5f",
+      "tool": "151e755e77d6b4abe8a478076711f265b4ca9879451d2e62955a199c8d9d50b0",
+      "host": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    },
+    "host_executables": [
+      "vector_math_fallbacks",
+      "item_factory_callbacks",
+      "loader_transfer",
+      "ginja_parameter_callbacks",
+      "exi_ethernet_fallbacks"
+    ]
+  }
+}

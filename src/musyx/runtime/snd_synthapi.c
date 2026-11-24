@@ -1,12 +1,6 @@
-#include "musyx/runtime/musyx_runtime_a.h"
+#include "musyx/musyx.h"
+#include "musyx/runtime/musyx_internal.h"
 
-#define ARR_GET_803A3D8C(arr, offset) ((void *)(offset + (u32)arr))
-#define SEQ_CUR (*(SEQ_INSTANCE_803A49C8 **)&lbl_805D7360)
-#define SEQ_FREE_LIST ((SEQ_INSTANCE_803A49C8 *)lbl_805D7378)
-#define SEQ_RUN_LIST ((SEQ_INSTANCE_803A49C8 *)lbl_805D737C)
-#define SEQ_RUN_L (*(SEQ_INSTANCE_803A49C8 **)&lbl_805D737C)
-#define ARR_GET_803A5A78(arr, offset) ((void *)(offset + (u32)arr))
-#define ARR_GET_803A6364(arr, offset) ((void *)(offset + (u32)arr))
 extern "C" {
 
 s32 sndFXCtrl(u32 vid, u8 ctrl, u8 value) {
@@ -25,25 +19,21 @@ s32 sndFXCtrl14(u32 vid, u8 ctrl, u16 value) {
     return ret;
 }
 
-s32 sndFXKeyOff(s32 arg0) {
-    s32 var_r31;
-    s32 var_r3;
-    var_r31 = arg0;
+s32 sndFXKeyOff(s32 vid) {
+    s32 ret;
     hwDisableIrq();
-    var_r3 = var_r31;
-    var_r31 = synthSendKeyOff((int)((int) (var_r3)));
+    ret = synthSendKeyOff(vid);
     hwEnableIrq();
-    var_r3 = var_r31;
-    return var_r3;
+    return ret;
 }
 
-s32 sndFXStartParaInfo(s16 arg0, u8 arg1, u8 arg2, s32 arg3, Req_803AA1E0 *req) {
+u32 sndFXStartParaInfo(u16 fid, u8 vol, u8 pan, u8 studio, SndParaInfo *req) {
     u32 id;
     u8 i;
-    Ent_803AA1E0 *e;
+    SndParaEntry *e;
     u8 t;
     hwDisableIrq();
-    id = synthFXStart(arg0, arg1, arg2, arg3, synthITDDefault[(u8)arg3].b1);
+    id = synthFXStart(fid, vol, pan, studio, synthITDDefault[studio].sfx);
     if (id != 0xFFFFFFFF) {
         e = req->ents;
         i = 0;
@@ -63,13 +53,13 @@ s32 sndFXStartParaInfo(s16 arg0, u8 arg1, u8 arg2, s32 arg3, Req_803AA1E0 *req) 
 }
 
 u32 sndFXCheck(u32 id) {
-    if (vidGetInternalId((u32)(id)) != 0xFFFFFFFF) return id;
+    if (vidGetInternalId(id) != 0xFFFFFFFF) return id;
     return 0xFFFFFFFF;
 }
 
-void sndVolume(u8 arg0, u16 arg1, u8 arg2) {
+void sndVolume(u8 volume, u16 time, u8 vGroup) {
     hwDisableIrq();
-    synthVolume(arg0, arg1, arg2, 0, -1);
+    synthVolume(volume, time, vGroup, 0, -1);
     hwEnableIrq();
 }
 
@@ -96,13 +86,14 @@ void sndOutputMode(s32 mode) {
     }
     if (old != (u32)synthFlags) {
         for (i = 0; i < synthInfo.voiceNum; i++) {
-            ((Rec_803AA35C *)synthVoice)[i].flags |= 0x200000000000ULL;
+            synthVoice[i].cFlags |= 0x200000000000ULL;
         }
         streamOutputModeChanged();
     }
 }
 
-void sndSetAuxProcessingCallbacks(u8 studio, void *auxA, s32 userA, u8 midiA, u32 seqIDA, void *auxB, s32 userB, u8 midiB, u32 seqIDB) {
+void sndSetAuxProcessingCallbacks(u8 studio, SND_AUX_CALLBACK auxA, void *userA, u8 midiA, SND_SEQID seqIDA,
+                                  SND_AUX_CALLBACK auxB, void *userB, u8 midiB, SND_SEQID seqIDB) {
     hwDisableIrq();
     if (auxA != 0) {
         if ((synthAuxAMIDI[studio] = midiA) != 0xFF) {
@@ -124,7 +115,7 @@ void sndSetAuxProcessingCallbacks(u8 studio, void *auxA, s32 userA, u8 midiA, u3
         synthAuxBCallback[studio] = 0;
         synthAuxBMIDI[studio] = 0xFF;
     }
-    hwSetAUXProcessingCallbacks(studio, (s32)auxA, userA, (s32)auxB, userB);
+    hwSetAUXProcessingCallbacks(studio, auxA, userA, auxB, userB);
     hwEnableIrq();
 }
 #pragma push
@@ -135,8 +126,8 @@ void synthActivateStudio(u8 studio, u32 isMaster, u32 type) {
     synthAuxBCallback[studio] = 0;
     synthAuxAMIDI[studio] = 0xFF;
     synthAuxBMIDI[studio] = 0xFF;
-    synthITDDefault[studio].b1 = 0;
-    synthITDDefault[studio].b0 = 0;
+    synthITDDefault[studio].sfx = 0;
+    synthITDDefault[studio].music = 0;
     hwActivateStudio(studio, isMaster, type);
     hwEnableIrq();
 }
@@ -144,9 +135,9 @@ void synthActivateStudio(u8 studio, u32 isMaster, u32 type) {
 
 void synthDeactivateStudio(u8 studio) {
     u32 i;
-    for (i = 0; i < (*(Cfg_803AA66C *)&synthInfo).voiceNum; ++i) {
-        Rec_803AA66C *sv;
-        if (studio == (sv = &(*(Rec_803AA66C * *)&synthVoice)[i])->studio) {
+    for (i = 0; i < synthInfo.voiceNum; ++i) {
+        SynthVoice *sv;
+        if (studio == (sv = &synthVoice[i])->studio) {
             if (sv->id != 0xFFFFFFFF) {
                 voiceKillSound(sv->vidList->vid);
             } else if (hwIsActive(i)) {
@@ -163,14 +154,12 @@ void synthDeactivateStudio(u8 studio) {
     hwDeactivateStudio(studio);
 }
 
-void synthAddStudioInput(u8 arg0, void *in_desc) {
-    void hwAddInput(u8, void *);
-    hwAddInput(arg0, in_desc);
+void synthAddStudioInput(u8 studio, SND_STUDIO_INPUT *in_desc) {
+    hwAddInput(studio, in_desc);
 }
 
-void synthRemoveStudioInput(u8 arg0, void *in_desc) {
-    void hwRemoveInput(u8, void *);
-    hwRemoveInput(arg0, in_desc);
+void synthRemoveStudioInput(u8 studio, SND_STUDIO_INPUT *in_desc) {
+    hwRemoveInput(studio, in_desc);
 }
 
 }

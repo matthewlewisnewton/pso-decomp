@@ -1,6 +1,6 @@
 #ifndef PSO_OBJECT_TOBJWARNCHIME_H
 #define PSO_OBJECT_TOBJWARNCHIME_H
-#include "pso/TObject.h"
+#include "pso/system/task/TObject.h"
 #include "types.h"
 
 class TObjWarnChime : public TObject {
@@ -17,13 +17,16 @@ public:
     void update_player_hp_ratios();
     void update_when_camera_active();
     void reset_state();
+    // Whether the chime may run: the local player is up (outside split screen, in a quest)
+    // and the floor is not Pioneer 2, the lobby or a battle stage.
+    static s32 should_update();
     static TObjWarnChime* create(TObject* parent);
 };
 #include <stddef.h>
-typedef char WarnChimeBaseSize[(sizeof(TObject)==0x1C)?1:-1];
-typedef char WarnChimeSize[(sizeof(TObjWarnChime)==0x38)?1:-1];
-typedef char WarnChimeState[(offsetof(TObjWarnChime,m_state)==0x1C)?1:-1];
-typedef char WarnChimeCountdown[(offsetof(TObjWarnChime,m_countdown)==0x20)?1:-1];
-typedef char WarnChimeInterval[(offsetof(TObjWarnChime,m_chime_interval)==0x24)?1:-1];
-typedef char WarnChimeRatios[(offsetof(TObjWarnChime,m_player_hp_ratios)==0x28)?1:-1];
+LAYOUT_ASSERT(WarnChimeBaseSize, sizeof(TObject)==0x1C);
+LAYOUT_ASSERT(WarnChimeSize, sizeof(TObjWarnChime)==0x38);
+LAYOUT_ASSERT(WarnChimeState, offsetof(TObjWarnChime,m_state)==0x1C);
+LAYOUT_ASSERT(WarnChimeCountdown, offsetof(TObjWarnChime,m_countdown)==0x20);
+LAYOUT_ASSERT(WarnChimeInterval, offsetof(TObjWarnChime,m_chime_interval)==0x24);
+LAYOUT_ASSERT(WarnChimeRatios, offsetof(TObjWarnChime,m_player_hp_ratios)==0x28);
 #endif

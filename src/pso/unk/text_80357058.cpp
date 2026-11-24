@@ -1,23 +1,29 @@
 #include "pso/math/ClampedStep.h"
-#include "pso/protocol/protocol_types.h"
+#include "pso/system/TrailStrip.h"
+#define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/network/protocol/protocol_types.h"
 #include "types.h"
-#include "pso/misc/TLobby_801E43E4.h"
-#include "pso/item/TItemAttackCol_802E4798.h"
-#include "pso/object/TObjLight_803DF220.h"
-#include "pso/object/TObject_80019A50.h"
-#include "pso/object/TObject_8001A448.h"
+#include "pso/unk/TLobby_801E43E4.h"
+#include "pso/object/ambient/TObjLight_803DF220.h"
+#include "pso/system/task/TObject_80019A50.h"
+#include "pso/system/task/TObject_8001A448.h"
 #include "pso/render/render_util.h"
 #include "pso/unk/text_80357058.h"
 
 #include "pso/item/TUnk_804E355C.h"
-#include "pso/item/TItemEffOrgaFlowShot.h"
-#include "pso/TParticleCtrl.h"
-#include "pso/boss/TBoss6Rock.h"
-#include "pso/boss/TBoss6Type2.h"
-#include "pso/boss/TObjBoss2Tunnel.h"
-#include "pso/item/TItemAttackCol.h"
+#include "pso/effect/item/TItemEffOrgaFlowShot.h"
+#include "pso/effect/particle/TParticleCtrl.h"
+#include "pso/boss/olgaflow/TBoss6Rock.h"
+#include "pso/boss/olgaflow/TBoss6Type2.h"
+#include "pso/boss/olgaflow/TBoss6Mag.h"
+#include "pso/boss/derolle/TObjBoss2Tunnel.h"
+#include "pso/weapon/TItemAttackCol.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/system/task/TObject.h"
+#include "pso/math/AngleLookup.h"
+#include "pso/unk/text_803D96A8.h"
 
+#pragma readonly_strings on
 
 
 struct B_80357058 { u8 hdr[4]; u8 d[0x40]; u8 tail[8+1]; };
@@ -39,32 +45,17 @@ struct Shot_80357284 {
 
 struct Pkt_803570E4 { u8 hdr[4]; s8 d[0x40]; };
 
-struct Vec_803570E4 { f32 x, y, z; };
-
 struct V4_8035740C { f32 x, y, z; s32 w; };
 
 struct O_8035740C { u8 pad0[0xC4]; V4_8035740C v[10]; };
 
+const char *TItemEffOrgaFlowShot::class_name = "TItemEffOrgaFlowShot";
+
 extern "C" {
-f32 sin_table_lookup(s32);
-f32 cos_table_lookup(s32);
-f32 normalize_vector(void *);
-extern s32 TItemEffOrgaFlowShot__name;
-static const f32 lbl_805E0038 = 10.0f;
-static const f32 lbl_805E003C = 0.0f;
-static const f32 lbl_805E0040 = 200.0f;
-static const f32 lbl_805E0044 = 3.0f;
-static const f32 lbl_805E0028 = 0.5f;
-static const f32 lbl_805E002C = 4.0f;
 s32 is_local_client_floor_leader();
-void grid_to_world_pos__11TBoss6Type2FccPv(u8, u8, Vec_803570E4 *);
 void clear_rock_state__10TBoss6RockFl(s32 i, s32 a, s32 b);
-extern int olga_flow_subordinate_actions_enabled;
+int olga_flow_subordinate_actions_enabled;
 void handle_6xAD_olga_flow_subordinate_boss_actions(Pkt_803570E4 *pkt);
-s32 has_game_join_id__13TUnk_804E355CFv();
-static const f32 lbl_805E0030 = 50.0f;
-static const f32 lbl_805E0034 = 0.6f;
-void *__nw__7TObjectFUl(int);
 }
 
 void send_6xAD_olga_flow_subordinate_boss_actions(u8 *arg0) {
@@ -79,18 +70,18 @@ void send_6xAD_olga_flow_subordinate_boss_actions(u8 *arg0) {
     }
 }
 
-void TBoss6Type2__sub_803570C8(s8 *arg0) {
+void TBoss6Type2__sub_803570C8(s8 *buf) {
     s32 var_ctr;
 
     for (var_ctr = 0x40; var_ctr != 0; var_ctr -= 1) {
-        *arg0 = -1;
-        arg0 += 1;
+        *buf = -1;
+        buf += 1;
     }
 }
 
 struct B_80357058;
 void handle_6xAD_olga_flow_subordinate_boss_actions(Pkt_803570E4 *pkt) {
-    Vec_803570E4 v[3];
+    Vec v[3];
     s8 boss;
     s32 n;
     s8 *p;
@@ -108,10 +99,10 @@ void handle_6xAD_olga_flow_subordinate_boss_actions(Pkt_803570E4 *pkt) {
             if (p[0] < 0 || p[1] < 0) {
                 break;
             }
-            grid_to_world_pos__11TBoss6Type2FccPv(p[0], p[1], &v[i]);
+            TBoss6Type2::grid_to_world_pos(p[0], p[1], &v[i]);
             n++;
         }
-        TBoss6Type2::set_path_points_by_index(boss, v, n);
+        TBoss6Mag::set_path_points_by_index(boss, v, n);
     }
     for (j = 0; j < 0x40; j++) {
         if (pkt->d[j] >= 0 && j >= 7 && j <= 0x26) {
@@ -186,25 +177,23 @@ void TItemEffOrgaFlowShot::update_segments() {
 #pragma push
 #pragma fp_contract on
 void TItemEffOrgaFlowShot::update_position_from_velocity() {
-    u8 *arg0 = (u8 *)this;
-    f32 temp_f2;
-    temp_f2 = lbl_805E0028 * *(f32 *)&this->m_190;
-    this->m_40 = temp_f2;
-    *(f32 *)((s8 *)arg0 + 0x44) = (f32) (lbl_805E002C + *(f32 *)&this->m_194);
-    this->position.x = (f32) ((this->m_17c * temp_f2) + this->m_114);
-    this->position.y = (f32) *(f32 *)&this->unk_118;
-    this->position.z = (f32) ((this->m_184 * temp_f2) + this->m_11c);
+    f32 radius;
+    radius = 0.5f * length;
+    body.radius = radius;
+    body.half_width = 4.0f + spread;
+    position.x = (forward.x * radius) + trail[5].x;
+    position.y = trail[5].y;
+    position.z = (forward.z * radius) + trail[5].z;
 }
 #pragma pop
 
 void TItemEffOrgaFlowShot::render() {
-    s32 arg0 = (s32)this;
     TParticleCtrl::begin_effect_render();
     saved_model_render_flags = model_render_flags;
     set_depth_buffer_settings_1();
     set_additive_blend();
-    TObjPlayer__sub_803DF768(1);
-    draw_untextured_trail_strip((void *)(arg0 + 0xC4), 10);
+    setup_world_color_draw(1);
+    draw_untextured_trail_strip(trail, 10);
     reset_player_transform();
     set_default_alpha_blend();
     restore_saved_depth_alpha_state();
@@ -213,78 +202,71 @@ void TItemEffOrgaFlowShot::render() {
 }
 
 void TItemEffOrgaFlowShot::run_task() {
-    s32 temp_r3;
     s32 i;
-    u8 *item_eff_orga_flow_shot = (u8 *)this;
-    if (has_game_join_id__13TUnk_804E355CFv() != 0) {
-        ((TUnk_804E355C *)item_eff_orga_flow_shot)->check_hits();
+    if (has_game_join_id() != 0) {
+        check_hits();
     } else {
-        queue_destruction__7TObjectFv((item_eff_orga_flow_shot));
-        disallow_rendering__7TObjectFv((TObject *)(item_eff_orga_flow_shot));
+        queue_destruction();
+        disallow_rendering();
     }
-    add_float_clamped((f32 *)(item_eff_orga_flow_shot + 0x190), (f32)lbl_805E0030, (f32)((f32) (*(f32 *)((s8 *)item_eff_orga_flow_shot + 0x18C))));
-    if (*(f32 *)((s8 *)item_eff_orga_flow_shot + 0x190) == *(f32 *)((s8 *)item_eff_orga_flow_shot + 0x18C)) {
-        add_float_clamped((f32 *)(item_eff_orga_flow_shot + 0x194), (f32)lbl_805E0034, (f32)((f32) (*(f32 *)((s8 *)item_eff_orga_flow_shot + 0x198))));
+    ::approach_value(&length, 50.0f, max_length);
+    if (length == max_length) {
+        ::approach_value(&spread, 0.6f, max_spread);
     }
     for (i = 0; i != 10; i++) {
-        TObjBoss2Tunnel::decrement_packed_timer((u32 *)(&((O_8035740C *)item_eff_orga_flow_shot)->v[i].w), 2);
+        TObjBoss2Tunnel::decrement_packed_timer((u32 *)(&((O_8035740C *)this)->v[i].w), 2);
     }
-    if (*(f32 *)((s8 *)item_eff_orga_flow_shot + 0x194) == *(f32 *)((s8 *)item_eff_orga_flow_shot + 0x198)) {
-        temp_r3 = ((TItemEffOrgaFlowShot *)item_eff_orga_flow_shot)->m_19c;
-        ((TItemEffOrgaFlowShot *)item_eff_orga_flow_shot)->m_19c = (temp_r3 - 1);
-        if (temp_r3 == 0) {
-            queue_destruction__7TObjectFv((item_eff_orga_flow_shot));
+    if (spread == max_spread) {
+        if (linger_frames-- == 0) {
+            queue_destruction();
         }
     }
-    ((TItemEffOrgaFlowShot *)item_eff_orga_flow_shot)->update_segments();
-    ((TItemEffOrgaFlowShot *)item_eff_orga_flow_shot)->update_position_from_velocity();
+    update_segments();
+    update_position_from_velocity();
 }
 
 TItemEffOrgaFlowShot::~TItemEffOrgaFlowShot() {}
 
-TItemEffOrgaFlowShot::TItemEffOrgaFlowShot(TObject *parent, void *params)
-    : TUnk_804E355C(parent, params) {
-    TItemEffOrgaFlowShot *item_eff_orga_flow_shot = this;
-    u8 *arg2 = (u8 *)params;
-    *(s32 *)((s8 *)item_eff_orga_flow_shot + 0) = (s32) TItemEffOrgaFlowShot__name;
-    *(s32 *)((s8 *)item_eff_orga_flow_shot + 0xC0) = 0;
-    item_eff_orga_flow_shot->m_48 = 1;
-    *(f32 *)((s8 *)item_eff_orga_flow_shot + 0x44) = (f32) lbl_805E0038;
-    *(s32 *)((s8 *)item_eff_orga_flow_shot + 0x30) = (s32) *(s32 *)((s8 *)arg2 + 0x28);
-    item_eff_orga_flow_shot->m_188 = (s32) *(s32 *)((s8 *)arg2 + 0x28);
-    *(f32 *)((s8 *)item_eff_orga_flow_shot + 0x190) = (f32) lbl_805E003C;
-    *(f32 *)((s8 *)item_eff_orga_flow_shot + 0x18C) = (f32) lbl_805E0040;
-    *(f32 *)((s8 *)item_eff_orga_flow_shot + 0x194) = (f32) lbl_805E003C;
-    item_eff_orga_flow_shot->m_19c = 0x14;
-    item_eff_orga_flow_shot->m_17c = sin_table_lookup(item_eff_orga_flow_shot->m_188);
-    *(f32 *)((s8 *)item_eff_orga_flow_shot + 0x180) = (f32) lbl_805E003C;
-    item_eff_orga_flow_shot->m_184 = cos_table_lookup(item_eff_orga_flow_shot->m_188);
-    *(f32 *)((s8 *)item_eff_orga_flow_shot + 0x164) = (f32) (*(f32 *)((s8 *)arg2 + 0x2C) - *(f32 *)((s8 *)arg2 + 0x38));
-    *(f32 *)((s8 *)item_eff_orga_flow_shot + 0x168) = (f32) (*(f32 *)((s8 *)arg2 + 0x30) - *(f32 *)((s8 *)arg2 + 0x3C));
-    item_eff_orga_flow_shot->m_16c = (f32) (*(f32 *)((s8 *)arg2 + 0x34) - *(f32 *)((s8 *)arg2 + 0x40));
-    *(f32 *)((s8 *)item_eff_orga_flow_shot + 0x198) = (f32) (lbl_805E0044 * normalize_vector((u8 *)item_eff_orga_flow_shot + 0x164));
-    *(f32 *)((s8 *)item_eff_orga_flow_shot + 0x170) = (f32) (*(f32 *)((s8 *)arg2 + 0x5C) - *(f32 *)((s8 *)arg2 + 0x50));
-    *(f32 *)((s8 *)item_eff_orga_flow_shot + 0x174) = (f32) (*(f32 *)((s8 *)arg2 + 0x60) - *(f32 *)((s8 *)arg2 + 0x54));
-    item_eff_orga_flow_shot->m_178 = (f32) (*(f32 *)((s8 *)arg2 + 0x64) - *(f32 *)((s8 *)arg2 + 0x58));
-    normalize_vector((u8 *)item_eff_orga_flow_shot + 0x170);
-    item_eff_orga_flow_shot->m_f4 = (f32) *(f32 *)((s8 *)arg2 + 0x38);
-    *(f32 *)((s8 *)item_eff_orga_flow_shot + 0xF8) = (f32) *(f32 *)((s8 *)arg2 + 0x3C);
-    item_eff_orga_flow_shot->m_fc = (f32) *(f32 *)((s8 *)arg2 + 0x40);
-    item_eff_orga_flow_shot->m_100 = 0x6040FF40;
-    item_eff_orga_flow_shot->m_114 = (f32) *(f32 *)((s8 *)arg2 + 0x44);
-    *(f32 *)((s8 *)item_eff_orga_flow_shot + 0x118) = (f32) *(f32 *)((s8 *)arg2 + 0x48);
-    item_eff_orga_flow_shot->m_11c = (f32) *(f32 *)((s8 *)arg2 + 0x4C);
-    item_eff_orga_flow_shot->m_120 = 0x408840;
-    item_eff_orga_flow_shot->m_134 = (f32) *(f32 *)((s8 *)arg2 + 0x50);
-    *(f32 *)((s8 *)item_eff_orga_flow_shot + 0x138) = (f32) *(f32 *)((s8 *)arg2 + 0x54);
-    item_eff_orga_flow_shot->m_13c = (f32) *(f32 *)((s8 *)arg2 + 0x58);
-    item_eff_orga_flow_shot->m_140 = 0x6040FF40;
-    item_eff_orga_flow_shot->m_e0 = 0x408840;
-    item_eff_orga_flow_shot->m_160 = 0x408840;
-    item_eff_orga_flow_shot->update_segments();
-    item_eff_orga_flow_shot->update_position_from_velocity();
+TItemEffOrgaFlowShot::TItemEffOrgaFlowShot(TObject *parent, OrgaFlowShotParams *params) : TUnk_804E355C(parent, params) {
+    m_name = class_name;
+    pad_C0 = 0;
+    body.shape = 1;
+    body.half_width = 10.0f;
+    rotation_y = params->rotation_y;
+    angle = params->rotation_y;
+    length = 0.0f;
+    max_length = 200.0f;
+    spread = 0.0f;
+    linger_frames = 0x14;
+    forward.x = sin_table_lookup(angle);
+    forward.y = 0.0f;
+    forward.z = cos_table_lookup(angle);
+    head_dir.x = params->joints[0].x - params->joints[1].x;
+    head_dir.y = params->joints[0].y - params->joints[1].y;
+    head_dir.z = params->joints[0].z - params->joints[1].z;
+    max_spread = 3.0f * normalize_vector(&head_dir);
+    tail_dir.x = params->joints[4].x - params->joints[3].x;
+    tail_dir.y = params->joints[4].y - params->joints[3].y;
+    tail_dir.z = params->joints[4].z - params->joints[3].z;
+    normalize_vector(&tail_dir);
+    trail[3].x = params->joints[1].x;
+    trail[3].y = params->joints[1].y;
+    trail[3].z = params->joints[1].z;
+    trail[3].color = 0x6040FF40;
+    trail[5].x = params->joints[2].x;
+    trail[5].y = params->joints[2].y;
+    trail[5].z = params->joints[2].z;
+    trail[5].color = 0x408840;
+    trail[7].x = params->joints[3].x;
+    trail[7].y = params->joints[3].y;
+    trail[7].z = params->joints[3].z;
+    trail[7].color = 0x6040FF40;
+    trail[1].color = 0x408840;
+    trail[9].color = 0x408840;
+    update_segments();
+    update_position_from_velocity();
 }
 
-void TItemEffOrgaFlowShot::create(void *arg0, void *arg1) {
-    new TItemEffOrgaFlowShot((TObject *)arg0, arg1);
+void TItemEffOrgaFlowShot::create(void *parent, void *params) {
+    new TItemEffOrgaFlowShot((TObject *)parent, (OrgaFlowShotParams *)params);
 }

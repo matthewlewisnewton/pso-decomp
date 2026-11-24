@@ -1,0 +1,265 @@
+{
+  "source": "609e152b653f2ac4ec23c18bc1d76e472224d634",
+  "previous_source": "026e0e3daf695efa35eac8df334df585823cb4b0",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "include/pso/network/TLobby_803FAEA0.h",
+    "include/pso/network/TLobby_80428374.h",
+    "src/pso/network/TLobby_803FAEA0.c",
+    "src/pso/network/TLobby_80428374.c"
+  ],
+  "combined_paths_from_upstream": 1278,
+  "validation": {
+    "source": {
+      "baseline": "026e0e3daf695efa35eac8df334df585823cb4b0",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "b7ef59ce5f05d52a0b99f5c11907f7321b16c8c6c24753265640cf14dc5d402b",
+      "report_sha256": "5651baaad2c4967d332d56742930c0b22cf7931fa2ccc9dbbb0713f2360f124b"
+    },
+    "layer": {
+      "baseline": "609e152b653f2ac4ec23c18bc1d76e472224d634",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "0d0505ff2d6750e611c1caeddd6c815b7e23c1307e306f42ee8cc59bb78deb14",
+      "report_sha256": "5651baaad2c4967d332d56742930c0b22cf7931fa2ccc9dbbb0713f2360f124b"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "b4a27d9cad49ded7b3faf6d1d981047b192f39aeb3c53168a493f83f5998f241"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "32fd2c95100c60a0e6f794220e035f3bb507000948b964c4395ff3e13a09ca90"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "cases_per_image": 13,
+    "images": [
+      "retail",
+      "source",
+      "materialized fork"
+    ],
+    "probe_sha256": "1fd32ba7c01a06a0125c768f99ef4215063467696bb56cf6e32e681d3c575221",
+    "log_sha256": "eb9eb3d1198430dad97faf168a40ce41d45e1ba019892c5cae14e5d4b1cd448a"
+  },
+  "matching_units": {
+    "src/pso/network/TLobby_80428374.c": {
+      "functions": 14,
+      "code": "4644",
+      "data": "468"
+    },
+    "src/pso/network/TLobby_803FAEA0.c": {
+      "functions": 16,
+      "code": "4824",
+      "data": "568"
+    },
+    "src/pso/network/TLobby_804048E8.c": {
+      "functions": 3,
+      "code": "2036",
+      "data": "4632"
+    },
+    "src/pso/network/NetArp.c": {
+      "functions": 21,
+      "code": "5108",
+      "data": "40"
+    },
+    "src/pso/network/TLobby_804050DC.c": {
+      "functions": 31,
+      "code": "8828",
+      "data": "560"
+    },
+    "src/pso/network/TLobby_803F86BC.c": {
+      "functions": 34,
+      "code": "1868",
+      "data": "61968"
+    }
+  },
+  "script_layout_words": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    2,
+    0,
+    1,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "script_pointer_tables": {
+    "0x804801B4": {
+      "0x805E1198": "DIAL",
+      "0x805E11A0": "dial",
+      "0x805E11A8": "SEND",
+      "0x805E11B0": "send",
+      "0x805E11B8": "WAIT",
+      "0x805E11C0": "wait",
+      "0x805E11C8": "DELAY",
+      "0x805E11D0": "delay",
+      "0x8048019C": "TERMINAL",
+      "0x804801A8": "terminal"
+    },
+    "0x804801E0": {
+      "0x805E11D8": "%t",
+      "0x805E11DC": "%u",
+      "0x805E11E0": "%p",
+      "0x805E11E4": "%i",
+      "0x805E11E8": "%%"
+    }
+  },
+  "frame_addresses": [
+    {
+      "fork_label": "NetIPv4WriteHeader",
+      "current_label": "NetIPv4WriteHeader",
+      "section": "text",
+      "address": "0x803FEBFC",
+      "size": 380
+    },
+    {
+      "fork_label": "alloc_from_buffer__FP10B_803FADA0s",
+      "current_label": "alloc_from_buffer",
+      "section": "text",
+      "address": "0x80401B8C",
+      "size": 64
+    },
+    {
+      "fork_label": "arp_resolve_and_send",
+      "current_label": "arp_resolve_and_send",
+      "section": "text",
+      "address": "0x8040799C",
+      "size": 708
+    },
+    {
+      "fork_label": "find_or_add_peer_entry__6TLobbyFssUcPvUcPvs",
+      "current_label": "find_or_add_peer_entry",
+      "section": "text",
+      "address": "0x80408428",
+      "size": 652
+    },
+    {
+      "fork_label": "lbl_805C18A0",
+      "current_label": "lbl_805C18A0",
+      "section": "bss",
+      "address": "0x805C18A0",
+      "size": 16
+    },
+    {
+      "fork_label": "lbl_805C18B0",
+      "current_label": "ppp_rx_buffer",
+      "section": "bss",
+      "address": "0x805C18B0",
+      "size": 512
+    },
+    {
+      "fork_label": "lbl_805C1AB0",
+      "current_label": "lbl_805C1AB0",
+      "section": "bss",
+      "address": "0x805C1AB0",
+      "size": 40
+    }
+  ],
+  "historical": {
+    "first_parent": "1f2ecc1887",
+    "closed": [
+      {
+        "row": 2936,
+        "fork_path": "include/pso/misc/TLobby_80428374.h",
+        "owner": "src/pso/network/TLobby_80428374.c",
+        "detail": "The shared script header owns text and number slots, the byte buffer, const substitutions, line and token pointers, and the signed request and delay return. The native NetSession has the request at 0x88. The response function keeps its upstream entry and explicitly interprets the same short timeout.",
+        "owner_blob": "a0b01470a1edaa8a0871b08b632f58c58d2cca25",
+        "first_parent_blocks": 8,
+        "first_parent_blocks_sha256": "c3b970cb49bef02d985c62c2048529666bf56ba83b41d72947530e84317f7493"
+      },
+      {
+        "row": 2965,
+        "fork_path": "src/pso/misc/TLobby_804048E8.cpp",
+        "owner": "src/pso/network/TLobby_804048E8.c",
+        "detail": "The current compressed-frame owner uses PppFrame, the shared IPv4 header and allocator, and the typed shared PPP control declarations. The ARP owner uses the corresponding ArpState, including the packet pointer at 0x24. The native thread record, PPP receive bytes, and ARP record keep their original addresses. Both ARP callers pass a signed 16-bit iface socket to the word-sized dispatcher, so the current C provider retains its prototype.",
+        "owner_blob": "29b687cfed9b558530fc8d814f864d8cd6d21dac",
+        "first_parent_blocks": 19,
+        "first_parent_blocks_sha256": "edf705efbd1ebd45cae555c29fbff1ac7808a6c73dea6b59336aeca5371749cc"
+      },
+      {
+        "row": 2969,
+        "fork_path": "src/pso/misc/TLobby_80428374.cpp",
+        "owner": "src/pso/network/TLobby_80428374.c",
+        "detail": "The native script retains the original five layouts, ten command entries, five substitutions, terminator and reply state. The request, lookup, delay, send, dial, match, tokenizer and storage routines use the native fields and matching provider signatures.",
+        "owner_blob": "a0b01470a1edaa8a0871b08b632f58c58d2cca25",
+        "first_parent_blocks": 25,
+        "first_parent_blocks_sha256": "4f936a8ad7929fb2456aa8f2f061d82435ceb799666e3e206b17d68ce372ca75"
+      }
+    ],
+    "scoped": {
+      "2962": "The current buffer pool, resolver, IPv6, IPv4, ARP and loopback owners cover the corresponding native declarations. Four startup records still use raw offsets in this translation unit and remain open.",
+      "2963": "The modem config accessor now returns its real record. The wider peer and IPv4 comparison remains open."
+    },
+    "open_rows": 312
+  },
+  "fork_workspace": {
+    "trial": "f9c27295fc5d5fba9718a484a4341ed9ab60db99",
+    "overlay_paths": 130,
+    "archive_sha256": "8a11c6ff1dbfeda0779bd33cb8e9d55c708414d562815c877d548734a338e683",
+    "materialized_tree": "08dddf7c3f06e842976219ce18a87f71420e7ad9",
+    "force_active": 27029
+  }
+}

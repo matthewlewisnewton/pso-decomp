@@ -1,0 +1,142 @@
+#define TOBJECT_OUT_OF_LINE_HELPERS
+#include "types.h"
+#include "pso/ui/window/TWindowBase.h"
+#include "pso/unk/text_8026A93C.h"
+#include "pso/unk/TLobby_80132ED0.h"
+#include "pso/system/task/TObject_80019A50.h"
+#include "pso/ui/frontend/TAdMultiPlyChrSelectGC_802C6F88.h"
+#include "pso/ui/frontend/TAdScrollWinGC_8026A5F8.h"
+#include "pso/unk/text_8026A14C.h"
+#include "pso/ui/window/TWindowMessage.h"
+#include "pso/ui/window/TWindowMessageLog.h"
+#include "pso/ui/frontend/TAdScrollWinGC.h"
+#include "pso/unk/TLobby.h"
+#include "pso/system/task/TMainTask.h"
+#include "pso/render/ModelDrawContext.h"
+#include "pso/unk/text_80145A94.h"
+#include "pso/ui/window/TWindowSubStatusDisp_803DEE6C.h"
+#include "pso/ui/window/TWindowSubStatusDisp.h"
+#include "pso/object/ambient/TObjFish.h"
+#include "pso/system/task/TObject.h"
+#include "pso/system/ControllerInputState.h"
+
+s32 scroll_win_texture_handle;
+
+// Functions are written last-to-first: with -inline off,deferred CodeWarrior emits them in reverse source order.
+
+
+TAdScrollWinGC::TAdScrollWinGC(TObject *parent, s32 mode, s32 text) : TObject(parent) {
+    static const f32 pos[2] = { 44.0f, 131.0f };
+    static const f32 size[2] = { 552.0f, 220.0f };
+    s32 base;
+    s32 i;
+    m_name = TAdScrollWinGC__class_name;
+    scroll_win_texture_handle = TAdMultiPlyChrSelectGC__sub_802C6FA8();
+    m_alpha = 0;
+    m_window = NULL;
+    m_mode = mode;
+    pad_48 = 0;
+    m_state = 0;
+    m_close_timer = 0;
+    base = get_scroll_delay_for_mode();
+    m_window = (TWindowMessageLog *)create_message_log_window((saddr)pos, (saddr)size, 0);
+    switch (m_mode) {
+    case 0:
+    case 1:
+        for (i = 0; i < 10; i++) {
+            m_window->TWindowMessage::append_line(get_localized_text_entry(0x1A, base + i), 1);
+        }
+        break;
+    case 2:
+    case 3:
+        m_window->TWindowMessage::append_line(text, 1);
+        break;
+    }
+    m_window->complete_reveal();
+    m_window->update_scroll_position();
+    TAdScrollWinGC__sub_8026A5F8(m_window);
+    m_marker.u0 = 0.71875f;
+    m_marker.v0 = 0.4765625f;
+    m_marker.u1 = 1.0f;
+    m_marker.v1 = 0.5546875f;
+}
+
+
+const char *TAdScrollWinGC__class_name = "TAdScrollWinGC";
+
+
+TAdScrollWinGC::~TAdScrollWinGC() {
+    if (m_window != NULL) {
+        m_window->queue_destruction();
+        m_window = NULL;
+    }
+    fn_8026A14C();
+}
+
+void TAdScrollWinGC::run_task() {
+    s32 d;
+    switch (m_state) {
+    case 0:
+        break;
+    case 1:
+        if (++m_close_timer > 4.5f) {
+            queue_destruction();
+            return;
+        }
+        break;
+    }
+    m_alpha += 0xC;
+    m_alpha = m_alpha > 0xFF ? 0xFF : m_alpha;
+    m_marker.x0 = 531.0f;
+    m_marker.y0 = 353.0f;
+    m_marker.x1 = 603.0f;
+    m_marker.y1 = 373.0f;
+    d = controller_physical_port_bank.controllers[0].cstick_y;
+    if (d < 0) {
+        d += 0x19;
+        if (m_window != NULL) {
+            fn_8026A61C(m_window, 0.3f * d);
+        }
+    }
+    if (d > 0 && m_window != NULL) {
+        ((TAdScrollWinGC *)m_window)->advance_scroll(0.3f * (d - 0x19));
+    }
+}
+
+void TAdScrollWinGC::close_window() { if (m_window != NULL) { m_window->close(); m_window = NULL; } }
+
+void TAdScrollWinGC::close() {
+    close_window();
+    m_state = 1;
+}
+
+s32 TAdScrollWinGC::get_scroll_delay_for_mode() {
+    s32 r = 0;
+    switch (m_mode) {
+    case 0:
+        if (TLobby__sub_80145DB4(4) != 0) {
+            r = 0x14;
+        } else {
+            r = 0;
+        }
+        break;
+    case 1:
+        r = 0xA;
+        break;
+    case 2:
+        r = -1;
+        break;
+    }
+    return r;
+}
+
+void TAdScrollWinGC::render() { if (TMainTask::get_render_pass() != 1) { set_color_blending_mode(0, 8); set_color_blending_mode(1, 10); render_status_value(); set_color_blending_mode(0, 8); set_color_blending_mode(1, 6); } }
+
+void TAdScrollWinGC::render_status_value() {
+    begin_screen_draw(1);
+    TObjFish::set_global_param(reinterpret_cast<NJS_TEXLIST *>(scroll_win_texture_handle));
+    set_draw_texture_and_color(0, ((m_alpha << 0x18) | 0xFF0000 | 0xFFFF));
+    draw_textured_quad_at_depth(&m_marker.x0, 0.1f);
+    TWindowSubStatusDisp::get_player();
+}
+

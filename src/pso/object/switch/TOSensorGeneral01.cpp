@@ -1,0 +1,142 @@
+#include "types.h"
+#include "pso/system/task/TMainTask.h"
+#include "pso/effect/particle/TParticleCtrl.h"
+#include "pso/math/MatrixTransforms.h"
+#include "pso/system/TLanguage_801E4874.h"
+#include "pso/boss/darkfalz/TOBoss4Rock.h"
+#include "pso/object/switch/TOSensorGeneral01.h"
+#include "pso/object/ambient/TObjFish.h"
+#include "pso/player/TObjPlayer.h"
+#include "pso/system/BmlResource.h"
+#include "pso/system/BmlResourceDescriptor.h"
+#include "pso/render/GinjaMaterial.h"
+#include "pso/render/GinjaModel.h"
+#include "pso/system/MatrixStack.h"
+#include "pso/system/NinjaTypes.h"
+#include "pso/unk/text_803D8F74.h"
+
+const char *bm_fs_obj_sensor_model_names[] = {"fs_obj_sensor.gj", NULL};
+const char *bm_fs_obj_sensor_motion_names[] = {NULL};
+BmlResourceDescriptor TOSensorGeneral01__resource_descriptor = {
+    "bm_fs_obj_sensor.bml", bm_fs_obj_sensor_model_names, bm_fs_obj_sensor_motion_names, 1, 0,
+};
+const char *TOSensorGeneral01__class_name = "TOSensorGeneral01";
+BmlResource *sensor_general_shared_bml_archive;
+NJS_TEXLIST **TOSensorGeneral01__texture_lists;
+
+void TOSensorGeneral01::update_switch_off() {
+    rotation_y = rotation_y + 0x147;
+    head_angle = head_angle + 0x28F;
+}
+
+void TOSensorGeneral01::update_switch_on() {
+    head_angle = head_angle + 0x28F;
+    lamp_timer = lamp_timer - 1;
+    if (lamp_timer < 0) {
+        lamp_timer = 0;
+        lamps_dark = 0;
+        rotation_y = rotation_y + 0xCCC;
+        position.y += 1.0f;
+        return;
+    }
+    if ((f32)lamp_timer < 30.0f) {
+        lamps_dark = 1;
+        rotation_y = rotation_y + 0x147;
+        return;
+    }
+    if ((f32)lamp_timer < 60.0f) {
+        lamps_dark = 2;
+        rotation_y = rotation_y + 0x147;
+        return;
+    }
+    if ((f32)lamp_timer < 90.0f) {
+        lamps_dark = 3;
+        rotation_y = rotation_y + 0x147;
+    }
+}
+
+void TOSensorGeneral01::render() {
+    NJS_OBJECT *object;
+
+    if (update_object_view_visibility(view_range, model_radius) != 0) {
+        push_matrix();
+        post_translate_matrix(&position.x);
+        rotate_matrix_y(NULL, rotation_y);
+        object = (NJS_OBJECT *)model;
+        translate_matrix(0, object->pos[0], object->pos[1], object->pos[2]);
+        TObjFish::set_global_param(reinterpret_cast<NJS_TEXLIST *>(TOSensorGeneral01__texture_lists[0]));
+        draw_ginja_model(object->model);
+        TParticleCtrl::begin_effect_render();
+        object = object->child;
+        translate_matrix(0, object->pos[0], object->pos[1], object->pos[2]);
+        TObjFish::set_global_param(reinterpret_cast<NJS_TEXLIST *>(TOSensorGeneral01__texture_lists[lamps_dark < 1]));
+        draw_ginja_model(object->model);
+        object = object->sibling;
+        translate_matrix(0, object->pos[0], object->pos[1], object->pos[2]);
+        TObjFish::set_global_param(reinterpret_cast<NJS_TEXLIST *>(TOSensorGeneral01__texture_lists[lamps_dark < 2]));
+        draw_ginja_model(object->model);
+        object = object->sibling;
+        translate_matrix(0, object->pos[0], object->pos[1], object->pos[2]);
+        TObjFish::set_global_param(reinterpret_cast<NJS_TEXLIST *>(TOSensorGeneral01__texture_lists[lamps_dark < 3]));
+        draw_ginja_model(object->model);
+        TParticleCtrl::end_effect_render();
+        object = object->sibling;
+        push_matrix();
+        translate_matrix(0, object->pos[0], object->pos[1], object->pos[2]);
+        rotate_matrix_y(NULL, head_angle);
+        TObjFish::set_global_param(reinterpret_cast<NJS_TEXLIST *>(TOSensorGeneral01__texture_lists[1]));
+        draw_ginja_model(object->model);
+        pop_matrix();
+        pop_matrix();
+    }
+}
+
+void *TOSensorGeneral01::create(void *set_data) {
+    return new TOSensorGeneral01(tl_05, set_data);
+}
+
+void TOSensorGeneral01::free_assets() {
+    if (TOSensorGeneral01__texture_lists != NULL) {
+        TObjPlayer::free_if_valid((saddr)TOSensorGeneral01__texture_lists[0]);
+        if (TOSensorGeneral01__texture_lists != NULL) {
+            mem_free(TOSensorGeneral01__texture_lists);
+            TOSensorGeneral01__texture_lists = NULL;
+        }
+    }
+    if (sensor_general_shared_bml_archive != NULL) {
+        delete sensor_general_shared_bml_archive;
+        sensor_general_shared_bml_archive = NULL;
+    }
+}
+
+void TOSensorGeneral01::load_assets() {
+    BmlResource *resource = new BmlResource(1, &TOSensorGeneral01__resource_descriptor, 0, 0, NULL);
+    sensor_general_shared_bml_archive = resource;
+    TOSensorGeneral01__texture_lists = (NJS_TEXLIST **)mem_alloc(2 * sizeof(*TOSensorGeneral01__texture_lists));
+    TOSensorGeneral01__texture_lists[1] = sensor_general_shared_bml_archive->models[0].texlist;
+    TOSensorGeneral01__texture_lists[0] = load_gvm_texture_file("fs_obj_sensor_r.gvm");
+}
+
+TOSensorGeneral01::~TOSensorGeneral01() {}
+
+TOSensorGeneral01::TOSensorGeneral01(TObject *parent, void *set_data) : TOSensor(parent) {
+    m_name = TOSensorGeneral01__class_name;
+    apply_object_set_data(set_data);
+    init_switch_id();
+    texlist = TOSensorGeneral01__texture_lists[0];
+    model = (void *)sensor_general_shared_bml_archive->models[0].model;
+    view_range = 400.0f;
+    model_radius = ((GinjaModelBounds *)((NJS_OBJECT *)model)->model)->radius;
+    activate_range = 50.0f + scale.x;
+    if (activate_range < 0.0f) {
+        activate_range = 0.0f;
+    }
+    if (set_params[1] < 0) {
+        mode = 2;
+    } else {
+        mode = 1;
+    }
+    head_angle = 0;
+    lamps_dark = 3;
+    lamp_timer = 90;
+}

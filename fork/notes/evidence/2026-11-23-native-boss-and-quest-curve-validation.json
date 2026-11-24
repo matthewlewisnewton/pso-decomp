@@ -1,0 +1,511 @@
+{
+  "source": {
+    "head": "c4471e43e458012a52500823bcf282e91605330b",
+    "tree": "279baee4f859b4eb8a7d6036191654f373562517",
+    "coverage_baseline": "36044bbb3fe7f67a31b335dfe1aeefbd10c3e4ce",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "validation_sha256": {
+      "source-report.json": "980c5ca312c9b5d2304748ccbb6dc0e39fd1f7872a6f6223c19958d0ac96ddfc",
+      "source-check.json": "ea8f1b0eacf8b81899eddac36ca3984e13cbb7120f78d7811313ab3b72a63b83",
+      "source-ranges.json": "26a77f571497ba7e064cd78da0461f9f8ae33f46d06943fe4652609d90223e2c",
+      "source-quality.json": "cfc662ca7a6ca5fe8c4a6a354f796c8a6a1569089789072cd6fa534fec9bf6a4"
+    },
+    "source_quality": {
+      "added": 0,
+      "removed": 26,
+      "changed_labels": 2,
+      "flagged_labels": 0,
+      "newly_stale_retention_entries": 0,
+      "observations": []
+    },
+    "linker_label_changes": [
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8032537C",
+        "type": "function",
+        "old": "__ct__25TBoss5GryphonLightningEffFP7TObjectP29TBoss5GryphonLightningSegmentifff",
+        "new": "__ct__25TBoss5GryphonLightningEffFP7TObjectP14CurvePathPointifff",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8034D500",
+        "type": "function",
+        "old": "eval_bezier_curve__12TBoss8DragonFPviiPvf",
+        "new": "eval_bezier_curve__12TBoss8DragonFP14CurvePathPointiiP3Vecf",
+        "flags": []
+      }
+    ]
+  },
+  "independent_actor_review": {
+    "head": "371700337249710adf7c5dcd7b30515168c1d125",
+    "tree": "05196db485b2d92cb8a2769466d308370c26c8b8",
+    "coverage_baseline": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "validation_sha256": {
+      "direct-report.json": "7d9910a4aa2e2e1f3159c486b2f48362e60c6afb8723e44793eb9bd634b1fd27",
+      "direct-check.json": "102813ed79b03aa2950a590cd19292c2bf9f729cb7241713cfd3dcf6cdc45cde",
+      "direct-ranges.json": "26a77f571497ba7e064cd78da0461f9f8ae33f46d06943fe4652609d90223e2c",
+      "direct-quality.json": "9cb9771d505d1e25afae7c08f3b40fd0d8c959a6eae77b5a7846c783c64fc158"
+    },
+    "source_quality": {
+      "added": 2,
+      "removed": 158,
+      "changed_labels": 11,
+      "flagged_labels": 0,
+      "newly_stale_retention_entries": 0,
+      "observations": [
+        {
+          "key": "offset_member",
+          "path": "src/pso/object/TObjControl.cpp",
+          "line": 356,
+          "text": "m_2f6"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/object/TObjControl.cpp",
+          "line": 358,
+          "text": "m_2fa"
+        }
+      ]
+    },
+    "paths_in_full_review": 111
+  },
+  "actor_review_with_inventory_and_saves": {
+    "head": "01887140e5c37f568006221458421c430509368d",
+    "tree": "22dd04e6acc457579e39d20f09f98e7fa6086af5",
+    "coverage_baseline": "d6e2eacc812ab42fc77e6aaf29627fa8c0819210",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "validation_sha256": {
+      "queue-report.json": "5ebb61d0a2d920a4127c2b6b33148de05edb276a6b34fb51ca5fab2a0504895f",
+      "queue-check.json": "ea8f1b0eacf8b81899eddac36ca3984e13cbb7120f78d7811313ab3b72a63b83",
+      "queue-ranges.json": "26a77f571497ba7e064cd78da0461f9f8ae33f46d06943fe4652609d90223e2c"
+    }
+  },
+  "materialized_fork": {
+    "head": "1844caac8374ccd6d506fbb464646aee38907c1d",
+    "tree": "6c9a9b36fa2e756c9f48637a9e8ffcd040a7fc1f",
+    "coverage_baseline": "c4471e43e458012a52500823bcf282e91605330b",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "validation_sha256": {
+      "private-report.json": "980c5ca312c9b5d2304748ccbb6dc0e39fd1f7872a6f6223c19958d0ac96ddfc",
+      "private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011",
+      "private-ranges.json": "26a77f571497ba7e064cd78da0461f9f8ae33f46d06943fe4652609d90223e2c",
+      "private-retention.log": "b3325169ce9d5755b2340e455b52eb7ac52edcb6fa173dc4f2486f46f713350c",
+      "private-fork-tests.log": "6775950949ca1e194989858029658eb2457085ba556d7a05a1cd99679795ec9e",
+      "private-tool-tests.log": "bc0e7bda967a673ac983caa8cb5b8228a4124a226e730862e2ac9f4b3c2b3874",
+      "private-host-tests.log": "56f699c9d8ff5a32cc196940d8bb95e7f6799e211464315f7d77688b6ab4fccc",
+      "overlay-before.patch": "e21778cab51106a4432d577587a17fbe30d5516fc5570315ec7ab968e615f011"
+    },
+    "tests": {
+      "fork": 11,
+      "tooling": 294,
+      "host": 5
+    }
+  },
+  "paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/boss/galgryphon/TBoss5GryphonLightning.h",
+    "include/pso/boss/galgryphon/TBoss5GryphonLightningEff.h",
+    "include/pso/boss/galgryphon/TBoss5GryphonShockWave.h",
+    "include/pso/boss/goldragon/TBoss8Dragon.h",
+    "include/pso/math/CurvePathPoint.h",
+    "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+    "src/pso/boss/galgryphon/TBoss5GryphonLightning.cpp",
+    "src/pso/boss/galgryphon/TBoss5GryphonLightningEff.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+    "src/pso/quest/QuestOpcodeHandlers.cpp",
+    "src/pso/unk/text_8034D3D0.cpp"
+  ],
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "effects_shared_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+    "src/pso/boss/galgryphon/TBoss5GryphonLightning.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+    "src/pso/quest/QuestOpcodeHandlers.cpp",
+    "src/pso/unk/text_8034D3D0.cpp"
+  ],
+  "inventory_shared_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "src/pso/quest/QuestOpcodeHandlers.cpp"
+  ],
+  "review_replay": "The two textual overlaps on the actor bases were the placement of a new include. The replay preserves the actor and quest code on those bases and carries the validated card, BML and DMA changes to the combined queue.",
+  "matching_note": "Reusing the incoming count for the closed-curve leg restores CodeWarrior\u2019s original register assignment. The quest wrapper retains the original unused trailing argument and the in-place byte swap and restore.",
+  "probes": {
+    "curve_and_path_cases": 9,
+    "quest_opcodes": 2,
+    "boss_tables": 5,
+    "images": 5,
+    "sha256": {
+      "probe-curve-paths.py": "b39311115e3453b3bf3902b983ef979387af0070ba2c31ef1728171e50b46854",
+      "all-probes.log": "6a59c1c3969a41773447062146f7575a8e0f07e5515a14df4cabd6d18869ef55"
+    }
+  },
+  "historical_data": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "historical_source": {
+    "closed": {
+      "include/pso/boss/TObjBoss2Tunnel.h": {
+        "analysis": "The 0xDC class holds the segment ring, brake and fog state, a real PiecewiseCurve at 0x68, two native raft splashes and four particle pointers. The original fields resolve to the checked class and its owners. The projected vertex retains its three floats and packed color. The original ramp members own the De Rol Le and Barba Ray sway. Camera, matrix and sound-packet helpers now live at their native owners and are exact at the original addresses.",
+        "exact_functions": {
+          "0x8003B138": {
+            "old_label": "create_particle_effect__15TObjBoss2TunnelFllf",
+            "current_label": "create_particle_effect__15TObjBoss2TunnelFPC3Veclf",
+            "size": 160,
+            "owner": "src/pso/boss/derolle/TObjBoss2RaftSplash.cpp"
+          },
+          "0x8003B1FC": {
+            "old_label": "detach_children__15TObjBoss2TunnelFPv",
+            "current_label": "detach_children__15TObjBoss2TunnelFP13TParticleCtrlPC3Vec",
+            "size": 84,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_8003B1FC.cpp"
+          },
+          "0x8003B250": {
+            "old_label": "release_children__15TObjBoss2TunnelFPvf",
+            "current_label": "release_children__15TObjBoss2TunnelFP13TParticleCtrlf",
+            "size": 96,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_8003B1FC.cpp"
+          },
+          "0x8003B2EC": {
+            "old_label": "render__15TObjBoss2TunnelFv",
+            "current_label": "render__15TObjBoss2TunnelFv",
+            "size": 1020,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp"
+          },
+          "0x8003B6E8": {
+            "old_label": "run_task__15TObjBoss2TunnelFv",
+            "current_label": "run_task__15TObjBoss2TunnelFv",
+            "size": 2592,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp"
+          },
+          "0x8003C108": {
+            "old_label": "update_particles__15TObjBoss2TunnelFv",
+            "current_label": "update_particles__15TObjBoss2TunnelFv",
+            "size": 192,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp"
+          },
+          "0x8003C1D4": {
+            "old_label": "is_flag_set__15TObjBoss2TunnelFv",
+            "current_label": "is_flag_set__15TObjBoss2TunnelFv",
+            "size": 12,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp"
+          },
+          "0x8003C1E0": {
+            "old_label": "check_flag_or_state__15TObjBoss2TunnelFi",
+            "current_label": "is_swaying__15TObjBoss2TunnelFv",
+            "size": 60,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp"
+          },
+          "0x8003C21C": {
+            "old_label": "sub_8003C21C__15TObjBoss2TunnelFv",
+            "current_label": "current_texture_index__15TObjBoss2TunnelFv",
+            "size": 28,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp"
+          },
+          "0x8003C238": {
+            "old_label": "enable_fog__15TObjBoss2TunnelFPv",
+            "current_label": "restore_fog__15TObjBoss2TunnelFv",
+            "size": 52,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp"
+          },
+          "0x8003C26C": {
+            "old_label": "enable_fog__15TObjBoss2TunnelFv",
+            "current_label": "enable_fog__15TObjBoss2TunnelFv",
+            "size": 52,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp"
+          },
+          "0x8003C2A0": {
+            "old_label": "shift_queue_push_next__15TObjBoss2TunnelFPv",
+            "current_label": "shift_queue_push_next__15TObjBoss2TunnelFv",
+            "size": 68,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp"
+          },
+          "0x8003C2E4": {
+            "old_label": "copy_ring_buffer_window__15TObjBoss2TunnelFv",
+            "current_label": "copy_ring_buffer_window__15TObjBoss2TunnelFv",
+            "size": 144,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp"
+          },
+          "0x8003C374": {
+            "old_label": "init_queue_from_start__15TObjBoss2TunnelFv",
+            "current_label": "init_queue_from_start__15TObjBoss2TunnelFv",
+            "size": 128,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp"
+          },
+          "0x8003C3F4": {
+            "old_label": "__dt__15TObjBoss2TunnelFv",
+            "current_label": "__dt__15TObjBoss2TunnelFv",
+            "size": 104,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp"
+          },
+          "0x8003C5BC": {
+            "old_label": "set_global_flag_200__15TObjBoss2TunnelFv",
+            "current_label": "set_global_flag_200__15TObjBoss2TunnelFv",
+            "size": 16,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp"
+          },
+          "0x8003C5CC": {
+            "old_label": "set_global_flag_100__15TObjBoss2TunnelFv",
+            "current_label": "set_global_flag_100__15TObjBoss2TunnelFv",
+            "size": 16,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp"
+          },
+          "0x8003C5DC": {
+            "old_label": "is_active__15TObjBoss2TunnelFv",
+            "current_label": "is_active__15TObjBoss2TunnelFv",
+            "size": 12,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp"
+          },
+          "0x8003C5E8": {
+            "old_label": "clear_global_flag_3000__15TObjBoss2TunnelFv",
+            "current_label": "clear_global_flag_3000__15TObjBoss2TunnelFv",
+            "size": 16,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp"
+          },
+          "0x8003C628": {
+            "old_label": "set_global_flag_800__15TObjBoss2TunnelFv",
+            "current_label": "set_global_flag_800__15TObjBoss2TunnelFv",
+            "size": 16,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp"
+          },
+          "0x8003C638": {
+            "old_label": "set_global_flag_400__15TObjBoss2TunnelFv",
+            "current_label": "set_global_flag_400__15TObjBoss2TunnelFv",
+            "size": 16,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp"
+          },
+          "0x8003C64C": {
+            "old_label": "create__15TObjBoss2TunnelFv",
+            "current_label": "create__15TObjBoss2TunnelFv",
+            "size": 60,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp"
+          },
+          "0x8003C688": {
+            "old_label": "clear_target_flags__15TObjBoss2TunnelFv",
+            "current_label": "clear_target_flags__15TObjBoss2TunnelFv",
+            "size": 72,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp"
+          },
+          "0x8007C5C0": {
+            "old_label": "run_confirm_message_loop__15TObjBoss2TunnelFv",
+            "current_label": "run_confirm_message_loop__15TObjBoss2TunnelFv",
+            "size": 704,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+          },
+          "0x8007C880": {
+            "old_label": "poll_pso_screen_load__15TObjBoss2TunnelFv",
+            "current_label": "poll_pso_screen_load__15TObjBoss2TunnelFv",
+            "size": 44,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+          },
+          "0x8007C8AC": {
+            "old_label": "show_message_and_wait__15TObjBoss2TunnelFl",
+            "current_label": "show_message_and_wait__15TObjBoss2TunnelFl",
+            "size": 572,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+          },
+          "0x8007CB50": {
+            "old_label": "verify_snapshot_checksum__15TObjBoss2TunnelFv",
+            "current_label": "verify_snapshot_checksum__15TObjBoss2TunnelFv",
+            "size": 116,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+          },
+          "0x8007CBC4": {
+            "old_label": "load_snapshot__15TObjBoss2TunnelFv",
+            "current_label": "load_snapshot__15TObjBoss2TunnelFv",
+            "size": 164,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+          },
+          "0x8007CCD0": {
+            "old_label": "save_snapshot_to_card__15TObjBoss2TunnelFv",
+            "current_label": "save_snapshot_to_card__15TObjBoss2TunnelFv",
+            "size": 324,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+          },
+          "0x8007CE14": {
+            "old_label": "save_snapshot__15TObjBoss2TunnelFv",
+            "current_label": "save_snapshot__15TObjBoss2TunnelFv",
+            "size": 160,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+          },
+          "0x8007CEB4": {
+            "old_label": "free_buffers__15TObjBoss2TunnelFv",
+            "current_label": "free_buffers__15TObjBoss2TunnelFv",
+            "size": 88,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+          },
+          "0x8007DD28": {
+            "old_label": "reset_state__15TObjBoss2TunnelFv",
+            "current_label": "reset_state__15TObjBoss2TunnelFv",
+            "size": 72,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+          },
+          "0x8007DD70": {
+            "old_label": "advance_phase__15TObjBoss2TunnelFP14PiecewiseCurvePf",
+            "current_label": "advance__14PiecewiseCurveFPf",
+            "size": 64,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+          },
+          "0x8007DE5C": {
+            "old_label": "update_position__15TObjBoss2TunnelFP14PiecewiseCurve",
+            "current_label": "current_speed__14PiecewiseCurveFv",
+            "size": 36,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+          },
+          "0x8007DE80": {
+            "old_label": "eval_piecewise_curve__15TObjBoss2TunnelFP14PiecewiseCurvef",
+            "current_label": "speed_at__14PiecewiseCurveFf",
+            "size": 100,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+          },
+          "0x8007DEE4": {
+            "old_label": "init_piecewise_curve",
+            "current_label": "init__14PiecewiseCurveFfffff",
+            "size": 488,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+          },
+          "0x8007E0CC": {
+            "old_label": "reset_floats__15TObjBoss2TunnelFP14PiecewiseCurve",
+            "current_label": "reset_floats__14PiecewiseCurveFv",
+            "size": 52,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+          },
+          "0x8007E100": {
+            "old_label": "dt__15TObjBoss2TunnelFP14PiecewiseCurves",
+            "current_label": "__dt__14PiecewiseCurveFv",
+            "size": 60,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+          },
+          "0x8007E13C": {
+            "old_label": "reset_floats_pass__15TObjBoss2TunnelFP14PiecewiseCurve",
+            "current_label": "__ct__14PiecewiseCurveFv",
+            "size": 48,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+          },
+          "0x8007E1F8": {
+            "old_label": "check_param_threshold__15TObjBoss2TunnelFP17AccelerationCurvef",
+            "current_label": "check_param_threshold__17AccelerationCurveFf",
+            "size": 24,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+          },
+          "0x8007E380": {
+            "old_label": "reset_coords__15TObjBoss2TunnelFP17AccelerationCurve",
+            "current_label": "reset_coords__17AccelerationCurveFv",
+            "size": 44,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+          },
+          "0x8007E3AC": {
+            "old_label": "__dt__17AccelerationCurveFv",
+            "current_label": "__dt__17AccelerationCurveFv",
+            "size": 60,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+          },
+          "0x8007E3E8": {
+            "old_label": "__ct__17AccelerationCurveFv",
+            "current_label": "__ct__17AccelerationCurveFv",
+            "size": 48,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+          },
+          "0x8007E418": {
+            "old_label": "decrement_packed_timer__15TObjBoss2TunnelFPUll",
+            "current_label": "decrement_packed_timer__15TObjBoss2TunnelFPUll",
+            "size": 52,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+          },
+          "0x8007E560": {
+            "old_label": "init_zako__15TObjBoss2TunnelFP3VecPvl",
+            "current_label": "rotate_y_and_translate__FP3VecP3Vecl",
+            "size": 64,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+          },
+          "0x8007E5A0": {
+            "old_label": "turn_toward_angle_limited__15TObjBoss2TunnelFlllll",
+            "current_label": "turn_toward_angle_limited__15TObjBoss2TunnelFlllll",
+            "size": 196,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+          },
+          "0x8007E664": {
+            "old_label": "count_active_segments__15TObjBoss2TunnelFPv",
+            "current_label": "count_visible_nodes__FP10NJS_OBJECT",
+            "size": 96,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+          },
+          "0x8007E71C": {
+            "old_label": "calc_scaled_value__15TObjBoss2TunnelFlf",
+            "current_label": "calc_scaled_value__15TObjBoss2TunnelFlf",
+            "size": 72,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+          },
+          "0x8007E884": {
+            "old_label": "transform_vec_by_camera__15TObjBoss2TunnelFPvPC3VecP3Vec",
+            "current_label": "transform_vec_by_camera__FP10NJS_CAMERAPC3VecP3Vec",
+            "size": 84,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+          },
+          "0x8007E8D8": {
+            "old_label": "render__15TObjBoss2TunnelFPv",
+            "current_label": "store_inverse_current_matrix__FP10NJS_CAMERAP12CameraMatrix",
+            "size": 64,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+          },
+          "0x8007EA74": {
+            "old_label": "finalize_and_send_60__15TObjBoss2TunnelFP16G_PlaySound_6xB2",
+            "current_label": "send_6xB2_play_sound__FP16G_PlaySound_6xB2",
+            "size": 52,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+          },
+          "0x802F2288": {
+            "old_label": "set_flag_0x200__15TObjBoss2TunnelFv",
+            "current_label": "set_flag_0x200__15TObjBoss7TunnelFv",
+            "size": 44,
+            "owner": "src/pso/boss/barbaray/TObjBoss7Tunnel.cpp"
+          },
+          "0x802F22B4": {
+            "old_label": "clear_flags_0x3000__15TObjBoss2TunnelFv",
+            "current_label": "clear_flags_0x3000__15TObjBoss7TunnelFv",
+            "size": 16,
+            "owner": "src/pso/boss/barbaray/TObjBoss7Tunnel.cpp"
+          },
+          "0x8036EF58": {
+            "old_label": "enable_and_trigger__15TObjBoss2TunnelFv",
+            "current_label": "enable_and_trigger__15TObjBoss2TunnelFv",
+            "size": 44,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_8036EF0C.cpp"
+          },
+          "0x803E2BAC": {
+            "old_label": "reset_player_state__15TObjBoss2TunnelFv",
+            "current_label": "reset_player_state__15TObjBoss2TunnelFv",
+            "size": 32,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_803E2BAC.cpp"
+          },
+          "0x803E2BCC": {
+            "old_label": "draw_projected_quads__15TObjBoss2TunnelFP15ProjectedVertexi",
+            "current_label": "draw_projected_quads__15TObjBoss2TunnelFP15ProjectedVertexl",
+            "size": 324,
+            "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_803E2BAC.cpp"
+          }
+        }
+      }
+    },
+    "remaining": 118
+  }
+}

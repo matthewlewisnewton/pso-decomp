@@ -1,15 +1,18 @@
-#include "pso/ui/PlayerWindowDispatch.h"
+#include "pso/unk/text_8024AB98.h"
+#include "pso/player/PlayerSlots.h"
+#include "pso/player/TObjPlayer_80011014.h"
 #include "types.h"
 #include "pso/unk/text_802233F8.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/misc/TCameraCtrl.h"
-#include "pso/misc/TLobby.h"
-#include "pso/misc/TRaderMapCore.h"
+#include "pso/camera/TCameraCtrl.h"
+#include "pso/unk/TLobby.h"
+#include "pso/ui/hud/TRaderMapCore.h"
+#include "pso/object/base/TObjBase.h"
+#include "pso/ui/window/TWindowCtrl.h"
+#include "pso/player/TObjPlayer_80011014.h"
+#include "pso/player/PlayerSlots.h"
 
 extern "C" {
-s32 get_entity_id(void *);
-TObjPlayer *get_player_by_client_id(s32);
-s32 play_effect_default__10TObjPlayerFP10TObjPlayerl(void *, s32);
 void fn_802233F8(void) {
     u16 self_slot;
     s32 i;
@@ -20,8 +23,8 @@ void fn_802233F8(void) {
             if (self_slot != i) {
                 p = get_player_by_client_id(i);
                 if (p != NULL && p->check_player_flag1() != 0) {
-                    TObjPlayer::send_code_45_1(p);
-                    enable_player_main_menu((u16)(get_entity_id(p)));
+                    send_release_hold(p);
+                    TWindowCtrl::enable_client_main_menu(p->get_entity_id());
                 }
             }
         }
@@ -37,8 +40,8 @@ void fn_80223480(void) {
             if (self_slot != i) {
                 p = get_player_by_client_id(i);
                 if (p != NULL && p->check_player_flag1() == 0) {
-                    play_effect_default__10TObjPlayerFP10TObjPlayerl(p, -1);
-                    disable_player_main_menu((u16)(get_entity_id(p)));
+                    send_impose_hold(p, -1);
+                    TWindowCtrl::disable_client_main_menu(p->get_entity_id());
                 }
             }
         }

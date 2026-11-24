@@ -1,0 +1,2850 @@
+{
+  "source": "96b757bd02766e92d0273301adc09a06c588567b",
+  "landing": "18dc561954dbbc534c99053a645e4378c611305b",
+  "working_fork_build": "e82a65d9e42f0914586e1e0598c41fd62a272145",
+  "previous_source": "ac698bf3fa199ae744c91b33fe87c79351234549",
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "source_files": 116,
+  "batches": {
+    "item": {
+      "head": "c020ced51c49ff633bfa69c1d87e6d984a3c3ef5",
+      "files": 24,
+      "report_sha256": "c41ed5bcf891b66d6a4d2bab6a0b6a2ba040593dfe113f357f4dacd78be77821"
+    },
+    "volopt": {
+      "head": "b01eea819bd7fa295fe95c229fd9cfde5c7dfa4d",
+      "files": 35,
+      "report_sha256": "e23ca22f616c84d7cadd1c137df98c1eac8b3da99ddd52780f80de9bbc1c80fa"
+    },
+    "gates": {
+      "head": "0d8625a7cd768f8a012af51692e49719feab98e8",
+      "files": 24,
+      "report_sha256": "8442dbf97ee60afb6601df2a2bcdfc6b6b7e8325235c1bb6d7da440ca10a1d78"
+    },
+    "guild": {
+      "head": "7bc427b14dd42eb40a4a1113ffe571d979774b37",
+      "files": 36,
+      "report_sha256": "002680cc7641d320c81c20520973a8253082c6a1282fbfaeb31ceba6a167ac57"
+    }
+  },
+  "source_coverage": {
+    "fuzzy_match_percent": 99.99999,
+    "total_code": "4353092",
+    "matched_code": "4353092",
+    "matched_code_percent": 100.0,
+    "total_data": "1758510",
+    "matched_data": "1758510",
+    "matched_data_percent": 100.0,
+    "total_functions": 27572,
+    "matched_functions": 27572,
+    "matched_functions_percent": 100.0,
+    "complete_code": "4353092",
+    "complete_code_percent": 100.0,
+    "complete_data": "1758510",
+    "complete_data_percent": 100.0,
+    "total_units": 2449,
+    "complete_units": 2449
+  },
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "fork_only_paths": 133,
+  "layer_tests": 11,
+  "local_tool_tests": 294,
+  "source_audit": {
+    "source": "96b757bd02766e92d0273301adc09a06c588567b",
+    "previous": "ac698bf3fa199ae744c91b33fe87c79351234549",
+    "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "entries": [
+      {
+        "row": 3182,
+        "historical_path": "include/pso/TItemLoad.h",
+        "historical_blob": "2fa5d989391e3755a160226452fc6ba71de80101",
+        "owners": {
+          "include/pso/item/TItemLoad.h": "491d5b7a8ec640471b03b4fa538953d5be78e5c5",
+          "src/pso/item/TItemLoad.cpp": "ae2c57b349210169223dcf5df730905edf8b69a0"
+        },
+        "proofs": [
+          {
+            "group": "item",
+            "evidence": "The complete public declarations for item archive tasks, model and texture lookups, decompression and cleanup are represented in the native TItemLoad class. The old clear_slots became ItemModelResource construction, and free_boss4_rock is the actual item work-buffer free.",
+            "details": {
+              "historical_blob": "2fa5d989391e3755a160226452fc6ba71de80101",
+              "authored_hunks": 1,
+              "owner_blobs": {
+                "include/pso/item/TItemLoad.h": "491d5b7a8ec640471b03b4fa538953d5be78e5c5",
+                "src/pso/item/TItemLoad.cpp": "ae2c57b349210169223dcf5df730905edf8b69a0"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 3601,
+        "historical_path": "src/pso/item/TItemLoad_8010F3D8.cpp",
+        "historical_blob": "96a2c9bb4bd27ceaa6fd78d500ec4ca6bd1baf7b",
+        "owners": {
+          "src/pso/item/TItemLoad.cpp": "ae2c57b349210169223dcf5df730905edf8b69a0",
+          "include/pso/item/TItemLoad.h": "491d5b7a8ec640471b03b4fa538953d5be78e5c5"
+        },
+        "proofs": [
+          {
+            "group": "item",
+            "evidence": "The exact TItemModelLoadTask destructor cancels the model or texture load for states 2 and 3, respectively, and releases the same loaded texture list only when its first texture is set. The destructor owns the original TObject delete path.",
+            "details": {
+              "historical_blob": "96a2c9bb4bd27ceaa6fd78d500ec4ca6bd1baf7b",
+              "authored_hunks": 1,
+              "owner_blobs": {
+                "src/pso/item/TItemLoad.cpp": "ae2c57b349210169223dcf5df730905edf8b69a0",
+                "include/pso/item/TItemLoad.h": "491d5b7a8ec640471b03b4fa538953d5be78e5c5"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 3602,
+        "historical_path": "src/pso/item/TItemLoad_8010F484.cpp",
+        "historical_blob": "b478753179f2d13e6b16a2b8aa6a10d3578d913b",
+        "owners": {
+          "src/pso/item/TItemLoad.cpp": "ae2c57b349210169223dcf5df730905edf8b69a0",
+          "include/pso/item/TItemLoad.h": "491d5b7a8ec640471b03b4fa538953d5be78e5c5"
+        },
+        "proofs": [
+          {
+            "group": "item",
+            "evidence": "The native model task constructor initializes slot, model, texture and resource storage, then sets state 1. update_all processes the texture loader before the model loader with the original null checks.",
+            "details": {
+              "historical_blob": "b478753179f2d13e6b16a2b8aa6a10d3578d913b",
+              "authored_hunks": 1,
+              "owner_blobs": {
+                "src/pso/item/TItemLoad.cpp": "ae2c57b349210169223dcf5df730905edf8b69a0",
+                "include/pso/item/TItemLoad.h": "491d5b7a8ec640471b03b4fa538953d5be78e5c5"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 3604,
+        "historical_path": "src/pso/item/TItemLoad_8010FD2C.cpp",
+        "historical_blob": "288c99f235b710c571e39e1f8239de1c11f5e892",
+        "owners": {
+          "src/pso/item/TItemLoad.cpp": "ae2c57b349210169223dcf5df730905edf8b69a0",
+          "include/pso/item/TItemLoad.h": "491d5b7a8ec640471b03b4fa538953d5be78e5c5"
+        },
+        "proofs": [
+          {
+            "group": "item",
+            "evidence": "The native AfsFileLoader constructor initializes the partition and flag word. TItemLoad decompresses the same shared pointer into a real output address and frees that original array on shutdown.",
+            "details": {
+              "historical_blob": "288c99f235b710c571e39e1f8239de1c11f5e892",
+              "authored_hunks": 1,
+              "owner_blobs": {
+                "src/pso/item/TItemLoad.cpp": "ae2c57b349210169223dcf5df730905edf8b69a0",
+                "include/pso/item/TItemLoad.h": "491d5b7a8ec640471b03b4fa538953d5be78e5c5"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4052,
+        "historical_path": "src/pso/item/TItemLoad_8010F2AC.cpp",
+        "historical_blob": "91b2a1089c2f7423b17028a41a546e1ea6326934",
+        "owners": {
+          "src/pso/item/TItemLoad.cpp": "ae2c57b349210169223dcf5df730905edf8b69a0",
+          "include/pso/item/TItemLoad.h": "491d5b7a8ec640471b03b4fa538953d5be78e5c5"
+        },
+        "proofs": [
+          {
+            "group": "item",
+            "evidence": "Native model-task states retain both concrete child loaders, the 0x2C00 slot stride, four modeled outputs and the texture loader state transition.",
+            "details": {
+              "historical_blob": "91b2a1089c2f7423b17028a41a546e1ea6326934",
+              "authored_hunks": 6,
+              "owner_blobs": {
+                "src/pso/item/TItemLoad.cpp": "ae2c57b349210169223dcf5df730905edf8b69a0",
+                "include/pso/item/TItemLoad.h": "491d5b7a8ec640471b03b4fa538953d5be78e5c5"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4053,
+        "historical_path": "src/pso/item/TItemLoad_8010F52C.cpp",
+        "historical_blob": "cb49255ee00cbe3a0167b9658d9471e77a282e2c",
+        "owners": {
+          "src/pso/item/TItemLoad.cpp": "ae2c57b349210169223dcf5df730905edf8b69a0",
+          "include/pso/item/TItemLoad.h": "491d5b7a8ec640471b03b4fa538953d5be78e5c5",
+          "include/pso/system/NinjaChunk.h": "d76c04ff2d6bf0f2ba16d32b51faecec5f8507f7"
+        },
+        "proofs": [
+          {
+            "group": "item",
+            "evidence": "The actual model and texture loaders own each start and completion. The model chunk path preserves NJCM/NJTL/NMDM decoding, four model slots, 32-byte round-up and item texture-name initialization. The texture archive retains temporary-buffer acquisition, decompression, GVM binding and release.",
+            "details": {
+              "historical_blob": "cb49255ee00cbe3a0167b9658d9471e77a282e2c",
+              "authored_hunks": 12,
+              "owner_blobs": {
+                "src/pso/item/TItemLoad.cpp": "ae2c57b349210169223dcf5df730905edf8b69a0",
+                "include/pso/item/TItemLoad.h": "491d5b7a8ec640471b03b4fa538953d5be78e5c5",
+                "include/pso/system/NinjaChunk.h": "d76c04ff2d6bf0f2ba16d32b51faecec5f8507f7"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4060,
+        "historical_path": "src/pso/item/TItemLoad_80110010.cpp",
+        "historical_blob": "5ee0344df14d2b77e94994aa5e0b80058b0256b3",
+        "owners": {
+          "src/pso/item/TItemLoad.cpp": "ae2c57b349210169223dcf5df730905edf8b69a0",
+          "include/pso/item/TItemLoad.h": "491d5b7a8ec640471b03b4fa538953d5be78e5c5",
+          "include/pso/system/NinjaChunk.h": "d76c04ff2d6bf0f2ba16d32b51faecec5f8507f7"
+        },
+        "proofs": [
+          {
+            "group": "item",
+            "evidence": "The partition owns its allocation and release, and the shared model, texture and motion output methods retain the original BML indexes, null branches and argument order.",
+            "details": {
+              "historical_blob": "5ee0344df14d2b77e94994aa5e0b80058b0256b3",
+              "authored_hunks": 10,
+              "owner_blobs": {
+                "src/pso/item/TItemLoad.cpp": "ae2c57b349210169223dcf5df730905edf8b69a0",
+                "include/pso/item/TItemLoad.h": "491d5b7a8ec640471b03b4fa538953d5be78e5c5",
+                "include/pso/system/NinjaChunk.h": "d76c04ff2d6bf0f2ba16d32b51faecec5f8507f7"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4062,
+        "historical_path": "src/pso/item/TItemLoad_801105AC.cpp",
+        "historical_blob": "0139553b116fbbb54f6012c0072fc480b63067fc",
+        "owners": {
+          "src/pso/item/TItemLoad.cpp": "ae2c57b349210169223dcf5df730905edf8b69a0",
+          "include/pso/item/TItemLoad.h": "491d5b7a8ec640471b03b4fa538953d5be78e5c5"
+        },
+        "proofs": [
+          {
+            "group": "item",
+            "evidence": "The native resource task owns the matching twelve-slot array, BML archive construction/destruction and two task-list lifetimes, with the same matching allocator operations.",
+            "details": {
+              "historical_blob": "0139553b116fbbb54f6012c0072fc480b63067fc",
+              "authored_hunks": 7,
+              "owner_blobs": {
+                "src/pso/item/TItemLoad.cpp": "ae2c57b349210169223dcf5df730905edf8b69a0",
+                "include/pso/item/TItemLoad.h": "491d5b7a8ec640471b03b4fa538953d5be78e5c5"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4073,
+        "historical_path": "src/pso/item/TItemTexLoad.cpp",
+        "historical_blob": "e209bd96e744fbd45509ebffa01c1f15a1ed3d3a",
+        "owners": {
+          "src/pso/item/TItemTexLoad.cpp": "d98b9cefef602aa38cf4b0a055c18b1ef538b366",
+          "include/pso/item/TItemTexLoad.h": "10d129391defd3dcc4ff11d0a7cd26f0c8c84c70",
+          "include/pso/system/Adxf.h": "8286b9d0d4a0a39b556cc480581fc908772bdd63"
+        },
+        "proofs": [
+          {
+            "group": "item",
+            "evidence": "The icon task uses the typed ADXF header and renderer list. It preserves range and retry decisions, the original archive-open/sector/read call sequence, and the per-item icon selection from the named ItemPMT record ID.",
+            "details": {
+              "historical_blob": "e209bd96e744fbd45509ebffa01c1f15a1ed3d3a",
+              "authored_hunks": 12,
+              "owner_blobs": {
+                "src/pso/item/TItemTexLoad.cpp": "d98b9cefef602aa38cf4b0a055c18b1ef538b366",
+                "include/pso/item/TItemTexLoad.h": "10d129391defd3dcc4ff11d0a7cd26f0c8c84c70",
+                "include/pso/system/Adxf.h": "8286b9d0d4a0a39b556cc480581fc908772bdd63"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2637,
+        "historical_path": "src/pso/ui/TAdSinglePlyChrSelectGC_8028C8E0.cpp",
+        "historical_blob": "3546f0efd7657475ce25c03f4a51106af064a74b",
+        "owners": {
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C8E0.cpp": "db71e04aea866a0d3464b3d2bbdc65d8c1c0b0cc",
+          "include/pso/system/NinjaChunk.h": "d76c04ff2d6bf0f2ba16d32b51faecec5f8507f7"
+        },
+        "proofs": [
+          {
+            "group": "item",
+            "evidence": "Both character-creation chunk reads use the real shared Ninja parser, with byte offsets, tag outputs and optional allocation. Other historical character-creation flow remains outside this scope.",
+            "details": {
+              "historical_blob": "3546f0efd7657475ce25c03f4a51106af064a74b",
+              "authored_hunks": 8,
+              "owner_blobs": {
+                "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C8E0.cpp": "db71e04aea866a0d3464b3d2bbdc65d8c1c0b0cc",
+                "include/pso/system/NinjaChunk.h": "d76c04ff2d6bf0f2ba16d32b51faecec5f8507f7"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5107,
+        "historical_path": "src/pso/misc/TLobby_801E2F94.cpp",
+        "historical_blob": "f99f52713bae7e58b4a688bdea43e58d5afa3fb4",
+        "owners": {
+          "src/pso/unk/TLobby_801E2F94.cpp": "f4461748cf2427e4a7b28217b892c2d4bdecdc42",
+          "include/pso/system/NinjaChunk.h": "d76c04ff2d6bf0f2ba16d32b51faecec5f8507f7",
+          "src/pso/item/TItemLoad.cpp": "ae2c57b349210169223dcf5df730905edf8b69a0"
+        },
+        "proofs": [
+          {
+            "group": "item",
+            "evidence": "The native chunk parser claims the original function at 0x801E38A0 and all three consumer units use one pointer-and-output declaration. Other camera and renderer changes remain scoped.",
+            "details": {
+              "historical_blob": "f99f52713bae7e58b4a688bdea43e58d5afa3fb4",
+              "authored_hunks": 23,
+              "owner_blobs": {
+                "src/pso/unk/TLobby_801E2F94.cpp": "f4461748cf2427e4a7b28217b892c2d4bdecdc42",
+                "include/pso/system/NinjaChunk.h": "d76c04ff2d6bf0f2ba16d32b51faecec5f8507f7",
+                "src/pso/item/TItemLoad.cpp": "ae2c57b349210169223dcf5df730905edf8b69a0"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4381,
+        "historical_path": "src/pso/item/TItemEffArmor.cpp",
+        "historical_blob": "8794a4fe3f5cf1680d2ae1303d99008151649bd7",
+        "owners": {
+          "src/pso/effect/item/TItemEffArmor.cpp": "24c7cae5e8080818c1fa9c49d9e2558ee1a39048",
+          "include/pso/effect/item/TItemEffArmor.h": "08aa4db17473efd357ec4c4ae8741ecb6da309f7",
+          "src/pso/item/TItemLoad.cpp": "ae2c57b349210169223dcf5df730905edf8b69a0"
+        },
+        "proofs": [
+          {
+            "group": "item",
+            "evidence": "The armor draw receives the actual Ninja model, animation and texture addresses in the original fields and call order. The rest of the historical effect owner was not compared in this scope.",
+            "details": {
+              "historical_blob": "8794a4fe3f5cf1680d2ae1303d99008151649bd7",
+              "authored_hunks": 11,
+              "owner_blobs": {
+                "src/pso/effect/item/TItemEffArmor.cpp": "24c7cae5e8080818c1fa9c49d9e2558ee1a39048",
+                "include/pso/effect/item/TItemEffArmor.h": "08aa4db17473efd357ec4c4ae8741ecb6da309f7",
+                "src/pso/item/TItemLoad.cpp": "ae2c57b349210169223dcf5df730905edf8b69a0"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 380,
+        "historical_path": "include/pso/boss/TBoss3Volopt_800D8ACC.h",
+        "historical_blob": "fede8261aa9882a0d7e89a4946f6ee3c743eb666",
+        "owners": {
+          "include/pso/boss/volopt/TBoss3Volopt_800D8ACC.h": "f52fa4a931c493c23a93f262186a7d2da62324d5",
+          "include/pso/effect/PositionSoundEffects.h": "018e2f7851d9e0b143a14ec91bb4c0afb1dee397",
+          "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp": "768ef6558d4676031883b1bb35be7f0eee5dcad5"
+        },
+        "proofs": [
+          {
+            "group": "volopt",
+            "evidence": "Both duplicated raw C declarations from the old helper include had already been consolidated and renamed at their continuing position-effect owners.",
+            "details": {
+              "disposition": "whole_already_retained",
+              "anchors": [
+                {
+                  "lane": "canonical",
+                  "path": "include/pso/boss/volopt/TBoss3Volopt_800D8ACC.h",
+                  "blob": "f52fa4a931c493c23a93f262186a7d2da62324d5",
+                  "anchors": [
+                    "#include \"pso/effect/PositionSoundEffects.h\""
+                  ],
+                  "absent": [
+                    "TBoss3Volopt__sub_800D8D88",
+                    "spawn_particles_at__12TBoss3VoloptFi"
+                  ]
+                },
+                {
+                  "lane": "canonical",
+                  "path": "include/pso/effect/PositionSoundEffects.h",
+                  "blob": "018e2f7851d9e0b143a14ec91bb4c0afb1dee397",
+                  "anchors": [
+                    "void play_area_sound_and_particles_a(const Vec *position)",
+                    "void spawn_position_particles(const Vec *position)"
+                  ],
+                  "absent": []
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 684,
+        "historical_path": "include/pso/player/TObjPlayer_800D8FDC.h",
+        "historical_blob": "763cea399b08f4752582522cc463e99febf9325c",
+        "owners": {
+          "include/pso/player/TObjPlayer_800D8FDC.h": "a9f8ad4403db7bc1db211061da79bdf5d1a174d0",
+          "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp": "d2737bd1221daabb4d9a7656827c4062acd516db",
+          "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp": "768ef6558d4676031883b1bb35be7f0eee5dcad5"
+        },
+        "proofs": [
+          {
+            "group": "volopt",
+            "evidence": "The complete historical header delta now declares Vec and both real position APIs. The E4 caller passes its original two integer inputs and its genuine third floating radius parameter.",
+            "details": {
+              "disposition": "whole_replayed",
+              "anchors": [
+                {
+                  "lane": "canonical",
+                  "path": "include/pso/player/TObjPlayer_800D8FDC.h",
+                  "blob": "a9f8ad4403db7bc1db211061da79bdf5d1a174d0",
+                  "anchors": [
+                    "struct Vec;",
+                    "spawn_dead_spot_scale15(const Vec *point, s32 delay)",
+                    "spawn_dead_spot_e4(Vec *position, s32 lifetime, f32 radius)"
+                  ],
+                  "absent": []
+                },
+                {
+                  "lane": "canonical",
+                  "path": "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+                  "blob": "d2737bd1221daabb4d9a7656827c4062acd516db",
+                  "anchors": [
+                    "spawn_dead_spot_scale15(&v, 0x32)",
+                    "spawn_dead_spot_e4(&v, 0x46, 10.0f)"
+                  ],
+                  "absent": []
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 698,
+        "historical_path": "src/pso/player/TObjPlayer_800D8FDC.cpp",
+        "historical_blob": "9b641ea59daae6c2f85754922810c4808295af8f",
+        "owners": {
+          "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp": "768ef6558d4676031883b1bb35be7f0eee5dcad5"
+        },
+        "proofs": [
+          {
+            "group": "volopt",
+            "evidence": "The old cast-away E4 parameter is restored and passed, the three-particle helper has a genuine const Vec input, and both related ground effects hold actual writable ground Vecs in canonical. The old row also includes corpse-mark ownership, fade constants and sampled-motion pooling beyond the targeted position API changes.",
+            "details": {
+              "disposition": "scoped_replayed",
+              "anchors": [
+                {
+                  "lane": "canonical",
+                  "path": "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp",
+                  "blob": "768ef6558d4676031883b1bb35be7f0eee5dcad5",
+                  "anchors": [
+                    "create_dead_spot__10TObjPlayerFiiif((s32)position, 0xE4, lifetime, radius)",
+                    "spawn_particle_effect(position, 251)",
+                    "spawn_particle_effect(position, 252)",
+                    "spawn_particle_effect(position, 227)",
+                    "adjust_point_to_ground(position, &ground_position)",
+                    "new BmlResource(1, &corpse_mark_resource_descriptor",
+                    "delete (BmlResource *)"
+                  ],
+                  "absent": []
+                },
+                {
+                  "lane": "direct",
+                  "path": "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp",
+                  "blob": "a14bbfd14de2e760b1ff7f792c5db1092d0565f1",
+                  "anchors": [
+                    "void spawn_dead_spot_e4(Vec *position, s32 lifetime, f32 radius)",
+                    "spawn_breakup_particles(const Vec *position)"
+                  ],
+                  "absent": []
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 717,
+        "historical_path": "src/pso/boss/TBoss3Volopt_800D8ACC.cpp",
+        "historical_blob": "7ce08e5ff06f206eae7dec7f6b401fe15b77771e",
+        "owners": {
+          "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp": "768ef6558d4676031883b1bb35be7f0eee5dcad5"
+        },
+        "proofs": [
+          {
+            "group": "volopt",
+            "evidence": "Every original sound mapping and position call is retained, including mixed raw vs mapped areas and the two distinct default choices. The two additional sound-only/sound-plus-E6 entry points use genuine Vec arguments. The shared EA/E9 effect keeps owner position, frame/flags, and y shift.",
+            "details": {
+              "disposition": "whole_replayed",
+              "anchors": [
+                {
+                  "lane": "canonical",
+                  "path": "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp",
+                  "blob": "768ef6558d4676031883b1bb35be7f0eee5dcad5",
+                  "anchors": [
+                    "void play_area_variant_sound(const Vec *position)",
+                    "void play_area_se_with_particle(const Vec *position)",
+                    "play_sound_effect(0x3AB3C, position",
+                    "play_sound_effect(0x4003AD32, position",
+                    "play_sound_effect(0x4003B22A, position",
+                    "play_sound_effect(0x4003A35A, position",
+                    "play_sound_effect(0x3AD43, position",
+                    "play_sound_effect(0x4003AD3F, position",
+                    "::remap_area_sound_id(0x4003AD06, 0x1E)",
+                    "spawn_particle_effect(&v, 0xE6)",
+                    "TBoss3Volopt::remap_area_sound_id(0x4003AB20)",
+                    "TBoss3Volopt::remap_area_sound_id(0x4003AB37)",
+                    "create_timed_particle_emitter((void *)position, 0xEA, 0xA, 0x1E)",
+                    "pos.y += 30.0f",
+                    "spawn_particle_effect(&pos, 0xE9)"
+                  ],
+                  "absent": []
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 800,
+        "historical_path": "src/pso/object/TObjVoloptPillar.cpp",
+        "historical_blob": "ec6038a2d4ef53a5e7eb6c53d8638d59f8a8beb0",
+        "owners": {
+          "src/pso/boss/volopt/TObjVoloptPillar.cpp": "6eba95a0269da218609c6279891898d25580e47a"
+        },
+        "proofs": [
+          {
+            "group": "volopt",
+            "evidence": "The complete original pillar changes have real owners. Original typed chip parameters and three exact allocations, all 14/0x15/0x17 archive indices, texture binding, rotation, target velocity, push and audio match. The upstream-shaped lane retains the established archive and actor boundary spellings.",
+            "details": {
+              "disposition": "whole_replayed",
+              "anchors": [
+                {
+                  "lane": "canonical",
+                  "path": "src/pso/boss/volopt/TObjVoloptPillar.cpp",
+                  "blob": "6eba95a0269da218609c6279891898d25580e47a",
+                  "anchors": [
+                    "const s32 debris_model_index = 14",
+                    "const TObjChipParams volopt_pillar_chip_params",
+                    "new TObjChip(tl_05, &volopt_pillar_chip_params)",
+                    "models[debris_model_index].model",
+                    "models[0x17].model",
+                    "models[0x15].model",
+                    "set_current_texture_list(volopt_pillar_textures)",
+                    "set_current_texture_list(volopt_pillar_base_textures)",
+                    "this->rotation.yaw",
+                    "10430.38043493439",
+                    "&target->movement_velocity",
+                    "0x4003AD09"
+                  ],
+                  "absent": []
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 932,
+        "historical_path": "src/pso/object/TObjVoloptCage.cpp",
+        "historical_blob": "5a4c32d39dc14909d25e885680c1df926d96eef6",
+        "owners": {
+          "src/pso/boss/volopt/TObjVoloptCage.cpp": "830fc09747c6273506a78a4e0aa1d2c7fa771243"
+        },
+        "proofs": [
+          {
+            "group": "volopt",
+            "evidence": "The cage now frees the same real archived breakup dataset allocated from model 0x12, uses its actual Ginja texture list and creates its effect with true Vecs. The historical hold, stats, register, and collision-provider changes are separately retained or still scoped.",
+            "details": {
+              "disposition": "scoped_replayed",
+              "anchors": [
+                {
+                  "lane": "canonical",
+                  "path": "src/pso/boss/volopt/TObjVoloptCage.cpp",
+                  "blob": "830fc09747c6273506a78a4e0aa1d2c7fa771243",
+                  "anchors": [
+                    "static TUnk_8048FA00 *volopt_cage_breakup_model",
+                    "delete volopt_cage_breakup_model",
+                    "volopt_cage_breakup_model = new TUnk_8048FA00",
+                    "spawn_breakup_particles(&body_center_position)",
+                    "get_battle_movement_params(0x26)",
+                    "set_current_texture_list(volopt_cage_textures)",
+                    "send_6x2C_impose_hold"
+                  ],
+                  "absent": []
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 946,
+        "historical_path": "src/pso/boss/TBoss3VoloptHiraisin.cpp",
+        "historical_blob": "2b52358a9999f730318506c80a8e8becf4feede6",
+        "owners": {
+          "src/pso/boss/volopt/TBoss3VoloptHiraisin.cpp": "3a020b7ba152e8768cacc2c980e7f49315f8b4c0"
+        },
+        "proofs": [
+          {
+            "group": "volopt",
+            "evidence": "The exact Hiraisin teardown uses its native body-center Vec and existing chip/model archive state. The wide historical actor row also changed model texture and battle tables, demo/collision behavior and movement. Those stay scoped.",
+            "details": {
+              "disposition": "scoped_replayed",
+              "anchors": [
+                {
+                  "lane": "canonical",
+                  "path": "src/pso/boss/volopt/TBoss3VoloptHiraisin.cpp",
+                  "blob": "3a020b7ba152e8768cacc2c980e7f49315f8b4c0",
+                  "anchors": [
+                    "spawn_breakup_particles(&body_center_position)",
+                    "get_bml_texlist(volopt_hiraisin_resources, 0)",
+                    "copy_body_to_center()",
+                    "get_battle_base_stats(0x24)",
+                    "register_by_id()"
+                  ],
+                  "absent": []
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1012,
+        "historical_path": "src/pso/boss/TBoss3VoloptCore.cpp",
+        "historical_blob": "5c25ace4027dd227e105206eebbd823c9a0e987a",
+        "owners": {
+          "src/pso/boss/volopt/TBoss3VoloptCore.cpp": "2061bf839774563a4112e01d06f0810880420e22"
+        },
+        "proofs": [
+          {
+            "group": "volopt",
+            "evidence": "The live Core already uses named rotation and movement fields, real resource and battle accessors, exact camera target, and the original positional sounds. The full surviving inherited model/actor argument boundary still needs separate source proof.",
+            "details": {
+              "disposition": "scoped_already_retained",
+              "anchors": [
+                {
+                  "lane": "canonical",
+                  "path": "src/pso/boss/volopt/TBoss3VoloptCore.cpp",
+                  "blob": "2061bf839774563a4112e01d06f0810880420e22",
+                  "anchors": [
+                    "get_battle_base_stats(0x21)",
+                    "get_battle_attack_params(0x21)",
+                    "core_orbit_speeds",
+                    "rotation.yaw",
+                    "movement_velocity",
+                    "0x4003BC05"
+                  ],
+                  "absent": []
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1025,
+        "historical_path": "src/pso/boss/TBoss3VoloptP02.cpp",
+        "historical_blob": "4c850697eae08e1f20a18d497dd34edace844e78",
+        "owners": {
+          "src/pso/boss/volopt/TBoss3VoloptP02.cpp": "9d693b0f93a69aa1edd76425b1b8ce8dfb81cb93"
+        },
+        "proofs": [
+          {
+            "group": "volopt",
+            "evidence": "P02\u2019s breakup emitter has a real body-center Vec. The very broad original file includes additional shot, camera, persistent-sound, class, and battle parameter changes not certified in this part-effects wave.",
+            "details": {
+              "disposition": "scoped_replayed",
+              "anchors": [
+                {
+                  "lane": "canonical",
+                  "path": "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+                  "blob": "9d693b0f93a69aa1edd76425b1b8ce8dfb81cb93",
+                  "anchors": [
+                    "spawn_breakup_particles(&body_center_position)",
+                    "get_battle_movement_params(0x25)",
+                    "0x4003C616"
+                  ],
+                  "absent": []
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1052,
+        "historical_path": "src/pso/boss/TBoss3VoloptP01.cpp",
+        "historical_blob": "8b3f50c4772ac1a673f343b855dd5a5e770be1f1",
+        "owners": {
+          "src/pso/boss/volopt/TBoss3VoloptP01.cpp": "66497f5ed0b425dc5d408cfeb44e81522ba6e0ba"
+        },
+        "proofs": [
+          {
+            "group": "volopt",
+            "evidence": "P01 now invokes both original position-family functions with its actual body center. Much of historical P01\u2019s attack, graphics and activation behavior is earlier native source, while a complete source-equivalence assertion would need its own evidence.",
+            "details": {
+              "disposition": "scoped_replayed",
+              "anchors": [
+                {
+                  "lane": "canonical",
+                  "path": "src/pso/boss/volopt/TBoss3VoloptP01.cpp",
+                  "blob": "66497f5ed0b425dc5d408cfeb44e81522ba6e0ba",
+                  "anchors": [
+                    "spawn_effect_f8(&body_center_position",
+                    "spawn_breakup_particles(&body_center_position)",
+                    "get_battle_base_stats(0x22)",
+                    "copy_body_to_center()"
+                  ],
+                  "absent": []
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1077,
+        "historical_path": "src/pso/boss/TBoss3VoloptMonitor.cpp",
+        "historical_blob": "a70c9bfd646d7b39b0ca57f2cbd83ed7ab7eb18a",
+        "owners": {
+          "src/pso/boss/volopt/TBoss3VoloptMonitor.cpp": "7049a56d29016b8cb0f42dc4fa811a0e71bc3157"
+        },
+        "proofs": [
+          {
+            "group": "volopt",
+            "evidence": "The monitor\u2019s native position/body center, angle, current texture, sound and damage parameters are already source linked. This wave does not claim full independent monitor constructor or motion closure.",
+            "details": {
+              "disposition": "scoped_already_retained",
+              "anchors": [
+                {
+                  "lane": "canonical",
+                  "path": "src/pso/boss/volopt/TBoss3VoloptMonitor.cpp",
+                  "blob": "7049a56d29016b8cb0f42dc4fa811a0e71bc3157",
+                  "anchors": [
+                    "get_battle_base_stats(0x23)",
+                    "set_current_texture_list",
+                    "copy_body_to_center()",
+                    "spawn_directional_particle"
+                  ],
+                  "absent": []
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1129,
+        "historical_path": "src/pso/boss/TBoss3Volopt.cpp",
+        "historical_blob": "4cd2a25feaa5d69405638c20abe6a12bc2b29310",
+        "owners": {
+          "src/pso/boss/volopt/TBoss3Volopt.cpp": "d420a045d90b3b37699a26065cefdd3df5eaf412",
+          "include/pso/boss/volopt/TObjVoloptShutter.h": "4abadb7b42ea1a7ed47b70991de4ba5377dc4b7d"
+        },
+        "proofs": [
+          {
+            "group": "volopt",
+            "evidence": "The main archive owner retains exact allocate/free and component order. The shutter now follows actual Ninja model and child pointers with a native texture owner. The broader historical packet, camera, and actor qualification changes are separate.",
+            "details": {
+              "disposition": "scoped_replayed",
+              "anchors": [
+                {
+                  "lane": "canonical",
+                  "path": "src/pso/boss/volopt/TBoss3Volopt.cpp",
+                  "blob": "d420a045d90b3b37699a26065cefdd3df5eaf412",
+                  "anchors": [
+                    "new BmlResource(5, &bm_boss3_volopt_ap_resource_descriptor",
+                    "delete boss3_volopt_resources",
+                    "models[13].model->child->model",
+                    "volopt_shutter_textures = boss3_volopt_resources->models[13].m_c",
+                    "get_battle_movement_params(0x27)"
+                  ],
+                  "absent": []
+                },
+                {
+                  "lane": "canonical",
+                  "path": "include/pso/boss/volopt/TObjVoloptShutter.h",
+                  "blob": "4abadb7b42ea1a7ed47b70991de4ba5377dc4b7d",
+                  "anchors": [
+                    "extern NJS_CNK_MODEL *volopt_shutter_model_a",
+                    "extern GinjaTextureList *volopt_shutter_textures"
+                  ],
+                  "absent": []
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2735,
+        "historical_path": "src/pso/misc/TLobby_8028A7C8.cpp",
+        "historical_blob": "3796f825616ecc767cf50cddd16a5d493dee3621",
+        "owners": {
+          "src/pso/unk/TLobby_8028A7C8.cpp": "289ffc400f4780383b093193c786395c52ce7437"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The original GVM release/free/null and BML native delete/null sequences already survive. This wave declares both owned handles with their real types and uses the shared typed release declaration.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "contains": "release_texture_list(green_door_texture_handle);",
+                  "lines": [
+                    16
+                  ]
+                },
+                {
+                  "contains": "safe_free(green_door_texture_handle);",
+                  "lines": [
+                    17
+                  ]
+                },
+                {
+                  "contains": "delete (BmlResource *)green_door_bml_resource;",
+                  "lines": [
+                    21
+                  ]
+                }
+              ],
+              "updated": [
+                {
+                  "contains": "BmlResource *green_door_bml_resource;",
+                  "lines": [
+                    11
+                  ]
+                },
+                {
+                  "contains": "GinjaTextureList *green_door_texture_handle;",
+                  "lines": [
+                    12
+                  ]
+                },
+                {
+                  "contains": "delete green_door_bml_resource;",
+                  "lines": [
+                    21
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5309,
+        "historical_path": "src/pso/unk/text_8028A820.cpp",
+        "historical_blob": "4c663bc7fbb4438a11713c055ea9caccbae97dc3",
+        "owners": {
+          "src/pso/unk/text_8028A820.cpp": "c28808c82333e62ae4d427b81f3fc19404f6f485"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "Both original level-specific kind-5 loads and filenames survive in the canonical loader, with literals on the original linked data. The new source also binds each BML descriptor and shared archive owner by declared type.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "contains": "load_gvm_texture_file(\"obj_door_ruins_green.gvm\")",
+                  "lines": [
+                    20
+                  ]
+                },
+                {
+                  "contains": "load_gvm_texture_file(\"obj_door_space_green.gvm\")",
+                  "lines": [
+                    26
+                  ]
+                },
+                {
+                  "contains": "new BmlResource(5, (BmlResourceDescriptor *)bm_obj_door_ruins_resource_descriptor",
+                  "lines": [
+                    18
+                  ]
+                },
+                {
+                  "contains": "new BmlResource(5, (BmlResourceDescriptor *)bm_obj_door_space_resource_descriptor",
+                  "lines": [
+                    24
+                  ]
+                }
+              ],
+              "updated": [
+                {
+                  "contains": "extern BmlResourceDescriptor bm_obj_door_space_resource_descriptor;",
+                  "lines": [
+                    8
+                  ]
+                },
+                {
+                  "contains": "new BmlResource(5, &bm_obj_door_ruins_resource_descriptor",
+                  "lines": [
+                    16
+                  ]
+                },
+                {
+                  "contains": "new BmlResource(5, &bm_obj_door_space_resource_descriptor",
+                  "lines": [
+                    22
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6830,
+        "historical_path": "src/pso/misc/TOSensorGeneral01.cpp",
+        "historical_blob": "812d700d369652aed5f3d32968ae8d79642731e7",
+        "owners": {
+          "src/pso/object/switch/TOSensorGeneral01.cpp": "0d5b62596c871956d66933b614aaa20147875a40"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "Historic yaw increments and all five render selections, five model draws, native array allocation/free and kind-1 BML lifetime survive. This wave adds the pointer type and keeps the borrowed model slot and owned red slot distinct.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "contains": "this->rotation.yaw = this->rotation.yaw + 0x147",
+                  "lines": [
+                    30,
+                    46,
+                    51,
+                    56
+                  ]
+                },
+                {
+                  "contains": "this->rotation.yaw = this->rotation.yaw + 0xCCC",
+                  "lines": [
+                    40
+                  ]
+                },
+                {
+                  "contains": "rotate_matrix_y(NULL, this->rotation.yaw)",
+                  "lines": [
+                    66
+                  ]
+                },
+                {
+                  "contains": "TOSensorGeneral01__texture_lists[lamps_dark < 1]",
+                  "lines": [
+                    74
+                  ]
+                },
+                {
+                  "contains": "TOSensorGeneral01__texture_lists[lamps_dark < 2]",
+                  "lines": [
+                    78
+                  ]
+                },
+                {
+                  "contains": "TOSensorGeneral01__texture_lists[lamps_dark < 3]",
+                  "lines": [
+                    82
+                  ]
+                },
+                {
+                  "contains": "draw_ginja_model((void *)object->model)",
+                  "lines": [
+                    70,
+                    75,
+                    79,
+                    83,
+                    90
+                  ]
+                },
+                {
+                  "contains": "new BmlResource(1, &TOSensorGeneral01__resource_descriptor",
+                  "lines": [
+                    115
+                  ]
+                },
+                {
+                  "contains": "::operator delete[](TOSensorGeneral01__texture_lists)",
+                  "lines": [
+                    104
+                  ]
+                },
+                {
+                  "contains": "delete sensor_general_shared_bml_archive",
+                  "lines": [
+                    109
+                  ]
+                },
+                {
+                  "contains": "load_gvm_texture_file(\"fs_obj_sensor_r.gvm\")",
+                  "lines": [
+                    119
+                  ]
+                }
+              ],
+              "updated": [
+                {
+                  "contains": "GinjaTextureList **TOSensorGeneral01__texture_lists;",
+                  "lines": [
+                    27
+                  ]
+                },
+                {
+                  "contains": "TOSensorGeneral01__texture_lists[1] = sensor_general_shared_bml_archive->models[0].m_c;",
+                  "lines": [
+                    118
+                  ]
+                },
+                {
+                  "contains": "free_if_valid((s32)TOSensorGeneral01__texture_lists[0])",
+                  "lines": [
+                    102
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6905,
+        "historical_path": "src/pso/misc/TOBarrierEnergy01.cpp",
+        "historical_blob": "e65f50a857b051ed9c78753884c814ae23652c2e",
+        "owners": {
+          "src/pso/object/fence/TOBarrierEnergy01.cpp": "d4c93f096a0ec0f7385bd2eac2862314987a0b28"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The original barrier render and archive lifetime, size-three allocation, red GVM, BML slots 1/0 and each of four persistent sounds already survive. The texture bank now stores real pointers, and frees only the owned red slot.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "contains": "new BmlResource(1, &bm_fs_obj_lazerguard_resource_descriptor",
+                  "lines": [
+                    78
+                  ]
+                },
+                {
+                  "contains": "::operator delete[](barrier_energy_texlists)",
+                  "lines": [
+                    91
+                  ]
+                },
+                {
+                  "contains": "delete barrier_energy_shared_bml_archive;",
+                  "lines": [
+                    96
+                  ]
+                },
+                {
+                  "contains": "rotate_matrix_y(NULL, this->rotation.yaw)",
+                  "lines": [
+                    109
+                  ]
+                },
+                {
+                  "contains": "set_current_texture_list((GinjaTextureList *)texlist)",
+                  "lines": [
+                    110
+                  ]
+                },
+                {
+                  "contains": "set_current_texture_list((GinjaTextureList *)barrier_energy_texlists[2])",
+                  "lines": [
+                    114
+                  ]
+                },
+                {
+                  "contains": "play_persistent_sound(0x4CB09",
+                  "lines": [
+                    156
+                  ]
+                },
+                {
+                  "contains": "play_persistent_sound(0x44B08",
+                  "lines": [
+                    161
+                  ]
+                },
+                {
+                  "contains": "play_persistent_sound(0x4004CB02",
+                  "lines": [
+                    165
+                  ]
+                },
+                {
+                  "contains": "play_persistent_sound(0x4004CB09",
+                  "lines": [
+                    170
+                  ]
+                }
+              ],
+              "updated": [
+                {
+                  "contains": "GinjaTextureList **barrier_energy_texlists;",
+                  "lines": [
+                    53
+                  ]
+                },
+                {
+                  "contains": "barrier_energy_texlists[1] = get_bml_texlist(barrier_energy_shared_bml_archive, 1);",
+                  "lines": [
+                    83
+                  ]
+                },
+                {
+                  "contains": "barrier_energy_texlists[2] = get_bml_texlist(barrier_energy_shared_bml_archive, 0);",
+                  "lines": [
+                    84
+                  ]
+                },
+                {
+                  "contains": "free_if_valid((s32)barrier_energy_texlists[0])",
+                  "lines": [
+                    89
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6907,
+        "historical_path": "src/pso/misc/TOKeyGenericSw.cpp",
+        "historical_blob": "6e1fe7566464404cf429f871662f39f176e827cd",
+        "owners": {
+          "src/pso/object/key/TOKeyGenericSw.cpp": "b3f2fb9f4113afdb3e8b4b99a6939bf1e894d45a"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "Original renderer yaw and both binds, both pairs of door-panel BML descriptors, both three-slot banks and array teardown all persist. The replay now gives those banks the true pointer type.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "contains": "rotate_matrix_y(NULL, this->rotation.yaw)",
+                  "lines": [
+                    62,
+                    78
+                  ]
+                },
+                {
+                  "contains": "set_current_texture_list((GinjaTextureList *)texlist)",
+                  "lines": [
+                    63,
+                    79
+                  ]
+                },
+                {
+                  "contains": "::operator delete[](TOKeyGenericSw__texture_lists)",
+                  "lines": [
+                    111
+                  ]
+                },
+                {
+                  "contains": "delete (BmlResource *)TOKeyGenericSw__shared_resource_ptrs[1]",
+                  "lines": [
+                    116
+                  ]
+                },
+                {
+                  "contains": "delete (BmlResource *)TOKeyGenericSw__shared_resource_ptrs[0]",
+                  "lines": [
+                    120
+                  ]
+                },
+                {
+                  "contains": "new BmlResource(1, &fs_obj_hanyousu_body1_j_resource_descriptor",
+                  "lines": [
+                    130
+                  ]
+                },
+                {
+                  "contains": "new BmlResource(1, &fs_obj_hanyousu_light_j_resource_descriptor",
+                  "lines": [
+                    132
+                  ]
+                },
+                {
+                  "contains": "new BmlResource(1, &fs_obj_hanyousu_body1_resource_descriptor",
+                  "lines": [
+                    139
+                  ]
+                },
+                {
+                  "contains": "new BmlResource(1, &fs_obj_hanyousu_light_resource_descriptor",
+                  "lines": [
+                    141
+                  ]
+                },
+                {
+                  "contains": "load_gvm_texture_file(\"fs_obj_hanyousu_light_ao_j.GVM\")",
+                  "lines": [
+                    137
+                  ]
+                },
+                {
+                  "contains": "load_gvm_texture_file(\"fs_obj_hanyousu_light_ao.GVM\")",
+                  "lines": [
+                    146
+                  ]
+                }
+              ],
+              "updated": [
+                {
+                  "contains": "GinjaTextureList **TOKeyGenericSw__texture_lists;",
+                  "lines": [
+                    50
+                  ]
+                },
+                {
+                  "contains": "free_if_valid((s32)TOKeyGenericSw__texture_lists[2])",
+                  "lines": [
+                    109
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6924,
+        "historical_path": "src/pso/misc/TODoorJungleMain.cpp",
+        "historical_blob": "d0cdcc2a39bc4ed7226af173d2b32a0488929dc3",
+        "owners": {
+          "src/pso/object/door/TODoorJungleMain.cpp": "a8f3529ad7004aa41c4032e9d5ce4713b39768f3"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The exact Jungle main doors already preserve the floor query, timing/culling values, collision creation, GVM release, kind-1 BML lifetime, loaded model and motion reads, both sounds and both yaw-oriented minimap colors.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "contains": "2500.0f",
+                  "lines": [
+                    364
+                  ]
+                },
+                {
+                  "contains": "->get_floor()",
+                  "lines": [
+                    370
+                  ]
+                },
+                {
+                  "contains": "70.0f",
+                  "lines": [
+                    230
+                  ]
+                },
+                {
+                  "contains": "800.0f",
+                  "lines": [
+                    193
+                  ]
+                },
+                {
+                  "contains": "120.0f",
+                  "lines": [
+                    195
+                  ]
+                },
+                {
+                  "contains": "160.0f",
+                  "lines": [
+                    199
+                  ]
+                },
+                {
+                  "contains": "100.0f",
+                  "lines": [
+                    200
+                  ]
+                },
+                {
+                  "contains": "TObjMapCsn::create(copy_storage_8029B924.bytes)",
+                  "lines": [
+                    203
+                  ]
+                },
+                {
+                  "contains": "safe_free(door_jungle_main_gvm_texture)",
+                  "lines": [
+                    328
+                  ]
+                },
+                {
+                  "contains": "new BmlResource(1, &bm_o_jungle_doormain_resource_descriptor",
+                  "lines": [
+                    320
+                  ]
+                },
+                {
+                  "contains": "set_current_texture_list(door_jungle_main_gvm_texture)",
+                  "lines": [
+                    302
+                  ]
+                },
+                {
+                  "contains": "draw_ginja_model_with_motion(get_bml_model(TODoorJungleMain__bml_resource, 3)",
+                  "lines": [
+                    307
+                  ]
+                },
+                {
+                  "contains": "play_sound_effect(0x4C123",
+                  "lines": [
+                    283
+                  ]
+                },
+                {
+                  "contains": "play_persistent_sound(0x43220",
+                  "lines": [
+                    244
+                  ]
+                },
+                {
+                  "contains": "minimap_render_gate(&position, 0xFF00FF00, this->rotation.yaw",
+                  "lines": [
+                    259
+                  ]
+                },
+                {
+                  "contains": "minimap_render_gate(&position, 0xFFFF0000, this->rotation.yaw",
+                  "lines": [
+                    261
+                  ]
+                }
+              ],
+              "updated": []
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6938,
+        "historical_path": "src/pso/misc/TODoorFourLightSpace.cpp",
+        "historical_blob": "977707e89096047227122865880d979786ca4aba",
+        "owners": {
+          "src/pso/object/door/TODoorFourLightSpace.cpp": "b4affb5404c76d102a0e6eadc3e53891a3488927"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "All original Temple/Spaceship authored render changes survive under their folded owners: three staged renders and one lamp bind per door, four normal texture binds, original node-model reads, 1.0 animation decrement and 30.0 depth branch. This wave changes the existing misattributed getter to a genuine stage texture provider at the same linked boundary.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "contains": "30.0f",
+                  "lines": [
+                    116,
+                    320
+                  ]
+                },
+                {
+                  "contains": "- 1.0f",
+                  "lines": [
+                    95,
+                    301
+                  ]
+                },
+                {
+                  "contains": "rotate_matrix_y(0, this->rotation.yaw)",
+                  "lines": [
+                    123,
+                    131,
+                    144,
+                    327,
+                    335,
+                    348,
+                    382
+                  ]
+                },
+                {
+                  "contains": "draw_ginja_model(*(void **)((s8 *)(*pa) + 4));",
+                  "lines": [
+                    403
+                  ]
+                },
+                {
+                  "contains": "draw_ginja_model(*(void **)((s8 *)(*pb) + 4));",
+                  "lines": [
+                    409
+                  ]
+                },
+                {
+                  "contains": "draw_ginja_model(*(void **)((s8 *)(*a) + 4));",
+                  "lines": [
+                    191
+                  ]
+                },
+                {
+                  "contains": "draw_ginja_model(*(void **)((s8 *)(*b) + 4));",
+                  "lines": [
+                    197
+                  ]
+                },
+                {
+                  "contains": "set_current_texture_list((GinjaTextureList *)(TBoss8Dragon::get_instance()));",
+                  "lines": [
+                    121,
+                    129,
+                    142,
+                    184,
+                    325,
+                    333,
+                    346,
+                    396
+                  ]
+                }
+              ],
+              "updated": [
+                {
+                  "contains": "set_current_texture_list(get_green_door_textures());",
+                  "lines": [
+                    121,
+                    129,
+                    142,
+                    184,
+                    325,
+                    333,
+                    346,
+                    396
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6952,
+        "historical_path": "src/pso/misc/TOKeyAncient02.cpp",
+        "historical_blob": "47de0cdc76ea8921e042bb91e3ae3adab5120a9a",
+        "owners": {
+          "src/pso/object/key/TOKeyAncient02.cpp": "dab15955566eba3229ffaa1efb490f2f12c3eca9"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The Ancient02 original yaw, Ginja model member drawing, BML texture slot 0 and actor slot 1, glass model, standalone GVM, and native allocation/teardown already survive. The bank now preserves the true texture return type.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "contains": "rotate_matrix_y(NULL, this->rotation.yaw)",
+                  "lines": [
+                    45
+                  ]
+                },
+                {
+                  "contains": "draw_ginja_model((void *)object->model)",
+                  "lines": [
+                    50,
+                    56,
+                    62,
+                    70,
+                    75
+                  ]
+                },
+                {
+                  "contains": "get_bml_texlist(TOKeyAncient02__model_archive, 1)",
+                  "lines": [
+                    161
+                  ]
+                },
+                {
+                  "contains": "get_bml_model(TOKeyAncient02__model_archive, 0)",
+                  "lines": [
+                    148
+                  ]
+                },
+                {
+                  "contains": "::operator delete[](TOKeyAncient02__texture_lists)",
+                  "lines": [
+                    131
+                  ]
+                },
+                {
+                  "contains": "delete TOKeyAncient02__model_archive",
+                  "lines": [
+                    136
+                  ]
+                },
+                {
+                  "contains": "new BmlResource(1, &bm_fs_obj_o_doorswitch01_resource_descriptor",
+                  "lines": [
+                    143
+                  ]
+                },
+                {
+                  "contains": "load_gvm_texture_file(\"o_key_ancient02.gvm\")",
+                  "lines": [
+                    147
+                  ]
+                }
+              ],
+              "updated": [
+                {
+                  "contains": "TOKeyAncient02__texture_lists[0] = get_bml_texlist(TOKeyAncient02__model_archive, 0);",
+                  "lines": [
+                    146
+                  ]
+                },
+                {
+                  "contains": "set_current_texture_list(TOKeyAncient02__texture_lists[is_on]);",
+                  "lines": [
+                    65
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6971,
+        "historical_path": "src/pso/misc/TOSensorAncient01.cpp",
+        "historical_blob": "0552d4a1b23ba0f6626eed9f87f04f612775c4f3",
+        "owners": {
+          "src/pso/object/switch/TOSensorAncient01.cpp": "475942ec3e36134818f0eddfbf64a2379436e107"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "Original sensor model construction, all Ginja draws and four palette bindings, array lifecycle and plain/red resource selection survive. The pair remains red then plain, with only the three standalone GVM entries released.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "contains": "rotate_matrix_y(NULL, this->rotation.yaw)",
+                  "lines": [
+                    74
+                  ]
+                },
+                {
+                  "contains": "draw_ginja_model((void *)object->model)",
+                  "lines": [
+                    78,
+                    86,
+                    94,
+                    102,
+                    110,
+                    115,
+                    120,
+                    125,
+                    130
+                  ]
+                },
+                {
+                  "contains": "ancient_sensor_resource_pair_table[set_params[2]].red",
+                  "lines": [
+                    75
+                  ]
+                },
+                {
+                  "contains": "ancient_sensor_resource_pair_table[sensor_texture_table_index].plain",
+                  "lines": [
+                    83,
+                    91,
+                    99
+                  ]
+                },
+                {
+                  "contains": "new BmlResource(1, &TOSensorAncient01__resource_descriptor",
+                  "lines": [
+                    158
+                  ]
+                },
+                {
+                  "contains": "::operator delete[](ancient_sensor_resource_pair_table)",
+                  "lines": [
+                    147
+                  ]
+                },
+                {
+                  "contains": "delete sensor_ancient01_model_resource",
+                  "lines": [
+                    152
+                  ]
+                },
+                {
+                  "contains": "load_gvm_texture_file(\"fs_obj_o_sensor01r.gvm\")",
+                  "lines": [
+                    162
+                  ]
+                },
+                {
+                  "contains": "load_gvm_texture_file(\"fs_obj_o_sensor02.gvm\")",
+                  "lines": [
+                    163
+                  ]
+                },
+                {
+                  "contains": "load_gvm_texture_file(\"fs_obj_o_sensor02r.gvm\")",
+                  "lines": [
+                    164
+                  ]
+                }
+              ],
+              "updated": [
+                {
+                  "contains": "ancient_sensor_resource_pair_table[0].plain = sensor_ancient01_model_resource->models[0].m_c;",
+                  "lines": [
+                    161
+                  ]
+                },
+                {
+                  "contains": "free_if_valid((s32)ancient_sensor_resource_pair_table[0].red)",
+                  "lines": [
+                    143
+                  ]
+                },
+                {
+                  "contains": "free_if_valid((s32)ancient_sensor_resource_pair_table[1].plain)",
+                  "lines": [
+                    144
+                  ]
+                },
+                {
+                  "contains": "free_if_valid((s32)ancient_sensor_resource_pair_table[1].red)",
+                  "lines": [
+                    145
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6992,
+        "historical_path": "src/pso/object/TObjDoor_8018E358.cpp",
+        "historical_blob": "c4127d79dbc0fe6a187b06b02e57c4add8015256",
+        "owners": {
+          "src/pso/object/door/TObjDoor_8018E358.cpp": "286d6289b9b9bcc5acbe99e1fdd13537af7320b2"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The original standard door model table sequence 4,3,0,1,2, five exact texture binds, both position-scoped sound events, typed pose icons and native kind-5 archive ownership already persist.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "contains": "set_current_texture_list(TObjDoor__resource_param);",
+                  "lines": [
+                    192,
+                    209,
+                    235,
+                    252,
+                    286
+                  ]
+                },
+                {
+                  "contains": "play_persistent_sound(0x49e08, this, &this->position",
+                  "lines": [
+                    446,
+                    453
+                  ]
+                },
+                {
+                  "contains": "minimap_render_gate(&((TObjDoor *)self)->position, 0xFFFF0000",
+                  "lines": [
+                    491
+                  ]
+                },
+                {
+                  "contains": "minimap_render_gate(&((TObjDoor *)self)->position, 0xFF00FF00",
+                  "lines": [
+                    493
+                  ]
+                },
+                {
+                  "contains": "delete door_resource_handle;",
+                  "lines": [
+                    545
+                  ]
+                },
+                {
+                  "contains": "new BmlResource(5, &door_resource_descriptor",
+                  "lines": [
+                    552
+                  ]
+                },
+                {
+                  "contains": "get_bml_model(door_resource_handle, 4)",
+                  "lines": [
+                    555
+                  ]
+                },
+                {
+                  "contains": "get_bml_model(door_resource_handle, 3)",
+                  "lines": [
+                    556
+                  ]
+                },
+                {
+                  "contains": "get_bml_model(door_resource_handle, 0)",
+                  "lines": [
+                    557
+                  ]
+                },
+                {
+                  "contains": "get_bml_model(door_resource_handle, 1)",
+                  "lines": [
+                    558
+                  ]
+                },
+                {
+                  "contains": "get_bml_model(door_resource_handle, 2)",
+                  "lines": [
+                    559
+                  ]
+                }
+              ],
+              "updated": []
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6993,
+        "historical_path": "src/pso/misc/TOKeyAncient01.cpp",
+        "historical_blob": "a949946212f288fe15e5d8323012cbc5884b5b09",
+        "owners": {
+          "src/pso/object/key/TOKeyAncient01.cpp": "58a19b0e5138696ddaa57942e0318fab281fb1ba"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "Original Ancient01 yaw, texture bind, node model draw and native BML and array lifetime survive. The old single borrowed pointer and three owned color lists are now stored with their actual types.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "contains": "rotate_matrix_y(NULL, this->rotation.yaw)",
+                  "lines": [
+                    40
+                  ]
+                },
+                {
+                  "contains": "set_current_texture_list((GinjaTextureList *)texlist)",
+                  "lines": [
+                    41
+                  ]
+                },
+                {
+                  "contains": "((NJS_OBJECT *)model)->model",
+                  "lines": [
+                    50
+                  ]
+                },
+                {
+                  "contains": "::operator delete[](TOKeyAncient01__texture_lists)",
+                  "lines": [
+                    76
+                  ]
+                },
+                {
+                  "contains": "delete TOKeyAncient01__shared_resource_object;",
+                  "lines": [
+                    81
+                  ]
+                },
+                {
+                  "contains": "new BmlResource(1, &bm_fd_obj_n_switch_resource_descriptor",
+                  "lines": [
+                    87
+                  ]
+                },
+                {
+                  "contains": "load_gvm_texture_file(\"o_key_ancient01b.gvm\")",
+                  "lines": [
+                    91
+                  ]
+                },
+                {
+                  "contains": "load_gvm_texture_file(\"o_key_ancient01g.gvm\")",
+                  "lines": [
+                    92
+                  ]
+                },
+                {
+                  "contains": "load_gvm_texture_file(\"o_key_ancient01p.gvm\")",
+                  "lines": [
+                    93
+                  ]
+                }
+              ],
+              "updated": [
+                {
+                  "contains": "TOKeyAncient01__texture_lists[0] = TOKeyAncient01__shared_resource_object->models[0].m_c;",
+                  "lines": [
+                    90
+                  ]
+                },
+                {
+                  "contains": "free_if_valid((s32)TOKeyAncient01__texture_lists[i])",
+                  "lines": [
+                    73
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7029,
+        "historical_path": "src/pso/misc/TOKeyCave01.cpp",
+        "historical_blob": "5a52fa76bb52dd333ba55db71c6e7d3e0b266a5b",
+        "owners": {
+          "src/pso/object/key/TOKeyCave01.cpp": "2fefac8abb4c28a61f01f24d8cf05b99f6367942"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "All four native sound branches, yaw and Ginja model draws, both kind-1 archive variants, both GVMs and the active BML borrow survive. Typed slots also feed the actual dummy-key owner in this wave.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "contains": "play_sound_effect(sound, &position",
+                  "lines": [
+                    95,
+                    100,
+                    110,
+                    115
+                  ]
+                },
+                {
+                  "contains": "rotate_matrix_y(NULL, this->rotation.yaw)",
+                  "lines": [
+                    176
+                  ]
+                },
+                {
+                  "contains": "draw_ginja_model((void *)object->model)",
+                  "lines": [
+                    179,
+                    198,
+                    202
+                  ]
+                },
+                {
+                  "contains": "::operator delete[](TOKeyCave01__texture_lists)",
+                  "lines": [
+                    222
+                  ]
+                },
+                {
+                  "contains": "delete TOKeyCave01__resource_bundle",
+                  "lines": [
+                    227
+                  ]
+                },
+                {
+                  "contains": "new BmlResource(1, &fs_obj_key_jungle_resource_descriptor",
+                  "lines": [
+                    237
+                  ]
+                },
+                {
+                  "contains": "new BmlResource(1, &bm_fs_obj_do_doa_panel_resource_descriptor",
+                  "lines": [
+                    245
+                  ]
+                },
+                {
+                  "contains": "load_gvm_texture_file(\"fs_obj_key_jungle_red.gvm\")",
+                  "lines": [
+                    240
+                  ]
+                },
+                {
+                  "contains": "load_gvm_texture_file(\"fs_obj_do_doa_panelr.gvm\")",
+                  "lines": [
+                    248
+                  ]
+                }
+              ],
+              "updated": [
+                {
+                  "contains": "TOKeyCave01__texture_lists[1] = TOKeyCave01__resource_bundle->models[0].m_c;",
+                  "lines": [
+                    241,
+                    249
+                  ]
+                },
+                {
+                  "contains": "free_if_valid((s32)TOKeyCave01__texture_lists[0])",
+                  "lines": [
+                    220
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7049,
+        "historical_path": "src/pso/misc/TOKeyAncient03.cpp",
+        "historical_blob": "10ce0d305cae8ecb148034aa8e3101cdb4fe6a3b",
+        "owners": {
+          "src/pso/object/key/TOKeyAncient03.cpp": "f39b2213ab843ec54e0d46e7f13c818360fb128a"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "Ancient03\u2019s two exact sound plays, original yaw and Ginja draws, resource descriptor lifetime, default/active texture pair choices and native array allocation persist. The true borrowed and owned textures are now stored as pointers.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "contains": "play_sound_effect(0x4004B20D, &position",
+                  "lines": [
+                    76,
+                    80
+                  ]
+                },
+                {
+                  "contains": "rotate_matrix_y(NULL, this->rotation.yaw)",
+                  "lines": [
+                    133
+                  ]
+                },
+                {
+                  "contains": "draw_ginja_model((void *)object->model)",
+                  "lines": [
+                    136,
+                    147,
+                    152
+                  ]
+                },
+                {
+                  "contains": "::operator delete[](TOKeyAncient03__texture_variants)",
+                  "lines": [
+                    172
+                  ]
+                },
+                {
+                  "contains": "delete TOKeyAncient03__model_archive",
+                  "lines": [
+                    177
+                  ]
+                },
+                {
+                  "contains": "new BmlResource(1, &bm_fs_obj_o_doorpanel_resource_descriptor",
+                  "lines": [
+                    183
+                  ]
+                },
+                {
+                  "contains": "load_gvm_texture_file(\"fs_obj_o_doorpanelg.gvm\")",
+                  "lines": [
+                    189
+                  ]
+                }
+              ],
+              "updated": [
+                {
+                  "contains": "textures[0] = TOKeyAncient03__model_archive->models[0].m_c;",
+                  "lines": [
+                    188
+                  ]
+                },
+                {
+                  "contains": "set_current_texture_list(TOKeyAncient03__texture_variants[is_on]);",
+                  "lines": [
+                    130
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7050,
+        "historical_path": "src/pso/misc/TOKeyMachine01.cpp",
+        "historical_blob": "bf55338ba75141648d16fcf05f453bf9e947bb60",
+        "owners": {
+          "src/pso/object/key/TOKeyMachine01.cpp": "c79721e1fb539771341261bab74619004d16e769"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "Machine key\u2019s six native sound calls, original yaw and Ginja draws, kind-1 resource descriptor and native array lifetime survive. The bank keeps exact standalone red and borrowed BML slots.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "contains": "play_sound_effect(sound, &position",
+                  "lines": [
+                    87,
+                    92,
+                    97,
+                    107,
+                    112,
+                    117
+                  ]
+                },
+                {
+                  "contains": "rotate_matrix_y(NULL, this->rotation.yaw)",
+                  "lines": [
+                    172
+                  ]
+                },
+                {
+                  "contains": "draw_ginja_model((void *)object->model)",
+                  "lines": [
+                    175,
+                    187,
+                    191
+                  ]
+                },
+                {
+                  "contains": "::operator delete[](TOKeyMachine01__texture_lists)",
+                  "lines": [
+                    212
+                  ]
+                },
+                {
+                  "contains": "delete TOKeyMachine01__resource_bundle",
+                  "lines": [
+                    217
+                  ]
+                },
+                {
+                  "contains": "new BmlResource(1, &bm_fs_obj_ki_doa_panel_resource_descriptor",
+                  "lines": [
+                    223
+                  ]
+                },
+                {
+                  "contains": "load_gvm_texture_file(\"fs_obj_ki_doa_panel_r.gvm\")",
+                  "lines": [
+                    226
+                  ]
+                }
+              ],
+              "updated": [
+                {
+                  "contains": "TOKeyMachine01__texture_lists[1] = TOKeyMachine01__resource_bundle->models[0].m_c;",
+                  "lines": [
+                    227
+                  ]
+                },
+                {
+                  "contains": "free_if_valid((s32)TOKeyMachine01__texture_lists[0])",
+                  "lines": [
+                    209
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7139,
+        "historical_path": "src/pso/system/TOChatSensorCapture.cpp",
+        "historical_blob": "957359626c4dd32e8d5e7eeedd105273945399ce",
+        "owners": {
+          "src/pso/object/switch/TOChatSensor.cpp": "5a20077702e13a19ab62e5dea6d6b20a70acc9ce"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The complete original four chat-capture buffer new[] and delete[] changes already survive, folded into TOChatSensor.cpp with the original 0x100 size.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "contains": "(char *)::operator new[](0x100)",
+                  "lines": [
+                    333
+                  ]
+                },
+                {
+                  "contains": "for (int i = 0; i != 4; i++) ::operator delete[](messages[i]);",
+                  "lines": [
+                    342
+                  ]
+                }
+              ],
+              "updated": []
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7211,
+        "historical_path": "src/pso/misc/TOChatSensor_8015AC80.cpp",
+        "historical_blob": "9a158d3e4c3d152d53dde941d77147d102eac4ab",
+        "owners": {
+          "src/pso/object/switch/TOChatSensor.cpp": "5a20077702e13a19ab62e5dea6d6b20a70acc9ce"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The complete original chat sensor render and initialization changes already survive: named pitch/yaw, checked demo state, and exact 0.3 and 0.8 float values.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "contains": "check_demo_mode() == 1",
+                  "lines": [
+                    201
+                  ]
+                },
+                {
+                  "contains": "0.3f",
+                  "lines": [
+                    203,
+                    204
+                  ]
+                },
+                {
+                  "contains": "0.8f",
+                  "lines": [
+                    205
+                  ]
+                },
+                {
+                  "contains": "this->rotation.pitch",
+                  "lines": [
+                    214
+                  ]
+                },
+                {
+                  "contains": "this->rotation.yaw",
+                  "lines": [
+                    218
+                  ]
+                }
+              ],
+              "updated": []
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 39,
+        "historical_path": "src/pso/misc/TLobby_802409AC.cpp",
+        "historical_blob": "ff1e452f312287097126116f95f7a825296176d8",
+        "owners": {
+          "src/pso/unk/TLobby_802409AC.cpp": "6fe2fa0291fab12f9227af312f97fe55d9217064"
+        },
+        "proofs": [
+          {
+            "group": "guild",
+            "evidence": "The matching alternate-name lookup passes the actual received/saved card into its name accessor at 0x80225C84, preserving the mail/display fallback branch. The other lobby registry work remains separate.",
+            "details": {
+              "disposition": "scoped",
+              "original_blob": "ff1e452f312287097126116f95f7a825296176d8",
+              "canonical_blob": "6fe2fa0291fab12f9227af312f97fe55d9217064"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 299,
+        "historical_path": "src/pso/misc/ShortMail.cpp",
+        "historical_blob": "cbe872b05e40f6ecb20328764fb4ddb970536914",
+        "owners": {
+          "src/pso/ui/chat/ShortMail.cpp": "a7f66215fd962228c28ec45c0d3bab4417f0f2ee"
+        },
+        "proofs": [
+          {
+            "group": "guild",
+            "evidence": "Simple Mail uses the matched card record name at +8. The original eight-byte name accessor is still at 0x80225C84 in the ShortMail unit, now with its real record receiver.",
+            "details": {
+              "disposition": "scoped",
+              "original_blob": "cbe872b05e40f6ecb20328764fb4ddb970536914",
+              "canonical_blob": "a7f66215fd962228c28ec45c0d3bab4417f0f2ee"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5489,
+        "historical_path": "include/pso/misc/TWindowSubComCardList_8026CB08.h",
+        "historical_blob": "bad8ca46dce6de70876372cb91ce662811afb4c7",
+        "owners": {
+          "src/pso/unk/text_80275360.cpp": "2a7c7dd800598d5047424699ce7c894d8405052d"
+        },
+        "proofs": [
+          {
+            "group": "guild",
+            "evidence": "The complete historical file is a guard and an include of PageIndicator.h. Canonical list selection includes the same PageIndicator declaration at its active source and no historical definition is missing.",
+            "details": {
+              "disposition": "whole-equivalent-before-wave",
+              "original_blob": "bad8ca46dce6de70876372cb91ce662811afb4c7",
+              "canonical_blob": "2a7c7dd800598d5047424699ce7c894d8405052d"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5531,
+        "historical_path": "src/pso/misc/TWindowComCard_80249CBC.cpp",
+        "historical_blob": "328556ffcb4d27795f9bfbd31502a8b3405e1986",
+        "owners": {
+          "src/pso/ui/window/TWindowComCard.cpp": "3258f9adefa8898f977b5f35eaefc81aa71ce9ed"
+        },
+        "proofs": [
+          {
+            "group": "guild",
+            "evidence": "The active folded card renderer uses the actual 0x90 GuildCardEntry name/ID and the existing detail text format. Other card rendering changes remain separately audited.",
+            "details": {
+              "disposition": "scoped",
+              "original_blob": "328556ffcb4d27795f9bfbd31502a8b3405e1986",
+              "canonical_blob": "3258f9adefa8898f977b5f35eaefc81aa71ce9ed"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5707,
+        "historical_path": "include/pso/misc/TWindowMenu.h",
+        "historical_blob": "5cf9bfee4a94058870e98e3c48bb2ac7a714b594",
+        "owners": {
+          "include/pso/ui/window/TWindowMenu.h": "34fcc9fb916e89395fc931ba1703b31003793be2"
+        },
+        "proofs": [
+          {
+            "group": "guild",
+            "evidence": "The shared menu method at 0x802183BC clears the original +0x70 decision bit and reactivates a present +0x88 status child. All 39 calls in 16 units now name the actual menu receiver. Other menu declarations remain separately audited.",
+            "details": {
+              "disposition": "scoped",
+              "original_blob": "5cf9bfee4a94058870e98e3c48bb2ac7a714b594",
+              "canonical_blob": "34fcc9fb916e89395fc931ba1703b31003793be2"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5859,
+        "historical_path": "include/pso/misc/TWindowCtrl.h",
+        "historical_blob": "db4ef29f36c094959aeda1f57ae5dcd041661875",
+        "owners": {
+          "include/pso/ui/window/TWindowCtrl.h": "903ec326f0a43e7cf65cb78c386a29703e9e868e"
+        },
+        "proofs": [
+          {
+            "group": "guild",
+            "evidence": "The receipt controller field is the actual TWindowGetComCard child, with the old +0x3C offset assertion still active. Other controller flag and window fields remain separately audited.",
+            "details": {
+              "disposition": "scoped",
+              "original_blob": "db4ef29f36c094959aeda1f57ae5dcd041661875",
+              "canonical_blob": "903ec326f0a43e7cf65cb78c386a29703e9e868e"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5880,
+        "historical_path": "include/pso/misc/TWindowSubComCard.h",
+        "historical_blob": "7a677afa30cb22efbc8570b3a6d0334b8949ce68",
+        "owners": {
+          "include/pso/ui/window/TWindowSubComCard.h": "d330ba9e9ee0a446d7b6cd80974bad105c4cd9e4"
+        },
+        "proofs": [
+          {
+            "group": "guild",
+            "evidence": "The historical header detached three false window/record contracts. The active 0x802183BC reset belongs to TWindowMenu; the 0x8007B6D8/0x8007B6E0 ID/active getters belong to GuildCardEntry. Other header edits remain separately audited.",
+            "details": {
+              "disposition": "scoped",
+              "original_blob": "7a677afa30cb22efbc8570b3a6d0334b8949ce68",
+              "canonical_blob": "d330ba9e9ee0a446d7b6cd80974bad105c4cd9e4"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5885,
+        "historical_path": "src/pso/misc/TWindowGetComCard.cpp",
+        "historical_blob": "dba630e2b7644247e6a56222aa5aa50cbaca895e",
+        "owners": {
+          "src/pso/ui/window/TWindowGetComCard.cpp": "f6160ea34b20a7d7a96e51529bb080c81e459305"
+        },
+        "proofs": [
+          {
+            "group": "guild",
+            "evidence": "The authored confirmation position donor 96ddadad01 defined two floats 152 and 370 at 0x804CF120. The same eight bytes are linked by the active NJS_POINT2 provider and handed to the original confirmation factory. Original receipt task, destructor and constructor remain 0x80252CCC, 0x80252F10, and 0x80252FCC with native child storage and one real card-name result passed into the text builder.",
+            "details": {
+              "disposition": "scoped",
+              "original_blob": "dba630e2b7644247e6a56222aa5aa50cbaca895e",
+              "canonical_blob": "f6160ea34b20a7d7a96e51529bb080c81e459305"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5896,
+        "historical_path": "src/pso/misc/TWindowGetComCard_8007B54C.cpp",
+        "historical_blob": "243036197ae030c6fa7cdd040999e7d2b747b1b7",
+        "owners": {
+          "src/pso/ui/window/TWindowGetComCard_8007B54C.cpp": "2df7db63b4be31f473d4b60c7f4013fff4d1df24"
+        },
+        "proofs": [
+          {
+            "group": "guild",
+            "evidence": "All source owners in the historical unit remain linked: remove-front at 0x8007B54C, head accessor at 0x8007B594, removal at 0x8007B5A0, four-entry clear at 0x8007B60C, both clear adapters, and original array initialization. The old 0x240 received buffer is four native 0x90 entries. The saved-card caller retains its independent 28-entry count and the shared memory move.",
+            "details": {
+              "disposition": "whole-equivalent",
+              "original_blob": "243036197ae030c6fa7cdd040999e7d2b747b1b7",
+              "canonical_blob": "2df7db63b4be31f473d4b60c7f4013fff4d1df24"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5941,
+        "historical_path": "src/pso/misc/TWindowSubComCard_80271E7C.cpp",
+        "historical_blob": "9ca0d5928dfb04eb206742d708874c9f6ebf58cf",
+        "owners": {
+          "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp": "3efcc50426129873006d87f34b8cd7d088bb2b8a"
+        },
+        "proofs": [
+          {
+            "group": "guild",
+            "evidence": "The twelve native confirmation resets retain the two control fields and exact call targets, and cleanup keeps the selected card index \u2192 record \u2192 card ID \u2192 send-find-user order. Other window behaviors in this large file remain separately audited.",
+            "details": {
+              "disposition": "scoped",
+              "original_blob": "9ca0d5928dfb04eb206742d708874c9f6ebf58cf",
+              "canonical_blob": "3efcc50426129873006d87f34b8cd7d088bb2b8a"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5983,
+        "historical_path": "src/pso/misc/TWindowSubComCard_8007A810.cpp",
+        "historical_blob": "9f9965e4180f08b2347b9b82ad3d595dfe933222",
+        "owners": {
+          "src/pso/ui/window/TWindowSubComCard_8007A810.cpp": "e1f9d5dcb9d2b727d1c8172743d95149536be01d"
+        },
+        "proofs": [
+          {
+            "group": "guild",
+            "evidence": "Received and saved card getters use their original typed ID/active fields. Incoming queue refresh retains the old duplicate test and insertion counts. Same clear bit operation remains at 0x8007B26C and saved deletion reuses it at the same 0x100 stride. Other card editing routines remain separate.",
+            "details": {
+              "disposition": "scoped",
+              "original_blob": "9f9965e4180f08b2347b9b82ad3d595dfe933222",
+              "canonical_blob": "e1f9d5dcb9d2b727d1c8172743d95149536be01d"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6042,
+        "historical_path": "src/pso/unk/text_80275360.cpp",
+        "historical_blob": "2469895a5ea2ba61cef3149704dbe73e5177f2a3",
+        "owners": {
+          "src/pso/unk/text_80275360.cpp": "2a7c7dd800598d5047424699ce7c894d8405052d"
+        },
+        "proofs": [
+          {
+            "group": "guild",
+            "evidence": "The card list retains both historical contiguous 0x90 and extended 0x100 strides. It checks the original active bit and passes the actual record name to the existing row builder.",
+            "details": {
+              "disposition": "scoped",
+              "original_blob": "2469895a5ea2ba61cef3149704dbe73e5177f2a3",
+              "canonical_blob": "2a7c7dd800598d5047424699ce7c894d8405052d"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      }
+    ],
+    "closed_rows": [
+      380,
+      684,
+      717,
+      800,
+      2735,
+      3182,
+      3601,
+      3602,
+      3604,
+      4052,
+      4053,
+      4060,
+      4062,
+      4073,
+      5309,
+      5489,
+      5896,
+      6830,
+      6905,
+      6907,
+      6924,
+      6938,
+      6952,
+      6971,
+      6992,
+      6993,
+      7029,
+      7049,
+      7050,
+      7139,
+      7211
+    ],
+    "remaining": {
+      "Owner comparison required": 560,
+      "Some anchored text changes found": 896
+    }
+  },
+  "upstream_review_candidates": {
+    "standalone-weapon-factory-registry": {
+      "head": "62461eb077827f884f8fc2f7d5bac346fe12029c",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Weapon factory registry, item model and texture archives, projectile render resources and shared Ninja chunk reader",
+      "files": 68,
+      "source_paths": [
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/effect/item/TItemEffArmor.h",
+        "include/pso/item/ItemCreateFunction.h",
+        "include/pso/item/TItemData.h",
+        "include/pso/item/TItemEquipBase.h",
+        "include/pso/item/TItemLoad.h",
+        "include/pso/item/TItemTexLoad.h",
+        "include/pso/player/TObjPlayer.h",
+        "include/pso/player/TObjPlayer_80121010.h",
+        "include/pso/player/TObjPlayer_80125780.h",
+        "include/pso/render/GinjaMaterialState.h",
+        "include/pso/render/GvmTextureArchive.h",
+        "include/pso/system/NinjaChunk.h",
+        "include/pso/unk/TLobby_801E2F94.h",
+        "include/pso/unk/text_80129AB0.h",
+        "include/pso/unk/text_80129D18.h",
+        "include/pso/unk/text_8012AE50.h",
+        "include/pso/weapon/TUnk_804A0EA8.h",
+        "include/pso/weapon/TUnk_804A5648.h",
+        "include/pso/weapon/TUnk_804A6200.h",
+        "include/pso/weapon/TUnk_804A66D8.h",
+        "include/pso/weapon/shoot/TItemShootModel.h",
+        "src/pso/effect/TEffect.cpp",
+        "src/pso/effect/item/TItemEffArmor.cpp",
+        "src/pso/effect/item/TItemEffPG_8034F470.cpp",
+        "src/pso/item/TItem.cpp",
+        "src/pso/item/TItemLoad.cpp",
+        "src/pso/item/TItemReverseTech.cpp",
+        "src/pso/item/TItemTexLoad.cpp",
+        "src/pso/player/TObjPlayer_8023E480.cpp",
+        "src/pso/player/TObjPlayer_802D5174.cpp",
+        "src/pso/player/TObjPlayer_80363BE0.cpp",
+        "src/pso/player/TUnk_804A2548.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C8E0.cpp",
+        "src/pso/unk/TLobby_8001EF5C.cpp",
+        "src/pso/unk/TLobby_800F8AA8.cpp",
+        "src/pso/unk/TLobby_80104374.cpp",
+        "src/pso/unk/TLobby_801E2F94.cpp",
+        "src/pso/unk/TLobby_801E43E4.cpp",
+        "src/pso/unk/TLobby_803382E4.cpp",
+        "src/pso/unk/text_800FA464.cpp",
+        "src/pso/unk/text_803DD5E0.cpp",
+        "src/pso/weapon/SpecialProjectileWeapons_80124760.cpp",
+        "src/pso/weapon/TItemWeapon.cpp",
+        "src/pso/weapon/TUnk_804A0AC4.cpp",
+        "src/pso/weapon/TUnk_804A0DB0.cpp",
+        "src/pso/weapon/TUnk_804A0EA8.cpp",
+        "src/pso/weapon/TUnk_804A1570.cpp",
+        "src/pso/weapon/TUnk_804A1D30.cpp",
+        "src/pso/weapon/TUnk_804A2E80.cpp",
+        "src/pso/weapon/TUnk_804A2F78.cpp",
+        "src/pso/weapon/TUnk_804A3928.cpp",
+        "src/pso/weapon/TUnk_804A3F20.cpp",
+        "src/pso/weapon/TUnk_804A403C.cpp",
+        "src/pso/weapon/TUnk_804A444C.cpp",
+        "src/pso/weapon/TUnk_804A4548.cpp",
+        "src/pso/weapon/TUnk_804A4748.cpp",
+        "src/pso/weapon/TUnk_804A4848.cpp",
+        "src/pso/weapon/TUnk_804A4B80.cpp",
+        "src/pso/weapon/TUnk_804A535C.cpp",
+        "src/pso/weapon/TUnk_804A5648.cpp",
+        "src/pso/weapon/TUnk_804A6200.cpp",
+        "src/pso/weapon/TUnk_804A65E0.cpp",
+        "src/pso/weapon/TUnk_804A66D8.cpp",
+        "src/pso/weapon/TUnk_804A67D0.cpp",
+        "src/pso/weapon/TUnk_804A69DC.cpp",
+        "src/pso/weapon/WeaponAttackActions.cpp",
+        "src/pso/weapon/shoot/TItemShoot.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "9de16577d69ac81f97f4d3cb79ea2b7b1dffbe0c5a41e952bcddf6daa5f02b56",
+      "check_sha256": "d05001d3d3e3e6f00628647e25547a89833c8e76ebffa83c0e160d97768388d3",
+      "previous": "71b80f8ba0"
+    },
+    "standalone-vol-opt-components": {
+      "head": "a3d1648d339f5958664f4338727c9df1d3d94445",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Vol Opt component models, cage and pillars, breakup effects and positional sound",
+      "files": 35,
+      "source_paths": [
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/boss/volopt/TBoss3Volopt.h",
+        "include/pso/boss/volopt/TObjVoloptShutter.h",
+        "include/pso/effect/PositionSoundEffects.h",
+        "include/pso/player/TObjPlayer.h",
+        "include/pso/player/TObjPlayer_800D8FDC.h",
+        "src/pso/boss/volopt/TBoss3Volopt.cpp",
+        "src/pso/boss/volopt/TBoss3VoloptHiraisin.cpp",
+        "src/pso/boss/volopt/TBoss3VoloptP01.cpp",
+        "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+        "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp",
+        "src/pso/boss/volopt/TObjVoloptCage.cpp",
+        "src/pso/boss/volopt/TObjVoloptPillar.cpp",
+        "src/pso/boss/volopt/TObjVoloptShutter.cpp",
+        "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+        "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+        "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+        "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+        "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+        "src/pso/enemy/dimedian/TObjEneDimedian.cpp",
+        "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+        "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp",
+        "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+        "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+        "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+        "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+        "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+        "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+        "src/pso/enemy/moja/TObjEneMoja.cpp",
+        "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+        "src/pso/enemy/saver/SaverLifecycle.cpp",
+        "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+        "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+        "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+        "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "8d1e7ff057bfab79a95ca4945b4371a00db38e98552c37b1d698203215011174",
+      "check_sha256": "8600115dd13841bdc8e8e18ac56b3b250fb0f862c739b62be123806901c67e7e",
+      "previous": null
+    },
+    "standalone-stage-doors-fences-and-contacts": {
+      "head": "30369664711762542351051a9c56b8c6cc7526b9",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Stage door, fence, switch, barrier and sensor resources and collision contacts",
+      "files": 87,
+      "source_paths": [
+        "config/GPOE8P/psov3/config.yml",
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/boss/goldragon/TBoss8Dragon.h",
+        "include/pso/object/door/TODoorAncient05.h",
+        "include/pso/object/door/TODoorAncient06.h",
+        "include/pso/object/door/TODoorAncient07.h",
+        "include/pso/object/door/TODoorAncient08.h",
+        "include/pso/object/door/TODoorAncient09.h",
+        "include/pso/object/door/TODoorCave01.h",
+        "include/pso/object/door/TODoorCave02.h",
+        "include/pso/object/door/TODoorMachine01.h",
+        "include/pso/object/door/TODoorMachine02.h",
+        "include/pso/object/door/TODoorVS2Door01.h",
+        "include/pso/object/door/TObjDoorJung.h",
+        "include/pso/object/fence/TOBarrierEnergy01.h",
+        "include/pso/object/fence/TOFenceAncient01.h",
+        "include/pso/object/fence/TOFenceAncient02.h",
+        "include/pso/object/fence/TOFenceAncient03.h",
+        "include/pso/object/fence/TOFenceAncient04.h",
+        "include/pso/object/fence/TOVS2Wall01.h",
+        "include/pso/object/fence/TOVS2Wall01_8017BCC8.h",
+        "include/pso/object/fence/TOVS2Wall01_8017C7A4.h",
+        "include/pso/object/fence/TObjLazerFenceNorm.h",
+        "include/pso/object/fence/WallHitPacket.h",
+        "include/pso/object/key/TODummyKeyCave01.h",
+        "include/pso/object/key/TOKeyAncient03.h",
+        "include/pso/object/key/TOKeyCave01.h",
+        "include/pso/object/key/TOKeyMachine01.h",
+        "include/pso/object/lab/TObjLaboDesignBase.h",
+        "include/pso/object/seabed/TObjSeabedSuisoBrakable.h",
+        "include/pso/object/switch/TOSensorAncient01.h",
+        "include/pso/object/switch/TOSensorGeneral01.h",
+        "include/pso/object/warp/TObjLaboMapWarp.h",
+        "include/pso/object/warp/TObjLaboMapWarp_80185248.h",
+        "include/pso/render/GinjaTexture.h",
+        "include/pso/unk/text_8028A820.h",
+        "src/pso/boss/goldragon/TBoss8Dragon_8028A8F8.cpp",
+        "src/pso/effect/TKomorebi.cpp",
+        "src/pso/network/TGameProtocol.cpp",
+        "src/pso/object/collision/TOAttackableCol.cpp",
+        "src/pso/object/door/TODoorAncient01.cpp",
+        "src/pso/object/door/TODoorAncient03.cpp",
+        "src/pso/object/door/TODoorAncient04.cpp",
+        "src/pso/object/door/TODoorAncient05.cpp",
+        "src/pso/object/door/TODoorAncient06.cpp",
+        "src/pso/object/door/TODoorAncient07.cpp",
+        "src/pso/object/door/TODoorAncient08.cpp",
+        "src/pso/object/door/TODoorAncient09.cpp",
+        "src/pso/object/door/TODoorCave01.cpp",
+        "src/pso/object/door/TODoorCave02.cpp",
+        "src/pso/object/door/TODoorFourLightSpace.cpp",
+        "src/pso/object/door/TODoorJungleMain.cpp",
+        "src/pso/object/door/TODoorLabo.cpp",
+        "src/pso/object/door/TODoorMachine01.cpp",
+        "src/pso/object/door/TODoorMachine02.cpp",
+        "src/pso/object/door/TODoorVS2Door01.cpp",
+        "src/pso/object/door/TObjDoorJung.cpp",
+        "src/pso/object/door/TObjDoorJung_8023DBEC.cpp",
+        "src/pso/object/door/TObjDoorKey.cpp",
+        "src/pso/object/door/TObjDoor_8018E358.cpp",
+        "src/pso/object/fence/TLazerFenceSw.cpp",
+        "src/pso/object/fence/TOBarrierEnergy01.cpp",
+        "src/pso/object/fence/TOFenceAncient01.cpp",
+        "src/pso/object/fence/TOFenceAncient02.cpp",
+        "src/pso/object/fence/TOFenceAncient03.cpp",
+        "src/pso/object/fence/TOFenceAncient04.cpp",
+        "src/pso/object/fence/TOVS2Wall01.cpp",
+        "src/pso/object/fence/TObjLazerFence4.cpp",
+        "src/pso/object/fence/TObjLazerFenceNorm.cpp",
+        "src/pso/object/key/TODummyKeyCave01.cpp",
+        "src/pso/object/key/TOKeyAncient01.cpp",
+        "src/pso/object/key/TOKeyAncient02.cpp",
+        "src/pso/object/key/TOKeyAncient03.cpp",
+        "src/pso/object/key/TOKeyCave01.cpp",
+        "src/pso/object/key/TOKeyGenericSw.cpp",
+        "src/pso/object/key/TOKeyMachine01.cpp",
+        "src/pso/object/lab/TObjLaboDesignBase.cpp",
+        "src/pso/object/seabed/TObjSeabedSuisoBrakable.cpp",
+        "src/pso/object/seabed/TObjSuisoChip.cpp",
+        "src/pso/object/switch/TOSensorAncient01.cpp",
+        "src/pso/object/switch/TOSensorGeneral01.cpp",
+        "src/pso/object/trap/TOTrapSeabed01.cpp",
+        "src/pso/object/warp/TObjLaboMapWarp.cpp",
+        "src/pso/object/warp/TObjWarpJungMain.cpp",
+        "src/pso/unk/TLobby_8028A7C8.cpp",
+        "src/pso/unk/text_8028A714.cpp",
+        "src/pso/unk/text_8028A820.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "810ab454c7aa4a571555af3010aea1efae878e7ce4b22f2bb312be46e9f69e08",
+      "check_sha256": "870afe2aa8ab0fad98bd828d8d8eb27b21a2cbf6ef15998ea47a81439d2c46b0",
+      "previous": "e92481a9c4"
+    },
+    "standalone-main-menu-and-child-windows": {
+      "head": "22d14da58fd8712e1e4fb83c5edfb952032ed0f6",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Main menu and child windows, Guild Card receipt and saved-card queue, and shared confirmation lifecycle",
+      "files": 49,
+      "source_paths": [
+        "config/GPOE8P/psov3/symbols.txt",
+        "configure.py",
+        "include/pso/player/GuildCardEntry.h",
+        "include/pso/ui/chat/ShortMail.h",
+        "include/pso/ui/window/TWindowCtrl.h",
+        "include/pso/ui/window/TWindowDeposit.h",
+        "include/pso/ui/window/TWindowGetComCard.h",
+        "include/pso/ui/window/TWindowGetComCard_8007B54C.h",
+        "include/pso/ui/window/TWindowMainMenu.h",
+        "include/pso/ui/window/TWindowMainMenu_802AD538.h",
+        "include/pso/ui/window/TWindowMenu.h",
+        "include/pso/ui/window/TWindowMenuMainMenu.h",
+        "include/pso/ui/window/TWindowSubComCard.h",
+        "include/pso/ui/window/TWindowSubMagPhoton.h",
+        "include/pso/unk/TLobby.h",
+        "src/pso/quest/TQuestListOnline.cpp",
+        "src/pso/ui/chat/ShortMail.cpp",
+        "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChat.cpp",
+        "src/pso/ui/city/TCheckRoomSequence.cpp",
+        "src/pso/ui/frontend/TAdMultiPlyChrSelectGC.cpp",
+        "src/pso/ui/window/TWindowComCard.cpp",
+        "src/pso/ui/window/TWindowCtrl.cpp",
+        "src/pso/ui/window/TWindowDeposit.cpp",
+        "src/pso/ui/window/TWindowGetComCard.cpp",
+        "src/pso/ui/window/TWindowGetComCard_8007B54C.cpp",
+        "src/pso/ui/window/TWindowMainMenu.cpp",
+        "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+        "src/pso/ui/window/TWindowMainMenu_802AE928.cpp",
+        "src/pso/ui/window/TWindowMenuMainMenu.cpp",
+        "src/pso/ui/window/TWindowOptionCtrl.cpp",
+        "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp",
+        "src/pso/ui/window/TWindowSubComCard.cpp",
+        "src/pso/ui/window/TWindowSubComCard_8007A810.cpp",
+        "src/pso/ui/window/TWindowSubComCard_8007B6D8.cpp",
+        "src/pso/ui/window/TWindowSubComCard_8007BD24.cpp",
+        "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp",
+        "src/pso/ui/window/TWindowSubInformationBoard.cpp",
+        "src/pso/ui/window/TWindowSubItem.cpp",
+        "src/pso/ui/window/TWindowSubMag.cpp",
+        "src/pso/ui/window/TWindowSubMagPhoton.cpp",
+        "src/pso/ui/window/TWindowSubQuestBoard.cpp",
+        "src/pso/ui/window/TWindowSubShortCut.cpp",
+        "src/pso/ui/window/TWindowSubTechnique.cpp",
+        "src/pso/ui/window/TWindowSubTrade.cpp",
+        "src/pso/ui/window/TWindowSubTradeMain_80330A84.cpp",
+        "src/pso/unk/TLobby_8007B858.cpp",
+        "src/pso/unk/TLobby_802409AC.cpp",
+        "src/pso/unk/text_80275360.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "4be58cc490f34fdf718343da4f85e444973e20d2c519d6a3eb76e25fc8fa9690",
+      "check_sha256": "9f034e6b9d1a1d804b9c040877ee9d85f43754cb81b8fe45142a6c7b691377eb",
+      "previous": "d22a8245484d73025edf246f499204c964387764"
+    }
+  },
+  "independent_source_reviews": {
+    "standalone-weapon-factory-registry": {
+      "head": "62461eb077827f884f8fc2f7d5bac346fe12029c",
+      "finding": "Independent display review checked the shared Ninja parser and its three consumer units, item texture lifetime, and projectile model and texture fields at 0x58 and 0x5C. The revised exact head uses a single GVM archive prototype across all ten translation units and a shared texture-name initializer. The Ginja entry union preserves the temporary global index at +8 and the live pointer used by rendering and release. Existing item icon lookup order and character-preview cleanup are inherited."
+    },
+    "standalone-vol-opt-components": {
+      "head": "a3d1648d339f5958664f4338727c9df1d3d94445",
+      "finding": "Independent world review checked the shutter, pillar and cage model and texture indexes, exact cage allocation and teardown, and lifetime and radius forwarded by E4. The final head removes the three redundant const casts. Upstream's inherited body-center storage uses a scalar bridge where its existing accessor emits an extra call."
+    },
+    "standalone-stage-doors-fences-and-contacts": {
+      "head": "30369664711762542351051a9c56b8c6cc7526b9",
+      "finding": "Independent coordinator review verified the shared key and sensor texture banks, their original index and entry strides, the distinction between BML-borrowed and separately loaded GVM slots, and the complete eight-call green door closure. The provider at 0x8028A8F8 returns the loaded green texture list used in both stage variants."
+    },
+    "standalone-main-menu-and-child-windows": {
+      "head": "22d14da58fd8712e1e4fb83c5edfb952032ed0f6",
+      "finding": "Independent enemy review checked the native receipt constructor, controller ownership and menu confirmation cleanup. The 0x240 queue has four 0x90 records, preserves accept-save-before-pop, cancel-only-pop, and the active marker on the vacated tail. Saved Guild Card and Short Mail use the actual record. All three reviewed Guild Card changes have identical patches when replayed onto the existing main-menu head, with the same combined tree as the explicit merge. Legacy readiness and window flag calls retain their earlier bridges."
+    }
+  },
+  "combined_upstream_review": {
+    "head": "ff169503ea5c17676220debbb3ad08ddf00653a7",
+    "files": 235,
+    "inputs": [
+      "62461eb077827f884f8fc2f7d5bac346fe12029c",
+      "a3d1648d339f5958664f4338727c9df1d3d94445",
+      "30369664711762542351051a9c56b8c6cc7526b9",
+      "22d14da58fd8712e1e4fb83c5edfb952032ed0f6"
+    ],
+    "coverage": {
+      "upstream": {
+        "functions_lost": 0,
+        "data_lost": 0,
+        "verified_padding": 0
+      },
+      "historical": {
+        "functions_lost": 0,
+        "data_lost": 0,
+        "verified_padding": 30
+      }
+    }
+  }
+}

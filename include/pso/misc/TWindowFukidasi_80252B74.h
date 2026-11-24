@@ -1,6 +1,0 @@
-#ifndef PSO_MISC_TWINDOWFUKIDASI_80252B74_H
-#define PSO_MISC_TWINDOWFUKIDASI_80252B74_H
-
-#include "pso/misc/TUnk_804CF0B8.h"
-
-#endif

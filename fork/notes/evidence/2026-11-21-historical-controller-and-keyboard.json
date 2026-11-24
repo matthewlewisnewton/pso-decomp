@@ -1,0 +1,312 @@
+{
+  "upstream": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "previous_source": "e0d56360b14fdf5d32872443123b9035d63b331d",
+  "source": "9735e0a125393c53a8fc8dceb8151f901e8f2bb9",
+  "source_tree": "467412160bd631a035003a6625a7e6ca9eb23ec3",
+  "source_review_files": 958,
+  "recovered_paths": [
+    {
+      "path": "config/GPOE8P/psov3/symbols.txt",
+      "previous_blob": "100644:5e0c33c5cde55b9ff0a58f1218a69b15b27f7f64",
+      "review_blob": "100644:18c2299df292eac113aec01f1f4a10eb02f4fae0",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "include/pso/player/TObjPlayer.h",
+      "previous_blob": "100644:2a47ba58289f90fee79e074e47f4c8f58e4393ad",
+      "review_blob": "100644:fa61e5ad6a7c3b501b180d28ccb22f060b3edde6",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "include/pso/player/TObjPlayer_801A5AEC.h",
+      "previous_blob": "100644:987714186ff0f5af1414a1b303c8131410196c6b",
+      "review_blob": "100644:f8549489c2e0aac211a3f76cffc67a8af0dd7674",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/system/ControllerInputState.h",
+      "previous_blob": "100644:e640f4c462ae3bd65c47e82d92ee7c9f4e72cd96",
+      "review_blob": "100644:3c26594d78b0e4f77edd0d2ace18dec288ad823b",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "include/pso/ui/keyboard/TKeyBoardControl.h",
+      "previous_blob": "100644:f29228278cf0459851533987b52eb5ff5e784832",
+      "review_blob": "100644:bb94ab342e23470f90921b71ea34fd7747b4ede7",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "include/pso/ui/keyboard/TKeyBoardControl_801A57C4.h",
+      "previous_blob": "100644:edf714f738efc2445d39f8bec4527c46a6000473",
+      "review_blob": "100644:83c730f48c5f7661bbca7f63c649fc402fa039b4",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "include/pso/unk/text_801A6A28.h",
+      "previous_blob": "100644:b5258c21624e7c2665743442294fa47fd90927d3",
+      "review_blob": "100644:8c9001d639ea053493050a5d9092fd9aa962ed9b",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/unk/text_801A6A5C.h",
+      "previous_blob": "100644:83680f5c5d2a224c0d3fd62c4583bc1317025f8a",
+      "review_blob": "100644:c9de2e83c33619dd6cc732a7dd2cf70aeeac63f9",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/player/TObjPlayer_801BD384.cpp",
+      "previous_blob": "100644:1d7d74ac7c4d5bfe4d7014645ab9f9a881adb836",
+      "review_blob": "100644:25c397d97f3ed6b00388c59b0364597daecc40bc",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/player/TObjPlayer_801BD928.cpp",
+      "previous_blob": "100644:d5274ef10bfef5ce44cb34809e341c21e742471c",
+      "review_blob": "100644:9dac1478c8556080bc159d00623023f38d208420",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/player/TObjPlayer_801C7430.cpp",
+      "previous_blob": "100644:0d52c44f94e8bdff26ae7d135ebe6429222b3d11",
+      "review_blob": "100644:f8ac0b8de78e811045b8a503e5f5a8ae26066582",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/ui/keyboard/TKeyBoardControl_801A57C4.cpp",
+      "previous_blob": "100644:7e9fba9e404997c9c242685dfa956f222af06827",
+      "review_blob": "100644:140b8a50436fc4f2242cdbb34f8a472a84f28c81",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowKeyBoardBase_8025B85C.cpp",
+      "previous_blob": "100644:b21549f8cd0ddb9245d1c59ba1051540ad6a0922",
+      "review_blob": "100644:ae96d154b4ba5dac239f12603b611eea1ddfe125",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/unk/text_801A6A28.cpp",
+      "previous_blob": "100644:67608acd41536f6b860c104deb050c27b1167daf",
+      "review_blob": "100644:46997dbe0074ae110f710d7b4d7724b7ac69b0a4",
+      "in_previous_replay_ledger": false
+    }
+  ],
+  "checks": {
+    "controller-state": {
+      "head": "bff7ebfb4fffa04fb4d8406fa970d886dde1a1b4",
+      "baseline": "e0d56360b14fdf5d32872443123b9035d63b331d",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068"
+    },
+    "keyboard-poll": {
+      "head": "51d824d71c4f81a3d6e7175ddb0ae7645d9a3bdf",
+      "baseline": "bff7ebfb4fffa04fb4d8406fa970d886dde1a1b4",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 4,
+      "check_sha256": "b8dc3871dc3c649a1e3722989da1186cf6a18cb01747ab7bff3f45bfa99d2487"
+    },
+    "stick-escape": {
+      "head": "21fbc8aa08ae158c0c7c7814176671a5e42b9526",
+      "baseline": "51d824d71c4f81a3d6e7175ddb0ae7645d9a3bdf",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 3,
+      "check_sha256": "44fef86274226be51c298972f534648e2d6c2bbaa89a4c994f2b96a3b29cc54e"
+    },
+    "keyboard-text": {
+      "head": "9735e0a125393c53a8fc8dceb8151f901e8f2bb9",
+      "baseline": "21fbc8aa08ae158c0c7c7814176671a5e42b9526",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068"
+    },
+    "full-review": {
+      "head": "9735e0a125393c53a8fc8dceb8151f901e8f2bb9",
+      "baseline": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 372,
+      "check_sha256": "d22fc4a955bfa777daaf9f59aff6e315a80621a3b0e0a07f8423720f63bf68ad"
+    },
+    "layer": {
+      "head": "85000419309fa9e8e2249c5340d45b4b04bb52c4",
+      "baseline": "9735e0a125393c53a8fc8dceb8151f901e8f2bb9",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "294d5d4e65e3db3407ceff097811cede09728d2c21c1257d66d17135be0bdc4b"
+    }
+  },
+  "release_data": {
+    "keyboard-text": {
+      "sha256": "2a01c5f77a702f824a3aec3264532b781be4e431abc2ba81f2a347c5894b8755",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "layer": {
+      "sha256": "2a01c5f77a702f824a3aec3264532b781be4e431abc2ba81f2a347c5894b8755",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    }
+  },
+  "typed_linker_labels": [
+    {
+      "module": "psov3",
+      "address": "0x801A594C",
+      "before": "read_input__16TKeyBoardControlFl",
+      "after": "read_input__16TKeyBoardControlFUc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801A6910",
+      "before": "poll_key_state__16TKeyBoardControlFv",
+      "after": "poll_key_state__22ControllerInputContextFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801A69E4",
+      "before": "accumulate_key_bits__FlPl",
+      "after": "accumulate_key_bits__FlPUl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801A6B8C",
+      "before": "update_button_hold_counter__FPvPvii",
+      "after": "update_button_hold_counter__FP22ControllerInputContextPsii"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801A5A40",
+      "before": "check_input_angle__16TKeyBoardControlFv",
+      "after": "check_input_angle__19StickEscapeDetectorFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801A5AC8",
+      "before": "init_stick_escape_detector__FPvPv",
+      "after": "init_stick_escape_detector__FP19StickEscapeDetectorPC22ControllerInputContext"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801A5AEC",
+      "before": "reset_fields__10TObjPlayerFv",
+      "after": "reset_fields__19StickEscapeDetectorFv"
+    }
+  ],
+  "closed_historical_rows": [
+    {
+      "row": 221,
+      "fork_path": "src/pso/misc/TKeyBoardControl_801A57C4.cpp",
+      "fork_blob": "141898a7b986cd3e45602078c11537d9f73ebce3",
+      "historical_delta_sha256": "e8a1b16f63474bb84bef75e53cfe73c13a7d5c4bec56aed4f96c4a729a90248c",
+      "owner": "src/pso/ui/keyboard/TKeyBoardControl_801A57C4.cpp",
+      "owner_blob": "140b8a50436fc4f2242cdbb34f8a472a84f28c81",
+      "final_comparison_sha256": "76bf68bfe407351b0e88215699178ce8ca1113d49e14d4ee0fdaedd43280b9db",
+      "status": "Typed historical integration validated",
+      "rationale": "All historical keyboard and controller entry points use the live PadSlot, KeyboardKeyState or embedded StickEscapeDetector. Both query wrappers retain their signed results and the original hardware-state address. The typed key lookup returns the actual pressed-bit result. The player angle check, initialization and reset preserve the original layout and instructions."
+    },
+    {
+      "row": 288,
+      "fork_path": "src/pso/misc/TWindowKeyBoardHard_801A529C.cpp",
+      "fork_blob": "069347318bb71c5c491e46da461728a886df58e9",
+      "historical_delta_sha256": "fda0f2bbe0989507bd5bd1aa3b5c9018118fd6b280c92b5dbb67ffbab791d9ce",
+      "owner": "src/pso/ui/window/TWindowKeyBoardHard_801A529C.cpp",
+      "owner_blob": "e77e293e49724861121c090ded265bd6c11d8420",
+      "final_comparison_sha256": "f88454c886159b91f5606571bd6679545b249e83daf704d82ae7b0b5ff9efa50",
+      "status": "Typed historical integration validated",
+      "rationale": "Both keyboard option paths pass the full player index into get_character_save_record. The original 64 KiB buffer uses the same allocation and release addresses as the fork array aliases. The two deferred packet flags already live at 0x805D5D00 and 0x805D5D04."
+    },
+    {
+      "row": 301,
+      "fork_path": "src/pso/misc/TWindowKeyBoardSoft_8025B85C.cpp",
+      "fork_blob": "3902ada5a5e94d7595dc212f2ae9a082a85d1ae5",
+      "historical_delta_sha256": "a753bcf1eab1da8e36ec1e748e7f4f335df895a1591e69c3b05746a3cdff7092",
+      "owner": "src/pso/ui/window/TWindowKeyBoardBase_8025B85C.cpp",
+      "owner_blob": "ae96d154b4ba5dac239f12603b611eea1ddfe125",
+      "final_comparison_sha256": "0275a917ebd15413687675d922f8df15d1615e7e0e9996e26e59d6c0dd1a08ef",
+      "status": "Typed historical integration validated",
+      "rationale": "The composer uses the native text setter, character filter, commit, export and size calculation. The primary and composition buffers are members of TWindowKeyBoardBase. The shared composition call returns void. Existing measure_text_overflow and is_alnum names remain at their original addresses."
+    }
+  ],
+  "historical_ledger_sha256_before": "d61be10541d14e7e8707a8af592515653b683785cfda2314a63a9b7a0b7a8215",
+  "historical_ledger_sha256": "146fd2bad8db81adc798863efb1fdea54e48bd653ea52b215a7007dd20f9aa40",
+  "historical_rows_open": 548,
+  "partially_reconciled_rows": [
+    {
+      "row": 263,
+      "path": "src/pso/ui/window/TWindowKeyBoardBase_8008102C.cpp",
+      "current_blob": "023fd97682fc58dfe4141c1bc07edc17a2e04deb",
+      "scope": "The keyboard text holder, allocator and release use the native buffer and the original allocation addresses. The lens-flare factory still uses a separate constructor call. The broader historical row is still open."
+    },
+    {
+      "row": 281,
+      "path": "src/pso/ui/keyboard/TKeyBoardControl_801A57C4.cpp",
+      "current_blob": "140b8a50436fc4f2242cdbb34f8a472a84f28c81",
+      "scope": "Both input banks now use the actual raw device and processed pad layouts, and key polling, analog rules and repeat counters use that shared record. Player stick-escape state uses the embedded detector and the actual input pointer. The historical mixed split also includes other initialization and data declarations. The broader historical row is still open."
+    }
+  ],
+  "allocator_aliases": {
+    "0x80147A80": {
+      "historical": "__dla__FPv",
+      "current": "mem_free",
+      "size": "0x28"
+    },
+    "0x80147AA8": {
+      "historical": "__nwa__FUl",
+      "current": "mem_alloc",
+      "size": "0x20"
+    }
+  },
+  "compiler_sensitive_forms": {
+    "active_pad_mask": "The shared PadSlot pressed field is signed. The mask comparison uses u32 to preserve the retail compare.",
+    "stick_escape": "The null and magnitude branches stay separate and the two turn thresholds use signed comparisons after the 16-bit wrap."
+  },
+  "runtime_probe": {
+    "builds": [
+      "retail",
+      "stock",
+      "fork"
+    ],
+    "sha256": "667c6cc3cb1bf4f10533a7359b28e46515523468a5ef228e6a2159d8c90774ea",
+    "source_sha256": "b65327ce5f6ca1d1b1e6696f359231c8378b8871c570d1f24e5d9ef83d6a25f9",
+    "scope": "The probe covers split-screen and compact pad routing, activity thresholds, pad reset, repeat counters, held and pending keyboard masks, stick-escape timing, and encoded text export and sizing. Device lookup and font measurement use controlled fixtures."
+  },
+  "overlay_paths": 130,
+  "overlay_sha256": "cbfb70c6555acee17de1e698589de139eb48c5af9a13291222d5da76fda7af38",
+  "retained_symbols": 27033,
+  "workspace_checks": {
+    "tool": {
+      "count": 294,
+      "sha256": "31c61ccbd182c1c98253867d08567b25dcbba9830a53eaf4bacfdc417590f378"
+    },
+    "fork": {
+      "count": 11,
+      "sha256": "9d08bd25a2c0394d1c0cddcbfed0e8bda37e7e0bc0a04538b565cdeab63d7cda"
+    },
+    "host": {
+      "checks": [
+        "./vector_math_fallbacks",
+        "./item_factory_callbacks",
+        "./loader_transfer",
+        "./ginja_parameter_callbacks",
+        "./exi_ethernet_fallbacks"
+      ],
+      "sha256": "ad1227e7d6dde3aea88d51f241949b30f3d1fe42ec4c3abf078bd6309ee9bbdb"
+    }
+  },
+  "review_commit_attribution": {
+    "commits": 79,
+    "codex_attribution": 0,
+    "coauthor_trailers": 0
+  },
+  "public_refs_changed": false
+}

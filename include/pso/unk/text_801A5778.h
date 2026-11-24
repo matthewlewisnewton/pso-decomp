@@ -3,14 +3,11 @@
 
 #include "types.h"
 
-extern "C" {
-void fn_801A5778(s32 arg0, s32 *arg1);
-}
+struct GvplPalette;
 
-// --- C functions defined in text_801A5778.cpp ---
 extern "C" {
-void fn_801A5778(s32 arg0, s32 *arg1);
+// Loads a GVPL palette file into `palette`.
+void load_gvpl_palette_file(const char *filename, GvplPalette *palette);
 }
-// --- end of C functions
 
 #endif

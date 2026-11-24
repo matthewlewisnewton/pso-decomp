@@ -1,0 +1,607 @@
+{
+  "source": "1adaab68b2f8792819fd055e73692d16df24e030",
+  "previous_source": "111ad6f6587e7bc46a917b5b5afe7f8f302ee0e6",
+  "review": {
+    "ref": "great-merge/consolidated/single-review-with-symbol-chat-window-owners",
+    "head": "f008850f3e78aafbb0bcde93f31dd9da33acf643",
+    "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+    "tree": "9b2e1a912cafa9717183b9b3f6186e40b0144364",
+    "tree_equivalent_to": "90b1d0bccb457f60b7b251412323bf285c19c831",
+    "commits": [
+      {
+        "head": "8890b7fd8b4fbcf9ef7d6d35e4f88f7397ae9bf6",
+        "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+        "tree": "572c96b50f200895bc094534dc75a4a84a87f5d3",
+        "checked_tree": "79892d85f89f6432c95e35a80f47dc8c9ee080fb",
+        "files_changed": 655,
+        "insertions": 10713,
+        "deletions": 12247
+      },
+      {
+        "head": "c42e3238ac5f92b26a9ca4f61bccf057d3815c32",
+        "base": "8890b7fd8b4fbcf9ef7d6d35e4f88f7397ae9bf6",
+        "tree": "d3ef9a7185166805dc73c3217b00d16301c820ae",
+        "checked_tree": "e586ff8f927d627b7e933e44223a816febdfea5e",
+        "files_changed": 679,
+        "insertions": 5760,
+        "deletions": 6296
+      },
+      {
+        "head": "c0206129d91a889510d1110a7f5d8e49d1a1ec76",
+        "base": "c42e3238ac5f92b26a9ca4f61bccf057d3815c32",
+        "tree": "d8f9f298e8e085493b9ae008c37ca520b7b0296d",
+        "checked_tree": "c306842e82985de65583e787f1fa0a1776b51394",
+        "files_changed": 21,
+        "insertions": 372,
+        "deletions": 480
+      },
+      {
+        "head": "018464722d369c4481854eb77fa67f81c3e869be",
+        "base": "c0206129d91a889510d1110a7f5d8e49d1a1ec76",
+        "tree": "115ec496fc647c2aebcf55956d23052ee4368977",
+        "checked_tree": "018464722d369c4481854eb77fa67f81c3e869be",
+        "files_changed": 969,
+        "insertions": 12609,
+        "deletions": 13420
+      },
+      {
+        "head": "10c466c8e9407af9b1109bec3f36273b69a880f6",
+        "base": "018464722d369c4481854eb77fa67f81c3e869be",
+        "tree": "9e60f5d9462f65b9e62ce7b592013f06ad8ed930",
+        "checked_tree": "10c466c8e9407af9b1109bec3f36273b69a880f6",
+        "files_changed": 24,
+        "insertions": 331,
+        "deletions": 396
+      },
+      {
+        "head": "bc801af727e83a81b62ca552b25456671c8723f7",
+        "base": "10c466c8e9407af9b1109bec3f36273b69a880f6",
+        "tree": "5da2f03826a0aae2bed5042ecb19260b5087494a",
+        "checked_tree": "bc801af727e83a81b62ca552b25456671c8723f7",
+        "files_changed": 38,
+        "insertions": 646,
+        "deletions": 735
+      },
+      {
+        "head": "54f12790491275d41d4c96d1760e323fa2884066",
+        "base": "bc801af727e83a81b62ca552b25456671c8723f7",
+        "tree": "f4d94d9370fa61cbbab9355f3e70ced8bc0b9dd7",
+        "checked_tree": "e3819bb0cb6a8e7df497c88475177d94df4750db",
+        "files_changed": 17,
+        "insertions": 256,
+        "deletions": 341
+      },
+      {
+        "head": "b382f026478786b570589c5382b5b6b69a139713",
+        "base": "54f12790491275d41d4c96d1760e323fa2884066",
+        "tree": "e6f0c6768a9233d7a1b3ac55a4b4eb08c6d6b3b1",
+        "checked_tree": "8df47b88222bba050bcc999dc11a1591007c2eb3",
+        "files_changed": 31,
+        "insertions": 475,
+        "deletions": 502
+      },
+      {
+        "head": "6c0ca96dfadbc76d9938ada24bb2ec8a2029886c",
+        "base": "b382f026478786b570589c5382b5b6b69a139713",
+        "tree": "4aa5c13705b434b65e648df6cc7f5ab35e8110b4",
+        "checked_tree": "d2211f39ea3bd480fb094d7c5d20821167a275fd",
+        "files_changed": 18,
+        "insertions": 341,
+        "deletions": 416
+      },
+      {
+        "head": "f008850f3e78aafbb0bcde93f31dd9da33acf643",
+        "base": "6c0ca96dfadbc76d9938ada24bb2ec8a2029886c",
+        "tree": "9b2e1a912cafa9717183b9b3f6186e40b0144364",
+        "checked_tree": "90b1d0bccb457f60b7b251412323bf285c19c831",
+        "files_changed": 12,
+        "insertions": 136,
+        "deletions": 139
+      }
+    ],
+    "commit_attribution": {
+      "audited_commits": 10,
+      "codex_attribution": 0,
+      "coauthor_trailers": 0
+    },
+    "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+    "files_changed": 1794,
+    "insertions": 30891,
+    "deletions": 34224
+  },
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/ui/chat/TWindowChatSymbol.h",
+    "include/pso/ui/chat/TWindowChatSymbol_802486A8.h",
+    "include/pso/ui/chat/TWindowSubSymbolChat.h",
+    "include/pso/ui/chat/TWindowSubSymbolChatFaceType.h",
+    "include/pso/ui/chat/TWindowSubSymbolChatHelp.h",
+    "include/pso/ui/chat/TWindowSubSymbolChatParts.h",
+    "include/pso/ui/chat/TWindowSubSymbolChatPartsSet.h",
+    "src/pso/ui/chat/TUnk_804CE7D0.cpp",
+    "src/pso/ui/chat/TWindowChatSymbol.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChat.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChatFaceType.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChatHelp.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChatPartsSet.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChat_802838C4.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChat_80283954.cpp",
+    "src/pso/ui/window/TWindowShortCut.cpp"
+  ],
+  "patch_sha256": "11726fd50dd532ff5230b6248a52472ae1cf7929c68298fc0cf93cafe491d1a5",
+  "checked_original_functions": [
+    "TWindowSubSymbolChatParts::TWindowSubSymbolChatParts",
+    "TWindowSubSymbolChatPartsSet::TWindowSubSymbolChatPartsSet",
+    "TWindowChatSymbol::set_selection",
+    "TWindowSubSymbolChatPartsSet::select_symbol_chat_record",
+    "TWindowSubSymbolChatHelp::set_pos_and_flag"
+  ],
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "validation": {
+    "combat": {
+      "check_sha256": "091592beb14642b8daf330d784d23fce5eaa7f52769f98c45c8c9600eafd23fe",
+      "source_report_sha256": "9a934dc2180a9c1baf3fa3d4183e2e1c6d0ce421eddaedbff49d2d0af36aaa14",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x802482B8",
+          "TWindowSubSymbolChatPartsSet__sub_802482B8",
+          "get_entry_offset_1__28TWindowSubSymbolChatPartsSetFl"
+        ],
+        [
+          "0x80248300",
+          "get_parts_entry__28TWindowSubSymbolChatPartsSetFii",
+          "get_entry_offset_5__28TWindowSubSymbolChatPartsSetFl"
+        ],
+        [
+          "0x802484C0",
+          "update_visibility__28TWindowSubSymbolChatPartsSetFv",
+          "update_visibility__17TWindowChatSymbolFv"
+        ],
+        [
+          "0x80248534",
+          "set_selection__28TWindowSubSymbolChatPartsSetFP16SymbolChatPreset",
+          "set_selection__17TWindowChatSymbolFP16SymbolChatPreset"
+        ],
+        [
+          "0x80248564",
+          "set_from_key__20TWindowSubSymbolChatFl",
+          "set_from_key__17TWindowChatSymbolFl"
+        ],
+        [
+          "0x802838E4",
+          "get_cursor_pos__20TWindowSubSymbolChatFv",
+          "get_cursor_pos__28TWindowSubSymbolChatPartsSetFv"
+        ],
+        [
+          "0x802838EC",
+          "get_cursor_x__20TWindowSubSymbolChatFv",
+          "get_cursor_x__28TWindowSubSymbolChatPartsSetFv"
+        ],
+        [
+          "0x8028390C",
+          "clear_flag60_bit2__20TWindowSubSymbolChatFv",
+          "clear_flag60_bit2__24TWindowSubSymbolChatHelpFv"
+        ],
+        [
+          "0x8028391C",
+          "clear_flag60_bit4__20TWindowSubSymbolChatFv",
+          "clear_flag60_bit4__24TWindowSubSymbolChatHelpFv"
+        ],
+        [
+          "0x8028392C",
+          "set_pos_and_flag__20TWindowSubSymbolChatFll",
+          "set_pos_and_flag__24TWindowSubSymbolChatHelpFPlPl"
+        ],
+        [
+          "0x80283954",
+          "set_flag60_bit1__20TWindowSubSymbolChatFv",
+          "set_flag60_bit1__24TWindowSubSymbolChatHelpFv"
+        ],
+        [
+          "0x80283964",
+          "set_flag60_bit2__20TWindowSubSymbolChatFv",
+          "set_flag60_bit2__24TWindowSubSymbolChatHelpFv"
+        ],
+        [
+          "0x802841FC",
+          "__ct__28TWindowSubSymbolChatFaceTypeFll",
+          "__ct__28TWindowSubSymbolChatFaceTypeFPvPSc"
+        ],
+        [
+          "0x80284B84",
+          "__ct__24TWindowSubSymbolChatHelpFll",
+          "__ct__24TWindowSubSymbolChatHelpFPScPl"
+        ],
+        [
+          "0x80285D38",
+          "TWindowSubSymbolChatParts__ct",
+          "__ct__25TWindowSubSymbolChatPartsFPvPlPl"
+        ],
+        [
+          "0x80285E10",
+          "select_symbol_chat_record__20TWindowSubSymbolChatFPScPl",
+          "select_symbol_chat_record__28TWindowSubSymbolChatPartsSetFPScPl"
+        ],
+        [
+          "0x80285FF4",
+          "set_selection_and_refresh__20TWindowSubSymbolChatFl",
+          "set_selection_and_refresh__28TWindowSubSymbolChatPartsSetFPSc"
+        ],
+        [
+          "0x80286028",
+          "init_symbol_layout__20TWindowSubSymbolChatFPl",
+          "init_symbol_layout__28TWindowSubSymbolChatPartsSetFPl"
+        ],
+        [
+          "0x802869BC",
+          "TWindowSubSymbolChatPartsSet__ct",
+          "__ct__28TWindowSubSymbolChatPartsSetFPvsPlPl"
+        ]
+      ]
+    },
+    "full": {
+      "check_sha256": "091592beb14642b8daf330d784d23fce5eaa7f52769f98c45c8c9600eafd23fe",
+      "source_report_sha256": "9a934dc2180a9c1baf3fa3d4183e2e1c6d0ce421eddaedbff49d2d0af36aaa14",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x802482B8",
+          "TWindowSubSymbolChatPartsSet__sub_802482B8",
+          "get_entry_offset_1__28TWindowSubSymbolChatPartsSetFl"
+        ],
+        [
+          "0x80248300",
+          "get_parts_entry__28TWindowSubSymbolChatPartsSetFii",
+          "get_entry_offset_5__28TWindowSubSymbolChatPartsSetFl"
+        ],
+        [
+          "0x802484C0",
+          "update_visibility__28TWindowSubSymbolChatPartsSetFv",
+          "update_visibility__17TWindowChatSymbolFv"
+        ],
+        [
+          "0x80248534",
+          "set_selection__28TWindowSubSymbolChatPartsSetFP16SymbolChatPreset",
+          "set_selection__17TWindowChatSymbolFP16SymbolChatPreset"
+        ],
+        [
+          "0x80248564",
+          "set_from_key__20TWindowSubSymbolChatFl",
+          "set_from_key__17TWindowChatSymbolFl"
+        ],
+        [
+          "0x802838E4",
+          "get_cursor_pos__20TWindowSubSymbolChatFv",
+          "get_cursor_pos__28TWindowSubSymbolChatPartsSetFv"
+        ],
+        [
+          "0x802838EC",
+          "get_cursor_x__20TWindowSubSymbolChatFv",
+          "get_cursor_x__28TWindowSubSymbolChatPartsSetFv"
+        ],
+        [
+          "0x8028390C",
+          "clear_flag60_bit2__20TWindowSubSymbolChatFv",
+          "clear_flag60_bit2__24TWindowSubSymbolChatHelpFv"
+        ],
+        [
+          "0x8028391C",
+          "clear_flag60_bit4__20TWindowSubSymbolChatFv",
+          "clear_flag60_bit4__24TWindowSubSymbolChatHelpFv"
+        ],
+        [
+          "0x8028392C",
+          "set_pos_and_flag__20TWindowSubSymbolChatFll",
+          "set_pos_and_flag__24TWindowSubSymbolChatHelpFPlPl"
+        ],
+        [
+          "0x80283954",
+          "set_flag60_bit1__20TWindowSubSymbolChatFv",
+          "set_flag60_bit1__24TWindowSubSymbolChatHelpFv"
+        ],
+        [
+          "0x80283964",
+          "set_flag60_bit2__20TWindowSubSymbolChatFv",
+          "set_flag60_bit2__24TWindowSubSymbolChatHelpFv"
+        ],
+        [
+          "0x802841FC",
+          "__ct__28TWindowSubSymbolChatFaceTypeFll",
+          "__ct__28TWindowSubSymbolChatFaceTypeFPvPSc"
+        ],
+        [
+          "0x80284B84",
+          "__ct__24TWindowSubSymbolChatHelpFll",
+          "__ct__24TWindowSubSymbolChatHelpFPScPl"
+        ],
+        [
+          "0x80285D38",
+          "TWindowSubSymbolChatParts__ct",
+          "__ct__25TWindowSubSymbolChatPartsFPvPlPl"
+        ],
+        [
+          "0x80285E10",
+          "select_symbol_chat_record__20TWindowSubSymbolChatFPScPl",
+          "select_symbol_chat_record__28TWindowSubSymbolChatPartsSetFPScPl"
+        ],
+        [
+          "0x80285FF4",
+          "set_selection_and_refresh__20TWindowSubSymbolChatFl",
+          "set_selection_and_refresh__28TWindowSubSymbolChatPartsSetFPSc"
+        ],
+        [
+          "0x80286028",
+          "init_symbol_layout__20TWindowSubSymbolChatFPl",
+          "init_symbol_layout__28TWindowSubSymbolChatPartsSetFPl"
+        ],
+        [
+          "0x802869BC",
+          "TWindowSubSymbolChatPartsSet__ct",
+          "__ct__28TWindowSubSymbolChatPartsSetFPvsPlPl"
+        ]
+      ]
+    },
+    "linear-full": {
+      "check_sha256": "091592beb14642b8daf330d784d23fce5eaa7f52769f98c45c8c9600eafd23fe",
+      "source_report_sha256": "9a934dc2180a9c1baf3fa3d4183e2e1c6d0ce421eddaedbff49d2d0af36aaa14",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x802482B8",
+          "TWindowSubSymbolChatPartsSet__sub_802482B8",
+          "get_entry_offset_1__28TWindowSubSymbolChatPartsSetFl"
+        ],
+        [
+          "0x80248300",
+          "get_parts_entry__28TWindowSubSymbolChatPartsSetFii",
+          "get_entry_offset_5__28TWindowSubSymbolChatPartsSetFl"
+        ],
+        [
+          "0x802484C0",
+          "update_visibility__28TWindowSubSymbolChatPartsSetFv",
+          "update_visibility__17TWindowChatSymbolFv"
+        ],
+        [
+          "0x80248534",
+          "set_selection__28TWindowSubSymbolChatPartsSetFP16SymbolChatPreset",
+          "set_selection__17TWindowChatSymbolFP16SymbolChatPreset"
+        ],
+        [
+          "0x80248564",
+          "set_from_key__20TWindowSubSymbolChatFl",
+          "set_from_key__17TWindowChatSymbolFl"
+        ],
+        [
+          "0x802838E4",
+          "get_cursor_pos__20TWindowSubSymbolChatFv",
+          "get_cursor_pos__28TWindowSubSymbolChatPartsSetFv"
+        ],
+        [
+          "0x802838EC",
+          "get_cursor_x__20TWindowSubSymbolChatFv",
+          "get_cursor_x__28TWindowSubSymbolChatPartsSetFv"
+        ],
+        [
+          "0x8028390C",
+          "clear_flag60_bit2__20TWindowSubSymbolChatFv",
+          "clear_flag60_bit2__24TWindowSubSymbolChatHelpFv"
+        ],
+        [
+          "0x8028391C",
+          "clear_flag60_bit4__20TWindowSubSymbolChatFv",
+          "clear_flag60_bit4__24TWindowSubSymbolChatHelpFv"
+        ],
+        [
+          "0x8028392C",
+          "set_pos_and_flag__20TWindowSubSymbolChatFll",
+          "set_pos_and_flag__24TWindowSubSymbolChatHelpFPlPl"
+        ],
+        [
+          "0x80283954",
+          "set_flag60_bit1__20TWindowSubSymbolChatFv",
+          "set_flag60_bit1__24TWindowSubSymbolChatHelpFv"
+        ],
+        [
+          "0x80283964",
+          "set_flag60_bit2__20TWindowSubSymbolChatFv",
+          "set_flag60_bit2__24TWindowSubSymbolChatHelpFv"
+        ],
+        [
+          "0x802841FC",
+          "__ct__28TWindowSubSymbolChatFaceTypeFll",
+          "__ct__28TWindowSubSymbolChatFaceTypeFPvPSc"
+        ],
+        [
+          "0x80284B84",
+          "__ct__24TWindowSubSymbolChatHelpFll",
+          "__ct__24TWindowSubSymbolChatHelpFPScPl"
+        ],
+        [
+          "0x80285D38",
+          "TWindowSubSymbolChatParts__ct",
+          "__ct__25TWindowSubSymbolChatPartsFPvPlPl"
+        ],
+        [
+          "0x80285E10",
+          "select_symbol_chat_record__20TWindowSubSymbolChatFPScPl",
+          "select_symbol_chat_record__28TWindowSubSymbolChatPartsSetFPScPl"
+        ],
+        [
+          "0x80285FF4",
+          "set_selection_and_refresh__20TWindowSubSymbolChatFl",
+          "set_selection_and_refresh__28TWindowSubSymbolChatPartsSetFPSc"
+        ],
+        [
+          "0x80286028",
+          "init_symbol_layout__20TWindowSubSymbolChatFPl",
+          "init_symbol_layout__28TWindowSubSymbolChatPartsSetFPl"
+        ],
+        [
+          "0x802869BC",
+          "TWindowSubSymbolChatPartsSet__ct",
+          "__ct__28TWindowSubSymbolChatPartsSetFPvsPlPl"
+        ]
+      ]
+    },
+    "layer": {
+      "check_sha256": "11e61c81cd20322e05d596cfba993d968e74cee557d6891f5098d7859a3a2248",
+      "source_report_sha256": "9a934dc2180a9c1baf3fa3d4183e2e1c6d0ce421eddaedbff49d2d0af36aaa14",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x802482B8",
+          "TWindowSubSymbolChatPartsSet__sub_802482B8",
+          "get_entry_offset_1__28TWindowSubSymbolChatPartsSetFl"
+        ],
+        [
+          "0x80248300",
+          "get_parts_entry__28TWindowSubSymbolChatPartsSetFii",
+          "get_entry_offset_5__28TWindowSubSymbolChatPartsSetFl"
+        ],
+        [
+          "0x802484C0",
+          "update_visibility__28TWindowSubSymbolChatPartsSetFv",
+          "update_visibility__17TWindowChatSymbolFv"
+        ],
+        [
+          "0x80248534",
+          "set_selection__28TWindowSubSymbolChatPartsSetFP16SymbolChatPreset",
+          "set_selection__17TWindowChatSymbolFP16SymbolChatPreset"
+        ],
+        [
+          "0x80248564",
+          "set_from_key__20TWindowSubSymbolChatFl",
+          "set_from_key__17TWindowChatSymbolFl"
+        ],
+        [
+          "0x802838E4",
+          "get_cursor_pos__20TWindowSubSymbolChatFv",
+          "get_cursor_pos__28TWindowSubSymbolChatPartsSetFv"
+        ],
+        [
+          "0x802838EC",
+          "get_cursor_x__20TWindowSubSymbolChatFv",
+          "get_cursor_x__28TWindowSubSymbolChatPartsSetFv"
+        ],
+        [
+          "0x8028390C",
+          "clear_flag60_bit2__20TWindowSubSymbolChatFv",
+          "clear_flag60_bit2__24TWindowSubSymbolChatHelpFv"
+        ],
+        [
+          "0x8028391C",
+          "clear_flag60_bit4__20TWindowSubSymbolChatFv",
+          "clear_flag60_bit4__24TWindowSubSymbolChatHelpFv"
+        ],
+        [
+          "0x8028392C",
+          "set_pos_and_flag__20TWindowSubSymbolChatFll",
+          "set_pos_and_flag__24TWindowSubSymbolChatHelpFPlPl"
+        ],
+        [
+          "0x80283954",
+          "set_flag60_bit1__20TWindowSubSymbolChatFv",
+          "set_flag60_bit1__24TWindowSubSymbolChatHelpFv"
+        ],
+        [
+          "0x80283964",
+          "set_flag60_bit2__20TWindowSubSymbolChatFv",
+          "set_flag60_bit2__24TWindowSubSymbolChatHelpFv"
+        ],
+        [
+          "0x802841FC",
+          "__ct__28TWindowSubSymbolChatFaceTypeFll",
+          "__ct__28TWindowSubSymbolChatFaceTypeFPvPSc"
+        ],
+        [
+          "0x80284B84",
+          "__ct__24TWindowSubSymbolChatHelpFll",
+          "__ct__24TWindowSubSymbolChatHelpFPScPl"
+        ],
+        [
+          "0x80285D38",
+          "TWindowSubSymbolChatParts__ct",
+          "__ct__25TWindowSubSymbolChatPartsFPvPlPl"
+        ],
+        [
+          "0x80285E10",
+          "select_symbol_chat_record__20TWindowSubSymbolChatFPScPl",
+          "select_symbol_chat_record__28TWindowSubSymbolChatPartsSetFPScPl"
+        ],
+        [
+          "0x80285FF4",
+          "set_selection_and_refresh__20TWindowSubSymbolChatFl",
+          "set_selection_and_refresh__28TWindowSubSymbolChatPartsSetFPSc"
+        ],
+        [
+          "0x80286028",
+          "init_symbol_layout__20TWindowSubSymbolChatFPl",
+          "init_symbol_layout__28TWindowSubSymbolChatPartsSetFPl"
+        ],
+        [
+          "0x802869BC",
+          "TWindowSubSymbolChatPartsSet__ct",
+          "__ct__28TWindowSubSymbolChatPartsSetFPvsPlPl"
+        ]
+      ]
+    }
+  },
+  "runtime_probes": {
+    "retail": "7b935f601407fa747336104475d46dae6acc4a92c2b9415379c2e18abed61487",
+    "retail-window": "789ffccfcb56ce3070ada7023f5e3292ab5f26ac856d9cd9d312667cac9832c0",
+    "review": "da319f6c9cf6c3f6a10b1e372adbe352db2790bd98836d1400dd062f27d47e56",
+    "review-window": "98fe58ffc9f57f5c6b851c9fd59933d6d27dda52a7c5849966c6517e73beea72",
+    "layer": "c0db948ba10f7efbbb613204bd6083a71fe9989398e82408b3b9e5c7fbd6ed4d",
+    "layer-window": "c24ad844bd61ca6796aeb2aed80556709a3d8df354d7a6c4acc48163bea840a4"
+  },
+  "overlay_sha256": "57d266d4705a42e218928300c3427646a3f555a3792b17958fcbb4fbe0adf7e1",
+  "fork_overlay_paths": 130,
+  "retained_symbols": 27031,
+  "workspace_checks": {
+    "tool": 294,
+    "fork": 11,
+    "host": [
+      "./vector_math_fallbacks",
+      "./item_factory_callbacks",
+      "./loader_transfer",
+      "./ginja_parameter_callbacks",
+      "./exi_ethernet_fallbacks"
+    ]
+  },
+  "historical_rows_closed": {
+    "285": "The face picker uses the typed selection byte and heading. Native render and task methods share the controller sound entry, typed texture binding and window draw context. The texture binding retains its existing upstream name",
+    "287": "The parts-set constructor now emits the C++ vtable and initializes its shared preview and typed heading and flag pointers. Cursor input calls the real preview owner directly and uses the shared sound entry"
+  },
+  "historical_rows_with_added_evidence": {
+    "249": "Preview selection, visibility and saved-slot lookup now use their actual TWindowChatSymbol owner for the editor and shortcuts. The underlying base render still uses the existing entry path",
+    "254": "The parts browser now has a native constructor, render and run task, with a typed heading, borrowed flags and scrollbar. The row and sprite position helpers retain the current window layout",
+    "255": "The help window owns its flag handlers and uses typed selection, mode and toggle targets. Its current input and draw-context interfaces remain in use",
+    "289": "All five help flag methods now use TWindowSubSymbolChatHelp and keep their base names. The callback signature changes are still under review",
+    "293": "The editor constructs the face picker, parts browser, parts set and help windows with their shared declarations. Cursor queries and selection setup use the actual parts-set owner"
+  },
+  "existing_upstream_interfaces_kept": {},
+  "historical_rows_open": 597,
+  "public_refs_changed": false
+}

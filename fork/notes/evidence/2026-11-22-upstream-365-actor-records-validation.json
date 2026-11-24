@@ -1,0 +1,2395 @@
+{
+  "source": "0eda118d1d33aca37fba31a5bd0f951465df1c95",
+  "previous_source": "3326f576bce104d3fb06f250158af762134a5184",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/canadin/TObjEneMe1Canadin.h",
+    "include/pso/enemy/canadin/TObjEneMe1Canadin_EffLight.h",
+    "include/pso/enemy/gee/TObjEneMe1Gee.h",
+    "include/pso/enemy/gee/TUnk_8049387C.h",
+    "include/pso/enemy/gigue/TObjEneMe1GiGue.h",
+    "include/pso/enemy/morfos/TObjEneMorfos.h",
+    "src/pso/enemy/canadin/CanadinEffects.cpp",
+    "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+    "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+    "src/pso/enemy/morfos/TObjEneMorfos.cpp"
+  ],
+  "combined_paths_from_upstream": 1318,
+  "validation": {
+    "source": {
+      "baseline": "3326f576bce104d3fb06f250158af762134a5184",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8009E474",
+          "before": "reset_map_core__17TObjEneMe1CanadinFPv",
+          "after": "reset_map_core__17TObjEneMe1CanadinFPC8NJS_ARGB"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009FADC",
+          "before": "push_history_entry__17TObjEneMe1CanadinFPvfPvi",
+          "after": "push_history_entry__26TObjEneMe1Canadin_EffLightFfPC3Veci"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009FB54",
+          "before": "fade_alpha_step__17TObjEneMe1CanadinFfl",
+          "after": "fade_alpha_step__31TObjEneMe1Canadin_EffLightPointFfl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C8788",
+          "before": "remove_member__13TUnk_8049387CFUl",
+          "after": "remove_member__13TUnk_8049387CFP13TObjEneMe1Gee"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800CB580",
+          "before": "remove_member__13TObjEneMe1GeeFUl",
+          "after": "remove_member__13TObjEneMe1GeeFP13TObjEneMe1Gee"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802CB5A0",
+          "before": "remap_sound_id__15TObjEneMe1GiGueFPvl",
+          "after": "remap_sound_id__15TObjEneMe1GiGueFl"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "16db53a1bc70b319b942c434930cf8c0057e87a5ddde938a944b1fcff49fa0b0",
+      "report_sha256": "51b7b1a8fa4798e834cf7b9655042fd6283a0dad8fc16a7acb2fc03efb5b4be6"
+    },
+    "layer": {
+      "baseline": "0eda118d1d33aca37fba31a5bd0f951465df1c95",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "0d0505ff2d6750e611c1caeddd6c815b7e23c1307e306f42ee8cc59bb78deb14",
+      "report_sha256": "51b7b1a8fa4798e834cf7b9655042fd6283a0dad8fc16a7acb2fc03efb5b4be6"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "e5274bb816f19ac784d76572dbf6970f60da7d5829b88f11a040c9f8db3a2b09"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "0d7bcac8a4938c99942b145f8fdbc7f6eae3b41b53571581a75b657a23e3444d"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "ad1227e7d6dde3aea88d51f241949b30f3d1fe42ec4c3abf078bd6309ee9bbdb"
+    }
+  },
+  "exact_providers_at_historical_addresses": {
+    "Canadin": [
+      {
+        "historical": "vfunc_112__23TObjEneMe1CanadinLeaderFl",
+        "current": "state_dead__23TObjEneMe1CanadinLeaderFl",
+        "address": "0x8009AB4C",
+        "size": 260,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "vfunc_111__23TObjEneMe1CanadinLeaderFl",
+        "current": "vfunc_111__23TObjEneMe1CanadinLeaderFl",
+        "address": "0x8009AC50",
+        "size": 200,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "vfunc_110__23TObjEneMe1CanadinLeaderFl",
+        "current": "vfunc_110__23TObjEneMe1CanadinLeaderFl",
+        "address": "0x8009AD18",
+        "size": 572,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "update_formation_state__23TObjEneMe1CanadinLeaderFv",
+        "current": "update_formation_state__23TObjEneMe1CanadinLeaderFv",
+        "address": "0x8009AF54",
+        "size": 580,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "vfunc_109__23TObjEneMe1CanadinLeaderFv",
+        "current": "has_no_members__23TObjEneMe1CanadinLeaderFv",
+        "address": "0x8009B198",
+        "size": 24,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "vfunc_113__23TObjEneMe1CanadinLeaderFv",
+        "current": "apply_model_color__23TObjEneMe1CanadinLeaderFv",
+        "address": "0x8009B1B0",
+        "size": 28,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "vfunc_116__23TObjEneMe1CanadinLeaderFP9TObjChara",
+        "current": "can_member_attack_target__23TObjEneMe1CanadinLeaderFP9TObjChara",
+        "address": "0x8009B1CC",
+        "size": 168,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "vfunc_117__23TObjEneMe1CanadinLeaderFP17TObjEneMe1Canadin",
+        "current": "remove_member__23TObjEneMe1CanadinLeaderFP17TObjEneMe1Canadin",
+        "address": "0x8009B274",
+        "size": 332,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "vfunc_108__23TObjEneMe1CanadinLeaderFv",
+        "current": "check_retreat_trigger__23TObjEneMe1CanadinLeaderFv",
+        "address": "0x8009B3C0",
+        "size": 124,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "vfunc_107__23TObjEneMe1CanadinLeaderFv",
+        "current": "spawn_members__23TObjEneMe1CanadinLeaderFv",
+        "address": "0x8009B43C",
+        "size": 508,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "vfunc_105__23TObjEneMe1CanadinLeaderFv",
+        "current": "select_next_attack_state__23TObjEneMe1CanadinLeaderFv",
+        "address": "0x8009B638",
+        "size": 92,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "vfunc_106__23TObjEneMe1CanadinLeaderFv",
+        "current": "select_model__23TObjEneMe1CanadinLeaderFv",
+        "address": "0x8009B694",
+        "size": 36,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "run_task__23TObjEneMe1CanadinLeaderFv",
+        "current": "run_task__23TObjEneMe1CanadinLeaderFv",
+        "address": "0x8009B6B8",
+        "size": 176,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "__dt__23TObjEneMe1CanadinLeaderFv",
+        "current": "__dt__23TObjEneMe1CanadinLeaderFv",
+        "address": "0x8009B768",
+        "size": 88,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "__ct__23TObjEneMe1CanadinLeaderFP7TObjectPv",
+        "current": "__ct__23TObjEneMe1CanadinLeaderFP7TObjectPv",
+        "address": "0x8009B7C0",
+        "size": 172,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "create__23TObjEneMe1CanadinLeaderFPv",
+        "current": "create__23TObjEneMe1CanadinLeaderFPv",
+        "address": "0x8009B86C",
+        "size": 76,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "render_canadin_model_with_debug_type__17TObjEneMe1CanadinFv",
+        "current": "render_canadin_model_with_debug_type__17TObjEneMe1CanadinFv",
+        "address": "0x8009B8B8",
+        "size": 272,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "update_if_ready__17TObjEneMe1CanadinFv",
+        "current": "update_if_ready__17TObjEneMe1CanadinFv",
+        "address": "0x8009B9C8",
+        "size": 60,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "render__17TObjEneMe1CanadinFv",
+        "current": "render__17TObjEneMe1CanadinFv",
+        "address": "0x8009BA04",
+        "size": 764,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "fn_8009BD00",
+        "current": "fn_8009BD00",
+        "address": "0x8009BD00",
+        "size": 168,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "update_by_state__17TObjEneMe1CanadinFl",
+        "current": "update_by_state__17TObjEneMe1CanadinFl",
+        "address": "0x8009BDA8",
+        "size": 188,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "update_walk_animation__17TObjEneMe1CanadinFl",
+        "current": "update_walk_animation__17TObjEneMe1CanadinFl",
+        "address": "0x8009BE64",
+        "size": 168,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "vfunc_112__17TObjEneMe1CanadinFl",
+        "current": "state_dead__17TObjEneMe1CanadinFl",
+        "address": "0x8009BF0C",
+        "size": 236,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "fn_8009BFF8__17TObjEneMe1CanadinFl",
+        "current": "fn_8009BFF8__17TObjEneMe1CanadinFl",
+        "address": "0x8009BFF8",
+        "size": 384,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "fn_8009C178__17TObjEneMe1CanadinFl",
+        "current": "fn_8009C178__17TObjEneMe1CanadinFl",
+        "address": "0x8009C178",
+        "size": 372,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "fn_8009C2EC__17TObjEneMe1CanadinFl",
+        "current": "fn_8009C2EC__17TObjEneMe1CanadinFl",
+        "address": "0x8009C2EC",
+        "size": 548,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "fn_8009C510__17TObjEneMe1CanadinFl",
+        "current": "fn_8009C510__17TObjEneMe1CanadinFl",
+        "address": "0x8009C510",
+        "size": 712,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "run_task__17TObjEneMe1CanadinFl",
+        "current": "run_task__17TObjEneMe1CanadinFl",
+        "address": "0x8009C7D8",
+        "size": 324,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "fn_8009C91C__17TObjEneMe1CanadinFl",
+        "current": "fn_8009C91C__17TObjEneMe1CanadinFl",
+        "address": "0x8009C91C",
+        "size": 856,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "fn_8009CC74__17TObjEneMe1CanadinFl",
+        "current": "fn_8009CC74__17TObjEneMe1CanadinFl",
+        "address": "0x8009CC74",
+        "size": 1708,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "fn_8009D320__17TObjEneMe1CanadinFl",
+        "current": "fn_8009D320__17TObjEneMe1CanadinFl",
+        "address": "0x8009D320",
+        "size": 1248,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "move__17TObjEneMe1CanadinFl",
+        "current": "move__17TObjEneMe1CanadinFl",
+        "address": "0x8009D800",
+        "size": 536,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "vfunc_111__17TObjEneMe1CanadinFl",
+        "current": "vfunc_111__17TObjEneMe1CanadinFl",
+        "address": "0x8009DA18",
+        "size": 240,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "vfunc_110__17TObjEneMe1CanadinFl",
+        "current": "vfunc_110__17TObjEneMe1CanadinFl",
+        "address": "0x8009DB08",
+        "size": 552,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "action__17TObjEneMe1CanadinFl",
+        "current": "action__17TObjEneMe1CanadinFl",
+        "address": "0x8009DD30",
+        "size": 352,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "fn_8009DE90__17TObjEneMe1CanadinFl",
+        "current": "fn_8009DE90__17TObjEneMe1CanadinFl",
+        "address": "0x8009DE90",
+        "size": 284,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "handle_state__17TObjEneMe1CanadinFl",
+        "current": "handle_state__17TObjEneMe1CanadinFl",
+        "address": "0x8009DFAC",
+        "size": 256,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "dispatch_action__17TObjEneMe1CanadinFUll",
+        "current": "dispatch_action__17TObjEneMe1CanadinFUll",
+        "address": "0x8009E0AC",
+        "size": 296,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "fn_8009E1D4__17TObjEneMe1CanadinFP3Vec",
+        "current": "fn_8009E1D4__17TObjEneMe1CanadinFP3Vec",
+        "address": "0x8009E1D4",
+        "size": 100,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "set_flag3c8_bit40__17TObjEneMe1CanadinFv",
+        "current": "set_flag3c8_bit40__17TObjEneMe1CanadinFv",
+        "address": "0x8009E238",
+        "size": 16,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "set_flag3c8_bit20__17TObjEneMe1CanadinFv",
+        "current": "set_flag3c8_bit20__17TObjEneMe1CanadinFv",
+        "address": "0x8009E248",
+        "size": 16,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "fn_8009E258__17TObjEneMe1CanadinFv",
+        "current": "fn_8009E258__17TObjEneMe1CanadinFv",
+        "address": "0x8009E258",
+        "size": 20,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "set_flag3c8_bit8__17TObjEneMe1CanadinFv",
+        "current": "set_flag3c8_bit8__17TObjEneMe1CanadinFv",
+        "address": "0x8009E26C",
+        "size": 16,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "fn_8009E27C__17TObjEneMe1CanadinFv",
+        "current": "fn_8009E27C__17TObjEneMe1CanadinFv",
+        "address": "0x8009E27C",
+        "size": 16,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "set_attack_flag__17TObjEneMe1CanadinFv",
+        "current": "set_attack_flag__17TObjEneMe1CanadinFv",
+        "address": "0x8009E28C",
+        "size": 16,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "set_leader_index__17TObjEneMe1CanadinFP9TObjCharal",
+        "current": "set_leader_index__17TObjEneMe1CanadinFP9TObjCharal",
+        "address": "0x8009E29C",
+        "size": 64,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "fn_8009E2DC__17TObjEneMe1CanadinFv",
+        "current": "fn_8009E2DC__17TObjEneMe1CanadinFv",
+        "address": "0x8009E2DC",
+        "size": 24,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "vfunc_116__17TObjEneMe1CanadinFP9TObjChara",
+        "current": "can_member_attack_target__17TObjEneMe1CanadinFP9TObjChara",
+        "address": "0x8009E2F4",
+        "size": 8,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "vfunc_117__17TObjEneMe1CanadinFP17TObjEneMe1Canadin",
+        "current": "remove_member__17TObjEneMe1CanadinFP17TObjEneMe1Canadin",
+        "address": "0x8009E2FC",
+        "size": 4,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "fn_8009E300__17TObjEneMe1CanadinFv",
+        "current": "fn_8009E300__17TObjEneMe1CanadinFv",
+        "address": "0x8009E300",
+        "size": 28,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "fn_8009E31C__17TObjEneMe1CanadinFl",
+        "current": "fn_8009E31C__17TObjEneMe1CanadinFl",
+        "address": "0x8009E31C",
+        "size": 24,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "fn_8009E334__17TObjEneMe1CanadinFv",
+        "current": "fn_8009E334__17TObjEneMe1CanadinFv",
+        "address": "0x8009E334",
+        "size": 28,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "fn_8009E350__17TObjEneMe1CanadinFv",
+        "current": "fn_8009E350__17TObjEneMe1CanadinFv",
+        "address": "0x8009E350",
+        "size": 28,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "fn_8009E36C__17TObjEneMe1CanadinFv",
+        "current": "fn_8009E36C__17TObjEneMe1CanadinFv",
+        "address": "0x8009E36C",
+        "size": 12,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "fn_8009E378__17TObjEneMe1CanadinFv",
+        "current": "fn_8009E378__17TObjEneMe1CanadinFv",
+        "address": "0x8009E378",
+        "size": 72,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "vfunc_109__17TObjEneMe1CanadinFv",
+        "current": "has_no_members__17TObjEneMe1CanadinFv",
+        "address": "0x8009E3C0",
+        "size": 8,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "vfunc_113__17TObjEneMe1CanadinFv",
+        "current": "apply_model_color__17TObjEneMe1CanadinFv",
+        "address": "0x8009E3C8",
+        "size": 28,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "pack_color_rgba__17TObjEneMe1CanadinFv",
+        "current": "pack_color_rgba__17TObjEneMe1CanadinFv",
+        "address": "0x8009E3E4",
+        "size": 144,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "reset_map_core__17TObjEneMe1CanadinFP8NJS_ARGB",
+        "current": "reset_map_core__17TObjEneMe1CanadinFPC8NJS_ARGB",
+        "address": "0x8009E474",
+        "size": 56,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "fn_8009E4AC__17TObjEneMe1CanadinFl",
+        "current": "fn_8009E4AC__17TObjEneMe1CanadinFl",
+        "address": "0x8009E4AC",
+        "size": 88,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "update_fade_sequence__17TObjEneMe1CanadinFv",
+        "current": "update_fade_sequence__17TObjEneMe1CanadinFv",
+        "address": "0x8009E504",
+        "size": 396,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "vfunc_104__17TObjEneMe1CanadinFf",
+        "current": "acquire_target__17TObjEneMe1CanadinFf",
+        "address": "0x8009E690",
+        "size": 32,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "fn_8009E6B0__17TObjEneMe1CanadinFv",
+        "current": "noop__17TObjEneMe1CanadinFv",
+        "address": "0x8009E6B0",
+        "size": 4,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "try_trigger_action__17TObjEneMe1CanadinFv",
+        "current": "try_trigger_action__17TObjEneMe1CanadinFv",
+        "address": "0x8009E6B4",
+        "size": 60,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "vfunc_108__17TObjEneMe1CanadinFv",
+        "current": "check_retreat_trigger__17TObjEneMe1CanadinFv",
+        "address": "0x8009E6F0",
+        "size": 120,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "vfunc_107__17TObjEneMe1CanadinFv",
+        "current": "spawn_members__17TObjEneMe1CanadinFv",
+        "address": "0x8009E768",
+        "size": 4,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "fn_8009E76C__17TObjEneMe1CanadinFv",
+        "current": "fn_8009E76C__17TObjEneMe1CanadinFv",
+        "address": "0x8009E76C",
+        "size": 24,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "advance_state_5_to_4__17TObjEneMe1CanadinFv",
+        "current": "advance_state_5_to_4__17TObjEneMe1CanadinFv",
+        "address": "0x8009E784",
+        "size": 32,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "advance_state_4_to_5__17TObjEneMe1CanadinFv",
+        "current": "advance_state_4_to_5__17TObjEneMe1CanadinFv",
+        "address": "0x8009E7A4",
+        "size": 32,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "check_target__17TObjEneMe1CanadinFv",
+        "current": "check_target__17TObjEneMe1CanadinFv",
+        "address": "0x8009E7C4",
+        "size": 156,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "fn_8009E860__17TObjEneMe1CanadinFPff",
+        "current": "fn_8009E860__17TObjEneMe1CanadinFPff",
+        "address": "0x8009E860",
+        "size": 208,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "fn_8009E930__17TObjEneMe1CanadinFv",
+        "current": "fn_8009E930__17TObjEneMe1CanadinFv",
+        "address": "0x8009E930",
+        "size": 24,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "fn_8009E948__17TObjEneMe1CanadinFv",
+        "current": "fn_8009E948__17TObjEneMe1CanadinFv",
+        "address": "0x8009E948",
+        "size": 20,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "vfunc_89__17TObjEneMe1CanadinFv",
+        "current": "check_collisions__17TObjEneMe1CanadinFv",
+        "address": "0x8009E95C",
+        "size": 32,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "vfunc_105__17TObjEneMe1CanadinFv",
+        "current": "select_next_attack_state__17TObjEneMe1CanadinFv",
+        "address": "0x8009E97C",
+        "size": 140,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "update_move__17TObjEneMe1CanadinFv",
+        "current": "update_move__17TObjEneMe1CanadinFv",
+        "address": "0x8009EA08",
+        "size": 76,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "update_angle__17TObjEneMe1CanadinFv",
+        "current": "update_angle__17TObjEneMe1CanadinFv",
+        "address": "0x8009EA54",
+        "size": 104,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "update_hover_height__17TObjEneMe1CanadinFv",
+        "current": "update_hover_height__17TObjEneMe1CanadinFv",
+        "address": "0x8009EABC",
+        "size": 44,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "set_target_speed_z__17TObjEneMe1CanadinFv",
+        "current": "set_target_speed_z__17TObjEneMe1CanadinFv",
+        "address": "0x8009EAE8",
+        "size": 44,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "update_hover_position__17TObjEneMe1CanadinFf",
+        "current": "TObjEneMe1Canadin__sub_8009EB14",
+        "address": "0x8009EB14",
+        "size": 88,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "update_position_with_offset__17TObjEneMe1CanadinFv",
+        "current": "update_position_with_offset__17TObjEneMe1CanadinFv",
+        "address": "0x8009EB6C",
+        "size": 44,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "approach_hover_y__17TObjEneMe1CanadinFf",
+        "current": "TObjEneMe1Canadin__sub_8009EB98",
+        "address": "0x8009EB98",
+        "size": 104,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "vfunc_101__17TObjEneMe1CanadinFPUc",
+        "current": "move_xz_on_ground__17TObjEneMe1CanadinFPC3Vec",
+        "address": "0x8009EC00",
+        "size": 80,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "calc_move_vector__17TObjEneMe1CanadinFP3Vec",
+        "current": "calc_move_vector__17TObjEneMe1CanadinFP3Vec",
+        "address": "0x8009EC50",
+        "size": 144,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "vfunc_106__17TObjEneMe1CanadinFv",
+        "current": "select_model__17TObjEneMe1CanadinFv",
+        "address": "0x8009ECE0",
+        "size": 36,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "update_by_field_0x354__17TObjEneMe1CanadinFv",
+        "current": "update_by_field_0x354__17TObjEneMe1CanadinFv",
+        "address": "0x8009ED04",
+        "size": 88,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "vfunc_88__17TObjEneMe1CanadinFv",
+        "current": "update_body_colliders__17TObjEneMe1CanadinFv",
+        "address": "0x8009ED5C",
+        "size": 120,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "copy_pos__17TObjEneMe1CanadinFv",
+        "current": "copy_pos__17TObjEneMe1CanadinFv",
+        "address": "0x8009EDD4",
+        "size": 68,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "vfunc_61__17TObjEneMe1CanadinFv",
+        "current": "run_miss_reaction__17TObjEneMe1CanadinFv",
+        "address": "0x8009EE18",
+        "size": 4,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "vfunc_62__17TObjEneMe1CanadinFv",
+        "current": "run_hit_reaction__17TObjEneMe1CanadinFv",
+        "address": "0x8009EE1C",
+        "size": 48,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "vfunc_63__17TObjEneMe1CanadinFv",
+        "current": "run_death_reaction__17TObjEneMe1CanadinFv",
+        "address": "0x8009EE4C",
+        "size": 56,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "vfunc_28__17TObjEneMe1CanadinFv",
+        "current": "refresh_target__17TObjEneMe1CanadinFv",
+        "address": "0x8009EE84",
+        "size": 4,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "run_task__17TObjEneMe1CanadinFv",
+        "current": "run_task__17TObjEneMe1CanadinFv",
+        "address": "0x8009EE88",
+        "size": 228,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "__dt__17TObjEneMe1CanadinFv",
+        "current": "__dt__17TObjEneMe1CanadinFv",
+        "address": "0x8009EF6C",
+        "size": 152,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "setup_enemy__17TObjEneMe1CanadinFv",
+        "current": "setup_enemy__17TObjEneMe1CanadinFv",
+        "address": "0x8009F004",
+        "size": 732,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "__ct__17TObjEneMe1CanadinFP7TObjectP17TObjEneMe1CanadinP3Vecll",
+        "current": "__ct__17TObjEneMe1CanadinFP7TObjectP17TObjEneMe1CanadinP3Vecll",
+        "address": "0x8009F2E0",
+        "size": 176,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "__ct__17TObjEneMe1CanadinFP7TObjectPvl",
+        "current": "__ct__17TObjEneMe1CanadinFP7TObjectPvl",
+        "address": "0x8009F390",
+        "size": 128,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "free_resources__17TObjEneMe1CanadinFv",
+        "current": "free_resources__17TObjEneMe1CanadinFv",
+        "address": "0x8009F410",
+        "size": 144,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "create_canadin__23TObjEneMe1CanadinLeaderFP17TObjEneMe1CanadinP3Vecll",
+        "current": "create_canadin__23TObjEneMe1CanadinLeaderFP17TObjEneMe1CanadinP3Vecll",
+        "address": "0x8009F4A0",
+        "size": 100,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "create__17TObjEneMe1CanadinFPv",
+        "current": "create__17TObjEneMe1CanadinFPv",
+        "address": "0x8009F504",
+        "size": 80,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      },
+      {
+        "historical": "load_resources__17TObjEneMe1CanadinFv",
+        "current": "load_resources__17TObjEneMe1CanadinFv",
+        "address": "0x8009F554",
+        "size": 600,
+        "provider": "psov3/pso/enemy/canadin/TObjEneMe1Canadin"
+      }
+    ],
+    "Canadin trail": [
+      {
+        "historical": "render__26TObjEneMe1Canadin_EffLightFv",
+        "current": "render__26TObjEneMe1Canadin_EffLightFv",
+        "address": "0x8009F7AC",
+        "size": 632,
+        "provider": "psov3/pso/enemy/canadin/CanadinEffects"
+      },
+      {
+        "historical": "run_task__26TObjEneMe1Canadin_EffLightFv",
+        "current": "run_task__26TObjEneMe1Canadin_EffLightFv",
+        "address": "0x8009FA24",
+        "size": 184,
+        "provider": "psov3/pso/enemy/canadin/CanadinEffects"
+      },
+      {
+        "historical": "push_history_entry__17TObjEneMe1CanadinFPvfPvi",
+        "current": "push_history_entry__26TObjEneMe1Canadin_EffLightFfPC3Veci",
+        "address": "0x8009FADC",
+        "size": 120,
+        "provider": "psov3/pso/enemy/canadin/CanadinEffects"
+      },
+      {
+        "historical": "fade_alpha_step__17TObjEneMe1CanadinFPvif",
+        "current": "fade_alpha_step__31TObjEneMe1Canadin_EffLightPointFfl",
+        "address": "0x8009FB54",
+        "size": 116,
+        "provider": "psov3/pso/enemy/canadin/CanadinEffects"
+      },
+      {
+        "historical": "__dt__26TObjEneMe1Canadin_EffLightFv",
+        "current": "__dt__26TObjEneMe1Canadin_EffLightFv",
+        "address": "0x8009FBC8",
+        "size": 124,
+        "provider": "psov3/pso/enemy/canadin/CanadinEffects"
+      },
+      {
+        "historical": "__ct__26TObjEneMe1Canadin_EffLightFP7TObjectl",
+        "current": "__ct__26TObjEneMe1Canadin_EffLightFP7TObjectl",
+        "address": "0x8009FC44",
+        "size": 232,
+        "provider": "psov3/pso/enemy/canadin/CanadinEffects"
+      }
+    ],
+    "Gee": [
+      {
+        "historical": "vfunc_112__13TUnk_8049387CFl",
+        "current": "state_dead__13TUnk_8049387CFl",
+        "address": "0x800C811C",
+        "size": 192,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "vfunc_111__13TUnk_8049387CFl",
+        "current": "vfunc_111__13TUnk_8049387CFl",
+        "address": "0x800C81DC",
+        "size": 200,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "vfunc_110__13TUnk_8049387CFl",
+        "current": "vfunc_110__13TUnk_8049387CFl",
+        "address": "0x800C82A4",
+        "size": 548,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "update_swarm_phase__13TUnk_8049387CFv",
+        "current": "sub_800C84C8__13TUnk_8049387CFv",
+        "address": "0x800C84C8",
+        "size": 508,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "vfunc_109__13TUnk_8049387CFv",
+        "current": "has_no_members__13TUnk_8049387CFv",
+        "address": "0x800C86C4",
+        "size": 24,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "vfunc_113__13TUnk_8049387CFv",
+        "current": "apply_model_color__13TUnk_8049387CFv",
+        "address": "0x800C86DC",
+        "size": 4,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "vfunc_116__13TUnk_8049387CFPv",
+        "current": "can_member_attack_target__13TUnk_8049387CFP9TObjChara",
+        "address": "0x800C86E0",
+        "size": 168,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "remove_child__13TUnk_8049387CFP13TObjEneMe1Gee",
+        "current": "remove_member__13TUnk_8049387CFP13TObjEneMe1Gee",
+        "address": "0x800C8788",
+        "size": 332,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "vfunc_108__13TUnk_8049387CFv",
+        "current": "check_retreat_trigger__13TUnk_8049387CFv",
+        "address": "0x800C88D4",
+        "size": 124,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "vfunc_107__13TUnk_8049387CFv",
+        "current": "spawn_members__13TUnk_8049387CFv",
+        "address": "0x800C8950",
+        "size": 508,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "vfunc_105__13TUnk_8049387CFv",
+        "current": "select_next_attack_state__13TUnk_8049387CFv",
+        "address": "0x800C8B4C",
+        "size": 92,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "vfunc_106__13TUnk_8049387CFv",
+        "current": "select_model__13TUnk_8049387CFv",
+        "address": "0x800C8BA8",
+        "size": 36,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "run_task__13TUnk_8049387CFv",
+        "current": "run_task__13TUnk_8049387CFv",
+        "address": "0x800C8BCC",
+        "size": 176,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "__dt__13TUnk_8049387CFv",
+        "current": "__dt__13TUnk_8049387CFv",
+        "address": "0x800C8C7C",
+        "size": 88,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "vfunc_115__13TObjEneMe1GeeFv",
+        "current": "render_demo__13TObjEneMe1GeeFv",
+        "address": "0x800C8CD4",
+        "size": 420,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "vfunc_114__13TObjEneMe1GeeFv",
+        "current": "run_demo_task__13TObjEneMe1GeeFv",
+        "address": "0x800C8E78",
+        "size": 60,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "render__13TObjEneMe1GeeFv",
+        "current": "render__13TObjEneMe1GeeFv",
+        "address": "0x800C8EB4",
+        "size": 648,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "advance_camera_ctrl_step__13TObjEneMe1GeeFP10NJS_OBJECT",
+        "current": "advance_camera_ctrl_step__13TObjEneMe1GeeFP10NJS_OBJECT",
+        "address": "0x800C913C",
+        "size": 120,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "state_orbit__13TObjEneMe1GeeFl",
+        "current": "state_orbit__13TObjEneMe1GeeFl",
+        "address": "0x800C91B4",
+        "size": 188,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "handle_event__13TObjEneMe1GeeFl",
+        "current": "handle_event__13TObjEneMe1GeeFl",
+        "address": "0x800C9270",
+        "size": 168,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "vfunc_112__13TObjEneMe1GeeFl",
+        "current": "state_dead__13TObjEneMe1GeeFl",
+        "address": "0x800C9318",
+        "size": 248,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "state_return_home__13TObjEneMe1GeeFl",
+        "current": "state_return_home__13TObjEneMe1GeeFl",
+        "address": "0x800C9410",
+        "size": 368,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "state_despawn__13TObjEneMe1GeeFl",
+        "current": "sub_800C9580__13TObjEneMe1GeeFl",
+        "address": "0x800C9580",
+        "size": 308,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "state_hit_recovery__13TObjEneMe1GeeFl",
+        "current": "sub_800C96B4__13TObjEneMe1GeeFl",
+        "address": "0x800C96B4",
+        "size": 688,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "fn_800C9964__13TObjEneMe1GeeFl",
+        "current": "sub_800C9964__13TObjEneMe1GeeFl",
+        "address": "0x800C9964",
+        "size": 304,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "fn_800C9A94__13TObjEneMe1GeeFl",
+        "current": "sub_800C9A94__13TObjEneMe1GeeFl",
+        "address": "0x800C9A94",
+        "size": 868,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "fn_800C9DF8__13TObjEneMe1GeeFl",
+        "current": "sub_800C9DF8__13TObjEneMe1GeeFl",
+        "address": "0x800C9DF8",
+        "size": 1628,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "fn_800CA454__13TObjEneMe1GeeFl",
+        "current": "sub_800CA454__13TObjEneMe1GeeFl",
+        "address": "0x800CA454",
+        "size": 1308,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "state_attack__13TObjEneMe1GeeFl",
+        "current": "state_attack__13TObjEneMe1GeeFl",
+        "address": "0x800CA970",
+        "size": 520,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "vfunc_111__13TObjEneMe1GeeFl",
+        "current": "vfunc_111__13TObjEneMe1GeeFl",
+        "address": "0x800CAB78",
+        "size": 232,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "vfunc_110__13TObjEneMe1GeeFl",
+        "current": "vfunc_110__13TObjEneMe1GeeFl",
+        "address": "0x800CAC60",
+        "size": 528,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "state_hover__13TObjEneMe1GeeFl",
+        "current": "state_hover__13TObjEneMe1GeeFl",
+        "address": "0x800CAE70",
+        "size": 360,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "fn_800CAFD8__13TObjEneMe1GeeFl",
+        "current": "sub_800CAFD8__13TObjEneMe1GeeFl",
+        "address": "0x800CAFD8",
+        "size": 420,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "state_move__13TObjEneMe1GeeFl",
+        "current": "state_move__13TObjEneMe1GeeFl",
+        "address": "0x800CB17C",
+        "size": 276,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "state_attack_loop__13TObjEneMe1GeeFl",
+        "current": "state_attack_loop__13TObjEneMe1GeeFl",
+        "address": "0x800CB290",
+        "size": 276,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "dispatch_action__13TObjEneMe1GeeFUll",
+        "current": "dispatch_action__13TObjEneMe1GeeFUll",
+        "address": "0x800CB3A4",
+        "size": 296,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "set_flag3c8_bit40__13TObjEneMe1GeeFv",
+        "current": "set_flag3c8_bit40__13TObjEneMe1GeeFv",
+        "address": "0x800CB4CC",
+        "size": 16,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "fn_800CB4DC__13TObjEneMe1GeeFv",
+        "current": "sub_800CB4DC__13TObjEneMe1GeeFv",
+        "address": "0x800CB4DC",
+        "size": 20,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "set_flag3c8_bit8__13TObjEneMe1GeeFv",
+        "current": "set_flag3c8_bit8__13TObjEneMe1GeeFv",
+        "address": "0x800CB4F0",
+        "size": 16,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "set_flag3c8_bit4__13TObjEneMe1GeeFv",
+        "current": "set_flag3c8_bit4__13TObjEneMe1GeeFv",
+        "address": "0x800CB500",
+        "size": 16,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "set_flag3c8_bit2__13TObjEneMe1GeeFv",
+        "current": "set_flag3c8_bit2__13TObjEneMe1GeeFv",
+        "address": "0x800CB510",
+        "size": 16,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "activate_with_target__13TObjEneMe1GeeFPvl",
+        "current": "set_state_flag__13TObjEneMe1GeeFP9TObjCharal",
+        "address": "0x800CB520",
+        "size": 64,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "activate_immediately__13TObjEneMe1GeeFv",
+        "current": "sub_800CB560__13TObjEneMe1GeeFv",
+        "address": "0x800CB560",
+        "size": 24,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "vfunc_116__13TObjEneMe1GeeFPv",
+        "current": "can_member_attack_target__13TObjEneMe1GeeFP9TObjChara",
+        "address": "0x800CB578",
+        "size": 8,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "remove_child__13TObjEneMe1GeeFP13TObjEneMe1Gee",
+        "current": "remove_member__13TObjEneMe1GeeFP13TObjEneMe1Gee",
+        "address": "0x800CB580",
+        "size": 4,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "get_committed_target__13TObjEneMe1GeeFv",
+        "current": "sub_800CB584__13TObjEneMe1GeeFv",
+        "address": "0x800CB584",
+        "size": 28,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "has_gee_flags__13TObjEneMe1GeeFUl",
+        "current": "sub_800CB5A0__13TObjEneMe1GeeFUl",
+        "address": "0x800CB5A0",
+        "size": 24,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "set_out_fighter__13TObjEneMe1GeeFv",
+        "current": "sub_800CB5B8__13TObjEneMe1GeeFv",
+        "address": "0x800CB5B8",
+        "size": 28,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "set_in_fighter__13TObjEneMe1GeeFv",
+        "current": "sub_800CB5D4__13TObjEneMe1GeeFv",
+        "address": "0x800CB5D4",
+        "size": 28,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "set_high_appearance__13TObjEneMe1GeeFv",
+        "current": "sub_800CB5F0__13TObjEneMe1GeeFv",
+        "address": "0x800CB5F0",
+        "size": 28,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "set_low_appearance__13TObjEneMe1GeeFv",
+        "current": "sub_800CB60C__13TObjEneMe1GeeFv",
+        "address": "0x800CB60C",
+        "size": 28,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "has_materialized__13TObjEneMe1GeeFv",
+        "current": "sub_800CB628__13TObjEneMe1GeeFv",
+        "address": "0x800CB628",
+        "size": 12,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "update_photon_target__13TObjEneMe1GeeFv",
+        "current": "update_photon_target__13TObjEneMe1GeeFv",
+        "address": "0x800CB634",
+        "size": 72,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "vfunc_109__13TObjEneMe1GeeFv",
+        "current": "has_no_members__13TObjEneMe1GeeFv",
+        "address": "0x800CB67C",
+        "size": 8,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "vfunc_113__13TObjEneMe1GeeFv",
+        "current": "apply_model_color__13TObjEneMe1GeeFv",
+        "address": "0x800CB684",
+        "size": 24,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "update_packed_color__13TObjEneMe1GeeFv",
+        "current": "update_packed_color__13TObjEneMe1GeeFv",
+        "address": "0x800CB69C",
+        "size": 144,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "set_color__13TObjEneMe1GeeFPC8NJS_ARGB",
+        "current": "destroy_subobj__13TObjEneMe1GeeFPC8NJS_ARGB",
+        "address": "0x800CB72C",
+        "size": 56,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "start_color_sequence__13TObjEneMe1GeeFl",
+        "current": "sub_800CB764__13TObjEneMe1GeeFl",
+        "address": "0x800CB764",
+        "size": 88,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "update_fade_sequence__13TObjEneMe1GeeFv",
+        "current": "update_fade_sequence__13TObjEneMe1GeeFv",
+        "address": "0x800CB7BC",
+        "size": 396,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "vfunc_104__13TObjEneMe1GeeFf",
+        "current": "acquire_target__13TObjEneMe1GeeFf",
+        "address": "0x800CB948",
+        "size": 32,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "fn_800CB968__13TObjEneMe1GeeFv",
+        "current": "sub_800CB968__13TObjEneMe1GeeFv",
+        "address": "0x800CB968",
+        "size": 72,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "remap_gee_sound__13TObjEneMe1GeeFl",
+        "current": "handle_message__13TObjEneMe1GeeFl",
+        "address": "0x800CB9B0",
+        "size": 76,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "return_home_if_target_lost__13TObjEneMe1GeeFv",
+        "current": "check_death_trigger__13TObjEneMe1GeeFv",
+        "address": "0x800CB9FC",
+        "size": 60,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "vfunc_108__13TObjEneMe1GeeFv",
+        "current": "check_retreat_trigger__13TObjEneMe1GeeFv",
+        "address": "0x800CBA38",
+        "size": 68,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "vfunc_107__13TObjEneMe1GeeFv",
+        "current": "spawn_members__13TObjEneMe1GeeFv",
+        "address": "0x800CBA7C",
+        "size": 4,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "fn_800CBA80__13TObjEneMe1GeeFv",
+        "current": "sub_800CBA80__13TObjEneMe1GeeFv",
+        "address": "0x800CBA80",
+        "size": 24,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "check_can_attack__13TObjEneMe1GeeFv",
+        "current": "check_can_attack__13TObjEneMe1GeeFv",
+        "address": "0x800CBA98",
+        "size": 156,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "find_attack_target__13TObjEneMe1GeeFPvPv",
+        "current": "find_attack_target__13TObjEneMe1GeeFPff",
+        "address": "0x800CBB34",
+        "size": 208,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "disable_attack_body__13TObjEneMe1GeeFv",
+        "current": "sub_800CBC04__13TObjEneMe1GeeFv",
+        "address": "0x800CBC04",
+        "size": 24,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "enable_attack_body__13TObjEneMe1GeeFv",
+        "current": "sub_800CBC1C__13TObjEneMe1GeeFv",
+        "address": "0x800CBC1C",
+        "size": 20,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "vfunc_89__13TObjEneMe1GeeFv",
+        "current": "check_collisions__13TObjEneMe1GeeFv",
+        "address": "0x800CBC30",
+        "size": 32,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "vfunc_105__13TObjEneMe1GeeFv",
+        "current": "select_next_attack_state__13TObjEneMe1GeeFv",
+        "address": "0x800CBC50",
+        "size": 140,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "update__13TObjEneMe1GeeFv",
+        "current": "update__13TObjEneMe1GeeFv",
+        "address": "0x800CBCDC",
+        "size": 76,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "update_angle__13TObjEneMe1GeeFv",
+        "current": "update_angle__13TObjEneMe1GeeFv",
+        "address": "0x800CBD28",
+        "size": 104,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "update_from_float_sum__13TObjEneMe1GeeFv",
+        "current": "update_from_float_sum__13TObjEneMe1GeeFv",
+        "address": "0x800CBD90",
+        "size": 44,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "fn_800CBDBC__13TObjEneMe1GeeFf",
+        "current": "sub_800CBDBC__13TObjEneMe1GeeFf",
+        "address": "0x800CBDBC",
+        "size": 88,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "update_animation_frame__13TObjEneMe1GeeFv",
+        "current": "update_animation_frame__13TObjEneMe1GeeFv",
+        "address": "0x800CBE14",
+        "size": 44,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "update_hover_height__13TObjEneMe1GeeFv",
+        "current": "update_hover_height__13TObjEneMe1GeeFv",
+        "address": "0x800CBE40",
+        "size": 44,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "fn_800CBE6C__13TObjEneMe1GeeFf",
+        "current": "sub_800CBE6C__13TObjEneMe1GeeFf",
+        "address": "0x800CBE6C",
+        "size": 88,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "set_move_speed_x__13TObjEneMe1GeeFv",
+        "current": "set_move_speed_x__13TObjEneMe1GeeFv",
+        "address": "0x800CBEC4",
+        "size": 44,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "approach_world_height__13TObjEneMe1GeeFf",
+        "current": "approach_target_value__13TObjEneMe1GeeFf",
+        "address": "0x800CBEF0",
+        "size": 104,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "sub_800CBF58__13TObjEneMe1GeeFf",
+        "current": "sub_800CBF58__13TObjEneMe1GeeFf",
+        "address": "0x800CBF58",
+        "size": 104,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "vfunc_101__13TObjEneMe1GeeFPUc",
+        "current": "move_xz_on_ground__13TObjEneMe1GeeFPC3Vec",
+        "address": "0x800CBFC0",
+        "size": 80,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "random_child_position__13TObjEneMe1GeeFP13TObjEneMe1GeeP3Vec",
+        "current": "calc_position__13TObjEneMe1GeeFP3Vec",
+        "address": "0x800CC010",
+        "size": 144,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "vfunc_106__13TObjEneMe1GeeFv",
+        "current": "select_model__13TObjEneMe1GeeFv",
+        "address": "0x800CC0A0",
+        "size": 36,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "apply_behavior_parameters__13TObjEneMe1GeeFv",
+        "current": "sub_800CC0C4__13TObjEneMe1GeeFv",
+        "address": "0x800CC0C4",
+        "size": 204,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "vfunc_88__13TObjEneMe1GeeFv",
+        "current": "update_body_colliders__13TObjEneMe1GeeFv",
+        "address": "0x800CC190",
+        "size": 120,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "sync_body_position__13TObjEneMe1GeeFv",
+        "current": "copy_pos__13TObjEneMe1GeeFv",
+        "address": "0x800CC208",
+        "size": 68,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "vfunc_61__13TObjEneMe1GeeFv",
+        "current": "run_miss_reaction__13TObjEneMe1GeeFv",
+        "address": "0x800CC24C",
+        "size": 4,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "vfunc_62__13TObjEneMe1GeeFv",
+        "current": "run_hit_reaction__13TObjEneMe1GeeFv",
+        "address": "0x800CC250",
+        "size": 48,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "vfunc_63__13TObjEneMe1GeeFv",
+        "current": "run_death_reaction__13TObjEneMe1GeeFv",
+        "address": "0x800CC280",
+        "size": 56,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "vfunc_28__13TObjEneMe1GeeFv",
+        "current": "refresh_target__13TObjEneMe1GeeFv",
+        "address": "0x800CC2B8",
+        "size": 4,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "get_resources__13TObjEneMe1GeeFv",
+        "current": "sub_800CC2BC__13TObjEneMe1GeeFv",
+        "address": "0x800CC2BC",
+        "size": 8,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "run_task__13TObjEneMe1GeeFv",
+        "current": "run_task__13TObjEneMe1GeeFv",
+        "address": "0x800CC2C4",
+        "size": 228,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "__dt__13TObjEneMe1GeeFv",
+        "current": "__dt__13TObjEneMe1GeeFv",
+        "address": "0x800CC3A8",
+        "size": 136,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "init_state__13TObjEneMe1GeeFv",
+        "current": "init_state__13TObjEneMe1GeeFv",
+        "address": "0x800CC430",
+        "size": 680,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "__ct__13TObjEneMe1GeeFP7TObjectP13TObjEneMe1GeePC3VecUsl",
+        "current": "__ct__13TObjEneMe1GeeFP7TObjectP13TObjEneMe1GeeP3VecUsl",
+        "address": "0x800CC6D8",
+        "size": 176,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "__ct__13TObjEneMe1GeeFP7TObjectPvl",
+        "current": "__ct__13TObjEneMe1GeeFP7TObjectPvl",
+        "address": "0x800CC788",
+        "size": 128,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "free_globals__13TObjEneMe1GeeFv",
+        "current": "free_globals__13TObjEneMe1GeeFv",
+        "address": "0x800CC808",
+        "size": 148,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "create_child__13TObjEneMe1GeeFP13TObjEneMe1GeePC3VecUsl",
+        "current": "create__13TObjEneMe1GeeFP13TObjEneMe1GeeP3VecUsl",
+        "address": "0x800CC89C",
+        "size": 100,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "create__13TObjEneMe1GeeFPv",
+        "current": "create__13TObjEneMe1GeeFPv",
+        "address": "0x800CC900",
+        "size": 80,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      },
+      {
+        "historical": "load_resources__13TObjEneMe1GeeFv",
+        "current": "load_resources__13TObjEneMe1GeeFv",
+        "address": "0x800CC950",
+        "size": 468,
+        "provider": "psov3/pso/enemy/gee/TObjEneMe1Gee"
+      }
+    ],
+    "Gi Gue": [
+      {
+        "historical": "receive_weapon_special_attack__15TObjEneMe1GiGueFPvPv",
+        "current": "receive_weapon_special_attack__15TObjEneMe1GiGueFPvPv",
+        "address": "0x802CAA84",
+        "size": 108,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "receive_direct_attack__15TObjEneMe1GiGueFPv19DirectAttackPayloadPvll",
+        "current": "receive_direct_attack__15TObjEneMe1GiGueFPv19DirectAttackPayloadPvll",
+        "address": "0x802CAAF0",
+        "size": 136,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "receive_physical_attack__15TObjEneMe1GiGueFPvf",
+        "current": "receive_physical_attack__15TObjEneMe1GiGueFPvf",
+        "address": "0x802CAB78",
+        "size": 108,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "clear_barrier_active__15TObjEneMe1GiGueFv",
+        "current": "clear_flag388_bit80000__15TObjEneMe1GiGueFv",
+        "address": "0x802CABE4",
+        "size": 16,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "set_barrier_active__15TObjEneMe1GiGueFv",
+        "current": "sub_802CABF4__15TObjEneMe1GiGueFv",
+        "address": "0x802CABF4",
+        "size": 16,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "should_end_barrier__15TObjEneMe1GiGueFv",
+        "current": "is_active_state__15TObjEneMe1GiGueFv",
+        "address": "0x802CAC04",
+        "size": 60,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "get_barrier_duration__15TObjEneMe1GiGueFv",
+        "current": "get_field_44c__15TObjEneMe1GiGueFv",
+        "address": "0x802CAC40",
+        "size": 8,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "get_barrier_rotation__15TObjEneMe1GiGueFv",
+        "current": "sub_802CAC48__15TObjEneMe1GiGueFv",
+        "address": "0x802CAC48",
+        "size": 8,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "update_barrier_origin__15TObjEneMe1GiGueFv",
+        "current": "update_and_get_pos__15TObjEneMe1GiGueFv",
+        "address": "0x802CAC50",
+        "size": 48,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "get_resources__15TObjEneMe1GiGueFv",
+        "current": "sub_802CAC80__15TObjEneMe1GiGueFv",
+        "address": "0x802CAC80",
+        "size": 8,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "check_vector_bit__15TObjEneMe1GiGueFP3Vec",
+        "current": "check_vector_bit__15TObjEneMe1GiGueFP3Vec",
+        "address": "0x802CAC88",
+        "size": 80,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "reset_spawn_after_hold__15TObjEneMe1GiGueFv",
+        "current": "sub_802CACD8__15TObjEneMe1GiGueFv",
+        "address": "0x802CACD8",
+        "size": 120,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "update_action_hold_status__15TObjEneMe1GiGueFv",
+        "current": "update_action_hold_status__15TObjEneMe1GiGueFv",
+        "address": "0x802CAD50",
+        "size": 72,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "find_open_direction__15TObjEneMe1GiGueFP3Vec",
+        "current": "find_open_direction__15TObjEneMe1GiGueFPvPv",
+        "address": "0x802CAD98",
+        "size": 396,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "load_params__15TObjEneMe1GiGueFv",
+        "current": "load_params__15TObjEneMe1GiGueFv",
+        "address": "0x802CAF24",
+        "size": 216,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "update_direction__15TObjEneMe1GiGueFv",
+        "current": "update_direction__15TObjEneMe1GiGueFv",
+        "address": "0x802CAFFC",
+        "size": 64,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "update_animation_nodes__15TObjEneMe1GiGueFv",
+        "current": "TObjEneMe1GiGue__sub_802CB03C",
+        "address": "0x802CB03C",
+        "size": 208,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "collect_targets__15TObjEneMe1GiGueFv",
+        "current": "TObjEneMe1GiGue__sub_802CB10C",
+        "address": "0x802CB10C",
+        "size": 100,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "add_target_in_cone__15TObjEneMe1GiGueFP9TObjChara",
+        "current": "add_target_in_cone__15TObjEneMe1GiGueFP9TObjChara",
+        "address": "0x802CB170",
+        "size": 260,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "update_spawn__15TObjEneMe1GiGueFv",
+        "current": "init__15TObjEneMe1GiGueFPv",
+        "address": "0x802CB274",
+        "size": 260,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "update_landing__15TObjEneMe1GiGueFv",
+        "current": "TObjEneMe1GiGue__sub_802CB378",
+        "address": "0x802CB378",
+        "size": 552,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "remap_sound_id__15TObjEneMe1GiGueFl",
+        "current": "remap_sound_id__15TObjEneMe1GiGueFl",
+        "address": "0x802CB5A0",
+        "size": 128,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "apply_hit_shake__15TObjEneMe1GiGueFUl",
+        "current": "apply_hit_shake__15TObjEneMe1GiGueFP9TObjChara",
+        "address": "0x802CB620",
+        "size": 88,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "init_move__15TObjEneMe1GiGueFv",
+        "current": "init_move__15TObjEneMe1GiGueFv",
+        "address": "0x802CB678",
+        "size": 92,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "select_next_action__15TObjEneMe1GiGueFv",
+        "current": "sub_802CB6D4__15TObjEneMe1GiGueFv",
+        "address": "0x802CB6D4",
+        "size": 336,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "spawn_needle__15TObjEneMe1GiGueFl",
+        "current": "TObjEneMe1GiGue__sub_802CB824",
+        "address": "0x802CB824",
+        "size": 204,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "move_around_center__15TObjEneMe1GiGueFP3Vecf",
+        "current": "move_around_center__15TObjEneMe1GiGueFP3Vecf",
+        "address": "0x802CB8F0",
+        "size": 244,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "break_apart__15TObjEneMe1GiGueFv",
+        "current": "break_apart__15TObjEneMe1GiGueFv",
+        "address": "0x802CB9E4",
+        "size": 180,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "update_hit_reaction__15TObjEneMe1GiGueFv",
+        "current": "update_hit_reaction__15TObjEneMe1GiGueFv",
+        "address": "0x802CBA98",
+        "size": 552,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "update_rush_attack__15TObjEneMe1GiGueFv",
+        "current": "update_rush_attack__15TObjEneMe1GiGueFv",
+        "address": "0x802CBCC0",
+        "size": 1680,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "update_barrier__15TObjEneMe1GiGueFv",
+        "current": "action__15TObjEneMe1GiGueFPv",
+        "address": "0x802CC350",
+        "size": 268,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "update_techniques__15TObjEneMe1GiGueFv",
+        "current": "TObjEneMe1GiGue__sub_802CC45C",
+        "address": "0x802CC45C",
+        "size": 440,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "update_needle_attack__15TObjEneMe1GiGueFv",
+        "current": "TObjEneMe1GiGue__sub_802CC614",
+        "address": "0x802CC614",
+        "size": 748,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "update_missile_attack__15TObjEneMe1GiGueFv",
+        "current": "TObjEneMe1GiGue__sub_802CC900",
+        "address": "0x802CC900",
+        "size": 684,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "update_search__15TObjEneMe1GiGueFv",
+        "current": "TObjEneMe1GiGue__sub_802CCBAC",
+        "address": "0x802CCBAC",
+        "size": 676,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "vfunc_63__15TObjEneMe1GiGueFv",
+        "current": "run_death_reaction__15TObjEneMe1GiGueFv",
+        "address": "0x802CCE50",
+        "size": 76,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "vfunc_62__15TObjEneMe1GiGueFv",
+        "current": "run_hit_reaction__15TObjEneMe1GiGueFv",
+        "address": "0x802CCE9C",
+        "size": 144,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "update_idle__15TObjEneMe1GiGueFv",
+        "current": "sub_802CCF2C__15TObjEneMe1GiGueFv",
+        "address": "0x802CCF2C",
+        "size": 296,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "fn_802CD054__15TObjEneMe1GiGueFv",
+        "current": "TObjEneMe1GiGue__sub_802CD054",
+        "address": "0x802CD054",
+        "size": 4,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "render__15TObjEneMe1GiGueFv",
+        "current": "render__15TObjEneMe1GiGueFv",
+        "address": "0x802CD058",
+        "size": 660,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "dispatch_state__15TObjEneMe1GiGueFv",
+        "current": "dispatch_state__15TObjEneMe1GiGueFv",
+        "address": "0x802CD2EC",
+        "size": 164,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "run_task__15TObjEneMe1GiGueFv",
+        "current": "run_task__15TObjEneMe1GiGueFv",
+        "address": "0x802CD390",
+        "size": 456,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "create__15TObjEneMe1GiGueFPv",
+        "current": "create__15TObjEneMe1GiGueFPv",
+        "address": "0x802CD558",
+        "size": 104,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "delete_barrier__15TObjEneMe1GiGueFv",
+        "current": "delete_barrier__15TObjEneMe1GiGueFv",
+        "address": "0x802CD5C0",
+        "size": 108,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "load_resources__15TObjEneMe1GiGueFv",
+        "current": "load_resources__15TObjEneMe1GiGueFv",
+        "address": "0x802CD62C",
+        "size": 340,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "__dt__15TObjEneMe1GiGueFv",
+        "current": "deleting_dtor__15TObjEneMe1GiGueFPvs",
+        "address": "0x802CD780",
+        "size": 120,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "__ct__15TObjEneMe1GiGueFP7TObjectPv",
+        "current": "TObjEneMe1GiGue__ct",
+        "address": "0x802CD7F8",
+        "size": 700,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "vfunc_58__15TObjEneMe1GiGueFv",
+        "current": "run_idle_action__15TObjEneMe1GiGueFv",
+        "address": "0x802CDAB4",
+        "size": 4,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "vfunc_60__15TObjEneMe1GiGueFv",
+        "current": "run_attack_action__15TObjEneMe1GiGueFv",
+        "address": "0x802CDAB8",
+        "size": 4,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "vfunc_59__15TObjEneMe1GiGueFv",
+        "current": "run_move_action__15TObjEneMe1GiGueFv",
+        "address": "0x802CDABC",
+        "size": 4,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "vfunc_61__15TObjEneMe1GiGueFv",
+        "current": "run_miss_reaction__15TObjEneMe1GiGueFv",
+        "address": "0x802CDAC0",
+        "size": 4,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "get_int_parameter__15TObjEneMe1GiGueFl",
+        "current": "get_gigue_int_parameter__FP15TObjEneMe1GiGuel",
+        "address": "0x802CDAC4",
+        "size": 20,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "get_float_parameter__15TObjEneMe1GiGueFl",
+        "current": "get_gigue_float_parameter__FP15TObjEneMe1GiGuel",
+        "address": "0x802CDAD8",
+        "size": 16,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "fn_802CDAE8__15TObjEneMe1GiGueFv",
+        "current": "TObjEneMe1GiGue__sub_802CDAE8",
+        "address": "0x802CDAE8",
+        "size": 4,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      },
+      {
+        "historical": "load_params_from_table__15TObjEneMe1GiGueFl",
+        "current": "load_params_from_table__15TObjEneMe1GiGueFl",
+        "address": "0x802CDAEC",
+        "size": 48,
+        "provider": "psov3/pso/enemy/gigue/TObjEneMe1GiGue"
+      }
+    ],
+    "Morfos": [
+      {
+        "historical": "render_demo__13TObjEneMorfosFv",
+        "current": "render_demo__13TObjEneMorfosFv",
+        "address": "0x803323D8",
+        "size": 384,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "update_demo__13TObjEneMorfosFv",
+        "current": "run_demo_task__13TObjEneMorfosFv",
+        "address": "0x80332558",
+        "size": 60,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "update_ground_probe__13TObjEneMorfosFv",
+        "current": "update_ground_probe__13TObjEneMorfosFv",
+        "address": "0x80332594",
+        "size": 168,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "crosses_heading__13TObjEneMorfosFlll",
+        "current": "check_value_in_range__13TObjEneMorfosFPvUsUsUs",
+        "address": "0x8033263C",
+        "size": 120,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "get_arm_position__13TObjEneMorfosFv",
+        "current": "TObjEneMorfosArm__sub_803326B4",
+        "address": "0x803326B4",
+        "size": 8,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "get_heading__13TObjEneMorfosFv",
+        "current": "TObjEneMorfosArm__sub_803326BC",
+        "address": "0x803326BC",
+        "size": 8,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "get_resources__13TObjEneMorfosFv",
+        "current": "get_instance__13TObjEneMorfosFv",
+        "address": "0x803326C4",
+        "size": 8,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "draw_guard_wall__13TObjEneMorfosFv",
+        "current": "draw_body__13TObjEneMorfosFv",
+        "address": "0x803326CC",
+        "size": 228,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "render_reflection__13TObjEneMorfosFv",
+        "current": "render_model_if_visible__13TObjEneMorfosFv",
+        "address": "0x803327B0",
+        "size": 160,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "render__13TObjEneMorfosFv",
+        "current": "render__13TObjEneMorfosFv",
+        "address": "0x80332850",
+        "size": 404,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "render_with_camera_fade__13TObjEneMorfosFll",
+        "current": "render_part__13TObjEneMorfosFll",
+        "address": "0x803329E4",
+        "size": 408,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "record_model_node_position__13TObjEneMorfosFP10NJS_OBJECT",
+        "current": "record_camera_path_point__13TObjEneMorfosFP10NJS_OBJECT",
+        "address": "0x80332B7C",
+        "size": 124,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "state_death__13TObjEneMorfosFl",
+        "current": "state_death__13TObjEneMorfosFl",
+        "address": "0x80332BF8",
+        "size": 452,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "state_damaged__13TObjEneMorfosFl",
+        "current": "TObjEneMorfos__sub_80332DBC",
+        "address": "0x80332DBC",
+        "size": 280,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "state_patrol__13TObjEneMorfosFl",
+        "current": "state_patrol__13TObjEneMorfosFl",
+        "address": "0x80332ED4",
+        "size": 256,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "state_melee_attack__13TObjEneMorfosFl",
+        "current": "TObjEneMorfos__sub_80332FD4",
+        "address": "0x80332FD4",
+        "size": 700,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "state_rotating_projectile_burst__13TObjEneMorfosFl",
+        "current": "state_rotating_projectile_burst__13TObjEneMorfosFl",
+        "address": "0x80333290",
+        "size": 1024,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "state_projectile_attack__13TObjEneMorfosFl",
+        "current": "TObjEneMorfos__sub_80333690",
+        "address": "0x80333690",
+        "size": 1088,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "state_move__13TObjEneMorfosFl",
+        "current": "TObjEneMorfos__sub_80333AD0",
+        "address": "0x80333AD0",
+        "size": 888,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "state_disappear__13TObjEneMorfosFl",
+        "current": "TObjEneMorfos__sub_80333E48",
+        "address": "0x80333E48",
+        "size": 488,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "state_hidden__13TObjEneMorfosFl",
+        "current": "TObjEneMorfos__sub_80334030",
+        "address": "0x80334030",
+        "size": 244,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "state_appear__13TObjEneMorfosFl",
+        "current": "state_appear__13TObjEneMorfosFl",
+        "address": "0x80334124",
+        "size": 404,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "state_fade_in__13TObjEneMorfosFl",
+        "current": "TObjEneMorfos__sub_803342B8",
+        "address": "0x803342B8",
+        "size": 304,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "handle_event_transition__13TObjEneMorfosFl",
+        "current": "handle_event_transition__13TObjEneMorfosFl",
+        "address": "0x803343E8",
+        "size": 64,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "dispatch_action__13TObjEneMorfosFUll",
+        "current": "dispatch_action__13TObjEneMorfosFUll",
+        "address": "0x80334428",
+        "size": 200,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "fn_803344F0__13TObjEneMorfosFv",
+        "current": "TObjEneMorfos__sub_803344F0",
+        "address": "0x803344F0",
+        "size": 52,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "play_frame_sounds__13TObjEneMorfosFv",
+        "current": "play_sound_in_band__13TObjEneMorfosFv",
+        "address": "0x80334524",
+        "size": 100,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "select_target_in_view__13TObjEneMorfosFv",
+        "current": "select_target_in_view__13TObjEneMorfosFv",
+        "address": "0x80334588",
+        "size": 380,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "get_parameters__13TObjEneMorfosFv",
+        "current": "TObjEneMorfos__sub_80334704",
+        "address": "0x80334704",
+        "size": 24,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "initialize_behavior_parameters__13TObjEneMorfosFv",
+        "current": "init_target_offsets__13TObjEneMorfosFv",
+        "address": "0x8033471C",
+        "size": 136,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "vfunc_88__13TObjEneMorfosFv",
+        "current": "update_body_colliders__13TObjEneMorfosFv",
+        "address": "0x803347A4",
+        "size": 24,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "update_body_center__13TObjEneMorfosFv",
+        "current": "set_hover_target_position__13TObjEneMorfosFv",
+        "address": "0x803347BC",
+        "size": 76,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "turn_toward_angle__13TObjEneMorfosFll",
+        "current": "approach_value__13TObjEneMorfosFll",
+        "address": "0x80334808",
+        "size": 124,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "try_enter_low_hp_state__13TObjEneMorfosFv",
+        "current": "try_enter_low_hp_state__13TObjEneMorfosFv",
+        "address": "0x80334884",
+        "size": 108,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "check_low_hp_trigger__13TObjEneMorfosFv",
+        "current": "check_low_hp_trigger__13TObjEneMorfosFv",
+        "address": "0x803348F0",
+        "size": 120,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "vfunc_61__13TObjEneMorfosFv",
+        "current": "run_miss_reaction__13TObjEneMorfosFv",
+        "address": "0x80334968",
+        "size": 4,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "vfunc_62__13TObjEneMorfosFv",
+        "current": "run_hit_reaction__13TObjEneMorfosFv",
+        "address": "0x8033496C",
+        "size": 224,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "receive_physical_attack__13TObjEneMorfosFPvf",
+        "current": "receive_physical_attack__13TObjEneMorfosFPvf",
+        "address": "0x80334A4C",
+        "size": 280,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "vfunc_63__13TObjEneMorfosFv",
+        "current": "run_death_reaction__13TObjEneMorfosFv",
+        "address": "0x80334B64",
+        "size": 48,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "vfunc_28__13TObjEneMorfosFv",
+        "current": "refresh_target__13TObjEneMorfosFv",
+        "address": "0x80334B94",
+        "size": 4,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "run_task__13TObjEneMorfosFv",
+        "current": "run_task__13TObjEneMorfosFv",
+        "address": "0x80334B98",
+        "size": 304,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "__dt__13TObjEneMorfosFv",
+        "current": "__dt__13TObjEneMorfosFv",
+        "address": "0x80334CC8",
+        "size": 172,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "init_instance__13TObjEneMorfosFv",
+        "current": "init_instance__13TObjEneMorfosFv",
+        "address": "0x80334D74",
+        "size": 532,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "__ct__13TObjEneMorfosFP7TObjectPv",
+        "current": "__ct__13TObjEneMorfosFP7TObjectP14EnemyPlacement",
+        "address": "0x80334F88",
+        "size": 156,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "unload_static_data__13TObjEneMorfosFv",
+        "current": "unload_static_data__13TObjEneMorfosFv",
+        "address": "0x80335024",
+        "size": 60,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "create__13TObjEneMorfosFPv",
+        "current": "create__13TObjEneMorfosFPv",
+        "address": "0x80335060",
+        "size": 76,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      },
+      {
+        "historical": "load_resources__13TObjEneMorfosFv",
+        "current": "TObjEneMorfos__sub_803350AC",
+        "address": "0x803350AC",
+        "size": 364,
+        "provider": "psov3/pso/enemy/morfos/TObjEneMorfos"
+      }
+    ]
+  },
+  "runtime": {
+    "cases_per_image": 21,
+    "images": [
+      "retail",
+      "source",
+      "materialized fork"
+    ],
+    "probe_sha256": "e8d6264f32953d2062edff2b9f151e09d1c6341d3cf8f664876331f1eb616516",
+    "log_sha256": "ab737c21826c3186507b9648ca9c7bc6417133222081c6f86bd71763635ee075"
+  },
+  "historical": {
+    "closed": [
+      {
+        "row": 456,
+        "fork_path": "include/pso/enemy/TObjEneMe1Canadin.h",
+        "current_owner": "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+        "detail": "The original native constructors, dispatch and membership declarations retain their actor types. The shared fade and color, current target and history fields retain their offsets. The typed ground and hover routines retain their original entry points. The map core reset takes the active color record directly."
+      },
+      {
+        "row": 458,
+        "fork_path": "include/pso/enemy/TObjEneMe1Gee.h",
+        "current_owner": "include/pso/enemy/gee/TObjEneMe1Gee.h",
+        "detail": "The native actor retains the typed child factory, unsigned masks, signed tuning fields, fade, node positions and original state layout. The base and swarm leader share the typed member-removal virtual entry."
+      },
+      {
+        "row": 459,
+        "fork_path": "include/pso/enemy/TObjEneMe1GiGue.h",
+        "current_owner": "include/pso/enemy/gigue/TObjEneMe1GiGue.h",
+        "detail": "The native actor retains its typed targets, movement vectors, two fades, and signed tuning indexes. The existing accessors read the original typed parameter table. The sound remapper uses the actor as its receiver."
+      }
+    ],
+    "scoped": {
+      "463": "The native ground point, charge emitter and phase and movement fields retain their historical types and offsets. Other declaration differences remain open.",
+      "589": "Canadin's map core reset takes a typed color and the light trail owns its append and point fade routines. Other authored hunks remain open.",
+      "590": "Both Gee removal branches pass the native member to its leader. The formation tests cover swap removal, absence and the retreat trigger. Other authored hunks remain open.",
+      "591": "The Gi Gue sound remapper takes its native receiver and preserves both tower-specific IDs and the normal fallback. Other authored hunks remain open.",
+      "599": "The ground mask and contact position now use the shared CsnHit record. The charge effect stays at the original model node and its exit clears the owned emitter. Other authored hunks remain open."
+    },
+    "open_rows": 285,
+    "comparison_sha256": "622196a09510139fba1af9ce4564667aa5d5d63ceea8c78287e3805708d62f1d"
+  },
+  "fork_workspace": {
+    "trial": "db78c83fdd62a48319c821ff87f4ab0c5efc6cbb",
+    "overlay_paths": 130,
+    "updated_keep_list_symbols": [
+      {
+        "module": "psov3",
+        "address": "0x8009E474",
+        "before": "reset_map_core__17TObjEneMe1CanadinFPv",
+        "after": "reset_map_core__17TObjEneMe1CanadinFPC8NJS_ARGB"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8009FB54",
+        "before": "fade_alpha_step__17TObjEneMe1CanadinFfl",
+        "after": "fade_alpha_step__31TObjEneMe1Canadin_EffLightPointFfl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800C8788",
+        "before": "remove_member__13TUnk_8049387CFUl",
+        "after": "remove_member__13TUnk_8049387CFP13TObjEneMe1Gee"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800CB580",
+        "before": "remove_member__13TObjEneMe1GeeFUl",
+        "after": "remove_member__13TObjEneMe1GeeFP13TObjEneMe1Gee"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802CB5A0",
+        "before": "remap_sound_id__15TObjEneMe1GiGueFPvl",
+        "after": "remap_sound_id__15TObjEneMe1GiGueFl"
+      }
+    ],
+    "archive_sha256": "dcd02fd2f538bc329f585c7fab93270514056ce56e4110b4104a536658875308",
+    "materialized_tree": "bbeea554f537312d8d1de2890f5dca6e904bd6d5",
+    "force_active": 27029
+  }
+}

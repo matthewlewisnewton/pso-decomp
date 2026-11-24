@@ -1,0 +1,185 @@
+{
+  "source": "5b556e7fe8d96ac19760efb6db169b42d1e7b4b6",
+  "previous_source": "647cf10b15825c09f9cc0c0b2786f28b4e6fde74",
+  "upstream": "5a4e7ced56fe7072359b6d279e94f4be3b8453c0",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "source_paths": 1182,
+  "changed_paths": [
+    "include/pso/boss/olgaflow/TBoss6Type1.h",
+    "include/pso/unk/text_800F5BC0.h",
+    "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type1.cpp"
+  ],
+  "author": {
+    "name": "matthewlewisnewton",
+    "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+    "coauthor_trailers": 0
+  },
+  "layouts": {
+    "sway_angle_offset": 1260,
+    "sway_speed_offset": 1264,
+    "sway_timer_offset": 1268,
+    "trail_particle_slots": 24,
+    "trail_particle_offset": 1292,
+    "strip_pair_allocation_bytes": 20,
+    "strip_descriptor_bytes": 12,
+    "photon_charge_virtual_offset": 300,
+    "enemy_state_virtual_offset": 316
+  },
+  "historical_comparison": {
+    "prior_open_rows": 454,
+    "open_rows": 453,
+    "touched_rows": [
+      {
+        "row": 521,
+        "description": "The phase-one reset and sway update now use the actor's three integer sway counters, and the 24 trail particle controllers have real pointer storage and use the original release path.",
+        "historical_path": "src/pso/boss/TBoss6Type1.cpp",
+        "current_path": "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+        "fork_blob": "03e7d76a5de112a47beb2df7f5dd1ce14823f9c2",
+        "current_blob": "3f6eb0ba52f63e224067f7f15b406232828a7c5f",
+        "authored_diff_sha256": "3a7a3b68e228029980f42c79e4f683f7c24aab6dc2609e4efe985e022f7219f2",
+        "complete": false
+      },
+      {
+        "row": 738,
+        "description": "The 0x4EC to 0x4F4 sway scalars and 24-pointer bank at 0x50C have concrete types and consumers. Remaining helper declarations and source ownership still need review.",
+        "historical_path": "include/pso/boss/TBoss6Type1.h",
+        "current_path": "include/pso/boss/olgaflow/TBoss6Type1.h",
+        "fork_blob": "dc2101a829d5c6b5b8b87acfcc7655f81ab90839",
+        "current_blob": "4fbbe60eefa21e829287fcff073c6e4f12882e15",
+        "authored_diff_sha256": "bd5fd9d6bcc8e6ebcd700c41b5fdfbf2829ca7887e9030b5b46caf55273ed2aa",
+        "complete": false
+      },
+      {
+        "row": 906,
+        "description": "The plot scene, player state, action rows, phase actors, scroll strips, shake, fade, combat stats, camera and archive lifetimes are reconciled. The scene source retains the original signed difficulty result and upstream symbol names. The strip builder and free path use the retail allocation entry points.",
+        "historical_path": "src/pso/boss/TBoss6PlotFalz.cpp",
+        "current_path": "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+        "fork_blob": "b77e54ffbf137bc5d8a2c0af2de03da0e47b0c25",
+        "current_blob": "af250a2c1d94852b8d0e3267085cf79ca54a380f",
+        "authored_diff_sha256": "45cb199785a8349c2ac8a13223c454e118c4aac2fd63b7fd89962a9d1092fdfa",
+        "complete": true
+      }
+    ],
+    "plot_comparison": [
+      {
+        "area": "Actor and player state",
+        "evidence": "The exact player lookup, HP, Photon Blast, participation, radial rumble and experience paths use TObjPlayer and preserve the original virtual targets. Scene updates use the nine native member-action rows and the shake timer."
+      },
+      {
+        "area": "Phase actor lifetime and triggers",
+        "evidence": "Both native phase factories receive Boss6PhaseSpawn. Position queries, eligibility checks, destruction, tube activation and release use their real actor types. The phase-one gravity state is read from the actual phase-one actor at the retail call target."
+      },
+      {
+        "area": "Camera and equipment",
+        "evidence": "Camera view selection passes the current camera number into the typed player ID lookup. The native player warp, equipment refresh, freeze and camera teardown from the previous checkpoint carry the historical changes."
+      },
+      {
+        "area": "Material fade and strips",
+        "evidence": "The one-component fade uses the two-argument material call and NJS_ARGB, and strip scrolling uses the real pair pointer. The builder reads the BML scene archive and resolves the model and node through their native APIs. The exact object calls mem_alloc, __nw__ and alloc_tables for creation, then destroy_buffer_pair and mem_free for teardown. The four-component fade retains its earlier register allocation shape."
+      },
+      {
+        "area": "Constructor and archive lifetime",
+        "evidence": "The real constructor initializes position, velocity, phase state and battle record pointers. The archive has a dedicated BmlResource pointer and its native constructor and destructor. The previous fork's temporary fish global and numeric color or material casts are superseded by typed owners."
+      },
+      {
+        "area": "Existing identifiers and return width",
+        "evidence": "Upstream names identify the same retail string, battle row getters and center field. The signed difficulty getter preserves the same 0 or 1 result at the original 0x802AC17C entry and is shared by current callers."
+      }
+    ]
+  },
+  "validation": {
+    "stock": {
+      "baseline": "647cf10b15825c09f9cc0c0b2786f28b4e6fde74",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "b7ef59ce5f05d52a0b99f5c11907f7321b16c8c6c24753265640cf14dc5d402b",
+      "report_sha256": "afea108a6b2788badcd428ac643e3a5d8577e9d09132d73cbdd1a6e6859f51cb"
+    },
+    "workspace": {
+      "baseline": "5b556e7fe8d96ac19760efb6db169b42d1e7b4b6",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "afea108a6b2788badcd428ac643e3a5d8577e9d09132d73cbdd1a6e6859f51cb"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "20fb1c9ccc01f3e673235118cb49d5b187c4e00af9a11f65c1c695dac182826a"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "ea61752fb12accc2f3b15fda0df610d51e9237e5750f66643227d1065dbdf998"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    },
+    "plot_runtime": {
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "checks": [
+        "Invalid, absent, inactive and immune player paths",
+        "Damage clamping, full packet client ID and native Photon Blast virtual dispatch",
+        "Online, missing-local-player and split-screen experience and teardown order",
+        "Strip archive, descriptor and count guards, failed pair allocation, UV updates and release",
+        "Sway reset, signed clamping, expired and unexpired timers",
+        "All 24 particle pointers cleared and live emitters released once"
+      ],
+      "emulation": "The harness executes the scene control, timer, list and slot routines and supplies network, heap, rendering and player service calls.",
+      "log_sha256": "a84b6524cb7e09823c41486ede79f37cadf7a68f86a1dafdc83a41201d30e3e3",
+      "probe_sha256": "4f9abef7b88ac5f222a670ecd78e19dc9e43b06fab634903765a8fb086e250ae"
+    }
+  },
+  "fork_workspace": {
+    "overlay_paths": 130,
+    "overlay_patch_sha256": "deccf0c47860f8ed902f95bc8b3afca1ceea19b186a05e1b0b9cb19292a33cd2",
+    "updated_overlay_paths": [],
+    "force_active_names": 27033,
+    "archive_test_head": "80c13922072d6e29c07ea9e74de8e373059cb0fd",
+    "tested_materialized_tree": "ba93e1fe37dc4c78ae6aef0f93c503f96e987651"
+  }
+}

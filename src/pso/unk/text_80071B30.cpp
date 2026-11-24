@@ -1,61 +1,38 @@
-#include "pso/misc/TNpcPlayer.h"
-#include "pso/item/ChallengeStageLoadouts.h"
+#include "pso/npc/TNpcPlayer.h"
+#include "pso/quest/challenge/ChallengeStageLoadouts.h"
 #include "pso/unk/text_80071B30.h"
 #include "pso/system/vector.h"
 
 #include "types.h"
+#include "pso/ui/window/TWindowSubStatusDisp.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/boss/TBoss4DarkFalz.h"
-#include "pso/misc/TLobby.h"
-
-struct Vec_80071BC0 { f32 x, y, z; };
+#include "pso/player/TPlyCharData.h"
+#include "pso/player/TObjPlayer_801BDF5C.h"
+#include "pso/player/PlayerSlots.h"
+#include "pso/boss/darkfalz/TBoss4DarkFalz.h"
+#include "pso/unk/TLobby.h"
 
 struct Hdr_80071BC0 { u32 a, b; };
 
 struct Chr_80071BC0 {
     u8 pad0[0x31];
-    char f31;
+    u8 f31;
     u8 pad32[0x34 - 0x32];
     u32 f34;
     u8 pad38[0x50 - 0x38];
-};
-
-class TPlyCharData {
-public:
-    TPlyCharData();
-    ~TPlyCharData();
-    u8 pad[0x370];
-    Chr_80071BC0 chr;
-    u8 pad3c0[0x420 - 0x3c0];
 };
 
 typedef ChallengeTechniqueLevel Pair_80071BC0;
 
 typedef ChallengeStageStart Tbl_80071BC0;
 
-struct PBase_80071BC0 { u8 pad[0x18]; };
-
-struct Plr_80071BC0 : PBase_80071BC0 {
-    virtual void m0(s32);
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual void m4();
-    virtual void m5();
-    virtual void m6();
-};
-
 extern "C" {
-s32 get_layout_id__20TWindowSubStatusDispFv(s32);
 s32 *TWindowSubStatusDisp__sub_8006F0D8(void *);
 extern u8 challenge_mode_state[];
-void copy_player_visual_record(Chr_80071BC0 *, void *);
-Plr_80071BC0 *get_player_by_client_id(s32);
-Plr_80071BC0 *create_player_object(s32, s32, TPlyCharData *);
-void clamp_and_set_unit_value__10TObjPlayerFiUci(Plr_80071BC0 *, u8, s16);
-void begin_action_state__10TObjPlayerFPv(TPlyCharData *);
+void copy_player_visual_record(void *, void *);
+void set_technique_level_clamped__10TObjPlayerFP10TObjPlayerUci(TObjPlayer *, u8, s16);
 extern s32 local_client_id;
-s32 TLobby__sub_80071B30(s32 arg0, s32 arg1) {
+s32 TLobby__sub_80071B30(s32 arg0, s32 slot) {
     s32 *list;
     s32 n;
     s32 i;
@@ -64,7 +41,7 @@ s32 TLobby__sub_80071B30(s32 arg0, s32 arg1) {
         return 0;
     }
     list = TWindowSubStatusDisp__sub_8006F0D8(q + 1);
-    n = get_layout_id__20TWindowSubStatusDispFv(arg1);
+    n = TWindowSubStatusDisp::get_layout_id(slot);
     for (i = 0; i < n; i++) {
         if (list[i] == 0) {
             break;
@@ -72,15 +49,15 @@ s32 TLobby__sub_80071B30(s32 arg0, s32 arg1) {
     }
     return i;
 }
-void TObjPlayer::rebuild_players_for_stage(s32 arg0) {
+void TObjPlayer::rebuild_players_for_stage(s32 stage) {
     Hdr_80071BC0 hdr;
-    Vec_80071BC0 pos;
+    Vec pos;
     Chr_80071BC0 chr;
     s32 i;
-    Plr_80071BC0 *p;
+    TObjPlayer *p;
     Tbl_80071BC0 *t;
     Pair_80071BC0 *e;
-    if (arg0 < 0 || arg0 >= 0x10) {
+    if (stage < 0 || stage >= 0x10) {
         return;
     }
     {
@@ -93,28 +70,26 @@ void TObjPlayer::rebuild_players_for_stage(s32 arg0) {
             VecCopy((Vec *)&pos, (const Vec *)((u8 *)p + 0x38));
             copy_player_visual_record(&chr, (u8 *)p + 0x85c);
             ((TLobby *)(&hdr))->copy_header_struct((u8 *)p + 0xdac);
-            if (p != NULL) {
-                p->m0(1);
-            }
+            delete p;
             switch (chr.f34 & 0xe0) {
             case 0x20:
-                t = &hunter_stage_start_parameters[arg0];
+                t = &hunter_stage_start_parameters[stage];
                 break;
             case 0x40:
-                t = &ranger_stage_start_parameters[arg0];
+                t = &ranger_stage_start_parameters[stage];
                 break;
             case 0x80:
-                t = &force_stage_start_parameters[arg0];
+                t = &force_stage_start_parameters[stage];
                 break;
             default:
-                t = &hunter_stage_start_parameters[arg0];
+                t = &hunter_stage_start_parameters[stage];
                 break;
             }
             {
                 TPlyCharData cd;
-                copy_player_visual_record(&cd.chr, &chr);
-                begin_action_state__10TObjPlayerFPv(&cd);
-                TNpcPlayer::send_command(chr.f31, t->item_count, (s32)t->items, t->level, &cd);
+                copy_player_visual_record(&cd.m_disp_part2, &chr);
+                TObjPlayer::begin_action_state(&cd);
+                TNpcPlayer::send_command(chr.f31, t->item_count, (const TPlyInventoryItem *)t->items, t->level, &cd);
                 if (i == local_client_id) {
                     p = create_player_object(i, 0, &cd);
                 } else {
@@ -125,13 +100,13 @@ void TObjPlayer::rebuild_players_for_stage(s32 arg0) {
                 }
             }
             ((TLobby *)((u8 *)p + 0xdac))->copy_header_struct(&hdr);
-            ((TObjBase *)p)->set_position_from(&pos);
-            ((TObjBase *)p)->save_previous_position();
-            p->m6();
+            p->set_position_from(&pos);
+            p->save_previous_position();
+            p->reset_motion_fields();
             ((TObjPlayer *)((u8 *)p + 0x428))->set_all_technique_levels((void *)0xff);
             if (t->techniques != NULL) {
                 for (e = t->techniques; e->level != 0xff; e++) {
-                    clamp_and_set_unit_value__10TObjPlayerFiUci(p, e->level, e->technique);
+                    set_technique_level_clamped__10TObjPlayerFP10TObjPlayerUci(p, e->level, e->technique);
                 }
             }
             *(s32 *)((u8 *)p + 0xd58) = 0;

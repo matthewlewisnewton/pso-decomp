@@ -1,0 +1,1501 @@
+{
+  "source": "f89d3c063a6af502d8becfc34758635b2c739ea0",
+  "landing": "d2cc7471228c08c8a7dc8dd09649e6360e5252d6",
+  "working_fork_build": "23b2cdc1a557176a5276518ebf5bbaa1b50ed1ce",
+  "previous_source": "f759412dff03ebc5c8f8e0f51a1ff8a994eea49b",
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "source_files": 61,
+  "batches": {
+    "gameplay-random": {
+      "head": "a4b106392b6ba5386f87c143ad809cc2ee7cd273",
+      "files": 29
+    },
+    "enemy-movement": {
+      "head": "123187b4d397d5bc401c0d92fa3e6f5c0d5a520c",
+      "files": 11
+    },
+    "trap-motion": {
+      "head": "6b9215d6907f03af7aeed1f9b317824eb1681159",
+      "files": 17
+    },
+    "speech-font": {
+      "head": "a93e7888bf4eeddb46f1b850e9a074dccb10925f",
+      "files": 15
+    }
+  },
+  "symbol_retention": 27061,
+  "source_coverage": {
+    "fuzzy_match_percent": 99.99999,
+    "total_code": "4353092",
+    "matched_code": "4353092",
+    "matched_code_percent": 100.0,
+    "total_data": "1758510",
+    "matched_data": "1758510",
+    "matched_data_percent": 100.0,
+    "total_functions": 27572,
+    "matched_functions": 27572,
+    "matched_functions_percent": 100.0,
+    "complete_code": "4353092",
+    "complete_code_percent": 100.0,
+    "complete_data": "1758510",
+    "complete_data_percent": 100.0,
+    "total_units": 2447,
+    "complete_units": 2447
+  },
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "fork_only_paths": 133,
+  "layer_tests": 11,
+  "local_tool_tests": 294,
+  "coverage_comparisons": 11,
+  "source_audit": {
+    "source": "f89d3c063a6af502d8becfc34758635b2c739ea0",
+    "base": "f759412dff03ebc5c8f8e0f51a1ff8a994eea49b",
+    "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "closed_rows": [
+      439,
+      574,
+      1204,
+      4015,
+      5197
+    ],
+    "remaining": {
+      "Owner comparison required": 772,
+      "Some anchored text changes found": 1054
+    },
+    "entries": [
+      {
+        "row": 439,
+        "historical_path": "include/pso/enemy/EnemyMovement.h",
+        "historical_blob": "8d6e95231b0ec57b1c948a4d4089f221df2dcb63",
+        "owners": {
+          "include/pso/enemy/EnemyMovement.h": "786365a21b0c6283fc03c9552c7a256ba24df4d9"
+        },
+        "proofs": [
+          {
+            "group": "Enemy movement and collision",
+            "evidence": "Shared declaration returns the borrowed query record and accepts the common DD actor, max turn step and distance. All four real callers use it.",
+            "proof": {
+              "commit": "123187b4d397d5bc401c0d92fa3e6f5c0d5a520c",
+              "blob": "786365a21b0c6283fc03c9552c7a256ba24df4d9"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 579,
+        "historical_path": "src/pso/enemy/TObjEneDD_800BABA4.cpp",
+        "historical_blob": "745610482c35ff4e5d706365d075690efedd0e79",
+        "owners": {
+          "src/pso/enemy/dd/TObjEneDD.cpp": "1f0b195bf6025f1087efca8ba4804c62bf42c44d"
+        },
+        "proofs": [
+          {
+            "group": "Enemy movement and collision",
+            "evidence": "Wall-slide commit propagates the collision record; the destination locals have their real Vec storage. Two related routines call vtable slot 103 with an explicit destination, where retail has the pointer in r4.",
+            "proof": {
+              "commit": "123187b4d397d5bc401c0d92fa3e6f5c0d5a520c",
+              "blob": "9cd1ddedad52a2fc5f3269c70770b998c970a1fe",
+              "merged_with": [
+                "gameplay-random"
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 586,
+        "historical_path": "src/pso/enemy/TObjEneEpsilon_800B92AC.cpp",
+        "historical_blob": "821cef564d0f9fa8e44b7e09ae822515a9e32b91",
+        "owners": {
+          "src/pso/enemy/dd/TObjEneDD.cpp": "1f0b195bf6025f1087efca8ba4804c62bf42c44d"
+        },
+        "proofs": [
+          {
+            "group": "Enemy movement and collision",
+            "evidence": "Helper at 0x800B92F8 forwards the movement result in r3 from virtual slot 101 and explicitly uses a Vec destination.",
+            "proof": {
+              "commit": "123187b4d397d5bc401c0d92fa3e6f5c0d5a520c",
+              "blob": "9cd1ddedad52a2fc5f3269c70770b998c970a1fe",
+              "merged_with": [
+                "gameplay-random"
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 589,
+        "historical_path": "src/pso/enemy/TObjEneMe1Canadin.cpp",
+        "historical_blob": "0c982ac6d9c5730b1b51fbac6f3f85392ad3f623",
+        "owners": {
+          "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp": "bb1be23a2424c804cf89552c63d2e44e51e1df7c"
+        },
+        "proofs": [
+          {
+            "group": "Enemy movement and collision",
+            "evidence": "Canadin now gets the single shared movement helper signature and intentionally ignores the collided record.",
+            "proof": {
+              "commit": "123187b4d397d5bc401c0d92fa3e6f5c0d5a520c",
+              "blob": "d6df6cd0e1808dcd1aed831e00893b2011f675ce",
+              "merged_with": [
+                "gameplay-random"
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 590,
+        "historical_path": "src/pso/enemy/TObjEneMe1Gee.cpp",
+        "historical_blob": "9196707382ae02c44b15f0ff7145d25daadb779c",
+        "owners": {
+          "src/pso/enemy/gee/TObjEneMe1Gee.cpp": "79a805dc2f7643a51481afaab2dc100bc819b1be"
+        },
+        "proofs": [
+          {
+            "group": "Enemy movement and collision",
+            "evidence": "Gee now gets the single shared movement helper signature and intentionally ignores the collided record.",
+            "proof": {
+              "commit": "123187b4d397d5bc401c0d92fa3e6f5c0d5a520c",
+              "blob": "9bfb85ff501f336259059d77ffe037f4f08b9989",
+              "merged_with": [
+                "gameplay-random"
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 621,
+        "historical_path": "src/pso/enemy/TObjEneRecon_8031C250.cpp",
+        "historical_blob": "7d38c5df45683dd460878ad403b8640d1d3960e9",
+        "owners": {
+          "src/pso/enemy/recon/TObjEneRecon.cpp": "12a6202e2f05d359a3b9ffffe96d8eb733ee76e5"
+        },
+        "proofs": [
+          {
+            "group": "Enemy movement and collision",
+            "evidence": "Three forwarding callers invoke the native Recon method with dx, dz and distance rather than declaring a conflicting C prototype.",
+            "proof": {
+              "commit": "123187b4d397d5bc401c0d92fa3e6f5c0d5a520c",
+              "blob": "a3ecd5b6c9fd9a23476679ce2c6d59e6a016991b",
+              "merged_with": [
+                "gameplay-random"
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 628,
+        "historical_path": "src/pso/enemy/TObjEneRecon_8031DD7C.cpp",
+        "historical_blob": "8ff58ec54762866f7a52ca15616db0b05db5d3df",
+        "owners": {
+          "src/pso/enemy/recon/TObjEneRecon.cpp": "12a6202e2f05d359a3b9ffffe96d8eb733ee76e5"
+        },
+        "proofs": [
+          {
+            "group": "Enemy movement and collision",
+            "evidence": "Both legacy query call sites test the actual returned pointer and forward only declared arguments; related native virtual/target dispatch was recovered.",
+            "proof": {
+              "commit": "123187b4d397d5bc401c0d92fa3e6f5c0d5a520c",
+              "blob": "a3ecd5b6c9fd9a23476679ce2c6d59e6a016991b",
+              "merged_with": [
+                "gameplay-random"
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 940,
+        "historical_path": "include/pso/enemy/TObjEneDD.h",
+        "historical_blob": "f254b4468a4ba48d7e50700cd90b6485b665e096",
+        "owners": {
+          "include/pso/enemy/dd/TObjEneDD.h": "745a451609945c308d8c2262e96dfa5e67a38b19"
+        },
+        "proofs": [
+          {
+            "group": "Enemy movement and collision",
+            "evidence": "Wall-slide commit exposes the actual borrowed pointer return.",
+            "proof": {
+              "commit": "123187b4d397d5bc401c0d92fa3e6f5c0d5a520c",
+              "blob": "396ad46df8b7580fa942b8bee36f0da834cb44d5",
+              "merged_with": [
+                "gameplay-random"
+              ]
+            }
+          },
+          {
+            "group": "Gameplay random state and receivers",
+            "evidence": "The scaled and signed ratio helpers are standard instance members, matching both recovered historical declarations.",
+            "proof": {
+              "include/pso/enemy/dd/TObjEneDD.h": {
+                "commit": "a4b106392b6ba5386f87c143ad809cc2ee7cd273",
+                "blob": "83ff09ddde820041a468dcf67ddd7f750b12b604",
+                "merged_with": [
+                  "enemy-movement"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 943,
+        "historical_path": "include/pso/enemy/TObjEneEpsilon_800B92AC.h",
+        "historical_blob": "f0693477aa9a4576179afb6fae28b95c62a7470b",
+        "owners": {
+          "include/pso/enemy/epsilon/TObjEneEpsilon_800B92AC.h": "edaa37f6b010b7e2f4e5b7b30f04b55cc8768172"
+        },
+        "proofs": [
+          {
+            "group": "Enemy movement and collision",
+            "evidence": "Uses the single shared declaration and removes both stale void redeclarations.",
+            "proof": {
+              "commit": "123187b4d397d5bc401c0d92fa3e6f5c0d5a520c",
+              "blob": "edaa37f6b010b7e2f4e5b7b30f04b55cc8768172"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1003,
+        "historical_path": "include/pso/enemy/TObjEneRecon.h",
+        "historical_blob": "286a883401bf5aa9c5f5af17479076b4517f3496",
+        "owners": {
+          "include/pso/enemy/recon/TObjEneRecon.h": "01a3540ed00f7da70a76bf96cdd6a8e510fc507d"
+        },
+        "proofs": [
+          {
+            "group": "Enemy movement and collision",
+            "evidence": "The forwarded direction/distance signature is restored and collision flags are modeled at +0x444 with exact-size and offset assertions.",
+            "proof": {
+              "commit": "123187b4d397d5bc401c0d92fa3e6f5c0d5a520c",
+              "blob": "01a3540ed00f7da70a76bf96cdd6a8e510fc507d"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1056,
+        "historical_path": "src/pso/enemy/TObjEneEpsilonGuard_8035DD68.cpp",
+        "historical_blob": "677fb802c15dd79cc670e06d542aa9938528a494",
+        "owners": {
+          "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp": "f5bf919731258e13d29ef718cad8cf750160d3a8"
+        },
+        "proofs": [
+          {
+            "group": "Enemy movement and collision",
+            "evidence": "Both Guard callers use the actual 3-float wall-slide commit method. Removed the bogus extra movement-record argument; retained the loads supplying speed.",
+            "proof": {
+              "commit": "123187b4d397d5bc401c0d92fa3e6f5c0d5a520c",
+              "blob": "f5bf919731258e13d29ef718cad8cf750160d3a8"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1114,
+        "historical_path": "src/pso/enemy/TObjEneBm3Fly.cpp",
+        "historical_blob": "e3935c2f0347368fb245b0e5c2d8c510a8475574",
+        "owners": {
+          "src/pso/enemy/fly/TObjEneBm3Fly.cpp": "9380a071fc624db2f67bcdad9fd18968d551fc10"
+        },
+        "proofs": [
+          {
+            "group": "Enemy movement and collision",
+            "evidence": "Fly branches on the collision pointer from both shared queries; existing native Fly forwarders already supply all three floats.",
+            "proof": {
+              "commit": "123187b4d397d5bc401c0d92fa3e6f5c0d5a520c",
+              "blob": "17aa6b34f49a3bad05c2f8be61f7b42152b22374",
+              "merged_with": [
+                "gameplay-random"
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 676,
+        "historical_path": "include/pso/enemy/TObjEnemy.h",
+        "historical_blob": "2fca97a078fb3732d5e653e09ce6490ab859a9aa",
+        "owners": {
+          "include/pso/enemy/TObjEnemy.h": "9761725f987db7e0e49a891647227aead77bf3a7",
+          "include/pso/object/base/TObjMotion.h": "da592cc88064e72f6c11a6cdf0f4ddc1a4aabf3a"
+        },
+        "proofs": [
+          {
+            "group": "Trap and motion contracts",
+            "evidence": "Remove the three original action and motion speed declarations from the enemy class.",
+            "proof": {
+              "include/pso/enemy/TObjEnemy.h": {
+                "commit": "6b9215d6907f03af7aeed1f9b317824eb1681159",
+                "blob": "9761725f987db7e0e49a891647227aead77bf3a7"
+              },
+              "include/pso/object/base/TObjMotion.h": {
+                "commit": "6b9215d6907f03af7aeed1f9b317824eb1681159",
+                "blob": "da592cc88064e72f6c11a6cdf0f4ddc1a4aabf3a"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 813,
+        "historical_path": "src/pso/enemy/TObjEneMoja.cpp",
+        "historical_blob": "f997b12f82f3d9ceb40f1c3eb5346285dee7f87b",
+        "owners": {
+          "src/pso/enemy/moja/TObjEneMoja.cpp": "58ce235f95031962431ae4bdafe26885695f16a9"
+        },
+        "proofs": [
+          {
+            "group": "Trap and motion contracts",
+            "evidence": "Use the actual motion owner at both override speed call sites.",
+            "proof": {
+              "src/pso/enemy/moja/TObjEneMoja.cpp": {
+                "commit": "6b9215d6907f03af7aeed1f9b317824eb1681159",
+                "blob": "58ce235f95031962431ae4bdafe26885695f16a9"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1055,
+        "historical_path": "src/pso/enemy/TObjEneDimedian.cpp",
+        "historical_blob": "64a00550db8820c2ed1edcfb530dd6461946b433",
+        "owners": {
+          "src/pso/enemy/dimedian/TObjEneDimedian.cpp": "c1b4708ff7e89b495f908c946dcff82e3d6fcbca"
+        },
+        "proofs": [
+          {
+            "group": "Trap and motion contracts",
+            "evidence": "Define the native motion functions at 0x800A7798 and 0x800A77C0 in the existing source unit.",
+            "proof": {
+              "src/pso/enemy/dimedian/TObjEneDimedian.cpp": {
+                "commit": "6b9215d6907f03af7aeed1f9b317824eb1681159",
+                "blob": "c1b4708ff7e89b495f908c946dcff82e3d6fcbca"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1084,
+        "historical_path": "src/pso/boss/TBoss1Dragon.cpp",
+        "historical_blob": "c5ac33f0c8bc0acc80c24571faba9ee1211434a6",
+        "owners": {
+          "src/pso/boss/dragon/TBoss1Dragon.cpp": "017b1f5d6262700eb20ff6c812cbc65bffa00d51"
+        },
+        "proofs": [
+          {
+            "group": "Trap and motion contracts",
+            "evidence": "Restore the original motion setter at 0x8002AE64 and its real encounter receiver.",
+            "proof": {
+              "src/pso/boss/dragon/TBoss1Dragon.cpp": {
+                "commit": "6b9215d6907f03af7aeed1f9b317824eb1681159",
+                "blob": "a37404f45cac83f2cd7a930d96290878b7db12d9",
+                "merged_with": [
+                  "gameplay-random"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1116,
+        "historical_path": "src/pso/enemy/SaverLifecycle.cpp",
+        "historical_blob": "9b93715c06d40111f6e840a5990c2cca6223a41c",
+        "owners": {
+          "src/pso/enemy/saver/SaverLifecycle.cpp": "64368c436331917fb465bf00e70224d3ce34a0ad"
+        },
+        "proofs": [
+          {
+            "group": "Trap and motion contracts",
+            "evidence": "Retarget two override speed callers to TObjMotion.",
+            "proof": {
+              "src/pso/enemy/saver/SaverLifecycle.cpp": {
+                "commit": "6b9215d6907f03af7aeed1f9b317824eb1681159",
+                "blob": "64368c436331917fb465bf00e70224d3ce34a0ad"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 3999,
+        "historical_path": "include/pso/player/TObjPlayer_80011014.h",
+        "historical_blob": "bb068148fb9536caa434583f8c33946db62a09d7",
+        "owners": {
+          "include/pso/player/TObjPlayer_80011014.h": "d67581b23350fc83c0c025332cf1ca940bd70a54",
+          "src/pso/player/TObjPlayer_80011014.cpp": "76c7e0f78085884bcbb62093cfa09429e0a7dbe3"
+        },
+        "proofs": [
+          {
+            "group": "Trap and motion contracts",
+            "evidence": "Share the nearest-player and entity declarations. Use TObjChara as nearest-player receiver because the provider reads its named body center at +0x2FC.",
+            "proof": {
+              "include/pso/player/TObjPlayer_80011014.h": {
+                "commit": "6b9215d6907f03af7aeed1f9b317824eb1681159",
+                "blob": "dbe85e3f9875185acf43c5d5bae18988e9514d0d",
+                "merged_with": [
+                  "gameplay-random"
+                ]
+              },
+              "src/pso/player/TObjPlayer_80011014.cpp": {
+                "commit": "6b9215d6907f03af7aeed1f9b317824eb1681159",
+                "blob": "00c2686ee218f3d9bc3b8d8d0b6bdbd0f78d16f5",
+                "merged_with": [
+                  "gameplay-random"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4089,
+        "historical_path": "src/pso/player/TObjPlayer_80011014.cpp",
+        "historical_blob": "fbf22f3f6c3e2cd97cac0128f9986e7b2b4bf06c",
+        "owners": {
+          "src/pso/player/TObjPlayer_80011014.cpp": "76c7e0f78085884bcbb62093cfa09429e0a7dbe3"
+        },
+        "proofs": [
+          {
+            "group": "Trap and motion contracts",
+            "evidence": "Read the actual character body-center member at 0x800115C4.",
+            "proof": {
+              "src/pso/player/TObjPlayer_80011014.cpp": {
+                "commit": "6b9215d6907f03af7aeed1f9b317824eb1681159",
+                "blob": "00c2686ee218f3d9bc3b8d8d0b6bdbd0f78d16f5",
+                "merged_with": [
+                  "gameplay-random"
+                ]
+              }
+            }
+          },
+          {
+            "group": "Gameplay random state and receivers",
+            "evidence": "The ratio provider now forwards the embedded stream directly and uses the original unsigned draw before conversion. Other historical changes in the same player owner remain open.",
+            "proof": {
+              "src/pso/player/TObjPlayer_80011014.cpp": {
+                "commit": "a4b106392b6ba5386f87c143ad809cc2ee7cd273",
+                "blob": "1d5225abc42e85fa2e049e277f055162a52b6f5f",
+                "merged_with": [
+                  "trap-motion"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4121,
+        "historical_path": "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "historical_blob": "673f422b9e97567877c0834304638f6ba8d023de",
+        "owners": {
+          "src/pso/player/TObjPlayer_801AF2F0.cpp": "e9181a30eac125e2c723cae9b0157d9c60e996e8"
+        },
+        "proofs": [
+          {
+            "group": "Trap and motion contracts",
+            "evidence": "Retarget original speed adjustment to TObjMotion.",
+            "proof": {
+              "src/pso/player/TObjPlayer_801AF2F0.cpp": {
+                "commit": "6b9215d6907f03af7aeed1f9b317824eb1681159",
+                "blob": "e9181a30eac125e2c723cae9b0157d9c60e996e8"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4138,
+        "historical_path": "src/pso/player/TObjPlayer_801C7430.cpp",
+        "historical_blob": "8774ee999d0c7ef266bf7578575368480b02c07a",
+        "owners": {
+          "src/pso/player/TObjPlayer_801C7430.cpp": "2b084dae62103dbba4dcb6f0b22be5cb18f6c6a1"
+        },
+        "proofs": [
+          {
+            "group": "Trap and motion contracts",
+            "evidence": "Retarget both speed adjustments and action flag setter to TObjMotion.",
+            "proof": {
+              "src/pso/player/TObjPlayer_801C7430.cpp": {
+                "commit": "6b9215d6907f03af7aeed1f9b317824eb1681159",
+                "blob": "2b084dae62103dbba4dcb6f0b22be5cb18f6c6a1"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6449,
+        "historical_path": "src/pso/misc/TOTrap.cpp",
+        "historical_blob": "e4d4d5ab0a768e0b9ee4cfb2dc04950d4068030c",
+        "owners": {
+          "src/pso/object/trap/TOTrap.cpp": "ef3d4d09d553a1834497c085297d76c9498aa1e3"
+        },
+        "proofs": [
+          {
+            "group": "Trap and motion contracts",
+            "evidence": "Restore eight native member bodies for player selection, eligibility, hold/release and virtual attack and sound dispatch. Preserve current constructor and resource APIs.",
+            "proof": {
+              "src/pso/object/trap/TOTrap.cpp": {
+                "commit": "6b9215d6907f03af7aeed1f9b317824eb1681159",
+                "blob": "ef3d4d09d553a1834497c085297d76c9498aa1e3"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6450,
+        "historical_path": "src/pso/misc/TOTrapAncient01.cpp",
+        "historical_blob": "2180f25f2574a57f866442489662a92923ed291d",
+        "owners": {
+          "src/pso/object/trap/TOTrapAncient01.cpp": "867509c94e7b219482e1d6f6d9e25e40c60d99a5"
+        },
+        "proofs": [
+          {
+            "group": "Trap and motion contracts",
+            "evidence": "Restore the real TObjChara virtual damage and attack calls at 0x801797D4 and the typed nearest-player call. Preserve the current named timer and attack payload.",
+            "proof": {
+              "src/pso/object/trap/TOTrapAncient01.cpp": {
+                "commit": "6b9215d6907f03af7aeed1f9b317824eb1681159",
+                "blob": "867509c94e7b219482e1d6f6d9e25e40c60d99a5"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6451,
+        "historical_path": "src/pso/misc/TOTrapAncient02.cpp",
+        "historical_blob": "afdf046415827444fa01078d0cc95d5ab28f0b93",
+        "owners": {
+          "src/pso/object/trap/TOTrapAncient02.cpp": "7015f0b56848d87bc691c0d6cf9cf37842781dd2"
+        },
+        "proofs": [
+          {
+            "group": "Trap and motion contracts",
+            "evidence": "Retain the three original nearest-player caller types and replace enemy casts at the two original held-actor motion calls.",
+            "proof": {
+              "src/pso/object/trap/TOTrapAncient02.cpp": {
+                "commit": "6b9215d6907f03af7aeed1f9b317824eb1681159",
+                "blob": "7015f0b56848d87bc691c0d6cf9cf37842781dd2"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6452,
+        "historical_path": "src/pso/misc/TOTrapSeabed01.cpp",
+        "historical_blob": "e73f6eda3d027b50cf73359e7e52ab7d20a96689",
+        "owners": {
+          "src/pso/object/trap/TOTrapSeabed01.cpp": "71bb18d29d31f552de939a4f911af0c96963476b"
+        },
+        "proofs": [
+          {
+            "group": "Trap and motion contracts",
+            "evidence": "Restore the native nearest-player receiver in the Seabed hold path.",
+            "proof": {
+              "src/pso/object/trap/TOTrapSeabed01.cpp": {
+                "commit": "6b9215d6907f03af7aeed1f9b317824eb1681159",
+                "blob": "71bb18d29d31f552de939a4f911af0c96963476b"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6777,
+        "historical_path": "include/pso/misc/TOMineTrap.h",
+        "historical_blob": "3d06666c7f0d2ac77d931e42447bee3abc0695ba",
+        "owners": {
+          "src/pso/object/trap/TOMine.cpp": "14ceaed74e78a395e12a60b4afcd1490c3fe917d"
+        },
+        "proofs": [
+          {
+            "group": "Trap and motion contracts",
+            "evidence": "Restore the fork declaration s32 fn_80171314(TObjPlayer *) with C linkage.",
+            "proof": {
+              "src/pso/object/trap/TOMine.cpp": {
+                "commit": "6b9215d6907f03af7aeed1f9b317824eb1681159",
+                "blob": "14ceaed74e78a395e12a60b4afcd1490c3fe917d"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6831,
+        "historical_path": "src/pso/misc/TOMineDisp_8016EF68.cpp",
+        "historical_blob": "566bc0b3832eb015f5342efb8888e9bb38ee3a92",
+        "owners": {
+          "src/pso/object/trap/TOMine.cpp": "14ceaed74e78a395e12a60b4afcd1490c3fe917d"
+        },
+        "proofs": [
+          {
+            "group": "Trap and motion contracts",
+            "evidence": "Use the typed trap eligibility helper in the consolidated display owner.",
+            "proof": {
+              "src/pso/object/trap/TOMine.cpp": {
+                "commit": "6b9215d6907f03af7aeed1f9b317824eb1681159",
+                "blob": "14ceaed74e78a395e12a60b4afcd1490c3fe917d"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6869,
+        "historical_path": "src/pso/misc/TOMineTrap.cpp",
+        "historical_blob": "bc8b17f95259f8afa7c98c66c135a9bd37419eb5",
+        "owners": {
+          "src/pso/object/trap/TOMine.cpp": "14ceaed74e78a395e12a60b4afcd1490c3fe917d"
+        },
+        "proofs": [
+          {
+            "group": "Trap and motion contracts",
+            "evidence": "Restore the typed player flag predicate definition at 0x80171314 in TOMine.",
+            "proof": {
+              "src/pso/object/trap/TOMine.cpp": {
+                "commit": "6b9215d6907f03af7aeed1f9b317824eb1681159",
+                "blob": "14ceaed74e78a395e12a60b4afcd1490c3fe917d"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7201,
+        "historical_path": "src/pso/misc/TOMineTrapDisp_8016EDC8.cpp",
+        "historical_blob": "864c13a1150e5b54435c32aef2cb1056e9ca6412",
+        "owners": {
+          "src/pso/object/trap/TOMine.cpp": "14ceaed74e78a395e12a60b4afcd1490c3fe917d"
+        },
+        "proofs": [
+          {
+            "group": "Trap and motion contracts",
+            "evidence": "Use the shared typed predicate in the dynamic-mine display call.",
+            "proof": {
+              "src/pso/object/trap/TOMine.cpp": {
+                "commit": "6b9215d6907f03af7aeed1f9b317824eb1681159",
+                "blob": "14ceaed74e78a395e12a60b4afcd1490c3fe917d"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7260,
+        "historical_path": "include/pso/object/TObjMotion.h",
+        "historical_blob": "7ff6f5377ac52b4a21fad2fff7481fb19f31f9e6",
+        "owners": {
+          "include/pso/object/base/TObjMotion.h": "da592cc88064e72f6c11a6cdf0f4ddc1a4aabf3a",
+          "src/pso/object/base/TObjMotion.cpp": "1299568587bbd356777f61e8e440a8fbddd937bb"
+        },
+        "proofs": [
+          {
+            "group": "Trap and motion contracts",
+            "evidence": "Restore three native motion setter declarations and definitions at the original addresses.",
+            "proof": {
+              "include/pso/object/base/TObjMotion.h": {
+                "commit": "6b9215d6907f03af7aeed1f9b317824eb1681159",
+                "blob": "da592cc88064e72f6c11a6cdf0f4ddc1a4aabf3a"
+              },
+              "src/pso/object/base/TObjMotion.cpp": {
+                "commit": "6b9215d6907f03af7aeed1f9b317824eb1681159",
+                "blob": "1299568587bbd356777f61e8e440a8fbddd937bb"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6048,
+        "historical_path": "include/pso/misc/SmallFontDrawing.h",
+        "historical_blob": "3c866bcce44cbfd4d75cc5c73c603da4306b7f91",
+        "owners": {
+          "include/pso/ui/font/SmallFontDrawing.h": "ab391bef08f54cc1d10a8df6d7574b91470f5c1d",
+          "src/pso/ui/font/TFontSmallHelp.cpp": "dcc9414de6eb7608ccd08df33af13bd9f4c666e4"
+        },
+        "proofs": [
+          {
+            "group": "Speech balloon and small-font drawing",
+            "evidence": "Both original C declarations and linked no-argument wrapper/binder implementations are explicit at the native small-font owner. The wrapper forwards directly to the texture-list binder, and the binder passes the localized alphabet list. All 11 existing provider or consumer files use the shared declaration.",
+            "proof": {
+              "include/pso/ui/font/SmallFontDrawing.h": {
+                "commit": "a93e7888bf4eeddb46f1b850e9a074dccb10925f",
+                "blob": "ab391bef08f54cc1d10a8df6d7574b91470f5c1d"
+              },
+              "src/pso/ui/font/TFontSmallHelp.cpp": {
+                "commit": "a93e7888bf4eeddb46f1b850e9a074dccb10925f",
+                "blob": "dcc9414de6eb7608ccd08df33af13bd9f4c666e4"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical declarations retained at active native owners"
+      },
+      {
+        "row": 262,
+        "historical_path": "src/pso/misc/TWindowFukidasi.cpp",
+        "historical_blob": "0666de1a4e13ff6f413caccaa5ae4344c19cb2aa",
+        "owners": {
+          "src/pso/ui/window/TWindowFukidasi.cpp": "e4f1243c0bd5bd776b05e5c66a96dcee9d81599c",
+          "include/pso/ui/window/TUnk_804CF0B8.h": "6679005f9d12525d02702bbfc0f161b2a33dc161"
+        },
+        "proofs": [
+          {
+            "group": "Speech balloon and small-font drawing",
+            "evidence": "The actual TUnk_804CF0B8 receiver owns nameplate rendering. Nameplate fading uses the existing full draw context, and its body, row and tail now share that type. The body row receives the actual stack record. Reads at 0x20 through 0x2C use context pivot and scaling, and body placement uses the existing frame_position and frame_size fields at their original offsets.",
+            "proof": {
+              "src/pso/ui/window/TWindowFukidasi.cpp": {
+                "commit": "a93e7888bf4eeddb46f1b850e9a074dccb10925f",
+                "blob": "e4f1243c0bd5bd776b05e5c66a96dcee9d81599c"
+              },
+              "include/pso/ui/window/TUnk_804CF0B8.h": {
+                "commit": "a93e7888bf4eeddb46f1b850e9a074dccb10925f",
+                "blob": "6679005f9d12525d02702bbfc0f161b2a33dc161"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5661,
+        "historical_path": "include/pso/misc/TUnk_804CF0B8.h",
+        "historical_blob": "c695423140dd1154f9e2b7233a5e4d30d395bd37",
+        "owners": {
+          "include/pso/ui/window/TUnk_804CF0B8.h": "6679005f9d12525d02702bbfc0f161b2a33dc161"
+        },
+        "proofs": [
+          {
+            "group": "Speech balloon and small-font drawing",
+            "evidence": "The four declarations describe the real owner and actual draw-context and row types. Existing live object layout and other declarations were preserved.",
+            "proof": {
+              "include/pso/ui/window/TUnk_804CF0B8.h": {
+                "commit": "a93e7888bf4eeddb46f1b850e9a074dccb10925f",
+                "blob": "6679005f9d12525d02702bbfc0f161b2a33dc161"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5799,
+        "historical_path": "src/pso/misc/TWindowSubStatusDisp_800FC3E0.cpp",
+        "historical_blob": "13405544bbca4d2c034e5394d6fc758da2526fcf",
+        "owners": {
+          "src/pso/ui/font/TFontSmallHelp.cpp": "dcc9414de6eb7608ccd08df33af13bd9f4c666e4",
+          "include/pso/ui/font/SmallFontDrawing.h": "ab391bef08f54cc1d10a8df6d7574b91470f5c1d"
+        },
+        "proofs": [
+          {
+            "group": "Speech balloon and small-font drawing",
+            "evidence": "Both font-stage functions are explicitly owned by the integrated TFontSmallHelp unit. Other font-help routines in that source row retain their existing canonical implementations.",
+            "proof": {
+              "src/pso/ui/font/TFontSmallHelp.cpp": {
+                "commit": "a93e7888bf4eeddb46f1b850e9a074dccb10925f",
+                "blob": "dcc9414de6eb7608ccd08df33af13bd9f4c666e4"
+              },
+              "include/pso/ui/font/SmallFontDrawing.h": {
+                "commit": "a93e7888bf4eeddb46f1b850e9a074dccb10925f",
+                "blob": "ab391bef08f54cc1d10a8df6d7574b91470f5c1d"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5197,
+        "historical_path": "include/pso/system/RandomRatio.h",
+        "historical_blob": "d2e995e13efdf428f2529483962d2de148ce4000",
+        "owners": {
+          "include/pso/system/RandomRatio.h": "d2e995e13efdf428f2529483962d2de148ce4000",
+          "src/pso/player/TObjPlayer_80011014.cpp": "76c7e0f78085884bcbb62093cfa09429e0a7dbe3"
+        },
+        "proofs": [
+          {
+            "group": "Gameplay random state and receivers",
+            "evidence": "The entire historical state-taking interface is identical. The native actor and embedded boss states now pass through the active shared provider.",
+            "proof": {
+              "include/pso/system/RandomRatio.h": {
+                "commit": "a4b106392b6ba5386f87c143ad809cc2ee7cd273",
+                "blob": "d2e995e13efdf428f2529483962d2de148ce4000"
+              },
+              "src/pso/player/TObjPlayer_80011014.cpp": {
+                "commit": "a4b106392b6ba5386f87c143ad809cc2ee7cd273",
+                "blob": "1d5225abc42e85fa2e049e277f055162a52b6f5f",
+                "merged_with": [
+                  "trap-motion"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 574,
+        "historical_path": "src/pso/enemy/TObjEneDD_800B9F64.cpp",
+        "historical_blob": "cf1a9a55e0a2100fb901fffd4a0c58423668fe57",
+        "owners": {
+          "src/pso/enemy/dd/TObjEneDD.cpp": "1f0b195bf6025f1087efca8ba4804c62bf42c44d"
+        },
+        "proofs": [
+          {
+            "group": "Gameplay random state and receivers",
+            "evidence": "The sole historical scaled helper again invokes its actor receiver. The existing 65535.0 scale is represented by the native owner\u2019s literal at 0x805D9E94.",
+            "proof": {
+              "src/pso/enemy/dd/TObjEneDD.cpp": {
+                "commit": "a4b106392b6ba5386f87c143ad809cc2ee7cd273",
+                "blob": "66730bbd493cba2f5c5fbbdaef050b11b52ae901",
+                "merged_with": [
+                  "enemy-movement"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 567,
+        "historical_path": "src/pso/enemy/TObjEneDD.cpp",
+        "historical_blob": "a97a8279a45472610073f36b2e153b4d7c4a238a",
+        "owners": {
+          "src/pso/enemy/dd/TObjEneDD.cpp": "1f0b195bf6025f1087efca8ba4804c62bf42c44d"
+        },
+        "proofs": [
+          {
+            "group": "Gameplay random state and receivers",
+            "evidence": "The signed random helper invokes its live inheriting actor. Its collision and task methods have separate outstanding source comparisons.",
+            "proof": {
+              "src/pso/enemy/dd/TObjEneDD.cpp": {
+                "commit": "a4b106392b6ba5386f87c143ad809cc2ee7cd273",
+                "blob": "66730bbd493cba2f5c5fbbdaef050b11b52ae901",
+                "merged_with": [
+                  "enemy-movement"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 535,
+        "historical_path": "src/pso/boss/TBoss8Dragon_802F3348.cpp",
+        "historical_blob": "e3cb005c6d0ffad3247c8d1d87ab466cbd7ab68b",
+        "owners": {
+          "src/pso/boss/goldragon/TBoss8Dragon_802F3348.cpp": "c403ae70e761b59c02d5cf84263d595123e9d641"
+        },
+        "proofs": [
+          {
+            "group": "Gameplay random state and receivers",
+            "evidence": "The fork\u2019s explicit shared ratio state interface is included in the native owner. Other historical changes in this file remain open.",
+            "proof": {
+              "src/pso/boss/goldragon/TBoss8Dragon_802F3348.cpp": {
+                "commit": "a4b106392b6ba5386f87c143ad809cc2ee7cd273",
+                "blob": "c403ae70e761b59c02d5cf84263d595123e9d641"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 587,
+        "historical_path": "src/pso/enemy/TObjEneGibbles.cpp",
+        "historical_blob": "8ecc03c535278f7145e7287561c0843630c081e1",
+        "owners": {
+          "src/pso/enemy/gibbles/TObjEneGibbles.cpp": "29a01993f7f610cc3d9a5ed1ab9d54d12d550af1"
+        },
+        "proofs": [
+          {
+            "group": "Gameplay random state and receivers",
+            "evidence": "Both historical knockback and jump random checks call the native actor receiver. Unrelated historical field changes remain open.",
+            "proof": {
+              "src/pso/enemy/gibbles/TObjEneGibbles.cpp": {
+                "commit": "a4b106392b6ba5386f87c143ad809cc2ee7cd273",
+                "blob": "29a01993f7f610cc3d9a5ed1ab9d54d12d550af1"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4424,
+        "historical_path": "src/pso/item/TItemDrop_80105D0C.cpp",
+        "historical_blob": "5da37b564e0cb0fa99fef5bb9a6d133bf5941a4c",
+        "owners": {
+          "src/pso/item/drop/TItemDrop_80105D0C.cpp": "0b7ef432aa28b896a4fea330cdc2af07d64825d1"
+        },
+        "proofs": [
+          {
+            "group": "Gameplay random state and receivers",
+            "evidence": "Item drop uses the shared floating-return ratio provider. Historical item-resource and structure changes in this unit remain open.",
+            "proof": {
+              "src/pso/item/drop/TItemDrop_80105D0C.cpp": {
+                "commit": "a4b106392b6ba5386f87c143ad809cc2ee7cd273",
+                "blob": "0b7ef432aa28b896a4fea330cdc2af07d64825d1"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1204,
+        "historical_path": "src/pso/misc/TLobby_8030A834.cpp",
+        "historical_blob": "48a8fb23484ce691e5f06450912cb854b07714fc",
+        "owners": {
+          "src/pso/unk/TLobby_8030A834.cpp": "5024e891c48466a9b0f5d8b82a4c9cff83142d0c"
+        },
+        "proofs": [
+          {
+            "group": "Whole historical source",
+            "evidence": "The complete authored source has the same 40 tokens at its live native owner. Compiler dependencies verify the direct include mapping and linked owner.",
+            "proof": {
+              "row": 1204,
+              "fork_path": "src/pso/misc/TLobby_8030A834.cpp",
+              "owner": "src/pso/unk/TLobby_8030A834.cpp",
+              "historical_blob": "48a8fb23484ce691e5f06450912cb854b07714fc",
+              "active_blob": "5024e891c48466a9b0f5d8b82a4c9cff83142d0c",
+              "kind": "complete identical token stream",
+              "tokens": 40,
+              "dependencies": 0,
+              "includes": [
+                {
+                  "from": "types.h",
+                  "to": "types.h",
+                  "method": "unchanged direct include"
+                },
+                {
+                  "from": "pso/misc/TLobby_8030A834.h",
+                  "to": "pso/unk/TLobby_8030A834.h",
+                  "method": "same uniquely relocated direct include"
+                },
+                {
+                  "from": "pso/misc/TLobby.h",
+                  "to": "pso/unk/TLobby.h",
+                  "method": "same uniquely relocated direct include"
+                },
+                {
+                  "from": "pso/TBoss4ZakoDraw.h",
+                  "to": "pso/boss/darkfalz/TBoss4ZakoDraw.h",
+                  "method": "same uniquely relocated direct include"
+                },
+                {
+                  "from": "pso/TParticleCtrl.h",
+                  "to": "pso/effect/particle/TParticleCtrl.h",
+                  "method": "same uniquely relocated direct include"
+                },
+                {
+                  "from": "pso/player/TObjPlayer.h",
+                  "to": "pso/player/TObjPlayer.h",
+                  "method": "unchanged direct include"
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4015,
+        "historical_path": "include/pso/player/TObjPlayer_802A8368.h",
+        "historical_blob": "7ec7fcd9e7e13227dd813f20561626c3d458eca4",
+        "owners": {
+          "include/pso/player/TObjPlayer_802A8368.h": "7ec7fcd9e7e13227dd813f20561626c3d458eca4"
+        },
+        "proofs": [
+          {
+            "group": "Whole historical source",
+            "evidence": "The complete authored source has the same 53 tokens at its live native owner. Compiler dependencies verify the direct include mapping and linked owner.",
+            "proof": {
+              "row": 4015,
+              "fork_path": "include/pso/player/TObjPlayer_802A8368.h",
+              "owner": "include/pso/player/TObjPlayer_802A8368.h",
+              "historical_blob": "7ec7fcd9e7e13227dd813f20561626c3d458eca4",
+              "active_blob": "7ec7fcd9e7e13227dd813f20561626c3d458eca4",
+              "kind": "complete identical token stream",
+              "tokens": 53,
+              "dependencies": 1,
+              "includes": [
+                {
+                  "from": "types.h",
+                  "to": "types.h",
+                  "method": "unchanged direct include"
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      }
+    ],
+    "whole_source_queries": 1660,
+    "enemy_movement_abi": {
+      "0x800B92F8": "r3 actor, r4 max turn step, f1 distance, returns r3 unchanged after slot 101 call",
+      "0x800BAC14": "r3 actor, f1/f2/f3 direction and distance, returns r3 from slot 101",
+      "0x800BADDC": "virtual slot 103 address load at +0x19C, r4 still holds the incoming destination",
+      "0x8031DDDC": "same retail address, now emitted as set_flag2__12TObjEneReconFfff"
+    },
+    "trap_function_proofs": [
+      {
+        "address": "0x800115C4",
+        "linked_symbol": "find_nearest_visible_player",
+        "retail_size": 320,
+        "physical_source": "src/pso/player/TObjPlayer_80011014.cpp"
+      },
+      {
+        "address": "0x80171314",
+        "linked_symbol": "fn_80171314",
+        "retail_size": 36,
+        "physical_source": "src/pso/object/trap/TOMine.cpp"
+      },
+      {
+        "address": "0x80178BC4",
+        "linked_symbol": "is_any_player_matching_stat__6TOTrapFv",
+        "retail_size": 132,
+        "physical_source": "src/pso/object/trap/TOTrap.cpp"
+      },
+      {
+        "address": "0x80178C48",
+        "linked_symbol": "vfunc_82__6TOTrapFv",
+        "retail_size": 176,
+        "physical_source": "src/pso/object/trap/TOTrap.cpp"
+      },
+      {
+        "address": "0x80178CF8",
+        "linked_symbol": "vfunc_81__6TOTrapFv",
+        "retail_size": 212,
+        "physical_source": "src/pso/object/trap/TOTrap.cpp"
+      },
+      {
+        "address": "0x80178DCC",
+        "linked_symbol": "submit_cursor_and_notify__6TOTrapFv",
+        "retail_size": 68,
+        "physical_source": "src/pso/object/trap/TOTrap.cpp"
+      },
+      {
+        "address": "0x80178E10",
+        "linked_symbol": "find_target_player__6TOTrapFv",
+        "retail_size": 168,
+        "physical_source": "src/pso/object/trap/TOTrap.cpp"
+      },
+      {
+        "address": "0x80178EB8",
+        "linked_symbol": "play_sounds__6TOTrapFv",
+        "retail_size": 64,
+        "physical_source": "src/pso/object/trap/TOTrap.cpp"
+      },
+      {
+        "address": "0x80178EF8",
+        "linked_symbol": "vfunc_6__6TOTrapFPsl",
+        "retail_size": 92,
+        "physical_source": "src/pso/object/trap/TOTrap.cpp"
+      },
+      {
+        "address": "0x80178F54",
+        "linked_symbol": "receive_physical_attack__6TOTrapFPvf",
+        "retail_size": 212,
+        "physical_source": "src/pso/object/trap/TOTrap.cpp"
+      },
+      {
+        "address": "0x801797D4",
+        "linked_symbol": "vfunc_82__15TOTrapAncient01Fv",
+        "retail_size": 412,
+        "physical_source": "src/pso/object/trap/TOTrapAncient01.cpp"
+      },
+      {
+        "address": "0x8002AE64",
+        "linked_symbol": "sub_8002AE64__10TObjMotionFv",
+        "retail_size": 16,
+        "physical_source": "src/pso/boss/dragon/TBoss1Dragon.cpp"
+      },
+      {
+        "address": "0x800A7798",
+        "linked_symbol": "sub_800A7798__10TObjMotionFf",
+        "retail_size": 40,
+        "physical_source": "src/pso/enemy/dimedian/TObjEneDimedian.cpp"
+      },
+      {
+        "address": "0x800A77C0",
+        "linked_symbol": "set_flags_B0__10TObjMotionFUl",
+        "retail_size": 16,
+        "physical_source": "src/pso/enemy/dimedian/TObjEneDimedian.cpp"
+      }
+    ],
+    "small_font_symbols": [
+      {
+        "address": "0x800FC3E0",
+        "old": "render_forward__20TWindowSubStatusDispFv",
+        "new": "begin_small_font_draw",
+        "size": 32
+      },
+      {
+        "address": "0x800FC400",
+        "old": "begin_render__20TWindowSubStatusDispFv",
+        "new": "bind_small_font_texture_list",
+        "size": 36
+      },
+      {
+        "address": "0x80251EC8",
+        "old": "draw_name_plate__15TWindowFukidasiFv",
+        "new": "draw_name_plate__13TUnk_804CF0B8FP17WindowDrawContextUl",
+        "size": 800
+      },
+      {
+        "address": "0x802521E8",
+        "old": "draw_tail__13TUnk_804CF0B8FPvUlPff",
+        "new": "draw_tail__13TUnk_804CF0B8FP17WindowDrawContextUlPff",
+        "size": 484
+      },
+      {
+        "address": "0x802523CC",
+        "old": "draw_body_row__13TUnk_804CF0B8FPvPvffff",
+        "new": "draw_body_row__13TUnk_804CF0B8FP20SpeechBalloonBodyRowP17WindowDrawContextffff",
+        "size": 396
+      },
+      {
+        "address": "0x80252558",
+        "old": "draw_body__13TUnk_804CF0B8FPvUlPff",
+        "new": "draw_body__13TUnk_804CF0B8FP17WindowDrawContextUlPff",
+        "size": 524
+      }
+    ],
+    "actor_random_functions": {
+      "0x80011014": [
+        "random_ratio__9TObjCharaFv",
+        108,
+        "src/pso/player/TObjPlayer_80011014.cpp"
+      ],
+      "0x800196a4": [
+        "calc_random_ratio__10TObjPlayerFv",
+        72,
+        "src/pso/player/TObjPlayer_80011014.cpp"
+      ],
+      "0x800b9f64": [
+        "get_random_scaled__9TObjEneDDFv",
+        52,
+        "src/pso/enemy/dd/TObjEneDD.cpp"
+      ],
+      "0x800b9f98": [
+        "rand_range__9TObjEneDDFff",
+        80,
+        "src/pso/enemy/dd/TObjEneDD.cpp"
+      ],
+      "0x800b9fe8": [
+        "calc_elapsed_scaled__9TObjEneDDFv",
+        48,
+        "src/pso/enemy/dd/TObjEneDD.cpp"
+      ]
+    }
+  },
+  "upstream_review_candidates": {
+    "standalone-enemy-registration-and-formations": {
+      "head": "9b1fe1ae88122d33cf78e3cb13979d46b0374bb8",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 53,
+      "source_paths": [
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/boss/volopt/TBoss3Volopt.h",
+        "include/pso/enemy/EnemyMovement.h",
+        "include/pso/enemy/TObjEnemy.h",
+        "include/pso/enemy/darkgunner/DarkGunner.h",
+        "include/pso/enemy/darkgunner/TObjEneDarkGunCenter.h",
+        "include/pso/enemy/dd/TObjEneDD.h",
+        "include/pso/enemy/epsilon/TObjEneEpsilon_800B92AC.h",
+        "include/pso/enemy/recon/TObjEneRecon.h",
+        "include/pso/player/TObjPlayer.h",
+        "src/pso/boss/barbaray/TBoss7Crawfish.cpp",
+        "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+        "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+        "src/pso/boss/darkfalz/TBoss4Type3.cpp",
+        "src/pso/boss/darkfalz/TBoss4Zako.cpp",
+        "src/pso/boss/darkfalz/TBoss4Zanzo.cpp",
+        "src/pso/boss/darkfalz/TObjDFHorming.cpp",
+        "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+        "src/pso/boss/dragon/TBoss1Dragon.cpp",
+        "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+        "src/pso/boss/olgaflow/TBoss6MagMine.cpp",
+        "src/pso/boss/olgaflow/TBoss6Mine.cpp",
+        "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+        "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+        "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+        "src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp",
+        "src/pso/boss/volopt/TBoss3Volopt.cpp",
+        "src/pso/boss/volopt/TBoss3VoloptCore.cpp",
+        "src/pso/boss/volopt/TBoss3VoloptHiraisin.cpp",
+        "src/pso/boss/volopt/TBoss3VoloptMonitor.cpp",
+        "src/pso/boss/volopt/TBoss3VoloptP01.cpp",
+        "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+        "src/pso/boss/volopt/TObjVoloptCage.cpp",
+        "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+        "src/pso/enemy/beast/TObjEneBeast_800C4E08.cpp",
+        "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+        "src/pso/enemy/darkgunner/DarkGunner.cpp",
+        "src/pso/enemy/darkgunner/TObjEneDarkGunCenter.cpp",
+        "src/pso/enemy/dd/TObjEneDD.cpp",
+        "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+        "src/pso/enemy/dubchik/TOCtrlDubchik_8015CA74.cpp",
+        "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp",
+        "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+        "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+        "src/pso/enemy/lappy/TObjEneLappy_800F5DE0.cpp",
+        "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+        "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+        "src/pso/enemy/recon/TObjEneRecon.cpp",
+        "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+        "src/pso/object/TObjControl.cpp",
+        "src/pso/render/TUnk_80490470.cpp",
+        "src/pso/unk/TLobby_800F5CF0.cpp"
+      ],
+      "replaces": "9b1edd6f376dfd28f9207e30f76a2d571dcf67ed",
+      "scope": "Enemy registration, formation and collision movement",
+      "adaptation": "Preserves upstream\u2019s Guard direction fields, Gee sound declaration, and Recon texture provider.",
+      "linked_units": 2449,
+      "validated_against": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_historical_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_historical_padding": 30
+        }
+      }
+    },
+    "standalone-stage-traps-and-motion": {
+      "head": "de7fa0f4c2aaef1594301f7beb8b492146053116",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 38,
+      "source_paths": [
+        "config/GPOE8P/psov3/config.yml",
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/enemy/TObjEnemy.h",
+        "include/pso/object/TObjChip.h",
+        "include/pso/object/TObjChipParams.h",
+        "include/pso/object/base/TObjMotion.h",
+        "include/pso/object/trap/TOMineTrap.h",
+        "include/pso/player/TObjPlayer.h",
+        "include/pso/player/TObjPlayer_80011014.h",
+        "include/pso/unk/TLobby.h",
+        "src/pso/boss/dragon/TBoss1Dragon.cpp",
+        "src/pso/boss/volopt/TObjVoloptCage.cpp",
+        "src/pso/enemy/dimedian/TObjEneDimedian.cpp",
+        "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+        "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+        "src/pso/enemy/moja/TObjEneMoja.cpp",
+        "src/pso/enemy/saver/SaverLifecycle.cpp",
+        "src/pso/npc/TObjNpcBase.cpp",
+        "src/pso/object/TObjChip.cpp",
+        "src/pso/object/ambient/TObjGrass.cpp",
+        "src/pso/object/trap/TOMine.cpp",
+        "src/pso/object/trap/TOTrap.cpp",
+        "src/pso/object/trap/TOTrapAncient01.cpp",
+        "src/pso/object/trap/TOTrapAncient02.cpp",
+        "src/pso/object/trap/TOTrapSeabed01.cpp",
+        "src/pso/object/warp/TObjCityMainWarpChallenge.cpp",
+        "src/pso/object/warp/TObjWarpBossMulti.cpp",
+        "src/pso/player/TObjPlayer_80011014.cpp",
+        "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "src/pso/player/TObjPlayer_801C7430.cpp",
+        "src/pso/player/TPlayerBattleCtrl4P.cpp",
+        "src/pso/quest/TOQuestTalkBase.cpp",
+        "src/pso/quest/challenge/TChallenge4PItemSelect.cpp",
+        "src/pso/ui/window/TObjDeadListWin.cpp",
+        "src/pso/unk/TLobby_800726F0.cpp",
+        "src/pso/unk/TLobby_801C25B4.cpp",
+        "src/pso/unk/TLobby_80299C4C.cpp",
+        "src/pso/unk/text_802233F8.cpp"
+      ],
+      "replaces": null,
+      "scope": "Trap targeting, player eligibility, and motion and resource ownership",
+      "adaptation": "Preserves upstream password dispatch and retail argument evaluation order for the hold sender.",
+      "linked_units": 2449,
+      "validated_against": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_historical_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_historical_padding": 30
+        }
+      }
+    },
+    "standalone-action-palette-and-customization": {
+      "head": "5506a1e30f88c62ff2904912c8de9992d695677e",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 38,
+      "source_paths": [
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/player/PlayerActionPaletteState.h",
+        "include/pso/player/TObjPlayer.h",
+        "include/pso/player/TObjPlayer_801BF6B0.h",
+        "include/pso/ui/font/SmallFontDrawing.h",
+        "include/pso/ui/hud/TMainCursor.h",
+        "include/pso/ui/hud/TMainCursor_8013E624.h",
+        "include/pso/ui/window/ActionPaletteTag.h",
+        "include/pso/ui/window/TUnk_804CF0B8.h",
+        "include/pso/ui/window/TWindowActionPalette.h",
+        "include/pso/ui/window/TWindowSubCustomEquip.h",
+        "include/pso/ui/window/TWindowSubCustomSelect.h",
+        "include/pso/ui/window/TWindowSubStatusDisp.h",
+        "src/pso/player/TObjPlayer.cpp",
+        "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "src/pso/player/TObjPlayer_801C7430.cpp",
+        "src/pso/player/TObjPlayer_801D2E20.cpp",
+        "src/pso/system/TLanguage_80132A5C.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChatHelp.cpp",
+        "src/pso/ui/font/TFontSmallHelp.cpp",
+        "src/pso/ui/font/TFontSmallTask.cpp",
+        "src/pso/ui/hud/TMainCursor.cpp",
+        "src/pso/ui/hud/TMainCursor_801D7AC8.cpp",
+        "src/pso/ui/window/TWindowActionPalette.cpp",
+        "src/pso/ui/window/TWindowActionPalette_801C1890.cpp",
+        "src/pso/ui/window/TWindowCtrlMain.cpp",
+        "src/pso/ui/window/TWindowDD_8034055C.cpp",
+        "src/pso/ui/window/TWindowFukidasi.cpp",
+        "src/pso/ui/window/TWindowKeyBoardSoft.cpp",
+        "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+        "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp",
+        "src/pso/ui/window/TWindowSubCustomEquip.cpp",
+        "src/pso/ui/window/TWindowSubCustomSelect.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_800FBD74.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_8024FBA8.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_8025995C.cpp",
+        "src/pso/unk/TUnk_804D1160.cpp",
+        "src/pso/unk/text_801D7BF4.cpp"
+      ],
+      "replaces": "b4941d7c98f1c615aec3fa7ef1de6f7da5d30a94",
+      "scope": "Action palette, customization, speech balloons and small-font drawing",
+      "adaptation": "Preserves upstream window layout and uses native buffer and context owners.",
+      "linked_units": 2449,
+      "validated_against": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_historical_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_historical_padding": 30
+        }
+      }
+    },
+    "standalone-gameplay-random": {
+      "head": "04e0a137422e25a50c7ea48df4c35c9bcc7b14fb",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 29,
+      "source_paths": [
+        "include/pso/enemy/dd/TObjEneDD.h",
+        "include/pso/player/TObjPlayer_80011014.h",
+        "include/pso/system/RandomRatio.h",
+        "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+        "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+        "src/pso/boss/darkfalz/TBoss4Type3.cpp",
+        "src/pso/boss/darkfalz/TBoss4Zanzo.cpp",
+        "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+        "src/pso/boss/derolle/TBoss2Mine.cpp",
+        "src/pso/boss/dragon/TBoss1Dragon.cpp",
+        "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon_802F3348.cpp",
+        "src/pso/boss/volopt/TBoss3Volopt.cpp",
+        "src/pso/enemy/berura/TObjEneRe7BeruraPunch.cpp",
+        "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+        "src/pso/enemy/dd/TObjEneDD.cpp",
+        "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+        "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+        "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+        "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+        "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+        "src/pso/enemy/recon/TObjEneRecon.cpp",
+        "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+        "src/pso/enemy/sorcerer/TObjEneRe4Bit.cpp",
+        "src/pso/item/drop/TItemDrop_80105D0C.cpp",
+        "src/pso/npc/TObjNpcBase.cpp",
+        "src/pso/object/TObjLiveMonitor.cpp",
+        "src/pso/player/TObjPlayer_80011014.cpp"
+      ],
+      "replaces": null,
+      "scope": "Gameplay random state and native actor receivers",
+      "adaptation": "Uses the upstream Canadin leader argument and retains upstream player and enemy layouts.",
+      "linked_units": 2449,
+      "validated_against": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_historical_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_historical_padding": 30
+        }
+      }
+    }
+  },
+  "joint_upstream_review_validation": {
+    "head": "ce7a4718493cc08909e4f348f042e8a17249b048",
+    "files": 129,
+    "linked_units": 2449,
+    "resolution": "Keep the typed exchange_object_state declaration from the formation branch and remove the obsolete enemy motion declaration from the trap branch."
+  }
+}

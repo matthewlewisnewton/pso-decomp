@@ -1,0 +1,903 @@
+{
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "upstream_master": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+  "builds": {
+    "plain": {
+      "head": "1ebd762dc8b44f9747c359d194d5988d21ef6829",
+      "tree": "7539c272d10e7b0f57a1fae2f03ae8e51cecd9dd",
+      "coverage_baseline": "831baac8ecba4fa897121bf99e241c2e2e3c0390",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "plain-report.json": "18b489c9e082e804decd3c860a5bb15a0994b632a3b9a98fb20aa765f95edbde",
+        "plain-check.json": "9ee8c48fd1fac9855650cd9fbc968b031b93d5280e08d86b2874cff20df98cd0"
+      }
+    },
+    "final": {
+      "head": "9c152996af8c17683fba18fbf7f1e59be8ec445f",
+      "tree": "b3816fbe978aa4bc0f6a2210afd874935e6f8b85",
+      "coverage_baseline": "33e008c73233f3ce095f752b2da6e49d87fb2c5f",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "final-report.json": "ca1474d6944d15eed3aacc3b03b616910766e6af33516bb985040975a8a3885a",
+        "final-check.json": "9ee8c48fd1fac9855650cd9fbc968b031b93d5280e08d86b2874cff20df98cd0"
+      }
+    },
+    "ave": {
+      "head": "d84c7606a131cad9989f3f248e2fd9d0ea2c4123",
+      "tree": "2602791e2658e97271dd7c520c2f32c289bb1173",
+      "coverage_baseline": "9c152996af8c17683fba18fbf7f1e59be8ec445f",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "ave-report.json": "ca1474d6944d15eed3aacc3b03b616910766e6af33516bb985040975a8a3885a",
+        "ave-check.json": "ec167389dbd490e17ac3a61384def77d8d58a7485e34e9bf913ffed6e489dc0a"
+      }
+    },
+    "plain-private": {
+      "head": "7e274551e8dc8d25825605d6b66431acd68e18ac",
+      "tree": "5ec21232b76121a6d5905921f8fe7fe5ced58051",
+      "coverage_baseline": "1ebd762dc8b44f9747c359d194d5988d21ef6829",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "plain-private-report.json": "18b489c9e082e804decd3c860a5bb15a0994b632a3b9a98fb20aa765f95edbde",
+        "plain-private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011"
+      }
+    },
+    "ave-private": {
+      "head": "dc63a9892dd5d0d9949824542bdaffe24998157d",
+      "tree": "a30ddb949457af2605d96c194c711fdadd841043",
+      "coverage_baseline": "d84c7606a131cad9989f3f248e2fd9d0ea2c4123",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "ave-private-report.json": "ca1474d6944d15eed3aacc3b03b616910766e6af33516bb985040975a8a3885a",
+        "ave-private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011"
+      }
+    }
+  },
+  "whole_historical_source_comparisons_closed": [
+    {
+      "historical_path": "src/pso/misc/TLobby_800F795C.cpp",
+      "original_blob": "1a06a88aae2adf68b0fdfd3643e72c07f4d0e3f0",
+      "comparison_path": "src/pso/unk/TLobby_800F795C.cpp",
+      "evidence": "All 20 edited table rows match both the load and release callback addresses. The table retains its native callback type and the current source identifiers.",
+      "address_coverage": {
+        "functions": {
+          "0x800f795c": {
+            "old": "bswap_field__6TLobbyFv",
+            "current": "bswap_field__6TLobbyFv",
+            "owner": "src/pso/unk/TLobby_800F795C.cpp"
+          },
+          "0x800f7990": {
+            "old": "broadcast_state__6TLobbyFv",
+            "current": "broadcast_state__6TLobbyFv",
+            "owner": "src/pso/unk/TLobby_800F795C.cpp"
+          },
+          "0x800f79c4": {
+            "old": "init_6x9C_enemy_low_game_flags_packet__FPUc",
+            "current": "init_6x9C_enemy_low_game_flags_packet__FPUc",
+            "owner": "src/pso/unk/TLobby_800F795C.cpp"
+          },
+          "0x800f79e0": {
+            "old": "bswap_enemy_state__6TLobbyFv",
+            "current": "bswap_enemy_state__6TLobbyFv",
+            "owner": "src/pso/unk/TLobby_800F795C.cpp"
+          },
+          "0x800f7a1c": {
+            "old": "send_6x0A_enemy_state_packet__FPv",
+            "current": "send_6x0A_enemy_state_packet__FPv",
+            "owner": "src/pso/unk/TLobby_800F795C.cpp"
+          },
+          "0x800f7a50": {
+            "old": "init_6x0A_enemy_state_packet__FPv",
+            "current": "init_6x0A_enemy_state_packet__FPv",
+            "owner": "src/pso/unk/TLobby_800F795C.cpp"
+          },
+          "0x800f7a64": {
+            "old": "get_attack_credit_slot_count",
+            "current": "get_attack_credit_slot_count",
+            "owner": "src/pso/unk/TLobby_800F795C.cpp"
+          },
+          "0x800f7a6c": {
+            "old": "TLobby__sub_800F7A6C",
+            "current": "TLobby__sub_800F7A6C",
+            "owner": "src/pso/unk/TLobby_800F795C.cpp"
+          },
+          "0x800f7a7c": {
+            "old": "TLobby__sub_800F7A7C",
+            "current": "TLobby__sub_800F7A7C",
+            "owner": "src/pso/unk/TLobby_800F795C.cpp"
+          },
+          "0x800f7a8c": {
+            "old": "unload_floor_resources__Fl",
+            "current": "unload_floor_resources__Fl",
+            "owner": "src/pso/unk/TLobby_800F795C.cpp"
+          },
+          "0x800f7b08": {
+            "old": "load_floor_resources__Fl",
+            "current": "load_floor_resources__Fl",
+            "owner": "src/pso/unk/TLobby_800F795C.cpp"
+          },
+          "0x800f7b84": {
+            "old": "unload_current_floor_resources__Fv",
+            "current": "unload_current_floor_resources__Fv",
+            "owner": "src/pso/unk/TLobby_800F795C.cpp"
+          },
+          "0x800f7ba8": {
+            "old": "load_current_floor_resources__Fv",
+            "current": "load_current_floor_resources__Fv",
+            "owner": "src/pso/unk/TLobby_800F795C.cpp"
+          }
+        },
+        "unaccounted_functions": [],
+        "data": {
+          ".data": {
+            "source_bytes": 2608,
+            "exact_bytes": 2608,
+            "owners": [
+              "src/pso/unk/TLobby_800F795C.cpp"
+            ],
+            "uncovered": []
+          }
+        }
+      }
+    },
+    {
+      "historical_path": "src/pso/player/TObjPlayer_802E6CA8.cpp",
+      "original_blob": "f6abff50062df2d3465b2efb367f691a83c9539a",
+      "comparison_path": "src/pso/player/TObjPlayer_802E6CA8.cpp",
+      "evidence": "Both renderers now follow native Ninja child and sibling links. The real breakup tasks own typed initialization, the model, and their 44-byte pieces. The fork array operators resolve to the same addresses as the current mem_alloc and mem_free entry points. The float literals for the extra bounds retain the original offsets 0x805DEA08 and 0x805DEA0C.",
+      "address_coverage": {
+        "functions": {
+          "0x802e6ca8": {
+            "old": "get_instance__10TObjPlayerFv",
+            "current": "get_instance__10TObjPlayerFv",
+            "owner": "src/pso/player/TObjPlayer_802E6CA8.cpp"
+          },
+          "0x802e6cb0": {
+            "old": "render__13TUnk_804E3BA8Fv",
+            "current": "render__13TUnk_804E3BA8Fv",
+            "owner": "src/pso/player/TObjPlayer_802E6CA8.cpp"
+          },
+          "0x802e6e18": {
+            "old": "run_task__13TUnk_804E3BA8Fv",
+            "current": "run_task__13TUnk_804E3BA8Fv",
+            "owner": "src/pso/player/TObjPlayer_802E6CA8.cpp"
+          },
+          "0x802e6eb8": {
+            "old": "__dt__13TUnk_804E3BA8Fv",
+            "current": "__dt__13TUnk_804E3BA8Fv",
+            "owner": "src/pso/player/TObjPlayer_802E6CA8.cpp"
+          },
+          "0x802e6f10": {
+            "old": "init_breakup_pieces__10TObjPlayerFPvl",
+            "current": "init_breakup_pieces__13TUnk_804E3BA8FPvPA4_Cf",
+            "owner": "src/pso/player/TObjPlayer_802E6CA8.cpp"
+          },
+          "0x802e7084": {
+            "old": "TObjPlayer__sub_802E7084",
+            "current": "TObjPlayer__sub_802E7084",
+            "owner": "src/pso/player/TObjPlayer_802E6CA8.cpp"
+          },
+          "0x802e7088": {
+            "old": "TObjPlayer__sub_802E7088",
+            "current": "TObjPlayer__sub_802E7088",
+            "owner": "src/pso/player/TObjPlayer_802E6CA8.cpp"
+          },
+          "0x802e708c": {
+            "old": "render__13TUnk_804E3BC0Fv",
+            "current": "render__13TUnk_804E3BC0Fv",
+            "owner": "src/pso/player/TObjPlayer_802E6CA8.cpp"
+          },
+          "0x802e71e4": {
+            "old": "run_task__13TUnk_804E3BC0Fv",
+            "current": "run_task__13TUnk_804E3BC0Fv",
+            "owner": "src/pso/player/TObjPlayer_802E6CA8.cpp"
+          },
+          "0x802e7284": {
+            "old": "__dt__13TUnk_804E3BC0Fv",
+            "current": "__dt__13TUnk_804E3BC0Fv",
+            "owner": "src/pso/player/TObjPlayer_802E6CA8.cpp"
+          },
+          "0x802e72dc": {
+            "old": "TObjPlayer__sub_802E72DC",
+            "current": "TObjPlayer__sub_802E72DC",
+            "owner": "src/pso/player/TObjPlayer_802E6CA8.cpp"
+          },
+          "0x802e746c": {
+            "old": "TObjPlayer__sub_802E746C",
+            "current": "TObjPlayer__sub_802E746C",
+            "owner": "src/pso/player/TObjPlayer_802E6CA8.cpp"
+          },
+          "0x802e7470": {
+            "old": "TObjPlayer__sub_802E7470",
+            "current": "TObjPlayer__sub_802E7470",
+            "owner": "src/pso/player/TObjPlayer_802E6CA8.cpp"
+          },
+          "0x802e7474": {
+            "old": "alloc_breakup_model__13TUnk_804E3BD8Fl",
+            "current": "alloc_breakup_model__13TUnk_804E3BD8FP10NJS_OBJECT",
+            "owner": "src/pso/player/TObjPlayer_802E6CA8.cpp"
+          },
+          "0x802e74e4": {
+            "old": "__dt__13TUnk_804E3BD8Fv",
+            "current": "__dt__13TUnk_804E3BD8Fv",
+            "owner": "src/pso/player/TObjPlayer_802E6CA8.cpp"
+          },
+          "0x802e7568": {
+            "old": "init_zeroed_object__10TObjPlayerFv",
+            "current": "init_zeroed_object__13TUnk_804E3BD8Fv",
+            "owner": "src/pso/player/TObjPlayer_802E6CA8.cpp"
+          },
+          "0x802e75b8": {
+            "old": "TObjPlayer__sub_802E75B8",
+            "current": "sub_802E75B8__13TUnk_804E3BD8FPl",
+            "owner": "src/pso/player/TObjPlayer_802E6CA8.cpp"
+          },
+          "0x802e7640": {
+            "old": "TObjPlayer__sub_802E7640",
+            "current": "sub_802E7640__13TUnk_804E3BC0Fv",
+            "owner": "src/pso/player/TObjPlayer_802E6CA8.cpp"
+          },
+          "0x802e76c8": {
+            "old": "TObjPlayer__sub_802E76C8",
+            "current": "TObjPlayer__sub_802E76C8",
+            "owner": "src/pso/player/TObjPlayer_802E6CA8.cpp"
+          },
+          "0x802e787c": {
+            "old": "__sinit_TObjPlayer_802E6CA8_cpp",
+            "current": "__sinit_TObjPlayer_802E6CA8_cpp",
+            "owner": "src/pso/player/TObjPlayer_802E6CA8.cpp"
+          }
+        },
+        "unaccounted_functions": [],
+        "data": {
+          ".ctors": {
+            "source_bytes": 4,
+            "exact_bytes": 4,
+            "owners": [
+              "src/pso/player/TObjPlayer_802E6CA8.cpp"
+            ],
+            "uncovered": []
+          },
+          ".rodata": {
+            "source_bytes": 72,
+            "exact_bytes": 72,
+            "owners": [
+              "src/pso/player/TObjPlayer_802E6CA8.cpp"
+            ],
+            "uncovered": []
+          },
+          ".data": {
+            "source_bytes": 24,
+            "exact_bytes": 24,
+            "owners": [
+              "src/pso/player/TObjPlayer_802E6CA8.cpp"
+            ],
+            "uncovered": []
+          },
+          ".sbss": {
+            "source_bytes": 8,
+            "exact_bytes": 8,
+            "owners": [
+              "src/pso/player/TObjPlayer_802E6CA8.cpp"
+            ],
+            "uncovered": []
+          }
+        }
+      }
+    },
+    {
+      "historical_path": "src/pso/misc/TTecCtrl.cpp",
+      "original_blob": "10a6018bc267e519d17112a904823a278c211c6f",
+      "comparison_path": "src/pso/technique/TTecCtrl.cpp",
+      "evidence": "The BML archive and Ginja list use shared typed allocation, binding and release. Gi-Barta receives native vectors, and charge lights use the real actor-light constructor. The current slot setter writes the same target count at the original linkage address.",
+      "address_coverage": {
+        "functions": {
+          "0x8022c444": {
+            "old": "vfunc_6__13TUnk_804CC148FPv",
+            "current": "vfunc_6__10TTecCircleFPv",
+            "owner": "src/pso/technique/TTecCtrl.cpp"
+          },
+          "0x8022c448": {
+            "old": "vfunc_8__13TUnk_804CC148FPv",
+            "current": "vfunc_8__10TTecCircleFPv",
+            "owner": "src/pso/technique/TTecCtrl.cpp"
+          },
+          "0x8022c44c": {
+            "old": "vfunc_9__13TUnk_804CC148Fv",
+            "current": "vfunc_9__10TTecCircleFv",
+            "owner": "src/pso/technique/TTecCtrl.cpp"
+          },
+          "0x8022c450": {
+            "old": "classify_distance_band__8TTecCtrlFllUs",
+            "current": "classify_distance_band__8TTecCtrlFllUs",
+            "owner": "src/pso/technique/TTecCtrl.cpp"
+          },
+          "0x8022c4d4": {
+            "old": "get_technique_caster_flags",
+            "current": "get_technique_caster_flags__FlUs",
+            "owner": "src/pso/technique/TTecCtrl.cpp"
+          },
+          "0x8022c5cc": {
+            "old": "calc_technique_boost__FlUs",
+            "current": "calc_technique_boost__FlUs",
+            "owner": "src/pso/technique/TTecCtrl.cpp"
+          },
+          "0x8022c680": {
+            "old": "set_technique_boost__FP14TechniqueBoostUsl",
+            "current": "set_technique_boost__FP14TechniqueBoostUsl",
+            "owner": "src/pso/technique/TTecCtrl.cpp"
+          },
+          "0x8022c6c4": {
+            "old": "get_level_tier__10TObjPlayerFl",
+            "current": "get_level_tier__10TObjPlayerFl",
+            "owner": "src/pso/technique/TTecCtrl.cpp"
+          },
+          "0x8022c738": {
+            "old": "create_technique_charge_light__FUlPv",
+            "current": "create_technique_charge_light__FUlPv",
+            "owner": "src/pso/technique/TTecCtrl.cpp"
+          },
+          "0x8022cde8": {
+            "old": "capture_technique_targets__10TObjPlayerFv",
+            "current": "capture_technique_targets__10TObjPlayerFv",
+            "owner": "src/pso/technique/TTecCtrl.cpp"
+          },
+          "0x8022d27c": {
+            "old": "launch_technique__10TObjPlayerFv",
+            "current": "launch_technique__10TObjPlayerFv",
+            "owner": "src/pso/technique/TTecCtrl.cpp"
+          },
+          "0x8022dbc0": {
+            "old": "render__8TTecCtrlFv",
+            "current": "render__8TTecCtrlFv",
+            "owner": "src/pso/technique/TTecCtrl.cpp"
+          },
+          "0x8022dbc4": {
+            "old": "calc_technique_parameters",
+            "current": "calc_technique_parameters",
+            "owner": "src/pso/technique/TTecCtrl.cpp"
+          },
+          "0x8022ef78": {
+            "old": "clamp_nonnegative_int__Fl",
+            "current": "clamp_nonnegative_int__Fl",
+            "owner": "src/pso/technique/TTecCtrl.cpp"
+          },
+          "0x8022ef88": {
+            "old": "get_technique_base_params",
+            "current": "get_technique_base_params__Fi",
+            "owner": "src/pso/technique/TTecCtrl.cpp"
+          },
+          "0x8022ef9c": {
+            "old": "run_task__8TTecCtrlFv",
+            "current": "run_task__8TTecCtrlFv",
+            "owner": "src/pso/technique/TTecCtrl.cpp"
+          },
+          "0x8022efc4": {
+            "old": "__dt__8TTecCtrlFv",
+            "current": "__dt__8TTecCtrlFv",
+            "owner": "src/pso/technique/TTecCtrl.cpp"
+          },
+          "0x8022f01c": {
+            "old": "__ct__8TTecCtrlFv",
+            "current": "__ct__8TTecCtrlFv",
+            "owner": "src/pso/technique/TTecCtrl.cpp"
+          },
+          "0x8022f068": {
+            "old": "TLobby__sub_8022F068",
+            "current": "TLobby__sub_8022F068",
+            "owner": "src/pso/technique/TTecCtrl.cpp"
+          },
+          "0x8022f0ec": {
+            "old": "load_technique_resources__Fv",
+            "current": "load_technique_resources__Fv",
+            "owner": "src/pso/technique/TTecCtrl.cpp"
+          },
+          "0x8022f164": {
+            "old": "__sinit_TTecCtrl_cpp",
+            "current": "__sinit_TTecCtrl_cpp",
+            "owner": "src/pso/technique/TTecCtrl.cpp"
+          }
+        },
+        "unaccounted_functions": [],
+        "data": {
+          ".ctors": {
+            "source_bytes": 4,
+            "exact_bytes": 4,
+            "owners": [
+              "src/pso/technique/TTecCtrl.cpp"
+            ],
+            "uncovered": []
+          },
+          ".rodata": {
+            "source_bytes": 16,
+            "exact_bytes": 16,
+            "owners": [
+              "src/pso/technique/TTecCtrl.cpp"
+            ],
+            "uncovered": []
+          },
+          ".data": {
+            "source_bytes": 556,
+            "exact_bytes": 556,
+            "owners": [
+              "src/pso/technique/TTecCtrl.cpp"
+            ],
+            "uncovered": []
+          },
+          ".bss": {
+            "source_bytes": 432,
+            "exact_bytes": 432,
+            "owners": [
+              "src/pso/technique/TTecCtrl.cpp"
+            ],
+            "uncovered": []
+          },
+          ".sdata2": {
+            "source_bytes": 28,
+            "exact_bytes": 28,
+            "owners": [
+              "src/pso/technique/TTecCtrl.cpp"
+            ],
+            "uncovered": []
+          }
+        }
+      }
+    }
+  ],
+  "historical_comparisons_still_open": 104,
+  "same_address_names_or_signatures": [
+    {
+      "fork": "__nwa__FUl",
+      "cutover": "mem_alloc",
+      "address": "0x80147AA8",
+      "size": 32
+    },
+    {
+      "fork": "__dla__FPv",
+      "cutover": "mem_free",
+      "address": "0x80147A80",
+      "size": 40
+    },
+    {
+      "fork": "set_target_count__18TechniqueCastStateFs",
+      "cutover": "set_tech_level__18TechniqueCastStateFs",
+      "address": "0x801D9B18",
+      "size": 32
+    },
+    {
+      "fork": "construct_actor_light__9TObjLightFlllllfffl",
+      "cutover": "__ct__11TActorLightFfffP8NJS_ARGBP3VeclP8TObjBaseP7TObject",
+      "address": "0x80235E9C",
+      "size": 196
+    }
+  ],
+  "verified_floor_table_rows": [
+    {
+      "table": "floor_resource_callbacks_selector_02",
+      "index": 2,
+      "callbacks": [
+        {
+          "fork": "TObjEneMoja::load_resources",
+          "cutover": "TObjEneMoja::load_resources",
+          "address": "0x800AF56C"
+        },
+        {
+          "fork": "TObjEneMoja::free_resources",
+          "cutover": "TObjEneMoja::free_resources",
+          "address": "0x800AF4B8"
+        }
+      ]
+    },
+    {
+      "table": "floor_resource_callbacks_selector_03",
+      "index": 4,
+      "callbacks": [
+        {
+          "fork": "TObjEneRe2Flower::initialize_resources",
+          "cutover": "load_re2_flower_resources",
+          "address": "0x800C44C4"
+        },
+        {
+          "fork": "TObjEneRe2Flower::destroy_instance",
+          "cutover": "TObjEneRe2Flower::destroy_instance",
+          "address": "0x800C443C"
+        }
+      ]
+    },
+    {
+      "table": "floor_resource_callbacks_selector_03",
+      "index": 6,
+      "callbacks": [
+        {
+          "fork": "TObjEneShark::load_resources",
+          "cutover": "TLobby::load_shark_resources",
+          "address": "0x800AC318"
+        },
+        {
+          "fork": "TObjEneShark::free_resources",
+          "cutover": "TObjEneShark::free_resources",
+          "address": "0x800AC248"
+        }
+      ]
+    },
+    {
+      "table": "floor_resource_callbacks_selector_04",
+      "index": 4,
+      "callbacks": [
+        {
+          "fork": "TObjEneRe2Flower::initialize_resources",
+          "cutover": "load_re2_flower_resources",
+          "address": "0x800C44C4"
+        },
+        {
+          "fork": "TObjEneRe2Flower::destroy_instance",
+          "cutover": "TObjEneRe2Flower::destroy_instance",
+          "address": "0x800C443C"
+        }
+      ]
+    },
+    {
+      "table": "floor_resource_callbacks_selector_04",
+      "index": 6,
+      "callbacks": [
+        {
+          "fork": "TObjEneShark::load_resources",
+          "cutover": "TLobby::load_shark_resources",
+          "address": "0x800AC318"
+        },
+        {
+          "fork": "TObjEneShark::free_resources",
+          "cutover": "TObjEneShark::free_resources",
+          "address": "0x800AC248"
+        }
+      ]
+    },
+    {
+      "table": "floor_resource_callbacks_selector_05",
+      "index": 2,
+      "callbacks": [
+        {
+          "fork": "TObjEneRe2Flower::initialize_resources",
+          "cutover": "load_re2_flower_resources",
+          "address": "0x800C44C4"
+        },
+        {
+          "fork": "TObjEneRe2Flower::destroy_instance",
+          "cutover": "TObjEneRe2Flower::destroy_instance",
+          "address": "0x800C443C"
+        }
+      ]
+    },
+    {
+      "table": "floor_resource_callbacks_selector_05",
+      "index": 4,
+      "callbacks": [
+        {
+          "fork": "TObjEneShark::load_resources",
+          "cutover": "TLobby::load_shark_resources",
+          "address": "0x800AC318"
+        },
+        {
+          "fork": "TObjEneShark::free_resources",
+          "cutover": "TObjEneShark::free_resources",
+          "address": "0x800AC248"
+        }
+      ]
+    },
+    {
+      "table": "floor_resource_callbacks_selector_09",
+      "index": 3,
+      "callbacks": [
+        {
+          "fork": "TObjPlayer__sub_800A2DCC",
+          "cutover": "load_darkgunner_effect_resources",
+          "address": "0x800A2DCC"
+        },
+        {
+          "fork": "TObjPlayer::cleanup_effects",
+          "cutover": "TObjEneDarkGunner::cleanup_effects",
+          "address": "0x800A2D74"
+        }
+      ]
+    },
+    {
+      "table": "floor_resource_callbacks_selector_10",
+      "index": 3,
+      "callbacks": [
+        {
+          "fork": "TObjPlayer__sub_800A2DCC",
+          "cutover": "load_darkgunner_effect_resources",
+          "address": "0x800A2DCC"
+        },
+        {
+          "fork": "TObjPlayer::cleanup_effects",
+          "cutover": "TObjEneDarkGunner::cleanup_effects",
+          "address": "0x800A2D74"
+        }
+      ]
+    },
+    {
+      "table": "floor_resource_callbacks_selector_16",
+      "index": 2,
+      "callbacks": [
+        {
+          "fork": "TObjEneMoja::load_resources",
+          "cutover": "TObjEneMoja::load_resources",
+          "address": "0x800AF56C"
+        },
+        {
+          "fork": "TObjEneMoja::free_resources",
+          "cutover": "TObjEneMoja::free_resources",
+          "address": "0x800AF4B8"
+        }
+      ]
+    },
+    {
+      "table": "floor_resource_callbacks_selector_16",
+      "index": 5,
+      "callbacks": [
+        {
+          "fork": "TObjEneShark::load_resources",
+          "cutover": "TLobby::load_shark_resources",
+          "address": "0x800AC318"
+        },
+        {
+          "fork": "TObjEneShark::free_resources",
+          "cutover": "TObjEneShark::free_resources",
+          "address": "0x800AC248"
+        }
+      ]
+    },
+    {
+      "table": "floor_resource_callbacks_selector_16",
+      "index": 6,
+      "callbacks": [
+        {
+          "fork": "TObjEneMe3ShinowaMirage::load_shared_resources",
+          "cutover": "TObjEneMe3ShinowaMirage::load_shinowa_mirage_resources",
+          "address": "0x800E7B94"
+        },
+        {
+          "fork": "TObjEneMe3ShinowaMirage::free_shared_resources",
+          "cutover": "TObjEneMe3ShinowaMirage::free_shared_resources",
+          "address": "0x800E7A98"
+        }
+      ]
+    },
+    {
+      "table": "floor_resource_callbacks_selector_17",
+      "index": 2,
+      "callbacks": [
+        {
+          "fork": "TObjEneMoja::load_resources",
+          "cutover": "TObjEneMoja::load_resources",
+          "address": "0x800AF56C"
+        },
+        {
+          "fork": "TObjEneMoja::free_resources",
+          "cutover": "TObjEneMoja::free_resources",
+          "address": "0x800AF4B8"
+        }
+      ]
+    },
+    {
+      "table": "floor_resource_callbacks_selector_17",
+      "index": 5,
+      "callbacks": [
+        {
+          "fork": "TObjEneShark::load_resources",
+          "cutover": "TLobby::load_shark_resources",
+          "address": "0x800AC318"
+        },
+        {
+          "fork": "TObjEneShark::free_resources",
+          "cutover": "TObjEneShark::free_resources",
+          "address": "0x800AC248"
+        }
+      ]
+    },
+    {
+      "table": "floor_resource_callbacks_selector_17",
+      "index": 6,
+      "callbacks": [
+        {
+          "fork": "TObjEneMe3ShinowaMirage::load_shared_resources",
+          "cutover": "TObjEneMe3ShinowaMirage::load_shinowa_mirage_resources",
+          "address": "0x800E7B94"
+        },
+        {
+          "fork": "TObjEneMe3ShinowaMirage::free_shared_resources",
+          "cutover": "TObjEneMe3ShinowaMirage::free_shared_resources",
+          "address": "0x800E7A98"
+        }
+      ]
+    },
+    {
+      "table": "floor_resource_callbacks_selector_35",
+      "index": 8,
+      "callbacks": [
+        {
+          "fork": "TObjEneRe2Flower::initialize_resources",
+          "cutover": "load_re2_flower_resources",
+          "address": "0x800C44C4"
+        },
+        {
+          "fork": "TObjEneRe2Flower::destroy_instance",
+          "cutover": "TObjEneRe2Flower::destroy_instance",
+          "address": "0x800C443C"
+        }
+      ]
+    },
+    {
+      "table": "floor_resource_callbacks_selectors_06_07",
+      "index": 4,
+      "callbacks": [
+        {
+          "fork": "TObjEneMe3ShinowaMirage::load_shared_resources",
+          "cutover": "TObjEneMe3ShinowaMirage::load_shinowa_mirage_resources",
+          "address": "0x800E7B94"
+        },
+        {
+          "fork": "TObjEneMe3ShinowaMirage::free_shared_resources",
+          "cutover": "TObjEneMe3ShinowaMirage::free_shared_resources",
+          "address": "0x800E7A98"
+        }
+      ]
+    },
+    {
+      "table": "floor_resource_callbacks_selectors_19_20",
+      "index": 3,
+      "callbacks": [
+        {
+          "fork": "TObjEneMoja::load_resources",
+          "cutover": "TObjEneMoja::load_resources",
+          "address": "0x800AF56C"
+        },
+        {
+          "fork": "TObjEneMoja::free_resources",
+          "cutover": "TObjEneMoja::free_resources",
+          "address": "0x800AF4B8"
+        }
+      ]
+    },
+    {
+      "table": "floor_resource_callbacks_selectors_19_20",
+      "index": 6,
+      "callbacks": [
+        {
+          "fork": "TObjEneRe2Flower::initialize_resources",
+          "cutover": "load_re2_flower_resources",
+          "address": "0x800C44C4"
+        },
+        {
+          "fork": "TObjEneRe2Flower::destroy_instance",
+          "cutover": "TObjEneRe2Flower::destroy_instance",
+          "address": "0x800C443C"
+        }
+      ]
+    },
+    {
+      "table": "floor_resource_callbacks_selectors_28_29",
+      "index": 3,
+      "callbacks": [
+        {
+          "fork": "TObjEneMorfos::load_resources",
+          "cutover": "TObjEneMorfos::load_static_data",
+          "address": "0x803350AC"
+        },
+        {
+          "fork": "TObjEneMorfos::unload_static_data",
+          "cutover": "TObjEneMorfos::unload_static_data",
+          "address": "0x80335024"
+        }
+      ]
+    }
+  ],
+  "source_quality": {
+    "removed": 206,
+    "added": 3,
+    "label_advisories": [
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802E6F10",
+        "type": "function",
+        "old": "init_breakup_pieces__10TObjPlayerFPvl",
+        "new": "init_breakup_pieces__13TUnk_804E3BA8FPvPA4_Cf",
+        "flags": [
+          "member of TUnk_804E3BA8, a class named after an address"
+        ],
+        "reason": "The initializer belongs to the transformed Barba Ray breakup task and takes the native matrix pointer."
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802E7474",
+        "type": "function",
+        "old": "alloc_breakup_model__13TUnk_804E3BD8Fl",
+        "new": "alloc_breakup_model__13TUnk_804E3BD8FP10NJS_OBJECT",
+        "flags": [
+          "member of TUnk_804E3BD8, a class named after an address"
+        ],
+        "reason": "The allocator takes the real Ninja object supplied by the stage archive and node lookup."
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802E7568",
+        "type": "function",
+        "old": "init_zeroed_object__10TObjPlayerFv",
+        "new": "init_zeroed_object__13TUnk_804E3BD8Fv",
+        "flags": [
+          "member of TUnk_804E3BD8, a class named after an address"
+        ],
+        "reason": "The base initializer belongs to the shared breakup task that owns the model and piece storage."
+      }
+    ],
+    "newly_stale_retention": 0
+  },
+  "runtime": {
+    "images": 2,
+    "result": "three breakup allocations, two release cases, and the technique texture binding passed"
+  },
+  "fork_tooling": {
+    "patch_paths": 130,
+    "checks": 310,
+    "retention_entries": 27007,
+    "updated_retention_entries": 2,
+    "sha256": {
+      "plain-overlay.patch": "070fb78aa356c0f5d34603185f411112085edd0ff25de5d33b5474732c4d5a8f",
+      "ave-overlay.patch": "32e7cfec77f9cc3a65b59bba32a068f3c759f6d4d4b19314ebf531707cb7006a",
+      "plain-private-tool-tests.log": "457cf41e4a5a4ca274b3f3f70c0f84b0c4645a6ae60d4421be69789c15cc3d3c",
+      "plain-private-fork-tests.log": "a18481f1929fd1dc13e6c86ecf13b9e41236c33a7f3c6abfe83c95504f79852b",
+      "plain-private-host-tests.log": "56f699c9d8ff5a32cc196940d8bb95e7f6799e211464315f7d77688b6ab4fccc"
+    }
+  },
+  "evidence_sha256": {
+    "runtime-probes.log": "6d244cb49a87627a930d63fe7cdd95b41fe446369e5ea41c12f66c638e754687",
+    "source-quality.json": "30af0d4124c64d5b0be97dd26efd533fe40e4ae9d671a76b66f99c3ddf0e74ad",
+    "master-coverage.json": "279134ae1d0b1cf9e4da7a4f62cb9db731f5ca42bf8ca07effbfc2989e6b8fb5",
+    "fork-main-coverage.json": "7e4a244d6a2255cf50f340dec504c6a34ceb0443cecaf93821712e05ad925674",
+    "floor-callbacks.json": "5363344d09d11ce8501c175efe35a6bad97483ef79dcf72578c47a7df11b9cd5"
+  }
+}

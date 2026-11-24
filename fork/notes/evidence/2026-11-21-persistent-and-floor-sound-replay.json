@@ -1,0 +1,1656 @@
+{
+  "source": "7133dc1ac51518f9631b24cbf2c9ba949c75a631",
+  "previous_source": "d77e4b8e073824da25f6760dd9de38005e2dd8a3",
+  "upstream": "5a4e7ced56fe7072359b6d279e94f4be3b8453c0",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "source_paths": 1123,
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/audio/SoundRequestVoice.h",
+    "include/pso/object/trap/TOTrapAncient01.h",
+    "include/pso/object/trap/TOTrapAncient01_80226534.h",
+    "include/pso/system/PersistentSound.h",
+    "include/pso/unk/TLobby_80227A2C.h",
+    "include/pso/unk/TLobby_80227AA0.h",
+    "include/pso/unk/TLobby_8023F734.h",
+    "include/pso/unk/text_800D8830.h",
+    "src/pso/boss/TUnk_80484A94.cpp",
+    "src/pso/boss/TUnk_80484AFC.cpp",
+    "src/pso/boss/barbaray/TBoss7Crawfish.cpp",
+    "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+    "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp",
+    "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+    "src/pso/boss/darkfalz/TBoss4Zanzo.cpp",
+    "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+    "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp",
+    "src/pso/boss/dragon/TBoss1Dragon.cpp",
+    "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+    "src/pso/boss/galgryphon/TBoss5GryphonTornado.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+    "src/pso/boss/olgaflow/TBoss6Demo11_TYPE1_DEAD.cpp",
+    "src/pso/boss/olgaflow/TBoss6Demo20_TYPE2_APPEAR.cpp",
+    "src/pso/boss/olgaflow/TBoss6Demo21_TYPE2_DEAD.cpp",
+    "src/pso/boss/olgaflow/TBoss6GravBall.cpp",
+    "src/pso/boss/olgaflow/TBoss6Mine.cpp",
+    "src/pso/boss/olgaflow/TBoss6Tube.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type1_802B20C0.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2_802BE588.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp",
+    "src/pso/boss/volopt/TBoss3Volopt.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptCore.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptP01.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+    "src/pso/effect/item/TItemEffPG.cpp",
+    "src/pso/effect/photon/TPhotonEstlla.cpp",
+    "src/pso/effect/photon/TPhotonFarlla.cpp",
+    "src/pso/effect/photon/TPhotonGolla.cpp",
+    "src/pso/effect/photon/TPhotonLeilla.cpp",
+    "src/pso/effect/photon/TPhotonMylla.cpp",
+    "src/pso/effect/photon/TPhotonPilla.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+    "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+    "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp",
+    "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+    "src/pso/enemy/darkgunner/DarkGunner.cpp",
+    "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+    "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+    "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp",
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+    "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+    "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+    "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+    "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/enemy/illgill/TObjIllGillKage.cpp",
+    "src/pso/enemy/lappy/TObjEneLappy.cpp",
+    "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+    "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+    "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarmsAtkColli.cpp",
+    "src/pso/enemy/recon/TObjEneRecon.cpp",
+    "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+    "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+    "src/pso/object/TObjLuker.cpp",
+    "src/pso/object/ambient/TObjEnvSoundGlobal.cpp",
+    "src/pso/object/ambient/TObjGrass.cpp",
+    "src/pso/object/cave/TOHangceilingCave01.cpp",
+    "src/pso/object/city/CityTraffic.cpp",
+    "src/pso/object/collision/TObjFogCollision.cpp",
+    "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp",
+    "src/pso/object/door/TODoorBase.cpp",
+    "src/pso/object/door/TODoorCave03.cpp",
+    "src/pso/object/door/TODoorJungleMain.cpp",
+    "src/pso/object/door/TObjDoor_8018E358.cpp",
+    "src/pso/object/fence/TOBarrierEnergy01.cpp",
+    "src/pso/object/fence/TOFenceBase.cpp",
+    "src/pso/object/ruins/TOMonumentAncient02.cpp",
+    "src/pso/object/switch/TOSensor.cpp",
+    "src/pso/object/switch/TOSwitchTimer.cpp",
+    "src/pso/object/trap/TOTrapAncient01.cpp",
+    "src/pso/object/trap/TOTrapAncient02.cpp",
+    "src/pso/object/trap/TOTrapChainSawEdge.cpp",
+    "src/pso/player/TObjPlayer_801C7430.cpp",
+    "src/pso/technique/TTecLuker.cpp",
+    "src/pso/ui/frontend/TAdPlyStatusGC_8033FD48.cpp",
+    "src/pso/ui/hud/TLoadingCur.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_80259DB0.cpp",
+    "src/pso/unk/TLobby_80226070.cpp",
+    "src/pso/unk/TLobby_80227AA0.cpp",
+    "src/pso/unk/TLobby_8023F734.cpp",
+    "src/pso/unk/text_800D8830.cpp"
+  ],
+  "author": {
+    "name": "matthewlewisnewton",
+    "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+    "coauthor_trailers": 0
+  },
+  "donor": {
+    "head": "a846eff46207b792e94640218139d81040ffbbf1",
+    "preview_paths": 86,
+    "preview_conflicts": 81
+  },
+  "direct_calls": {
+    "instruction_count": 195,
+    "caller_files": 82,
+    "addresses": [
+      {
+        "call": "0x8001CFE4",
+        "target": "0x80226578",
+        "function": "run_task__11TLoadingCurFv",
+        "function_start": "0x8001CD90",
+        "source": "src/pso/ui/hud/TLoadingCur.cpp"
+      },
+      {
+        "call": "0x8001D004",
+        "target": "0x80226578",
+        "function": "run_task__11TLoadingCurFv",
+        "function_start": "0x8001CD90",
+        "source": "src/pso/ui/hud/TLoadingCur.cpp"
+      },
+      {
+        "call": "0x80028C60",
+        "target": "0x80226578",
+        "function": "spawn_trap__12TBoss1DragonFii",
+        "function_start": "0x80028C3C",
+        "source": "src/pso/boss/dragon/TBoss1Dragon.cpp"
+      },
+      {
+        "call": "0x80033880",
+        "target": "0x80226578",
+        "function": "spawn_trap__13TBoss2DeRolLeFPvii",
+        "function_start": "0x8003386C",
+        "source": "src/pso/boss/derolle/TBoss2DeRolLe.cpp"
+      },
+      {
+        "call": "0x80033998",
+        "target": "0x80226578",
+        "function": "update_projectile_spawns__13TBoss2DeRolLeFv",
+        "function_start": "0x800338C0",
+        "source": "src/pso/boss/derolle/TBoss2DeRolLe.cpp"
+      },
+      {
+        "call": "0x8003BCA0",
+        "target": "0x80226578",
+        "function": "run_task__15TObjBoss2TunnelFv",
+        "function_start": "0x8003B6E8",
+        "source": "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp"
+      },
+      {
+        "call": "0x8003BE18",
+        "target": "0x80226578",
+        "function": "run_task__15TObjBoss2TunnelFv",
+        "function_start": "0x8003B6E8",
+        "source": "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp"
+      },
+      {
+        "call": "0x8003D630",
+        "target": "0x80226578",
+        "function": "update_phase2__12TBoss3VoloptFv",
+        "function_start": "0x8003D558",
+        "source": "src/pso/boss/volopt/TBoss3Volopt.cpp"
+      },
+      {
+        "call": "0x8003D7F0",
+        "target": "0x80226578",
+        "function": "update_phase1__12TBoss3VoloptFv",
+        "function_start": "0x8003D7BC",
+        "source": "src/pso/boss/volopt/TBoss3Volopt.cpp"
+      },
+      {
+        "call": "0x8003D9F4",
+        "target": "0x80226578",
+        "function": "update_phase1__12TBoss3VoloptFv",
+        "function_start": "0x8003D7BC",
+        "source": "src/pso/boss/volopt/TBoss3Volopt.cpp"
+      },
+      {
+        "call": "0x8003DB44",
+        "target": "0x80226578",
+        "function": "update_intro_cutscene__12TBoss3VoloptFv",
+        "function_start": "0x8003DA78",
+        "source": "src/pso/boss/volopt/TBoss3Volopt.cpp"
+      },
+      {
+        "call": "0x8003EBAC",
+        "target": "0x80226578",
+        "function": "dispatch_mode__12TBoss3VoloptFv",
+        "function_start": "0x8003EB34",
+        "source": "src/pso/boss/volopt/TBoss3Volopt.cpp"
+      },
+      {
+        "call": "0x8003EC28",
+        "target": "0x80226578",
+        "function": "dispatch_mode__12TBoss3VoloptFv",
+        "function_start": "0x8003EB34",
+        "source": "src/pso/boss/volopt/TBoss3Volopt.cpp"
+      },
+      {
+        "call": "0x8003F610",
+        "target": "0x80226578",
+        "function": "update_topple_state__16TBoss3VoloptCoreFv",
+        "function_start": "0x8003F510",
+        "source": "src/pso/boss/volopt/TBoss3VoloptCore.cpp"
+      },
+      {
+        "call": "0x8003FB04",
+        "target": "0x80226578",
+        "function": "update_orbit_state__16TBoss3VoloptCoreFv",
+        "function_start": "0x8003F9D4",
+        "source": "src/pso/boss/volopt/TBoss3VoloptCore.cpp"
+      },
+      {
+        "call": "0x8004334C",
+        "target": "0x80226578",
+        "function": "update_attack__15TBoss3VoloptP01Fv",
+        "function_start": "0x800430D0",
+        "source": "src/pso/boss/volopt/TBoss3VoloptP01.cpp"
+      },
+      {
+        "call": "0x80044734",
+        "target": "0x80226578",
+        "function": "fn_80044680__15TBoss3VoloptP02Fv",
+        "function_start": "0x80044680",
+        "source": "src/pso/boss/volopt/TBoss3VoloptP02.cpp"
+      },
+      {
+        "call": "0x800447E0",
+        "target": "0x80226578",
+        "function": "fn_80044680__15TBoss3VoloptP02Fv",
+        "function_start": "0x80044680",
+        "source": "src/pso/boss/volopt/TBoss3VoloptP02.cpp"
+      },
+      {
+        "call": "0x80044868",
+        "target": "0x80226578",
+        "function": "fn_80044680__15TBoss3VoloptP02Fv",
+        "function_start": "0x80044680",
+        "source": "src/pso/boss/volopt/TBoss3VoloptP02.cpp"
+      },
+      {
+        "call": "0x80044900",
+        "target": "0x80226578",
+        "function": "fn_80044680__15TBoss3VoloptP02Fv",
+        "function_start": "0x80044680",
+        "source": "src/pso/boss/volopt/TBoss3VoloptP02.cpp"
+      },
+      {
+        "call": "0x80044B14",
+        "target": "0x80226578",
+        "function": "fn_80044680__15TBoss3VoloptP02Fv",
+        "function_start": "0x80044680",
+        "source": "src/pso/boss/volopt/TBoss3VoloptP02.cpp"
+      },
+      {
+        "call": "0x80045B34",
+        "target": "0x80226578",
+        "function": "spawn_ambient_particles__15TBoss3VoloptP02Fv",
+        "function_start": "0x80045A04",
+        "source": "src/pso/boss/volopt/TBoss3VoloptP02.cpp"
+      },
+      {
+        "call": "0x80045DAC",
+        "target": "0x80226578",
+        "function": "update_death_sequence__15TBoss3VoloptP02Fv",
+        "function_start": "0x80045B54",
+        "source": "src/pso/boss/volopt/TBoss3VoloptP02.cpp"
+      },
+      {
+        "call": "0x800466F0",
+        "target": "0x80226578",
+        "function": "fn_800465B0__15TBoss3VoloptP02Fv",
+        "function_start": "0x800465B0",
+        "source": "src/pso/boss/volopt/TBoss3VoloptP02.cpp"
+      },
+      {
+        "call": "0x800468C4",
+        "target": "0x80226578",
+        "function": "fn_800465B0__15TBoss3VoloptP02Fv",
+        "function_start": "0x800465B0",
+        "source": "src/pso/boss/volopt/TBoss3VoloptP02.cpp"
+      },
+      {
+        "call": "0x80046AF4",
+        "target": "0x80226578",
+        "function": "fn_800465B0__15TBoss3VoloptP02Fv",
+        "function_start": "0x800465B0",
+        "source": "src/pso/boss/volopt/TBoss3VoloptP02.cpp"
+      },
+      {
+        "call": "0x80046D74",
+        "target": "0x80226578",
+        "function": "fn_80046CB8__15TBoss3VoloptP02Fv",
+        "function_start": "0x80046CB8",
+        "source": "src/pso/boss/volopt/TBoss3VoloptP02.cpp"
+      },
+      {
+        "call": "0x80046DA8",
+        "target": "0x80226578",
+        "function": "fn_80046CB8__15TBoss3VoloptP02Fv",
+        "function_start": "0x80046CB8",
+        "source": "src/pso/boss/volopt/TBoss3VoloptP02.cpp"
+      },
+      {
+        "call": "0x80046E64",
+        "target": "0x80226578",
+        "function": "fn_80046CB8__15TBoss3VoloptP02Fv",
+        "function_start": "0x80046CB8",
+        "source": "src/pso/boss/volopt/TBoss3VoloptP02.cpp"
+      },
+      {
+        "call": "0x80046E98",
+        "target": "0x80226578",
+        "function": "fn_80046CB8__15TBoss3VoloptP02Fv",
+        "function_start": "0x80046CB8",
+        "source": "src/pso/boss/volopt/TBoss3VoloptP02.cpp"
+      },
+      {
+        "call": "0x80046FB0",
+        "target": "0x80226578",
+        "function": "fn_80046CB8__15TBoss3VoloptP02Fv",
+        "function_start": "0x80046CB8",
+        "source": "src/pso/boss/volopt/TBoss3VoloptP02.cpp"
+      },
+      {
+        "call": "0x8004705C",
+        "target": "0x80226578",
+        "function": "fn_80046CB8__15TBoss3VoloptP02Fv",
+        "function_start": "0x80046CB8",
+        "source": "src/pso/boss/volopt/TBoss3VoloptP02.cpp"
+      },
+      {
+        "call": "0x80047168",
+        "target": "0x80226578",
+        "function": "fn_80046CB8__15TBoss3VoloptP02Fv",
+        "function_start": "0x80046CB8",
+        "source": "src/pso/boss/volopt/TBoss3VoloptP02.cpp"
+      },
+      {
+        "call": "0x80049840",
+        "target": "0x80226578",
+        "function": "run_task__13TUnk_80484A94Fv",
+        "function_start": "0x800496D8",
+        "source": "src/pso/boss/TUnk_80484A94.cpp"
+      },
+      {
+        "call": "0x80049E14",
+        "target": "0x80226578",
+        "function": "run_task__13TUnk_80484AFCFv",
+        "function_start": "0x80049C10",
+        "source": "src/pso/boss/TUnk_80484AFC.cpp"
+      },
+      {
+        "call": "0x8004CC80",
+        "target": "0x80226578",
+        "function": "spawn_ancient_trap__14TBoss4DarkFalzFv",
+        "function_start": "0x8004CC48",
+        "source": "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp"
+      },
+      {
+        "call": "0x8004CF08",
+        "target": "0x80226578",
+        "function": "spawn_trap__14TBoss4DarkFalzFv",
+        "function_start": "0x8004CEE4",
+        "source": "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp"
+      },
+      {
+        "call": "0x80052A1C",
+        "target": "0x80226578",
+        "function": "update_tech_charge__11TBoss4Type1Fv",
+        "function_start": "0x8005294C",
+        "source": "src/pso/boss/darkfalz/TBoss4Type1.cpp"
+      },
+      {
+        "call": "0x8005300C",
+        "target": "0x80226578",
+        "function": "sub_80052EF8__11TBoss4Type1Fv",
+        "function_start": "0x80052EF8",
+        "source": "src/pso/boss/darkfalz/TBoss4Type1.cpp"
+      },
+      {
+        "call": "0x800534EC",
+        "target": "0x80226578",
+        "function": "sub_80053440__11TBoss4Type1Fv",
+        "function_start": "0x80053440",
+        "source": "src/pso/boss/darkfalz/TBoss4Type1.cpp"
+      },
+      {
+        "call": "0x80055EE8",
+        "target": "0x80226578",
+        "function": "tenchu_update__11TBoss4Type2Fv",
+        "function_start": "0x80055BC0",
+        "source": "src/pso/boss/darkfalz/TBoss4Zanzo.cpp"
+      },
+      {
+        "call": "0x80056074",
+        "target": "0x80226578",
+        "function": "beam_update__11TBoss4Type2Fv",
+        "function_start": "0x80055F5C",
+        "source": "src/pso/boss/darkfalz/TBoss4Zanzo.cpp"
+      },
+      {
+        "call": "0x800564B8",
+        "target": "0x80226578",
+        "function": "jisin_update__11TBoss4Type2Fv",
+        "function_start": "0x80056460",
+        "source": "src/pso/boss/darkfalz/TBoss4Zanzo.cpp"
+      },
+      {
+        "call": "0x80064EE4",
+        "target": "0x80226578",
+        "function": "spawn_ancient_trap__12TBoss8DragonFii",
+        "function_start": "0x80064EC0",
+        "source": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+      },
+      {
+        "call": "0x8008FB84",
+        "target": "0x80226578",
+        "function": "sub_8008FAD0__18TObjEneBalClawBodyFv",
+        "function_start": "0x8008FAD0",
+        "source": "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp"
+      },
+      {
+        "call": "0x80091308",
+        "target": "0x80226578",
+        "function": "TObjEneBalClawClaw__sub_80091200",
+        "function_start": "0x80091200",
+        "source": "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp"
+      },
+      {
+        "call": "0x80091424",
+        "target": "0x80226578",
+        "function": "update_chase__18TObjEneBalClawClawFPv",
+        "function_start": "0x80091354",
+        "source": "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp"
+      },
+      {
+        "call": "0x80093834",
+        "target": "0x80226578",
+        "function": "run_flash_warning_state__16TObjEneRe7BeruraFl",
+        "function_start": "0x800936A8",
+        "source": "src/pso/enemy/berura/TObjEneRe7Berura.cpp"
+      },
+      {
+        "call": "0x80094928",
+        "target": "0x80226578",
+        "function": "TObjEneRe7Berura__sub_8009472C",
+        "function_start": "0x8009472C",
+        "source": "src/pso/enemy/berura/TObjEneRe7Berura.cpp"
+      },
+      {
+        "call": "0x80097E68",
+        "target": "0x80226578",
+        "function": "action__17TObjEneDf2BringerFPvi",
+        "function_start": "0x80097D54",
+        "source": "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp"
+      },
+      {
+        "call": "0x800984BC",
+        "target": "0x80226578",
+        "function": "TObjEneDf2Bringer__sub_8009813C",
+        "function_start": "0x8009813C",
+        "source": "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp"
+      },
+      {
+        "call": "0x80098EE4",
+        "target": "0x80226578",
+        "function": "TObjEneDf2Bringer__sub_80098EB4",
+        "function_start": "0x80098EB4",
+        "source": "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp"
+      },
+      {
+        "call": "0x8009C4D8",
+        "target": "0x80226578",
+        "function": "fn_8009C2EC__17TObjEneMe1CanadinFl",
+        "function_start": "0x8009C2EC",
+        "source": "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp"
+      },
+      {
+        "call": "0x800A26DC",
+        "target": "0x80226578",
+        "function": "TObjPlayer__sub_800A2390",
+        "function_start": "0x800A2390",
+        "source": "src/pso/enemy/darkgunner/DarkGunner.cpp"
+      },
+      {
+        "call": "0x800A9AB8",
+        "target": "0x80226578",
+        "function": "update_fall_apart__14TObjEneDubchikFv",
+        "function_start": "0x800A9718",
+        "source": "src/pso/enemy/dubchik/TObjEneDubchik.cpp"
+      },
+      {
+        "call": "0x800AA02C",
+        "target": "0x80226578",
+        "function": "TObjPlayer__sub_800A9E9C",
+        "function_start": "0x800A9E9C",
+        "source": "src/pso/enemy/dubchik/TObjEneDubchik.cpp"
+      },
+      {
+        "call": "0x800B15A4",
+        "target": "0x80226578",
+        "function": "TObjEneBm3Fly__play_orbit_flight_sound",
+        "function_start": "0x800B1574",
+        "source": "src/pso/enemy/fly/TObjEneBm3Fly.cpp"
+      },
+      {
+        "call": "0x800B15F4",
+        "target": "0x80226578",
+        "function": "play_pitched_cue__13TObjEneBm3FlyFv",
+        "function_start": "0x800B15C4",
+        "source": "src/pso/enemy/fly/TObjEneBm3Fly.cpp"
+      },
+      {
+        "call": "0x800B44DC",
+        "target": "0x80226578",
+        "function": "run_task__26TObjEneBm3FlyNest_CarryFlyFv",
+        "function_start": "0x800B4388",
+        "source": "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp"
+      },
+      {
+        "call": "0x800B4544",
+        "target": "0x80226578",
+        "function": "run_task__26TObjEneBm3FlyNest_CarryFlyFv",
+        "function_start": "0x800B4388",
+        "source": "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp"
+      },
+      {
+        "call": "0x800B4610",
+        "target": "0x80226578",
+        "function": "run_task__26TObjEneBm3FlyNest_CarryFlyFv",
+        "function_start": "0x800B4388",
+        "source": "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp"
+      },
+      {
+        "call": "0x800BC800",
+        "target": "0x80226578",
+        "function": "TObjGrassWeb__sub_800BC798",
+        "function_start": "0x800BC798",
+        "source": "src/pso/object/ambient/TObjGrass.cpp"
+      },
+      {
+        "call": "0x800BC82C",
+        "target": "0x80226578",
+        "function": "TObjGrassWeb__sub_800BC798",
+        "function_start": "0x800BC798",
+        "source": "src/pso/object/ambient/TObjGrass.cpp"
+      },
+      {
+        "call": "0x800BC84C",
+        "target": "0x80226578",
+        "function": "TObjGrassWeb__sub_800BC798",
+        "function_start": "0x800BC798",
+        "source": "src/pso/object/ambient/TObjGrass.cpp"
+      },
+      {
+        "call": "0x800BCFA0",
+        "target": "0x80226578",
+        "function": "sub_800BCE44__9TObjGrassFv",
+        "function_start": "0x800BCE44",
+        "source": "src/pso/object/ambient/TObjGrass.cpp"
+      },
+      {
+        "call": "0x800BD074",
+        "target": "0x80226578",
+        "function": "update__9TObjGrassFv",
+        "function_start": "0x800BD00C",
+        "source": "src/pso/object/ambient/TObjGrass.cpp"
+      },
+      {
+        "call": "0x800BD268",
+        "target": "0x80226578",
+        "function": "update_web_attack__9TObjGrassFv",
+        "function_start": "0x800BD10C",
+        "source": "src/pso/object/ambient/TObjGrass.cpp"
+      },
+      {
+        "call": "0x800BD4A4",
+        "target": "0x80226578",
+        "function": "update_web_attack__9TObjGrassFv",
+        "function_start": "0x800BD10C",
+        "source": "src/pso/object/ambient/TObjGrass.cpp"
+      },
+      {
+        "call": "0x800BD5FC",
+        "target": "0x80226578",
+        "function": "sub_800BD4D8__9TObjGrassFv",
+        "function_start": "0x800BD4D8",
+        "source": "src/pso/object/ambient/TObjGrass.cpp"
+      },
+      {
+        "call": "0x800BDBCC",
+        "target": "0x80226578",
+        "function": "sub_800BD4D8__9TObjGrassFv",
+        "function_start": "0x800BD4D8",
+        "source": "src/pso/object/ambient/TObjGrass.cpp"
+      },
+      {
+        "call": "0x800BE0EC",
+        "target": "0x80226578",
+        "function": "sub_800BDD70__9TObjGrassFv",
+        "function_start": "0x800BDD70",
+        "source": "src/pso/object/ambient/TObjGrass.cpp"
+      },
+      {
+        "call": "0x800BE57C",
+        "target": "0x80226578",
+        "function": "update_chase_target__9TObjGrassFPv",
+        "function_start": "0x800BE4C0",
+        "source": "src/pso/object/ambient/TObjGrass.cpp"
+      },
+      {
+        "call": "0x800BE5A4",
+        "target": "0x80226578",
+        "function": "update_chase_target__9TObjGrassFPv",
+        "function_start": "0x800BE4C0",
+        "source": "src/pso/object/ambient/TObjGrass.cpp"
+      },
+      {
+        "call": "0x800BE864",
+        "target": "0x80226578",
+        "function": "sub_800BE75C__9TObjGrassFv",
+        "function_start": "0x800BE75C",
+        "source": "src/pso/object/ambient/TObjGrass.cpp"
+      },
+      {
+        "call": "0x800C0CE8",
+        "target": "0x80226578",
+        "function": "update_moving__12TObjEneLappyFv",
+        "function_start": "0x800C08A0",
+        "source": "src/pso/enemy/lappy/TObjEneLappy.cpp"
+      },
+      {
+        "call": "0x800CA76C",
+        "target": "0x80226578",
+        "function": "sub_800CA454__13TObjEneMe1GeeFl",
+        "function_start": "0x800CA454",
+        "source": "src/pso/enemy/gee/TObjEneMe1Gee.cpp"
+      },
+      {
+        "call": "0x800CB998",
+        "target": "0x80226578",
+        "function": "sub_800CB968__13TObjEneMe1GeeFv",
+        "function_start": "0x800CB968",
+        "source": "src/pso/enemy/gee/TObjEneMe1Gee.cpp"
+      },
+      {
+        "call": "0x800D888C",
+        "target": "0x80226578",
+        "function": "fn_800D8830",
+        "function_start": "0x800D8830",
+        "source": "src/pso/unk/text_800D8830.cpp"
+      },
+      {
+        "call": "0x800D88AC",
+        "target": "0x80226578",
+        "function": "fn_800D8830",
+        "function_start": "0x800D8830",
+        "source": "src/pso/unk/text_800D8830.cpp"
+      },
+      {
+        "call": "0x800D88CC",
+        "target": "0x80226578",
+        "function": "fn_800D8830",
+        "function_start": "0x800D8830",
+        "source": "src/pso/unk/text_800D8830.cpp"
+      },
+      {
+        "call": "0x800DB214",
+        "target": "0x80226578",
+        "function": "update_multi_beam_state__16TObjEneNanoDragoFv",
+        "function_start": "0x800DB0F8",
+        "source": "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp"
+      },
+      {
+        "call": "0x800DB48C",
+        "target": "0x80226578",
+        "function": "update_single_beam_state__16TObjEneNanoDragoFv",
+        "function_start": "0x800DB390",
+        "source": "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp"
+      },
+      {
+        "call": "0x800E370C",
+        "target": "0x80226578",
+        "function": "run_task__22TObjEnePanarmsAtkColliFv",
+        "function_start": "0x800E3670",
+        "source": "src/pso/enemy/panarms/TObjEnePanarmsAtkColli.cpp"
+      },
+      {
+        "call": "0x800EB0D8",
+        "target": "0x80226578",
+        "function": "run_task__15TObjEneSlimeOneFv",
+        "function_start": "0x800EAFF4",
+        "source": "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp"
+      },
+      {
+        "call": "0x800EE458",
+        "target": "0x80226578",
+        "function": "TObjEneRe4Sorcerer__sub_800EE1CC",
+        "function_start": "0x800EE1CC",
+        "source": "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp"
+      },
+      {
+        "call": "0x800EF244",
+        "target": "0x80226578",
+        "function": "TObjEneRe4Sorcerer__sub_800EF214",
+        "function_start": "0x800EF214",
+        "source": "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp"
+      },
+      {
+        "call": "0x800EF298",
+        "target": "0x80226578",
+        "function": "create_effect__18TObjEneRe4SorcererFv",
+        "function_start": "0x800EF25C",
+        "source": "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp"
+      },
+      {
+        "call": "0x800EF2BC",
+        "target": "0x80226578",
+        "function": "create_effect__18TObjEneRe4SorcererFv",
+        "function_start": "0x800EF25C",
+        "source": "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp"
+      },
+      {
+        "call": "0x80153578",
+        "target": "0x80226578",
+        "function": "TObjFogCollisionPoison__sub_80153520",
+        "function_start": "0x80153520",
+        "source": "src/pso/object/collision/TObjFogCollision.cpp"
+      },
+      {
+        "call": "0x80153598",
+        "target": "0x80226578",
+        "function": "TObjFogCollisionPoison__sub_80153520",
+        "function_start": "0x80153520",
+        "source": "src/pso/object/collision/TObjFogCollision.cpp"
+      },
+      {
+        "call": "0x801535B8",
+        "target": "0x80226578",
+        "function": "TObjFogCollisionPoison__sub_80153520",
+        "function_start": "0x80153520",
+        "source": "src/pso/object/collision/TObjFogCollision.cpp"
+      },
+      {
+        "call": "0x80157D78",
+        "target": "0x80226578",
+        "function": "play_ambient_loop_sound__17TOBarrierEnergy01Fv",
+        "function_start": "0x80157D28",
+        "source": "src/pso/object/fence/TOBarrierEnergy01.cpp"
+      },
+      {
+        "call": "0x80157D98",
+        "target": "0x80226578",
+        "function": "play_ambient_loop_sound__17TOBarrierEnergy01Fv",
+        "function_start": "0x80157D28",
+        "source": "src/pso/object/fence/TOBarrierEnergy01.cpp"
+      },
+      {
+        "call": "0x80157DB8",
+        "target": "0x80226578",
+        "function": "play_ambient_loop_sound__17TOBarrierEnergy01Fv",
+        "function_start": "0x80157D28",
+        "source": "src/pso/object/fence/TOBarrierEnergy01.cpp"
+      },
+      {
+        "call": "0x80157DD8",
+        "target": "0x80226578",
+        "function": "play_ambient_loop_sound__17TOBarrierEnergy01Fv",
+        "function_start": "0x80157D28",
+        "source": "src/pso/object/fence/TOBarrierEnergy01.cpp"
+      },
+      {
+        "call": "0x8015D798",
+        "target": "0x80226578",
+        "function": "update_closing__10TODoorBaseFv",
+        "function_start": "0x8015D714",
+        "source": "src/pso/object/door/TODoorBase.cpp"
+      },
+      {
+        "call": "0x8015D964",
+        "target": "0x80226578",
+        "function": "update_opening__10TODoorBaseFv",
+        "function_start": "0x8015D8E0",
+        "source": "src/pso/object/door/TODoorBase.cpp"
+      },
+      {
+        "call": "0x801623E4",
+        "target": "0x80226578",
+        "function": "update_closing__12TODoorCave03Fv",
+        "function_start": "0x80162388",
+        "source": "src/pso/object/door/TODoorCave03.cpp"
+      },
+      {
+        "call": "0x801624CC",
+        "target": "0x80226578",
+        "function": "update_opening__12TODoorCave03Fv",
+        "function_start": "0x8016246C",
+        "source": "src/pso/object/door/TODoorCave03.cpp"
+      },
+      {
+        "call": "0x801668B4",
+        "target": "0x80226578",
+        "function": "update_trigger__11TOFenceBaseFv",
+        "function_start": "0x80166814",
+        "source": "src/pso/object/fence/TOFenceBase.cpp"
+      },
+      {
+        "call": "0x80168470",
+        "target": "0x80226578",
+        "function": "sub_80168398__13TUnk_804B2578Fv",
+        "function_start": "0x80168398",
+        "source": "src/pso/object/cave/TOHangceilingCave01.cpp"
+      },
+      {
+        "call": "0x80172AC8",
+        "target": "0x80226578",
+        "function": "run_task__19TOMonumentAncient02Fv",
+        "function_start": "0x80172A34",
+        "source": "src/pso/object/ruins/TOMonumentAncient02.cpp"
+      },
+      {
+        "call": "0x801754BC",
+        "target": "0x80226578",
+        "function": "play_off_loop_sound__8TOSensorFv",
+        "function_start": "0x8017546C",
+        "source": "src/pso/object/switch/TOSensor.cpp"
+      },
+      {
+        "call": "0x801754DC",
+        "target": "0x80226578",
+        "function": "play_off_loop_sound__8TOSensorFv",
+        "function_start": "0x8017546C",
+        "source": "src/pso/object/switch/TOSensor.cpp"
+      },
+      {
+        "call": "0x801754FC",
+        "target": "0x80226578",
+        "function": "play_off_loop_sound__8TOSensorFv",
+        "function_start": "0x8017546C",
+        "source": "src/pso/object/switch/TOSensor.cpp"
+      },
+      {
+        "call": "0x80175564",
+        "target": "0x80226578",
+        "function": "play_on_loop_sound__8TOSensorFv",
+        "function_start": "0x80175514",
+        "source": "src/pso/object/switch/TOSensor.cpp"
+      },
+      {
+        "call": "0x80175584",
+        "target": "0x80226578",
+        "function": "play_on_loop_sound__8TOSensorFv",
+        "function_start": "0x80175514",
+        "source": "src/pso/object/switch/TOSensor.cpp"
+      },
+      {
+        "call": "0x801755A4",
+        "target": "0x80226578",
+        "function": "play_on_loop_sound__8TOSensorFv",
+        "function_start": "0x80175514",
+        "source": "src/pso/object/switch/TOSensor.cpp"
+      },
+      {
+        "call": "0x801784F8",
+        "target": "0x80226578",
+        "function": "run_task__13TOSwitchTimerFv",
+        "function_start": "0x8017841C",
+        "source": "src/pso/object/switch/TOSwitchTimer.cpp"
+      },
+      {
+        "call": "0x80179938",
+        "target": "0x80226578",
+        "function": "vfunc_82__15TOTrapAncient01Fv",
+        "function_start": "0x801797D4",
+        "source": "src/pso/object/trap/TOTrapAncient01.cpp"
+      },
+      {
+        "call": "0x80179958",
+        "target": "0x80226578",
+        "function": "vfunc_82__15TOTrapAncient01Fv",
+        "function_start": "0x801797D4",
+        "source": "src/pso/object/trap/TOTrapAncient01.cpp"
+      },
+      {
+        "call": "0x801799E8",
+        "target": "0x80226578",
+        "function": "vfunc_81__15TOTrapAncient01Fv",
+        "function_start": "0x80179970",
+        "source": "src/pso/object/trap/TOTrapAncient01.cpp"
+      },
+      {
+        "call": "0x80179A08",
+        "target": "0x80226578",
+        "function": "vfunc_81__15TOTrapAncient01Fv",
+        "function_start": "0x80179970",
+        "source": "src/pso/object/trap/TOTrapAncient01.cpp"
+      },
+      {
+        "call": "0x80179A28",
+        "target": "0x80226578",
+        "function": "vfunc_81__15TOTrapAncient01Fv",
+        "function_start": "0x80179970",
+        "source": "src/pso/object/trap/TOTrapAncient01.cpp"
+      },
+      {
+        "call": "0x80179A48",
+        "target": "0x80226578",
+        "function": "vfunc_81__15TOTrapAncient01Fv",
+        "function_start": "0x80179970",
+        "source": "src/pso/object/trap/TOTrapAncient01.cpp"
+      },
+      {
+        "call": "0x8017AD4C",
+        "target": "0x80226578",
+        "function": "vfunc_84__15TOTrapAncient02Fv",
+        "function_start": "0x8017ACA0",
+        "source": "src/pso/object/trap/TOTrapAncient02.cpp"
+      },
+      {
+        "call": "0x8017AD6C",
+        "target": "0x80226578",
+        "function": "vfunc_84__15TOTrapAncient02Fv",
+        "function_start": "0x8017ACA0",
+        "source": "src/pso/object/trap/TOTrapAncient02.cpp"
+      },
+      {
+        "call": "0x8017AD8C",
+        "target": "0x80226578",
+        "function": "vfunc_84__15TOTrapAncient02Fv",
+        "function_start": "0x8017ACA0",
+        "source": "src/pso/object/trap/TOTrapAncient02.cpp"
+      },
+      {
+        "call": "0x8017ADAC",
+        "target": "0x80226578",
+        "function": "vfunc_84__15TOTrapAncient02Fv",
+        "function_start": "0x8017ACA0",
+        "source": "src/pso/object/trap/TOTrapAncient02.cpp"
+      },
+      {
+        "call": "0x80180F30",
+        "target": "0x80226578",
+        "function": "run_task__18TObjCityAirCar_CarFv",
+        "function_start": "0x80180E70",
+        "source": "src/pso/object/city/CityTraffic.cpp"
+      },
+      {
+        "call": "0x80180F58",
+        "target": "0x80226578",
+        "function": "run_task__18TObjCityAirCar_CarFv",
+        "function_start": "0x80180E70",
+        "source": "src/pso/object/city/CityTraffic.cpp"
+      },
+      {
+        "call": "0x80180F84",
+        "target": "0x80226578",
+        "function": "run_task__18TObjCityAirCar_CarFv",
+        "function_start": "0x80180E70",
+        "source": "src/pso/object/city/CityTraffic.cpp"
+      },
+      {
+        "call": "0x8018C36C",
+        "target": "0x80226578",
+        "function": "run_task__16TObjContainerIdoFv",
+        "function_start": "0x8018C18C",
+        "source": "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp"
+      },
+      {
+        "call": "0x8018C478",
+        "target": "0x80226578",
+        "function": "run_task__16TObjContainerIdoFv",
+        "function_start": "0x8018C18C",
+        "source": "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp"
+      },
+      {
+        "call": "0x8018EE68",
+        "target": "0x80226578",
+        "function": "update_state__8TObjDoorFv",
+        "function_start": "0x8018EC84",
+        "source": "src/pso/object/door/TObjDoor_8018E358.cpp"
+      },
+      {
+        "call": "0x8018EEEC",
+        "target": "0x80226578",
+        "function": "update_state__8TObjDoorFv",
+        "function_start": "0x8018EC84",
+        "source": "src/pso/object/door/TObjDoor_8018E358.cpp"
+      },
+      {
+        "call": "0x801903F4",
+        "target": "0x80226578",
+        "function": "run_task__18TObjEnvSoundGlobalFv",
+        "function_start": "0x801903B4",
+        "source": "src/pso/object/ambient/TObjEnvSoundGlobal.cpp"
+      },
+      {
+        "call": "0x80190418",
+        "target": "0x80226578",
+        "function": "run_task__18TObjEnvSoundGlobalFv",
+        "function_start": "0x801903B4",
+        "source": "src/pso/object/ambient/TObjEnvSoundGlobal.cpp"
+      },
+      {
+        "call": "0x801906E0",
+        "target": "0x80226578",
+        "function": "run_task__14TObjEnvSoundExFv",
+        "function_start": "0x80190624",
+        "source": "src/pso/object/ambient/TObjEnvSoundGlobal.cpp"
+      },
+      {
+        "call": "0x80190708",
+        "target": "0x80226578",
+        "function": "run_task__14TObjEnvSoundExFv",
+        "function_start": "0x80190624",
+        "source": "src/pso/object/ambient/TObjEnvSoundGlobal.cpp"
+      },
+      {
+        "call": "0x80190778",
+        "target": "0x80226578",
+        "function": "run_task__14TObjEnvSoundExFv",
+        "function_start": "0x80190624",
+        "source": "src/pso/object/ambient/TObjEnvSoundGlobal.cpp"
+      },
+      {
+        "call": "0x8019079C",
+        "target": "0x80226578",
+        "function": "run_task__14TObjEnvSoundExFv",
+        "function_start": "0x80190624",
+        "source": "src/pso/object/ambient/TObjEnvSoundGlobal.cpp"
+      },
+      {
+        "call": "0x80190A14",
+        "target": "0x80226578",
+        "function": "run_task__12TObjEnvSoundFv",
+        "function_start": "0x801909A4",
+        "source": "src/pso/object/ambient/TObjEnvSoundGlobal.cpp"
+      },
+      {
+        "call": "0x80190A30",
+        "target": "0x80226578",
+        "function": "run_task__12TObjEnvSoundFv",
+        "function_start": "0x801909A4",
+        "source": "src/pso/object/ambient/TObjEnvSoundGlobal.cpp"
+      },
+      {
+        "call": "0x801A150C",
+        "target": "0x80226578",
+        "function": "run_task__9TObjLukerFv",
+        "function_start": "0x801A1418",
+        "source": "src/pso/object/TObjLuker.cpp"
+      },
+      {
+        "call": "0x801AAAE8",
+        "target": "0x80226578",
+        "function": "run_task__13TPhotonEstllaFv",
+        "function_start": "0x801AA930",
+        "source": "src/pso/effect/photon/TPhotonEstlla.cpp"
+      },
+      {
+        "call": "0x801AB2D4",
+        "target": "0x80226578",
+        "function": "run_task__13TPhotonFarllaFv",
+        "function_start": "0x801AB018",
+        "source": "src/pso/effect/photon/TPhotonFarlla.cpp"
+      },
+      {
+        "call": "0x801ABD78",
+        "target": "0x80226578",
+        "function": "run_task__12TPhotonGollaFv",
+        "function_start": "0x801ABBAC",
+        "source": "src/pso/effect/photon/TPhotonGolla.cpp"
+      },
+      {
+        "call": "0x801AC77C",
+        "target": "0x80226578",
+        "function": "run_task__13TPhotonLeillaFv",
+        "function_start": "0x801AC574",
+        "source": "src/pso/effect/photon/TPhotonLeilla.cpp"
+      },
+      {
+        "call": "0x801AD8E4",
+        "target": "0x80226578",
+        "function": "run_task__12TPhotonMyllaFv",
+        "function_start": "0x801AD5D8",
+        "source": "src/pso/effect/photon/TPhotonMylla.cpp"
+      },
+      {
+        "call": "0x801AE15C",
+        "target": "0x80226578",
+        "function": "run_task__12TPhotonPillaFv",
+        "function_start": "0x801ADEF4",
+        "source": "src/pso/effect/photon/TPhotonPilla.cpp"
+      },
+      {
+        "call": "0x801CC40C",
+        "target": "0x80226578",
+        "function": "update_photon_blast_action__10TObjPlayerFv",
+        "function_start": "0x801CC34C",
+        "source": "src/pso/player/TObjPlayer_801C7430.cpp"
+      },
+      {
+        "call": "0x801CC4E4",
+        "target": "0x80226578",
+        "function": "update_photon_blast_action__10TObjPlayerFv",
+        "function_start": "0x801CC34C",
+        "source": "src/pso/player/TObjPlayer_801C7430.cpp"
+      },
+      {
+        "call": "0x80234A24",
+        "target": "0x80226578",
+        "function": "run_task__9TTecLukerFv",
+        "function_start": "0x802348B4",
+        "source": "src/pso/technique/TTecLuker.cpp"
+      },
+      {
+        "call": "0x80259FCC",
+        "target": "0x80226578",
+        "function": "update__13TUnk_804CF9E0Fv",
+        "function_start": "0x80259F74",
+        "source": "src/pso/ui/window/TWindowSubStatusDisp_80259DB0.cpp"
+      },
+      {
+        "call": "0x8029B770",
+        "target": "0x80226578",
+        "function": "run_task__16TODoorJungleMainFv",
+        "function_start": "0x8029B640",
+        "source": "src/pso/object/door/TODoorJungleMain.cpp"
+      },
+      {
+        "call": "0x802B14E8",
+        "target": "0x80226578",
+        "function": "spawn_trap__10TBoss6TubeFv",
+        "function_start": "0x802B14B8",
+        "source": "src/pso/boss/olgaflow/TBoss6Tube.cpp"
+      },
+      {
+        "call": "0x802B2958",
+        "target": "0x80226578",
+        "function": "update_hit_timer__11TBoss6Type1Fv",
+        "function_start": "0x802B292C",
+        "source": "src/pso/boss/olgaflow/TBoss6Type1_802B20C0.cpp"
+      },
+      {
+        "call": "0x802B2B7C",
+        "target": "0x80226578",
+        "function": "sub_802B2A94__11TBoss6Type1Fv",
+        "function_start": "0x802B2A94",
+        "source": "src/pso/boss/olgaflow/TBoss6Type1_802B20C0.cpp"
+      },
+      {
+        "call": "0x802B2ECC",
+        "target": "0x80226578",
+        "function": "tick_trap_countdown__11TBoss6Type1Fv",
+        "function_start": "0x802B2EA0",
+        "source": "src/pso/boss/olgaflow/TBoss6Type1_802B20C0.cpp"
+      },
+      {
+        "call": "0x802B3048",
+        "target": "0x80226578",
+        "function": "update_charge__11TBoss6Type1Fv",
+        "function_start": "0x802B3010",
+        "source": "src/pso/boss/olgaflow/TBoss6Type1_802B20C0.cpp"
+      },
+      {
+        "call": "0x802B32C0",
+        "target": "0x80226578",
+        "function": "sub_802B31E4__11TBoss6Type1Fv",
+        "function_start": "0x802B31E4",
+        "source": "src/pso/boss/olgaflow/TBoss6Type1_802B20C0.cpp"
+      },
+      {
+        "call": "0x802BD25C",
+        "target": "0x80226578",
+        "function": "run_task__11TBoss6Type2Fv",
+        "function_start": "0x802BD0C8",
+        "source": "src/pso/boss/olgaflow/TBoss6Type2.cpp"
+      },
+      {
+        "call": "0x802BE954",
+        "target": "0x80226578",
+        "function": "update_charge_timer__11TBoss6Type2Fv",
+        "function_start": "0x802BE8B8",
+        "source": "src/pso/boss/olgaflow/TBoss6Type2_802BE588.cpp"
+      },
+      {
+        "call": "0x802BEAF0",
+        "target": "0x80226578",
+        "function": "update_attack_timer__11TBoss6Type2Fv",
+        "function_start": "0x802BEAC4",
+        "source": "src/pso/boss/olgaflow/TBoss6Type2_802BE588.cpp"
+      },
+      {
+        "call": "0x802BECC8",
+        "target": "0x80226578",
+        "function": "sub_802BEC28__11TBoss6Type2Fv",
+        "function_start": "0x802BEC28",
+        "source": "src/pso/boss/olgaflow/TBoss6Type2_802BE588.cpp"
+      },
+      {
+        "call": "0x802BFA48",
+        "target": "0x80226578",
+        "function": "sub_802BFA1C__11TBoss6Type2Fv",
+        "function_start": "0x802BFA1C",
+        "source": "src/pso/boss/olgaflow/TBoss6Type2_802BE588.cpp"
+      },
+      {
+        "call": "0x802C8690",
+        "target": "0x80226578",
+        "function": "update_state__17TOTrapChainSawKeyFv",
+        "function_start": "0x802C8610",
+        "source": "src/pso/object/trap/TOTrapChainSawEdge.cpp"
+      },
+      {
+        "call": "0x802C86BC",
+        "target": "0x80226578",
+        "function": "update_state__17TOTrapChainSawKeyFv",
+        "function_start": "0x802C8610",
+        "source": "src/pso/object/trap/TOTrapChainSawEdge.cpp"
+      },
+      {
+        "call": "0x802C8A78",
+        "target": "0x80226578",
+        "function": "vfunc_27__20TOTrapChainSawDamageFv",
+        "function_start": "0x802C89FC",
+        "source": "src/pso/object/trap/TOTrapChainSawEdge.cpp"
+      },
+      {
+        "call": "0x802CB564",
+        "target": "0x80226578",
+        "function": "sub_802CB378__15TObjEneMe1GiGueFv",
+        "function_start": "0x802CB378",
+        "source": "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp"
+      },
+      {
+        "call": "0x802CBFE8",
+        "target": "0x80226578",
+        "function": "update_rush_attack__15TObjEneMe1GiGueFv",
+        "function_start": "0x802CBCC0",
+        "source": "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp"
+      },
+      {
+        "call": "0x802CC160",
+        "target": "0x80226578",
+        "function": "update_rush_attack__15TObjEneMe1GiGueFv",
+        "function_start": "0x802CBCC0",
+        "source": "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp"
+      },
+      {
+        "call": "0x802CC2CC",
+        "target": "0x80226578",
+        "function": "update_rush_attack__15TObjEneMe1GiGueFv",
+        "function_start": "0x802CBCC0",
+        "source": "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp"
+      },
+      {
+        "call": "0x802CC764",
+        "target": "0x80226578",
+        "function": "sub_802CC614__15TObjEneMe1GiGueFv",
+        "function_start": "0x802CC614",
+        "source": "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp"
+      },
+      {
+        "call": "0x802CCA1C",
+        "target": "0x80226578",
+        "function": "sub_802CC900__15TObjEneMe1GiGueFv",
+        "function_start": "0x802CC900",
+        "source": "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp"
+      },
+      {
+        "call": "0x802CE594",
+        "target": "0x80226578",
+        "function": "fn_802CE510",
+        "function_start": "0x802CE510",
+        "source": "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp"
+      },
+      {
+        "call": "0x802D076C",
+        "target": "0x80226578",
+        "function": "sub_802D073C__19TObjEneBm9MericarolFv",
+        "function_start": "0x802D073C",
+        "source": "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp"
+      },
+      {
+        "call": "0x802EC2E4",
+        "target": "0x80226578",
+        "function": "play_persistent_sound_at__14TBoss7DeRolLeCFlP3Vec",
+        "function_start": "0x802EC2C4",
+        "source": "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp"
+      },
+      {
+        "call": "0x802FC338",
+        "target": "0x80226578",
+        "function": "spawn_trap__12TBoss8DragonFii",
+        "function_start": "0x802FC314",
+        "source": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+      },
+      {
+        "call": "0x80305998",
+        "target": "0x80226578",
+        "function": "fn_8030591C__16TObjEneDellBiterFv",
+        "function_start": "0x8030591C",
+        "source": "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp"
+      },
+      {
+        "call": "0x803087F8",
+        "target": "0x80226578",
+        "function": "play_persistent_sound_at_position__14TBoss7CrawfishFl",
+        "function_start": "0x803087D4",
+        "source": "src/pso/boss/barbaray/TBoss7Crawfish.cpp"
+      },
+      {
+        "call": "0x8031D818",
+        "target": "0x80226578",
+        "function": "spawn_trap_a__12TObjEneReconFv",
+        "function_start": "0x8031D7E8",
+        "source": "src/pso/enemy/recon/TObjEneRecon.cpp"
+      },
+      {
+        "call": "0x8031D860",
+        "target": "0x80226578",
+        "function": "spawn_trap_b__12TObjEneReconFv",
+        "function_start": "0x8031D830",
+        "source": "src/pso/enemy/recon/TObjEneRecon.cpp"
+      },
+      {
+        "call": "0x803238A8",
+        "target": "0x80226578",
+        "function": "update_charge_effects__14TBoss6GravBallFv",
+        "function_start": "0x80323878",
+        "source": "src/pso/boss/olgaflow/TBoss6GravBall.cpp"
+      },
+      {
+        "call": "0x80323B08",
+        "target": "0x80226578",
+        "function": "update_state__14TBoss6GravBallFv",
+        "function_start": "0x80323A78",
+        "source": "src/pso/boss/olgaflow/TBoss6GravBall.cpp"
+      },
+      {
+        "call": "0x803245F0",
+        "target": "0x80226578",
+        "function": "state_2__10TBoss6MineFv",
+        "function_start": "0x80324568",
+        "source": "src/pso/boss/olgaflow/TBoss6Mine.cpp"
+      },
+      {
+        "call": "0x80330508",
+        "target": "0x80226578",
+        "function": "spawn_trap_by_stat__9TBoss6MagFv",
+        "function_start": "0x803304BC",
+        "source": "src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp"
+      },
+      {
+        "call": "0x8033CF14",
+        "target": "0x80226578",
+        "function": "run_task__23TBoss6Demo11_TYPE1_DEADFv",
+        "function_start": "0x8033CDF8",
+        "source": "src/pso/boss/olgaflow/TBoss6Demo11_TYPE1_DEAD.cpp"
+      },
+      {
+        "call": "0x8033D7F4",
+        "target": "0x80226578",
+        "function": "run_task__25TBoss6Demo20_TYPE2_APPEARFv",
+        "function_start": "0x8033D6DC",
+        "source": "src/pso/boss/olgaflow/TBoss6Demo20_TYPE2_APPEAR.cpp"
+      },
+      {
+        "call": "0x8033E1D4",
+        "target": "0x80226578",
+        "function": "run_task__23TBoss6Demo21_TYPE2_DEADFv",
+        "function_start": "0x8033E0F0",
+        "source": "src/pso/boss/olgaflow/TBoss6Demo21_TYPE2_DEAD.cpp"
+      },
+      {
+        "call": "0x8033E204",
+        "target": "0x80226578",
+        "function": "run_task__23TBoss6Demo21_TYPE2_DEADFv",
+        "function_start": "0x8033E0F0",
+        "source": "src/pso/boss/olgaflow/TBoss6Demo21_TYPE2_DEAD.cpp"
+      },
+      {
+        "call": "0x803401F0",
+        "target": "0x80226578",
+        "function": "run_task__23TBoss6Demo15_TYPE2_WAITFv",
+        "function_start": "0x80340180",
+        "source": "src/pso/ui/frontend/TAdPlyStatusGC_8033FD48.cpp"
+      },
+      {
+        "call": "0x8034FC64",
+        "target": "0x80226578",
+        "function": "run_task__13TUnk_804F0BF0Fv",
+        "function_start": "0x8034FBA4",
+        "source": "src/pso/effect/item/TItemEffPG.cpp"
+      },
+      {
+        "call": "0x803557C8",
+        "target": "0x80226578",
+        "function": "run_task__20TBoss5GryphonTornadoFv",
+        "function_start": "0x80355570",
+        "source": "src/pso/boss/galgryphon/TBoss5GryphonTornado.cpp"
+      },
+      {
+        "call": "0x8035EE58",
+        "target": "0x80226578",
+        "function": "update_guard_state__19TObjEneEpsilonGuardFv",
+        "function_start": "0x8035EDAC",
+        "source": "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp"
+      },
+      {
+        "call": "0x8035EE8C",
+        "target": "0x80226578",
+        "function": "update_guard_state__19TObjEneEpsilonGuardFv",
+        "function_start": "0x8035EDAC",
+        "source": "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp"
+      },
+      {
+        "call": "0x80360F88",
+        "target": "0x80226578",
+        "function": "handle_warp_state__18TObjEneEpsilonBodyFl",
+        "function_start": "0x80360D9C",
+        "source": "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp"
+      },
+      {
+        "call": "0x8036101C",
+        "target": "0x80226578",
+        "function": "handle_warp_state__18TObjEneEpsilonBodyFl",
+        "function_start": "0x80360D9C",
+        "source": "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp"
+      },
+      {
+        "call": "0x80361088",
+        "target": "0x80226578",
+        "function": "handle_warp_state__18TObjEneEpsilonBodyFl",
+        "function_start": "0x80360D9C",
+        "source": "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp"
+      },
+      {
+        "call": "0x80361AB4",
+        "target": "0x80226578",
+        "function": "TObjEneEpsilonGuard__sub_803616E4",
+        "function_start": "0x803616E4",
+        "source": "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp"
+      },
+      {
+        "call": "0x80362214",
+        "target": "0x80226578",
+        "function": "run_task__18TObjEneEpsilonBodyFv",
+        "function_start": "0x80362164",
+        "source": "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp"
+      },
+      {
+        "call": "0x8036549C",
+        "target": "0x80226578",
+        "function": "tick_persistent_sound__15TObjIllGillKageFv",
+        "function_start": "0x80365470",
+        "source": "src/pso/enemy/illgill/TObjIllGillKage.cpp"
+      },
+      {
+        "call": "0x80365F88",
+        "target": "0x80226578",
+        "function": "update_charge_attack__14TObjEneIllGillFv",
+        "function_start": "0x80365688",
+        "source": "src/pso/enemy/illgill/TObjEneIllGill.cpp"
+      },
+      {
+        "call": "0x803662FC",
+        "target": "0x80226578",
+        "function": "update_shadow_attack__14TObjEneIllGillFv",
+        "function_start": "0x803660A4",
+        "source": "src/pso/enemy/illgill/TObjEneIllGill.cpp"
+      }
+    ]
+  },
+  "historical_comparison": {
+    "prior_open_rows": 492,
+    "open_rows": 491,
+    "reviewed_rows": {
+      "42": "The original floor entry points use one declaration each, retain all six request IDs, and return the sound handle or the current area as retail does.",
+      "50": "The common C-linkage declaration is live in pso/system/PersistentSound.h. Its 82 source callers link at the 195 original call instructions.",
+      "51": "The existing trap include forwards to the shared persistent sound header.",
+      "66": "The current header exposes the opaque owner identity, read-only position and signed one-shot result through the two existing entry points.",
+      "1025": "The persistent and one-shot sounds now take the actual actor and position through the shared interfaces. The death-sequence camera view still needs a source comparison.",
+      "2728": "The 40-byte request record and 160-byte voice carry the opaque identity and read-only position through admission, normalization, allocation and reuse. The other menu and lobby routines in the historical unit remain open."
+    },
+    "closed_row": {
+      "row": 1052,
+      "description": "The full authored P01 delta is covered by native boss and motion calls at the original addresses, including yaw and body center, the action table, reset and lobby dispatch, the typed breakup lookup, the original sound IDs with world position, particle placement, collision update, and both targeted technique calls. The current tree uses the accepted names.",
+      "fork_blob": "8b3f50c4772ac1a673f343b855dd5a5e770be1f1",
+      "current_blob": "622579b44d4c0e098c25718685f99ba9f105d575",
+      "same_address_names": {
+        "0x8001E1D8": [
+          "get_battle_movement_params",
+          "dispatch_shared_handler_a__6TLobbyFl"
+        ],
+        "0x8001E210": [
+          "get_battle_resistance_params",
+          "register_object__6TLobbyFl"
+        ],
+        "0x8001E248": [
+          "get_battle_attack_params",
+          "dispatch_shared_handler_b__6TLobbyFl"
+        ],
+        "0x8001E280": [
+          "get_battle_base_stats",
+          "register_boss__6TLobbyFl"
+        ],
+        "0x8002AE84": [
+          "set_action_table__10TObjMotionFP16TObjMotionAction",
+          "set_field_d8__10TObjMotionFP16TObjMotionAction"
+        ],
+        "0x8003F0E8": [
+          "register_by_id__9TObjEnemyFv",
+          "reset_photon_effect__9TObjEnemyFv"
+        ],
+        "0x80041B08": [
+          "copy_body_to_center__9TObjCharaFv",
+          "copy_position__9TObjCharaFv"
+        ]
+      },
+      "authored_diff_sha256": "c66ba18e6f856788995e4ffd1d891fbffff327ae91807d3f6d7fa4df0af8967a"
+    }
+  },
+  "validation": {
+    "stock": {
+      "baseline": "d77e4b8e073824da25f6760dd9de38005e2dd8a3",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x80226534",
+          "before": "check_trigger_flag__15TOTrapAncient01Fll",
+          "after": "check_trigger_flag__15TOTrapAncient01FPC3Vecl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80227D5C",
+          "before": "normalize_sound_request__FUlllll",
+          "after": "normalize_sound_request__FUlPCvPC3Vecll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8023F944",
+          "before": "alloc_looping_sound_slot__FUllPC3Vecll",
+          "after": "alloc_looping_sound_slot__FUlPCvPC3Vecll"
+        }
+      ],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "e6b2ae5e0f110bbb71a331128af1648a820ea67b9ee5d77d2a129759428b4cc1",
+      "report_sha256": "7947ad4a04fc2cd2bca6cc94530f152dfb81c2635d8502e11edf032412f51978"
+    },
+    "workspace": {
+      "baseline": "7133dc1ac51518f9631b24cbf2c9ba949c75a631",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "7947ad4a04fc2cd2bca6cc94530f152dfb81c2635d8502e11edf032412f51978"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "b12af9adddb62cd55a095fe92c54d30275dedb1496795ef8db6c6a875d297064"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "24755ec406f2cfd66e5d1ea90a2b9969ec9ef92a7fccb673cac9005778c2224e"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    },
+    "voice": {
+      "result": "voice reuse, distinct identity and full-pool rejection passed",
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "log_sha256": "1da384f82199562ac566a3fca533fcc77ded5cb5505282c9319a7bec9bf251ed"
+    },
+    "persistent": {
+      "result": "persistent slot checks and four dispatch routines on all 36 floors passed",
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "log_sha256": "54d65a521dc0fbd6d96df746e3a22f8a6874c8bb6df31f0b20153b6277cdb924"
+    }
+  },
+  "fork_workspace": {
+    "overlay_paths": 130,
+    "overlay_patch_sha256": "4dc3fc5c7822fd648b7c1df4425d0d6d38fa03d13b73d1480fe9599446e9fedd",
+    "updated_overlay_paths": [
+      "config/GPOE8P/psov3/config.yml",
+      "tools/probes/check_persistent_sound.py"
+    ],
+    "force_active_names": 27033,
+    "force_active_symbol_changes": [
+      "-  - check_trigger_flag__15TOTrapAncient01Fll",
+      "+  - check_trigger_flag__15TOTrapAncient01FPC3Vecl"
+    ],
+    "archive_test_head": "886525c411aadaf3d177f7997a74242af959dacc",
+    "tested_materialized_tree": "6d469d7b5c530e477a43efb6b5b3d9f69886c0b9"
+  }
+}

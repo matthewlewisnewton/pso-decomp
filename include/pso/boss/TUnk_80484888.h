@@ -2,7 +2,7 @@
 #define PSO_BOSS_TUNK_80484888_H
 
 #include "types.h"
-#include "pso/TObject.h"
+#include "pso/system/task/TObject.h"
 #include <dolphin/mtx.h>
 
 // Sprays the particle effect effect_id around pos for lifetime frames: rate
@@ -22,6 +22,6 @@ public:
     virtual void run_task();
 };
 
-typedef char TUnk_80484888_size[sizeof(TUnk_80484888) == 0x48 ? 1 : -1];
+LAYOUT_ASSERT(TUnk_80484888_size, sizeof(TUnk_80484888) == 0x48);
 
 #endif

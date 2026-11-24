@@ -1,16 +1,14 @@
-#include "pso/math/MatrixCopy.h"
+#include "pso/system/memory.h"
 #include "types.h"
-#include "pso/system/GinjaModelQueue.h"
+#include "pso/render/GinjaModelQueue.h"
 #include "pso/unk/text_803D96A8.h"
-#include "pso/math/MatrixTransforms.h"
-#include "pso/misc/TCameraCtrl.h"
+#include "pso/camera/TCameraCtrl.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/misc/TLobby.h"
-#ifndef __MWERKS__
-// Host builds use the shared port fallbacks, following the SMS PC and TP
-// port compatibility pattern.
-#include "pso/port/VectorMathFallbacks.h"
-#endif
+#include "pso/unk/TLobby.h"
+#include "pso/math/AngleLookup.h"
+#include "pso/unk/TLobby_803DE778.h"
+#include "pso/render/RenderSbssGlobals.h"
+#include <dolphin/mtx.h>
 
 struct Q_803D98E4 { f32 x, y, z, w; };
 
@@ -28,136 +26,113 @@ struct Ent_803D9E38 { u8 *p; s32 a; s32 b; };
 
 struct Tbl_803D9E38 { u8 pad[8]; Ent_803D9E38 arr[1]; };
 
-extern u32 matrix_stack_base;
-extern u32 current_matrix;
-// .sbss pointer. rotate_matrix_by_node_angles (upstream asm) addresses it by name.
-extern "C" u32 sin_cos_table;
 extern "C" {
-void PSMTXConcat(const f32 (*)[4], const f32 (*)[4], f32 (*)[4]);
-extern u32 matrix_stack_limit;
-void PSMTXQuat(void *, void *);
 s32 fn_803DA12C(u8 *, s32, s32, s32);
 extern G_803D9DA8 lbl_8058D470;
-s32 TObjPlayer__sub_803D9DA8(A_803D9DA8 *arg0, B_803D9DA8 *arg1);
-void PSMTXRotRad(Matrix34*, char, f32);
+s32 TObjPlayer__sub_803D9DA8(A_803D9DA8 *texture, B_803D9DA8 *desc);
 void rotate_matrix_x(Matrix34* matrix, s32 angle);
-s32 find_free_slot__10TObjPlayerFPvPv(void *, int);
 s32 TObjPlayer__sub_803DAD24(int, int);
 extern s32 record_array_ptr;
 
-__declspec(section ".sdata2") extern const f64 lbl_805E0F48;
 void rotate_matrix_x(Matrix34* matrix, s32 angle) {
     Matrix34 rotation;
     Matrix34* selected;
     if (angle != 0) {
         if (matrix == NULL) selected = (Matrix34*)current_matrix;
         else selected = matrix;
-        PSMTXRotRad(&rotation, 'x', (f32)(lbl_805E0F48 * (f64)angle));
-        PSMTXConcat((const f32 (*)[4])selected, (const f32 (*)[4])&rotation, (MtxP)selected);
+        PSMTXRotRad(rotation.elements, 'x', (f32)((9.587378008291125e-05) * (f64)angle));
+        PSMTXConcat(selected->elements, rotation.elements, selected->elements);
     }
 }
-
 }
 
 extern "C" void concat_matrix(MtxP dest, const f32 (*source)[4]) {
     MtxP elements = dest;
     const f32 (*selected_source)[4] = source;
     if (elements == NULL) {
-        elements = (MtxP)current_matrix;
+        elements = *current_matrix;
     }
     if (selected_source == NULL) {
-        selected_source = (MtxP)current_matrix;
+        selected_source = *current_matrix;
     }
     PSMTXConcat(elements, selected_source, elements);
 }
 
-extern "C" {
-
-void TCameraCtrl::concat_matrix(u32 arg0, u32 arg1) {
-    u32 var_r4;
-    u32 elements;
-    var_r4 = arg1;
-    if (arg0 == 0U) {
-        elements = current_matrix;
+void premultiply_matrix(MtxP dest, const f32 (*source)[4]) {
+    const f32 (*selected_source)[4] = source;
+    MtxP elements;
+    if (dest == NULL) {
+        elements = *current_matrix;
     } else {
-        elements = arg0;
+        elements = dest;
     }
-    if (var_r4 == 0U) {
-        var_r4 = current_matrix;
+    if (selected_source == NULL) {
+        selected_source = *current_matrix;
     }
-    PSMTXConcat((const f32 (*)[4])var_r4, (const f32 (*)[4])elements, (MtxP)elements);
+    PSMTXConcat(selected_source, elements, elements);
 }
 
-// 0x803D97B4. The original body is assembly: one unconverted double frsqrte
-// estimate feeds the component fmuls and the fres return with no frsp, which
-// GC/2.6's typed builtins cannot express. Recovered from the disc by
-// tools/orig_asm.py.
-#ifdef __MWERKS__
+extern "C" {
 asm f32 normalize_vector(Vec *v) {
 #include "orig_asm/pso/unk/text_803D96A8/normalize_vector.inc"
 }
-#else
-// Scalar fallback: the same accumulator split, component scaling and returned
-// length. fres(frsqrte(sum)) estimates the length, so the port returns the
-// exact length and scales by its reciprocal.
-f32 normalize_vector(Vec *v) {
-    return pso::port::normalize_vector(v);
-}
-#endif
 
 s32 push_matrix_from(void *src) {
-    u32 next = current_matrix + 0x30;
+    GC_Mtx *next = current_matrix + 1;
     if (next > matrix_stack_limit) {
         return 0;
     }
-    move_data((void *)next, (src == 0) ? (void *)current_matrix : src, 0x30);
+    move_data(next, (src == NULL) ? (void *)current_matrix : src, 0x30);
     current_matrix = next;
     return 1;
 }
+}
 
 s32 pop_matrices(s32 arg0) {
-    u32 temp_r3;
-    temp_r3 = current_matrix - (arg0 * 0x30);
-    if (temp_r3 < (u32) matrix_stack_base) {
+    GC_Mtx *temp_r3;
+    temp_r3 = current_matrix - arg0;
+    if (temp_r3 < matrix_stack_base) {
         return 0;
     }
     current_matrix = temp_r3;
     return 1;
 }
+extern "C" {
 
-// Upstream zeroz41/pso-decomp #180 (squash 9575dbb7c), unchanged. Scalar rewrite pending.
 asm void transform_point_by_current_matrix(const f32 *src, Vec *dst) {
 #include "orig_asm/pso/unk/text_803D96A8/transform_point_by_current_matrix.inc"
 }
 
 void TObjPlayer::concat_quaternion_rotation() {
     f32 *arg0 = (f32 *)this;
-    u8 sp18[0x30];
+    Mtx34 mtx;
     Q_803D98E4 q;
     q.w = arg0[0];
     q.x = arg0[1];
     q.y = arg0[2];
     q.z = arg0[3];
-    PSMTXQuat(sp18, &q);
-    PSMTXConcat((const f32 (*)[4])current_matrix, (const f32 (*)[4])sp18, (MtxP)current_matrix);
+    PSMTXQuat(mtx, (const PSQuaternion *)&q);
+    PSMTXConcat(*current_matrix, mtx, *current_matrix);
+}
 }
 
-void TObjPlayer::apply_quat_rotation(f32 farg0) {
-    f32 *arg0 = (f32 *)this;
-    u8 sp18[0x30];
+void apply_quat_rotation(f32 farg0, f32 *xyz) {
+    Mtx34 mtx;
     Q_803D993C q;
     q.w = farg0;
-    q.x = arg0[0];
-    q.y = arg0[1];
-    q.z = arg0[2];
-    PSMTXQuat(sp18, &q);
-    PSMTXConcat((const f32 (*)[4])current_matrix, (const f32 (*)[4])sp18, (MtxP)current_matrix);
+    q.x = xyz[0];
+    q.y = xyz[1];
+    q.z = xyz[2];
+    PSMTXQuat(mtx, (const PSQuaternion *)&q);
+    PSMTXConcat(*current_matrix, mtx, *current_matrix);
 }
 
-// 0.0f in .sdata, read by the assembly below (not yet split into this unit).
-extern f32 lbl_805D46B8;
+extern "C" {
 
-// Upstream zeroz41/pso-decomp #180 (squash 9575dbb7c), unchanged. Scalar rewrite pending.
+// {0.0f, 0.0f}: rotate_vector_by_current_matrix pairs the first with z so the translation column drops out
+// (name inferred). The original keeps these zeros in .sdata, which only an aggregate gets: a scalar zero goes to .sbss.
+static f32 rotation_zero[2] = {0.0f, 0.0f};
+
 asm void rotate_vector_by_current_matrix(const Vec *src, Vec *dst) {
 #include "orig_asm/pso/unk/text_803D96A8/rotate_vector_by_current_matrix.inc"
 }
@@ -171,16 +146,15 @@ asm s32 push_matrix(void) {
 }
 
 s32 pop_matrix(void) {
-    u32 temp_r3;
-    temp_r3 = current_matrix - 0x30;
-    if (temp_r3 < (u32) matrix_stack_base) {
+    GC_Mtx *temp_r3;
+    temp_r3 = current_matrix - 1;
+    if (temp_r3 < matrix_stack_base) {
         return 0;
     }
     current_matrix = temp_r3;
     return 1;
 }
 
-// Upstream zeroz41/pso-decomp #180 (squash 9575dbb7c), unchanged. Scalar rewrite pending.
 asm void scale_current_matrix(const f32 *v) {
 #include "orig_asm/pso/unk/text_803D96A8/scale_current_matrix.inc"
 }
@@ -227,8 +201,8 @@ u32 *find_gvrt_texture_chunk(TLobby *lobby, u32 *arg1, u32 *arg2) {
     return p;
 }
 
-s32 TObjPlayer__sub_803D9DA8(A_803D9DA8 *arg0, B_803D9DA8 *arg1) {
-    if (fn_803DA12C(arg0->p + 4, arg1->b, arg1->c, arg1->a) != 0) {
+s32 TObjPlayer__sub_803D9DA8(A_803D9DA8 *texture, B_803D9DA8 *desc) {
+    if (fn_803DA12C(texture->p + 4, desc->b, desc->c, desc->a) != 0) {
         lbl_8058D470.f8 = 6;
         return -1;
     }
@@ -242,28 +216,28 @@ s32 TObjPlayer::is_gvm_load_ok() {
     return -1;
 }
 
-s32 TObjPlayer__sub_803D9E38(s32 *arg0, u32 arg1, s32 *arg2, u32 *arg3) {
-    s32 sp8;
+s32 TObjPlayer__sub_803D9E38(s32 *arg0, u32 idx, s32 *arg2, u32 *arg3) {
+    saddr sp8;
     u32 j;
     s32 *temp_r4;
     s32 *temp_r4_2;
     s32 temp_r0;
     s32 temp_r3;
     s32 record_index;
-    s32 temp_r6;
+    saddr temp_r6;
     u8 *temp_r29;
     u8 *temp_r31;
     temp_r6 = *(s32 *)((s8 *)arg0 + 0);
-    temp_r31 = (u8 *)(temp_r6 + (arg1 * 0xC));
+    temp_r31 = (u8 *)(temp_r6 + (idx * 0xC));
     temp_r3 = *(s32 *)((s8 *)temp_r31 + 4);
-    if (((u32) (temp_r3 & 0x10000) != 0) && (arg1 != 0)) {
+    if (((u32) (temp_r3 & 0x10000) != 0) && (idx != 0)) {
         *(u32 *)((s8 *)arg3 + 0) = (u32) (*(s32 *)((s8 *)temp_r31 + 8) & 0xFC000000) >> 0x1AU;
-        j = arg1 - 1;
+        j = idx - 1;
         temp_r29 = ((Tbl_803D9E38 *)temp_r6)->arr[j].p;
         *(s32 *)((s8 *)arg2 + 0) = *(s32 *)((s8 *)(*(s32 **)((s8 *)temp_r29 + 0xC)) + 0);
         record_index = TObjPlayer::find_record_index((int) (*(s32 *)((s8 *)arg2 + 0)), (int) (*(u32 *)((s8 *)arg3 + 0)));
         if (record_index < 0) {
-            if (find_free_slot__10TObjPlayerFPvPv(&sp8, 0) < 0) {
+            if (TObjPlayer::find_free_slot(&sp8, 0) < 0) {
                 return -1;
             }
             *(s32 *)((s8 *)temp_r31 + 8) = sp8;
@@ -273,7 +247,7 @@ s32 TObjPlayer__sub_803D9E38(s32 *arg0, u32 arg1, s32 *arg2, u32 *arg3) {
             temp_r4 = (s32 *)(*(s32 **)((s8 *)sp8 + 0xC));
             *(s32 *)((s8 *)temp_r4 + 0x24) = (s32) (*(s32 *)((s8 *)temp_r4 + 0x24) + 1);
             *(s32 *)((s8 *)sp8 + 0x14) = (s32) *(s32 *)((s8 *)temp_r29 + 0x14);
-            TObjPlayer__sub_803DAD24((int)sp8, (int)temp_r4);
+            TObjPlayer__sub_803DAD24((int)sp8, (saddr)temp_r4);
             goto block_7;
         }
         temp_r0 = record_array_ptr + (record_index * 0x18);

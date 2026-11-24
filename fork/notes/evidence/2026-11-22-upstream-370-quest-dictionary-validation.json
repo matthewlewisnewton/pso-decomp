@@ -1,0 +1,287 @@
+{
+  "upstream": "d8c0a969d273c9e2cdb1c6c34a1e6aa2be4cc571",
+  "previous_source": "16d656e439fd1f5cbdafa7fbce48163a7893a874",
+  "source": "a4ff1e6d23e057871481721ae43aa8f8a013b021",
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "original_data_bytes": 1147,
+  "data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "coverage": {
+    "check.json": {
+      "losses": {
+        "regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "labels_changed": [
+        {
+          "module": "psov3",
+          "address": "0x803E7E3C",
+          "before": "has_name_mismatch__22TQuestVmDownLoadServerFPUc",
+          "after": "has_name_mismatch__22TQuestVmDownLoadServerFlPUc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803E7EE4",
+          "before": "find_name_index__22TQuestVmDownLoadServerFv",
+          "after": "find_name_index__22TQuestVmDownLoadServerFPCc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803E8004",
+          "before": "is_char_allowed__22TQuestVmDownLoadServerFs",
+          "after": "is_char_allowed__22TQuestVmDownLoadServerFPCUcs"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803E875C",
+          "before": "set_file_info_name__22TQuestVmDownLoadServerFv",
+          "after": "set_file_info_name__22TQuestVmDownLoadServerFPCc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803E8B1C",
+          "before": "lookup_name_entry__22TQuestVmDownLoadServerFsP12Out_803E8C2C",
+          "after": "lookup_name_entry__22TQuestVmDownLoadServerFPcsP12Out_803E8C2C"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803E90A8",
+          "before": "append_message_text__22TQuestVmDownLoadServerFlP12Req_803EEF2CUc",
+          "after": "append_message_text__22TQuestVmDownLoadServerFPUclP12Req_803EEF2CUc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803E9190",
+          "before": "build_message_packet__22TQuestVmDownLoadServerFPviPvUc",
+          "after": "build_message_packet__22TQuestVmDownLoadServerFPUclP12Req_803EEF2CUc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803E92C0",
+          "before": "calc_text_length__22TQuestVmDownLoadServerFv",
+          "after": "calc_text_length__12Req_803EEF2CCFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803E9348",
+          "before": "calc_message_length__22TQuestVmDownLoadServerFv",
+          "after": "calc_message_length__12Req_803EEF2CCFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803E9DE0",
+          "before": "find_longest_match_entry__22TQuestVmDownLoadServerFPviPv",
+          "after": "find_longest_match_entry__22TQuestVmDownLoadServerFPUclPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803EBD38",
+          "before": "build_text_node_chain__22TQuestVmDownLoadServerFPvPC21QuestDownloadItemNodelPP21QuestDownloadTextNodePP21QuestDownloadTextNode",
+          "after": "build_text_node_chain__22TQuestVmDownLoadServerFP23QuestDownloadTextRecordPC21QuestDownloadItemNodelPP21QuestDownloadTextNodePP21QuestDownloadTextNode"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803EEB10",
+          "before": "format_number_text__22TQuestVmDownLoadServerFiiPvi",
+          "after": "format_number_text__22TQuestVmDownLoadServerFPCUclP23QuestDownloadTextRecordl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803EFBDC",
+          "before": "find_insert_position__22TQuestVmDownLoadServerFlll",
+          "after": "find_insert_position__22TQuestVmDownLoadServerFPUclll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803F0138",
+          "before": "find_symbol_entry__22TQuestVmDownLoadServerFsP13Info_803F0138",
+          "after": "find_symbol_entry__22TQuestVmDownLoadServerFPCcsP13Info_803F0138"
+        }
+      ]
+    },
+    "layer-check.json": {
+      "losses": {
+        "regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "labels_changed": []
+    }
+  },
+  "source_quality": {
+    "total": {
+      "base": 160151,
+      "head": 160064,
+      "added": 6,
+      "removed": 93
+    },
+    "flagged_symbol_labels": [
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x803E8B1C",
+        "type": "function",
+        "old": "lookup_name_entry__22TQuestVmDownLoadServerFsP12Out_803E8C2C",
+        "new": "lookup_name_entry__22TQuestVmDownLoadServerFPcsP12Out_803E8C2C",
+        "flags": [
+          "named after its address"
+        ],
+        "explanation": "The typed lookup takes a real name buffer and retains the existing Out_803E8C2C result."
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x803E92C0",
+        "type": "function",
+        "old": "calc_text_length__22TQuestVmDownLoadServerFv",
+        "new": "calc_text_length__12Req_803EEF2CCFv",
+        "flags": [
+          "member of Req_803EEF2C, a class named after an address"
+        ],
+        "explanation": "The method belongs to the existing Req_803EEF2C because it reads that request\u2019s flags and text pointer."
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x803E9348",
+        "type": "function",
+        "old": "calc_message_length__22TQuestVmDownLoadServerFv",
+        "new": "calc_message_length__12Req_803EEF2CCFv",
+        "flags": [
+          "member of Req_803EEF2C, a class named after an address"
+        ],
+        "explanation": "The method belongs to the same existing request and also reads its signed name length."
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x803F0138",
+        "type": "function",
+        "old": "find_symbol_entry__22TQuestVmDownLoadServerFsP13Info_803F0138",
+        "new": "find_symbol_entry__22TQuestVmDownLoadServerFPCcsP13Info_803F0138",
+        "flags": [
+          "named after its address"
+        ],
+        "explanation": "The typed symbol lookup takes a real name buffer and retains the existing Info_803F0138 output."
+      }
+    ],
+    "newly_stale_force_active": [],
+    "added_findings": {
+      "extern_c": 2,
+      "address_type": 3,
+      "local_class": 1
+    },
+    "separate_ownership_diagnostics": {},
+    "reason_for_added_findings": "Three added references keep the established request type name. The scratch storage struct is private to its only translation unit. Two compile-time layout checks are counted by the extern C heuristic because they appear in the existing linkage block."
+  },
+  "historical_quest_coverage": {
+    "exact_functions_by_split": {
+      "TQuestVmDownLoadServer_803E5668.cpp": 32,
+      "TQuestVmDownLoadServer_803E6970.cpp": 59,
+      "TQuestVmDownLoadServer_803E9A24.cpp": 59,
+      "TQuestVmDownLoadServer_803ED0CC.cpp": 55
+    },
+    "unverified": 0,
+    "checked_linked_objects": {
+      "0x8047F0F8": {
+        "label": "quest_download_lz_match_strings",
+        "size": 243
+      },
+      "0x8047F1EC": {
+        "label": "quest_download_lz_match_entry_table",
+        "size": 1532
+      },
+      "0x8047F7E8": {
+        "label": "quest_download_lz_match_index_table",
+        "size": 192
+      },
+      "0x8047F8A8": {
+        "label": "quest_download_lz_default_tokens",
+        "size": 16
+      },
+      "0x8058DD88": {
+        "label": "quest_convert_string",
+        "size": 128
+      },
+      "0x80596264": {
+        "label": "quest_download_text_buffer",
+        "size": 1028
+      },
+      "0x805A0698": {
+        "label": "lbl_805A0698",
+        "size": 40
+      },
+      "0x805A06C0": {
+        "label": "quest_download_aram_dma_buffer",
+        "size": 8288
+      },
+      "0x805D7914": {
+        "label": "quest_download_aram_file",
+        "size": 8
+      }
+    }
+  },
+  "runtime_probes": {
+    "images": [
+      "retail",
+      "source",
+      "materialized fork layer"
+    ],
+    "results": {
+      "text": "name lookup boundaries, mixed-width request counts, four number formats and closed-handle gating passed",
+      "cache": "128 slots, ten linked pages, 80 buckets, 512 free-list nodes, file reads and page eviction passed",
+      "aram": "signed handles, ARAM callback ownership, rounded reads, EOF clamping and timeout cleanup passed"
+    }
+  },
+  "remaining_compiler_sensitive_source": [
+    "Two callers still reach the text scratch through the display prefix plus 12.",
+    "The formatter computes byte offsets within the real three-entry pointer table to preserve CodeWarrior scheduling.",
+    "Local compiler scopes from the current quest bodies are tracked separately from the recovered source contracts."
+  ],
+  "changed_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/quest/QuestDownloadServer.h",
+    "include/pso/quest/QuestDownloadText.h",
+    "include/pso/quest/TQuestVmDownLoadServer.h",
+    "include/pso/quest/TQuestVmDownLoadServer_803E6970.h",
+    "src/pso/quest/TQuestVmDownLoadServer_803E6970.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer_803E8918.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer_803E9A24.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer_803EB0D8.cpp"
+  ],
+  "closed_source_comparisons": [
+    "src/pso/misc/TQuestVmDownLoadServer_803E6970.cpp",
+    "src/pso/misc/TQuestVmDownLoadServer_803E9A24.cpp",
+    "src/pso/misc/TQuestVmDownLoadServer_803ED0CC.cpp"
+  ],
+  "remaining_source_comparisons": 202,
+  "workspace": {
+    "materialized_tree": "2e10fedbddb4ea574b4cc5eedeb8a2f0e62d8ae6",
+    "overlay_paths": 130,
+    "updated_retention_labels": {
+      "build_text_node_chain__22TQuestVmDownLoadServerFPvPC21QuestDownloadItemNodelPP21QuestDownloadTextNodePP21QuestDownloadTextNode": "build_text_node_chain__22TQuestVmDownLoadServerFP23QuestDownloadTextRecordPC21QuestDownloadItemNodelPP21QuestDownloadTextNodePP21QuestDownloadTextNode",
+      "find_insert_position__22TQuestVmDownLoadServerFlll": "find_insert_position__22TQuestVmDownLoadServerFPUclll",
+      "find_longest_match_entry__22TQuestVmDownLoadServerFPviPv": "find_longest_match_entry__22TQuestVmDownLoadServerFPUclPl",
+      "find_symbol_entry__22TQuestVmDownLoadServerFsP13Info_803F0138": "find_symbol_entry__22TQuestVmDownLoadServerFPCcsP13Info_803F0138",
+      "format_number_text__22TQuestVmDownLoadServerFiiPvi": "format_number_text__22TQuestVmDownLoadServerFPCUclP23QuestDownloadTextRecordl"
+    },
+    "checks": {
+      "tool": 294,
+      "fork": 11,
+      "host": 5
+    },
+    "archive_sha256": "403d4d4effff2b7c3b90596ce498331ba6adbd6652c9caffc7dbcc9ebcb83f7d"
+  }
+}

@@ -1,0 +1,398 @@
+{
+  "upstream": "1698caaa1941302ed6dfc60d886d041bae272e0e",
+  "source": "9a9cade95091c80f999a5dabcdc027ca88b31026",
+  "source_base": "12c4541958ba809ce5f3a6268ce86108b8857a30",
+  "paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/object/TDeadSpot.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/player/TObjPlayer_800D8FDC.h",
+    "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+    "src/pso/enemy/beast/TObjEneBeast.cpp",
+    "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+    "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp",
+    "src/pso/enemy/darkgunner/DarkGunner.cpp",
+    "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+    "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+    "src/pso/enemy/dimedian/TObjEneDimedian.cpp",
+    "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+    "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+    "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+    "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+    "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+    "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+    "src/pso/enemy/moja/TObjEneMoja.cpp",
+    "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+    "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+    "src/pso/enemy/saver/SaverLifecycle.cpp",
+    "src/pso/enemy/shark/TObjEneShark.cpp",
+    "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+    "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp",
+    "src/pso/object/TDeadSpot.cpp",
+    "src/pso/object/ambient/TObjGrass.cpp",
+    "src/pso/unk/text_800C2A88.cpp"
+  ],
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "coverage_losses": {
+    "regressions": 0,
+    "data_coverage_lost": 0,
+    "padding_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0
+  },
+  "original_data_bytes": 1147,
+  "original_data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "linker_labels": [
+    {
+      "module": "psov3",
+      "address": "0x800D80E4",
+      "before": "__ct__13TUnk_80494A10FP7TObjectP3VecPvllf",
+      "after": "__ct__13TUnk_80494A10FP7TObjectPC3VecP16GinjaTextureListllf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800D8314",
+      "before": "__ct__9TDeadSpotFP7TObjectP3VecPvllf",
+      "after": "__ct__9TDeadSpotFP7TObjectPC3VecP16GinjaTextureListllf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800D9238",
+      "before": "apply_effect_variant_a__10TObjPlayerFll",
+      "after": "apply_effect_variant_a__10TObjPlayerFPC3Vecl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800D9264",
+      "before": "apply_effect_variant_b__10TObjPlayerFll",
+      "after": "apply_effect_variant_b__10TObjPlayerFPC3Vecl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800D92E8",
+      "before": "spawn_dead_spot_default__10TObjPlayerFll",
+      "after": "spawn_dead_spot_default__10TObjPlayerFPC3Vecl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800D9314",
+      "before": "spawn_dead_spot_here__10TObjPlayerFll",
+      "after": "spawn_dead_spot_here__10TObjPlayerFPC3Vecl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800D9340",
+      "before": "spawn_landing_dead_spot__Fll",
+      "after": "spawn_landing_dead_spot__FPC3Vecl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800D936C",
+      "before": "spawn_dead_spot_type2__10TObjPlayerFll",
+      "after": "spawn_dead_spot_type2__10TObjPlayerFPC3Vecl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800D9460",
+      "before": "spawn_dead_spot__10TObjPlayerFlllf",
+      "after": "spawn_dead_spot__10TObjPlayerFPC3Vecllf"
+    }
+  ],
+  "same_signature_renames": 0,
+  "source_quality": {
+    "base": 161729,
+    "head": 161711,
+    "added": 2,
+    "removed": 20
+  },
+  "runtime": {
+    "probe-death-marks": {
+      "log_sha256": "d6951446fd9dd1decd0b9a6a26a969f30203107cdd667a390923455ef99acc67",
+      "observations": [
+        "PsoV3.dol: all 10 corpse-mark variants, both allocation outcomes, typed texture forwarding and BML load/release passed",
+        "psov3.dol: all 10 corpse-mark variants, both allocation outcomes, typed texture forwarding and BML load/release passed"
+      ]
+    },
+    "probe-fade-sampling": {
+      "log_sha256": "7f21be18d127e4076af5cf656971b1307c8fb78ab0bddb931c77ce46cdd140d1",
+      "observations": [
+        "PsoV3.dol: native fade defaults, rate, bounds and sampled motion limits and epsilon passed",
+        "psov3.dol: native fade defaults, rate, bounds and sampled motion limits and epsilon passed"
+      ]
+    },
+    "layer-death-marks": {
+      "log_sha256": "d6951446fd9dd1decd0b9a6a26a969f30203107cdd667a390923455ef99acc67",
+      "observations": [
+        "PsoV3.dol: all 10 corpse-mark variants, both allocation outcomes, typed texture forwarding and BML load/release passed",
+        "psov3.dol: all 10 corpse-mark variants, both allocation outcomes, typed texture forwarding and BML load/release passed"
+      ]
+    },
+    "layer-fade-sampling": {
+      "log_sha256": "7f21be18d127e4076af5cf656971b1307c8fb78ab0bddb931c77ce46cdd140d1",
+      "observations": [
+        "PsoV3.dol: native fade defaults, rate, bounds and sampled motion limits and epsilon passed",
+        "psov3.dol: native fade defaults, rate, bounds and sampled motion limits and epsilon passed"
+      ]
+    }
+  },
+  "historical_audit": {
+    "open_before": 257,
+    "open_after": 256,
+    "resolved": "src/pso/player/TObjPlayer_800D8FDC.cpp",
+    "native_owners": [
+      "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp",
+      "src/pso/render/MaterialColorFade.cpp",
+      "src/pso/unk/SampledMotionPoints.cpp"
+    ],
+    "change_hunks": 14,
+    "exact_routines": {
+      "0x800d8fdc": {
+        "original": "create_dead_spot__10TObjPlayerFllf",
+        "current": "create_dead_spot__FP3Veclf",
+        "size": 116,
+        "owner": "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp"
+      },
+      "0x800d9050": {
+        "original": "spawn_effect_f8__10TObjPlayerFll",
+        "current": "spawn_effect_f8__FP3Vecl",
+        "size": 44,
+        "owner": "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp"
+      },
+      "0x800d907c": {
+        "original": "spawn_dead_spot_e4",
+        "current": "create_dead_spot_e4__FP3Veclf",
+        "size": 40,
+        "owner": "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp"
+      },
+      "0x800d90a4": {
+        "original": "create_dead_spot__10TObjPlayerFiiif",
+        "current": "create_dead_spot__FP3Vecllf",
+        "size": 120,
+        "owner": "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp"
+      },
+      "0x800d911c": {
+        "original": "fn_800D911C",
+        "current": "fn_800D911C",
+        "size": 76,
+        "owner": "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp"
+      },
+      "0x800d9168": {
+        "original": "trigger_dell_biter_events__10TObjPlayerFv",
+        "current": "trigger_dell_biter_events__FPC3Vec",
+        "size": 72,
+        "owner": "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp"
+      },
+      "0x800d91b0": {
+        "original": "spawn_ground_effect",
+        "current": "spawn_ground_effect__FPC3Vecl",
+        "size": 68,
+        "owner": "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp"
+      },
+      "0x800d91f4": {
+        "original": "spawn_effect_at_ground__10TObjPlayerFl",
+        "current": "spawn_effect_at_ground__FPC3Vecl",
+        "size": 68,
+        "owner": "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp"
+      },
+      "0x800d9238": {
+        "original": "apply_effect_variant_a__10TObjPlayerFll",
+        "current": "apply_effect_variant_a__10TObjPlayerFPC3Vecl",
+        "size": 44,
+        "owner": "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp"
+      },
+      "0x800d9264": {
+        "original": "apply_effect_variant_b__10TObjPlayerFll",
+        "current": "apply_effect_variant_b__10TObjPlayerFPC3Vecl",
+        "size": 44,
+        "owner": "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp"
+      },
+      "0x800d9290": {
+        "original": "TObjPlayer__sub_800D9290",
+        "current": "TObjPlayer__sub_800D9290",
+        "size": 44,
+        "owner": "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp"
+      },
+      "0x800d92bc": {
+        "original": "TObjPlayer__sub_800D92BC",
+        "current": "TObjPlayer__sub_800D92BC",
+        "size": 44,
+        "owner": "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp"
+      },
+      "0x800d92e8": {
+        "original": "spawn_dead_spot_default__10TObjPlayerFll",
+        "current": "spawn_dead_spot_default__10TObjPlayerFPC3Vecl",
+        "size": 44,
+        "owner": "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp"
+      },
+      "0x800d9314": {
+        "original": "spawn_dead_spot_here__10TObjPlayerFll",
+        "current": "spawn_dead_spot_here__10TObjPlayerFPC3Vecl",
+        "size": 44,
+        "owner": "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp"
+      },
+      "0x800d9340": {
+        "original": "spawn_landing_dead_spot__Fll",
+        "current": "spawn_landing_dead_spot__FPC3Vecl",
+        "size": 44,
+        "owner": "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp"
+      },
+      "0x800d936c": {
+        "original": "spawn_dead_spot_type2__10TObjPlayerFll",
+        "current": "spawn_dead_spot_type2__10TObjPlayerFPC3Vecl",
+        "size": 44,
+        "owner": "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp"
+      },
+      "0x800d9398": {
+        "original": "spawn_dead_spot_scale15",
+        "current": "spawn_dead_spot_scale15",
+        "size": 44,
+        "owner": "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp"
+      },
+      "0x800d93c4": {
+        "original": "TObjPlayer__sub_800D93C4",
+        "current": "TObjPlayer__sub_800D93C4",
+        "size": 44,
+        "owner": "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp"
+      },
+      "0x800d93f0": {
+        "original": "TObjPlayer__sub_800D93F0",
+        "current": "TObjPlayer__sub_800D93F0",
+        "size": 112,
+        "owner": "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp"
+      },
+      "0x800d9460": {
+        "original": "spawn_dead_spot__10TObjPlayerFlllf",
+        "current": "spawn_dead_spot__10TObjPlayerFPC3Vecllf",
+        "size": 112,
+        "owner": "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp"
+      },
+      "0x800d94d0": {
+        "original": "destroy_static_lobby__10TObjPlayerFv",
+        "current": "destroy_static_lobby__10TObjPlayerFv",
+        "size": 56,
+        "owner": "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp"
+      },
+      "0x800d9508": {
+        "original": "load_corpse_mark_resource__Fv",
+        "current": "load_corpse_mark_resource__Fv",
+        "size": 88,
+        "owner": "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp"
+      },
+      "0x800d9560": {
+        "original": "has_visible_opacity__17MaterialColorFadeFv",
+        "current": "has_visible_opacity__17MaterialColorFadeFv",
+        "size": 24,
+        "owner": "src/pso/render/MaterialColorFade.cpp"
+      },
+      "0x800d9578": {
+        "original": "clear_flag_and_notify__17MaterialColorFadeFv",
+        "current": "clear_flag_and_notify__17MaterialColorFadeFv",
+        "size": 72,
+        "owner": "src/pso/render/MaterialColorFade.cpp"
+      },
+      "0x800d95c0": {
+        "original": "set_flags_and_apply_damage_color__17MaterialColorFadeFv",
+        "current": "set_flags_and_apply_damage_color__17MaterialColorFadeFv",
+        "size": 60,
+        "owner": "src/pso/render/MaterialColorFade.cpp"
+      },
+      "0x800d95fc": {
+        "original": "advance_toward_max__17MaterialColorFadeFv",
+        "current": "advance_toward_max__17MaterialColorFadeFv",
+        "size": 52,
+        "owner": "src/pso/render/MaterialColorFade.cpp"
+      },
+      "0x800d9630": {
+        "original": "decay_value_toward_floor__17MaterialColorFadeFv",
+        "current": "decay_value_toward_floor__17MaterialColorFadeFv",
+        "size": 52,
+        "owner": "src/pso/render/MaterialColorFade.cpp"
+      },
+      "0x800d9664": {
+        "original": "reset_obstruction_fade__17MaterialColorFadeFv",
+        "current": "reset_obstruction_fade__17MaterialColorFadeFv",
+        "size": 28,
+        "owner": "src/pso/render/MaterialColorFade.cpp"
+      },
+      "0x800d9680": {
+        "original": "reset_color__17MaterialColorFadeFv",
+        "current": "reset_color__17MaterialColorFadeFv",
+        "size": 24,
+        "owner": "src/pso/render/MaterialColorFade.cpp"
+      },
+      "0x800d9698": {
+        "original": "set_rate_from_divisor__17MaterialColorFadeFl",
+        "current": "set_rate_from_divisor__17MaterialColorFadeFl",
+        "size": 56,
+        "owner": "src/pso/render/MaterialColorFade.cpp"
+      },
+      "0x800d96d0": {
+        "original": "__dt__17MaterialColorFadeFv",
+        "current": "__dt__17MaterialColorFadeFv",
+        "size": 72,
+        "owner": "src/pso/render/MaterialColorFade.cpp"
+      },
+      "0x800d9718": {
+        "original": "__ct__17MaterialColorFadeFv",
+        "current": "__ct__17MaterialColorFadeFv",
+        "size": 80,
+        "owner": "src/pso/render/MaterialColorFade.cpp"
+      },
+      "0x800d9768": {
+        "original": "lookup__19SampledMotionPointsFf",
+        "current": "lookup__19SampledMotionPointsFf",
+        "size": 128,
+        "owner": "src/pso/unk/SampledMotionPoints.cpp"
+      }
+    },
+    "retained_constants": {
+      "0x805da3d8": -1,
+      "0x805da3dc": 0,
+      "0x805da3e0": 1,
+      "0x805da3e4": 0.04,
+      "0x805da3e8": 0.01
+    }
+  },
+  "fork_workspace": {
+    "previous_workspace": "36a48c82220db7afa04eb1f2820dbc8450ba3e00",
+    "parent": "9a9cade95091c80f999a5dabcdc027ca88b31026",
+    "overlay_paths": 130,
+    "materialized_tree_before_notes_update": "f58b92892b82c6dc11f97fada5b8240f408e164b",
+    "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "updated_linker_labels": {
+      "spawn_dead_spot__10TObjPlayerFlllf": "spawn_dead_spot__10TObjPlayerFPC3Vecllf"
+    },
+    "archive_sha256": "fb8e3257103617967901dbb373a1e9f134d0851d3a6e327f9cf188f705688d36",
+    "tests": {
+      "tool": 294,
+      "fork": 11,
+      "host": 5
+    },
+    "host_executables": [
+      "vector_math_fallbacks",
+      "item_factory_callbacks",
+      "loader_transfer",
+      "ginja_parameter_callbacks",
+      "exi_ethernet_fallbacks"
+    ],
+    "test_log_sha256": {
+      "tool": "2eff3d6c628ef93446c873a19e819c7a6dbd3d32e25c7fc1241d6707253c4352",
+      "fork": "fb31936976ed0486927b4417bfca60eab83f56582e794d292d17948ca6dbf45c",
+      "host": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  }
+}

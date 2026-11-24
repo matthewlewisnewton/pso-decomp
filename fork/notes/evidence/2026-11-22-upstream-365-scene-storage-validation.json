@@ -1,0 +1,355 @@
+{
+  "source": "470bf2bf24e083fcf4b5c7862379eb8489235e21",
+  "previous_source": "2b2b2d3b36365a4ab31cc7677faba4a80963c122",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/render/TFogCtrl.h",
+    "src/pso/effect/TKomorebi.cpp",
+    "src/pso/effect/enemy/TEneEffHamon.cpp",
+    "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+    "src/pso/enemy/illgill/TObjIllGillKage.cpp",
+    "src/pso/npc/TNpcPlayer_8034DAA0.cpp",
+    "src/pso/npc/TObjNpcBase.cpp",
+    "src/pso/object/TObjLuker.cpp",
+    "src/pso/object/ambient/TObjGrass.cpp",
+    "src/pso/object/ambient/TObjLight_80133568.cpp",
+    "src/pso/object/warp/TObjCityMainWarp_80186C44.cpp",
+    "src/pso/object/warp/TObjWarpBossMulti.cpp",
+    "src/pso/player/PhotonBlastResults.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TObjPlayer_801BC194.cpp",
+    "src/pso/player/TPlayerBattleCtrl4P.cpp",
+    "src/pso/quest/TOQuestTalkBase.cpp",
+    "src/pso/quest/challenge/TChallenge4PItemSelect.cpp",
+    "src/pso/render/TFogCtrl.cpp",
+    "src/pso/render/render_util.cpp",
+    "src/pso/technique/TTecLuker.cpp",
+    "src/pso/unk/TLobby_800726F0.cpp",
+    "src/pso/unk/TLobby_801C25B4.cpp",
+    "src/pso/unk/TLobby_80299C4C.cpp",
+    "src/pso/unk/text_802233F8.cpp",
+    "src/pso/unk/text_8022F258.cpp"
+  ],
+  "combined_paths_from_upstream": 1081,
+  "validation": {
+    "source": {
+      "baseline": "2b2b2d3b36365a4ab31cc7677faba4a80963c122",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x801B53BC",
+          "before": "play_effect__10TObjPlayerFlll",
+          "after": "play_effect__10TObjPlayerFP10TObjPlayerll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801B5408",
+          "before": "play_effect_default__10TObjPlayerFii",
+          "after": "play_effect_default__10TObjPlayerFP10TObjPlayerl"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "360fed9de6a10b3b4a830fed41ad3537b4b33520f2713615de60a925bb7e6f83",
+      "report_sha256": "2567ad9792915775d7eb87b85a098a434d0edaa7296d8ca444d2334281a8043c"
+    },
+    "layer": {
+      "baseline": "470bf2bf24e083fcf4b5c7862379eb8489235e21",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "52e7b7c44c895ea98e91fe1a9ea21805885753879d1966b15b6b684ebe565d0b",
+      "report_sha256": "2567ad9792915775d7eb87b85a098a434d0edaa7296d8ca444d2334281a8043c"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "320070682f1b8429d1f7556499dbd94545fdd58c4c72ad94527aaf8903330632"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "857dc560a5f51cb10bc0ba047ed91079d0469a3f028d052ac56667bd2ab45090"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "cases": {
+      "fog_rows": 128,
+      "light_loads": 8,
+      "light_rows": 8,
+      "player_effect_cases": 20,
+      "resource_reload": 1,
+      "sqrt_cases": 4
+    },
+    "probe_sha256": "c9c9d27cd570c53ca807ddb203c9316aab1c18a8d9491c0a6db8c438f282d905",
+    "log_sha256": "9351f8aed0b1de67960d5fbe1737b6f287c0fc56e5a4bf873d4fa3b45c303ecc",
+    "images": [
+      "retail",
+      "source",
+      "materialized fork workspace"
+    ]
+  },
+  "historical": {
+    "closed_rows": [
+      {
+        "row": 4901,
+        "fork_path": "src/pso/misc/TDLGraph.cpp",
+        "current_owner": "src/pso/render/TDLGraph.cpp",
+        "compiled_owner": "src/pso/render/TDLGraph.cpp",
+        "fork_delta_sha256": "6591f425b7eca046515e3df175e4d2d276b4bc11d852225f044c812f1e3ff90e",
+        "current_owner_blob": "8f2d5057eccea39248d2c92f325ce73b13cf8b69",
+        "evidence": "The progress bar takes two shared NJS_POINT2 records. The countdown and percentage use the same 543, 615 and 418 screen coordinates through native member calls."
+      },
+      {
+        "row": 4942,
+        "fork_path": "src/pso/render/render_util_tail.cpp",
+        "current_owner": "src/pso/render/render_util.cpp",
+        "compiled_owner": "src/pso/render/render_util.cpp",
+        "fork_delta_sha256": "723f464da069a3d68fbcd6765ffce56ea92edd01fd920e242383d902bb85006e",
+        "current_owner_blob": "4d0e9d1755d087b822730cadf8bd132a12c51671",
+        "evidence": "The square-root fallback uses the actual MSL integer storage for its two float bit patterns. Both words are at their original data addresses, and the negative and zero inputs match retail."
+      },
+      {
+        "row": 4980,
+        "fork_path": "src/pso/misc/TEneEffHamon.cpp",
+        "current_owner": "src/pso/effect/enemy/TEneEffHamon.cpp",
+        "compiled_owner": "src/pso/effect/enemy/TEneEffHamon.cpp",
+        "fork_delta_sha256": "0af546f9022f6c88fdc73620643201aa1fd8346e7a9a3cb8d426318082b2f9e9",
+        "current_owner_blob": "14144f402be5163b31a555645db771571a081ee2",
+        "evidence": "The model and texture list are native borrowed pointers and use the shared BML accessors. The render call consumes the typed texture directly. The four constants are local in the exact owner."
+      },
+      {
+        "row": 4987,
+        "fork_path": "src/pso/misc/TKomorebi.cpp",
+        "current_owner": "src/pso/effect/TKomorebi.cpp",
+        "compiled_owner": "src/pso/effect/TKomorebi.cpp",
+        "fork_delta_sha256": "1dbf6411df68a6ae6facd01c2561fa872540d92a31244e567e87f09b41baf8f0",
+        "current_owner_blob": "7eab5247ba1fb9e8200dd8c522ca90a681ccb278",
+        "evidence": "The Komorebi resource is allocated and destroyed through its native BmlResource constructor and destructor. The model and texture borrow from that resource, the renderer uses the typed setter, and the four fence model lookups share the BML declarations."
+      },
+      {
+        "row": 5039,
+        "fork_path": "src/pso/misc/TFogCtrl.cpp",
+        "current_owner": "src/pso/render/TFogCtrl.cpp",
+        "compiled_owner": "src/pso/render/TFogCtrl.cpp",
+        "fork_delta_sha256": "3c7e1863c3ddd767eb4ce64f8c25024d5f67c340d08a07ec4d1481dbd8fa2b70",
+        "current_owner_blob": "63e16719ecd28c74d95643dbf0b1a7c6ade4b785",
+        "evidence": "The default row and the allocated table use the native 0x40-byte fog record. The allocator and release use upstream's names at the addresses of the old array allocation and release symbols."
+      },
+      {
+        "row": 5116,
+        "fork_path": "src/pso/unk/text_800DC420.cpp",
+        "current_owner": "src/pso/unk/text_800DC420.cpp",
+        "compiled_owner": "src/pso/unk/text_800DC420.cpp",
+        "fork_delta_sha256": "d332eda507c194109f03e87059283ae79846dd07ea5c09b256aba078cfe51604",
+        "current_owner_blob": "c721456cc664723d2bb2d30982227e3b0251f7bc",
+        "evidence": "The original ground query receives the point and mask 0x16EF through the typed hit interface. Both effect calls pass point pointers. The 500.0f and 0.0f values remain local in the exact owner."
+      },
+      {
+        "row": 5123,
+        "fork_path": "include/pso/unk/text_803D853C.h",
+        "current_owner": "include/pso/unk/text_803D853C.h",
+        "compiled_owner": "src/pso/unk/text_803D853C.cpp",
+        "fork_delta_sha256": "1fd33925bfab2a4d828e5252c68ad543d66ff477e12c5f20a4f5a2261e8e8eb2",
+        "current_owner_blob": "57a9fc32f7c60b10220aa74b6d80edfabaceab7b",
+        "evidence": "The queue and renderer share the debug text record. The live glyph size occupies the same halfword the fork writes through its z alias, with the other fields in the same sequence."
+      },
+      {
+        "row": 6728,
+        "fork_path": "src/pso/object/TObjLuker.cpp",
+        "current_owner": "src/pso/object/TObjLuker.cpp",
+        "compiled_owner": "src/pso/object/TObjLuker.cpp",
+        "fork_delta_sha256": "279693f1ac0d7c7ea9cf16d93f0fc49406a6348cbcd180e2ead13e9b431e4275",
+        "current_owner_blob": "323e8b8496d14fb6b86d33aaabc9317f0bf865dc",
+        "evidence": "Luker uses the shared one-shot, persistent and particle declarations and closes its windows through the native class. Its player effect call now uses a typed receiver at the original address."
+      },
+      {
+        "row": 6919,
+        "fork_path": "src/pso/object/TObjLight_8022F34C.cpp",
+        "current_owner": "src/pso/unk/text_8022F258.cpp",
+        "compiled_owner": "src/pso/unk/text_8022F258.cpp",
+        "fork_delta_sha256": "861e3dd2b638cd23de0686be3d95b7ac7b182798e76b33f98f551f0014cfc44c",
+        "current_owner_blob": "d0c6db9d0954b0021550bdc8127f212109fcf69f",
+        "evidence": "The four sounding branches use the shared one-shot sound declaration and pass the position from the corresponding object. The pitch requests and their success guards keep the existing control flow."
+      },
+      {
+        "row": 7085,
+        "fork_path": "src/pso/object/TObjBase.cpp",
+        "current_owner": "src/pso/object/base/TObjBase.cpp",
+        "compiled_owner": "src/pso/object/base/TObjBase.cpp",
+        "fork_delta_sha256": "6de4d84210d78a59460cd05cb3ee5582ba995167d5db0f6ac7d3e9d5d4942f5e",
+        "current_owner_blob": "7f02ebc782b56b0eead0ab0185a81127e39ced62",
+        "evidence": "The live three s32 rotation fields are the values the fork groups as pitch, yaw and roll. The original returns and initializer writes use those fields, both floats remain local, and the four halfword counters are defined in the same owner."
+      },
+      {
+        "row": 7282,
+        "fork_path": "src/pso/object/TObjLight_80133568.cpp",
+        "current_owner": "src/pso/object/ambient/TObjLight_80133568.cpp",
+        "compiled_owner": "src/pso/object/ambient/TObjLight_80133568.cpp",
+        "fork_delta_sha256": "bdbaadd465476df494425e601f0fb4ea37648066a9370d25801f84414abdcb2c",
+        "current_owner_blob": "59a9922e0b848e7b4c7a999eaf1275812fe1e300",
+        "evidence": "The resource is sized through the existing file helper, loaded and freed through a pointer to its 0x44-byte record, and indexed by floor. All three light counters have source definitions."
+      }
+    ],
+    "scoped_rows": [
+      [
+        802,
+        "src/pso/enemy/TObjEneDolmOlm.cpp",
+        "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp"
+      ],
+      [
+        3637,
+        "src/pso/misc/TPlayerBattleCtrl4P_80311800.cpp",
+        "src/pso/player/TPlayerBattleCtrl4P.cpp"
+      ],
+      [
+        3998,
+        "include/pso/player/TObjPlayer.h",
+        "include/pso/player/TObjPlayer.h"
+      ],
+      [
+        4085,
+        "src/pso/player/PhotonBlastResults.cpp",
+        "src/pso/player/PhotonBlastResults.cpp"
+      ],
+      [
+        4121,
+        "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "src/pso/player/TObjPlayer_801AF2F0.cpp"
+      ],
+      [
+        4184,
+        "src/pso/unk/text_801A9CB8.cpp",
+        "src/pso/player/PhotonBlastResults.cpp"
+      ],
+      [
+        4212,
+        "src/pso/misc/TPlayerBattleCtrl4P_8031012C.cpp",
+        "src/pso/player/TPlayerBattleCtrl4P.cpp"
+      ],
+      [
+        4360,
+        "src/pso/unk/text_801BC194.cpp",
+        "src/pso/player/TObjPlayer_801BC194.cpp"
+      ],
+      [
+        4417,
+        "src/pso/misc/TTecLuker.cpp",
+        "src/pso/technique/TTecLuker.cpp"
+      ],
+      [
+        4510,
+        "src/pso/misc/TLobby_801C25B4.cpp",
+        "src/pso/unk/TLobby_801C25B4.cpp"
+      ],
+      [
+        6058,
+        "src/pso/misc/TLobby_800726F0.cpp",
+        "src/pso/unk/TLobby_800726F0.cpp"
+      ],
+      [
+        6061,
+        "src/pso/misc/TLobby_80299A60.cpp",
+        "src/pso/unk/TLobby_80299C4C.cpp"
+      ],
+      [
+        6950,
+        "src/pso/object/TObjGrass.cpp",
+        "src/pso/object/ambient/TObjGrass.cpp"
+      ],
+      [
+        7213,
+        "src/pso/object/TObjWarpBossMulti.cpp",
+        "src/pso/object/warp/TObjWarpBossMulti.cpp"
+      ]
+    ],
+    "open_rows": 363,
+    "retained_symbol_names": [
+      [
+        "0x80147AA8",
+        "__nwa__FUl",
+        "mem_alloc"
+      ],
+      [
+        "0x80147A80",
+        "__dla__FPv",
+        "mem_free"
+      ],
+      [
+        "0x800F9D80",
+        "update_lobby_scene__6TSceneFPCv",
+        "get_resource_file_size"
+      ]
+    ],
+    "verified_retail_words": {
+      "0x805d4600": "7fffffff",
+      "0x805d4604": "7f800000",
+      "0x805d92cc": "4407c000",
+      "0x805d92d0": "43d10000",
+      "0x805d92d4": "4419c000",
+      "0x805d99e0": "00000000",
+      "0x805d99e4": "3f800000",
+      "0x805d99e8": "3f666666",
+      "0x805d99ec": "bf666666",
+      "0x805da478": "43fa0000",
+      "0x805da47c": "00000000",
+      "0x805dc098": "00000000",
+      "0x805dc09c": "44200000"
+    }
+  },
+  "pending_matching": {
+    "topic": "Native hold packet provider and one trap call",
+    "detail": "The typed player-effect entry and callers match. The provider trial reordered packing instructions.",
+    "preview_patch_sha256": "84dae4287a7dca2b8e73e2c5a1f5e5be686c292421ca9b8917926ae10979f1e4"
+  },
+  "fork_workspace": {
+    "trial": "fdbfa4a092a2f6ab82b0dc3bb7f1d0774f7f0620",
+    "overlay_paths": 130,
+    "updated_overlay_paths": [],
+    "archive_sha256": "1981bb9e90ef03a7051006e33a10eae3ece40516f90be27ac375a0ea2b91d1c3",
+    "materialized_tree": "55fda78408346720c5e7a5be3740c313dccc2df3",
+    "force_active": 27027
+  }
+}

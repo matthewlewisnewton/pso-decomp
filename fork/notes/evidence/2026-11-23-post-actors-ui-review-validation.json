@@ -1,0 +1,870 @@
+{
+  "actual_upstream_master": "412b3b3cf562c5cb4b4655b747ff328777b32969",
+  "actual_cutover_preview": "aa50b74f1922e940e821e6824e991f24a43600fa",
+  "unpublished_prerequisites": [
+    {
+      "description": "Character saves, quest and asset loading",
+      "head": "740c6fbfb076baadbe20e5f07bf71ea636f6f039",
+      "tree": "3e76f954f923ab927eaca4f900db0705d7590223"
+    },
+    {
+      "description": "Actor motion, model resources and battle parameters",
+      "head": "8b985966132b918f3e7daaccfbfe25dd436dda2e",
+      "tree": "72fe8629343ea89b1dd74efee2fa354a524d65c7"
+    },
+    {
+      "description": "Windows, chat and front end",
+      "head": "e514a054a05b6191d42d1c1505d9d2da1fcd7b83",
+      "tree": "56cf88a778fec0b6d8acce3d9d8a718293bc4d76"
+    }
+  ],
+  "ui_validation": {
+    "head": "e514a054a05b6191d42d1c1505d9d2da1fcd7b83",
+    "base": "8b985966132b918f3e7daaccfbfe25dd436dda2e",
+    "paths": 230,
+    "linked_units": 2368,
+    "exact_functions": 27572,
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "coverage_check": "PASS",
+    "series": {
+      "previous_window_review": "48aef1e612",
+      "later_window_recovery": "8e87000764",
+      "later_chat_recovery": "e052f813e0"
+    },
+    "conflicted_path": "src/pso/ui/frontend/TAdMultiConfirmGC_802E03D0.cpp",
+    "resolution": "Use the shared memory include along with the character and BML declarations.",
+    "source_quality": {
+      "removed": 1811,
+      "added": 196,
+      "labels": 78,
+      "flagged": [
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x8032BCBC",
+          "type": "function",
+          "old": "dispatch_input_to_instance__18TAdEnterPasswordGCFi",
+          "new": "dispatch_input_to_instance__13TUnk_804EDAC0FP7TObject",
+          "flags": [
+            "member of TUnk_804EDAC0, a class named after an address"
+          ],
+          "rationale": "The floor lifecycle creates and clears this deferred-render task. The call takes the actual TObject queued by the existing task at the same address. The task retains its established class name."
+        }
+      ],
+      "new_stale_retention": 0,
+      "by_category": [
+        {
+          "key": "extern_c",
+          "name": "extern \"C\" declarations",
+          "example": "extern \"C\" void TEnemy__update(void *);",
+          "group": "linkage",
+          "category": "Linkage",
+          "base": 7605,
+          "head": 7428,
+          "added": 8,
+          "removed": 185
+        },
+        {
+          "key": "local_decl",
+          "name": "Prototypes and externs in source files",
+          "example": "void heap_free(void *);",
+          "group": "linkage",
+          "category": "Linkage",
+          "base": 1537,
+          "head": 1520,
+          "added": 1,
+          "removed": 18
+        },
+        {
+          "key": "mangled_member",
+          "name": "Hand-mangled member names",
+          "example": "update__6TEnemyFv",
+          "group": "linkage",
+          "category": "Linkage",
+          "base": 6937,
+          "head": 6853,
+          "added": 4,
+          "removed": 88
+        },
+        {
+          "key": "mangled_free",
+          "name": "Hand-mangled free functions",
+          "example": "helper__Fv",
+          "group": "linkage",
+          "category": "Linkage",
+          "base": 317,
+          "head": 304,
+          "added": 0,
+          "removed": 13
+        },
+        {
+          "key": "mangled_itanium",
+          "name": "Itanium-mangled names",
+          "example": "_ZN6TEnemy6updateEv",
+          "group": "linkage",
+          "category": "Linkage",
+          "base": 0,
+          "head": 0,
+          "added": 0,
+          "removed": 0
+        },
+        {
+          "key": "flat_name",
+          "name": "Members spelled as C names",
+          "example": "TEnemy__update",
+          "group": "linkage",
+          "category": "Linkage",
+          "base": 10695,
+          "head": 10689,
+          "added": 0,
+          "removed": 6
+        },
+        {
+          "key": "raw_offset",
+          "name": "Byte-pointer offsets",
+          "example": "(u8 *)p + 0x30",
+          "group": "layout",
+          "category": "Layout",
+          "base": 9483,
+          "head": 9261,
+          "added": 0,
+          "removed": 222
+        },
+        {
+          "key": "offset_cast",
+          "name": "Casts of pointer plus offset",
+          "example": "(Vec *)(p + 0x178)",
+          "group": "layout",
+          "category": "Layout",
+          "base": 911,
+          "head": 900,
+          "added": 0,
+          "removed": 11
+        },
+        {
+          "key": "punned_deref",
+          "name": "Type-punned dereferences",
+          "example": "*(f32 *)&x, *(s32 *)(p + 0x18)",
+          "group": "layout",
+          "category": "Layout",
+          "base": 2115,
+          "head": 2070,
+          "added": 1,
+          "removed": 46
+        },
+        {
+          "key": "offset_member",
+          "name": "Offset-named fields",
+          "example": "unk_30, m_c, field_96, set_field_378",
+          "group": "layout",
+          "category": "Layout",
+          "base": 14304,
+          "head": 14180,
+          "added": 139,
+          "removed": 263
+        },
+        {
+          "key": "fp_cast",
+          "name": "Function-pointer casts",
+          "example": "((void (*)(T *))p)(x)",
+          "group": "types",
+          "category": "Types",
+          "base": 2151,
+          "head": 2136,
+          "added": 0,
+          "removed": 15
+        },
+        {
+          "key": "string_cast",
+          "name": "Strings cast to integers",
+          "example": "(saddr)\"file.gvm\"",
+          "group": "types",
+          "category": "Types",
+          "base": 49,
+          "head": 49,
+          "added": 0,
+          "removed": 0
+        },
+        {
+          "key": "ghidra_type",
+          "name": "Ghidra types",
+          "example": "undefined4",
+          "group": "types",
+          "category": "Types",
+          "base": 0,
+          "head": 0,
+          "added": 0,
+          "removed": 0
+        },
+        {
+          "key": "address_type",
+          "name": "Address-named types",
+          "example": "TUnk_804806E8",
+          "group": "types",
+          "category": "Types",
+          "base": 14850,
+          "head": 14469,
+          "added": 29,
+          "removed": 410
+        },
+        {
+          "key": "retype_macro",
+          "name": "Re-typing macros",
+          "example": "#define g (*(T *)&g)",
+          "group": "types",
+          "category": "Types",
+          "base": 39,
+          "head": 39,
+          "added": 0,
+          "removed": 0
+        },
+        {
+          "key": "decomp_temp",
+          "name": "m2c temporaries",
+          "example": "temp_r3, var_f31",
+          "group": "decompiler",
+          "category": "Decompiler output",
+          "base": 11173,
+          "head": 11102,
+          "added": 0,
+          "removed": 71
+        },
+        {
+          "key": "stack_local",
+          "name": "Stack-slot locals",
+          "example": "sp1C",
+          "group": "decompiler",
+          "category": "Decompiler output",
+          "base": 2238,
+          "head": 2223,
+          "added": 0,
+          "removed": 15
+        },
+        {
+          "key": "arg_name",
+          "name": "Numbered parameters",
+          "example": "arg0, farg1",
+          "group": "decompiler",
+          "category": "Decompiler output",
+          "base": 25327,
+          "head": 25008,
+          "added": 0,
+          "removed": 319
+        },
+        {
+          "key": "ghidra_temp",
+          "name": "Ghidra temporaries",
+          "example": "iVar1, param_1",
+          "group": "decompiler",
+          "category": "Decompiler output",
+          "base": 26,
+          "head": 26,
+          "added": 0,
+          "removed": 0
+        },
+        {
+          "key": "m2c_macro",
+          "name": "m2c macros",
+          "example": "M2C_FIELD",
+          "group": "decompiler",
+          "category": "Decompiler output",
+          "base": 0,
+          "head": 0,
+          "added": 0,
+          "removed": 0
+        },
+        {
+          "key": "address_comment",
+          "name": "Address comments",
+          "example": "// moved from 0x8043E828",
+          "group": "decompiler",
+          "category": "Decompiler output",
+          "base": 258,
+          "head": 258,
+          "added": 0,
+          "removed": 0
+        },
+        {
+          "key": "data_label",
+          "name": "Address-named data",
+          "example": "lbl_8045A010",
+          "group": "names",
+          "category": "Names",
+          "base": 10335,
+          "head": 10334,
+          "added": 3,
+          "removed": 4
+        },
+        {
+          "key": "function_placeholder",
+          "name": "Address-named functions",
+          "example": "fn_80123456, TEnemy__sub_80123456",
+          "group": "names",
+          "category": "Names",
+          "base": 12921,
+          "head": 12910,
+          "added": 9,
+          "removed": 20
+        },
+        {
+          "key": "address_in_name",
+          "name": "Names built on an address",
+          "example": "call_36A90_with_1",
+          "group": "names",
+          "category": "Names",
+          "base": 23,
+          "head": 23,
+          "added": 0,
+          "removed": 0
+        },
+        {
+          "key": "vtable_symbol",
+          "name": "Vtable symbols in source",
+          "example": "__vt__6TEnemy",
+          "group": "vtables",
+          "category": "Vtables",
+          "base": 300,
+          "head": 295,
+          "added": 0,
+          "removed": 5
+        },
+        {
+          "key": "hand_vtable",
+          "name": "Hand-written vtables",
+          "example": "void *TEnemy_vtable[] = {",
+          "group": "vtables",
+          "category": "Vtables",
+          "base": 23,
+          "head": 23,
+          "added": 0,
+          "removed": 0
+        },
+        {
+          "key": "filler_virtual",
+          "name": "Filler virtuals",
+          "example": "virtual void reserved_3();",
+          "group": "vtables",
+          "category": "Vtables",
+          "base": 66,
+          "head": 66,
+          "added": 0,
+          "removed": 0
+        },
+        {
+          "key": "slot_name",
+          "name": "Slot-numbered names",
+          "example": "vfunc_67, TEnemy__vt82",
+          "group": "vtables",
+          "category": "Vtables",
+          "base": 1485,
+          "head": 1485,
+          "added": 0,
+          "removed": 0
+        },
+        {
+          "key": "local_virtual",
+          "name": "Virtuals in source files",
+          "example": "virtual void draw();",
+          "group": "vtables",
+          "category": "Vtables",
+          "base": 4192,
+          "head": 4192,
+          "added": 0,
+          "removed": 0
+        },
+        {
+          "key": "address_unit",
+          "name": "Units named after an address",
+          "example": "TEnemy_80123456.cpp",
+          "group": "placement",
+          "category": "Units and classes",
+          "base": 1145,
+          "head": 1145,
+          "added": 0,
+          "removed": 0
+        },
+        {
+          "key": "local_class",
+          "name": "Classes declared in source files",
+          "example": "struct EnemyView : TObject {",
+          "group": "placement",
+          "category": "Units and classes",
+          "base": 3933,
+          "head": 3836,
+          "added": 2,
+          "removed": 99
+        },
+        {
+          "key": "duplicate_class",
+          "name": "Classes declared in more than one file",
+          "example": "class TEnemy {",
+          "group": "placement",
+          "category": "Units and classes",
+          "base": 155,
+          "head": 154,
+          "added": 0,
+          "removed": 1
+        },
+        {
+          "key": "inline_asm",
+          "name": "Inline assembly",
+          "example": "asm { ... }",
+          "group": "asm",
+          "category": "Assembly",
+          "base": 22,
+          "head": 22,
+          "added": 0,
+          "removed": 0
+        },
+        {
+          "key": "this_cast",
+          "name": "Casts of this to an unrelated class",
+          "example": "((TObjPlayer *)this)->f()",
+          "group": "ownership",
+          "category": "Members in the wrong class (not in the total)",
+          "base": 2047,
+          "head": 1937,
+          "added": 20,
+          "removed": 130
+        },
+        {
+          "key": "subobject_call",
+          "name": "Own member called on a sub-object",
+          "example": "TEnemy__f((char *)this + 0x3C)",
+          "group": "ownership",
+          "category": "Members in the wrong class (not in the total)",
+          "base": 105,
+          "head": 105,
+          "added": 0,
+          "removed": 0
+        }
+      ]
+    },
+    "runtime": {
+      "window-state": 24,
+      "menu-selection": 264,
+      "radar": 12,
+      "chat-frontend": 275,
+      "deferred-render": 5
+    },
+    "runtime_evidence_sha256": {
+      "window-state": "d417c985bc61ab083975b2059873617ba63b82df66a32c137101200f544f0b55",
+      "menu-selection": "b6d91932eec1480e43a2cfdbd411541b15797cef30e59747bc020ae704171ec7",
+      "radar": "ab44575f136040818c906778e56e67dbde54703143be566835ac119b2d5b47c0",
+      "chat-frontend": "eb992229eff25193231217ea4224eb093892a106ad78fcbb0123e3f6ae58a204",
+      "deferred-render": "09339d46073af601625ca8a013b94ecc2906c2ea3c0906580398c86c62c4032b"
+    },
+    "coverage_evidence_sha256": "daf561ddd75a8cc4e8d09b92127a5ca1e46ada63b7b01ac6042ae423a3baf635"
+  },
+  "cumulative_source": {
+    "head": "c04412b10fefb162fc12e192bf8b785d5f01a5b2",
+    "tree": "07762c847dc2569d4d434225c64a66d751a591ed",
+    "baseline": "e514a054a05b6191d42d1c1505d9d2da1fcd7b83",
+    "remaining_paths": 850,
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "coverage_check": "PASS",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "unchanged_from": "0f9ba012c19780a2cb088f272f2547d3091f2461",
+    "resolved_conflicts": {
+      "config/GPOE8P/psov3/symbols.txt": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "0b784ce97590889ae3b11ae54fe7825139c315bb739fabef8d114b741e61c1f6",
+        "resolved_blob": "d657f4f0df8d6a35a0924db0d486396ae3977554"
+      },
+      "include/pso/player/TObjPlayer.h": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "90a10f78dd11563f942ab1a4d3d178a615eb6b02813d2b68a7953f0f5654a9d6",
+        "resolved_blob": "a578e41e2b40e4fe6784b9ad5de07f608db57053"
+      },
+      "include/pso/player/TObjPlayer_8012105C.h": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "af93c4389b43e767f23233474dc1d25b35072236d06d4fe3d12effd24574f85c",
+        "resolved_blob": "5dd2892025cacc34031b91170447787bff3af2ac"
+      },
+      "src/pso/boss/darkfalz/TOBoss4Rock_8035A7FC.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "954a9b3536c09f9571ba203921a0e8f6a07daa79efaf0f0018677b9c72011c32",
+        "resolved_blob": "05cdbe43e7a8f683fee014e114c7620092e7448a"
+      },
+      "src/pso/boss/dragon/TBoss1Dragon.cpp": {
+        "hunks": 14,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "0a25e16d4c7fb250e98fd09e184e6b5fc8064e2be33f8e877f24511762c5355d",
+        "resolved_blob": "b568dbb3fd0ae43cf710ec5a8a29bff775a8bbbc"
+      },
+      "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "5dd389a98679a60d03663c6ea0b3e7a364eaefd13f6032bccb6d5a80819fb823",
+        "resolved_blob": "178d67c665e3bfd06100b63c2c8e554bda1f8609"
+      },
+      "src/pso/boss/galgryphon/TBoss5GryphonSnarl.cpp": {
+        "hunks": 2,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "6d6ec4935bdb929c7af6f369d77db7fb88ae7f7ba13dd0711df02e0acc348461",
+        "resolved_blob": "bbcafe8a6d10165cd34e01256aecf3c0d730cd08"
+      },
+      "src/pso/boss/goldragon/TBoss8Dragon.cpp": {
+        "hunks": 11,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "40f01e4b5bce7ddd207b20c198fc076acc432b8633bfc5f4850294ab797b4eb4",
+        "resolved_blob": "f41424447e632d36e6d89e915c4c4ca031a412c0"
+      },
+      "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp": {
+        "hunks": 4,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "ce92d799a17ad46dc67e82132360026af55eda9a42d17ffe26055093317893d3",
+        "resolved_blob": "fc6021a2c143a1885b31bed2871c9d5ed32b63a9"
+      },
+      "src/pso/boss/volopt/TBoss3VoloptHiraisin.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "1d22637cfb0a07c8d1c0f4ed4b7573c401ff80ec84479135440d7a931e26ebce",
+        "resolved_blob": "4811fbcb6564dbc31ab86fa3029c2a911d6239cb"
+      },
+      "src/pso/boss/volopt/TBoss3VoloptP01.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "1fa52bd7e6b583055313f721461d141856fe6fedb930339f13fa27cca4349ae4",
+        "resolved_blob": "fe17eec4b58b4903f8c6c887c2782394e909d96c"
+      },
+      "src/pso/boss/volopt/TBoss3VoloptP02.cpp": {
+        "hunks": 4,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "e467832d14fc5a4e869b462f5a9a277e58bda0b07f826b26af09cfc920768660",
+        "resolved_blob": "f75b89ff0628105e2a7a6a7a4bb4cb7e2f59f182"
+      },
+      "src/pso/enemy/berura/TObjEneRe7Berura.cpp": {
+        "hunks": 2,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "fa1d08a52a461713cae90bdcf8f34cee222fc3cc25baf4348af6c70a05e2cb83",
+        "resolved_blob": "ba6b6cf8b72a6104f42545ad6f37d7862ed317be"
+      },
+      "src/pso/enemy/deldepth/TObjEneDelDepth.cpp": {
+        "hunks": 2,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "4ec108283d29f21beafbbe341aa61a7fae372f9bc7526c409670e8918caf776e",
+        "resolved_blob": "9d98534ddc7d4173aa1c5136e5c13831925556aa"
+      },
+      "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "8d4032bc1538229535c0bb1ccc51e8a16a383f4ca8dfe5e5e9f7b560c641381f",
+        "resolved_blob": "8a1e90c3fe1cc9198e2ac39173cf6e203e4aef6e"
+      },
+      "src/pso/enemy/dubchik/TObjEneDubchik.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "910e5022bf2ebde79e6adeb1aefc30bec63bdaf66a9af93e5e5288243ab8bd6f",
+        "resolved_blob": "677dd30e37f2e95da3f38992b31fbea62cff60f3"
+      },
+      "src/pso/enemy/fly/TObjEneBm3Fly.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "701482e6d2fe108afb7af95aa4ba118fbc3ca9273eb5be7f0785eb82b1ca5c50",
+        "resolved_blob": "3a1878c92e39b2fad1f9991fd7d5f3ae379a793f"
+      },
+      "src/pso/enemy/gee/TObjEneMe1Gee.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "c7fd9b280c5871fcfcc982c1111dd27de6ec08081b37236d822cf4a7f13dd938",
+        "resolved_blob": "62f43066a92f36120ef9341001a400afabcb922e"
+      },
+      "src/pso/enemy/gibbles/TObjEneGibbles.cpp": {
+        "hunks": 2,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "c66195c4fea196704b52f69d1586b3f369c21d8d33362e81c79050adc14f8467",
+        "resolved_blob": "7c718d31cffb258f19aa0234c3fef5278667c1d4"
+      },
+      "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "b1b81d2e730c2e7633a3c449fae20aac9682f45d100c8f21d766b6909e78cd83",
+        "resolved_blob": "81d6b190bb606481172fa949e0ebeb999864933c"
+      },
+      "src/pso/enemy/illgill/TObjEneIllGill.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "8215e64ed4e6c6bc0674ac40094eb9292e60199e5b018698ce94b2f7f7d24abe",
+        "resolved_blob": "842a59056e41ae70b1980f0ad0c7b19866ba1d34"
+      },
+      "src/pso/enemy/lappy/TObjEneLappy.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "3dd7b4bdf198d6bf761640786db409850b3596ad4d7cd5cd5d908006f5df42f4",
+        "resolved_blob": "7967937209310d4fb39b6c3244c7b30e53c58fd0"
+      },
+      "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "30c1572684c3bea6e08a5585fcc133a44792e444941e4b408075f8cf3fef8514",
+        "resolved_blob": "5012ca2f34e26097b9ca8baef2915077a3ef97fc"
+      },
+      "src/pso/enemy/merilllia/TObjEneMerillLia.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "7ac3e41e24ef93ff89e9f31f9a4da74e4a73b913143691c81d7ba7e54111da3d",
+        "resolved_blob": "6fd373c3861b1152255782d0bf14606b4cd84892"
+      },
+      "src/pso/enemy/moja/TObjEneMoja.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "6de928ec6b26a4ceeb0b893156e7b5ab3609ef588566b4c589db1cfeaf7ed5a0",
+        "resolved_blob": "838bf8992154c21750b37a1d00d50b4d801b9180"
+      },
+      "src/pso/enemy/morfos/TObjEneMorfos.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "a0924da065e916a5ed869e5128aec9766d1a48b2551a69579300691d07a3b338",
+        "resolved_blob": "0dceda82fa31256fb125abd6ad462dab8c18918b"
+      },
+      "src/pso/enemy/panarms/TObjEnePanarms.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "53c7f5b235d9b1c9ec5ab5c43f89acefd5b140e0aa9ce326d455bb671d222a91",
+        "resolved_blob": "ea99060556fb1aa3c646b38f006c6170440c3c2b"
+      },
+      "src/pso/enemy/saver/SaverLifecycle.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "861c0869162562a46042b56a400942b4d129ec9ad0897336e27e0081a515520c",
+        "resolved_blob": "1c0504795b566116e121016fb062812534d2f889"
+      },
+      "src/pso/enemy/shark/TObjEneShark.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "b0d651f94b84fca55d4762d9065882738ae99e1bfb84d493a180524e1d7fd3d1",
+        "resolved_blob": "2fc2b085c69fa4f568f0f4843fe9ada45fc61c42"
+      },
+      "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp": {
+        "hunks": 3,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "2d3d15261a28bd3f12e4afb9cb9784161d79fd4f0a6485e0329c8f168df4f9e9",
+        "resolved_blob": "1ac8a5af5839ab708e9edb91814b22640efc91b5"
+      },
+      "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp": {
+        "hunks": 2,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "aec0b405588ce2322258932a3f24910b38aabe43073f0989b8a51d3a98e99519",
+        "resolved_blob": "53c31b2b3ea09757f4dfc4a2072ff7944f55f126"
+      },
+      "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp": {
+        "hunks": 2,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "a5924bcb2b2f7121b0bf4c753a4cac06306a18ad3657f7338ee9deaff0a6209f",
+        "resolved_blob": "fab3236fb08d6a2f37bda620358680ddc6a862ea"
+      },
+      "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp": {
+        "hunks": 2,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "ab228fee09f0c3fecc52b2a551020a4507931e84943faaf44d28577cae8d99fa",
+        "resolved_blob": "91f3cd6fd4e0004e0971632aa5964a947d0535fe"
+      },
+      "src/pso/npc/TObjNpcEnemy.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "e629f4de95f5558833ee5a8dee2e0a0a1aaf72929acea65d1693b5ee1c0558c3",
+        "resolved_blob": "33d398be82970f37a8bf70a4a31c02e726e4b047"
+      },
+      "src/pso/object/ambient/TObjGrass.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "a729c9a864899d4a6c3e20bdf2bfa708cb8639311131f484b31831243824e100",
+        "resolved_blob": "64d634705dc2e1b8fbb63c578092690e1b481143"
+      },
+      "src/pso/object/container/TContainerAncient01.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "b5a4144f6fdee852f5cb4da001fc8c467f1dcb8a212b25eea6700adc2dde8ed4",
+        "resolved_blob": "edbee7362d6730ec558a9ff8e8dbeab9ad1f0c3c"
+      },
+      "src/pso/object/lobby/LobbyPigeonPath.cpp": {
+        "hunks": 4,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "7cbd5c4a553a9fa06391208da369c61c32f5a8aae059590b4e6d1fb5b000914d",
+        "resolved_blob": "0846f2c3567a664b793f6b0565106b584ccd3429"
+      },
+      "src/pso/object/trap/TOTrapSeabed01.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "95fd9d420065b6b5c9f640ccf5428cdd488b874c53d62bb98bb49ceaa90dee67",
+        "resolved_blob": "f6c7106ec7cb49972c4ff370f59e25c4b7378c52"
+      },
+      "src/pso/player/TObjPlayer_800C4714.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "5de5dba1a559f67888facda8705f17721dead9f7e2f7d1c4bc9bcd0332189093",
+        "resolved_blob": "cc64e41707e31aedf9fb79fb9f42ae11e63c041f"
+      },
+      "src/pso/player/TObjPlayer_802E6CA8.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "fce0dd4c9e2fbe0646ac2f55ecfcd0777de6e65404582f1a7ff8a298c1489b36",
+        "resolved_blob": "1be359fe2aecbda44450e199daaca8393cce8f05"
+      },
+      "src/pso/player/TObjPlayer_8035A630.cpp": {
+        "hunks": 2,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "2ebeace3723b4201de1d62a38eb5a69332e8c1579b2dac28f716fcb92ef1a8fa",
+        "resolved_blob": "5488fc24519f3376155ca4e500f07fbe6a777dc9"
+      },
+      "src/pso/quest/QuestOpcodeHandlers.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "b50a231d84a22bdd4117f0d35fe5014b5cfc318b62027d41e9ab3f6596bef658",
+        "resolved_blob": "8ebc2841b860bca3c85592739d5593057e0cb0a6"
+      },
+      "src/pso/ui/charcreate/TChCrLoadAfs.cpp": {
+        "hunks": 2,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "533a25b914d3079d5eab01d85ce26ef9ffe0e18b3cb112da2c90cbd5e30a83a6",
+        "resolved_blob": "4ea6d5c5613f5ee052004bd8e7e39417b0d77a4e"
+      },
+      "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "3e77b7e42293602f417ddf7c61323607db8c80b69596dfa765c659363b7b4c33",
+        "resolved_blob": "862428f2124b8e8d35f7041fb1e9086dd2ff3495"
+      },
+      "src/pso/ui/chat/TWindowSubSymbolChat_80076F88.cpp": {
+        "hunks": 2,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "46487a71767261f5764620f136e3cae729f1358ce1dadd83b3a52fe1b74a9972",
+        "resolved_blob": "b5c53a883fb044801a075722dc8a5a65eb35ca13"
+      },
+      "src/pso/ui/city/TCheckRoomSequence.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "7805152f3922e3cadb861700f06d0ae3b96c90c86847511d6b0622b87c3b6d5a",
+        "resolved_blob": "0bbaa40c13c323aae470f7ae5ebcbdbf86977a8c"
+      },
+      "src/pso/ui/city/THunterGuildSeqOnlineTask_802156A0.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "492e1bfabf4e67adc90f7f6b5b0645acb05b71c6376fa38e24867c4f0f88b2c6",
+        "resolved_blob": "63cb11e26d738ac40fcfa7921b1c804e5c3f5cc7"
+      },
+      "src/pso/ui/frontend/TAdEndText.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "1289ef8318106ab9edb93c5e539a768391a7da8f897ccfedb48402b615f593df",
+        "resolved_blob": "93220bbed41610a65fbfe8cabf353b2957a62dd5"
+      },
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80145778.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "1522f5057e45f2784cf2acd615c939db4ed8b1eb08811f7b890afea034817d47",
+        "resolved_blob": "d57d86dbcd6959da05d8a397b8fb326820e5ccc9"
+      },
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801E4CF0.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "3dc4cfa6f00d88ae54873be3955594230d3e268a2e82c08c6a77597343b95405",
+        "resolved_blob": "ad69e6f17f6e8b634533ac61ebd20a8107aadbc6"
+      },
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp": {
+        "hunks": 21,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "c26df6cc8657b1fe225f9047613231bdcd8fe65803b999b3bf0c76a709f35abc",
+        "resolved_blob": "88a6dcb660bfab5103f91c7c007041a0e0e6d198"
+      },
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C8E0.cpp": {
+        "hunks": 2,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "a9caf2942e97b293384a17d606d95e35a33ea3bff983dcf7afd63d049563d8a9",
+        "resolved_blob": "61808db650cae5cef81420c13fa7dfe18f7c45fc"
+      },
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028D5D4.cpp": {
+        "hunks": 2,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "ec3c837124ad27a944e55b933148ad6f3da9858a8d5c8fe2a33fbedcd4d62ee5",
+        "resolved_blob": "296be36b71550e420cbe2545eb19a6d0828b607f"
+      },
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "0cbd87126ef31d8dcfb34c03475e1708cf5f8b187414544af6f7ff46bda4bfa7",
+        "resolved_blob": "96a2c188475ac8cfcbe2943802cb36f3e7c4089a"
+      },
+      "src/pso/ui/hud/TRaderMapCore.cpp": {
+        "hunks": 2,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "a86f22fcba8da31dd5369f60b77f88e43ac1c2cea564bc17c232e971cd13003f",
+        "resolved_blob": "4b7777f7a5f0ce85b12dfb504911aa7708a33709"
+      },
+      "src/pso/ui/window/TWindowCtrl_8024A1A8.cpp": {
+        "hunks": 2,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "f1dc1f9d70fedad94c9959b459d5612a29cb8d526528773cef75c0da578994bb",
+        "resolved_blob": "406b78bc7479c7cd7c047efa09f90491af1f6054"
+      },
+      "src/pso/ui/window/TWindowKeyBoardBase.cpp": {
+        "hunks": 2,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "11b3dfa06e705fa30102e0cd89c775d04b52e95878b76c8e101e099a5c8f0b46",
+        "resolved_blob": "001bb9a84246c7742cd6a80d9aeebd8ff2e066c8"
+      },
+      "src/pso/ui/window/TWindowKeyBoardSoft.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "9dec6ae40f0f311b0af368f2d471a56d33de9cb8e442073c8e822db0cffe50c2",
+        "resolved_blob": "ee98ce10f708f2858451011051d487bb1641a98f"
+      },
+      "src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp": {
+        "hunks": 1,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "268b2578ac168dbd467690b143bfe5cdefa6b9920ae687f40ba1c23aa4b34115",
+        "resolved_blob": "8656d3692bbaf2f0cd82b59e303326381e8d0558"
+      },
+      "src/pso/unk/TLobby_803382E4.cpp": {
+        "hunks": 2,
+        "resolution": "Keep the already validated native definition at this path.",
+        "hunks_sha256": "7370688dcfc145980f325f9ab75528fedf76e6fec3a21793b117dcf9dce281cd",
+        "resolved_blob": "8291d7fffb65d4c7c9dcd975252fb2a355b84e05"
+      }
+    },
+    "declined_automatic_changes": {
+      "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp": "The original stat tables now return the native types directly. The old one-sided casts are redundant.",
+      "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp": "The original stat tables now return the native types directly. The old one-sided casts are redundant.",
+      "src/pso/enemy/beast/TObjEneBeast.cpp": "The original stat tables now return the native types directly. The old one-sided casts are redundant.",
+      "src/pso/enemy/dimedian/TObjEneDimedian.cpp": "The original stat tables now return the native types directly. The old one-sided casts are redundant.",
+      "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp": "The original stat tables now return the native types directly. The old one-sided casts are redundant.",
+      "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp": "The original stat tables now return the native types directly. The old one-sided casts are redundant.",
+      "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp": "The original stat tables now return the native types directly. The old one-sided casts are redundant.",
+      "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp": "The original stat tables now return the native types directly. The old one-sided casts are redundant.",
+      "src/pso/enemy/sorcerer/TObjEneRe4Bit.cpp": "The original stat tables now return the native types directly. The old one-sided casts are redundant.",
+      "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp": "The original stat tables now return the native types directly. The old one-sided casts are redundant.",
+      "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp": "The original stat tables now return the native types directly. The old one-sided casts are redundant.",
+      "include/pso/unk/TUnk_804F1C58.h": "The existing header already includes the required matrix declaration.",
+      "src/pso/ui/frontend/TAdMultiConfirmGC_802E03D0.cpp": "The existing includes already provide the BML motion entry declaration at the only use."
+    },
+    "retained_examples": [
+      "Native enemy combat stat records, with their existing attack and resistance pointers.",
+      "NPC motion owners and native BML model and Ginja texture lists for Rappy and the ambient models.",
+      "The shared nullable release ABI keeps its pointer input. The migrated front-end, save and radar paths use it.",
+      "The verified Photon Blast registry and matrix providers keep their own methods and arguments."
+    ]
+  },
+  "fork_tooling": {
+    "head": "f6c22808f2316dd078f13306856dc50cf6705a0d",
+    "tree": "582e285b2eec22c29c18a77055f4f490285c7c00",
+    "identical_to_validated_tree_at": "4d0786e799aa5d49a756343fa3b1d5f35614764f",
+    "test_counts": {
+      "tool": 294,
+      "fork": 11,
+      "host": 5
+    },
+    "overlay_paths": 130
+  },
+  "historical_source_comparisons_remaining": 0,
+  "historical_data_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  }
+}

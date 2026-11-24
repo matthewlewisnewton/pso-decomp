@@ -1,0 +1,506 @@
+{
+  "source": "48fb8d663982d4c8eaca8626db11c0d84b46ba07",
+  "previous_source": "ca5a3f1e2d272592c14a408c0ded2a6d839181c0",
+  "upstream": "5a4e7ced56fe7072359b6d279e94f4be3b8453c0",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "source_paths": 1265,
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/EnemyPlacement.h",
+    "include/pso/enemy/dd/EnemyGroundMovement.h",
+    "include/pso/enemy/dd/TObjEneDD_ST.h",
+    "include/pso/enemy/epsilon/TObjEneEpsilon.h",
+    "include/pso/enemy/epsilon/TObjEneEpsilon_800B92AC.h",
+    "include/pso/enemy/fly/TObjEneBm3Fly.h",
+    "include/pso/enemy/fly/TObjEneBm3FlyNest.h",
+    "include/pso/enemy/fly/TObjEneBm3FlyNest_CarryFly.h",
+    "include/pso/enemy/gee/TObjEneMe1Gee.h",
+    "include/pso/enemy/gee/TUnk_8049387C.h",
+    "include/pso/enemy/gigue/TObjEneMe1GiGue.h",
+    "src/pso/boss/dragon/TBoss1Dragon.cpp",
+    "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+    "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+    "src/pso/enemy/dd/TObjEneDD.cpp",
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+    "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+    "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+    "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+    "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+    "src/pso/enemy/recon/TObjEneRecon.cpp",
+    "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+    "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+    "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp"
+  ],
+  "author": {
+    "name": "matthewlewisnewton",
+    "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+    "coauthor_trailers": 0
+  },
+  "individually_checked_objects": {
+    "Boss5GryphonBehavior": {
+      "functions": 170,
+      "objdiff_sha256": "0aa7e4b41f66ba97d53855bd7e2d9675ccf57288174d16e352b26401056d7b72"
+    },
+    "TBoss1Dragon": {
+      "functions": 180,
+      "objdiff_sha256": "a2a886d7d8ca51a98abdf1495e688f32f67bd4746c0daa67394fb9340368d3e1"
+    },
+    "TBoss8Dragon": {
+      "functions": 165,
+      "objdiff_sha256": "eba3c722628247f1ebcb09080b6aeca251b5e4b5b9e843c4f0f7c2d7fd203f59"
+    },
+    "TObjEneBm3Fly": {
+      "functions": 45,
+      "objdiff_sha256": "dd3caae72b01da286ff64f2dc7398553b668b16b29c9bd15d49c5b7cd914bc34"
+    },
+    "TObjEneBm3FlyNest": {
+      "functions": 42,
+      "objdiff_sha256": "dd1dbacc8b78c8e1921ec9f413a73fd830c7c3b1bc7ea529915d14047270fb8d"
+    },
+    "TObjEneBm5GibonU": {
+      "functions": 86,
+      "objdiff_sha256": "bfedf360be24255e071b0f9f62ea5e9915f5de0d2199063f0eec2277a6d240cd"
+    },
+    "TObjEneBm5Wolf": {
+      "functions": 77,
+      "objdiff_sha256": "4e1d375ccf1f956c3710e7d2dae5d165137de7c4cc4dcf6426a92066176a3903"
+    },
+    "TObjEneDD": {
+      "functions": 152,
+      "objdiff_sha256": "c8eba161de7aa80b0aa753d38c5a959b9f6a15a838b680e1d96845b12f5aa8d5"
+    },
+    "TObjEneEpsilonGuard_8035F5C8": {
+      "functions": 55,
+      "objdiff_sha256": "5ec950d6f3328b774ca2169b35ab7f4e2f68de0ae67b001d6d5dbf8e939ef8b2"
+    },
+    "TObjEneMe1Canadin": {
+      "functions": 101,
+      "objdiff_sha256": "53edbd9be447518af866edb767dbd3e764bc94d8b522f0676ac2130cccb35cb7"
+    },
+    "TObjEneMe1Gee": {
+      "functions": 102,
+      "objdiff_sha256": "f32fda0701d445485a9e3b193aca312d77661d3b3a94a2ec830e9f7e7b036da4"
+    },
+    "TObjEneMe1GiGue": {
+      "functions": 55,
+      "objdiff_sha256": "7171b42995e6fc5e578ffffa1fc283adfe911095c95c73c353389c7f6d78b98e"
+    },
+    "TObjEneMe3Shinowa": {
+      "functions": 89,
+      "objdiff_sha256": "7ef6293a053ac797ed630a64b3e49cf67d07b75756e69c8485bebf6c9e6ec3a1"
+    },
+    "TObjEneMe3SinowZoa": {
+      "functions": 73,
+      "objdiff_sha256": "34e71c9d5ae45d9f3cd57a37afdc8e5f46725a6a54616b5409258d388d9d9a9f"
+    },
+    "TObjEneMe3Stelth": {
+      "functions": 75,
+      "objdiff_sha256": "25bed5693b26f84a50505badd027045ee561793ca1c7daddecc1d03995af6a39"
+    },
+    "TObjEneRecon": {
+      "functions": 54,
+      "objdiff_sha256": "d320ddd1994a8aaf59cd66735ff918fd05df37cfe70ebaa0c46399a446293b90"
+    }
+  },
+  "preserved_names": {
+    "0x800B150C": {
+      "fork": "TObjEneBm3Fly__vt102",
+      "current": "acquire_target__13TObjEneBm3FlyFf",
+      "size": "0x68"
+    },
+    "0x800B1A40": {
+      "fork": "update_dd_flag__13TObjEneBm3FlyFPv",
+      "current": "update_dd_flag__13TObjEneBm3FlyFfff",
+      "size": "0x50"
+    },
+    "0x800B2948": {
+      "fork": "sample_carrier_attachments__17TObjEneBm3FlyNestFP10NJS_OBJECT",
+      "current": "handle_attachment_sample__17TObjEneBm3FlyNestFP10NJS_OBJECT",
+      "size": "0x70"
+    },
+    "0x800B2A54": {
+      "fork": "get_spawn_point__17TObjEneBm3FlyNestFv",
+      "current": "sub_800B2A54__17TObjEneBm3FlyNestFv",
+      "size": "0x8"
+    },
+    "0x800B3AC8": {
+      "fork": "has_pending_spawns__17TObjEneBm3FlyNestCFv",
+      "current": "sub_800B3AC8__17TObjEneBm3FlyNestCFv",
+      "size": "0x14"
+    },
+    "0x800B3EB8": {
+      "fork": "__ct__17TObjEneBm3FlyNestFP7TObjectP14EnemySetRecord",
+      "current": "__ct__17TObjEneBm3FlyNestFP7TObjectP14EnemyPlacement",
+      "size": "0x2A0"
+    },
+    "0x800B4158": {
+      "fork": "get_resources__17TObjEneBm3FlyNestFv",
+      "current": "sub_800B4158__17TObjEneBm3FlyNestFv",
+      "size": "0x8"
+    },
+    "0x800B9514": {
+      "fork": "turn_toward_target_direction__9TObjEneDDFl",
+      "current": "turn_toward_target_direction__12TObjEneDD_STFl",
+      "size": "0x64"
+    },
+    "0x800B98C0": {
+      "fork": "enemy_clear_target__12TObjEneDD_STFUs",
+      "current": "enemy_clear_target__12TObjEneDD_STFv",
+      "size": "0x18"
+    },
+    "0x800CB5A0": {
+      "fork": "has_gee_flags__13TObjEneMe1GeeFUl",
+      "current": "sub_800CB5A0__13TObjEneMe1GeeFUl",
+      "size": "0x18"
+    },
+    "0x800CB764": {
+      "fork": "start_color_sequence__13TObjEneMe1GeeFl",
+      "current": "sub_800CB764__13TObjEneMe1GeeFl",
+      "size": "0x58"
+    },
+    "0x802CDAC4": {
+      "fork": "get_int_parameter__15TObjEneMe1GiGueFl",
+      "current": "get_gigue_int_parameter__15TObjEneMe1GiGueFl",
+      "size": "0x14"
+    },
+    "0x802CDAD8": {
+      "fork": "get_float_parameter__15TObjEneMe1GiGueFl",
+      "current": "get_gigue_float_parameter__15TObjEneMe1GiGueFl",
+      "size": "0x10"
+    }
+  },
+  "historical_comparison": {
+    "previous_verified_fly": "dbb9801fa69e8e616ad0ccd196388d0cf358dd49",
+    "previous_verified_gee": "63e8a18e154bca0f1ffa35fb34a6a125d2cc6ace",
+    "prior_open_rows": 419,
+    "open_rows": 415,
+    "closed": [
+      447,
+      586,
+      715,
+      1020
+    ],
+    "touched_rows": [
+      {
+        "row": 447,
+        "description": "The constructor uses the shared placement and signed child cap at +2. Child removal, const spawn readiness, carrier and attachment nodes, live child slots and camera fade records have the original types and layout. The spawn-point and BML resource methods keep the existing names at their exact addresses.",
+        "historical_path": "include/pso/enemy/TObjEneBm3FlyNest.h",
+        "current_path": "include/pso/enemy/fly/TObjEneBm3FlyNest.h",
+        "fork_blob": "6a99b99405c5a3718d4b4418e0dcde445b4d4acd",
+        "current_blob": "bb9b5e352ccba96d42fe463a5b1afc7b1e429504",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete native Fly Nest declarations historical source reconciled",
+        "authored_delta_sha256": "371f63bce0f4dda5ce311fba214ed8dcaae6bf29d2623e472069168dc9a54f1d"
+      },
+      {
+        "row": 458,
+        "description": "The actual Gee base owns the color sequence setter and uses unsigned flags and masks. Broader historical declarations remain open.",
+        "historical_path": "include/pso/enemy/TObjEneMe1Gee.h",
+        "current_path": "include/pso/enemy/gee/TObjEneMe1Gee.h",
+        "fork_blob": "433ec2e93635233a4980b9032a4db68a2725888e",
+        "current_blob": "e22e74067a781c22a274e84a46b3c776d851958f",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 459,
+        "description": "Gi Gue's two signed-index tuning methods have native class ownership and keep the established names. Other declarations remain open.",
+        "historical_path": "include/pso/enemy/TObjEneMe1GiGue.h",
+        "current_path": "include/pso/enemy/gigue/TObjEneMe1GiGue.h",
+        "fork_blob": "9ddca8a98139c3a7ac8f15b862306e49671dc28e",
+        "current_blob": "a5629817acc438ea030245dc40399eddfd804921",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 565,
+        "description": "The active nest uses the shared signed placement cap and the carrier's actual nest, two borrowed vectors and read-only completion count. Other nest source changes remain open.",
+        "historical_path": "src/pso/enemy/TObjEneBm3FlyNest.cpp",
+        "current_path": "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+        "fork_blob": "c382ce1e7b7b40fc5ec8944ad476bd58503f88fa",
+        "current_blob": "ad55ccf0ec4074e0967d6ab6dd506201b4712a10",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 586,
+        "description": "The folded TObjEneDD provider uses full Vec destinations, preserves the virtual movement result, and owns the turn on the shared target-aware actor. The live target, periodic selection, destination copy, retention, bind and clear paths use the existing native target and counters. Yaw keeps the explicit retail signed narrowing.",
+        "historical_path": "src/pso/enemy/TObjEneEpsilon_800B92AC.cpp",
+        "current_path": "src/pso/enemy/dd/TObjEneDD.cpp",
+        "fork_blob": "821cef564d0f9fa8e44b7e09ae822515a9e32b91",
+        "current_blob": "2458af7fe9af7d6765b68bc1be37651db7da7335",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete shared ground movement and target acquisition historical source reconciled",
+        "authored_delta_sha256": "63f6729b960bc457a9941ed60dd6e493e62ef803dd0fb1326c8e1dcd2d507cf5"
+      },
+      {
+        "row": 589,
+        "description": "The native Canadin uses the shared actor and Vec movement providers for hover transitions. Other Canadin source changes remain open.",
+        "historical_path": "src/pso/enemy/TObjEneMe1Canadin.cpp",
+        "current_path": "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+        "fork_blob": "0c982ac6d9c5730b1b51fbac6f3f85392ad3f623",
+        "current_blob": "b45622b617c8280baffded57319eba0c41e0429c",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 590,
+        "description": "The actual Gee class owns the existing color sequence and uses unsigned flag tests. The shared movement provider takes the native actor.",
+        "historical_path": "src/pso/enemy/TObjEneMe1Gee.cpp",
+        "current_path": "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+        "fork_blob": "9196707382ae02c44b15f0ff7145d25daadb779c",
+        "current_blob": "96d18284ce39ce1c6aef5a348fd1e41f0f081794",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 591,
+        "description": "Gi Gue reads the native six-float and five-int tuning table through its recovered methods. Other historical actor source changes remain open.",
+        "historical_path": "src/pso/enemy/TObjEneMe1GiGue.cpp",
+        "current_path": "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+        "fork_blob": "7dd40a4be413aebf2c1586cc0ea3d5d8a76924c7",
+        "current_blob": "223cd75ced77715d65fad3ad2bf38692a09debf4",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 621,
+        "description": "Recon uses the shared pointer result from the virtual ground movement route. Other historical Recon hunks remain open.",
+        "historical_path": "src/pso/enemy/TObjEneRecon_8031C250.cpp",
+        "current_path": "src/pso/enemy/recon/TObjEneRecon.cpp",
+        "fork_blob": "7d38c5df45683dd460878ad403b8640d1d3960e9",
+        "current_blob": "09014bec31df03d07742042206353c008741523a",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 715,
+        "description": "The active native class declares the original constructor, renderer, action dispatcher and virtual slots. The signed state, unsigned flags and color, actual fade and narrower owned effect pointers cover the historical fields. The three contiguous effect floats use the existing Vec and the layout remains 0x42C.",
+        "historical_path": "include/pso/enemy/TObjEneMe3Shinowa.h",
+        "current_path": "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+        "fork_blob": "3be0481d547170b545bf7a8fcb4f38c6d30f7377",
+        "current_blob": "ce9e429543ca061bce683f7ca0c497405cc930da",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete existing Shinowa type and virtual slots historical source reconciled",
+        "authored_delta_sha256": "124a8702b4c63a06ba3a2387bb0712936dfee3dab39aefe85a5785f936c08855"
+      },
+      {
+        "row": 1020,
+        "description": "The Fly factory takes the actual nest, two signed words and two read-only vectors. The current base owns the historical common record. The actual acquire_target virtual and three-float movement method retain their established names and the same linked addresses.",
+        "historical_path": "include/pso/enemy/TObjEneBm3Fly.h",
+        "current_path": "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+        "fork_blob": "b842a084e026d104076f200046b8092882aaa97a",
+        "current_blob": "89c46e8dd2072160e7919d28ab36710bf337f519",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete native Fly declaration and factory historical source reconciled",
+        "authored_delta_sha256": "5ad8f715445258f56646f90463b67d548ba5b86ccedf82d1ee8202efcfa382fd"
+      },
+      {
+        "row": 1114,
+        "description": "The Fly uses its native static spawn factory, typed child removal and shared movement result. Other historical Fly source changes remain open.",
+        "historical_path": "src/pso/enemy/TObjEneBm3Fly.cpp",
+        "current_path": "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+        "fork_blob": "e3935c2f0347368fb245b0e5c2d8c510a8475574",
+        "current_blob": "89c46e8dd2072160e7919d28ab36710bf337f519",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      }
+    ]
+  },
+  "validation": {
+    "stock": {
+      "baseline": "ca5a3f1e2d272592c14a408c0ded2a6d839181c0",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x800B225C",
+          "before": "create__13TObjEneBm3FlyFPvPvPvPv",
+          "after": "create__13TObjEneBm3FlyFP17TObjEneBm3FlyNestllPC3VecPC3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800B2A5C",
+          "before": "remove_child__17TObjEneBm3FlyNestFPUc",
+          "after": "remove_child__17TObjEneBm3FlyNestFP14TObjCollidable"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800B3AC8",
+          "before": "sub_800B3AC8__17TObjEneBm3FlyNestFv",
+          "after": "sub_800B3AC8__17TObjEneBm3FlyNestCFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800B3EB8",
+          "before": "__ct__17TObjEneBm3FlyNestFP7TObjectP17Bm3FlyNestSetData",
+          "after": "__ct__17TObjEneBm3FlyNestFP7TObjectP14EnemyPlacement"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800B4688",
+          "before": "__ct__26TObjEneBm3FlyNest_CarryFlyFP7TObjectP3VecP3VecP3VecPll",
+          "after": "__ct__26TObjEneBm3FlyNest_CarryFlyFP17TObjEneBm3FlyNestPC3VecPC3VecPC3VecPCll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800B9344",
+          "before": "enemy_turn_and_move_on_ground__FPUclf",
+          "after": "enemy_turn_and_move_on_ground__FP12TObjEneDD_STlf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800B93C4",
+          "before": "fire_attack_a__14TObjEneEpsilonFllf",
+          "after": "fire_attack_a__12TObjEneDD_STFP3Veclf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800B9434",
+          "before": "fire_attack_b__14TObjEneEpsilonFllf",
+          "after": "fire_attack_b__12TObjEneDD_STFP3Veclf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800B94A4",
+          "before": "fire_attack_c__14TObjEneEpsilonFllf",
+          "after": "fire_attack_c__12TObjEneDD_STFP3Veclf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800CB5A0",
+          "before": "sub_800CB5A0__13TObjEneMe1GeeFl",
+          "after": "sub_800CB5A0__13TObjEneMe1GeeFUl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800CB764",
+          "before": "sub_800CB764__13TUnk_8049387CFl",
+          "after": "sub_800CB764__13TObjEneMe1GeeFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802CDAC4",
+          "before": "get_gigue_int_parameter__FP15TObjEneMe1GiGuel",
+          "after": "get_gigue_int_parameter__15TObjEneMe1GiGueFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802CDAD8",
+          "before": "get_gigue_float_parameter__FP15TObjEneMe1GiGuel",
+          "after": "get_gigue_float_parameter__15TObjEneMe1GiGueFl"
+        }
+      ],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "3e85e4ae0d80273522d50eb16bd3b239412eeb95fc11d1678d8a9d1fbf9a9cf8",
+      "report_sha256": "65f5ee54a557c0d4dadd2178a0ce4b15e58544e1fab6a6b4b89d703c4761a78c"
+    },
+    "workspace": {
+      "baseline": "48fb8d663982d4c8eaca8626db11c0d84b46ba07",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "65f5ee54a557c0d4dadd2178a0ce4b15e58544e1fab6a6b4b89d703c4761a78c"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "2320a7e1197900ff23b3321a077dcc266fe24ff30624aa7db88e319b86572a7d"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "e9254382b2096af0a0811e4273d68a99cac611a510122708dde54b8bad0536c9"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    },
+    "flight_runtime": {
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "checks": [
+        "All four movement wrappers carry the original actor, turn limit and distance",
+        "The three-float stack destination reaches the virtual and direct movement paths",
+        "Successful and null collision results return to Fly and Recon",
+        "Signed spawn count, missing child and swap-and-remove registry behavior",
+        "Native Fly factory arguments and the allocation-failure path",
+        "Unsigned Gee flags and the starting sequence state",
+        "Gi Gue's six float and five signed integer parameters"
+      ],
+      "log_sha256": "f237861c21ba0641f67e9d13b4af9eae715c1c24f3f035b5d5ce35f52c55053b",
+      "probe_sha256": "189dcae8805335a11234cd275d197edde318f87e119c505a7677d3dee14cee4a"
+    }
+  },
+  "fork_workspace": {
+    "overlay_paths": 130,
+    "overlay_patch_sha256": "29b32fa0cdda7a0135fc152e10633d78087d5579259d34e40da36f3317893a73",
+    "updated_overlay_paths": [
+      "config/GPOE8P/psov3/config.yml"
+    ],
+    "force_active": {
+      "before": 27033,
+      "after": 27033,
+      "mappings": {
+        "sub_800B3AC8__17TObjEneBm3FlyNestFv": "sub_800B3AC8__17TObjEneBm3FlyNestCFv",
+        "__ct__17TObjEneBm3FlyNestFP7TObjectP17Bm3FlyNestSetData": "__ct__17TObjEneBm3FlyNestFP7TObjectP14EnemyPlacement",
+        "__ct__26TObjEneBm3FlyNest_CarryFlyFP7TObjectP3VecP3VecP3VecPll": "__ct__26TObjEneBm3FlyNest_CarryFlyFP17TObjEneBm3FlyNestPC3VecPC3VecPC3VecPCll",
+        "fire_attack_a__14TObjEneEpsilonFllf": "fire_attack_a__12TObjEneDD_STFP3Veclf",
+        "fire_attack_b__14TObjEneEpsilonFllf": "fire_attack_b__12TObjEneDD_STFP3Veclf",
+        "fire_attack_c__14TObjEneEpsilonFllf": "fire_attack_c__12TObjEneDD_STFP3Veclf",
+        "sub_800CB5A0__13TObjEneMe1GeeFl": "sub_800CB5A0__13TObjEneMe1GeeFUl",
+        "sub_800CB764__13TUnk_8049387CFl": "sub_800CB764__13TObjEneMe1GeeFl",
+        "get_gigue_int_parameter__FP15TObjEneMe1GiGuel": "get_gigue_int_parameter__15TObjEneMe1GiGueFl",
+        "get_gigue_float_parameter__FP15TObjEneMe1GiGuel": "get_gigue_float_parameter__15TObjEneMe1GiGueFl"
+      }
+    },
+    "archive_test_head": "5e4dc6ce97ba847254dffd1e2272667ba0a0d082",
+    "tested_materialized_tree": "87340e94b2a8fd3de4c09396c92780fdedf18aee",
+    "only_added_directory": "fork/",
+    "non_layer_differences": 0,
+    "workflow_blob": "a65a054c88a2f51f97588206106e6ff86f374652"
+  }
+}

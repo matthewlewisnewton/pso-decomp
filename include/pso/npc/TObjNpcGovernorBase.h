@@ -2,28 +2,20 @@
 #define PSO_NPC_TOBJNPCGOVERNORBASE_H
 
 #include "types.h"
-#include "pso/npc/TUnk_804A9F50.h"
+#include "pso/npc/TObjNpcMale.h"
 
-struct TObjNpcGovernorBase : public TUnk_804A9F50 {
+struct BmlResource;
+
+struct TObjNpcGovernorBase : public TObjNpcMale {
+    TObjNpcGovernorBase(TObject *parent, void *set_data);
     virtual ~TObjNpcGovernorBase();
     static void free_shared_data();
     static void load_shared_resource();
+    static void *create(void *set_data);
+    static const char *name;
+    static BmlResource *shared_resource;
 };
 
-typedef char TObjNpcGovernorBase_size[sizeof(TObjNpcGovernorBase) == 0x3B8 ? 1 : -1];
-
-extern "C" {
-u8 *TObjNpcGovernorBase__ct(u8 *arg0, s32 arg1, s32 arg2);
-void *TObjNpcHFW00__create(void *arg0);
-void *__dt__19TObjNpcGovernorBaseFv(void *arg0, s16 arg1);
-}
-
-// --- C functions defined in TObjNpcGovernorBase.cpp ---
-extern "C" {
-u8 *TObjNpcGovernorBase__ct(u8 *player, s32 arg1, s32 arg2);
-void *TObjNpcHFW00__create(void *arg0);
-void *__dt__19TObjNpcGovernorBaseFv(void *arg0, s16 arg1);
-}
-// --- end of C functions
+LAYOUT_ASSERT(TObjNpcGovernorBase_size, sizeof(TObjNpcGovernorBase) == 0x3B8);
 
 #endif

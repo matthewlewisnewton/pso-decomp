@@ -1,0 +1,109 @@
+{
+  "source_head": "659bbf49da7ae75baf0d1ed328b50d4daaedfb2b",
+  "source_tree": "e3f9a2951408acad9966a43054c73630cda08282",
+  "previous_cumulative": "a10b81ab944f7d3463d4f47f533bc9f203d4201f",
+  "upstream_master": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "effects_overlap_paths": [
+    "src/pso/boss/dragon/TBoss1Dragon.cpp",
+    "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+    "src/pso/player/TObjPlayer_80011014.cpp"
+  ],
+  "source_paths": [
+    "include/pso/player/TObjPlayer_80011014.h",
+    "include/pso/system/RandomRatio.h",
+    "src/pso/boss/dragon/TBoss1Dragon.cpp",
+    "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon_802F3348.cpp",
+    "src/pso/item/drop/TItemDrop_80105D0C.cpp",
+    "src/pso/object/TObjLiveMonitor.cpp",
+    "src/pso/player/TObjPlayer_80011014.cpp"
+  ],
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "matching_functions": 27572,
+  "linked_units": 2368,
+  "coverage_regressions": {
+    "regressions": 0,
+    "data_regressions": 0,
+    "data_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0,
+    "failures": 0
+  },
+  "source_benchmark": {
+    "total": {
+      "base": 142825,
+      "head": 142809,
+      "added": 0,
+      "removed": 16
+    },
+    "label_changes": 0,
+    "stale_retention_entries": 0
+  },
+  "runtime": {
+    "images": [
+      "retail",
+      "Great Merge source"
+    ],
+    "seeds": [
+      "0x00000000",
+      "0x00000001",
+      "0x7FFFFFFF",
+      "0x80000000",
+      "0xFFFFFFFF"
+    ],
+    "draws_per_seed": 130,
+    "case_count_per_image": 1303,
+    "standalone_ratio_address": "0x800196A4",
+    "actor_ratio_address": "0x80011014",
+    "actor_rng_offset": "0x160",
+    "generator_state_size": "0xE8",
+    "checks": [
+      "ratio from the unsigned upper halfword",
+      "all generator state bytes across refills",
+      "actor storage before the generator",
+      "phase 0xE libc fallback and unchanged generator state"
+    ]
+  },
+  "matching_constraints": [
+    "The existing linker name remains at the original address. Item-drop calls which ignore the result declare the same floating-point return as other callers.",
+    "Boss and actor storage remains in place with explicit conversions at raw storage boundaries. The shared standalone getter takes the actual SubtractiveRng state."
+  ],
+  "historical_source_comparison": {
+    "closed": "include/pso/player/TObjPlayer_80011014.h",
+    "reverified": "include/pso/system/RandomRatio.h",
+    "remaining": 171
+  },
+  "historical_fork_data": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "validation_sha256": {
+    "check.json": "ec167389dbd490e17ac3a61384def77d8d58a7485e34e9bf913ffed6e489dc0a",
+    "delta.json": "ef911594f61dd2e5fc3b74eca9ecd722410760145f536c60664429b458ad8fd4",
+    "quality.json": "286a174a9f3a0565a98994f54765545dac260c5f6cb9e45b65d155dd69ad7d5c",
+    "probe-rng-ratio.py": "50b8d5d6df214170fab7a7812bb1abdc6c5fb0161a9ec13aa5fecf52d343d487",
+    "probe-rng.log": "274794d165a8d2bb9e8b5dba6d60b49bde11f8a7f09c202f904110feb3564f5f"
+  },
+  "materialized_fork": {
+    "tree": "9d6b7a5450a566c14193cdcb59a21eee080419ed",
+    "retention_entries": 27007,
+    "new_stale_retention_entries": 0,
+    "checks": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    },
+    "validation_sha256": {
+      "private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011",
+      "retention.log": "b3325169ce9d5755b2340e455b52eb7ac52edcb6fa173dc4f2486f46f713350c",
+      "fork-tests.log": "e18824efa1882df61a3fcf271ca452740087c1ca7bf7e9b4ed1f3bc8fb62d825",
+      "tool-tests.log": "27ac748c98c8821d7f9c2c90c12ed2a07c4d1efccdf670d7ecde8f2ddfb69fc7",
+      "host-tests.log": "813bbf340a4258998da24aa116c2d955908c6a4f6be0f9ef7906e740e13d2ddf"
+    }
+  }
+}

@@ -1,10 +1,10 @@
 #ifndef PSO_ITEM_TITEMTEXLOAD_H
 #define PSO_ITEM_TITEMTEXLOAD_H
-#include "pso/TObject.h"
-#include "pso/system/GinjaMaterialState.h"
-#include "pso/item/TItemData.h"
 
 struct AdxfHandle;
+#include "pso/system/task/TObject.h"
+#include "pso/render/GinjaMaterialState.h"
+#include "pso/item/TItemData.h"
 
 class TItemTexLoad : public TObject {
 public:
@@ -12,8 +12,8 @@ public:
     s32 m_state;
     s32 m_texture_index;
     AdxfHandle *m_archive_handle;
-    GinjaTextureList m_texture_list;
-    GinjaTextureEntry m_texture_entry;
+    NJS_TEXLIST m_texture_list;
+    NJS_TEXNAME m_texture_entry;
 
     TItemTexLoad(TObject* parent);
     virtual ~TItemTexLoad();
@@ -22,26 +22,26 @@ public:
     void unload_texture();
     s32 load_texture(s32 index);
     s32 load_item_icon(TItemData* item);
-    GinjaTextureList* ready_texture_list();
+    NJS_TEXLIST* ready_texture_list();
     static TItemTexLoad* create(TObject* parent);
     static void free_textures();
 };
 #include <stddef.h>
-typedef char ItemTexBaseSize[(sizeof(TObject)==0x1C)?1:-1];
-typedef char ItemTexLoadSize[(sizeof(TItemTexLoad)==0x40)?1:-1];
-typedef char ItemTexBufferOffset[(offsetof(TItemTexLoad,m_archive_buffer)==0x1C)?1:-1];
-typedef char ItemTexStateOffset[(offsetof(TItemTexLoad,m_state)==0x20)?1:-1];
-typedef char ItemTexIndexOffset[(offsetof(TItemTexLoad,m_texture_index)==0x24)?1:-1];
-typedef char ItemTexHandleOffset[(offsetof(TItemTexLoad,m_archive_handle)==0x28)?1:-1];
-typedef char ItemTexListOffset[(offsetof(TItemTexLoad,m_texture_list)==0x2C)?1:-1];
-typedef char ItemTexEntryOffset[(offsetof(TItemTexLoad,m_texture_entry)==0x34)?1:-1];
-typedef char GinjaTextureListSize[(sizeof(GinjaTextureList)==8)?1:-1];
-typedef char GinjaTextureListEntries[(offsetof(GinjaTextureList,entries)==0)?1:-1];
-typedef char GinjaTextureListCount[(offsetof(GinjaTextureList,count)==4)?1:-1];
-typedef char GinjaTextureEntrySize[(sizeof(GinjaTextureEntry)==12)?1:-1];
-typedef char GinjaTextureEntryName[(offsetof(GinjaTextureEntry,name)==0)?1:-1];
-typedef char GinjaTextureEntryValue04[(offsetof(GinjaTextureEntry,value04)==4)?1:-1];
-typedef char GinjaTextureEntryTexture[(offsetof(GinjaTextureEntry,texture)==8)?1:-1];
+LAYOUT_ASSERT(ItemTexBaseSize, sizeof(TObject)==0x1C);
+LAYOUT_ASSERT(ItemTexLoadSize, sizeof(TItemTexLoad)==0x40);
+LAYOUT_ASSERT(ItemTexBufferOffset, offsetof(TItemTexLoad,m_archive_buffer)==0x1C);
+LAYOUT_ASSERT(ItemTexStateOffset, offsetof(TItemTexLoad,m_state)==0x20);
+LAYOUT_ASSERT(ItemTexIndexOffset, offsetof(TItemTexLoad,m_texture_index)==0x24);
+LAYOUT_ASSERT(ItemTexHandleOffset, offsetof(TItemTexLoad,m_archive_handle)==0x28);
+LAYOUT_ASSERT(ItemTexListOffset, offsetof(TItemTexLoad,m_texture_list)==0x2C);
+LAYOUT_ASSERT(ItemTexEntryOffset, offsetof(TItemTexLoad,m_texture_entry)==0x34);
+LAYOUT_ASSERT(GinjaTextureListSize, sizeof(NJS_TEXLIST)==8);
+LAYOUT_ASSERT(GinjaTextureListEntries, offsetof(NJS_TEXLIST,textures)==0);
+LAYOUT_ASSERT(GinjaTextureListCount, offsetof(NJS_TEXLIST,nbTexture)==4);
+LAYOUT_ASSERT(GinjaTextureEntrySize, sizeof(NJS_TEXNAME)==12);
+LAYOUT_ASSERT(GinjaTextureEntryName, offsetof(NJS_TEXNAME,filename)==0);
+LAYOUT_ASSERT(GinjaTextureEntryValue04, offsetof(NJS_TEXNAME,attr)==4);
+LAYOUT_ASSERT(GinjaTextureEntryTexture, offsetof(NJS_TEXNAME,texture)==8);
 
 void load_item_kt_afs(void);
 

@@ -1,0 +1,337 @@
+{
+  "upstream": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+  "upstream_url": "https://github.com/zeroz41/pso-decomp/commit/859acff6836f80dcc0f216b3a73e321e1bfc1029",
+  "previous_upstream": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+  "previous_source": "82ef099ef2c33679d5cbb9f7b50058a87e0c21e3",
+  "previous_review": "165784f35fce5c7c8457bf6875d846c226a49e00",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "cutover_preview": "e4135b0c555e633bcd53f555eca1df6059afaf53",
+  "review": "9aab8ef9dbe3e5c850258224e6d04cea6f62e560",
+  "review_ref": "great-merge/consolidated/after-upstream-351",
+  "review_tree": "ee170f6f6cd6705545c5413bc583804956acfba8",
+  "review_paths": 1038,
+  "published_groups_in_upstream": [
+    336,
+    337,
+    338,
+    339,
+    340,
+    341,
+    342,
+    344,
+    345,
+    346,
+    347,
+    348,
+    349,
+    350
+  ],
+  "initial_different_paths": 945,
+  "initial_merge_conflicts": 404,
+  "path_ledger": "2026-11-21-upstream-351-reconciliation.tsv",
+  "path_ledger_sha256": "d0104581cf316384d8602eb322363ef6356dfe9ec89ce83773382d9a3cf43aa5",
+  "path_status": {
+    "validated historical owner recovery": 220,
+    "exact prior source": 512,
+    "same change already in upstream": 860,
+    "equivalent source retained": 134,
+    "validated three-way source": 11,
+    "upstream names retained": 49,
+    "upstream only": 7,
+    "equivalent base-class call retained": 42,
+    "native archive source with existing style": 12
+  },
+  "remaining_path_comparisons": 0,
+  "historical_fork_ledger_open": 511,
+  "validation": {
+    "upstream": {
+      "commit": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+      "check_sha256": "ee9159aa8a4a7f06fc7ae77fcccb4d615d9d54d7558fd8f4634ca0867da2dbb9",
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3"
+    },
+    "selector": {
+      "commit": "1a1f7dc37b67de62f2df76698719a38ad6e1ffdc",
+      "check_sha256": "9536e35d1605fbb616a5e1ead3f6896a79690a30a97ded84b573dc3858480e04",
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "subject": "Recover character selection actor and title texture ownership",
+      "paths": 25
+    },
+    "growth": {
+      "commit": "853bee5e073a2aa882856ba959cdee89f1779020",
+      "check_sha256": "b5b34f5d3edc1b75fd60845599ed005abac72073907d24a90f865d2307d25486",
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "subject": "Recover character level tables and companion inventory initialization",
+      "paths": 22
+    },
+    "ppp": {
+      "commit": "9af2a5bddac4a744e37723bd53d7c6170870d941",
+      "check_sha256": "b5b34f5d3edc1b75fd60845599ed005abac72073907d24a90f865d2307d25486",
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "subject": "Recover typed PPP frame and callback interfaces",
+      "paths": 12
+    },
+    "texture-list": {
+      "commit": "6baee56167be7b0d857ae706b063b90cf6d25d8b",
+      "check_sha256": "88266a62a29581443a751c37174453c98bdcd7fa7affaecef1843229bc0853d9",
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "subject": "Use the native Ginja texture-list interface across render callers",
+      "paths": 352
+    },
+    "radar": {
+      "commit": "1ed9c7c517d640a348f9701dad4796ceabad501d",
+      "check_sha256": "7038e4c88c347a37028dae4e5f191684e2376a64248cfe5a00ff974e05aa4f9e",
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "subject": "Recover the native camera, radar and compass interfaces",
+      "paths": 25
+    },
+    "color-lines": {
+      "commit": "b65d1cc9cb1bcc3445ea27df81bb66611311eafe",
+      "check_sha256": "e9173069f5527525f1987388f9fde61ea94e0c709cf8ca2225c3df9ae22e54e7",
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "subject": "Use native color lists throughout 2D rendering",
+      "paths": 38
+    },
+    "before-and-after-upstream": {
+      "commit": "b65d1cc9cb1bcc3445ea27df81bb66611311eafe",
+      "check_sha256": "e80968844cba8810073e1b64b84795997832745fb94d05228ad6987d42bc50ef",
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3"
+    }
+  },
+  "original_data_coverage": {
+    "upstream": {
+      "source_report_sha256": "3196c505edb4e3ca66d411ba3ef0e51e602028c12fae18244e918c1f1fc93e1b",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "rebased": {
+      "source_report_sha256": "d4c3909376fff4dd8b1c4e278a82b6d8c34e046ae7233f3b1ca113eb6bbe01ad",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    }
+  },
+  "linked_source_units": 2448,
+  "exact_functions": 27572,
+  "typed_linker_labels": [
+    {
+      "module": "psov3",
+      "address": "0x8007E884",
+      "before": "transform_vec_by_camera__15TObjBoss2TunnelFlll",
+      "after": "transform_vec_by_camera__15TObjBoss2TunnelFPvPC3VecP3Vec"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801D91F8",
+      "before": "get_current_state_field__10TObjPlayerFScl",
+      "after": "get_current_state_field__10TObjPlayerFll"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801D9250",
+      "before": "get_ply_level_table_row__FScl",
+      "after": "get_ply_level_table_row__Fll"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801E352C",
+      "before": "draw_strip_swap_color__15TWindowCtrlMainFllf",
+      "after": "draw_strip_swap_color__13ColorLineListFllf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801E35C4",
+      "before": "draw_polygon_2d__FP13NJS_POINT2COLlUlf",
+      "after": "draw_polygon_2d__FP13ColorLineListlUlf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801F9228",
+      "before": "set_view_scissor__13TRaderMapCoreFPviPv",
+      "after": "set_view_scissor__13TRaderMapCoreFiPC13Rect_801F9228"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801F9314",
+      "before": "setup_overhead_projection__13TRaderMapCoreFv",
+      "after": "setup_overhead_projection__13TRaderMapCoreFP17RadarMapViewState"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801FA678",
+      "before": "copy_transform__13TRaderMapCoreFPv",
+      "after": "copy_transform__17RadarMapViewStateFPC17RadarMapViewState"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801FA9D8",
+      "before": "begin_map_view__13TRaderMapCoreFii",
+      "after": "begin_map_view__13TRaderMapCoreFi"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801FAAEC",
+      "before": "render_region_records__13TRaderMapCoreFPv",
+      "after": "render_region_records__13TRaderMapCoreFl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801FB874",
+      "before": "apply_compass_param__13TRaderMapCoreFPl",
+      "after": "apply_compass_param__13TRaderMapCoreFPCl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801FB9A4",
+      "before": "init_map_ptr__13TRaderMapCoreFPll",
+      "after": "init_map_ptr__13TRaderMapCoreFPCll"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8023E0FC",
+      "before": "draw_compass_sprite__10TObjPlayerFlllf",
+      "after": "draw_compass_sprite__16SpriteDescriptorFlllf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80257720",
+      "before": "copy4__18TAdChrMoveEffectGCFPv",
+      "after": "copy4__FPvPCv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802A506C",
+      "before": "__ct__13TAdTitleTexGCFv",
+      "after": "__ct__13TAdTitleTexGCFP7TObject"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802C3CD0",
+      "before": "send_command__10TNpcPlayerFlScllPSc",
+      "after": "send_command__10TNpcPlayerFllPC17TPlyInventoryItemlP12TPlyCharData"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802D5098",
+      "before": "set_selection_state__21TAdMultiSelGameModeGCFl",
+      "after": "set_selection_state__14TAdSelectCurGCFl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802D50A0",
+      "before": "get_player_index__22TAdMultiPlyChrSelectGCFv",
+      "after": "get_player_index__16TAdChrSelASlotGCFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802D50A8",
+      "before": "set_cursor_index__22TAdMultiPlyChrSelectGCFl",
+      "after": "set_cursor_index__16TAdChrSelASlotGCFl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802D50B0",
+      "before": "set_field_100__22TAdMultiPlyChrSelectGCFl",
+      "after": "set_field_100__13TUnk_804E3008Fl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802E00BC",
+      "before": "set_field_1c__22TAdMultiPlyChrSelectGCFl",
+      "after": "set_field_1c__16TAdChrSelBSlotGCFl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802E00C4",
+      "before": "get_mode__22TAdMultiPlyChrSelectGCFv",
+      "after": "get_mode__16TAdChrSelBSlotGCFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802E00CC",
+      "before": "is_state_closing__22TAdMultiPlyChrSelectGCFv",
+      "after": "is_state_closing__16TAdChrSelBSlotGCFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802E0C28",
+      "before": "set_status_value__22TAdMultiPlyChrSelectGCFl",
+      "after": "set_status_value__13TUnk_804E3008Fl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802E0C68",
+      "before": "set_index_and_close_status__22TAdMultiPlyChrSelectGCFl",
+      "after": "set_index_and_close_status__13TUnk_804E3008Fl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802E0CB0",
+      "before": "sub_802E0CB0__13TUnk_804E3008Fv",
+      "after": "sub_802E0CB0__13TUnk_804E3008Fl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8030E378",
+      "before": "is_slot_state_one__16TAdChrSelBSlotGCFlUl",
+      "after": "is_slot_state_one__16TAdChrSelBSlotGCFUl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803100A4",
+      "before": "create__16TAdChrSelBSlotGCFPv",
+      "after": "create__16TAdChrSelBSlotGCFP7TObject"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803DA798",
+      "before": "set_global_param__8TObjFishFl",
+      "after": "set_global_param"
+    }
+  ],
+  "review_commit_attribution": {
+    "commits": 101,
+    "codex_attribution": 0,
+    "coauthor_trailers": 0
+  },
+  "runtime_probes": {
+    "selector-probe.log": "56c4fcf29fd9e99d863dae03c7896f323110b4cff0affa369fea45f309c0b943",
+    "retail-renderer-probe.log": "7eebf8f7dc7da1debdd60c2d844abcc346b520f2b8c498ae90ffd84546477c24",
+    "rebased-renderer-probe.log": "7eebf8f7dc7da1debdd60c2d844abcc346b520f2b8c498ae90ffd84546477c24"
+  },
+  "fork_overlay_replay_preview": {
+    "paths": 130,
+    "conflicts": [],
+    "workspace_ref": "great-merge/consolidated/after-upstream-351-fork-workspace",
+    "retained_symbols": 27033,
+    "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3"
+  },
+  "public_refs_changed": false,
+  "initial_rebased_review": "b65d1cc9cb1bcc3445ea27df81bb66611311eafe",
+  "actor_and_inventory_followup": "2026-11-21-post-351-actors.json",
+  "movement_and_phase_followup": "2026-11-21-post-351-movement.json",
+  "rename_only_followup": "2026-11-21-post-351-rename-only.json",
+  "window_and_inventory_followup": "2026-11-21-post-351-windows.json",
+  "actor_and_archive_followup": "2026-11-21-post-351-actor-archives.json",
+  "title_and_equivalence_followup": "2026-11-21-post-351-title-and-source-equivalence.json",
+  "source_closeout": "2026-11-21-post-351-closeout.json",
+  "cutover_candidate_ref": "great-merge/cutover-candidate",
+  "historical_owner_recovery": "2026-11-21-historical-inventory-and-owner-review.json",
+  "historical_boss_recovery": "2026-11-21-historical-boss-owners.json",
+  "historical_enemy_collision": "2026-11-21-historical-enemy-collision.json",
+  "historical_ground_and_body": "2026-11-21-historical-ground-and-body.json",
+  "historical_derolle_and_barbaray": "2026-11-21-historical-derolle-and-barbaray.json",
+  "historical_sound_and_disc": "2026-11-21-historical-sound-and-disc.json",
+  "historical_guild_card_and_short_mail": "2026-11-21-historical-guild-card-and-short-mail.json",
+  "upstream_name_retention": "2026-11-21-upstream-name-retention.json",
+  "historical_controller_and_keyboard": "2026-11-21-historical-controller-and-keyboard.json",
+  "historical_olga_flow": "2026-11-21-historical-olga-flow.json",
+  "historical_dark_falz": "2026-11-21-historical-dark-falz.json",
+  "historical_photon_blast": "2026-11-21-historical-photon-blast.json",
+  "historical_status_windows": "2026-11-21-historical-status-windows.json",
+  "historical_world_travel": "2026-11-21-historical-world-travel.json",
+  "historical_scene_playback": "2026-11-21-historical-scene-playback.json",
+  "historical_task_identity": "2026-11-21-historical-task-identity.json"
+}

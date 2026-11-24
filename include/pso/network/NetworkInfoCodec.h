@@ -98,31 +98,31 @@ struct NetworkInfoCipherPoolBinding {
     u32 *pool;
     u32 field_04;
 };
-typedef char NetworkInfoCipherBlockExtent[sizeof(NetworkInfoCipherBlock) == 0x10 ? 1 : -1];
-typedef char NetworkInfoCipherKeyExtent[sizeof(NetworkInfoCipherKey) == 0x44 ? 1 : -1];
-typedef char NetworkInfoCipherWorkspaceExtent[sizeof(NetworkInfoCipherWorkspace) == 0x120 ? 1 : -1];
-typedef char NetworkInfoCipherPoolBindingExtent[sizeof(NetworkInfoCipherPoolBinding) == 8 ? 1 : -1];
+LAYOUT_ASSERT(NetworkInfoCipherBlockExtent, sizeof(NetworkInfoCipherBlock) == 0x10);
+LAYOUT_ASSERT(NetworkInfoCipherKeyExtent, sizeof(NetworkInfoCipherKey) == 0x44);
+LAYOUT_ASSERT(NetworkInfoCipherWorkspaceExtent, sizeof(NetworkInfoCipherWorkspace) == 0x120);
+LAYOUT_ASSERT(NetworkInfoCipherPoolBindingExtent, sizeof(NetworkInfoCipherPoolBinding) == 8);
 
-typedef char NetworkInfoNamedConfigExtent[sizeof(NetworkInfoNamedConfig) == 0x28 ? 1 : -1];
-typedef char NetworkInfoConnectionConfigExtent[sizeof(NetworkInfoConnectionConfig) == 0x210 ? 1 : -1];
-typedef char NetworkInfoMailConfigExtent[sizeof(NetworkInfoMailConfig) == 0x124 ? 1 : -1];
-typedef char NetworkInfoCredentialConfigExtent[sizeof(NetworkInfoCredentialConfig) == 0x84 ? 1 : -1];
-typedef char NetworkInfoConfigExtent[sizeof(NetworkInfoConfig) == 0x19D4 ? 1 : -1];
-typedef char NetworkInfoConfigConnectionOffset[offsetof(NetworkInfoConfig, b) == 0xF8 ? 1 : -1];
-typedef char NetworkInfoConfigMailOffset[offsetof(NetworkInfoConfig, c) == 0xD58 ? 1 : -1];
-typedef char NetworkInfoConfigCredentialOffset[offsetof(NetworkInfoConfig, d) == 0x1430 ? 1 : -1];
-typedef char NetworkInfoConfigText400Offset[offsetof(NetworkInfoConfig, e) == 0x14B4 ? 1 : -1];
-typedef char NetworkInfoConfigText256Offset[offsetof(NetworkInfoConfig, f) == 0x17D4 ? 1 : -1];
+LAYOUT_ASSERT(NetworkInfoNamedConfigExtent, sizeof(NetworkInfoNamedConfig) == 0x28);
+LAYOUT_ASSERT(NetworkInfoConnectionConfigExtent, sizeof(NetworkInfoConnectionConfig) == 0x210);
+LAYOUT_ASSERT(NetworkInfoMailConfigExtent, sizeof(NetworkInfoMailConfig) == 0x124);
+LAYOUT_ASSERT(NetworkInfoCredentialConfigExtent, sizeof(NetworkInfoCredentialConfig) == 0x84);
+LAYOUT_ASSERT(NetworkInfoConfigExtent, sizeof(NetworkInfoConfig) == 0x19D4);
+LAYOUT_ASSERT(NetworkInfoConfigConnectionOffset, offsetof(NetworkInfoConfig, b) == 0xF8);
+LAYOUT_ASSERT(NetworkInfoConfigMailOffset, offsetof(NetworkInfoConfig, c) == 0xD58);
+LAYOUT_ASSERT(NetworkInfoConfigCredentialOffset, offsetof(NetworkInfoConfig, d) == 0x1430);
+LAYOUT_ASSERT(NetworkInfoConfigText400Offset, offsetof(NetworkInfoConfig, e) == 0x14B4);
+LAYOUT_ASSERT(NetworkInfoConfigText256Offset, offsetof(NetworkInfoConfig, f) == 0x17D4);
 
 s32 parse_netinfo(char *text, u32 size, NetworkInfoConfig *config);
 s32 decode_network_info_payload(u8 *key, u8 *payload, u32 size, NetworkInfoConfig *config);
 
-u32 *allocate_network_info_cipher_key(s32 src);
+u32 *allocate_network_info_cipher_key(saddr src);
 void bind_network_info_cipher_pool(u32 *p, s32 n);
 void clear_network_info_cipher_pool(void);
 void copy_network_info_cipher_block(u32 *dst, u32 *src);
-s32 copy_network_info_config_string(char *arg0, char *arg1, u32 arg2, u32 arg3);
-void decrypt_network_info_cipher_block(u32 *arg0, NetworkInfoCipherBlock *src, NetworkInfoCipherBlock *dst);
+s32 copy_network_info_config_string(char *dest, char *arg1, u32 num, u32 arg3);
+void decrypt_network_info_cipher_block(u32 *key, NetworkInfoCipherBlock *src, NetworkInfoCipherBlock *dst);
 s32 decrypt_network_info_cipher_blocks(u32 *key, u8 *src, s32 len, u8 *dst);
 void decrypt_network_info_cipher_round(u32 *arg0, u32 *arg1);
 s32 parse_hex_string(char *s);

@@ -1,0 +1,477 @@
+{
+  "source": "c958220a90b97d852992f53bf6c465d9f37c1b3e",
+  "previous_source": "dc126572650afa11c7688ebee788441dab0a0163",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/render/ColorCopy.h",
+    "include/pso/render/ColorLineList.h",
+    "include/pso/render/GinjaTextureInput.h",
+    "include/pso/render/SpriteDescriptor.h",
+    "include/pso/ui/TLogo.h",
+    "include/pso/ui/TLogo_8001C134.h",
+    "include/pso/ui/TUnk_804E3008.h",
+    "include/pso/ui/charcreate/TChCrLoadGmNjReq.h",
+    "include/pso/ui/frontend/TAdChrMoveEffectGC.h",
+    "include/pso/ui/frontend/TAdChrSelASlotGC.h",
+    "include/pso/ui/frontend/TAdChrSelBSlotGC.h",
+    "include/pso/ui/frontend/TAdMcCheckGC.h",
+    "include/pso/ui/frontend/TAdMcSelectCursorGC.h",
+    "include/pso/ui/frontend/TAdMcSelectCursorGC_8032A610.h",
+    "include/pso/ui/frontend/TAdMultiPlyChrSelectGC.h",
+    "include/pso/ui/frontend/TAdMultiPlyChrSelectGC_802D50A0.h",
+    "include/pso/ui/frontend/TAdSelectCurGC.h",
+    "include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h",
+    "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_80336054.h",
+    "include/pso/ui/frontend/TAdSubPlyItemGC.h",
+    "include/pso/ui/frontend/TAdTitleGC.h",
+    "include/pso/ui/frontend/TAdTitleTexGC.h",
+    "include/pso/ui/frontend/TAdTrialAgreementGC_80335958.h",
+    "include/pso/ui/frontend/TitleSceneTables.h",
+    "include/pso/ui/window/TWindowCtrlMain.h",
+    "include/pso/unk/TLobby_801E2F94.h",
+    "include/pso/unk/TLobby_803360CC.h",
+    "include/pso/unk/TUnk_804EEF64.h",
+    "src/pso/boss/darkfalz/TBoss4Fade.cpp",
+    "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+    "src/pso/boss/dragon/TBoss1Dragon.cpp",
+    "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+    "src/pso/boss/galgryphon/TBoss5GryphonLightningEff.cpp",
+    "src/pso/boss/galgryphon/TBoss5GryphonSnarl.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+    "src/pso/boss/goldragon/TBoss8DragonEffTail.cpp",
+    "src/pso/boss/olgaflow/TBoss6EmptyWarp_802B0E2C.cpp",
+    "src/pso/boss/olgaflow/TBoss6Rock.cpp",
+    "src/pso/boss/olgaflow/TBoss6Tube.cpp",
+    "src/pso/boss/olgaflow/TBoss6Zanzo.cpp",
+    "src/pso/effect/TBGLightningCtrl.cpp",
+    "src/pso/effect/TEffIndirectCtrl.cpp",
+    "src/pso/effect/TEffStarLight2D_Base.cpp",
+    "src/pso/effect/particle/TParticleCtrl_800874F4.cpp",
+    "src/pso/enemy/flower/TObjEneRe2Flower_800C4B78.cpp",
+    "src/pso/enemy/lappy/TObjEneLappy.cpp",
+    "src/pso/item/TItemReverseTech.cpp",
+    "src/pso/item/drop/TItemDrop_80105D0C.cpp",
+    "src/pso/map/TSetManager.cpp",
+    "src/pso/npc/TObjNpcAHM01.cpp",
+    "src/pso/npc/TObjNpcARM00.cpp",
+    "src/pso/npc/TObjNpcARW00.cpp",
+    "src/pso/npc/TObjNpcHFW00.cpp",
+    "src/pso/npc/TObjNpcHFW01.cpp",
+    "src/pso/npc/TObjNpcHHM00.cpp",
+    "src/pso/npc/TObjNpcHRM00.cpp",
+    "src/pso/npc/TObjNpcHRM01.cpp",
+    "src/pso/npc/TObjNpcNFM00.cpp",
+    "src/pso/npc/TObjNpcNFM01.cpp",
+    "src/pso/npc/TObjNpcNFW00.cpp",
+    "src/pso/npc/TObjNpcNFW01.cpp",
+    "src/pso/npc/TObjNpcNHW00.cpp",
+    "src/pso/npc/TObjNpcNHW01.cpp",
+    "src/pso/object/TMotorcycle.cpp",
+    "src/pso/object/TObjComputer.cpp",
+    "src/pso/object/TObjHMS_EZRope_Player.cpp",
+    "src/pso/object/TObjSinBoard.cpp",
+    "src/pso/object/TObjTank.cpp",
+    "src/pso/object/ambient/TObjFish.cpp",
+    "src/pso/object/ambient/TObjLight_80133568.cpp",
+    "src/pso/object/city/CityDoors.cpp",
+    "src/pso/object/collision/TOSymbolchatColli.cpp",
+    "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp",
+    "src/pso/object/container/TObjContainerItem.cpp",
+    "src/pso/object/door/TODoorJungleMain.cpp",
+    "src/pso/object/door/TODoorLabo.cpp",
+    "src/pso/object/fence/TObjLazerFenceNorm.cpp",
+    "src/pso/object/jungle/TOGrassJungle.cpp",
+    "src/pso/object/jungle/TORockJungleL01.cpp",
+    "src/pso/object/lobby/LobbyPigeonPath.cpp",
+    "src/pso/object/seabed/TObjSeabedSuisoBrakable.cpp",
+    "src/pso/object/trap/TOTrapSeabed01.cpp",
+    "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+    "src/pso/player/TObjPlayer_80083594.cpp",
+    "src/pso/player/TObjPlayer_8023E480.cpp",
+    "src/pso/player/TObjPlayer_8029F694.cpp",
+    "src/pso/player/TObjPlayer_803DA204.cpp",
+    "src/pso/player/TPlayerFootStamp.cpp",
+    "src/pso/quest/TQuestListVM.cpp",
+    "src/pso/quest/TQuestListVM_8007EAF8.cpp",
+    "src/pso/quest/TQuestThread.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer.cpp",
+    "src/pso/render/BlobShadow.cpp",
+    "src/pso/system/TGStream.cpp",
+    "src/pso/system/TLanguage_80132A5C.cpp",
+    "src/pso/system/scene/TScene.cpp",
+    "src/pso/technique/TTecCtrl.cpp",
+    "src/pso/ui/TLogo_8001C134.cpp",
+    "src/pso/ui/TUnk_804EE458.cpp",
+    "src/pso/ui/charcreate/TChCrEffFade.cpp",
+    "src/pso/ui/charcreate/TChCrEffWall.cpp",
+    "src/pso/ui/charcreate/TChCrLoadAfs.cpp",
+    "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp",
+    "src/pso/ui/charcreate/TChCrLoadGmNjReq.cpp",
+    "src/pso/ui/charcreate/TObjCMName.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChat_80076F88.cpp",
+    "src/pso/ui/city/TCheckRoomSequence.cpp",
+    "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp",
+    "src/pso/ui/frontend/TAdADXlogo.cpp",
+    "src/pso/ui/frontend/TAdBackGC_8029A6EC.cpp",
+    "src/pso/ui/frontend/TAdChrMoveEffectGC.cpp",
+    "src/pso/ui/frontend/TAdChrSelASlotGC.cpp",
+    "src/pso/ui/frontend/TAdChrSelBSlotGC.cpp",
+    "src/pso/ui/frontend/TAdChrSelPlayerGC.cpp",
+    "src/pso/ui/frontend/TAdDialingGC.cpp",
+    "src/pso/ui/frontend/TAdFadeGC.cpp",
+    "src/pso/ui/frontend/TAdMcCheckGC.cpp",
+    "src/pso/ui/frontend/TAdMcSelectCursorGC.cpp",
+    "src/pso/ui/frontend/TAdMcSelectGC.cpp",
+    "src/pso/ui/frontend/TAdMcSelectMcGC.cpp",
+    "src/pso/ui/frontend/TAdMultiConfirmGC.cpp",
+    "src/pso/ui/frontend/TAdMultiConfirmGC_802E03D0.cpp",
+    "src/pso/ui/frontend/TAdMultiPlyChrSelectGC.cpp",
+    "src/pso/ui/frontend/TAdMultiPlyChrSelectGC_802D50A0.cpp",
+    "src/pso/ui/frontend/TAdMultiPlyChrSelectGC_802E0064.cpp",
+    "src/pso/ui/frontend/TAdPlyChrSelPlateGC.cpp",
+    "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+    "src/pso/ui/frontend/TAdSEGAlogo.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80145778.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801E4CF0.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C8E0.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028D5D4.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80336054.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8033A8EC.cpp",
+    "src/pso/ui/frontend/TAdSoniclogo.cpp",
+    "src/pso/ui/frontend/TAdSubPlyItemGC_802D6BEC.cpp",
+    "src/pso/ui/hud/TRaderMapCore.cpp",
+    "src/pso/ui/window/TWindowCtrlMain.cpp",
+    "src/pso/ui/window/TWindowKeyBoardBase.cpp",
+    "src/pso/ui/window/TWindowKeyBoardHard_801FBA48.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_8025737C.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp",
+    "src/pso/unk/TLobbyEventTheme.cpp",
+    "src/pso/unk/TLobby_8001EF5C.cpp",
+    "src/pso/unk/TLobby_8002C140.cpp",
+    "src/pso/unk/TLobby_800F8AA8.cpp",
+    "src/pso/unk/TLobby_800FA73C.cpp",
+    "src/pso/unk/TLobby_801E2F94.cpp",
+    "src/pso/unk/TLobby_801E43E4.cpp",
+    "src/pso/unk/TLobby_801F3A24.cpp",
+    "src/pso/unk/TLobby_80207DA8.cpp",
+    "src/pso/unk/TLobby_80209524.cpp",
+    "src/pso/unk/TLobby_80226C3C.cpp",
+    "src/pso/unk/TLobby_8028A7C8.cpp",
+    "src/pso/unk/TLobby_80335E7C.cpp",
+    "src/pso/unk/TLobby_803382E4.cpp",
+    "src/pso/unk/text_801A5778.cpp",
+    "src/pso/unk/text_8020B5CC.cpp",
+    "src/pso/unk/text_802A1020.cpp",
+    "src/pso/unk/text_802D1C84.cpp",
+    "src/pso/unk/text_8033F314.cpp"
+  ],
+  "combined_paths_from_upstream": 572,
+  "historical_basis": {
+    "old_pre_feature": "5a4e7ced56",
+    "old_validated": "1e41348776",
+    "preview_dispositions": {
+      "clean merge": 16,
+      "clean authored blob": 22,
+      "conflict": 39
+    },
+    "equal_or_identifier_only_replay_portions_skipped": [
+      "include/pso/ui/frontend/TAdChrSelSlotGC.h",
+      "include/pso/ui/frontend/TAdMcSelectGC.h",
+      "include/pso/ui/frontend/TAdMultiSelGameModeGC.h",
+      "src/pso/ui/TLevelSelect.cpp",
+      "src/pso/ui/frontend/TAdChrSelBSlotGC.cpp",
+      "src/pso/ui/frontend/TAdChrSelSlotGC.cpp",
+      "src/pso/ui/frontend/TAdMultiChgGameModeGC.cpp",
+      "src/pso/ui/frontend/TAdMultiSelGameModeGC.cpp",
+      "src/pso/ui/frontend/TAdMultiSelGameModeGC_802D5098.cpp",
+      "src/pso/ui/frontend/TAdSelectGameModeGC_802C4748.cpp",
+      "src/pso/ui/frontend/TAdStorySelectGC_802C3284.cpp",
+      "src/pso/ui/frontend/TAdTitleTexGC.cpp"
+    ]
+  },
+  "source_owners": [
+    "shared player slot label",
+    "native player and memory-card scene methods",
+    "typed title-scene transitions, layers and sprites",
+    "shared packed color copy and strip binding",
+    "texture input and name declarations",
+    "nullable pointer release contract"
+  ],
+  "validation": {
+    "source": {
+      "baseline": "dc126572650afa11c7688ebee788441dab0a0163",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2446,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8001C19C",
+          "before": "request_exit__5TLogoFv",
+          "after": "request_exit__5TLogoFP7TObject"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007EBB4",
+          "before": "safe_free__23TAdSinglePlyChrSelectGCFUl",
+          "after": "safe_free__23TAdSinglePlyChrSelectGCFPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801E352C",
+          "before": "draw_strip_swap_color__15TWindowCtrlMainFllf",
+          "after": "draw_strip_swap_color__13ColorLineListFllf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80257720",
+          "before": "copy4__18TAdChrMoveEffectGCFPv",
+          "after": "copy4__FPvPCv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802D50B0",
+          "before": "set_field_100__22TAdMultiPlyChrSelectGCFl",
+          "after": "set_field_100__13TUnk_804E3008Fl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802E0C28",
+          "before": "set_status_value__22TAdMultiPlyChrSelectGCFl",
+          "after": "set_status_value__13TUnk_804E3008Fl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802E0C68",
+          "before": "set_index_and_close_status__22TAdMultiPlyChrSelectGCFl",
+          "after": "set_index_and_close_status__13TUnk_804E3008Fl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802E0CB0",
+          "before": "sub_802E0CB0__13TUnk_804E3008Fv",
+          "after": "sub_802E0CB0__13TUnk_804E3008Fl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A610",
+          "before": "get_instance__19TAdMcSelectCursorGCFl",
+          "after": "get_instance__19TAdMcSelectCursorGCFP7TObject"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80336064",
+          "before": "start_offline_seq__23TAdSinglePlyChrSelectGCFv",
+          "after": "start_offline_seq__13TUnk_804EEF64Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803361C4",
+          "before": "set_flag_and_clear_download__6TLobbyFv",
+          "after": "set_flag_and_clear_download__13TUnk_804EEF64Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80336200",
+          "before": "open_keyboard__6TLobbyFv",
+          "after": "open_keyboard__13TUnk_804EEF64Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8033622C",
+          "before": "request_change_game_mode__6TLobbyFv",
+          "after": "request_change_game_mode__13TUnk_804EEF64Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80336254",
+          "before": "enter_game_mode_change__6TLobbyFv",
+          "after": "enter_game_mode_change__13TUnk_804EEF64Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8033627C",
+          "before": "enter_chg_game_mode__6TLobbyFv",
+          "after": "enter_chg_game_mode__13TUnk_804EEF64Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8033F2A4",
+          "before": "__ct__12TAdMcCheckGCFP7TObjectPv",
+          "after": "__ct__12TAdMcCheckGCFP7TObjectl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803DA204",
+          "before": "set_render_rect__10TObjPlayerFllll",
+          "after": "set_render_rect__17GinjaTextureInputFPvlll"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "ab9c3a22d77acdffcb192549392ddfd1fb548b0ffe7197ff34b97e2bb540a79d",
+      "report_sha256": "9c11b488b99b7a7b7165209b5394755d1bda40f054ab8bbd192e68b128c86457"
+    },
+    "layer": {
+      "baseline": "c958220a90b97d852992f53bf6c465d9f37c1b3e",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2446,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "889e2bbe0726ae18a6a8a384b32f395ed410317720daa7fcb1cd48478494a54b",
+      "report_sha256": "9c11b488b99b7a7b7165209b5394755d1bda40f054ab8bbd192e68b128c86457"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "c8af02299fa78e2b2358b48739c38e9083752baa69a71969e35803d1518862d2"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "47cabf23a8ad4e1b84d40f9f8ea3a8fb04dab7c33733f5a55b25060200430abb"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "images": [
+      "retail",
+      "source",
+      "materialized fork workspace"
+    ],
+    "probe_sha256": "ded940134204bbf5790b770d0fc23b8fdd62e729fe1e19d35aa0bc0f359ebb8a",
+    "log_sha256": "71ad3949a221a22cfab403dda7cbb5ec413426d3dab1a51853a44c3ed404fe8e"
+  },
+  "historical": {
+    "open_rows": 415,
+    "scoped_rows": [
+      {
+        "row": 2208,
+        "fork_path": "src/pso/menu/TAdRicoRing.cpp",
+        "source_path": "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+        "note": "The Rico Ring fan uses the common color-line layout."
+      },
+      {
+        "row": 2275,
+        "fork_path": "src/pso/ui/TAdChrSelBSlotGC_8030E354.cpp",
+        "source_path": "src/pso/ui/frontend/TAdChrSelBSlotGC.cpp",
+        "note": "The B-slot lookup builds a shared typed label and keeps the retail name fallback and level conversion."
+      },
+      {
+        "row": 2317,
+        "fork_path": "src/pso/unk/text_8029A6EC.cpp",
+        "source_path": "src/pso/ui/frontend/TAdBackGC_8029A6EC.cpp",
+        "note": "The full-screen background draws through the shared color-line layout."
+      },
+      {
+        "row": 2323,
+        "fork_path": "src/pso/unk/text_803367F4.cpp",
+        "source_path": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80336054.cpp",
+        "note": "The title scene owns its transition handlers, layer pointers, and sprite tables."
+      },
+      {
+        "row": 2397,
+        "fork_path": "src/pso/object/TObjCMName.cpp",
+        "source_path": "src/pso/ui/charcreate/TObjCMName.cpp",
+        "note": "The name editor uses the common color-line layout for its dividers and draw calls."
+      },
+      {
+        "row": 2436,
+        "fork_path": "src/pso/misc/TChCrLoadAfs.cpp",
+        "source_path": "src/pso/ui/charcreate/TChCrLoadAfs.cpp",
+        "note": "The character-creation loader sets the texture input and name through their shared declarations."
+      },
+      {
+        "row": 2438,
+        "fork_path": "src/pso/ui/TAdChrSelASlotGC.cpp",
+        "source_path": "src/pso/ui/frontend/TAdChrSelASlotGC.cpp",
+        "note": "The A-slot lookup builds the shared player label and preserves the localized empty-slot name."
+      },
+      {
+        "row": 2519,
+        "fork_path": "include/pso/ui/TAdChrSelASlotGC.h",
+        "source_path": "src/pso/ui/frontend/TAdChrSelASlotGC.cpp",
+        "note": "The A-slot label declaration and its renderer now share a row type."
+      },
+      {
+        "row": 2557,
+        "fork_path": "include/pso/ui/TAdSinglePlyChrSelectGC.h",
+        "source_path": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp",
+        "note": "The single-player selection screen calls the actual player model owner for player status."
+      },
+      {
+        "row": 2671,
+        "fork_path": "src/pso/ui/TAdMultiConfirmGC_802E03D0.cpp",
+        "source_path": "src/pso/ui/frontend/TAdMultiConfirmGC_802E03D0.cpp",
+        "note": "The multiplayer player model owns its two status methods and holds the typed status window."
+      },
+      {
+        "row": 5107,
+        "fork_path": "src/pso/misc/TLobby_801E2F94.cpp",
+        "source_path": "src/pso/unk/TLobby_801E2F94.cpp",
+        "note": "The color-strip draw method operates on the actual color-line list."
+      },
+      {
+        "row": 5760,
+        "fork_path": "src/pso/misc/TWindowSubStatusDisp_8025737C.cpp",
+        "source_path": "src/pso/ui/window/TWindowSubStatusDisp_8025737C.cpp",
+        "note": "The color copy operates directly on four bytes without a character-selection object receiver."
+      }
+    ]
+  },
+  "fork_workspace": {
+    "trial": "ee8778bbf44f834f25e4d282cf811a6fde55af6a",
+    "overlay_paths": 130,
+    "updated_overlay_paths": [
+      "config/GPOE8P/psov3/config.yml",
+      "src/pso/ui/charcreate/TObjCMName.cpp"
+    ],
+    "archive_sha256": "872485256f049429aa76d2415f92d2736781f8ff3e05ff740153a392047cc8d8",
+    "materialized_tree": "18af3d8c081a0aeb91d5668e9e8a0223c3e87f0c",
+    "force_active": {
+      "listed": 27027,
+      "added": 6,
+      "removed": 6
+    }
+  }
+}

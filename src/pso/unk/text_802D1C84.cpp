@@ -1,9 +1,10 @@
-#include "pso/system/ArrayAllocation.h"
-#include "pso/system/GinjaTextureInput.h"
+#include "pso/render/GinjaTextureInput.h"
 #include "types.h"
+#include "pso/unk/TLobby.h"
 #include "pso/unk/text_802D1C84.h"
 #include "pso/enemy/TObjEnemy.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/boss/darkfalz/TOBoss4Rock.h"
 
 struct VBase_18_477421
 {
@@ -115,7 +116,7 @@ struct VObj_18_477421 : VBase_18_477421 {
 
 extern "C" {
 extern u32 lbl_80540BC8[];
-extern void *lbl_805D6880;
+void *lbl_805D6880;
 void release_texture_list(void *);
 void fn_802D1C84(void) {
     void *p = lbl_80540BC8;
@@ -123,24 +124,22 @@ void fn_802D1C84(void) {
         release_texture_list(p);
     }
     if (lbl_805D6880 != 0) {
-        ::operator delete[](lbl_805D6880);
+        mem_free(lbl_805D6880);
         lbl_805D6880 = 0;
     }
 }
 
-void pso_load_texture__6TLobbyFv(void *, void *);
-void set_texture_name(void *, void *, int, int);
 
 GinjaTextureInput lbl_80540B98;
-u32 lbl_80540BBC[3];
+NJS_TEXNAME lbl_80540BBC;
 __declspec(section ".data") u32 lbl_80540BC8[2];
 
 void fn_802D1CC8(void) {
-    lbl_80540B98.configure((void *)(lbl_805D6880 = ::operator new[](0x800)), 0x902, 0x20, 0x20);
-    set_texture_name(lbl_80540BBC, &lbl_80540B98, 0x18696, 0x40800000);
-    lbl_80540BC8[0] = (u32)lbl_80540BBC;
+    lbl_80540B98.set_render_rect(lbl_805D6880 = mem_alloc(0x800), 0x902, 0x20, 0x20);
+    set_texture_name(&lbl_80540BBC, &lbl_80540B98, 0x18696, 0x40800000);
+    lbl_80540BC8[0] = reinterpret_cast<uaddr>(&lbl_80540BBC);
     lbl_80540BC8[1] = 1;
-    pso_load_texture__6TLobbyFv(lbl_80540BC8, lbl_80540BBC);
+    pso_load_texture((NJS_TEXLIST *)lbl_80540BC8);
 }
 #define PSO_VCALL_VObj_18_477421_m99(_self) (((VObj_18_477421 *)(_self))->m99())
 #define PSO_VCALL_VObj_18_477421_m81(_self) (((VObj_18_477421 *)(_self))->m81())

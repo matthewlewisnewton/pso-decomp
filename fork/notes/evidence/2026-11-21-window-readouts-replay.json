@@ -1,0 +1,520 @@
+{
+  "source": "32e60b52ccd854c3014e05eb25cca5fd0042a17d",
+  "previous_source": "cbc93216bbe1dfc6535db99bf752461e53275b55",
+  "upstream": "5a4e7ced56fe7072359b6d279e94f4be3b8453c0",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "source_paths": 1254,
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/ui/window/TWindowDeposit.h",
+    "include/pso/ui/window/TWindowLoadItemTexture.h",
+    "include/pso/ui/window/TWindowMakeTeam.h",
+    "include/pso/ui/window/TWindowMakeTeam_8026534C.h",
+    "include/pso/ui/window/TWindowMeseta.h",
+    "include/pso/ui/window/TWindowQuantity.h",
+    "include/pso/ui/window/TWindowRoom.h",
+    "include/pso/ui/window/TWindowSubMag.h",
+    "include/pso/ui/window/TWindowSubMag_802627D8.h",
+    "include/pso/ui/window/TWindowSubStatusDisp_80287570.h",
+    "include/pso/ui/window/TWindowTimer.h",
+    "include/pso/unk/TLobby.h",
+    "include/pso/unk/TLobby_8013AD38.h",
+    "src/pso/network/TPlyJoinLobbyEntry.cpp",
+    "src/pso/ui/city/TShopJudgmentItemWindow.cpp",
+    "src/pso/ui/window/TWindowCost.cpp",
+    "src/pso/ui/window/TWindowDeposit.cpp",
+    "src/pso/ui/window/TWindowLoadItemTexture.cpp",
+    "src/pso/ui/window/TWindowMakeTeam.cpp",
+    "src/pso/ui/window/TWindowMeseta.cpp",
+    "src/pso/ui/window/TWindowQuantity.cpp",
+    "src/pso/ui/window/TWindowRoom.cpp",
+    "src/pso/ui/window/TWindowSubEquipKind_80278300.cpp",
+    "src/pso/ui/window/TWindowSubMag.cpp",
+    "src/pso/ui/window/TWindowSubMag_802627D8.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_80287570.cpp",
+    "src/pso/ui/window/TWindowTimer.cpp",
+    "src/pso/unk/TLobby_8013AD38.cpp",
+    "src/pso/unk/text_8026934C.cpp"
+  ],
+  "author": {
+    "name": "matthewlewisnewton",
+    "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+    "coauthor_trailers": 0
+  },
+  "individually_checked_objects": {
+    "TLobby_8013AD38": {
+      "functions": 11,
+      "objdiff_sha256": "fefa08d577e2df3be2d14d6b99560143d9b5e1ec4d972d71a9745d548431d787"
+    },
+    "TPlyJoinLobbyEntry": {
+      "functions": 129,
+      "objdiff_sha256": "a8d563a787066a5c1c1e46e0d9a2b315f762471c733bfdab48c59dc07bfd32f9"
+    },
+    "TShopJudgmentItemWindow": {
+      "functions": 17,
+      "objdiff_sha256": "3c1b2e4fc1a2c553cdd7186b44ab15d7d63799e7d4461dd02d893d128eab5e52"
+    },
+    "TWindowCost": {
+      "functions": 2,
+      "objdiff_sha256": "47e0837fbfd1dd81fe76579948c147c0537d595c8842b687c5bfdefc009d528e"
+    },
+    "TWindowDeposit": {
+      "functions": 5,
+      "objdiff_sha256": "fe90f69f336d37c274bc937eedc80d3759899d150b03d0d8beaa1ed6b1ba0ddd"
+    },
+    "TWindowLoadItemTexture": {
+      "functions": 7,
+      "objdiff_sha256": "085422c01cbd5c9fcfc3f9f812969a24819acda7d2a8046ef1cffc368fcc7a01"
+    },
+    "TWindowMakeTeam": {
+      "functions": 15,
+      "objdiff_sha256": "f0e65e49724f778d56a0423d8a7badf00e24529f888609e0b3b864c891baa8c8"
+    },
+    "TWindowMeseta": {
+      "functions": 6,
+      "objdiff_sha256": "323c4184ef817c320b0f09b4ae949be9c1ea2c287152f3dc6ea8ccf0c875201c"
+    },
+    "TWindowQuantity": {
+      "functions": 6,
+      "objdiff_sha256": "d230fef5b38365edc83f1de945bb1162b08d685f86e4a6d977662c65b5bef03e"
+    },
+    "TWindowRoom": {
+      "functions": 7,
+      "objdiff_sha256": "17df9bf602da1010daf3d42a7eaf379703e9d535b295c6cdef3684718329810d"
+    },
+    "TWindowSubEquipKind_80278300": {
+      "functions": 2,
+      "objdiff_sha256": "2e6254ac1e36741be5e1be7872a52ca6c31463419066d817ac803f87e429c9a8"
+    },
+    "TWindowSubMag": {
+      "functions": 21,
+      "objdiff_sha256": "08d640f730e1efa446aef823da696b2a915b5438b14c41b8a121f4f52cee9b91"
+    },
+    "TWindowSubMag_802627D8": {
+      "functions": 7,
+      "objdiff_sha256": "4f9e0c6a97a81f0c5adb665f4f8041141853ce28df3a756e0c5e5edec66efb75"
+    },
+    "TWindowSubStatusDisp_802671F0": {
+      "functions": 48,
+      "objdiff_sha256": "a4dc5aec9af3788a0fdc8afa7ceaa35b843de46d121d07da53ec26692be0f113"
+    },
+    "TWindowSubStatusDisp_80287570": {
+      "functions": 13,
+      "objdiff_sha256": "c65efce77c4252141fa965c872f14553057eed3694e5e4421aa36f533ba811eb"
+    },
+    "TWindowTimer": {
+      "functions": 13,
+      "objdiff_sha256": "6359492ba94f9f7cae35a948b338a72d19417c6e313dfcf3e476b80b7d8aa632"
+    },
+    "text_8026934C": {
+      "functions": 1,
+      "objdiff_sha256": "95878790f16428b5e31f176937aae7341ad20cba650f26c35c3cc7cd12cdd995"
+    }
+  },
+  "preserved_names": {
+    "0x8006EF6C": {
+      "fork": "TQuestVmDownLoadServer__sub_8006EF6C",
+      "current": "get_message_text",
+      "size": "0x14"
+    },
+    "0x80147A80": {
+      "fork": "__dla__FPv",
+      "current": "mem_free",
+      "size": "0x28"
+    },
+    "0x80249004": {
+      "fork": "__ct__13TUnk_804CE7E8FPvl",
+      "current": "__ct__15TWindowCheckBoxFPUcl",
+      "size": "0x54"
+    },
+    "0x802627D8": {
+      "fork": "TWindowSubMag__sub_802627D8",
+      "current": "get_flag_bit0__19TWindowKeyBoardSoftFv",
+      "size": "0xC"
+    },
+    "0x80262808": {
+      "fork": "TWindowSubMag__sub_80262808",
+      "current": "get_flag62_bit8__19TWindowKeyBoardBaseFv",
+      "size": "0xC"
+    }
+  },
+  "historical_comparison": {
+    "prior_open_rows": 435,
+    "open_rows": 424,
+    "closed": [
+      5527,
+      5559,
+      5565,
+      5581,
+      5592,
+      5604,
+      5609,
+      5711,
+      5717,
+      5917,
+      6028
+    ],
+    "touched_rows": [
+      {
+        "row": 3061,
+        "description": "The lobby entry packet uses the real team object and calls its native state accessors. The packet lane retains the original full-width call and its byte consumption.",
+        "historical_path": "src/pso/misc/TPlyJoinLobbyEntry.cpp",
+        "current_path": "src/pso/network/TPlyJoinLobbyEntry.cpp",
+        "fork_blob": "e753f17955f735bb409bfdf5d97a18c7d87407f4",
+        "current_blob": "0fac452f249b4a17b4b6a8a552c702f325035b3a",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 5527,
+        "description": "The active source declares and constructs the native window with the original layout records, client and position. Rendering uses the shared base draw context and entry list. The task still updates visibility, initializes the subwindow and advances the same list.",
+        "historical_path": "src/pso/misc/TWindowBreakIn.cpp",
+        "current_path": "src/pso/ui/window/TWindowBreakIn.cpp",
+        "fork_blob": "5d51388b748a148ace79e4d3b09a31b05d7a96d2",
+        "current_blob": "dc83aa8700d6c52a930744d69c0fc9e17b27f304",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete native Break In window historical source reconciled",
+        "authored_delta_sha256": "06983c42db327137e61f549ea2c304e58221bfbba78555376fc6d595764884e8"
+      },
+      {
+        "row": 5559,
+        "description": "The constructor initializes the real base descriptor, saves the original position and writes both scale values. The task obtains live player stats, updates its own value and sets the animated numeric entry before the original list update.",
+        "historical_path": "src/pso/misc/TWindowMeseta.cpp",
+        "current_path": "src/pso/ui/window/TWindowMeseta.cpp",
+        "fork_blob": "877510c2bef54f83c09ace71e4c43af65b90f289",
+        "current_blob": "9fefb79aedd45e8a5bdc0f5690f81b97ed8b4e7e",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete native meseta readout historical source reconciled",
+        "authored_delta_sha256": "35f2c238d2b899731ecbb8f4ee981134c182b59d2ca8d11153a28d6fbe27e4fd"
+      },
+      {
+        "row": 5565,
+        "description": "The current owner retains the original layout, text lookup and width, number offset, base geometry and factory. Its native task and renderer use the actual list and both scale floats.",
+        "historical_path": "src/pso/misc/TWindowQuantity.cpp",
+        "current_path": "src/pso/ui/window/TWindowQuantity.cpp",
+        "fork_blob": "52f3b17abfaafcdba6354b348ead3a3ad5924c5b",
+        "current_blob": "45e19e3cd25005048061f895c2ee444a4ad8cea2",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete native quantity readout historical source reconciled",
+        "authored_delta_sha256": "d3bee8df2d7ecc239cf8b47162cab9190592b11d4e9525d6232dacd1eea6ab6e"
+      },
+      {
+        "row": 5581,
+        "description": "The item operation keeps the upstream set_mag_slot_state name on the preview owner and passes its item to the real loader. Sprite flags and texture-list binding are exact. The five earlier keyboard flag queries retain existing linked names and addresses.",
+        "historical_path": "src/pso/misc/TWindowSubMag_802627D8.cpp",
+        "current_path": "src/pso/ui/window/TWindowSubMag_802627D8.cpp",
+        "fork_blob": "65d138086cd764118aad7660ae9c6ce10c7869c0",
+        "current_blob": "c47b656dd734729af92e679cd7d8cb4905e5906e",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete native item preview and keyboard flag owners historical source reconciled",
+        "authored_delta_sha256": "92414b0fc0d318e1cf506fb5414061a5c7273f8840cc5c4edc27c539ec8b6615"
+      },
+      {
+        "row": 5592,
+        "description": "The timer retains the two original factories, time formatting, chat position selection, flag-gated task, native render and base initialization. It reads the native scale-independent context and eases the actual frame position.",
+        "historical_path": "src/pso/misc/TWindowTimer.cpp",
+        "current_path": "src/pso/ui/window/TWindowTimer.cpp",
+        "fork_blob": "7aa4ea9dd578d8f15c1c198b78f114895d212937",
+        "current_blob": "60196851d6224da787eda02fb55a73226b371141",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete native timer readout historical source reconciled",
+        "authored_delta_sha256": "4bdec11812d9ca027e1c6784661085b5e1813a4155f190bcc288f95186b9bee9"
+      },
+      {
+        "row": 5596,
+        "description": "The Room renderer uses the shared frame context, tab helper and actual entry list. The wider room comparison remains open.",
+        "historical_path": "src/pso/ui/TWindowRoom.cpp",
+        "current_path": "src/pso/ui/window/TWindowRoom.cpp",
+        "fork_blob": "7123b588a7b84d027ad36c191b891c935d26f018",
+        "current_blob": "2a8eb5bc35ee45d5b988827dfa4ba6a1d52ffbd8",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 5604,
+        "description": "The active window header declares the constructor on the native class. The old wrapper declaration is superseded by the constructor at the same linked address and size.",
+        "historical_path": "include/pso/unk/text_80249004.h",
+        "current_path": "src/pso/ui/window/TWindowSubStatusDisp_80248BE8.cpp",
+        "fork_blob": "5a930ffb0bc9814905bd1fdf9993891883d7def1",
+        "current_blob": "5ff74ee446cea6d19b324ec2d212554dd158655e",
+        "previous_status": "Owner comparison required",
+        "current_status": "Complete native checkbox declaration historical source reconciled",
+        "authored_delta_sha256": "42386ac2159e71527fd58a4166d0d7a34c3d867bd344494f8dbd52b706156eec"
+      },
+      {
+        "row": 5609,
+        "description": "The folded source constructs the real TWindowMenuIconLine base with kind 5 and calls sub_80248B7C with the client. It preserves the upstream TWindowCheckBox class name.",
+        "historical_path": "src/pso/unk/text_80249004.cpp",
+        "current_path": "src/pso/ui/window/TWindowSubStatusDisp_80248BE8.cpp",
+        "fork_blob": "24938ca803aab2599e5fbf8d228e1d9eae43bf93",
+        "current_blob": "5ff74ee446cea6d19b324ec2d212554dd158655e",
+        "previous_status": "Owner comparison required",
+        "current_status": "Complete native checkbox construction historical source reconciled",
+        "authored_delta_sha256": "55cf7e495b3e47fbf07fcc722f3be4d830ae0c77e22a5cb243bd804e84a88ced"
+      },
+      {
+        "row": 5711,
+        "description": "The native destructor frees the two real owned fields at +0x28 and +0x24 and closes or queues its other children. Both authored delete-array calls resolve to the same retail free function under the upstream mem_free name.",
+        "historical_path": "src/pso/misc/TWindowMakeTeam_80265298.cpp",
+        "current_path": "src/pso/ui/window/TWindowMakeTeam.cpp",
+        "fork_blob": "cd4a8bbead149c223261d2091a5d35331925d6c8",
+        "current_blob": "b369957690add518e06bc3908c5bfc7559040b07",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete native team destruction historical source reconciled",
+        "authored_delta_sha256": "1e7f4c23b7b58efb2b7d2eda119c21522a903adf8caa1f74d425af07a66b3a8d"
+      },
+      {
+        "row": 5717,
+        "description": "The actual team window header declares the full-width field accessor, two byte mode reads, two bit tests and is_enabled.",
+        "historical_path": "include/pso/misc/TWindowMakeTeam.h",
+        "current_path": "src/pso/ui/window/TWindowMakeTeam.cpp",
+        "fork_blob": "79bf6b278a115e1ad60e1e4f65d51d6f58682573",
+        "current_blob": "b369957690add518e06bc3908c5bfc7559040b07",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete native team accessors historical source reconciled",
+        "authored_delta_sha256": "1d93f09f93d011d483aae500cbde67cbfa9f7f761bacd0e045b672a610a28ed5"
+      },
+      {
+        "row": 5752,
+        "description": "The active checkbox construction and declaration have a native owner. The broader folded window drawing and input source remains open.",
+        "historical_path": "src/pso/misc/TWindowSubStatusDisp_80248BE8.cpp",
+        "current_path": "src/pso/ui/window/TWindowSubStatusDisp_80248BE8.cpp",
+        "fork_blob": "dae107c459833f40704fda158b28cf0f94713395",
+        "current_blob": "5ff74ee446cea6d19b324ec2d212554dd158655e",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 5830,
+        "description": "Shared tab callers use WindowDrawContext and the existing render path. The other historical substatus declarations remain open.",
+        "historical_path": "include/pso/misc/TWindowSubStatusDisp.h",
+        "current_path": "include/pso/ui/window/TWindowSubStatusDisp.h",
+        "fork_blob": "ab3cbb9204bdf3b584dec81b906f675a81ae5fdc",
+        "current_blob": "4c970f3c5de48174aefdcabc77429c96a1bbd3b7",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 5917,
+        "description": "The linked team window retains the message lookup and uses its own get_mode in is_enabled. It returns zero for mode 1 and otherwise forwards the original status byte.",
+        "historical_path": "src/pso/misc/TWindowMakeTeam.cpp",
+        "current_path": "src/pso/ui/window/TWindowMakeTeam.cpp",
+        "fork_blob": "f9543fb0e1a4d6246bf3adc5945a81b781cf3357",
+        "current_blob": "b369957690add518e06bc3908c5bfc7559040b07",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete native team enabled state historical source reconciled",
+        "authored_delta_sha256": "1a6e3ec66219e0af8d56dcc625a395881323b17bfd7eb721f60cae8f9f3c7d4b"
+      },
+      {
+        "row": 6028,
+        "description": "All five team mode/flag accessors read the exact original fields on their actual owner. The two icon line decision accessors remain on their original owner.",
+        "historical_path": "src/pso/misc/TLobby_8013AD38.cpp",
+        "current_path": "src/pso/unk/TLobby_8013AD38.cpp",
+        "fork_blob": "12de5c4d279d105ab3b320ce547b8364d6b2430e",
+        "current_blob": "92483c0a0bcaeb719654a9032ae48ba2e6c69e47",
+        "previous_status": "Owner comparison required",
+        "current_status": "Complete native team and icon line state accessors historical source reconciled",
+        "authored_delta_sha256": "bae8377e699a959cb4728e4d20ef248124d81eb280975e0b4b4b53b124570ccd"
+      }
+    ]
+  },
+  "validation": {
+    "stock": {
+      "baseline": "cbc93216bbe1dfc6535db99bf752461e53275b55",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8013AD50",
+          "before": "TLobby__sub_8013AD50",
+          "after": "test_flag_1d_bit1__15TWindowMakeTeamFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8013AD5C",
+          "before": "TLobby__sub_8013AD5C",
+          "after": "get_field_20__15TWindowMakeTeamFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8013AD64",
+          "before": "get_mode__6TLobbyFv",
+          "after": "get_mode__15TWindowMakeTeamFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8013AD6C",
+          "before": "TLobby__sub_8013AD6C",
+          "after": "read_mode__15TWindowMakeTeamFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8013AD74",
+          "before": "TLobby__sub_8013AD74",
+          "after": "test_flag_1d_bit0__15TWindowMakeTeamFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8024E434",
+          "before": "render_status__14TWindowDepositFl",
+          "after": "render_status__14TWindowDepositFP17WindowDrawContext"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80262814",
+          "before": "set_mag_slot_state__13TWindowSubMagFl",
+          "after": "set_mag_slot_state__22TWindowLoadItemTextureFP9TItemData"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8026297C",
+          "before": "create__22TWindowLoadItemTextureFPv",
+          "after": "create__22TWindowLoadItemTextureFPvl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80262B2C",
+          "before": "__ct__22TWindowLoadItemTextureFPUcPvl",
+          "after": "__ct__22TWindowLoadItemTextureFPvPfl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8026534C",
+          "before": "TWindowMakeTeam__ct",
+          "after": "__ct__15TWindowMakeTeamFP7TObjectl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80269100",
+          "before": "draw_value__13TWindowMesetaFl",
+          "after": "draw_value__13TWindowMesetaFP17WindowDrawContext"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80269244",
+          "before": "__ct__13TWindowMesetaFlll",
+          "after": "__ct__13TWindowMesetaFPvll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8026CEEC",
+          "before": "set_position__15TWindowQuantityFl",
+          "after": "set_position__15TWindowQuantityFP17WindowDrawContext"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8026D564",
+          "before": "draw_tab__11TWindowRoomFPv",
+          "after": "draw_tab__11TWindowRoomFP17WindowDrawContext"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80287DD8",
+          "before": "draw_tab__12TWindowTimerFll",
+          "after": "draw_tab__12TWindowTimerFP17WindowDrawContext"
+        }
+      ],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "926c11e1b70daab813c3b0ebb8e1ad4bfcd103a86a3e505b212e73f5a1adf60e",
+      "report_sha256": "9239f1d12ea558b8917bb8271d6ccb979fb2c0d7f95514f85e747e37e6864712"
+    },
+    "workspace": {
+      "baseline": "32e60b52ccd854c3014e05eb25cca5fd0042a17d",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "9239f1d12ea558b8917bb8271d6ccb979fb2c0d7f95514f85e747e37e6864712"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "c4b46e0c4a9507f02def72344fb210c0d4d2d26e8b0fa36f48fa8cedb004971d"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "4441729dc90693147f65850b616bc3d5e54c87f77b69d17b0da16eb3ac924a44"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    },
+    "windows_runtime": {
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "checks": [
+        "Team constructor initializes the original fields and selects the right labels in each mode",
+        "Team accessors return the original bytes, bit tests and full-width mode field",
+        "Meseta, quantity and timer renderers pass the expected context, width and entry list",
+        "Timer easing writes both original frame coordinates",
+        "Meseta lookup handles no player, no stats and live stats",
+        "Preview readiness calls the real loader slot and binds its texture-list pointer to the sprite"
+      ],
+      "emulation": "The harness executes the PowerPC window routines and records arguments to downstream services.",
+      "log_sha256": "67fd000d190ac9d667f57689574841302b2f448a8136c5dcaf4f5d1389093f8b",
+      "probe_sha256": "c23150d4da73c87d95049e6f9340bfc39294c38c8d6fd597ca92e836614660f2"
+    }
+  },
+  "fork_workspace": {
+    "overlay_paths": 130,
+    "overlay_patch_sha256": "be21c4532182bf48695433e2257f690c0986f68e8bdf94089532a2043cbe6c0a",
+    "updated_overlay_paths": [
+      "config/GPOE8P/psov3/config.yml"
+    ],
+    "force_active": {
+      "before": 27033,
+      "after": 27033,
+      "mappings": {
+        "render_status__14TWindowDepositFl": "render_status__14TWindowDepositFP17WindowDrawContext",
+        "__ct__22TWindowLoadItemTextureFPUcPvl": "__ct__22TWindowLoadItemTextureFPvPfl",
+        "draw_value__13TWindowMesetaFl": "draw_value__13TWindowMesetaFP17WindowDrawContext",
+        "set_position__15TWindowQuantityFl": "set_position__15TWindowQuantityFP17WindowDrawContext",
+        "draw_tab__11TWindowRoomFPv": "draw_tab__11TWindowRoomFP17WindowDrawContext",
+        "draw_tab__12TWindowTimerFll": "draw_tab__12TWindowTimerFP17WindowDrawContext"
+      }
+    },
+    "archive_test_head": "175ec35bfc17f5b6a3b418fdbd5260c32a2c3c1a",
+    "tested_materialized_tree": "9d0f0827b7651517eab366250795c08d3932249b"
+  }
+}

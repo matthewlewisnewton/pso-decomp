@@ -3,6 +3,8 @@
 
 #include "types.h"
 
-s32 create_status_window(s32 arg0);
+struct TWindowSimpleStatus;
+
+TWindowSimpleStatus *create_status_window(saddr client);
 
 #endif

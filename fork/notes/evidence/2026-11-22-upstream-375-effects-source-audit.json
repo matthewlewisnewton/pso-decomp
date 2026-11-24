@@ -1,0 +1,343 @@
+{
+  "upstream_master": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "matching_parent": "28665d23b3ccce274799070c40813339408f1926",
+  "source_head": "ae66e1167dd98eff818c9a2430c79d371aab7f4d",
+  "source_tree": "f76eadb779489db2726cda3d314e975e826c979f",
+  "source_changes": {
+    "src/pso/effect/TEffClitical.cpp": "Pass the already typed GinjaTextureList directly to the shared frame and draw helpers.",
+    "src/pso/effect/TEffGuard.cpp": "Use the single SoundEffect include at the upstream location.",
+    "src/pso/effect/photon/TPhotonLine.cpp": "Retain the observed ninth-hit limit in the native owner."
+  },
+  "matching_exception": {
+    "path": "src/pso/effect/enemy/TeneFakeTecThunderEff.cpp",
+    "attempt": "Use the shared void subtract_vector prototype instead of the local Vec* declaration.",
+    "conclusion": "Keep the upstream #375 declaration. The shared prototype changed the 884-byte build_beam_points function.",
+    "regressed_function": {
+      "module": "psov3",
+      "address": "0x800A39A8",
+      "name": "build_beam_points__21TeneFakeTecThunderEffFv"
+    },
+    "trial_coverage_sha256": "82bf217c63a76098b16f0b81980f5e94ea70612dc86762adc155fbbd42f40c0c"
+  },
+  "relocated_effect_units": {
+    "src/pso/effect/item/TItemEffEquip_80108860.cpp": {
+      ".text": {
+        "range": [
+          "0x80108860",
+          "0x801088d0"
+        ],
+        "owners": [
+          [
+            "pso/effect/item/TItemEffEquip.cpp",
+            "0x80108860",
+            "0x801088d0"
+          ]
+        ]
+      }
+    },
+    "src/pso/effect/item/TItemEffEquip_801088F8.cpp": {
+      ".text": {
+        "range": [
+          "0x801088f8",
+          "0x80108974"
+        ],
+        "owners": [
+          [
+            "pso/effect/item/TItemEffEquip.cpp",
+            "0x801088f8",
+            "0x80108974"
+          ]
+        ]
+      }
+    },
+    "src/pso/effect/particle/TParticleCtrl_80085EE4.cpp": {
+      ".text": {
+        "range": [
+          "0x80085ee4",
+          "0x80086884"
+        ],
+        "owners": [
+          [
+            "pso/effect/particle/TParticle.cpp",
+            "0x80085ee4",
+            "0x80086884"
+          ]
+        ]
+      },
+      ".rodata": {
+        "range": [
+          "0x804393f0",
+          "0x80439420"
+        ],
+        "owners": [
+          [
+            "pso/effect/particle/TParticle.cpp",
+            "0x804393f0",
+            "0x80439420"
+          ]
+        ]
+      },
+      ".data": {
+        "range": [
+          "0x8048e710",
+          "0x8048e740"
+        ],
+        "owners": [
+          [
+            "pso/effect/particle/TParticle.cpp",
+            "0x8048e710",
+            "0x8048e740"
+          ]
+        ]
+      },
+      ".sbss": {
+        "range": [
+          "0x805d4ef0",
+          "0x805d4ef8"
+        ],
+        "owners": [
+          [
+            "pso/effect/particle/TParticle.cpp",
+            "0x805d4ef0",
+            "0x805d4ef8"
+          ]
+        ]
+      },
+      ".sdata2": {
+        "range": [
+          "0x805d94c0",
+          "0x805d94e0"
+        ],
+        "owners": [
+          [
+            "pso/effect/particle/TParticle.cpp",
+            "0x805d94c0",
+            "0x805d94e0"
+          ]
+        ]
+      }
+    },
+    "src/pso/effect/particle/TParticleCtrl_800874F4.cpp": {
+      ".text": {
+        "range": [
+          "0x800874f4",
+          "0x8008877c"
+        ],
+        "owners": [
+          [
+            "pso/effect/particle/TParticleCtrl.cpp",
+            "0x800874f4",
+            "0x80088588"
+          ],
+          [
+            "pso/effect/particle/ParticleResources.cpp",
+            "0x80088588",
+            "0x8008877c"
+          ]
+        ]
+      },
+      ".rodata": {
+        "range": [
+          "0x80439420",
+          "0x804394e8"
+        ],
+        "owners": [
+          [
+            "pso/effect/particle/TParticleCtrl.cpp",
+            "0x80439420",
+            "0x80439438"
+          ],
+          [
+            "pso/effect/particle/ParticleResources.cpp",
+            "0x80439438",
+            "0x804394e8"
+          ]
+        ]
+      },
+      ".data": {
+        "range": [
+          "0x8048e740",
+          "0x8048e778"
+        ],
+        "owners": [
+          [
+            "pso/effect/particle/TParticleCtrl.cpp",
+            "0x8048e740",
+            "0x8048e758"
+          ],
+          [
+            "pso/effect/particle/ParticleResources.cpp",
+            "0x8048e758",
+            "0x8048e778"
+          ]
+        ]
+      },
+      ".sdata": {
+        "range": [
+          "0x805d2938",
+          "0x805d2950"
+        ],
+        "owners": [
+          [
+            "pso/effect/particle/TParticleCtrl.cpp",
+            "0x805d2938",
+            "0x805d2940"
+          ],
+          [
+            "pso/effect/particle/ParticleResources.cpp",
+            "0x805d2940",
+            "0x805d2950"
+          ]
+        ]
+      },
+      ".sdata2": {
+        "range": [
+          "0x805d94e0",
+          "0x805d94f8"
+        ],
+        "owners": [
+          [
+            "pso/effect/particle/TParticleCtrl.cpp",
+            "0x805d94e0",
+            "0x805d94f8"
+          ]
+        ]
+      }
+    },
+    "src/pso/effect/particle/TParticleCtrl_801E4E7C.cpp": {
+      ".text": {
+        "range": [
+          "0x801e4e7c",
+          "0x801e4eb0"
+        ],
+        "owners": [
+          [
+            "pso/effect/sprite/TQuadSprite.cpp",
+            "0x801e4e7c",
+            "0x801e4eb0"
+          ]
+        ]
+      }
+    },
+    "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp": {
+      ".text": {
+        "range": [
+          "0x801ace1c",
+          "0x801ad47c"
+        ],
+        "owners": [
+          [
+            "pso/effect/photon/TPhotonMagicSquare.cpp",
+            "0x801ace1c",
+            "0x801ad47c"
+          ]
+        ]
+      },
+      ".rodata": {
+        "range": [
+          "0x80446e20",
+          "0x80446e40"
+        ],
+        "owners": [
+          [
+            "pso/effect/photon/TPhotonMagicSquare.cpp",
+            "0x80446e20",
+            "0x80446e40"
+          ]
+        ]
+      },
+      ".data": {
+        "range": [
+          "0x804c3940",
+          "0x804c39d4"
+        ],
+        "owners": [
+          [
+            "pso/effect/photon/TPhotonMagicSquare.cpp",
+            "0x804c3940",
+            "0x804c39d4"
+          ]
+        ]
+      },
+      ".sdata": {
+        "range": [
+          "0x805d3508",
+          "0x805d3510"
+        ],
+        "owners": [
+          [
+            "pso/effect/photon/TPhotonMagicSquare.cpp",
+            "0x805d3508",
+            "0x805d3510"
+          ]
+        ]
+      },
+      ".sdata2": {
+        "range": [
+          "0x805dc1e0",
+          "0x805dc1f8"
+        ],
+        "owners": [
+          [
+            "pso/effect/photon/TPhotonMagicSquare.cpp",
+            "0x805dc1e0",
+            "0x805dc1f8"
+          ]
+        ]
+      }
+    }
+  },
+  "superseded_effect_headers": {
+    "include/pso/effect/photon/TPhotonMagicSquare_801ACE1C.h": "TPhotonMagicSquare.h declares the native constructors, destructor and draw methods. Estlla, Farlla, Leilla, Mylla and Pilla call the native constructors.",
+    "include/pso/effect/photon/TPhotonRainbow_801AE640.h": "TPhotonRainbow.h declares the native constructor and resource callbacks. Photon summon callers use that constructor directly and the ring texture lists and models retain their pointer types."
+  },
+  "reviewed_symbol_advisory": {
+    "address": "0x8032BCBC",
+    "reason": "TUnk_804EDAC0 has a distinct vtable and singleton. Render callers on Stealth and the two traps queue TObject pointers on that singleton. Its render method calls the queued objects' virtual render methods."
+  },
+  "validation": {
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "check_pr": "pass",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_change_from_matching_parent": {
+      "regressions": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0
+    },
+    "coverage_sha256": "9fb29432a108ad77e2244566ac3ec7cd50ccedda83d37c0c537fb0c3cd823ee5",
+    "photon_probe": {
+      "leilla_setup": 20,
+      "line_constructors": 8,
+      "line_motion_and_hits": 16,
+      "images": [
+        "retail",
+        "built"
+      ]
+    },
+    "photon_probe_sha256": "4dc242856430140e49e27cf64c057ed0f41523f7ab3127f1472cae84e06e759c",
+    "source_quality": {
+      "totals": {
+        "base": 147293,
+        "head": 143273,
+        "added": 251,
+        "removed": 4271
+      },
+      "label_changes": 274,
+      "label_advisories": 8,
+      "new_stale_retention": 0,
+      "report_sha256": "b65286799b1f35aa28960398398190b0999768206afb1b9f5cbe85d9644ce475"
+    },
+    "private_archive_before_receipt": "7c02ed0124c950716b6d27b029e48838bfb9490b",
+    "materialized_workspace_tests": {
+      "fork_layer": 11,
+      "tools": 294,
+      "host": 5,
+      "build_inputs_match_validated_fixture": true
+    }
+  },
+  "remaining_scope": "This records the effects reconciliation and the eight old effects units and headers that have native replacements. The wider source overlap audit remains open."
+}

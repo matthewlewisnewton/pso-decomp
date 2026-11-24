@@ -25,7 +25,7 @@ WHERE = re.compile(r"# \.\w+:0x[0-9A-Fa-f]+ \| 0x([0-9A-Fa-f]+) \| size: 0x([0-9
 LABEL = re.compile(r"\.L_[0-9A-Fa-f]+:$")
 INSN = re.compile(r"^/\*\s*[0-9A-F]{8}\s+[0-9A-F]{8}\s+((?:[0-9A-F]{2} ){3}[0-9A-F]{2})\s*\*/\s*(.*)$")
 BRANCH = re.compile(r"^b\w*\s+(?:(?:cr\d|\d)\s*,\s*)?([A-Za-z_.@$][\w.@$]*)$")
-SDA21 = re.compile(r"([A-Za-z_$][\w$]*)@sda21\((r\d+)\)")
+SDA21 = re.compile(r"([A-Za-z_$][\w$]*(?:[+-]0x[0-9A-Fa-f]+)?)@sda21\((r\d+)\)")
 
 
 def encode(line: str) -> str:
@@ -35,9 +35,21 @@ def encode(line: str) -> str:
     word, text = m.group(1).replace(" ", ""), m.group(2).strip()
     branch = BRANCH.match(text)
     if "@" in text or (branch and not branch.group(1).startswith(".L_")):
-        # CodeWarrior writes a small-data reference as sym(rN), not sym@sda21(rN).
+        # CodeWarrior writes a small-data reference as sym(rN), not sym@sda21(rN); a reference
+        # into an object keeps its offset (sym+0x4(rN)).
         return SDA21.sub(r"\1(\2)", text)
     return f"opword 0x{word}"
+
+
+def outside_branch(line: str, fn: dict):
+    """The unnamed label a branch targets in another function, if it does."""
+    m = INSN.match(line)
+    branch = m and BRANCH.match(m.group(2).strip())
+    if branch and branch.group(1).startswith(".L_"):
+        target = int(branch.group(1)[3:], 16)
+        if not fn["start"] <= target < fn["end"]:
+            return branch.group(1)
+    return None
 
 
 def parse(asm: str) -> list:
@@ -68,6 +80,10 @@ def parse(asm: str) -> list:
             fn["body"].append(f"entry {SYM.match(s).group(1)}")
         elif s.startswith("."):
             fn["error"] = f"unexpected directive {s!r}"
+        elif outside_branch(s, fn):
+            # As a raw word the branch would lose its relocation, which the original has.
+            fn["error"] = (f"branch to {outside_branch(s, fn)} outside the function: "
+                           "name that address as a label in symbols.txt")
         else:
             try:
                 fn["body"].append(encode(s))

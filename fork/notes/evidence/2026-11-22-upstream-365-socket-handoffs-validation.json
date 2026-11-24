@@ -1,0 +1,197 @@
+{
+  "source": "cda3481cb00e4dad6ad9bbcf00c40d7836223291",
+  "previous_source": "abc227b796650a0c88c6f23159b5882d28c2e673",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "include/pso/network/UdpRuntime.h",
+    "include/pso/network/text_80421620.h",
+    "src/pso/network/NetDhcp.c",
+    "src/pso/network/NetDns.c",
+    "src/pso/network/NetIpv4.c",
+    "src/pso/network/NetIpv6.c",
+    "src/pso/network/NetUdp.c",
+    "src/pso/network/text_80421620.c"
+  ],
+  "combined_paths_from_upstream": 1309,
+  "validation": {
+    "source": {
+      "baseline": "abc227b796650a0c88c6f23159b5882d28c2e673",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "b7ef59ce5f05d52a0b99f5c11907f7321b16c8c6c24753265640cf14dc5d402b",
+      "report_sha256": "e5f592259f2f8ae0344642692fadde75f8a6ddf40eab98180fe22afcd38a691b"
+    },
+    "layer": {
+      "baseline": "cda3481cb00e4dad6ad9bbcf00c40d7836223291",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "0d0505ff2d6750e611c1caeddd6c815b7e23c1307e306f42ee8cc59bb78deb14",
+      "report_sha256": "e5f592259f2f8ae0344642692fadde75f8a6ddf40eab98180fe22afcd38a691b"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "c8ce3d352b2bef6cc7bae36c80ccb5622b484048a6ebb92935e639e7b5e61aaf"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "7f49da64c3c6903ebfae28c0d72477ca06f4ce8ed5a1efd24345e472aa67f36b"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "ad1227e7d6dde3aea88d51f241949b30f3d1fe42ec4c3abf078bd6309ee9bbdb"
+    }
+  },
+  "matching_units": {
+    "src/pso/network/NetDhcp.c": {
+      "functions": 25,
+      "code": "8456",
+      "data": "5112"
+    },
+    "src/pso/network/NetDns.c": {
+      "functions": 33,
+      "code": "10116",
+      "data": "72"
+    },
+    "src/pso/network/NetIpv4.c": {
+      "functions": 7,
+      "code": "4032",
+      "data": "40"
+    },
+    "src/pso/network/NetIpv6.c": {
+      "functions": 9,
+      "code": "4640",
+      "data": "312"
+    },
+    "src/pso/network/NetTcp.c": {
+      "functions": 45,
+      "code": "19380",
+      "data": "168"
+    },
+    "src/pso/network/NetUdp.c": {
+      "functions": 10,
+      "code": "2500",
+      "data": "16"
+    },
+    "src/pso/network/SocketProtocolRuntime.c": {
+      "functions": 11,
+      "code": "7888",
+      "data": "184"
+    },
+    "src/pso/network/text_80421620.c": {
+      "functions": 33,
+      "code": "7288",
+      "data": "568"
+    }
+  },
+  "runtime": {
+    "handoff": {
+      "cases_per_image": 10,
+      "images": [
+        "retail",
+        "source",
+        "materialized fork"
+      ],
+      "probe_sha256": "e4c444684b3e527d1ab4baee37a321b795e15df7ed23e8b6eceabd623a3ead57",
+      "log_sha256": "88f1ac1b5fb3f8af77040ec27373ea4c4c6436a58a6a7bc23a84060cb645440b"
+    },
+    "queues": {
+      "compared_with_retail": [
+        "source",
+        "materialized fork"
+      ],
+      "reassembly": 786,
+      "out_of_order_receive": 12,
+      "gather": 2528,
+      "acknowledgements": 1600,
+      "completion_events": 1766,
+      "log_sha256": "279313e6b7e92fef30ef4b22f33043a71a41c7fa3bc9161b27f899218079b871"
+    }
+  },
+  "historical": {
+    "closed": [
+      {
+        "row": 2974,
+        "fork_path": "src/pso/network/NetUdp.cpp",
+        "current_owner": "src/pso/network/NetUdp.c",
+        "detail": "The C UDP runtime retains the original control blocks, address and port filtering, receive delivery, send encapsulation and ephemeral port allocation. The header copy and fragments use the native buffer records."
+      },
+      {
+        "row": 2978,
+        "fork_path": "src/pso/network/SocketProtocolRuntime.cpp",
+        "current_owner": "src/pso/network/SocketProtocolRuntime.c",
+        "detail": "Receive completion, reassembly, selective acknowledgements and the typed send request and fragment ring are retained at the exact C owner. The bounded SACK and gather overrides remain in the tested fork workspace. Reassembly, out-of-order receive, gather, acknowledgement and completion probes agree with retail."
+      },
+      {
+        "row": 2981,
+        "fork_path": "src/pso/unk/text_80421620.cpp",
+        "current_owner": "src/pso/network/text_80421620.c",
+        "detail": "The current stack and DHCP owners retain typed receive records, native socket tags, buffer fragments, completion records, timer callbacks and the DHCP builders and reply-option handoff. The integer-width forms of the historical interface and send and receive calls preserve the exact native code."
+      }
+    ],
+    "scoped": {
+      "2979": "The portable idle check still compares the two sequence numbers directly. The linked send, receive and completion probes pass. The full historical TCP source comparison remains open."
+    },
+    "open_rows": 300
+  },
+  "legacy_integer_widths": {
+    "status": "The matching caller and provider forms remain in use.",
+    "entries": [
+      "tcp_start_send",
+      "TLobby__sub_8041DBD4",
+      "net_register_timer",
+      "copy_ipv4_interface_addresses"
+    ],
+    "trial_report_sha256": {
+      "objects.log": "b2d63fb9ab0d6fd9421e88d657a793aa2ea21ac6be9a41313873635af0a9a690",
+      "second-objects.log": "c10a29ce6e4e6b844a3119f9878e664ea7424ace94a5ae34f40a197b834d5c05",
+      "final-objects.log": "5f0e33086c0d5096c9199a5f5866973c2f3fab52d0f305d0b5eb294a0c617e88"
+    }
+  },
+  "fork_workspace": {
+    "trial": "b9c4cbd633fb1d8af0cd4e8e317429446aa1107c",
+    "overlay_paths": 130,
+    "archive_sha256": "88c8b53ebd8ed910f4beaa42ead994c40c2660de9dc814c9a2fa14667913d6d5",
+    "materialized_tree": "922a39bc998e46ecf0ff3fc802279b70724079b6",
+    "force_active": 27029
+  }
+}

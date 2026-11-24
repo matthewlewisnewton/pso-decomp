@@ -1,0 +1,431 @@
+{
+  "source": "3d313456cb3805cee4952ef4f25fcf93f724a9dd",
+  "previous_source": "5689ad0d356b30b12202f4551bf5bc865c1df72c",
+  "single_review_candidate": "3fd965f9d24fd9c11ca8f65453732f2e85206ebe",
+  "compiled_source_units": 2448,
+  "matched_functions": 27572,
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/TUnk_80493450.h",
+    "include/pso/enemy/recon/TObjEneRecobox.h",
+    "include/pso/enemy/recon/TObjEneRecobox_8031FCB0.h",
+    "include/pso/enemy/recon/TObjEneRecon.h",
+    "include/pso/enemy/recon/TObjEneRecon_8031D780.h",
+    "include/pso/enemy/recon/TObjEneRecon_8031E574.h",
+    "src/pso/enemy/beast/TObjEneBeast_800C4E08.cpp",
+    "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+    "src/pso/enemy/recon/TObjEneRecon.cpp",
+    "src/pso/enemy/recon/TObjEneReconBomb.cpp",
+    "src/pso/enemy/recon/TObjEneRecon_80320350.cpp"
+  ],
+  "source_fixes": [
+    "Recobox owns the child-state handlers, tracked IDs, spawn timer, counts and shared floor contact.",
+    "Recon and Recobox use their native opacity fades. Recobox uses four camera render fades, and Recon writes the actual position of its movement emitter.",
+    "Recon and ReconBomb use a shared BmlResource pointer. Archive setup uses the native model and motion records, and Recon stores the typed parent ID.",
+    "The enemy proximity-flag helper declares the void return it implements, under its existing name."
+  ],
+  "code_generation_decisions": [
+    "The factory and its constructor share the original unsigned halfword ID argument.",
+    "The Recobox constructor keeps its existing BML offset expressions for the model, texture and motion setup. Replacing those three expressions changed register allocation. Archive load, lookup and release use the shared BML type."
+  ],
+  "historical_rows_closed": {
+    "681": {
+      "historical_path": "include/pso/enemy/TUnk_80493450.h",
+      "owner": "include/pso/enemy/TUnk_80493450.h",
+      "owner_blob": "e2c0047a3c48555aee7c2e2fb7dad91410fa3769",
+      "decision": "The prototype and definition use void because no caller consumes a result and the implementation returns none. Keep upstream's existing sub_800C4E08 name."
+    },
+    "749": {
+      "historical_path": "include/pso/enemy/TObjEneMe3ShinowaReal.h",
+      "owner": "include/pso/enemy/shinowa/TObjEneMe3ShinowaReal.h",
+      "owner_blob": "0c0b8c02778892184c9247e96b18e504e33a2865",
+      "decision": "The current upstream header already has the native constructor, the four u16 mirage IDs at +0x42C, and the accurate pointer return from get_or_create_mirage. Keep upstream's m_42c field name and pointer return."
+    }
+  },
+  "historical_rows_with_added_evidence": {
+    "621": "Recon uses the native parent ID at +0x434 and calls the Recobox child handling methods through the actual parent receiver.",
+    "629": "Recon initializes its native fade and particle emitter fields, tests the Recobox parent's mode, and allocates children through the shared typed factory. Actor stat and motion contracts still need comparison.",
+    "1115": "Recobox uses the embedded opacity fade and four render fades. The BML resource and its model and motion lists have typed owners. These source changes preserve the retail setup, action dispatch and teardown instructions. The historical typed combat stat and motion contracts still need comparison."
+  },
+  "historical_rows_open": 645,
+  "validation": {
+    "combat": {
+      "check_sha256": "3c87676a6382a8ced87fd4ef0629dbbd89f3ad6e9bf4b2c02f1e58a42d33d49f",
+      "source_report_sha256": "b15960e62d8b86647fd7f3c6b9695acead1c5f6c0334daccaa0aa4047346dd18",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "changed_function_labels_from_previous_tree": [
+        {
+          "module": "psov3",
+          "address": "0x8031E69C",
+          "before": "create__12TObjEneReconFPvPvPvPvPv",
+          "after": "create__12TObjEneReconFP14TObjEneRecoboxUslPC3VecPC3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031E7F0",
+          "before": "get_field_4d4__12TObjEneReconFv",
+          "after": "get_field_4d4__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031E7F8",
+          "before": "get_field_4d0__12TObjEneReconFv",
+          "after": "get_field_4d0__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EDBC",
+          "before": "remove_tracked_id__12TObjEneReconFl",
+          "after": "remove_tracked_id__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EDF8",
+          "before": "alloc_child_id__12TObjEneReconFv",
+          "after": "alloc_child_id__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EF00",
+          "before": "is_anim_6__12TObjEneReconFv",
+          "after": "is_anim_6__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EF14",
+          "before": "remove_child_entity__12TObjEneReconFPUc",
+          "after": "remove_child_entity__14TObjEneRecoboxFP12TObjEneRecon"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EFAC",
+          "before": "remove_tracked_target__12TObjEneReconFPvPv",
+          "after": "remove_tracked_target__14TObjEneRecoboxFP12TObjEneRecon"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F070",
+          "before": "has_child_in_anim_5__12TObjEneReconFv",
+          "after": "has_child_in_anim_5__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F0F0",
+          "before": "is_below_child_limit__12TObjEneReconFUs",
+          "after": "is_below_child_limit__14TObjEneRecoboxFUs"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F374",
+          "before": "handle_death_state__12TObjEneReconFl",
+          "after": "handle_death_state__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F4A8",
+          "before": "handle_action_state__12TObjEneReconFl",
+          "after": "handle_action_state__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F550",
+          "before": "update_state__12TObjEneReconFl",
+          "after": "update_state__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F748",
+          "before": "handle_state__12TObjEneReconFl",
+          "after": "handle_state__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F8C4",
+          "before": "update_child_spawn__12TObjEneReconFv",
+          "after": "update_child_spawn__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031FA64",
+          "before": "is_out_of_range__12TObjEneReconFv",
+          "after": "is_out_of_range__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031FC2C",
+          "before": "restore_position__12TObjEneReconFv",
+          "after": "restore_position__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80320350",
+          "before": "get_field_38_ptr__12TObjEneReconFv",
+          "after": "get_field_38_ptr__14TObjEneRecoboxFv"
+        }
+      ]
+    },
+    "full": {
+      "check_sha256": "3c87676a6382a8ced87fd4ef0629dbbd89f3ad6e9bf4b2c02f1e58a42d33d49f",
+      "source_report_sha256": "b15960e62d8b86647fd7f3c6b9695acead1c5f6c0334daccaa0aa4047346dd18",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "changed_function_labels_from_previous_tree": [
+        {
+          "module": "psov3",
+          "address": "0x8031E69C",
+          "before": "create__12TObjEneReconFPvPvPvPvPv",
+          "after": "create__12TObjEneReconFP14TObjEneRecoboxUslPC3VecPC3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031E7F0",
+          "before": "get_field_4d4__12TObjEneReconFv",
+          "after": "get_field_4d4__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031E7F8",
+          "before": "get_field_4d0__12TObjEneReconFv",
+          "after": "get_field_4d0__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EDBC",
+          "before": "remove_tracked_id__12TObjEneReconFl",
+          "after": "remove_tracked_id__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EDF8",
+          "before": "alloc_child_id__12TObjEneReconFv",
+          "after": "alloc_child_id__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EF00",
+          "before": "is_anim_6__12TObjEneReconFv",
+          "after": "is_anim_6__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EF14",
+          "before": "remove_child_entity__12TObjEneReconFPUc",
+          "after": "remove_child_entity__14TObjEneRecoboxFP12TObjEneRecon"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EFAC",
+          "before": "remove_tracked_target__12TObjEneReconFPvPv",
+          "after": "remove_tracked_target__14TObjEneRecoboxFP12TObjEneRecon"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F070",
+          "before": "has_child_in_anim_5__12TObjEneReconFv",
+          "after": "has_child_in_anim_5__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F0F0",
+          "before": "is_below_child_limit__12TObjEneReconFUs",
+          "after": "is_below_child_limit__14TObjEneRecoboxFUs"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F374",
+          "before": "handle_death_state__12TObjEneReconFl",
+          "after": "handle_death_state__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F4A8",
+          "before": "handle_action_state__12TObjEneReconFl",
+          "after": "handle_action_state__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F550",
+          "before": "update_state__12TObjEneReconFl",
+          "after": "update_state__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F748",
+          "before": "handle_state__12TObjEneReconFl",
+          "after": "handle_state__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F8C4",
+          "before": "update_child_spawn__12TObjEneReconFv",
+          "after": "update_child_spawn__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031FA64",
+          "before": "is_out_of_range__12TObjEneReconFv",
+          "after": "is_out_of_range__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031FC2C",
+          "before": "restore_position__12TObjEneReconFv",
+          "after": "restore_position__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80320350",
+          "before": "get_field_38_ptr__12TObjEneReconFv",
+          "after": "get_field_38_ptr__14TObjEneRecoboxFv"
+        }
+      ]
+    },
+    "layer": {
+      "check_sha256": "164caad25f270d7a2a005a56c86519d4577f31625224f035b1f11c4261c52fa9",
+      "source_report_sha256": "b15960e62d8b86647fd7f3c6b9695acead1c5f6c0334daccaa0aa4047346dd18",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "changed_function_labels_from_previous_tree": [
+        {
+          "module": "psov3",
+          "address": "0x8031E69C",
+          "before": "create__12TObjEneReconFPvPvPvPvPv",
+          "after": "create__12TObjEneReconFP14TObjEneRecoboxUslPC3VecPC3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031E7F0",
+          "before": "get_field_4d4__12TObjEneReconFv",
+          "after": "get_field_4d4__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031E7F8",
+          "before": "get_field_4d0__12TObjEneReconFv",
+          "after": "get_field_4d0__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EDBC",
+          "before": "remove_tracked_id__12TObjEneReconFl",
+          "after": "remove_tracked_id__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EDF8",
+          "before": "alloc_child_id__12TObjEneReconFv",
+          "after": "alloc_child_id__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EF00",
+          "before": "is_anim_6__12TObjEneReconFv",
+          "after": "is_anim_6__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EF14",
+          "before": "remove_child_entity__12TObjEneReconFPUc",
+          "after": "remove_child_entity__14TObjEneRecoboxFP12TObjEneRecon"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EFAC",
+          "before": "remove_tracked_target__12TObjEneReconFPvPv",
+          "after": "remove_tracked_target__14TObjEneRecoboxFP12TObjEneRecon"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F070",
+          "before": "has_child_in_anim_5__12TObjEneReconFv",
+          "after": "has_child_in_anim_5__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F0F0",
+          "before": "is_below_child_limit__12TObjEneReconFUs",
+          "after": "is_below_child_limit__14TObjEneRecoboxFUs"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F374",
+          "before": "handle_death_state__12TObjEneReconFl",
+          "after": "handle_death_state__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F4A8",
+          "before": "handle_action_state__12TObjEneReconFl",
+          "after": "handle_action_state__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F550",
+          "before": "update_state__12TObjEneReconFl",
+          "after": "update_state__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F748",
+          "before": "handle_state__12TObjEneReconFl",
+          "after": "handle_state__14TObjEneRecoboxFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031F8C4",
+          "before": "update_child_spawn__12TObjEneReconFv",
+          "after": "update_child_spawn__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031FA64",
+          "before": "is_out_of_range__12TObjEneReconFv",
+          "after": "is_out_of_range__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031FC2C",
+          "before": "restore_position__12TObjEneReconFv",
+          "after": "restore_position__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80320350",
+          "before": "get_field_38_ptr__12TObjEneReconFv",
+          "after": "get_field_38_ptr__14TObjEneRecoboxFv"
+        }
+      ]
+    }
+  },
+  "fork_overlay_paths": 130,
+  "fork_overlay_sha256": "af9fe8946a391b9c5b74dbdc87b60a61c9f08239c4af98ad8f26e60cac2a4d37",
+  "retained_symbols": 27031,
+  "tool_tests": 294,
+  "fork_layer_tests": 11,
+  "host_checks": [
+    "./vector_math_fallbacks",
+    "./item_factory_callbacks",
+    "./loader_transfer",
+    "./ginja_parameter_callbacks",
+    "./exi_ethernet_fallbacks"
+  ],
+  "commit_attribution": {
+    "audited_commits": 82,
+    "codex_attribution": 0,
+    "coauthor_trailers": 0
+  }
+}

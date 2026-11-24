@@ -1,0 +1,2322 @@
+{
+  "previous_upstream": "73c0ea04c69e7b27c9c02d1032b03ed23bcf6e8b",
+  "upstream": "5a4e7ced56fe7072359b6d279e94f4be3b8453c0",
+  "upstream_commits": 62,
+  "previous_source": "d5e9284fbeb4ecace175a6749261dc3882a29bb0",
+  "source": "52f013f8172469d3b3c666d77306a58506cdb11a",
+  "source_tree": "70d7fe1b423d0da08a6bddca51d583d5bc843e0b",
+  "source_review_paths": 1018,
+  "overlaps_from_landed_names": {
+    "include/pso/unk/TLobby_803BFE50.h": {
+      "TLobby__sub_803BFFC0": "audio_stream_get_format",
+      "TLobby__sub_803BFFFC": "audio_stream_set_notify_callback",
+      "TLobby__sub_803C0010": "audio_stream_get_output_samples",
+      "TLobby__sub_803C0628": "audio_stream_get_write_window",
+      "TLobby__sub_803C0758": "audio_stream_start",
+      "TLobby__sub_803C0B3C": "decode_adxb_pcm_stream"
+    },
+    "src/pso/audio/AdxBsc.cpp": {
+      "TLobby__sub_803C0B3C": "decode_adxb_pcm_stream"
+    },
+    "src/pso/audio/AdxTalk.cpp": {
+      "TLobby__sub_803C0848": "alloc_audio_stream_state",
+      "TLobby__sub_803C0010": "audio_stream_get_output_samples",
+      "TLobby__sub_803C89C4": "stop_adx_stream",
+      "TLobby__sub_803C0758": "audio_stream_start"
+    },
+    "src/pso/audio/AdxtServer.cpp": {
+      "TLobby__sub_803C0758": "audio_stream_start",
+      "TLobby__sub_803C0010": "audio_stream_get_output_samples",
+      "TLobby__sub_803BFFC0": "audio_stream_get_format",
+      "TLobby__sub_803BFFFC": "audio_stream_set_notify_callback",
+      "TLobby__sub_803C07E8": "audio_stream_get_state",
+      "TLobby__sub_803C8B2C": "get_adx_stream_status"
+    },
+    "src/pso/audio/AdxtStart.cpp": {
+      "TLobby__sub_803C8BAC": "ADXSTM_OpenFnameEx"
+    },
+    "src/pso/boss/barbaray/TBoss7Crawfish.cpp": {
+      "sub_80308688": "is_within_x_limit",
+      "sub_803087D4": "play_persistent_sound_at_position",
+      "sub_80308BEC": "advance_to_band_check",
+      "sub_80308ED8": "try_move_by_delta"
+    },
+    "src/pso/enemy/flower/TObjEneRe2Flower.cpp": {
+      "sub_800C3B8C": "is_rare_variant",
+      "sub_800C3DC4": "sync_center_offset",
+      "fn_800C3A60": "remap_sound_for_variant"
+    },
+    "src/pso/unk/TLobby_803BFE50.cpp": {
+      "TLobby__sub_803C0238": "decode_audio_stream_step",
+      "TLobby__sub_803C0848": "alloc_audio_stream_state",
+      "TLobby__sub_803BFFC0": "audio_stream_get_format",
+      "TLobby__sub_803BFFFC": "audio_stream_set_notify_callback",
+      "TLobby__sub_803C0010": "audio_stream_get_output_samples",
+      "TLobby__sub_803C0758": "audio_stream_start",
+      "TLobby__sub_803C0B3C": "decode_adxb_pcm_stream",
+      "TLobby__sub_803C07E8": "audio_stream_get_state",
+      "TLobby__sub_803C0628": "audio_stream_get_write_window"
+    }
+  },
+  "source_alias_audit": {
+    "upstream_files": 129,
+    "lexical_upstream_files": 128,
+    "retained_empty_headers": [
+      "include/pso/boss/barbaray/TBoss7Joint_802EE704.h"
+    ],
+    "lexical_replay_files": 128,
+    "other_changes": [],
+    "unverified_aliases": [],
+    "verified_aliases": {
+      "config/GPOE8P/psov3/config.yml": {
+        "TLobby__sub_802A7BC8": [
+          "zero_pair_fields"
+        ],
+        "TLobby__sub_80424DCC": [
+          "dhcp_begin_discover"
+        ],
+        "TLobby__sub_804251C0": [
+          "dhcp_get_option"
+        ],
+        "TLockOnCursor__sub_8013ED68": [
+          "destroy_target_records"
+        ],
+        "TMainCursor__sub_8013B398": [
+          "copy_action_entry"
+        ],
+        "TMainCursor__sub_8013E40C": [
+          "matches_id"
+        ],
+        "fn_8010EF14": [
+          "load_unload_set_shuffle_order"
+        ],
+        "fn_8010EFE8": [
+          "load_unload_set_init_order"
+        ],
+        "lbl_805D3898": [
+          "TWindowChallengeResult__name"
+        ],
+        "TLobby__sub_803C8594": [
+          "get_adx_threshold_and_chunk"
+        ]
+      },
+      "config/GPOE8P/psov3/symbols.txt": {
+        "sub_8002F73C__13TBoss2DeRolLeFUl": [
+          "handle_despawn_state__13TBoss2DeRolLeFUl"
+        ],
+        "sub_8002FCE4__13TBoss2DeRolLeFUl": [
+          "handle_deep_sink_state__13TBoss2DeRolLeFUl"
+        ],
+        "sub_8002FE60__13TBoss2DeRolLeFUl": [
+          "handle_laser_attack_state__13TBoss2DeRolLeFUl"
+        ],
+        "sub_80030A38__13TBoss2DeRolLeFUl": [
+          "handle_ceiling_pass_state__13TBoss2DeRolLeFUl"
+        ],
+        "sub_80030DFC__13TBoss2DeRolLeFUll": [
+          "handle_roll_dive_state__13TBoss2DeRolLeFUll"
+        ],
+        "sub_800310F8__13TBoss2DeRolLeFUll": [
+          "handle_tentacle_volley_state__13TBoss2DeRolLeFUll"
+        ],
+        "sub_800313F8__13TBoss2DeRolLeFUll": [
+          "handle_bite_state__13TBoss2DeRolLeFUll"
+        ],
+        "sub_80031AD4__13TBoss2DeRolLeFUl": [
+          "handle_forward_jump_state__13TBoss2DeRolLeFUl"
+        ],
+        "sub_800320B4__13TBoss2DeRolLeFUlll": [
+          "handle_side_jump_state__13TBoss2DeRolLeFUlll"
+        ],
+        "sub_800327C8__13TBoss2DeRolLeFUlll": [
+          "handle_position_travel_state__13TBoss2DeRolLeFUlll"
+        ],
+        "sub_80032E38__13TBoss2DeRolLeFUl": [
+          "handle_intro_camera_state__13TBoss2DeRolLeFUl"
+        ],
+        "sub_800333F4__13TBoss2DeRolLeFUl": [
+          "handle_opening_state__13TBoss2DeRolLeFUl"
+        ],
+        "sub_80052EE8__11TBoss4Type1Fv": [
+          "update_dead_idle__11TBoss4Type1Fv"
+        ],
+        "sub_80052EEC__11TBoss4Type1Fv": [
+          "init_dead_state__11TBoss4Type1Fv"
+        ],
+        "sub_8005307C__11TBoss4Type1Fv": [
+          "init_movestndpos_state__11TBoss4Type1Fv"
+        ],
+        "sub_800531BC__11TBoss4Type1Fv": [
+          "init_appear_state__11TBoss4Type1Fv"
+        ],
+        "TBoss8Dragon__sub_80063FB8": [
+          "apply_lightning_hit"
+        ],
+        "TBoss8Dragon__sub_8006402C": [
+          "apply_snarl_hit"
+        ],
+        "TBoss8Dragon__sub_800640A4": [
+          "apply_tornado_hit"
+        ],
+        "TBoss8Dragon__sub_80064114": [
+          "apply_shockwave_hit"
+        ],
+        "TBoss8Dragon__sub_80065F08": [
+          "get_arena_center"
+        ],
+        "fn_800C3A60": [
+          "remap_sound_for_variant"
+        ],
+        "sub_800C3B8C__16TObjEneRe2FlowerFv": [
+          "is_rare_variant__16TObjEneRe2FlowerFv"
+        ],
+        "sub_800C3DC4__16TObjEneRe2FlowerFv": [
+          "sync_center_offset__16TObjEneRe2FlowerFv"
+        ],
+        "sub_800E6F64__17TObjEneMe3ShinowaFv": [
+          "select_gold_or_normal_variant__17TObjEneMe3ShinowaFv"
+        ],
+        "sub_800E6FE0__17TObjEneMe3ShinowaFv": [
+          "is_gold_enabled__17TObjEneMe3ShinowaFv"
+        ],
+        "sub_800E701C__17TObjEneMe3ShinowaFv": [
+          "is_mirage_enabled__17TObjEneMe3ShinowaFv"
+        ],
+        "sub_800E7250__21TObjEneMe3ShinowaRealFv": [
+          "consume_spawn_request__21TObjEneMe3ShinowaRealFv"
+        ],
+        "fn_8010EF14": [
+          "load_unload_set_shuffle_order"
+        ],
+        "fn_8010EFE8": [
+          "load_unload_set_init_order"
+        ],
+        "fn_8010F018": [
+          "load_unload_set_unload"
+        ],
+        "fn_8010F0C0": [
+          "load_unload_set_load"
+        ],
+        "TMainCursor__sub_8013B2A4": [
+          "resolve_player_by_client_id"
+        ],
+        "TMainCursor__sub_8013B398": [
+          "copy_action_entry"
+        ],
+        "TMainCursor__sub_8013E03C": [
+          "get_client_id"
+        ],
+        "TMainCursor__sub_8013E2DC": [
+          "TMainCursor__get_lock_on_cursor_model"
+        ],
+        "TMainCursor__sub_8013E40C": [
+          "matches_id"
+        ],
+        "TMainCursor__sub_8013E900": [
+          "get_cursor_palette_mode"
+        ],
+        "TMainCursor__sub_8013E920": [
+          "get_action_entry_index"
+        ],
+        "TMainCursor__sub_8013E928": [
+          "set_action_entry_index"
+        ],
+        "TMainCursor__sub_8013E930": [
+          "set_action_entry_priority"
+        ],
+        "TMainCursor__sub_8013E970": [
+          "set_target_part"
+        ],
+        "TMainCursor__sub_8013E9C0": [
+          "set_cursor_slot"
+        ],
+        "TMainCursor__sub_8013E9E0": [
+          "set_cursor_mode"
+        ],
+        "TMainCursor__sub_8013EA00": [
+          "set_cursor_count"
+        ],
+        "TLockOnCursor__sub_8013EB6C": [
+          "TLockOnCursor__record_at"
+        ],
+        "TLockOnCursor__sub_8013ED68": [
+          "destroy_target_records"
+        ],
+        "TLockOnCursor__sub_8013EDC4": [
+          "destroy_target_record"
+        ],
+        "TObjMapWarp__sub_80141C68": [
+          "delete_object_if_delete_flag"
+        ],
+        "fn_80141CBC": [
+          "debug_draw_uniform_scaled"
+        ],
+        "fn_80141CF0": [
+          "debug_draw_scaled"
+        ],
+        "TCheckRoomSequence__sub_80210D44": [
+          "TCheckRoomSequence__delete_bank_item"
+        ],
+        "TCheckRoomSequence__sub_80211284": [
+          "TCheckRoomSequence__free_bank_item_records"
+        ],
+        "TAdSinglePlyChrSelectGC__sub_802905B8": [
+          "TAdSinglePlyChrSelectGC__get_char_creation_figure_draw_flag"
+        ],
+        "sub_80296648__16TObjCMAssignMenuFv": [
+          "draw_assign_sprites__16TObjCMAssignMenuFv"
+        ],
+        "sub_802979BC__14TObjCMMainMenuFv": [
+          "draw_character_name__14TObjCMMainMenuFv"
+        ],
+        "sub_80297B18__14TObjCMMainMenuFv": [
+          "draw_name_warning_and_icons__14TObjCMMainMenuFv"
+        ],
+        "fn_802A5C3C__10RlcArchiveFv": [
+          "get_chunk_count__10RlcArchiveFv"
+        ],
+        "fn_802A5C7C__10RlcArchiveFv": [
+          "set_directory_pointer__10RlcArchiveFv"
+        ],
+        "fn_802A5CB8__10RlcArchiveFv": [
+          "set_header_pointer__10RlcArchiveFv"
+        ],
+        "fn_802A5CC4__10RlcArchiveFl": [
+          "store_capture_filename__10RlcArchiveFl"
+        ],
+        "fn_802A605C__10RlcArchiveFv": [
+          "has_resource_size__10RlcArchiveFv"
+        ],
+        "fn_802A6070": [
+          "set_slot_size"
+        ],
+        "fn_802A6078": [
+          "set_slot_offset"
+        ],
+        "TLobby__sub_802A7848": [
+          "set_motion_variant"
+        ],
+        "TLobby__sub_802A7868": [
+          "matches_loaded_motion"
+        ],
+        "TLobby__sub_802A7BC8": [
+          "zero_pair_fields"
+        ],
+        "TLobby__sub_802A7BD8": [
+          "free_snapshot_image_buffer"
+        ],
+        "TLobby__sub_802D268C": [
+          "build_trade_partner_status_text"
+        ],
+        "TWindowSubTradeMain__sub_802D2870": [
+          "snapshot_trade_inventories"
+        ],
+        "TLobby__sub_802D29B8": [
+          "clear_trade_message_controller_if_owner"
+        ],
+        "TLobby__sub_802D29DC": [
+          "set_trade_message_controller"
+        ],
+        "TLobby__sub_802D2A0C": [
+          "claim_trade_main_window"
+        ],
+        "sub_802E11BC__18T_ATS_DrawCalendarFv": [
+          "disable_calendar_draw__18T_ATS_DrawCalendarFv"
+        ],
+        "sub_802E11C8__18T_ATS_DrawCalendarFv": [
+          "enable_calendar_draw__18T_ATS_DrawCalendarFv"
+        ],
+        "sub_802E2A7C__12TAdTimeSetGCFv": [
+          "arm_guildcard_delete_timer__12TAdTimeSetGCFv"
+        ],
+        "sub_802E2BC8__12TAdTimeSetGCFv": [
+          "arm_char_delete_timer__12TAdTimeSetGCFv"
+        ],
+        "sub_802E2D3C__12TAdTimeSetGCFv": [
+          "arm_load_countdown__12TAdTimeSetGCFv"
+        ],
+        "sub_802E7B40__14TBoss7DeRolLeCFv": [
+          "extend_all_tentacles__14TBoss7DeRolLeCFv"
+        ],
+        "sub_802E7B94__14TBoss7DeRolLeCFv": [
+          "retract_all_tentacles__14TBoss7DeRolLeCFv"
+        ],
+        "sub_802E83E8__14TBoss7DeRolLeCFUl": [
+          "handle_tentacle_needle_barrage_state__14TBoss7DeRolLeCFUl"
+        ],
+        "sub_802E8528__14TBoss7DeRolLeCFUl": [
+          "handle_extend_tentacles_state__14TBoss7DeRolLeCFUl"
+        ],
+        "sub_802E8584__14TBoss7DeRolLeCFUl": [
+          "handle_retract_tentacles_state__14TBoss7DeRolLeCFUl"
+        ],
+        "sub_802E85E0__14TBoss7DeRolLeCFUll": [
+          "handle_tentacle_volley_state__14TBoss7DeRolLeCFUll"
+        ],
+        "sub_802E88F8__14TBoss7DeRolLeCFUl": [
+          "handle_wait_state__14TBoss7DeRolLeCFUl"
+        ],
+        "sub_802E8990__14TBoss7DeRolLeCFUl": [
+          "handle_crawfish_drain_state__14TBoss7DeRolLeCFUl"
+        ],
+        "sub_802E8AD4__14TBoss7DeRolLeCFUl": [
+          "handle_despawn_state__14TBoss7DeRolLeCFUl"
+        ],
+        "sub_802E8E34__14TBoss7DeRolLeCFUl": [
+          "handle_deep_sink_state__14TBoss7DeRolLeCFUl"
+        ],
+        "sub_802E8FCC__14TBoss7DeRolLeCFUl": [
+          "handle_laser_attack_state__14TBoss7DeRolLeCFUl"
+        ],
+        "sub_802E9458__14TBoss7DeRolLeCFUl": [
+          "handle_ceiling_attack_state__14TBoss7DeRolLeCFUl"
+        ],
+        "sub_802E95F8__14TBoss7DeRolLeCFUll": [
+          "handle_photon_pad_spawn_state__14TBoss7DeRolLeCFUll"
+        ],
+        "sub_802E979C__14TBoss7DeRolLeCFUll": [
+          "handle_roll_dive_state__14TBoss7DeRolLeCFUll"
+        ],
+        "sub_802E9DBC__14TBoss7DeRolLeCFUll": [
+          "handle_bite_state__14TBoss7DeRolLeCFUll"
+        ],
+        "sub_802EA4D8__14TBoss7DeRolLeCFUl": [
+          "handle_forward_jump_state__14TBoss7DeRolLeCFUl"
+        ],
+        "sub_802EAAC8__14TBoss7DeRolLeCFUlll": [
+          "handle_side_jump_state__14TBoss7DeRolLeCFUlll"
+        ],
+        "sub_802EB270__14TBoss7DeRolLeCFUlll": [
+          "handle_position_travel_state__14TBoss7DeRolLeCFUlll"
+        ],
+        "sub_802EBBC8__14TBoss7DeRolLeCFUl": [
+          "handle_intro_camera_state__14TBoss7DeRolLeCFUl"
+        ],
+        "sub_802EBE50__14TBoss7DeRolLeCFUl": [
+          "handle_opening_state__14TBoss7DeRolLeCFUl"
+        ],
+        "sub_802ECE90__14TBoss7DeRolLeCFll": [
+          "spawn_photon_pad__14TBoss7DeRolLeCFll"
+        ],
+        "sub_802F0904__14TBoss7TentacleFv": [
+          "is_attack_finished__14TBoss7TentacleFv"
+        ],
+        "sub_802F0AD0__14TBoss7TentacleFv": [
+          "speed_up_sway__14TBoss7TentacleFv"
+        ],
+        "sub_802F0B70__14TBoss7TentacleFv": [
+          "enable_retract__14TBoss7TentacleFv"
+        ],
+        "sub_802F0B80__14TBoss7TentacleFv": [
+          "enable_extend__14TBoss7TentacleFv"
+        ],
+        "sub_802F4098__12TBoss8DragonFPUc": [
+          "get_render_position__12TBoss8DragonFPUc"
+        ],
+        "sub_80308688__14TBoss7CrawfishFv": [
+          "is_within_x_limit__14TBoss7CrawfishFv"
+        ],
+        "sub_803087D4__14TBoss7CrawfishFl": [
+          "play_persistent_sound_at_position__14TBoss7CrawfishFl"
+        ],
+        "sub_80308BEC__14TBoss7CrawfishFv": [
+          "advance_to_band_check__14TBoss7CrawfishFv"
+        ],
+        "sub_80308ED8__14TBoss7CrawfishFPC3Vec": [
+          "try_move_by_delta__14TBoss7CrawfishFPC3Vec"
+        ],
+        "TNpcPlayer__sub_8034DE40": [
+          "TNpcPlayer__get_lobby_entry_yaw"
+        ],
+        "TObjPlayer__sub_80354BE4": [
+          "run_palettex_callback"
+        ],
+        "TObjPlayer__sub_80354C2C": [
+          "set_palettex_callback"
+        ],
+        "TObjPlayer__sub_80354D5C": [
+          "is_palettex_activated"
+        ],
+        "TObjPlayer__sub_80354DF4": [
+          "activate_palettex"
+        ],
+        "TObjPlayer__sub_80354E3C": [
+          "is_local_client"
+        ],
+        "TObjPlayer__sub_80354E7C": [
+          "reset_client_quest_slot_table"
+        ],
+        "TLobby__sub_803BFFC0": [
+          "audio_stream_get_format"
+        ],
+        "TLobby__sub_803BFFFC": [
+          "audio_stream_set_notify_callback"
+        ],
+        "TLobby__sub_803C0010": [
+          "audio_stream_get_output_samples"
+        ],
+        "TLobby__sub_803C0238": [
+          "decode_audio_stream_step"
+        ],
+        "TLobby__sub_803C0628": [
+          "audio_stream_get_write_window"
+        ],
+        "TLobby__sub_803C0758": [
+          "audio_stream_start"
+        ],
+        "TLobby__sub_803C07E8": [
+          "audio_stream_get_state"
+        ],
+        "TLobby__sub_803C0848": [
+          "alloc_audio_stream_state"
+        ],
+        "TLobby__sub_803C0B3C": [
+          "decode_adxb_pcm_stream"
+        ],
+        "TLobby__sub_803C8514": [
+          "set_adx_stream_size_sectors"
+        ],
+        "TLobby__sub_803C8578": [
+          "set_adx_max_read_sectors"
+        ],
+        "TLobby__sub_803C8594": [
+          "get_adx_threshold_and_chunk"
+        ],
+        "TLobby__sub_803C85AC": [
+          "get_adx_stream_position"
+        ],
+        "TLobby__sub_803C89C4": [
+          "stop_adx_stream"
+        ],
+        "TLobby__sub_803C8B2C": [
+          "get_adx_stream_status"
+        ],
+        "TLobby__sub_803C8BAC": [
+          "ADXSTM_OpenFnameEx"
+        ],
+        "TQuestVmDownLoadServer__sub_803EC95C": [
+          "TQuestVmDownLoadServer__convert_quest_text_u8_to_u16"
+        ],
+        "TQuestVmDownLoadServer__sub_803ECA1C": [
+          "TQuestVmDownLoadServer__set_text_run_attr"
+        ],
+        "TQuestVmDownLoadServer__sub_803ECC7C": [
+          "TQuestVmDownLoadServer__is_sjis_double_byte"
+        ],
+        "TQuestVmDownLoadServer__sub_803ECD1C": [
+          "TQuestVmDownLoadServer__free_quest_queue_chain"
+        ],
+        "TQuestVmDownLoadServer__sub_803ECD8C": [
+          "TQuestVmDownLoadServer__free_quest_entry_chain"
+        ],
+        "TQuestVmDownLoadServer__sub_803ECE5C": [
+          "TQuestVmDownLoadServer__free_quest_segment_chain"
+        ],
+        "TQuestVmDownLoadServer__sub_803ECE94": [
+          "TQuestVmDownLoadServer__alloc_quest_queue_node"
+        ],
+        "TQuestVmDownLoadServer__sub_803ECED0": [
+          "TQuestVmDownLoadServer__alloc_quest_text_node"
+        ],
+        "TQuestVmDownLoadServer__sub_803ECF0C": [
+          "TQuestVmDownLoadServer__alloc_quest_segment"
+        ],
+        "TQuestVmDownLoadServer__sub_803ECF48": [
+          "TQuestVmDownLoadServer__alloc_quest_entry_node"
+        ],
+        "TLobby__sub_80400174": [
+          "build_ipcp_config_request"
+        ],
+        "TLobby__sub_80400270": [
+          "append_masked_ipcp_options"
+        ],
+        "TLobby__sub_80400338": [
+          "append_ipcp_option"
+        ],
+        "TLobby__sub_8040059C": [
+          "init_lcp_protocol"
+        ],
+        "TLobby__sub_80400744": [
+          "apply_lcp_config_to_sides"
+        ],
+        "TLobby__sub_80400988": [
+          "lcp_noop_callback"
+        ],
+        "TLobby__sub_8040098C": [
+          "setup_auth_after_lcp_negotiation"
+        ],
+        "TLobby__sub_80400ACC": [
+          "start_ipcp_after_auth"
+        ],
+        "TLobby__sub_80400B98": [
+          "mark_lcp_starting"
+        ],
+        "TLobby__sub_80400C4C": [
+          "recv_lcp_config_reject"
+        ],
+        "TLobby__sub_80400DA8": [
+          "recv_lcp_config_nak"
+        ],
+        "TLobby__sub_80400F1C": [
+          "verify_lcp_config_ack"
+        ],
+        "TLobby__sub_804010A0": [
+          "recv_lcp_config_request"
+        ],
+        "TLobby__sub_8041509C": [
+          "loopback_shutdown"
+        ],
+        "TLobby__sub_804150EC": [
+          "init_loopback"
+        ],
+        "TLobby__sub_8041510C": [
+          "register_loopback_handlers"
+        ],
+        "TLobby__sub_80415230": [
+          "send_loopback_frame"
+        ],
+        "TLobby__sub_80415320": [
+          "forward_loopback_packet"
+        ],
+        "TLobby__sub_80415410": [
+          "release_loopback_slot"
+        ],
+        "TLobby__sub_80424CA8": [
+          "dhcp_stop"
+        ],
+        "TLobby__sub_80424CF4": [
+          "dhcp_release_blocking"
+        ],
+        "TLobby__sub_80424D58": [
+          "dhcp_discover_and_request"
+        ],
+        "TLobby__sub_80424DCC": [
+          "dhcp_begin_discover"
+        ],
+        "TLobby__sub_80424E44": [
+          "dhcp_start"
+        ],
+        "TLobby__sub_80424FE0": [
+          "ensure_dhcp_reply_socket"
+        ],
+        "TLobby__sub_804250A8": [
+          "dhcp_set_interface_mode"
+        ],
+        "TLobby__sub_804251C0": [
+          "dhcp_get_option"
+        ],
+        "lbl_80435710": [
+          "derolle_model_name_boss2_b_derorure_fin_b_nj"
+        ],
+        "lbl_8043572C": [
+          "derolle_model_name_boss2_b_derorure_fin_a_nj"
+        ],
+        "lbl_80435748": [
+          "derolle_model_name_boss2_b_derorure_body_nj"
+        ],
+        "lbl_80435764": [
+          "derolle_model_name_boss2_b_derorure_sting_nj"
+        ],
+        "lbl_80435780": [
+          "derolle_model_name_boss2_b_derorure_tentacle_nj"
+        ],
+        "lbl_804357A0": [
+          "derolle_model_name_boss2_b_helm_break_nj"
+        ],
+        "lbl_804357B8": [
+          "derolle_model_name_boss2_b_shell_break_nj"
+        ],
+        "lbl_804357D0": [
+          "derolle_motion_name_beam02_boss2_b_body_njm"
+        ],
+        "lbl_804357E8": [
+          "derolle_motion_name_beamwait_boss2_b_body_njm"
+        ],
+        "lbl_80435804": [
+          "derolle_motion_name_beam_a_boss2_b_body_njm"
+        ],
+        "lbl_8043581C": [
+          "derolle_motion_name_beam_b_boss2_b_body_njm"
+        ],
+        "lbl_80435834": [
+          "derolle_motion_name_beam_c_boss2_b_body_njm"
+        ],
+        "lbl_8043584C": [
+          "derolle_motion_name_bite_lloop_boss2_b_body_njm"
+        ],
+        "lbl_80435868": [
+          "derolle_motion_name_bite_rloop_boss2_b_body_njm"
+        ],
+        "lbl_80435884": [
+          "derolle_motion_name_die_boss2_b_body_njm"
+        ],
+        "lbl_8043589C": [
+          "derolle_motion_name_enter_boss2_b_body_njm"
+        ],
+        "lbl_804358B4": [
+          "derolle_motion_name_fd02_boss2_b_body_njm"
+        ],
+        "lbl_804358CC": [
+          "derolle_motion_name_fjump_boss2_b_body_njm"
+        ],
+        "lbl_804358E4": [
+          "derolle_motion_name_forward_boss2_b_body_njm"
+        ],
+        "lbl_80435900": [
+          "derolle_motion_name_lrjump_boss2_b_body_njm"
+        ],
+        "lbl_80435918": [
+          "derolle_motion_name_l_bite_boss2_b_body_njm"
+        ],
+        "lbl_80435930": [
+          "derolle_motion_name_rljump_boss2_b_body_njm"
+        ],
+        "lbl_80435948": [
+          "derolle_motion_name_r_bite_boss2_b_body_njm"
+        ],
+        "lbl_80435960": [
+          "derolle_motion_name_scatter_boss2_b_body_njm"
+        ],
+        "lbl_8043597C": [
+          "derolle_motion_name_tloop_boss2_b_tentacle_njm"
+        ],
+        "lbl_80435998": [
+          "bm_boss2_de_rol_le_bml_filename"
+        ],
+        "lbl_80435A18": [
+          "bm_boss2_de_rol_le_a_bml_filename"
+        ],
+        "lbl_805D3878": [
+          "TWindowAddition__name"
+        ],
+        "lbl_805D3898": [
+          "TWindowChallengeResult__name"
+        ],
+        "lbl_805D3950": [
+          "TWindowMainMenu__name"
+        ],
+        "lbl_805D3980": [
+          "TWindowMessage__name"
+        ],
+        "lbl_805D39A8": [
+          "TWindowOptionCtrl__name"
+        ],
+        "lbl_805D39B0": [
+          "TWindowQuantity__name"
+        ],
+        "lbl_805D3E58": [
+          "TWindowCallBack__name"
+        ],
+        "lbl_805D3E60": [
+          "TWindowEffectLight__name"
+        ],
+        "lbl_805D3EA8": [
+          "TWindowSubTrade__name"
+        ],
+        "lbl_805D3F70": [
+          "TWindowTradeRequest__name"
+        ],
+        "lbl_805D41C0": [
+          "TAdLicAgreementGC__name"
+        ],
+        "lbl_805D4310": [
+          "TAdPsoPassSaveGC__name"
+        ]
+      },
+      "configure.py": {
+        "TLobby__sub_80415230": [
+          "send_loopback_frame"
+        ]
+      },
+      "include/pso/audio/AdxStream.h": {
+        "TLobby__sub_803C8514": [
+          "set_adx_stream_size_sectors"
+        ],
+        "TLobby__sub_803C8578": [
+          "set_adx_max_read_sectors"
+        ],
+        "TLobby__sub_803C8594": [
+          "get_adx_threshold_and_chunk"
+        ],
+        "TLobby__sub_803C85AC": [
+          "get_adx_stream_position"
+        ],
+        "TLobby__sub_803C89C4": [
+          "stop_adx_stream"
+        ],
+        "TLobby__sub_803C8B2C": [
+          "get_adx_stream_status"
+        ]
+      },
+      "include/pso/audio/AdxStreamRuntime.h": {
+        "TLobby__sub_803C8BAC": [
+          "ADXSTM_OpenFnameEx"
+        ]
+      },
+      "include/pso/boss/barbaray/TBoss7Crawfish.h": {
+        "sub_80308688": [
+          "is_within_x_limit"
+        ],
+        "sub_803087D4": [
+          "play_persistent_sound_at_position"
+        ],
+        "sub_80308BEC": [
+          "advance_to_band_check"
+        ],
+        "sub_80308ED8": [
+          "try_move_by_delta"
+        ]
+      },
+      "include/pso/boss/barbaray/TBoss7DeRolLeC.h": {
+        "sub_802E8FCC": [
+          "handle_laser_attack_state"
+        ],
+        "sub_802EB270": [
+          "handle_position_travel_state"
+        ],
+        "sub_802E8AD4": [
+          "handle_despawn_state"
+        ],
+        "sub_802EBE50": [
+          "handle_opening_state"
+        ],
+        "sub_802E8584": [
+          "handle_retract_tentacles_state"
+        ],
+        "sub_802E8528": [
+          "handle_extend_tentacles_state"
+        ],
+        "sub_802E83E8": [
+          "handle_tentacle_needle_barrage_state"
+        ],
+        "sub_802E7B94": [
+          "retract_all_tentacles"
+        ],
+        "sub_802E7B40": [
+          "extend_all_tentacles"
+        ],
+        "sub_802E8E34": [
+          "handle_deep_sink_state"
+        ],
+        "sub_802E8990": [
+          "handle_crawfish_drain_state"
+        ],
+        "sub_802E88F8": [
+          "handle_wait_state"
+        ],
+        "sub_802ECE90": [
+          "spawn_photon_pad"
+        ],
+        "sub_802E95F8": [
+          "handle_photon_pad_spawn_state"
+        ],
+        "sub_802E9458": [
+          "handle_ceiling_attack_state"
+        ],
+        "sub_802E979C": [
+          "handle_roll_dive_state"
+        ],
+        "sub_802EBBC8": [
+          "handle_intro_camera_state"
+        ],
+        "sub_802EA4D8": [
+          "handle_forward_jump_state"
+        ],
+        "sub_802E9DBC": [
+          "handle_bite_state"
+        ],
+        "sub_802EAAC8": [
+          "handle_side_jump_state"
+        ],
+        "sub_802E85E0": [
+          "handle_tentacle_volley_state"
+        ]
+      },
+      "include/pso/boss/barbaray/TBoss7Tentacle.h": {
+        "sub_802F0904": [
+          "is_attack_finished"
+        ],
+        "sub_802F0AD0": [
+          "speed_up_sway"
+        ],
+        "sub_802F0B70": [
+          "enable_retract"
+        ],
+        "sub_802F0B80": [
+          "enable_extend"
+        ]
+      },
+      "include/pso/boss/darkfalz/TBoss4Type1.h": {
+        "sub_80052EE8": [
+          "update_dead_idle"
+        ],
+        "sub_80052EEC": [
+          "init_dead_state"
+        ],
+        "sub_8005307C": [
+          "init_movestndpos_state"
+        ],
+        "sub_800531BC": [
+          "init_appear_state"
+        ]
+      },
+      "include/pso/boss/derolle/TBoss2DeRolLe.h": {
+        "sub_800333F4": [
+          "handle_opening_state"
+        ],
+        "sub_8002FCE4": [
+          "handle_deep_sink_state"
+        ],
+        "sub_8002F73C": [
+          "handle_despawn_state"
+        ],
+        "sub_80030DFC": [
+          "handle_roll_dive_state"
+        ],
+        "sub_800310F8": [
+          "handle_tentacle_volley_state"
+        ],
+        "sub_80030A38": [
+          "handle_ceiling_pass_state"
+        ],
+        "sub_800327C8": [
+          "handle_position_travel_state"
+        ],
+        "sub_800320B4": [
+          "handle_side_jump_state"
+        ],
+        "sub_80031AD4": [
+          "handle_forward_jump_state"
+        ],
+        "sub_800313F8": [
+          "handle_bite_state"
+        ],
+        "sub_80032E38": [
+          "handle_intro_camera_state"
+        ],
+        "sub_8002FE60": [
+          "handle_laser_attack_state"
+        ]
+      },
+      "include/pso/boss/galgryphon/Boss5GryphonBehavior.h": {
+        "TBoss8Dragon__sub_80063FB8": [
+          "apply_lightning_hit"
+        ],
+        "TBoss8Dragon__sub_800640A4": [
+          "apply_tornado_hit"
+        ],
+        "TBoss8Dragon__sub_80064114": [
+          "apply_shockwave_hit"
+        ]
+      },
+      "include/pso/boss/goldragon/TBoss8Dragon.h": {
+        "sub_802F4098": [
+          "get_render_position"
+        ]
+      },
+      "include/pso/boss/goldragon/TBoss8Dragon_80065C90.h": {
+        "TBoss8Dragon__sub_80065F08": [
+          "get_arena_center"
+        ]
+      },
+      "include/pso/enemy/flower/TObjEneRe2Flower.h": {
+        "sub_800C3DC4": [
+          "sync_center_offset"
+        ],
+        "sub_800C3B8C": [
+          "is_rare_variant"
+        ]
+      },
+      "include/pso/enemy/shinowa/TObjEneMe3Shinowa.h": {
+        "sub_800E701C": [
+          "is_mirage_enabled"
+        ],
+        "sub_800E6FE0": [
+          "is_gold_enabled"
+        ],
+        "sub_800E6F64": [
+          "select_gold_or_normal_variant"
+        ]
+      },
+      "include/pso/enemy/shinowa/TObjEneMe3ShinowaReal.h": {
+        "sub_800E7250": [
+          "consume_spawn_request"
+        ]
+      },
+      "include/pso/network/PppLcp.h": {
+        "TLobby__sub_80400744": [
+          "apply_lcp_config_to_sides"
+        ],
+        "TLobby__sub_8040059C": [
+          "init_lcp_protocol"
+        ]
+      },
+      "include/pso/network/TLobby_803FAEA0.h": {
+        "TLobby__sub_80400744": [
+          "apply_lcp_config_to_sides"
+        ]
+      },
+      "include/pso/network/TLobby_803FCF44.h": {
+        "TLobby__sub_80400744": [
+          "apply_lcp_config_to_sides"
+        ],
+        "TLobby__sub_8040098C": [
+          "setup_auth_after_lcp_negotiation"
+        ],
+        "TLobby__sub_80400270": [
+          "append_masked_ipcp_options"
+        ],
+        "TLobby__sub_80400988": [
+          "lcp_noop_callback"
+        ],
+        "TLobby__sub_80400B98": [
+          "mark_lcp_starting"
+        ],
+        "TLobby__sub_80400ACC": [
+          "start_ipcp_after_auth"
+        ]
+      },
+      "include/pso/network/TLobby_8041112C.h": {
+        "TLobby__sub_8041510C": [
+          "register_loopback_handlers"
+        ],
+        "TLobby__sub_804150EC": [
+          "init_loopback"
+        ],
+        "TLobby__sub_8041509C": [
+          "loopback_shutdown"
+        ]
+      },
+      "include/pso/network/TradeSession.h": {
+        "TLobby__sub_802D268C": [
+          "build_trade_partner_status_text"
+        ]
+      },
+      "include/pso/npc/TNpcPlayer_8034DAA0.h": {
+        "TNpcPlayer__sub_8034DE40": [
+          "TNpcPlayer__get_lobby_entry_yaw"
+        ]
+      },
+      "include/pso/npc/TNpcPlayer_8034DC20.h": {
+        "TNpcPlayer__sub_8034DE40": [
+          "TNpcPlayer__get_lobby_entry_yaw"
+        ]
+      },
+      "include/pso/quest/QuestDownloadServer.h": {
+        "TQuestVmDownLoadServer__sub_803ECD1C": [
+          "TQuestVmDownLoadServer__free_quest_queue_chain"
+        ],
+        "TQuestVmDownLoadServer__sub_803ECD8C": [
+          "TQuestVmDownLoadServer__free_quest_entry_chain"
+        ],
+        "TQuestVmDownLoadServer__sub_803ECE5C": [
+          "TQuestVmDownLoadServer__free_quest_segment_chain"
+        ],
+        "TQuestVmDownLoadServer__sub_803EC95C": [
+          "TQuestVmDownLoadServer__convert_quest_text_u8_to_u16"
+        ],
+        "TQuestVmDownLoadServer__sub_803ECA1C": [
+          "TQuestVmDownLoadServer__set_text_run_attr"
+        ],
+        "TQuestVmDownLoadServer__sub_803ECF48": [
+          "TQuestVmDownLoadServer__alloc_quest_entry_node"
+        ],
+        "TQuestVmDownLoadServer__sub_803ECED0": [
+          "TQuestVmDownLoadServer__alloc_quest_text_node"
+        ],
+        "TQuestVmDownLoadServer__sub_803ECF0C": [
+          "TQuestVmDownLoadServer__alloc_quest_segment"
+        ]
+      },
+      "include/pso/quest/QuestDownloadText.h": {
+        "TQuestVmDownLoadServer__sub_803ECC7C": [
+          "TQuestVmDownLoadServer__is_sjis_double_byte"
+        ]
+      },
+      "include/pso/quest/TQuestVmDownLoadServer_803E6970.h": {
+        "TQuestVmDownLoadServer__sub_803ECA1C": [
+          "TQuestVmDownLoadServer__set_text_run_attr"
+        ]
+      },
+      "include/pso/render/render_util.h": {
+        "TObjMapWarp__sub_80141C68": [
+          "delete_object_if_delete_flag"
+        ],
+        "fn_80141CBC": [
+          "debug_draw_uniform_scaled"
+        ],
+        "fn_80141CF0": [
+          "debug_draw_scaled"
+        ]
+      },
+      "include/pso/system/RlcArchive.h": {
+        "fn_802A5C3C": [
+          "get_chunk_count"
+        ],
+        "fn_802A5C7C": [
+          "set_directory_pointer"
+        ],
+        "fn_802A5CB8": [
+          "set_header_pointer"
+        ],
+        "fn_802A5CC4": [
+          "store_capture_filename"
+        ],
+        "fn_802A605C": [
+          "has_resource_size"
+        ]
+      },
+      "include/pso/ui/charcreate/TObjCMAssignMenu.h": {
+        "sub_80296648": [
+          "draw_assign_sprites"
+        ]
+      },
+      "include/pso/ui/charcreate/TObjCMMainMenu.h": {
+        "sub_80297B18": [
+          "draw_name_warning_and_icons"
+        ],
+        "sub_802979BC": [
+          "draw_character_name"
+        ]
+      },
+      "include/pso/ui/frontend/TAdTimeSetGC.h": {
+        "sub_802E2A7C": [
+          "arm_guildcard_delete_timer"
+        ],
+        "sub_802E2BC8": [
+          "arm_char_delete_timer"
+        ],
+        "sub_802E2D3C": [
+          "arm_load_countdown"
+        ]
+      },
+      "include/pso/ui/frontend/T_ATS_DrawCalendar.h": {
+        "sub_802E11BC": [
+          "disable_calendar_draw"
+        ],
+        "sub_802E11C8": [
+          "enable_calendar_draw"
+        ]
+      },
+      "include/pso/ui/hud/TLockOnCursor.h": {
+        "TLockOnCursor__sub_8013EDC4": [
+          "destroy_target_record"
+        ],
+        "TLockOnCursor__sub_8013ED68": [
+          "destroy_target_records"
+        ]
+      },
+      "include/pso/ui/hud/TLockOnCursor_8013ED0C.h": {
+        "TLockOnCursor__sub_8013ED68": [
+          "destroy_target_records"
+        ]
+      },
+      "include/pso/ui/hud/TLockOnCursor_8013EDC4.h": {
+        "TLockOnCursor__sub_8013EDC4": [
+          "destroy_target_record"
+        ]
+      },
+      "include/pso/ui/hud/TMainCursor_8013DF5C.h": {
+        "TMainCursor__sub_8013E03C": [
+          "get_client_id"
+        ]
+      },
+      "include/pso/ui/hud/TMainCursor_8013E1C8.h": {
+        "TMainCursor__sub_8013E2DC": [
+          "TMainCursor__get_lock_on_cursor_model"
+        ]
+      },
+      "include/pso/ui/hud/TMainCursor_8013E44C.h": {
+        "TMainCursor__sub_8013E40C": [
+          "matches_id"
+        ]
+      },
+      "include/pso/ui/hud/TMainCursor_8013E7B8.h": {
+        "TMainCursor__sub_8013E900": [
+          "get_cursor_palette_mode"
+        ],
+        "TMainCursor__sub_8013E920": [
+          "get_action_entry_index"
+        ],
+        "TMainCursor__sub_8013E928": [
+          "set_action_entry_index"
+        ],
+        "TMainCursor__sub_8013E930": [
+          "set_action_entry_priority"
+        ],
+        "TMainCursor__sub_8013E970": [
+          "set_target_part"
+        ],
+        "TMainCursor__sub_8013E9C0": [
+          "set_cursor_slot"
+        ],
+        "TMainCursor__sub_8013E9E0": [
+          "set_cursor_mode"
+        ],
+        "TMainCursor__sub_8013EA00": [
+          "set_cursor_count"
+        ]
+      },
+      "include/pso/ui/window/TWindowSnapShot_802A5B2C.h": {
+        "fn_802A6070": [
+          "set_slot_size"
+        ],
+        "fn_802A6078": [
+          "set_slot_offset"
+        ]
+      },
+      "include/pso/ui/window/TWindowSnapShot_802A7D68.h": {
+        "TLobby__sub_802A7848": [
+          "set_motion_variant"
+        ],
+        "TLobby__sub_802A7868": [
+          "matches_loaded_motion"
+        ],
+        "TLobby__sub_802A7BC8": [
+          "zero_pair_fields"
+        ],
+        "TLobby__sub_802A7BD8": [
+          "free_snapshot_image_buffer"
+        ]
+      },
+      "include/pso/ui/window/TWindowSubTradeMain_802D2808.h": {
+        "TWindowSubTradeMain__sub_802D2870": [
+          "snapshot_trade_inventories"
+        ]
+      },
+      "include/pso/unk/TLobby_803BFE50.h": {
+        "TLobby__sub_803BFFC0": [
+          "audio_stream_get_format"
+        ],
+        "TLobby__sub_803BFFFC": [
+          "audio_stream_set_notify_callback"
+        ],
+        "TLobby__sub_803C0010": [
+          "audio_stream_get_output_samples"
+        ],
+        "TLobby__sub_803C0628": [
+          "audio_stream_get_write_window"
+        ],
+        "TLobby__sub_803C0758": [
+          "audio_stream_start"
+        ],
+        "TLobby__sub_803C0B3C": [
+          "decode_adxb_pcm_stream"
+        ],
+        "TLobby__sub_803C07E8": [
+          "audio_stream_get_state"
+        ],
+        "TLobby__sub_803C0848": [
+          "alloc_audio_stream_state"
+        ]
+      },
+      "include/pso/unk/text_800C3A60.h": {
+        "fn_800C3A60": [
+          "remap_sound_for_variant"
+        ]
+      },
+      "include/pso/unk/text_802D298C.h": {
+        "TLobby__sub_802D29B8": [
+          "clear_trade_message_controller_if_owner"
+        ],
+        "TLobby__sub_802D29DC": [
+          "set_trade_message_controller"
+        ],
+        "TLobby__sub_802D2A0C": [
+          "claim_trade_main_window"
+        ]
+      },
+      "include/pso/unk/text_80354BE4.h": {
+        "TObjPlayer__sub_80354BE4": [
+          "run_palettex_callback"
+        ],
+        "TObjPlayer__sub_80354C2C": [
+          "set_palettex_callback"
+        ],
+        "TObjPlayer__sub_80354D5C": [
+          "is_palettex_activated"
+        ],
+        "TObjPlayer__sub_80354DF4": [
+          "activate_palettex"
+        ],
+        "TObjPlayer__sub_80354E3C": [
+          "is_local_client"
+        ],
+        "TObjPlayer__sub_80354E7C": [
+          "reset_client_quest_slot_table"
+        ]
+      },
+      "src/musyx/runtime/musyx_runtime_b.h": {
+        "TLobby__sub_803BFFC0": [
+          "audio_stream_get_format"
+        ],
+        "TLobby__sub_803BFFFC": [
+          "audio_stream_set_notify_callback"
+        ],
+        "TLobby__sub_803C0010": [
+          "audio_stream_get_output_samples"
+        ],
+        "TLobby__sub_803C0758": [
+          "audio_stream_start"
+        ],
+        "TLobby__sub_803C0B3C": [
+          "decode_adxb_pcm_stream"
+        ]
+      },
+      "src/pso/audio/AdxBsc.cpp": {
+        "TLobby__sub_803C0B3C": [
+          "decode_adxb_pcm_stream"
+        ]
+      },
+      "src/pso/audio/AdxStream.cpp": {
+        "TLobby__sub_803C8BAC": [
+          "ADXSTM_OpenFnameEx"
+        ],
+        "TLobby__sub_803C8514": [
+          "set_adx_stream_size_sectors"
+        ],
+        "TLobby__sub_803C8578": [
+          "set_adx_max_read_sectors"
+        ],
+        "TLobby__sub_803C8594": [
+          "get_adx_threshold_and_chunk"
+        ],
+        "TLobby__sub_803C85AC": [
+          "get_adx_stream_position"
+        ],
+        "TLobby__sub_803C89C4": [
+          "stop_adx_stream"
+        ],
+        "TLobby__sub_803C8B2C": [
+          "get_adx_stream_status"
+        ]
+      },
+      "src/pso/audio/AdxTalk.cpp": {
+        "TLobby__sub_803C0010": [
+          "audio_stream_get_output_samples"
+        ],
+        "TLobby__sub_803C89C4": [
+          "stop_adx_stream"
+        ],
+        "TLobby__sub_803C0758": [
+          "audio_stream_start"
+        ],
+        "TLobby__sub_803C0848": [
+          "alloc_audio_stream_state"
+        ]
+      },
+      "src/pso/audio/AdxtServer.cpp": {
+        "TLobby__sub_803C0758": [
+          "audio_stream_start"
+        ],
+        "TLobby__sub_803C0010": [
+          "audio_stream_get_output_samples"
+        ],
+        "TLobby__sub_803BFFFC": [
+          "audio_stream_set_notify_callback"
+        ],
+        "TLobby__sub_803C07E8": [
+          "audio_stream_get_state"
+        ],
+        "TLobby__sub_803C8B2C": [
+          "get_adx_stream_status"
+        ],
+        "TLobby__sub_803BFFC0": [
+          "audio_stream_get_format"
+        ]
+      },
+      "src/pso/audio/AdxtStart.cpp": {
+        "TLobby__sub_803C8BAC": [
+          "ADXSTM_OpenFnameEx"
+        ]
+      },
+      "src/pso/audio/LscServer.cpp": {
+        "TLobby__sub_803C8B2C": [
+          "get_adx_stream_status"
+        ]
+      },
+      "src/pso/audio/LscStream.cpp": {
+        "TLobby__sub_803C89C4": [
+          "stop_adx_stream"
+        ],
+        "TLobby__sub_803C8BAC": [
+          "ADXSTM_OpenFnameEx"
+        ]
+      },
+      "src/pso/boss/barbaray/TBoss7Crawfish.cpp": {
+        "sub_80308688": [
+          "is_within_x_limit"
+        ],
+        "sub_803087D4": [
+          "play_persistent_sound_at_position"
+        ],
+        "sub_80308BEC": [
+          "advance_to_band_check"
+        ],
+        "sub_80308ED8": [
+          "try_move_by_delta"
+        ]
+      },
+      "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp": {
+        "sub_802ECE90": [
+          "spawn_photon_pad"
+        ],
+        "sub_802EBE50": [
+          "handle_opening_state"
+        ],
+        "sub_802EBBC8": [
+          "handle_intro_camera_state"
+        ],
+        "sub_802EB270": [
+          "handle_position_travel_state"
+        ],
+        "sub_802EAAC8": [
+          "handle_side_jump_state"
+        ],
+        "sub_802EA4D8": [
+          "handle_forward_jump_state"
+        ],
+        "sub_802E9DBC": [
+          "handle_bite_state"
+        ],
+        "sub_802E979C": [
+          "handle_roll_dive_state"
+        ],
+        "sub_802E95F8": [
+          "handle_photon_pad_spawn_state"
+        ],
+        "sub_802E9458": [
+          "handle_ceiling_attack_state"
+        ],
+        "sub_802E8FCC": [
+          "handle_laser_attack_state"
+        ],
+        "sub_802E8E34": [
+          "handle_deep_sink_state"
+        ],
+        "sub_802E8AD4": [
+          "handle_despawn_state"
+        ],
+        "sub_802E8990": [
+          "handle_crawfish_drain_state"
+        ],
+        "sub_802E88F8": [
+          "handle_wait_state"
+        ],
+        "sub_802E85E0": [
+          "handle_tentacle_volley_state"
+        ],
+        "sub_802E8584": [
+          "handle_retract_tentacles_state"
+        ],
+        "sub_802E8528": [
+          "handle_extend_tentacles_state"
+        ],
+        "sub_802E83E8": [
+          "handle_tentacle_needle_barrage_state"
+        ],
+        "sub_802E7B40": [
+          "extend_all_tentacles"
+        ],
+        "sub_802E7B94": [
+          "retract_all_tentacles"
+        ],
+        "sub_802F0904": [
+          "is_attack_finished"
+        ],
+        "sub_802F0AD0": [
+          "speed_up_sway"
+        ],
+        "sub_802F0B70": [
+          "enable_retract"
+        ],
+        "sub_802F0B80": [
+          "enable_extend"
+        ]
+      },
+      "src/pso/boss/barbaray/TBoss7TentacleNeedle.cpp": {
+        "sub_802F0B80": [
+          "enable_extend"
+        ],
+        "sub_802F0B70": [
+          "enable_retract"
+        ],
+        "sub_802F0AD0": [
+          "speed_up_sway"
+        ],
+        "sub_802F0904": [
+          "is_attack_finished"
+        ]
+      },
+      "src/pso/boss/darkfalz/TBoss4Type1.cpp": {
+        "sub_800531BC": [
+          "init_appear_state"
+        ],
+        "sub_8005307C": [
+          "init_movestndpos_state"
+        ],
+        "sub_80052EEC": [
+          "init_dead_state"
+        ],
+        "sub_80052EE8": [
+          "update_dead_idle"
+        ]
+      },
+      "src/pso/boss/derolle/TBoss2DeRolLe.cpp": {
+        "sub_8002FE60": [
+          "handle_laser_attack_state"
+        ],
+        "sub_800333F4": [
+          "handle_opening_state"
+        ],
+        "sub_80032E38": [
+          "handle_intro_camera_state"
+        ],
+        "sub_800327C8": [
+          "handle_position_travel_state"
+        ],
+        "sub_800320B4": [
+          "handle_side_jump_state"
+        ],
+        "sub_80031AD4": [
+          "handle_forward_jump_state"
+        ],
+        "sub_800313F8": [
+          "handle_bite_state"
+        ],
+        "sub_800310F8": [
+          "handle_tentacle_volley_state"
+        ],
+        "sub_80030DFC": [
+          "handle_roll_dive_state"
+        ],
+        "sub_80030A38": [
+          "handle_ceiling_pass_state"
+        ],
+        "sub_8002FCE4": [
+          "handle_deep_sink_state"
+        ],
+        "sub_8002F73C": [
+          "handle_despawn_state"
+        ]
+      },
+      "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp": {
+        "TBoss8Dragon__sub_80063FB8": [
+          "apply_lightning_hit"
+        ],
+        "TBoss8Dragon__sub_8006402C": [
+          "apply_snarl_hit"
+        ],
+        "TBoss8Dragon__sub_800640A4": [
+          "apply_tornado_hit"
+        ],
+        "TBoss8Dragon__sub_80064114": [
+          "apply_shockwave_hit"
+        ],
+        "TBoss8Dragon__sub_80065F08": [
+          "get_arena_center"
+        ]
+      },
+      "src/pso/boss/galgryphon/TBoss5GryphonLightningHorn.cpp": {
+        "TBoss8Dragon__sub_80063FB8": [
+          "apply_lightning_hit"
+        ]
+      },
+      "src/pso/boss/galgryphon/TBoss5GryphonLightningWing.cpp": {
+        "TBoss8Dragon__sub_80063FB8": [
+          "apply_lightning_hit"
+        ]
+      },
+      "src/pso/boss/galgryphon/TBoss5GryphonShockWave.cpp": {
+        "TBoss8Dragon__sub_80064114": [
+          "apply_shockwave_hit"
+        ]
+      },
+      "src/pso/boss/galgryphon/TBoss5GryphonSnarl.cpp": {
+        "TBoss8Dragon__sub_8006402C": [
+          "apply_snarl_hit"
+        ]
+      },
+      "src/pso/boss/galgryphon/TBoss5GryphonTornado.cpp": {
+        "TBoss8Dragon__sub_800640A4": [
+          "apply_tornado_hit"
+        ]
+      },
+      "src/pso/boss/goldragon/TBoss8Dragon.cpp": {
+        "sub_802F4098": [
+          "get_render_position"
+        ]
+      },
+      "src/pso/enemy/flower/TObjEneRe2Flower.cpp": {
+        "sub_800C3B8C": [
+          "is_rare_variant"
+        ],
+        "sub_800C3DC4": [
+          "sync_center_offset"
+        ],
+        "fn_800C3A60": [
+          "remap_sound_for_variant"
+        ]
+      },
+      "src/pso/enemy/flower/TObjEneRe2Flower_800C20D0.cpp": {
+        "sub_800C3B8C": [
+          "is_rare_variant"
+        ],
+        "fn_800C3A60": [
+          "remap_sound_for_variant"
+        ]
+      },
+      "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp": {
+        "sub_800E6F64": [
+          "select_gold_or_normal_variant"
+        ],
+        "sub_800E7250": [
+          "consume_spawn_request"
+        ],
+        "sub_800E701C": [
+          "is_mirage_enabled"
+        ],
+        "sub_800E6FE0": [
+          "is_gold_enabled"
+        ]
+      },
+      "src/pso/map/area/AreaCity.cpp": {
+        "TCheckRoomSequence__sub_80211284": [
+          "TCheckRoomSequence__free_bank_item_records"
+        ]
+      },
+      "src/pso/network/NetDhcp.c": {
+        "TLobby__sub_804250A8": [
+          "dhcp_set_interface_mode"
+        ],
+        "TLobby__sub_80424FE0": [
+          "ensure_dhcp_reply_socket"
+        ],
+        "TLobby__sub_80424CA8": [
+          "dhcp_stop"
+        ],
+        "TLobby__sub_804251C0": [
+          "dhcp_get_option"
+        ],
+        "TLobby__sub_80424DCC": [
+          "dhcp_begin_discover"
+        ],
+        "TLobby__sub_80424CF4": [
+          "dhcp_release_blocking"
+        ],
+        "TLobby__sub_80424D58": [
+          "dhcp_discover_and_request"
+        ],
+        "TLobby__sub_80424E44": [
+          "dhcp_start"
+        ]
+      },
+      "src/pso/network/NetHandlerTable.c": {
+        "TLobby__sub_8041510C": [
+          "register_loopback_handlers"
+        ]
+      },
+      "src/pso/network/NetLoopback.c": {
+        "TLobby__sub_80415230": [
+          "send_loopback_frame"
+        ],
+        "TLobby__sub_80415320": [
+          "forward_loopback_packet"
+        ],
+        "TLobby__sub_80415410": [
+          "release_loopback_slot"
+        ],
+        "TLobby__sub_8041509C": [
+          "loopback_shutdown"
+        ],
+        "TLobby__sub_804150EC": [
+          "init_loopback"
+        ],
+        "TLobby__sub_8041510C": [
+          "register_loopback_handlers"
+        ]
+      },
+      "src/pso/network/PppControl.c": {
+        "TLobby__sub_80400744": [
+          "apply_lcp_config_to_sides"
+        ]
+      },
+      "src/pso/network/PppIpcp.c": {
+        "TLobby__sub_80400174": [
+          "build_ipcp_config_request"
+        ],
+        "TLobby__sub_80400270": [
+          "append_masked_ipcp_options"
+        ],
+        "TLobby__sub_80400338": [
+          "append_ipcp_option"
+        ]
+      },
+      "src/pso/network/PppLcp.c": {
+        "TLobby__sub_80400C4C": [
+          "recv_lcp_config_reject"
+        ],
+        "TLobby__sub_80400DA8": [
+          "recv_lcp_config_nak"
+        ],
+        "TLobby__sub_804010A0": [
+          "recv_lcp_config_request"
+        ],
+        "TLobby__sub_80400F1C": [
+          "verify_lcp_config_ack"
+        ],
+        "TLobby__sub_8040059C": [
+          "init_lcp_protocol"
+        ],
+        "TLobby__sub_80400988": [
+          "lcp_noop_callback"
+        ],
+        "TLobby__sub_80400B98": [
+          "mark_lcp_starting"
+        ],
+        "TLobby__sub_8040098C": [
+          "setup_auth_after_lcp_negotiation"
+        ],
+        "TLobby__sub_80400744": [
+          "apply_lcp_config_to_sides"
+        ],
+        "TLobby__sub_80400ACC": [
+          "start_ipcp_after_auth"
+        ]
+      },
+      "src/pso/network/PppPap.c": {
+        "TLobby__sub_80400ACC": [
+          "start_ipcp_after_auth"
+        ]
+      },
+      "src/pso/network/TLobby_803FC178.c": {
+        "TLobby__sub_80400ACC": [
+          "start_ipcp_after_auth"
+        ]
+      },
+      "src/pso/network/TLobby_804050DC.c": {
+        "TLobby__sub_8040098C": [
+          "setup_auth_after_lcp_negotiation"
+        ],
+        "TLobby__sub_8040059C": [
+          "init_lcp_protocol"
+        ]
+      },
+      "src/pso/network/TradeSession.cpp": {
+        "TLobby__sub_802D268C": [
+          "build_trade_partner_status_text"
+        ],
+        "TWindowSubTradeMain__sub_802D2870": [
+          "snapshot_trade_inventories"
+        ],
+        "TLobby__sub_802D29B8": [
+          "clear_trade_message_controller_if_owner"
+        ],
+        "TLobby__sub_802D29DC": [
+          "set_trade_message_controller"
+        ],
+        "TLobby__sub_802D2A0C": [
+          "claim_trade_main_window"
+        ]
+      },
+      "src/pso/npc/TNpcPlayer_8034DAA0.cpp": {
+        "TNpcPlayer__sub_8034DE40": [
+          "TNpcPlayer__get_lobby_entry_yaw"
+        ]
+      },
+      "src/pso/object/TObjRoomId.cpp": {
+        "fn_80141CBC": [
+          "debug_draw_uniform_scaled"
+        ]
+      },
+      "src/pso/object/quest/TObjQuestCol.cpp": {
+        "fn_80141CBC": [
+          "debug_draw_uniform_scaled"
+        ]
+      },
+      "src/pso/object/trap/TOTrapAncient02.cpp": {
+        "fn_80141CF0": [
+          "debug_draw_scaled"
+        ]
+      },
+      "src/pso/player/PlayerTaskEffects.cpp": {
+        "TMainCursor__sub_8013E03C": [
+          "get_client_id"
+        ]
+      },
+      "src/pso/player/TObjPlayer_801AEE10.cpp": {
+        "TObjPlayer__sub_80354E3C": [
+          "is_local_client"
+        ]
+      },
+      "src/pso/player/TObjPlayer_801AF2F0.cpp": {
+        "TNpcPlayer__sub_8034DE40": [
+          "TNpcPlayer__get_lobby_entry_yaw"
+        ],
+        "TObjPlayer__sub_80354BE4": [
+          "run_palettex_callback"
+        ],
+        "TObjPlayer__sub_80354D5C": [
+          "is_palettex_activated"
+        ],
+        "TObjPlayer__sub_80354E7C": [
+          "reset_client_quest_slot_table"
+        ]
+      },
+      "src/pso/player/TObjPlayer_801BDF5C.cpp": {
+        "TLobby__sub_802A7BD8": [
+          "free_snapshot_image_buffer"
+        ],
+        "TObjPlayer__sub_80354E7C": [
+          "reset_client_quest_slot_table"
+        ]
+      },
+      "src/pso/player/TObjPlayer_801C7430.cpp": {
+        "TMainCursor__sub_8013E900": [
+          "get_cursor_palette_mode"
+        ],
+        "TObjPlayer__sub_80354D5C": [
+          "is_palettex_activated"
+        ]
+      },
+      "src/pso/player/TObjPlayer_801D2E20.cpp": {
+        "TMainCursor__sub_8013E900": [
+          "get_cursor_palette_mode"
+        ]
+      },
+      "src/pso/player/TObjPlayer_80354EC8.cpp": {
+        "TObjPlayer__sub_80354BE4": [
+          "run_palettex_callback"
+        ],
+        "TObjPlayer__sub_80354E3C": [
+          "is_local_client"
+        ],
+        "TObjPlayer__sub_80354C2C": [
+          "set_palettex_callback"
+        ],
+        "TObjPlayer__sub_80354D5C": [
+          "is_palettex_activated"
+        ],
+        "TObjPlayer__sub_80354DF4": [
+          "activate_palettex"
+        ],
+        "TObjPlayer__sub_80354E7C": [
+          "reset_client_quest_slot_table"
+        ]
+      },
+      "src/pso/quest/QuestOpcodeHandlers.cpp": {
+        "TCheckRoomSequence__sub_80210D44": [
+          "TCheckRoomSequence__delete_bank_item"
+        ],
+        "TObjPlayer__sub_80354DF4": [
+          "activate_palettex"
+        ],
+        "TObjPlayer__sub_80354D5C": [
+          "is_palettex_activated"
+        ],
+        "TObjPlayer__sub_80354C2C": [
+          "set_palettex_callback"
+        ]
+      },
+      "src/pso/quest/TQuestVmDownLoadServer_803E5668.cpp": {
+        "TQuestVmDownLoadServer__sub_803ECC7C": [
+          "TQuestVmDownLoadServer__is_sjis_double_byte"
+        ]
+      },
+      "src/pso/quest/TQuestVmDownLoadServer_803E6970.cpp": {
+        "TQuestVmDownLoadServer__sub_803ECC7C": [
+          "TQuestVmDownLoadServer__is_sjis_double_byte"
+        ]
+      },
+      "src/pso/quest/TQuestVmDownLoadServer_803E9A24.cpp": {
+        "TQuestVmDownLoadServer__sub_803ECF0C": [
+          "TQuestVmDownLoadServer__alloc_quest_segment"
+        ],
+        "TQuestVmDownLoadServer__sub_803ECE5C": [
+          "TQuestVmDownLoadServer__free_quest_segment_chain"
+        ],
+        "TQuestVmDownLoadServer__sub_803ECF48": [
+          "TQuestVmDownLoadServer__alloc_quest_entry_node"
+        ],
+        "TQuestVmDownLoadServer__sub_803ECD8C": [
+          "TQuestVmDownLoadServer__free_quest_entry_chain"
+        ]
+      },
+      "src/pso/quest/TQuestVmDownLoadServer_803EB0D8.cpp": {
+        "TQuestVmDownLoadServer__sub_803EC95C": [
+          "TQuestVmDownLoadServer__convert_quest_text_u8_to_u16"
+        ],
+        "TQuestVmDownLoadServer__sub_803ECA1C": [
+          "TQuestVmDownLoadServer__set_text_run_attr"
+        ],
+        "TQuestVmDownLoadServer__sub_803ECE94": [
+          "TQuestVmDownLoadServer__alloc_quest_queue_node"
+        ],
+        "TQuestVmDownLoadServer__sub_803ECED0": [
+          "TQuestVmDownLoadServer__alloc_quest_text_node"
+        ],
+        "TQuestVmDownLoadServer__sub_803ECD1C": [
+          "TQuestVmDownLoadServer__free_quest_queue_chain"
+        ],
+        "TQuestVmDownLoadServer__sub_803ECC7C": [
+          "TQuestVmDownLoadServer__is_sjis_double_byte"
+        ],
+        "TQuestVmDownLoadServer__sub_803ECD8C": [
+          "TQuestVmDownLoadServer__free_quest_entry_chain"
+        ],
+        "TQuestVmDownLoadServer__sub_803ECE5C": [
+          "TQuestVmDownLoadServer__free_quest_segment_chain"
+        ],
+        "TQuestVmDownLoadServer__sub_803ECF0C": [
+          "TQuestVmDownLoadServer__alloc_quest_segment"
+        ],
+        "TQuestVmDownLoadServer__sub_803ECF48": [
+          "TQuestVmDownLoadServer__alloc_quest_entry_node"
+        ]
+      },
+      "src/pso/render/render_util.cpp": {
+        "TObjMapWarp__sub_80141C68": [
+          "delete_object_if_delete_flag"
+        ],
+        "fn_80141CBC": [
+          "debug_draw_uniform_scaled"
+        ],
+        "fn_80141CF0": [
+          "debug_draw_scaled"
+        ]
+      },
+      "src/pso/ui/charcreate/TObjCMName.cpp": {
+        "TAdSinglePlyChrSelectGC__sub_802905B8": [
+          "TAdSinglePlyChrSelectGC__get_char_creation_figure_draw_flag"
+        ],
+        "sub_80297B18": [
+          "draw_name_warning_and_icons"
+        ],
+        "sub_802979BC": [
+          "draw_character_name"
+        ],
+        "sub_80296648": [
+          "draw_assign_sprites"
+        ]
+      },
+      "src/pso/ui/city/TCheckRoomSequence.cpp": {
+        "TCheckRoomSequence__sub_80210D44": [
+          "TCheckRoomSequence__delete_bank_item"
+        ],
+        "TCheckRoomSequence__sub_80211284": [
+          "TCheckRoomSequence__free_bank_item_records"
+        ]
+      },
+      "src/pso/ui/frontend/TAdLicAgreementGC.cpp": {
+        "lbl_805D41C0": [
+          "TAdLicAgreementGC__name"
+        ]
+      },
+      "src/pso/ui/frontend/TAdPsoPassSaveGC.cpp": {
+        "lbl_805D4310": [
+          "TAdPsoPassSaveGC__name"
+        ]
+      },
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp": {
+        "TAdSinglePlyChrSelectGC__sub_802905B8": [
+          "TAdSinglePlyChrSelectGC__get_char_creation_figure_draw_flag"
+        ]
+      },
+      "src/pso/ui/frontend/TAdTimeSetGC.cpp": {
+        "sub_802E2D3C": [
+          "arm_load_countdown"
+        ],
+        "sub_802E2BC8": [
+          "arm_char_delete_timer"
+        ],
+        "sub_802E2A7C": [
+          "arm_guildcard_delete_timer"
+        ],
+        "sub_802E11C8": [
+          "enable_calendar_draw"
+        ],
+        "sub_802E11BC": [
+          "disable_calendar_draw"
+        ]
+      },
+      "src/pso/ui/hud/TMainCursor.cpp": {
+        "TMainCursor__sub_8013E03C": [
+          "get_client_id"
+        ],
+        "TMainCursor__sub_8013B398": [
+          "copy_action_entry"
+        ],
+        "TMainCursor__sub_8013B2A4": [
+          "resolve_player_by_client_id"
+        ],
+        "TMainCursor__sub_8013E900": [
+          "get_cursor_palette_mode"
+        ],
+        "TMainCursor__sub_8013E920": [
+          "get_action_entry_index"
+        ],
+        "TMainCursor__sub_8013E928": [
+          "set_action_entry_index"
+        ],
+        "TMainCursor__sub_8013EA00": [
+          "set_cursor_count"
+        ],
+        "TLockOnCursor__sub_8013EB6C": [
+          "TLockOnCursor__record_at"
+        ],
+        "TLockOnCursor__sub_8013EDC4": [
+          "destroy_target_record"
+        ],
+        "TMainCursor__sub_8013E9C0": [
+          "set_cursor_slot"
+        ],
+        "TMainCursor__sub_8013E9E0": [
+          "set_cursor_mode"
+        ],
+        "TMainCursor__sub_8013E970": [
+          "set_target_part"
+        ],
+        "TMainCursor__sub_8013E930": [
+          "set_action_entry_priority"
+        ],
+        "TMainCursor__sub_8013E2DC": [
+          "TMainCursor__get_lock_on_cursor_model"
+        ],
+        "TMainCursor__sub_8013E40C": [
+          "matches_id"
+        ],
+        "TLockOnCursor__sub_8013ED68": [
+          "destroy_target_records"
+        ]
+      },
+      "src/pso/ui/window/TWindowActionPalette.cpp": {
+        "TObjPlayer__sub_80354D5C": [
+          "is_palettex_activated"
+        ]
+      },
+      "src/pso/ui/window/TWindowAddition_80244238.cpp": {
+        "lbl_805D3878": [
+          "TWindowAddition__name"
+        ]
+      },
+      "src/pso/ui/window/TWindowCallBack.cpp": {
+        "lbl_805D3E58": [
+          "TWindowCallBack__name"
+        ]
+      },
+      "src/pso/ui/window/TWindowChallengeResult.cpp": {
+        "lbl_805D3898": [
+          "TWindowChallengeResult__name"
+        ]
+      },
+      "src/pso/ui/window/TWindowEffectLight.cpp": {
+        "lbl_805D3E60": [
+          "TWindowEffectLight__name"
+        ]
+      },
+      "src/pso/ui/window/TWindowMainMenu.cpp": {
+        "lbl_805D3950": [
+          "TWindowMainMenu__name"
+        ]
+      },
+      "src/pso/ui/window/TWindowMessage.cpp": {
+        "lbl_805D3980": [
+          "TWindowMessage__name"
+        ]
+      },
+      "src/pso/ui/window/TWindowOptionCtrl.cpp": {
+        "lbl_805D39A8": [
+          "TWindowOptionCtrl__name"
+        ]
+      },
+      "src/pso/ui/window/TWindowQuantity.cpp": {
+        "lbl_805D39B0": [
+          "TWindowQuantity__name"
+        ]
+      },
+      "src/pso/ui/window/TWindowSnapShot_802A5B2C.cpp": {
+        "fn_802A5C3C": [
+          "get_chunk_count"
+        ],
+        "fn_802A5C7C": [
+          "set_directory_pointer"
+        ],
+        "fn_802A5CB8": [
+          "set_header_pointer"
+        ],
+        "fn_802A5CC4": [
+          "store_capture_filename"
+        ],
+        "fn_802A605C": [
+          "has_resource_size"
+        ],
+        "fn_802A6070": [
+          "set_slot_size"
+        ],
+        "fn_802A6078": [
+          "set_slot_offset"
+        ]
+      },
+      "src/pso/ui/window/TWindowSubTrade.cpp": {
+        "lbl_805D3EA8": [
+          "TWindowSubTrade__name"
+        ]
+      },
+      "src/pso/ui/window/TWindowSubTradeMain_80330A84.cpp": {
+        "TWindowSubTradeMain__sub_802D2870": [
+          "snapshot_trade_inventories"
+        ],
+        "TLobby__sub_802D2A0C": [
+          "claim_trade_main_window"
+        ],
+        "TLobby__sub_802D268C": [
+          "build_trade_partner_status_text"
+        ]
+      },
+      "src/pso/ui/window/TWindowSubTradeMessage.cpp": {
+        "TLobby__sub_802D29B8": [
+          "clear_trade_message_controller_if_owner"
+        ],
+        "TLobby__sub_802D29DC": [
+          "set_trade_message_controller"
+        ]
+      },
+      "src/pso/ui/window/TWindowTradeRequest_802E0170.cpp": {
+        "lbl_805D3F70": [
+          "TWindowTradeRequest__name"
+        ]
+      },
+      "src/pso/unk/TLobby_801461EC.cpp": {
+        "TLobby__sub_8041509C": [
+          "loopback_shutdown"
+        ],
+        "TLobby__sub_80424CA8": [
+          "dhcp_stop"
+        ],
+        "TLobby__sub_80424CF4": [
+          "dhcp_release_blocking"
+        ],
+        "TLobby__sub_804150EC": [
+          "init_loopback"
+        ],
+        "TLobby__sub_80424D58": [
+          "dhcp_discover_and_request"
+        ],
+        "TLobby__sub_80424E44": [
+          "dhcp_start"
+        ]
+      },
+      "src/pso/unk/TLobby_802A7290.cpp": {
+        "TLobby__sub_802A7848": [
+          "set_motion_variant"
+        ],
+        "TLobby__sub_802A7868": [
+          "matches_loaded_motion"
+        ]
+      },
+      "src/pso/unk/TLobby_803BFE50.cpp": {
+        "TLobby__sub_803C0238": [
+          "decode_audio_stream_step"
+        ],
+        "TLobby__sub_803BFFC0": [
+          "audio_stream_get_format"
+        ],
+        "TLobby__sub_803BFFFC": [
+          "audio_stream_set_notify_callback"
+        ],
+        "TLobby__sub_803C0010": [
+          "audio_stream_get_output_samples"
+        ],
+        "TLobby__sub_803C0628": [
+          "audio_stream_get_write_window"
+        ],
+        "TLobby__sub_803C0758": [
+          "audio_stream_start"
+        ],
+        "TLobby__sub_803C07E8": [
+          "audio_stream_get_state"
+        ],
+        "TLobby__sub_803C0848": [
+          "alloc_audio_stream_state"
+        ],
+        "TLobby__sub_803C0B3C": [
+          "decode_adxb_pcm_stream"
+        ]
+      },
+      "src/pso/unk/TUnk_804DDD28.cpp": {
+        "TLobby__sub_802A7BC8": [
+          "zero_pair_fields"
+        ],
+        "TLobby__sub_802A7BD8": [
+          "free_snapshot_image_buffer"
+        ],
+        "fn_802A6070": [
+          "set_slot_size"
+        ],
+        "fn_802A6078": [
+          "set_slot_offset"
+        ],
+        "TLobby__sub_802A7848": [
+          "set_motion_variant"
+        ],
+        "TLobby__sub_802A7868": [
+          "matches_loaded_motion"
+        ],
+        "fn_802A5C3C": [
+          "get_chunk_count"
+        ]
+      },
+      "src/pso/unk/text_800C2A88.cpp": {
+        "fn_800C3A60": [
+          "remap_sound_for_variant"
+        ]
+      },
+      "src/pso/unk/text_800C2CE0.cpp": {
+        "fn_800C3A60": [
+          "remap_sound_for_variant"
+        ]
+      },
+      "src/pso/unk/text_8010EF14.cpp": {
+        "fn_8010EFE8": [
+          "load_unload_set_init_order"
+        ],
+        "fn_8010EF14": [
+          "load_unload_set_shuffle_order"
+        ],
+        "fn_8010F018": [
+          "load_unload_set_unload"
+        ],
+        "fn_8010F0C0": [
+          "load_unload_set_load"
+        ]
+      },
+      "src/pso/unk/text_8010F168.cpp": {
+        "fn_8010F018": [
+          "load_unload_set_unload"
+        ],
+        "fn_8010F0C0": [
+          "load_unload_set_load"
+        ]
+      },
+      "src/pso/unk/text_801D34E0.cpp": {
+        "TObjMapWarp__sub_80141C68": [
+          "delete_object_if_delete_flag"
+        ]
+      },
+      "src/pso/unk/text_803CC294.cpp": {
+        "TLobby__sub_803C89C4": [
+          "stop_adx_stream"
+        ],
+        "TLobby__sub_803C85AC": [
+          "get_adx_stream_position"
+        ],
+        "TLobby__sub_803C8B2C": [
+          "get_adx_stream_status"
+        ],
+        "TLobby__sub_803C8514": [
+          "set_adx_stream_size_sectors"
+        ],
+        "TLobby__sub_803C8578": [
+          "set_adx_max_read_sectors"
+        ]
+      }
+    }
+  },
+  "prior_source_reconciliation": "2026-11-21-upstream-358-reconciliation.json",
+  "prior_source_reconciliation_sha256": "0ebd5312bfa31222128cbe59e21ea03047b75ca1cff7fe887eb7b849e2799c7f",
+  "earlier_replay_paths_requiring_source_comparison": 142,
+  "historical_rows_still_open": 511,
+  "validation": {
+    "names": {
+      "baseline": "d5e9284fbeb4ecace175a6749261dc3882a29bb0",
+      "head": "52f013f8172469d3b3c666d77306a58506cdb11a",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "linker_label_changes": 168,
+      "sha256": "c8618fcaabcc2045579e33301e26da42761978fd89453df475c243a959b888c8"
+    },
+    "layer": {
+      "baseline": "52f013f8172469d3b3c666d77306a58506cdb11a",
+      "head": "ceec330c96a1b37703779a79859d80d49399b739",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "linker_label_changes": 0,
+      "sha256": "f9f07eeb13176e3415769f8f95caf5c118300d400d2e587d5122242426f24e3e"
+    }
+  },
+  "overlay_paths": 130,
+  "overlay_sha256": "3bc1cb13ccb02f8b5ca260ffe8710faeda0f722e94709bdd3a56f2585ac965e1",
+  "overlay_lexical_resolutions": [
+    "config/GPOE8P/psov3/config.yml",
+    "configure.py",
+    "include/pso/quest/QuestDownloadServer.h",
+    "src/pso/quest/TQuestVmDownLoadServer_803E9A24.cpp",
+    "src/pso/ui/charcreate/TObjCMName.cpp"
+  ],
+  "source_commit_attribution": {
+    "name": "matthewlewisnewton",
+    "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+    "coauthor_trailers": 0,
+    "codex_attribution": 0
+  },
+  "data": {
+    "names": {
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0,
+      "report_sha256": "35cdb08abdedcdc118fb4061014d7a9e3590bc67a20c7715cffc7ecef97ab034"
+    },
+    "layer": {
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0,
+      "report_sha256": "35cdb08abdedcdc118fb4061014d7a9e3590bc67a20c7715cffc7ecef97ab034"
+    }
+  },
+  "workspace_tests": {
+    "tool": {
+      "count": 294,
+      "sha256": "435721806a89787ea0e47d2442ffe3c68459cc7d19e2e553f0505680fe558fea"
+    },
+    "fork": {
+      "count": 11,
+      "sha256": "7d5afe804bf07a9b0afd8c207c0aecfe3384502b2232bf974a60c0e2d6087829"
+    },
+    "host": {
+      "checks": [
+        "./vector_math_fallbacks",
+        "./item_factory_callbacks",
+        "./loader_transfer",
+        "./ginja_parameter_callbacks",
+        "./exi_ethernet_fallbacks"
+      ],
+      "sha256": "ad1227e7d6dde3aea88d51f241949b30f3d1fe42ec4c3abf078bd6309ee9bbdb"
+    }
+  },
+  "probe_logs": {
+    "actor": {
+      "images": [
+        "retail",
+        "source",
+        "workspace"
+      ],
+      "sha256": "cadb6a4a3cc45a3f84a7c2d5e269b446c42a75319da5dce0832f9ffe12b2bf76"
+    },
+    "movie": {
+      "images": [
+        "retail",
+        "source",
+        "workspace"
+      ],
+      "sha256": "586e1f4069f42cb0ed93aa0f4c71b84d7ad11ac74b82b90e76a39876cb619d74"
+    },
+    "task": {
+      "images": [
+        "retail",
+        "source",
+        "workspace"
+      ],
+      "sha256": "32e2afea5d59725a908b2b5f501466f337ba4a05bb74ec1d8f251586fb640001"
+    }
+  }
+}

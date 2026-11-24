@@ -1,0 +1,385 @@
+{
+  "upstream_master": "0fa391a887c664abadc00cba75db1f039aceb647",
+  "historical_fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "replay_base": "67daa1efc4dd7da6c09ea4877f262208acc38535",
+  "replay_head": "57b732df947dae31d99acefb2ce749929936d3e7",
+  "replay_tree": "d127c6069a705096d89b8e9e7503b9b54a43e063",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "exact_linked_units": 2448,
+  "replay_losses": {
+    "regressions": 0,
+    "data_regressions": 0,
+    "data_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0,
+    "missing_functions": 0,
+    "failures": 0
+  },
+  "changed_linker_labels": [
+    {
+      "module": "psov3",
+      "address": "0x8001B424",
+      "before": "sub_8001B424__15TAdRicoRingCtrlFl",
+      "after": "sub_8001B424__15TAdRicoRingCtrlFPC3Vec"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8001B4A0",
+      "before": "TAdRicoRingCtrl__sub_8001B4A0",
+      "after": "sub_8001B4A0__15TAdRicoRingCtrlFf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8001B8AC",
+      "before": "TAdRicoRingCtrl__ct",
+      "after": "__ct__15TAdRicoRingCtrlFP7TObject"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8001B984",
+      "before": "start_fade__15TAdRicoRingCtrlFf",
+      "after": "start_fade__11TAdRicoRingFf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8001BA28",
+      "before": "start_anim__15TAdRicoRingCtrlFf",
+      "after": "start_anim__11TAdRicoRingFf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8001BB40",
+      "before": "set_scale4__15TAdRicoRingCtrlFf",
+      "after": "set_scale4__11TAdRicoRingFf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8001BD0C",
+      "before": "__ct__11TAdRicoRingFv",
+      "after": "__ct__11TAdRicoRingFP7TObject"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8001BE00",
+      "before": "create__15TAdRicoRingCtrlFPv",
+      "after": "create__15TAdRicoRingCtrlFP7TObject"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8001BED0",
+      "before": "TAdRicoRingCtrl__sub_8001BED0",
+      "after": "sub_8001BED0__11TAdRicoRingFf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8018A55C",
+      "before": "trigger_spawn__19TContainerAncient01FPvPvPv",
+      "after": "trigger_spawn__20TContainerAncient01RFPC3Vecl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8018A9D8",
+      "before": "init_positions__19TContainerAncient01Fv",
+      "after": "init_positions__20TContainerAncient01RFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8018B158",
+      "before": "spawn_effect__19TContainerAncient01FPvPvPv",
+      "after": "spawn_effect__19TContainerAncient01FPC3Vecl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80194934",
+      "before": "create__10TObjMapCsnFl",
+      "after": "create__10TObjMapCsnFPv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801949FC",
+      "before": "__ct__10TObjMapCsnFll",
+      "after": "__ct__10TObjMapCsnFP7TObjectPv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8029E460",
+      "before": "TObjFish__ct",
+      "after": "__ct__8TObjFishFP7TObjectPv"
+    }
+  ],
+  "replay_report_sha256": "a042929faff6e8f6f4b185cdc9a3836c00fa86ba1ba1803ee47270104adf3d97",
+  "replay_check_sha256": "35b437c52f0c38e658ff6f0e52b087abb7c04e98b948113f62879c6edca1e9b8",
+  "groups": {
+    "fish_and_ambient_camera": {
+      "head": "0a304dd262dd642d3c4de7b4a0c8ba8a5deea977",
+      "donor": "6cb53ca77adc702b81aa6b9c38699fc7d8a35a1c",
+      "paths": [
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/object/ambient/TObjFish.h",
+        "src/pso/object/ambient/TObjEnvSoundGlobal.cpp",
+        "src/pso/object/ambient/TObjFish.cpp",
+        "src/pso/object/ambient/TObjLight.cpp",
+        "src/pso/object/ambient/TObjLight_80235C44.cpp",
+        "src/pso/object/ambient/TObjMistCtrl.cpp"
+      ]
+    },
+    "ancient_container_effects": {
+      "head": "e62412861f98f4e90e28bdc8210e358f00cf99f5",
+      "donor": "bd20994aa3698ab8f8f0098410b4da11d0ba0d2c",
+      "paths": [
+        "config/GPOE8P/psov3/config.yml",
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/object/container/TContainerAncient01.h",
+        "include/pso/object/container/TContainerAncient01R.h",
+        "src/pso/object/container/TContainerAncient01.cpp",
+        "src/pso/object/container/TContainerAncient01_8018A55C.cpp"
+      ]
+    },
+    "ending_scenes_and_ring_lifetime": {
+      "head": "23fb99dd7456d7d7e118a3d41d4946343ec2f59a",
+      "donor": "91eed3bfdcca772ee0ae616c5f972a6aefe2ba11",
+      "paths": [
+        "config/GPOE8P/psov3/config.yml",
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/system/scene/EndingWallTextures.h",
+        "include/pso/system/scene/TEndingAB.h",
+        "include/pso/system/scene/TEndingPic.h",
+        "include/pso/ui/frontend/TAdRicoRing.h",
+        "include/pso/ui/frontend/TAdRicoRingCtrl.h",
+        "include/pso/ui/frontend/TAdRicoRingCtrl_8001B4A0.h",
+        "src/pso/item/TItemReverseTech.cpp",
+        "src/pso/system/scene/TEnding.cpp",
+        "src/pso/system/scene/TEndingAB.cpp",
+        "src/pso/system/scene/TEndingC_8008D00C.cpp",
+        "src/pso/system/scene/TEndingPic.cpp",
+        "src/pso/ui/frontend/TAdRicoRingCtrl.cpp"
+      ]
+    },
+    "city_fireworks": {
+      "head": "73e18b9e491ea7ffefa785d5d8975b0c450640d1",
+      "donor": "3f3792f434061b70c2d27c09f44e7987ccf08250",
+      "paths": [
+        "include/pso/object/city/TObjCity_Season_FireWork.h",
+        "src/pso/object/city/CitySeason.cpp"
+      ]
+    },
+    "map_collision_factory": {
+      "head": "57b732df947dae31d99acefb2ce749929936d3e7",
+      "donor": "83decd2d24dc6104040afd060e0cc2754b110409",
+      "paths": [
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/boss/olgaflow/TBoss6Rock.h",
+        "include/pso/map/TObjMapCsn.h",
+        "include/pso/object/TOVS2.h",
+        "include/pso/object/door/TODoorJungleMain.h",
+        "src/pso/boss/olgaflow/TBoss6Rock.cpp",
+        "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+        "src/pso/map/TObjMapCsn.cpp",
+        "src/pso/object/TObjBigTuitate.cpp",
+        "src/pso/object/base/ObjectFactoryTables.cpp",
+        "src/pso/object/door/TODoorJungleMain.cpp",
+        "src/pso/object/fence/TOVS2Wall01.cpp",
+        "src/pso/object/jungle/TORockJungleL01.cpp",
+        "src/pso/object/lab/TObjLaboDesignBase.cpp",
+        "src/pso/ui/frontend/TAdPlyStatusGC_8033FD48.cpp"
+      ]
+    }
+  },
+  "original_data_inventory": {
+    "great_merge": {
+      "head": "57b732df947dae31d99acefb2ce749929936d3e7",
+      "totals": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "rows": 90
+    },
+    "upstream_master": {
+      "head": "0fa391a887c664abadc00cba75db1f039aceb647",
+      "totals": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "rows": 90
+    },
+    "standalone_review": {
+      "head": "ec81bd9ce7a2194860e8a0034f31727dfd4ad56f",
+      "totals": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "rows": 90
+    }
+  },
+  "stage_preview": {
+    "ambient": {
+      "paths": 16,
+      "conflicting_paths": [
+        "include/pso/npc/NpcAnimationBinding.h",
+        "include/pso/object/cave/CaveSignRender.h",
+        "src/pso/object/ambient/TObjCGrass.cpp",
+        "src/pso/object/ambient/TObjFish.cpp",
+        "src/pso/object/ambient/TObjGrass.cpp",
+        "src/pso/object/ambient/TObjRain.cpp",
+        "src/pso/object/cave/TOHangceilingCave01.cpp",
+        "src/pso/object/cave/TORockCave.cpp",
+        "src/pso/object/jungle/TOGrassJungle.cpp",
+        "src/pso/object/jungle/TOJungleDesign.cpp"
+      ]
+    },
+    "containers": {
+      "paths": 15,
+      "conflicting_paths": [
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/unk/TLobby.h",
+        "src/pso/network/TGameProtocol.cpp",
+        "src/pso/object/ambient/TObjEnvSoundGlobal.cpp",
+        "src/pso/object/collision/TObjEvtCollision.cpp",
+        "src/pso/object/container/TContainerAncient01.cpp",
+        "src/pso/object/container/TContainerAncient01_8018A55C.cpp",
+        "src/pso/object/container/TOContainerAncientEnemy.cpp",
+        "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp",
+        "src/pso/object/container/TObjContainerItem.cpp",
+        "src/pso/object/container/TObjContainerJung.cpp",
+        "src/pso/quest/QuestOpcodeHandlers.cpp",
+        "src/pso/unk/TLobby_80207DA8.cpp"
+      ]
+    },
+    "transfers": {
+      "paths": 46,
+      "conflicting_paths": [
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/object/door/TObjDoorJung.h",
+        "include/pso/object/lobby/TObjButterflyLobby.h",
+        "include/pso/object/lobby/TObjButterflyLobby_80350958.h",
+        "include/pso/object/warp/ForestWarpResources.h",
+        "include/pso/object/warp/TObjAreaWarp.h",
+        "include/pso/object/warp/TObjAreaWarpEnding.h",
+        "include/pso/object/warp/TObjAreaWarpForest.h",
+        "include/pso/object/warp/TObjAreaWarpQuest.h",
+        "include/pso/object/warp/TObjGoalWarpAncient.h",
+        "src/pso/object/city/CityDoors.cpp",
+        "src/pso/object/city/CitySeason.cpp",
+        "src/pso/object/city/CityTraffic.cpp",
+        "src/pso/object/city/CityVerticalModel.cpp",
+        "src/pso/object/door/TObjDoorJung.cpp",
+        "src/pso/object/door/TObjDoorJung_8023DBEC.cpp",
+        "src/pso/object/lobby/LobbyGoGoBall.cpp",
+        "src/pso/object/lobby/LobbyPigeonPath.cpp",
+        "src/pso/object/lobby/TObjButterflyLobby_80350958.cpp",
+        "src/pso/object/seabed/TObjSeabedSuisoBrakable.cpp",
+        "src/pso/object/trap/TOTrapSeabed01.cpp",
+        "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+        "src/pso/object/warp/TObjCityMainWarpChallenge.cpp",
+        "src/pso/object/warp/TObjCityMainWarp_80186E24.cpp",
+        "src/pso/object/warp/TObjLaboMapWarp.cpp",
+        "src/pso/object/warp/TObjMapWarpAncient.cpp",
+        "src/pso/object/warp/TObjWarpBossMulti.cpp",
+        "src/pso/object/warp/TObjWarpJungMain.cpp",
+        "src/pso/object/warp/TObjWarpLobby.cpp",
+        "src/pso/system/scene/TEndingAB.cpp",
+        "src/pso/system/scene/TEndingC_8008D00C.cpp",
+        "src/pso/system/scene/TEndingPic.cpp",
+        "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+        "src/pso/unk/text_80184C2C.cpp"
+      ]
+    }
+  },
+  "next_review_previews": {
+    "challenge-results": {
+      "paths": 49,
+      "conflicts": 26
+    },
+    "challenge-retry": {
+      "paths": 4,
+      "conflicts": 2
+    },
+    "item-help-and-status": {
+      "paths": 10,
+      "conflicts": 10
+    }
+  },
+  "direct_upstream_review": {
+    "head": "ec81bd9ce7a2194860e8a0034f31727dfd4ad56f",
+    "tree": "04eb618c3acda653d62f6e688463f18f8cd7a887",
+    "base": "0fa391a887c664abadc00cba75db1f039aceb647",
+    "paths": 40,
+    "conflicting_paths": [
+      "config/GPOE8P/psov3/config.yml",
+      "src/pso/object/ambient/TObjFish.cpp",
+      "src/pso/object/city/CitySeason.cpp",
+      "src/pso/object/container/TContainerAncient01.cpp",
+      "src/pso/object/container/TContainerAncient01_8018A55C.cpp",
+      "src/pso/system/scene/TEndingC_8008D00C.cpp",
+      "src/pso/ui/frontend/TAdRicoRingCtrl.cpp"
+    ],
+    "coverage_losses": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "data_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "missing_functions": 0,
+      "failures": 0
+    },
+    "report_sha256": "690cd046becdcdcc3ce94c6a9c3bf6df21f52b2204fc8eb2bc869e1e42bd987e",
+    "check_sha256": "d9e339b89855ad149aba480b642d1cf0a26c056aeb3ff09af3e4eb53510a0b08"
+  },
+  "fork_layer": {
+    "workspace_patch_paths": 131,
+    "workspace_patch_sha256": "8946cec27cb1bfbf4030686828d558a1ab7eb53ed77277515cbafc2b5f323ba8",
+    "materialized_tree": "e8adae232d70acafa284bd0aa8f5806b23ee9579",
+    "round_trip_listing_sha256": "0d2b9606fc8155f9950cc45c5cc524bfb1b0d5757b234fbb14e0c45942706500",
+    "force_active_names": 27029,
+    "tool_tests_passed": 294,
+    "layer_tests_passed": 11,
+    "coverage_losses": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "data_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "missing_functions": 0,
+      "failures": 0
+    }
+  },
+  "historical_path_inventory": {
+    "pinned_base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+    "canonical_source": "83decd2d24dc6104040afd060e0cc2754b110409",
+    "earlier_review_queue": "47ade105c778197344c29e2d058cd9754a90893c",
+    "outside_replay_before": 1058,
+    "outside_replay_after": 1048,
+    "outside_both_replay_and_queue": 84,
+    "remaining_by_owner": {
+      "ui": 245,
+      "unk": 158,
+      "weapon": 142,
+      "boss": 107,
+      "enemy": 76,
+      "player": 65,
+      "item": 49,
+      "system": 36,
+      "object": 29,
+      "quest": 28,
+      "effect": 25,
+      "render": 19,
+      "camera": 17,
+      "audio": 14,
+      "math": 9,
+      "technique": 8,
+      "network": 6,
+      "npc": 4,
+      "map": 4,
+      "libs/PowerPC_EABI_Support": 2,
+      "libs/dolphin": 2,
+      "src/musyx": 1,
+      "animation": 1,
+      "collision": 1
+    },
+    "method": "Path inventory without rename detection."
+  }
+}

@@ -2,28 +2,20 @@
 #define PSO_NPC_TOBJNPCNURSEBASE_H
 
 #include "types.h"
-#include "pso/npc/TUnk_804A8640.h"
+#include "pso/npc/TObjNpcFemale.h"
 
-struct TObjNpcNurseBase : public TUnk_804A8640 {
+struct BmlResource;
+
+struct TObjNpcNurseBase : public TObjNpcFemale {
+    TObjNpcNurseBase(TObject *parent, void *set_data);
     virtual ~TObjNpcNurseBase();
     static void free_shared_data();
     static void load_shared_data();
+    static void *create(void *set_data);
+    static const char *name;
+    static BmlResource *shared_model_resource;
 };
 
-typedef char TObjNpcNurseBase_size[sizeof(TObjNpcNurseBase) == 0x3B8 ? 1 : -1];
-
-extern "C" {
-u8 *TObjNpcNurseBase__ct(u8 *arg0, s32 arg1, s32 arg2);
-void *TObjNpcSecretaryBase__create(void *arg0);
-void *__dt__16TObjNpcNurseBaseFv(void *arg0, s16 arg1);
-}
-
-// --- C functions defined in TObjNpcNurseBase.cpp ---
-extern "C" {
-u8 *TObjNpcNurseBase__ct(u8 *arg0, s32 arg1, s32 arg2);
-void *TObjNpcSecretaryBase__create(void *arg0);
-void *__dt__16TObjNpcNurseBaseFv(void *arg0, s16 arg1);
-}
-// --- end of C functions
+LAYOUT_ASSERT(TObjNpcNurseBase_size, sizeof(TObjNpcNurseBase) == 0x3B8);
 
 #endif

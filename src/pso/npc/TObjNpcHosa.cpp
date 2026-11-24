@@ -1,97 +1,53 @@
-#include "pso/system/BmlTextureList.h"
 #include "pso/system/BmlResource.h"
+#include "pso/system/BmlAccessors.h"
 #include "types.h"
-#include "pso/system/BmlResourceClass.h"
-#include "pso/npc/TObjNpcKenkyuW.h"
-#include "pso/unk/text_8014B8A4.h"
-#include "pso/npc/TUnk_804A9F50.h"
-#include "pso/system/BmlResourceDescriptor.h"
+#include "pso/object/TObjControl.h"
 #include "pso/npc/TObjNpcHosa.h"
+#include "pso/npc/TObjNpcKenkyuW.h"
+#include "pso/npc/TObjNpcMale.h"
+
+#include "pso/system/BmlResourceDescriptor.h"
 #include "pso/npc/TObjNpcBase.h"
 #include "pso/npc/TObjNpcLappy.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
+#include "pso/system/task/TObject.h"
+#include "pso/system/task/TMainTask.h"
 
 #pragma readonly_strings on
 
-extern "C" {
+void *TObjNpcHosa::create(void *set_data) {
+    TObjControl *control = new TObjControl(tl_04);
+    return new TObjNpcHosa(control, set_data);
+}
+
 extern const char *bm_npc_hosa_motion_names[1];
 __declspec(section ".data") const char *bm_npc_hosa_model_names[2] = { "hosa_hone_body.nj", NULL };
 BmlResourceDescriptor npc_hosa_resource_descriptor = { "bm_npc_hosa.bml", bm_npc_hosa_model_names, bm_npc_hosa_motion_names, 1, 0 };
 
 const char *bm_npc_hosa_motion_names[1] = { NULL };
-const char *TObjNpcHosa__name = "TObjNpcHosa";
-u32 TObjNpcHosa__static_model_resource;
-}
-
-struct RecoveredGlobal_802A3A58_lbl_804DCCB8 { s32 value; u8 remaining[0xC]; };
-typedef char RecoveredGlobal_802A3A58_lbl_804DCCB8_size[sizeof(RecoveredGlobal_802A3A58_lbl_804DCCB8) == 0x10 ? 1 : -1];
-
-struct RecoveredGlobal_802A3B00___vt__11TObjNpcHosa {
-    s32 value;
-    u8 remaining[0x174];
-};
-
-extern "C" {
-extern s32 __vt__11TObjNpcHosa[];
-extern const char *TObjNpcHosa__name;
-void *__ct__11TObjControlFP7TObject(void *, void *);
-void __dl__7TObjectFPv(void *);
-void *__nw__7TObjectFUl(int);
+const char *TObjNpcHosa::name = "TObjNpcHosa";
+BmlResource *TObjNpcHosa::static_model_resource;
 
 void TObjNpcHosa::destroy_static_instance() {
-    if ((u32) TObjNpcHosa__static_model_resource != 0U) {
-        delete (BmlResource *)((void*)TObjNpcHosa__static_model_resource);
-        TObjNpcHosa__static_model_resource = 0U;
+    if (static_model_resource != NULL) {
+        delete static_model_resource;
+        static_model_resource = NULL;
     }
 }
 
 void TObjNpcHosa::load_static_resource() {
-    s32 temp_r3;
-    s32 var_r0;
-    temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&npc_hosa_resource_descriptor), 0, 0, (void *)(0));
-    var_r0 = temp_r3;
-    (*(s32 *)&TObjNpcHosa__static_model_resource) = var_r0;
+    static_model_resource = new BmlResource(1, &npc_hosa_resource_descriptor, 0, 0, NULL);
 }
 
-void *__dt__11TObjNpcHosaFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__11TObjNpcHosa;
-        ((TUnk_804A9F50 *)arg0)->destroy_npc_lappy_base(0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
+TObjNpcHosa::~TObjNpcHosa() {}
+
+TObjNpcHosa::TObjNpcHosa(TObject *parent, void *set_data) : TObjNpcMale(parent) {
+    this->m_name = name;
+    this->apply_set_data(set_data);
+    init_position_vectors();
+    model = get_bml_model(static_model_resource, 0);
+    texlist = get_bml_texlist(static_model_resource, 0);
+    this->setup_common();
 }
 
-extern void *tl_04;
-
-typedef char RecoveredGlobal_802A3B00___vt__11TObjNpcHosa_size[sizeof(RecoveredGlobal_802A3B00___vt__11TObjNpcHosa) == 0x178 ? 1 : -1];
-u8 *TObjNpcHosa__ct(u8 *player, s32 arg1, s32 arg2) {
-    construct_male_npc_base((player));
-    *(s32 **)((s8 *)player + 0x18) = &(*(RecoveredGlobal_802A3B00___vt__11TObjNpcHosa *)&__vt__11TObjNpcHosa).value;
-    *(s32 *)((s8 *)player + 0) = (s32) TObjNpcHosa__name;
-    ((TObjNpcHosa *)(player))->apply_set_data((void *)arg2);
-    ((TObjChara *)player)->initialize_position_copies();
-    *(s32 *)((s8 *)player + 0x34) = (s32)get_bml_model((BmlResource *)((*(s32 *)&TObjNpcHosa__static_model_resource)), 0);
-    ((TObjNpcHosa *)player)->texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)(*(s32 *)&TObjNpcHosa__static_model_resource), 0);
-    ((TObjNpcBase *)player)->setup_common();
-    return player;
-}
-
-void * TObjNpcKenkyuW__create(void *arg0) {
-    void *o;
-    void *o2;
-    o = __nw__7TObjectFUl(0x20);
-    if (o != NULL) {
-        o = __ct__11TObjControlFP7TObject(o, tl_04);
-    }
-    o2 = __nw__7TObjectFUl(0x3B8);
-    if (o2 != NULL) {
-        o2 = TObjNpcKenkyuW__ct((u8 *)o2, (s32)o, (s32)arg0);
-    }
-    return o2;
-}
-
-}

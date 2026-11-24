@@ -2,34 +2,20 @@
 #define PSO_NPC_TOBJNPCMALEFAT_H
 
 #include "types.h"
-#include "pso/npc/TUnk_804A9F50.h"
+#include "pso/npc/TObjNpcMale.h"
 
 struct BmlResource;
 
-struct TObjNpcMaleFat : public TUnk_804A9F50 {
+struct TObjNpcMaleFat : public TObjNpcMale {
+    TObjNpcMaleFat(TObject *parent, void *set_data);
     virtual ~TObjNpcMaleFat();
     static void free_static_model();
     static void load_static_resource();
+    static void *create(void *set_data);
+    static const char *name;
+    static BmlResource *static_model_resource;
 };
 
-typedef char TObjNpcMaleFat_size[sizeof(TObjNpcMaleFat) == 0x3B8 ? 1 : -1];
-
-extern "C" {
-u8 *TObjNpcMaleFat__ct(u8 *arg0, s32 arg1, s32 arg2);
-void *TObjNpcMaleMacho__create(void *arg0);
-void *__dt__14TObjNpcMaleFatFv(void *arg0, s16 arg1);
-}
-
-// --- C functions defined in TObjNpcMaleFat.cpp ---
-extern "C" {
-u8 *TObjNpcMaleFat__ct(u8 *player, s32 arg1, s32 arg2);
-void *TObjNpcMaleMacho__create(void *arg0);
-void *__dt__14TObjNpcMaleFatFv(void *arg0, s16 arg1);
-}
-// --- end of C functions
-
-extern "C" {
-extern BmlResource *TObjNpcMaleFat__static_model_resource;
-}
+LAYOUT_ASSERT(TObjNpcMaleFat_size, sizeof(TObjNpcMaleFat) == 0x3B8);
 
 #endif

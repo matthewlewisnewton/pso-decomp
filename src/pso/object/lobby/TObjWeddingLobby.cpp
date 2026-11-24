@@ -1,0 +1,115 @@
+#include "pso/system/BmlAccessors.h"
+#include "types.h"
+#include "pso/object/lobby/TObjWeddingLobby.h"
+#include "pso/system/task/TMainTask.h"
+#include "pso/effect/particle/TParticleCtrl.h"
+#include "pso/animation/ActorAnimationState.h"
+#include "pso/unk/TLobby.h"
+#include "pso/object/ambient/TObjFish.h"
+#include "pso/player/TObjPlayer.h"
+#include "pso/system/BmlResource.h"
+#include "pso/system/BmlResourceDescriptor.h"
+#include "pso/render/GinjaMaterial.h"
+#include "pso/system/MatrixOps.h"
+#include "pso/system/MatrixStack.h"
+#include "pso/unk/text_803D8F74.h"
+#include "pso/object/ambient/TObjFish_8001ED90.h"
+#include "pso/render/ModelDrawContext.h"
+
+#pragma readonly_strings on
+
+__declspec(section ".data") const char *bm_obj_lobby_bell_model_names[3] = { "lobby_obj_bell_D8_yane.gj", "lobby_obj_bell_VN_null1.gj", NULL };
+__declspec(section ".data") const char *bm_obj_lobby_bell_motion_names[2] = { "lobby_obj_bell_VN_null1.njm", NULL };
+BmlResourceDescriptor bm_obj_lobby_bell_resource_descriptor = { "bm_obj_lobby_bell.bml", bm_obj_lobby_bell_model_names, bm_obj_lobby_bell_motion_names, 2, 1 };
+const char *obj_wedding_lobby_class_name = "TObjWeddingLobby";
+BmlResource *TObjWeddingLobby::resource_bundle;
+NJS_TEXLIST *TObjWeddingLobby::lobby_texlist;
+
+void TObjWeddingLobby::demo_step() {}
+
+void TObjWeddingLobby::render() {
+    if (fade_state != 0 && lobby_texlist != 0) {
+        TParticleCtrl::begin_effect_render();
+        TObjFish::set_global_param(reinterpret_cast<NJS_TEXLIST *>(lobby_texlist));
+        push_matrix();
+        post_translate_matrix(&position.x);
+        rotate_matrix_y(NULL, rotation_y);
+        if (fade_state != 3) {
+            scale_matrix(NULL, fade_scale, 1.0f, fade_scale);
+        }
+        draw_ginja_object((void *)get_bml_model((BmlResource *)resource_bundle, 0));
+        draw_ginja_model_with_motion((void *)(get_bml_model((BmlResource *)resource_bundle, 1)), (void *)(get_bml_motion(resource_bundle, 0)), (f32)animation_frame);
+        pop_matrix();
+        TParticleCtrl::end_effect_render();
+    }
+}
+
+void TObjWeddingLobby::run_task() {
+    f32 last;
+    if (TObjPlayer::check_demo_mode() == 1) {
+        demo_step();
+    }
+    switch (fade_state) {
+    case 0:
+        if (TLobby::get_filtered_event_theme() == 10) {
+            fade_state = 2;
+        }
+        break;
+    case 2:
+        fade_scale += 0.1f;
+        if (fade_scale >= 1.0f) {
+            fade_scale = 1.0f;
+            fade_state = 3;
+        }
+        break;
+    case 1:
+        fade_scale -= 0.1f;
+        if (fade_scale <= 0.0f) {
+            fade_scale = 0.0f;
+            fade_state = 0;
+        }
+        break;
+    case 3:
+    default:
+        if (TLobby::get_filtered_event_theme() != 10) {
+            fade_state = 1;
+        }
+        break;
+    }
+    last = (f32)get_bml_motion(resource_bundle, 0)->frameCount - 1.0f;
+    animation_frame += 2.0f;
+    if (last < animation_frame) {
+        animation_frame -= last;
+    }
+}
+
+void *TObjWeddingLobby::create(void *set_data) {
+    return new TObjWeddingLobby(tl_05, set_data);
+}
+
+void TObjWeddingLobby::free_resources() {
+    if (resource_bundle != NULL) {
+        delete (BmlResource *)resource_bundle;
+        resource_bundle = NULL;
+    }
+}
+
+void TObjWeddingLobby::load_resources() {
+    void *resource = new BmlResource(5, &bm_obj_lobby_bell_resource_descriptor, 0, 0, NULL);
+    resource_bundle = (BmlResource *)resource;
+    lobby_texlist = TLobby::get_lobby_texlist();
+}
+
+TObjWeddingLobby::~TObjWeddingLobby() {}
+
+TObjWeddingLobby::TObjWeddingLobby(TObject *parent, void *set_data) : TObjMapObject(parent) {
+    m_name = obj_wedding_lobby_class_name;
+    apply_object_set_data(set_data);
+    if (TLobby::get_filtered_event_theme() == 10) {
+        fade_state = 3;
+    } else {
+        fade_state = 0;
+    }
+    fade_scale = 1.0f;
+    animation_frame = 0.0f;
+}

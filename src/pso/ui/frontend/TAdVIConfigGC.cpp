@@ -1,0 +1,167 @@
+#define TOBJECT_OUT_OF_LINE_HELPERS
+#include "types.h"
+#include "pso/ui/window/TWindowBase.h"
+#include "pso/unk/TLobby_80132ED0.h"
+#include "pso/system/task/TObject_8001A448.h"
+#include "pso/unk/text_80307BE8.h"
+#include "pso/system/memory.h"
+#include "pso/unk/TLobby.h"
+#include "pso/system/task/TObject.h"
+#include "pso/quest/TQuestVmDownLoadServer.h"
+#include "pso/ui/window/TWindowSubStatusDisp.h"
+#include "pso/enemy/morfos/TWindowSubTradeMain.h"
+#include "pso/ui/frontend/TAdVIConfigGC.h"
+#include <string.h>
+#include "pso/system/vector.h"
+#include "pso/player/PlayerSlots.h"
+
+#pragma readonly_strings on
+
+
+struct Name_80307D00 { char s[0x18]; };
+
+struct Cfg_80307D00 {
+    u8 pad0[0x24];
+    uaddr win;
+    Name_80307D00 names[4];
+};
+
+s32 logo_clear_flag = 1;
+const char *TAdVIConfigGC__class_name = "TAdVIConfigGC";
+extern "C" {
+void *VIGetDTVStatus(void *);
+saddr get_window_layout_position(s32);
+__declspec(section ".data") f32 player_names_window_pos[2] = {229.0f, 104.0f};
+extern s32 local_client_id;
+void *destroy__13TAdVIConfigGCFPvs(void *arg0, s16 arg1);
+int OSSetProgressiveMode(void*);
+int VIWaitForRetrace(void);
+int VIConfigure(void*);
+int VIFlush(void);
+
+void TAdVIConfigGC::open_player_names_window() {
+    s32 i;
+    u8 *p;
+    if (((Cfg_80307D00 *)this)->win != 0) {
+        ((TWindowBase *)(((Cfg_80307D00 *)this)->win))->close();
+        ((Cfg_80307D00 *)this)->win = 0;
+    }
+    ((Cfg_80307D00 *)this)->win = TAdVIConfigGC::draw_with_layer((s32)(get_window_layout_position(0x5A)), (saddr)player_names_window_pos, (s32)local_client_id);
+    if (((Cfg_80307D00 *)this)->win != 0) {
+        ((TWindowSubTradeMain *)(((Cfg_80307D00 *)this)->win))->set_visible();
+        ((TWindowSubTradeMain *)(((Cfg_80307D00 *)this)->win))->set_close_flag();
+        for (i = 0; i < 4; i++) {
+            p = (u8 *)get_player_by_client_id(i);
+            if (p != 0) {
+                strncpy(((Cfg_80307D00 *)this)->names[i].s, (char *)(p + 0x85C), 0x17);
+                ((Cfg_80307D00 *)this)->names[i].s[0x17] = 0;
+                TWindowSubStatusDisp::dispatch_without_flags((s32)(((Cfg_80307D00 *)this)->win), (saddr)(((Cfg_80307D00 *)this)->names[i].s), (s32)i);
+            } else {
+                ((Cfg_80307D00 *)this)->names[i].s[0] = 0;
+                TWindowSubStatusDisp::dispatch_without_flags((s32)(((Cfg_80307D00 *)this)->win), (saddr)(((Cfg_80307D00 *)this)->names[i].s), (s32)i);
+            }
+        }
+    }
+}
+
+s32 TAdVIConfigGC::get_field_14() { return *(s32 *)&this->m_down; }
+
+void TAdVIConfigGC::update_visibility() {
+    s32 flags;
+    u8 *quest_vm_down_load_server;
+    flags = TLobby::count_members();
+    if ((s32) *(s32 *)&this->m_flags != flags) {
+        *(s32 *)&this->m_flags = flags;
+        open_player_names_window();
+    }
+    update_players_in_range((((u8 *)this)));
+    quest_vm_down_load_server = (u8 *)(*(u8 * *)&this->m_24);
+    if (quest_vm_down_load_server != NULL) {
+        if ((s32) *(s32 *)((s8 *)((u8 *)this) + 0x18) != 0) {
+            ((TObject *)quest_vm_down_load_server)->clear_update_suspension();
+            ((TObject *)(*(u8 * *)&this->m_24))->allow_rendering();
+            return;
+        }
+        ((TObject *)quest_vm_down_load_server)->suspend_update();
+        ((TObject *)(*(u8 * *)&this->m_24))->disallow_rendering();
+    }
+}
+
+void *destroy__13TAdVIConfigGCFPvs(void *arg0, s16 arg1) {
+    if (arg0 != NULL) {
+        if ((u32) *(u32 *)((s8 *)arg0 + 0x24) != 0U) {
+            ((TObject *)(*(void **)((s8 *)arg0 + 0x24)))->clear_update_suspension();
+            ((TObject *)((void *)(*(uaddr *)((s8 *)arg0 + 0x24))))->allow_rendering();
+            ((TWindowBase *)(*(uaddr *)((s8 *)arg0 + 0x24)))->close();
+            *(u32 *)((s8 *)arg0 + 0x24) = 0U;
+        }
+        if (arg1 > 0) {
+            ::operator delete(arg0);
+        }
+    }
+    return arg0;
+}
+
+extern "C" {
+
+u8 *TAdVIConfigGC::init(const Vec *position, f32 radius) {
+    u8 *arg0 = (u8 *)this;
+    VecCopy((Vec *)&this->m_prev, position);
+    *(f32 *)&this->m_name = (f32) (radius * radius);
+    this->m_24 = 0;
+    memset((u8 *)&this->m_28, 0, 0x60);
+    *(s32 *)&this->m_flags = TLobby::count_members();
+    *(s32 *)&this->m_down = 0;
+    *(s32 *)((s8 *)arg0 + 0x18) = 0;
+    ((TAdVIConfigGC *)arg0)->open_player_names_window();
+    this->m_1c = 0;
+    return arg0;
+}
+
+}
+
+void TAdVIConfigGC::render() {
+    vfunc_12();
+}
+
+
+void TAdVIConfigGC::set_field48_clear_global() {
+    this->m_48 = 1;
+    logo_clear_flag = 0;
+}
+
+    extern unsigned char GXNtsc480Prog[];
+    extern int active_gx_render_mode;
+void TAdVIConfigGC::enable_progressive_mode(void * _w0) { OSSetProgressiveMode((void*)1); active_gx_render_mode = (saddr)GXNtsc480Prog; VIConfigure(GXNtsc480Prog); VIFlush(); VIWaitForRetrace(); VIWaitForRetrace(); }
+
+int TAdVIConfigGC::disable_progressive_mode(void* _w0) { return OSSetProgressiveMode((void*)(0)); }
+saddr TAdVIConfigGC::vfunc_10() { return get_localized_text_entry(29, 0); }
+
+void TAdVIConfigGC::vfunc_7() { disable_progressive_mode(this); set_field48_clear_global(); }
+
+void TAdVIConfigGC::vfunc_6() {
+    void *x;
+    x = VIGetDTVStatus(this);
+    if (x != NULL) {
+        enable_progressive_mode(this);
+    }
+    set_field48_clear_global();
+}
+
+void TAdVIConfigGC::run_task() {
+    vfunc_11();
+}
+
+
+TAdVIConfigGC::~TAdVIConfigGC() {
+
+}
+
+
+TAdVIConfigGC::TAdVIConfigGC(TObject *parent) : TAdYesNoBaseGC(parent) {
+    m_name = TAdVIConfigGC__class_name;
+    set_field_2c(0);
+    m_48 = 0;
+}
+
+}

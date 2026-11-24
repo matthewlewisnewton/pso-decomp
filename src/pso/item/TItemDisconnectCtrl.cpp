@@ -1,18 +1,18 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 #include "pso/item/TItemDisconnectCtrl.h"
 #include "pso/map/FloorArea.h"
-#include "pso/misc/TLobby.h"
-#include "pso/map/FloorArea.h"
+#include "pso/unk/TLobby.h"
+#include "pso/player/TObjPlayer_80011014.h"
+#include "pso/system/task/TMainTask.h"
+
 
 #pragma readonly_strings on
 
-extern "C" {
+
 const char *TItemDisconnectCtrl__name = "TItemDisconnectCtrl";
-}
 
 
-extern s32 item_desync_detected;
-extern TObject *tl_05;
+s32 item_desync_detected;
 extern const char *TItemDisconnectCtrl__name;
 
 void TItemDisconnectCtrl::run_task() {

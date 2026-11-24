@@ -1,100 +1,71 @@
-#include "musyx/runtime/musyx_runtime_a.h"
+#include "musyx/musyx.h"
+#include "musyx/runtime/musyx_internal.h"
 
-#define ARR_GET_803A3D8C(arr, offset) ((void *)(offset + (u32)arr))
-#define SEQ_CUR (*(SEQ_INSTANCE_803A49C8 **)&lbl_805D7360)
-#define SEQ_FREE_LIST ((SEQ_INSTANCE_803A49C8 *)lbl_805D7378)
-#define SEQ_RUN_LIST ((SEQ_INSTANCE_803A49C8 *)lbl_805D737C)
-#define SEQ_RUN_L (*(SEQ_INSTANCE_803A49C8 **)&lbl_805D737C)
-#define ARR_GET_803A5A78(arr, offset) ((void *)(offset + (u32)arr))
-#define ARR_GET_803A6364(arr, offset) ((void *)(offset + (u32)arr))
-
-typedef struct SAMPLE_HEADER_D {
-    u32 info;
-    u32 length;
-    u32 loopOffset;
-    u32 loopLength;
-} SAMPLE_HEADER_D;
-
-typedef struct SDIR_DATA_D {
-    u16 id;
-    u16 ref_cnt;
-    u32 offset;
-    void *addr;
-    SAMPLE_HEADER_D header;
-    u32 extraData;
-} SDIR_DATA_D;
-
-typedef struct SDIR_TAB_D {
-    SDIR_DATA_D *data;
+typedef struct SynthSDirTab {
+    SynthSDirData *data;
     void *base;
     u16 numSmp;
     u16 res;
-} SDIR_TAB_D;
+} SynthSDirTab;
 
-typedef struct DATA_TAB_D {
+typedef struct SynthDataTab {
     void *data;
     u16 id;
     u16 refCount;
-} DATA_TAB_D;
+} SynthDataTab;
 
-typedef struct LAYER_TAB_D {
+typedef struct SynthLayerTab {
     void *data;
     u16 id;
     u16 num;
     u16 refCount;
     u16 reserved;
-} LAYER_TAB_D;
+} SynthLayerTab;
 
-typedef struct MAC_MAINTAB_D {
+typedef struct SynthMacMainTab {
     u16 num;
     u16 subTabIndex;
-} MAC_MAINTAB_D;
+} SynthMacMainTab;
 
-typedef struct MAC_SUBTAB_D {
+typedef struct SynthMacSubTab {
     void *data;
     u16 id;
     u16 refCount;
-} MAC_SUBTAB_D;
+} SynthMacSubTab;
 
-typedef struct FX_GROUP_D {
+typedef struct SynthFXGroup {
     u16 gid;
     u16 fxNum;
-    void *fxTab;
-} FX_GROUP_D;
+    FX_TAB *fxTab;
+} SynthFXGroup;
 
-static SDIR_TAB_D dataSmpSDirs[128];
-static DATA_TAB_D dataCurveTab[2048];
-static DATA_TAB_D dataKeymapTab[256];
-static LAYER_TAB_D dataLayerTab[256];
-static MAC_MAINTAB_D dataMacMainTab[512];
-static MAC_SUBTAB_D dataMacSubTabmem[2048];
-static FX_GROUP_D dataFXGroups[128];
+static SynthSDirTab dataSmpSDirs[128];
+static SynthDataTab dataCurveTab[2048];
+static SynthDataTab dataKeymapTab[256];
+static SynthLayerTab dataLayerTab[256];
+static SynthMacMainTab dataMacMainTab[512];
+static SynthMacSubTab dataMacSubTabmem[2048];
+static SynthFXGroup dataFXGroups[128];
 
-#define dataSmpSDirNum lbl_805D73D0
-#define dataCurveNum lbl_805D73D2
-#define dataKeymapNum lbl_805D73D4
-#define dataLayerNum lbl_805D73D6
-#define dataMacTotal lbl_805D73D8
-#define dataFXGroupNum lbl_805D73DA
 extern "C" {
 
-u16 lbl_805D73D0;
-u16 lbl_805D73D2;
-u16 lbl_805D73D4;
-u16 lbl_805D73D6;
-u16 lbl_805D73D8;
-u16 lbl_805D73DA;
+u16 dataSmpSDirNum;
+u16 dataCurveNum;
+u16 dataKeymapNum;
+u16 dataLayerNum;
+u16 dataMacTotal;
+u16 dataFXGroupNum;
 s32 lbl_805D73DC;
 s32 lbl_805D73E0;
-Req_803AE60C lbl_805D73E4;
+SynthMacSubTab lbl_805D73E4;
 s32 *lbl_805D73EC;
-Row_803AE4D4 *lbl_805D73F0;
-Part_803AE4D4 *lbl_805D73F4;
-Req_803AE60C lbl_805D73F8;
+SynthSDirData *dgs_result;
+SynthSampleHeader *dgs_sheader;
+SynthDataTab lbl_805D73F8;
 s32 *lbl_805D7400;
-Req_803AE60C lbl_805D7404;
-s32 *lbl_805D740C;
-Res_803AE6DC *lbl_805D7410;
+SynthDataTab lbl_805D7404;
+SynthDataTab *lbl_805D740C;
+SynthLayerTab *lbl_805D7410;
 
 #pragma push
 #pragma opt_common_subs on
@@ -326,9 +297,9 @@ s32 dataRemoveCurve(u16 sid) {
 #pragma dont_inline off
 #pragma inline_depth(4)
 
-s32 dataInsertSDir(SDIR_DATA_D *sdir, void *smp_data) {
+u32 dataInsertSDir(SynthSDirData *sdir, void *smp_data) {
     s32 i;
-    SDIR_DATA_D *s;
+    SynthSDirData *s;
     u16 n;
     u16 j;
     u16 k;
@@ -380,11 +351,11 @@ s32 dataInsertSDir(SDIR_DATA_D *sdir, void *smp_data) {
 #pragma dont_inline off
 #pragma inline_depth(4)
 
-s32 dataRemoveSDir(SDIR_DATA_D *sdir) {
+s32 dataRemoveSDir(SynthSDirData *sdir) {
     long i;
     long j;
     long index;
-    SDIR_DATA_D *data;
+    SynthSDirData *data;
 
     index = 0;
     for (; index < dataSmpSDirNum && dataSmpSDirs[index].data != sdir; ++index) {
@@ -448,9 +419,9 @@ s32 dataRemoveSDir(SDIR_DATA_D *sdir) {
 
 s32 dataAddSampleReference(u16 sid) {
     u32 i;
-    Hdr_803ADA80 *header;
-    SDIR_DATA_D *data;
-    SDIR_DATA_D *sdir;
+    SynthSampleHeader *header;
+    SynthSDirData *data;
+    SynthSDirData *sdir;
 
     data = NULL;
     sdir = NULL;
@@ -465,8 +436,8 @@ s32 dataAddSampleReference(u16 sid) {
 done:
 
     if (sdir->ref_cnt == 0) {
-        sdir->addr = (void *)((u32)sdir->offset + (u32)dataSmpSDirs[i].base);
-        header = (Hdr_803ADA80 *)&sdir->header;
+        sdir->addr = sdir->offset + (uaddr)dataSmpSDirs[i].base;
+        header = &sdir->header;
         hwSaveSample(&header, &sdir->addr);
     }
 
@@ -479,14 +450,14 @@ done:
 s32 dataRemoveSampleReference(u16 id) {
     u32 i;
 
-    for (i = 0; i < lbl_805D73D0; i++) {
-        Ent_803ADB58 *e;
+    for (i = 0; i < dataSmpSDirNum; i++) {
+        SynthSDirData *e;
         u16 v;
-        for (e = ((Tbl_803ADB58 *)dataSmpSDirs)[i].list; (v = e->id) != 0xFFFF; e++) {
-            if (v == id && e->ref != 0xFFFF) {
-                e->ref--;
-                if (e->ref == 0) {
-                    hwRemoveSample(&e->fc, e->f8);
+        for (e = dataSmpSDirs[i].data; (v = e->id) != 0xFFFF; e++) {
+            if (v == id && e->ref_cnt != 0xFFFF) {
+                e->ref_cnt--;
+                if (e->ref_cnt == 0) {
+                    hwRemoveSample(&e->header, e->addr);
                 }
                 return 1;
             }
@@ -500,7 +471,7 @@ s32 dataRemoveSampleReference(u16 id) {
 #pragma bool off
 #pragma dont_inline off
 #pragma inline_depth(4)
-s32 dataInsertFX(u16 gid, Rec_803ADBF0 *fx, u16 fxNum) {
+s32 dataInsertFX(u16 gid, FX_TAB *fx, u16 fxNum) {
     long i;
 
     for (i = 0; i < dataFXGroupNum && gid != dataFXGroups[i].gid; ++i) {
@@ -514,7 +485,7 @@ s32 dataInsertFX(u16 gid, Rec_803ADBF0 *fx, u16 fxNum) {
             dataFXGroups[dataFXGroupNum].fxTab = fx;
 
             for (i = 0; i < fxNum; ++i, ++fx) {
-                fx->f9 = 31;
+                fx->vGroup = 31;
             }
 
             dataFXGroupNum++;
@@ -657,28 +628,24 @@ s32 dataRemoveMacro(u16 mid) {
 
 #pragma pop
 
-s32 maccmp(u8 *arg0, u8 *arg1) {
-    return *(u16 *)((s8 *)arg0 + 4) - *(u16 *)((s8 *)arg1 + 4);
+s32 maccmp(void *key, void *entry) {
+    return ((SynthMacSubTab *)key)->id - ((SynthMacSubTab *)entry)->id;
 }
 
-extern s32 lbl_805D73DC;
-extern s32 lbl_805D73E0;
-extern Req_803AE60C lbl_805D73E4;
-extern s32 *lbl_805D73EC;
 #pragma push
 #pragma opt_common_subs on
 #pragma bool off
 #pragma dont_inline off
 #pragma inline_depth(4)
 
-u32 dataGetMacro(u16 mid) {
+uaddr dataGetMacro(u16 mid) {
     lbl_805D73E0 = (mid >> 6) & 0x3fff;
 
     if (dataMacMainTab[lbl_805D73E0].num != 0) {
         lbl_805D73DC = dataMacMainTab[lbl_805D73E0].subTabIndex;
-        lbl_805D73E4.f4 = mid;
-        if ((lbl_805D73EC = sndBSearch(&lbl_805D73E4, &dataMacSubTabmem[lbl_805D73DC], dataMacMainTab[lbl_805D73E0].num,
-                                                          sizeof(MAC_SUBTAB_D), maccmp)) != NULL) {
+        lbl_805D73E4.id = mid;
+        if ((lbl_805D73EC = (s32 *)sndBSearch(&lbl_805D73E4, &dataMacSubTabmem[lbl_805D73DC], dataMacMainTab[lbl_805D73E0].num,
+                                              sizeof(SynthMacSubTab), maccmp)) != NULL) {
             return *lbl_805D73EC;
         }
     }
@@ -688,8 +655,8 @@ u32 dataGetMacro(u16 mid) {
 
 #pragma pop
 
-s32 smpcmp(u16 *arg0, u16 *arg1) {
-    return *arg0 - *arg1;
+s32 smpcmp(void *key, void *entry) {
+    return ((SynthSDirData *)key)->id - ((SynthSDirData *)entry)->id;
 }
 
 #pragma push
@@ -697,21 +664,19 @@ s32 smpcmp(u16 *arg0, u16 *arg1) {
 #pragma bool off
 #pragma dont_inline off
 #pragma inline_depth(4)
-#define dgs_result (*(SDIR_DATA_D **)&lbl_805D73F0)
-#define dgs_sheader (*(SAMPLE_HEADER_D **)&lbl_805D73F4)
-s32 dataGetSample(s16 sid, Sample_803AE4D4 *newsmp) {
-    static SDIR_DATA_D key;
+s32 dataGetSample(s16 sid, SampleInfo *newsmp) {
+    static SynthSDirData key;
     long i;
 
     key.id = sid;
 
     for (i = 0; i < dataSmpSDirNum; ++i) {
-        if ((dgs_result = (SDIR_DATA_D *)sndBSearch((Req_803AE60C *)&key, dataSmpSDirs[i].data, dataSmpSDirs[i].numSmp, sizeof(SDIR_DATA_D),
-                                                                       (s32 (*)(u8 *, u8 *))smpcmp)) != NULL) {
+        if ((dgs_result = (SynthSDirData *)sndBSearch(&key, dataSmpSDirs[i].data, dataSmpSDirs[i].numSmp, sizeof(SynthSDirData),
+                                                      smpcmp)) != NULL) {
             if (dgs_result->ref_cnt != 0xFFFF) {
                 dgs_sheader = &dgs_result->header;
                 newsmp->key = dgs_sheader->info;
-                newsmp->addr = (u32)dgs_result->addr;
+                newsmp->addr = dgs_result->addr;
                 newsmp->offset = 0;
                 newsmp->loopStart = dgs_sheader->loopOffset;
                 newsmp->count = dgs_sheader->length & 0xffffff;
@@ -719,7 +684,7 @@ s32 dataGetSample(s16 sid, Sample_803AE4D4 *newsmp) {
                 newsmp->format = dgs_sheader->length >> 24;
 
                 if (dgs_result->extraData) {
-                    newsmp->coef = (u32)&(dataSmpSDirs[i].data)->id + dgs_result->extraData;
+                    newsmp->coef = (uaddr)&(dataSmpSDirs[i].data)->id + dgs_result->extraData;
                 }
                 return 0;
             }
@@ -728,33 +693,31 @@ s32 dataGetSample(s16 sid, Sample_803AE4D4 *newsmp) {
 
     return -1;
 }
-#undef dgs_result
-#undef dgs_sheader
 
 #pragma pop
 
-s32 curvecmp(u8 *arg0, u8 *arg1) {
-    return *(u16 *)((s8 *)arg0 + 4) - *(u16 *)((s8 *)arg1 + 4);
+s32 curvecmp(void *key, void *entry) {
+    return ((SynthDataTab *)key)->id - ((SynthDataTab *)entry)->id;
 }
 
-s32 dataGetCurve(s16 arg0) {
-    lbl_805D73F8.f4 = arg0;
-    if ((lbl_805D7400 = sndBSearch(&lbl_805D73F8, dataCurveTab, lbl_805D73D2, 8, curvecmp)) != NULL) {
+saddr dataGetCurve(s16 cid) {
+    lbl_805D73F8.id = cid;
+    if ((lbl_805D7400 = (s32 *)sndBSearch(&lbl_805D73F8, dataCurveTab, dataCurveNum, sizeof(SynthDataTab), curvecmp)) != NULL) {
         return *lbl_805D7400;
     }
     return 0;
 }
 
-s32 dataGetKeymap(s16 arg0) {
-    lbl_805D7404.f4 = arg0;
-    if ((lbl_805D740C = sndBSearch(&lbl_805D7404, dataKeymapTab, lbl_805D73D4, 8, curvecmp)) != NULL) {
-        return *lbl_805D740C;
+SynthKeymap *dataGetKeymap(u16 cid) {
+    lbl_805D7404.id = cid;
+    if ((lbl_805D740C = (SynthDataTab *)sndBSearch(&lbl_805D7404, dataKeymapTab, dataKeymapNum, sizeof(SynthDataTab), curvecmp)) != NULL) {
+        return (SynthKeymap *)lbl_805D740C->data;
     }
-    return 0;
+    return NULL;
 }
 
-s32 layercmp(u8 *arg0, u8 *arg1) {
-    return *(u16 *)((s8 *)arg0 + 4) - *(u16 *)((s8 *)arg1 + 4);
+s32 layercmp(void *key, void *entry) {
+    return ((SynthLayerTab *)key)->id - ((SynthLayerTab *)entry)->id;
 }
 
 #pragma push
@@ -762,22 +725,22 @@ s32 layercmp(u8 *arg0, u8 *arg1) {
 #pragma bool off
 #pragma dont_inline off
 #pragma inline_depth(4)
-s32 dataGetLayer(s16 cid, u16 *n) {
-    static LAYER_TAB_D key;
+SynthLayer *dataGetLayer(u16 cid, u16 *n) {
+    static SynthLayerTab key;
 
     key.id = cid;
-    if ((lbl_805D7410 = (Res_803AE6DC *)sndBSearch((Req_803AE60C *)&key, dataLayerTab, dataLayerNum, sizeof(LAYER_TAB_D),
-                                                                      (s32 (*)(u8 *, u8 *))layercmp)) != NULL) {
-        *n = lbl_805D7410->h6;
-        return lbl_805D7410->f0;
+    if ((lbl_805D7410 = (SynthLayerTab *)sndBSearch(&key, dataLayerTab, dataLayerNum, sizeof(SynthLayerTab),
+                                                    layercmp)) != NULL) {
+        *n = lbl_805D7410->num;
+        return (SynthLayer *)lbl_805D7410->data;
     }
-    return 0;
+    return NULL;
 }
 
 #pragma pop
 
-s32 fxcmp(u16 *arg0, u16 *arg1) {
-    return *arg0 - *arg1;
+s32 fxcmp(void *key, void *entry) {
+    return ((FX_TAB *)key)->id - ((FX_TAB *)entry)->id;
 }
 
 #pragma push
@@ -785,25 +748,15 @@ s32 fxcmp(u16 *arg0, u16 *arg1) {
 #pragma bool off
 #pragma dont_inline off
 #pragma inline_depth(4)
-typedef struct FX_TAB_D {
-    u16 id;
-    u16 macro;
-    u8 maxVoices;
-    u8 priority;
-    u8 volume;
-    u8 panning;
-    u8 key;
-    u8 vGroup;
-} FX_TAB_D;
-Se_803A9144 *dataGetFX(s16 fid) {
-    static FX_TAB_D key;
-    Se_803A9144 *ret;
+FX_TAB *dataGetFX(s16 fid) {
+    static FX_TAB key;
+    FX_TAB *ret;
     long i;
 
     key.id = fid;
     for (i = 0; i < dataFXGroupNum; ++i) {
-        if ((ret = (Se_803A9144 *)sndBSearch((Req_803AE60C *)&key, dataFXGroups[i].fxTab, dataFXGroups[i].fxNum, sizeof(FX_TAB_D),
-                                                                (s32 (*)(u8 *, u8 *))fxcmp))) {
+        if ((ret = (FX_TAB *)sndBSearch(&key, dataFXGroups[i].fxTab, dataFXGroups[i].fxNum, sizeof(FX_TAB),
+                                        fxcmp))) {
             return ret;
         }
     }
@@ -813,20 +766,20 @@ Se_803A9144 *dataGetFX(s16 fid) {
 
 #pragma pop
 
-void dataInit(void *arg0, void *arg1) {
+void dataInit(void *self, void *p) {
     s32 i;
 
-    lbl_805D73D0 = 0;
-    lbl_805D73D2 = 0;
-    lbl_805D73D4 = 0;
-    lbl_805D73D6 = 0;
-    lbl_805D73DA = 0;
-    lbl_805D73D8 = 0;
+    dataSmpSDirNum = 0;
+    dataCurveNum = 0;
+    dataKeymapNum = 0;
+    dataLayerNum = 0;
+    dataFXGroupNum = 0;
+    dataMacTotal = 0;
     for (i = 0; i < 0x200; i++) {
-        ((Slot_803AE814 *)dataMacMainTab)[i].count = 0;
-        ((Slot_803AE814 *)dataMacMainTab)[i].start = 0;
+        dataMacMainTab[i].num = 0;
+        dataMacMainTab[i].subTabIndex = 0;
     }
-    hwInitSampleMem(arg0, arg1);
+    hwInitSampleMem(self, p);
 }
 
 }

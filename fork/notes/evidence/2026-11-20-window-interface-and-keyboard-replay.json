@@ -1,0 +1,335 @@
+{
+  "upstream_master": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "published_pr_335": "b05988e1af52128c9b24d7a8e78ed124eeb57260",
+  "base": {
+    "head": "04e3c21a7170bada68cf96191165c24da7864a38",
+    "tree": "63802a11d813340ed141696a36717f6df0e803ea"
+  },
+  "head": {
+    "head": "c5a12df9543a0f2425af0d5b51a085588b8de8cf",
+    "tree": "b8395b0718e0314617d10fc240f71b9288c8e90d"
+  },
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/quest/TQuestThread.h",
+    "include/pso/ui/chat/TWindowChat.h",
+    "include/pso/ui/chat/TWindowSubSymbolChatFaceType_80283A70.h",
+    "include/pso/ui/chat/TWindowSubSymbolChatPartsSet_80247EFC.h",
+    "include/pso/ui/keyboard/KeyboardInputQueries.h",
+    "include/pso/ui/keyboard/TKeyBoardControl.h",
+    "include/pso/ui/keyboard/TKeyBoardControl_80131C58.h",
+    "include/pso/ui/keyboard/TKeyBoardControl_801A57C4.h",
+    "include/pso/ui/window/Scroll_8026D790.h",
+    "include/pso/ui/window/TWindowAddition.h",
+    "include/pso/ui/window/TWindowBase.h",
+    "include/pso/ui/window/TWindowEffectLight.h",
+    "include/pso/ui/window/TWindowKeyBoardBase.h",
+    "include/pso/ui/window/TWindowKeyBoardSoft.h",
+    "include/pso/ui/window/TWindowMenu.h",
+    "include/pso/ui/window/TWindowSubComCard_80265410.h",
+    "include/pso/ui/window/TWindowSubShortCut.h",
+    "include/pso/ui/window/TWindowSubStatusDisp.h",
+    "src/pso/player/TObjPlayer_801C7430.cpp",
+    "src/pso/quest/TQuestThread.cpp",
+    "src/pso/ui/chat/TWindowChat.cpp",
+    "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChat.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChatFaceType.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChatPartsSet.cpp",
+    "src/pso/ui/city/THunterGuildSeqOffline_80248A14.cpp",
+    "src/pso/ui/frontend/TAdEnterBaseGC.cpp",
+    "src/pso/ui/frontend/TAdEnterPPPPassGC.cpp",
+    "src/pso/ui/frontend/TAdEnterPasswordGC.cpp",
+    "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+    "src/pso/ui/keyboard/TKeyBoardControl_80131998.cpp",
+    "src/pso/ui/keyboard/TKeyBoardControl_80131AA4.cpp",
+    "src/pso/ui/keyboard/TKeyBoardControl_80131C58.cpp",
+    "src/pso/ui/keyboard/TKeyBoardControl_801A57C4.cpp",
+    "src/pso/ui/keyboard/TKeyBoardControl_8025CB70.cpp",
+    "src/pso/ui/window/TWindowActionPalette.cpp",
+    "src/pso/ui/window/TWindowAddition_80244238.cpp",
+    "src/pso/ui/window/TWindowArea.cpp",
+    "src/pso/ui/window/TWindowChoiceSetting_80249078.cpp",
+    "src/pso/ui/window/TWindowComCard.cpp",
+    "src/pso/ui/window/TWindowCtrl.cpp",
+    "src/pso/ui/window/TWindowCtrlMain.cpp",
+    "src/pso/ui/window/TWindowCtrl_8024A1A8.cpp",
+    "src/pso/ui/window/TWindowDD_8034055C.cpp",
+    "src/pso/ui/window/TWindowDD_80340A78.cpp",
+    "src/pso/ui/window/TWindowDD_80341334.cpp",
+    "src/pso/ui/window/TWindowDD_80341A08.cpp",
+    "src/pso/ui/window/TWindowDD_8034725C.cpp",
+    "src/pso/ui/window/TWindowEffectLight.cpp",
+    "src/pso/ui/window/TWindowHelpItem_802540AC.cpp",
+    "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+    "src/pso/ui/window/TWindowKeyBoardSoft.cpp",
+    "src/pso/ui/window/TWindowLoadItemTexture.cpp",
+    "src/pso/ui/window/TWindowLockOn_80262C3C.cpp",
+    "src/pso/ui/window/TWindowMakeTeam.cpp",
+    "src/pso/ui/window/TWindowMenuIconLine_8026DE30.cpp",
+    "src/pso/ui/window/TWindowMessageLog.cpp",
+    "src/pso/ui/window/TWindowSimpleStatus.cpp",
+    "src/pso/ui/window/TWindowSnapShot.cpp",
+    "src/pso/ui/window/TWindowSoundBalance.cpp",
+    "src/pso/ui/window/TWindowStatus.cpp",
+    "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+    "src/pso/ui/window/TWindowSubComCard_80265410.cpp",
+    "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp",
+    "src/pso/ui/window/TWindowSubCustomSelect.cpp",
+    "src/pso/ui/window/TWindowSubLog.cpp",
+    "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp",
+    "src/pso/ui/window/TWindowSubShortCut.cpp",
+    "src/pso/ui/window/TWindowSubShortCut_80246FB0.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_8026D740.cpp",
+    "src/pso/ui/window/TWindowSubTradeMain_80330A84.cpp",
+    "src/pso/ui/window/TWindowTimer.cpp",
+    "src/pso/unk/text_80248994.cpp",
+    "src/pso/unk/text_80253974.cpp",
+    "src/pso/unk/text_80263A20.cpp",
+    "src/pso/unk/text_80278460.cpp"
+  ],
+  "components": {
+    "descriptors_and_clipping": {
+      "head": "9cdd31b823fcd396c8370d59062da9415f2628e8",
+      "tree": "06c24aa17b182649bf04e703c46ec70e0629fc9f",
+      "donor": "dd60d5047523c035fc3e21c532fb7a214ae103a1",
+      "paths": 32,
+      "source_link_check": "pass",
+      "check_sha256": "fd331ad1d176ae69fe85da645fc0ffaebfbc18bff626d599dd4a52f227734c47",
+      "report_sha256": "d490109ddabdaa038ceb4bf46bacac92fd902e75455f725b930028d2b7f89ff7",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x802443B4",
+          "before": "sub_802443B4__15TWindowAdditionFv",
+          "after": "sub_802443B4__15TWindowAdditionFPUc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80348AFC",
+          "before": "calc_inner_rect__11TWindowBaseFPUc",
+          "after": "calc_inner_rect__11TWindowBaseFP17WindowDrawContext"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "data_coverage_lost": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "missing_functions": 0,
+        "failures": 0
+      }
+    },
+    "keyboard_and_symbol_chat": {
+      "head": "c5a12df9543a0f2425af0d5b51a085588b8de8cf",
+      "tree": "b8395b0718e0314617d10fc240f71b9288c8e90d",
+      "donor": "fed9cf8b7186fe725e23b347d1e70314530fdc46",
+      "paths": 52,
+      "source_link_check": "pass",
+      "check_sha256": "3763dd4b3d2fa224e3f1c0da91a8be2ea92755e004990dbc9b4d69275d8fb3a6",
+      "report_sha256": "9568079df8f3515c29d0527e41fcd7d0b5824e535e8c5ea8805fdae86e312ada",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x801F64F4",
+          "before": "free_menu_object",
+          "after": "clear_keyboard_flag60_bit1__16TKeyBoardControlFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801F6520",
+          "before": "fn_801F6520",
+          "after": "clear_flag60_bit1__19TWindowKeyBoardBaseFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80246FB0",
+          "before": "close_and_clear_flag__18TWindowSubShortCutFv",
+          "after": "close_and_clear_flag__11TWindowChatFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80246FF0",
+          "before": "free_icon__18TWindowSubShortCutFv",
+          "after": "set_keyboard_flag62_bit4__11TWindowChatFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80247D2C",
+          "before": "TWindowChat__sub_80247D2C",
+          "after": "set_flag62_bit4__19TWindowKeyBoardBaseFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80247D3C",
+          "before": "get_input_mode__11TWindowChatFv",
+          "after": "get_input_mode__19TWindowKeyBoardBaseFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80247ED8",
+          "before": "fn_80247ED8",
+          "after": "set_flag60_bit1__19TWindowKeyBoardSoftFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802614DC",
+          "before": "sub_802614DC__19TWindowKeyBoardSoftFPUcffff",
+          "after": "sub_802614DC__19TWindowKeyBoardSoftFP17WindowDrawContextffff"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80262038",
+          "before": "draw_key_frame__19TWindowKeyBoardSoftFPfffffUll",
+          "after": "draw_key_frame__19TWindowKeyBoardSoftFP17WindowDrawContextffffUll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80265410",
+          "before": "update_chat_window__FPv",
+          "after": "set_composer_flag62_bit4__16TKeyBoardControlFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80266B04",
+          "before": "copy_position__11TWindowMenuFPv",
+          "after": "copy_position__15Scroll_8026D790FPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8026DA0C",
+          "before": "reset_selection__20TWindowSubStatusDispFv",
+          "after": "__ct__15Scroll_8026D790FPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8027E268",
+          "before": "set_flag1e_bit80__18TWindowSubShortCutFv",
+          "after": "set_flag1e_bit80__11TWindowChatFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802AD4E0",
+          "before": "create__18TWindowEffectLightFPvPvPv",
+          "after": "create__18TWindowEffectLightFPvsUl"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "data_coverage_lost": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "missing_functions": 0,
+        "failures": 0
+      }
+    }
+  },
+  "exact_functions": 27572,
+  "exact_linked_units": 2448,
+  "cumulative_ui_paths": 189,
+  "fork_workspace": {
+    "previous_layer": {
+      "head": "15f9ca5fab30983349e08837d91afbfc52235305",
+      "tree": "986fdec4ed4049c8364d7d0e781d93dafc1e2773"
+    },
+    "tested_tree": "659e0f51e6c4c16be4808e4597d359ce2ab5f148",
+    "workspace_patch_paths": 131,
+    "workspace_patch_sha256": "8cfccac2cef7cee2081bd70158720f6aa770daeca3a720c2805cf7e60b6c967b",
+    "round_trip_non_layer_sha256": "0309af81dceb5c740fcb384489d53f573064fac024247e2385a90a32729266b5",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "tool_tests_passed": 294,
+    "layer_tests_passed": 11,
+    "force_active_names": 27029,
+    "coverage_losses": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "data_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "missing_functions": 0,
+      "failures": 0
+    }
+  },
+  "remaining_source": {
+    "canonical": "83decd2d24dc6104040afd060e0cc2754b110409",
+    "earlier_queue": "47ade105c778197344c29e2d058cd9754a90893c",
+    "outside_replay_before": 1097,
+    "outside_replay_after": 1079,
+    "outside_replay_by_owner": {
+      "ui": 255,
+      "unk": 165,
+      "weapon": 142,
+      "boss": 107,
+      "enemy": 76,
+      "player": 66,
+      "item": 49,
+      "system": 40,
+      "object": 32,
+      "quest": 28,
+      "effect": 26,
+      "render": 20,
+      "camera": 18,
+      "audio": 14,
+      "math": 9,
+      "technique": 8,
+      "network": 7,
+      "npc": 4,
+      "map": 4,
+      "src/musyx": 3,
+      "libs/dolphin": 2,
+      "libs/PowerPC_EABI_Support": 2,
+      "collision": 1,
+      "animation": 1
+    },
+    "outside_both": 86,
+    "method": "Path inventory without rename detection."
+  },
+  "next_city_review": {
+    "donor_base": "fed9cf8b7186fe725e23b347d1e70314530fdc46",
+    "donor_head": "540e1a91ba6ec917aa50fc1feffb48ed686373dd",
+    "overlap_paths": [
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/ui/city/TShopItemTecSequence.h",
+      "include/pso/ui/window/TWindowSubComCard.h",
+      "include/pso/ui/window/TWindowSubComCard_80265410.h",
+      "src/pso/network/TPlyJoinLobbyEntry.cpp",
+      "src/pso/object/TObjLuker.cpp",
+      "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+      "src/pso/object/warp/TObjCityMainWarp_80186E24.cpp",
+      "src/pso/object/warp/TObjLaboMapWarp.cpp",
+      "src/pso/object/warp/TObjWarpBossMulti.cpp",
+      "src/pso/object/warp/TObjWarpJungMain.cpp",
+      "src/pso/object/warp/TObjWarpLobby.cpp",
+      "src/pso/player/TPlayerBattleCtrl4P.cpp",
+      "src/pso/quest/QuestOpcodeHandlers.cpp",
+      "src/pso/ui/city/TCheckRoomSequence.cpp",
+      "src/pso/ui/city/TShopArmorListWindow.cpp",
+      "src/pso/ui/city/TShopEquipmentGearSequence.cpp",
+      "src/pso/ui/city/TShopEquipmentListWindow.cpp",
+      "src/pso/ui/city/TShopEquipmentSellWindow.cpp",
+      "src/pso/ui/city/TShopEquipmentSellWindow_8026CE78.cpp",
+      "src/pso/ui/city/TShopEquipmentSequence.cpp",
+      "src/pso/ui/city/TShopItemListWindow.cpp",
+      "src/pso/ui/city/TShopItemTecSequence.cpp",
+      "src/pso/ui/frontend/TAdMultiPlyChrSelectGC.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp",
+      "src/pso/ui/window/TObjNewFloorWin.cpp",
+      "src/pso/ui/window/TWindowMakeTeam.cpp",
+      "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp",
+      "src/pso/ui/window/TWindowSubComCard_80265410.cpp",
+      "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp",
+      "src/pso/ui/window/TWindowSubComCard_802A5748.cpp",
+      "src/pso/unk/TLobby_800726F0.cpp",
+      "src/pso/unk/TLobby_801C25B4.cpp",
+      "src/pso/unk/TLobby_80299C4C.cpp"
+    ]
+  }
+}

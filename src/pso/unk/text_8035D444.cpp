@@ -3,16 +3,18 @@
 #include "pso/unk/text_8035D444.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/item/TItem.h"
+#include "pso/weapon/TItemWeapon.h"
+#include "pso/system/task/TMainTask.h"
 
-extern s32 ruby_bullet_weapon_vtable[];
+TUnk_804F1EC8::~TUnk_804F1EC8() {}
 
-void *__dt__13TUnk_804F1EC8Fv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = ruby_bullet_weapon_vtable;
-        __dt__11TItemWeaponFv(arg0, 0);
-        if (arg1 > 0) {
-            TItem::operator delete(arg0);
-        }
+TUnk_804F1EC8::TUnk_804F1EC8(TObject *parent, u8 *item) : TItemWeapon(parent, item) {
+    set_weapon_flags(0x8000);
+}
+
+TItem *alloc_and_init_obj_effect(u8 *item) {
+    if (item != NULL) {
+        return new TUnk_804F1EC8(tl_05, item);
     }
-    return arg0;
+    return NULL;
 }

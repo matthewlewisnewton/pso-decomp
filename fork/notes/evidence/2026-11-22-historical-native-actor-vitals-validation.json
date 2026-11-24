@@ -1,0 +1,115 @@
+{
+  "source_head": "a10b81ab944f7d3463d4f47f533bc9f203d4201f",
+  "source_tree": "ba21133d3d0af719a1915a2f3a45fefb6e62bdd2",
+  "previous_cumulative": "eafbd5d8b29255ce3802d8a4f829a5ba13e33610",
+  "upstream_master": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "effects_overlap_paths": [
+    "src/pso/item/armor/TItemProShield.cpp",
+    "src/pso/object/TOHealGeneral.cpp",
+    "src/pso/player/TObjPlayer_80011014.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TObjPlayer_801C7430.cpp"
+  ],
+  "new_source_paths": 17,
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "matching_functions": 27572,
+  "linked_units": 2368,
+  "coverage_regressions_against_previous": {
+    "regressions": 0,
+    "data_regressions": 0,
+    "data_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0,
+    "failures": 0
+  },
+  "source_benchmark": {
+    "total": {
+      "base": 142908,
+      "head": 142825,
+      "added": 0,
+      "removed": 83
+    },
+    "label_changes": 0,
+    "stale_retention_entries": 0
+  },
+  "native_actor_layout": {
+    "hpmax": "0x2B8",
+    "tpmax": "0x2BA",
+    "hp_bonus": "0x2BC",
+    "tp_bonus": "0x2BE",
+    "hp": "0x32C",
+    "tp": "0x32E"
+  },
+  "arguments": {
+    "add_actor_hp": "s16",
+    "add_actor_tp": "s32",
+    "subtract_actor_tp": "s32",
+    "add_actor_hp_bonus": "s32",
+    "add_actor_tp_bonus": "s32"
+  },
+  "matching_constraint": "The item recovery caller at 0x80353194 takes the already sign-extended TP maximum in r3. Its scoped ABI cast keeps the original argument-register transfer while the legacy getter still returns s16 in its shared declaration.",
+  "runtime_probe": {
+    "cases_per_image": 448,
+    "images": [
+      "retail",
+      "Great Merge source"
+    ],
+    "compares": "return value and the complete sentinel-filled actor storage"
+  },
+  "historical_source_comparison": {
+    "closed": "src/pso/player/TObjPlayer_80326578.cpp",
+    "new_owners": [
+      "TUnk_804ECDC0",
+      "TUnk_804ECFB0",
+      "TUnk_804ED0A8",
+      "TUnk_804ED1A0",
+      "TUnk_804ED298",
+      "TUnk_804ED390",
+      "TUnk_804ED488"
+    ],
+    "linked_functions": 40,
+    "linked_data_bytes": 1804,
+    "remaining": 172,
+    "offset_material_template": {
+      "start": "0x80476760",
+      "size": 16,
+      "match_percent": 100
+    },
+    "clamped_helpers": {
+      "approach_value": "0x80115B80",
+      "add_angle_clamped": "0x80115BC0"
+    },
+    "partially_reconciled": "include/pso/player/TObjPlayer_80011014.h"
+  },
+  "historical_fork_data": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "validation_sha256": {
+    "check.json": "28807dc7d4e67da90c8dc4823f9188bbc9095243567fb0b0c0570e5ea31bdb6e",
+    "vs-previous.json": "ef911594f61dd2e5fc3b74eca9ecd722410760145f536c60664429b458ad8fd4",
+    "quality.json": "19b502d0ca206acf1a265e36d78c142fc1e70f4c8b907350c1c3ec1c8bca13e0",
+    "probe-vitals.py": "669e8e4f9585e78ddb06dfe7b82469b97fd6b63e88ed6e3e2652286b6fbcb5aa",
+    "probe-vitals.log": "1a942b925341848fc65446f48af7073c02804b9e8474cd2901b1673a28ea7248"
+  },
+  "materialized_fork": {
+    "tree": "93ea657dd2d6421db614f5e834945db4d326c41a",
+    "retention_entries": 27007,
+    "new_stale_retention_entries": 0,
+    "checks": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    },
+    "validation_sha256": {
+      "private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011",
+      "retention.log": "b3325169ce9d5755b2340e455b52eb7ac52edcb6fa173dc4f2486f46f713350c",
+      "fork-tests.log": "415bc3c7397713d33f0fa9502e55a0790b69823839696a2632aa165936f0adb0",
+      "tool-tests.log": "3e8e4bac17f9b0f5b6a3b2ed704769b4453cdf71c4dce5487aafadf0747bc8c8",
+      "host-tests.log": "e836b1e3cd2fdbeed0cf6048f248c3f1dfa8b8ca2f22d173b1a6a5c551aa348d"
+    }
+  }
+}

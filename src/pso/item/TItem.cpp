@@ -1,7 +1,8 @@
-#include "pso/system/ArrayAllocation.h"
-#include "pso/misc/ParticleFactory.h"
-#include "pso/protocol/protocol_types.h"
+#include "pso/system/memory.h"
+#include "pso/effect/particle/ParticleFactory.h"
+#include "pso/network/protocol/protocol_types.h"
 #include "pso/system/NinjaTypes.h"
+#include "pso/object/base/TObjBase.h"
 // TItem, the base of every item object, with the item registry, the item
 // packets (6x59/5A/5D/5E/61) and the item system's set-up. The data is
 // emitted before the vtable; the static initializer is followed by this
@@ -17,30 +18,30 @@
 #include "pso/item/TItemDisconnectCtrl.h"
 #include "pso/item/TItemEquipBase.h"
 #include "pso/item/TItemIdCounters.h"
-#include "pso/item/TItemMag.h"
+#include "pso/item/mag/TItemMag.h"
 #include "pso/item/TItemObject.h"
-#include "pso/item/TItemProShield.h"
-#include "pso/items/TItemWeapon.h"
-#include "pso/misc/TCameraCtrl.h"
-#include "pso/misc/TKeyBoardControl_8000F764.h"
-#include "pso/misc/TLobby.h"
-#include "pso/misc/TLobby_801E43E4.h"
-#include "pso/misc/TLobby_801F3A24.h"
-#include "pso/misc/TOKeyMachine01.h"
-#include "pso/misc/TOTrapAncient02.h"
-#include "pso/misc/TRaderMapCore.h"
+#include "pso/item/armor/TItemProShield.h"
+#include "pso/weapon/TItemWeapon.h"
+#include "pso/camera/TCameraCtrl.h"
+#include "pso/ui/keyboard/TKeyBoardControl_8000F824.h"
+#include "pso/unk/TLobby.h"
+#include "pso/unk/TLobby_801E43E4.h"
+#include "pso/unk/TLobby_801F3A24.h"
+#include "pso/object/key/TOKeyMachine01.h"
+#include "pso/object/trap/TOTrapAncient02.h"
+#include "pso/ui/hud/TRaderMapCore.h"
 #include "pso/network/client_id.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/misc/MaterialColorFade.h"
-#include "pso/protocol/subcmd_6x.h"
+#include "pso/render/MaterialColorFade.h"
+#include "pso/network/protocol/subcmd_6x.h"
 #include "pso/render/model_render_state.h"
 #include "pso/system/byteswap.h"
-#include "pso/system/ChunkMaterialState.h"
-#include "pso/system/GinjaMaterial.h"
-#include "pso/system/GinjaUvScroll.h"
-#include "pso/THeap.h"
-#include "pso/TItemLoad.h"
-#include "pso/TParticleCtrl.h"
+#include "pso/render/ChunkMaterialState.h"
+#include "pso/render/GinjaMaterial.h"
+#include "pso/render/GinjaUvScroll.h"
+#include "pso/system/THeap.h"
+#include "pso/item/TItemLoad.h"
+#include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/unk/text_80104F4C.h"
 #include "pso/unk/text_8011A780.h"
 #include "pso/render/render_util.h"
@@ -48,25 +49,25 @@
 #include "pso/unk/text_801057A8.h"
 #include "pso/unk/text_801D98F8.h"
 #include "pso/unk/text_80104FCC.h"
-#include "pso/unk/text_80087278.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/system/MatrixStack.h"
 #include "pso/unk/text_803D853C.h"
-#include "pso/system/FlagWord.h"
-#include "pso/menu/TAdRicoRing_8001BEE8.h"
-#include "pso/boss/TBoss1DragonColli.h"
-#include "pso/item/TItemAttacker.h"
-#include "pso/item/TItemProArmor.h"
-#include "pso/item/TItemProUnit.h"
+#include "pso/system/data/FlagWord.h"
+#include "pso/ui/frontend/TAdRicoRing_8001BEE8.h"
+#include "pso/boss/dragon/TBoss1DragonColli.h"
+#include "pso/weapon/TItemAttacker.h"
+#include "pso/item/armor/TItemProArmor.h"
+#include "pso/item/armor/TItemProUnit.h"
 #include "pso/map/CsnQuery.h"
-#include "pso/misc/TOBoss4Rock.h"
+#include "pso/boss/darkfalz/TOBoss4Rock.h"
+#include "pso/object/base/TObjChara.h"
 #include "pso/system/SoundEffect.h"
 #include "pso/player/TObjPlayer_80011014.h"
 #include "pso/player/TObjPlayer_80083594.h"
 #include "pso/player/TObjPlayer_801AF2F0.h"
 #include "pso/system/vector.h"
-#include "pso/TMainTask.h"
-#include "pso/ui/TAdSinglePlyChrSelectGC_8007EB94.h"
+#include "pso/system/task/TMainTask.h"
+#include "pso/ui/frontend/TAdSinglePlyChrSelectGC_8007EB94.h"
 #include <dolphin/base/PPCArch.h>
 #include <stdlib.h>
 #include <string.h>
@@ -74,8 +75,10 @@
 #include "pso/player/TObjPlayer_8023E480.h"
 
 #include "pso/player/TObjPlayer_80104860.h"
-#include "pso/misc/TParticleCtrl_80327D30.h"
-#include "pso/misc/TLobby_80207644.h"
+#include "pso/effect/TEffIndirectSampler.h"
+#include "pso/unk/TLobby_80207644.h"
+#include "pso/player/PlayerSlots.h"
+
 
 // The two colours of the present box, by wrapping colour (box_color).
 NJS_ARGB item_box_primary_colors[6] = {
@@ -109,7 +112,7 @@ TItem **item_registry_sorted_entries;
 void (*model_node_draw_callback)(void *model);
 void (*model_node_visit_callback)(NJS_OBJECT *object);
 TItemIdCounters *item_id_counters;
-u8 *model_node_matrix_output_cursor;
+GC_Mtx *model_node_matrix_output_cursor;
 
 const char *TItem__name = "TItem";
 
@@ -313,7 +316,7 @@ void __sinit_TItem_cpp() {
 
 void init_item_system() {
     item_registry_count = 0;
-    item_registry_sorted_entries = (TItem **)::operator new[](0x1000);
+    item_registry_sorted_entries = (TItem **)mem_alloc(0x1000);
     memset(item_registry_sorted_entries, 0, 0x1000);
     item_id_counters = new TItemIdCounters;
     TObjPlayer::alloc_and_init_object_b4();
@@ -331,7 +334,7 @@ void free_item_system() {
         item_id_counters = NULL;
     }
     if (item_registry_sorted_entries != NULL) {
-        ::operator delete[](item_registry_sorted_entries);
+        mem_free(item_registry_sorted_entries);
         item_registry_sorted_entries = NULL;
     }
     item_registry_count = 0;
@@ -349,7 +352,7 @@ void TItem::operator delete(void *p) { obj_heap->heap_free(p); }
 
 TItem::TItem(TObject *parent, u8 *item) : TObjCollidable(parent) {
     m_name = TItem__name;
-    obj_setFlags30(this, 0x80000000);
+    set_actor_flags(0x80000000);
     copy_collision_body(&collision_body, &item_collider_body);
     cursor_action.set_pick_up();
     set_collision_body(&collision_body);
@@ -469,20 +472,20 @@ void TItem::place_on_ground(s16 floor, f32 *pos, s32 quiet) {
         destroy();
         return;
     }
-    this->rotation.pitch = 0;
-    this->rotation.roll = 0;
-    this->rotation.yaw = (s32)(65536.0f * ((1.0f / 32768.0f) * (f32)rand()));
+    rotation_x = 0;
+    rotation_z = 0;
+    rotation_y = (s32)(65536.0f * ((1.0f / 32768.0f) * (f32)rand()));
     snap_to_ground();
     refresh_collision_body_centers();
     if (item_ground_placement_enabled != 0) {
-        spawn_particle_effect((const Vec *)(&position), 0x9B);
+        spawn_particle_effect(&position, 0x9B);
     }
 }
 
 void TItem::update_owned() {}
 
 void TItem::update_timer() {
-    this->rotation.yaw += 0x200;
+    rotation_y += 0x200;
     if (has_interactor() != 0) {
         s16 timer = pickup_wait_frames;
         if (timer == 900) {
@@ -495,7 +498,7 @@ void TItem::update_timer() {
     submit_cursor_candidate(this, -1);
 }
 
-void TItem::interact(s32 client) {
+void TItem::interact(u16 client) {
     u16 id = client;
     if (id != 0xFFFF) {
         if ((get_player_by_client_id(id))->can_pickup_item_by_id(this) != 0 && has_interactor() == 0) {
@@ -559,7 +562,7 @@ void TItem::handle_pickup(s16 floor, TObjPlayer *player) {
 
 void TItem::send_field_state(s16 floor, TObjPlayer *player) {
     if (floor == get_current_floor()) {
-        spawn_particle_effect((const Vec *)(&position), 0x9B);
+        spawn_particle_effect(&position, 0x9B);
         player->play_sound_if_on_floor(0x52802);
     }
 }
@@ -634,11 +637,11 @@ void handle_6x5E_buy_shop_item(G_BuyShopItem_6x5E *cmd) {
 
 // Drops the item onto the floor below it.
 void TItem::snap_to_ground() {
-    f32 probe[3];
-    probe[0] = position.x;
-    probe[1] = 300.0f + position.y;
-    probe[2] = position.z;
-    CsnHit *hit = (CsnHit *)csnVecterUnder((const Vec *)probe, 0x41);
+    Vec probe;
+    probe.x = position.x;
+    probe.y = 300.0f + position.y;
+    probe.z = position.z;
+    CsnHit *hit = csnVecterUnder(&probe, 0x41);
     if (hit != NULL) {
         position.y = 6.0f + hit->contact->point.y;
     }
@@ -802,7 +805,7 @@ void TItem::set_owner_client(u16 client) {
     owner = get_player_by_client_id(client);
 }
 
-void TItem::visit_model_nodes(u8 *matrices) {
+void TItem::visit_model_nodes(GC_Mtx *matrices) {
     model_node_visit_callback = model_node_callback;
     model_node_matrix_output_cursor = matrices;
     model_node_draw_callback = NULL;
@@ -813,7 +816,7 @@ void TItem::visit_model_nodes(u8 *matrices) {
     set_default_alpha_blend();
 }
 
-void TItem::apply_sign_effect(u8 *matrices) {
+void TItem::apply_sign_effect(GC_Mtx *matrices) {
     model_node_visit_callback = model_node_callback;
     model_node_matrix_output_cursor = matrices;
     model_node_draw_callback = ::draw_ginja_model;
@@ -824,7 +827,7 @@ void TItem::apply_sign_effect(u8 *matrices) {
     set_default_alpha_blend();
 }
 
-void TItem::draw_model_nodes(u8 *matrices) {
+void TItem::draw_model_nodes(GC_Mtx *matrices) {
     model_node_visit_callback = model_node_callback;
     model_node_matrix_output_cursor = matrices;
     model_node_draw_callback = ::draw_ginja_model;
@@ -859,7 +862,7 @@ void draw_model_node_tree(NJS_OBJECT *object) {
             push_matrix();
             if (model_node_matrix_output_cursor != NULL) {
                 get_current_matrix(model_node_matrix_output_cursor);
-                model_node_matrix_output_cursor += 0x30;
+                ++model_node_matrix_output_cursor;
             }
             if (model_node_visit_callback != NULL) {
                 model_node_visit_callback(object);
@@ -887,7 +890,7 @@ void draw_model_node_tree(NJS_OBJECT *object) {
             }
             if (model_node_matrix_output_cursor != NULL) {
                 get_current_matrix(model_node_matrix_output_cursor);
-                model_node_matrix_output_cursor += 0x30;
+                ++model_node_matrix_output_cursor;
             }
             if (!(flags & NJD_EVAL_HIDE) && model_node_draw_callback != NULL) {
                 model_node_draw_callback(object->model);
@@ -929,9 +932,9 @@ void TItem::set_mode(s8 new_mode) {
 }
 
 void TItem::register_in_world(s32 clear_status) {
-    if (get_entity_id(this) == 0xFFFF) {
+    if (this->get_entity_id() == 0xFFFF) {
         set_entity_id(pop_free_entity_id());
-        ((TObjPlayer *)this)->register_object_by_id();
+        this->register_object_by_id();
         if (clear_status != 0) {
             clear_player_status_flag(0, 1);
         }
@@ -941,9 +944,9 @@ void TItem::register_in_world(s32 clear_status) {
 // Gives the object id back to the free list and drops the item out of the
 // world's object table.
 void TItem::unregister_from_world() {
-    if (get_entity_id(this) != 0xFFFF) {
+    if (this->get_entity_id() != 0xFFFF) {
         unregister_object_by_id();
-        push_free_entity_id(get_entity_id(this));
+        push_free_entity_id(this->get_entity_id());
         set_entity_id(0xFFFF);
         set_indexed_flags(0, 1);
     }
@@ -1153,7 +1156,7 @@ void TItem::refresh_if_current_player() {
 s32 TItem::get_icon_index() {
     TItemData data;
     copy_to_item_data(&data);
-    return TLobby::get_item_data((u32)&data);
+    return TLobby::get_item_data((uaddr)&data);
 }
 
 void TItem::set_item_group(u8 value) { item_group = value; }
@@ -1185,7 +1188,7 @@ void TItem::set_owner_technique_level(s16 technique, s16 level) {
     if (technique >= 0 && technique < 19 && level >= 0 && level <= 29) {
         TObjPlayer *owner = get_player_by_client_id(get_owner_client());
         if (owner != NULL) {
-            s16 hp = get_actor_hp(owner);
+            s16 hp = ((TObjChara *)owner)->get_actor_hp();
             s16 tp = get_actor_tp(owner);
             s32 slot;
             for (slot = 9; slot != 13; slot++) {
@@ -1194,7 +1197,7 @@ void TItem::set_owner_technique_level(s16 technique, s16 level) {
                     equipped->remove_equip_stats(1);
                 }
             }
-            set_technique_level_entry(owner->technique_levels, technique, (u8)level);
+            set_technique_level_entry(&owner->technique_state, technique, (u8)level);
             for (slot = 9; slot != 13; slot++) {
                 TItem *equipped = owner->get_equipped_item(slot);
                 if (equipped != NULL) {
@@ -1226,17 +1229,17 @@ s32 is_point_on_screen(const Vec *pos, f32 range, f32 radius) {
         return 0;
     }
     if (view.x < 0.0f) {
-        view.x = camera_right[0] * radius + pos->x;
-        view.y = camera_right[1] * radius + pos->y;
-        view.z = camera_right[2] * radius + pos->z;
+        view.x = camera_right.x * radius + pos->x;
+        view.y = camera_right.y * radius + pos->y;
+        view.z = camera_right.z * radius + pos->z;
         project_world_to_screen(0, &view, screen);
         if (screen[0] < 0.0f) {
             return 0;
         }
     } else {
-        view.x = pos->x - camera_right[0] * radius;
-        view.y = pos->y - camera_right[1] * radius;
-        view.z = pos->z - camera_right[2] * radius;
+        view.x = pos->x - camera_right.x * radius;
+        view.y = pos->y - camera_right.y * radius;
+        view.z = pos->z - camera_right.z * radius;
         project_world_to_screen(0, &view, screen);
         if (screen[0] > 640.0f) {
             return 0;
@@ -1341,7 +1344,7 @@ void TItem::remove_equip_stats(s32) {}
 void TItemEquipBase::refresh_owner_stats() {
     TObjPlayer *player = owner;
     if (player != NULL) {
-        s16 hp = get_actor_hp(player);
+        s16 hp = ((TObjChara *)player)->get_actor_hp();
         s16 tp = get_actor_tp(owner);
         remove_equip_stats(0);
         add_equip_stats(0);
@@ -1402,7 +1405,7 @@ void TItem::snap_to_owner() {}
 
 void TItem::apply_switch_attack(s32 effect) {
     if (owner != NULL && owner->is_body_collision_inactive() == 0) {
-        TParticleCtrl *particle = (TParticleCtrl *)spawn_particle_effect_with_flags(&owner->body_center_position, effect, 0x10);
+        TParticleCtrl *particle = (TParticleCtrl *)spawn_particle_effect_with_flags(&owner->body_center, effect, 0x10);
         if (particle != NULL) {
             particle->set_owner_id(get_owner_client());
         }
@@ -1411,12 +1414,12 @@ void TItem::apply_switch_attack(s32 effect) {
 
 void TItem::notify_owner(s32 sound) {
     if (owner != NULL && owner->is_body_collision_inactive() == 0) {
-        play_sound_effect((s32)(sound), (const Vec *)(&owner->position), 0, 0);
+        play_sound_effect(sound, &owner->position, 0, 0);
     }
 }
 
-void scroll_item_model_uvs(NJS_OBJECT *object, s16 du, s16 dv, u16 mesh) {
-    scroll_ginja_mesh_uvs(object->model, du, dv, mesh, 1);
+void scroll_item_model_uvs(NJS_OBJECT *object, s32 du, s32 dv, u16 mesh) {
+    scroll_ginja_mesh_uvs(static_cast<GinjaModel *>(object->model), du, dv, mesh, 1);
     PPCSync();
 }
 
@@ -1476,16 +1479,16 @@ void TItem::render_ground() {
 }
 
 void TItem::render_model() {
-    void *model;
-    s32 texture;
-    TItemLoad::get_model_ids(drop_model, (s32 *)&model, &texture);
+    NJS_OBJECT *model;
+    NJS_TEXLIST *texture;
+    TItemLoad::get_drop_model(drop_model, &model, &texture);
     if (model != NULL) {
         set_draw_list_mask(3);
         TParticleCtrl::begin_effect_render();
         set_texlist(texture);
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(0, this->rotation.yaw);
+        rotate_matrix_y(0, rotation_y);
         draw_ginja_object(model);
         pop_matrix();
         TParticleCtrl::end_effect_render();
@@ -1498,8 +1501,8 @@ void TItem::render_model() {
 // colours of its wrapping.
 void TItem::render_present_box() {
     NJS_OBJECT *box;
-    s32 texture;
-    TItemLoad::get_model_ids(6, (s32 *)&box, &texture);
+    NJS_TEXLIST *texture;
+    TItemLoad::get_drop_model(6, &box, &texture);
     if (box != NULL) {
         saved_model_render_flags = model_render_flags;
         saved_chunk_polygon_flags_and_mask = chunk_polygon_flags_and_mask;
@@ -1511,11 +1514,11 @@ void TItem::render_present_box() {
         set_texlist(texture);
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(0, this->rotation.yaw);
+        rotate_matrix_y(0, rotation_y);
         set_constant_material(&item_box_primary_colors[box_color]);
-        draw_ginja_model(box->model);
+        draw_ginja_model((void *)box->model);
         set_constant_material(&item_box_secondary_colors[box_color]);
-        draw_ginja_model(box->child->model);
+        draw_ginja_model((void *)box->child->model);
         pop_matrix();
         TParticleCtrl::end_effect_render();
         set_default_alpha_blend();
@@ -1561,7 +1564,7 @@ void TItem::use_combination_recipe() {
     if (owner != NULL) {
         copy_to_item_data(&data);
         TItem *target = find_unique_combination_target(owner, &data);
-        u8 *recipe = (u8 *)find_eligible_combination_recipe((s32)owner, (u8 *)&data);
+        u8 *recipe = (u8 *)find_eligible_combination_recipe((saddr)owner, (u8 *)&data);
         if (recipe != NULL && target != NULL) {
             result.init();
             result.data1.data_u8[0] = recipe[6];

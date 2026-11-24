@@ -1,0 +1,332 @@
+{
+  "source_head": "59fcc39290b8efab3a1b4cc9470ce5b379cd7a23",
+  "source_tree": "e978ba6cf72bcf419b492bb5872e8b2684edeeae",
+  "previous_cumulative": "ab5f72541fcdb9ba20acdff6480182a163214cc9",
+  "upstream_master": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "effects_overlap_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/player/TObjPlayer.h",
+    "src/pso/object/ambient/TObjGrass.cpp",
+    "src/pso/object/base/ObjectFactoryTables.cpp"
+  ],
+  "source_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/object/TObjPathObj.h",
+    "include/pso/object/TUnk_804E0898.h",
+    "include/pso/object/TUnk_804E08D4.h",
+    "include/pso/object/TUnk_804E0910.h",
+    "include/pso/object/TUnk_804E094C.h",
+    "include/pso/object/TUnk_804E0988.h",
+    "include/pso/object/ambient/TObjFish.h",
+    "include/pso/object/lobby/LobbyPigeon.h",
+    "include/pso/object/lobby/LobbyPigeonPath.h",
+    "include/pso/player/TObjPlayer.h",
+    "src/pso/map/FloorLifecycleTables.cpp",
+    "src/pso/object/ambient/TObjFish.cpp",
+    "src/pso/object/ambient/TObjGrass.cpp",
+    "src/pso/object/base/ObjectFactoryTables.cpp",
+    "src/pso/object/lobby/LobbyPigeonPath.cpp"
+  ],
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "matching_functions": 27572,
+  "linked_units": 2368,
+  "coverage_regressions": {
+    "regressions": 0,
+    "data_regressions": 0,
+    "data_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0,
+    "failures": 0
+  },
+  "source_benchmark": {
+    "total": {
+      "base": 142310,
+      "head": 142192,
+      "added": 67,
+      "removed": 185
+    },
+    "symbol_changes": [
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8029E170",
+        "type": "function",
+        "old": "init_fish_school__8TObjFishFPvll",
+        "new": "init_fish_school__8TObjFishFP3Vecll",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802C09A8",
+        "type": "function",
+        "old": "free_static_instance__10TObjPlayerFv",
+        "new": "release_resources__13TUnk_804E0898Fv",
+        "flags": [
+          "member of TUnk_804E0898, a class named after an address"
+        ],
+        "owner_evidence": "The lobby pigeon. Its constructor and render use the lobby pigeon and crow BML models and the current lobby texture list."
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802C09E0",
+        "type": "function",
+        "old": "load_lobby_pigeon_resource__10TObjPlayerFv",
+        "new": "load_lobby_pigeon_resource__13TUnk_804E0898Fv",
+        "flags": [
+          "member of TUnk_804E0898, a class named after an address"
+        ],
+        "owner_evidence": "The lobby pigeon. Its constructor and render use the lobby pigeon and crow BML models and the current lobby texture list."
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802C1324",
+        "type": "function",
+        "old": "create_child_object__10TObjPlayerFPv",
+        "new": "create__13TUnk_804E08D4FPv",
+        "flags": [
+          "member of TUnk_804E08D4, a class named after an address"
+        ],
+        "owner_evidence": "The jungle seagull. Its factory constructs this class for object 0x0212. The constructor and render read the jungle_kamome models and texture list."
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802C1370",
+        "type": "function",
+        "old": "destroy_instance__10TObjPlayerFv",
+        "new": "release_resources__13TUnk_804E08D4Fv",
+        "flags": [
+          "member of TUnk_804E08D4, a class named after an address"
+        ],
+        "owner_evidence": "The jungle seagull. Its factory constructs this class for object 0x0212. The constructor and render read the jungle_kamome models and texture list."
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802C13C8",
+        "type": "function",
+        "old": "load_kamome_resources__10TObjPlayerFv",
+        "new": "load_kamome_resources__13TUnk_804E08D4Fv",
+        "flags": [
+          "member of TUnk_804E08D4, a class named after an address"
+        ],
+        "owner_evidence": "The jungle seagull. Its factory constructs this class for object 0x0212. The constructor and render read the jungle_kamome models and texture list."
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802C1AF8",
+        "type": "function",
+        "old": "create__10TObjPlayerFPv",
+        "new": "create__13TUnk_804E0910FPv",
+        "flags": [
+          "member of TUnk_804E0910, a class named after an address"
+        ],
+        "owner_evidence": "The jungle bird. Its factory constructs this class for object 0x020D. The constructor and render use the jungle_bird archive and textures."
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802C1B44",
+        "type": "function",
+        "old": "free_statics__10TObjPlayerFv",
+        "new": "release_resources__13TUnk_804E0910Fv",
+        "flags": [
+          "member of TUnk_804E0910, a class named after an address"
+        ],
+        "owner_evidence": "The jungle bird. Its factory constructs this class for object 0x020D. The constructor and render use the jungle_bird archive and textures."
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802C1B9C",
+        "type": "function",
+        "old": "load_jungle_bird_resources__10TObjPlayerFv",
+        "new": "load_jungle_bird_resources__13TUnk_804E0910Fv",
+        "flags": [
+          "member of TUnk_804E0910, a class named after an address"
+        ],
+        "owner_evidence": "The jungle bird. Its factory constructs this class for object 0x020D. The constructor and render use the jungle_bird archive and textures."
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802C21A0",
+        "type": "function",
+        "old": "create_path_obj__10TObjPlayerFPv",
+        "new": "create__13TUnk_804E094CFPv",
+        "flags": [
+          "member of TUnk_804E094C, a class named after an address"
+        ],
+        "owner_evidence": "The jungle shrimp. Its factory constructs this class for object 0x020C. The constructor and render use the jungle_ebi archive and textures."
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802C21EC",
+        "type": "function",
+        "old": "free_chr_select__10TObjPlayerFv",
+        "new": "release_resources__13TUnk_804E094CFv",
+        "flags": [
+          "member of TUnk_804E094C, a class named after an address"
+        ],
+        "owner_evidence": "The jungle shrimp. Its factory constructs this class for object 0x020C. The constructor and render use the jungle_ebi archive and textures."
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802C2244",
+        "type": "function",
+        "old": "load_jungle_ebi_resources__10TObjPlayerFv",
+        "new": "load_jungle_ebi_resources__13TUnk_804E094CFv",
+        "flags": [
+          "member of TUnk_804E094C, a class named after an address"
+        ],
+        "owner_evidence": "The jungle shrimp. Its factory constructs this class for object 0x020C. The constructor and render use the jungle_ebi archive and textures."
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802C28B4",
+        "type": "function",
+        "old": "TObjPlayer__sub_802C28B4",
+        "new": "create__13TUnk_804E0988FPv",
+        "flags": [
+          "member of TUnk_804E0988, a class named after an address"
+        ],
+        "owner_evidence": "The seabed dolphin. Its factory constructs this class for object 0x0227. The constructor and render use the seabed dolphin archive and textures."
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802C2900",
+        "type": "function",
+        "old": "TObjPlayer__sub_802C2900",
+        "new": "release_resources__13TUnk_804E0988Fv",
+        "flags": [
+          "member of TUnk_804E0988, a class named after an address"
+        ],
+        "owner_evidence": "The seabed dolphin. Its factory constructs this class for object 0x0227. The constructor and render use the seabed dolphin archive and textures."
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802C2958",
+        "type": "function",
+        "old": "load_seabed_dolphin__10TObjPlayerFv",
+        "new": "load_seabed_dolphin__13TUnk_804E0988Fv",
+        "flags": [
+          "member of TUnk_804E0988, a class named after an address"
+        ],
+        "owner_evidence": "The seabed dolphin. Its factory constructs this class for object 0x0227. The constructor and render use the seabed dolphin archive and textures."
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802C2FBC",
+        "type": "function",
+        "old": "draw_line_strip__10TObjPlayerFPviif",
+        "new": "draw_line_strip__11TObjPathObjFP10NJS_OBJECTP15AnimationMotionf",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802C3088",
+        "type": "function",
+        "old": "sample_clamped_path_position__FPvlPvlf",
+        "new": "sample_clamped_path_position__11TObjPathObjFP10NJS_OBJECTP15AnimationMotionP3Vecf",
+        "flags": []
+      }
+    ],
+    "flagged_labels": 14,
+    "advisory_reason": "All 67 additions reference the five existing address-named path classes. The 14 flagged labels move lifecycle operations and factories to those existing proven owners. The remaining three labels correct path and fish function signatures.",
+    "newly_stale_retention_entries": 0
+  },
+  "matching_constraint": "CodeWarrior hoists the three fish bounds reads across the random calls when the parameter is const-qualified. The native Vec pointer retains the original per-fish reads.",
+  "runtime": {
+    "images": [
+      "retail",
+      "Great Merge source"
+    ],
+    "lifecycle_calls": 10,
+    "factory_cases": 4,
+    "fish_area_cases": 6,
+    "path_samples": 3,
+    "fish_school_cases": 3,
+    "intercepts": "The probe supplies resource and object allocation, media, registry and motion endpoints. The floor selector, BML arguments, factory dispatch, cleanup, motion clamp and fish-school initializer execute from each DOL. A hook skips the redundant second-lane stack saves and restores."
+  },
+  "historical_source_comparison": {
+    "closed": {
+      "src/pso/misc/TLobby_801E2F94.cpp": {
+        "historical_functions": 22,
+        "exact_data_bytes": 68,
+        "source_evidence": "The current renderer retains viewport and scissor, line colors, the native Ninja 2D/3D fan fields and the typed model-node callback. The chunk transfer at 0x801E38A0 preserves the tag map, destination-or-allocation path, offsets and size output, data cache flush, error tag, and POF0 one-, two- and four-byte pointer fixups with typed inputs."
+      },
+      "src/pso/object/TObjFish.cpp": {
+        "historical_functions": 9,
+        "exact_data_bytes": 1416,
+        "source_evidence": "The native fish class retains the placement layout, replay gate, school and event states, the 0x44-byte fish entries, random bounds, species and timers, turning and render choices, and five typed area descriptors. The exact area table, archive lifetime and school bounds are now read directly through their native declarations."
+      },
+      "src/pso/object/TObjGrass.cpp": {
+        "historical_functions": 30,
+        "exact_data_bytes": 568,
+        "source_evidence": "The live grass class retains its constructor, trace ownership and destructor, dying, chase and web state, actor/contact rules, BML variants, two sampled motion records, and camera-vector callbacks at the original node indices. Loading and release carry the same BML pointer and descriptor through the native API."
+      },
+      "src/pso/object/LobbyPigeonPath.cpp": {
+        "historical_functions": 52,
+        "exact_data_bytes": 424,
+        "source_evidence": "Native path classes retain the original construction, clamp, steering, camera-facing, audio and render dispatch, typed model and animation channels and all five load/release pairs. Factories and lifetime operations use the class whose constructor and render read those records. The authored BML and texture selections and dolphin registry binding remain exact."
+      }
+    },
+    "remaining": 133
+  },
+  "remaining_renderer_evidence": {
+    "path": "src/pso/misc/TLobby_803382E4.cpp",
+    "live_path": "src/pso/unk/TLobby_803382E4.cpp",
+    "finding": "The loading overlay still uses an untyped two-word texture list and a TObjPlayer cast for the compass sprite. Review the established Ninja sprite and texture-animation records while giving the archive its actual Ginja interface."
+  },
+  "historical_fork_data": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "validation_sha256": {
+    "check.json": "b9331759ca50329289d217eef2e5f0483c971da3d08e1c7be7a39e9d94273b00",
+    "delta-02.json": "8975f112b9923e945696b790da25f61903f6c3ea35ba38c0d5d5dac292491091",
+    "quality.json": "05b69e8211b5f66ccdc3c5d43708e739bb7053bf34da8d906f324caf851a1b37",
+    "probe-ambient-paths.py": "72c9f57fdb1bf7e82327a152aba804d7f188569c93f86e66a937adc1164cf675",
+    "ambient-probe.log": "cdefac193250080cb87ed5ab7455570956c92504bdeaabb4087a8d530bbe788c",
+    "source-fork-data.json": "1785153998ba85975e5422de864296c54072c8031df8b0fd72f4d86b46f23714"
+  },
+  "materialized_fork": {
+    "tree": "570977964f8636181c0d76b5f595095f96fd3784",
+    "retention_entries": 27007,
+    "retention_names_updated": {
+      "draw_line_strip__10TObjPlayerFPviif": "draw_line_strip__11TObjPathObjFP10NJS_OBJECTP15AnimationMotionf",
+      "sample_clamped_path_position__FPvlPvlf": "sample_clamped_path_position__11TObjPathObjFP10NJS_OBJECTP15AnimationMotionP3Vecf",
+      "init_fish_school__8TObjFishFPvll": "init_fish_school__8TObjFishFP3Vecll"
+    },
+    "newly_stale_retention_entries": 0,
+    "checks": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    },
+    "validation_sha256": {
+      "private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011",
+      "retention.log": "b3325169ce9d5755b2340e455b52eb7ac52edcb6fa173dc4f2486f46f713350c",
+      "private-fork-data.json": "1785153998ba85975e5422de864296c54072c8031df8b0fd72f4d86b46f23714",
+      "fork-tests.log": "48dd934a42985b7591151f8d544c3afc4f183f334cd7254fafe3539a990e2fa3",
+      "tool-tests.log": "860adce7ce683233edb3fc04fa531a576bbb5d0887cb0f15b96d7232950ae696",
+      "host-tests.log": "7a6adf305731bab101a12aff71bb2ac2db8cd7a886b52999fe780301da740929"
+    }
+  }
+}

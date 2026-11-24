@@ -1,95 +1,43 @@
 #include "types.h"
-#include "pso/system/BmlResourceClass.h"
-#include "pso/npc/TObjNpcSoldierBase.h"
-#include "pso/npc/TUnk_804A8640.h"
-#include "pso/system/BmlResourceDescriptor.h"
 #include "pso/npc/TObjNpcSecretaryBase.h"
-#include "pso/npc/TObjNpcBase.h"
-#include "pso/npc/TObjNpcFemaleBase.h"
+#include "pso/object/TObjControl.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/system/BmlResource.h"
+#include "pso/system/BmlResourceDescriptor.h"
+#include "pso/system/task/TMainTask.h"
 
 #pragma readonly_strings on
 
-extern const char *bm_n_hisyo_i_body_model_names[2];
-extern BmlResourceDescriptor secretary_body_resource_descriptor;
-extern const char *bm_n_hisyo_i_body_motion_names[1];
+const char *bm_n_hisyo_i_body_motion_names[1] = { NULL };
+__declspec(section ".data") const char *bm_n_hisyo_i_body_model_names[2] = { "n_hisyo_i_body.nj", NULL };
+BmlResourceDescriptor secretary_body_resource_descriptor = { "bm_n_hisyo_i_body.bml", bm_n_hisyo_i_body_model_names, bm_n_hisyo_i_body_motion_names, 1, 0 };
+const char *TObjNpcSecretaryBase::name = "TObjNpcSecretaryBase";
+BmlResource *TObjNpcSecretaryBase::static_model_resource;
 
-struct RecoveredGlobal_8014D5F4_lbl_804AB7E8 { s32 value; u8 remaining[0xC]; };
-typedef char RecoveredGlobal_8014D5F4_lbl_804AB7E8_size[sizeof(RecoveredGlobal_8014D5F4_lbl_804AB7E8) == 0x10 ? 1 : -1];
-
-struct RecoveredGlobal_8014D69C___vt__20TObjNpcSecretaryBase {
-    s32 value;
-    u8 remaining[0x174];
-};
-
-extern "C" {
-extern u32 TObjNpcSecretaryBase__static_model_resource;
-extern s32 __vt__20TObjNpcSecretaryBase[];
-extern const char *TObjNpcSecretaryBase__name;
-void *__ct__11TObjControlFP7TObject(void *, void *);
-void __dl__7TObjectFPv(void *);
-void *__nw__7TObjectFUl(int);
+void *TObjNpcSecretaryBase::create(void *set_data) {
+    TObjControl *control = new TObjControl(tl_04);
+    return new TObjNpcSecretaryBase(control, set_data);
+}
 
 void TObjNpcSecretaryBase::free_static_data() {
-    if ((u32) TObjNpcSecretaryBase__static_model_resource != 0U) {
-        delete (BmlResource *)((void*)TObjNpcSecretaryBase__static_model_resource);
-        TObjNpcSecretaryBase__static_model_resource = 0U;
+    if (static_model_resource != NULL) {
+        delete static_model_resource;
+        static_model_resource = NULL;
     }
 }
 
 void TObjNpcSecretaryBase::load_static_data() {
-    s32 temp_r3;
-    s32 var_r0;
-    temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&secretary_body_resource_descriptor), 0, 0, (void *)(0));
-    var_r0 = temp_r3;
-    (*(s32 *)&TObjNpcSecretaryBase__static_model_resource) = var_r0;
+    BmlResource *resource = new BmlResource(1, &secretary_body_resource_descriptor, 0, 0, NULL);
+    static_model_resource = resource;
 }
 
-void *__dt__20TObjNpcSecretaryBaseFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__20TObjNpcSecretaryBase;
-        ((TUnk_804A8640 *)arg0)->destroy_npc_female_base(0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
-}
+TObjNpcSecretaryBase::~TObjNpcSecretaryBase() {}
 
-extern void *tl_04;
-
-typedef char RecoveredGlobal_8014D69C___vt__20TObjNpcSecretaryBase_size[sizeof(RecoveredGlobal_8014D69C___vt__20TObjNpcSecretaryBase) == 0x178 ? 1 : -1];
-u8 *TObjNpcSecretaryBase__ct(u8 *arg0, s32 arg1, s32 arg2) {
-    ((TUnk_804A8640 *)arg0)->construct_female_base();
-    *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_8014D69C___vt__20TObjNpcSecretaryBase *)&__vt__20TObjNpcSecretaryBase).value;
-    *(s32 *)((s8 *)arg0 + 0) = (s32) TObjNpcSecretaryBase__name;
-    ((TObjNpcSecretaryBase *)(arg0))->apply_set_data((void *)arg2);
-    ((TObjChara *)arg0)->initialize_position_copies();
-    *(s32 *)((s8 *)arg0 + 0x34) = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjNpcSecretaryBase__static_model_resource) + 0x42C)) + 8);
-    ((TObjNpcSecretaryBase *)arg0)->texlist = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjNpcSecretaryBase__static_model_resource) + 0x42C)) + 0xC);
-    ((TObjNpcBase *)arg0)->setup_common();
-    return arg0;
-}
-
-void * TObjNpcSoldierBase__create(void *arg0) {
-    void *o;
-    void *o2;
-    o = __nw__7TObjectFUl(0x20);
-    if (o != NULL) {
-        o = __ct__11TObjControlFP7TObject(o, tl_04);
-    }
-    o2 = __nw__7TObjectFUl(0x3B8);
-    if (o2 != NULL) {
-        o2 = TObjNpcSoldierBase__ct((u8 *)o2, (s32)o, (s32)arg0);
-    }
-    return o2;
-}
-
-__declspec(section ".data") const char *bm_n_hisyo_i_body_model_names[2] = { "n_hisyo_i_body.nj", NULL };
-BmlResourceDescriptor secretary_body_resource_descriptor = { "bm_n_hisyo_i_body.bml", bm_n_hisyo_i_body_model_names, bm_n_hisyo_i_body_motion_names, 1, 0 };
-__declspec(section ".sdata") const char *bm_n_hisyo_i_body_motion_names[1] = { NULL };
-
-const char *TObjNpcSecretaryBase__name = "TObjNpcSecretaryBase";
-u32 TObjNpcSecretaryBase__static_model_resource;
+TObjNpcSecretaryBase::TObjNpcSecretaryBase(TObject *parent, void *set_data) : TObjNpcFemale(parent) {
+    this->m_name = name;
+    this->apply_set_data(set_data);
+    init_position_vectors();
+    this->model = (void *)static_model_resource->models->model;
+    this->texlist = static_model_resource->models->texlist;
+    this->setup_common();
 }

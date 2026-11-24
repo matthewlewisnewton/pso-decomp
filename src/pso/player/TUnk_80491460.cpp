@@ -1,76 +1,33 @@
-#define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/effect/particle/ParticleFactory.h"
+#include "types.h"
 #include "pso/player/TUnk_80491460.h"
-
-#include "pso/TMainTask.h"
-#include "pso/TParticleCtrl.h"
-#include "pso/map/WallQuery.h"
-#include "pso/math/MatrixVector.h"
-#include "pso/misc/ParticleFactory.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjPlayer_801AF2F0.h"
-#include "pso/system/MatrixOps.h"
-#include "pso/system/NinjaUtil.h"
+#include "pso/system/task/TMainTask.h"
 #include "pso/system/vector.h"
-#include "pso/unk/text_800870BC.h"
+#include "pso/system/MatrixOps.h"
+#include "pso/math/MatrixVector.h"
 #include "pso/unk/text_803D8F74.h"
 #include "pso/unk/text_803D96A8.h"
+#include "pso/map/CsnQuery.h"
+#include "pso/render/NinjaUtil.h"
+#include "pso/effect/particle/TParticleCtrl.h"
+#include "pso/system/MatrixStack.h"
+#include "pso/player/PlayerSlots.h"
 
-static const Vec initial_step = {0.0f, 0.0f, 7.0f};
-
-void TUnk_80491460::try_hit_target(TObjPlayer *player) {
-    if (player != NULL && !(player->actorFlags & 0xA00) &&
-        !(xz_distance_squared(&position, &player->body_center_position) > 49.0f)) {
-        DirectAttackPayload hit = {0, 0.0f};
-        hit.power = power;
-        player->receive_direct_attack((void *)source, hit, NULL, -1, -1);
-        spawn_particle_effect(&player->body_center_position, 0xFB);
-        queue_destruction();
-    }
-}
-
-void TUnk_80491460::run_task() {
-    vec3_add_to(&position, &velocity);
-    frame++;
-    if (!(frame & 3)) {
-        if (csnVector(&previous_position, &position, -1) != NULL) {
-            queue_destruction();
-            return;
-        }
-        VecCopy(&previous_position, &position);
-    }
-
-    if (particle != NULL) {
-        particle->set_position(&position);
-    }
-    distance_traveled += 7.0f;
-    if (distance_traveled >= 150.0f) {
-        queue_destruction();
-        return;
-    }
-
-    for (s32 client = 0; client < 12; client++) {
-        TObjPlayer *player = get_player_by_client_id(client);
-        try_hit_target(player);
-    }
-}
-
-TUnk_80491460::~TUnk_80491460() {
-    if (particle != NULL) {
-        particle->queue_destruction();
-    }
-}
+// Written last-to-first: the TU was compiled with deferred codegen, which emits the
+// functions in reverse definition order.
+#pragma defer_codegen on
 
 TUnk_80491460::TUnk_80491460(void *start, s32 angle, s32 source, s32 power) : TObject(tl_06) {
-    VecCopy(&position, (const Vec *)start);
-    VecCopy(&previous_position, (const Vec *)start);
-    distance_traveled = 0.0f;
-
+    VecCopy(&pos, (Vec *)start);
+    VecCopy(&prev_pos, (Vec *)start);
+    distance = 0.0f;
     push_matrix_from(&identity_matrix);
-    Vec step = initial_step;
-    rotate_matrix_y(NULL, angle);
+    Vec step = {0.0f, 0.0f, 7.0f};
+    rotate_matrix_y(0, angle);
     rotate_vector_by_matrix(0, &step, &velocity);
     pop_matrix();
-
     this->source = source;
     s32 rotation[3];
     rotation[0] = 0;
@@ -79,4 +36,45 @@ TUnk_80491460::TUnk_80491460(void *start, s32 angle, s32 source, s32 power) : TO
     particle = (TParticleCtrl *)spawn_particle_effect_with_rotation(start, rotation, 0x6D, 2);
     frame = 0;
     this->power = power;
+}
+
+TUnk_80491460::~TUnk_80491460() {
+    if (particle != NULL) {
+        particle->queue_destruction();
+    }
+}
+
+void TUnk_80491460::run_task() {
+    s32 i;
+    vec3_add_to(&pos, &velocity);
+    frame = frame + 1;
+    if (!(frame & 3)) {
+        if (csnVector(&prev_pos, &pos, -1) != NULL) {
+            queue_destruction();
+            return;
+        }
+        VecCopy(&prev_pos, &pos);
+    }
+    if (particle != NULL) {
+        particle->set_position(&pos);
+    }
+    distance += 7.0f;
+    if (distance >= 150.0f) {
+        queue_destruction();
+        return;
+    }
+    for (i = 0; i < 12; i++) {
+        TObjPlayer *player = get_player_by_client_id(i);
+        try_hit_target(player);
+    }
+}
+
+void TUnk_80491460::try_hit_target(TObjPlayer *player) {
+    if (player != NULL && !(player->actorFlags & 0xA00) && !(xz_distance_squared(&pos, &player->body_center) > 49.0f)) {
+        DirectAttackPayload hit = {0, 0.0f};
+        hit.power = power;
+        player->receive_direct_attack((void *)source, hit, 0, -1, -1);
+        spawn_particle_effect(&player->body_center, 0xFB);
+        queue_destruction();
+    }
 }

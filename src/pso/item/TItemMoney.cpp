@@ -3,7 +3,7 @@
 #include "types.h"
 #include "pso/item/TItemMoney.h"
 #include "pso/item/TItemData.h"
-#include "pso/TMainTask.h"
+#include "pso/system/task/TMainTask.h"
 
 const char *TItemMoney__name = "TItemMoney";
 
@@ -24,9 +24,9 @@ TItemMoney::TItemMoney(TObject *parent, TItemData *data) : TItem(parent, (u8 *)d
 }
 #pragma pop
 
-TItem *TItemMoney::create(TItemData *data) {
-    if (data != NULL) {
-        return new TItemMoney(tl_05, data);
+TItem *TItemMoney::create(u8 *item) {
+    if (item != NULL) {
+        return new TItemMoney(tl_05, reinterpret_cast<TItemData *>(item));
     }
     return NULL;
 }

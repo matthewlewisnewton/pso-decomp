@@ -1,66 +1,45 @@
 #include "types.h"
-#include "pso/TItemList.h"
-#include "pso/item/TItemList_801D3780.h"
-#include "pso/item/TItemList_801D57B0.h"
+#include "pso/item/TItemList.h"
 #include "pso/player/TObjPlayer_801D3554.h"
-#include "pso/misc/TLobby.h"
+#include "pso/unk/TLobby.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/player/TPlyItem.h"
 
 #pragma inline_depth(1)
 #pragma auto_inline off
 #pragma dont_inline off
-typedef struct Rec_801D35FC {
-    u8 b[0x1C];
-} Rec_801D35FC;
-
 struct ByteBlock_14 { u8 bytes[0x14]; };
 
-extern "C" {
-int TItemList__sub_801D5868(void*, void*);
-void create_drop_nodes__9TItemListFPvPvPvPvi(void *arg0, void *arg1, void *arg2, Rec_801D35FC *arg3, s32 arg4);
-s32 TItemList__sub_801D5854(s32, s32);
-// TItemList::copy_item_data takes no argument: it adds 8 to its own this and
-// tail-calls TItemData::copy_from, whose second parameter arrives in the
-// caller's hands. The original's caller supplies it, so the only declaration
-// that reproduces both the symbol and the extra argument is this one; a real
-// member call cannot set that register. See TItemList_801D57B0.cpp.
-s32 copy_item_data__9TItemListFv(s32, s32);
-}
-
-void TObjPlayer::insert_item_node(int pool, int floor, int owner, int data, int id) {
-    s32 temp_r31;
-    s32 temp_r30;
-
-    temp_r31 = TItemList__sub_801D5868((void*)pool, (void*)(0));
-    temp_r30 = TItemList__sub_801D5854(pool, 0);
-    if (TItemList__sub_801D5844((void *)temp_r31) != 0) {
-        TItemList__sub_801D5838((void *)temp_r31);
-        ((TObjPlayer *)temp_r30)->set_field4(id);
-        copy_item_data__9TItemListFv(temp_r30, data);
-        TItemList::create_node((void *)pool, (void *)owner, (void *)floor, 0);
-        TItemList__sub_801D5804((s32 *)pool);
+void TObjPlayer::insert_item_node(TUnk_804C445C *pool, Vec *position, TObjPlayer *owner, TItemData *item, s32 id) {
+    Unk_801C2098 *slot = TItemList__sub_801D5868(pool, 0);
+    PendingItemDrop *record = TItemList__sub_801D5854(pool, 0);
+    if (TItemList__sub_801D5844(slot) != 0) {
+        TItemList__sub_801D5838(slot);
+        record->set_source_id(id);
+        record->copy_item_data(item);
+        TItemList::create_node(pool, owner, position, 0);
+        TItemList__sub_801D5804(pool);
     }
 }
 
 extern "C" {
-void create_drop_nodes__9TItemListFPvPvPvPvi(void *arg0, void *arg1, void *arg2, Rec_801D35FC *arg3, s32 arg4) {
+void create_drop_nodes__9TItemListFPvPvPvPvi(TUnk_804C445C *pool, Vec *position, TObjPlayer *owner,
+                                             PendingItemDrop *records, s32 count) {
     s32 i;
-    u8 *p;
-    Rec_801D35FC *q;
+    Unk_801C2098 *slot;
+    PendingItemDrop *entry;
 
-    p = (u8 *)TItemList__sub_801D5868(arg0, 0);
-    q = (Rec_801D35FC *)((void *(*)(void *, s32))TItemList__sub_801D5854)(arg0, 0);
-    for (i = 0; i < arg4; i++) {
-        if (TItemList__sub_801D5844(p) != 0) {
-            TItemList__sub_801D5838(p);
-            ((void (*)(void *, void *))copy_drop_node)(q, arg3);
-            // TItemList_801D3780.cpp declares the index signed char; the original
-        // gave this unit a plain int, so the counter reaches r6 unextended.
-        ((void (*)(void *, void *, void *, s32))&TItemList::create_node)(arg0, arg2, arg1, i);
-            TItemList__sub_801D5804((s32 *)arg0);
-            p += 4;
-            q++;
-            arg3++;
+    slot = TItemList__sub_801D5868(pool, 0);
+    entry = TItemList__sub_801D5854(pool, 0);
+    for (i = 0; i < count; i++) {
+        if (TItemList__sub_801D5844(slot) != 0) {
+            TItemList__sub_801D5838(slot);
+            copy_drop_node(reinterpret_cast<u8 *>(entry), reinterpret_cast<u8 *>(records));
+            reinterpret_cast<void (*)(void *, void *, void *, s32)>(&TItemList::create_node)(pool, owner, position, i);
+            TItemList__sub_801D5804(pool);
+            ++slot;
+            ++entry;
+            ++records;
         }
     }
 }
@@ -73,13 +52,13 @@ u8 *copy_drop_node(u8 *arg0, u8 *arg1) {
     temp_r5 = (arg0 + 4);
     temp_r4 = (arg1 + 4);
     *(s32 *)((s8 *)arg0 + 4) = (s32) *(s32 *)((s8 *)arg1 + 4);
-    *(ByteBlock_14 *)((s32) temp_r5 + 4) = *(const ByteBlock_14 *)((s32) temp_r4 + 4);
+    *(ByteBlock_14 *)((saddr) temp_r5 + 4) = *(const ByteBlock_14 *)((saddr) temp_r4 + 4);
     return arg0;
 }
 
 void fn_801D371C(void* p, void* q) { *(u32*)((char*)p + 0x0) = *(u32*)((char*)q + 0x0); }
-void start_placement_search(s32 arg0, s32 arg1, s32 arg2) {
-    TItemList__sub_801D5838(((void *)((s32)TItemList__sub_801D5868((void*)arg0, (void*)(0)))));
-    TItemList__sub_801D3B00((void *)arg0, (void *)arg2, (void *)arg1, 0);
-    TItemList__sub_801D5804((s32 *)arg0);
+void start_placement_search(TUnk_804C4450 *pool, Vec *pos, TObjBase *source) {
+    TItemList__sub_801D5838(TItemList__sub_801D5868(pool, 0));
+    TItemList__sub_801D3B00(pool, source, pos, 0);
+    TItemList__sub_801D5804(pool);
 }

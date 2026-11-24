@@ -1,137 +1,91 @@
+#include "pso/system/memory.h"
 #include "pso/system/BmlResource.h"
-#include "pso/system/CurrentTextureList.h"
+#include "pso/system/BmlAccessors.h"
 #include "types.h"
-#include "pso/system/BmlResourceClass.h"
-#include "pso/misc/TLanguage_801E4874.h"
-#include "pso/unk/text_803D96A8.h"
-#include "pso/system/vector.h"
-#include "pso/object/TObjMotion.h"
 #include "pso/object/TObjTank.h"
-#include "pso/object/TObjFish.h"
+#include "pso/system/TLanguage_801E4874.h"
+#include "pso/unk/text_803D96A8.h"
+#include "pso/system/MatrixStack.h"
+#include "pso/render/GinjaMaterial.h"
+#include "pso/render/GinjaTexture.h"
+#include "pso/system/BmlResourceLoad.h"
+#include "pso/system/vector.h"
+#include "pso/object/base/TObjMotion.h"
+
+#include "pso/object/ambient/TObjFish.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/ui/TAdSinglePlyChrSelectGC.h"
-extern "C" void *__ct__14TObjCollidableFP7TObject(void *, s32);
+#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
+#include "pso/unk/text_803D8F74.h"
+#include "pso/system/BmlResourceDescriptor.h"
+#include "pso/system/task/TObject.h"
+#include "pso/system/task/TMainTask.h"
 
-struct RecoveredGlobal_8019A9B8_lbl_804B8F60 {
-    s32 value;
-    u8 remaining[0xC];
+__declspec(section ".data") const char *fs_obj_tank_model_names[2] = { "fs_obj_tank.gj", NULL };
+const char *fs_obj_tank_motion_names[1] = { NULL };
+BmlResourceDescriptor fs_obj_tank_resource_descriptor = {
+    "fs_obj_tank.bml", fs_obj_tank_model_names, fs_obj_tank_motion_names, 1, 0
 };
+const char *TObjTank__class_name = "TObjTank";
 
-struct RecoveredGlobal_8019A880_lbl_804B8F70 {
-    s32 value;
-    u8 remaining[0x28];
-};
-
-struct RecoveredGlobal_8019A880___vt__8TObjTank {
-    s32 value;
-    u8 remaining[0x38];
-};
+CollisionBody tobjtank_collision_body_parts = {{0.0f, 0.0f, 0.0f}, 20.0f, 10.0f, 0, 0x10003, {0.0f, 0.0f, 0.0f}, 0.0f};
 
 extern "C" {
-s32 rotate_matrix_y(s32, s32);
-s32 push_matrix();
-s32 post_translate_matrix(void *);
-s32 draw_ginja_object();
-extern u32 tank_bml_resource;
-extern GinjaTextureList *TObjTank__texture_list;
-static const f32 lbl_805DBFA0 = 400.0f;
-static const f32 lbl_805DBFA4 = 20.0f;
-extern char lbl_80446184[];
-extern RecoveredGlobal_8019A9B8_lbl_804B8F60 fs_obj_tank_resource_descriptor;
+BmlResource *tank_bml_resource;
+NJS_TEXLIST *TObjTank__texture_list;
 s32 init_collision_body_parts(void *, void *, int);
-extern RecoveredGlobal_8019A880_lbl_804B8F70 tobjtank_collision_body_parts;
-extern s32 __vt__8TObjTank[];
-extern s32 TObjTank__class_name;
-s32 release_texture_list(void*);
 s32 free_collision_body_parts(void *);
-s32 __dl__7TObjectFPv(void *);
-void *__nw__7TObjectFUl(int);
 
-struct Base { char pad[0x18]; };
-struct VObj : Base {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual void m4();
-    virtual void m5();
-    virtual void m6();
-    virtual void m7();
-    virtual s32 m8(f32, f32);
-};
 void TObjTank::render() {
-    u8 *arg0 = (u8 *)this;
-    void *p;
-    if ((((VObj *)arg0)->m8(lbl_805DBFA0, lbl_805DBFA4) != 0) && (p = TObjTank__texture_list)) {
-        set_current_texture_list((GinjaTextureList *)(p));
+    NJS_TEXLIST *textures;
+    if ((this->update_object_view_visibility(400.0f, 20.0f) != 0) && (textures = TObjTank__texture_list)) {
+        TObjFish::set_global_param(textures);
         push_matrix();
-        post_translate_matrix((u8 *)&this->position);
-        rotate_matrix_y(0, this->rotation.yaw);
-        (s32)get_bml_model((BmlResource *)(*(s32 *)&tank_bml_resource), 0);
-        draw_ginja_object();
+        post_translate_matrix(&position.x);
+        rotate_matrix_y(0, this->rotation_y);
+        draw_ginja_object(reinterpret_cast<NJS_OBJECT *>(get_bml_model((BmlResource *)tank_bml_resource, 0)));
         pop_matrix();
     }
 }
 
 void TObjTank::run_task() {  }
 
-void *__dt__8TObjTankFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__8TObjTank;
-        ((TObjCollidable *)arg0)->unregister_object_by_id();
-        free_collision_body_parts(arg0);
-        __dt__14TObjCollidableFv(arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
+}
+TObjTank::~TObjTank() {
+    this->unregister_object_by_id();
+    free_collision_body_parts(this);
 }
 
-extern void *tl_05;
 
-typedef char RecoveredGlobal_8019A880_lbl_804B8F70_size[sizeof(RecoveredGlobal_8019A880_lbl_804B8F70) == 0x2C ? 1 : -1];
-typedef char RecoveredGlobal_8019A880___vt__8TObjTank_size[sizeof(RecoveredGlobal_8019A880___vt__8TObjTank) == 0x3C ? 1 : -1];
-u8 *TObjTank__ct(u8 *arg0, s32 arg1, s32 arg2) {
-    __ct__14TObjCollidableFP7TObject(arg0, arg1);
-    *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_8019A880___vt__8TObjTank *)&__vt__8TObjTank).value;
-    *(s32 *)((s8 *)arg0 + 0) = (s32) TObjTank__class_name;
+#define arg0 ((u8 *)this)
+TObjTank::TObjTank(TObject *parent, saddr arg2) : TObjCollidable(parent) {
+    *(saddr *)((s8 *)arg0 + 0) = (saddr) TObjTank__class_name;
     VecCopy((Vec *)(arg0 + 0x38), (const Vec *)(arg2 + 0xC));
     copy_xyz(arg0 + 0x5C, (void *)(arg2 + 0x18));
     VecCopy((Vec *)(arg0 + 0x68), (const Vec *)(arg2 + 0x24));
-    init_collision_body_parts(arg0, &tobjtank_collision_body_parts.value, 1);
+    init_collision_body_parts(arg0, &tobjtank_collision_body_parts, 1);
     ((TObjTank *)arg0)->actorFlags = (s32) (((TObjTank *)arg0)->actorFlags | 0x40000000);
     ((TObjPlayer *)arg0)->register_object_by_id();
-    return arg0;
 }
+#undef arg0
 
-void *TObjTank__create(void *arg0) {
-    void *o = __nw__7TObjectFUl(0xAC);
-    if (o != NULL) {
-        o = TObjTank__ct((u8 *)o, (s32)tl_05, (s32)arg0);
-    }
-    return o;
+void *TObjTank::create(void *set_data) {
+    return new TObjTank(tl_05, (saddr)set_data);
 }
 
 void TObjTank::free_globals() {
     if (TObjTank__texture_list != NULL) {
         release_texture_list(TObjTank__texture_list);
-        TAdSinglePlyChrSelectGC::safe_free((void *)TObjTank__texture_list);
+        safe_free(TObjTank__texture_list);
         TObjTank__texture_list = NULL;
     }
-    if ((u32) tank_bml_resource != 0U) {
-        delete (BmlResource *)((void*)tank_bml_resource);
-        tank_bml_resource = 0U;
+    if (tank_bml_resource != NULL) {
+        delete (BmlResource *)tank_bml_resource;
+        tank_bml_resource = NULL;
     }
 }
-typedef char RecoveredGlobal_8019A9B8_lbl_804B8F60_size[sizeof(RecoveredGlobal_8019A9B8_lbl_804B8F60) == 0x10 ? 1 : -1];
 void TObjTank::load_globals() {
-    s32 temp_r3;
-    s32 var_r0;
-    temp_r3 = (int)new BmlResource(5, (BmlResourceDescriptor *)(&fs_obj_tank_resource_descriptor.value), 0, 0, (void *)(0));
-    var_r0 = temp_r3;
-    (*(s32 *)&tank_bml_resource) = var_r0;
-    TObjTank__texture_list = load_gvm_texture_file(lbl_80446184);
+    BmlResource *storage = new BmlResource(5, (BmlResourceDescriptor *)&fs_obj_tank_resource_descriptor, 0, 0, NULL);
+    tank_bml_resource = storage;
+    TObjTank__texture_list = load_gvm_texture_file("fs_obj_tank.GVM");
 }
 
-}

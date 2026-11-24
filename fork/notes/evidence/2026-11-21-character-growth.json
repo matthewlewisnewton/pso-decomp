@@ -1,0 +1,342 @@
+{
+  "source": "1ab814ad9546bb0ca4f3ef41cdc82ccb75669ee2",
+  "previous_source": "f4d20593293329012001ba1af455f241a9bf59cc",
+  "review": {
+    "ref": "great-merge/consolidated/single-review-with-character-growth",
+    "head": "6a274579f220a6a762d3b7e9adcc1781a5bca490",
+    "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+    "tree": "758a716f94a20c91f5aca41eca5d6e969603390c",
+    "tree_equivalent_to": "cd120e29f7221e6e76eb642cb546500dfab7a7c0",
+    "commits": [
+      {
+        "head": "2e33ab4cdde76248b1f7df05b7c4f436b362e8a3",
+        "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+        "tree": "fe39682610e91a6a5869bb6c9d9b567aece07cb5",
+        "checked_tree": "2e33ab4cdde76248b1f7df05b7c4f436b362e8a3",
+        "files_changed": 654,
+        "insertions": 10749,
+        "deletions": 12282
+      },
+      {
+        "head": "1cc9300b6775dabe89b368ed969daa9ba29da98d",
+        "base": "2e33ab4cdde76248b1f7df05b7c4f436b362e8a3",
+        "tree": "f46ca862dc64ee3d1a1b03ff8abba3d80a393ae8",
+        "checked_tree": "1cc9300b6775dabe89b368ed969daa9ba29da98d",
+        "files_changed": 679,
+        "insertions": 5760,
+        "deletions": 6296
+      },
+      {
+        "head": "a2b4e66a560d53d69d13ad12ff63d3aa713666eb",
+        "base": "1cc9300b6775dabe89b368ed969daa9ba29da98d",
+        "tree": "cda887a5d1594fc4b1cd88e7d0fac24e44512077",
+        "checked_tree": "a2b4e66a560d53d69d13ad12ff63d3aa713666eb",
+        "files_changed": 21,
+        "insertions": 372,
+        "deletions": 480
+      },
+      {
+        "head": "351a101687ff50b5832af3aad322bf0a4e151418",
+        "base": "a2b4e66a560d53d69d13ad12ff63d3aa713666eb",
+        "tree": "d49cf53e9c97ca59d1f44be73291cedf68c5398c",
+        "checked_tree": "351a101687ff50b5832af3aad322bf0a4e151418",
+        "files_changed": 968,
+        "insertions": 12597,
+        "deletions": 13408
+      },
+      {
+        "head": "5bf970f9ccfdfc2624052ef200039a06b6a8543e",
+        "base": "351a101687ff50b5832af3aad322bf0a4e151418",
+        "tree": "72d4f38d9a80fb43b3956ce73993e40c9601f25c",
+        "checked_tree": "5bf970f9ccfdfc2624052ef200039a06b6a8543e",
+        "files_changed": 24,
+        "insertions": 331,
+        "deletions": 396
+      },
+      {
+        "head": "2cd01e82147e0ad3ac02d70cabdb57538a02c6d4",
+        "base": "5bf970f9ccfdfc2624052ef200039a06b6a8543e",
+        "tree": "3b69faa170d4f4a38fe53e839557768ed7f8564f",
+        "checked_tree": "2cd01e82147e0ad3ac02d70cabdb57538a02c6d4",
+        "files_changed": 38,
+        "insertions": 646,
+        "deletions": 735
+      },
+      {
+        "head": "176bfd42251f7438d8f77a813b74e676430cdfe6",
+        "base": "2cd01e82147e0ad3ac02d70cabdb57538a02c6d4",
+        "tree": "00cf9b80b0e7a0cc7837b55717bf314ab98ad79f",
+        "checked_tree": "176bfd42251f7438d8f77a813b74e676430cdfe6",
+        "files_changed": 17,
+        "insertions": 256,
+        "deletions": 341
+      },
+      {
+        "head": "ce6336208b3c35a7acef029893bec424a17d3498",
+        "base": "176bfd42251f7438d8f77a813b74e676430cdfe6",
+        "tree": "f24560ce3c35902ce35af35ea229e7e1c817f3a4",
+        "checked_tree": "ce6336208b3c35a7acef029893bec424a17d3498",
+        "files_changed": 31,
+        "insertions": 475,
+        "deletions": 502
+      },
+      {
+        "head": "be4ac3f8f422c217d576331fa45a7bd7bd364b08",
+        "base": "ce6336208b3c35a7acef029893bec424a17d3498",
+        "tree": "40b91d2c9ea210f0d8aa5a0a4d587db8cccb1a25",
+        "checked_tree": "be4ac3f8f422c217d576331fa45a7bd7bd364b08",
+        "files_changed": 18,
+        "insertions": 341,
+        "deletions": 416
+      },
+      {
+        "head": "75396834cdfa4fc14d991dd37aefe500037e71a8",
+        "base": "be4ac3f8f422c217d576331fa45a7bd7bd364b08",
+        "tree": "de5d4633e8997367ca383c419883baae8a69be7b",
+        "checked_tree": "20a4bdc054f562084d67832e4c2ee2157d8129b4",
+        "files_changed": 18,
+        "insertions": 448,
+        "deletions": 448
+      },
+      {
+        "head": "ecae8df53cd5f570252fff8e0c10a65b517f1c95",
+        "base": "75396834cdfa4fc14d991dd37aefe500037e71a8",
+        "tree": "cba6fc1eb860a10cd0e81264e1a3994ba723f0d3",
+        "checked_tree": "5170c577c9ddd200b1558955af9437e4dc5216c6",
+        "files_changed": 11,
+        "insertions": 318,
+        "deletions": 625
+      },
+      {
+        "head": "10708892f5c6d4b1548df6d55e9c664c444b3231",
+        "base": "ecae8df53cd5f570252fff8e0c10a65b517f1c95",
+        "tree": "941e046ad88cc148c2cc6baaf061eb6a584e4756",
+        "checked_tree": "46ad4c3f09c07623550c12f043fcca2994853cbd",
+        "files_changed": 14,
+        "insertions": 258,
+        "deletions": 255
+      },
+      {
+        "head": "b5448eb0bd6748b9b38f3b03aab409dbb77ed281",
+        "base": "10708892f5c6d4b1548df6d55e9c664c444b3231",
+        "tree": "0221d12c79686fe75aa75a54b8d28567542d45c7",
+        "checked_tree": "e22f99703c7d168dfc509cf6b02a66ae32481956",
+        "files_changed": 19,
+        "insertions": 161,
+        "deletions": 128
+      },
+      {
+        "head": "be1d9b228473ad65248d3e4d9dee3c262dc27f08",
+        "base": "b5448eb0bd6748b9b38f3b03aab409dbb77ed281",
+        "tree": "424ead57e2e709837d9f0abac905a4b4c97a92bd",
+        "checked_tree": "510df145dedd057291f46c6f7a35caae16e3c086",
+        "files_changed": 10,
+        "insertions": 308,
+        "deletions": 429
+      },
+      {
+        "head": "b64574a02d144582a5e360ed6bec9fc9c33b2bd4",
+        "base": "be1d9b228473ad65248d3e4d9dee3c262dc27f08",
+        "tree": "dc52d84f578e1585ef491d103f483b4435d3d0cf",
+        "checked_tree": "b2764f762bccf0bef58c46a6df49de0e8a9ecb0c",
+        "files_changed": 22,
+        "insertions": 229,
+        "deletions": 209
+      },
+      {
+        "head": "6a274579f220a6a762d3b7e9adcc1781a5bca490",
+        "base": "b64574a02d144582a5e360ed6bec9fc9c33b2bd4",
+        "tree": "758a716f94a20c91f5aca41eca5d6e969603390c",
+        "checked_tree": "cd120e29f7221e6e76eb642cb546500dfab7a7c0",
+        "files_changed": 12,
+        "insertions": 136,
+        "deletions": 139
+      }
+    ],
+    "commit_attribution": {
+      "audited_commits": 16,
+      "codex_attribution": 0,
+      "coauthor_trailers": 0
+    },
+    "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+    "files_changed": 1827,
+    "insertions": 32557,
+    "deletions": 36261
+  },
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/item/InventoryEntryCopy.h",
+    "include/pso/npc/TNpcPlayer.h",
+    "include/pso/player/PlayerLevelTable.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/player/TObjPlayer_801C1FF8.h",
+    "include/pso/player/TObjPlayer_802C367C.h",
+    "src/pso/npc/TNpcPlayer.cpp",
+    "src/pso/npc/TNpcPlayer_802C3CD0.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TObjPlayer_801C1FF8.cpp",
+    "src/pso/player/TObjPlayer_801D8ADC.cpp",
+    "src/pso/player/TObjPlayer_802C367C.cpp",
+    "src/pso/player/TObjPlayer_802C3B14.cpp",
+    "src/pso/player/TPlayerFootStamp.cpp",
+    "src/pso/player/TPlyItem.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+    "src/pso/ui/window/TWindowActionPalette_801C1890.cpp",
+    "src/pso/unk/TLobby_80291D94.cpp",
+    "src/pso/unk/text_80071B30.cpp",
+    "src/pso/unk/text_802C39F8.cpp",
+    "src/pso/unk/text_802C3AC0.cpp"
+  ],
+  "patch_sha256": "ab6d44ca0f3b25bc71909ff72dd0d8484dd7bf3962f454a1a9fa10d47e75e11b",
+  "checked_original_functions": [
+    "get_ply_level_table_row",
+    "TObjPlayer::get_current_state_field",
+    "apply_class_level_growth",
+    "copy_item_entry_array",
+    "TNpcPlayer::send_command"
+  ],
+  "retained_matching_boundaries": {
+    "experience_class": "The experience path keeps the original signed-byte return view at the class index call.",
+    "template_copy": "The selective inventory copy retains its existing record view and preserves destination bytes 2 and 3."
+  },
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "validation": {
+    "combat": {
+      "check_sha256": "400c65f25892b243f7c37de373b435afa98425714449eeb80058cc04513d690e",
+      "source_report_sha256": "6d69dd5afbb38ce9235d0571fe71fe53b697b16ab65f4b6aa5388df25d115035",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x801D91F8",
+          "get_current_state_field__10TObjPlayerFScl",
+          "get_current_state_field__10TObjPlayerFll"
+        ],
+        [
+          "0x801D9250",
+          "get_ply_level_table_row__FScl",
+          "get_ply_level_table_row__Fll"
+        ],
+        [
+          "0x802C3CD0",
+          "send_command__10TNpcPlayerFlScllPSc",
+          "send_command__10TNpcPlayerFllPC17TPlyInventoryItemlP12TPlyCharData"
+        ]
+      ]
+    },
+    "full": {
+      "check_sha256": "400c65f25892b243f7c37de373b435afa98425714449eeb80058cc04513d690e",
+      "source_report_sha256": "6d69dd5afbb38ce9235d0571fe71fe53b697b16ab65f4b6aa5388df25d115035",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x801D91F8",
+          "get_current_state_field__10TObjPlayerFScl",
+          "get_current_state_field__10TObjPlayerFll"
+        ],
+        [
+          "0x801D9250",
+          "get_ply_level_table_row__FScl",
+          "get_ply_level_table_row__Fll"
+        ],
+        [
+          "0x802C3CD0",
+          "send_command__10TNpcPlayerFlScllPSc",
+          "send_command__10TNpcPlayerFllPC17TPlyInventoryItemlP12TPlyCharData"
+        ]
+      ]
+    },
+    "linear-full": {
+      "check_sha256": "400c65f25892b243f7c37de373b435afa98425714449eeb80058cc04513d690e",
+      "source_report_sha256": "6d69dd5afbb38ce9235d0571fe71fe53b697b16ab65f4b6aa5388df25d115035",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x801D91F8",
+          "get_current_state_field__10TObjPlayerFScl",
+          "get_current_state_field__10TObjPlayerFll"
+        ],
+        [
+          "0x801D9250",
+          "get_ply_level_table_row__FScl",
+          "get_ply_level_table_row__Fll"
+        ],
+        [
+          "0x802C3CD0",
+          "send_command__10TNpcPlayerFlScllPSc",
+          "send_command__10TNpcPlayerFllPC17TPlyInventoryItemlP12TPlyCharData"
+        ]
+      ]
+    },
+    "layer": {
+      "check_sha256": "9832eadab15fc38130e9837fb15b281b878bb6ffba68f962a897d5c93b758c4f",
+      "source_report_sha256": "6d69dd5afbb38ce9235d0571fe71fe53b697b16ab65f4b6aa5388df25d115035",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x801D91F8",
+          "get_current_state_field__10TObjPlayerFScl",
+          "get_current_state_field__10TObjPlayerFll"
+        ],
+        [
+          "0x801D9250",
+          "get_ply_level_table_row__FScl",
+          "get_ply_level_table_row__Fll"
+        ],
+        [
+          "0x802C3CD0",
+          "send_command__10TNpcPlayerFlScllPSc",
+          "send_command__10TNpcPlayerFllPC17TPlyInventoryItemlP12TPlyCharData"
+        ]
+      ]
+    }
+  },
+  "runtime_probes": {
+    "retail": "2fd58bd726dd220eb8510014c6c6d22861591c4f325b8544c99f89174038c12e",
+    "review": "2fd58bd726dd220eb8510014c6c6d22861591c4f325b8544c99f89174038c12e",
+    "layer": "2fd58bd726dd220eb8510014c6c6d22861591c4f325b8544c99f89174038c12e"
+  },
+  "overlay_sha256": "a3f3b26b7e93cc634e69eb9a55ac6ea75a222e47cf3eb5a3b5a480d39c5d079c",
+  "fork_overlay_paths": 130,
+  "retained_symbols": 27033,
+  "workspace_checks": {
+    "tool": 294,
+    "fork": 11,
+    "host": [
+      "./vector_math_fallbacks",
+      "./item_factory_callbacks",
+      "./loader_transfer",
+      "./ginja_parameter_callbacks",
+      "./exi_ethernet_fallbacks"
+    ]
+  },
+  "historical_rows_closed": {},
+  "historical_rows_with_added_evidence": {
+    "2714": "The character selection preview passes its saved character record and class through the typed level initializer. Further historical selector changes remain open",
+    "4121": "The experience path and battle-reset path traverse the original level records, use the typed growth bytes and preserve the retail cap and experience calls. Other player and technique changes remain open",
+    "4142": "The level archive lookup returns 12-byte rows, the experience threshold is at 0x8, and the starting inventory accessor returns a typed item record. The remaining historical owner changes include class cap constness and the separate trade and actor display code",
+    "7277": "The ten template callers pass native inventory entries and character records to the existing companion sender. Its count, copy and level initialization retain the original register and field behavior. Character visual archive ownership remains open"
+  },
+  "existing_upstream_interfaces_kept": {},
+  "historical_rows_open": 592,
+  "public_refs_changed": false
+}

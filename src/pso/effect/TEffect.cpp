@@ -1,21 +1,16 @@
 #pragma readonly_strings on
 #include "pso/effect/TEffect.h"
-#include "pso/TMainTask.h"
-#include "pso/misc/TLobby.h"
-#include "pso/system/GinjaTexture.h"
+#include "pso/system/task/TMainTask.h"
+#include "pso/unk/TLobby.h"
+#include "pso/render/GinjaTexture.h"
 #include "pso/render/render_util.h"
 #include "pso/player/TObjPlayer_8023E480.h"
 #include "pso/unk/text_800F9B84.h"
 
-struct EffectTextureFile {
-    GinjaTextureList *texlist;
-    const char *filename;
-};
-
 static const EffectTextureFile effect_texture_file = {&shared_effect_texture_list, "effect_nt.gvm"};
-const char *TEffect__class_name = "TEffect";
+const char *TEffect::class_name = "TEffect";
 
-s32 effect_rel;
+NJS_OBJECT **effect_rel;
 s32 particle_texture_id_table[54];
 
 void approach_vector_in_place(Vec *current, const Vec *target, f32 step) {
@@ -78,29 +73,29 @@ s32 find_particle_texture_index(s32 id) {
 }
 
 void copy_slot_to_anim_frame(TextureFrameSlot *slot) {
-    slot->frames->entries[slot->frame].texture = slot->texlist->entries[slot->slot].texture;
-    slot->frames->entries[slot->frame].value04 = slot->texlist->entries[slot->slot].value04;
-    slot->frames->entries[slot->frame].name = slot->texlist->entries[slot->slot].name;
+    slot->frames->textures[slot->frame].texture = slot->texlist->textures[slot->slot].texture;
+    slot->frames->textures[slot->frame].attr = slot->texlist->textures[slot->slot].attr;
+    slot->frames->textures[slot->frame].filename = slot->texlist->textures[slot->slot].filename;
 }
 
 void copy_anim_frame_to_slot(TextureFrameSlot *slot) {
-    slot->texlist->entries[slot->slot].texture = slot->frames->entries[slot->frame].texture;
-    slot->texlist->entries[slot->slot].value04 = slot->frames->entries[slot->frame].value04;
-    slot->texlist->entries[slot->slot].name = slot->frames->entries[slot->frame].name;
+    slot->texlist->textures[slot->slot].texture = slot->frames->textures[slot->frame].texture;
+    slot->texlist->textures[slot->slot].attr = slot->frames->textures[slot->frame].attr;
+    slot->texlist->textures[slot->slot].filename = slot->frames->textures[slot->frame].filename;
 }
 
 void free_effect_resources() {
     release_texture_list(effect_texture_file.texlist);
-    TLobby::free_nodes_with_id(effect_rel);
-    effect_rel = 0;
+    TLobby::free_nodes_with_id(reinterpret_cast<uaddr>(effect_rel));
+    effect_rel = NULL;
 }
 
 void load_effect_resources() {
     s32 i;
-    effect_rel = create_named_object((s32)"EFFECT_NT.REL");
+    effect_rel = static_cast<NJS_OBJECT **>(create_named_object("EFFECT_NT.REL"));
     bind_gvm_texture_list(effect_texture_file.filename, effect_texture_file.texlist);
     for (i = 0; i < 54; i++) {
-        particle_texture_id_table[i] = shared_effect_texture_list.entries[i].texture->surface->id;
+        particle_texture_id_table[i] = shared_effect_texture_list.textures[i].texture->surface->id;
     }
 }
 
@@ -109,7 +104,7 @@ TEffect::~TEffect() {
 }
 
 TEffect::TEffect() : TObject(tl_particle) {
-    m_name = TEffect__class_name;
+    m_name = class_name;
     position.x = 0.0f;
     position.y = 0.0f;
     position.z = 0.0f;
@@ -126,7 +121,7 @@ TEffect::TEffect() : TObject(tl_particle) {
     angles[0] = 0;
     angles[1] = 0;
     angles[2] = 0;
-    field_60 = 0.0f;
+    pad_60 = 0.0f;
     speed = 0.0f;
     age = 0;
     state = 0;

@@ -1,6 +1,0 @@
-#ifndef PSO_MISC_TWINDOWCHOICESETTING_80249240_H
-#define PSO_MISC_TWINDOWCHOICESETTING_80249240_H
-
-#include "pso/misc/TWindowChoiceSetting.h"
-
-#endif

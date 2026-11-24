@@ -1,0 +1,25 @@
+#ifndef PSO_UNK_WINDOWCONTROLSTATE_H
+#define PSO_UNK_WINDOWCONTROLSTATE_H
+
+#include "types.h"
+#include <stddef.h>
+
+class TObject;
+
+struct WindowControlState {
+    TObject *window_root; // per-viewport parent of the window tasks (TWindowCtrlMain ct; rendered by TWindowCtrlScreen)
+    s32 field04;
+    f32 field08;
+    f32 field0C;
+    f32 field10;
+    f32 field14;
+    f32 field18;
+};
+
+LAYOUT_ASSERT(WindowControlState_size, sizeof(WindowControlState) == 0x1C);
+LAYOUT_ASSERT(WindowControlState_field0C, offsetof(WindowControlState, field0C) == 0xC);
+LAYOUT_ASSERT(WindowControlState_field18, offsetof(WindowControlState, field18) == 0x18);
+
+WindowControlState* get_window_control_state(s32 viewport_index);
+
+#endif

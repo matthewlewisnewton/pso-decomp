@@ -1,76 +1,52 @@
 #include "types.h"
+#include "pso/weapon/TItemWeapon.h"
+#include "pso/weapon/TUnk_804F1320.h"
 #include "pso/item/TItemEquipBase.h"
 #include "pso/item/TItem.h"
-#include "pso/player/TUnk_804F1320.h"
-#include "pso/item/TItemMag.h"
+#include "pso/item/mag/TItemMag.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/map/FloorArea.h"
+#include "pso/player/TObjPlayer_80011014.h"
 
-struct RecoveredGlobal_80355BA0_lbl_804F1320 {
-    s32 value;
-    u8 remaining[0xF4];
-};
 
-extern "C" {
-u8 * __ct__11TItemWeaponFP7TObjectPUc(void *, void *);
-extern s32 lbl_804F1320[];
-static const f32 lbl_805DFFC0 = 70.0f;
-static const f32 lbl_805DFFC4 = 100.0f;
-u8 *photon_field_weapon_ct(TObjPlayer *arg0, u8 *arg1);
-void *__dt__13TUnk_804F1320Fv(void *arg0, s16 arg1);
-s32 get_current_floor();
-s8 get_mode__5TItemFv(u8 *arg0);
-
-void TUnk_804F1320::vfunc_17(s32 item) {
-    s32 temp_r31;
-
-    if (((u32) this->owner != 0U) && (is_current_area_item_enabled() != 0)) {
-        temp_r31 = ((TObjPlayer *)(this->owner))->get_floor();
-        {
-        s32 t = get_current_floor();
-        if ((t == temp_r31) && (get_mode__5TItemFv((u8 *)this) == 2)) {
-            spawn_pg_effect((void *)(*(u32 *)&this->owner + 0x2FC), (s32)item, (f32)(*(f32 *)&this->unk_1F8));
-        }
+#pragma push
+#pragma inline_depth(1)
+#pragma auto_inline off
+#pragma dont_inline off
+void TUnk_804F1320::activate_effect(s32 item) {
+    if (owner != NULL && is_current_area_item_enabled() != 0) {
+        s32 owner_floor = owner->get_floor();
+        s32 floor = get_current_floor();
+        if (floor == owner_floor && get_mode() == 2) {
+            spawn_pg_effect(&owner->body_center, item, effect_radius);
         }
     }
 }
+
+#pragma pop
+
 void TUnk_804F1320::emit_marker_effects() {
-    u8 *arg0 = (u8 *)this;
     s32 temp_r3;
-    if (((TItemWeapon *)arg0)->is_mode_two_and_ready() != 0) {
-        temp_r3 = ((TObjPlayer *)(this->owner))->get_photon_blast_charge();
+    if (is_mode_two_and_ready() != 0) {
+        temp_r3 = owner->get_photon_blast_charge();
         if (temp_r3 >= 0x14) {
-            ((TItem *)arg0)->send_activate_effect(temp_r3);
+            send_activate_effect(temp_r3);
             return;
         }
-        ((TObjPlayer *)arg0)->update_active_game_effect();
+        update_active_game_effect();
         return;
     }
-    ((TObjPlayer *)arg0)->update_active_game_effect();
+    update_active_game_effect();
 }
-typedef char RecoveredGlobal_80355BA0_lbl_804F1320_size[sizeof(RecoveredGlobal_80355BA0_lbl_804F1320) == 0xF8 ? 1 : -1];
 
-void *__dt__13TUnk_804F1320Fv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = lbl_804F1320;
-        __dt__11TItemWeaponFv(arg0, 0);
-        if (arg1 > 0) {
-            TItem::operator delete(arg0);
-        }
-    }
-    return arg0;
-}
-u8 *photon_field_weapon_ct(TObjPlayer *player, u8 *arg1) {
-    __ct__11TItemWeaponFP7TObjectPUc(player, arg1);
-    *(s32 **)((s8 *)player + 0x18) = &(*(RecoveredGlobal_80355BA0_lbl_804F1320 *)&lbl_804F1320).value;
-    ((TItemWeapon *)player)->set_weapon_flags(0x22);
-    if (((TItem *)player)->get_item_group() == 0x3D) {
-        *(f32 *)((s8 *)player + 0x1F8) = (f32) lbl_805DFFC0;
-        ((TItemWeapon *)player)->set_weapon_flags(0x100000);
+TUnk_804F1320::~TUnk_804F1320() {}
+
+TUnk_804F1320::TUnk_804F1320(TObject *parent, u8 *item) : TItemWeapon(parent, item) {
+    set_weapon_flags(0x22);
+    if (get_item_group() == 0x3D) {
+        effect_radius = 70.0f;
+        set_weapon_flags(0x100000);
     } else {
-        *(f32 *)((s8 *)player + 0x1F8) = (f32) lbl_805DFFC4;
+        effect_radius = 100.0f;
     }
-    return (u8 *)player;
-}
-
 }

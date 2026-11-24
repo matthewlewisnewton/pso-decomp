@@ -1,0 +1,107 @@
+{
+  "source": "ce21d8fc43bfd18a266e83aa0f1aac64a4b76a59",
+  "previous_source": "34231780b60f65894da8775dcd033705b30a9b4a",
+  "combat_ref": "great-merge/consolidated/ordered-combat-with-actor-targets",
+  "combat_review": "3ce39ea509af5a91e5bb42c108ddd43818f84d22",
+  "single_review_ref": "great-merge/consolidated/ordered-full-with-actor-targets",
+  "single_review_candidate": "049a88d6b6bffdc3164d7f134a44be2a08422d5c",
+  "fork_donor": "61000b7008a48bd0dc215f975726694c5cf677fc",
+  "compiled_source_units": 2448,
+  "matched_functions": 27572,
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "changed_paths": [
+    "include/pso/object/base/TObjChara.h",
+    "src/pso/boss/volopt/TBoss3VoloptCore.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+    "src/pso/enemy/TObjEnemyCustom.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+    "src/pso/enemy/beast/TObjEneBeast_800C4E08.cpp",
+    "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+    "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/enemy/lappy/TObjEneLappy.cpp",
+    "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+    "src/pso/enemy/moja/TObjEneMoja.cpp",
+    "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+    "src/pso/enemy/saver/SaverLifecycle.cpp",
+    "src/pso/npc/TObjNpcBase.cpp",
+    "src/pso/object/ambient/TObjGrass.cpp",
+    "src/pso/object/trap/TOMine.cpp",
+    "src/pso/object/trap/TOTrap.cpp",
+    "src/pso/object/trap/TOTrapAncient01.cpp",
+    "src/pso/object/trap/TOTrapAncient02.cpp",
+    "src/pso/object/trap/TOTrapSeabed01.cpp"
+  ],
+  "patch_sha256": "f339c24d0b7bc119650da27ae7f7c7bbaa2b518463e1be10561c84e764b21487",
+  "source_fixes": [
+    "TObjChara stores its target as a TObjChara pointer at the existing offset 0x2A8.",
+    "Its callers use the actor position, flags, collision radius and methods directly.",
+    "Vol Opt uses the shared player lookup declaration. Older generic lookup boundaries keep their return types.",
+    "The batch preserves function labels and the boss gate stays on TBoss6PlotFalz."
+  ],
+  "historical_rows_closed": [
+    6955
+  ],
+  "historical_rows_with_added_evidence": {
+    "694": "uses the native actor target for chase destinations, entity comparisons and active flags",
+    "933": "uses typed actor target locals for chase positions and melee contacts",
+    "956": "uses typed target positions, body radii and attack calls",
+    "1015": "uses typed actor target positions for pursuit and beam creation",
+    "1025": "uses the shared player lookup and reads positions through the actor target",
+    "1116": "uses actor flags, position vectors and the native collision radius",
+    "6778": "uses typed actor positions, ailment calls and hit delivery for trap targets",
+    "6950": "uses the native actor target fields in Grass class methods"
+  },
+  "historical_rows_open": 633,
+  "validation": {
+    "combat": {
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+      "source_report_sha256": "f2ca31fa6d01d4d2259c1bb620c48aacaf8950f796669f6c4c2a56e0ff0d08e2",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "changed_function_labels_from_previous_tree": 0
+    },
+    "full": {
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+      "source_report_sha256": "f2ca31fa6d01d4d2259c1bb620c48aacaf8950f796669f6c4c2a56e0ff0d08e2",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "changed_function_labels_from_previous_tree": 0
+    },
+    "layer": {
+      "check_sha256": "b4d93864c6c48b13733e46b7a31e201ac7304fc2d7522904a7365cf68fa6b312",
+      "source_report_sha256": "f2ca31fa6d01d4d2259c1bb620c48aacaf8950f796669f6c4c2a56e0ff0d08e2",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "changed_function_labels_from_previous_tree": 0
+    }
+  },
+  "fork_overlay_paths": 130,
+  "fork_overlay_sha256": "af9fe8946a391b9c5b74dbdc87b60a61c9f08239c4af98ad8f26e60cac2a4d37",
+  "retained_symbols": 27031,
+  "tool_tests": 294,
+  "fork_layer_tests": 11,
+  "host_checks": [
+    "./vector_math_fallbacks",
+    "./item_factory_callbacks",
+    "./loader_transfer",
+    "./ginja_parameter_callbacks",
+    "./exi_ethernet_fallbacks"
+  ],
+  "review_history_commits": 89,
+  "public_refs_changed": false
+}

@@ -1,0 +1,165 @@
+{
+  "upstream_base": "5cf9da024a0d526227c07273f045ebe71e146496",
+  "previous_network_review": "7b66b623b1fddbc9c3a208db6baca63406a682d8",
+  "network_review": "cd10599000ebd5201fd052085ce6f5c41fd48c26",
+  "changed_paths": 63,
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2393,
+  "coverage_report_sha256": "ecfe8f71681061c9c2fd0bd1ea9e492d8fa633a1f4d57bb98cff40fcc759f370",
+  "source_quality": {
+    "total": {
+      "base": 161684,
+      "head": 161082,
+      "added": 31,
+      "removed": 633
+    },
+    "new_findings": {
+      "address_type": 10,
+      "local_decl": 1,
+      "data_label": 20
+    },
+    "renames": [
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80078378",
+        "type": "function",
+        "old": "handle_socket_event__10TUdpSocketFsP11UdpDatagram",
+        "new": "handle_socket_event__10TUdpSocketFsP20NetworkReceivePrefix",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8042BF48",
+        "type": "function",
+        "old": "wake_load_thread__23TAdSinglePlyChrSelectGCFv",
+        "new": "wake_load_thread__23TAdSinglePlyChrSelectGCFlP9OSContext",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8042E768",
+        "type": "function",
+        "old": "copy_default_and_get_state__23TAdSinglePlyChrSelectGCFv",
+        "new": "copy_default_and_get_state",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8042E84C",
+        "type": "function",
+        "old": "send_modem_hangup__23TAdSinglePlyChrSelectGCFl",
+        "new": "send_modem_hangup__23TAdSinglePlyChrSelectGCFi",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".sdata",
+        "address": "0x805D4920",
+        "type": "object",
+        "old": "lbl_805D4920",
+        "new": "modem_tone_dial_prefix",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".sdata",
+        "address": "0x805D4928",
+        "type": "object",
+        "old": "lbl_805D4928",
+        "new": "modem_pulse_ratio_default_command",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".sdata",
+        "address": "0x805D4930",
+        "type": "object",
+        "old": "lbl_805D4930",
+        "new": "modem_pulse_dial_prefix",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".sdata",
+        "address": "0x805D4938",
+        "type": "object",
+        "old": "lbl_805D4938",
+        "new": "modem_pulse_ratio_alt_command",
+        "flags": []
+      }
+    ],
+    "stale_force_active": [],
+    "report_sha256": "ec1d73cc5d68c926d38df6566c580a3dd88f02ff50f702f90400bb550cb6de0c"
+  },
+  "remaining_findings": {
+    "data_label": "20 references to upstream CHAP storage lbl_805C0180. A local alias changes retail instructions.",
+    "address_type": "10 uses of the existing PAP and VJ layout names while recovering typed uses and declarations.",
+    "local_decl": "The DNS timer caller uses the signed halfword return convention. The shared full-width prototype adds a sign-extension instruction."
+  },
+  "modem_rates_reference": "https://www.itu.int/rec/T-REC-V.250-200307-I/en",
+  "runtime_probes_sha256": {
+    "sdk-queues": "071c5f597d5d0471f933596f6d0307cefbd0f52ba86a15041d97b7272b0352ee",
+    "stack-lifecycle": "5f5daee5776ec374acda2e0b8b636dd205a2884ec83d3ff5bda0c88cbbee3050",
+    "modem-transport": "8f589e1b9c7c9a56ebb93d97008f8af82570d153727e7ea141d62607702e8705",
+    "modem-dial-script": "04d1b3c9391f7826a63a3e7ffc7d1010c9569692ddedd4cd7a016447dac18cec",
+    "network-startup": "1cbb4cc4c1e6d57226eb268bed08707f1d032ece54dda121c16ec0684192ff17",
+    "ppp-frames": "1055052946c8b013f3010646aeaa6022d423868a42185b53640e67723efc7433",
+    "ppp-callbacks": "ac344fd789c173415cd46f0f8e6c24ee6c2fd5aa79c84697e65dff39130dbe09",
+    "runtime-slots": "b4fccd09650143e9b72e96cdfb28d19587b53f23b24f35d931317b72f2f8c513",
+    "packet-receive-and-dhcp": "448051f4b689b3056beeccd47ede6336dfd7fe7afa0b290b628518ce402d215c",
+    "socket-and-dhcp-handoffs": "70ab6be85d41570008e69b80385dc3677c361a7e84309d516cec5f460a618fef",
+    "socket-queues": "701852d4f7fe7a41d7ee822cef1724c0c0378c07d2f3b6e0d1022465ffb69cd6",
+    "probe-dispatcher": "ce6d2688bc0470684b6fc9b5b72715e62e0dcd70db23b8b263bd98d70570aff3",
+    "probe-frame-layouts": "200a6684c2a0f5d9e36491246fb540ae5d3aba3eac6a4c897dff10994458d04c",
+    "probe-udp-callbacks": "3de69068ce09fae9d5bb6de2d3a5978dbef7fc27d641636e92520cfe6bdb5c92"
+  },
+  "stack_previews": {
+    "window_and_network": "aa51d5e85c1aad8219d27813fd801aeb978d72df",
+    "window_network_and_stage": "abaa32dec2f7bedc7edb9fe8dcdd2ae6fecbc711"
+  },
+  "cumulative_candidate": "75698e7def081b950ea2acc8b35927ff90343800",
+  "cumulative_validation": {
+    "previous": "f0b9616c07ad7c0f23e66b97893a2acdf7ffc41c",
+    "published_window_head": "9c2674671acfe4dc2107303e10fee39d568034b5",
+    "merge": "4b889483d93064465eb1d0f728eb91db53539583",
+    "source": "75698e7def081b950ea2acc8b35927ff90343800",
+    "published_window_ci": "https://github.com/zeroz41/pso-decomp/actions/runs/45094064297/job/137429824317",
+    "published_window_quality": {
+      "base": 161684,
+      "head": 158724,
+      "added": 197,
+      "removed": 3157
+    },
+    "published_window_objects_byte_identical": 126,
+    "coverage_report_sha256": {
+      "source": "12117efc47b8ca97131cd05b3f400b410b8e6578c32c963dc43d59941b268f4b",
+      "private": "32b4051a8bc235b336030f70b7596e70985a7243fa45e98265a7cac8ce650132"
+    },
+    "historical_data": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0,
+      "ranges": 90
+    },
+    "private_workspace": {
+      "paths": 130,
+      "materialized_tree": "431dd3b10df7daca047a499f480bfdca940b4e5e",
+      "tests": {
+        "fork": 11,
+        "tool": 294,
+        "host": 5
+      },
+      "patch_sha256": "e4577ef7dd6e8eb3e2dfba5346132b66207679104c8d3077b2755eedfc6dd479"
+    },
+    "typed_window_calls_preserved": [
+      "Symbol Chat scrollbar",
+      "memory-card cursor table",
+      "gauge constructor and colors"
+    ]
+  }
+}

@@ -1,0 +1,297 @@
+{
+  "upstream_pr": 358,
+  "previous_upstream": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+  "upstream": "73c0ea04c69e7b27c9c02d1032b03ed23bcf6e8b",
+  "previous_source": "9aab8ef9dbe3e5c850258224e6d04cea6f62e560",
+  "source": "d5e9284fbeb4ecace175a6749261dc3882a29bb0",
+  "source_tree": "c894e66101b9c06c4de96240dde54b1f87acc955",
+  "files_changed_on_upstream": 1018,
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "last_audited_cutover": "a2dfaa02304b23d2016ac9b0c6811f3108b29df5",
+  "automatic_merge_tree": "fa35dd14dedda9a8832e6888db535e27000e491d",
+  "path_ledger": "2026-11-21-upstream-358-reconciliation.tsv",
+  "path_ledger_sha256": "e68c5ae7b76a925ab97af8fb809cdcdf56210ddb145f73b69d77013fcff1a810",
+  "paths": 1210,
+  "initial_conflicts": 157,
+  "path_dispositions": {
+    "overlap needs source comparison": 139,
+    "clean automatic replay": 136,
+    "previous source blob preserved": 744,
+    "landed source blob preserved": 171,
+    "typed declaration retained at current owner": 6,
+    "adapted dependency needs source comparison": 3,
+    "previous source retained with upstream actor field names": 11
+  },
+  "overlap_paths_requiring_source_comparison": 142,
+  "historical_rows_still_open": 511,
+  "historical_ledger_sha256": "06dc54da7e9914165655119b293b6a0c7586558b819ecf40955fbb15d8c5175c",
+  "upstream_name_proof": [
+    {
+      "path": "src/pso/boss/volopt/TBoss3Volopt.cpp",
+      "previous_blob": "e81d7802a443a0cfd8067b79e915dbe000953aac",
+      "replay_blob": "6146e5871e8d721285825c701d4b648b2c3aaf1b",
+      "identifier_pairs": [
+        {
+          "body_center_position": "body_center"
+        }
+      ]
+    },
+    {
+      "path": "src/pso/effect/enemy/TEneParticleCtrl.cpp",
+      "previous_blob": "3d83ff2012a60f64b78d8ec1e384f87104cc7c83",
+      "replay_blob": "33447b8762f261adf473bfd8275eea845f0b98f6",
+      "identifier_pairs": [
+        {
+          "body_center_position": "body_center"
+        }
+      ]
+    },
+    {
+      "path": "src/pso/enemy/gigue/TObjEneMe1GiGue_802CDB1C.cpp",
+      "previous_blob": "7bd32dda89f81f6ce619a149a78069db3429fdab",
+      "replay_blob": "ca5ca958c5d8bd04919eb31c6624cd2a8dbde1f3",
+      "identifier_pairs": [
+        {
+          "body_center_position": "body_center"
+        }
+      ]
+    },
+    {
+      "path": "src/pso/enemy/morfos/TObjEneMorfos_80337500.cpp",
+      "previous_blob": "f93df5278ebfe61185bf56a51fcd64ea6ede2981",
+      "replay_blob": "2681da30fefdfb46ba774eb566b9d83a5f313b2e",
+      "identifier_pairs": [
+        {
+          "body_center_position": "body_center"
+        }
+      ]
+    },
+    {
+      "path": "src/pso/item/TItem.cpp",
+      "previous_blob": "bc25a4eaf273e4a1be8979b2e398ee4b0ead643f",
+      "replay_blob": "f5ec52bb68e9eb052a9b3712e8345c493ea8e81a",
+      "identifier_pairs": [
+        {
+          "body_center_position": "body_center"
+        }
+      ]
+    },
+    {
+      "path": "src/pso/item/TItemEquipBase.cpp",
+      "previous_blob": "1cdaeaf98053a2ce9c350dfbb79df4ef7e0366fc",
+      "replay_blob": "f288d31f8b9e400cbc74513ad25755135c0db414",
+      "identifier_pairs": [
+        {
+          "body_center_position": "body_center"
+        }
+      ]
+    },
+    {
+      "path": "src/pso/item/mag/TItemMagSub.cpp",
+      "previous_blob": "06688ddcc6b576a810649efa6b5a2b0a70bed931",
+      "replay_blob": "758260f3710ba5261900f3329ebf44b90ca40b59",
+      "identifier_pairs": [
+        {
+          "body_center_position": "body_center"
+        }
+      ]
+    },
+    {
+      "path": "src/pso/object/container/TOContainerAncientEnemy.cpp",
+      "previous_blob": "39e7aa04881a70da8a7407696c390d638d8ef594",
+      "replay_blob": "817ef00ee0fe71c3a2772c9decf7a79e33fbfe34",
+      "identifier_pairs": [
+        {
+          "body_center_position": "body_center"
+        }
+      ]
+    },
+    {
+      "path": "src/pso/player/PhotonBlastResults.cpp",
+      "previous_blob": "ce9a27778da1a1d944e7821a29768fa79f4b8f72",
+      "replay_blob": "d396e75a149cef46854281a564233efa19f5f006",
+      "identifier_pairs": [
+        {
+          "body_center_position": "body_center"
+        }
+      ]
+    },
+    {
+      "path": "src/pso/player/TUnk_80491460.cpp",
+      "previous_blob": "bfdd19d9cb94d2ec2ef9857fc0eddae559aaacda",
+      "replay_blob": "e1f80edb8a5ef422965c6fd36be6e4ab45c78f0f",
+      "identifier_pairs": [
+        {
+          "body_center_position": "body_center"
+        }
+      ]
+    },
+    {
+      "path": "src/pso/unk/TUnk_804CC948.cpp",
+      "previous_blob": "d61cb104f0e6f72677027b2b24211d7fd7ac2558",
+      "replay_blob": "60ab572efffd0d36f70d057ee543698377fedb85",
+      "identifier_pairs": [
+        {
+          "body_center_position": "body_center"
+        }
+      ]
+    }
+  ],
+  "declarations_folded_into_current_owners": {
+    "include/pso/boss/barbaray/TObjBoss7RaftSplash_802F18E8.h": {
+      "owner": "include/pso/boss/barbaray/TObjBoss7Tunnel.h",
+      "declaration": "sub_802F18E8(TParticleCtrl *particle);",
+      "linked_functions": {
+        "0x802F18E8": "sub_802F18E8__15TObjBoss7TunnelFP13TParticleCtrl"
+      }
+    },
+    "include/pso/boss/derolle/TObjBoss2Tunnel_8003B138.h": {
+      "owner": "include/pso/boss/derolle/TObjBoss2Tunnel.h",
+      "declaration": "sub_8003B1D8(TParticleCtrl *particle);",
+      "linked_functions": {
+        "0x8003B1D8": "sub_8003B1D8__15TObjBoss2TunnelFP13TParticleCtrl"
+      }
+    },
+    "include/pso/enemy/recon/TObjEneRecobox_8031FCB0.h": {
+      "owner": "include/pso/enemy/recon/TObjEneRecobox.h",
+      "declaration": "BmlResource *get_bml_resource();",
+      "linked_functions": {
+        "0x803201D0": "get_bml_resource__14TObjEneRecoboxFv"
+      }
+    },
+    "include/pso/enemy/recon/TObjEneRecon_8031D780.h": {
+      "owner": "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+      "declaration": "TObjEneRecon__sub_8031D878(TObjEneRecon *recon);",
+      "linked_functions": {
+        "0x8031D878": "TObjEneRecon__sub_8031D878"
+      }
+    },
+    "include/pso/enemy/recon/TObjEneRecon_8031E574.h": {
+      "owner": "src/pso/enemy/recon/TObjEneRecon.cpp",
+      "declaration": "TObjEneRecon__ct(u8 *ene_recon, s32 arg1, saddr arg2, u16 arg3",
+      "linked_functions": {
+        "0x8031E574": "TObjEneRecon__ct"
+      }
+    },
+    "include/pso/unk/text_802F190C.h": {
+      "owner": "include/pso/boss/barbaray/TObjBoss7Tunnel.h",
+      "declaration": "detach_children(TParticleCtrl *particle, const Vec *offset);",
+      "linked_functions": {
+        "0x802F190C": "detach_children__15TObjBoss7TunnelFP13TParticleCtrlPC3Vec",
+        "0x802F1960": "release_children__15TObjBoss7TunnelFP13TParticleCtrlf"
+      }
+    }
+  },
+  "linked_unit_changes": {
+    "folded_code": "pso/player/TObjPlayer_80036824.cpp into pso/boss/derolle/TBoss2Fin.cpp",
+    "folded_data": "pso/effect/enemy/TeneFakeTecThunderEffSdata2B.cpp into pso/boss/derolle/TObjBoss2DustCtrl.cpp"
+  },
+  "checks": {
+    "upstream": {
+      "baseline": "9aab8ef9dbe3e5c850258224e6d04cea6f62e560",
+      "head": "73c0ea04c69e7b27c9c02d1032b03ed23bcf6e8b",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "linker_label_changes": 1204,
+      "sha256": "40f4a1ce602fc5e736d7bb442558ed66bdefa829bfbeeefab5b8d7dae5fe4b09"
+    },
+    "replay": {
+      "baseline": "73c0ea04c69e7b27c9c02d1032b03ed23bcf6e8b",
+      "head": "d5e9284fbeb4ecace175a6749261dc3882a29bb0",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "linker_label_changes": 406,
+      "sha256": "6edd2c3e86d9d40c9d08fba47f9ff0203c593dc5285cb9a30c1c5ec66ffdf7bb"
+    },
+    "previous-to-replay": {
+      "baseline": "9aab8ef9dbe3e5c850258224e6d04cea6f62e560",
+      "head": "d5e9284fbeb4ecace175a6749261dc3882a29bb0",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "linker_label_changes": 798,
+      "sha256": "61117ad4aed19b70e49b812080db8bbe4ea06523dcbc216769c9cb3ea9efaa5d"
+    },
+    "layer": {
+      "baseline": "d5e9284fbeb4ecace175a6749261dc3882a29bb0",
+      "head": "b59eaec779a4ec1b6e688cca5376b6fd20b05918",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "linker_label_changes": 0,
+      "sha256": "f9f07eeb13176e3415769f8f95caf5c118300d400d2e587d5122242426f24e3e"
+    }
+  },
+  "data": {
+    "upstream": {
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0,
+      "report_sha256": "408c11966d06642890c514f6a9c608b362969ca86043e9afb60b5f9bcd69f724"
+    },
+    "replay": {
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0,
+      "report_sha256": "4f933b7fe1f7ea755ef39ee03a78a548eacec9bfde6c80cf48a6d02fc98024e7"
+    },
+    "layer": {
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0,
+      "report_sha256": "4f933b7fe1f7ea755ef39ee03a78a548eacec9bfde6c80cf48a6d02fc98024e7"
+    }
+  },
+  "probes": {
+    "actor": {
+      "images": [
+        "retail",
+        "source",
+        "workspace"
+      ],
+      "sha256": "cadb6a4a3cc45a3f84a7c2d5e269b446c42a75319da5dce0832f9ffe12b2bf76",
+      "source_sha256": "85d8e5db562ca5b4312f841bcd4118937a21cda173e964b57aba6373b5207c1e"
+    },
+    "movie": {
+      "images": [
+        "retail",
+        "source",
+        "workspace"
+      ],
+      "sha256": "586e1f4069f42cb0ed93aa0f4c71b84d7ad11ac74b82b90e76a39876cb619d74"
+    },
+    "task": {
+      "images": [
+        "retail",
+        "source",
+        "workspace"
+      ],
+      "sha256": "32e2afea5d59725a908b2b5f501466f337ba4a05bb74ec1d8f251586fb640001"
+    }
+  },
+  "workspace_tests": {
+    "tool": {
+      "count": 294,
+      "sha256": "1b83ef8050fdd02d44c5c586d2df0d33f5e6abde9abdf4b6da1d7dc9cea3feaf"
+    },
+    "fork": {
+      "count": 11,
+      "sha256": "e18824efa1882df61a3fcf271ca452740087c1ca7bf7e9b4ed1f3bc8fb62d825"
+    },
+    "host": {
+      "executions": [
+        "./vector_math_fallbacks",
+        "./item_factory_callbacks",
+        "./loader_transfer",
+        "./ginja_parameter_callbacks",
+        "./exi_ethernet_fallbacks"
+      ],
+      "sha256": "ad1227e7d6dde3aea88d51f241949b30f3d1fe42ec4c3abf078bd6309ee9bbdb"
+    }
+  },
+  "workspace_patch_sha256": "d04f13b1465e3b919ca740b6bcf6dd122223423e0940a76e802dce250451cfc9",
+  "workspace_overlay_paths": 130,
+  "workspace_retained_symbols": 27033,
+  "source_review_commit_attribution": {
+    "source_commits": 1,
+    "codex_attribution": 0,
+    "coauthor_trailers": 0
+  }
+}

@@ -1,0 +1,799 @@
+{
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "stage": {
+    "head": "aa70392a3768f9ba7aedfd7b134c963c3267b607",
+    "current_published_head": "9f03861d413309966bb1689099353df4922302ca",
+    "attribution_update": {
+      "source_validation_head": "aa70392a3768f9ba7aedfd7b134c963c3267b607",
+      "published_head": "9f03861d413309966bb1689099353df4922302ca",
+      "identical_source_tree": "2d95441b0045feccdf9aee80b9724ce3e329c490",
+      "commits_with_updated_attribution": 13,
+      "source_changes": 0,
+      "previous_published_ref": "great-merge/pr334-before-attribution-cleanup",
+      "ci_url": "https://github.com/zeroz41/pso-decomp/actions/runs/44830580667"
+    },
+    "previous": "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
+    "files": 487,
+    "cleanup_paths": [
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/boss/olgaflow/TBoss6CrushPtcl.h",
+      "include/pso/effect/GroundContactSound.h",
+      "include/pso/object/TObjComputer.h",
+      "include/pso/object/TObjTombstone.h",
+      "include/pso/object/fence/TOVS2Wall01.h",
+      "include/pso/object/mine/TOLightMachine01.h",
+      "include/pso/object/warp/TObjAreaWarpEnding.h",
+      "include/pso/object/warp/TObjAreaWarpForest.h",
+      "include/pso/object/warp/TObjGoalWarpAncient.h",
+      "include/pso/object/warp/TObjWarpJung.h",
+      "include/pso/object/warp/TObjWarpJungMain.h",
+      "include/pso/system/scene/TSceneSora.h",
+      "include/pso/unk/TLobby.h",
+      "src/pso/boss/olgaflow/TBoss6CrushRock.cpp",
+      "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+      "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+      "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+      "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+      "src/pso/object/TObjComputer.cpp",
+      "src/pso/object/TObjTombstone.cpp",
+      "src/pso/object/fence/TOVS2Wall01.cpp",
+      "src/pso/object/mine/TOLightMachine01.cpp",
+      "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+      "src/pso/object/warp/TObjMapWarpAncient.cpp",
+      "src/pso/object/warp/TObjWarpJungMain.cpp",
+      "src/pso/quest/TQuestVmDownLoadServer_8006FC34.cpp",
+      "src/pso/system/scene/TSceneSora.cpp",
+      "src/pso/unk/TLobby_801F3A24.cpp",
+      "src/pso/unk/TLobby_80209524.cpp",
+      "src/pso/unk/TLobby_80291D94.cpp",
+      "src/pso/unk/text_800D8988.cpp"
+    ],
+    "state": "OPEN",
+    "ready_for_review": true,
+    "url": "https://github.com/zeroz41/pso-decomp/pull/334",
+    "ci": {
+      "conclusion": "success",
+      "headSha": "aa70392a3768f9ba7aedfd7b134c963c3267b607",
+      "status": "completed",
+      "url": "https://github.com/zeroz41/pso-decomp/actions/runs/44813613964"
+    }
+  },
+  "review_handoff": {
+    "source_thread": "01a1f9dd-aecc-7232-98a5-790f593889e9",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "check_pr_baselines": [
+      "7dad678f24aa49d3d608e7ce5e6803df206305de",
+      "49b48c32e6b47afbb55426ad7ac41c0ec6633480"
+    ],
+    "linked_source_objects": 2448,
+    "earlier_joint_base": "3e45bca43548682b06348af370f92673dcf54e92",
+    "historical_comparison": {
+      "head": "3342e42983535b393148deb5b719202b9bf4b7d8",
+      "lost_exact_functions": 0,
+      "lost_linked_functions": 0,
+      "lost_non_padding_data_ranges": 0,
+      "lost_linked_data_ranges": 0,
+      "omitted_alignment_padding_bytes": 2549,
+      "added_coverage_bytes": 163,
+      "net_total_data_delta": -2386
+    }
+  },
+  "current_joint_validation": {
+    "head": "98cf31c3df421015e7bdc5d86df37557dfedf8c7",
+    "parents": [
+      "7301eadf78b49e8cbe96f1e92b5543c7719eb321",
+      "ec0fac84358e193ff77e54e988cde8ce9f2f6d35"
+    ],
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "matched_functions": 27572,
+    "linked_source_objects": 2448,
+    "report_sha256": "acfbdeb9b912dc2b81543c64ad48e6467982b6114db6094070c02a1079f1fef5",
+    "strict_sha256": "72188d85df33faa35806a22d8fe88f7e1e40c866b49eb7c5afa1dbddb555b8a2"
+  },
+  "fork_sync": {
+    "replay_base": "7dad678f24aa49d3d608e7ce5e6803df206305de",
+    "heads": {
+      "all-source": {
+        "head": "dbb9801fa69e8e616ad0ccd196388d0cf358dd49",
+        "conflicting_paths": [
+          "config/GPOE8P/psov3/symbols.txt",
+          "include/pso/boss/volopt/TBoss3Volopt.h",
+          "include/pso/player/TObjPlayer.h",
+          "include/pso/player/TObjPlayer_801AF2F0.h",
+          "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+          "src/pso/boss/darkfalz/TBoss4Type3_800524E8.cpp",
+          "src/pso/boss/darkfalz/TObjDFHorming.cpp",
+          "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+          "src/pso/boss/volopt/TBoss3Volopt.cpp",
+          "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+          "src/pso/effect/item/TItemEffArmor.cpp",
+          "src/pso/effect/item/TItemEffShield.cpp",
+          "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+          "src/pso/item/TItemTimerEvent.cpp",
+          "src/pso/object/TObjRoomId.cpp",
+          "src/pso/object/city/CityDoors.cpp",
+          "src/pso/object/ending/TObjOnlineEnding_802E4B80.cpp",
+          "src/pso/player/TObjPlayer_801AF2F0.cpp",
+          "src/pso/player/TObjPlayer_801C7430.cpp",
+          "src/pso/ui/city/THunterGuildSeqOffline_80211FEC.cpp"
+        ]
+      },
+      "upstream-review-queue": {
+        "head": "652be86d63ff6f184c41ddcc2fbbaccd8d35c80a",
+        "conflicting_paths": [
+          "config/GPOE8P/psov3/symbols.txt",
+          "include/pso/boss/volopt/TBoss3Volopt.h",
+          "include/pso/player/TObjPlayer.h",
+          "include/pso/player/TObjPlayer_801AF2F0.h",
+          "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+          "src/pso/effect/item/TItemEffArmor.cpp",
+          "src/pso/effect/item/TItemEffShield.cpp",
+          "src/pso/object/city/CityDoors.cpp",
+          "src/pso/player/TObjPlayer_801AF2F0.cpp",
+          "src/pso/player/TObjPlayer_801C7430.cpp"
+        ]
+      }
+    },
+    "scope": "Replay each cleanup on its actual player, floor-row, boss or stage owner. Validate the combined source and queue after preserving their existing contracts.",
+    "replayed_into": {
+      "canonical_source": "195c6e16c206b9595c2e883a5b95678ca19d77bc",
+      "review_queue": "6f12bb5fe8c1e6c2f5a666bff1d1d147a051f0de",
+      "source_replay": "30b38fef2b31375329a1767a42d8b54b6efb27a8",
+      "queue_replay": "5069b83e6a768d0c3915cab7075cb0f871989c8d",
+      "working_fork": "4a93d9602eefcb495673dde140ac1ac339c82e93",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "stage_canonical_owner_evidence": {
+        "config/GPOE8P/psov3/symbols.txt": {
+          "review_base": "8d24784fc8b4a3a0204b1cb04e3436fae46f5cf4",
+          "review_head": "0b0cdab69fb4b17201fa109681f5a66b8f73d8a2",
+          "canonical_base": "890c84a4fd3714d97c8c29475f241cc8c1b5af0d",
+          "canonical_head": "8d28327a61785350dd6a48736da5836d9396ffd4",
+          "resolution": "Retains canonical player get_current_area at 8003F108; four floor getter symbols and the Dubchik member follow their correct owners."
+        },
+        "include/pso/boss/volopt/TBoss3Volopt.h": {
+          "review_base": "2c0a37ceb5d1c61efc3016db437cad4875b508d1",
+          "review_head": "18893b05fb34cbdad9945a6addc64e566ee41d36",
+          "canonical_base": "51774ee633413346d475bd919e8d6930c5c29c64",
+          "canonical_head": "51774ee633413346d475bd919e8d6930c5c29c64",
+          "resolution": "Existing canonical implementation satisfies reviewed change"
+        },
+        "include/pso/enemy/dubchik/TObjEneDubchik.h": {
+          "review_base": "56d729509c1920f9c6448ff9ac62a5138d17869d",
+          "review_head": "d5db137053d31e8958a10fc2f015401e5a05efd0",
+          "canonical_base": "701737bfce191fe1c079c3a294c8bda6726accfc",
+          "canonical_head": "08d98d7f33b80413787e47557c0c5cf29b8ff934",
+          "resolution": "Replayed onto canonical owner"
+        },
+        "include/pso/map/FloorPopulation.h": {
+          "review_base": "6a275a2026be5a20ba4f83e978f8746e057835e2",
+          "review_head": "ccc2a2d75a050406280624964b217dbce7abe58e",
+          "canonical_base": "6a275a2026be5a20ba4f83e978f8746e057835e2",
+          "canonical_head": "ccc2a2d75a050406280624964b217dbce7abe58e",
+          "resolution": "Replayed onto canonical owner"
+        },
+        "include/pso/player/PlayerSlots.h": {
+          "review_base": null,
+          "review_head": "2b92547d022550612f14db70824f92afd1dbd4d3",
+          "canonical_base": null,
+          "canonical_head": null,
+          "resolution": "Existing canonical PlayerSlotLookup.h declares identical s32 to TObjPlayer* contract; PlayerSlotTable.h provides typed 12-slot array."
+        },
+        "include/pso/player/TObjPlayer.h": {
+          "review_base": "fb08711f06cc74c2dedffbd98950dae71d0e2012",
+          "review_head": "ff092111b7970ea0e87cc33019fb97c3f75a37f4",
+          "canonical_base": "9e5c5a403c0be80364f512aa21b9716991f9a3b7",
+          "canonical_head": "c7845e1dc3d0a03d627dd53bf059d4328f7ca81b",
+          "resolution": "Player +0x3E0 holds signed current_area. Dubchik owns the Vec array. Moves assertion to shared class declaration."
+        },
+        "include/pso/player/TObjPlayer_801AF2F0.h": {
+          "review_base": "6dd3611955e89b29ea0cf817458a2359bf01f3f5",
+          "review_head": "4edd7b2421b41a39956cef44e282081c81cac102",
+          "canonical_base": "2074aa2c21e9664efbecbb8917956e33c62241a0",
+          "canonical_head": "dd7776bc7b419964767b566906a0b2c0489115b1",
+          "resolution": "Replayed onto canonical owner"
+        },
+        "include/pso/unk/TLobby.h": {
+          "review_base": "1c73c6d9867037f8285c5f161003769e34cb2635",
+          "review_head": "5182e2afb32f36716c2eb315a36f71928dd72e9b",
+          "canonical_base": "9ad179b55145d1975b6baba9db96f6d4dc646d3f",
+          "canonical_head": "010b91014299eb324c26be5bbbd62900f3101aef",
+          "resolution": "Replayed onto canonical owner"
+        },
+        "include/pso/unk/TLobby_80209524.h": {
+          "review_base": "706b2979ff518d68dbdbcea3855926b0d469eaa1",
+          "review_head": "8144a5f1e61a185ef47e2bdf0b7e04f9f383d493",
+          "canonical_base": "84e3be79901b26770264e6f4687a88586f7667a3",
+          "canonical_head": "29ea6c8ac8322ad53cb8bd0ac524a0a3cf178cd8",
+          "resolution": "Replayed onto canonical owner"
+        },
+        "include/pso/unk/TLobby_8020B334.h": {
+          "review_base": "892005f39a36e8bfc2c3e51c490710fbe00fb320",
+          "review_head": "5e07d3281129a59c6c1831d5737eee819d2330e4",
+          "canonical_base": "892005f39a36e8bfc2c3e51c490710fbe00fb320",
+          "canonical_head": "5e07d3281129a59c6c1831d5737eee819d2330e4",
+          "resolution": "Replayed onto canonical owner"
+        },
+        "src/pso/boss/darkfalz/TBoss4Type1.cpp": {
+          "review_base": "d5f7500ebe4826afa6722e4bfacf99b94d0b2c38",
+          "review_head": "47405f57215fa44a833f21493b606cadaacd0c44",
+          "canonical_base": "c7a5b5a0279510d19c140f954569e577d37c7cce",
+          "canonical_head": "c7a5b5a0279510d19c140f954569e577d37c7cce",
+          "resolution": "Existing canonical implementation satisfies reviewed change"
+        },
+        "src/pso/boss/darkfalz/TBoss4Type3_800524E8.cpp": {
+          "review_base": "9486a05a672ab472591435c01e0b1ee85fc1e954",
+          "review_head": "7ea4eed378cf6bdf5dcb81a9c2fa1b8f2c69233b",
+          "canonical_base": "e963509b14de513bc4e3ad1397919daaeea714f0",
+          "canonical_head": "519b0632c677dff1ae90fbf21806bb5e99549e2b",
+          "resolution": "Replayed onto canonical owner"
+        },
+        "src/pso/boss/darkfalz/TObjDFHorming.cpp": {
+          "review_base": "f4229323f20cc3c38d0b7fd2f2f21bdbc91eb412",
+          "review_head": "fdd20334ba1cc3416558c54726e5b1458be6f3fc",
+          "canonical_base": "fae1b6b8ce02d536931164f3ad0f492d5666ae8e",
+          "canonical_head": "feb64ee126e66305c1daa2f70960e0a4a4fe8a31",
+          "resolution": "Replayed onto canonical owner"
+        },
+        "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp": {
+          "review_base": "6ce339d347168f963d2bb79afee81f0c171068d8",
+          "review_head": "33295cf81d800052be46e4697ae49e93d6c8a2d8",
+          "canonical_base": "9225dcb3fa5467a980ae1b01f59ccb14b51a56ee",
+          "canonical_head": "9225dcb3fa5467a980ae1b01f59ccb14b51a56ee",
+          "resolution": "Preserves canonical member is_state_1f(TObjPlayer*), AREA_OLGA_FLOW and existing typed lookup."
+        },
+        "src/pso/boss/volopt/TBoss3Volopt.cpp": {
+          "review_base": "ecfeb1f8772bd078a29d915e83b69718f6201dce",
+          "review_head": "352c6e3e8015c7ea12d4efcaccc24d34488bd6e5",
+          "canonical_base": "d420a045d90b3b37699a26065cefdd3df5eaf412",
+          "canonical_head": "474f38b0ebdc5d5c872a5eca69bcf8f9f0f61208",
+          "resolution": "Replayed onto canonical owner"
+        },
+        "src/pso/boss/volopt/TBoss3VoloptP02.cpp": {
+          "review_base": "1208a1f1057f18b16844dac11b0f2440d633cd60",
+          "review_head": "3f8c9b39073acd503eb632f14a2ca1f8b3a2b1c3",
+          "canonical_base": "b3ff76d957c2e9b89750eff016a584f9d76123b5",
+          "canonical_head": "b3ff76d957c2e9b89750eff016a584f9d76123b5",
+          "resolution": "Existing canonical implementation satisfies reviewed change"
+        },
+        "src/pso/effect/item/TItemEffArmor.cpp": {
+          "review_base": "5c90e7574ea7ad9988d750e6d733b5ad36154b76",
+          "review_head": "0c25dc58c22de63426dce2789c4bf30a4bdd9194",
+          "canonical_base": "f00141e88fad55fb60c926fab73e7238dd774c3d",
+          "canonical_head": "54a3aaa3ce71258264241b75a69163ca32ddaec5",
+          "resolution": "Pass player get_current_area() result explicitly to the signed area predicate; preserve other canonical calls."
+        },
+        "src/pso/effect/item/TItemEffShield.cpp": {
+          "review_base": "10742649f0df3406b4e1926291793498e01487cb",
+          "review_head": "578ff48254144ac3d44d7f75fc14e50a8d497a5c",
+          "canonical_base": "544af2aba0d99f228df165b7096ccb8bc07b1ffd",
+          "canonical_head": "39b3432637fb7cb12000dfc996c71db1ef7817af",
+          "resolution": "Pass player get_current_area() result explicitly to the signed area predicate; preserve other canonical calls."
+        },
+        "src/pso/enemy/dubchik/TObjEneDubchik.cpp": {
+          "review_base": "e5e605c09fe89f074daced1fe7d2b256d2403433",
+          "review_head": "c299909b7bdf40bc5ce36543eae8494182abfbb4",
+          "canonical_base": "8075b62a36da0a9fd524504a7aef7d2077fed00e",
+          "canonical_head": "c105851f5a006fc72be17f502c87a222ebd83fca",
+          "resolution": "Use native Dubchik receiver; nodes 0x13, 0x28, 0x29 map to part_offsets[0..2], preserving current rotation/sound owner types."
+        },
+        "src/pso/item/TItemTimerEvent.cpp": {
+          "review_base": "ca3a3a6e19abe208cb5ccebefdd13ca848319f90",
+          "review_head": "dd797961c4b10dde629d260e61a7fd6890737853",
+          "canonical_base": "9c8de0ea3a5822c940d6e7917a1b57b8cd24ed18",
+          "canonical_head": "f9a5eaab9bcac507220b62f392dd41fab5e39cee",
+          "resolution": "Pass player get_current_area() result explicitly to the signed area predicate; preserve other canonical calls."
+        },
+        "src/pso/map/TSetManager.cpp": {
+          "review_base": "ffd1bb17aca8c264740b350015e9bf86d100c2b7",
+          "review_head": "bbdcd1e0d656a40a4f08367bc37478423e91e661",
+          "canonical_base": "34f904e4a5a4b3a302a72cdd751713f0e699ba83",
+          "canonical_head": "93c1f2d3ad512bf496a91d5c4d4bc441c5da7eff",
+          "resolution": "Replayed onto canonical owner"
+        },
+        "src/pso/object/TObjRoomId.cpp": {
+          "review_base": "6556acf363ee0b13869f36ad2a173e11f5e9f263",
+          "review_head": "552f73566d741195049738e9da0e7e6c3acf1f91",
+          "canonical_base": "5d2b0c0aba528f7475198999ec56a7e4ba3d2e4e",
+          "canonical_head": "5d2b0c0aba528f7475198999ec56a7e4ba3d2e4e",
+          "resolution": "Existing canonical implementation satisfies reviewed change"
+        },
+        "src/pso/object/city/CityDoors.cpp": {
+          "review_base": "190aac4677e8a17c052fcaddb7804932eb861487",
+          "review_head": "1078fe181a1934ad126939f49d7232ebd3ed68a3",
+          "canonical_base": "a1a56d67bb2469867b95f710c500697b395713e1",
+          "canonical_head": "afb7e1c0e6ba8b85d0baf77af5b775dea68537e7",
+          "resolution": "Replayed onto canonical owner"
+        },
+        "src/pso/object/collision/TObjBgmColCtrl.cpp": {
+          "review_base": "01264765157f5f1b1bcf2a22398fa077a050198a",
+          "review_head": "4f801d42add862e7cf26d8a74e1ccc066b4fece5",
+          "canonical_base": "7e065dca87b00ed92826ac67a0f3613220e7b829",
+          "canonical_head": "7e065dca87b00ed92826ac67a0f3613220e7b829",
+          "resolution": "Existing canonical implementation satisfies reviewed change"
+        },
+        "src/pso/object/collision/TObjInfoCol.cpp": {
+          "review_base": "27cc920d5383bde04df7782af3bf1d4f5126bd47",
+          "review_head": "ecd44f477a306ee45c201f6bc5375bc85e066cf5",
+          "canonical_base": "f8303ca76f522d7f768fabbcdd94578890816de9",
+          "canonical_head": "f8303ca76f522d7f768fabbcdd94578890816de9",
+          "resolution": "Existing canonical implementation satisfies reviewed change"
+        },
+        "src/pso/object/ending/TObjOnlineEnding_802E4B80.cpp": {
+          "review_base": "dc170da0ea5cb8689e9d7f9a0a48ec3c9d5d1b81",
+          "review_head": "e1b41f627b620c5e93051bb8534e66d7813fad05",
+          "canonical_base": "eef8d539a5ecc7df59f21a3cf862450f6fb8d8ba",
+          "canonical_head": "da1a0dff0623d7424ade952311b0bb1761067496",
+          "resolution": "Replayed onto canonical owner"
+        },
+        "src/pso/player/TObjPlayer_801AF2F0.cpp": {
+          "review_base": "e1c214d838847a8a1176870933e0aaee385b1f6e",
+          "review_head": "5c992c7be336af95a1457fa23ecdd78031040155",
+          "canonical_base": "943852c54eacc2dc5dc3c1f764d26fedf8b4a47a",
+          "canonical_head": "26ae1c655927cd1ce70e2b8013a78e35f301277e",
+          "resolution": "Replayed onto canonical owner"
+        },
+        "src/pso/player/TObjPlayer_801BDF5C.cpp": {
+          "review_base": "ecc309cd9f525beb157bf55e38f7b25f4b78dfe5",
+          "review_head": "29371c8a4690a0c015d1cba5a73de5f17a04b97f",
+          "canonical_base": "2f9f17327b78f73b2333be5c851197654b81af60",
+          "canonical_head": "bb5ff436428ee6bd1b0da29a57d37c2e11c6493b",
+          "resolution": "Replayed onto canonical owner"
+        },
+        "src/pso/player/TObjPlayer_801C7430.cpp": {
+          "review_base": "95b1eef012ab00036986e13049b2b8388d43df92",
+          "review_head": "c239b230e4757c28116e06a9fa18676a5a03314f",
+          "canonical_base": "60a91a3c8691024ed501082b6a21e6663979f609",
+          "canonical_head": "3d1318accceb28def4946dbc092676b8e2a7ae7a",
+          "resolution": "Preserves typed canonical packets and unsigned on-wire ID conversions; removes a stale indirect warp lookup cast."
+        },
+        "src/pso/ui/city/THunterGuildSeqOffline_80211FEC.cpp": {
+          "review_base": "b803c44952fb29e764a68bca582d39e25b7ed814",
+          "review_head": "5393900e89772ac29c4c3eeec309a45c5f094037",
+          "canonical_base": "d8efdc5e209bbaaa342782ebd09bc36c8a250810",
+          "canonical_head": "7f17853bb1173e57d55a0e19ea02fd930f9da397",
+          "resolution": "Replayed onto canonical owner"
+        },
+        "src/pso/ui/window/TWindowDD_8020C2DC.cpp": {
+          "review_base": "cf901b64a28c2a941c5a90fef7d5e6e7133e7a4a",
+          "review_head": "53eef8f4e32c3e4b01068f6801a343a759c68571",
+          "canonical_base": "cf901b64a28c2a941c5a90fef7d5e6e7133e7a4a",
+          "canonical_head": "53eef8f4e32c3e4b01068f6801a343a759c68571",
+          "resolution": "Replayed onto canonical owner"
+        },
+        "src/pso/unk/TLobby_80209524.cpp": {
+          "review_base": "bbff896a5a702ea2ddf839e5764f941fb9aa6014",
+          "review_head": "1665f38cf78784e1292b24b2594ae5b0fa645685",
+          "canonical_base": "a0fabcb500e2aec289d1d7e365e58d9cfb0df611",
+          "canonical_head": "ef347aa6de547bd4caae4d328003fad887ea755f",
+          "resolution": "Replayed onto canonical owner"
+        },
+        "src/pso/unk/TLobby_8020C608.cpp": {
+          "review_base": "7fcf6321d10ce5021eda3900276fe2edbe0e9c18",
+          "review_head": "4b95a488b33da6cf5fe7f7715b72c8f4b5e7ec2f",
+          "canonical_base": "7fcf6321d10ce5021eda3900276fe2edbe0e9c18",
+          "canonical_head": "4b95a488b33da6cf5fe7f7715b72c8f4b5e7ec2f",
+          "resolution": "Replayed onto canonical owner"
+        },
+        "src/pso/unk/TLobby_8020C8A4.cpp": {
+          "review_base": "36852db2af7b98dc96789e1655dceb2d72a85e64",
+          "review_head": "8bf0f010cef24a6bebccf7c255c08837459facb5",
+          "canonical_base": "36852db2af7b98dc96789e1655dceb2d72a85e64",
+          "canonical_head": "8bf0f010cef24a6bebccf7c255c08837459facb5",
+          "resolution": "Replayed onto canonical owner"
+        },
+        "src/pso/unk/TLobby_8020CB34.cpp": {
+          "review_base": "72dcb51ccb1503c096a67732df1de88159b891ce",
+          "review_head": "e13b97e209f77262514c3e61af4b5dd55bb217b4",
+          "canonical_base": "72dcb51ccb1503c096a67732df1de88159b891ce",
+          "canonical_head": "e13b97e209f77262514c3e61af4b5dd55bb217b4",
+          "resolution": "Replayed onto canonical owner"
+        },
+        "src/pso/unk/TLobby_8020CD44.cpp": {
+          "review_base": "fb0dd2a245964b09d5392ef868c3e0716d3ecf19",
+          "review_head": "6c2f4ef643e5a59f38a33814d0b8a30f580b31aa",
+          "canonical_base": "fb0dd2a245964b09d5392ef868c3e0716d3ecf19",
+          "canonical_head": "6c2f4ef643e5a59f38a33814d0b8a30f580b31aa",
+          "resolution": "Replayed onto canonical owner"
+        },
+        "src/pso/unk/TLobby_8020D0B0.cpp": {
+          "review_base": "466ce81e786a8e31235686b689e9548fb48ff0d3",
+          "review_head": "75a4719d6d32535fa482dfee1c796552da62a550",
+          "canonical_base": "466ce81e786a8e31235686b689e9548fb48ff0d3",
+          "canonical_head": "75a4719d6d32535fa482dfee1c796552da62a550",
+          "resolution": "Replayed onto canonical owner"
+        },
+        "src/pso/unk/text_8020BC50.cpp": {
+          "review_base": "2b646d4d8ce13868dce3c203bad90ce5163fe448",
+          "review_head": "bc89f1c96a2474a3b71d338c0d39ca4f825ebca6",
+          "canonical_base": "2b646d4d8ce13868dce3c203bad90ce5163fe448",
+          "canonical_head": "bc89f1c96a2474a3b71d338c0d39ca4f825ebca6",
+          "resolution": "Replayed onto canonical owner"
+        },
+        "src/pso/unk/text_8020C354.cpp": {
+          "review_base": "364b5ada6ac0a43a8e7c1ccb5a3bc408377c6c45",
+          "review_head": "ea688213a3f13b071663dea51747b8d64e342b90",
+          "canonical_base": "364b5ada6ac0a43a8e7c1ccb5a3bc408377c6c45",
+          "canonical_head": "ea688213a3f13b071663dea51747b8d64e342b90",
+          "resolution": "Replayed onto canonical owner"
+        },
+        "src/pso/unk/text_8020C73C.cpp": {
+          "review_base": "6388da5536c5741c3fcce383eaefade81350dabb",
+          "review_head": "c5b1a69750ff935065add091283427ab40c6c521",
+          "canonical_base": "6388da5536c5741c3fcce383eaefade81350dabb",
+          "canonical_head": "c5b1a69750ff935065add091283427ab40c6c521",
+          "resolution": "Replayed onto canonical owner"
+        },
+        "src/pso/unk/text_8020C9C8.cpp": {
+          "review_base": "9c3b1c5958ffaaaa421bec296a5ac5948be7f748",
+          "review_head": "8bed118a4aa88b8bc3db29877e1ff1e4330ff0c4",
+          "canonical_base": "9c3b1c5958ffaaaa421bec296a5ac5948be7f748",
+          "canonical_head": "8bed118a4aa88b8bc3db29877e1ff1e4330ff0c4",
+          "resolution": "Replayed onto canonical owner"
+        }
+      },
+      "stage_queue_resolutions": {
+        "config/GPOE8P/psov3/symbols.txt": "Keeps the existing TObjEnemy register_by_id at 0x8003F0E8; records the native TObjPlayer area accessor at 0x8003F108 and companion floor-row and Dubchik symbols at their original addresses.",
+        "include/pso/boss/volopt/TBoss3Volopt.h": "Drops obsolete Vol Opt fake area receiver while preserving the queue's existing separate TObjEnemy registry owner.",
+        "include/pso/player/TObjPlayer.h": "Preserves queue ownership for legacy Dubchik helpers, adds the genuine +0x3E0 area word, size/offset assertion, and accessor. Removes the old attach point rendering declaration now owned by TObjEneDubchik.",
+        "include/pso/player/TObjPlayer_801AF2F0.h": "Keeps PlayerSlotLookup.h as shared registry declaration and true typed inventory declaration.",
+        "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp": "Keeps existing native member signatures, phase layout, and typed declarations. Its existing three Olga Flow player gates use TObjPlayer::get_area() with the original shared area enum.",
+        "src/pso/effect/item/TItemEffArmor.cpp": "Keeps the existing typed player slot lookup, giving is_item_area_enabled the explicit s32 from the original selected player's area accessor.",
+        "src/pso/effect/item/TItemEffShield.cpp": "Keeps the existing typed player slot lookup, giving is_item_area_enabled the explicit s32 from the original selected player's area accessor.",
+        "src/pso/object/city/CityDoors.cpp": "Combines current texture registry and signed sound-pitch includes with native floor area constants. Passes the actual looked-up player as the area getter receiver, preserving non-null check, Pioneer 2 variant test, and horizontal distance.",
+        "src/pso/player/TObjPlayer_801AF2F0.cpp": "Preserves the existing TObjPlayer *player_slot_table[12] and entry lookup body, action palette and shared card status declarations. Replays address-accurate area initialization, record copy, and typed reset/phase/area providers.",
+        "src/pso/player/TObjPlayer_801C7430.cpp": "Keeps character-save and keyboard include scopes, recovered signed/unsigned packet widths, explicit revive receiver, and camera owner. Reuses the existing typed player slot lookup directly at the revised warp sender."
+      },
+      "validation_evidence": "2026-11-20-stage-owner-replay.json"
+    },
+    "published_name_replays": {
+      "old_head": "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
+      "published_head": "aa70392a3768f9ba7aedfd7b134c963c3267b607",
+      "source": "0acca92c4873d97f68b6b167506007de540af784",
+      "direct": "428b42e9251d39baf2e01e7d62959f742d2a6566",
+      "queue": "5f6084eb7b5f4f71d8a5571da7827e089e80eed5"
+    },
+    "published_name_validation": {
+      "replays": {
+        "source": {
+          "head": "0acca92c4873d97f68b6b167506007de540af784",
+          "parents": [
+            "cbff37c9f950f3e2c7ed2411e1856a3a54028e4b",
+            "aa70392a3768f9ba7aedfd7b134c963c3267b607"
+          ],
+          "files": 26,
+          "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+          "exact_linked_objects": 2449,
+          "coverage_report_sha256": "d56d42ce75af3a4ee2a867dac6056262985eb27156be2c390bafdae53e223a5b",
+          "strict_report_sha256": "66fbbc3ed2b83f05be3f39b56a3febf276842af3713944189d49f2338354aeb2"
+        },
+        "direct": {
+          "head": "428b42e9251d39baf2e01e7d62959f742d2a6566",
+          "parents": [
+            "9241aaaf9be027a7c6dc459b063c2a98ef2064c8",
+            "aa70392a3768f9ba7aedfd7b134c963c3267b607"
+          ],
+          "files": 32,
+          "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+          "exact_linked_objects": 2448,
+          "coverage_report_sha256": "a51c985e655f197617c36f95dae89fbba36c9e8acf57df210b6ced508e77f934",
+          "strict_report_sha256": "fc798c743a1b159ee13380e125f585aa24d7d434b60f8cd7724dcac07618c0f1"
+        },
+        "queue": {
+          "head": "5f6084eb7b5f4f71d8a5571da7827e089e80eed5",
+          "parents": [
+            "62222c16029867cb06884695798e0b39a04f5dd4",
+            "aa70392a3768f9ba7aedfd7b134c963c3267b607"
+          ],
+          "files": 26,
+          "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+          "exact_linked_objects": 2451,
+          "coverage_report_sha256": "ebeca28730ec6074e3e28e2e75ead7d24172a973d21fa2bfe89b96677c53f606",
+          "strict_report_sha256": "9a733be2c8874f8caa8a6549718c62a2ea6408209e089c8bcd184f665c6e68a4"
+        }
+      },
+      "conflict_resolutions": {
+        "Gibbles": "Keep current material-fade, ground contact and frame-action code; target sound name already restored.",
+        "Tombstone": "Keep name_lines and use record.unk_4.",
+        "light_machine": "Keep pointer argument to draw_ginja_model and apply m_9c/m_ac field names.",
+        "symbols": "Keep adjacent persistent and floor-area sound symbols as current and check all four published labels by address.",
+        "warp": "Keep BmlResource* model argument and m_c4 animation frame.",
+        "quest": "Use info->unk_4 and preserve challenge_mode_state.state.layout and .floor."
+      }
+    }
+  },
+  "local_standalone_validation": {
+    "head": "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "linked_units": 2448,
+    "report_sha256": "c347d5230713c8c15460d206ea87b95c0b726c3e7e7031550fe1987e78b0cf4d",
+    "strict_sha256": "294bee54383e9ff6639a5fb05ceed2b1eb2826cb0333932a41c9a8192afc4018"
+  },
+  "rename_audit": {
+    "reviewed_head": "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
+    "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+    "reported_symbol_changes": 162,
+    "confirmed_rename_only": [
+      {
+        "module": "psov3",
+        "address": "0x8017D2AC",
+        "before": "get_archive_motion__19TObjGoalWarpAncientFl",
+        "after": "register_warp__19TObjGoalWarpAncientFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801A0324",
+        "before": "get_beam_frame_count__12TObjWarpJungFv",
+        "after": "get_static_field4_as_float__12TObjWarpJungFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800D8988",
+        "before": "TObjEneGibbles__sub_800D8988",
+        "after": "play_floor_area_ground_sound",
+        "evidence": "The extern C void(Vec *) provider has the same body. Preserve the shared typed declaration and upstream symbol."
+      },
+      {
+        "module": "psov3",
+        "address": "0x8020A26C",
+        "before": "free_boss4rock__6TLobbyFv",
+        "after": "release_challenge_random_state__6TLobbyFv",
+        "evidence": "The static void() wrapper performs the same teardown. Keep the typed shuffle-table destructor and restore only the wrapper spelling."
+      }
+    ],
+    "local_candidate": "aa70392a3768f9ba7aedfd7b134c963c3267b607",
+    "local_symbol_changes": 158,
+    "local_candidate_paths": [
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/boss/olgaflow/TBoss6CrushPtcl.h",
+      "include/pso/effect/GroundContactSound.h",
+      "include/pso/object/TObjComputer.h",
+      "include/pso/object/TObjTombstone.h",
+      "include/pso/object/fence/TOVS2Wall01.h",
+      "include/pso/object/mine/TOLightMachine01.h",
+      "include/pso/object/warp/TObjAreaWarpEnding.h",
+      "include/pso/object/warp/TObjAreaWarpForest.h",
+      "include/pso/object/warp/TObjGoalWarpAncient.h",
+      "include/pso/object/warp/TObjWarpJung.h",
+      "include/pso/object/warp/TObjWarpJungMain.h",
+      "include/pso/system/scene/TSceneSora.h",
+      "include/pso/unk/TLobby.h",
+      "src/pso/boss/olgaflow/TBoss6CrushRock.cpp",
+      "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+      "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+      "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+      "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+      "src/pso/object/TObjComputer.cpp",
+      "src/pso/object/TObjTombstone.cpp",
+      "src/pso/object/fence/TOVS2Wall01.cpp",
+      "src/pso/object/mine/TOLightMachine01.cpp",
+      "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+      "src/pso/object/warp/TObjMapWarpAncient.cpp",
+      "src/pso/object/warp/TObjWarpJungMain.cpp",
+      "src/pso/quest/TQuestVmDownLoadServer_8006FC34.cpp",
+      "src/pso/system/scene/TSceneSora.cpp",
+      "src/pso/unk/TLobby_801F3A24.cpp",
+      "src/pso/unk/TLobby_80209524.cpp",
+      "src/pso/unk/TLobby_80291D94.cpp",
+      "src/pso/unk/text_800D8988.cpp"
+    ],
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "strict_sha256": "f85bca28563db9ce2b070fd8933b4ea8eb79f8314ff1d882898178ee5a35a43d",
+    "report_sha256": "54f6d57ec27ed350b65ff65258b4fe43dc8a3ac31ed88f7086d121d79ab43e4a",
+    "remaining_symbol_changes": "Address, declaration and implementation audit of the 160 labels after the first cleanup found two more removable spellings. Retained changes adjust source parameter or return types, owners, signatures or linkage.",
+    "published": true,
+    "confirmed_field_renames_only": [
+      {
+        "owner": "TObjWarpJungMain",
+        "upstream": "m_c4",
+        "pr": "beam_frame",
+        "type": "f32",
+        "offset": "0xC4"
+      },
+      {
+        "owner": "TObjComputer",
+        "upstream": "m_c4",
+        "pr": "uv_scroll_frame",
+        "type": "u32",
+        "offset": "0xC4",
+        "header": "include/pso/object/TObjComputer.h"
+      },
+      {
+        "owner": "TOLightMachine01",
+        "upstream": "m_94",
+        "pr": "model_radius",
+        "type": "f32",
+        "offset": "0x94",
+        "header": "include/pso/object/mine/TOLightMachine01.h"
+      },
+      {
+        "owner": "TOLightMachine01",
+        "upstream": "m_9c",
+        "pr": "bob_height",
+        "type": "f32",
+        "offset": "0x9C",
+        "header": "include/pso/object/mine/TOLightMachine01.h"
+      },
+      {
+        "owner": "TOLightMachine01",
+        "upstream": "m_a4",
+        "pr": "bob_angle_step",
+        "type": "u32",
+        "offset": "0xA4",
+        "header": "include/pso/object/mine/TOLightMachine01.h"
+      },
+      {
+        "owner": "TOLightMachine01",
+        "upstream": "m_a8",
+        "pr": "bob_angle",
+        "type": "u32",
+        "offset": "0xA8",
+        "header": "include/pso/object/mine/TOLightMachine01.h"
+      },
+      {
+        "owner": "TOLightMachine01",
+        "upstream": "m_ac",
+        "pr": "lamp_yaw",
+        "type": "u32",
+        "offset": "0xAC",
+        "header": "include/pso/object/mine/TOLightMachine01.h"
+      },
+      {
+        "owner": "TSceneSora",
+        "upstream": "m_a0",
+        "pr": "motion_frame",
+        "type": "f32",
+        "offset": "0xA0",
+        "header": "include/pso/system/scene/TSceneSora.h"
+      },
+      {
+        "owner": "TOVS2Wall01",
+        "upstream": "m_338",
+        "pr": "model_radius",
+        "type": "f32",
+        "offset": "0x338",
+        "header": "include/pso/object/fence/TOVS2Wall01.h"
+      },
+      {
+        "owner": "TOVS2Wall01",
+        "upstream": "m_340",
+        "pr": "fade",
+        "type": "RenderFadeState",
+        "offset": "0x340",
+        "header": "include/pso/object/fence/TOVS2Wall01.h"
+      },
+      {
+        "owner": "TBoss6CrushPtcl",
+        "upstream": "m_1C",
+        "pr": "age",
+        "type": "s32",
+        "offset": "0x1C",
+        "header": "include/pso/boss/olgaflow/TBoss6CrushPtcl.h"
+      },
+      {
+        "owner": "TObjTombstoneSpot",
+        "upstream": "unk_3",
+        "pr": "reserved_03",
+        "type": "u8",
+        "offset": "0x03",
+        "header": "include/pso/object/TObjTombstone.h"
+      },
+      {
+        "owner": "TObjTombstoneRecord",
+        "upstream": "unk_4",
+        "pr": "record_count",
+        "type": "s16",
+        "offset": "0x04",
+        "header": "include/pso/object/TObjTombstone.h"
+      },
+      {
+        "owner": "TObjAreaWarpForest",
+        "upstream": "m_c4",
+        "pr": "beam_frame",
+        "type": "f32",
+        "offset": "0xC4",
+        "header": "include/pso/object/warp/TObjAreaWarpForest.h"
+      },
+      {
+        "owner": "TObjAreaWarpEnding",
+        "upstream": "m_c4",
+        "pr": "beam_frame",
+        "type": "f32",
+        "offset": "0xC4",
+        "header": "include/pso/object/warp/TObjAreaWarpEnding.h"
+      }
+    ],
+    "earlier_candidate": "1920ce427e21a149ed52f2099c2f3d5bf66d4d29",
+    "upstream_strict_sha256": "3de2b644e9c20ffb9ca9471926c0389adce6100255267126a1a0cc6b817c3c9e",
+    "additional_followup": {
+      "previous": "6c325ae6ac55f314df2e937fe4672892a8abb481",
+      "head": "aa70392a3768f9ba7aedfd7b134c963c3267b607",
+      "paths": [
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/effect/GroundContactSound.h",
+        "include/pso/unk/TLobby.h",
+        "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+        "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+        "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+        "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+        "src/pso/unk/TLobby_801F3A24.cpp",
+        "src/pso/unk/TLobby_80209524.cpp",
+        "src/pso/unk/text_800D8988.cpp"
+      ],
+      "link_coverage_unchanged": true
+    },
+    "published_head": "aa70392a3768f9ba7aedfd7b134c963c3267b607"
+  },
+  "prior_accessor_review": {
+    "head": "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
+    "previous": "7dad678f24aa49d3d608e7ce5e6803df206305de",
+    "files": 487,
+    "cleanup_paths": [
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/boss/volopt/TBoss3Volopt.h",
+      "include/pso/enemy/dubchik/TObjEneDubchik.h",
+      "include/pso/map/FloorPopulation.h",
+      "include/pso/player/PlayerSlots.h",
+      "include/pso/player/TObjPlayer.h",
+      "include/pso/player/TObjPlayer_801AF2F0.h",
+      "include/pso/unk/TLobby.h",
+      "include/pso/unk/TLobby_80209524.h",
+      "include/pso/unk/TLobby_8020B334.h",
+      "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+      "src/pso/boss/darkfalz/TBoss4Type3_800524E8.cpp",
+      "src/pso/boss/darkfalz/TObjDFHorming.cpp",
+      "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+      "src/pso/boss/volopt/TBoss3Volopt.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+      "src/pso/effect/item/TItemEffArmor.cpp",
+      "src/pso/effect/item/TItemEffShield.cpp",
+      "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+      "src/pso/item/TItemTimerEvent.cpp",
+      "src/pso/map/TSetManager.cpp",
+      "src/pso/object/TObjRoomId.cpp",
+      "src/pso/object/city/CityDoors.cpp",
+      "src/pso/object/collision/TObjBgmColCtrl.cpp",
+      "src/pso/object/collision/TObjInfoCol.cpp",
+      "src/pso/object/ending/TObjOnlineEnding_802E4B80.cpp",
+      "src/pso/player/TObjPlayer_801AF2F0.cpp",
+      "src/pso/player/TObjPlayer_801BDF5C.cpp",
+      "src/pso/player/TObjPlayer_801C7430.cpp",
+      "src/pso/ui/city/THunterGuildSeqOffline_80211FEC.cpp",
+      "src/pso/ui/window/TWindowDD_8020C2DC.cpp",
+      "src/pso/unk/TLobby_80209524.cpp",
+      "src/pso/unk/TLobby_8020C608.cpp",
+      "src/pso/unk/TLobby_8020C8A4.cpp",
+      "src/pso/unk/TLobby_8020CB34.cpp",
+      "src/pso/unk/TLobby_8020CD44.cpp",
+      "src/pso/unk/TLobby_8020D0B0.cpp",
+      "src/pso/unk/text_8020BC50.cpp",
+      "src/pso/unk/text_8020C354.cpp",
+      "src/pso/unk/text_8020C73C.cpp",
+      "src/pso/unk/text_8020C9C8.cpp"
+    ],
+    "state": "OPEN",
+    "ready_for_review": true,
+    "url": "https://github.com/zeroz41/pso-decomp/pull/334",
+    "ci": {
+      "conclusion": "success",
+      "headSha": "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
+      "status": "completed",
+      "url": "https://github.com/zeroz41/pso-decomp/actions/runs/44780523263"
+    }
+  },
+  "published_naming_cleanup": {
+    "head": "aa70392a3768f9ba7aedfd7b134c963c3267b607",
+    "previous": "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "function_names_restored": 4,
+    "field_names_restored": 15,
+    "labels_differing_from_master": 158,
+    "affected_files": 32,
+    "linked_source_objects": 2448,
+    "commits": [
+      "1920ce427e21a149ed52f2099c2f3d5bf66d4d29",
+      "6c325ae6ac55f314df2e937fe4672892a8abb481",
+      "aa70392a3768f9ba7aedfd7b134c963c3267b607"
+    ],
+    "match_gate": "https://github.com/zeroz41/pso-decomp/actions/runs/44813613964"
+  }
+}

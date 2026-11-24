@@ -1,0 +1,553 @@
+{
+  "source": "3326f576bce104d3fb06f250158af762134a5184",
+  "previous_source": "400f9f254fe4b5e4641819ee5585e5188c35b113",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/boss/darkfalz/TBoss4Type1.h",
+    "include/pso/technique/TTecGiBarta.h",
+    "include/pso/technique/TTecRaFoie.h",
+    "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+    "src/pso/boss/darkfalz/TBoss4Zanzo.cpp",
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+    "src/pso/technique/TTecGiBarta.cpp",
+    "src/pso/technique/TTecGiZonde.cpp",
+    "src/pso/technique/TTecRaFoie.cpp",
+    "src/pso/technique/TTecZonde.cpp"
+  ],
+  "combined_paths_from_upstream": 1317,
+  "validation": {
+    "source": {
+      "baseline": "400f9f254fe4b5e4641819ee5585e5188c35b113",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x802389E0",
+          "before": "create__10TTecRaFoieFPvPvPv",
+          "after": "create__10TTecRaFoieFP7TObjectP3VecP3Vecl"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "c8eb1a0730cfabba297a2af999c53e79e031be57d2f05893287956c97b1cd20a",
+      "report_sha256": "e19a18dd662aa15b917cd8627c8c8333b7b015a0477f0b479f454ed9a9fbcd5a"
+    },
+    "layer": {
+      "baseline": "3326f576bce104d3fb06f250158af762134a5184",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "0d0505ff2d6750e611c1caeddd6c815b7e23c1307e306f42ee8cc59bb78deb14",
+      "report_sha256": "e19a18dd662aa15b917cd8627c8c8333b7b015a0477f0b479f454ed9a9fbcd5a"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "d31035e6292469e4d97fa878d0f916adb8eb5a57380c3e4aa9f5b7c9047afd27"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "b84a8df6f392669072eaf0256485d94da38bd8c025ce444fafeef015c3eaf99c"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "ad1227e7d6dde3aea88d51f241949b30f3d1fe42ec4c3abf078bd6309ee9bbdb"
+    }
+  },
+  "exact_providers_at_historical_addresses": {
+    "TTecGiFoie": [
+      {
+        "historical": "calc_params__10TTecGiFoieFv",
+        "current": "calc_params__10TTecGiFoieFv",
+        "address": "0x80230D9C",
+        "size": 260,
+        "provider": "psov3/pso/technique/TTecGiFoie"
+      },
+      {
+        "historical": "run_task__13TUnk_804CC800Fv",
+        "current": "run_task__13TUnk_804CC800Fv",
+        "address": "0x80230EA0",
+        "size": 900,
+        "provider": "psov3/pso/technique/TTecGiFoie"
+      },
+      {
+        "historical": "__dt__13TUnk_804CC800Fv",
+        "current": "__dt__13TUnk_804CC800Fv",
+        "address": "0x80231224",
+        "size": 192,
+        "provider": "psov3/pso/technique/TTecGiFoie"
+      },
+      {
+        "historical": "__ct__13TUnk_804CC800FP3VeclllP7TObjectUc",
+        "current": "__ct__13TUnk_804CC800FP3VeclllP7TObjectUc",
+        "address": "0x802312E4",
+        "size": 536,
+        "provider": "psov3/pso/technique/TTecGiFoie"
+      },
+      {
+        "historical": "create__10TTecGiFoieFPvPvPv",
+        "current": "create__10TTecGiFoieFPvPvl",
+        "address": "0x802314FC",
+        "size": 80,
+        "provider": "psov3/pso/technique/TTecGiFoie"
+      },
+      {
+        "historical": "vfunc_6__10TTecGiFoieFPv",
+        "current": "vfunc_6__10TTecGiFoieFPv",
+        "address": "0x8023154C",
+        "size": 236,
+        "provider": "psov3/pso/technique/TTecGiFoie"
+      },
+      {
+        "historical": "__dt__10TTecGiFoieFv",
+        "current": "__dt__10TTecGiFoieFv",
+        "address": "0x80231638",
+        "size": 144,
+        "provider": "psov3/pso/technique/TTecGiFoie"
+      },
+      {
+        "historical": "run_task__10TTecGiFoieFv",
+        "current": "run_task__10TTecGiFoieFv",
+        "address": "0x802316C8",
+        "size": 212,
+        "provider": "psov3/pso/technique/TTecGiFoie"
+      },
+      {
+        "historical": "TTecGiFoie__ct",
+        "current": "__ct__10TTecGiFoieFlP3Vecl",
+        "address": "0x8023179C",
+        "size": 848,
+        "provider": "psov3/pso/technique/TTecGiFoie"
+      },
+      {
+        "historical": "render__10TTecGiFoieFv",
+        "current": "render__10TTecGiFoieFv",
+        "address": "0x80231AEC",
+        "size": 4,
+        "provider": "psov3/pso/technique/TTecGiFoie"
+      }
+    ],
+    "TTecGiBarta": [
+      {
+        "historical": "update_technique_by_phase__11TTecGiBartaFv",
+        "current": "update_technique_by_phase__11TTecGiBartaFv",
+        "address": "0x80230378",
+        "size": 296,
+        "provider": "psov3/pso/technique/TTecGiBarta"
+      },
+      {
+        "historical": "create_particles__11TTecGiBartaFv",
+        "current": "create_particles__11TTecGiBartaFv",
+        "address": "0x802304A0",
+        "size": 1024,
+        "provider": "psov3/pso/technique/TTecGiBarta"
+      },
+      {
+        "historical": "calc_params__11TTecGiBartaFv",
+        "current": "calc_params__11TTecGiBartaFv",
+        "address": "0x802308A0",
+        "size": 268,
+        "provider": "psov3/pso/technique/TTecGiBarta"
+      },
+      {
+        "historical": "vfunc_8__11TTecGiBartaFPv",
+        "current": "vfunc_8__11TTecGiBartaFPv",
+        "address": "0x802309AC",
+        "size": 236,
+        "provider": "psov3/pso/technique/TTecGiBarta"
+      },
+      {
+        "historical": "create__11TTecGiBartaFPvP3VecP3Vecl",
+        "current": "create__11TTecGiBartaFPvP3VecP3Vecl",
+        "address": "0x80230A98",
+        "size": 88,
+        "provider": "psov3/pso/technique/TTecGiBarta"
+      },
+      {
+        "historical": "create_ex__11TTecGiBartaFPvP3Vecll",
+        "current": "create_ex__11TTecGiBartaFPvP3Vecll",
+        "address": "0x80230AF0",
+        "size": 88,
+        "provider": "psov3/pso/technique/TTecGiBarta"
+      },
+      {
+        "historical": "__dt__11TTecGiBartaFv",
+        "current": "__dt__11TTecGiBartaFv",
+        "address": "0x80230B48",
+        "size": 172,
+        "provider": "psov3/pso/technique/TTecGiBarta"
+      },
+      {
+        "historical": "run_task__11TTecGiBartaFv",
+        "current": "run_task__11TTecGiBartaFv",
+        "address": "0x80230BF4",
+        "size": 100,
+        "provider": "psov3/pso/technique/TTecGiBarta"
+      },
+      {
+        "historical": "TTecGiBarta__ct",
+        "current": "__ct__11TTecGiBartaFlPUcPUcl",
+        "address": "0x80230C58",
+        "size": 164,
+        "provider": "psov3/pso/technique/TTecGiBarta"
+      },
+      {
+        "historical": "construct_facing__11TTecGiBartaFPvP3Vecll",
+        "current": "__ct__11TTecGiBartaFlP3Vecll",
+        "address": "0x80230CFC",
+        "size": 156,
+        "provider": "psov3/pso/technique/TTecGiBarta"
+      },
+      {
+        "historical": "render__11TTecGiBartaFv",
+        "current": "render__11TTecGiBartaFv",
+        "address": "0x80230D98",
+        "size": 4,
+        "provider": "psov3/pso/technique/TTecGiBarta"
+      }
+    ],
+    "TTecZonde": [
+      {
+        "historical": "init_parameters__9TTecZondeFv",
+        "current": "init_parameters__9TTecZondeFv",
+        "address": "0x8023C558",
+        "size": 260,
+        "provider": "psov3/pso/technique/TTecZonde"
+      },
+      {
+        "historical": "create_tec_zonde__10TObjPlayerFPvPvPvPv",
+        "current": "create_tec_zonde__10TObjPlayerFPvPvPvl",
+        "address": "0x8023C65C",
+        "size": 88,
+        "provider": "psov3/pso/technique/TTecZonde"
+      },
+      {
+        "historical": "vfunc_8__9TTecZondeFPv",
+        "current": "vfunc_8__9TTecZondeFPv",
+        "address": "0x8023C6B4",
+        "size": 140,
+        "provider": "psov3/pso/technique/TTecZonde"
+      },
+      {
+        "historical": "__dt__9TTecZondeFv",
+        "current": "__dt__9TTecZondeFv",
+        "address": "0x8023C740",
+        "size": 88,
+        "provider": "psov3/pso/technique/TTecZonde"
+      },
+      {
+        "historical": "render__9TTecZondeFv",
+        "current": "render__9TTecZondeFv",
+        "address": "0x8023C798",
+        "size": 4,
+        "provider": "psov3/pso/technique/TTecZonde"
+      },
+      {
+        "historical": "run_task__9TTecZondeFv",
+        "current": "run_task__9TTecZondeFv",
+        "address": "0x8023C79C",
+        "size": 1452,
+        "provider": "psov3/pso/technique/TTecZonde"
+      },
+      {
+        "historical": "TTecZonde__ct",
+        "current": "__ct__9TTecZondeFlPUcPUcl",
+        "address": "0x8023CD48",
+        "size": 124,
+        "provider": "psov3/pso/technique/TTecZonde"
+      }
+    ],
+    "TTecGiZonde": [
+      {
+        "historical": "find_chain_targets__11TTecGiZondeFv",
+        "current": "find_chain_targets__11TTecGiZondeFv",
+        "address": "0x80231C58",
+        "size": 2192,
+        "provider": "psov3/pso/technique/TTecGiZonde"
+      },
+      {
+        "historical": "create__11TTecGiZondeFPvPvPv",
+        "current": "create__11TTecGiZondeFPvP3VecPvl",
+        "address": "0x802324E8",
+        "size": 88,
+        "provider": "psov3/pso/technique/TTecGiZonde"
+      },
+      {
+        "historical": "__dt__11TTecGiZondeFv",
+        "current": "__dt__11TTecGiZondeFv",
+        "address": "0x80232540",
+        "size": 88,
+        "provider": "psov3/pso/technique/TTecGiZonde"
+      },
+      {
+        "historical": "deliver_chain_hits__11TTecGiZondeFv",
+        "current": "deliver_chain_hits__11TTecGiZondeFv",
+        "address": "0x80232598",
+        "size": 140,
+        "provider": "psov3/pso/technique/TTecGiZonde"
+      },
+      {
+        "historical": "run_task__11TTecGiZondeFv",
+        "current": "run_task__11TTecGiZondeFv",
+        "address": "0x80232624",
+        "size": 132,
+        "provider": "psov3/pso/technique/TTecGiZonde"
+      },
+      {
+        "historical": "TTecGiZonde__ct",
+        "current": "__ct__11TTecGiZondeFlP3VecPvl",
+        "address": "0x802326A8",
+        "size": 392,
+        "provider": "psov3/pso/technique/TTecGiZonde"
+      }
+    ],
+    "TTecRaFoie": [
+      {
+        "historical": "spawn_rafoie_explosion_bursts__13TUnk_804CCB28Fv",
+        "current": "spawn_rafoie_explosion_bursts__13TUnk_804CCB28Fv",
+        "address": "0x80237DAC",
+        "size": 228,
+        "provider": "psov3/pso/technique/TTecRaFoie"
+      },
+      {
+        "historical": "vfunc_9__10TTecRaFoieFv",
+        "current": "vfunc_9__10TTecRaFoieFv",
+        "address": "0x80237E90",
+        "size": 296,
+        "provider": "psov3/pso/technique/TTecRaFoie"
+      },
+      {
+        "historical": "vfunc_8__10TTecRaFoieFPv",
+        "current": "vfunc_8__10TTecRaFoieFPv",
+        "address": "0x80237FB8",
+        "size": 316,
+        "provider": "psov3/pso/technique/TTecRaFoie"
+      },
+      {
+        "historical": "calc_area_parameters__10TTecRaFoieFv",
+        "current": "calc_area_parameters__10TTecRaFoieFv",
+        "address": "0x802380F4",
+        "size": 260,
+        "provider": "psov3/pso/technique/TTecRaFoie"
+      },
+      {
+        "historical": "render__13TUnk_804CCB28Fv",
+        "current": "render__13TUnk_804CCB28Fv",
+        "address": "0x802381F8",
+        "size": 400,
+        "provider": "psov3/pso/technique/TTecRaFoie"
+      },
+      {
+        "historical": "run_task__13TUnk_804CCB28Fv",
+        "current": "run_task__13TUnk_804CCB28Fv",
+        "address": "0x80238388",
+        "size": 256,
+        "provider": "psov3/pso/technique/TTecRaFoie"
+      },
+      {
+        "historical": "__dt__13TUnk_804CCB28Fv",
+        "current": "__dt__13TUnk_804CCB28Fv",
+        "address": "0x80238488",
+        "size": 88,
+        "provider": "psov3/pso/technique/TTecRaFoie"
+      },
+      {
+        "historical": "create_rafoie_explosion__FPUcPlsslf",
+        "current": "create_rafoie_explosion__FPUcPlsslf",
+        "address": "0x802384E0",
+        "size": 268,
+        "provider": "psov3/pso/technique/TTecRaFoie"
+      },
+      {
+        "historical": "create_fire_explosion_effect",
+        "current": "create_fire_explosion_effect",
+        "address": "0x802385EC",
+        "size": 268,
+        "provider": "psov3/pso/technique/TTecRaFoie"
+      },
+      {
+        "historical": "vfunc_6__10TTecRaFoieFPv",
+        "current": "vfunc_6__10TTecRaFoieFPv",
+        "address": "0x802386F8",
+        "size": 100,
+        "provider": "psov3/pso/technique/TTecRaFoie"
+      },
+      {
+        "historical": "render__10TTecRaFoieFv",
+        "current": "render__10TTecRaFoieFv",
+        "address": "0x8023875C",
+        "size": 4,
+        "provider": "psov3/pso/technique/TTecRaFoie"
+      },
+      {
+        "historical": "run_task__10TTecRaFoieFv",
+        "current": "run_task__10TTecRaFoieFv",
+        "address": "0x80238760",
+        "size": 200,
+        "provider": "psov3/pso/technique/TTecRaFoie"
+      },
+      {
+        "historical": "update_detonation__10TTecRaFoieFPv",
+        "current": "update_detonation__10TTecRaFoieFPv",
+        "address": "0x80238828",
+        "size": 440,
+        "provider": "psov3/pso/technique/TTecRaFoie"
+      },
+      {
+        "historical": "create__10TTecRaFoieFP7TObjectPvPvPv",
+        "current": "create__10TTecRaFoieFP7TObjectP3VecP3Vecl",
+        "address": "0x802389E0",
+        "size": 88,
+        "provider": "psov3/pso/technique/TTecRaFoie"
+      },
+      {
+        "historical": "create_ex__10TTecRaFoieFPvPvPv",
+        "current": "create_ex__10TTecRaFoieFPvPvPvl",
+        "address": "0x80238A38",
+        "size": 88,
+        "provider": "psov3/pso/technique/TTecRaFoie"
+      },
+      {
+        "historical": "__dt__10TTecRaFoieFv",
+        "current": "__dt__10TTecRaFoieFv",
+        "address": "0x80238A90",
+        "size": 88,
+        "provider": "psov3/pso/technique/TTecRaFoie"
+      },
+      {
+        "historical": "TTecRaFoie__ct",
+        "current": "__ct__10TTecRaFoieFlP3VecP3Vecl",
+        "address": "0x80238AE8",
+        "size": 188,
+        "provider": "psov3/pso/technique/TTecRaFoie"
+      },
+      {
+        "historical": "construct_targeted__10TTecRaFoieFPvPvPvPvi",
+        "current": "__ct__10TTecRaFoieFlP3VecP16TargetCursorListl",
+        "address": "0x80238BA4",
+        "size": 200,
+        "provider": "psov3/pso/technique/TTecRaFoie"
+      }
+    ]
+  },
+  "runtime": {
+    "technique-probe.log": {
+      "result": "22 technique cases passed.",
+      "images": [
+        "retail",
+        "source",
+        "materialized fork"
+      ],
+      "log_sha256": "1a1b123a63a82284f2b1199825ed87449e1fcd6eeab8a31ce2e43d82fd6a16a6",
+      "probe_sha256": "6a54393ecb5b77a690b3cdb789deab283aea26fb6ef211131b13252756f250ce",
+      "cases_per_image": 22
+    },
+    "technique-resources-probe.log": {
+      "result": "resource records, lightning and Gi-Barta construction, and band sound passed.",
+      "images": [
+        "retail",
+        "source",
+        "materialized fork"
+      ],
+      "log_sha256": "0d48133e26237044b6ce842510aab2a9db3e0b1c641b37d0baafea85bc63b65f",
+      "probe_sha256": "7f3ad58ea1703a7811b390a4b0105effc57e1d04ce4396f79d285ce9c16a2425"
+    }
+  },
+  "rafoie_caller_branches": {
+    "src/pso/boss/darkfalz/TBoss4Type1.cpp": "0x80052AA0",
+    "src/pso/boss/darkfalz/TBoss4Zanzo.cpp": "0x80056150",
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp": "0x800F13C4"
+  },
+  "historical": {
+    "closed": [
+      {
+        "row": 4236,
+        "fork_path": "include/pso/misc/TTecRaFoie.h",
+        "current_owner": "src/pso/technique/TTecRaFoie.cpp",
+        "detail": "The native factory takes the caster explicitly, with two position vectors and a signed level. The three enemy and boss callers use the static factory and keep the same 0x802389E0 provider."
+      },
+      {
+        "row": 4244,
+        "fork_path": "src/pso/misc/TTecGiFoie.cpp",
+        "current_owner": "src/pso/technique/TTecGiFoie.cpp",
+        "detail": "The native orbit task retains the typed emitter, positions, level and band, yaw, and both orbit paths. The profile, bob and direction tables and orbit vtable retain their addresses and sizes. The named memory routines resolve to the original allocation and release entry points. The original sound and particle calls remain exact."
+      },
+      {
+        "row": 4286,
+        "fork_path": "src/pso/misc/TTecGiBarta.cpp",
+        "current_owner": "src/pso/technique/TTecGiBarta.cpp",
+        "detail": "The native projectile supplies positions, rotation and the source ID through its own fields. It retains the original memory allocation and release targets, BML model and motion calls, band sound and both native factories. The emitter vector copies use the original word-copy instructions."
+      },
+      {
+        "row": 4302,
+        "fork_path": "src/pso/misc/TTecGiZonde.cpp",
+        "current_owner": "src/pso/technique/TTecGiZonde.cpp",
+        "detail": "The native target list carries the original IDs and signed part indices. Both construction paths use the typed bolt inputs, and the original position and band-dependent pitch calls remain exact."
+      },
+      {
+        "row": 4327,
+        "fork_path": "src/pso/misc/TTecZonde.cpp",
+        "current_owner": "src/pso/technique/TTecZonde.cpp",
+        "detail": "The bolt segment uses vectors and the registered target supplies its native position. The shared constructor takes these vectors directly, and the original positional sound and pitch calls remain exact."
+      },
+      {
+        "row": 4382,
+        "fork_path": "src/pso/misc/TTecRaFoie.cpp",
+        "current_owner": "src/pso/technique/TTecRaFoie.cpp",
+        "detail": "Native BML model selection, particle positions, indirect TEV setup and typed child creation remain at the source owner. The area sound remains positional and the factory passes an explicit caster and signed level."
+      }
+    ],
+    "scoped": {
+      "597": "The active Stelth destination and attack origin are passed through the static Rafoie factory at the original branch.",
+      "913": "The original Rafoie branch passes the checked boss technique position at +0x3B8 and the shared signed cast level.",
+      "958": "The active Stelth destination and attack origin are passed through the static Rafoie factory at the original branch.",
+      "1139": "The second Dark Falz form uses the native caster and the shared parameter record for the original Rafoie branch."
+    },
+    "open_rows": 288,
+    "comparison_sha256": "622196a09510139fba1af9ce4564667aa5d5d63ceea8c78287e3805708d62f1d"
+  },
+  "fork_workspace": {
+    "trial": "5681030a6afae167549ff0701a9f818afd79c7d8",
+    "overlay_paths": 130,
+    "archive_sha256": "88c8b53ebd8ed910f4beaa42ead994c40c2660de9dc814c9a2fa14667913d6d5",
+    "materialized_tree": "5ad39c768b88fd056658081afadf9f0e3d9cb706",
+    "force_active": 27029
+  }
+}

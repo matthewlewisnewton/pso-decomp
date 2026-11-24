@@ -1,0 +1,198 @@
+{
+  "upstream_master": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+  "source": "be98273edd37edde4da256aec3f8f5c5e64da5f6",
+  "previous_source": "1adaab68b2f8792819fd055e73692d16df24e030",
+  "review": "7212821b7af16348b4894caf53809d3c80e8bab7",
+  "previous_review": "f008850f3e78aafbb0bcde93f31dd9da33acf643",
+  "previous_ordered_combat": "d2211f39ea3bd480fb094d7c5d20821167a275fd",
+  "consolidated_checkpoints": [
+    {
+      "head": "2e33ab4cdde76248b1f7df05b7c4f436b362e8a3",
+      "previous": "8890b7fd8b4fbcf9ef7d6d35e4f88f7397ae9bf6",
+      "tree": "fe39682610e91a6a5869bb6c9d9b567aece07cb5",
+      "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202"
+    },
+    {
+      "head": "1cc9300b6775dabe89b368ed969daa9ba29da98d",
+      "previous": "c42e3238ac5f92b26a9ca4f61bccf057d3815c32",
+      "tree": "f46ca862dc64ee3d1a1b03ff8abba3d80a393ae8",
+      "base": "2e33ab4cdde76248b1f7df05b7c4f436b362e8a3"
+    },
+    {
+      "head": "a2b4e66a560d53d69d13ad12ff63d3aa713666eb",
+      "previous": "c0206129d91a889510d1110a7f5d8e49d1a1ec76",
+      "tree": "cda887a5d1594fc4b1cd88e7d0fac24e44512077",
+      "base": "1cc9300b6775dabe89b368ed969daa9ba29da98d"
+    },
+    {
+      "head": "351a101687ff50b5832af3aad322bf0a4e151418",
+      "previous": "018464722d369c4481854eb77fa67f81c3e869be",
+      "tree": "d49cf53e9c97ca59d1f44be73291cedf68c5398c",
+      "base": "a2b4e66a560d53d69d13ad12ff63d3aa713666eb"
+    },
+    {
+      "head": "5bf970f9ccfdfc2624052ef200039a06b6a8543e",
+      "previous": "10c466c8e9407af9b1109bec3f36273b69a880f6",
+      "tree": "72d4f38d9a80fb43b3956ce73993e40c9601f25c",
+      "base": "351a101687ff50b5832af3aad322bf0a4e151418"
+    },
+    {
+      "head": "2cd01e82147e0ad3ac02d70cabdb57538a02c6d4",
+      "previous": "bc801af727e83a81b62ca552b25456671c8723f7",
+      "tree": "3b69faa170d4f4a38fe53e839557768ed7f8564f",
+      "base": "5bf970f9ccfdfc2624052ef200039a06b6a8543e"
+    },
+    {
+      "head": "176bfd42251f7438d8f77a813b74e676430cdfe6",
+      "previous": "54f12790491275d41d4c96d1760e323fa2884066",
+      "tree": "00cf9b80b0e7a0cc7837b55717bf314ab98ad79f",
+      "base": "2cd01e82147e0ad3ac02d70cabdb57538a02c6d4"
+    },
+    {
+      "head": "ce6336208b3c35a7acef029893bec424a17d3498",
+      "previous": "b382f026478786b570589c5382b5b6b69a139713",
+      "tree": "f24560ce3c35902ce35af35ea229e7e1c817f3a4",
+      "base": "176bfd42251f7438d8f77a813b74e676430cdfe6"
+    },
+    {
+      "head": "be4ac3f8f422c217d576331fa45a7bd7bd364b08",
+      "previous": "6c0ca96dfadbc76d9938ada24bb2ec8a2029886c",
+      "tree": "40b91d2c9ea210f0d8aa5a0a4d587db8cccb1a25",
+      "base": "ce6336208b3c35a7acef029893bec424a17d3498"
+    },
+    {
+      "head": "7212821b7af16348b4894caf53809d3c80e8bab7",
+      "previous": "f008850f3e78aafbb0bcde93f31dd9da33acf643",
+      "tree": "c48f6fc947058998755a81746d2691b5efbe3c1d",
+      "base": "be4ac3f8f422c217d576331fa45a7bd7bd364b08"
+    }
+  ],
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "changed_paths": [
+    "include/pso/enemy/slime/TObjEneSlimeOne.h",
+    "include/pso/ui/chat/TWindowSubShortMail.h",
+    "include/pso/ui/frontend/TAdLoadQuestPrtTxtGC.h",
+    "include/pso/ui/frontend/TAdPlyChrSelPlateGC.h",
+    "include/pso/weapon/TUnk_804A5D28.h",
+    "include/pso/weapon/TUnk_804E24F0.h",
+    "include/pso/weapon/TUnk_804F28E0.h",
+    "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+    "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp",
+    "src/pso/ui/frontend/TAdLoadQuestPrtTxtGC.cpp",
+    "src/pso/ui/frontend/TAdPlyChrSelPlateGC.cpp",
+    "src/pso/ui/frontend/TAdSelectCurGC.cpp",
+    "src/pso/weapon/TUnk_804A5D28.cpp",
+    "src/pso/weapon/TUnk_804E24F0.cpp",
+    "src/pso/weapon/TUnk_804F28E0.cpp"
+  ],
+  "restored_upstream_fields": [
+    [
+      "TObjEneSlimeOne",
+      "motion_phase",
+      "m_39c"
+    ],
+    [
+      "TWindowSubShortMail",
+      "state",
+      "m_1c"
+    ],
+    [
+      "TAdLoadQuestPrtTxtGC",
+      "timer",
+      "m_224"
+    ],
+    [
+      "TAdPlyChrSelPlateGC",
+      "plate_progress",
+      "pad_2A8"
+    ],
+    [
+      "TUnk_804A5D28",
+      "barrel_offset",
+      "pad_1f8"
+    ],
+    [
+      "TUnk_804E24F0",
+      "muzzle_offset",
+      "pad_1f8"
+    ],
+    [
+      "TUnk_804F28E0",
+      "muzzle_offset",
+      "pad_1fc"
+    ]
+  ],
+  "whitespace_only_path_restored": "src/pso/ui/frontend/TAdSelectCurGC.cpp",
+  "identifier_only_screen_paths_before": 1709,
+  "identifier_only_screen_candidates_before": 27,
+  "identifier_only_screen_paths_after": 1707,
+  "identifier_only_screen_candidates_after": 25,
+  "validation": {
+    "trial": {
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+      "source_report_sha256": "9a934dc2180a9c1baf3fa3d4183e2e1c6d0ce421eddaedbff49d2d0af36aaa14",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      }
+    },
+    "combat": {
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+      "source_report_sha256": "9a934dc2180a9c1baf3fa3d4183e2e1c6d0ce421eddaedbff49d2d0af36aaa14",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      }
+    },
+    "full": {
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+      "source_report_sha256": "9a934dc2180a9c1baf3fa3d4183e2e1c6d0ce421eddaedbff49d2d0af36aaa14",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      }
+    },
+    "linear-full": {
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+      "source_report_sha256": "9a934dc2180a9c1baf3fa3d4183e2e1c6d0ce421eddaedbff49d2d0af36aaa14",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      }
+    },
+    "layer": {
+      "check_sha256": "b4d93864c6c48b13733e46b7a31e201ac7304fc2d7522904a7365cf68fa6b312",
+      "source_report_sha256": "9a934dc2180a9c1baf3fa3d4183e2e1c6d0ce421eddaedbff49d2d0af36aaa14",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      }
+    }
+  },
+  "overlay_sha256": "57d266d4705a42e218928300c3427646a3f555a3792b17958fcbb4fbe0adf7e1",
+  "fork_overlay_paths": 130,
+  "retained_symbols": 27031,
+  "workspace_checks": {
+    "tool": 294,
+    "fork": 11,
+    "host": [
+      "./vector_math_fallbacks",
+      "./item_factory_callbacks",
+      "./loader_transfer",
+      "./ginja_parameter_callbacks",
+      "./exi_ethernet_fallbacks"
+    ]
+  },
+  "historical_rows_open": 597,
+  "public_refs_changed": false
+}

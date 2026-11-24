@@ -11,12 +11,13 @@ struct GslArchiveEntry {
     s32 decoded_size;
     u8 field_2C[4];
 };
-typedef char GslArchiveEntryExtent[sizeof(GslArchiveEntry) == 0x30 ? 1 : -1];
-typedef char GslArchiveOffsetOffset[offsetof(GslArchiveEntry, archive_offset) == 0x20 ? 1 : -1];
-typedef char GslArchiveFileSizeOffset[offsetof(GslArchiveEntry, file_size) == 0x24 ? 1 : -1];
-typedef char GslArchiveDecodedSizeOffset[offsetof(GslArchiveEntry, decoded_size) == 0x28 ? 1 : -1];
+LAYOUT_ASSERT(GslArchiveEntryExtent, sizeof(GslArchiveEntry) == 0x30);
+LAYOUT_ASSERT(GslArchiveOffsetOffset, offsetof(GslArchiveEntry, archive_offset) == 0x20);
+LAYOUT_ASSERT(GslArchiveFileSizeOffset, offsetof(GslArchiveEntry, file_size) == 0x24);
+LAYOUT_ASSERT(GslArchiveDecodedSizeOffset, offsetof(GslArchiveEntry, decoded_size) == 0x28);
 
-GslArchiveEntry *find_gsl_entry(const void *name, s32 mode);
+// The second argument is unused (callers pass 0 and 1).
+GslArchiveEntry *find_gsl_entry(const char *name, s32 unused);
 extern "C" {
 void open_gsl_archive(char *name);
 void close_gsl_archive(void);

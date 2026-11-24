@@ -1,0 +1,238 @@
+{
+  "source_head": "291e11d3419b7d0fc61b2308f1c4ed59e77ed4c6",
+  "source_tree": "93079c5494228196bc4a384cd53f31a323825784",
+  "previous_cumulative": "a42a267764f5f01577c9df6c1bf57c819e1ad633",
+  "historical_replay": "d22a8245484d73025edf246f499204c964387764",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2368,
+  "matching_unit_counts": {
+    "TWindowMainMenu.cpp": {
+      "matched_functions": 36,
+      "matched_code": 4064,
+      "matched_data": 320
+    },
+    "TWindowMainMenu_802AD538.cpp": {
+      "matched_functions": 34,
+      "matched_code": 4600,
+      "matched_data": 408
+    },
+    "TWindowMainMenu_802AE928.cpp": {
+      "matched_functions": 1,
+      "matched_code": 80,
+      "matched_data": 0
+    },
+    "TWindowMenuMainMenu.cpp": {
+      "matched_functions": 4,
+      "matched_code": 504,
+      "matched_data": 44
+    }
+  },
+  "coverage_report_sha256": "ef927eaa4fd0b5deba86144b0e64ab13233a5015096b6f147bf132b4a1ace89c",
+  "probe_sha256": "7dd8ee880caa9fc505fa46022972fa397610d59e3c25ece623ca7a0d296be86e",
+  "factory_cases": 6,
+  "typed_row_cases": 8,
+  "matching_constraint": "Use the retail row population field access and register ordering. Substituting all named fields changed the 232-byte function at 0x802646E4.",
+  "source_quality": {
+    "base": "a42a267764f5f01577c9df6c1bf57c819e1ad633",
+    "totals": {
+      "base": 143260,
+      "head": 142965,
+      "added": 62,
+      "removed": 357
+    },
+    "label_changes": 27,
+    "label_advisories": [
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802AD74C",
+        "type": "function",
+        "old": "TWindowMainMenu__sub_802AD74C",
+        "new": "sub_802AD74C__14TMainMenuEntryFv",
+        "flags": [
+          "named after its address"
+        ],
+        "reason": "The 0x18-byte row receives the flag update at row offset 0x13. Preserve the address-based spelling while moving the method to the row class."
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802ADADC",
+        "type": "function",
+        "old": "TWindowMainMenu__sub_802ADADC",
+        "new": "sub_802ADADC__19TWindowMenuMainMenuFi",
+        "flags": [
+          "named after its address"
+        ],
+        "reason": "The actual menu child receives the selected slot and marks the pointed-to row. Preserve the address-based spelling while recovering its owner and slot argument."
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802ADB00",
+        "type": "function",
+        "old": "TWindowMainMenu__sub_802ADB00",
+        "new": "sub_802ADB00__19TWindowMenuMainMenuFv",
+        "flags": [
+          "named after its address"
+        ],
+        "reason": "The actual menu child returns its signed selected row index. Preserve the address-based spelling while recovering the native receiver."
+      }
+    ],
+    "new_stale_retention": 0,
+    "report_sha256": "a3d7f38e6812bb90f9b5b09e1be861b6f29fbcdf6fbbe9520f08b776e84be34b"
+  },
+  "fork_validation": {
+    "materialized_head": "432bed91174bbc4b5134775c1f89d22e001eea00",
+    "coverage_report_sha256": "38e3797375eca6482f781bc203c995ea4e2776dab0ef4979530e7ab27e00dc13",
+    "retention": {
+      "replaced": 13,
+      "total": 27007,
+      "stale": 0
+    },
+    "checks": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    },
+    "overlay_sha256": "973389b1f43298fe5ef301c1c969959c6a871ec8a28a66ae40c8b2538b8bcb35"
+  },
+  "historical_index": {
+    "before": "70ba71d7a73eb6b8180c68322de2a5844c43ed432642bef9224e27bfc8f634ff",
+    "after": "6a7ccb90e6eb75188ad7a87afb210042fa5c5c14eb27c151b729052e78bf48e7",
+    "remaining": 174,
+    "by_subsystem": {
+      "Audio and disc streaming": 2,
+      "Build, verification and automation": 1,
+      "Chat and text entry": 9,
+      "Enemy and boss behavior": 55,
+      "Front-end scenes and UI": 21,
+      "Network and protocol": 9,
+      "Player combat, techniques and items": 26,
+      "Rendering, camera and effects": 7,
+      "Shared ABI declarations by owning caller": 1,
+      "Window layout, menus and results": 20,
+      "World objects, NPCs and quests": 23
+    },
+    "closed": {
+      "path": "src/pso/misc/TWindowMainMenu.cpp",
+      "reason": "The shared main menu keeps its native child pointer for show and reposition, Trade dismissal, park and refresh, pop and close, selection queries and row insertion. The close request is inherited from the native window base. Population and entry opening pass the typed menu and row interfaces while keeping the original selection and fallback branches. All original function extents are still exact and linked.",
+      "functions": [
+        {
+          "address": "0x802644d4",
+          "size": 64,
+          "old": "show_child_window__17TWindowMainMenu4PFv",
+          "live": "show_child_window__15TWindowMainMenuFv"
+        },
+        {
+          "address": "0x80264514",
+          "size": 44,
+          "old": "update_trade_submenu__15TWindowMainMenuFv",
+          "live": "update_trade_submenu__15TWindowMainMenuFv"
+        },
+        {
+          "address": "0x80264540",
+          "size": 84,
+          "old": "update_submenu__15TWindowMainMenuFv",
+          "live": "update_submenu__15TWindowMainMenuFv"
+        },
+        {
+          "address": "0x80264594",
+          "size": 80,
+          "old": "close_submenu__15TWindowMainMenuFPv",
+          "live": "close_submenu__15TWindowMainMenuFPv"
+        },
+        {
+          "address": "0x802645e4",
+          "size": 80,
+          "old": "refresh_submenu__15TWindowMainMenuFPv",
+          "live": "refresh_submenu__15TWindowMainMenuFPv"
+        },
+        {
+          "address": "0x80264634",
+          "size": 64,
+          "old": "close__15TWindowMainMenuFv",
+          "live": "close__15TWindowMainMenuFv"
+        },
+        {
+          "address": "0x80264674",
+          "size": 112,
+          "old": "open_menu_with_entry__15TWindowMainMenuFs",
+          "live": "open_menu_with_entry__15TWindowMainMenuFs"
+        },
+        {
+          "address": "0x802646e4",
+          "size": 232,
+          "old": "populate_menu__15TWindowMainMenuFPvPv",
+          "live": "populate_menu__15TWindowMainMenuFPvPv"
+        },
+        {
+          "address": "0x802647cc",
+          "size": 344,
+          "old": "handle_menu_selection__15TWindowMainMenuFv",
+          "live": "handle_menu_selection__15TWindowMainMenuFv"
+        },
+        {
+          "address": "0x80264924",
+          "size": 4,
+          "old": "render__15TWindowMainMenuFv",
+          "live": "render__15TWindowMainMenuFv"
+        },
+        {
+          "address": "0x80264928",
+          "size": 4,
+          "old": "run_task__15TWindowMainMenuFv",
+          "live": "run_task__15TWindowMainMenuFv"
+        },
+        {
+          "address": "0x8026492c",
+          "size": 148,
+          "old": "__dt__15TWindowMainMenuFv",
+          "live": "__dt__15TWindowMainMenuFv"
+        },
+        {
+          "address": "0x802649c0",
+          "size": 164,
+          "old": "TWindowMainMenu__ct",
+          "live": "__ct__15TWindowMainMenuFP7TObjectl"
+        },
+        {
+          "address": "0x80264a64",
+          "size": 4,
+          "old": "vfunc_7__15TWindowMainMenuFv",
+          "live": "on_menu_opened__15TWindowMainMenuFv"
+        },
+        {
+          "address": "0x80264a68",
+          "size": 4,
+          "old": "vfunc_9__15TWindowMainMenuFv",
+          "live": "on_submenu_closed__15TWindowMainMenuFv"
+        },
+        {
+          "address": "0x80264a6c",
+          "size": 36,
+          "old": "test_keyboard_card_flag4__FPv",
+          "live": "test_keyboard_card_flag4__FPv"
+        }
+      ]
+    },
+    "partially_reconciled": {
+      "path": "src/pso/misc/TWindowMainMenu_802AD538.cpp",
+      "reason": "Recovered the 0x18-byte native row and its marked state, the eight embedded rows and pointer slots in the 0x144-byte child, and the shared build, lookup, draw and input methods. The current controller context and shared copy_vec2 provider remain in use. The rest of the historical split file still needs source comparison."
+    }
+  },
+  "historical_fork_data": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "comparison_to_previous_full": {
+    "regressions": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0,
+    "data_coverage_lost": 0,
+    "padding_coverage_lost": 1
+  }
+}

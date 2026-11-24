@@ -1,0 +1,2357 @@
+{
+  "source": "1d38f7e39621ecbdd6ec0c5a00fa8c07b4bd2506",
+  "landing": "343d27547f0859d59f4949ee68fcf086d138d8d0",
+  "working_fork_build": "0eb136f2c5cbefe563057ff63d64d5e290e9eedf",
+  "previous_source": "01d56a4e4d9c7799567f93a0f4be382da36189c7",
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "source_files": 123,
+  "batches": {
+    "player": {
+      "head": "a5e69c1d714b8b8ac56f60b54b0d1c0d46f88c3f",
+      "files": 25,
+      "report_sha256": "0d2ea7305844ba1e87c0c5bdbdf1c482e2e071113638c0d97283d055a254d790"
+    },
+    "boss": {
+      "head": "dc7531086ddee84508b66ad390df6face0b4d621",
+      "files": 15,
+      "report_sha256": "0033580553088b0cf4e6ab24ee28525f06c69fcc423155a2457efc7f8513dfae"
+    },
+    "gates": {
+      "head": "52e227cf3b1aa5b6d0b3d674141119c11f160401",
+      "files": 51,
+      "report_sha256": "2f698fdf9476d179fe9983e7ee02899ef8838205dd3df71e43ab5eb08721f134"
+    },
+    "windows": {
+      "head": "c4a213ff29846f9e633f8489503cadf2543b5d08",
+      "files": 36,
+      "report_sha256": "ec20c10ce0de09c40b8acc29168075335e716dd52d8764a9985e46a7f1d4b785"
+    }
+  },
+  "source_coverage": {
+    "fuzzy_match_percent": 99.99999,
+    "total_code": "4353092",
+    "matched_code": "4353092",
+    "matched_code_percent": 100.0,
+    "total_data": "1758510",
+    "matched_data": "1758510",
+    "matched_data_percent": 100.0,
+    "total_functions": 27572,
+    "matched_functions": 27572,
+    "matched_functions_percent": 100.0,
+    "complete_code": "4353092",
+    "complete_code_percent": 100.0,
+    "complete_data": "1758510",
+    "complete_data_percent": 100.0,
+    "total_units": 2449,
+    "complete_units": 2449
+  },
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "fork_only_paths": 133,
+  "layer_tests": 11,
+  "local_tool_tests": 294,
+  "source_audit": {
+    "source": "1d38f7e39621ecbdd6ec0c5a00fa8c07b4bd2506",
+    "previous": "01d56a4e4d9c7799567f93a0f4be382da36189c7",
+    "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "entries": [
+      {
+        "row": 3813,
+        "historical_path": "src/pso/player/TObjPlayer_801BCE1C.cpp",
+        "historical_blob": "cf1f2699d4ec7d5c09a3b8a0295dbf746b23e499",
+        "owners": {
+          "src/pso/player/TObjPlayer_801BCDC4.cpp": "9d9542eddb15396cf8d17b35f75cd8cbfef68ad3",
+          "include/pso/player/TObjPlayer.h": "cfb63d7f3dfb0b90d80c74f04e9205c484421608"
+        },
+        "proofs": [
+          {
+            "group": "player",
+            "evidence": "The full original init_from_source uses its real actor for inventory construction, retains the action provider and complete equipment record at +0x140 with its signed count at +0x13C, and selects the same 0x600-byte actor buffer slice.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 3814,
+        "historical_path": "src/pso/player/TObjPlayer_801BCE90.cpp",
+        "historical_blob": "7332bc049f3bd1dedeaf9f05ed6c6179dddeb3ed",
+        "owners": {
+          "src/pso/player/TObjPlayer_801BCDC4.cpp": "9d9542eddb15396cf8d17b35f75cd8cbfef68ad3",
+          "include/pso/player/TObjPlayer.h": "cfb63d7f3dfb0b90d80c74f04e9205c484421608"
+        },
+        "proofs": [
+          {
+            "group": "player",
+            "evidence": "Both original functions survive. The current player performs the same Recobox condition and the same two equipment updates. The inventory child is queued only when present.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 3818,
+        "historical_path": "src/pso/player/TObjPlayer_801BE1C0.cpp",
+        "historical_blob": "bbce91fd32608d78a24a0395782cd80310dda60b",
+        "owners": {
+          "src/pso/player/TObjPlayer_801BDF5C.cpp": "bd347358394be744c40c21d7ea242f7e500bfe4c",
+          "include/pso/player/TObjPlayer.h": "cfb63d7f3dfb0b90d80c74f04e9205c484421608",
+          "src/pso/player/PlayerTaskEffects.cpp": "350be33209061b817d00d5684d29caf15c47eb73"
+        },
+        "proofs": [
+          {
+            "group": "player",
+            "evidence": "The original s32 camera-mode contract and original narrowing are preserved throughout the current callers. The separate Photon Blast and record methods remain scoped.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2714,
+        "historical_path": "src/pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+        "historical_blob": "3e1cc1bf15dd3d958256b0b27f720b9889c5c9f6",
+        "owners": {
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp": "6f0fffe09210c315ccd1b88668145088c8f8b1c7",
+          "include/pso/player/TPlyInventory.h": "742c61f52e16e7ecbcfcdce45370f72904a07867"
+        },
+        "proofs": [
+          {
+            "group": "player",
+            "evidence": "All three relevant saved-inventory lookups use the real character record pointer and the out-of-line inventory accessor. The broader character-selection row remains scoped.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 3963,
+        "historical_path": "src/pso/unk/text_801D40D4.cpp",
+        "historical_blob": "07828d656128d027de5426d67559199dbb5d9006",
+        "owners": {
+          "src/pso/player/TPlyItem.cpp": "6685a3911a46e7b3e53467160dd3e8fd5a1f79de",
+          "include/pso/player/TPlyInventory.h": "742c61f52e16e7ecbcfcdce45370f72904a07867"
+        },
+        "proofs": [
+          {
+            "group": "player",
+            "evidence": "The scan and remove operation pass the actual selected character record and keep their count, bounds and movement of item entries. Other inventory routines in the donor remain scoped.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4121,
+        "historical_path": "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "historical_blob": "673f422b9e97567877c0834304638f6ba8d023de",
+        "owners": {
+          "src/pso/player/TObjPlayer_801AF2F0.cpp": "007e97aa81d82e5493ab6db24d532507874e31c2",
+          "include/pso/player/TObjPlayer.h": "cfb63d7f3dfb0b90d80c74f04e9205c484421608",
+          "src/pso/unk/text_801A3014.cpp": "ad26fac26d8bdc8cdd2b15d32f80498f085c4b45"
+        },
+        "proofs": [
+          {
+            "group": "player",
+            "evidence": "The saved equipment helpers use live player and inventory record types. The original inventory rebuild uses the typed inventory child through query, destruction, recreation, ID assignment and binding in the same order. Other player ownership and packet hunks remain scoped.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4141,
+        "historical_path": "src/pso/player/TObjPlayer_801D84A8.cpp",
+        "historical_blob": "3fd2a0a1d4ec3b48215533f06cb9741a1285d4ba",
+        "owners": {
+          "src/pso/player/TObjPlayer_801D84A8.cpp": "761aeba378fc1ee98455728760762d8d14b3909d",
+          "include/pso/player/TPlyItem.h": "3ebb8de9133c9eccaad438f9b5bd3448a11a6e2d",
+          "include/pso/player/TObjPlayer.h": "cfb63d7f3dfb0b90d80c74f04e9205c484421608"
+        },
+        "proofs": [
+          {
+            "group": "player",
+            "evidence": "All authored item-owner changes are represented. The shape has a TPlyItem pointer, refresh calls its real method, and the remaining equip entry uses the shared saved-record helper with the actual record and player pointers.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4142,
+        "historical_path": "src/pso/player/TObjPlayer_801D84CC.cpp",
+        "historical_blob": "2761c0648d601fbeb6e6b23dfe107b7892e8f1f1",
+        "owners": {
+          "src/pso/player/TObjPlayer_801D84CC.cpp": "527805b732680e59ea56053b7154cd95b1033f4d",
+          "include/pso/player/TPlyInventory.h": "742c61f52e16e7ecbcfcdce45370f72904a07867"
+        },
+        "proofs": [
+          {
+            "group": "player",
+            "evidence": "The original equipment-record path now reads the inventory count and the actual inventory entry pointer. Other texture, rotation and level table hunks remain scoped.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4156,
+        "historical_path": "src/pso/player/TObjPlayer_802C3B14.cpp",
+        "historical_blob": "f74069ec0c2b85b726063915b5fc56cfb2b0c635",
+        "owners": {
+          "src/pso/player/TObjPlayer_802C3B14.cpp": "4ede5475c5988babaa6bc89b1702533364234e41",
+          "include/pso/player/PlayerState.h": "87a77945a03a5f2e2db0aa13b04a22dfb8e9a4f0",
+          "include/pso/player/TPlyCharData.h": "33242ad854deac497f69628db0568e167379eab5"
+        },
+        "proofs": [
+          {
+            "group": "player",
+            "evidence": "All original changes are represented. The signed char class drives the starting inventory lookup, initialization uses the void native character API, and folded player state declarations replace the former fragment header.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4157,
+        "historical_path": "src/pso/player/TObjPlayer_802C422C.cpp",
+        "historical_blob": "c06be28d2eb200e4408ea336a5d7fb80bae61cc5",
+        "owners": {
+          "src/pso/player/TObjPlayer_802C422C.cpp": "efd0b81791bc92d2a14e90a125b75b57967cb0a6",
+          "include/pso/player/TPlyItem.h": "3ebb8de9133c9eccaad438f9b5bd3448a11a6e2d"
+        },
+        "proofs": [
+          {
+            "group": "player",
+            "evidence": "The original export caller passes the actual player to its TPlyItem when updating inventory, with the corresponding all-current owner includes. The exported count and slot pointer retain their original sources.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4493,
+        "historical_path": "src/pso/unk/text_802C3AC0.cpp",
+        "historical_blob": "b98dfe3ba1f38c5249298a9ab91ad41b783ffb05",
+        "owners": {
+          "src/pso/unk/text_802C3AC0.cpp": "6d831092055323f2818ded9eee6c3021365651bb",
+          "include/pso/item/InventoryEntryCopy.h": "9cc73987581bfd09f31ca5a3134421220b9aed0e",
+          "include/pso/player/TPlyInventory.h": "742c61f52e16e7ecbcfcdce45370f72904a07867"
+        },
+        "proofs": [
+          {
+            "group": "player",
+            "evidence": "All original source edits survive through the signed class lookup, typed copy, count and inventory pointers. The inventory result formerly carried by an explicit pointer return is now provided by its actual owner at 0x801C2214.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6984,
+        "historical_path": "src/pso/misc/TNpcPlayer_802C3CD0.cpp",
+        "historical_blob": "bf29ad3400c33f0508d8d17cbd2941bc38b1b578",
+        "owners": {
+          "src/pso/npc/TNpcPlayer_802C3CD0.cpp": "75ee72a14854aa8aa47bf9335d9a28fa76e5b5b4",
+          "include/pso/player/TPlyCharData.h": "33242ad854deac497f69628db0568e167379eab5",
+          "include/pso/player/TPlyInventory.h": "742c61f52e16e7ecbcfcdce45370f72904a07867"
+        },
+        "proofs": [
+          {
+            "group": "player",
+            "evidence": "NPC character initialization and both state export paths borrow the actual saved inventory entries. Other class state, caps and effects in the historical file remain scoped.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 358,
+        "historical_path": "include/pso/TBoss6SwordShot.h",
+        "historical_blob": "590569af669adcbfb571c0b72435416b146eedf7",
+        "owners": {
+          "include/pso/boss/olgaflow/TBoss6SwordShot.h": "a289b33ceba165a69c26c77e1d23137cb981186d",
+          "src/pso/boss/olgaflow/TBoss6SwordShot.cpp": "b70c078b9145550ee611b7d68b5bf672dfb5e572"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "The complete fork change is the projectile factory, constructor, and preservation of the 0x38 allocation size. Native members replace the anonymous tail. The last float is the hit radius, which is how the current factory and original linked radius comparison use it.",
+            "details": {
+              "authored_delta": "diff --git a/2fe563408f018d39160b92d95432120ca0f2925d b/590569af669adcbfb571c0b72435416b146eedf7\nindex 2fe563408f..590569af66 100644\n--- a/2fe563408f018d39160b92d95432120ca0f2925d\n+++ b/590569af669adcbfb571c0b72435416b146eedf7\n@@ -5,9 +5,13 @@\n #include \"types.h\"\n \n class TBoss6SwordShot : public TObject {\n public:\n+    TBoss6SwordShot(TObject *owner, const Vec *pos, s32 with_particles, f32 speed);\n     virtual ~TBoss6SwordShot();\n     virtual void run_task();\n+    // The shot record continues through 0x38. operator new allocates sizeof(this).\n+    u8 m_shot_tail[0x38 - 0x1C];\n+    static TBoss6SwordShot *create(TObject *owner, const Vec *pos, s32 with_particles, f32 speed);\n };\n \n #endif\n",
+              "anchors": [
+                {
+                  "path": "include/pso/boss/olgaflow/TBoss6SwordShot.h",
+                  "blob": "a289b33ceba165a69c26c77e1d23137cb981186d",
+                  "anchors": [
+                    "TBoss6SwordShot(TObject *owner, const Vec *position, s32 with_particles, f32 radius);",
+                    "static TBoss6SwordShot *create(TObject *owner, const Vec *position, s32 with_particles, f32 radius);",
+                    "sizeof(TBoss6SwordShot) == 0x38"
+                  ]
+                },
+                {
+                  "path": "src/pso/boss/olgaflow/TBoss6SwordShot.cpp",
+                  "blob": "9e8845c77f8bdfadcbf9c518cf0a802679b6ae04",
+                  "anchors": [
+                    "return new TBoss6SwordShot(owner, position, with_particles, radius);",
+                    "vector_length(&offset) > radius"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 400,
+        "historical_path": "include/pso/boss/TBoss6Type2_802BE588.h",
+        "historical_blob": "88aeb17cb80588804ecb1cf8f60ff9b607a83891",
+        "owners": {
+          "include/pso/boss/olgaflow/TBoss6Type2.h": "1aca9af824ffc8ed801f82053fbc3f101e079ec2",
+          "src/pso/boss/olgaflow/TBoss6Type2_802BE588.cpp": "9c3f611775384478db61d5beb89275fc6d895404"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "The fork removed six raw handler declarations. Current code declares, defines and dispatches all six through the actual Type 2 class. The two surviving callbacks are also native members at the current folded owner.",
+            "details": {
+              "authored_delta": "diff --git a/595dc952e02878e4c27777f554f8ee5c88f728ef b/88aeb17cb80588804ecb1cf8f60ff9b607a83891\nindex 595dc952e0..88aeb17cb8 100644\n--- a/595dc952e02878e4c27777f554f8ee5c88f728ef\n+++ b/88aeb17cb80588804ecb1cf8f60ff9b607a83891\n@@ -4,14 +4,8 @@\n #include \"types.h\"\n \n struct TBoss6Type2;\n extern \"C\" {\n-void TBoss6Type2__sub_802BE648(TBoss6Type2 *arg0);\n-void TBoss6Type2__sub_802BE6A0(u8 *arg0);\n-void TBoss6Type2__sub_802BE738(u8 *arg0);\n-void TBoss6Type2__sub_802BEB78(u8 *arg0);\n-void TBoss6Type2__sub_802BEC28(TBoss6Type2 *arg0);\n-void TBoss6Type2__sub_802BF3F4(void *p);\n void update_attack_timer__11TBoss6Type2FPv(u8 *arg0);\n void update_death_sequence__11TBoss6Type2FPv(u8 *arg0);\n }\n \n",
+              "anchors": [
+                {
+                  "path": "include/pso/boss/olgaflow/TBoss6Type2.h",
+                  "blob": "1aca9af824ffc8ed801f82053fbc3f101e079ec2",
+                  "anchors": [
+                    "void sub_802BE648();",
+                    "void sub_802BE6A0();",
+                    "void sub_802BE738();",
+                    "void sub_802BEB78();",
+                    "void sub_802BEC28();",
+                    "void sub_802BF3F4();",
+                    "void update_attack_timer();",
+                    "void update_death_sequence();"
+                  ]
+                },
+                {
+                  "path": "src/pso/boss/olgaflow/TBoss6Type2_802BE588.cpp",
+                  "blob": "9c3f611775384478db61d5beb89275fc6d895404",
+                  "anchors": [
+                    "&TBoss6Type2::sub_802BE648",
+                    "&TBoss6Type2::sub_802BE6A0",
+                    "&TBoss6Type2::sub_802BE738",
+                    "&TBoss6Type2::sub_802BEB78",
+                    "&TBoss6Type2::sub_802BEC28",
+                    "&TBoss6Type2::sub_802BF3F4"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 401,
+        "historical_path": "include/pso/boss/TBoss6Type2_802BF558.h",
+        "historical_blob": "ca679ff91761765ae45dfb4811b8762c0470e8d6",
+        "owners": {
+          "include/pso/boss/olgaflow/TBoss6Type2.h": "1aca9af824ffc8ed801f82053fbc3f101e079ec2",
+          "src/pso/boss/olgaflow/TBoss6Type2_802BE588.cpp": "9c3f611775384478db61d5beb89275fc6d895404"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "The full fork removed two duplicate declarations of each of four raw action handlers. All four are native members with direct state-table references and matching definitions in the folded Type 2 owner.",
+            "details": {
+              "authored_delta": "diff --git a/c771b45f723e9b7177464fcf5ad27977bc1f9f43 b/ca679ff91761765ae45dfb4811b8762c0470e8d6\nindex c771b45f72..ca679ff917 100644\n--- a/c771b45f723e9b7177464fcf5ad27977bc1f9f43\n+++ b/ca679ff91761765ae45dfb4811b8762c0470e8d6\n@@ -2,21 +2,7 @@\n #define PSO_BOSS_TBOSS6TYPE2_802BF558_H\n \n #include \"types.h\"\n \n-extern \"C\" {\n-void TBoss6Type2__sub_802BF834(u8 *arg0);\n-void TBoss6Type2__sub_802BF904(void *p);\n-void TBoss6Type2__sub_802BFA1C(u8 *arg0);\n-void TBoss6Type2__sub_802BFBE4(void *p);\n-}\n-\n-// --- C functions defined in TBoss6Type2_802BF558.cpp ---\n-extern \"C\" {\n-void TBoss6Type2__sub_802BF834(u8 *arg0);\n-void TBoss6Type2__sub_802BF904(void *p);\n-void TBoss6Type2__sub_802BFA1C(u8 *arg0);\n-void TBoss6Type2__sub_802BFBE4(void *p);\n-}\n-// --- end of C functions\n+// Handlers in this unit are TBoss6Type2 members.\n \n #endif\n",
+              "anchors": [
+                {
+                  "path": "include/pso/boss/olgaflow/TBoss6Type2.h",
+                  "blob": "1aca9af824ffc8ed801f82053fbc3f101e079ec2",
+                  "anchors": [
+                    "void sub_802BF834();",
+                    "void sub_802BF904();",
+                    "void sub_802BFA1C();",
+                    "void sub_802BFBE4();"
+                  ]
+                },
+                {
+                  "path": "src/pso/boss/olgaflow/TBoss6Type2_802BE588.cpp",
+                  "blob": "9c3f611775384478db61d5beb89275fc6d895404",
+                  "anchors": [
+                    "&TBoss6Type2::sub_802BF834",
+                    "&TBoss6Type2::sub_802BF904",
+                    "&TBoss6Type2::sub_802BFA1C",
+                    "&TBoss6Type2::sub_802BFBE4"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 709,
+        "historical_path": "src/pso/unk/text_8035D2EC.cpp",
+        "historical_blob": "1eb96431e9645c4de5734b5545e7c844ba580413",
+        "owners": {
+          "src/pso/boss/olgaflow/TBoss6Thanks.cpp": "8c8ceebb2eb9790bec39b98bbd1bb5f701b3bd30"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "The only fork hunk replaces the fake scene receiver with the typed player predicate. The complete formerly split equipment-vetting function now uses the typed predicate with the same null check.",
+            "details": {
+              "authored_delta": "diff --git a/3f8d9cdab649b952cfe12147a7f6d32d7133d559 b/1eb96431e9645c4de5734b5545e7c844ba580413\nindex 3f8d9cdab6..1eb96431e9 100644\n--- a/3f8d9cdab649b952cfe12147a7f6d32d7133d559\n+++ b/1eb96431e9645c4de5734b5545e7c844ba580413\n@@ -24,9 +24,9 @@ s32 any_player_has_listed_equipment(void) {\n     s32 n = TLobby::get_game_mode();\n     s32 i;\n     for (i = 0; i < n; i++) {\n         void *pl = (void *)get_player_data__10TObjPlayerFi(i);\n-        if (pl != NULL && ((TBoss6PlotFalz *)pl)->is_active() != 0) {\n+        if (pl != NULL && TBoss6PlotFalz::is_active((TObjPlayer *)pl) != 0) {\n             s32 j;\n             for (j = 0; j < 10; j++) {\n                 u8 *e = listed_equipment_table[j];\n                 s32 k;\n",
+              "anchors": [
+                {
+                  "path": "src/pso/boss/olgaflow/TBoss6Thanks.cpp",
+                  "blob": "8c8ceebb2eb9790bec39b98bbd1bb5f701b3bd30",
+                  "anchors": [
+                    "s32 any_player_has_listed_equipment(void) {",
+                    "if (pl != NULL && TBoss6PlotFalz::is_active((TObjPlayer *)pl) != 0)"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 712,
+        "historical_path": "include/pso/boss/TBoss6Mine.h",
+        "historical_blob": "6960bac2d73fd0ad0c73e3680878bf69ef676769",
+        "owners": {
+          "include/pso/boss/olgaflow/TBoss6Mine.h": "1511fd58d5c387bcf47104c0a915645f273fd81b",
+          "src/pso/boss/olgaflow/TBoss6Type1.cpp": "75b8468239e02fa042b06ff54a5df927d1117d14"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "The complete historical header introduces the 0x64 spawn record and the typed factory/constructor. Native labels preserve every written field and fold unused speculative prefix fields into opaque padding. The owner pointer is consumed as an enemy, and the native factory now returns a pointer rather than the fork\u2019s unsigned address-word spelling.",
+            "details": {
+              "authored_delta": "diff --git a/26689a8bc685e8d4a4c5f2273b18de504741f8a6 b/6960bac2d73fd0ad0c73e3680878bf69ef676769\nindex 26689a8bc6..6960bac2d7 100644\n--- a/26689a8bc685e8d4a4c5f2273b18de504741f8a6\n+++ b/6960bac2d73fd0ad0c73e3680878bf69ef676769\n@@ -4,8 +4,34 @@\n #include \"types.h\"\n #include <dolphin/mtx.h>\n #include \"pso/enemy/TObjEnemy.h\"\n \n+struct TBoss6Type1;\n+\n+// Spawn record TBoss6Type1 fills for each mine of its ring. The first 0x40\n+// bytes are the mag-mine block it copies from the plot; TBoss6Mine__ct reads\n+// owner, position, point, delay and rng.\n+struct Boss6MineSpawn {\n+    s16 a0;\n+    s16 a2;\n+    s16 a4;\n+    s16 a6;\n+    s16 a8;\n+    s16 aa;\n+    s16 ac;\n+    s16 ae;\n+    Vec inner;\n+    Vec c1c;\n+    u32 c28[5];\n+    s16 a3c;\n+    s16 a3e;\n+    TBoss6Type1 *owner;\n+    Vec position;\n+    Vec point;\n+    s32 delay;\n+    s32 rng;\n+};\n+\n struct TBoss6Mine : public TObjEnemy {\n     virtual ~TBoss6Mine();\n     virtual void run_task();\n     virtual void vfunc_63();\n@@ -34,9 +60,10 @@ struct TBoss6Mine : public TObjEnemy {\n     void copy_pos();\n     void draw();\n     void update_facing_angles();\n     s32 is_far_from_origin();\n-    static s32 create(s32 arg0);\n+    // Callers null-check the allocation with cmplwi. s32 would be cmpwi.\n+    static u32 create(Boss6MineSpawn *spawn);\n     static f32 next_random_float(s32 *arg0);\n     void explode_damage_players();\n     void state_0();\n     void state_1();\n@@ -50,9 +77,9 @@ struct TBoss6Mine : public TObjEnemy {\n \n typedef char TBoss6Mine_size[sizeof(TBoss6Mine) == 0x3D0 ? 1 : -1];\n \n extern \"C\" {\n-s32 TBoss6Mine__ct(s32 arg0, s32 parent, s32 arg2);\n+s32 TBoss6Mine__ct(s32 arg0, s32 parent, Boss6MineSpawn *arg2);\n void *__dt__10TBoss6MineFPvs(void *arg0, s16 arg1);\n void explode_damage_players__10TBoss6MineFv(u8 *arg0);\n }\n \n",
+              "anchors": [
+                {
+                  "path": "include/pso/boss/olgaflow/TBoss6Mine.h",
+                  "blob": "1511fd58d5c387bcf47104c0a915645f273fd81b",
+                  "anchors": [
+                    "s16 set_index;",
+                    "s16 entity_id;",
+                    "u8 pad_1C[0x24];",
+                    "TObjEnemy *owner;",
+                    "Vec origin;",
+                    "Vec offset;",
+                    "s32 heading;",
+                    "s32 seed;",
+                    "sizeof(TBoss6MineSetData) == 0x64",
+                    "static TBoss6Mine *create(TBoss6MineSetData *set_data);",
+                    "TBoss6Mine *TBoss6Mine__ct(TBoss6Mine *mine, TObject *parent, TBoss6MineSetData *set_data);"
+                  ]
+                },
+                {
+                  "path": "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+                  "blob": "75b8468239e02fa042b06ff54a5df927d1117d14",
+                  "anchors": [
+                    "set.unk_08 = 0;",
+                    "VecCopy(&set.position, &set.origin);",
+                    "get_next_point(&set.set_index, &set.entity_id)"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 792,
+        "historical_path": "include/pso/boss/TBoss6Tube.h",
+        "historical_blob": "f6eb435d86bc3623a8f2abf01fda01209141fbab",
+        "owners": {
+          "include/pso/boss/olgaflow/TBoss6Tube.h": "8052aeec0b52ea328cfa4333fd6a2a1244dfdcac"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "The complete historical header patch declares both warp state methods and the typed Tube factory. The native header preserves the original pointer-based parent signature and entry addresses.",
+            "details": {
+              "authored_delta": "diff --git a/de3b61dccacfa26762a69bc83f51217654eae144 b/f6eb435d86bc3623a8f2abf01fda01209141fbab\nindex de3b61dcca..f6eb435d86 100644\n--- a/de3b61dccacfa26762a69bc83f51217654eae144\n+++ b/f6eb435d86bc3623a8f2abf01fda01209141fbab\n@@ -19,9 +19,13 @@ struct TBoss6Tube : public TObject {\n     static void reset_state();\n     void update_wobble();\n     void spawn_trap();\n     void update_timer();\n-    static void *create(void *arg0);\n+    // Defined in TBoss6EmptyWarp_802B0E2C.cpp: that unit owns 0x802B0FC8 and\n+    // 0x802B1004, and both write this object's m_1c / m_20.\n+    void activate_warp();\n+    void sub_802B1004();\n+    static TBoss6Tube *create(void *arg0);\n     static void free_resources();\n     static void load_resources();\n };\n \n",
+              "anchors": [
+                {
+                  "path": "include/pso/boss/olgaflow/TBoss6Tube.h",
+                  "blob": "8052aeec0b52ea328cfa4333fd6a2a1244dfdcac",
+                  "anchors": [
+                    "void activate_warp();",
+                    "void sub_802B1004();",
+                    "TBoss6Tube *create(void *parent);"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 812,
+        "historical_path": "src/pso/boss/TBoss6Type2_8036DC80.cpp",
+        "historical_blob": "2c450b60edf114b78c7ee31de7c1ce809834d93a",
+        "owners": {
+          "src/pso/boss/olgaflow/TBoss6Type2_8036DC80.cpp": "66b6d8ab0d7126166afeaf501d8d99983882ca8d"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "All three original source hunks replaced the old snapshot-participant predicate symbol with its native owner and typed player. Both calls and the current include already carry the same historical contract.",
+            "details": {
+              "authored_delta": "diff --git a/a78bb252a0e43b83a990c88d71f7fc185f6959f0 b/2c450b60edf114b78c7ee31de7c1ce809834d93a\nindex a78bb252a0..2c450b60ed 100644\n--- a/a78bb252a0e43b83a990c88d71f7fc185f6959f0\n+++ b/2c450b60edf114b78c7ee31de7c1ce809834d93a\n@@ -1,16 +1,16 @@\n #include \"types.h\"\n #include \"pso/boss/TBoss6Type2_8036DC80.h\"\n #include \"pso/boss/TBoss6Type2.h\"\n+#include \"pso/boss/TBoss6PlotFalz.h\"\n \n struct E_8036DDE8 { s32 f0; u8 pad[0x28]; };\n \n struct Ent_8036DD30 { s32 active; u8 v0[8]; u8 v1[8]; u8 v2[8]; s32 a; s32 b; s32 c; s32 d; };\n \n extern \"C\" {\n extern s8 boss6_type2_player_snapshot_table[];\n void *get_player_by_client_id(s32 i);\n-s32 is_state_1f__14TBoss6PlotFalzFUi(u32 arg0);\n u16 get_entity_id();\n \n void TBoss6Type2::apply_pending_effect() {\n     u16 temp_r3;\n@@ -20,9 +20,9 @@ void TBoss6Type2::apply_pending_effect() {\n     if (temp_r3 < 4U) {\n         temp_r31 = (unsigned char *) (boss6_type2_player_snapshot_table + (temp_r3 * 0x2C));\n         if ((s32) *(s32 *)((s8 *)temp_r31 + 0) != 0) {\n             *(s32 *)((s8 *)temp_r31 + 0) = 0;\n-            if (is_state_1f__14TBoss6PlotFalzFUi((u32)this) != 0) {\n+            if (TBoss6PlotFalz::is_state_1f((TObjPlayer *)this) != 0) {\n                 ((TBoss6Type2 *)(((u8 *)this) + 0xCF4))->copy_vec2(temp_r31 + 4);\n                 ((TBoss6Type2 *)(((u8 *)this) + 0xA1C))->copy_vec2(temp_r31 + 0xC);\n                 ((TBoss6Type2 *)(((u8 *)this) + 0xB88))->copy_vec2(temp_r31 + 0x14);\n                 this->m_34 = (s32) *(s32 *)((s8 *)temp_r31 + 0x1C);\n@@ -41,9 +41,9 @@ void TBoss6Type2::capture_player_snapshots() {\n     for (i = 0; i < 4; i++) {\n         e = &((Ent_8036DD30 *)boss6_type2_player_snapshot_table)[i];\n         e->active = 0;\n         p = (u8 *)get_player_by_client_id(i);\n-        if (p != NULL && is_state_1f__14TBoss6PlotFalzFUi((u32)p) != 0) {\n+        if (p != NULL && TBoss6PlotFalz::is_state_1f((TObjPlayer *)p) != 0) {\n             ((TBoss6Type2 *)(e->v0))->copy_vec2(p + 0xCF4);\n             ((TBoss6Type2 *)(e->v1))->copy_vec2(p + 0xA1C);\n             ((TBoss6Type2 *)(e->v2))->copy_vec2(p + 0xB88);\n             e->a = *(s32 *)((s8 *)p + 0x34);\n",
+              "anchors": [
+                {
+                  "path": "src/pso/boss/olgaflow/TBoss6Type2_8036DC80.cpp",
+                  "blob": "66b6d8ab0d7126166afeaf501d8d99983882ca8d",
+                  "anchors": [
+                    "#include \"pso/boss/olgaflow/TBoss6PlotFalz.h\"",
+                    "TBoss6PlotFalz::is_state_1f((TObjPlayer *)this)",
+                    "TBoss6PlotFalz::is_state_1f((TObjPlayer *)p)"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 836,
+        "historical_path": "include/pso/boss/TBoss6Rock.h",
+        "historical_blob": "46aab5f1d1fe2839938ad0460fcb77d1c6e80a8e",
+        "owners": {
+          "include/pso/boss/olgaflow/TBoss6Rock.h": "a728d86997eea830c94d86899182a9c7ca1712a2"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "The complete historical layout/factory/API delta is now present. The earlier native Rock layout already contains the original kind table, actor state and typed marker resource, and narrows the landing box further. This wave restores the two missing static Vec* APIs and uses proper Vec* and TBoss6Type2* owner types for adjacent declarations.",
+            "details": {
+              "authored_delta": "diff --git a/1399d5a3168150e3a4f45a966b53dc25810dc1ef b/46aab5f1d1fe2839938ad0460fcb77d1c6e80a8e\nindex 1399d5a316..46aab5f1d1 100644\n--- a/1399d5a3168150e3a4f45a966b53dc25810dc1ef\n+++ b/46aab5f1d1fe2839938ad0460fcb77d1c6e80a8e\n@@ -3,49 +3,65 @@\n \n #include \"types.h\"\n #include \"pso/object/TObjMotion.h\"\n #include \"pso/system/vector.h\"\n+#include \"pso/boss/TUnk_804F1280.h\"\n \n+// The per-kind parameters of a falling rock (TBoss6Rock__data_80479258).\n+struct RockKindParams {\n+    s32 model_id;\n+    f32 radius;      // the marker's radius; players are pushed out to it\n+    f32 height;      // TObjMapCsn box: set y scale\n+    f32 width;       // TObjMapCsn box: set x/z scale\n+    f32 unk_10;\n+};\n+\n+// One of the 32 rocks of the Dark Falz arena (TBoss6Type2): it waits at its\n+// point until commanded (set_rock_target), then falls from 450 units, lands\n+// as a TObjMapCsn collision box and later breaks into TBoss6CrushRock pieces.\n struct TBoss6Rock : public TObjCollidable {\n+    TBoss6Rock(TObject *parent, s32 index);\n     virtual ~TBoss6Rock();\n-    void sub_80353F5C();\n     virtual void run_task();\n-    u32 m_ac;\n-    u32 m_b0;\n-    u32 m_b4;\n-    u32 m_b8;\n-    u32 m_bc;\n-    u32 m_c0;\n-    u32 m_c4;\n-    u32 m_c8;\n-    u8 unk_CC[0x4];\n-    s32 m_d0;\n-    Vec m_d4;\n-    s32 m_e0;\n-    u32 m_e4;\n-    void set_target(s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, f32 farg0);\n-    static void *create();\n+    virtual void render();\n+    void sub_80353F5C();\n+    s32 m_ac;            // index into TBoss6Rock__instance_table and the point table\n+    TObject *m_b0;       // the TObjMapCsn made when it lands\n+    s32 m_b4;            // kind (index into TBoss6Rock__data_80479258)\n+    s32 m_b8;            // kind of the next fall\n+    s32 m_bc;            // fast fall (1)\n+    s32 m_c0;            // fast fall of the next fall\n+    s32 m_c4;            // state: 0 waiting, 1 falling, 2 landed\n+    s32 m_c8;            // command: 0 none, 2 hold the landed rock\n+    f32 m_cc;            // fall speed\n+    s32 m_d0;            // y spin per frame\n+    Vec m_d4;            // its point\n+    s32 m_e0;            // frame counter of the landed push-out\n+    TUnk_804F1280 *m_e4; // the marker object\n+    static const char *class_name;\n+    static TUnk_804F1280 *create();\n+    static TBoss6Rock *create(s32 index);\n     static s32 is_rock_valid(s32 arg0);\n+    static s32 is_rock_state_2(int i);\n     static void reset_rock_state(s32 arg0);\n     static void clear_rock_state(s32 i);\n     static void set_rock_target(s32 i, s32 a, s32 b);\n     void release_object();\n     void randomize_motion();\n-    static u8 *get_rock_entry(s32 arg0);\n+    static const RockKindParams *get_rock_entry(s32 arg0);\n     void break_and_release();\n     void update_fall();\n     void init_spin_params();\n     void draw_model();\n-    virtual void render();\n-    static void *create(void *arg0);\n-    static u8 is_active();\n+    static s32 is_active();\n     static void create_rock_pool(s32 arg0);\n     static void free_data();\n     static void load_resources();\n-    void spawn_crush_rocks(s32 kind);\n-    void break_rocks_in_radius(f32 r);\n-    s32 push_out_of_rocks(f32 r);\n+    static void spawn_crush_rocks(Vec *point, s32 kind);\n+    static void break_rocks_in_radius(Vec *point, f32 r);\n+    static s32 push_out_of_rocks(Vec *point, f32 r);\n     static s32 get_point(s32 arg0, s32 arg1, f32 *arg2);\n };\n \n typedef char TBoss6Rock_size[sizeof(TBoss6Rock) == 0xE8 ? 1 : -1];\n+\n #endif\n",
+              "anchors": [
+                {
+                  "path": "include/pso/boss/olgaflow/TBoss6Rock.h",
+                  "blob": "a728d86997eea830c94d86899182a9c7ca1712a2",
+                  "anchors": [
+                    "struct RockKindParams {",
+                    "TBoss6Rock(TObject *parent, s32 index);",
+                    "TObjMapCsn *m_b0;",
+                    "TUnk_804F1280 *m_e4;",
+                    "static TUnk_804F1280 *create();",
+                    "static TBoss6Rock *create(s32 index);",
+                    "static s32 is_rock_state_2(int i);",
+                    "static const RockKindParams *get_rock_entry(s32 arg0);",
+                    "static void spawn_crush_rocks(Vec *point, s32 kind);",
+                    "static void break_rocks_in_radius(Vec *point, f32 radius);",
+                    "static s32 push_out_of_rocks(Vec *point, f32 radius);",
+                    "sizeof(TBoss6Rock) == 0xE8"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 931,
+        "historical_path": "src/pso/unk/text_802AA8FC.cpp",
+        "historical_blob": "042180ce12f9b5bbeff27e11e2e3948f5278d775",
+        "owners": {
+          "src/pso/boss/olgaflow/TBoss6PlotFalz_802AABEC.cpp": "0b5bf3a3611d6271446432d3513e7d0894420593"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "Both of the complete historical changes are present at the native scene owner. The scene-counter function accepts the actual plot receiver and the phase predicate returns the original full integer result.",
+            "details": {
+              "authored_delta": "diff --git a/00156e8cfacb24b520ab8e891adbeb44fbc8a5c6 b/042180ce12f9b5bbeff27e11e2e3948f5278d775\nindex 00156e8cfa..042180ce12 100644\n--- a/00156e8cfacb24b520ab8e891adbeb44fbc8a5c6\n+++ b/042180ce12f9b5bbeff27e11e2e3948f5278d775\n@@ -22,9 +22,9 @@ s32 TBoss6PlotFalz::get_next_point(s16 *arg1, s16 *arg2) {\n     *(s32 *)((s8 *)this + 0x3C8) = (s32) (*(s32 *)((s8 *)this + 0x3C8) + 1);\n     return 1;\n }\n \n-s32 TBoss6PlotFalz__sub_802AAC74(u8 *arg0) {\n+s32 TBoss6PlotFalz__sub_802AAC74(TBoss6PlotFalz *arg0) {\n     s32 temp_r0;\n     temp_r0 = *(s32 *)((s8 *)arg0 + 0x3C8);\n     if ((temp_r0 < 1) || (temp_r0 > 0x1FD)) {\n         return 0;\n@@ -32,9 +32,9 @@ s32 TBoss6PlotFalz__sub_802AAC74(u8 *arg0) {\n     return 0x1FD - temp_r0;\n }\n \n void TBoss6PlotFalz::sub_802AAC98() { *(s32*)((char*)this + 0x3c8) = 1; }\n-u8 TBoss6PlotFalz::is_ending_or_split_screen() {\n+int TBoss6PlotFalz::is_ending_or_split_screen() {\n     s32 var_r31;\n \n     var_r31 = 0;\n     if ((get_main_phase() == 0xF) || (is_split_screen() != 0)) {\n",
+              "anchors": [
+                {
+                  "path": "src/pso/boss/olgaflow/TBoss6PlotFalz_802AABEC.cpp",
+                  "blob": "0b5bf3a3611d6271446432d3513e7d0894420593",
+                  "anchors": [
+                    "s32 TBoss6PlotFalz__sub_802AAC74(TBoss6PlotFalz *boss)",
+                    "int TBoss6PlotFalz::is_ending_or_split_screen()"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 983,
+        "historical_path": "src/pso/boss/TBoss6Mine.cpp",
+        "historical_blob": "b4ec14c2a0ea000309dbc6c2621bf4cb6e1c96ef",
+        "owners": {
+          "src/pso/boss/olgaflow/TBoss6Mine.cpp": "eacbac9641402ef6de8c5cfc0df4bf8f9b01dc09"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "This wave preserves the real constructor and battle parameter access. The full historical file contains additional draw, sound and state hunks.",
+            "details": {
+              "authored_delta": "diff --git a/00bb000aeb09ae67508c146b4c2f901b421e6279 b/b4ec14c2a0ea000309dbc6c2621bf4cb6e1c96ef\nindex 00bb000aeb..b4ec14c2a0 100644\n--- a/00bb000aeb09ae67508c146b4c2f901b421e6279\n+++ b/b4ec14c2a0ea000309dbc6c2621bf4cb6e1c96ef\n@@ -1,4 +1,11 @@\n+#include \"pso/system/BmlTextureList.h\"\n+#include \"pso/system/BmlResource.h\"\n+#include \"pso/player/demo_mode.h\"\n+#include \"pso/enemy/BattleParameters.h\"\n+#include \"pso/system/CurrentTextureList.h\"\n+#include \"pso/system/SoundEffect.h\"\n+#include \"pso/misc/PersistentSound.h\"\n #define TOBJECT_OUT_OF_LINE_HELPERS\n #include \"types.h\"\n #include \"pso/player/TObjPlayer_803E4954.h\"\n #include \"pso/unk/text_803D96A8.h\"\n@@ -78,15 +85,12 @@ s32 project_actor_to_ground(void *, void *, int);\n f32 vec3_add_to(void *, void *);\n f32 subtract_vector(void *, void *);\n f32 normalize_vector(void *);\n int get_player_data__10TObjPlayerFi(int a0);\n-s32 play_sound_effect(int, void *, int, int);\n+\n f64 atan2_float(f32, f32);\n s32 approach_angle_limited(s32, s32, s32);\n f64 TBoss5GryphonLightningWing__sub_80324CEC(f32);\n-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);\n-f32 *dispatch_shared_handler_a__6TLobbyFl(s32);\n-s32 exchange_object_state__9TObjEnemyFls(void *, void *, int);\n void *create_particle_emitter(void *pos, s32 id);\n s32 init_collision_body_parts(void *, void *, int);\n static u32 TBoss6Mine__collision_body_template[11] = {\n     0, 0, 0, 0x41700000, 0, 0, 0x801B, 0, 0, 0, 0,\n@@ -100,10 +104,8 @@ void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);\n int rotate_matrix_x(void*, void*);\n s32 __ct__11TObjControlFP7TObject(s32, s32);\n void free_collision_body_parts(void *);\n s32 get_bml_motion(s32, s32);\n-s32 TObjFish__sub_8001EDB0(s32, s32);\n-s32 get_bml_model(s32, s32);\n int rotate_matrix_y(void*, void*);\n int push_matrix(void*);\n void __dl__7TObjectFPv(void *);\n void *__dt__9TObjEnemyFv(TObjEnemy *arg0, s16 arg1);\n@@ -134,12 +136,12 @@ void TBoss6Mine::draw() {\n     s32 bml_motion;\n     s32 bml_model;\n \n     set_motion_packed_rotation();\n-    temp_r31 = TObjFish__sub_8001EDB0(this->m_374, 2);\n-    bml_model = get_bml_model(this->m_374, 2);\n+    temp_r31 = (s32)TObjFish__sub_8001EDB0((BmlResource *)(this->m_374), 2);\n+    bml_model = (s32)get_bml_model((BmlResource *)this->m_374, 2);\n     bml_motion = get_bml_motion(this->m_374, 0);\n-    TObjFish::set_global_param(temp_r31);\n+    set_current_texture_list((GinjaTextureList *)(temp_r31));\n     TBoss6PlotFalz__sub_802AC008(this->fade_amount, 0.0f);\n     draw_model_motion((void *)bml_model, (void *)bml_motion, this->anim_frame);\n     TBoss6PlotFalz::update_camera_target();\n     clear_motion_packed_rotation();\n@@ -189,9 +191,9 @@ void TBoss6Mine::explode_damage_players() {\n     u8 *arg0 = (u8 *)this;\n     n = TLobby::get_game_mode();\n     for (i = 0; i < n; i++) {\n         pl = (u8 *)get_player_data__10TObjPlayerFi(i);\n-        if (((TBoss6PlotFalz *)pl)->is_active() != 0) {\n+        if (TBoss6PlotFalz::is_active((TObjPlayer *)pl) != 0) {\n             Vec_803240F8 v = *(Vec_803240F8 *) (arg0 + 0x38);\n             subtract_vector(&v, pl + 0x38);\n             v.y = 0.0f;\n             if (!(vector_length(&v) > 22.5f)) {\n@@ -204,9 +206,9 @@ void TBoss6Mine::explode_damage_players() {\n                 ((VObj_18_b27ba1 *) pl)->m21(arg0, &h, 0, -1, -1);\n             }\n         }\n     }\n-    play_sound_effect(0x4003BA1E, (u8 *)&this->position, 0, 0);\n+    play_sound_effect(0x4003BA1E, (const Vec *)((u8 *)&this->position), 0, 0);\n }\n \n void TBoss6Mine::state_7() {\n     spawn_particle_effect_with_flags(&this->position, 0xFC, 0x40);\n@@ -260,9 +262,9 @@ void TBoss6Mine::state_4() {\n     this->state_frames = frames;\n     if (frames > (s32)this->arm_delay) {\n         this->state_frames = 0;\n         this->state = 5;\n-        play_sound_effect(0x4003B51D, &this->position, 0, 0);\n+        play_sound_effect(0x4003B51D, (const Vec *)(&this->position), 0, 0);\n     }\n }\n \n void TBoss6Mine::state_3() {\n@@ -300,9 +302,9 @@ void TBoss6Mine::state_2() {\n         this->position.y = 75.0f;\n         this->state_frames = 0;\n         this->state = 3;\n     }\n-    play_persistent_sound(0x4003B21C, (s32)this, (u32)&this->position, 0, 0);\n+    play_persistent_sound((s32)(0x4003B21C), (const void *)(this), (const Vec *)((u32)&this->position), 0, 0);\n }\n \n void TBoss6Mine::state_1() {\n     s32 frames = this->state_frames + 1;\n@@ -346,9 +348,9 @@ void submit_cursor_candidate(void *obj, s32 id);\n void add_radar_scaled_marker(void *pos, u32 color, s32 a2, s32 a3, f32 scale);\n \n void TBoss6Mine::run_task() {\n     u32 color;\n-    if (TObjPlayer::check_demo_mode() != 0) {\n+    if (check_demo_mode() != 0) {\n         return;\n     }\n     if (TBoss6PlotFalz__sub_802ABADC() == 0) {\n         this->m_378 = 0;\n@@ -368,9 +370,9 @@ void TBoss6Mine::run_task() {\n         (this->*handler)();\n     }\n     copy_pos();\n     if (this->state == 2) {\n-        ((TObjPlayer *)this)->update_collisions();\n+        ((TObjCollidable *)this)->update_collisions();\n         submit_cursor_candidate(this, -1);\n     }\n     color = 0xFF7F5126;\n     if (this->state == 2) {\n@@ -409,9 +411,9 @@ extern s32 tl_04;\n #pragma push\n #pragma fp_contract on\n #define VecCopyP ((u8 *(*)(void *, void *))VecCopy__FP3VecPC3Vec)\n #define THIS self\n-s32 TBoss6Mine__ct(s32 arg0, s32 parent, s32 arg2) {\n+s32 TBoss6Mine__ct(s32 arg0, s32 parent, Boss6MineSpawn *arg2) {\n     u8 *self;\n     Tmp_80324A00 tmp;\n     f32 f;\n     self = (u8 *)arg0;\n@@ -424,32 +426,32 @@ s32 TBoss6Mine__ct(s32 arg0, s32 parent, s32 arg2) {\n     ((TBoss3Volopt *)THIS)->state = *(s32 *)((s8 *)arg2 + 0x5C);\n     ((TBoss3Volopt *)THIS)->m_388 = *(s32 *)((s8 *)arg2 + 0x60);\n     ((TObjChara *)THIS)->add_flags_2e4(8);\n     ((TBoss3Volopt *)THIS)->apply_set_data((void *)arg2);\n-    if (exchange_object_state__9TObjEnemyFls(THIS, &tmp, 1) != 0) {\n+    if (((TObjEnemy *)(THIS))->exchange_object_state(&tmp, 1) != 0) {\n         tmp.a = 0;\n         tmp.b = 0;\n-        exchange_object_state__9TObjEnemyFls(THIS, &tmp, 0);\n+        ((TObjEnemy *)(THIS))->exchange_object_state(&tmp, 0);\n     }\n     ((TBoss3Volopt *)THIS)->next_action = TObjFish::get_fish_count();\n     ((TBoss3Volopt *)THIS)->texlist = 0;\n     *(s32 *)((s8 *)THIS + 0x34) = 0;\n     VecCopyP(THIS + 0x44, VecCopyP(THIS + 0x50, VecCopyP(THIS + 0x74, THIS + 0x38)));\n     init_collision_body_parts(THIS, TBoss6Mine__collision_body_template, 1);\n     VecCopyP(THIS + 0x2FC, THIS + 0x38);\n-    ((TBoss3Volopt *)THIS)->m_310 = 0.0f;\n+    ((TBoss3Volopt *)THIS)->movement_velocity.z = 0.0f;\n     *(f32 *)((s8 *)THIS + 0x30C) = 0.0f;\n     *(f32 *)((s8 *)THIS + 0x308) = 0.0f;\n     *(s32 *)((s8 *)THIS + 0x2A8) = 0;\n-    ((TObjEnemy *)THIS)->bind_enemy_combat_stats((u8 *)(TLobby::register_boss(0x2D)), (u8 *)(TLobby::dispatch_shared_handler_b(0x2D)), (u8 *)(TLobby::register_object(0x2D)));\n+    ((TObjEnemy *)THIS)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x2D)), (u8 *)(get_battle_attack_params(0x2D)), (u8 *)(get_battle_resistance_params(0x2D)));\n     ((TBoss3Volopt *)THIS)->referenceHp = ((TBoss3Volopt *)THIS)->hp;\n-    ((TBoss3Volopt *)THIS)->reset_photon_effect();\n+    ((TObjEnemy *)THIS)->register_by_id();\n     ((TObjEnemy *)THIS)->set_param(0);\n     ((TBoss6Mine *)THIS)->rise_delay = (s32)(136.0f * TBoss6Mine::next_random_float((s32 *)(THIS + 0x388)) + 7.0f);\n     *(s32 *)((s8 *)THIS + 0x3A4) = 0x96 - ((TBoss6Mine *)THIS)->rise_delay;\n     ((TBoss6Mine *)THIS)->arm_delay = (s32)(57.0f * TBoss6Mine::next_random_float((s32 *)(THIS + 0x388)) + 3.0f);\n     *(f32 *)((s8 *)THIS + 0x3AC) = 80.0f * TBoss6Mine::next_random_float((s32 *)(THIS + 0x388)) + 120.0f;\n-    f = *dispatch_shared_handler_a__6TLobbyFl(0x2D);\n+    f = *((f32 *)get_battle_movement_params(0x2D));\n     ((TBoss3Volopt *)THIS)->m_384 = f;\n     if (0.0f == f) {\n         ((TBoss3Volopt *)THIS)->m_384 = 0x14;\n     }\n@@ -468,9 +470,9 @@ s32 TBoss6Mine__ct(s32 arg0, s32 parent, s32 arg2) {\n     return arg0;\n }\n #pragma pop\n \n-s32 TBoss6Mine::create(s32 arg0) {\n+u32 TBoss6Mine::create(Boss6MineSpawn *spawn) {\n     s32 var_r31;\n     s32 var_r4;\n \n     var_r31 = __nw__7TObjectFUl(0x3D0);\n@@ -478,9 +480,9 @@ s32 TBoss6Mine::create(s32 arg0) {\n         var_r4 = __nw__7TObjectFUl(0x20);\n         if (var_r4 != 0) {\n             var_r4 = __ct__11TObjControlFP7TObject(var_r4, tl_04);\n         }\n-        var_r31 = TBoss6Mine__ct(var_r31, var_r4, arg0);\n+        var_r31 = TBoss6Mine__ct(var_r31, var_r4, spawn);\n     }\n     return var_r31;\n }\n \n",
+              "anchors": [
+                {
+                  "path": "src/pso/boss/olgaflow/TBoss6Mine.cpp",
+                  "blob": "eacbac9641402ef6de8c5cfc0df4bf8f9b01dc09",
+                  "anchors": [
+                    "get_battle_movement_params(0x2D)->m_00",
+                    "TBoss6Mine *TBoss6Mine__ct(TBoss6Mine *mine, TObject *parent, TBoss6MineSetData *set_data)"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 984,
+        "historical_path": "src/pso/boss/TBoss6RockChase.cpp",
+        "historical_blob": "48dae620851c427b969e0b94b2bce08ad2576893",
+        "owners": {
+          "src/pso/boss/olgaflow/TBoss6RockChase.cpp": "1df29b08714606476d9e873f1889f1e54add5101"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "Native variant model and texture ownership and typed pursuit-rock construction are carried. This narrow wave does not close the full historical rendering/actor file.",
+            "details": {
+              "authored_delta": "diff --git a/1b37ee1b470090d737679ef0cdf3b7519a37842b b/48dae620851c427b969e0b94b2bce08ad2576893\nindex 1b37ee1b47..48dae62085 100644\n--- a/1b37ee1b470090d737679ef0cdf3b7519a37842b\n+++ b/48dae620851c427b969e0b94b2bce08ad2576893\n@@ -1,4 +1,9 @@\n+#include \"pso/system/BmlResource.h\"\n+#include \"pso/enemy/BattleParameters.h\"\n+#include \"pso/misc/ParticleFactory.h\"\n+#include \"pso/system/CurrentTextureList.h\"\n+#include \"pso/system/SoundEffect.h\"\n #include \"types.h\"\n #include \"pso/boss/TBoss6RockChase.h\"\n #include \"pso/object/TObject_80019A50.h\"\n #include \"pso/system/GinjaMaterial.h\"\n@@ -86,9 +91,8 @@ s32 __nw__7TObjectFUl(int);\n s32 rand();\n extern const f32 lbl_805E03D0;\n extern const f32 lbl_805E03D8;\n extern const f32 lbl_805E03E4;\n-s32 get_bml_model(int, int);\n int TBoss6Rock__sub_80353A04(void);\n int TBoss6Rock__sub_80353A0C(void);\n __declspec(section \".rodata\") char lbl_8047ACD8[] = \"TBoss6RockChase\";\n __declspec(section \".rodata\") RecoveredGlobal_8036D4E0_lbl_8047ACE8 boss6_rock_chase_model_radius_table = {\n@@ -101,14 +105,14 @@ extern const f32 lbl_805E03CC;\n extern const f32 lbl_805E03D4;\n extern const f32 lbl_805E03DC;\n extern const f32 lbl_805E03E0;\n s32 query_teammate_state__9TObjEneDDFv(void);\n-s32 play_sound_effect(int, void *, int, int);\n+\n extern const f32 lbl_805E03C0;\n extern const f32 lbl_805E03C4;\n extern const f32 lbl_805E03C8;\n int get_player_data__10TObjPlayerFi(int a0);\n-Param_8036D1B4 *dispatch_shared_handler_a__6TLobbyFl(s32);\n+\n f32 vector_length(void *);\n int subtract_vector(void *, void *);\n extern RecoveredGlobal_8036D4E0_lbl_8047ACE8 boss6_rock_chase_model_radius_table;\n extern const f32 lbl_805E03BC;\n@@ -133,15 +137,15 @@ s32 TBoss6RockChase::damage_players_in_range() {\n     {\n         Ent_8036D1B4 *tbl = (Ent_8036D1B4 *)&boss6_rock_chase_model_radius_table;\n         range = tbl[self->xB0].range;\n     }\n-    dmg = dispatch_shared_handler_a__6TLobbyFl(0x2C)->v;\n+    dmg = ((Param_8036D1B4 *)get_battle_movement_params(0x2C))->v;\n     if (dmg < 1) {\n         dmg = 20;\n     }\n     for (i = 0; i < n; i++) {\n         pl = (Player_8036D1B4 *)get_player_data__10TObjPlayerFi(i);\n-        if (((TBoss6PlotFalz *)pl)->is_active() != 0) {\n+        if (TBoss6PlotFalz::is_active((TObjPlayer *)pl) != 0) {\n             VecCopy((Vec *)&d, (const Vec *)&pl->pos);\n             subtract_vector(&d, &self->pos);\n             d.y = TBoss6RockChase__data_805E03B8;\n             if (!(vector_length(&d) > range)) {\n@@ -157,9 +161,9 @@ s32 TBoss6RockChase::damage_players_in_range() {\n     }\n }\n #pragma pop\n \n-void TBoss6RockChase::render() { push_matrix(this); post_translate_matrix((char*)this + 0x38); rotate_matrix_y((void*)0, *(void* *)&this->rotation_y); rotate_matrix_x((void*)0, *(void* *)&this->rotation_x); rotate_matrix_z((void*)0, *(void* *)&this->rotation_z); TObjFish::set_global_param((s32)(*(void* *)&this->m_c4)); draw_ginja_object(*(void* *)&this->m_c0); pop_matrix(); }\n+void TBoss6RockChase::render() { push_matrix(this); post_translate_matrix((char*)this + 0x38); rotate_matrix_y((void*)0, *(void* *)&this->rotation.yaw); rotate_matrix_x((void*)0, *(void* *)&this->rotation.pitch); rotate_matrix_z((void*)0, *(void* *)&this->rotation.roll); set_current_texture_list((GinjaTextureList *)((*(void* *)&this->m_c4))); draw_ginja_object(*(void* *)&this->m_c0); pop_matrix(); }\n \n #pragma push\n #pragma opt_common_subs off\n void TBoss6RockChase::run_task() {\n@@ -170,9 +174,9 @@ void TBoss6RockChase::run_task() {\n         if (temp_r3 > 0) {\n             this->m_b4 = (temp_r3 - 1);\n             return;\n         }\n-        this->rotation_y = (s32) (this->rotation_y + this->m_bc);\n+        this->rotation.yaw = (s32) (this->rotation.yaw + this->m_bc);\n         *(f32 *)&this->_padB8 = (f32) (*(f32 *)&this->_padB8 + lbl_805E03C0);\n         if (*(f32 *)&this->_padB8 < lbl_805E03C4) {\n             *(f32 *)&this->_padB8 = (f32) lbl_805E03C4;\n         }\n@@ -180,14 +184,14 @@ void TBoss6RockChase::run_task() {\n         if (*(f32 *)((s8 *)arg0 + 0x3C) <= TBoss6RockChase__data_805E03B8) {\n             *(f32 *)((s8 *)arg0 + 0x3C) = (f32) TBoss6RockChase__data_805E03B8;\n             *(f32 *)&this->_padB8 = (f32) TBoss6RockChase__data_805E03B8;\n             damage_players_in_range();\n-            play_sound_effect(0x4006B51E, (u8 *)&this->position, 0, 0);\n-            spawn_particle_effect(((u8 *)&this->position), 0x220);\n-            spawn_particle_effect(((u8 *)&this->position), 0x222);\n+            play_sound_effect(0x4006B51E, (const Vec *)((u8 *)&this->position), 0, 0);\n+            spawn_particle_effect((const Vec *)(((u8 *)&this->position)), 0x220);\n+            spawn_particle_effect((const Vec *)(((u8 *)&this->position)), 0x222);\n             TBoss6PlotFalz::apply_radial_effect_to_players((u8 *)&this->position, 0xC0, 0xF, lbl_805E03C8);\n-            ((TBoss6Rock *)(arg0 + 0x38))->spawn_crush_rocks(this->m_b0);\n-            play_sound_effect(0x4006AB1F, (u8 *)&this->position, 0, 0);\n+            TBoss6Rock::spawn_crush_rocks(&this->position, this->m_b0);\n+            play_sound_effect(0x4006AB1F, (const Vec *)((u8 *)&this->position), 0, 0);\n             queue_destruction__7TObjectFv(arg0);\n         }\n     }\n }\n@@ -210,14 +214,14 @@ u8 *TBoss6RockChase__ct(TBoss6RockChase *boss6_rock_chase, s32 arg1, s32 arg2, s\n     boss6_rock_chase->m_ac = arg1;\n     boss6_rock_chase->m_b0 = arg3;\n     boss6_rock_chase->m_b4 = (s32) (lbl_805E03CC * (lbl_805E03D0 * (f32) rand()));\n     *(s32 *)((s8 *)boss6_rock_chase + 0x5C) = (s32) (lbl_805E03D4 * ((lbl_805E03D0 * (f32) rand()) - lbl_805E03D8));\n-    boss6_rock_chase->rotation_y = (s32) (lbl_805E03DC * (lbl_805E03D0 * (f32) rand()));\n-    boss6_rock_chase->rotation_z = (s32) (lbl_805E03D4 * ((lbl_805E03D0 * (f32) rand()) - lbl_805E03D8));\n+    boss6_rock_chase->rotation.yaw = (s32) (lbl_805E03DC * (lbl_805E03D0 * (f32) rand()));\n+    boss6_rock_chase->rotation.roll = (s32) (lbl_805E03D4 * ((lbl_805E03D0 * (f32) rand()) - lbl_805E03D8));\n     boss6_rock_chase->m_bc = (s32) (lbl_805E03E0 * ((lbl_805E03D0 * (f32) rand()) - lbl_805E03D8));\n     *(f32 *)((s8 *)boss6_rock_chase + 0xB8) = (f32) TBoss6RockChase__data_805E03B8;\n     VecCopy((Vec *)((u8 *)boss6_rock_chase + 0x38), (const Vec *)(arg2));\n-    boss6_rock_chase->m_c0 = get_bml_model((int) (TBoss6Rock__sub_80353A0C()), (int) (*(s32 *)((s8 *)&boss6_rock_chase_model_radius_table.value + (arg3 * 8))));\n+    boss6_rock_chase->m_c0 = (s32)get_bml_model((BmlResource *)(TBoss6Rock__sub_80353A0C()), (int) (*(s32 *)((s8 *)&boss6_rock_chase_model_radius_table.value + (arg3 * 8))));\n     boss6_rock_chase->m_c4 = TBoss6Rock__sub_80353A04();\n     return (u8 *)boss6_rock_chase;\n }\n #pragma pop\n",
+              "anchors": [
+                {
+                  "path": "src/pso/boss/olgaflow/TBoss6RockChase.cpp",
+                  "blob": "d2eabb59cda733c654e905eceb107343d407e371",
+                  "anchors": [
+                    "TBoss6RockChase *TBoss6RockChase::spawn(TObject *owner, const Vec *position)",
+                    "set_current_texture_list(textures); draw_ginja_object(model);"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 995,
+        "historical_path": "src/pso/boss/TBoss6SwordShot.cpp",
+        "historical_blob": "a7b1a55cacadc16b677a73a24b55e14f405545c2",
+        "owners": {
+          "src/pso/boss/olgaflow/TBoss6SwordShot.cpp": "b70c078b9145550ee611b7d68b5bf672dfb5e572"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "The historical position/owner and actual shared battle-parameter portions are present. The overlapping Sword Wave constructor/factory now carries typed actor and Vec arguments. Remaining historical render/effect details remain scoped.",
+            "details": {
+              "authored_delta": "diff --git a/270b7f953a1762dbf82a30dc2197a9a042c3d992 b/a7b1a55cacadc16b677a73a24b55e14f405545c2\nindex 270b7f953a..a7b1a55cac 100644\n--- a/270b7f953a1762dbf82a30dc2197a9a042c3d992\n+++ b/a7b1a55cacadc16b677a73a24b55e14f405545c2\n@@ -1,4 +1,6 @@\n+#include \"pso/enemy/BattleParameters.h\"\n+#include \"pso/misc/ParticleFactory.h\"\n #include \"pso/TParticleCtrl.h\"\n #include \"pso/TBoss6SwordShot.h\"\n #include \"pso/TObject.h\"\n #include \"pso/system/vector.h\"\n@@ -56,9 +58,9 @@ struct VObj_8035663C : VBase_8035663C {\n extern \"C\" {\n u8 *__nw__7TObjectFUl(s32);\n u8 test_rock_bit__15TBoss6SwordWaveFiUc(s32 arg0, u8 arg1);\n void set_bit__15TBoss6SwordWaveFiUc(s32 arg0, u8 arg1);\n-f32 *dispatch_shared_handler_a__6TLobbyFl(s32);\n+\n s32 __ct__7TObjectFP7TObject(void *, void *);\n void fn_80356E30(s32 *p);\n extern RecoveredGlobal_80356B18___vt__15TBoss6SwordWave __vt__15TBoss6SwordWave;\n extern s32 lbl_805D43A8;\n@@ -70,9 +72,9 @@ s32 query_teammate_state__9TObjEneDDFv();\n extern const f32 lbl_805E0010;\n extern const f32 lbl_805E0014;\n void clear_bit__15TBoss6SwordWaveFPvUc(W_80356D10 *arg0, u8 arg1);\n void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);\n-void *spawn_particle_effect(void *pos, s32 id);\n+\n u8 TBoss6SwordWave__sub_80356D08(u32 arg1, u32 arg2);\n f32 sin_table_lookup(int);\n f32 cos_table_lookup(int);\n f32 xyz_distance(void *, void *);\n@@ -87,12 +89,11 @@ s32 get_point__10TBoss6RockFllPf(s32, void *, void *);\n s32 vec3_add_to(void *, void *);\n f32 vector_length(void *);\n s32 subtract_vector(void *, void *);\n s32 normalize_vector(void *);\n-extern const f64 lbl_804793B0;\n+static const f64 lbl_804793B0 = 10430.38043493439;\n extern s32 lbl_805E000C;\n int get_player_data__10TObjPlayerFi(int a0);\n-s32 is_active__14TBoss6PlotFalzFv();\n extern const f32 lbl_805DFFEC;\n }\n struct Pair_803561C4 { s32 a; f32 b; };\n struct VBase_18_ec708a { char pad[0x18]; };\n@@ -131,9 +132,9 @@ void damage_players_in_radius(u8 *arg0) {\n \n     n = TLobby::get_game_mode();\n     for (i = 0; i < n; i++) {\n         pl = (u8 *)get_player_data__10TObjPlayerFi(i);\n-        if (((s32 (*)(void *))is_active__14TBoss6PlotFalzFv)(pl) != 0) {\n+        if (TBoss6PlotFalz::is_active((TObjPlayer *)pl) != 0) {\n             VecCopy((Vec *)&v, (const Vec *)(pl + 0x38));\n             subtract_vector(&v, arg0 + 0x20);\n             v.y = lbl_805DFFE8;\n             if (!(vector_length(&v) > *(f32 *)((s8 *)arg0 + 0x2C))) {\n@@ -170,41 +171,38 @@ void *__dt__15TBoss6SwordShotFv(void *arg0, s16 arg1) {\n struct Shot_80356374 {\n     s32 f0;\n     u8 pad4[0x14];\n     void *vt18;\n-    s32 owner;\n+    TObject *owner;\n     struct { f32 x, y, z; } pos;\n     f32 speed;\n     s32 f30;\n     s32 life;\n };\n \n extern \"C\" {\n-u8 *fn_8035648C(s32 arg0, s32 arg1, s32 arg2, f32 farg0);\n extern s32 lbl_805D43AC;\n extern const f32 lbl_805DFFF4;\n-u8 *TBoss6SwordShot__ct(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 farg0);\n+}\n \n #pragma push\n #pragma opt_common_subs off\n-#define self ((Shot_80356374 *)arg0)\n-u8 *TBoss6SwordShot__ct(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 farg0) {\n+TBoss6SwordShot::TBoss6SwordShot(TObject *owner, const Vec *pos, s32 with_particles, f32 speed) : TObject(owner) {\n     f32 scale;\n     f32 v;\n     void *p;\n-    __ct__7TObjectFP7TObject(arg0, (void *)arg1);\n-    self->vt18 = (s32 *)__vt__15TBoss6SwordShot;\n+    Shot_80356374 *self = (Shot_80356374 *)this;\n     self->f0 = lbl_805D43AC;\n-    self->owner = arg1;\n-    VecCopy((Vec *)&self->pos, (const Vec *)arg2);\n-    self->speed = farg0;\n+    self->owner = owner;\n+    VecCopy((Vec *)&self->pos, pos);\n+    self->speed = speed;\n     self->f30 = 0;\n-    v = *dispatch_shared_handler_a__6TLobbyFl(0x2B);\n+    v = *((f32 *)get_battle_movement_params(0x2B));\n     self->life = (s32)v;\n     if (lbl_805DFFE8 == v) {\n         self->life = 0x14;\n     }\n-    if (arg3 != 0) {\n+    if (with_particles != 0) {\n         scale = lbl_805DFFF0;\n         if (self->speed > lbl_805DFFF4) {\n             scale = self->speed / lbl_805DFFF4;\n         }\n@@ -214,24 +212,17 @@ u8 *TBoss6SwordShot__ct(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 farg0) {\n         if ((p = spawn_particle_effect_with_flags(&self->pos, 0x213, 0x40)) != NULL) {\n             ((TParticleCtrl *)p)->set_scale(scale, lbl_805DFFF0);\n         }\n     }\n-    return (u8 *)arg0;\n }\n-#undef self\n #pragma pop\n \n+extern \"C\" {\n+\n #pragma push\n #pragma fp_contract on\n-u8 *fn_8035648C(s32 arg0, s32 arg1, s32 arg2, f32 farg0) {\n-    u8 *temp_r3;\n-    u8 *var_r0;\n-    temp_r3 = (u8 *)(__nw__7TObjectFUl(0x38));\n-    var_r0 = temp_r3;\n-    if (var_r0 != NULL) {\n-        var_r0 = (u8 *)(TBoss6SwordShot__ct(temp_r3, arg0, arg1, arg2, farg0));\n-    }\n-    return var_r0;\n+TBoss6SwordShot *TBoss6SwordShot::create(TObject *owner, const Vec *pos, s32 with_particles, f32 speed) {\n+    return new TBoss6SwordShot(owner, pos, with_particles, speed);\n }\n #pragma pop\n \n }\n@@ -263,9 +254,9 @@ s32 TBoss6SwordWave::spawn_wave_ring_particles() {\n             v.z += o->radius * cos_table_lookup(ang);\n             if (!(xyz_distance(&v, lbl_80479388) > lbl_805E0008)) {\n                 spawn_particle_effect_with_flags(&v, 0x212, 0x40);\n                 if (((TBoss6Type2 *)(o->owner))->get_rotation_timer() == 0) {\n-                    spawn_particle_effect(&v, 0x213);\n+                    spawn_particle_effect((const Vec *)(&v), 0x213);\n                 } else {\n                     spawn_particle_effect_with_flags(&v, 0x229, 0x2000);\n                 }\n             }\n@@ -288,9 +279,9 @@ s32 TBoss6SwordWave::check_player_hits() {\n     Vec_8035663C dir;\n     n = TLobby::get_game_mode();\n     for (i = 0; i < n; i++) {\n         pl = (VObj_8035663C *)get_player_data__10TObjPlayerFi(i);\n-        if (is_active__14TBoss6PlotFalzFv() != 0) {\n+        if (TBoss6PlotFalz::is_active((TObjPlayer *)pl) != 0) {\n             VecCopy((Vec *)&dir, (const Vec *)((u8 *)pl + 0x38));\n             subtract_vector(&dir, arg0 + 0x20);\n             dir.y = lbl_805DFFE8;\n             d = vector_length(&dir);\n@@ -415,14 +406,14 @@ u8 *__ct__15TBoss6SwordWaveFv(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4,\n     ((TBoss6SwordWave *)(arg0 + 0x30))->fill_range((void *)arg3, (void *)arg4);\n     *(f32 *)((s8 *)arg0 + 0x50) = (f32) lbl_805DFFE8;\n     *(f32 *)((s8 *)arg0 + 0x54) = (f32) lbl_805DFFE8;\n     *(f32 *)((s8 *)arg0 + 0x58) = (f32) lbl_805DFFE8;\n-    temp_f2 = *dispatch_shared_handler_a__6TLobbyFl(0x2C);\n+    temp_f2 = *((f32 *)get_battle_movement_params(0x2C));\n     *(s32 *)((s8 *)arg0 + 0x5C) = (s32) temp_f2;\n     if (lbl_805DFFE8 == temp_f2) {\n         *(s32 *)((s8 *)arg0 + 0x5C) = 0x14;\n     }\n-    temp_f1 = *(f32 *)((s8 *)(dispatch_shared_handler_a__6TLobbyFl(0x2F)) + 8);\n+    temp_f1 = *(f32 *)((s8 *)(((f32 *)get_battle_movement_params(0x2F))) + 8);\n     *(f32 *)((s8 *)arg0 + 0x60) = temp_f1;\n     if (lbl_805DFFE8 == temp_f1) {\n         *(f32 *)((s8 *)arg0 + 0x60) = (f32) lbl_805DFFF0;\n     }\n",
+              "anchors": [
+                {
+                  "path": "src/pso/boss/olgaflow/TBoss6SwordShot.cpp",
+                  "blob": "9e8845c77f8bdfadcbf9c518cf0a802679b6ae04",
+                  "anchors": [
+                    "get_battle_movement_params(0x2B)->m_00",
+                    "get_battle_movement_params(0x2C)->m_00",
+                    "get_battle_movement_params(0x2F)->m_08",
+                    "TBoss6SwordWave *TBoss6SwordWave::create(TObject *owner, const Vec *position"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1009,
+        "historical_path": "src/pso/boss/Boss6Type2Data.cpp",
+        "historical_blob": "9bbde2c93d442f9733c36855741d7db8c410e0f0",
+        "owners": {
+          "src/pso/boss/olgaflow/Boss6Type2Data.cpp": "68514bcc1d614979d61cdb7f6b7290d08952e529"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "All 35 historical data-definition lines are token-identical after replacing the named internal class-name string by the same compiler-local literal and resolving includes. The data owners, all initializers and retail linked addresses are unchanged.",
+            "details": {
+              "authored_delta": "+#include \"pso/boss/Boss6Type2Data.h\"\n+\n+static const char TBoss6Type2__class_name_string[] = \"TBoss6Type2\";\n+const char *TBoss6Type2__name = TBoss6Type2__class_name_string;\n+// Inferred name: distance checks (> 390), sound sources and the start position all use it.\n+const Vec boss6_arena_center = { -10000.0f, 0.0f, 0.0f };\n+// Inferred names: the constructor copies these into position and rotation_x..z.\n+const Vec TBoss6Type2__initial_position = { -10000.0f, 0.0f, 0.0f };\n+const s32 TBoss6Type2__initial_rotation[3] = { 0x8000, 0, 0 };\n+const TBoss6Type2DefaultParams TBoss6Type2__default_battle_parameters = {\n+    { 20, 20, 200, 200, 200, 60, 25, 10, 60 },\n+    { 1.0f, 1.0f, 1.0f, 1.0f, 1.0f },\n+    120,\n+};\n+const s32 TBoss6Type2__initial_actor_flag_masks[4] = { 0x41, 0x42, 0x44, 0x48 };\n+const Tbl_802B9C00 TBoss6Type2__particle_attachment_table[14] = {\n+    { 0x22D, 8 }, { 0x22D, 9 }, { 0x22D, 10 }, { 0x22D, 3 }, { 0x22D, 4 }, { 0x22D, 5 }, { 0x228, -1 },\n+    { 0x22A, -1 }, { 0x137, 16 }, { 0x138, 16 }, { 0x139, 16 }, { 0x13A, 16 }, { 0x13B, 16 }, { 0x22C, 13 },\n+};\n+const ModelNodePositionEntry boss6_type2_effect_desc_table[20] = {\n+    { 0x01 }, { 0x13 }, { 0x14 }, { 0x16 }, { 0x17, { 0.0f, -5.0f, 0.0f } }, { 0x18 }, { 0x1B }, { 0x1C },\n+    { 0x1E }, { 0x1F, { 0.0f, -5.0f, 0.0f } }, { 0x20 }, { 0x24 }, { 0x30 }, { 0x3A }, { 0x48 }, { 0x4B },\n+    { 0x50 }, { 0x51 }, { 0x51, { 0.0f, 1.0f, 0.0f } }, { -1 },\n+};\n+const s32 boss6_type2_variant_id_table[4] = { 1, 2, 3, 4 };\n+const s32 lbl_8047128C[2] = { 4, 5 };\n+const Boss6StripDesc boss6_type2_plot_falz_entry_table[2] = { { 4, 0x69, 0 }, { 5, 0x69, 0 } };\n+const s32 boss6_type2_zero_vec[4] = { 0, 0, 0, 0 };\n+const Blk_802BCFD4 boss6_type2_zero_motion_block = { 0 };\n+const f32 boss6_type2_motion_entry_transform[7] = { 0.0f, 0.0f, 0.0f, 0.0f, 1.0f / 15.0f, 0.0f, 0.0f };\n+const s32 TBoss6Type2__no_target_sound_ids[4] = { 0x68528, 0x68529, 0x6852A, 0x6852B };\n+const Tbl_802BBE20 lbl_8047130C[3] = { { 0, 4 }, { 0, 9 }, { 0, 11 } };\n+const s32 TBoss6Type2__player_hit_rock_indices[6] = { 3, 4, 5, 8, 9, 10 };\n+const s32 lbl_8047133C[2] = { 0x1FE, 0x1FD };\n+const Vec lbl_80471344 = { 0.0f, 19.8f, -5.0f };",
+              "anchors": [
+                {
+                  "path": "src/pso/boss/olgaflow/Boss6Type2Data.cpp",
+                  "blob": "68514bcc1d614979d61cdb7f6b7290d08952e529",
+                  "anchors": [
+                    "const char *TBoss6Type2__name = \"TBoss6Type2\";",
+                    "const TBoss6Type2DefaultParams TBoss6Type2__default_battle_parameters",
+                    "const s32 TBoss6Type2__player_hit_rock_indices[6]"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 1051,
+        "historical_path": "src/pso/boss/TBoss6MagMine.cpp",
+        "historical_blob": "264801940573ff5dc46eec4d20bdb9055cf6310c",
+        "owners": {
+          "src/pso/boss/olgaflow/TBoss6MagMine.cpp": "de2c6553aac8d270f141cee754e126960174973c"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "Mag mine shared resource callers and typed movement fields are present. This wave also recovers the complete 0x58 spawn coordinates record from the live constructor and caller. Full historical player damage and display hunks remain scoped.",
+            "details": {
+              "authored_delta": "diff --git a/70489b236464890e3874ab8b7dc25247df94fff4 b/264801940573ff5dc46eec4d20bdb9055cf6310c\nindex 70489b2364..2648019405 100644\n--- a/70489b236464890e3874ab8b7dc25247df94fff4\n+++ b/264801940573ff5dc46eec4d20bdb9055cf6310c\n@@ -1,4 +1,10 @@\n+#include \"pso/system/BmlTextureList.h\"\n+#include \"pso/system/BmlResource.h\"\n+#include \"pso/player/demo_mode.h\"\n+#include \"pso/enemy/BattleParameters.h\"\n+#include \"pso/system/CurrentTextureList.h\"\n+#include \"pso/system/SoundEffect.h\"\n #include \"types.h\"\n #include \"pso/player/TObjPlayer_803E4954.h\"\n #include \"pso/boss/TBoss6Type1.h\"\n #include \"pso/misc/TLobby.h\"\n@@ -96,25 +102,23 @@ void *__vt__13TBoss6MagMine[11] = {\n     (void *)0x0, (void *)0x0, (void *)0x803b, (void *)0x0,\n     (void *)0x0, (void *)0x0, (void *)0x0,\n };\n void vec3_add_to(void *, void *);\n-s32 check_demo_mode__10TObjPlayerFv(void *);\n s32 query_teammate_state__9TObjEneDDFv();\n void submit_cursor_candidate(void *, int);\n void add_radar_scaled_marker(void *, int, int, int, f32);\n void vt2__13TBoss6MagMineFv(u8 *arg0);\n void vt1__13TBoss6MagMineFv(u8 *arg0);\n-s32 is_locally_controlled__10TObjPlayerFPv(void *);\n int get_player_data__10TObjPlayerFi(int a0);\n-void play_sound_effect(int, Vec_80368C14 *, int, int);\n+\n f32 vector_length(Vec_80368C14 *);\n void subtract_vector(Vec_80368C14 *, void *);\n void explode__13TBoss6MagMineFPv(Mine_80368C14 *o);\n s32 get_field_0x42c__13TBoss6MagMineFPv(void* p);\n int TBoss6PlotFalz__sub_8036964C(void);\n void TBoss6MagMine__sub_80368AB8(u8 *arg0, u8 *arg1);\n s32 VecCopy__FP3VecPC3Vec(s32, s32);\n-u8 *dispatch_shared_handler_a__6TLobbyFl(int);\n+\n void *create_particle_emitter(void *pos, s32 id);\n s32 init_collision_body_parts(void *, void *, int);\n s32 normalize_vector(void *);\n extern s32 lbl_804F322C[];\n@@ -135,10 +139,8 @@ void *spawn_particle_effect_with_flags(void *pos, s32 id, s32 flags);\n s32 __ct__11TObjControlFP7TObject(s32, s32);\n void free_collision_body_parts(void *);\n void draw_model_motion(void *arg0, void *arg1, f32 farg0);\n s32 get_bml_motion(s32, s32);\n-s32 TObjFish__sub_8001EDB0(s32, s32);\n-s32 get_bml_model(s32, s32);\n int rotate_matrix_y(void*, void*);\n int push_matrix(void*);\n s32 pop_matrix(void);\n void __dl__7TObjectFPv(void *);\n@@ -167,12 +169,12 @@ void TUnk_804F322C::update_linked_state() {\n     s32 bml_motion;\n     s32 bml_model;\n \n     set_motion_packed_rotation();\n-    temp_r31 = TObjFish__sub_8001EDB0(*(s32 *)((s8 *)this + 0x374), 2);\n-    bml_model = get_bml_model(*(s32 *)((s8 *)this + 0x374), 2);\n+    temp_r31 = (s32)TObjFish__sub_8001EDB0((BmlResource *)(*(s32 *)((s8 *)this + 0x374)), 2);\n+    bml_model = (s32)get_bml_model((BmlResource *)*(s32 *)((s8 *)this + 0x374), 2);\n     bml_motion = get_bml_motion(*(s32 *)((s8 *)this + 0x374), 0);\n-    TObjFish::set_global_param(temp_r31);\n+    set_current_texture_list((GinjaTextureList *)(temp_r31));\n     TBoss6PlotFalz__sub_802AC008(*(f32 *)((s8 *)this + 0x3A8), 0.0f);\n     draw_model_motion((void *)bml_model, (void *)bml_motion, *(f32 *)((s8 *)this + 0x398));\n     TBoss6PlotFalz::update_camera_target();\n     clear_motion_packed_rotation();\n@@ -228,18 +230,18 @@ void explode__13TBoss6MagMineFPv(Mine_80368C14 *o) {\n     s32 n = TLobby::get_game_mode();\n     s32 i;\n     for (i = 0; i < n; i++) {\n         u8 *pl = (u8 *)get_player_data__10TObjPlayerFi(i);\n-        if (((TBoss6PlotFalz *)pl)->is_active() != 0 && is_locally_controlled__10TObjPlayerFPv(pl) != 0) {\n+        if (TBoss6PlotFalz::is_active((TObjPlayer *)pl) != 0 && TObjPlayer::is_locally_controlled(pl) != 0) {\n             Vec_80368C14 v = o->pos;\n             subtract_vector(&v, pl + 0x38);\n             v.y = 0.0f;\n             if (!(vector_length(&v) > 22.5f)) {\n                 TBoss6MagMine__sub_80368AB8((u8 *)o, (u8 *)pl);\n             }\n         }\n     }\n-    play_sound_effect(0x4003BA1E, &o->pos, 0, 0);\n+    play_sound_effect(0x4003BA1E, (const Vec *)(&o->pos), 0, 0);\n }\n \n s32 is_player_in_range__13TBoss6MagMineFPv(void *arg0_) {\n     M_80368CE4 *arg0 = (M_80368CE4 *)arg0_;\n@@ -249,9 +251,9 @@ s32 is_player_in_range__13TBoss6MagMineFPv(void *arg0_) {\n     void *p;\n     n = TLobby::get_game_mode();\n     for (i = 0; i < n; i++) {\n         p = (void *)get_player_data__10TObjPlayerFi(i);\n-        if (((TBoss6PlotFalz *)p)->is_active() != 0) {\n+        if (TBoss6PlotFalz::is_active((TObjPlayer *)p) != 0) {\n             ((void (*)(Vec_80368C14 *, Vec_80368C14 *))VecCopy__FP3VecPC3Vec)(&d, &((P_80368CE4 *)p)->pos);\n             subtract_vector(&d, &arg0->home);\n             d.y = 0.0f;\n             if (vector_length(&d) <= 22.5f) {\n@@ -355,9 +357,9 @@ public:\n \n void TUnk_804F322C::run_task() {\n     TBoss6MagMine_80368FA0 *self = (TBoss6MagMine_80368FA0 *)this;\n     s32 color;\n-    if (check_demo_mode__10TObjPlayerFv(self) != 0) {\n+    if (check_demo_mode() != 0) {\n         return;\n     }\n     if (TBoss6PlotFalz::is_boss_active() == 0) {\n         self->state = 4;\n@@ -378,9 +380,9 @@ void TUnk_804F322C::run_task() {\n         (self->*m)();\n     }\n     copy_pos__13TBoss6MagMineFi((s32)self);\n     if (self->state == 2) {\n-        ((TObjPlayer *)self)->update_collisions();\n+        ((TObjCollidable *)self)->update_collisions();\n         submit_cursor_candidate(self, -1);\n     }\n     if (self->state != 0) {\n         color = 0xFF7F5126;\n@@ -434,12 +436,12 @@ s32 TBoss6MagMine__ct(s32 arg0, s32 parent, s32 arg2) {\n     VecCopy__FP3VecPC3Vec(arg0 + 0x38, arg2 + 0x40);\n     VecCopy__FP3VecPC3Vec(arg0 + 0x384, arg2 + 0x4C);\n     ((TObjChara *)self)->add_flags_2e4(8);\n     ((TBoss3Volopt *)(self))->apply_set_data((void *)arg2);\n-    if (((TObjEnemy *)self)->exchange_object_state((s32)&key, (s16)1) != 0) {\n+    if (((TObjEnemy *)self)->exchange_object_state(&key, (s16)1) != 0) {\n         key.a = 0;\n         key.c = 0;\n-        ((TObjEnemy *)self)->exchange_object_state((s32)&key, (s16)0);\n+        ((TObjEnemy *)self)->exchange_object_state(&key, (s16)0);\n     }\n     *(s32 *)((s8 *)self + 0x374) = TObjFish::get_fish_count();\n     *(s32 *)((s8 *)self + 0x24) = 0;\n     *(s32 *)((s8 *)self + 0x34) = 0;\n@@ -447,13 +449,13 @@ s32 TBoss6MagMine__ct(s32 arg0, s32 parent, s32 arg2) {\n     init_collision_body_parts(self, __vt__13TBoss6MagMine, 1);\n     VecCopy__FP3VecPC3Vec(arg0 + 0x2FC, arg0 + 0x38);\n     *(f32 *)((s8 *)self + 0x308) = *(f32 *)((s8 *)self + 0x30C) = *(f32 *)((s8 *)self + 0x310) = 0.0f;\n     *(s32 *)((s8 *)self + 0x2A8) = 0;\n-    ((TObjEnemy *)self)->bind_enemy_combat_stats((u8 *)(TLobby::register_boss(0x2D)), (u8 *)(TLobby::dispatch_shared_handler_b(0x2D)), (u8 *)(TLobby::register_object(0x2D)));\n+    ((TObjEnemy *)self)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x2D)), (u8 *)(get_battle_attack_params(0x2D)), (u8 *)(get_battle_resistance_params(0x2D)));\n     *(s16 *)((s8 *)self + 0x33E) = *(s16 *)((s8 *)self + 0x32C);\n-    ((TBoss3Volopt *)self)->reset_photon_effect();\n+    ((TObjEnemy *)self)->register_by_id();\n     ((TObjEnemy *)self)->set_param(0);\n-    d = dispatch_shared_handler_a__6TLobbyFl(0x2D);\n+    d = ((u8 *)get_battle_movement_params(0x2D));\n     *(s32 *)((s8 *)self + 0x39C) = (s32) *(f32 *)((s8 *)d + 4);\n     if ((f32) *(s32 *)((s8 *)self + 0x39C) <= 0.0f) {\n         *(s32 *)((s8 *)self + 0x39C) = 0x14;\n     }\n@@ -505,9 +507,9 @@ void spawn_mag_mine_at__13TBoss6MagMineFPvPv(void *arg0, void *arg1) {\n     boss = TBoss6PlotFalz::get_hp();\n     if (boss == 0 || get_phase__8TObjFishFv() != 6) {\n         return;\n     }\n-    TBoss4DarkFalz__sub_8004B4F0(&p, (void *)(((TBoss6Type1 *)boss)->get_mag_mine_ptr()));\n+    TBoss4DarkFalz__sub_8004B4F0(&p, (void *)(((TBoss6PlotFalz *)boss)->get_mag_mine_ptr()));\n     ((void (*)(void *, void *))VecCopy__FP3VecPC3Vec)(&p.a, arg0);\n     ((void (*)(void *, void *))VecCopy__FP3VecPC3Vec)(&p.b, arg1);\n     p.f8 = 1;\n     ((void (*)(void *, void *))VecCopy__FP3VecPC3Vec)(&p.pos, &p.a);\n",
+              "anchors": [
+                {
+                  "path": "src/pso/boss/olgaflow/TBoss6MagMine.cpp",
+                  "blob": "de2c6553aac8d270f141cee754e126960174973c",
+                  "anchors": [
+                    "struct Boss6MagMineSetData {",
+                    "void spawn_boss6_mag_mine(const Vec *origin, const Vec *destination)",
+                    "movement->m_04",
+                    "movement->m_08"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1164,
+        "historical_path": "src/pso/boss/TBoss6Type2_8032E708.cpp",
+        "historical_blob": "517c2dffe343a7542194479dca59f264936c8440",
+        "owners": {
+          "src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp": "916496f2cea0abbf622616c3162b26da0b88ecca"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "Both missing plain-vector queries from the complete producer hunk are restored, and current MagMine explicitly receives the actual two position arguments. Broader old motion, scene and resource changes remain scoped.",
+            "details": {
+              "authored_delta": "diff --git a/5ddc4a0fe1f0bdea4c4aa5df7ac1b95bf021a68a b/517c2dffe343a7542194479dca59f264936c8440\nindex 5ddc4a0fe1..517c2dffe3 100644\n--- a/5ddc4a0fe1f0bdea4c4aa5df7ac1b95bf021a68a\n+++ b/517c2dffe343a7542194479dca59f264936c8440\n@@ -1,4 +1,12 @@\n+#include \"pso/system/BmlTextureList.h\"\n+#include \"pso/system/BmlResource.h\"\n+#include \"pso/player/demo_mode.h\"\n+#include \"pso/system/ModelNodePositionCapture.h\"\n+#include \"pso/enemy/BattleParameters.h\"\n+#include \"pso/system/CurrentTextureList.h\"\n+#include \"pso/system/SoundEffect.h\"\n+#include \"pso/misc/PersistentSound.h\"\n #include \"types.h\"\n #include \"pso/player/TObjPlayer_803E4954.h\"\n #include \"pso/misc/TLobby.h\"\n #include \"pso/boss/TBoss6Mag.h\"\n@@ -155,9 +163,9 @@ struct O_8032F034 {\n typedef struct Vec_8032ECE0 { f32 x; f32 y; f32 z; } Vec_8032ECE0;\n \n typedef struct Vec_8032F690 { f32 x; f32 y; f32 z; } Vec_8032F690;\n \n-typedef struct Vec_8032F418 { f32 x; f32 y; f32 z; } Vec_8032F418;\n+typedef Vec Vec_8032F418;\n \n struct Vec_8032EF34;\n struct V3_8032F824 { f32 x; f32 y; f32 z; };\n \n@@ -238,9 +246,9 @@ void cure_poison_ailment__9TObjCharaFv();\n void enemy_spawn_jellen_effect__9TObjCharaFv();\n void enemy_spawn_zalure_effect__9TObjCharaFv();\n void vfunc_78__9TObjCharaFl();\n void vfunc_77__9TObjCharaFv();\n-void vfunc_76__9TObjCharaFv();\n+void vfunc_76__9TObjCharaFf();\n void vfunc_75__9TObjCharaFf();\n void clear_lobby_object_state__9TObjEnemyFv();\n void get_center__9TObjCharaFv();\n void get_actor_level_index__9TObjCharaFv();\n@@ -301,20 +309,17 @@ void *lbl_804EDDEC[83] = {\n     (void *)vfunc_60__9TObjCharaFv, (void *)vfunc_61__9TObjCharaFv, (void *)spawn_ground_effect__10TObjPlayerFPv, (void *)vfunc_63__9TBoss6MagFv,\n     (void *)reset_pose__9TObjCharaFv, (void *)get_anim_node_position__9TObjCharaFlP3Vec, (void *)vfunc_66__9TObjCharaFv, (void *)vfunc_67__9TObjCharaFf,\n     (void *)get_pos__9TObjCharaFl, (void *)apply_switch_attack__9TObjCharaFv, (void *)enemy_spawn_jellen_effect__9TObjCharaFv, (void *)trigger_switch_attack__9TObjCharaFv,\n     (void *)enemy_spawn_zalure_effect__9TObjCharaFv, (void *)recalc_stats__9TObjCharaFv, (void *)vfunc_74__9TObjEnemyFl, (void *)vfunc_75__9TObjCharaFf,\n-    (void *)vfunc_76__9TObjCharaFv, (void *)vfunc_77__9TObjCharaFv, (void *)vfunc_78__9TObjCharaFl, (void *)vfunc_79__9TObjEnemyFPl,\n+    (void *)vfunc_76__9TObjCharaFf, (void *)vfunc_77__9TObjCharaFv, (void *)vfunc_78__9TObjCharaFl, (void *)vfunc_79__9TObjEnemyFPl,\n     (void *)apply_hit_message_flags__9TObjEnemyFPv, (void *)apply_set_data__9TObjEnemyFPv, (void *)clear_lobby_object_state__9TObjEnemyFv,\n };\n \n f32 vec3_add_to(void *, int);\n f32 vector_length(void *);\n f32 subtract_vector(void *, int);\n f32 normalize_vector(void *);\n void TBoss6Type2__sub_8032F5C4(void *arg0);\n-s32 TObjFish__sub_8001EDB0(s32, s32);\n-s32 get_bml_model(s32, s32);\n-s32 clear_render_callback__8TObjFishFv(s32);\n }\n void draw_model_blend_motion(void *arg0, void *arg1, f32 farg0);\n extern \"C\" {\n void draw_model_motion(void *arg0, void *arg1, f32 farg0);\n@@ -763,9 +768,9 @@ void TBoss6Mag::spawn_falling_rocks() {\n         VecCopy((Vec *)p, (const Vec *)(arg0 + 0x44C));\n         p->x = r * ((f32 (*)(s32))sin_table_lookup)(ang) + p->x;\n         p->y = (0.0f);\n         p->z = r * ((f32 (*)(s32))cos_table_lookup)(ang) + p->z;\n-        ((TBoss6Rock *)p)->push_out_of_rocks((1e+01f));\n+        TBoss6Rock::push_out_of_rocks(p, 1e+01f);\n     }\n     send_6xAD_grid_positions__11TBoss6Type2FUcll(*(s32 *)((s8 *)arg0 + 0x384), pts, 3);\n }\n #pragma pop\n@@ -1032,23 +1037,23 @@ void TBoss6Mag::draw_model_motion_blend() {\n     Stack_8032FE50 stack;\n     s32 temp_r31;\n     s32 bml_model;\n     set_motion_packed_rotation();\n-    temp_r31 = TObjFish__sub_8001EDB0(*(s32 *)((s8 *)this + 0x374), 1);\n-    bml_model = get_bml_model(*(s32 *)((s8 *)this + 0x374), 1);\n-    TObjFish::set_global_param(temp_r31);\n+    temp_r31 = (s32)TObjFish__sub_8001EDB0((BmlResource *)(*(s32 *)((s8 *)this + 0x374)), 1);\n+    bml_model = (s32)get_bml_model((BmlResource *)*(s32 *)((s8 *)this + 0x374), 1);\n+    set_current_texture_list((GinjaTextureList *)(temp_r31));\n     if ((0.0f) == *(f32 *)((s8 *)this + 0x3E8)) {\n-        ((TObjFish *)(*(s32 *)((s8 *)this + 0x458)))->set_draw_callback_list();\n+        ((ModelNodePositionCapture *)(*(s32 *)((s8 *)this + 0x458)))->install();\n         draw_model_motion((void *)bml_model, (void *)(*(s32 *)((s8 *)this + 0x3DC)), *(f32 *)((s8 *)this + 0x3E0));\n-        clear_render_callback__8TObjFishFv(*(s32 *)((s8 *)this + 0x458));\n+        ((ModelNodePositionCapture *)(*(s32 *)((s8 *)this + 0x458)))->clear();\n     } else {\n         stack.sp8 = *(s32 *)((s8 *)this + 0x3F0);\n         stack.sp10 = *(f32 *)((s8 *)this + 0x3F4);\n         stack.spC = *(s32 *)((s8 *)this + 0x3DC);\n         stack.sp14 = *(f32 *)((s8 *)this + 0x3E0);\n-        ((TObjFish *)(*(s32 *)((s8 *)this + 0x458)))->set_draw_callback_list();\n+        ((ModelNodePositionCapture *)(*(s32 *)((s8 *)this + 0x458)))->install();\n         draw_model_blend_motion((void *)bml_model, &stack.sp8, *(f32 *)((s8 *)this + 0x3E8));\n-        clear_render_callback__8TObjFishFv(*(s32 *)((s8 *)this + 0x458));\n+        ((ModelNodePositionCapture *)(*(s32 *)((s8 *)this + 0x458)))->clear();\n     }\n     clear_motion_packed_rotation();\n }\n \n@@ -1156,9 +1161,9 @@ f32 fn_80330240(O_80330240 *arg0, void *att, P_80330240 arg2, void *coll, void *\n         break;\n     }\n     return receive_direct_attack__9TObjCharaFPv19DirectAttackPayloadPvll(arg0, att, arg2, coll, tech, arg5);\n }\n-s32 play_sound_effect(int, void *, int, int);\n+\n s32 TBoss6Type2__sub_802BD340(int);\n f32 receive_physical_attack__9TObjCharaFPvf();\n \n f32 TBoss6Mag::receive_physical_attack(void *, f32) {\n@@ -1177,17 +1182,17 @@ void TBoss6Mag::vfunc_63() {\n     default:\n         TBoss6Type2__sub_802BD340((int) (*(s32 *)((s8 *)arg0 + 0x378)));\n         *(f32 *)((s8 *)arg0 + 0x3F8) = (f32) (1.0f);\n         ((TBoss6Mag *)arg0)->set_action(4);\n-        play_sound_effect(0x69E17, arg0 + 0x38, 0, 0);\n+        play_sound_effect(0x69E17, (const Vec *)(arg0 + 0x38), 0, 0);\n         break;\n     }\n }\n \n void spawn_ground_effect__10TObjPlayerFPv(u8 *arg0) {\n     *(f32 *)((s8 *)arg0 + 0x3F8) = (f32) (1.0f);\n     *(s32 *)((s8 *)arg0 + 0x30) = (s32) (*(s32 *)((s8 *)arg0 + 0x30) & 0xFFFFFDFF);\n-    play_sound_effect(0x6A816, arg0 + 0x38, 0, 0);\n+    play_sound_effect(0x6A816, (const Vec *)(arg0 + 0x38), 0, 0);\n     *(f32 *)((s8 *)arg0 + 0x3BC) = (f32) (0.0f);\n }\n void TBoss6PlotFalz__sub_802AC008(f32, f32);\n s32 pop_matrix(void);\n@@ -1197,9 +1202,8 @@ s32 push_matrix();\n s32 post_translate_matrix(void *);\n void queue_destruction__7TObjectFv(void *object);\n s32 submit_cursor_candidate(void *, int);\n s32 add_radar_scaled_marker(void *, int, int, int, f32);\n-s32 play_persistent_sound(s32 id, s32 a1, u32 src, s32 a3, s32 flags);\n \n void TObjPlayer::save_position() {\n     s32 arg0 = (s32)this;\n     VecCopy((Vec *)(arg0 + 0x2FC), (const Vec *)(arg0 + 0x38));\n@@ -1243,18 +1247,18 @@ void TBoss6Mag::spawn_trap_by_stat() {\n         if (*(f32 *)((s8 *)((u8 *)this) + 0x3BC) > (0.0f)) {\n             var_r3 = 0x6B518;\n         }\n     }\n-    play_persistent_sound((s32)var_r3, (s32)this, (u32)(((u8 *)this) + 0x38), 0, 0);\n+    play_persistent_sound((s32)var_r3, (const void *)(this), (const Vec *)((u32)(((u8 *)this) + 0x38)), 0, 0);\n }\n \n void TBoss6Mag::render() { sub_8033040C(); }\n \n void TBoss6Mag::run_task() {\n     u8 *arg0 = (u8 *)this;\n     s32 var_r4;\n \n-    if (TObjPlayer::check_demo_mode() == 0) {\n+    if (check_demo_mode() == 0) {\n         if (TBoss6PlotFalz::is_boss_active() == 0) {\n             *(s32 *)((s8 *)arg0 + 0x378) = 0;\n             queue_destruction__7TObjectFv(arg0);\n             return;\n@@ -1269,12 +1273,12 @@ void TBoss6Mag::run_task() {\n         ((TBoss6Mag *)arg0)->update_rotation_ramp();\n         ((TBoss6Mag *)arg0)->update_motion_playback();\n         ((TObjPlayer *)arg0)->save_position();\n         if ((s32) *(s32 *)((s8 *)arg0 + 0x388) != 0) {\n-            ((TObjPlayer *)arg0)->update_collisions();\n+            ((TObjCollidable *)arg0)->update_collisions();\n             submit_cursor_candidate(arg0, -1);\n         }\n-        ((TBoss6Rock *)(arg0 + 0x38))->break_rocks_in_radius((f32) (1e+01f));\n+        TBoss6Rock::break_rocks_in_radius(&this->position, (f32)(1e+01f));\n         var_r4 = 0xFF7F5126;\n         if ((s32) *(s32 *)((s8 *)arg0 + 0x388) != 0) {\n             var_r4 = -0x5DB4;\n         }\n@@ -1295,9 +1299,9 @@ void *fn_8033068C(void *arg0, s16 arg1) {\n     if (arg0 != NULL) {\n         *(void **)((s8 *)arg0 + 0x18) = lbl_804EDDEC;\n         update_all_parts__11TBoss6Type2FPv((s32)arg0);\n         if ((u32) *(u32 *)((s8 *)arg0 + 0x458) != 0U) {\n-            TObjFish::init_state_1(*(void **)((s8 *)arg0 + 0x458));\n+            ModelNodePositionCapture::destroy((ModelNodePositionCapture *)(*(void **)((s8 *)arg0 + 0x458)));\n             *(u32 *)((s8 *)arg0 + 0x458) = 0U;\n         }\n         free_collision_body_parts(arg0);\n         TBoss6Type2__instance_slots[*(s32 *)((s8 *)arg0 + 0x384)] = 0;\n@@ -1312,12 +1316,10 @@ void *fn_8033068C(void *arg0, s16 arg1) {\n struct Key_80330724 { s32 a; s16 b; s16 c; s32 d; s32 e; };\n \n extern \"C\" {\n void __ct__9TObjEnemyFP7TObject(void *, s32, void *);\n-s32 exchange_object_state__9TObjEnemyFls(void *, Key_80330724 *, s32);\n void init_collision_body_parts(void *, void *, s32);\n-f32 *dispatch_shared_handler_a__6TLobbyFl(int);\n-s32 TObjFish__sub_800E3124(u8 *list, s32 vecs);\n+\n void TBoss6Mag__sub_803309C4(void *, void *);\n \n u8 *TBoss6Mag__ct(u8 *arg0, s32 arg1, u8 *arg2) {\n     Key_80330724 key;\n@@ -1332,12 +1334,12 @@ u8 *TBoss6Mag__ct(u8 *arg0, s32 arg1, u8 *arg2) {\n     *(s32 *)((s8 *)arg0 + 0x60) = *(s32 *)((s8 *)arg2 + 0x50);\n     *(s32 *)((s8 *)arg0 + 0x384) = *(s32 *)((s8 *)arg2 + 0x54);\n     TBoss6Type2__instance_slots[*(s32 *)((s8 *)arg0 + 0x384)] = arg0;\n     ((TBoss6Mag *)arg0)->apply_set_data(arg2);\n-    if (exchange_object_state__9TObjEnemyFls(arg0, &key, 1) != 0) {\n+    if (((TObjEnemy *)(arg0))->exchange_object_state(&key, 1) != 0) {\n         key.a = 0;\n         key.c = 0;\n-        exchange_object_state__9TObjEnemyFls(arg0, &key, 0);\n+        ((TObjEnemy *)(arg0))->exchange_object_state(&key, 0);\n     }\n     *(s32 *)((s8 *)arg0 + 0x374) = TObjFish::get_fish_count();\n     *(s32 *)((s8 *)arg0 + 0x37C) = 0;\n     *(s32 *)((s8 *)arg0 + 0x24) = 0;\n@@ -1348,12 +1350,12 @@ u8 *TBoss6Mag__ct(u8 *arg0, s32 arg1, u8 *arg2) {\n     *(f32 *)((s8 *)arg0 + 0x310) = 0.0f;\n     *(f32 *)((s8 *)arg0 + 0x30C) = 0.0f;\n     *(f32 *)((s8 *)arg0 + 0x308) = 0.0f;\n     *(s32 *)((s8 *)arg0 + 0x2A8) = 0;\n-    ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)(TLobby::register_boss(0x2E)), (u8 *)(TLobby::dispatch_shared_handler_b(0x2E)), (u8 *)(TLobby::register_object(0x2E)));\n+    ((TObjEnemy *)arg0)->bind_enemy_combat_stats((u8 *)(get_battle_base_stats(0x2E)), (u8 *)(get_battle_attack_params(0x2E)), (u8 *)(get_battle_resistance_params(0x2E)));\n     *(s16 *)((s8 *)arg0 + 0x33E) = *(s16 *)((s8 *)arg0 + 0x32C);\n     *(s32 *)((s8 *)arg0 + 0x38C) = *(s16 *)((s8 *)arg0 + 0x32C);\n-    ((TBoss3Volopt *)arg0)->reset_photon_effect();\n+    ((TObjEnemy *)arg0)->register_by_id();\n     enemy = (TObjEnemy *)arg0;\n     prm = 0x55;\n     if (*(s32 *)((s8 *)arg0 + 0x384) == 1) {\n         prm = 0x56;\n@@ -1362,11 +1364,11 @@ u8 *TBoss6Mag__ct(u8 *arg0, s32 arg1, u8 *arg2) {\n     ((TObjChara *)arg0)->add_flags_2e4(*(u32 *)((s8 *)arg2 + 0x58));\n     *(s32 *)((s8 *)arg0 + 0x390) = *(s32 *)((s8 *)arg2 + 0x5C);\n     ((TBoss6Type2 *)arg0)->init_segment_angle_range();\n     TBoss6Type2__sub_803300C8(arg0);\n-    *(s32 *)((s8 *)arg0 + 0x458) = TObjFish__sub_800E3124((u8 *)lbl_804773DC, (s32)(arg0 + 0x44C));\n+    *(s32 *)((s8 *)arg0 + 0x458) = (s32)ModelNodePositionCapture::create((ModelNodePositionEntry *)(lbl_804773DC), (Vec *)((arg0 + 0x44C)));\n     TBoss6Mag__sub_803309C4(arg0 + 0x408, (void *)lbl_804773FC);\n-    d = dispatch_shared_handler_a__6TLobbyFl(0x2E);\n+    d = ((f32 *)get_battle_movement_params(0x2E));\n     *(s32 *)((s8 *)arg0 + 0x3C0) = (s32)d[0];\n     if ((f32)*(s32 *)((s8 *)arg0 + 0x3C0) <= 0.0f) {\n         *(s32 *)((s8 *)arg0 + 0x3C0) = 0x96;\n     }\n",
+              "anchors": [
+                {
+                  "path": "src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp",
+                  "blob": "916496f2cea0abbf622616c3162b26da0b88ecca",
+                  "anchors": [
+                    "TBoss6Rock::push_out_of_rocks(p, 10.0f);",
+                    "TBoss6Rock::break_rocks_in_radius(&((TBoss6Mag *)arg0)->position, 10.0f);",
+                    "spawn_boss6_mag_mine(origin, &arg0->v[i]);"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6417,
+        "historical_path": "src/pso/misc/TLobby_802A018C.cpp",
+        "historical_blob": "7863eb37747766e9b9a9b8458743b84ef29f2539",
+        "owners": {
+          "src/pso/object/door/TODoorLabo.cpp": "6e3fb8904363426035f741f264647cdb5a86a1f8"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The folded lab/Seabed owner uses both original BML construction branches, native release and owned red/green GVM teardown. Storage now matches the archive and texture pointer types.",
+            "details": {
+              "authored_hunks": 4,
+              "assessment": "full after replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6453,
+        "historical_path": "src/pso/misc/TOVS2Wall01_8017BE08.cpp",
+        "historical_blob": "4198a67408159c7249027e75c0ca4ca2c9cef1c6",
+        "owners": {
+          "src/pso/object/fence/TOVS2Wall01.cpp": "deb0cf710b47d10cae3885ed2e0dae97a897484d"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The folded Seabed wall translation unit already owns the native wall or wreck lifetime, data and real class strings, with the same model/texture index, collision body and destructor. The original legacy splits are represented at the live owner.",
+            "details": {
+              "authored_hunks": 7,
+              "assessment": "full before replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6454,
+        "historical_path": "src/pso/misc/TOVS2Wall01_8017C7A4.cpp",
+        "historical_blob": "c9232f2417d63eba263685831a12c325b8bb409b",
+        "owners": {
+          "src/pso/object/fence/TOVS2Wall01.cpp": "deb0cf710b47d10cae3885ed2e0dae97a897484d"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The real wall attack overrides retain the physical, direct and special call sites. The common handler now has the actual wall receiver and TObjBase attacker argument. The original resource and wreck lifecycle from this row remains at the folded exact owner.",
+            "details": {
+              "authored_hunks": 3,
+              "assessment": "full after replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6456,
+        "historical_path": "src/pso/misc/TOVS2Wreck01.cpp",
+        "historical_blob": "e690330ef3adee019ca8817733abc7cc0563bc39",
+        "owners": {
+          "src/pso/object/fence/TOVS2Wall01.cpp": "deb0cf710b47d10cae3885ed2e0dae97a897484d"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The folded Seabed wall translation unit already owns the native wall or wreck lifetime, data and real class strings, with the same model/texture index, collision body and destructor. The original legacy splits are represented at the live owner.",
+            "details": {
+              "authored_hunks": 3,
+              "assessment": "full before replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6457,
+        "historical_path": "src/pso/misc/TOVS2Wreck02.cpp",
+        "historical_blob": "4af29ed9e4f85436c6d83698cd6ac696fa94dfdb",
+        "owners": {
+          "src/pso/object/fence/TOVS2Wall01.cpp": "deb0cf710b47d10cae3885ed2e0dae97a897484d"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The folded Seabed wall translation unit already owns the native wall or wreck lifetime, data and real class strings, with the same model/texture index, collision body and destructor. The original legacy splits are represented at the live owner.",
+            "details": {
+              "authored_hunks": 2,
+              "assessment": "full before replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6458,
+        "historical_path": "src/pso/misc/TOVS2Wreck03.cpp",
+        "historical_blob": "a7d547da1e68456ffc67a224466baec5597a4c74",
+        "owners": {
+          "src/pso/object/fence/TOVS2Wall01.cpp": "deb0cf710b47d10cae3885ed2e0dae97a897484d"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The folded Seabed wall translation unit already owns the native wall or wreck lifetime, data and real class strings, with the same model/texture index, collision body and destructor. The original legacy splits are represented at the live owner.",
+            "details": {
+              "authored_hunks": 2,
+              "assessment": "full before replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6459,
+        "historical_path": "src/pso/misc/TOVS2Wreck04.cpp",
+        "historical_blob": "cd4e98c5f007dfcd557fdee892b10f70b567c020",
+        "owners": {
+          "src/pso/object/fence/TOVS2Wall01.cpp": "deb0cf710b47d10cae3885ed2e0dae97a897484d"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The folded Seabed wall translation unit already owns the native wall or wreck lifetime, data and real class strings, with the same model/texture index, collision body and destructor. The original legacy splits are represented at the live owner.",
+            "details": {
+              "authored_hunks": 2,
+              "assessment": "full before replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6460,
+        "historical_path": "src/pso/misc/TOVS2Wreck05.cpp",
+        "historical_blob": "d0a32c04510b11593d27137dc911e377206f986d",
+        "owners": {
+          "src/pso/object/fence/TOVS2Wall01.cpp": "deb0cf710b47d10cae3885ed2e0dae97a897484d"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The folded Seabed wall translation unit already owns the native wall or wreck lifetime, data and real class strings, with the same model/texture index, collision body and destructor. The original legacy splits are represented at the live owner.",
+            "details": {
+              "authored_hunks": 2,
+              "assessment": "full before replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6461,
+        "historical_path": "src/pso/misc/TOVS2Wreck06.cpp",
+        "historical_blob": "7edf0dd4524a2fd201f5f3ad0a5c4fa550a772c1",
+        "owners": {
+          "src/pso/object/fence/TOVS2Wall01.cpp": "deb0cf710b47d10cae3885ed2e0dae97a897484d"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The folded Seabed wall translation unit already owns the native wall or wreck lifetime, data and real class strings, with the same model/texture index, collision body and destructor. The original legacy splits are represented at the live owner.",
+            "details": {
+              "authored_hunks": 2,
+              "assessment": "full before replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6519,
+        "historical_path": "src/pso/object/TObjLazerFenceNorm.cpp",
+        "historical_blob": "a3d4aca0c277fd99f62200ac36d598fc47630b2f",
+        "owners": {
+          "src/pso/object/fence/TObjLazerFenceNorm.cpp": "adc5cc156cfbefdda350530424e080c2749a2e0a"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "Native Normal and Four-Post fence sources already carried model selection and render/state branches. The shared BML and GVM slots now also use actual types across the original resource owner and callers, including Komorebi.",
+            "details": {
+              "authored_hunks": 8,
+              "assessment": "full after replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6575,
+        "historical_path": "src/pso/unk/text_80192554.cpp",
+        "historical_blob": "536e7a4d2ff8765c7ee31c4255d92a49b190b7a9",
+        "owners": {
+          "src/pso/object/fence/TObjLazerFenceNorm.cpp": "adc5cc156cfbefdda350530424e080c2749a2e0a"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "Native Normal and Four-Post fence sources already carried model selection and render/state branches. The shared BML and GVM slots now also use actual types across the original resource owner and callers, including Komorebi.",
+            "details": {
+              "authored_hunks": 2,
+              "assessment": "full after replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6576,
+        "historical_path": "src/pso/unk/text_80193018.cpp",
+        "historical_blob": "577ce25620fcbbb291dbd1e0d75541ee92aca1fc",
+        "owners": {
+          "src/pso/object/fence/TObjLazerFenceNorm.cpp": "adc5cc156cfbefdda350530424e080c2749a2e0a"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "Native Normal and Four-Post fence sources already carried model selection and render/state branches. The shared BML and GVM slots now also use actual types across the original resource owner and callers, including Komorebi.",
+            "details": {
+              "authored_hunks": 3,
+              "assessment": "full after replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6756,
+        "historical_path": "src/pso/unk/text_8017B8A0.cpp",
+        "historical_blob": "292dc539a6dca703702c10ba6e036ce7ce3cafe1",
+        "owners": {
+          "src/pso/object/fence/TOVS2Wall01.cpp": "deb0cf710b47d10cae3885ed2e0dae97a897484d"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The current caller uses TObject::check_value_equals with the original class name. The fork's C alias is represented by the actual base API.",
+            "details": {
+              "authored_hunks": 3,
+              "assessment": "full before replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6783,
+        "historical_path": "src/pso/misc/TOVS2Wall01.cpp",
+        "historical_blob": "49adf2b6cc35225ea4c062f0f9d8b2c3dbc1f317",
+        "owners": {
+          "src/pso/object/fence/TOVS2Wall01.cpp": "deb0cf710b47d10cae3885ed2e0dae97a897484d"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The original debris template copy, center at +0xC and model/texture selection at +0x40/+0x44 already exist as named fields of TObjChipParams.",
+            "details": {
+              "authored_hunks": 3,
+              "assessment": "full before replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6797,
+        "historical_path": "src/pso/object/TObjDoorKey.cpp",
+        "historical_blob": "6e0d7c19390959427b004d5c85246787d62c2a2f",
+        "owners": {
+          "src/pso/object/door/TObjDoorKey.cpp": "1f41f5c21ce02993e47efbd68ee19618a9a31095"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "Original key/Jungle/switch model-table binds, current texture selection, actor angles, resource constructor/destruction and authored state or contact edits are represented at the live owner. The new BML and GVM pointers replace the remaining integer/void owner storage.",
+            "details": {
+              "authored_hunks": 13,
+              "assessment": "full after replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6816,
+        "historical_path": "include/pso/misc/TOVS2Wreck01.h",
+        "historical_blob": "6f74673d617183dc0190f39290aff68676f9764a",
+        "owners": {
+          "src/pso/object/fence/TOVS2Wall01.cpp": "deb0cf710b47d10cae3885ed2e0dae97a897484d"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The live native declaration and wreck virtual table are present. The folded upstream header still has an unused hand-mangled deleting-destructor prototype that the fork removed. Keep the individual header row open until the stale declaration is removed.",
+            "details": {
+              "authored_hunks": 1,
+              "assessment": "scoped"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6853,
+        "historical_path": "include/pso/misc/TODoorJungleMain.h",
+        "historical_blob": "4df406be44de64ce609e82aca05abdec5e415705",
+        "owners": {
+          "src/pso/object/door/TODoorJungleMain.cpp": "a8f3529ad7004aa41c4032e9d5ce4713b39768f3"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The Jungle Main door's map collision child already stores the original TObjMapCsn pointer at +0xDC.",
+            "details": {
+              "authored_hunks": 2,
+              "assessment": "full before replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6866,
+        "historical_path": "src/pso/object/TObjDoorJung.cpp",
+        "historical_blob": "3187a808bcc121eb6a9582b441126637e02b9256",
+        "owners": {
+          "src/pso/object/door/TObjDoorJung.cpp": "44ad5d2a6cb50dfd31badb9b717bc8bb7eacd809"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "Original key/Jungle/switch model-table binds, current texture selection, actor angles, resource constructor/destruction and authored state or contact edits are represented at the live owner. The new BML and GVM pointers replace the remaining integer/void owner storage.",
+            "details": {
+              "authored_hunks": 11,
+              "assessment": "full after replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6867,
+        "historical_path": "src/pso/object/TLazerFenceSw.cpp",
+        "historical_blob": "66817a9420812710df1de0d0205e559e71f074ad",
+        "owners": {
+          "src/pso/object/fence/TLazerFenceSw.cpp": "e8bce203ffec4c56bbe7f64c971f0c838fc8b8e9"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "Original key/Jungle/switch model-table binds, current texture selection, actor angles, resource constructor/destruction and authored state or contact edits are represented at the live owner. The new BML and GVM pointers replace the remaining integer/void owner storage.",
+            "details": {
+              "authored_hunks": 9,
+              "assessment": "full after replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6870,
+        "historical_path": "include/pso/misc/TOVS2Wreck02.h",
+        "historical_blob": "73688b89536ce62d0a1ed1000f63d53ebb1b2b99",
+        "owners": {
+          "src/pso/object/fence/TOVS2Wall01.cpp": "deb0cf710b47d10cae3885ed2e0dae97a897484d"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The live native declaration and wreck virtual table are present. The folded upstream header still has an unused hand-mangled deleting-destructor prototype that the fork removed. Keep the individual header row open until the stale declaration is removed.",
+            "details": {
+              "authored_hunks": 1,
+              "assessment": "scoped"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6871,
+        "historical_path": "include/pso/misc/TOVS2Wreck03.h",
+        "historical_blob": "60b6ca69ddb1697941e975b9c0474ae61f928da9",
+        "owners": {
+          "src/pso/object/fence/TOVS2Wall01.cpp": "deb0cf710b47d10cae3885ed2e0dae97a897484d"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The live native declaration and wreck virtual table are present. The folded upstream header still has an unused hand-mangled deleting-destructor prototype that the fork removed. Keep the individual header row open until the stale declaration is removed.",
+            "details": {
+              "authored_hunks": 1,
+              "assessment": "scoped"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6872,
+        "historical_path": "include/pso/misc/TOVS2Wreck04.h",
+        "historical_blob": "82a7d9f3a40391defcbde44929f145ffe8d171da",
+        "owners": {
+          "src/pso/object/fence/TOVS2Wall01.cpp": "deb0cf710b47d10cae3885ed2e0dae97a897484d"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The live native declaration and wreck virtual table are present. The folded upstream header still has an unused hand-mangled deleting-destructor prototype that the fork removed. Keep the individual header row open until the stale declaration is removed.",
+            "details": {
+              "authored_hunks": 1,
+              "assessment": "scoped"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6873,
+        "historical_path": "include/pso/misc/TOVS2Wreck05.h",
+        "historical_blob": "8c3452e2c2b929b81f06e6a695e073002b4d0e61",
+        "owners": {
+          "src/pso/object/fence/TOVS2Wall01.cpp": "deb0cf710b47d10cae3885ed2e0dae97a897484d"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The live native declaration and wreck virtual table are present. The folded upstream header still has an unused hand-mangled deleting-destructor prototype that the fork removed. Keep the individual header row open until the stale declaration is removed.",
+            "details": {
+              "authored_hunks": 1,
+              "assessment": "scoped"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6874,
+        "historical_path": "include/pso/misc/TOVS2Wreck06.h",
+        "historical_blob": "ae1d050f5c0bf41ba4fe0ae206d9802bc04c4cec",
+        "owners": {
+          "src/pso/object/fence/TOVS2Wall01.cpp": "deb0cf710b47d10cae3885ed2e0dae97a897484d"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The live native declaration and wreck virtual table are present. The folded upstream header still has an unused hand-mangled deleting-destructor prototype that the fork removed. Keep the individual header row open until the stale declaration is removed.",
+            "details": {
+              "authored_hunks": 1,
+              "assessment": "scoped"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6905,
+        "historical_path": "src/pso/misc/TOBarrierEnergy01.cpp",
+        "historical_blob": "e65f50a857b051ed9c78753884c814ae23652c2e",
+        "owners": {
+          "src/pso/object/fence/TOBarrierEnergy01.cpp": "50c67d1aad59d73656ce9c8e7d1ec3f6eade2e9f"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "Native BML lifetime and historical render/sound calls already survive. This wave changes the shared collision packet init boundary only in this file. TOBarrierEnergy01's three-slot texture table still uses integer storage.",
+            "details": {
+              "authored_hunks": 4,
+              "assessment": "scoped"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6906,
+        "historical_path": "src/pso/object/TObjLazerFence4.cpp",
+        "historical_blob": "a33cf9b14ca833161862819b98aae9949b427876",
+        "owners": {
+          "src/pso/object/fence/TObjLazerFence4.cpp": "5fa9c8872c7c59461ca28a35e2d7add0e3f11fa1"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "Native Normal and Four-Post fence sources already carried model selection and render/state branches. The shared BML and GVM slots now also use actual types across the original resource owner and callers, including Komorebi.",
+            "details": {
+              "authored_hunks": 5,
+              "assessment": "full after replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6920,
+        "historical_path": "src/pso/misc/TODoorAncient05.cpp",
+        "historical_blob": "6471872ea510d126cef2dc01d06cc4b545255d88",
+        "owners": {
+          "src/pso/object/door/TODoorAncient05.cpp": "275c10e3d47c762d5c2f7f677e7e62a09ea82b2f"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The original native archive creation/release, positional sound, render draw/angle/texture paths and array ownership are present. This wave gives the resource table and allocated slots their actual pointer type while retaining native allocation size and release order.",
+            "details": {
+              "authored_hunks": 5,
+              "assessment": "full after replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6921,
+        "historical_path": "src/pso/misc/TODoorAncient06.cpp",
+        "historical_blob": "18b3f2d3d99a647d4a1975f155a57a23367a9749",
+        "owners": {
+          "src/pso/object/door/TODoorAncient06.cpp": "477f5fbbd4051906df9b78fcbac207bbb991af3c"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The original native archive creation/release, positional sound, render draw/angle/texture paths and array ownership are present. This wave gives the resource table and allocated slots their actual pointer type while retaining native allocation size and release order.",
+            "details": {
+              "authored_hunks": 5,
+              "assessment": "full after replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6922,
+        "historical_path": "src/pso/misc/TODoorBase.cpp",
+        "historical_blob": "5ff0627e7d55e8204f7b535dcd8d2cf00416fd9a",
+        "owners": {
+          "src/pso/object/door/TODoorBase.cpp": "68141e6c7814adb62c054a13cb131fba5ce5512a"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The authored native state/render/audio or folded Four Light base methods are represented in the exact current owner. The existing source shape preserves the original positional and local state calls.",
+            "details": {
+              "authored_hunks": 8,
+              "assessment": "full before replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6923,
+        "historical_path": "src/pso/misc/TODoorCave02.cpp",
+        "historical_blob": "5b1afa78631c9f2541209e334943ee89aadf45f2",
+        "owners": {
+          "src/pso/object/door/TODoorCave02.cpp": "30721bc433bb2e0326c8a82c02e2c4a1549665fb"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The original native archive creation/release, positional sound, render draw/angle/texture paths and array ownership are present. This wave gives the resource table and allocated slots their actual pointer type while retaining native allocation size and release order.",
+            "details": {
+              "authored_hunks": 8,
+              "assessment": "full after replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6924,
+        "historical_path": "src/pso/misc/TODoorJungleMain.cpp",
+        "historical_blob": "d0cdcc2a39bc4ed7226af173d2b32a0488929dc3",
+        "owners": {
+          "src/pso/object/door/TODoorJungleMain.cpp": "a8f3529ad7004aa41c4032e9d5ce4713b39768f3"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "Jungle Main archive/texture ownership and motion loading are represented. Some source in the older class/state overlay remains out of scope of the archive and texture transplant.",
+            "details": {
+              "authored_hunks": 13,
+              "assessment": "scoped"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6925,
+        "historical_path": "src/pso/misc/TODoorMachine02.cpp",
+        "historical_blob": "ac2e0475db397b0983c5f30721ba59ed3b957e86",
+        "owners": {
+          "src/pso/object/door/TODoorMachine02.cpp": "b7e32a4fce3f97f4f23f17adb35df40050f3292d"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The original native archive creation/release, positional sound, render draw/angle/texture paths and array ownership are present. This wave gives the resource table and allocated slots their actual pointer type while retaining native allocation size and release order.",
+            "details": {
+              "authored_hunks": 8,
+              "assessment": "full after replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6938,
+        "historical_path": "src/pso/misc/TODoorFourLightSpace.cpp",
+        "historical_blob": "977707e89096047227122865880d979786ca4aba",
+        "owners": {
+          "src/pso/object/door/TODoorFourLightSpace.cpp": "0c8794c0788f17550c28080c9da080a954a0b12b"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The literal thresholds and active texture calls are present. Some Four Light Space texture-slot and shared palette receiver aliases are still erased; no broader lifetime claims made.",
+            "details": {
+              "authored_hunks": 10,
+              "assessment": "scoped"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6951,
+        "historical_path": "src/pso/misc/TODoorLabo.cpp",
+        "historical_blob": "d5af884923cc931ebdd17c360a3006aeb381a9f7",
+        "owners": {
+          "src/pso/object/door/TODoorLabo.cpp": "6e3fb8904363426035f741f264647cdb5a86a1f8"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "Lab/Seabed archives and red/green GVM ownership are typed in this wave. Original close timings and pointer casts across individual constructors and virtual selector interfaces were reviewed only where they consume those owners.",
+            "details": {
+              "authored_hunks": 14,
+              "assessment": "scoped"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6967,
+        "historical_path": "src/pso/misc/TODoorAncient01.cpp",
+        "historical_blob": "e931560f2d5ea7b67c36ad7b23443c0ba044d6b3",
+        "owners": {
+          "src/pso/object/door/TODoorAncient01.cpp": "d514928cdcb63f7753df56ab703847cff87d0777"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The original native archive creation/release, positional sound, render draw/angle/texture paths and array ownership are present. This wave gives the resource table and allocated slots their actual pointer type while retaining native allocation size and release order.",
+            "details": {
+              "authored_hunks": 5,
+              "assessment": "full after replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6968,
+        "historical_path": "src/pso/misc/TODoorAncient03.cpp",
+        "historical_blob": "1cd6015d3d1b0e71496dbe96df231a5efc21cac5",
+        "owners": {
+          "src/pso/object/door/TODoorAncient03.cpp": "2750f7d666091db3959a9f1ddbed499b85f368a5"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The original native archive creation/release, positional sound, render draw/angle/texture paths and array ownership are present. This wave gives the resource table and allocated slots their actual pointer type while retaining native allocation size and release order.",
+            "details": {
+              "authored_hunks": 5,
+              "assessment": "full after replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6969,
+        "historical_path": "src/pso/misc/TODoorAncient04.cpp",
+        "historical_blob": "8bf7796d0a06d374a27d2a5f6de403ef46c7243c",
+        "owners": {
+          "src/pso/object/door/TODoorAncient04.cpp": "0ad2b73a938ad22df4fdcab81e69d619424003b1"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The original native archive creation/release, positional sound, render draw/angle/texture paths and array ownership are present. This wave gives the resource table and allocated slots their actual pointer type while retaining native allocation size and release order.",
+            "details": {
+              "authored_hunks": 5,
+              "assessment": "full after replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6970,
+        "historical_path": "src/pso/misc/TODoorAncient07.cpp",
+        "historical_blob": "7eb61dc7b5d83ad0c3b7b33e3fcebd904ae7f30d",
+        "owners": {
+          "src/pso/object/door/TODoorAncient07.cpp": "bf8d477143c446f5e719a2241948fac7341a6714"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The original native archive creation/release, positional sound, render draw/angle/texture paths and array ownership are present. This wave gives the resource table and allocated slots their actual pointer type while retaining native allocation size and release order.",
+            "details": {
+              "authored_hunks": 5,
+              "assessment": "full after replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6990,
+        "historical_path": "src/pso/misc/TODoorAncient09.cpp",
+        "historical_blob": "106ba0b71ebe3f9195996b2ea14d2c79e1df1c84",
+        "owners": {
+          "src/pso/object/door/TODoorAncient09.cpp": "2ab2819e14ee8bdf3b582e90dafb49e4b34147b5"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The original native archive creation/release, positional sound, render draw/angle/texture paths and array ownership are present. This wave gives the resource table and allocated slots their actual pointer type while retaining native allocation size and release order.",
+            "details": {
+              "authored_hunks": 7,
+              "assessment": "full after replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6991,
+        "historical_path": "src/pso/misc/TODoorCave03.cpp",
+        "historical_blob": "4bf5bff3e5b621fd6ba36674f4003d064989f175",
+        "owners": {
+          "src/pso/object/door/TODoorCave03.cpp": "68281ca10aab40532b6dcfea58f1d960db651a17"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The authored native state/render/audio or folded Four Light base methods are represented in the exact current owner. The existing source shape preserves the original positional and local state calls.",
+            "details": {
+              "authored_hunks": 8,
+              "assessment": "full before replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6992,
+        "historical_path": "src/pso/object/TObjDoor_8018E358.cpp",
+        "historical_blob": "c4127d79dbc0fe6a187b06b02e57c4add8015256",
+        "owners": {
+          "src/pso/object/door/TObjDoor_8018E358.cpp": "286d6289b9b9bcc5acbe99e1fdd13537af7320b2"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The BML and GVM owners and legacy slot interfaces are accounted for. Existing wider model/motion tables still contain integer-shaped function boundaries and were deliberately left outside this replay.",
+            "details": {
+              "authored_hunks": 12,
+              "assessment": "scoped"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7011,
+        "historical_path": "src/pso/misc/TODoorMachine01.cpp",
+        "historical_blob": "318f48220bdc07a726aa972baf9ca8add40abfac",
+        "owners": {
+          "src/pso/object/door/TODoorMachine01.cpp": "3df11f2c33b9ee0d805e80eab2335e84649a12d5"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The original native archive creation/release, positional sound, render draw/angle/texture paths and array ownership are present. This wave gives the resource table and allocated slots their actual pointer type while retaining native allocation size and release order.",
+            "details": {
+              "authored_hunks": 7,
+              "assessment": "full after replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7012,
+        "historical_path": "src/pso/misc/TODoorVS2Door01.cpp",
+        "historical_blob": "203a23fbd0ade9539ef1dc7f118c9345a58cbd87",
+        "owners": {
+          "src/pso/object/door/TODoorVS2Door01.cpp": "b07c7f77c07ad8fbb06d9a6cbc45dcd20a4a42d4"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The original native archive creation/release, positional sound, render draw/angle/texture paths and array ownership are present. This wave gives the resource table and allocated slots their actual pointer type while retaining native allocation size and release order.",
+            "details": {
+              "authored_hunks": 9,
+              "assessment": "full after replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7027,
+        "historical_path": "src/pso/misc/TODoorAncient08.cpp",
+        "historical_blob": "8532c4e622a86f6e46fb434fbd4603ca4a744e6d",
+        "owners": {
+          "src/pso/object/door/TODoorAncient08.cpp": "b4f63b2c0760756d60f563757eaaa7d4c4b088d5"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The original native archive creation/release, positional sound, render draw/angle/texture paths and array ownership are present. This wave gives the resource table and allocated slots their actual pointer type while retaining native allocation size and release order.",
+            "details": {
+              "authored_hunks": 7,
+              "assessment": "full after replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7028,
+        "historical_path": "src/pso/misc/TOFenceAncient02.cpp",
+        "historical_blob": "a728515bd6adaf152f9f35c8ecfc07704fcba9f2",
+        "owners": {
+          "src/pso/object/fence/TOFenceAncient02.cpp": "aa452de265788b5a43dd0f00a5d58e9bbbcbe177"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The original fence archive lifetime, typed camera angle, pointer-sized array allocation, borrowed slot zero and three GVM owners are present. The typed slot array now records which values are texture pointers.",
+            "details": {
+              "authored_hunks": 2,
+              "assessment": "full after replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7046,
+        "historical_path": "src/pso/misc/TODoorCave01.cpp",
+        "historical_blob": "489c2065923835d4a5fffa6ebd70e668b429587d",
+        "owners": {
+          "src/pso/object/door/TODoorCave01.cpp": "869454ae0e711c60cfa13259832a109b6017a99a"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The original native archive creation/release, positional sound, render draw/angle/texture paths and array ownership are present. This wave gives the resource table and allocated slots their actual pointer type while retaining native allocation size and release order.",
+            "details": {
+              "authored_hunks": 9,
+              "assessment": "full after replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7047,
+        "historical_path": "src/pso/misc/TOFenceBase.cpp",
+        "historical_blob": "51ab5721846ef8646c4e0907eef94012ade88eb0",
+        "owners": {
+          "src/pso/object/fence/TOFenceBase.cpp": "a17d2556dc54505acb86ef68cd267baeb0ef05ee"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The authored native state/render/audio or folded Four Light base methods are represented in the exact current owner. The existing source shape preserves the original positional and local state calls.",
+            "details": {
+              "authored_hunks": 4,
+              "assessment": "full before replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7066,
+        "historical_path": "src/pso/misc/TOFenceAncient03.cpp",
+        "historical_blob": "fd90ca9c5054a651a236cb087ef974d47cd5dd5e",
+        "owners": {
+          "src/pso/object/fence/TOFenceAncient03.cpp": "c0dbee1e5d1f93902c0562247b86f2c4db156c5e"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The original fence archive lifetime, typed camera angle, pointer-sized array allocation, borrowed slot zero and three GVM owners are present. The typed slot array now records which values are texture pointers.",
+            "details": {
+              "authored_hunks": 2,
+              "assessment": "full after replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7088,
+        "historical_path": "src/pso/misc/TOFenceAncient01.cpp",
+        "historical_blob": "05bae27fe30e7e83bbe8cd38c92551d072b1a407",
+        "owners": {
+          "src/pso/object/fence/TOFenceAncient01.cpp": "9be9405b5939715de9cf4d657c7ee8df082ccc95"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The original fence archive lifetime, typed camera angle, pointer-sized array allocation, borrowed slot zero and three GVM owners are present. The typed slot array now records which values are texture pointers.",
+            "details": {
+              "authored_hunks": 2,
+              "assessment": "full after replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7089,
+        "historical_path": "src/pso/misc/TOFenceAncient04.cpp",
+        "historical_blob": "c35c23f3a3589bde75050060d4cb83d5a78c397f",
+        "owners": {
+          "src/pso/object/fence/TOFenceAncient04.cpp": "b1b4359003627c70f5add6d0f946fa583713f5df"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The original fence archive lifetime, typed camera angle, pointer-sized array allocation, borrowed slot zero and three GVM owners are present. The typed slot array now records which values are texture pointers.",
+            "details": {
+              "authored_hunks": 2,
+              "assessment": "full after replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7120,
+        "historical_path": "src/pso/misc/TODoorVoShip.cpp",
+        "historical_blob": "8bf59793481f48dd59158e331111bf790fd5240e",
+        "owners": {
+          "src/pso/object/door/TODoorVoShip.cpp": "deb2f70d6dec0c329764fb84d5ed10fac7b0a6af"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The authored native state/render/audio or folded Four Light base methods are represented in the exact current owner. The existing source shape preserves the original positional and local state calls.",
+            "details": {
+              "authored_hunks": 4,
+              "assessment": "full before replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7132,
+        "historical_path": "include/pso/misc/TOVS2Wall01.h",
+        "historical_blob": "59d8dddb88c3138413b23bb9d18bc568212be60f",
+        "owners": {
+          "src/pso/object/fence/TOVS2Wall01.cpp": "deb0cf710b47d10cae3885ed2e0dae97a897484d"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "Complete authored-equivalence was not established. Retain prior evidence and the attached historical path diff.",
+            "details": {
+              "authored_hunks": 1,
+              "assessment": "scoped"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7156,
+        "historical_path": "src/pso/misc/TODoorFourLightBase.cpp",
+        "historical_blob": "ea474efc6100ba02ec8eb8e2d9b2d9a67ee66f99",
+        "owners": {
+          "src/pso/object/door/TODoorLabo.cpp": "6e3fb8904363426035f741f264647cdb5a86a1f8"
+        },
+        "proofs": [
+          {
+            "group": "gates",
+            "evidence": "The authored native state/render/audio or folded Four Light base methods are represented in the exact current owner. The existing source shape preserves the original positional and local state calls.",
+            "details": {
+              "authored_hunks": 5,
+              "assessment": "full before replay"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5492,
+        "historical_path": "include/pso/misc/TWindowSubEquipKind.h",
+        "historical_blob": "5d28944af9712414280b24604c2b2bb9e0907db5",
+        "owners": {
+          "include/pso/ui/window/TWindowSubEquipKind.h": "0b1141478122f69437771711ef09791975c4b6a1"
+        },
+        "proofs": [
+          {
+            "group": "windows",
+            "evidence": "Native position-plus-client constructor and original size, state and timer offsets are present.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5493,
+        "historical_path": "include/pso/misc/TWindowSubEquipList.h",
+        "historical_blob": "0ea18e15f5b51e8f6d7e7356e38349541cc8f4bb",
+        "owners": {
+          "include/pso/ui/window/TWindowSubEquipList.h": "927f2ce1b12587953b8d6eefe286eec2fc437a30"
+        },
+        "proofs": [
+          {
+            "group": "windows",
+            "evidence": "Native constructor and original equipment list update, build and add operations are on the class, with the same object size. The factory returns the actual class and keeps the prior typed size provider.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5495,
+        "historical_path": "include/pso/misc/TWindowSubItemList.h",
+        "historical_blob": "a663edde2f0c03e77f487c8abcd784296d1e9dae",
+        "owners": {
+          "include/pso/ui/window/TWindowSubItemList.h": "2dc2c3f2f91224c04cd037dc19dd868a735d7d07"
+        },
+        "proofs": [
+          {
+            "group": "windows",
+            "evidence": "The native item list owns reset and refresh, plus constructor, render and update declarations. Both original slot offsets and the 0x90 size are checked.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5576,
+        "historical_path": "src/pso/misc/TWindowSubEquipKind.cpp",
+        "historical_blob": "2bdae8eb7bd37b0aec2903263057a14ff1876892",
+        "owners": {
+          "src/pso/ui/window/TWindowSubEquipKind.cpp": "df73bdb9bb688a71b5758f8f8d54233d7c36bbf8"
+        },
+        "proofs": [
+          {
+            "group": "windows",
+            "evidence": "The original constructor, destructor, task and render implementation are present. The constructor retains 0x1F list capacity, original scroll setup and role/timer initialization. The type of the position argument matches the pinned implementation.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5577,
+        "historical_path": "src/pso/misc/TWindowSubEquipList.cpp",
+        "historical_blob": "2b3c763d4aa6f632996a0b22843c96c39158aa1a",
+        "owners": {
+          "src/pso/ui/window/TWindowSubEquipList.cpp": "7017dedb2b8ed1f1263fc006638aaf0fbd82aae1"
+        },
+        "proofs": [
+          {
+            "group": "windows",
+            "evidence": "The source owns the original create, render, update, destructor and constructor code. The linked constructor preserves eight rows and heading 0x25, and its factory preserves the original extent setup.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5580,
+        "historical_path": "src/pso/misc/TWindowSubItemList.cpp",
+        "historical_blob": "1636e3795f14f570520efeef8f63e60defbb5b17",
+        "owners": {
+          "src/pso/ui/window/TWindowSubItemList.cpp": "4b7c9b743b6905eb5cd11281262dcbd50f3408bb",
+          "src/pso/ui/window/TWindowSubItem.cpp": "bb43838cdbd80450c03d4c4aa3518ba7353faf7a"
+        },
+        "proofs": [
+          {
+            "group": "windows",
+            "evidence": "The source retains native factory, render, destructor and constructor; it uses the native item-list reset in the constructor, original capacity 0x24 and heading 0x24, and current typed render providers.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5605,
+        "historical_path": "include/pso/unk/text_80268384.h",
+        "historical_blob": "ed128f8df20135b3ffb67c2423e213d422c1f663",
+        "owners": {
+          "include/pso/ui/window/TWindowMenuIconLine.h": "8931cda21cb7cbc3f7b617a117a908e793e457c4"
+        },
+        "proofs": [
+          {
+            "group": "windows",
+            "evidence": "The historical compatibility header has empty C declaration sections. Current native icon-line constructor declarations are directly in the class header.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5611,
+        "historical_path": "src/pso/unk/text_80268384.cpp",
+        "historical_blob": "982cd58e2d55fd00efed630bd55945a49da186ed",
+        "owners": {
+          "src/pso/ui/window/TWindowMenuIconLine.cpp": "b647a54650e6d13f8b2c268f674e147e6dbb80b7",
+          "include/pso/ui/window/TWindowMenuIconLine.h": "8931cda21cb7cbc3f7b617a117a908e793e457c4"
+        },
+        "proofs": [
+          {
+            "group": "windows",
+            "evidence": "The two original constructors now source-link in their own contiguous 0xE4-byte unit. Both call TWindowAddition with the same supplied or default descriptor and preserve the base virtual row-count initialization.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5642,
+        "historical_path": "src/pso/misc/TWindowSubEquip_80279044.cpp",
+        "historical_blob": "fe62c412bab8d51f579d090aa819299a18ff009b",
+        "owners": {
+          "src/pso/ui/window/TWindowSubEquip_80279044.cpp": "457ffd1c8e072b9904d841206c1e309a5106abb4",
+          "include/pso/ui/window/TWindowSubEquipList.h": "927f2ce1b12587953b8d6eefe286eec2fc437a30"
+        },
+        "proofs": [
+          {
+            "group": "windows",
+            "evidence": "The existing build, add and refresh equipment list methods use the true TWindowSubEquipList receiver. This audit records the owner and caller contract without closing other content in the original slice.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5646,
+        "historical_path": "src/pso/unk/text_8027ACF8.cpp",
+        "historical_blob": "d7c70af575bc287663bf2bfb0be1456db27cb643",
+        "owners": {
+          "src/pso/ui/window/TWindowSubItemList.cpp": "4b7c9b743b6905eb5cd11281262dcbd50f3408bb"
+        },
+        "proofs": [
+          {
+            "group": "windows",
+            "evidence": "The original selected entry lookup, blink test, flag test and selection-bar draw remain in sub_8027ACF8 with the same item-list field and rendering provider.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5754,
+        "historical_path": "include/pso/misc/TWindowMenuIconLine.h",
+        "historical_blob": "a7c3ddbc53d68ceff6d9b15f18adeb64eb730378",
+        "owners": {
+          "include/pso/ui/window/TWindowMenuIconLine.h": "8931cda21cb7cbc3f7b617a117a908e793e457c4"
+        },
+        "proofs": [
+          {
+            "group": "windows",
+            "evidence": "Both original constructors and all method/layout declarations remain on the correct class. The state field begins at 0x70 and total size remains 0x88. The old scrollbar member is named scroll_bar in the current class.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5864,
+        "historical_path": "include/pso/misc/TWindowSubItem.h",
+        "historical_blob": "78c38065429677bbf70f40c32d3e5e171ebb32dc",
+        "owners": {
+          "include/pso/ui/window/TWindowSubItem.h": "2761563b51040602a838a58317261fca6bf9b920",
+          "include/pso/ui/window/TWindowSubItemList.h": "2dc2c3f2f91224c04cd037dc19dd868a735d7d07"
+        },
+        "proofs": [
+          {
+            "group": "windows",
+            "evidence": "The wrong outer-item declarations for refresh and reset are removed, as in the original fork. Wider item-action declarations were outside this proof.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5902,
+        "historical_path": "src/pso/misc/TWindowSubEquip_80277E48.cpp",
+        "historical_blob": "3ce592d19c5cfe500cb7527132e92e010bfb5246",
+        "owners": {
+          "src/pso/ui/window/TWindowSubEquip_80277DF8.cpp": "127520bdccba4c7346cfbc95f2a8ba15813ab933"
+        },
+        "proofs": [
+          {
+            "group": "windows",
+            "evidence": "Both equipment factory callers preserve window position, layout extent and client, now with shared actual factory signatures. Other original equipment task and window lifecycle code is outside this proof.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5920,
+        "historical_path": "src/pso/misc/TWindowSubMag.cpp",
+        "historical_blob": "b14491810ea47ad0e8688ec520acc6218494f5d0",
+        "owners": {
+          "src/pso/ui/window/TWindowSubMag.cpp": "385af73ca53f5228d670db33ce32663a80806fe5"
+        },
+        "proofs": [
+          {
+            "group": "windows",
+            "evidence": "Both Mag category-window callers now consume the shared typed factory and preserve the original position and selected client. The distinct Mag Photon lifetime work is already in canonical.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5956,
+        "historical_path": "src/pso/misc/TWindowSubItem.cpp",
+        "historical_blob": "258ee8d5f65954de05b26c7e477db478f8257c57",
+        "owners": {
+          "src/pso/ui/window/TWindowSubItem.cpp": "bb43838cdbd80450c03d4c4aa3518ba7353faf7a",
+          "src/pso/ui/window/TWindowSubItemList.cpp": "4b7c9b743b6905eb5cd11281262dcbd50f3408bb"
+        },
+        "proofs": [
+          {
+            "group": "windows",
+            "evidence": "Native item-list refresh and reset replace the false item action receiver. The same refresh save, reset, populate, clamp and reset sequence and both named methods match at their retail addresses. No classification of the entire item-action source is claimed.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      }
+    ],
+    "closed_rows": [
+      358,
+      400,
+      401,
+      709,
+      712,
+      792,
+      812,
+      836,
+      931,
+      1009,
+      3813,
+      3814,
+      4141,
+      4156,
+      4157,
+      4493,
+      5492,
+      5493,
+      5495,
+      5576,
+      5577,
+      5580,
+      5605,
+      5611,
+      5646,
+      5754,
+      6417,
+      6453,
+      6454,
+      6456,
+      6457,
+      6458,
+      6459,
+      6460,
+      6461,
+      6519,
+      6575,
+      6576,
+      6756,
+      6783,
+      6797,
+      6853,
+      6866,
+      6867,
+      6906,
+      6920,
+      6921,
+      6922,
+      6923,
+      6925,
+      6967,
+      6968,
+      6969,
+      6970,
+      6990,
+      6991,
+      7011,
+      7012,
+      7027,
+      7028,
+      7046,
+      7047,
+      7066,
+      7088,
+      7089,
+      7120,
+      7156
+    ],
+    "remaining": {
+      "Owner comparison required": 669,
+      "Some anchored text changes found": 998
+    }
+  },
+  "upstream_review_candidates": {
+    "standalone-saved-inventory-and-equipment": {
+      "head": "78ef3d205dc039ba1f66e49d5023a72f2fe07061",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Saved character inventory, equipment records and player initialization",
+      "files": 23,
+      "source_paths": [
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/item/TItemData.h",
+        "include/pso/player/TObjPlayer.h",
+        "include/pso/player/TPlyInventory.h",
+        "include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h",
+        "src/pso/npc/TNpcPlayer_802C3CD0.cpp",
+        "src/pso/player/PlayerTaskEffects.cpp",
+        "src/pso/player/TObjPlayer_801AEE10.cpp",
+        "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "src/pso/player/TObjPlayer_801BC194.cpp",
+        "src/pso/player/TObjPlayer_801BCDC4.cpp",
+        "src/pso/player/TObjPlayer_801BCF04.cpp",
+        "src/pso/player/TObjPlayer_801BDF5C.cpp",
+        "src/pso/player/TObjPlayer_801C1FF8.cpp",
+        "src/pso/player/TObjPlayer_801C7430.cpp",
+        "src/pso/player/TObjPlayer_801D84A8.cpp",
+        "src/pso/player/TObjPlayer_801D84CC.cpp",
+        "src/pso/player/TObjPlayer_802C3B14.cpp",
+        "src/pso/player/TObjPlayer_802C422C.cpp",
+        "src/pso/player/TPlyItem.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801D5DAC.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+        "src/pso/unk/text_802C3AC0.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "53786ffce784506213cfacfd2be06671554022777bf260b8f27edeafb9157bb7",
+      "check_sha256": "287ddf1c787349b80910aa2b432f740556206d70bf22b47fbf4329c1683f2c2b",
+      "previous": null
+    },
+    "standalone-olga-flow-arena-hazards": {
+      "head": "c1d42ffdf044a1688c0b69920f80e2bf4133e5e9",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Olga Flow rock radius queries, pursuit rocks, mines and sword waves",
+      "files": 14,
+      "source_paths": [
+        "config/GPOE8P/psov3/config.yml",
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/boss/olgaflow/TBoss6MagMine.h",
+        "include/pso/boss/olgaflow/TBoss6Mine.h",
+        "include/pso/boss/olgaflow/TBoss6Rock.h",
+        "include/pso/boss/olgaflow/TBoss6RockChase.h",
+        "include/pso/boss/olgaflow/TBoss6SwordWave.h",
+        "src/pso/boss/olgaflow/TBoss6MagMine.cpp",
+        "src/pso/boss/olgaflow/TBoss6Mine.cpp",
+        "src/pso/boss/olgaflow/TBoss6Rock.cpp",
+        "src/pso/boss/olgaflow/TBoss6RockChase.cpp",
+        "src/pso/boss/olgaflow/TBoss6SwordShot.cpp",
+        "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+        "src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "5f680220fdaa6179ffe1178103c101bc686dd03ede284b82ae51fc23aa97835c",
+      "check_sha256": "613353e48a71d370075fc4a926f52312e2fa3fa44c138d5192f71e5ca00176c3",
+      "previous": null
+    },
+    "standalone-stage-doors-fences-and-contacts": {
+      "head": "fcb3d88966585b4a557ed9f42851f178fdf1ef51",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Stage doors, fences, resource lifetimes and Seabed wall contact packets",
+      "files": 51,
+      "source_paths": [
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/object/door/TODoorAncient05.h",
+        "include/pso/object/door/TODoorAncient06.h",
+        "include/pso/object/door/TODoorAncient07.h",
+        "include/pso/object/door/TODoorAncient08.h",
+        "include/pso/object/door/TODoorAncient09.h",
+        "include/pso/object/door/TODoorCave01.h",
+        "include/pso/object/door/TODoorCave02.h",
+        "include/pso/object/door/TODoorMachine01.h",
+        "include/pso/object/door/TODoorMachine02.h",
+        "include/pso/object/door/TODoorVS2Door01.h",
+        "include/pso/object/fence/TOBarrierEnergy01.h",
+        "include/pso/object/fence/TOFenceAncient01.h",
+        "include/pso/object/fence/TOFenceAncient02.h",
+        "include/pso/object/fence/TOFenceAncient03.h",
+        "include/pso/object/fence/TOFenceAncient04.h",
+        "include/pso/object/fence/TOVS2Wall01.h",
+        "include/pso/object/fence/TOVS2Wall01_8017BCC8.h",
+        "include/pso/object/fence/TOVS2Wall01_8017C7A4.h",
+        "include/pso/object/fence/TObjLazerFenceNorm.h",
+        "include/pso/object/fence/WallHitPacket.h",
+        "src/pso/effect/TKomorebi.cpp",
+        "src/pso/network/TGameProtocol.cpp",
+        "src/pso/object/collision/TOAttackableCol.cpp",
+        "src/pso/object/door/TODoorAncient01.cpp",
+        "src/pso/object/door/TODoorAncient03.cpp",
+        "src/pso/object/door/TODoorAncient04.cpp",
+        "src/pso/object/door/TODoorAncient05.cpp",
+        "src/pso/object/door/TODoorAncient06.cpp",
+        "src/pso/object/door/TODoorAncient07.cpp",
+        "src/pso/object/door/TODoorAncient08.cpp",
+        "src/pso/object/door/TODoorAncient09.cpp",
+        "src/pso/object/door/TODoorCave01.cpp",
+        "src/pso/object/door/TODoorCave02.cpp",
+        "src/pso/object/door/TODoorJungleMain.cpp",
+        "src/pso/object/door/TODoorLabo.cpp",
+        "src/pso/object/door/TODoorMachine01.cpp",
+        "src/pso/object/door/TODoorMachine02.cpp",
+        "src/pso/object/door/TODoorVS2Door01.cpp",
+        "src/pso/object/door/TObjDoorJung.cpp",
+        "src/pso/object/door/TObjDoorKey.cpp",
+        "src/pso/object/door/TObjDoor_8018E358.cpp",
+        "src/pso/object/fence/TLazerFenceSw.cpp",
+        "src/pso/object/fence/TOBarrierEnergy01.cpp",
+        "src/pso/object/fence/TOFenceAncient01.cpp",
+        "src/pso/object/fence/TOFenceAncient02.cpp",
+        "src/pso/object/fence/TOFenceAncient03.cpp",
+        "src/pso/object/fence/TOFenceAncient04.cpp",
+        "src/pso/object/fence/TOVS2Wall01.cpp",
+        "src/pso/object/fence/TObjLazerFence4.cpp",
+        "src/pso/object/fence/TObjLazerFenceNorm.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "dced014c37a0452d4c8e75f4c1c1946494955ea86b06309016a7aa5df7563ce4",
+      "check_sha256": "5785234b6d36b6248ae3a4183f7ebb695881e6ea56c0d596982669fbabfda62b",
+      "previous": null
+    },
+    "standalone-equipment-and-item-list-windows": {
+      "head": "68170862a3a5e45d7d6073e95e7257912df3b08f",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Equipment and item list factories, icon rows and shared window extents",
+      "files": 36,
+      "source_paths": [
+        "config/GPOE8P/psov3/config.yml",
+        "config/GPOE8P/psov3/linked_units.txt",
+        "config/GPOE8P/psov3/splits.txt",
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/ui/frontend/TAdVIConfigGC.h",
+        "include/pso/ui/window/TWindowMenuIconLine.h",
+        "include/pso/ui/window/TWindowSubEquipKind.h",
+        "include/pso/ui/window/TWindowSubEquipList.h",
+        "include/pso/ui/window/TWindowSubItem.h",
+        "include/pso/ui/window/TWindowSubItemList.h",
+        "include/pso/ui/window/TWindowSubStatusDisp.h",
+        "include/pso/ui/window/TWindowSubStatusDisp_80248BE8.h",
+        "include/pso/ui/window/TWindowSubStatusDisp_802671F0.h",
+        "src/pso/object/warp/TObjCityMainWarpChallenge.cpp",
+        "src/pso/object/warp/TObjWarpBossMulti.cpp",
+        "src/pso/quest/QuestOpcodeHandlers.cpp",
+        "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChat.cpp",
+        "src/pso/ui/city/THunterGuildSeqOffline_80211FEC.cpp",
+        "src/pso/ui/frontend/TAdVIConfigGC.cpp",
+        "src/pso/ui/frontend/TAdVIConfigGC_80248B8C.cpp",
+        "src/pso/ui/window/TWindowMenuIconLine.cpp",
+        "src/pso/ui/window/TWindowOptionCtrl.cpp",
+        "src/pso/ui/window/TWindowShop.cpp",
+        "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp",
+        "src/pso/ui/window/TWindowSubEquipKind.cpp",
+        "src/pso/ui/window/TWindowSubEquipList.cpp",
+        "src/pso/ui/window/TWindowSubEquip_80277DF8.cpp",
+        "src/pso/ui/window/TWindowSubItem.cpp",
+        "src/pso/ui/window/TWindowSubItemList.cpp",
+        "src/pso/ui/window/TWindowSubMag.cpp",
+        "src/pso/ui/window/TWindowSubQuestBoard.cpp",
+        "src/pso/ui/window/TWindowSubShortCutList.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_80248BE8.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp",
+        "src/pso/ui/window/TWindowSubTradeMain_80330A84.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "795d5bf4b5f1d2b4216c3b7922a614194eed64d10dc4c62fd336c1cb723b3c42",
+      "check_sha256": "9d258b6a2a01eea50074ec6820f229b285808495631e43b1085b7fadaec16fec",
+      "previous": null
+    }
+  },
+  "independent_source_reviews": {
+    "standalone-saved-inventory-and-equipment": {
+      "finding": "Verified native saved record loading and export, real card-entry subobjects at the original offsets, typed item records and helper at 0x801D5DB4, unchanged initialization and selection behavior, 0x1C equipment strides, and the original signed camera-mode result. The equipment helper has a scoped compiler setting for the retail address calculations.",
+      "head": "78ef3d205dc039ba1f66e49d5023a72f2fe07061"
+    },
+    "standalone-olga-flow-arena-hazards": {
+      "head": "c1d42ffdf044a1688c0b69920f80e2bf4133e5e9",
+      "finding": "Verified the real Rock Chase spawn vector and owner, the Sword Wave owner across creation, particles and damage, original hazard constructor parameters and position inputs, and compatibility with the existing upstream battle parameter provider."
+    },
+    "standalone-stage-doors-fences-and-contacts": {
+      "head": "fcb3d88966585b4a557ed9f42851f178fdf1ef51",
+      "finding": "Verified the ordering of 203 resource name literals and each release and allocation call in the 29 edited resource files. Reviewed the original wall packet fields and byte order and confirmed the table now calls the 6x86 handler directly through the original packet header signature."
+    },
+    "standalone-equipment-and-item-list-windows": {
+      "head": "68170862a3a5e45d7d6073e95e7257912df3b08f",
+      "finding": "Verified the two original icon-line constructors, the typed reset and refresh on the actual list class, the rendering receivers, and a single extent prototype across the provider and all seven source sites. The shared save and clamp code reads fields of the live icon-line layout."
+    }
+  },
+  "combined_upstream_review": {
+    "head": "71a1fe8af090974dd3980c049b47c307e510097f",
+    "files": 120,
+    "inputs": [
+      "78ef3d205dc039ba1f66e49d5023a72f2fe07061",
+      "c1d42ffdf044a1688c0b69920f80e2bf4133e5e9",
+      "fcb3d88966585b4a557ed9f42851f178fdf1ef51",
+      "68170862a3a5e45d7d6073e95e7257912df3b08f"
+    ],
+    "coverage": {
+      "upstream": {
+        "functions_lost": 0,
+        "data_lost": 0,
+        "verified_padding": 0
+      },
+      "historical": {
+        "functions_lost": 0,
+        "data_lost": 0,
+        "verified_padding": 30
+      }
+    }
+  }
+}

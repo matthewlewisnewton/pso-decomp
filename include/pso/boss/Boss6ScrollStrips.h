@@ -10,7 +10,7 @@ struct StripBufferPair;
 struct Boss6StripDesc {
     s32 model;
     s32 node;
-    s32 c;
+    s32 texture_filter;
 };
 
 // UV-scrolled strips owned by TBoss6Type1, TBoss6Type2 and the type-1
@@ -23,7 +23,9 @@ struct Boss6ScrollStrips {
     StripBufferPair **items;
     void scroll_strips_uv(s32 du, s32 dv);
     void free_buffer_pairs();
-    void build_tables(Boss6StripDesc *descs, s32 n);
+    void build_tables(const Boss6StripDesc *descs, s32 n);
 };
+
+LAYOUT_ASSERT(Boss6ScrollStrips_size, sizeof(Boss6ScrollStrips) == 0x14);
 
 #endif

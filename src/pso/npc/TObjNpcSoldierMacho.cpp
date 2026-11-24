@@ -1,74 +1,43 @@
 #include "types.h"
-#include "pso/system/BmlResourceClass.h"
-#include "pso/unk/text_8014B8A4.h"
-#include "pso/npc/TUnk_804A9F50.h"
 #include "pso/npc/TObjNpcSoldierMacho.h"
-#include "pso/npc/TObjNpcBase.h"
-#include "pso/npc/TObjNpcLappy.h"
+#include "pso/object/TObjControl.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
+#include "pso/system/task/TMainTask.h"
 
 #pragma readonly_strings on
 
-extern "C" {
-extern const char *bm_n_gunm_i_body_motion_names[1];
-extern const char *bm_n_gunm_i_body_model_names[2];
 const char *bm_n_gunm_i_body_motion_names[1] = { NULL };
 __declspec(section ".data") const char *bm_n_gunm_i_body_model_names[2] = { "n_gunm_i_body.nj", NULL };
-BmlResourceDescriptor TObjNpcSoldierMacho__body_resource_desc = { "bm_n_gunm_i_body.bml", bm_n_gunm_i_body_model_names, bm_n_gunm_i_body_motion_names, 1, 0 };
-const char *TObjNpcSoldierMacho__name = "TObjNpcSoldierMacho";
-u32 TObjNpcSoldierMacho__shared_model_resource;
+BmlResourceDescriptor TObjNpcSoldierMacho::body_resource_desc = { "bm_n_gunm_i_body.bml", bm_n_gunm_i_body_model_names, bm_n_gunm_i_body_motion_names, 1, 0 };
+const char *TObjNpcSoldierMacho::name = "TObjNpcSoldierMacho";
+BmlResource *TObjNpcSoldierMacho::shared_model_resource;
+
+void *TObjNpcSoldierMacho::create(void *set_data) {
+    TObjControl *control = new TObjControl(tl_04);
+    return new TObjNpcSoldierMacho(control, set_data);
 }
 
-struct RecoveredGlobal_8014D9A4_lbl_804ABB08 { s32 value; u8 remaining[0xC]; };
-typedef char RecoveredGlobal_8014D9A4_lbl_804ABB08_size[sizeof(RecoveredGlobal_8014D9A4_lbl_804ABB08) == 0x10 ? 1 : -1];
-
-struct RecoveredGlobal_8014DA4C___vt__19TObjNpcSoldierMacho {
-    s32 value;
-    u8 remaining[0x174];
-};
-
-extern "C" {
-extern s32 __vt__19TObjNpcSoldierMacho[];
-void __dl__7TObjectFPv(void *);
-
 void TObjNpcSoldierMacho::unload_static_data() {
-    if ((u32) TObjNpcSoldierMacho__shared_model_resource != 0U) {
-        delete (BmlResource *)((void*)TObjNpcSoldierMacho__shared_model_resource);
-        TObjNpcSoldierMacho__shared_model_resource = 0U;
+    if (shared_model_resource != NULL) {
+        delete shared_model_resource;
+        shared_model_resource = NULL;
     }
 }
 
 void TObjNpcSoldierMacho::load_shared_resource() {
-    s32 temp_r3;
-    s32 var_r0;
-    temp_r3 = (int)new BmlResource(1, (BmlResourceDescriptor *)(&TObjNpcSoldierMacho__body_resource_desc), 0, 0, (void *)(0));
-    var_r0 = temp_r3;
-    (*(s32 *)&TObjNpcSoldierMacho__shared_model_resource) = var_r0;
+    BmlResource *resource = new BmlResource(1, &body_resource_desc, 0, 0, NULL);
+    shared_model_resource = resource;
 }
 
-void *__dt__19TObjNpcSoldierMachoFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__19TObjNpcSoldierMacho;
-        ((TUnk_804A9F50 *)arg0)->destroy_npc_lappy_base(0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
-}
-typedef char RecoveredGlobal_8014DA4C___vt__19TObjNpcSoldierMacho_size[sizeof(RecoveredGlobal_8014DA4C___vt__19TObjNpcSoldierMacho) == 0x178 ? 1 : -1];
-u8 *TObjNpcSoldierMacho__ct(u8 *player, s32 arg1, s32 arg2) {
-    construct_male_npc_base((player));
-    *(s32 **)((s8 *)player + 0x18) = &(*(RecoveredGlobal_8014DA4C___vt__19TObjNpcSoldierMacho *)&__vt__19TObjNpcSoldierMacho).value;
-    *(s32 *)((s8 *)player + 0) = (s32) TObjNpcSoldierMacho__name;
-    ((TObjNpcSoldierMacho *)(player))->apply_set_data((void *)arg2);
-    ((TObjChara *)player)->initialize_position_copies();
-    *(s32 *)((s8 *)player + 0x34) = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjNpcSoldierMacho__shared_model_resource) + 0x42C)) + 8);
-    ((TObjNpcSoldierMacho *)player)->texlist = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)(*(u8 * *)&TObjNpcSoldierMacho__shared_model_resource) + 0x42C)) + 0xC);
-    ((TObjNpcBase *)player)->setup_common();
-    return player;
-}
+TObjNpcSoldierMacho::~TObjNpcSoldierMacho() {}
 
+TObjNpcSoldierMacho::TObjNpcSoldierMacho(TObject *parent, void *set_data) : TObjNpcMale(parent) {
+    this->m_name = name;
+    this->apply_set_data(set_data);
+    init_position_vectors();
+    this->model = (void *)shared_model_resource->models->model;
+    this->texlist = shared_model_resource->models->texlist;
+    this->setup_common();
 }

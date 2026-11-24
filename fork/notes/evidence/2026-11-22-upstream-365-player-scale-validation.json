@@ -1,0 +1,551 @@
+{
+  "source": "dc19499a314f4ae06388e1eaab2a8cbca7d13c76",
+  "previous_source": "96d68f7de83eec04930c0ed7bd6757f9a1374ed4",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/player/PlayerScaleState.h",
+    "include/pso/player/PlayerState.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/player/TObjPlayer_801BF548.h",
+    "include/pso/player/TObjPlayer_801BF6B0.h",
+    "include/pso/player/TObjPlayer_801BF8EC.h",
+    "include/pso/player/TObjPlayer_801BF918.h",
+    "include/pso/player/TObjPlayer_801BF978.h",
+    "include/pso/player/TObjPlayer_801BFAD4.h",
+    "include/pso/player/TObjPlayer_801BFB1C.h",
+    "include/pso/player/TObjPlayer_801BFBCC.h",
+    "include/pso/player/TObjPlayer_801BFE50.h",
+    "include/pso/player/TObjPlayer_801BFED4.h",
+    "include/pso/player/TObjPlayer_801C721C.h",
+    "src/pso/player/PlayerTaskEffects.cpp",
+    "src/pso/player/TObjPlayer.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TObjPlayer_801BC194.cpp",
+    "src/pso/player/TObjPlayer_801BC5D4.cpp",
+    "src/pso/player/TObjPlayer_801BC81C.cpp",
+    "src/pso/player/TObjPlayer_801BD384.cpp",
+    "src/pso/player/TObjPlayer_801BD928.cpp",
+    "src/pso/player/TObjPlayer_801BDF5C.cpp",
+    "src/pso/player/TObjPlayer_801C7430.cpp",
+    "src/pso/player/TObjPlayer_801D84CC.cpp",
+    "src/pso/player/TObjPlayer_802C3B14.cpp",
+    "src/pso/quest/QuestOpcodeHandlers.cpp",
+    "src/pso/technique/TTecLuker.cpp"
+  ],
+  "combined_paths_from_upstream": 1145,
+  "replay_preview": {
+    "base": "af11a99125",
+    "donor": "62ac4dd661",
+    "live": "96d68f7de83eec04930c0ed7bd6757f9a1374ed4",
+    "paths": {
+      "config/GPOE8P/psov3/config.yml": "clean",
+      "config/GPOE8P/psov3/symbols.txt": "clean",
+      "include/pso/player/PlayerScaleState.h": "clean",
+      "include/pso/player/PlayerState.h": "separate owner comparison",
+      "include/pso/player/TObjPlayer.h": "conflict",
+      "include/pso/player/TObjPlayer_801BF548.h": "separate owner comparison",
+      "include/pso/player/TObjPlayer_801BF6B0.h": "separate owner comparison",
+      "include/pso/player/TObjPlayer_801BF8EC.h": "separate owner comparison",
+      "include/pso/player/TObjPlayer_801BF918.h": "separate owner comparison",
+      "include/pso/player/TObjPlayer_801BF978.h": "separate owner comparison",
+      "include/pso/player/TObjPlayer_801BFAD4.h": "separate owner comparison",
+      "include/pso/player/TObjPlayer_801BFB1C.h": "separate owner comparison",
+      "include/pso/player/TObjPlayer_801BFBCC.h": "separate owner comparison",
+      "include/pso/player/TObjPlayer_801BFE50.h": "separate owner comparison",
+      "include/pso/player/TObjPlayer_801BFED4.h": "separate owner comparison",
+      "include/pso/player/TObjPlayer_801C721C.h": "conflict",
+      "src/pso/player/PlayerTaskEffects.cpp": "conflict",
+      "src/pso/player/TObjPlayer.cpp": "conflict",
+      "src/pso/player/TObjPlayer_801AF2F0.cpp": "conflict",
+      "src/pso/player/TObjPlayer_801BC194.cpp": "conflict",
+      "src/pso/player/TObjPlayer_801BC5D4.cpp": "clean",
+      "src/pso/player/TObjPlayer_801BC81C.cpp": "conflict",
+      "src/pso/player/TObjPlayer_801BD384.cpp": "clean",
+      "src/pso/player/TObjPlayer_801BD928.cpp": "conflict",
+      "src/pso/player/TObjPlayer_801BDF5C.cpp": "clean",
+      "src/pso/player/TObjPlayer_801C7430.cpp": "conflict",
+      "src/pso/player/TObjPlayer_801D84CC.cpp": "conflict",
+      "src/pso/player/TObjPlayer_802C3B14.cpp": "clean",
+      "src/pso/quest/QuestOpcodeHandlers.cpp": "conflict",
+      "src/pso/technique/TTecLuker.cpp": "conflict"
+    }
+  },
+  "validation": {
+    "source": {
+      "baseline": "96d68f7de83eec04930c0ed7bd6757f9a1374ed4",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x801BFD90",
+          "before": "init_subobjects__10TObjPlayerFv",
+          "after": "initialize__16PlayerScaleStateFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801BFDD4",
+          "before": "init_player_scale_state__FP10TObjPlayer",
+          "after": "reset__16PlayerScaleStateFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801BFE1C",
+          "before": "set_speed__10TObjPlayerFf",
+          "after": "set_scalar__16PlayerScaleStateFf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801BFE40",
+          "before": "set_scale_xyz__10TObjPlayerFf",
+          "after": "set_model_scale__16PlayerScaleStateFf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801BFE50",
+          "before": "init_pair__10TObjPlayerFv",
+          "after": "clear__24PlayerScaleCameraOffsetsFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801C6A14",
+          "before": "clear_shrink_flag__10TObjPlayerFv",
+          "after": "clear_shrink_flag__16PlayerScaleStateFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801C6B1C",
+          "before": "handle_6x87_shrink__10TObjPlayerFf",
+          "after": "apply_shrink__16PlayerScaleStateFf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801C6FF0",
+          "before": "get_obj_type__10TObjPlayerFv",
+          "after": "get_actor_id__16PlayerScaleStateFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801C72B4",
+          "before": "restore_shrunken_font__10TObjPlayerFv",
+          "after": "copy_from__23PlayerRestoreSizePacketFRC23PlayerRestoreSizePacket"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801C72E4",
+          "before": "init_6x88_packet__10TObjPlayerFv",
+          "after": "initialize__23PlayerRestoreSizePacketFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801C72F8",
+          "before": "send_font_update_60__10TObjPlayerFv",
+          "after": "send__23PlayerRestoreSizePacketFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801C732C",
+          "before": "bswap_shrink__10TObjPlayerFv",
+          "after": "byte_swap__18PlayerShrinkPacketFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801C7360",
+          "before": "TObjPlayer__sub_801C7360",
+          "after": "copy_from__18PlayerShrinkPacketFRC18PlayerShrinkPacket"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801C739C",
+          "before": "init_shrink_effect__10TObjPlayerFv",
+          "after": "initialize__18PlayerShrinkPacketFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801C73B8",
+          "before": "update_and_send_60__10TObjPlayerFv",
+          "after": "send__18PlayerShrinkPacketFv"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "e06260be3d7cc684d497fe95e69ac6a878ee2f3e3d4a0960be836501dd17ca25",
+      "report_sha256": "b5b91a90edb2d10d444bce7ff6ddb5ce5a291d16ecb1797d784196c32e4d5a9d"
+    },
+    "layer": {
+      "baseline": "dc19499a314f4ae06388e1eaab2a8cbca7d13c76",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "52e7b7c44c895ea98e91fe1a9ea21805885753879d1966b15b6b684ebe565d0b",
+      "report_sha256": "b5b91a90edb2d10d444bce7ff6ddb5ce5a291d16ecb1797d784196c32e4d5a9d"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "3c739df0ffa11fac1bf520365991abf4c9a52cbd0bdcc1c3e0034aa6e05e5b2a"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "37af833b32489ba21389afb419a3714e06c065b7b69c9dac7761d4049855cbc4"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "program_sha256": "5b52d312f56b8fb0b8a7ea5695958324a5487de3f90b80a5611490733b70a1ab",
+    "logs_sha256": {
+      "source": "c57fe0f335e9f0192b7f5a88822c7e9add0627dcc776857e795349d09a3c5cf5",
+      "workspace": "b462496e6bf40434a9d668b1e98048304a395468eb28d89d93571969b8760361"
+    },
+    "images": [
+      "retail",
+      "source",
+      "materialized fork workspace"
+    ],
+    "emulator_handling": "The harness uses the scalar f31 save and restore while skipping the paired-single spills in the camera helper."
+  },
+  "shared_declarations": [
+    "TObjPlayer__sub_801BF560",
+    "TObjPlayer__sub_801BF57C",
+    "TObjPlayer__sub_801BF584",
+    "TObjPlayer__sub_801BF5F0",
+    "TObjPlayer__sub_801BF5F8",
+    "TObjPlayer__sub_801BF60C",
+    "TObjPlayer__sub_801BF640",
+    "TObjPlayer__sub_801BF660",
+    "TObjPlayer__sub_801BF690",
+    "is_timer_running",
+    "TObjPlayer__sub_801BF6B0",
+    "TObjPlayer__sub_801BF6B8",
+    "TObjPlayer__sub_801BF6C0",
+    "TObjPlayer__sub_801BF6C8",
+    "TObjPlayer__sub_801BF6D4",
+    "TObjPlayer__sub_801BF6DC",
+    "TObjPlayer__sub_801BF7B8",
+    "TObjPlayer__sub_801BF814",
+    "TObjPlayer__sub_801BF840",
+    "TObjPlayer__sub_801BF8AC",
+    "TObjPlayer__sub_801BF8CC",
+    "TObjPlayer__sub_801BF8F8",
+    "TObjPlayer__sub_801BF914",
+    "set_equip_slot_entry",
+    "TObjPlayer__sub_801BF918",
+    "TObjPlayer__sub_801BF934",
+    "TObjPlayer__sub_801BF93C",
+    "TObjPlayer__sub_801BF954",
+    "TObjPlayer__sub_801BF95C",
+    "zero_vec3",
+    "TObjPlayer__sub_801BF9E0",
+    "TObjPlayer__sub_801BF9F0",
+    "TObjPlayer__sub_801BFA4C",
+    "TObjPlayer__sub_801BFAD4",
+    "TObjPlayer__sub_801BFB4C",
+    "TObjPlayer__sub_801BFD3C",
+    "TObjPlayer__sub_801BFED4",
+    "TObjPlayer__sub_801BFF80",
+    "TObjPlayer__sub_801BFFA0"
+  ],
+  "historical": {
+    "closed_rows": [
+      {
+        "row": 4129,
+        "fork_path": "src/pso/player/TObjPlayer_801BD384.cpp",
+        "owner": "src/pso/player/TObjPlayer_801BD384.cpp",
+        "detail": "The two player construction paths initialize the native scale member. The declarations needed by those constructors are now in PlayerState.h and the old fragment headers have no remaining consumers.",
+        "authored_change_blocks": [
+          {
+            "old_lines": [
+              4,
+              4
+            ],
+            "fork_lines": [
+              4,
+              4
+            ],
+            "result": "compare",
+            "old": [
+              "# include \"pso/player/TObjPlayer_801BF978.h\""
+            ],
+            "fork": [
+              "# include \"pso/player/PlayerState.h\""
+            ]
+          },
+          {
+            "old_lines": [
+              11,
+              14
+            ],
+            "fork_lines": [
+              11,
+              10
+            ],
+            "result": "compare",
+            "old": [
+              "# include \"pso/player/TObjPlayer_801BF548.h\"",
+              "# include \"pso/player/TObjPlayer_801BFAD4.h\"",
+              "# include \"pso/player/TObjPlayer_801BFB1C.h\"",
+              "# include \"pso/player/TObjPlayer_801BFE50.h\""
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              107,
+              107
+            ],
+            "fork_lines": [
+              103,
+              103
+            ],
+            "result": "compare",
+            "old": [
+              "( ( TObjPlayer * ) ( ( char * ) player + 1456 ) ) -> init_subobjects ( ) ;"
+            ],
+            "fork": [
+              "player -> scale_state . initialize ( ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              154,
+              154
+            ],
+            "fork_lines": [
+              150,
+              150
+            ],
+            "result": "compare",
+            "old": [
+              "( ( TObjPlayer * ) ( ( char * ) arg0 + 1456 ) ) -> init_subobjects ( ) ;"
+            ],
+            "fork": [
+              "arg0 -> scale_state . initialize ( ) ;"
+            ]
+          }
+        ],
+        "owner_blob": "31ae0aa6726eebe689d595ff6817e661e7ad1bae"
+      },
+      {
+        "row": 4360,
+        "fork_path": "src/pso/unk/text_801BC194.cpp",
+        "owner": "src/pso/player/TObjPlayer_801BC194.cpp",
+        "detail": "Area entry uses the direct player flag check and original key-machine branch, retains the native upstream yaw field at +0x60 on each arrival path, and calls the original position-history helper.",
+        "authored_change_blocks": [
+          {
+            "old_lines": [
+              11,
+              11
+            ],
+            "fork_lines": [
+              11,
+              10
+            ],
+            "result": "compare",
+            "old": [
+              "s32 check_flag__10TObjPlayerFl ( void * , int ) ;"
+            ],
+            "fork": []
+          },
+          {
+            "old_lines": [
+              42,
+              42
+            ],
+            "fork_lines": [
+              41,
+              41
+            ],
+            "result": "compare",
+            "old": [
+              "check_flag__10TObjPlayerFl ( arg0 , 0x100000 ) == 0 && is_key_machine_ready__10TObjPlayerFv ( ) != 0 ) {"
+            ],
+            "fork": [
+              "( ( TObjPlayer * ) arg0 ) -> check_flag ( 0x100000 ) == 0 && TObjPlayer :: is_key_machine_ready ( ) != 0 ) {"
+            ]
+          },
+          {
+            "old_lines": [
+              45,
+              45
+            ],
+            "fork_lines": [
+              44,
+              44
+            ],
+            "result": "compare",
+            "old": [
+              "this -> rotation_y = TObjPlayer__sub_801D8C3C ( arg0 ) ;"
+            ],
+            "fork": [
+              "this -> rotation . yaw = TObjPlayer__sub_801D8C3C ( arg0 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              53,
+              53
+            ],
+            "fork_lines": [
+              52,
+              52
+            ],
+            "result": "compare",
+            "old": [
+              "p = consume_telepipe_arrival ( get_entity_id ( arg0 ) , ( u8 * ) & this -> rotation_y ) ;"
+            ],
+            "fork": [
+              "p = consume_telepipe_arrival ( get_entity_id ( arg0 ) , ( u8 * ) & this -> rotation . yaw ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              60,
+              60
+            ],
+            "fork_lines": [
+              59,
+              59
+            ],
+            "result": "compare",
+            "old": [
+              "this -> rotation_y = ( ( TObjPlayer * ) e ) -> get_lock_timer ( ) ;"
+            ],
+            "fork": [
+              "this -> rotation . yaw = ( ( TObjPlayer * ) e ) -> get_lock_timer ( ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              66,
+              66
+            ],
+            "fork_lines": [
+              65,
+              65
+            ],
+            "result": "compare",
+            "old": [
+              "this -> rotation_y = * ( s32 * ) ( ( s8 * ) other + 0x60 ) ;"
+            ],
+            "fork": [
+              "this -> rotation . yaw = * ( s32 * ) ( ( s8 * ) other + 0x60 ) ;"
+            ]
+          },
+          {
+            "old_lines": [
+              73,
+              73
+            ],
+            "fork_lines": [
+              72,
+              72
+            ],
+            "result": "compare",
+            "old": [
+              "( ( TBoss4DarkFalz * ) arg0 ) -> save_position ( ) ;"
+            ],
+            "fork": [
+              "( ( TObjBase * ) arg0 ) -> save_previous_position ( ) ;"
+            ]
+          }
+        ],
+        "owner_blob": "77a63ed1cc0f90b00f03ec4d122869518bf8a501"
+      }
+    ],
+    "scoped_rows": [
+      [
+        3998,
+        "include/pso/player/TObjPlayer.h",
+        "include/pso/player/TObjPlayer.h"
+      ],
+      [
+        4087,
+        "src/pso/player/TObjPlayer.cpp",
+        "src/pso/player/TObjPlayer.cpp"
+      ],
+      [
+        4121,
+        "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "src/pso/player/TObjPlayer_801AF2F0.cpp"
+      ],
+      [
+        4138,
+        "src/pso/player/TObjPlayer_801C7430.cpp",
+        "src/pso/player/TObjPlayer_801C7430.cpp"
+      ],
+      [
+        4417,
+        "src/pso/misc/TTecLuker.cpp",
+        "src/pso/technique/TTecLuker.cpp"
+      ],
+      [
+        6742,
+        "src/pso/quest/QuestOpcodeHandlers.cpp",
+        "src/pso/quest/QuestOpcodeHandlers.cpp"
+      ]
+    ],
+    "open_rows": 342,
+    "verified_arrival_branches": {
+      "0x801afe78": [
+        "0x801bc1f4"
+      ],
+      "0x8004c1f4": [
+        "0x801bc358"
+      ]
+    },
+    "verified_scale_constant_bytes": {
+      "0x805dc278": "00000000",
+      "0x805dc2dc": "3ecccccd"
+    }
+  },
+  "fork_workspace": {
+    "trial": "e2d3f4d9e16f77d46c049cf49493aed4b6efba8f",
+    "overlay_paths": 130,
+    "updated_overlay_paths": [
+      "config/GPOE8P/psov3/config.yml"
+    ],
+    "archive_sha256": "56a2b45b698cbf2d70f0c948cba2a4f643545911ba3da1f2b759423808a8abb8",
+    "materialized_tree": "264394ca7f432faced8677f387c987d843ba3cc6",
+    "force_active": 27027
+  }
+}

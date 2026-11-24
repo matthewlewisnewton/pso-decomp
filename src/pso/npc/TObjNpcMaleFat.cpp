@@ -1,84 +1,43 @@
 #include "types.h"
-#include "pso/system/BmlResourceClass.h"
-#include "pso/npc/TObjNpcMaleMacho.h"
-#include "pso/unk/text_8014B8A4.h"
 #include "pso/npc/TObjNpcMaleFat.h"
-#include "pso/npc/TUnk_804A9F50.h"
-#include "pso/npc/TObjNpcBase.h"
-#include "pso/npc/TObjNpcLappy.h"
+#include "pso/object/TObjControl.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/system/BmlResource.h"
+#include "pso/system/BmlResourceDescriptor.h"
+#include "pso/system/task/TMainTask.h"
 
-struct RecoveredGlobal_8014BF2C_lbl_804AA580 { s32 value; u8 remaining[0xC]; };
-typedef char RecoveredGlobal_8014BF2C_lbl_804AA580_size[sizeof(RecoveredGlobal_8014BF2C_lbl_804AA580) == 0x10 ? 1 : -1];
+#pragma readonly_strings on
 
-struct RecoveredGlobal_8014BFD4___vt__14TObjNpcMaleFat {
-    s32 value;
-    u8 remaining[0x174];
-};
+const char *bm_n_efm_i_body_motion_names[1] = { NULL };
+__declspec(section ".data") const char *bm_n_efm_i_body_model_names[2] = { "n_efm_i_body.nj", NULL };
+BmlResourceDescriptor bm_n_efm_i_body_resource_descriptor = { "bm_n_efm_i_body.bml", bm_n_efm_i_body_model_names, bm_n_efm_i_body_motion_names, 1, 0 };
+const char *TObjNpcMaleFat::name = "TObjNpcMaleFat";
+BmlResource *TObjNpcMaleFat::static_model_resource;
 
-extern "C" {
-extern const char lbl_8043FC20[] = "n_efm_i_body.nj";
-extern const char lbl_8043FC30[] = "bm_n_efm_i_body.bml";
-extern const char lbl_8043FC44[] = "TObjNpcMaleFat";
-extern RecoveredGlobal_8014BF2C_lbl_804AA580 bm_n_efm_i_body_resource_descriptor;
-extern s32 __vt__14TObjNpcMaleFat[];
-extern s32 TObjNpcMaleFat__name;
-void *__ct__11TObjControlFP7TObject(void *, void *);
-void __dl__7TObjectFPv(void *);
-void *__nw__7TObjectFUl(int);
+void *TObjNpcMaleFat::create(void *set_data) {
+    TObjControl *control = new TObjControl(tl_04);
+    return new TObjNpcMaleFat(control, set_data);
+}
 
 void TObjNpcMaleFat::free_static_model() {
-    if ((u32) TObjNpcMaleFat__static_model_resource != 0U) {
-        delete (BmlResource *)((void*)TObjNpcMaleFat__static_model_resource);
-        TObjNpcMaleFat__static_model_resource = 0U;
+    if (static_model_resource != NULL) {
+        delete static_model_resource;
+        static_model_resource = NULL;
     }
 }
+
 void TObjNpcMaleFat::load_static_resource() {
-    BmlResource *temp_r3;
-    BmlResource *var_r0;
-    temp_r3 = new BmlResource(1, (BmlResourceDescriptor *)(&bm_n_efm_i_body_resource_descriptor.value), 0, 0, (void *)(0));
-    var_r0 = temp_r3;
-    TObjNpcMaleFat__static_model_resource = var_r0;
+    BmlResource *resource = new BmlResource(1, &bm_n_efm_i_body_resource_descriptor, 0, 0, NULL);
+    static_model_resource = resource;
 }
 
-void *__dt__14TObjNpcMaleFatFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__14TObjNpcMaleFat;
-        ((TUnk_804A9F50 *)arg0)->destroy_npc_lappy_base(0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
-}
+TObjNpcMaleFat::~TObjNpcMaleFat() {}
 
-extern void *tl_04;
-
-typedef char RecoveredGlobal_8014BFD4___vt__14TObjNpcMaleFat_size[sizeof(RecoveredGlobal_8014BFD4___vt__14TObjNpcMaleFat) == 0x178 ? 1 : -1];
-u8 *TObjNpcMaleFat__ct(u8 *player, s32 arg1, s32 arg2) {
-    construct_male_npc_base((player));
-    *(s32 **)((s8 *)player + 0x18) = &(*(RecoveredGlobal_8014BFD4___vt__14TObjNpcMaleFat *)&__vt__14TObjNpcMaleFat).value;
-    *(s32 *)((s8 *)player + 0) = (s32) TObjNpcMaleFat__name;
-    ((TObjNpcMaleFat *)(player))->apply_set_data((void *)arg2);
-    ((TObjChara *)player)->initialize_position_copies();
-    *(s32 *)((s8 *)player + 0x34) = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)TObjNpcMaleFat__static_model_resource + 0x42C)) + 8);
-    ((TObjNpcMaleFat *)player)->texlist = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)TObjNpcMaleFat__static_model_resource + 0x42C)) + 0xC);
-    ((TObjNpcBase *)player)->setup_common();
-    return player;
-}
-
-void * TObjNpcMaleMacho__create(void *arg0) {
-    void *o;
-    void *o2;
-    o = __nw__7TObjectFUl(0x20);
-    if (o != NULL) {
-        o = __ct__11TObjControlFP7TObject(o, tl_04);
-    }
-    o2 = __nw__7TObjectFUl(0x3B8);
-    if (o2 != NULL) {
-        o2 = TObjNpcMaleMacho__ct((u8 *)o2, (s32)o, (s32)arg0);
-    }
-    return o2;
-}
-
+TObjNpcMaleFat::TObjNpcMaleFat(TObject *parent, void *set_data) : TObjNpcMale(parent) {
+    this->m_name = name;
+    this->apply_set_data(set_data);
+    init_position_vectors();
+    this->model = (void *)static_model_resource->models->model;
+    this->texlist = static_model_resource->models->texlist;
+    this->setup_common();
 }

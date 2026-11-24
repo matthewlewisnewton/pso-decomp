@@ -1,42 +1,51 @@
+#include "pso/system/BmlAccessors.h"
 #include "types.h"
 #include "pso/npc/TObjNpcBringer.h"
-#include "pso/unk/text_8014952C.h"
+#include "pso/enemy/TObjEnemy.h"
+#include "pso/npc/TObjNpcBase.h"
+#include "pso/npc/TObjNpcFemaleBase.h"
+#include "pso/object/TObjControl.h"
+#include "pso/object/base/TObjMotion.h"
+#include "pso/player/TObjPlayer.h"
+#include "pso/object/base/TObjChara.h"
+#include "pso/boss/volopt/TBoss3VoloptHiraisin.h"
+#include "pso/system/task/TObject.h"
+#include "pso/system/task/TMainTask.h"
+#include "pso/system/BmlResource.h"
+#include "pso/enemy/bringer/TObjEneDf2Bringer.h"
+#include "pso/player/TObjPlayer_801542CC.h"
 
-extern "C" {
+#pragma readonly_strings on
 
-void *__dt__14TObjNpcBringerFv(void *arg0, s16 arg1);
-void *__ct__11TObjControlFP7TObject(void *, void *);
-void __dl__7TObjectFPv(void *);
-void *__dt__11TObjNpcBaseFv(void *arg0, s16 arg1);
-void *__nw__7TObjectFUl(int);
+const char *TObjNpcBringer::name = "TObjNpcBringer";
+TObjMotionAction npc_bringer_animation_table[2] = {
+    {1, 0, 9, 0.8f, 1},
+    {1, 0, 10, 1.0f, 1},
+};
+CollisionBody TObjNpcBringer::collision_body_parts[2] = {
+    {{0.0f, 20.0f, 5.0f}, 7.0f, 0.0f, 0, 0x30203, {0.0f, 0.0f, 0.0f}, 0.0f},
+    {{0.0f, 20.0f, -5.0f}, 7.0f, 0.0f, 0, 0x10003, {0.0f, 0.0f, 0.0f}, 0.0f},
+};
 
-extern void *tl_04;
-
-void *TObjNpcBringer::create(void *arg0) {
-    void *o;
-    void *o2;
-    o = __nw__7TObjectFUl(0x20);
-    if (o != NULL) {
-        o = __ct__11TObjControlFP7TObject(o, tl_04);
-    }
-    o2 = __nw__7TObjectFUl(0x3B8);
-    if (o2 != NULL) {
-        o2 = TObjNpcBringer__ct((u8 *)o2, o, (s32)arg0);
-    }
-    return o2;
+TObjNpcBringer::TObjNpcBringer(TObject *parent, void *set_data) : TObjNpcBase(parent) {
+    m_name = name;
+    apply_set_data(set_data);
+    init_position_vectors();
+    apply_set_params(0, 1);
+    model = get_bml_model(TObjEneDf2Bringer::resource_bundle, 0);
+    texlist = get_bml_texlist(TObjEneDf2Bringer::resource_bundle, 0);
+    init_motion(npc_bringer_animation_table, TObjEneDf2Bringer::resource_bundle->motions, requested_action);
+    movementParameters = &npc_movement_parameters;
+    set_motion_params(&npc_default_battle_stats);
+    init_collision_body_parts(this, collision_body_parts, 2);
+    register_object_by_id();
+    update_prev_position();
+    copy_position();
 }
 
-extern s32 __vt__14TObjNpcBringer[];
+TObjNpcBringer::~TObjNpcBringer() {}
 
-void *__dt__14TObjNpcBringerFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__14TObjNpcBringer;
-        __dt__11TObjNpcBaseFv(arg0, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
-}
-
+void *TObjNpcBringer::create(void *set_data) {
+    TObjControl *control = new TObjControl(tl_04);
+    return new TObjNpcBringer(control, set_data);
 }

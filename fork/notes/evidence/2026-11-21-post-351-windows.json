@@ -1,0 +1,2201 @@
+{
+  "upstream": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+  "previous_reconciled_review": "9e2b9a7c07a64f3542c5a2865773d9cfa9d9200b",
+  "review": "4edf25aeade61392fd79d8f65ef46e3447d0f329",
+  "review_ref": "great-merge/consolidated/after-upstream-351",
+  "review_tree": "7a54a75cc202166fbd62b9abde068818bdb49759",
+  "new_files_changed": 147,
+  "total_review_files_changed": 787,
+  "commits": {
+    "hud": {
+      "head": "34179de92ca8d7f9b4a1fb972529d9ab864387e6",
+      "subject": "Recover the native player HUD and warning-window owners",
+      "build_retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "7bdd57c775943d24af2596219b28d2113dc18f286e726f69be6557cc7233ecf8",
+      "baseline": "9e2b9a7c07a64f3542c5a2865773d9cfa9d9200b",
+      "function_labels": [
+        {
+          "module": "psov3",
+          "address": "0x8006EB74",
+          "before": "__ct__16TObjBagWarnWin4PFv",
+          "after": "__ct__16TObjBagWarnWin4PFP7TObject"
+        }
+      ]
+    },
+    "size": {
+      "head": "004d79b64fc8c926f7831e6f884cd7afc8dc458c",
+      "subject": "Use typed window dimensions and equipment factory inputs",
+      "build_retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "7bdd57c775943d24af2596219b28d2113dc18f286e726f69be6557cc7233ecf8",
+      "baseline": "9e2b9a7c07a64f3542c5a2865773d9cfa9d9200b",
+      "function_labels": [
+        {
+          "module": "psov3",
+          "address": "0x8006EB74",
+          "before": "__ct__16TObjBagWarnWin4PFv",
+          "after": "__ct__16TObjBagWarnWin4PFP7TObject"
+        }
+      ]
+    },
+    "guild": {
+      "head": "e2cf3f3231dd931d1d7451631986b560f6866cc5",
+      "subject": "Recover typed Challenge, Hunter Guild and shop window interfaces",
+      "build_retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "7bdd57c775943d24af2596219b28d2113dc18f286e726f69be6557cc7233ecf8",
+      "baseline": "9e2b9a7c07a64f3542c5a2865773d9cfa9d9200b",
+      "function_labels": [
+        {
+          "module": "psov3",
+          "address": "0x8006EB74",
+          "before": "__ct__16TObjBagWarnWin4PFv",
+          "after": "__ct__16TObjBagWarnWin4PFP7TObject"
+        }
+      ]
+    },
+    "symbol-chat": {
+      "head": "e7a8f030bf0218bfb4e759d7f93a210c80e9d02f",
+      "subject": "Recover native Symbol Chat presets, packet payloads and window owners",
+      "build_retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "a84a778bda0d1ddc1283635ef7c402501217964a4db5aa655aa51d4231b4806a",
+      "baseline": "9e2b9a7c07a64f3542c5a2865773d9cfa9d9200b",
+      "function_labels": [
+        {
+          "module": "psov3",
+          "address": "0x8006EB74",
+          "before": "__ct__16TObjBagWarnWin4PFv",
+          "after": "__ct__16TObjBagWarnWin4PFP7TObject"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80076F48",
+          "before": "copy_symbol_chat_entry__6TLobbyFPvPv",
+          "after": "copy_symbol_chat_entry__6TLobbyFP17SymbolChatPayloadPC17SymbolChatPayload"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80076FEC",
+          "before": "set_entry_name__20TWindowSubSymbolChatFPv",
+          "after": "set_entry_name__16SymbolChatPresetFPCc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077034",
+          "before": "set_flag_bit9__20TWindowSubSymbolChatFl",
+          "after": "set_flag_bit9__16SymbolChatPresetFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007706C",
+          "before": "set_symbol_index__20TWindowSubSymbolChatFl",
+          "after": "set_symbol_index__16SymbolChatPresetFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077098",
+          "before": "count_empty_slots__20TWindowSubSymbolChatFv",
+          "after": "count_empty_slots__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800770D0",
+          "before": "count_used_slots__20TWindowSubSymbolChatFv",
+          "after": "count_used_slots__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077108",
+          "before": "find_free_entry__20TWindowSubSymbolChatFl",
+          "after": "find_free_entry__16SymbolChatPresetFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007714C",
+          "before": "remove_slot_shift_down__20TWindowSubSymbolChatFl",
+          "after": "remove_slot_shift_down__16SymbolChatPresetFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800771E4",
+          "before": "set_entry__20TWindowSubSymbolChatFllllll",
+          "after": "set_entry__16SymbolChatPresetFllllll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077214",
+          "before": "add__20TWindowSubSymbolChatFlllll",
+          "after": "add__16SymbolChatPresetFlllll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007728C",
+          "before": "set_entry_bits__20TWindowSubSymbolChatFlllll",
+          "after": "set_entry_bits__16SymbolChatPresetFlllll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800772D8",
+          "before": "set_symbol_flags__20TWindowSubSymbolChatFll",
+          "after": "set_symbol_flags__16SymbolChatPresetFll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077358",
+          "before": "update_symbol_chat_result__20TWindowSubSymbolChatFv",
+          "after": "update_symbol_chat_result__20TWindowSubSymbolChatFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007737C",
+          "before": "update_selected_symbol__20TWindowSubSymbolChatFv",
+          "after": "update_selected_symbol__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077408",
+          "before": "get_symbol_chat_data__20TWindowSubSymbolChatFv",
+          "after": "get_symbol_chat_data__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800774E4",
+          "before": "clear_entries__20TWindowSubSymbolChatFv",
+          "after": "clear_entries__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077544",
+          "before": "load_symbol_chat_data__20TWindowSubSymbolChatFv",
+          "after": "load_symbol_chat_data__22SavedSymbolChatPresetsFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007763C",
+          "before": "get_data_ptr__20TWindowSubSymbolChatFv",
+          "after": "get_data_ptr__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077644",
+          "before": "bswap_symbol_chat_packet__20TWindowSubSymbolChatFv",
+          "after": "bswap_symbol_chat_packet__17G_SymbolChat_6x07Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077680",
+          "before": "byteswap_entry__20TWindowSubSymbolChatFv",
+          "after": "byteswap_entry__17SymbolChatPayloadFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800776D0",
+          "before": "send_symbol_chat__20TWindowSubSymbolChatFv",
+          "after": "send_symbol_chat__17G_SymbolChat_6x07Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077720",
+          "before": "is_initialized__20TWindowSubSymbolChatFv",
+          "after": "is_initialized__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007772C",
+          "before": "bswap_entry__20TWindowSubSymbolChatFv",
+          "after": "bswap_entry__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802482B8",
+          "before": "TWindowSubSymbolChatPartsSet__sub_802482B8",
+          "after": "get_entry_offset_1__28TWindowSubSymbolChatPartsSetFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80248300",
+          "before": "get_parts_entry__28TWindowSubSymbolChatPartsSetFii",
+          "after": "get_entry_offset_5__28TWindowSubSymbolChatPartsSetFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802484C0",
+          "before": "update_visibility__28TWindowSubSymbolChatPartsSetFv",
+          "after": "update_visibility__17TWindowChatSymbolFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80248534",
+          "before": "set_selection__28TWindowSubSymbolChatPartsSetFUl",
+          "after": "set_selection__17TWindowChatSymbolFP16SymbolChatPreset"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80248564",
+          "before": "set_from_key__20TWindowSubSymbolChatFl",
+          "after": "set_from_key__17TWindowChatSymbolFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80283800",
+          "before": "get_keyboard_ptr__20TWindowSubSymbolChatFv",
+          "after": "get_keyboard_ptr__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80283810",
+          "before": "set_flag_bit1__20TWindowSubSymbolChatFPl",
+          "after": "set_flag_bit1__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80283820",
+          "before": "commit__20TWindowSubSymbolChatFPl",
+          "after": "commit__16SymbolChatPresetFPC16SymbolChatPreset"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80283850",
+          "before": "__as__12Obj_80283850FRC12Obj_80283850",
+          "after": "__as__16SymbolChatPresetFRC16SymbolChatPreset"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802838C4",
+          "before": "set_flag_bit2__20TWindowSubSymbolChatFPl",
+          "after": "set_flag_bit2__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802838D4",
+          "before": "clear_flag_bit2__20TWindowSubSymbolChatFPl",
+          "after": "clear_flag_bit2__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802838E4",
+          "before": "get_cursor_pos__20TWindowSubSymbolChatFv",
+          "after": "get_cursor_pos__28TWindowSubSymbolChatPartsSetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802838EC",
+          "before": "get_cursor_x__20TWindowSubSymbolChatFv",
+          "after": "get_cursor_x__28TWindowSubSymbolChatPartsSetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8028390C",
+          "before": "clear_flag60_bit2__20TWindowSubSymbolChatFv",
+          "after": "clear_flag60_bit2__24TWindowSubSymbolChatHelpFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8028391C",
+          "before": "clear_flag60_bit4__20TWindowSubSymbolChatFv",
+          "after": "clear_flag60_bit4__24TWindowSubSymbolChatHelpFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8028392C",
+          "before": "set_pos_and_flag__20TWindowSubSymbolChatFll",
+          "after": "set_pos_and_flag__24TWindowSubSymbolChatHelpFPlPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80283954",
+          "before": "set_flag60_bit1__20TWindowSubSymbolChatFv",
+          "after": "set_flag60_bit1__24TWindowSubSymbolChatHelpFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80283964",
+          "before": "set_flag60_bit2__20TWindowSubSymbolChatFv",
+          "after": "set_flag60_bit2__24TWindowSubSymbolChatHelpFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802841FC",
+          "before": "__ct__28TWindowSubSymbolChatFaceTypeFll",
+          "after": "__ct__28TWindowSubSymbolChatFaceTypeFPvPSc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80284B84",
+          "before": "__ct__24TWindowSubSymbolChatHelpFll",
+          "after": "__ct__24TWindowSubSymbolChatHelpFPScPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80285D38",
+          "before": "TWindowSubSymbolChatParts__ct",
+          "after": "__ct__25TWindowSubSymbolChatPartsFPvPlPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80285E10",
+          "before": "select_symbol_chat_record__20TWindowSubSymbolChatFPScPl",
+          "after": "select_symbol_chat_record__28TWindowSubSymbolChatPartsSetFPScPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80285FF4",
+          "before": "set_selection_and_refresh__20TWindowSubSymbolChatFl",
+          "after": "set_selection_and_refresh__28TWindowSubSymbolChatPartsSetFPSc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80286028",
+          "before": "init_symbol_layout__20TWindowSubSymbolChatFPl",
+          "after": "init_symbol_layout__28TWindowSubSymbolChatPartsSetFPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802869BC",
+          "before": "TWindowSubSymbolChatPartsSet__ct",
+          "after": "__ct__28TWindowSubSymbolChatPartsSetFPvsPlPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8036B204",
+          "before": "send_slot_entity_or_local__6TLobbyFUsl",
+          "after": "send_slot_entity_or_local__6TLobbyFUsP17SymbolChatPayload"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8036B258",
+          "before": "dispatch_by_index__6TLobbyFUsi",
+          "after": "dispatch_by_index__6TLobbyFUsPC17SymbolChatPayload"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8036B2A0",
+          "before": "send_slot_entity__6TLobbyFUsl",
+          "after": "send_slot_entity__13TUnk_804F3640FUsP17SymbolChatPayload"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8036B2E8",
+          "before": "start_entry_timer__6TLobbyFUsl",
+          "after": "start_entry_timer__13TUnk_804F3640FUsPC17SymbolChatPayload"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8036B424",
+          "before": "TLobby__sub_8036B424",
+          "after": "__ct__13TUnk_804F3640FP7TObject"
+        }
+      ]
+    },
+    "mail": {
+      "head": "999f7d71e663f0231cb0a96f9d0b2829c4acbe30",
+      "subject": "Recover native Short Mail, Guild Card and shared menu owners",
+      "build_retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "b9edfae5456cf22906e246141a3a0516a107da9a95d0f6cec5461c274c9cbf5b",
+      "baseline": "9e2b9a7c07a64f3542c5a2865773d9cfa9d9200b",
+      "function_labels": [
+        {
+          "module": "psov3",
+          "address": "0x8001DAB4",
+          "before": "set_short_mail_text__6TLobbyFv",
+          "after": "set_short_mail_text__FPc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8006EB74",
+          "before": "__ct__16TObjBagWarnWin4PFv",
+          "after": "__ct__16TObjBagWarnWin4PFP7TObject"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80076F48",
+          "before": "copy_symbol_chat_entry__6TLobbyFPvPv",
+          "after": "copy_symbol_chat_entry__6TLobbyFP17SymbolChatPayloadPC17SymbolChatPayload"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80076FEC",
+          "before": "set_entry_name__20TWindowSubSymbolChatFPv",
+          "after": "set_entry_name__16SymbolChatPresetFPCc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077034",
+          "before": "set_flag_bit9__20TWindowSubSymbolChatFl",
+          "after": "set_flag_bit9__16SymbolChatPresetFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007706C",
+          "before": "set_symbol_index__20TWindowSubSymbolChatFl",
+          "after": "set_symbol_index__16SymbolChatPresetFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077098",
+          "before": "count_empty_slots__20TWindowSubSymbolChatFv",
+          "after": "count_empty_slots__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800770D0",
+          "before": "count_used_slots__20TWindowSubSymbolChatFv",
+          "after": "count_used_slots__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077108",
+          "before": "find_free_entry__20TWindowSubSymbolChatFl",
+          "after": "find_free_entry__16SymbolChatPresetFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007714C",
+          "before": "remove_slot_shift_down__20TWindowSubSymbolChatFl",
+          "after": "remove_slot_shift_down__16SymbolChatPresetFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800771E4",
+          "before": "set_entry__20TWindowSubSymbolChatFllllll",
+          "after": "set_entry__16SymbolChatPresetFllllll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077214",
+          "before": "add__20TWindowSubSymbolChatFlllll",
+          "after": "add__16SymbolChatPresetFlllll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007728C",
+          "before": "set_entry_bits__20TWindowSubSymbolChatFlllll",
+          "after": "set_entry_bits__16SymbolChatPresetFlllll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800772D8",
+          "before": "set_symbol_flags__20TWindowSubSymbolChatFll",
+          "after": "set_symbol_flags__16SymbolChatPresetFll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077358",
+          "before": "update_symbol_chat_result__20TWindowSubSymbolChatFv",
+          "after": "update_symbol_chat_result__20TWindowSubSymbolChatFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007737C",
+          "before": "update_selected_symbol__20TWindowSubSymbolChatFv",
+          "after": "update_selected_symbol__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077408",
+          "before": "get_symbol_chat_data__20TWindowSubSymbolChatFv",
+          "after": "get_symbol_chat_data__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800774E4",
+          "before": "clear_entries__20TWindowSubSymbolChatFv",
+          "after": "clear_entries__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077544",
+          "before": "load_symbol_chat_data__20TWindowSubSymbolChatFv",
+          "after": "load_symbol_chat_data__22SavedSymbolChatPresetsFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007763C",
+          "before": "get_data_ptr__20TWindowSubSymbolChatFv",
+          "after": "get_data_ptr__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077644",
+          "before": "bswap_symbol_chat_packet__20TWindowSubSymbolChatFv",
+          "after": "bswap_symbol_chat_packet__17G_SymbolChat_6x07Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077680",
+          "before": "byteswap_entry__20TWindowSubSymbolChatFv",
+          "after": "byteswap_entry__17SymbolChatPayloadFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800776D0",
+          "before": "send_symbol_chat__20TWindowSubSymbolChatFv",
+          "after": "send_symbol_chat__17G_SymbolChat_6x07Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077720",
+          "before": "is_initialized__20TWindowSubSymbolChatFv",
+          "after": "is_initialized__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007772C",
+          "before": "bswap_entry__20TWindowSubSymbolChatFv",
+          "after": "bswap_entry__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007B5A0",
+          "before": "remove_entry__17TWindowGetComCardFlll",
+          "after": "remove_entry__17TWindowGetComCardFlP14GuildCardEntryl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007B6D8",
+          "before": "get_card_id__17TWindowSubComCardFv",
+          "after": "get_card_id__14GuildCardEntryCFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007B6E0",
+          "before": "is_active__17TWindowSubComCardFv",
+          "after": "is_active__14GuildCardEntryCFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007B834",
+          "before": "TWindowSubShortMail__sub_8007B834",
+          "after": "get_sender_card_id__14ShortMailEntryFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007B83C",
+          "before": "fn_8007B83C",
+          "after": "get_sender_name__14ShortMailEntryFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802183BC",
+          "before": "clear_flag_and_release__17TWindowSubComCardFv",
+          "after": "clear_flag_and_release__11TWindowMenuFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8022598C",
+          "before": "TLobby__sub_8022598C",
+          "after": "get_short_mail_entry__Fi"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80225BC8",
+          "before": "fill_list_entry__6TLobbyFPUc",
+          "after": "fill_from_packet__14ShortMailEntryFPUc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80225C84",
+          "before": "get_com_card_list__6TLobbyFv",
+          "after": "get_name__14GuildCardEntryFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80225C8C",
+          "before": "TLobby__sub_80225C8C",
+          "after": "clear_unread__14ShortMailEntryFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80225C9C",
+          "before": "is_flag_set__6TLobbyFPv",
+          "after": "is_active__14ShortMailEntryFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80225CA8",
+          "before": "get_lobby_id__6TLobbyFv",
+          "after": "get_id__14ShortMailEntryFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802482B8",
+          "before": "TWindowSubSymbolChatPartsSet__sub_802482B8",
+          "after": "get_entry_offset_1__28TWindowSubSymbolChatPartsSetFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80248300",
+          "before": "get_parts_entry__28TWindowSubSymbolChatPartsSetFii",
+          "after": "get_entry_offset_5__28TWindowSubSymbolChatPartsSetFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802484C0",
+          "before": "update_visibility__28TWindowSubSymbolChatPartsSetFv",
+          "after": "update_visibility__17TWindowChatSymbolFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80248534",
+          "before": "set_selection__28TWindowSubSymbolChatPartsSetFUl",
+          "after": "set_selection__17TWindowChatSymbolFP16SymbolChatPreset"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80248564",
+          "before": "set_from_key__20TWindowSubSymbolChatFl",
+          "after": "set_from_key__17TWindowChatSymbolFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80252FCC",
+          "before": "TWindowGetComCard__ct",
+          "after": "__ct__17TWindowGetComCardFP7TObject"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80275254",
+          "before": "destroy_keyboard__17TWindowSubComCardFv",
+          "after": "set_soft_flag60_bit1__16TKeyBoardControlFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8027E620",
+          "before": "TWindowSubShortMail__sub_8027E620",
+          "after": "open_recipient_search__19TWindowSubShortMailFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8027FA38",
+          "before": "__ct__19TWindowSubShortMailFP7TObjectPv",
+          "after": "__ct__19TWindowSubShortMailFP15TWindowMainMenul"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8027FAD0",
+          "before": "TWindowSubShortMail__sub_8027FAD0",
+          "after": "set_replied__14ShortMailEntryFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8027FAF0",
+          "before": "get_mail_ptr__19TWindowSubShortMailFPv",
+          "after": "get_body__14ShortMailEntryFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8027FAF8",
+          "before": "get_field_cc__19TWindowSubShortMailFPv",
+          "after": "get_flags__14ShortMailEntryFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80283800",
+          "before": "get_keyboard_ptr__20TWindowSubSymbolChatFv",
+          "after": "get_keyboard_ptr__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80283810",
+          "before": "set_flag_bit1__20TWindowSubSymbolChatFPl",
+          "after": "set_flag_bit1__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80283820",
+          "before": "commit__20TWindowSubSymbolChatFPl",
+          "after": "commit__16SymbolChatPresetFPC16SymbolChatPreset"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80283850",
+          "before": "__as__12Obj_80283850FRC12Obj_80283850",
+          "after": "__as__16SymbolChatPresetFRC16SymbolChatPreset"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802838C4",
+          "before": "set_flag_bit2__20TWindowSubSymbolChatFPl",
+          "after": "set_flag_bit2__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802838D4",
+          "before": "clear_flag_bit2__20TWindowSubSymbolChatFPl",
+          "after": "clear_flag_bit2__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802838E4",
+          "before": "get_cursor_pos__20TWindowSubSymbolChatFv",
+          "after": "get_cursor_pos__28TWindowSubSymbolChatPartsSetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802838EC",
+          "before": "get_cursor_x__20TWindowSubSymbolChatFv",
+          "after": "get_cursor_x__28TWindowSubSymbolChatPartsSetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8028390C",
+          "before": "clear_flag60_bit2__20TWindowSubSymbolChatFv",
+          "after": "clear_flag60_bit2__24TWindowSubSymbolChatHelpFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8028391C",
+          "before": "clear_flag60_bit4__20TWindowSubSymbolChatFv",
+          "after": "clear_flag60_bit4__24TWindowSubSymbolChatHelpFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8028392C",
+          "before": "set_pos_and_flag__20TWindowSubSymbolChatFll",
+          "after": "set_pos_and_flag__24TWindowSubSymbolChatHelpFPlPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80283954",
+          "before": "set_flag60_bit1__20TWindowSubSymbolChatFv",
+          "after": "set_flag60_bit1__24TWindowSubSymbolChatHelpFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80283964",
+          "before": "set_flag60_bit2__20TWindowSubSymbolChatFv",
+          "after": "set_flag60_bit2__24TWindowSubSymbolChatHelpFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802841FC",
+          "before": "__ct__28TWindowSubSymbolChatFaceTypeFll",
+          "after": "__ct__28TWindowSubSymbolChatFaceTypeFPvPSc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80284B84",
+          "before": "__ct__24TWindowSubSymbolChatHelpFll",
+          "after": "__ct__24TWindowSubSymbolChatHelpFPScPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80285D38",
+          "before": "TWindowSubSymbolChatParts__ct",
+          "after": "__ct__25TWindowSubSymbolChatPartsFPvPlPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80285E10",
+          "before": "select_symbol_chat_record__20TWindowSubSymbolChatFPScPl",
+          "after": "select_symbol_chat_record__28TWindowSubSymbolChatPartsSetFPScPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80285FF4",
+          "before": "set_selection_and_refresh__20TWindowSubSymbolChatFl",
+          "after": "set_selection_and_refresh__28TWindowSubSymbolChatPartsSetFPSc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80286028",
+          "before": "init_symbol_layout__20TWindowSubSymbolChatFPl",
+          "after": "init_symbol_layout__28TWindowSubSymbolChatPartsSetFPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802869BC",
+          "before": "TWindowSubSymbolChatPartsSet__ct",
+          "after": "__ct__28TWindowSubSymbolChatPartsSetFPvsPlPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8036B204",
+          "before": "send_slot_entity_or_local__6TLobbyFUsl",
+          "after": "send_slot_entity_or_local__6TLobbyFUsP17SymbolChatPayload"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8036B258",
+          "before": "dispatch_by_index__6TLobbyFUsi",
+          "after": "dispatch_by_index__6TLobbyFUsPC17SymbolChatPayload"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8036B2A0",
+          "before": "send_slot_entity__6TLobbyFUsl",
+          "after": "send_slot_entity__13TUnk_804F3640FUsP17SymbolChatPayload"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8036B2E8",
+          "before": "start_entry_timer__6TLobbyFUsl",
+          "after": "start_entry_timer__13TUnk_804F3640FUsPC17SymbolChatPayload"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8036B424",
+          "before": "TLobby__sub_8036B424",
+          "after": "__ct__13TUnk_804F3640FP7TObject"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803DE7BC",
+          "before": "move_words__6TLobbyFPUll",
+          "after": "move_words__FPvPCvl"
+        }
+      ]
+    },
+    "card-slot": {
+      "head": "2e938d5d977bb1d15f51f7a938b516e38e501fd8",
+      "subject": "Use the native Guild Card slot layout in mail and lobby callers",
+      "build_retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "b9edfae5456cf22906e246141a3a0516a107da9a95d0f6cec5461c274c9cbf5b",
+      "baseline": "9e2b9a7c07a64f3542c5a2865773d9cfa9d9200b",
+      "function_labels": [
+        {
+          "module": "psov3",
+          "address": "0x8001DAB4",
+          "before": "set_short_mail_text__6TLobbyFv",
+          "after": "set_short_mail_text__FPc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8006EB74",
+          "before": "__ct__16TObjBagWarnWin4PFv",
+          "after": "__ct__16TObjBagWarnWin4PFP7TObject"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80076F48",
+          "before": "copy_symbol_chat_entry__6TLobbyFPvPv",
+          "after": "copy_symbol_chat_entry__6TLobbyFP17SymbolChatPayloadPC17SymbolChatPayload"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80076FEC",
+          "before": "set_entry_name__20TWindowSubSymbolChatFPv",
+          "after": "set_entry_name__16SymbolChatPresetFPCc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077034",
+          "before": "set_flag_bit9__20TWindowSubSymbolChatFl",
+          "after": "set_flag_bit9__16SymbolChatPresetFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007706C",
+          "before": "set_symbol_index__20TWindowSubSymbolChatFl",
+          "after": "set_symbol_index__16SymbolChatPresetFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077098",
+          "before": "count_empty_slots__20TWindowSubSymbolChatFv",
+          "after": "count_empty_slots__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800770D0",
+          "before": "count_used_slots__20TWindowSubSymbolChatFv",
+          "after": "count_used_slots__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077108",
+          "before": "find_free_entry__20TWindowSubSymbolChatFl",
+          "after": "find_free_entry__16SymbolChatPresetFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007714C",
+          "before": "remove_slot_shift_down__20TWindowSubSymbolChatFl",
+          "after": "remove_slot_shift_down__16SymbolChatPresetFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800771E4",
+          "before": "set_entry__20TWindowSubSymbolChatFllllll",
+          "after": "set_entry__16SymbolChatPresetFllllll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077214",
+          "before": "add__20TWindowSubSymbolChatFlllll",
+          "after": "add__16SymbolChatPresetFlllll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007728C",
+          "before": "set_entry_bits__20TWindowSubSymbolChatFlllll",
+          "after": "set_entry_bits__16SymbolChatPresetFlllll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800772D8",
+          "before": "set_symbol_flags__20TWindowSubSymbolChatFll",
+          "after": "set_symbol_flags__16SymbolChatPresetFll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077358",
+          "before": "update_symbol_chat_result__20TWindowSubSymbolChatFv",
+          "after": "update_symbol_chat_result__20TWindowSubSymbolChatFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007737C",
+          "before": "update_selected_symbol__20TWindowSubSymbolChatFv",
+          "after": "update_selected_symbol__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077408",
+          "before": "get_symbol_chat_data__20TWindowSubSymbolChatFv",
+          "after": "get_symbol_chat_data__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800774E4",
+          "before": "clear_entries__20TWindowSubSymbolChatFv",
+          "after": "clear_entries__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077544",
+          "before": "load_symbol_chat_data__20TWindowSubSymbolChatFv",
+          "after": "load_symbol_chat_data__22SavedSymbolChatPresetsFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007763C",
+          "before": "get_data_ptr__20TWindowSubSymbolChatFv",
+          "after": "get_data_ptr__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077644",
+          "before": "bswap_symbol_chat_packet__20TWindowSubSymbolChatFv",
+          "after": "bswap_symbol_chat_packet__17G_SymbolChat_6x07Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077680",
+          "before": "byteswap_entry__20TWindowSubSymbolChatFv",
+          "after": "byteswap_entry__17SymbolChatPayloadFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800776D0",
+          "before": "send_symbol_chat__20TWindowSubSymbolChatFv",
+          "after": "send_symbol_chat__17G_SymbolChat_6x07Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077720",
+          "before": "is_initialized__20TWindowSubSymbolChatFv",
+          "after": "is_initialized__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007772C",
+          "before": "bswap_entry__20TWindowSubSymbolChatFv",
+          "after": "bswap_entry__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007B5A0",
+          "before": "remove_entry__17TWindowGetComCardFlll",
+          "after": "remove_entry__17TWindowGetComCardFlP14GuildCardEntryl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007B6D8",
+          "before": "get_card_id__17TWindowSubComCardFv",
+          "after": "get_card_id__14GuildCardEntryCFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007B6E0",
+          "before": "is_active__17TWindowSubComCardFv",
+          "after": "is_active__14GuildCardEntryCFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007B834",
+          "before": "TWindowSubShortMail__sub_8007B834",
+          "after": "get_sender_card_id__14ShortMailEntryFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007B83C",
+          "before": "fn_8007B83C",
+          "after": "get_sender_name__14ShortMailEntryFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802183BC",
+          "before": "clear_flag_and_release__17TWindowSubComCardFv",
+          "after": "clear_flag_and_release__11TWindowMenuFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8022598C",
+          "before": "TLobby__sub_8022598C",
+          "after": "get_short_mail_entry__Fi"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80225BC8",
+          "before": "fill_list_entry__6TLobbyFPUc",
+          "after": "fill_from_packet__14ShortMailEntryFPUc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80225C84",
+          "before": "get_com_card_list__6TLobbyFv",
+          "after": "get_name__14GuildCardEntryFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80225C8C",
+          "before": "TLobby__sub_80225C8C",
+          "after": "clear_unread__14ShortMailEntryFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80225C9C",
+          "before": "is_flag_set__6TLobbyFPv",
+          "after": "is_active__14ShortMailEntryFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80225CA8",
+          "before": "get_lobby_id__6TLobbyFv",
+          "after": "get_id__14ShortMailEntryFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802482B8",
+          "before": "TWindowSubSymbolChatPartsSet__sub_802482B8",
+          "after": "get_entry_offset_1__28TWindowSubSymbolChatPartsSetFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80248300",
+          "before": "get_parts_entry__28TWindowSubSymbolChatPartsSetFii",
+          "after": "get_entry_offset_5__28TWindowSubSymbolChatPartsSetFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802484C0",
+          "before": "update_visibility__28TWindowSubSymbolChatPartsSetFv",
+          "after": "update_visibility__17TWindowChatSymbolFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80248534",
+          "before": "set_selection__28TWindowSubSymbolChatPartsSetFUl",
+          "after": "set_selection__17TWindowChatSymbolFP16SymbolChatPreset"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80248564",
+          "before": "set_from_key__20TWindowSubSymbolChatFl",
+          "after": "set_from_key__17TWindowChatSymbolFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80252FCC",
+          "before": "TWindowGetComCard__ct",
+          "after": "__ct__17TWindowGetComCardFP7TObject"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80275254",
+          "before": "destroy_keyboard__17TWindowSubComCardFv",
+          "after": "set_soft_flag60_bit1__16TKeyBoardControlFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8027E620",
+          "before": "TWindowSubShortMail__sub_8027E620",
+          "after": "open_recipient_search__19TWindowSubShortMailFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8027FA38",
+          "before": "__ct__19TWindowSubShortMailFP7TObjectPv",
+          "after": "__ct__19TWindowSubShortMailFP15TWindowMainMenul"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8027FAD0",
+          "before": "TWindowSubShortMail__sub_8027FAD0",
+          "after": "set_replied__14ShortMailEntryFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8027FAF0",
+          "before": "get_mail_ptr__19TWindowSubShortMailFPv",
+          "after": "get_body__14ShortMailEntryFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8027FAF8",
+          "before": "get_field_cc__19TWindowSubShortMailFPv",
+          "after": "get_flags__14ShortMailEntryFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80283800",
+          "before": "get_keyboard_ptr__20TWindowSubSymbolChatFv",
+          "after": "get_keyboard_ptr__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80283810",
+          "before": "set_flag_bit1__20TWindowSubSymbolChatFPl",
+          "after": "set_flag_bit1__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80283820",
+          "before": "commit__20TWindowSubSymbolChatFPl",
+          "after": "commit__16SymbolChatPresetFPC16SymbolChatPreset"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80283850",
+          "before": "__as__12Obj_80283850FRC12Obj_80283850",
+          "after": "__as__16SymbolChatPresetFRC16SymbolChatPreset"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802838C4",
+          "before": "set_flag_bit2__20TWindowSubSymbolChatFPl",
+          "after": "set_flag_bit2__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802838D4",
+          "before": "clear_flag_bit2__20TWindowSubSymbolChatFPl",
+          "after": "clear_flag_bit2__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802838E4",
+          "before": "get_cursor_pos__20TWindowSubSymbolChatFv",
+          "after": "get_cursor_pos__28TWindowSubSymbolChatPartsSetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802838EC",
+          "before": "get_cursor_x__20TWindowSubSymbolChatFv",
+          "after": "get_cursor_x__28TWindowSubSymbolChatPartsSetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8028390C",
+          "before": "clear_flag60_bit2__20TWindowSubSymbolChatFv",
+          "after": "clear_flag60_bit2__24TWindowSubSymbolChatHelpFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8028391C",
+          "before": "clear_flag60_bit4__20TWindowSubSymbolChatFv",
+          "after": "clear_flag60_bit4__24TWindowSubSymbolChatHelpFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8028392C",
+          "before": "set_pos_and_flag__20TWindowSubSymbolChatFll",
+          "after": "set_pos_and_flag__24TWindowSubSymbolChatHelpFPlPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80283954",
+          "before": "set_flag60_bit1__20TWindowSubSymbolChatFv",
+          "after": "set_flag60_bit1__24TWindowSubSymbolChatHelpFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80283964",
+          "before": "set_flag60_bit2__20TWindowSubSymbolChatFv",
+          "after": "set_flag60_bit2__24TWindowSubSymbolChatHelpFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802841FC",
+          "before": "__ct__28TWindowSubSymbolChatFaceTypeFll",
+          "after": "__ct__28TWindowSubSymbolChatFaceTypeFPvPSc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80284B84",
+          "before": "__ct__24TWindowSubSymbolChatHelpFll",
+          "after": "__ct__24TWindowSubSymbolChatHelpFPScPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80285D38",
+          "before": "TWindowSubSymbolChatParts__ct",
+          "after": "__ct__25TWindowSubSymbolChatPartsFPvPlPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80285E10",
+          "before": "select_symbol_chat_record__20TWindowSubSymbolChatFPScPl",
+          "after": "select_symbol_chat_record__28TWindowSubSymbolChatPartsSetFPScPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80285FF4",
+          "before": "set_selection_and_refresh__20TWindowSubSymbolChatFl",
+          "after": "set_selection_and_refresh__28TWindowSubSymbolChatPartsSetFPSc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80286028",
+          "before": "init_symbol_layout__20TWindowSubSymbolChatFPl",
+          "after": "init_symbol_layout__28TWindowSubSymbolChatPartsSetFPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802869BC",
+          "before": "TWindowSubSymbolChatPartsSet__ct",
+          "after": "__ct__28TWindowSubSymbolChatPartsSetFPvsPlPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8036B204",
+          "before": "send_slot_entity_or_local__6TLobbyFUsl",
+          "after": "send_slot_entity_or_local__6TLobbyFUsP17SymbolChatPayload"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8036B258",
+          "before": "dispatch_by_index__6TLobbyFUsi",
+          "after": "dispatch_by_index__6TLobbyFUsPC17SymbolChatPayload"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8036B2A0",
+          "before": "send_slot_entity__6TLobbyFUsl",
+          "after": "send_slot_entity__13TUnk_804F3640FUsP17SymbolChatPayload"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8036B2E8",
+          "before": "start_entry_timer__6TLobbyFUsl",
+          "after": "start_entry_timer__13TUnk_804F3640FUsPC17SymbolChatPayload"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8036B424",
+          "before": "TLobby__sub_8036B424",
+          "after": "__ct__13TUnk_804F3640FP7TObject"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803DE7BC",
+          "before": "move_words__6TLobbyFPUll",
+          "after": "move_words__FPvPCvl"
+        }
+      ]
+    },
+    "trade": {
+      "head": "4edf25aeade61392fd79d8f65ef46e3447d0f329",
+      "subject": "Recover typed trade windows and inventory export interfaces",
+      "build_retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "62aa93c7af98b3c01cd27b94e4aa48af7ec241625381f1407938a96ffd694325",
+      "baseline": "9e2b9a7c07a64f3542c5a2865773d9cfa9d9200b",
+      "function_labels": [
+        {
+          "module": "psov3",
+          "address": "0x8001DAB4",
+          "before": "set_short_mail_text__6TLobbyFv",
+          "after": "set_short_mail_text__FPc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8006EB74",
+          "before": "__ct__16TObjBagWarnWin4PFv",
+          "after": "__ct__16TObjBagWarnWin4PFP7TObject"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80076F48",
+          "before": "copy_symbol_chat_entry__6TLobbyFPvPv",
+          "after": "copy_symbol_chat_entry__6TLobbyFP17SymbolChatPayloadPC17SymbolChatPayload"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80076FEC",
+          "before": "set_entry_name__20TWindowSubSymbolChatFPv",
+          "after": "set_entry_name__16SymbolChatPresetFPCc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077034",
+          "before": "set_flag_bit9__20TWindowSubSymbolChatFl",
+          "after": "set_flag_bit9__16SymbolChatPresetFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007706C",
+          "before": "set_symbol_index__20TWindowSubSymbolChatFl",
+          "after": "set_symbol_index__16SymbolChatPresetFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077098",
+          "before": "count_empty_slots__20TWindowSubSymbolChatFv",
+          "after": "count_empty_slots__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800770D0",
+          "before": "count_used_slots__20TWindowSubSymbolChatFv",
+          "after": "count_used_slots__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077108",
+          "before": "find_free_entry__20TWindowSubSymbolChatFl",
+          "after": "find_free_entry__16SymbolChatPresetFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007714C",
+          "before": "remove_slot_shift_down__20TWindowSubSymbolChatFl",
+          "after": "remove_slot_shift_down__16SymbolChatPresetFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800771E4",
+          "before": "set_entry__20TWindowSubSymbolChatFllllll",
+          "after": "set_entry__16SymbolChatPresetFllllll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077214",
+          "before": "add__20TWindowSubSymbolChatFlllll",
+          "after": "add__16SymbolChatPresetFlllll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007728C",
+          "before": "set_entry_bits__20TWindowSubSymbolChatFlllll",
+          "after": "set_entry_bits__16SymbolChatPresetFlllll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800772D8",
+          "before": "set_symbol_flags__20TWindowSubSymbolChatFll",
+          "after": "set_symbol_flags__16SymbolChatPresetFll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077358",
+          "before": "update_symbol_chat_result__20TWindowSubSymbolChatFv",
+          "after": "update_symbol_chat_result__20TWindowSubSymbolChatFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007737C",
+          "before": "update_selected_symbol__20TWindowSubSymbolChatFv",
+          "after": "update_selected_symbol__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077408",
+          "before": "get_symbol_chat_data__20TWindowSubSymbolChatFv",
+          "after": "get_symbol_chat_data__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800774E4",
+          "before": "clear_entries__20TWindowSubSymbolChatFv",
+          "after": "clear_entries__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077544",
+          "before": "load_symbol_chat_data__20TWindowSubSymbolChatFv",
+          "after": "load_symbol_chat_data__22SavedSymbolChatPresetsFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007763C",
+          "before": "get_data_ptr__20TWindowSubSymbolChatFv",
+          "after": "get_data_ptr__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077644",
+          "before": "bswap_symbol_chat_packet__20TWindowSubSymbolChatFv",
+          "after": "bswap_symbol_chat_packet__17G_SymbolChat_6x07Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077680",
+          "before": "byteswap_entry__20TWindowSubSymbolChatFv",
+          "after": "byteswap_entry__17SymbolChatPayloadFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800776D0",
+          "before": "send_symbol_chat__20TWindowSubSymbolChatFv",
+          "after": "send_symbol_chat__17G_SymbolChat_6x07Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80077720",
+          "before": "is_initialized__20TWindowSubSymbolChatFv",
+          "after": "is_initialized__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007772C",
+          "before": "bswap_entry__20TWindowSubSymbolChatFv",
+          "after": "bswap_entry__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007B5A0",
+          "before": "remove_entry__17TWindowGetComCardFlll",
+          "after": "remove_entry__17TWindowGetComCardFlP14GuildCardEntryl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007B6D8",
+          "before": "get_card_id__17TWindowSubComCardFv",
+          "after": "get_card_id__14GuildCardEntryCFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007B6E0",
+          "before": "is_active__17TWindowSubComCardFv",
+          "after": "is_active__14GuildCardEntryCFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007B834",
+          "before": "TWindowSubShortMail__sub_8007B834",
+          "after": "get_sender_card_id__14ShortMailEntryFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007B83C",
+          "before": "fn_8007B83C",
+          "after": "get_sender_name__14ShortMailEntryFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D4CB8",
+          "before": "count_matching_items__8TPlyItemFi",
+          "after": "count_matching_items__8TPlyItemFPP5TItem"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D4CEC",
+          "before": "apply_shop_judgment__8TPlyItemFi",
+          "after": "apply_shop_judgment__8TPlyItemFPP5TItem"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D57A8",
+          "before": "set_field_1c__9TItemListFl",
+          "after": "set_field_1c__9TItemListFP5TItem"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802183BC",
+          "before": "clear_flag_and_release__17TWindowSubComCardFv",
+          "after": "clear_flag_and_release__11TWindowMenuFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8022598C",
+          "before": "TLobby__sub_8022598C",
+          "after": "get_short_mail_entry__Fi"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80225BC8",
+          "before": "fill_list_entry__6TLobbyFPUc",
+          "after": "fill_from_packet__14ShortMailEntryFPUc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80225C84",
+          "before": "get_com_card_list__6TLobbyFv",
+          "after": "get_name__14GuildCardEntryFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80225C8C",
+          "before": "TLobby__sub_80225C8C",
+          "after": "clear_unread__14ShortMailEntryFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80225C9C",
+          "before": "is_flag_set__6TLobbyFPv",
+          "after": "is_active__14ShortMailEntryFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80225CA8",
+          "before": "get_lobby_id__6TLobbyFv",
+          "after": "get_id__14ShortMailEntryFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802482B8",
+          "before": "TWindowSubSymbolChatPartsSet__sub_802482B8",
+          "after": "get_entry_offset_1__28TWindowSubSymbolChatPartsSetFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80248300",
+          "before": "get_parts_entry__28TWindowSubSymbolChatPartsSetFii",
+          "after": "get_entry_offset_5__28TWindowSubSymbolChatPartsSetFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802484C0",
+          "before": "update_visibility__28TWindowSubSymbolChatPartsSetFv",
+          "after": "update_visibility__17TWindowChatSymbolFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80248534",
+          "before": "set_selection__28TWindowSubSymbolChatPartsSetFUl",
+          "after": "set_selection__17TWindowChatSymbolFP16SymbolChatPreset"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80248564",
+          "before": "set_from_key__20TWindowSubSymbolChatFl",
+          "after": "set_from_key__17TWindowChatSymbolFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80252FCC",
+          "before": "TWindowGetComCard__ct",
+          "after": "__ct__17TWindowGetComCardFP7TObject"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80275254",
+          "before": "destroy_keyboard__17TWindowSubComCardFv",
+          "after": "set_soft_flag60_bit1__16TKeyBoardControlFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8027E620",
+          "before": "TWindowSubShortMail__sub_8027E620",
+          "after": "open_recipient_search__19TWindowSubShortMailFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8027FA38",
+          "before": "__ct__19TWindowSubShortMailFP7TObjectPv",
+          "after": "__ct__19TWindowSubShortMailFP15TWindowMainMenul"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8027FAD0",
+          "before": "TWindowSubShortMail__sub_8027FAD0",
+          "after": "set_replied__14ShortMailEntryFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8027FAF0",
+          "before": "get_mail_ptr__19TWindowSubShortMailFPv",
+          "after": "get_body__14ShortMailEntryFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8027FAF8",
+          "before": "get_field_cc__19TWindowSubShortMailFPv",
+          "after": "get_flags__14ShortMailEntryFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80283800",
+          "before": "get_keyboard_ptr__20TWindowSubSymbolChatFv",
+          "after": "get_keyboard_ptr__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80283810",
+          "before": "set_flag_bit1__20TWindowSubSymbolChatFPl",
+          "after": "set_flag_bit1__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80283820",
+          "before": "commit__20TWindowSubSymbolChatFPl",
+          "after": "commit__16SymbolChatPresetFPC16SymbolChatPreset"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80283850",
+          "before": "__as__12Obj_80283850FRC12Obj_80283850",
+          "after": "__as__16SymbolChatPresetFRC16SymbolChatPreset"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802838C4",
+          "before": "set_flag_bit2__20TWindowSubSymbolChatFPl",
+          "after": "set_flag_bit2__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802838D4",
+          "before": "clear_flag_bit2__20TWindowSubSymbolChatFPl",
+          "after": "clear_flag_bit2__16SymbolChatPresetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802838E4",
+          "before": "get_cursor_pos__20TWindowSubSymbolChatFv",
+          "after": "get_cursor_pos__28TWindowSubSymbolChatPartsSetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802838EC",
+          "before": "get_cursor_x__20TWindowSubSymbolChatFv",
+          "after": "get_cursor_x__28TWindowSubSymbolChatPartsSetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8028390C",
+          "before": "clear_flag60_bit2__20TWindowSubSymbolChatFv",
+          "after": "clear_flag60_bit2__24TWindowSubSymbolChatHelpFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8028391C",
+          "before": "clear_flag60_bit4__20TWindowSubSymbolChatFv",
+          "after": "clear_flag60_bit4__24TWindowSubSymbolChatHelpFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8028392C",
+          "before": "set_pos_and_flag__20TWindowSubSymbolChatFll",
+          "after": "set_pos_and_flag__24TWindowSubSymbolChatHelpFPlPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80283954",
+          "before": "set_flag60_bit1__20TWindowSubSymbolChatFv",
+          "after": "set_flag60_bit1__24TWindowSubSymbolChatHelpFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80283964",
+          "before": "set_flag60_bit2__20TWindowSubSymbolChatFv",
+          "after": "set_flag60_bit2__24TWindowSubSymbolChatHelpFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802841FC",
+          "before": "__ct__28TWindowSubSymbolChatFaceTypeFll",
+          "after": "__ct__28TWindowSubSymbolChatFaceTypeFPvPSc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80284B84",
+          "before": "__ct__24TWindowSubSymbolChatHelpFll",
+          "after": "__ct__24TWindowSubSymbolChatHelpFPScPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80285D38",
+          "before": "TWindowSubSymbolChatParts__ct",
+          "after": "__ct__25TWindowSubSymbolChatPartsFPvPlPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80285E10",
+          "before": "select_symbol_chat_record__20TWindowSubSymbolChatFPScPl",
+          "after": "select_symbol_chat_record__28TWindowSubSymbolChatPartsSetFPScPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80285FF4",
+          "before": "set_selection_and_refresh__20TWindowSubSymbolChatFl",
+          "after": "set_selection_and_refresh__28TWindowSubSymbolChatPartsSetFPSc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80286028",
+          "before": "init_symbol_layout__20TWindowSubSymbolChatFPl",
+          "after": "init_symbol_layout__28TWindowSubSymbolChatPartsSetFPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802869BC",
+          "before": "TWindowSubSymbolChatPartsSet__ct",
+          "after": "__ct__28TWindowSubSymbolChatPartsSetFPvsPlPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8036B204",
+          "before": "send_slot_entity_or_local__6TLobbyFUsl",
+          "after": "send_slot_entity_or_local__6TLobbyFUsP17SymbolChatPayload"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8036B258",
+          "before": "dispatch_by_index__6TLobbyFUsi",
+          "after": "dispatch_by_index__6TLobbyFUsPC17SymbolChatPayload"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8036B2A0",
+          "before": "send_slot_entity__6TLobbyFUsl",
+          "after": "send_slot_entity__13TUnk_804F3640FUsP17SymbolChatPayload"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8036B2E8",
+          "before": "start_entry_timer__6TLobbyFUsl",
+          "after": "start_entry_timer__13TUnk_804F3640FUsPC17SymbolChatPayload"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8036B424",
+          "before": "TLobby__sub_8036B424",
+          "after": "__ct__13TUnk_804F3640FP7TObject"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803DE7BC",
+          "before": "move_words__6TLobbyFPUll",
+          "after": "move_words__FPvPCvl"
+        }
+      ]
+    }
+  },
+  "new_review_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/morfos/TWindowSubTradeMain.h",
+    "include/pso/item/TItemList.h",
+    "include/pso/network/protocol/subcmd_6x.h",
+    "include/pso/object/base/TObjChara.h",
+    "include/pso/player/GuildCardEntry.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/player/TPlyGuildCardTag_8007B7EC.h",
+    "include/pso/player/TPlyItem.h",
+    "include/pso/system/memory.h",
+    "include/pso/ui/chat/ShortMail.h",
+    "include/pso/ui/chat/SymbolChatPayload.h",
+    "include/pso/ui/chat/SymbolChatPreset.h",
+    "include/pso/ui/chat/TWindowChat.h",
+    "include/pso/ui/chat/TWindowChatSymbol.h",
+    "include/pso/ui/chat/TWindowChatSymbol_802486A8.h",
+    "include/pso/ui/chat/TWindowSubShortMail.h",
+    "include/pso/ui/chat/TWindowSubSymbolChat.h",
+    "include/pso/ui/chat/TWindowSubSymbolChatFaceType.h",
+    "include/pso/ui/chat/TWindowSubSymbolChatHelp.h",
+    "include/pso/ui/chat/TWindowSubSymbolChatParts.h",
+    "include/pso/ui/chat/TWindowSubSymbolChatPartsSet.h",
+    "include/pso/ui/chat/TWindowSubSymbolChat_80076F88.h",
+    "include/pso/ui/chat/TWindowSubSymbolChat_8028239C.h",
+    "include/pso/ui/city/THunterGuildSeqOffline.h",
+    "include/pso/ui/city/THunterGuildSeqOffline_80213788.h",
+    "include/pso/ui/keyboard/TKeyBoardControl.h",
+    "include/pso/ui/window/TObjBagWarnWin4P.h",
+    "include/pso/ui/window/TObjDeadListWin.h",
+    "include/pso/ui/window/TWindowCtrl.h",
+    "include/pso/ui/window/TWindowCtrlPlayer.h",
+    "include/pso/ui/window/TWindowGetComCard.h",
+    "include/pso/ui/window/TWindowGetComCard_8007B54C.h",
+    "include/pso/ui/window/TWindowLockOn.h",
+    "include/pso/ui/window/TWindowMenu.h",
+    "include/pso/ui/window/TWindowQuantity.h",
+    "include/pso/ui/window/TWindowSubComCard.h",
+    "include/pso/ui/window/TWindowSubComCard_8007A810.h",
+    "include/pso/ui/window/TWindowSubComCard_80265410.h",
+    "include/pso/ui/window/TWindowSubEquipKind.h",
+    "include/pso/ui/window/TWindowSubStatusDisp_802671F0.h",
+    "include/pso/ui/window/TWindowSubTrade.h",
+    "include/pso/ui/window/WindowMenuFactory.h",
+    "include/pso/unk/TLobby.h",
+    "include/pso/unk/TLobby_8036B204.h",
+    "include/pso/unk/TUnk_804F3640.h",
+    "include/pso/unk/WindowLayoutRecord.h",
+    "include/pso/unk/text_8006EBC4.h",
+    "include/pso/unk/text_80076E84.h",
+    "include/pso/unk/text_801D40D4.h",
+    "include/pso/unk/text_80269FE8.h",
+    "include/pso/unk/text_80271400.h",
+    "src/pso/boss/goldragon/TBoss8Dragon_8036AEF8.cpp",
+    "src/pso/map/area/AreaCity.cpp",
+    "src/pso/network/TGameProtocol.cpp",
+    "src/pso/network/TradeSession.cpp",
+    "src/pso/npc/TNpcPlayer_802C3CD0.cpp",
+    "src/pso/object/collision/TOSymbolchatColli.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TObjPlayer_802C422C.cpp",
+    "src/pso/player/TPlyGuildCardTag_8007B7EC.cpp",
+    "src/pso/player/TPlyItem.cpp",
+    "src/pso/quest/QuestOpcodeHandlers.cpp",
+    "src/pso/quest/TQuestListChallenge.cpp",
+    "src/pso/quest/TQuestListOffline.cpp",
+    "src/pso/quest/TQuestListOnline.cpp",
+    "src/pso/quest/TQuestListVM.cpp",
+    "src/pso/ui/chat/ShortMail.cpp",
+    "src/pso/ui/chat/TUnk_804CE7D0.cpp",
+    "src/pso/ui/chat/TWindowChat.cpp",
+    "src/pso/ui/chat/TWindowChatSymbol.cpp",
+    "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChat.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChatFaceType.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChatHelp.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChatPartsSet.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChat_80076F88.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChat_802838C4.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChat_80283954.cpp",
+    "src/pso/ui/city/THunterGuildSeqOffline.cpp",
+    "src/pso/ui/city/THunterGuildSeqOffline_8021282C.cpp",
+    "src/pso/ui/city/THunterGuildSeqOffline_80213788.cpp",
+    "src/pso/ui/city/TMedicalCenterSequence.cpp",
+    "src/pso/ui/city/TShopArmorListWindow.cpp",
+    "src/pso/ui/city/TShopDeleteItemWindow.cpp",
+    "src/pso/ui/city/TShopEquipmentListWindow.cpp",
+    "src/pso/ui/city/TShopEquipmentSellWindow.cpp",
+    "src/pso/ui/city/TShopGetItemWindow.cpp",
+    "src/pso/ui/city/TShopJudgmentItemWindow.cpp",
+    "src/pso/ui/city/TShopKeepItemWindow.cpp",
+    "src/pso/ui/frontend/TAdMultiPlyChrSelectGC.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+    "src/pso/ui/window/TObjBagWarnWin.cpp",
+    "src/pso/ui/window/TObjDeadListWin.cpp",
+    "src/pso/ui/window/TWindowComCard.cpp",
+    "src/pso/ui/window/TWindowCtrl.cpp",
+    "src/pso/ui/window/TWindowCtrlMain.cpp",
+    "src/pso/ui/window/TWindowGetComCard.cpp",
+    "src/pso/ui/window/TWindowGetComCard_8007B54C.cpp",
+    "src/pso/ui/window/TWindowLockOn_80262C3C.cpp",
+    "src/pso/ui/window/TWindowMainMenu.cpp",
+    "src/pso/ui/window/TWindowMakeTeam.cpp",
+    "src/pso/ui/window/TWindowMessageLog.cpp",
+    "src/pso/ui/window/TWindowOptionCtrl.cpp",
+    "src/pso/ui/window/TWindowQuantity.cpp",
+    "src/pso/ui/window/TWindowShop.cpp",
+    "src/pso/ui/window/TWindowShortCut.cpp",
+    "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp",
+    "src/pso/ui/window/TWindowStatus.cpp",
+    "src/pso/ui/window/TWindowSubComCard.cpp",
+    "src/pso/ui/window/TWindowSubComCardList.cpp",
+    "src/pso/ui/window/TWindowSubComCard_8007A810.cpp",
+    "src/pso/ui/window/TWindowSubComCard_8007B6D8.cpp",
+    "src/pso/ui/window/TWindowSubComCard_8007BD24.cpp",
+    "src/pso/ui/window/TWindowSubComCard_8007BF08.cpp",
+    "src/pso/ui/window/TWindowSubComCard_80265410.cpp",
+    "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp",
+    "src/pso/ui/window/TWindowSubComCard_802A5748.cpp",
+    "src/pso/ui/window/TWindowSubEquipKind.cpp",
+    "src/pso/ui/window/TWindowSubEquipList.cpp",
+    "src/pso/ui/window/TWindowSubEquip_80277DF8.cpp",
+    "src/pso/ui/window/TWindowSubInformationBoard.cpp",
+    "src/pso/ui/window/TWindowSubItem.cpp",
+    "src/pso/ui/window/TWindowSubItemList.cpp",
+    "src/pso/ui/window/TWindowSubMag.cpp",
+    "src/pso/ui/window/TWindowSubQuestBoard.cpp",
+    "src/pso/ui/window/TWindowSubShortCut.cpp",
+    "src/pso/ui/window/TWindowSubShortCutList.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_80248BE8.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp",
+    "src/pso/ui/window/TWindowSubTechnique.cpp",
+    "src/pso/ui/window/TWindowSubTrade.cpp",
+    "src/pso/ui/window/TWindowSubTradeMain_80330A84.cpp",
+    "src/pso/ui/window/TWindowSubTradeMessage.cpp",
+    "src/pso/unk/TLobby_8001D6A0.cpp",
+    "src/pso/unk/TLobby_8007B858.cpp",
+    "src/pso/unk/TLobby_800FA164.cpp",
+    "src/pso/unk/TLobby_800FA2A0.cpp",
+    "src/pso/unk/TLobby_802409AC.cpp",
+    "src/pso/unk/TLobby_8036B204.cpp",
+    "src/pso/unk/TLobby_803DE778.cpp",
+    "src/pso/unk/text_80076E84.cpp",
+    "src/pso/unk/text_800FA464.cpp",
+    "src/pso/unk/text_80269FE8.cpp",
+    "src/pso/unk/text_80275360.cpp"
+  ],
+  "attribution": {
+    "new_commits": 7,
+    "codex_attribution": 0,
+    "coauthor_trailers": 0
+  },
+  "closed_path_comparisons": [
+    "include/pso/enemy/morfos/TWindowSubTradeMain.h",
+    "include/pso/item/TItemList.h",
+    "include/pso/network/protocol/subcmd_6x.h",
+    "include/pso/player/GuildCardEntry.h",
+    "include/pso/player/TPlyGuildCardTag_8007B7EC.h",
+    "include/pso/player/TPlyItem.h",
+    "include/pso/system/memory.h",
+    "include/pso/ui/chat/ShortMail.h",
+    "include/pso/ui/chat/SymbolChatPayload.h",
+    "include/pso/ui/chat/SymbolChatPreset.h",
+    "include/pso/ui/chat/TWindowChat.h",
+    "include/pso/ui/chat/TWindowChatSymbol.h",
+    "include/pso/ui/chat/TWindowChatSymbol_802486A8.h",
+    "include/pso/ui/chat/TWindowSubShortMail.h",
+    "include/pso/ui/chat/TWindowSubSymbolChat.h",
+    "include/pso/ui/chat/TWindowSubSymbolChatFaceType.h",
+    "include/pso/ui/chat/TWindowSubSymbolChatHelp.h",
+    "include/pso/ui/chat/TWindowSubSymbolChatParts.h",
+    "include/pso/ui/chat/TWindowSubSymbolChatPartsSet.h",
+    "include/pso/ui/chat/TWindowSubSymbolChat_80076F88.h",
+    "include/pso/ui/chat/TWindowSubSymbolChat_8028239C.h",
+    "include/pso/ui/city/THunterGuildSeqOffline.h",
+    "include/pso/ui/city/THunterGuildSeqOffline_80213788.h",
+    "include/pso/ui/keyboard/TKeyBoardControl.h",
+    "include/pso/ui/window/TObjBagWarnWin4P.h",
+    "include/pso/ui/window/TObjDeadListWin.h",
+    "include/pso/ui/window/TWindowCtrl.h",
+    "include/pso/ui/window/TWindowCtrlPlayer.h",
+    "include/pso/ui/window/TWindowGetComCard.h",
+    "include/pso/ui/window/TWindowGetComCard_8007B54C.h",
+    "include/pso/ui/window/TWindowLockOn.h",
+    "include/pso/ui/window/TWindowMenu.h",
+    "include/pso/ui/window/TWindowQuantity.h",
+    "include/pso/ui/window/TWindowSubComCard.h",
+    "include/pso/ui/window/TWindowSubComCard_8007A810.h",
+    "include/pso/ui/window/TWindowSubComCard_80265410.h",
+    "include/pso/ui/window/TWindowSubEquipKind.h",
+    "include/pso/ui/window/TWindowSubStatusDisp_802671F0.h",
+    "include/pso/ui/window/TWindowSubTrade.h",
+    "include/pso/ui/window/WindowMenuFactory.h",
+    "include/pso/unk/TLobby_8036B204.h",
+    "include/pso/unk/TUnk_804F3640.h",
+    "include/pso/unk/WindowLayoutRecord.h",
+    "include/pso/unk/text_8006EBC4.h",
+    "include/pso/unk/text_80076E84.h",
+    "include/pso/unk/text_801D40D4.h",
+    "include/pso/unk/text_80269FE8.h",
+    "include/pso/unk/text_80271400.h",
+    "src/pso/boss/goldragon/TBoss8Dragon_8036AEF8.cpp",
+    "src/pso/map/area/AreaCity.cpp",
+    "src/pso/object/collision/TOSymbolchatColli.cpp",
+    "src/pso/player/TObjPlayer_802C422C.cpp",
+    "src/pso/player/TPlyGuildCardTag_8007B7EC.cpp",
+    "src/pso/quest/TQuestListChallenge.cpp",
+    "src/pso/quest/TQuestListOffline.cpp",
+    "src/pso/quest/TQuestListOnline.cpp",
+    "src/pso/ui/chat/ShortMail.cpp",
+    "src/pso/ui/chat/TUnk_804CE7D0.cpp",
+    "src/pso/ui/chat/TWindowChat.cpp",
+    "src/pso/ui/chat/TWindowChatSymbol.cpp",
+    "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChat.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChatHelp.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChat_80076F88.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChat_802838C4.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChat_80283954.cpp",
+    "src/pso/ui/city/THunterGuildSeqOffline.cpp",
+    "src/pso/ui/city/THunterGuildSeqOffline_8021282C.cpp",
+    "src/pso/ui/city/THunterGuildSeqOffline_80213788.cpp",
+    "src/pso/ui/city/TShopDeleteItemWindow.cpp",
+    "src/pso/ui/city/TShopEquipmentListWindow.cpp",
+    "src/pso/ui/city/TShopEquipmentSellWindow.cpp",
+    "src/pso/ui/city/TShopGetItemWindow.cpp",
+    "src/pso/ui/city/TShopKeepItemWindow.cpp",
+    "src/pso/ui/frontend/TAdMultiPlyChrSelectGC.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+    "src/pso/ui/window/TObjBagWarnWin.cpp",
+    "src/pso/ui/window/TObjDeadListWin.cpp",
+    "src/pso/ui/window/TWindowComCard.cpp",
+    "src/pso/ui/window/TWindowCtrlMain.cpp",
+    "src/pso/ui/window/TWindowGetComCard.cpp",
+    "src/pso/ui/window/TWindowGetComCard_8007B54C.cpp",
+    "src/pso/ui/window/TWindowMakeTeam.cpp",
+    "src/pso/ui/window/TWindowOptionCtrl.cpp",
+    "src/pso/ui/window/TWindowQuantity.cpp",
+    "src/pso/ui/window/TWindowShop.cpp",
+    "src/pso/ui/window/TWindowShortCut.cpp",
+    "src/pso/ui/window/TWindowStatus.cpp",
+    "src/pso/ui/window/TWindowSubComCard.cpp",
+    "src/pso/ui/window/TWindowSubComCardList.cpp",
+    "src/pso/ui/window/TWindowSubComCard_8007A810.cpp",
+    "src/pso/ui/window/TWindowSubComCard_8007B6D8.cpp",
+    "src/pso/ui/window/TWindowSubComCard_8007BD24.cpp",
+    "src/pso/ui/window/TWindowSubComCard_8007BF08.cpp",
+    "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp",
+    "src/pso/ui/window/TWindowSubComCard_802A5748.cpp",
+    "src/pso/ui/window/TWindowSubEquipKind.cpp",
+    "src/pso/ui/window/TWindowSubEquipList.cpp",
+    "src/pso/ui/window/TWindowSubEquip_80277DF8.cpp",
+    "src/pso/ui/window/TWindowSubInformationBoard.cpp",
+    "src/pso/ui/window/TWindowSubItem.cpp",
+    "src/pso/ui/window/TWindowSubItemList.cpp",
+    "src/pso/ui/window/TWindowSubMag.cpp",
+    "src/pso/ui/window/TWindowSubQuestBoard.cpp",
+    "src/pso/ui/window/TWindowSubShortCut.cpp",
+    "src/pso/ui/window/TWindowSubShortCutList.cpp",
+    "src/pso/ui/window/TWindowSubTechnique.cpp",
+    "src/pso/ui/window/TWindowSubTrade.cpp",
+    "src/pso/ui/window/TWindowSubTradeMain_80330A84.cpp",
+    "src/pso/ui/window/TWindowSubTradeMessage.cpp",
+    "src/pso/unk/TLobby_8001D6A0.cpp",
+    "src/pso/unk/TLobby_8007B858.cpp",
+    "src/pso/unk/TLobby_802409AC.cpp",
+    "src/pso/unk/TLobby_8036B204.cpp",
+    "src/pso/unk/TLobby_803DE778.cpp",
+    "src/pso/unk/text_80076E84.cpp",
+    "src/pso/unk/text_80269FE8.cpp",
+    "src/pso/unk/text_80275360.cpp"
+  ],
+  "prior_open_path_comparisons": 516,
+  "open_path_comparisons": 398,
+  "original_data_coverage": {
+    "source": {
+      "report_sha256": "e689b608c6c857d02c62b3d9db6c9eca0245da5aa9967d3734da798804c59399",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "fork": {
+      "report_sha256": "e689b608c6c857d02c62b3d9db6c9eca0245da5aa9967d3734da798804c59399",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    }
+  },
+  "linked_source_units": 2448,
+  "exact_functions": 27572,
+  "runtime_probes": {
+    "card-slot-probe.log": "d89abb6eb6d9ccbe10ba5757e28eb41bb2816a705fd94a9e05812411661bcfb9",
+    "layer-mail-probe.log": "0e831df6c60c60ddb7ba8892cb6ac0a037cc89ffb747f60eb23c3e0b2b394496",
+    "symbol-chat-probe.log": "86d674a7bdceb7b79806763c8b92a2010eb02ba5cac47b7917d5edb43631d44c",
+    "layer-symbol-chat-probe.log": "f166a8f829c5c57fff228e4e9d1a7d9979295f02e9a6d2f72a36f84c6756b834"
+  },
+  "probe_scope": [
+    "Symbol Chat preset selection",
+    "signed cursor coordinates",
+    "help window pointers and flags",
+    "Guild Card slot stride and bounds",
+    "lookup by Guild Card ID",
+    "Short Mail flags and record layout"
+  ],
+  "upstream_names_retained": [
+    "TWindowBase::client_index",
+    "TWindowBase::window_flags",
+    "TWindowBase::open_tick",
+    "TWindowSubShortMail::m_1c",
+    "get_card_id",
+    "lbl_80513F70"
+  ],
+  "fork_workspace_ref": "great-merge/consolidated/after-upstream-351-fork-workspace",
+  "fork_tool_overlay_paths": 130,
+  "fork_overlay_sha256": "007a42669c3fc5ffb3e5f99219163b3f9178af96fce25c01fda8c2a852240141",
+  "retained_symbols": 27033,
+  "fork_validation": {
+    "build_retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "check_sha256": "294d5d4e65e3db3407ceff097811cede09728d2c21c1257d66d17135be0bdc4b",
+    "baseline": "4edf25aeade61392fd79d8f65ef46e3447d0f329",
+    "function_labels": []
+  },
+  "fork_workspace_tests": {
+    "tool": {
+      "count": 294,
+      "sha256": "ccae21515b34aaaf45cedbb1fa049737fcd66643f6e7188badebaf779c4fa41f"
+    },
+    "fork": {
+      "count": 11,
+      "sha256": "e223d4719c22983facb031d2cfd438c0b5297c5720422f637f6f44ff00468d13"
+    },
+    "host": {
+      "paths": [
+        "./vector_math_fallbacks",
+        "./item_factory_callbacks",
+        "./loader_transfer",
+        "./ginja_parameter_callbacks",
+        "./exi_ethernet_fallbacks"
+      ],
+      "sha256": "deb25f384df025bc5402ef270e0407f04bafdd72ba3947a4a75644dcd00a0761"
+    }
+  },
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "existing_full_cutover_preview": "e4135b0c555e633bcd53f555eca1df6059afaf53",
+  "public_refs_changed": false,
+  "validated_audio_followup": {
+    "ref": "great-merge/incoming/post-351-audio-contracts",
+    "head": "9c7bd5ddd6fe2d266a0813d92052b661e6a3e68d",
+    "base": "4edf25aeade61392fd79d8f65ef46e3447d0f329",
+    "stages": {
+      "adx": {
+        "head": "edd5b63d54fe3cdd2507f78a699d591e6fa7000c",
+        "check_sha256": "2730cc5256616c9bdda199efed9ffe3919c7f6cb9385892f6eba01874e2fdd3f",
+        "changed_function_labels": 14
+      },
+      "gameplay-sound": {
+        "head": "9c7bd5ddd6fe2d266a0813d92052b661e6a3e68d",
+        "check_sha256": "c8429bbca82750544a75d6a3ca779aae0431f2e10b7b21f2d5be1213533058b9",
+        "changed_function_labels": 18
+      }
+    },
+    "paths": [
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/audio/AdxStreamRuntime.h",
+      "include/pso/audio/AdxTalk.h",
+      "include/pso/audio/AdxbDecoder.h",
+      "include/pso/audio/AdxfInternal.h",
+      "include/pso/audio/AdxfPartition.h",
+      "include/pso/audio/GcrnaStream.h",
+      "include/pso/audio/SoundRequestVoice.h",
+      "include/pso/boss/derolle/TObjBoss2Tunnel_8007EA74.h",
+      "include/pso/network/protocol/GameplaySoundPacket.h",
+      "include/pso/unk/TLobby.h",
+      "include/pso/unk/TLobby_801E2F94.h",
+      "include/pso/unk/TLobby_80227A2C.h",
+      "include/pso/unk/TLobby_80227AA0.h",
+      "include/pso/unk/TLobby_8023F734.h",
+      "include/pso/unk/TLobby_803BFE50.h",
+      "include/pso/unk/TLobby_803C1A58.h",
+      "include/pso/unk/text_803C1780.h",
+      "include/pso/unk/text_803C5B50.h",
+      "src/pso/audio/AdxBsc.cpp",
+      "src/pso/audio/AdxTalk.cpp",
+      "src/pso/audio/AdxtServer.cpp",
+      "src/pso/audio/AdxtStart.cpp",
+      "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+      "src/pso/item/TItemLoad.cpp",
+      "src/pso/item/TItemTexLoad.cpp",
+      "src/pso/network/TGameProtocol.cpp",
+      "src/pso/ui/charcreate/TCharaMaking.cpp",
+      "src/pso/unk/TLobby_801E2F94.cpp",
+      "src/pso/unk/TLobby_80226070.cpp",
+      "src/pso/unk/TLobby_80226C3C.cpp",
+      "src/pso/unk/TLobby_80227AA0.cpp",
+      "src/pso/unk/TLobby_8023F734.cpp",
+      "src/pso/unk/TLobby_803BFE50.cpp",
+      "src/pso/unk/TLobby_803CBF50.cpp",
+      "src/pso/unk/text_8023F660.cpp",
+      "src/pso/unk/text_803C5B50.cpp",
+      "src/pso/unk/text_803CC134.cpp",
+      "src/pso/unk/text_803CC294.cpp",
+      "src/pso/unk/text_803CE240.cpp",
+      "src/pso/unk/text_803D4448.cpp"
+    ],
+    "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "linked_source_units": 2448,
+    "exact_functions": 27572,
+    "decoder_probe_sha256": "b03cc06c0b3b15a0a8496ee80b3348d87a8a36dfb33ef7d7bc6944a800793a17",
+    "probe_scope": [
+      "decoder progress",
+      "mono and stereo stream callbacks"
+    ]
+  }
+}

@@ -2,28 +2,20 @@
 #define PSO_NPC_TOBJNPCMALEMACHO_H
 
 #include "types.h"
-#include "pso/npc/TUnk_804A9F50.h"
+#include "pso/npc/TObjNpcMale.h"
 
-struct TObjNpcMaleMacho : public TUnk_804A9F50 {
+struct BmlResource;
+
+struct TObjNpcMaleMacho : public TObjNpcMale {
+    TObjNpcMaleMacho(TObject *parent, void *set_data);
     virtual ~TObjNpcMaleMacho();
     static void close_dialog_window();
     static void load_static_resource();
+    static void *create(void *set_data);
+    static const char *name;
+    static BmlResource *static_model_resource;
 };
 
-typedef char TObjNpcMaleMacho_size[sizeof(TObjNpcMaleMacho) == 0x3B8 ? 1 : -1];
-
-extern "C" {
-u8 *TObjNpcMaleMacho__ct(u8 *arg0, s32 arg1, s32 arg2);
-void *TObjNpcMaleOld__create(void *arg0);
-void *__dt__16TObjNpcMaleMachoFv(void *arg0, s16 arg1);
-}
-
-// --- C functions defined in TObjNpcMaleMacho.cpp ---
-extern "C" {
-u8 *TObjNpcMaleMacho__ct(u8 *player, s32 arg1, s32 arg2);
-void *TObjNpcMaleOld__create(void *arg0);
-void *__dt__16TObjNpcMaleMachoFv(void *arg0, s16 arg1);
-}
-// --- end of C functions
+LAYOUT_ASSERT(TObjNpcMaleMacho_size, sizeof(TObjNpcMaleMacho) == 0x3B8);
 
 #endif

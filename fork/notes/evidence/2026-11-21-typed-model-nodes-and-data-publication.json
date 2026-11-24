@@ -1,0 +1,3758 @@
+{
+  "source": "d77e4b8e073824da25f6760dd9de38005e2dd8a3",
+  "previous_source": "3e0ea227b44545182b30428eb3f6b234eed2865d",
+  "upstream": "5a4e7ced56fe7072359b6d279e94f4be3b8453c0",
+  "source_paths": 1111,
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/berura/TObjEneRe7Berura.h",
+    "include/pso/render/NinjaUtil.h",
+    "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+    "src/pso/boss/darkfalz/TObjDFDemo1.cpp",
+    "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+    "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptHiraisin.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptP01.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClaw.cpp",
+    "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+    "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+    "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+    "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+    "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+    "src/pso/enemy/lappy/TObjEneLappy.cpp",
+    "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+    "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+    "src/pso/npc/TObjNpcLappy.cpp",
+    "src/pso/player/TObjPlayer_802E6CA8.cpp",
+    "src/pso/player/TUnk_80491478.cpp",
+    "src/pso/render/NinjaUtil.cpp",
+    "src/pso/unk/text_8004AA04.cpp"
+  ],
+  "author": {
+    "name": "matthewlewisnewton",
+    "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+    "coauthor_trailers": 0
+  },
+  "historical_comparison": {
+    "prior_open_rows": 492,
+    "open_rows": 492,
+    "model_node_rows": {
+      "1025": "The live and breakup model roots, visibility lists and chain nodes now use the shared Ninja object type. The two archive roots have separate lifetimes to reproduce the original register assignment. The camera and audio calls still need full source reconciliation.",
+      "1052": "The breakup node at model 17, index 0xD, uses the shared Ninja pointer lookup. Other historical call contracts remain open.",
+      "608": "The detached-part setup and motion-matrix traversal retain typed Ninja nodes, and the receiver uses the actual detached-part record. The wider historical actor source still needs comparison.",
+      "948": "The Rappy and NPC share a typed archive. Both node lookups use the corresponding model entry, and visibility edits operate on the node's evalflags field. The wider historical actor source still needs comparison.",
+      "590": "Both original Gee node lookups now pass the BML model pointer directly. The broader historical Gee source remains open."
+    },
+    "raw_owner_replays": 23308,
+    "raw_whole_delta_closures": 0
+  },
+  "historical_data_publication": {
+    "source": "d77e4b8e073824da25f6760dd9de38005e2dd8a3",
+    "records": {
+      "3018": {
+        "fork_commit": "af7d414957b93aebdec13a141aa47be858131101",
+        "last_changed_path": "src/pso/player/TObjPlayer_80309D80.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805DF130",
+            "section": ".sdata2",
+            "address": "0x805DF130",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF130"
+            ],
+            "current_source_owners": [
+              "src/pso/effect/particle/TPlyFollowParticleCtrl.cpp"
+            ],
+            "retail_bytes": "00000000"
+          }
+        ],
+        "authored_diff_sha256": "4257c99ab5b7ad128a7034eb82b7473ee8de8ba696840f74f83207594cbceacb"
+      },
+      "3600": {
+        "fork_commit": "af7d414957b93aebdec13a141aa47be858131101",
+        "last_changed_path": "src/pso/item/TItemList_801D3780.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805DC3D0",
+            "section": ".sdata2",
+            "address": "0x805DC3D0",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC3D0"
+            ],
+            "current_source_owners": [
+              "src/pso/player/TPlyItem.cpp"
+            ],
+            "retail_bytes": "461c4000"
+          },
+          {
+            "symbol": "lbl_805DC3C8",
+            "section": ".sdata2",
+            "address": "0x805DC3C8",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC3C8"
+            ],
+            "current_source_owners": [
+              "src/pso/player/TPlyItem.cpp"
+            ],
+            "retail_bytes": "40c00000"
+          },
+          {
+            "symbol": "lbl_805DC3CC",
+            "section": ".sdata2",
+            "address": "0x805DC3CC",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC3CC"
+            ],
+            "current_source_owners": [
+              "src/pso/player/TPlyItem.cpp"
+            ],
+            "retail_bytes": "40400000"
+          }
+        ],
+        "authored_diff_sha256": "6139c10596d53fab4a974c8ee8ec1a3d0ba733dee646c34c694725c17abdec66"
+      },
+      "4074": {
+        "fork_commit": "af7d414957b93aebdec13a141aa47be858131101",
+        "last_changed_path": "src/pso/item/TItemTimer.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805DAC78",
+            "section": ".sdata2",
+            "address": "0x805DAC78",
+            "size": 4,
+            "current_symbols": [],
+            "current_source_owners": [
+              "src/pso/item/TItemTimerEvent.cpp"
+            ],
+            "retail_bytes": "38000000"
+          },
+          {
+            "symbol": "lbl_805DAC7C",
+            "section": ".sdata2",
+            "address": "0x805DAC7C",
+            "size": 4,
+            "current_symbols": [],
+            "current_source_owners": [
+              "src/pso/item/TItemTimerEvent.cpp"
+            ],
+            "retail_bytes": "00000000"
+          }
+        ],
+        "authored_diff_sha256": "5c44ecec88f34631500337c30c322469c1fd7575071e836f274306c4a56a5b63"
+      },
+      "4085": {
+        "fork_commit": "af7d414957b93aebdec13a141aa47be858131101",
+        "last_changed_path": "src/pso/player/PhotonBlastResults.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805DC110",
+            "section": ".sdata2",
+            "address": "0x805DC110",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC110"
+            ],
+            "current_source_owners": [
+              "src/pso/player/PhotonBlastResults.cpp"
+            ],
+            "retail_bytes": "00000000"
+          },
+          {
+            "symbol": "lbl_805DC114",
+            "section": ".sdata2",
+            "address": "0x805DC114",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC114"
+            ],
+            "current_source_owners": [
+              "src/pso/player/PhotonBlastResults.cpp"
+            ],
+            "retail_bytes": "40200000"
+          },
+          {
+            "symbol": "lbl_805DC118",
+            "section": ".sdata2",
+            "address": "0x805DC118",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC118"
+            ],
+            "current_source_owners": [
+              "src/pso/player/PhotonBlastResults.cpp"
+            ],
+            "retail_bytes": "3ccccccd"
+          },
+          {
+            "symbol": "lbl_805DC11C",
+            "section": ".sdata2",
+            "address": "0x805DC11C",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC11C"
+            ],
+            "current_source_owners": [
+              "src/pso/player/PhotonBlastResults.cpp"
+            ],
+            "retail_bytes": "41700000"
+          },
+          {
+            "symbol": "lbl_805DC120",
+            "section": ".sdata2",
+            "address": "0x805DC120",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC120"
+            ],
+            "current_source_owners": [
+              "src/pso/player/PhotonBlastResults.cpp"
+            ],
+            "retail_bytes": "3e19999a"
+          },
+          {
+            "symbol": "lbl_805DC124",
+            "section": ".sdata2",
+            "address": "0x805DC124",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC124"
+            ],
+            "current_source_owners": [
+              "src/pso/player/PhotonBlastResults.cpp"
+            ],
+            "retail_bytes": "40f00000"
+          },
+          {
+            "symbol": "lbl_805DC128",
+            "section": ".sdata2",
+            "address": "0x805DC128",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC128"
+            ],
+            "current_source_owners": [
+              "src/pso/player/PhotonBlastResults.cpp"
+            ],
+            "retail_bytes": "3d99999a"
+          },
+          {
+            "symbol": "lbl_805DC12C",
+            "section": ".sdata2",
+            "address": "0x805DC12C",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC12C"
+            ],
+            "current_source_owners": [
+              "src/pso/player/PhotonBlastResults.cpp"
+            ],
+            "retail_bytes": "3f000000"
+          }
+        ],
+        "authored_diff_sha256": "218361c9f237bd525b67913c78a02ee2edcab6eb89d7142b576a50f496f38e38"
+      },
+      "4104": {
+        "fork_commit": "af7d414957b93aebdec13a141aa47be858131101",
+        "last_changed_path": "src/pso/player/TObjPlayer_800BBE90.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805D9EB4",
+            "section": ".sdata2",
+            "address": "0x805D9EB4",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805D9EB4"
+            ],
+            "current_source_owners": [
+              "src/pso/player/TObjPlayer_800BBE90.cpp"
+            ],
+            "retail_bytes": "42c80000"
+          },
+          {
+            "symbol": "lbl_805D9EB0",
+            "section": ".sdata2",
+            "address": "0x805D9EB0",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805D9EB0"
+            ],
+            "current_source_owners": [
+              "src/pso/player/TObjPlayer_800BBE90.cpp"
+            ],
+            "retail_bytes": "3f800000"
+          }
+        ],
+        "authored_diff_sha256": "f7818d48bd097c9eef55bc1c7c275dd16f2a3fbaab73b59f6bdc3f9ff3a964e4"
+      },
+      "4106": {
+        "fork_commit": "af7d414957b93aebdec13a141aa47be858131101",
+        "last_changed_path": "src/pso/player/TObjPlayer_800DCC90.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805DA480",
+            "section": ".sdata2",
+            "address": "0x805DA480",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA480"
+            ],
+            "current_source_owners": [
+              "src/pso/player/TObjPlayer_800DCC90.cpp"
+            ],
+            "retail_bytes": "00000000"
+          },
+          {
+            "symbol": "lbl_805DA484",
+            "section": ".sdata2",
+            "address": "0x805DA484",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA484"
+            ],
+            "current_source_owners": [
+              "src/pso/player/TObjPlayer_800DCC90.cpp"
+            ],
+            "retail_bytes": "46afc800"
+          }
+        ],
+        "authored_diff_sha256": "4c5a446abb960e14a776515a564a2234b59e6a504d35afd1dca4a0876854ee12"
+      },
+      "4113": {
+        "fork_commit": "af7d414957b93aebdec13a141aa47be858131101",
+        "last_changed_path": "src/pso/player/TObjPlayer_8011C000.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805DAC74",
+            "section": ".sdata2",
+            "address": "0x805DAC74",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DAC74"
+            ],
+            "current_source_owners": [
+              "src/pso/item/item_pmt.cpp"
+            ],
+            "retail_bytes": "00000000"
+          },
+          {
+            "symbol": "lbl_805DAC70",
+            "section": ".sdata2",
+            "address": "0x805DAC70",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DAC70"
+            ],
+            "current_source_owners": [
+              "src/pso/item/item_pmt.cpp"
+            ],
+            "retail_bytes": "38000000"
+          }
+        ],
+        "authored_diff_sha256": "34bf07e39de6b64ea20735dc5b7d624a81096dea2cd5ee90713fc69bde56525b"
+      },
+      "4167": {
+        "fork_commit": "af7d414957b93aebdec13a141aa47be858131101",
+        "last_changed_path": "src/pso/player/TObjPlayer_8033E910.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_804783B0",
+            "section": ".rodata",
+            "address": "0x804783B0",
+            "size": 8,
+            "current_symbols": [
+              "lbl_804783B0"
+            ],
+            "current_source_owners": [
+              "src/pso/player/TObjPlayer_8033E910.cpp"
+            ],
+            "retail_bytes": "3f76800000000000"
+          },
+          {
+            "symbol": "lbl_805DFAC8",
+            "section": ".sdata2",
+            "address": "0x805DFAC8",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DFAC8"
+            ],
+            "current_source_owners": [
+              "src/pso/player/TObjPlayer_8033E910.cpp"
+            ],
+            "retail_bytes": "3f911112"
+          },
+          {
+            "symbol": "lbl_805DFACC",
+            "section": ".sdata2",
+            "address": "0x805DFACC",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DFACC"
+            ],
+            "current_source_owners": [
+              "src/pso/player/TObjPlayer_8033E910.cpp"
+            ],
+            "retail_bytes": "3f000000"
+          }
+        ],
+        "authored_diff_sha256": "6a834b6cbae60cb0b56fbe3a30f041310be14497ccd292f8aecde71845dd658e"
+      },
+      "4244": {
+        "fork_commit": "af7d414957b93aebdec13a141aa47be858131101",
+        "last_changed_path": "src/pso/misc/TTecGiFoie.cpp",
+        "additions": [
+          {
+            "symbol": "TTecGiFoie__data_805DC81C",
+            "section": ".sdata2",
+            "address": "0x805DC81C",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC81C"
+            ],
+            "current_source_owners": [
+              "src/pso/technique/TTecGiFoie.cpp"
+            ],
+            "retail_bytes": "40a00000"
+          },
+          {
+            "symbol": "lbl_805DC814",
+            "section": ".sdata2",
+            "address": "0x805DC814",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC814"
+            ],
+            "current_source_owners": [
+              "src/pso/technique/TTecGiFoie.cpp"
+            ],
+            "retail_bytes": "3f0ccccd"
+          },
+          {
+            "symbol": "lbl_805DC810",
+            "section": ".sdata2",
+            "address": "0x805DC810",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC810"
+            ],
+            "current_source_owners": [
+              "src/pso/technique/TTecGiFoie.cpp"
+            ],
+            "retail_bytes": "00000000"
+          },
+          {
+            "symbol": "lbl_805DC818",
+            "section": ".sdata2",
+            "address": "0x805DC818",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC818"
+            ],
+            "current_source_owners": [
+              "src/pso/technique/TTecGiFoie.cpp"
+            ],
+            "retail_bytes": "43360b61"
+          },
+          {
+            "symbol": "lbl_805DC820",
+            "section": ".sdata2",
+            "address": "0x805DC820",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC820"
+            ],
+            "current_source_owners": [
+              "src/pso/technique/TTecGiFoie.cpp"
+            ],
+            "retail_bytes": "3fa66666"
+          },
+          {
+            "symbol": "lbl_805DC824",
+            "section": ".sdata2",
+            "address": "0x805DC824",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC824"
+            ],
+            "current_source_owners": [
+              "src/pso/technique/TTecGiFoie.cpp"
+            ],
+            "retail_bytes": "3fe66666"
+          }
+        ],
+        "authored_diff_sha256": "12c7aa709a4e3f51623fc7990e1bb0bb1ca26b08253ecf700fd07581251e7221"
+      },
+      "4302": {
+        "fork_commit": "af7d414957b93aebdec13a141aa47be858131101",
+        "last_changed_path": "src/pso/misc/TTecGiZonde.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805DC828",
+            "section": ".sdata2",
+            "address": "0x805DC828",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC828"
+            ],
+            "current_source_owners": [
+              "src/pso/technique/TTecGiZonde.cpp"
+            ],
+            "retail_bytes": "3f000000"
+          },
+          {
+            "symbol": "lbl_805DC82C",
+            "section": ".sdata2",
+            "address": "0x805DC82C",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC82C"
+            ],
+            "current_source_owners": [
+              "src/pso/technique/TTecGiZonde.cpp"
+            ],
+            "retail_bytes": "00000000"
+          },
+          {
+            "symbol": "lbl_805DC830",
+            "section": ".sdata2",
+            "address": "0x805DC830",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC830"
+            ],
+            "current_source_owners": [
+              "src/pso/technique/TTecGiZonde.cpp"
+            ],
+            "retail_bytes": "3f99999a"
+          },
+          {
+            "symbol": "lbl_805DC834",
+            "section": ".sdata2",
+            "address": "0x805DC834",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC834"
+            ],
+            "current_source_owners": [
+              "src/pso/technique/TTecGiZonde.cpp"
+            ],
+            "retail_bytes": "3fb33333"
+          }
+        ],
+        "authored_diff_sha256": "a78f607129b432eafff3cde843865443ceedb587b829f583fcb38f68ba7d5300"
+      },
+      "4327": {
+        "fork_commit": "af7d414957b93aebdec13a141aa47be858131101",
+        "last_changed_path": "src/pso/misc/TTecZonde.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805DC968",
+            "section": ".sdata2",
+            "address": "0x805DC968",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC968"
+            ],
+            "current_source_owners": [
+              "src/pso/technique/TTecZonde.cpp"
+            ],
+            "retail_bytes": "42c80000"
+          },
+          {
+            "symbol": "lbl_805DC96C",
+            "section": ".sdata2",
+            "address": "0x805DC96C",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC96C"
+            ],
+            "current_source_owners": [
+              "src/pso/technique/TTecZonde.cpp"
+            ],
+            "retail_bytes": "43fa0000"
+          },
+          {
+            "symbol": "lbl_805DC970",
+            "section": ".sdata2",
+            "address": "0x805DC970",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC970"
+            ],
+            "current_source_owners": [
+              "src/pso/technique/TTecZonde.cpp"
+            ],
+            "retail_bytes": "41500000"
+          },
+          {
+            "symbol": "lbl_805DC974",
+            "section": ".sdata2",
+            "address": "0x805DC974",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC974"
+            ],
+            "current_source_owners": [
+              "src/pso/technique/TTecZonde.cpp"
+            ],
+            "retail_bytes": "38000000"
+          },
+          {
+            "symbol": "lbl_805DC978",
+            "section": ".sdata2",
+            "address": "0x805DC978",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC978"
+            ],
+            "current_source_owners": [
+              "src/pso/technique/TTecZonde.cpp"
+            ],
+            "retail_bytes": "00000000"
+          },
+          {
+            "symbol": "lbl_805DC97C",
+            "section": ".sdata2",
+            "address": "0x805DC97C",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC97C"
+            ],
+            "current_source_owners": [
+              "src/pso/technique/TTecZonde.cpp"
+            ],
+            "retail_bytes": "3f000000"
+          },
+          {
+            "symbol": "lbl_805DC980",
+            "section": ".sdata2",
+            "address": "0x805DC980",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC980"
+            ],
+            "current_source_owners": [
+              "src/pso/technique/TTecZonde.cpp"
+            ],
+            "retail_bytes": "3f99999a"
+          },
+          {
+            "symbol": "lbl_805DC984",
+            "section": ".sdata2",
+            "address": "0x805DC984",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC984"
+            ],
+            "current_source_owners": [
+              "src/pso/technique/TTecZonde.cpp"
+            ],
+            "retail_bytes": "3fb33333"
+          }
+        ],
+        "authored_diff_sha256": "b22af132f9a88eedeb41ce97e7655665242073fc7ececd816fe36c88d696a44a"
+      },
+      "4417": {
+        "fork_commit": "af7d414957b93aebdec13a141aa47be858131101",
+        "last_changed_path": "src/pso/misc/TTecLuker.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805DC85C",
+            "section": ".sdata2",
+            "address": "0x805DC85C",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC85C"
+            ],
+            "current_source_owners": [
+              "src/pso/technique/TTecLuker.cpp"
+            ],
+            "retail_bytes": "00000000"
+          },
+          {
+            "symbol": "lbl_805DC860",
+            "section": ".sdata2",
+            "address": "0x805DC860",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC860"
+            ],
+            "current_source_owners": [
+              "src/pso/technique/TTecLuker.cpp"
+            ],
+            "retail_bytes": "3e4ccccd"
+          },
+          {
+            "symbol": "lbl_805DC864",
+            "section": ".sdata2",
+            "address": "0x805DC864",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC864"
+            ],
+            "current_source_owners": [
+              "src/pso/technique/TTecLuker.cpp"
+            ],
+            "retail_bytes": "461c4000"
+          },
+          {
+            "symbol": "lbl_805DC868",
+            "section": ".sdata2",
+            "address": "0x805DC868",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC868"
+            ],
+            "current_source_owners": [
+              "src/pso/technique/TTecLuker.cpp"
+            ],
+            "retail_bytes": "47c80000"
+          },
+          {
+            "symbol": "lbl_805DC858",
+            "section": ".sdata2",
+            "address": "0x805DC858",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC858"
+            ],
+            "current_source_owners": [
+              "src/pso/technique/TTecLuker.cpp"
+            ],
+            "retail_bytes": "41200000"
+          },
+          {
+            "symbol": "lbl_805DC86C",
+            "section": ".sdata2",
+            "address": "0x805DC86C",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC86C"
+            ],
+            "current_source_owners": [
+              "src/pso/technique/TTecLuker.cpp"
+            ],
+            "retail_bytes": "3fe66666"
+          },
+          {
+            "symbol": "lbl_805DC870",
+            "section": ".sdata2",
+            "address": "0x805DC870",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC870"
+            ],
+            "current_source_owners": [
+              "src/pso/technique/TTecLuker.cpp"
+            ],
+            "retail_bytes": "41700000"
+          },
+          {
+            "symbol": "lbl_805DC874",
+            "section": ".sdata2",
+            "address": "0x805DC874",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC874"
+            ],
+            "current_source_owners": [
+              "src/pso/technique/TTecLuker.cpp"
+            ],
+            "retail_bytes": "3ff33333"
+          }
+        ],
+        "authored_diff_sha256": "7a3b38d607b75c155bbca5875be88f8846dca4188ce2782241b2495d96c52396"
+      },
+      "4515": {
+        "fork_commit": "af7d414957b93aebdec13a141aa47be858131101",
+        "last_changed_path": "src/pso/unk/text_8022BE64.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805DC7B0",
+            "section": ".sdata2",
+            "address": "0x805DC7B0",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC7B0"
+            ],
+            "current_source_owners": [
+              "src/pso/unk/text_8022BE64.cpp"
+            ],
+            "retail_bytes": "40300000"
+          },
+          {
+            "symbol": "lbl_805DC7B4",
+            "section": ".sdata2",
+            "address": "0x805DC7B4",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC7B4"
+            ],
+            "current_source_owners": [
+              "src/pso/unk/text_8022BE64.cpp"
+            ],
+            "retail_bytes": "00000000"
+          },
+          {
+            "symbol": "lbl_805DC7B8",
+            "section": ".sdata2",
+            "address": "0x805DC7B8",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC7B8"
+            ],
+            "current_source_owners": [
+              "src/pso/unk/text_8022BE64.cpp"
+            ],
+            "retail_bytes": "3f800000"
+          },
+          {
+            "symbol": "lbl_805DC7BC",
+            "section": ".sdata2",
+            "address": "0x805DC7BC",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC7BC"
+            ],
+            "current_source_owners": [
+              "src/pso/unk/text_8022BE64.cpp"
+            ],
+            "retail_bytes": "3e4ccccd"
+          },
+          {
+            "symbol": "lbl_805DC7C0",
+            "section": ".sdata2",
+            "address": "0x805DC7C0",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC7C0"
+            ],
+            "current_source_owners": [
+              "src/pso/unk/text_8022BE64.cpp"
+            ],
+            "retail_bytes": "40400000"
+          },
+          {
+            "symbol": "lbl_805DC7C4",
+            "section": ".sdata2",
+            "address": "0x805DC7C4",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC7C4"
+            ],
+            "current_source_owners": [
+              "src/pso/unk/text_8022BE64.cpp"
+            ],
+            "retail_bytes": "43160000"
+          }
+        ],
+        "authored_diff_sha256": "3a1141921464149d0d41298e5ad479e18507d20e54e9d174f1ed0f927db32561"
+      },
+      "5116": {
+        "fork_commit": "af7d414957b93aebdec13a141aa47be858131101",
+        "last_changed_path": "src/pso/unk/text_800DC420.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805DA478",
+            "section": ".sdata2",
+            "address": "0x805DA478",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA478"
+            ],
+            "current_source_owners": [
+              "src/pso/unk/text_800DC420.cpp"
+            ],
+            "retail_bytes": "43fa0000"
+          },
+          {
+            "symbol": "lbl_805DA47C",
+            "section": ".sdata2",
+            "address": "0x805DA47C",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA47C"
+            ],
+            "current_source_owners": [
+              "src/pso/unk/text_800DC420.cpp"
+            ],
+            "retail_bytes": "00000000"
+          }
+        ],
+        "authored_diff_sha256": "ad178185602be0701fba456c5485d854629fd108c104e218c0deb2b3823b8ea5"
+      },
+      "698": {
+        "fork_commit": "af7d414957b93aebdec13a141aa47be858131101",
+        "last_changed_path": "src/pso/player/TObjPlayer_800D8FDC.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805DA3D8",
+            "section": ".sdata2",
+            "address": "0x805DA3D8",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA3D8"
+            ],
+            "current_source_owners": [
+              "src/pso/render/MaterialColorFade.cpp"
+            ],
+            "retail_bytes": "bf800000"
+          },
+          {
+            "symbol": "lbl_805DA3DC",
+            "section": ".sdata2",
+            "address": "0x805DA3DC",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA3DC"
+            ],
+            "current_source_owners": [
+              "src/pso/render/MaterialColorFade.cpp"
+            ],
+            "retail_bytes": "00000000"
+          },
+          {
+            "symbol": "lbl_805DA3E4",
+            "section": ".sdata2",
+            "address": "0x805DA3E4",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA3E4"
+            ],
+            "current_source_owners": [
+              "src/pso/render/MaterialColorFade.cpp"
+            ],
+            "retail_bytes": "3d23d70a"
+          },
+          {
+            "symbol": "lbl_805DA3E0",
+            "section": ".sdata2",
+            "address": "0x805DA3E0",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA3E0"
+            ],
+            "current_source_owners": [
+              "src/pso/render/MaterialColorFade.cpp"
+            ],
+            "retail_bytes": "3f800000"
+          },
+          {
+            "symbol": "lbl_805DA3E8",
+            "section": ".sdata2",
+            "address": "0x805DA3E8",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA3E8"
+            ],
+            "current_source_owners": [
+              "src/pso/unk/SampledMotionPoints.cpp"
+            ],
+            "retail_bytes": "3c23d70a"
+          }
+        ],
+        "authored_diff_sha256": "d8a43cc972a0b7a879732b4a2cd53a7ba8c9c288203f661ea3b0bbd8ccaa1784"
+      },
+      "2216": {
+        "fork_commit": "7fb30679530ab8abb13f5124befc48e5a3d80462",
+        "last_changed_path": "src/pso/misc/TChCrTagInformationStr.cpp",
+        "additions": [
+          {
+            "symbol": "TChCrTagInformationStr__data_805DF108",
+            "section": ".sdata2",
+            "address": "0x805DF108",
+            "size": 4,
+            "current_symbols": [
+              "TChCrTagInformationStr__data_805DF108"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/charcreate/TChCrTagInformationStr.cpp"
+            ],
+            "retail_bytes": "00000000"
+          }
+        ],
+        "authored_diff_sha256": "9e53300c59e0f1bea62bbbee0718f09885b897caaca680982f9d7609018094bb"
+      },
+      "2218": {
+        "fork_commit": "7fb30679530ab8abb13f5124befc48e5a3d80462",
+        "last_changed_path": "src/pso/misc/TChCrTagPlGraphic.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805DDF2C",
+            "section": ".sdata2",
+            "address": "0x805DDF2C",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DDF2C"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/charcreate/TChCrTagPlGraphic.cpp"
+            ],
+            "retail_bytes": "3e088889"
+          },
+          {
+            "symbol": "lbl_805DDF20",
+            "section": ".sdata2",
+            "address": "0x805DDF20",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DDF20"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/charcreate/TChCrTagPlGraphic.cpp"
+            ],
+            "retail_bytes": "3e800000"
+          },
+          {
+            "symbol": "lbl_805DDF24",
+            "section": ".sdata2",
+            "address": "0x805DDF24",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DDF24"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/charcreate/TChCrTagPlGraphic.cpp"
+            ],
+            "retail_bytes": "c0300000"
+          },
+          {
+            "symbol": "lbl_805DDF28",
+            "section": ".sdata2",
+            "address": "0x805DDF28",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DDF28"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/charcreate/TChCrTagPlGraphic.cpp"
+            ],
+            "retail_bytes": "3f800000"
+          }
+        ],
+        "authored_diff_sha256": "a6ddbbab3c0e4cfab902737c600f0c62680903cc36ad510ee255a373b978de6d"
+      },
+      "2296": {
+        "fork_commit": "7fb30679530ab8abb13f5124befc48e5a3d80462",
+        "last_changed_path": "src/pso/ui/TAdPlyPltAnimGC.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805DFFC8",
+            "section": ".sdata2",
+            "address": "0x805DFFC8",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DFFC8"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdPlyPltAnimGC.cpp"
+            ],
+            "retail_bytes": "3f7d70a4"
+          },
+          {
+            "symbol": "lbl_805DFFCC",
+            "section": ".sdata2",
+            "address": "0x805DFFCC",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DFFCC"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdPlyPltAnimGC.cpp"
+            ],
+            "retail_bytes": "3a83126f"
+          },
+          {
+            "symbol": "lbl_805DFFD0",
+            "section": ".sdata2",
+            "address": "0x805DFFD0",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DFFD0"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdPlyPltAnimGC.cpp"
+            ],
+            "retail_bytes": "3f000000"
+          },
+          {
+            "symbol": "lbl_805DFFD4",
+            "section": ".sdata2",
+            "address": "0x805DFFD4",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DFFD4"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdPlyPltAnimGC.cpp"
+            ],
+            "retail_bytes": "3f800000"
+          },
+          {
+            "symbol": "lbl_805DFFD8",
+            "section": ".sdata2",
+            "address": "0x805DFFD8",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DFFD8"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdPlyPltAnimGC.cpp"
+            ],
+            "retail_bytes": "437f0000"
+          },
+          {
+            "symbol": "lbl_805DFFDC",
+            "section": ".sdata2",
+            "address": "0x805DFFDC",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DFFDC"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdPlyPltAnimGC.cpp"
+            ],
+            "retail_bytes": "00000000"
+          }
+        ],
+        "authored_diff_sha256": "6cfa03ea738cd98aba16ba05ba26b6caa0ef0612ba2f18541556b16e3a4013c8"
+      },
+      "2317": {
+        "fork_commit": "7fb30679530ab8abb13f5124befc48e5a3d80462",
+        "last_changed_path": "src/pso/unk/text_8029A6EC.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805DDC58",
+            "section": ".sdata2",
+            "address": "0x805DDC58",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DDC58"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdBackGC_8029A6EC.cpp"
+            ],
+            "retail_bytes": "00000000"
+          },
+          {
+            "symbol": "lbl_805DDC5C",
+            "section": ".sdata2",
+            "address": "0x805DDC5C",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DDC5C"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdBackGC_8029A6EC.cpp"
+            ],
+            "retail_bytes": "43ef8000"
+          },
+          {
+            "symbol": "lbl_805DDC60",
+            "section": ".sdata2",
+            "address": "0x805DDC60",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DDC60"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdBackGC_8029A6EC.cpp"
+            ],
+            "retail_bytes": "441fc000"
+          },
+          {
+            "symbol": "lbl_805DDC64",
+            "section": ".sdata2",
+            "address": "0x805DDC64",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DDC64"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdBackGC_8029A6EC.cpp"
+            ],
+            "retail_bytes": "3c23d70a"
+          }
+        ],
+        "authored_diff_sha256": "dbdd58ef76d45aef8523ad497b96a1c2cb0a885c851e2dd91baac62fc9060fda"
+      },
+      "2350": {
+        "fork_commit": "7fb30679530ab8abb13f5124befc48e5a3d80462",
+        "last_changed_path": "src/pso/ui/TAdChrSelPlyPlateGC.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805DE588",
+            "section": ".sdata2",
+            "address": "0x805DE588",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DE588"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp"
+            ],
+            "retail_bytes": "42180000"
+          },
+          {
+            "symbol": "lbl_805DE58C",
+            "section": ".sdata2",
+            "address": "0x805DE58C",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DE58C"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp"
+            ],
+            "retail_bytes": "3f340000"
+          },
+          {
+            "symbol": "lbl_805DE590",
+            "section": ".sdata2",
+            "address": "0x805DE590",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DE590"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp"
+            ],
+            "retail_bytes": "3d800000"
+          },
+          {
+            "symbol": "lbl_805DE594",
+            "section": ".sdata2",
+            "address": "0x805DE594",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DE594"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp"
+            ],
+            "retail_bytes": "3f600000"
+          },
+          {
+            "symbol": "lbl_805DE598",
+            "section": ".sdata2",
+            "address": "0x805DE598",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DE598"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp"
+            ],
+            "retail_bytes": "3e000000"
+          },
+          {
+            "symbol": "lbl_805DE59C",
+            "section": ".sdata2",
+            "address": "0x805DE59C",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DE59C"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp"
+            ],
+            "retail_bytes": "3f720000"
+          }
+        ],
+        "authored_diff_sha256": "7904884b4f5c8c7435cd757369b9f3ad68683a9f295608e7240482e26472fedc"
+      },
+      "2351": {
+        "fork_commit": "7fb30679530ab8abb13f5124befc48e5a3d80462",
+        "last_changed_path": "src/pso/ui/TAdGameStartLineGC.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805DF4A0",
+            "section": ".sdata2",
+            "address": "0x805DF4A0",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF4A0"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdGameStartLineGC.cpp"
+            ],
+            "retail_bytes": "40400000"
+          },
+          {
+            "symbol": "lbl_805DF4AC",
+            "section": ".sdata2",
+            "address": "0x805DF4AC",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF4AC"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdGameStartLineGC.cpp"
+            ],
+            "retail_bytes": "43c00000"
+          },
+          {
+            "symbol": "lbl_805DF4B0",
+            "section": ".sdata2",
+            "address": "0x805DF4B0",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF4B0"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdGameStartLineGC.cpp"
+            ],
+            "retail_bytes": "44200000"
+          },
+          {
+            "symbol": "lbl_805DF4B4",
+            "section": ".sdata2",
+            "address": "0x805DF4B4",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF4B4"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdGameStartLineGC.cpp"
+            ],
+            "retail_bytes": "3f000000"
+          },
+          {
+            "symbol": "lbl_805DF4B8",
+            "section": ".sdata2",
+            "address": "0x805DF4B8",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF4B8"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdGameStartLineGC.cpp"
+            ],
+            "retail_bytes": "41d80000"
+          },
+          {
+            "symbol": "lbl_805DF4BC",
+            "section": ".sdata2",
+            "address": "0x805DF4BC",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF4BC"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdGameStartLineGC.cpp"
+            ],
+            "retail_bytes": "433f0000"
+          },
+          {
+            "symbol": "lbl_805DF4C0",
+            "section": ".sdata2",
+            "address": "0x805DF4C0",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF4C0"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdGameStartLineGC.cpp"
+            ],
+            "retail_bytes": "44194000"
+          },
+          {
+            "symbol": "lbl_805DF4C4",
+            "section": ".sdata2",
+            "address": "0x805DF4C4",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF4C4"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdGameStartLineGC.cpp"
+            ],
+            "retail_bytes": "43908000"
+          },
+          {
+            "symbol": "lbl_805DF4C8",
+            "section": ".sdata2",
+            "address": "0x805DF4C8",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF4C8"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdGameStartLineGC.cpp"
+            ],
+            "retail_bytes": "43000000"
+          },
+          {
+            "symbol": "lbl_805DF4CC",
+            "section": ".sdata2",
+            "address": "0x805DF4CC",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF4CC"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdGameStartLineGC.cpp"
+            ],
+            "retail_bytes": "00000000"
+          },
+          {
+            "symbol": "lbl_805DF4D0",
+            "section": ".sdata2",
+            "address": "0x805DF4D0",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF4D0"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdGameStartLineGC.cpp"
+            ],
+            "retail_bytes": "3f400000"
+          },
+          {
+            "symbol": "lbl_805DF4D4",
+            "section": ".sdata2",
+            "address": "0x805DF4D4",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF4D4"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdGameStartLineGC.cpp"
+            ],
+            "retail_bytes": "3f800000"
+          },
+          {
+            "symbol": "lbl_805DF4A4",
+            "section": ".sdata2",
+            "address": "0x805DF4A4",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF4A4"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdGameStartLineGC.cpp"
+            ],
+            "retail_bytes": "3e4ccccd"
+          },
+          {
+            "symbol": "lbl_805DF4A8",
+            "section": ".sdata2",
+            "address": "0x805DF4A8",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF4A8"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdGameStartLineGC.cpp"
+            ],
+            "retail_bytes": "42800000"
+          }
+        ],
+        "authored_diff_sha256": "49440ebf91d35df316ed055bd84773a426a9d997812787824e25c0a446d2f5c7"
+      },
+      "2399": {
+        "fork_commit": "7fb30679530ab8abb13f5124befc48e5a3d80462",
+        "last_changed_path": "src/pso/misc/TChCrTag.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805DDE00",
+            "section": ".sdata2",
+            "address": "0x805DDE00",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DDE00"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/charcreate/TChCrTag.cpp"
+            ],
+            "retail_bytes": "3f800000"
+          },
+          {
+            "symbol": "lbl_805DDE04",
+            "section": ".sdata2",
+            "address": "0x805DDE04",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DDE04"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/charcreate/TChCrTag.cpp"
+            ],
+            "retail_bytes": "00000000"
+          },
+          {
+            "symbol": "lbl_805DDE08",
+            "section": ".sdata2",
+            "address": "0x805DDE08",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DDE08"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/charcreate/TChCrTag.cpp"
+            ],
+            "retail_bytes": "3e088889"
+          },
+          {
+            "symbol": "lbl_805DDE0C",
+            "section": ".sdata2",
+            "address": "0x805DDE0C",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DDE0C"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/charcreate/TChCrTag.cpp"
+            ],
+            "retail_bytes": "be088889"
+          }
+        ],
+        "authored_diff_sha256": "a670e11246bab15251c9d43022950581165221426eb5f3f8680f5ddf1dc4a0bb"
+      },
+      "2409": {
+        "fork_commit": "7fb30679530ab8abb13f5124befc48e5a3d80462",
+        "last_changed_path": "src/pso/ui/TAdSelectTxtSubGC.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805DDF54",
+            "section": ".sdata2",
+            "address": "0x805DDF54",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DDF54"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdSelectTxtSubGC.cpp"
+            ],
+            "retail_bytes": "41e00000"
+          }
+        ],
+        "authored_diff_sha256": "e9d88cc16dec16e03936c32d3bf0e35db5d3f675ce2b78967dd9d9b2df7b8783"
+      },
+      "2414": {
+        "fork_commit": "7fb30679530ab8abb13f5124befc48e5a3d80462",
+        "last_changed_path": "src/pso/ui/TAdSEGAlogo_8001BF4C.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805D7E70",
+            "section": ".sdata2",
+            "address": "0x805D7E70",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805D7E70"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdSEGAlogo.cpp"
+            ],
+            "retail_bytes": "c3160000"
+          },
+          {
+            "symbol": "lbl_805D7E74",
+            "section": ".sdata2",
+            "address": "0x805D7E74",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805D7E74"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdSEGAlogo.cpp"
+            ],
+            "retail_bytes": "42700000"
+          }
+        ],
+        "authored_diff_sha256": "781c43aff3ee202e3873833f6199a5a27f8dc0da8583d58a810787cd098537c3"
+      },
+      "2438": {
+        "fork_commit": "7fb30679530ab8abb13f5124befc48e5a3d80462",
+        "last_changed_path": "src/pso/ui/TAdChrSelASlotGC.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805DF20C",
+            "section": ".sdata2",
+            "address": "0x805DF20C",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF20C"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdChrSelASlotGC.cpp"
+            ],
+            "retail_bytes": "43410000"
+          },
+          {
+            "symbol": "TAdChrSelASlotGC__data_805DF208",
+            "section": ".sdata2",
+            "address": "0x805DF208",
+            "size": 4,
+            "current_symbols": [
+              "TAdChrSelASlotGC__data_805DF208"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdChrSelASlotGC.cpp"
+            ],
+            "retail_bytes": "433e0000"
+          }
+        ],
+        "authored_diff_sha256": "355d6437c9b1205326045596147800cc17a7e48d8285a19a64a507b458f05d6c"
+      },
+      "2458": {
+        "fork_commit": "7fb30679530ab8abb13f5124befc48e5a3d80462",
+        "last_changed_path": "src/pso/menu/TAdMultiOkGC.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805DF04C",
+            "section": ".sdata2",
+            "address": "0x805DF04C",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF04C"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdMultiOkGC.cpp"
+            ],
+            "retail_bytes": "40400000"
+          },
+          {
+            "symbol": "lbl_805DF050",
+            "section": ".sdata2",
+            "address": "0x805DF050",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF050"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdMultiOkGC.cpp"
+            ],
+            "retail_bytes": "3e4ccccd"
+          },
+          {
+            "symbol": "lbl_805DF054",
+            "section": ".sdata2",
+            "address": "0x805DF054",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF054"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdMultiOkGC.cpp"
+            ],
+            "retail_bytes": "c2000000"
+          },
+          {
+            "symbol": "lbl_805DF058",
+            "section": ".sdata2",
+            "address": "0x805DF058",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF058"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdMultiOkGC.cpp"
+            ],
+            "retail_bytes": "c1800000"
+          },
+          {
+            "symbol": "lbl_805DF05C",
+            "section": ".sdata2",
+            "address": "0x805DF05C",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF05C"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdMultiOkGC.cpp"
+            ],
+            "retail_bytes": "42000000"
+          },
+          {
+            "symbol": "lbl_805DF060",
+            "section": ".sdata2",
+            "address": "0x805DF060",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF060"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdMultiOkGC.cpp"
+            ],
+            "retail_bytes": "41800000"
+          },
+          {
+            "symbol": "lbl_805DF064",
+            "section": ".sdata2",
+            "address": "0x805DF064",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF064"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdMultiOkGC.cpp"
+            ],
+            "retail_bytes": "3f800000"
+          },
+          {
+            "symbol": "lbl_805DF040",
+            "section": ".sdata2",
+            "address": "0x805DF040",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF040"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdMultiOkGC.cpp"
+            ],
+            "retail_bytes": "3ba3d70b"
+          },
+          {
+            "symbol": "lbl_805DF044",
+            "section": ".sdata2",
+            "address": "0x805DF044",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF044"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdMultiOkGC.cpp"
+            ],
+            "retail_bytes": "3c23d70a"
+          },
+          {
+            "symbol": "lbl_805DF048",
+            "section": ".sdata2",
+            "address": "0x805DF048",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF048"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdMultiOkGC.cpp"
+            ],
+            "retail_bytes": "3a83126f"
+          },
+          {
+            "symbol": "lbl_805DF068",
+            "section": ".sdata2",
+            "address": "0x805DF068",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF068"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdMultiOkGC.cpp"
+            ],
+            "retail_bytes": "42800000"
+          },
+          {
+            "symbol": "lbl_805DF06C",
+            "section": ".sdata2",
+            "address": "0x805DF06C",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF06C"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdMultiOkGC.cpp"
+            ],
+            "retail_bytes": "00000000"
+          }
+        ],
+        "authored_diff_sha256": "4e56994e5dfe6d5b1f5831efb254d8cd2b5d6fde553e4c7fdc61e5b912fd196a"
+      },
+      "2484": {
+        "fork_commit": "7fb30679530ab8abb13f5124befc48e5a3d80462",
+        "last_changed_path": "src/pso/misc/TMainCursor.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805DB0D0",
+            "section": ".sdata2",
+            "address": "0x805DB0D0",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DB0D0"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/hud/TMainCursor.cpp"
+            ],
+            "retail_bytes": "3e4ccccd"
+          },
+          {
+            "symbol": "lbl_805DB0D4",
+            "section": ".sdata2",
+            "address": "0x805DB0D4",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DB0D4"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/hud/TMainCursor.cpp"
+            ],
+            "retail_bytes": "40700000"
+          },
+          {
+            "symbol": "lbl_805DB0D8",
+            "section": ".sdata2",
+            "address": "0x805DB0D8",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DB0D8"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/hud/TMainCursor.cpp"
+            ],
+            "retail_bytes": "40a00000"
+          },
+          {
+            "symbol": "lbl_805DB0DC",
+            "section": ".sdata2",
+            "address": "0x805DB0DC",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DB0DC"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/hud/TMainCursor.cpp"
+            ],
+            "retail_bytes": "3f000000"
+          },
+          {
+            "symbol": "lbl_805DB0E0",
+            "section": ".sdata2",
+            "address": "0x805DB0E0",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DB0E0"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/hud/TMainCursor.cpp"
+            ],
+            "retail_bytes": "bf800000"
+          },
+          {
+            "symbol": "interaction_cursor_radius",
+            "section": ".sdata2",
+            "address": "0x805DB0E4",
+            "size": 4,
+            "current_symbols": [
+              "interaction_cursor_radius"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/hud/TMainCursor.cpp"
+            ],
+            "retail_bytes": "41700000"
+          }
+        ],
+        "authored_diff_sha256": "f869acc568b6b88050be87a4d9f30b9e66914f27cff5f79d0bc255248b1faf68"
+      },
+      "2517": {
+        "fork_commit": "7fb30679530ab8abb13f5124befc48e5a3d80462",
+        "last_changed_path": "src/pso/misc/TChCrTagPlBack.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805DDFF0",
+            "section": ".sdata2",
+            "address": "0x805DDFF0",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DDFF0"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/window/TWindowSubComCard_802A559C.cpp"
+            ],
+            "retail_bytes": "42de0000"
+          },
+          {
+            "symbol": "lbl_805DDFF4",
+            "section": ".sdata2",
+            "address": "0x805DDFF4",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DDFF4"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/window/TWindowSubComCard_802A559C.cpp"
+            ],
+            "retail_bytes": "41200000"
+          }
+        ],
+        "authored_diff_sha256": "6ccb330c808d80346161c2bef1db9518340b7bc7e3e23438cc6a2d50ee2ff9df"
+      },
+      "2587": {
+        "fork_commit": "7fb30679530ab8abb13f5124befc48e5a3d80462",
+        "last_changed_path": "src/pso/ui/TAdYesNoBaseGC.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805DF788",
+            "section": ".sdata2",
+            "address": "0x805DF788",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF788"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdYesNoBaseGC.cpp"
+            ],
+            "retail_bytes": "43eb0000"
+          },
+          {
+            "symbol": "lbl_805DF78C",
+            "section": ".sdata2",
+            "address": "0x805DF78C",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF78C"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdYesNoBaseGC.cpp"
+            ],
+            "retail_bytes": "40900000"
+          },
+          {
+            "symbol": "lbl_805DF790",
+            "section": ".sdata2",
+            "address": "0x805DF790",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF790"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdYesNoBaseGC.cpp"
+            ],
+            "retail_bytes": "42380000"
+          },
+          {
+            "symbol": "lbl_805DF794",
+            "section": ".sdata2",
+            "address": "0x805DF794",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF794"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdYesNoBaseGC.cpp"
+            ],
+            "retail_bytes": "43030000"
+          },
+          {
+            "symbol": "lbl_805DF798",
+            "section": ".sdata2",
+            "address": "0x805DF798",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF798"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdYesNoBaseGC.cpp"
+            ],
+            "retail_bytes": "44090000"
+          },
+          {
+            "symbol": "lbl_805DF79C",
+            "section": ".sdata2",
+            "address": "0x805DF79C",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF79C"
+            ],
+            "current_source_owners": [
+              "src/pso/ui/frontend/TAdYesNoBaseGC.cpp"
+            ],
+            "retail_bytes": "435c0000"
+          }
+        ],
+        "authored_diff_sha256": "5031d75305edbfb853e80fb4b92cfe939a8cea37815ef1b50ec244580211c3d5"
+      },
+      "1015": {
+        "fork_commit": "d93950192836d7697fb9dba4c12578efb0771448",
+        "last_changed_path": "src/pso/enemy/TObjEneNanoDrago.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_8043C760",
+            "section": ".rodata",
+            "address": "0x8043C760",
+            "size": 18,
+            "current_symbols": [
+              "lbl_8043C760"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp"
+            ],
+            "retail_bytes": "626d365f735f6472635f626f64792e6e6a00"
+          },
+          {
+            "symbol": "lbl_8043C774",
+            "section": ".rodata",
+            "address": "0x8043C774",
+            "size": 24,
+            "current_symbols": [
+              "lbl_8043C774"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp"
+            ],
+            "retail_bytes": "6265616d5f626d365f735f6472635f626f64792e6e6a6d00"
+          },
+          {
+            "symbol": "lbl_8043C78C",
+            "section": ".rodata",
+            "address": "0x8043C78C",
+            "size": 26,
+            "current_symbols": [
+              "lbl_8043C78C"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp"
+            ],
+            "retail_bytes": "64616d666c795f626d365f735f6472635f626f64792e6e6a6d00"
+          },
+          {
+            "symbol": "lbl_8043C7A8",
+            "section": ".rodata",
+            "address": "0x8043C7A8",
+            "size": 26,
+            "current_symbols": [
+              "lbl_8043C7A8"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp"
+            ],
+            "retail_bytes": "64616d6772645f626d365f735f6472635f626f64792e6e6a6d00"
+          },
+          {
+            "symbol": "lbl_8043C7C4",
+            "section": ".rodata",
+            "address": "0x8043C7C4",
+            "size": 25,
+            "current_symbols": [
+              "lbl_8043C7C4"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp"
+            ],
+            "retail_bytes": "64656164675f626d365f735f6472635f626f64792e6e6a6d00"
+          },
+          {
+            "symbol": "lbl_8043C7E0",
+            "section": ".rodata",
+            "address": "0x8043C7E0",
+            "size": 25,
+            "current_symbols": [
+              "lbl_8043C7E0"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp"
+            ],
+            "retail_bytes": "64656164735f626d365f735f6472635f626f64792e6e6a6d00"
+          },
+          {
+            "symbol": "lbl_8043C7FC",
+            "section": ".rodata",
+            "address": "0x8043C7FC",
+            "size": 23,
+            "current_symbols": [
+              "lbl_8043C7FC"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp"
+            ],
+            "retail_bytes": "666c795f626d365f735f6472635f626f64792e6e6a6d00"
+          },
+          {
+            "symbol": "lbl_8043C814",
+            "section": ".rodata",
+            "address": "0x8043C814",
+            "size": 23,
+            "current_symbols": [
+              "lbl_8043C814"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp"
+            ],
+            "retail_bytes": "6a6f795f626d365f735f6472635f626f64792e6e6a6d00"
+          },
+          {
+            "symbol": "lbl_8043C82C",
+            "section": ".rodata",
+            "address": "0x8043C82C",
+            "size": 24,
+            "current_symbols": [
+              "lbl_8043C82C"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp"
+            ],
+            "retail_bytes": "6c616e645f626d365f735f6472635f626f64792e6e6a6d00"
+          },
+          {
+            "symbol": "lbl_8043C844",
+            "section": ".rodata",
+            "address": "0x8043C844",
+            "size": 26,
+            "current_symbols": [
+              "lbl_8043C844"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp"
+            ],
+            "retail_bytes": "6c6173666c795f626d365f735f6472635f626f64792e6e6a6d00"
+          },
+          {
+            "symbol": "lbl_8043C860",
+            "section": ".rodata",
+            "address": "0x8043C860",
+            "size": 24,
+            "current_symbols": [
+              "lbl_8043C860"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp"
+            ],
+            "retail_bytes": "6c6966745f626d365f735f6472635f626f64792e6e6a6d00"
+          },
+          {
+            "symbol": "lbl_8043C878",
+            "section": ".rodata",
+            "address": "0x8043C878",
+            "size": 24,
+            "current_symbols": [
+              "lbl_8043C878"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp"
+            ],
+            "retail_bytes": "776169745f626d365f735f6472635f626f64792e6e6a6d00"
+          },
+          {
+            "symbol": "lbl_8043C890",
+            "section": ".rodata",
+            "address": "0x8043C890",
+            "size": 24,
+            "current_symbols": [
+              "lbl_8043C890"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp"
+            ],
+            "retail_bytes": "77616c6b5f626d365f735f6472635f626f64792e6e6a6d00"
+          },
+          {
+            "symbol": "lbl_8043C8A8",
+            "section": ".rodata",
+            "address": "0x8043C8A8",
+            "size": 21,
+            "current_symbols": [
+              "lbl_8043C8A8"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp"
+            ],
+            "retail_bytes": "626d5f656e655f6e616e6f647261676f2e626d6c00"
+          }
+        ],
+        "authored_diff_sha256": "9c84cd675c5c7a3684876133d309da1b880411662b02f4c6d4781d858232a3a4"
+      },
+      "1053": {
+        "fork_commit": "d93950192836d7697fb9dba4c12578efb0771448",
+        "last_changed_path": "src/pso/enemy/DarkGunner.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805D5020",
+            "section": ".sbss",
+            "address": "0x805D5020",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805D5020"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/darkgunner/DarkGunner.cpp"
+            ],
+            "retail_bytes": null
+          }
+        ],
+        "authored_diff_sha256": "e840fbaded46fe67c73b4c20f06d5e234c9949ee4b3eed3a236a5e251c523bb1"
+      },
+      "1116": {
+        "fork_commit": "d93950192836d7697fb9dba4c12578efb0771448",
+        "last_changed_path": "src/pso/enemy/SaverLifecycle.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805D5058",
+            "section": ".sbss",
+            "address": "0x805D5058",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805D5058"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/saver/SaverLifecycle.cpp"
+            ],
+            "retail_bytes": null
+          },
+          {
+            "symbol": "lbl_805D505C",
+            "section": ".sbss",
+            "address": "0x805D505C",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805D505C"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/saver/SaverLifecycle.cpp"
+            ],
+            "retail_bytes": null
+          }
+        ],
+        "authored_diff_sha256": "5c0047511786298bd31cfa8ba5c94d0da147db3b0ece93a1ebc5b776e7e0351f"
+      },
+      "1167": {
+        "fork_commit": "d93950192836d7697fb9dba4c12578efb0771448",
+        "last_changed_path": "src/pso/enemy/TObjEneBm5GibonU.cpp",
+        "additions": [
+          {
+            "symbol": "TObjEneBm5GibonU__model_archive",
+            "section": ".sbss",
+            "address": "0x805D51D0",
+            "size": 4,
+            "current_symbols": [
+              "TObjEneBm5GibonU__model_archive"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp"
+            ],
+            "retail_bytes": null
+          },
+          {
+            "symbol": "TObjEneBm5GibonU__render_node_index",
+            "section": ".sbss",
+            "address": "0x805D51D4",
+            "size": 4,
+            "current_symbols": [
+              "TObjEneBm5GibonU__render_node_index"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp"
+            ],
+            "retail_bytes": null
+          }
+        ],
+        "authored_diff_sha256": "8235dbacb6c7d2f0caf7e2a779caf5fbf2124f877f2edfc26e23f51c4c1aeec1"
+      },
+      "1168": {
+        "fork_commit": "d93950192836d7697fb9dba4c12578efb0771448",
+        "last_changed_path": "src/pso/enemy/TObjEneRe4Sorcerer_800EDB98.cpp",
+        "additions": [
+          {
+            "symbol": "TObjEneRe4Sorcerer__saved_render_flags",
+            "section": ".sbss",
+            "address": "0x805D52E8",
+            "size": 4,
+            "current_symbols": [
+              "TObjEneRe4Sorcerer__saved_render_flags"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp"
+            ],
+            "retail_bytes": null
+          },
+          {
+            "symbol": "TObjEneRe4Sorcerer__effect_render_scale",
+            "section": ".sbss",
+            "address": "0x805D52EC",
+            "size": 4,
+            "current_symbols": [
+              "TObjEneRe4Sorcerer__effect_render_scale"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp"
+            ],
+            "retail_bytes": null
+          }
+        ],
+        "authored_diff_sha256": "7524cd2d500e93e0b33e907ddea4b6820753bb65e533c62588c8ef012b19d89f"
+      },
+      "587": {
+        "fork_commit": "d93950192836d7697fb9dba4c12578efb0771448",
+        "last_changed_path": "src/pso/enemy/TObjEneGibbles.cpp",
+        "additions": [
+          {
+            "symbol": "TObjEneGibbles__resource_bundle",
+            "section": ".sbss",
+            "address": "0x805D68B8",
+            "size": 4,
+            "current_symbols": [
+              "TObjEneGibbles__resource_bundle"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/gibbles/TObjEneGibbles.cpp"
+            ],
+            "retail_bytes": null
+          },
+          {
+            "symbol": "TObjEneGibbles__render_node_index",
+            "section": ".sbss",
+            "address": "0x805D68BC",
+            "size": 4,
+            "current_symbols": [
+              "TObjEneGibbles__render_node_index"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/gibbles/TObjEneGibbles.cpp"
+            ],
+            "retail_bytes": null
+          }
+        ],
+        "authored_diff_sha256": "20c7399e86731898b9b8b93a110361cff26f2bd41d4bde467a74b25fa78c7a3c"
+      },
+      "591": {
+        "fork_commit": "d93950192836d7697fb9dba4c12578efb0771448",
+        "last_changed_path": "src/pso/enemy/TObjEneMe1GiGue.cpp",
+        "additions": [
+          {
+            "symbol": "TObjEneMe1GiGue__data_805D6838",
+            "section": ".sbss",
+            "address": "0x805D6838",
+            "size": 4,
+            "current_symbols": [
+              "TObjEneMe1GiGue__data_805D6838"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp"
+            ],
+            "retail_bytes": null
+          },
+          {
+            "symbol": "TObjEneMe1GiGue__barrier_obj",
+            "section": ".sbss",
+            "address": "0x805D683C",
+            "size": 4,
+            "current_symbols": [
+              "TObjEneMe1GiGue__barrier_obj"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp"
+            ],
+            "retail_bytes": null
+          },
+          {
+            "symbol": "lbl_805D6840",
+            "section": ".sbss",
+            "address": "0x805D6840",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805D6840"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp"
+            ],
+            "retail_bytes": null
+          }
+        ],
+        "authored_diff_sha256": "a03c6f123684fa3a94ce0b63fa221ff8efc37455ad17f89cf8f725488321e677"
+      },
+      "598": {
+        "fork_commit": "d93950192836d7697fb9dba4c12578efb0771448",
+        "last_changed_path": "src/pso/enemy/TObjEneMerillLia.cpp",
+        "additions": [
+          {
+            "symbol": "TObjEneMerillLia__rock_stats_table",
+            "section": ".sbss",
+            "address": "0x805D5210",
+            "size": 4,
+            "current_symbols": [
+              "TObjEneMerillLia__rock_stats_table"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/merilllia/TObjEneMerillLia.cpp"
+            ],
+            "retail_bytes": null
+          },
+          {
+            "symbol": "merill_lia_rock_buffer",
+            "section": ".sbss",
+            "address": "0x805D5214",
+            "size": 4,
+            "current_symbols": [
+              "merill_lia_rock_buffer"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/merilllia/TObjEneMerillLia.cpp"
+            ],
+            "retail_bytes": null
+          },
+          {
+            "symbol": "merill_lia_rock_aux_buffer",
+            "section": ".sbss",
+            "address": "0x805D5218",
+            "size": 4,
+            "current_symbols": [
+              "merill_lia_rock_aux_buffer"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/merilllia/TObjEneMerillLia.cpp"
+            ],
+            "retail_bytes": null
+          },
+          {
+            "symbol": "TObjEneMerillLia__rock_param_table",
+            "section": ".sbss",
+            "address": "0x805D521C",
+            "size": 4,
+            "current_symbols": [
+              "TObjEneMerillLia__rock_param_table"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/merilllia/TObjEneMerillLia.cpp"
+            ],
+            "retail_bytes": null
+          }
+        ],
+        "authored_diff_sha256": "5e496612314f8e7f249c554b6e85f52f6110b82b41d35d80386115bb7888a3f1"
+      },
+      "778": {
+        "fork_commit": "d93950192836d7697fb9dba4c12578efb0771448",
+        "last_changed_path": "src/pso/enemy/TObjEneMe3Shinowa.cpp",
+        "additions": [
+          {
+            "symbol": "TObjEneMe3ShinowaMirage__data_805D5298",
+            "section": ".sbss",
+            "address": "0x805D5298",
+            "size": 4,
+            "current_symbols": [
+              "TObjEneMe3ShinowaMirage__data_805D5298"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp"
+            ],
+            "retail_bytes": null
+          },
+          {
+            "symbol": "TObjEneMe3ShinowaMirage__render_node_index",
+            "section": ".sbss",
+            "address": "0x805D529C",
+            "size": 4,
+            "current_symbols": [
+              "TObjEneMe3ShinowaMirage__render_node_index"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp"
+            ],
+            "retail_bytes": null
+          },
+          {
+            "symbol": "TObjEneMe3ShinowaMirage__data_805D52A0",
+            "section": ".sbss",
+            "address": "0x805D52A0",
+            "size": 4,
+            "current_symbols": [
+              "TObjEneMe3ShinowaMirage__data_805D52A0"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp"
+            ],
+            "retail_bytes": null
+          },
+          {
+            "symbol": "TObjEneMe3ShinowaMirage__data_805D52A4",
+            "section": ".sbss",
+            "address": "0x805D52A4",
+            "size": 4,
+            "current_symbols": [
+              "TObjEneMe3ShinowaMirage__data_805D52A4"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp"
+            ],
+            "retail_bytes": null
+          },
+          {
+            "symbol": "TObjEneMe3ShinowaMirage__data_805D52A8",
+            "section": ".sbss",
+            "address": "0x805D52A8",
+            "size": 4,
+            "current_symbols": [
+              "TObjEneMe3ShinowaMirage__data_805D52A8"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp"
+            ],
+            "retail_bytes": null
+          },
+          {
+            "symbol": "TObjEneMe3ShinowaMirage__data_805D52AC",
+            "section": ".sbss",
+            "address": "0x805D52AC",
+            "size": 4,
+            "current_symbols": [
+              "TObjEneMe3ShinowaMirage__data_805D52AC"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp"
+            ],
+            "retail_bytes": null
+          }
+        ],
+        "authored_diff_sha256": "8ac30ec24a7f1794094150df98add8f153465466da54f531c712706037a15786"
+      },
+      "895": {
+        "fork_commit": "d93950192836d7697fb9dba4c12578efb0771448",
+        "last_changed_path": "src/pso/enemy/TObjEneDellBiter.cpp",
+        "additions": [
+          {
+            "symbol": "TObjEneDellBiter__demo_rotate_x_angle",
+            "section": ".sbss",
+            "address": "0x805D6A38",
+            "size": 4,
+            "current_symbols": [
+              "TObjEneDellBiter__demo_rotate_x_angle"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp"
+            ],
+            "retail_bytes": null
+          }
+        ],
+        "authored_diff_sha256": "7d911b59b7ae49c7d04d801caadc28bde63bb6b4d0b5eafb9b6517d23189b411"
+      },
+      "948": {
+        "fork_commit": "d93950192836d7697fb9dba4c12578efb0771448",
+        "last_changed_path": "src/pso/enemy/TObjEneLappy.cpp",
+        "additions": [
+          {
+            "symbol": "rappy_visibility_node",
+            "section": ".sbss",
+            "address": "0x805D5168",
+            "size": 4,
+            "current_symbols": [
+              "rappy_visibility_node"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/lappy/TObjEneLappy.cpp"
+            ],
+            "retail_bytes": null
+          }
+        ],
+        "authored_diff_sha256": "eaf9b265ebef9236ad9112440ec3eb69f0c285ba601e25dfb5e58d0559b5497b"
+      },
+      "956": {
+        "fork_commit": "d93950192836d7697fb9dba4c12578efb0771448",
+        "last_changed_path": "src/pso/enemy/TObjEneIllGill.cpp",
+        "additions": [
+          {
+            "symbol": "illGillResource",
+            "section": ".sbss",
+            "address": "0x805D6FD0",
+            "size": 4,
+            "current_symbols": [
+              "illGillResource"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/illgill/TObjEneIllGill.cpp"
+            ],
+            "retail_bytes": null
+          }
+        ],
+        "authored_diff_sha256": "f4b1c02f9915987d30f4de991c3d2174407af8250291302113f02bcea492362c"
+      },
+      "4980": {
+        "fork_commit": "87350c6fd6365a6ab784e968aca42a7262f0e03b",
+        "last_changed_path": "src/pso/misc/TEneEffHamon.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805D99E0",
+            "section": ".sdata2",
+            "address": "0x805D99E0",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805D99E0"
+            ],
+            "current_source_owners": [
+              "src/pso/effect/enemy/TEneEffHamon.cpp"
+            ],
+            "retail_bytes": "00000000"
+          },
+          {
+            "symbol": "lbl_805D99E4",
+            "section": ".sdata2",
+            "address": "0x805D99E4",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805D99E4"
+            ],
+            "current_source_owners": [
+              "src/pso/effect/enemy/TEneEffHamon.cpp"
+            ],
+            "retail_bytes": "3f800000"
+          },
+          {
+            "symbol": "lbl_805D99E8",
+            "section": ".sdata2",
+            "address": "0x805D99E8",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805D99E8"
+            ],
+            "current_source_owners": [
+              "src/pso/effect/enemy/TEneEffHamon.cpp"
+            ],
+            "retail_bytes": "3f666666"
+          },
+          {
+            "symbol": "lbl_805D99EC",
+            "section": ".sdata2",
+            "address": "0x805D99EC",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805D99EC"
+            ],
+            "current_source_owners": [
+              "src/pso/effect/enemy/TEneEffHamon.cpp"
+            ],
+            "retail_bytes": "bf666666"
+          }
+        ],
+        "authored_diff_sha256": "dc11bfbb6f6f2ee124658439bf6c5b8696eeae96a1e7bcf0317459fe21bad962"
+      },
+      "521": {
+        "fork_commit": "87350c6fd6365a6ab784e968aca42a7262f0e03b",
+        "last_changed_path": "src/pso/boss/TBoss6Type1.cpp",
+        "additions": [
+          {
+            "symbol": "TBoss6Type1__data_80471038",
+            "section": ".rodata",
+            "address": "0x80471038",
+            "size": 8,
+            "current_symbols": [
+              "TBoss6Type1__data_80471038"
+            ],
+            "current_source_owners": [
+              "src/pso/boss/olgaflow/TBoss6Type1.cpp"
+            ],
+            "retail_bytes": "40c45f30b21788bb"
+          }
+        ],
+        "authored_diff_sha256": "066100e45caa2b3e08b27dcb8001667914cfcf0bdc727bbcf1d631ada2e5f3e8"
+      },
+      "586": {
+        "fork_commit": "87350c6fd6365a6ab784e968aca42a7262f0e03b",
+        "last_changed_path": "src/pso/enemy/TObjEneEpsilon_800B92AC.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_8043B698",
+            "section": ".rodata",
+            "address": "0x8043B698",
+            "size": 8,
+            "current_symbols": [
+              "lbl_8043B698"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/dd/TObjEneDD.cpp"
+            ],
+            "retail_bytes": "40c45f30b21788bb"
+          }
+        ],
+        "authored_diff_sha256": "5dba10fff1f32f7fac570615bf61ce892a07c4eb8f6d037f90c81ce81c4dac6e"
+      },
+      "604": {
+        "fork_commit": "87350c6fd6365a6ab784e968aca42a7262f0e03b",
+        "last_changed_path": "src/pso/enemy/TObjEnePanarms_800DCEB8.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805DA4DC",
+            "section": ".sdata2",
+            "address": "0x805DA4DC",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA4DC"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+            ],
+            "retail_bytes": "40f00000"
+          },
+          {
+            "symbol": "lbl_805DA4D8",
+            "section": ".sdata2",
+            "address": "0x805DA4D8",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA4D8"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+            ],
+            "retail_bytes": "bf000000"
+          },
+          {
+            "symbol": "TObjEnePanarms__data_8043CD20",
+            "section": ".rodata",
+            "address": "0x8043CD20",
+            "size": 8,
+            "current_symbols": [
+              "TObjEnePanarms__data_8043CD20"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+            ],
+            "retail_bytes": "40c45f30b21788bb"
+          },
+          {
+            "symbol": "lbl_805DA4F0",
+            "section": ".sdata2",
+            "address": "0x805DA4F0",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA4F0"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+            ],
+            "retail_bytes": "43fa0000"
+          },
+          {
+            "symbol": "lbl_805DA4F4",
+            "section": ".sdata2",
+            "address": "0x805DA4F4",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA4F4"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+            ],
+            "retail_bytes": "41f00000"
+          },
+          {
+            "symbol": "lbl_805DA51C",
+            "section": ".sdata2",
+            "address": "0x805DA51C",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA51C"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+            ],
+            "retail_bytes": "41480000"
+          },
+          {
+            "symbol": "lbl_805DA4D4",
+            "section": ".sdata2",
+            "address": "0x805DA4D4",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA4D4"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+            ],
+            "retail_bytes": "3ffeb852"
+          },
+          {
+            "symbol": "lbl_805DA4E8",
+            "section": ".sdata2",
+            "address": "0x805DA4E8",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA4E8"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+            ],
+            "retail_bytes": "49200000"
+          },
+          {
+            "symbol": "lbl_805DA4EC",
+            "section": ".sdata2",
+            "address": "0x805DA4EC",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA4EC"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+            ],
+            "retail_bytes": "40c8f5c3"
+          },
+          {
+            "symbol": "lbl_805DA4E4",
+            "section": ".sdata2",
+            "address": "0x805DA4E4",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA4E4"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+            ],
+            "retail_bytes": "48742400"
+          },
+          {
+            "symbol": "lbl_805DA4C4",
+            "section": ".sdata2",
+            "address": "0x805DA4C4",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA4C4"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+            ],
+            "retail_bytes": "47000000"
+          },
+          {
+            "symbol": "lbl_805DA4C8",
+            "section": ".sdata2",
+            "address": "0x805DA4C8",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA4C8"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+            ],
+            "retail_bytes": "40c00000"
+          },
+          {
+            "symbol": "lbl_805DA4CC",
+            "section": ".sdata2",
+            "address": "0x805DA4CC",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA4CC"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+            ],
+            "retail_bytes": "3fc00000"
+          },
+          {
+            "symbol": "lbl_805DA4D0",
+            "section": ".sdata2",
+            "address": "0x805DA4D0",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA4D0"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+            ],
+            "retail_bytes": "bf800000"
+          },
+          {
+            "symbol": "lbl_805DA4F8",
+            "section": ".sdata2",
+            "address": "0x805DA4F8",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA4F8"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+            ],
+            "retail_bytes": "419e6667"
+          },
+          {
+            "symbol": "lbl_805DA4FC",
+            "section": ".sdata2",
+            "address": "0x805DA4FC",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA4FC"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+            ],
+            "retail_bytes": "3e800000"
+          },
+          {
+            "symbol": "lbl_805DA500",
+            "section": ".sdata2",
+            "address": "0x805DA500",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA500"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+            ],
+            "retail_bytes": "3f400000"
+          },
+          {
+            "symbol": "lbl_805DA504",
+            "section": ".sdata2",
+            "address": "0x805DA504",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA504"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+            ],
+            "retail_bytes": "3e4ccccd"
+          },
+          {
+            "symbol": "lbl_805DA508",
+            "section": ".sdata2",
+            "address": "0x805DA508",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA508"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+            ],
+            "retail_bytes": "42200000"
+          },
+          {
+            "symbol": "lbl_805DA50C",
+            "section": ".sdata2",
+            "address": "0x805DA50C",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA50C"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+            ],
+            "retail_bytes": "3dcccccd"
+          },
+          {
+            "symbol": "lbl_805DA510",
+            "section": ".sdata2",
+            "address": "0x805DA510",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA510"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+            ],
+            "retail_bytes": "3f266666"
+          },
+          {
+            "symbol": "lbl_805DA514",
+            "section": ".sdata2",
+            "address": "0x805DA514",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA514"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+            ],
+            "retail_bytes": "3f800000"
+          },
+          {
+            "symbol": "lbl_805DA518",
+            "section": ".sdata2",
+            "address": "0x805DA518",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA518"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+            ],
+            "retail_bytes": "40000000"
+          },
+          {
+            "symbol": "lbl_805DA4E0",
+            "section": ".sdata2",
+            "address": "0x805DA4E0",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA4E0"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+            ],
+            "retail_bytes": "c21e6667"
+          }
+        ],
+        "authored_diff_sha256": "273b5b50bd088b05c1811340d48300a6ddcf382c8b60636e61813ff51e2d19a4"
+      },
+      "608": {
+        "fork_commit": "87350c6fd6365a6ab784e968aca42a7262f0e03b",
+        "last_changed_path": "src/pso/enemy/TObjEneRe7Berura.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805D9770",
+            "section": ".sdata2",
+            "address": "0x805D9770",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805D9770"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/berura/TObjEneRe7Berura.cpp"
+            ],
+            "retail_bytes": "40800000"
+          },
+          {
+            "symbol": "lbl_805D9774",
+            "section": ".sdata2",
+            "address": "0x805D9774",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805D9774"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/berura/TObjEneRe7Berura.cpp"
+            ],
+            "retail_bytes": "c0800000"
+          },
+          {
+            "symbol": "lbl_805D9778",
+            "section": ".sdata2",
+            "address": "0x805D9778",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805D9778"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/berura/TObjEneRe7Berura.cpp"
+            ],
+            "retail_bytes": "41980000"
+          },
+          {
+            "symbol": "lbl_805D977C",
+            "section": ".sdata2",
+            "address": "0x805D977C",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805D977C"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/berura/TObjEneRe7Berura.cpp"
+            ],
+            "retail_bytes": "41e80000"
+          },
+          {
+            "symbol": "lbl_805D9780",
+            "section": ".sdata2",
+            "address": "0x805D9780",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805D9780"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/berura/TObjEneRe7Berura.cpp"
+            ],
+            "retail_bytes": "41600000"
+          },
+          {
+            "symbol": "lbl_805D9784",
+            "section": ".sdata2",
+            "address": "0x805D9784",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805D9784"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/berura/TObjEneRe7Berura.cpp"
+            ],
+            "retail_bytes": "41880000"
+          }
+        ],
+        "authored_diff_sha256": "4e8f5c250fa670acc58f50b34c57777a8aa6e4cff3ae2c5263337f3eaa4b51d3"
+      },
+      "621": {
+        "fork_commit": "87350c6fd6365a6ab784e968aca42a7262f0e03b",
+        "last_changed_path": "src/pso/enemy/TObjEneRecon_8031C250.cpp",
+        "additions": [
+          {
+            "symbol": "TObjEneRecon__data_805DF3E0",
+            "section": ".sdata2",
+            "address": "0x805DF3E0",
+            "size": 4,
+            "current_symbols": [
+              "TObjEneRecon__data_805DF3E0"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/recon/TObjEneRecon.cpp"
+            ],
+            "retail_bytes": "3f000000"
+          },
+          {
+            "symbol": "TObjEneRecon__data_805DF3E4",
+            "section": ".sdata2",
+            "address": "0x805DF3E4",
+            "size": 4,
+            "current_symbols": [
+              "TObjEneRecon__data_805DF3E4"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/recon/TObjEneRecon.cpp"
+            ],
+            "retail_bytes": "43480000"
+          },
+          {
+            "symbol": "lbl_805DF3D8",
+            "section": ".sdata2",
+            "address": "0x805DF3D8",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF3D8"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/recon/TObjEneRecon.cpp"
+            ],
+            "retail_bytes": "3f7ae148"
+          },
+          {
+            "symbol": "lbl_805DF3DC",
+            "section": ".sdata2",
+            "address": "0x805DF3DC",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF3DC"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/recon/TObjEneRecon.cpp"
+            ],
+            "retail_bytes": "3e99999a"
+          },
+          {
+            "symbol": "TObjEneRecon__data_80476110",
+            "section": ".rodata",
+            "address": "0x80476110",
+            "size": 8,
+            "current_symbols": [
+              "TObjEneRecon__data_80476110"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/recon/TObjEneRecon.cpp"
+            ],
+            "retail_bytes": "40c45f30b21788bb"
+          }
+        ],
+        "authored_diff_sha256": "a46be41185b4c9ba5823e96a350bbe042f06e0c4431efa5383d40be21eda353c"
+      },
+      "629": {
+        "fork_commit": "87350c6fd6365a6ab784e968aca42a7262f0e03b",
+        "last_changed_path": "src/pso/enemy/TObjEneRecon_8031DFD0.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805DF428",
+            "section": ".sdata2",
+            "address": "0x805DF428",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF428"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/recon/TObjEneRecon.cpp"
+            ],
+            "retail_bytes": "c0400000"
+          },
+          {
+            "symbol": "lbl_805DF42C",
+            "section": ".sdata2",
+            "address": "0x805DF42C",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF42C"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/recon/TObjEneRecon.cpp"
+            ],
+            "retail_bytes": "42340000"
+          },
+          {
+            "symbol": "lbl_805DF430",
+            "section": ".sdata2",
+            "address": "0x805DF430",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF430"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/recon/TObjEneRecon.cpp"
+            ],
+            "retail_bytes": "40000000"
+          },
+          {
+            "symbol": "lbl_805DF434",
+            "section": ".sdata2",
+            "address": "0x805DF434",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DF434"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/recon/TObjEneRecon.cpp"
+            ],
+            "retail_bytes": "42480000"
+          }
+        ],
+        "authored_diff_sha256": "28f844f5f4608c58e51c97fb3503f02f14fb2c61eb22137ec367421eecee9173"
+      },
+      "701": {
+        "fork_commit": "87350c6fd6365a6ab784e968aca42a7262f0e03b",
+        "last_changed_path": "src/pso/unk/text_800C3088.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_8043BBD8",
+            "section": ".rodata",
+            "address": "0x8043BBD8",
+            "size": 8,
+            "current_symbols": [
+              "lbl_8043BBD8"
+            ],
+            "current_source_owners": [
+              "src/pso/enemy/flower/TObjEneRe2Flower.cpp"
+            ],
+            "retail_bytes": "40c45f30b21788bb"
+          }
+        ],
+        "authored_diff_sha256": "bf97ecae1588c37e54baaa9ff57c7348c09a587bc94b4dc3fd66fad9bc4d2866"
+      },
+      "843": {
+        "fork_commit": "87350c6fd6365a6ab784e968aca42a7262f0e03b",
+        "last_changed_path": "src/pso/boss/TBoss8DragonEffTail.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805DEF14",
+            "section": ".sdata2",
+            "address": "0x805DEF14",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DEF14"
+            ],
+            "current_source_owners": [
+              "src/pso/boss/goldragon/TBoss8DragonEffTail.cpp"
+            ],
+            "retail_bytes": "00000000"
+          },
+          {
+            "symbol": "lbl_805DEF08",
+            "section": ".sdata2",
+            "address": "0x805DEF08",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DEF08"
+            ],
+            "current_source_owners": [
+              "src/pso/boss/goldragon/TBoss8DragonEffTail.cpp"
+            ],
+            "retail_bytes": "3f000000"
+          },
+          {
+            "symbol": "lbl_805DEF0C",
+            "section": ".sdata2",
+            "address": "0x805DEF0C",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DEF0C"
+            ],
+            "current_source_owners": [
+              "src/pso/boss/goldragon/TBoss8DragonEffTail.cpp"
+            ],
+            "retail_bytes": "41f00000"
+          },
+          {
+            "symbol": "lbl_805DEF10",
+            "section": ".sdata2",
+            "address": "0x805DEF10",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DEF10"
+            ],
+            "current_source_owners": [
+              "src/pso/boss/goldragon/TBoss8DragonEffTail.cpp"
+            ],
+            "retail_bytes": "40a00000"
+          }
+        ],
+        "authored_diff_sha256": "65870de0e454864584501a8d28c051c8deefb8ba8d681d3471a163c797e525df"
+      },
+      "995": {
+        "fork_commit": "87350c6fd6365a6ab784e968aca42a7262f0e03b",
+        "last_changed_path": "src/pso/boss/TBoss6SwordShot.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_804793B0",
+            "section": ".rodata",
+            "address": "0x804793B0",
+            "size": 8,
+            "current_symbols": [
+              "lbl_804793B0"
+            ],
+            "current_source_owners": [
+              "src/pso/boss/olgaflow/TBoss6SwordShot.cpp"
+            ],
+            "retail_bytes": "40c45f30b21788bb"
+          }
+        ],
+        "authored_diff_sha256": "19859cb167fd22bc714fb7f56e6ea6ec6986ae5d14ba21dd59595f81fd605323"
+      },
+      "1185": {
+        "fork_commit": "2844a6975d96ed931564b16027cdf166fd9fd6f0",
+        "last_changed_path": "src/pso/misc/TCameraCtrl_8006782C.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805D8F38",
+            "section": ".sdata2",
+            "address": "0x805D8F38",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805D8F38"
+            ],
+            "current_source_owners": [
+              "src/pso/unk/TUnk_804887F8.cpp"
+            ],
+            "retail_bytes": "00000000"
+          },
+          {
+            "symbol": "lbl_805D8F4C",
+            "section": ".sdata2",
+            "address": "0x805D8F4C",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805D8F4C"
+            ],
+            "current_source_owners": [
+              "src/pso/unk/TUnk_804887F8.cpp"
+            ],
+            "retail_bytes": "42c80000"
+          },
+          {
+            "symbol": "lbl_805D8F50",
+            "section": ".sdata2",
+            "address": "0x805D8F50",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805D8F50"
+            ],
+            "current_source_owners": [
+              "src/pso/unk/TUnk_804887F8.cpp"
+            ],
+            "retail_bytes": "3fd33333"
+          },
+          {
+            "symbol": "lbl_805D8F54",
+            "section": ".sdata2",
+            "address": "0x805D8F54",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805D8F54"
+            ],
+            "current_source_owners": [
+              "src/pso/unk/TUnk_804887F8.cpp"
+            ],
+            "retail_bytes": "3f333333"
+          },
+          {
+            "symbol": "lbl_805D8F58",
+            "section": ".sdata2",
+            "address": "0x805D8F58",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805D8F58"
+            ],
+            "current_source_owners": [
+              "src/pso/unk/TUnk_804887F8.cpp"
+            ],
+            "retail_bytes": "419e6666"
+          },
+          {
+            "symbol": "lbl_805D8F5C",
+            "section": ".sdata2",
+            "address": "0x805D8F5C",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805D8F5C"
+            ],
+            "current_source_owners": [
+              "src/pso/unk/TUnk_804887F8.cpp"
+            ],
+            "retail_bytes": "c0a00000"
+          },
+          {
+            "symbol": "lbl_805D8F3C",
+            "section": ".sdata2",
+            "address": "0x805D8F3C",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805D8F3C"
+            ],
+            "current_source_owners": [
+              "src/pso/unk/TUnk_804887F8.cpp"
+            ],
+            "retail_bytes": "42480000"
+          },
+          {
+            "symbol": "lbl_805D8F40",
+            "section": ".sdata2",
+            "address": "0x805D8F40",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805D8F40"
+            ],
+            "current_source_owners": [
+              "src/pso/unk/TUnk_804887F8.cpp"
+            ],
+            "retail_bytes": "42700000"
+          },
+          {
+            "symbol": "lbl_805D8F44",
+            "section": ".sdata2",
+            "address": "0x805D8F44",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805D8F44"
+            ],
+            "current_source_owners": [
+              "src/pso/unk/TUnk_804887F8.cpp"
+            ],
+            "retail_bytes": "4235ae14"
+          },
+          {
+            "symbol": "lbl_805D8F48",
+            "section": ".sdata2",
+            "address": "0x805D8F48",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805D8F48"
+            ],
+            "current_source_owners": [
+              "src/pso/unk/TUnk_804887F8.cpp"
+            ],
+            "retail_bytes": "41700000"
+          }
+        ],
+        "authored_diff_sha256": "53b0f2d545401317165f7481c4b73aabaecae944e70156e182a2ae5f31855087"
+      },
+      "3632": {
+        "fork_commit": "2844a6975d96ed931564b16027cdf166fd9fd6f0",
+        "last_changed_path": "src/pso/misc/TCameraCtrl_80082FCC.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805D9410",
+            "section": ".sdata2",
+            "address": "0x805D9410",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805D9410"
+            ],
+            "current_source_owners": [
+              "src/pso/player/TObjPlayer_80083594.cpp"
+            ],
+            "retail_bytes": "46a41000"
+          }
+        ],
+        "authored_diff_sha256": "08b3bf94171b1562a582120855d0f28af1a8ead8d17f2d7864de07fd1f7d1d99"
+      },
+      "5103": {
+        "fork_commit": "2844a6975d96ed931564b16027cdf166fd9fd6f0",
+        "last_changed_path": "src/pso/misc/TCameraCtrl_8006C8E4.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_80438510",
+            "section": ".rodata",
+            "address": "0x80438510",
+            "size": 8,
+            "current_symbols": [
+              "lbl_80438510"
+            ],
+            "current_source_owners": [
+              "src/pso/unk/TUnk_80488DA0.cpp"
+            ],
+            "retail_bytes": "3ff0000000000000"
+          },
+          {
+            "symbol": "lbl_80438518",
+            "section": ".rodata",
+            "address": "0x80438518",
+            "size": 8,
+            "current_symbols": [
+              "lbl_80438518"
+            ],
+            "current_source_owners": [
+              "src/pso/unk/TUnk_80488DA0.cpp"
+            ],
+            "retail_bytes": "3f76800000000000"
+          }
+        ],
+        "authored_diff_sha256": "48d7f8c70f8ce3275aa1d06f517e99c6985609157ff40f075e28ffdb09f47e25"
+      },
+      "5111": {
+        "fork_commit": "2844a6975d96ed931564b16027cdf166fd9fd6f0",
+        "last_changed_path": "src/pso/misc/TCameraCtrl_80067CE8.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805D8F78",
+            "section": ".sdata2",
+            "address": "0x805D8F78",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805D8F78"
+            ],
+            "current_source_owners": [
+              "src/pso/unk/TUnk_80488838.cpp"
+            ],
+            "retail_bytes": "41200000"
+          },
+          {
+            "symbol": "lbl_805D8F74",
+            "section": ".sdata2",
+            "address": "0x805D8F74",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805D8F74"
+            ],
+            "current_source_owners": [
+              "src/pso/unk/TUnk_80488838.cpp"
+            ],
+            "retail_bytes": "00000000"
+          }
+        ],
+        "authored_diff_sha256": "851896706d12ee0649750c497d4c8d92edacc049ebf33f4362561865e663f105"
+      },
+      "6697": {
+        "fork_commit": "2844a6975d96ed931564b16027cdf166fd9fd6f0",
+        "last_changed_path": "src/pso/npc/TObjNpcKenkyuW.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805DDF60",
+            "section": ".sdata2",
+            "address": "0x805DDF60",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DDF60"
+            ],
+            "current_source_owners": [
+              "src/pso/npc/TObjNpcKenkyuW.cpp"
+            ],
+            "retail_bytes": "3f000000"
+          },
+          {
+            "symbol": "lbl_805DDF64",
+            "section": ".sdata2",
+            "address": "0x805DDF64",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DDF64"
+            ],
+            "current_source_owners": [
+              "src/pso/npc/TObjNpcKenkyuW.cpp"
+            ],
+            "retail_bytes": "461c4000"
+          }
+        ],
+        "authored_diff_sha256": "3b3c8aa739ec1c9889b844bd7b81512075a29bf58885b9c3e2a358617784c389"
+      },
+      "6723": {
+        "fork_commit": "2844a6975d96ed931564b16027cdf166fd9fd6f0",
+        "last_changed_path": "src/pso/object/TObjControl.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805DA8C0",
+            "section": ".sdata2",
+            "address": "0x805DA8C0",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA8C0"
+            ],
+            "current_source_owners": [
+              "src/pso/object/TObjControl.cpp"
+            ],
+            "retail_bytes": "3dcccccd"
+          },
+          {
+            "symbol": "lbl_805DA8C4",
+            "section": ".sdata2",
+            "address": "0x805DA8C4",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA8C4"
+            ],
+            "current_source_owners": [
+              "src/pso/object/TObjControl.cpp"
+            ],
+            "retail_bytes": "41f00000"
+          },
+          {
+            "symbol": "lbl_805DA8C8",
+            "section": ".sdata2",
+            "address": "0x805DA8C8",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DA8C8"
+            ],
+            "current_source_owners": [
+              "src/pso/object/TObjControl.cpp"
+            ],
+            "retail_bytes": "42200000"
+          }
+        ],
+        "authored_diff_sha256": "f879465df05eaa9a52224bed9918bfe4939839ad00811a3737a2b8943d18ca40"
+      },
+      "7085": {
+        "fork_commit": "2844a6975d96ed931564b16027cdf166fd9fd6f0",
+        "last_changed_path": "src/pso/object/TObjBase.cpp",
+        "additions": [
+          {
+            "symbol": "lbl_805DC098",
+            "section": ".sdata2",
+            "address": "0x805DC098",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC098"
+            ],
+            "current_source_owners": [
+              "src/pso/object/base/TObjBase.cpp"
+            ],
+            "retail_bytes": "00000000"
+          },
+          {
+            "symbol": "lbl_805DC09C",
+            "section": ".sdata2",
+            "address": "0x805DC09C",
+            "size": 4,
+            "current_symbols": [
+              "lbl_805DC09C"
+            ],
+            "current_source_owners": [
+              "src/pso/object/base/TObjBase.cpp"
+            ],
+            "retail_bytes": "44200000"
+          }
+        ],
+        "authored_diff_sha256": "c39155b4887fcdf97e3434c8a88abf5ec1cd45402caffda4d54c5533877b5a0a"
+      }
+    },
+    "symbol_counts": {
+      ".sdata2": 196,
+      ".rodata": 23,
+      ".sbss": 25
+    }
+  },
+  "validation": {
+    "stock": {
+      "baseline": "3e0ea227b44545182b30428eb3f6b234eed2865d",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x80094FD8",
+          "before": "apply_attack_params__16TObjEneRe7BeruraFiPv",
+          "after": "apply_attack_params__16TObjEneRe7BeruraFP10NJS_OBJECTP20TObjEneRe7BeruraPart"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009503C",
+          "before": "collect_node_matrices__16TObjEneRe7BeruraFPvi",
+          "after": "collect_node_matrices__16TObjEneRe7BeruraFP10NJS_OBJECTi"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80131700",
+          "before": "find_model_node__FUll",
+          "after": "find_model_node__FP10NJS_OBJECTl"
+        }
+      ],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "bace0465b45184c0cb1a319c49fc421b0d0f833001367d731b7c72b92be9607e",
+      "report_sha256": "7ac8dbb9533eb18f202b7cd8c442c2561245ab7c63417e59d651e793b42bdd0c"
+    },
+    "workspace": {
+      "baseline": "d77e4b8e073824da25f6760dd9de38005e2dd8a3",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "7ac8dbb9533eb18f202b7cd8c442c2561245ab7c63417e59d651e793b42bdd0c"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "aa0c9738a46e1aefc7084a4a2f293b4b89291889ce504fab3b45d71adc4b8420"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "de0f8f29923f1d6e6b411f5f9a6aff336409db5f9988aa731e1f293514379c9f"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    },
+    "model": {
+      "result": "child-before-sibling traversal and missing-node behavior passed",
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "log_sha256": "52f0d5f09cc088324705dbc06dfa8a92485c1f7b0747c209168ce692dabe5dd3"
+    },
+    "strip": {
+      "result": "strip selection, both winding signs, scrolling and release passed",
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "log_sha256": "f9e6b2ee1dd5c485228ae18053c955454130f7cd42cc73abf405b04cb1ca3c9a"
+    }
+  },
+  "fork_workspace": {
+    "overlay_paths": 130,
+    "overlay_patch_sha256": "b43c62a94bc0c5a46be29b6e158686a1c8eb6e7a7f620d71c6cf0148813517d9",
+    "updated_overlay_paths": [
+      "config/GPOE8P/psov3/config.yml",
+      "tools/probes/check_strip_animation.py"
+    ],
+    "force_active_names": 27033,
+    "force_active_symbol_changes": [
+      "-  - apply_attack_params__16TObjEneRe7BeruraFiPv",
+      "+  - apply_attack_params__16TObjEneRe7BeruraFP10NJS_OBJECTP20TObjEneRe7BeruraPart",
+      "-  - collect_node_matrices__16TObjEneRe7BeruraFPvi",
+      "+  - collect_node_matrices__16TObjEneRe7BeruraFP10NJS_OBJECTi"
+    ],
+    "archive_test_head": "388e33ed8980592fd4eb0d6ceada750830e26fcf",
+    "tested_materialized_tree": "71d37dd2ec714d393b8d25923a50d6e41f2e78ee"
+  }
+}

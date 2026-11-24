@@ -1,11 +1,16 @@
+#include <stdio.h>
 #include "pso/map/FloorResourceCallbacks.h"
-#include "pso/misc/TWindowSubStatusDisp_803DEE6C.h"
+#include "pso/ui/window/TWindowSubStatusDisp_803DEE6C.h"
 #include "pso/unk/text_8013F810.h"
 #include "pso/unk/text_803DF204.h"
 
 #include "types.h"
 #include "pso/system/debug_print.h"
-#include "pso/misc/TLobby.h"
+#include "pso/unk/TLobby.h"
+#include "pso/system/byteswap.h"
+
+// The LZSS decoder's stream pointers, after its window and trees.
+struct LzssStream { u8 pad[0x7220]; u8 *in; s8 *out; u8 *in_end; };
 
 struct L_8013FF20 { u8 pad0[0x1012]; s16 a[0x1000]; u8 pad1[0x5016 - 0x3012]; s16 b[0x1101]; };
 
@@ -42,10 +47,7 @@ struct Lz_8013F99C {
 extern "C" {
 void lzss_insert_ring_node(Lz_8013FDC4 *lz, s32 r);
 void lzss_remove_ring_node(Lz_8013FCB0 *t, s32 p);
-void bswap_32__FPUl(u32 *);
-int sprintf(char *, const char *, ...);
 s32 TLobby__sub_8013F810(TLobby *lz, u32 *data, s32 len, u8 *out);
-extern const char lbl_8043F168[] = "compless size  %d %d time %d";
 
 #pragma push
 #pragma opt_propagation off
@@ -64,9 +66,9 @@ s32 TLobby__sub_8013F810(TLobby *lz, u32 *data, s32 len, u8 *out) {
     s32 j;
     u32 k;
     u8 c2;
-    bswap_32__FPUl(hdr);
-    bswap_32__FPUl(hdr + 1);
-    lz->set_range((int)(data + 2), hdr[1], (int)out);
+    bswap_32(hdr);
+    bswap_32(hdr + 1);
+    lz->set_range((u8 *)(data + 2), hdr[1], (s8 *)out);
     for (i = 0; i < 0xFEE; i++) {
         ((Lz_8013F99C *)lz)->text_buf[i] = 0;
     }
@@ -124,7 +126,7 @@ s32 TLobby::lz_compress_packet(void *src, s32 size, s32 *hdr) {
     s32 t1;
     out = hdr;
     t0 = TLobby__sub_803DF1CC();
-    this->set_range((int)src, size, (s32)(hdr + 2));
+    this->set_range((u8 *)src, size, (s8 *)(hdr + 2));
     this->init_lookup_tables();
     code_buf[0] = 0;
     mask = code_buf_ptr = 1;
@@ -201,11 +203,11 @@ s32 TLobby::lz_compress_packet(void *src, s32 size, s32 *hdr) {
     }
     out[0] = size;
     out[1] = ((Lz_8013F99C *)this)->codesize;
-    bswap_32__FPUl((u32 *)out);
-    bswap_32__FPUl((u32 *)(out + 1));
+    bswap_32((u32 *)out);
+    bswap_32((u32 *)(out + 1));
     ((Lz_8013F99C *)this)->codesize += 8;
     t1 = TLobby__sub_803DF1CC();
-    sprintf(msg, lbl_8043F168, size, ((Lz_8013F99C *)this)->codesize, fn_803DF204(TLobby::calc_delta(t0, t1)));
+    sprintf(msg, "compless size  %d %d time %d", size, ((Lz_8013F99C *)this)->codesize, fn_803DF204(TLobby::calc_delta(t0, t1)));
     ::debug_print(msg);
     return ((Lz_8013F99C *)this)->codesize;
 }
@@ -309,20 +311,25 @@ void TLobby::init_lookup_tables() {
 }
 
 void TLobby__sub_8013FF64(u8 *arg0, s8 arg1) {
-    s8 *temp_r5;
-    temp_r5 = *(s8 **)((s8 *)arg0 + 0x7224);
-    *(s8 **)((s8 *)arg0 + 0x7224) = (temp_r5 + 1);
-    *temp_r5 = arg1;
+    LzssStream *s = (LzssStream *)arg0;
+    *s->out++ = arg1;
 }
 }
 
 u8 lzss_input_exhausted(u8 *arg0) {
-    return (u8) ((u32) *(u32 *)((s8 *)arg0 + 0x7220) > (u32) *(u32 *)((s8 *)arg0 + 0x7228));
+    LzssStream *s = (LzssStream *)arg0;
+    return s->in > s->in_end;
 }
 
 u8 lzss_read_byte(u8 *arg0) {
-    u8 *temp_r4;
-    temp_r4 = *(u8 **)((s8 *)arg0 + 0x7220);
-    *(u8 **)((s8 *)arg0 + 0x7220) = (temp_r4 + 1);
-    return *temp_r4;
+    LzssStream *s = (LzssStream *)arg0;
+    return *s->in++;
+}
+
+// The decoder's input (src, src + size) and output (dst) pointers.
+void TLobby::set_range(u8 *src, int size, s8 *dst) {
+    LzssStream *s = (LzssStream *)this;
+    s->in = src;
+    s->out = dst;
+    s->in_end = src + size;
 }

@@ -1,4 +1,0 @@
-#ifndef PSO_MISC_TWINDOWMESSAGELOG_8026AA38_H
-#define PSO_MISC_TWINDOWMESSAGELOG_8026AA38_H
-#include "pso/misc/TWindowMessageLog.h"
-#endif

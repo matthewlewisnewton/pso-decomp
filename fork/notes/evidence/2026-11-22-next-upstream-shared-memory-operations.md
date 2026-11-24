@@ -1,0 +1,15 @@
+# Share the allocation, copy and release interfaces
+
+The 229-path review `34db28e7c7` has its own build and validation directly on upstream master. The allocation, copy, footprint cleanup and both item-buffer allocation modes pass their runtime probes. The benchmark removes 39 findings, adds zero and flags no symbols. The one changed label moves the nullable release function to its shared owner. The combined review `dad6841b5c` matches retail over the effects, inventory and save replay, with the same benchmark results. [Validation](2026-11-22-independent-memory-and-character-preview-validation.json)
+
+The current local review is `14951bf3bf` on the sound review `81bf9735c5`. The 224-path batch covers shared memory declarations, nullable release and typed item-buffer storage. Retail, coverage and the allocation, copy, footprint and item-buffer probes pass. The source-quality benchmark removes 39 findings and flags no labels. [Current validation](2026-11-22-upstream-371-shared-memory-and-item-buffer.json)
+
+The local memory review is `4fc1ed7afe` above the current window and network checkpoint `c02dcaa95d`. It gives allocation and copy their shared declarations and moves nullable release into the memory owner. The build matches retail and the allocator, release and overlapping copy probes pass. [Current validation](2026-11-22-upstream-367-network-memory-validation.json)
+
+The local review `great-merge/review/after-366/shared-memory-operations` is at `848e38d3679eb90d80c35f80e25f83bf3da4ad0c` above the sound review `a94738117b5df43522088adc726ffb98bd82644f`. Its single commit touches 227 paths. [Validation](2026-11-22-upstream-366-shared-memory-review-validation.json)
+
+## Proposed PR description
+
+Use the shared declarations for raw allocation, release, and byte and word copies. Move the nullable release helper out of character selection so game, scene, asset and window code can depend directly on the memory interface. The helper keeps its existing name and address, and the one linker-label change follows its new owner.
+
+The build reproduces retail with all 27,572 functions exact, 2,447 units linked and all 1,147 starting data bytes accounted for. The retail and review probes cover overlapping copies, allocation results, null release, and ordered footprint texture teardown.

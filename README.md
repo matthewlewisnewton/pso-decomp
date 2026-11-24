@@ -8,22 +8,22 @@ Nothing from the game is included here. You need your own copy of the game to bu
 
 ## Progress
 
-<!-- progress-table -->
-| | Matched | Linked |
-|:--|--:|--:|
-| Code | 99.99% (4,352,676 of 4,353,092) | 99.99% (4,352,676 of 4,353,092) |
-| Data | 88.53% (1,558,896 of 1,760,896) | 88.54% (1,559,116 of 1,760,896) |
-| Functions | 99.97% (27,565 of 27,572) | |
-| Units | | 72.23% (3,637 of 5,035) |
-<!-- /progress-table -->
+[![Code matched]][progress page] [![Data matched]][progress page] [![Functions matched]][progress page]<br>
+[![Code linked]][progress page] [![Data linked]][progress page] [![Units linked]][progress page]
 
-Measured on `PsoV3.dol` on 2026-11-18 at validated source commit
-[`34120b34d9`](https://github.com/matthewlewisnewton/pso-decomp/commit/34120b34d9fae0160ad2ae5aef325ac20e2255b4).
-The README-only publication commit records the measurements of its parent source tree.
-A function is matched when it compiles to the original's exact bytes. Code, data and
-units are linked when the build takes them from compiled source instead of the original. Data includes `.bss`.
-The build still uses 1,387 original-object fallback units; matched functions in those units are not counted as
-source-linked coverage. Unit counts can change when translation units are consolidated.
+[progress page]: https://zeroz41.github.io/pso-decomp/
+[treemap]: https://zeroz41.github.io/pso-decomp/treemap.html
+[Code matched]: https://img.shields.io/endpoint?url=https%3A%2F%2Fzeroz41.github.io%2Fpso-decomp%2Fbadges%2Fcode.json
+[Data matched]: https://img.shields.io/endpoint?url=https%3A%2F%2Fzeroz41.github.io%2Fpso-decomp%2Fbadges%2Fdata.json
+[Functions matched]: https://img.shields.io/endpoint?url=https%3A%2F%2Fzeroz41.github.io%2Fpso-decomp%2Fbadges%2Ffunctions.json
+[Code linked]: https://img.shields.io/endpoint?url=https%3A%2F%2Fzeroz41.github.io%2Fpso-decomp%2Fbadges%2Fcode-linked.json
+[Data linked]: https://img.shields.io/endpoint?url=https%3A%2F%2Fzeroz41.github.io%2Fpso-decomp%2Fbadges%2Fdata-linked.json
+[Units linked]: https://img.shields.io/endpoint?url=https%3A%2F%2Fzeroz41.github.io%2Fpso-decomp%2Fbadges%2Funits-linked.json
+
+Measured on `PsoV3.dol` from the latest build of `master`. The [progress page] breaks it down by unit and
+function, and the [treemap] shows every function and data section as a tile sized by its bytes. A function is
+matched when it compiles to the original's exact bytes. Code, data and units are linked when the build takes them
+from compiled source instead of the original. Data includes `.bss`.
 
 ## Target
 
@@ -32,7 +32,7 @@ source-linked coverage. Unit counts can change when translation units are consol
 | Game | Phantasy Star Online Episode I & II Plus, USA v1.02 (`GPOE8P`) |
 | Disc | SHA-1 `0ff155311f4cc57951c03baeb1a8cc15de5fe1cd` |
 | Executable | `files/PsoV3.dol`, SHA-1 `0d85744b51d7379efb025a943d0cd5aaae2191a3` |
-| Compiler | Metrowerks CodeWarrior for GameCube: GC/2.0 for the linker and most game code, older versions for library and game profiles |
+| Compiler | Metrowerks CodeWarrior for GameCube: GC/2.6 for most game code, older versions for the SDK, MetroTRK, MusyX and some game units |
 
 ## Building
 
@@ -65,8 +65,8 @@ in assembly: `tools/orig_asm.py` rebuilds their bodies from your disc before any
 
       python tools/progress_map.py build/GPOE8P/report.json -o build/progress
 
-  Then open `build/progress/index.html`, or `build/progress/treemap.html` for the treemap, in a browser.
-  Add `--readme README.md` to refresh the table above from the supplied report.
+  Then open `build/progress/index.html`, or `build/progress/treemap.html` for the treemap, in a browser. They
+  are the pages the [progress page] and [treemap] links show for `master`.
 
 ## Working on it
 
@@ -76,7 +76,6 @@ in assembly: `tools/orig_asm.py` rebuilds their bodies from your disc before any
 
 [CONTRIBUTING.md](CONTRIBUTING.md) covers what a change can do and the rules for it.
 [docs/architecture.md](docs/architecture.md) describes how the executable and the source tree are laid out.
-The [documentation index](docs/README.md) links to contributor guides and recovery evidence.
 
 ## Credits
 

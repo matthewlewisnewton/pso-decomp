@@ -9,6 +9,6 @@ struct MainPhaseEntry {
     MainPhaseCallback exit;
 };
 
-extern MainPhaseEntry main_phase_table[];
+extern "C" MainPhaseEntry main_phase_table[];
 
 #endif

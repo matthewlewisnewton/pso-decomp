@@ -2,9 +2,9 @@
 #define PSO_QUEST_TQUESTLISTVM_H
 
 #include "types.h"
-#include "pso/TShopWindowBase.h"
+#include "pso/quest/QuestScriptFormat.h"
+#include "pso/ui/city/TShopWindowBase.h"
 
-class TObjBase;
 class TQuestListVM;
 class TWindowMenuIconLine;
 struct TWindowMenu;
@@ -20,21 +20,6 @@ struct QuestFileEntry {
     s32 file_index;
     s32 card_slot;
     s32 episode;
-};
-
-// The header at the start of a decompressed quest .bin file.
-struct QuestBinHeader {
-    u32 code_offset;
-    u32 function_table_offset;
-    u32 size;
-    u32 unused;
-    s8 language;
-    s8 unk_11;
-    s8 quest_number;
-    s8 episode;
-    char name[0x20];
-    char short_description[0x80];
-    char long_description[0x120];
 };
 
 // A downloaded quest file once its checksum word is stripped: the big-endian
@@ -68,19 +53,19 @@ extern TQuestListVM *quest_list_vm_instance;
 // Lists the downloaded quests on the memory cards and loads the chosen one.
 class TQuestListVM : public TShopWindowBase {
 public:
-    TQuestListVM(TObject *parent, TShopWindowBase *owner, TObjBase *player);
-    virtual int vfunc_10();
+    TQuestListVM(TObject *parent, TShopWindowBase *owner, TObjPlayer *player);
+    virtual int is_message_ready();
     virtual void display_guild_message(s32 index, s32 flags);
     virtual void display_message(const char *text, s32 flags);
-    virtual void vfunc_6(s32 index, s32 flags);
-    virtual void vfunc_11();
+    virtual void display_shop_message(s32 id, s32 flags);
+    virtual void update_state();
     virtual ~TQuestListVM();
 
     void set_state_after_message(s32 state);
     u32 get_download_seed();
     s32 update_load_status();
     void close_windows();
-    static void set_enemy_mode_3();
+    static void set_enemy_mode_3(TObject *fade);
     static void load_vm();
     void wait_for_message();
     void invoke_callback_and_queue_destruction();
@@ -108,9 +93,6 @@ public:
     static void reset();
     static u8 *get_quest_dat();
 
-    u8 pad_1C[0x4];
-    s32 state;
-    TObjBase *player;
     QuestFileEntry entries[48];
     s32 entry_count;
     s32 described_entry;
@@ -137,5 +119,5 @@ public:
     void (*on_finish)();
 };
 
-typedef char TQuestListVM_size[sizeof(TQuestListVM) == 0x23C4 ? 1 : -1];
+LAYOUT_ASSERT(TQuestListVM_size, sizeof(TQuestListVM) == 0x23C4);
 #endif

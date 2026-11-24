@@ -13,6 +13,10 @@ typedef unsigned long long int u64;
 typedef float  f32;
 typedef double f64;
 
+/* An integer that holds an address: 32 bits on the console, a pointer's width in a port. */
+typedef u32 uaddr;
+typedef s32 saddr;
+
 typedef volatile u8  vu8;
 typedef volatile u16 vu16;
 typedef volatile u32 vu32;
@@ -27,7 +31,7 @@ typedef volatile f64 vf64;
 typedef char *Ptr;
 typedef unsigned int uintptr_t;
 typedef unsigned int uint;
-#ifndef __cplusplus
+#if !defined(__cplusplus) && !defined(nullptr)
 #define nullptr 0
 #endif
 

@@ -5,9 +5,15 @@
 #include "pso/npc/TObjNpcBase.h"
 
 struct TObjNpcLappy : public TObjNpcBase {
+    TObjNpcLappy(TObject *parent, void *set_data);
     virtual ~TObjNpcLappy();
-    virtual void vfunc_88();
+    virtual void request_action(s32);
+    static void *create(void *set_data);
+
+    static const char *name;
+    static CollisionBody collision_body_parts;
 };
 
-typedef char TObjNpcLappy_size[sizeof(TObjNpcLappy) == 0x3B8 ? 1 : -1];
+LAYOUT_ASSERT(TObjNpcLappy_size, sizeof(TObjNpcLappy) == 0x3B8);
+
 #endif

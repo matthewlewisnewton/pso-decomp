@@ -1,18 +1,13 @@
-#include "pso/TMemberCheck.h"
-#include "pso/misc/TWindowBase.h"
-#include "pso/misc/TWindowSubComCard_80244774.h"
-#include "pso/misc/TLobby.h"
+#include <string.h>
+#include "pso/system/TMemberCheck.h"
+#include "pso/ui/window/TWindowBase.h"
+#include "pso/unk/TLobby.h"
 
 #pragma readonly_strings on
 
 extern "C" {
 const char *member_check_name_ptr = "TMemberCheck";
 s32 TMemberCheck__previous_member_count;
-}
-
-
-extern "C" {
-void* memset(void*, int, unsigned long);
 extern const char *member_check_name_ptr;
 extern s32 TMemberCheck__previous_member_count;
 }

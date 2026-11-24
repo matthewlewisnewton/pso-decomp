@@ -1,0 +1,224 @@
+{
+  "master": "e39eb9e13801cc5c2d298ca42c616731d3d06296",
+  "actor_base": "a7820050d6c05f751d1065ab38dbdfbaf2aa9fa1",
+  "battle_review": "fcd2b1c84f85eb934964b8ecbb7d864e6f34a2b7",
+  "previous_cumulative": "37981a598fd09df33d880ddc9b0cfc9c7b97b2d3",
+  "cumulative": "32a077ad177ed06e2a922c5a37f3d5bd76b345f7",
+  "changed_paths": {
+    "battle": [
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/enemy/BattleParameters.h",
+      "include/pso/enemy/TObjEnemy.h",
+      "include/pso/enemy/dd/TObjEneDD.h",
+      "include/pso/player/PlayerAttackParams.h",
+      "include/pso/unk/TLobby.h",
+      "include/pso/unk/TLobbyBattleParamData.h",
+      "include/pso/unk/TLobby_8001D6A0.h",
+      "src/pso/boss/barbaray/TBoss7Crawfish.cpp",
+      "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+      "src/pso/boss/barbaray/TBoss7Joint.cpp",
+      "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+      "src/pso/boss/darkfalz/TBoss4Type3.cpp",
+      "src/pso/boss/darkfalz/TBoss4Zako.cpp",
+      "src/pso/boss/darkfalz/TBoss4Zanzo.cpp",
+      "src/pso/boss/darkfalz/TObjDFHorming.cpp",
+      "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+      "src/pso/boss/derolle/TBoss2Joint.cpp",
+      "src/pso/boss/derolle/TBoss2Mine.cpp",
+      "src/pso/boss/dragon/TBoss1Dragon.cpp",
+      "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+      "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+      "src/pso/boss/olgaflow/TBoss6Mag.cpp",
+      "src/pso/boss/olgaflow/TBoss6MagMine.cpp",
+      "src/pso/boss/olgaflow/TBoss6Mine.cpp",
+      "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+      "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+      "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+      "src/pso/enemy/beast/TObjEneBeast.cpp",
+      "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+      "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp",
+      "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+      "src/pso/enemy/darkgunner/DarkGunner.cpp",
+      "src/pso/enemy/dd/TObjEneDD.cpp",
+      "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+      "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+      "src/pso/enemy/dimedian/TObjEneDimedian.cpp",
+      "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+      "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+      "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp",
+      "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+      "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+      "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+      "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+      "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+      "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+      "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+      "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+      "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+      "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+      "src/pso/enemy/lappy/TObjEneLappy.cpp",
+      "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+      "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+      "src/pso/enemy/moja/TObjEneMoja.cpp",
+      "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+      "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+      "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+      "src/pso/enemy/recon/TObjEneRecon.cpp",
+      "src/pso/enemy/saver/SaverLifecycle.cpp",
+      "src/pso/enemy/shark/TObjEneShark.cpp",
+      "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+      "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+      "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+      "src/pso/enemy/sorcerer/TObjEneRe4Bit.cpp",
+      "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+      "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+      "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp",
+      "src/pso/object/TObjControl.cpp",
+      "src/pso/object/ambient/TObjGrass.cpp",
+      "src/pso/quest/QuestOpcodeHandlers.cpp",
+      "src/pso/unk/TLobbyBattleParamData.cpp",
+      "src/pso/unk/TLobby_8001D6A0.cpp"
+    ],
+    "cumulative": [
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/player/PlayerAttackParams.h",
+      "include/pso/unk/TLobby.h",
+      "src/pso/quest/QuestOpcodeHandlers.cpp",
+      "src/pso/unk/TLobby_8001D6A0.cpp"
+    ]
+  },
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2394,
+  "coverage_sha256": {
+    "battle": "eeb8fcefae48d9bcbe47352bc49dae074136c651667843393f84f20b35c3c072",
+    "cumulative": "b460f154a73d719c78a1f64fe9c780d8b07dc12ae7037beb925d10bedac200bb",
+    "private": "32b4051a8bc235b336030f70b7596e70985a7243fa45e98265a7cac8ce650132"
+  },
+  "data_inventory": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0,
+    "ranges": 90
+  },
+  "battle_bank_objects": {
+    "TLobby__battle_parameter_buffer": {
+      "address": "0x805d4aa0",
+      "size": 4
+    },
+    "battle_param_stats": {
+      "address": "0x805d4aa4",
+      "size": 4
+    },
+    "TLobby__battle_param_attacks": {
+      "address": "0x805d4aa8",
+      "size": 4
+    },
+    "TLobby__battle_param_resistances": {
+      "address": "0x805d4aac",
+      "size": 4
+    },
+    "battle_param_movement": {
+      "address": "0x805d4ab0",
+      "size": 4
+    },
+    "battle_parameter_difficulty": {
+      "address": "0x805d4ab4",
+      "size": 4
+    },
+    "battle_param_lab_variant": {
+      "address": "0x805d4ab8",
+      "size": 4
+    }
+  },
+  "source_quality": {
+    "total": {
+      "base": 157953,
+      "head": 157856,
+      "added": 2,
+      "removed": 99
+    },
+    "remaining_findings": [
+      {
+        "key": "offset_member",
+        "path": "src/pso/object/TObjControl.cpp",
+        "line": 356,
+        "text": "m_2f6"
+      },
+      {
+        "key": "offset_member",
+        "path": "src/pso/object/TObjControl.cpp",
+        "line": 358,
+        "text": "m_2fa"
+      }
+    ],
+    "renames": [
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8001E41C",
+        "type": "function",
+        "old": "swap_endian__6TLobbyFv",
+        "new": "swap_endian__15ActorParamBlockFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8001E498",
+        "type": "function",
+        "old": "byteswap_packet__6TLobbyFv",
+        "new": "byteswap_packet__12AttackParamsFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x800B9E84",
+        "type": "function",
+        "old": "reload_stats_keep_hp_tp__9TObjEneDDFPUcPUcPUc",
+        "new": "reload_stats_keep_hp_tp__9TObjEneDDFP12player_statsP12AttackParamsP15ActorParamBlock",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x800B9ED0",
+        "type": "function",
+        "old": "reset_hp__9TObjEneDDFPUcPUcPUc",
+        "new": "reset_hp__9TObjEneDDFP12player_statsP12AttackParamsP15ActorParamBlock",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x800F7478",
+        "type": "function",
+        "old": "bind_enemy_combat_stats__9TObjEnemyFPUcPUcPUc",
+        "new": "bind_enemy_combat_stats__9TObjEnemyFP12player_statsP12AttackParamsP15ActorParamBlock",
+        "flags": []
+      }
+    ],
+    "stale_force_active": [],
+    "report_sha256": "f20bbb5d175a0cb92df8d0e61eb84123dc6426f226edb0e724b3d5ad59b2a12e"
+  },
+  "file_copy_order": "Direct two-dimensional array indexing changes the retail copy instructions. The loader retains the matching address calculation for three banks and uses typed table pointers and sizes.",
+  "runtime_logs_sha256": {
+    "battle-probes.log": "842035fc100358b52cb2cbbad8652e6ad30846d29bfe656b12e8f766bbfbe9f9",
+    "cumulative-probes.log": "c875ed761b5bcc518dcf34dede8aa7e9f033b64b52b38e9e0c2382653e24fe82"
+  },
+  "private_workspace": {
+    "paths": 130,
+    "materialized_tree": "5d1b9ed7dcbec02e316eba5b39f2c27fa23339dc",
+    "patch_sha256": "e4577ef7dd6e8eb3e2dfba5346132b66207679104c8d3077b2755eedfc6dd479",
+    "tests": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    }
+  }
+}

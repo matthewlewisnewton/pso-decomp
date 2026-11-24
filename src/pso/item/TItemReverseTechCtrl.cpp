@@ -1,6 +1,8 @@
-#include "pso/TItemReverseTechCtrl.h"
+#include "pso/item/TItemReverseTechCtrl.h"
 #include "pso/item/TItemReverseTech_8011A1E8.h"
-#include "pso/misc/TKeyBoardControl.h"
+#include "pso/ui/keyboard/TKeyBoardControl.h"
+
+#pragma readonly_strings on
 
 struct ReverseTechCode {
     s8 *keys;
@@ -8,10 +10,9 @@ struct ReverseTechCode {
     void (*activate)(void);
 };
 
-extern "C" {
-extern const char *lbl_805D2C58;
+
+const char *lbl_805D2C58 = "TItemReverseTechCtrl";
 extern ReverseTechCode lbl_804A0468[3];
-}
 
 void TItemReverseTechCtrl::run_task() {
     s32 letter;
@@ -52,7 +53,7 @@ TItemReverseTechCtrl::TItemReverseTechCtrl(TObject *parent) : TObject(parent) {
     key_progress[2] = 0;
 }
 
-extern "C" {
+
 s8 lbl_804A0440[12] = {
     'u' - 'a', 'r' - 'a', 'a' - 'a', 'e' - 'a', 'n' - 'a', 'd' - 'a',
     'i' - 'a', 'n' - 'a', 'g' - 'a',
@@ -66,11 +67,10 @@ s8 lbl_804A0458[16] = {
     'u' - 'a', 'k' - 'a', 'a' - 'a', 'i' - 'a', 't' - 'a', 'e' - 'a', 'n' - 'a',
 };
 ReverseTechCode lbl_804A0468[3] = {
-    { lbl_804A0440, 9, TItemReverseTech__sub_8011A5A4 },
-    { lbl_804A044C, 11, (void (*)(void))TItemReverseTech__sub_8011A580 },
-    { lbl_804A0458, 13, (void (*)(void))TItemReverseTech__sub_8011A55C },
+    { lbl_804A0440, 9, activate_uraending_code },
+    { lbl_804A044C, 11, (void (*)(void))activate_reverse_rotation_code },
+    { lbl_804A0458, 13, (void (*)(void))activate_fast_rotation_code },
 };
-}
 
 TItemReverseTechCtrl *TItemReverseTechCtrl::create(TObject *parent) {
     return new TItemReverseTechCtrl(parent);

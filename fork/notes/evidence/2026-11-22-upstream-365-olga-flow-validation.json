@@ -1,0 +1,367 @@
+{
+  "source": "017a2a87d4b29f51354082fc982a162c30f48814",
+  "previous_source": "8c249664a99a923bf79fc0cea186f2b9b64007bb",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/boss/olgaflow/TBoss6Mine.h",
+    "include/pso/boss/olgaflow/TBoss6SwordWave.h",
+    "include/pso/boss/olgaflow/TBoss6Type1.h",
+    "include/pso/boss/olgaflow/TBoss6Type2.h",
+    "include/pso/boss/olgaflow/TBoss6Type2_8032E708.h",
+    "include/pso/object/base/TObjChara.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/player/TObjPlayer_80011014.h",
+    "include/pso/unk/text_800F5BC0.h",
+    "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp",
+    "src/pso/boss/darkfalz/TBoss4DarkFalz_8004D8C8.cpp",
+    "src/pso/boss/olgaflow/TBoss6Mine.cpp",
+    "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+    "src/pso/boss/olgaflow/TBoss6PlotFalz_802B0228.cpp",
+    "src/pso/boss/olgaflow/TBoss6Rock.cpp",
+    "src/pso/boss/olgaflow/TBoss6RockChase.cpp",
+    "src/pso/boss/olgaflow/TBoss6SwordShot.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type1_802B20C0.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2_803309D8.cpp",
+    "src/pso/effect/photon/TPhotonEstlla.cpp",
+    "src/pso/effect/photon/TPhotonFarlla.cpp",
+    "src/pso/effect/photon/TPhotonGolla.cpp",
+    "src/pso/effect/photon/TPhotonLeilla.cpp",
+    "src/pso/effect/photon/TPhotonPilla.cpp",
+    "src/pso/object/TObjControl.cpp",
+    "src/pso/player/TObjPlayer_80011014.cpp",
+    "src/pso/player/TObjPlayer_802C422C.cpp"
+  ],
+  "combined_paths_from_upstream": 1096,
+  "replay_preview": {
+    "base": "f764ab538a",
+    "donor": "b91b12324e",
+    "live": "8c249664a99a923bf79fc0cea186f2b9b64007bb",
+    "paths": {
+      "config/GPOE8P/psov3/symbols.txt": "conflict",
+      "include/pso/boss/TUnk_804F1280.h": "same blob",
+      "include/pso/boss/olgaflow/OlgaFlowActions.h": "same blob",
+      "include/pso/boss/olgaflow/TBoss6Mag.h": "same blob",
+      "include/pso/boss/olgaflow/TBoss6Mine.h": "conflict",
+      "include/pso/boss/olgaflow/TBoss6PlotFalz.h": "already mapped",
+      "include/pso/boss/olgaflow/TBoss6SwordWave.h": "conflict",
+      "include/pso/boss/olgaflow/TBoss6Type1.h": "conflict",
+      "include/pso/boss/olgaflow/TBoss6Type1_802B20C0.h": "same blob",
+      "include/pso/boss/olgaflow/TBoss6Type2.h": "conflict",
+      "include/pso/boss/olgaflow/TBoss6Type2_8032E708.h": "conflict",
+      "include/pso/object/base/TObjChara.h": "conflict",
+      "include/pso/player/TObjPlayer.h": "clean",
+      "include/pso/player/TObjPlayer_80011014.h": "conflict",
+      "include/pso/unk/text_800F5BC0.h": "clean",
+      "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp": "conflict",
+      "src/pso/boss/darkfalz/TBoss4DarkFalz_8004D8C8.cpp": "clean",
+      "src/pso/boss/olgaflow/TBoss6GravBall.cpp": "conflict",
+      "src/pso/boss/olgaflow/TBoss6Mine.cpp": "conflict",
+      "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp": "conflict",
+      "src/pso/boss/olgaflow/TBoss6PlotFalz_802B0228.cpp": "conflict",
+      "src/pso/boss/olgaflow/TBoss6Rock.cpp": "conflict",
+      "src/pso/boss/olgaflow/TBoss6RockChase.cpp": "clean",
+      "src/pso/boss/olgaflow/TBoss6SwordShot.cpp": "conflict",
+      "src/pso/boss/olgaflow/TBoss6Type1.cpp": "conflict",
+      "src/pso/boss/olgaflow/TBoss6Type1_802B20C0.cpp": "conflict",
+      "src/pso/boss/olgaflow/TBoss6Type2.cpp": "conflict",
+      "src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp": "conflict",
+      "src/pso/boss/olgaflow/TBoss6Type2_803309D8.cpp": "conflict",
+      "src/pso/boss/olgaflow/TBoss6Type2_80336E6C.cpp": "same blob",
+      "src/pso/object/TObjControl.cpp": "clean",
+      "src/pso/player/TObjPlayer_80011014.cpp": "conflict",
+      "src/pso/player/TObjPlayer_802C422C.cpp": "clean"
+    }
+  },
+  "validation": {
+    "source": {
+      "baseline": "8c249664a99a923bf79fc0cea186f2b9b64007bb",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x80019324",
+          "before": "obj_clearArrS16_FC__FP8ObjArrFCi",
+          "after": "obj_clearArrS16_FC__FP9TObjCharal"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802B57D4",
+          "before": "request_jittered_camera__11TBoss6Type1FPvPvPvi",
+          "after": "request_jittered_camera__11TBoss6Type1FPC3VecPC3Veci"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802B93C4",
+          "before": "TBoss6Type1__ct",
+          "after": "__ct__11TBoss6Type1FP7TObjectP15Boss6PhaseSpawn"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032E710",
+          "before": "set_action_field_0x408__11TBoss6Type2FUs",
+          "after": "set_action_field_0x408__9TBoss6MagFUs"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032E740",
+          "before": "set_anim_frame__11TBoss6Type2Fl",
+          "after": "set_anim_frame__9TBoss6MagFP9TBoss6Mag"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032EEA8",
+          "before": "compute_random_dir_vec__11TBoss6Type2FlPUcll",
+          "after": "compute_random_dir_vec__9TBoss6MagFlPUcll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032F2C4",
+          "before": "init_with_global_table__11TBoss6Type2Fv",
+          "after": "init_with_global_table__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80330240",
+          "before": "fn_80330240",
+          "after": "receive_direct_attack__9TBoss6MagFPv19DirectAttackPayloadPvll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80330384",
+          "before": "spawn_ground_effect__10TObjPlayerFPv",
+          "after": "run_hit_reaction__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803303E0",
+          "before": "save_position__10TObjPlayerFv",
+          "after": "save_position__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8033068C",
+          "before": "fn_8033068C",
+          "after": "__dt__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80330724",
+          "before": "TBoss6Mag__ct",
+          "after": "__ct__9TBoss6MagFP7TObjectP13Boss6MagSpawn"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80356B18",
+          "before": "__ct__15TBoss6SwordWaveFv",
+          "after": "__ct__15TBoss6SwordWaveFP11TBoss6Type2PC3Vecllf"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "515d01d6d2bb23af3a117383007801651a5c3f426ec27fcad78f058979b26d26",
+      "report_sha256": "a47f0ed4447cac16563e196ee78bcc79776671df2033d8bdbf7cffdb5af000be"
+    },
+    "layer": {
+      "baseline": "017a2a87d4b29f51354082fc982a162c30f48814",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "52e7b7c44c895ea98e91fe1a9ea21805885753879d1966b15b6b684ebe565d0b",
+      "report_sha256": "a47f0ed4447cac16563e196ee78bcc79776671df2033d8bdbf7cffdb5af000be"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "b090e1c76093ca519046bb04ee192ec4837073c59d6b4d11b2d200b1d146f283"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "34bc7db801398fb842da78f14fdd670f61cd615b3c9c9048ea6f97203222d92a"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "images": [
+      "retail",
+      "source",
+      "materialized fork workspace"
+    ],
+    "probes": {
+      "mag": {
+        "checks": "Mag creation, peer slots, action entry, animation, draw, and teardown",
+        "probe_sha256": "99ec8dc3a6acd5c445a984903e4ae7af97fd8b4e41a2d4e727285cd4a3e0b583",
+        "logs_sha256": {
+          "source": "72a05bb224ddb85b4b3d9ba6df70382fb7c6406f55820f346a5905bf1c68be5f",
+          "workspace": "658d2723c0799c424ffbc9a9c5844255561b044f111e82263e9f08eb661ed264"
+        }
+      },
+      "phases": {
+        "checks": "phase-one dispatch, motion and packets, phase-result transfer, credit slots, and rock collision",
+        "probe_sha256": "d5d8df99906ad3e128ea1b2c75ee63222625b43126b261a49cce8b645d40764c",
+        "logs_sha256": {
+          "source": "1d0ec60d984f9af3c150082e782a988b927ce33875f1a34ad882f5255055086d",
+          "workspace": "06f5789b73818df65b210050d786aa29d502092eb8bb18e348d318a9bbd42864"
+        }
+      },
+      "contacts": {
+        "checks": "player relocation, seven part flags, both collision layouts, lower contact, and both emitter lifecycles",
+        "probe_sha256": "0b1e14c0cfce30eec951636691046faad9071ec5c1a0fd111e70a3a89e2b8157",
+        "logs_sha256": {
+          "source": "2043168047666ab393566436499dd5f3f7b634cb2ac082532fd35362091e0863",
+          "workspace": "f42e96e136fe3dafb2b3f54c8c57c448794963e3fe0ed7e69d2614ac4716b612"
+        }
+      },
+      "plot": {
+        "checks": "damage and charge, experience branches, strip ownership, sway, and 24 particle slots",
+        "probe_sha256": "4f9abef7b88ac5f222a670ecd78e19dc9e43b06fab634903765a8fb086e250ae",
+        "logs_sha256": {
+          "source": "dc0e8c43d107da367c27b258fd9c1647088d8e6d939f6e07620b559d60e8235e",
+          "workspace": "72dc52ef705c34c0afff8019a29f076f14fa0375f3d73da9cd6219d4896a03f0"
+        }
+      },
+      "actions": {
+        "checks": "grid, arena radius, camera forwarding, direct damage, and possession save and restore",
+        "probe_sha256": "29075370d88a717ca3f51442e756e84cbae72b8d9951a00b4feefbf280787caf",
+        "logs_sha256": {
+          "source": "cf01c08710c2e7f0dae15bc1b9f400aec64425b6d10e37c54b3621770d6e6502",
+          "workspace": "6dbebd52d99cdb00563e86022628bda57535dfd0afd98d6c193bbb33b7daebf9"
+        }
+      },
+      "motion-state": {
+        "checks": "exact 64-byte motion copy and archive-backed two-track reset",
+        "probe_sha256": "45b3a0078d4a235a8ab208cda1da3b480696f0c14f186f33e1f8b74f0282ca76",
+        "logs_sha256": {
+          "source": "8561b2c78297b5647a7aea1876fd1afedb0ebf282f44128ff9f760318be9b76d",
+          "workspace": "4a70db88eb40768d9637b43151fbd19d38b8cac4610d4369e4f6ba3f0f0ab43c"
+        }
+      },
+      "attacks": {
+        "checks": "wave angle wraparound, damage dispatch, mine release and rock resources",
+        "probe_sha256": "0f5b1e48cff5cfc748e4b08a2646e08ef6d7c5fe05cd4d2749379dbb27d1fcc7",
+        "log_sha256": "c32a702ad664cb15c72a09b4ca5323599d5a1420d651f8a2d48d67038605e4d9"
+      }
+    },
+    "verified_probe_aliases": {
+      "0x803DA798": [
+        "set_global_param",
+        "set_global_param__8TObjFishFP16GinjaTextureList"
+      ],
+      "0x80131700": [
+        "find_model_node__FP10NJS_OBJECTl",
+        "find_model_node__FUll"
+      ]
+    }
+  },
+  "historical": {
+    "scoped_rows": [
+      {
+        "row": 521,
+        "fork_path": "src/pso/boss/TBoss6Type1.cpp",
+        "current_owner": "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+        "current_owner_blob": "4b6ee15369cc5133bb26186ebc460289178358b1",
+        "evidence": "The native phase-one constructor, typed jittered camera call, motion-state copy and action arguments match. The type-one source still needs a complete comparison against its historical delta."
+      },
+      {
+        "row": 794,
+        "fork_path": "src/pso/boss/TBoss4DarkFalz_8004C93C.cpp",
+        "current_owner": "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp",
+        "current_owner_blob": "739a957f9b5af7afff679fdae2f4bfc336eb3f2d",
+        "evidence": "This owner participates in the matching boss, texture strip, or attack-credit replay. The full historical comparison remains open."
+      },
+      {
+        "row": 1076,
+        "fork_path": "src/pso/boss/TBoss6Type2.cpp",
+        "current_owner": "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+        "current_owner_blob": "df2477accb337bf2efa13f2e54e313c13b3e790d",
+        "evidence": "The native Mag slots and factory, typed rock and player damage paths, and phase handoff match. The phase-two constructor still uses the current saddr pointer declaration and the full historical source comparison remains open."
+      },
+      {
+        "row": 3998,
+        "fork_path": "include/pso/player/TObjPlayer.h",
+        "current_owner": "include/pso/player/TObjPlayer.h",
+        "current_owner_blob": "2f2dcd68b89fd8e90687636fec60c6e11db5e2e5",
+        "evidence": "This owner participates in the matching boss, texture strip, or attack-credit replay. The full historical comparison remains open."
+      },
+      {
+        "row": 3999,
+        "fork_path": "include/pso/player/TObjPlayer_80011014.h",
+        "current_owner": "src/pso/player/TObjPlayer_80011014.cpp",
+        "current_owner_blob": "c856afdf9515d75449d090358d2048f0f65ba79c",
+        "evidence": "Attack-credit insertion takes the native actor pointer and a numeric ID. The random-ratio and nearest-player declarations still need a complete comparison against the historical header."
+      },
+      {
+        "row": 4089,
+        "fork_path": "src/pso/player/TObjPlayer_80011014.cpp",
+        "current_owner": "src/pso/player/TObjPlayer_80011014.cpp",
+        "current_owner_blob": "c856afdf9515d75449d090358d2048f0f65ba79c",
+        "evidence": "The four attack-credit IDs now use the checked native halfword slots through the original clear, get, set and insert entries. The full historical player source comparison remains open."
+      },
+      {
+        "row": 6723,
+        "fork_path": "src/pso/object/TObjControl.cpp",
+        "current_owner": "src/pso/object/TObjControl.cpp",
+        "current_owner_blob": "eccd2b3889da4623a556fec4dc98715edcfb36c4",
+        "evidence": "This owner participates in the matching boss, texture strip, or attack-credit replay. The full historical comparison remains open."
+      }
+    ],
+    "open_rows": 361
+  },
+  "fork_workspace": {
+    "trial": "c7a2bab92afaf9404581557cddc8d7a42b8b2f80",
+    "overlay_paths": 130,
+    "updated_overlay_paths": [
+      "config/GPOE8P/psov3/config.yml"
+    ],
+    "archive_sha256": "ada9c5ba59e51d4cdc7fb4221c815c8b68a1c5381c17ec8bedb72572c439c5fe",
+    "materialized_tree": "0c5eccc5d462b7d29c3cf4cf8ccb13ff1f4a8f02",
+    "force_active": 27027
+  },
+  "mag_vtable": {
+    "symbol": "__vt__9TBoss6Mag",
+    "address": "0x804EDDEC",
+    "bytes": 332
+  }
+}

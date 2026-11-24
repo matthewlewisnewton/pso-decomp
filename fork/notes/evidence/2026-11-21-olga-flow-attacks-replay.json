@@ -1,0 +1,286 @@
+{
+  "source": "60d7b50453025e3ff784bb6e6aee3a8412adae5a",
+  "previous_source": "f764ab538a116d696a0cd598e21037263f05421d",
+  "upstream": "5a4e7ced56fe7072359b6d279e94f4be3b8453c0",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "source_paths": 1176,
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/boss/TUnk_804F1280.h",
+    "include/pso/boss/olgaflow/TBoss6Mine.h",
+    "include/pso/boss/olgaflow/TBoss6SwordWave.h",
+    "include/pso/boss/olgaflow/TBoss6Type1.h",
+    "src/pso/boss/olgaflow/TBoss6Mine.cpp",
+    "src/pso/boss/olgaflow/TBoss6Rock.cpp",
+    "src/pso/boss/olgaflow/TBoss6RockChase.cpp",
+    "src/pso/boss/olgaflow/TBoss6SwordShot.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2.cpp"
+  ],
+  "author": {
+    "name": "matthewlewisnewton",
+    "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+    "coauthor_trailers": 0
+  },
+  "layouts": {
+    "sword_wave_size": 100,
+    "sword_wave_owner": 28,
+    "sword_wave_rock_bits": 48,
+    "sword_wave_rock_slot_count": 256,
+    "sword_wave_inner_radius": 80,
+    "mine_spawn_size": 100,
+    "mine_instance_size": 976,
+    "mine_count_completed": 1252,
+    "rock_marker_size": 68,
+    "rock_texture_pointer_offset": 60,
+    "rock_model_pointer_offset": 64
+  },
+  "triage": {
+    "enemy_and_boss_records_screened": 99,
+    "full_token_comparisons": 0,
+    "rename_candidates": 0,
+    "partial_anchor_rows": [
+      698,
+      701,
+      715,
+      718,
+      727,
+      734,
+      738,
+      743,
+      762,
+      794,
+      802,
+      813,
+      814,
+      833,
+      842,
+      895,
+      906,
+      907,
+      913,
+      932,
+      933,
+      934,
+      944,
+      948,
+      956,
+      986,
+      987,
+      995,
+      1015,
+      1026,
+      1027,
+      1053,
+      1055,
+      1058,
+      1069,
+      1076,
+      1114,
+      1116,
+      1129,
+      1139,
+      1143,
+      1149,
+      1164,
+      1168,
+      1184
+    ]
+  },
+  "historical_comparison": {
+    "prior_open_rows": 460,
+    "open_rows": 458,
+    "closed_rows": [
+      {
+        "row": 983,
+        "description": "The mine owns its typed spawn record, BML resources, collision body, movement vectors and emitter. Native construction and teardown keep the original calls, and the owner counter shares its signed phase-one storage. The battle, demo and scene routines retain their existing names at the same addresses.",
+        "historical_path": "src/pso/boss/TBoss6Mine.cpp",
+        "current_path": "src/pso/boss/olgaflow/TBoss6Mine.cpp",
+        "fork_blob": "b4ec14c2a0ea000309dbc6c2621bf4cb6e1c96ef",
+        "current_blob": "4d475d5a8eebd185536cd9259dcf10bc0f8d51d5",
+        "authored_diff_sha256": "05021b6c8225731b63591844a2f938fb6a416b5b7fd08dfd382db665b6b2ac37"
+      },
+      {
+        "row": 995,
+        "description": "The native sword shot allocation and constructor preserve effect scale and damage defaults. The wave initializes its real scene owner, range, bitmap and battle parameters. The attack dispatch uses the shared player and payload. Matching literals retain the original constant-pool values and layout.",
+        "historical_path": "src/pso/boss/TBoss6SwordShot.cpp",
+        "current_path": "src/pso/boss/olgaflow/TBoss6SwordShot.cpp",
+        "fork_blob": "a7b1a55cacadc16b677a73a24b55e14f405545c2",
+        "current_blob": "2e29bdf518aa4b63a422ecf4a522af3a730f2dc2",
+        "authored_diff_sha256": "bfeb7b230da681879f63f5a81eaec39cfb94c0fbf2a35ab7c13dee89f479da5c"
+      }
+    ],
+    "partial_rows": {
+      "738": "The phase-one mine count and completion counter use the native signed members, and its spawn callback uses the correct boss pointer. Other historical phase-one layout work remains under review.",
+      "907": "The falling-rock marker carries the model node and texture-list pointers through binding and render. Rock and rock chase read the same shared landing damage field. The map collision setup remains open.",
+      "1076": "The wave factory uses the actual phase-two instance throughout ring emission and hit dispatch. Other phase-two behavior still needs historical comparison."
+    },
+    "same_address_names": {
+      "0x8001E1D8": [
+        "get_battle_movement_params",
+        "dispatch_shared_handler_a__6TLobbyFl"
+      ],
+      "0x8001E210": [
+        "get_battle_resistance_params",
+        "register_object__6TLobbyFl"
+      ],
+      "0x8001E248": [
+        "get_battle_attack_params",
+        "dispatch_shared_handler_b__6TLobbyFl"
+      ],
+      "0x8001E280": [
+        "get_battle_base_stats",
+        "register_boss__6TLobbyFl"
+      ],
+      "0x8003F0E8": [
+        "register_by_id__9TObjEnemyFv",
+        "reset_photon_effect__9TObjEnemyFv"
+      ],
+      "0x80080750": [
+        "check_demo_mode__Fv",
+        "check_demo_mode__10TObjPlayerFv"
+      ],
+      "0x803DA798": [
+        "set_current_texture_list",
+        "set_global_param"
+      ]
+    }
+  },
+  "validation": {
+    "stock": {
+      "baseline": "f764ab538a116d696a0cd598e21037263f05421d",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x803537D4",
+          "before": "set_target__13TUnk_804F1280FlP3VecPlllf",
+          "after": "set_target__13TUnk_804F1280FlPC3VecPlP16GinjaTextureListP10NJS_OBJECTf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80356B18",
+          "before": "__ct__15TBoss6SwordWaveFv",
+          "after": "__ct__15TBoss6SwordWaveFP11TBoss6Type2PC3Vecllf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80356C10",
+          "before": "create__15TBoss6SwordWaveFP7TObjectPC3Vecllf",
+          "after": "create__15TBoss6SwordWaveFP11TBoss6Type2PC3Vecllf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80356CDC",
+          "before": "split_bit_index__15TBoss6SwordWaveFlUcPvPv",
+          "after": "split_bit_index__15TBoss6SwordWaveFPCllPlPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80356D64",
+          "before": "fill_range__15TBoss6SwordWaveFPvPv",
+          "after": "fill_range__15TBoss6SwordWaveFPlll"
+        }
+      ],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "202a66da7e73ddf335434539b915751c14d8bc48098dcc84a25d7d77a012234b",
+      "report_sha256": "50231ee336073d71d1295a749de912e9f70117f940f1b8e30da54cf0ea900bb8"
+    },
+    "workspace": {
+      "baseline": "60d7b50453025e3ff784bb6e6aee3a8412adae5a",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "50231ee336073d71d1295a749de912e9f70117f940f1b8e30da54cf0ea900bb8"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "cec53cb1d317892d5536db44909e70d336b04e3ddc77132773433624c0a4d1fd"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "874991bfb662d3c6ec81a9dcbfd13dcdd5bac07650e1892fa4ff01d7511a329d"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    },
+    "olga_flow_runtime": {
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "checks": [
+        "Wave constructor and battle parameter defaults",
+        "Wrapped and single-slot bitmap ranges",
+        "Bitmap set, test and clear at the wrap boundary",
+        "Damage dispatch only within the live radius and covered angle",
+        "Mine release and signed owner counter",
+        "Enabled and disabled rock marker resource assignment"
+      ],
+      "emulation": "Scalar save and restore stand in for the adjacent unsupported paired-single instructions. External callbacks and vector subtraction are supplied by the harness.",
+      "log_sha256": "c32a702ad664cb15c72a09b4ca5323599d5a1420d651f8a2d48d67038605e4d9",
+      "probe_sha256": "0f5b1e48cff5cfc748e4b08a2646e08ef6d7c5fe05cd4d2749379dbb27d1fcc7"
+    }
+  },
+  "fork_workspace": {
+    "overlay_paths": 130,
+    "overlay_patch_sha256": "b79d7e948dca8550479009896d3f760a90e3fe7af1d3776ee1930ed070a385b3",
+    "updated_overlay_paths": [
+      "config/GPOE8P/psov3/config.yml"
+    ],
+    "force_active_names": 27033,
+    "force_active_symbol_changes": [
+      "-  - __ct__15TBoss6SwordWaveFv",
+      "+  - __ct__15TBoss6SwordWaveFP11TBoss6Type2PC3Vecllf",
+      "-  - fill_range__15TBoss6SwordWaveFPvPv",
+      "+  - fill_range__15TBoss6SwordWaveFPlll",
+      "-  - set_target__13TUnk_804F1280FlP3VecPlllf",
+      "+  - set_target__13TUnk_804F1280FlPC3VecPlP16GinjaTextureListP10NJS_OBJECTf",
+      "-  - split_bit_index__15TBoss6SwordWaveFlUcPvPv",
+      "+  - split_bit_index__15TBoss6SwordWaveFPCllPlPl"
+    ],
+    "archive_test_head": "2e146255a71bfbc4a88170ae5890184586834bdd",
+    "tested_materialized_tree": "56b0a3bf8607e3a98bcf9b26a8332693556ba559"
+  }
+}

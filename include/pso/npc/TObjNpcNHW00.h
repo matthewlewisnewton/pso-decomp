@@ -2,28 +2,19 @@
 #define PSO_NPC_TOBJNPCNHW00_H
 
 #include "types.h"
-#include "pso/npc/TUnk_804A8640.h"
+#include "pso/npc/TObjNpcFemale.h"
 
-struct TObjNpcNHW00 : public TUnk_804A8640 {
+struct TObjNpcNHW00 : public TObjNpcFemale {
+    TObjNpcNHW00(TObject *parent, void *set_data);
     virtual ~TObjNpcNHW00();
     static void free_static_resources();
     static void load_resources();
+    static void *create(void *set_data);
+    static const char *name;
+    static void **shared_named_model_object;
+    static NJS_TEXLIST *texture_gvm_handle;
 };
 
-typedef char TObjNpcNHW00_size[sizeof(TObjNpcNHW00) == 0x3B8 ? 1 : -1];
-
-extern "C" {
-u8 *TObjNpcNHW00__ct(u8 *arg0, s32 arg1, s32 arg2);
-void *TObjNpcNHW01__create(void *arg0);
-void *__dt__12TObjNpcNHW00Fv(void *arg0, s16 arg1);
-}
-
-// --- C functions defined in TObjNpcNHW00.cpp ---
-extern "C" {
-u8 *TObjNpcNHW00__ct(u8 *arg0, s32 arg1, s32 arg2);
-void *TObjNpcNHW01__create(void *arg0);
-void *__dt__12TObjNpcNHW00Fv(void *arg0, s16 arg1);
-}
-// --- end of C functions
+LAYOUT_ASSERT(TObjNpcNHW00_size, sizeof(TObjNpcNHW00) == 0x3B8);
 
 #endif

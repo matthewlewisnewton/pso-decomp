@@ -1,0 +1,313 @@
+{
+  "source": "645e26ce0321a8dfdb128e9f1e7066b372a9270b",
+  "previous_source": "7286601fc82ce6e72a549b8acf912663ce2c1396",
+  "earlier_verified_components": {
+    "meseta": "3f8327b27382b5d5f5869980d1bc79e385fbf092",
+    "inventory": "ea15afeaf4f0d64b51f2f8d6827aaf6642dbe4bd",
+    "trade": "8e9e9ffd4227f9acaa6bbde0cdf92d4a2e9c13d0"
+  },
+  "single_review_candidate": "a58926e81e62f1ce7e591b2c1a8ef3b3b0b293f5",
+  "compiled_source_units": 2448,
+  "matched_functions": 27572,
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/morfos/TWindowSubTradeMain.h",
+    "include/pso/item/TItemList.h",
+    "include/pso/object/base/TObjChara.h",
+    "include/pso/player/TObjPlayer_80011014.h",
+    "include/pso/player/TPlyItem.h",
+    "include/pso/ui/window/TWindowSubTrade.h",
+    "include/pso/unk/text_801D40D4.h",
+    "src/pso/network/TradeSession.cpp",
+    "src/pso/npc/TNpcPlayer_802C3CD0.cpp",
+    "src/pso/player/TObjPlayer_80011014.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TObjPlayer_802C422C.cpp",
+    "src/pso/player/TPlyItem.cpp",
+    "src/pso/quest/QuestOpcodeHandlers.cpp",
+    "src/pso/ui/city/TCheckRoomSequence.cpp",
+    "src/pso/ui/city/TMedicalCenterSequence.cpp",
+    "src/pso/ui/city/TShopEquipmentSellWindow.cpp",
+    "src/pso/ui/city/TShopJudgmentItemWindow.cpp",
+    "src/pso/ui/city/TShopKeepItemWindow.cpp",
+    "src/pso/ui/window/TWindowSubTrade.cpp",
+    "src/pso/ui/window/TWindowSubTradeMain_80330A84.cpp",
+    "src/pso/ui/window/TWindowSubTradeMessage.cpp",
+    "src/pso/weapon/TUnk_804A4D70.cpp"
+  ],
+  "source_fixes": [
+    "An existing payment helper accepts the shared character receiver and gets meseta from the typed actor stats.",
+    "Inventory slots retain the held TItem pointer. Shop lists collect TItem pointers, and player and companion export writes actual TPlyInventoryItem records.",
+    "Trade controls own typed list, message and confirmation windows, and carry typed quantity and item-help widgets through their original allocation calls."
+  ],
+  "combat_merge_resolutions": [
+    "src/pso/player/TObjPlayer_80011014.cpp",
+    "src/pso/weapon/TUnk_804A4D70.cpp"
+  ],
+  "historical_rows_closed": {
+    "3015": {
+      "historical_path": "src/pso/unk/text_802D298C.cpp",
+      "owner": "src/pso/network/TradeSession.cpp",
+      "owner_blob": "21b432ba15e8021f7b879e27bad815a87a097bfa",
+      "decision": "The trade delta uses the shared typed actor payment interface via the live TObjPlayer and calls the existing TObjPlayer::send_6x29_delete_item. The earlier local raw declarations are gone."
+    },
+    "5835": {
+      "historical_path": "include/pso/misc/TShopArmorListWindow.h",
+      "owner": "include/pso/ui/city/TShopArmorListWindow.h",
+      "owner_blob": "0bcb9ab08bda23b298ff28e19225d97654ac53c6",
+      "decision": "The existing vfunc_6 takes the two arguments that the fork supplied. The menu at +0x30 is a TWindowMenu pointer with a layout assertion. Keep the current upstream field name choice_menu."
+    },
+    "5932": {
+      "historical_path": "src/pso/misc/TWindowSubTrade.cpp",
+      "owner": "src/pso/ui/window/TWindowSubTrade.cpp",
+      "owner_blob": "e5ded75a6a303a85de74804c2084cea8886f44ee",
+      "decision": "The cancellation sound uses the shared one-shot declaration. The list dispatch uses the native TWindowMenu::get_selected_value, with the existing linked address."
+    },
+    "5967": {
+      "historical_path": "src/pso/misc/TWindowSubTradeMain_80330A84.cpp",
+      "owner": "src/pso/ui/window/TWindowSubTradeMain_80330A84.cpp",
+      "owner_blob": "0a27c1d9aa501231a8fd16af31c42306657c989a",
+      "decision": "The two one-shot sounds use the shared declaration, and all six menu dismissals use their TWindowBase owner. The exact source-linked unit has the single four-byte .sdata2 extent used at the same retail addresses for all six 282.0f loads."
+    }
+  },
+  "historical_rows_with_added_evidence": {
+    "3181": "The native TItemList stores and returns a TItem pointer at +0x1C, and its original setter now takes the actual item pointer.",
+    "3963": "The existing export function writes the native present byte, flags word and TItemData under one shared declaration.",
+    "4049": "Typed slot ownership and the native destructor are present in TPlyItem.cpp. The remaining raw validity and placement interfaces require their own comparison.",
+    "4183": "Shop collection writes TItem pointers, and player, save and companion callers export native TPlyInventoryItem records."
+  },
+  "trade_small_data": {
+    "size": 4,
+    "match_percent": 100.0
+  },
+  "historical_rows_open": 651,
+  "validation": {
+    "frontend": {
+      "check_sha256": "21af337d3a0b5cd14046f1b8cbc9349dfad353ccc8003e9a0b23eff516790ca7",
+      "changed_function_labels_from_previous_tree": [
+        {
+          "module": "psov3",
+          "address": "0x801D48C4",
+          "before": "run_state_query__8TPlyItemFi",
+          "after": "run_state_query__8TPlyItemFP17TPlyInventoryItem"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D4CB8",
+          "before": "count_matching_items__8TPlyItemFi",
+          "after": "count_matching_items__8TPlyItemFPP5TItem"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D4CEC",
+          "before": "apply_shop_judgment__8TPlyItemFi",
+          "after": "apply_shop_judgment__8TPlyItemFPP5TItem"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D57A8",
+          "before": "set_field_1c__9TItemListFl",
+          "after": "set_field_1c__9TItemListFP5TItem"
+        }
+      ],
+      "source_report_sha256": "57f3004a37e6c5594ae7257f979b33ca71c4065d0d5bc4efb85dfaa3bfe93e01",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      }
+    },
+    "resources": {
+      "check_sha256": "21af337d3a0b5cd14046f1b8cbc9349dfad353ccc8003e9a0b23eff516790ca7",
+      "changed_function_labels_from_previous_tree": [
+        {
+          "module": "psov3",
+          "address": "0x801D48C4",
+          "before": "run_state_query__8TPlyItemFi",
+          "after": "run_state_query__8TPlyItemFP17TPlyInventoryItem"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D4CB8",
+          "before": "count_matching_items__8TPlyItemFi",
+          "after": "count_matching_items__8TPlyItemFPP5TItem"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D4CEC",
+          "before": "apply_shop_judgment__8TPlyItemFi",
+          "after": "apply_shop_judgment__8TPlyItemFPP5TItem"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D57A8",
+          "before": "set_field_1c__9TItemListFl",
+          "after": "set_field_1c__9TItemListFP5TItem"
+        }
+      ],
+      "source_report_sha256": "510d2198f0ee7878a9aa268cdbe617cc13d1d6b951925b1bb8a5a516c9a124c1",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      }
+    },
+    "combat": {
+      "check_sha256": "21af337d3a0b5cd14046f1b8cbc9349dfad353ccc8003e9a0b23eff516790ca7",
+      "changed_function_labels_from_previous_tree": [
+        {
+          "module": "psov3",
+          "address": "0x801D48C4",
+          "before": "run_state_query__8TPlyItemFi",
+          "after": "run_state_query__8TPlyItemFP17TPlyInventoryItem"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D4CB8",
+          "before": "count_matching_items__8TPlyItemFi",
+          "after": "count_matching_items__8TPlyItemFPP5TItem"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D4CEC",
+          "before": "apply_shop_judgment__8TPlyItemFi",
+          "after": "apply_shop_judgment__8TPlyItemFPP5TItem"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D57A8",
+          "before": "set_field_1c__9TItemListFl",
+          "after": "set_field_1c__9TItemListFP5TItem"
+        }
+      ],
+      "source_report_sha256": "a286541ed7031111274469c171d385bd87ab9886d355ab1ecbb699fdc4d43991",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      }
+    },
+    "full": {
+      "check_sha256": "21af337d3a0b5cd14046f1b8cbc9349dfad353ccc8003e9a0b23eff516790ca7",
+      "changed_function_labels_from_previous_tree": [
+        {
+          "module": "psov3",
+          "address": "0x801D48C4",
+          "before": "run_state_query__8TPlyItemFi",
+          "after": "run_state_query__8TPlyItemFP17TPlyInventoryItem"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D4CB8",
+          "before": "count_matching_items__8TPlyItemFi",
+          "after": "count_matching_items__8TPlyItemFPP5TItem"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D4CEC",
+          "before": "apply_shop_judgment__8TPlyItemFi",
+          "after": "apply_shop_judgment__8TPlyItemFPP5TItem"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D57A8",
+          "before": "set_field_1c__9TItemListFl",
+          "after": "set_field_1c__9TItemListFP5TItem"
+        }
+      ],
+      "source_report_sha256": "a286541ed7031111274469c171d385bd87ab9886d355ab1ecbb699fdc4d43991",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      }
+    },
+    "meseta": {
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+      "changed_function_labels_from_previous_tree": []
+    },
+    "inventory": {
+      "check_sha256": "21af337d3a0b5cd14046f1b8cbc9349dfad353ccc8003e9a0b23eff516790ca7",
+      "changed_function_labels_from_previous_tree": [
+        {
+          "module": "psov3",
+          "address": "0x801D48C4",
+          "before": "run_state_query__8TPlyItemFi",
+          "after": "run_state_query__8TPlyItemFP17TPlyInventoryItem"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D4CB8",
+          "before": "count_matching_items__8TPlyItemFi",
+          "after": "count_matching_items__8TPlyItemFPP5TItem"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D4CEC",
+          "before": "apply_shop_judgment__8TPlyItemFi",
+          "after": "apply_shop_judgment__8TPlyItemFPP5TItem"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D57A8",
+          "before": "set_field_1c__9TItemListFl",
+          "after": "set_field_1c__9TItemListFP5TItem"
+        }
+      ]
+    },
+    "trade": {
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+      "changed_function_labels_from_previous_tree": []
+    },
+    "fork": {
+      "check_sha256": "bc94c8d904d823d89a78bdcaba47479906a595901f49e3f30995305632cda455",
+      "changed_function_labels_from_previous_tree": [
+        {
+          "module": "psov3",
+          "address": "0x801D48C4",
+          "before": "run_state_query__8TPlyItemFi",
+          "after": "run_state_query__8TPlyItemFP17TPlyInventoryItem"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D4CB8",
+          "before": "count_matching_items__8TPlyItemFi",
+          "after": "count_matching_items__8TPlyItemFPP5TItem"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D4CEC",
+          "before": "apply_shop_judgment__8TPlyItemFi",
+          "after": "apply_shop_judgment__8TPlyItemFPP5TItem"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D57A8",
+          "before": "set_field_1c__9TItemListFl",
+          "after": "set_field_1c__9TItemListFP5TItem"
+        }
+      ]
+    }
+  },
+  "fork_overlay_paths": 130,
+  "fork_overlay_sha256": "472a0608dee94468b2cc3e94b648086a12cda36f9969ff88cd222f2fef460336",
+  "tool_tests": 294,
+  "fork_layer_tests": 11,
+  "host_checks": [
+    "./vector_math_fallbacks",
+    "./item_factory_callbacks",
+    "./loader_transfer",
+    "./ginja_parameter_callbacks",
+    "./exi_ethernet_fallbacks"
+  ],
+  "commit_attribution": {
+    "audited_commits": 72,
+    "codex_attribution": 0,
+    "coauthor_trailers": 0
+  }
+}

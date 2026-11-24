@@ -1,0 +1,370 @@
+{
+  "source": "b91b12324e28e36040674c5f482a5bdc4acb83de",
+  "previous_source": "7cdde56aec8180b4aafe4ba02beeafa1669c5876",
+  "upstream": "5a4e7ced56fe7072359b6d279e94f4be3b8453c0",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "source_paths": 1183,
+  "changed_paths": [
+    "include/pso/boss/olgaflow/TBoss6Type1.h",
+    "src/pso/boss/olgaflow/TBoss6Type1.cpp"
+  ],
+  "author": {
+    "name": "matthewlewisnewton",
+    "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+    "coauthor_trailers": 0
+  },
+  "layouts": {
+    "motion_block_offset": 1084,
+    "motion_block_size": 64,
+    "motion_tracks_offset": 1092,
+    "motion_tracks": 2,
+    "motion_track_size": 28,
+    "previous_effect_point_offset": 1224,
+    "emitter_slots_offset": 1272,
+    "trail_particle_slots_offset": 1292,
+    "reset_block_data": "0x80470ECC",
+    "track_defaults_data": "0x80470F0C"
+  },
+  "historical_comparison": {
+    "prior_open_rows": 453,
+    "open_rows": 449,
+    "touched_rows": [
+      {
+        "row": 521,
+        "description": "The phase-one animation defaults are copied into the typed motion block and both native tracks are initialized from the scene archive. The broader attack and action source changes remain open.",
+        "historical_path": "src/pso/boss/TBoss6Type1.cpp",
+        "current_path": "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+        "fork_blob": "03e7d76a5de112a47beb2df7f5dd1ce14823f9c2",
+        "current_blob": "ef7ecd5b7ae3011c8e899b44333deb9de4059413",
+        "authored_diff_sha256": "3a7a3b68e228029980f42c79e4f683f7c24aab6dc2609e4efe985e022f7219f2",
+        "complete": false
+      },
+      {
+        "row": 738,
+        "description": "The motion reset uses a concrete 64-byte block and retains both 28-byte typed motion tracks. Current scope, setup, node capture, camera, timers, packets and release declarations carry the earlier header changes with the original names and linkage.",
+        "historical_path": "include/pso/boss/TBoss6Type1.h",
+        "current_path": "include/pso/boss/olgaflow/TBoss6Type1.h",
+        "fork_blob": "dc2101a829d5c6b5b8b87acfcc7655f81ab90839",
+        "current_blob": "631a9e66464220db10b21b83f067d35da8329fbe",
+        "authored_diff_sha256": "bd5fd9d6bcc8e6ebcd700c41b5fdfbf2829ca7887e9030b5b46caf55273ed2aa",
+        "complete": true
+      },
+      {
+        "row": 2382,
+        "description": "The typed virtual message calls and state, player and message fields are present in the current header. The inherited base zeroes the 0x1C word, which is kept as reserved storage pending an identified consumer. The related child helper looks up the entity at 0x24. The current close helper receives its original actor argument.",
+        "historical_path": "include/pso/misc/TShopSequence.h",
+        "current_path": "include/pso/ui/city/TShopSequence.h",
+        "fork_blob": "a8951303298ff32c9de9025d93d0b1df48b47c0b",
+        "current_blob": "418dbddd5b8185b09d007d2df0e49b57465466ed",
+        "authored_diff_sha256": "434f408c625f08674c6489d6213a62f0bd67d6b630c228286343f41b4d2a0b72",
+        "complete": true
+      },
+      {
+        "row": 2650,
+        "description": "Both draw calls use the shared typed texture API at 0x803DA798 and load the original depth at 0x805DDD10. The live ray unit keeps the four-byte texture-list reference at 0x805D65C8. Its includes resolve to the current class, task and draw-context owners.",
+        "historical_path": "src/pso/ui/TAdRayGC.cpp",
+        "current_path": "src/pso/ui/frontend/TAdRayGC.cpp",
+        "fork_blob": "cea100ca7bca0a6ec1798f9ea02051cfaa3d6ce8",
+        "current_blob": "b4f31427eaa3bf58f169a8f70b615f681a8ee92c",
+        "authored_diff_sha256": "13a930c46536ab9f3bf3b99b2f5ec1461ee670077ed38b78a88ca3e7dde91090",
+        "complete": true
+      },
+      {
+        "row": 5446,
+        "description": "The constructor, destructor, render and update overrides, three helpers and vtable are present at the eight original addresses under TWindowCheckBox. The constructor keeps the inherited parent argument. The 0x88 base and 0x8C derived size place the four trailing bytes at 0x88.",
+        "historical_path": "include/pso/misc/TUnk_804CE7E8.h",
+        "current_path": "include/pso/ui/window/TUnk_804CE7E8.h",
+        "fork_blob": "f96afdc666b3d7eb3bb7ce06bcbf8aafa6519a5c",
+        "current_blob": "71cda8866a005672e12b9524c626e682b0734472",
+        "authored_diff_sha256": "0823bcedee1d256a727bc9712b9f6781bcc7b28c906c65e44d34d9c3b6c3e298",
+        "complete": true
+      }
+    ],
+    "phase_one_header": [
+      "The native Boss6PhaseSpawn owns the set data and is used by the constructor and factory.",
+      "The current part record and motion block preserve the two tracks, type of the resource, frame offsets and 64-byte reset contract.",
+      "Selection flags, timers, target positions and counters retain the recovered storage.",
+      "The native capture fields cover both model banks. The previous hit point, sway and both particle arrays have asserted offsets.",
+      "The three-byte action argument, camera vectors, grid and arena target helpers and map-collision release use the current owning types.",
+      "Signed and unsigned spellings that preserve the same layout and behavior follow the active code. Casts present only for matching code generation and the current function labels are retained."
+    ],
+    "manual_linkage": {
+      "checkbox_symbols": [
+        {
+          "address": "0x80248B44",
+          "fork": {
+            "label": "sync_level_field__13TUnk_804CE7E8Fv",
+            "kind": "function",
+            "length": "0x38",
+            "section": ".text"
+          },
+          "source": {
+            "label": "sync_level_field__15TWindowCheckBoxFv",
+            "kind": "function",
+            "length": "0x38",
+            "section": ".text"
+          }
+        },
+        {
+          "address": "0x80248B7C",
+          "fork": {
+            "label": "sub_80248B7C__13TUnk_804CE7E8Fl",
+            "kind": "function",
+            "length": "0x10",
+            "section": ".text"
+          },
+          "source": {
+            "label": "sub_80248B7C__15TWindowCheckBoxFl",
+            "kind": "function",
+            "length": "0x10",
+            "section": ".text"
+          }
+        },
+        {
+          "address": "0x80248C6C",
+          "fork": {
+            "label": "render__13TUnk_804CE7E8Fv",
+            "kind": "function",
+            "length": "0x88",
+            "section": ".text"
+          },
+          "source": {
+            "label": "render__15TWindowCheckBoxFv",
+            "kind": "function",
+            "length": "0x88",
+            "section": ".text"
+          }
+        },
+        {
+          "address": "0x80248CF4",
+          "fork": {
+            "label": "run_task__13TUnk_804CE7E8Fv",
+            "kind": "function",
+            "length": "0x2B8",
+            "section": ".text"
+          },
+          "source": {
+            "label": "run_task__15TWindowCheckBoxFv",
+            "kind": "function",
+            "length": "0x2B8",
+            "section": ".text"
+          }
+        },
+        {
+          "address": "0x80248FAC",
+          "fork": {
+            "label": "__dt__13TUnk_804CE7E8Fv",
+            "kind": "function",
+            "length": "0x58",
+            "section": ".text"
+          },
+          "source": {
+            "label": "__dt__15TWindowCheckBoxFv",
+            "kind": "function",
+            "length": "0x58",
+            "section": ".text"
+          }
+        },
+        {
+          "address": "0x80249004",
+          "fork": {
+            "label": "__ct__13TUnk_804CE7E8FPvl",
+            "kind": "function",
+            "length": "0x54",
+            "section": ".text"
+          },
+          "source": {
+            "label": "__ct__15TWindowCheckBoxFPUcl",
+            "kind": "function",
+            "length": "0x54",
+            "section": ".text"
+          }
+        },
+        {
+          "address": "0x802671F0",
+          "fork": {
+            "label": "advance_all_entries__13TUnk_804CE7E8Fl",
+            "kind": "function",
+            "length": "0x98",
+            "section": ".text"
+          },
+          "source": {
+            "label": "advance_all_entries__15TWindowCheckBoxFl",
+            "kind": "function",
+            "length": "0x98",
+            "section": ".text"
+          }
+        },
+        {
+          "address": "0x804CE7E8",
+          "fork": {
+            "label": "__vt__13TUnk_804CE7E8",
+            "kind": "object",
+            "length": "0x1C",
+            "section": ".data"
+          },
+          "source": {
+            "label": "__vt__15TWindowCheckBox",
+            "kind": "object",
+            "length": "0x1C",
+            "section": ".data"
+          }
+        }
+      ],
+      "ray_object_functions": [
+        [
+          "draw_ray_quads__8TAdRayGCFlPUcPvl",
+          100.0
+        ],
+        [
+          "render__8TAdRayGCFv",
+          100.0
+        ],
+        [
+          "run_task__8TAdRayGCFv",
+          100.0
+        ],
+        [
+          "__dt__8TAdRayGCFv",
+          100.0
+        ],
+        [
+          "__ct__8TAdRayGCFv",
+          100.0
+        ],
+        [
+          "destroy_instance__8TAdRayGCFv",
+          100.0
+        ],
+        [
+          "register_texture_f128_ray__Fv",
+          100.0
+        ]
+      ],
+      "ray_depth_loads": [
+        "lfs f1, lbl_805DDD10@sda21",
+        "lfs f1, lbl_805DDD10@sda21"
+      ],
+      "ray_texture_calls": 2,
+      "ray_texture_target": "0x803DA798",
+      "ray_depth_address": "0x805DDD10"
+    },
+    "bulk_comparison": {
+      "input_source": "7cdde56aec8180b4aafe4ba02beeafa1669c5876",
+      "ancestor": "fba938223515e7ab721bd5574ee97eba57671de6",
+      "examined": 452,
+      "whole_record_equivalences": 0,
+      "near_at_recorded_paths": [
+        2330,
+        2382,
+        2650,
+        3423,
+        4144,
+        5446,
+        5717,
+        6055,
+        7344
+      ],
+      "closures_confirmed_by_direct_review": [
+        2382,
+        2650,
+        5446
+      ],
+      "method": "Compare current, ancestor and fork C and C++ tokens with include lineage and same-address, same-signature symbol aliases. Require identical whole tokens or an unchanged current result in both three-way merge orders.",
+      "report_sha256": "7d44f22d1acb412a50f3a7da3b3b6f49c7654dd1854b74afa0ad801f51f1230d",
+      "script_sha256": "3fee0171641e300a8f79157e13cfbb372829a21d108b2b0405b12e87cac63e2e"
+    }
+  },
+  "validation": {
+    "stock": {
+      "baseline": "7cdde56aec8180b4aafe4ba02beeafa1669c5876",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "b7ef59ce5f05d52a0b99f5c11907f7321b16c8c6c24753265640cf14dc5d402b",
+      "report_sha256": "afea108a6b2788badcd428ac643e3a5d8577e9d09132d73cbdd1a6e6859f51cb"
+    },
+    "workspace": {
+      "baseline": "b91b12324e28e36040674c5f482a5bdc4acb83de",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "afea108a6b2788badcd428ac643e3a5d8577e9d09132d73cbdd1a6e6859f51cb"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "b29472cfb50f819a5c05c93b7cfc6d485740ec20de720940b4449186c395321b"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "04d531fd5676174d75cf4f254d92e7e6be7f63bfb4931710e1083bddcf8cd535"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    },
+    "motion_runtime": {
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "checks": [
+        "Return and exact extent of the 64-byte state copy",
+        "Original set index and mode",
+        "Fresh and previous motion for both archive-backed tracks",
+        "Original frame, blend and step defaults with adjacent actor words preserved"
+      ],
+      "emulation": "The harness runs the retail motion initialization and block copy and supplies two archive motion pointers.",
+      "log_sha256": "dce2671cffcf5f80780daa8989fccd9aa866e3282da0005856c3cfe53e52872b",
+      "probe_sha256": "45b3a0078d4a235a8ab208cda1da3b480696f0c14f186f33e1f8b74f0282ca76"
+    }
+  },
+  "fork_workspace": {
+    "overlay_paths": 130,
+    "overlay_patch_sha256": "deccf0c47860f8ed902f95bc8b3afca1ceea19b186a05e1b0b9cb19292a33cd2",
+    "updated_overlay_paths": [],
+    "force_active_names": 27033,
+    "archive_test_head": "52a6d70e17dc37bea27957c205567033fa263944",
+    "tested_materialized_tree": "fc848f9b148ee22748a8ba1c1c7778d68ab59593"
+  }
+}

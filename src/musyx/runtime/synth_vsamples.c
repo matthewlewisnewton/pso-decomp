@@ -1,4 +1,4 @@
-#include "types.h"
+#include "musyx/runtime/musyx_internal.h"
 
 extern "C" {
 
@@ -35,30 +35,10 @@ typedef struct VS {
     u32 (*callback)(u8, const SND_VIRTUALSAMPLE_INFO *);
 } VS;
 
-#pragma pack(push, 4)
-struct Rec_803A8D2C {
-    u8 pad0[0x206];
-    u16 curPitch;
-    u8 pad208[0x404 - 0x208];
-};
-#pragma pack(pop)
-extern Rec_803A8D2C *synthVoice;
-
-u32 aramGetStreamBufferAddress(u8 i, u32 *out);
-void hwSetVirtualSampleLoopBuffer(s32 i, s32 a, s32 b);
-u16 hwGetSampleID(s32 i);
-u8 hwGetSampleType(s32 i);
-u32 hwGetVirtualSampleState(s32 i);
-u32 hwGetPos(s32 arg0);
-s32 hwGetVirtualSampleID(u8);
-u32 hwVoiceInStartup(s32 i);
-void hwBreak(u32);
-
 static VS vs;
 
 #pragma push
 #pragma opt_common_subs on
-#pragma bool off
 #pragma dont_inline off
 #pragma inline_depth(4)
 
@@ -73,15 +53,7 @@ void vsInit(void) {
     vs.callback = NULL;
 }
 
-#pragma pop
-
-#pragma push
-#pragma opt_common_subs on
-#pragma bool off
-#pragma dont_inline off
-#pragma inline_depth(4)
-
-static inline u16 vsNewInstanceID_803B46A4(void) {
+static inline u16 vsNewInstanceID(void) {
     u8 i;
     u16 instID;
     do {
@@ -96,7 +68,7 @@ static inline u16 vsNewInstanceID_803B46A4(void) {
     return instID;
 }
 
-static inline u8 vsAllocateBuffer_803B46A4(void) {
+static inline u8 vsAllocateBuffer(void) {
     u8 i;
 
     for (i = 0; i < vs.numBuffers; ++i) {
@@ -111,7 +83,7 @@ static inline u8 vsAllocateBuffer_803B46A4(void) {
     return 0xFF;
 }
 
-static inline void vsFreeBuffer_803B46A4(u8 bufferIndex) {
+static inline void vsFreeBuffer(u8 bufferIndex) {
     vs.streamBuffer[bufferIndex].state = 0;
     vs.voices[vs.streamBuffer[bufferIndex].voice] = 0xFF;
 }
@@ -123,16 +95,16 @@ u32 vsSampleStartNotify(u8 voice) {
 
     for (i = 0; i < vs.numBuffers; ++i) {
         if (vs.streamBuffer[i].state != 0 && vs.streamBuffer[i].voice == voice) {
-            vsFreeBuffer_803B46A4(i);
+            vsFreeBuffer(i);
         }
     }
 
-    sb = vs.voices[voice] = vsAllocateBuffer_803B46A4();
+    sb = vs.voices[voice] = vsAllocateBuffer();
     if (sb != 0xFF) {
         addr = aramGetStreamBufferAddress(vs.voices[voice], 0);
         hwSetVirtualSampleLoopBuffer(voice, addr, vs.bufferLength);
         vs.streamBuffer[sb].info.smpID = hwGetSampleID(voice);
-        vs.streamBuffer[sb].info.instID = vsNewInstanceID_803B46A4();
+        vs.streamBuffer[sb].info.instID = vsNewInstanceID();
         vs.streamBuffer[sb].smpType = hwGetSampleType(voice);
         vs.streamBuffer[sb].voice = voice;
         if (vs.callback != NULL) {
@@ -147,19 +119,6 @@ u32 vsSampleStartNotify(u8 voice) {
     return 0xFFFFFFFF;
 }
 
-#pragma pop
-
-#pragma push
-#pragma opt_common_subs on
-#pragma bool off
-#pragma dont_inline off
-#pragma inline_depth(4)
-
-static inline void vsFreeBuffer_803B488C(u8 bufferIndex) {
-    vs.streamBuffer[bufferIndex].state = 0;
-    vs.voices[vs.streamBuffer[bufferIndex].voice] = 0xFF;
-}
-
 void vsSampleEndNotify(u32 pubID) {
     u8 sb;
     u8 voice;
@@ -172,19 +131,11 @@ void vsSampleEndNotify(u32 pubID) {
                 if (vs.callback != NULL) {
                     vs.callback(2, &vs.streamBuffer[sb].info);
                 }
-                vsFreeBuffer_803B488C(sb);
+                vsFreeBuffer(sb);
             }
         }
     }
 }
-
-#pragma pop
-
-#pragma push
-#pragma opt_common_subs on
-#pragma bool off
-#pragma dont_inline off
-#pragma inline_depth(4)
 
 void vsUpdateBuffer(VS_BUFFER *sb, u32 cpos) {
     u32 len;
@@ -238,15 +189,6 @@ void vsUpdateBuffer(VS_BUFFER *sb, u32 cpos) {
         }
     }
 }
-
-#pragma pop
-
-#pragma push
-#pragma opt_common_subs on
-#pragma dont_inline off
-#pragma inline_depth(4)
-
-#pragma bool off
 
 void vsSampleUpdates(void) {
     u32 i;

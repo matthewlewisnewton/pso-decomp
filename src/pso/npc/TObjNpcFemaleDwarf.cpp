@@ -1,84 +1,41 @@
 #include "types.h"
-#include "pso/system/BmlResourceClass.h"
 #include "pso/npc/TObjNpcFemaleDwarf.h"
-#include "pso/npc/TUnk_804A8640.h"
-#include "pso/npc/TObjNpcFemaleFat.h"
-#include "pso/npc/TObjNpcBase.h"
-#include "pso/npc/TObjNpcFemaleBase.h"
+#include "pso/object/TObjControl.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/system/BmlResource.h"
+#include "pso/system/BmlResourceDescriptor.h"
+#include "pso/system/task/TMainTask.h"
 
-struct RecoveredGlobal_8014A190_lbl_804A8AE0 { s32 value; u8 remaining[0xC]; };
-typedef char RecoveredGlobal_8014A190_lbl_804A8AE0_size[sizeof(RecoveredGlobal_8014A190_lbl_804A8AE0) == 0x10 ? 1 : -1];
+const char *bm_n_efsw_i_body_motion_names[1] = { NULL };
+__declspec(section ".data") const char *bm_n_efsw_i_body_model_names[2] = { "n_efsw_i_body.nj", NULL };
+BmlResourceDescriptor bm_n_efsw_i_body_resource_descriptor = { "bm_n_efsw_i_body.bml", bm_n_efsw_i_body_model_names, bm_n_efsw_i_body_motion_names, 1, 0 };
+const char *TObjNpcFemaleDwarf::name = "TObjNpcFemaleDwarf";
+BmlResource *TObjNpcFemaleDwarf::static_data;
 
-struct RecoveredGlobal_8014A238___vt__18TObjNpcFemaleDwarf {
-    s32 value;
-    u8 remaining[0x174];
-};
-
-extern "C" {
-extern const char lbl_8043F8A0[] = "n_efsw_i_body.nj";
-extern const char lbl_8043F8B4[] = "bm_n_efsw_i_body.bml";
-extern const char lbl_8043F8CC[] = "TObjNpcFemaleDwarf";
-extern RecoveredGlobal_8014A190_lbl_804A8AE0 bm_n_efsw_i_body_resource_descriptor;
-extern s32 __vt__18TObjNpcFemaleDwarf[];
-extern s32 TObjNpcFemaleDwarf__name;
-void *__ct__11TObjControlFP7TObject(void *, void *);
-void __dl__7TObjectFPv(void *);
-void *__nw__7TObjectFUl(int);
+void *TObjNpcFemaleDwarf::create(void *set_data) {
+    TObjControl *control = new TObjControl(tl_04);
+    return new TObjNpcFemaleDwarf(control, set_data);
+}
 
 void TObjNpcFemaleDwarf::unload_static_data() {
-    if ((u32) TObjNpcFemaleDwarf__static_data != 0U) {
-        delete (BmlResource *)((void*)TObjNpcFemaleDwarf__static_data);
-        TObjNpcFemaleDwarf__static_data = 0U;
+    if (static_data != NULL) {
+        delete static_data;
+        static_data = NULL;
     }
 }
+
 void TObjNpcFemaleDwarf::load_static_resource() {
-    BmlResource *temp_r3;
-    BmlResource *var_r0;
-    temp_r3 = new BmlResource(1, (BmlResourceDescriptor *)(&bm_n_efsw_i_body_resource_descriptor.value), 0, 0, (void *)(0));
-    var_r0 = temp_r3;
-    TObjNpcFemaleDwarf__static_data = var_r0;
+    BmlResource *resource = new BmlResource(1, &bm_n_efsw_i_body_resource_descriptor, 0, 0, NULL);
+    static_data = resource;
 }
 
-void *__dt__18TObjNpcFemaleDwarfFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__18TObjNpcFemaleDwarf;
-        ((TUnk_804A8640 *)arg0)->destroy_npc_female_base(0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
-}
+TObjNpcFemaleDwarf::~TObjNpcFemaleDwarf() {}
 
-extern void *tl_04;
-
-typedef char RecoveredGlobal_8014A238___vt__18TObjNpcFemaleDwarf_size[sizeof(RecoveredGlobal_8014A238___vt__18TObjNpcFemaleDwarf) == 0x178 ? 1 : -1];
-u8 *TObjNpcFemaleDwarf__ct(u8 *arg0, s32 arg1, s32 arg2) {
-    ((TUnk_804A8640 *)arg0)->construct_female_base();
-    *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_8014A238___vt__18TObjNpcFemaleDwarf *)&__vt__18TObjNpcFemaleDwarf).value;
-    *(s32 *)((s8 *)arg0 + 0) = (s32) TObjNpcFemaleDwarf__name;
-    ((TObjNpcFemaleDwarf *)(arg0))->apply_set_data((void *)arg2);
-    ((TObjChara *)arg0)->initialize_position_copies();
-    *(s32 *)((s8 *)arg0 + 0x34) = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)TObjNpcFemaleDwarf__static_data + 0x42C)) + 8);
-    ((TObjNpcFemaleDwarf *)arg0)->texlist = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)TObjNpcFemaleDwarf__static_data + 0x42C)) + 0xC);
-    ((TObjNpcBase *)arg0)->setup_common();
-    return arg0;
-}
-
-void * TObjNpcFemaleFat__create(void *arg0) {
-    void *o;
-    void *o2;
-    o = __nw__7TObjectFUl(0x20);
-    if (o != NULL) {
-        o = __ct__11TObjControlFP7TObject(o, tl_04);
-    }
-    o2 = __nw__7TObjectFUl(0x3B8);
-    if (o2 != NULL) {
-        o2 = TObjNpcFemaleFat__ct((u8 *)o2, (s32)o, (s32)arg0);
-    }
-    return o2;
-}
-
+TObjNpcFemaleDwarf::TObjNpcFemaleDwarf(TObject *parent, void *set_data) : TObjNpcFemale(parent) {
+    this->m_name = name;
+    this->apply_set_data(set_data);
+    init_position_vectors();
+    this->model = (void *)static_data->models->model;
+    this->texlist = static_data->models->texlist;
+    this->setup_common();
 }

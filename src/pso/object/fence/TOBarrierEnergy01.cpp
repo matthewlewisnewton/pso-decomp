@@ -1,0 +1,194 @@
+#include "pso/system/memory.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/system/BmlAccessors.h"
+#include "types.h"
+#include "pso/object/fence/TOBarrierEnergy01.h"
+#include "pso/system/task/TMainTask.h"
+#include "pso/effect/particle/TParticleCtrl.h"
+#include "pso/map/FloorArea.h"
+#include "pso/system/TLanguage_801E4874.h"
+#include "pso/unk/TLobby_80156B18.h"
+#include "pso/boss/darkfalz/TOBoss4Rock.h"
+#include "pso/system/SoundEffect.h"
+#include "pso/object/ambient/TObjFish.h"
+#include "pso/object/ambient/TObjFish_8001ED90.h"
+#include "pso/player/TObjPlayer.h"
+#include "pso/player/TObjPlayer_801542CC.h"
+#include "pso/system/BmlResource.h"
+#include "pso/system/BmlResourceDescriptor.h"
+#include "pso/render/GinjaMaterial.h"
+#include "pso/system/MatrixStack.h"
+#include "pso/render/ModelDrawContext.h"
+#include "pso/unk/text_803D8F74.h"
+#include "pso/player/TObjPlayer_80011014.h"
+
+// This unit is compiled with deferred code generation (its vtable comes ahead
+// of play_ambient_loop_sound's switch table), which emits the functions in
+// reverse: the file is written from the last function back to the first.
+
+const char *bm_fs_obj_lazerguard_model_names[3] = {
+    "fe_obj_laz_guard_moto.gj",
+    "fs_obj_laz_guard.gj",
+    NULL,
+};
+__declspec(section ".data") const char *bm_fs_obj_lazerguard_motion_names[2] = {
+    "fs_obj_laz_guard.njm",
+    NULL,
+};
+BmlResourceDescriptor bm_fs_obj_lazerguard_resource_descriptor = {
+    "bm_fs_obj_lazerguard.bml",
+    bm_fs_obj_lazerguard_model_names,
+    bm_fs_obj_lazerguard_motion_names,
+    2,
+    1,
+};
+CollisionBody barrier_energy01_collision_body_parts[1] = {
+    {{0.0f, 0.0f, 0.0f}, 5.0f, 20.0f, 1, 0x10003, {0.0f, 0.0f, 0.0f}, 0.0f},
+};
+
+const char *TOBarrierEnergy01_name = "TOBarrierEnergy01";
+
+static BmlResource *barrier_energy_shared_bml_archive;
+// [0] closed, [1] open, [2] the frame model's texture list.
+struct NJS_TEXLIST;
+
+static NJS_TEXLIST **barrier_energy_texlists;
+static void *barrier_energy_model;
+
+TOBarrierEnergy01::TOBarrierEnergy01(TObject *parent, void *set_data) : TODoorBase(parent) {
+    m_name = TOBarrierEnergy01_name;
+    apply_object_set_data(set_data);
+    model = (void *)get_bml_model((BmlResource *)barrier_energy_shared_bml_archive, 1);
+    texlist = barrier_energy_texlists[0];
+    motion = get_bml_motion(barrier_energy_shared_bml_archive, 0);
+    animation_end_frame = (f32)motion->frameCount - 1.0f;
+    animation_step = 2.0f;
+    init_collision_body_parts(this, barrier_energy01_collision_body_parts, 1);
+    refresh_collision_body_centers();
+    register_object_by_id();
+    init_door_switch_binding();
+    view_range = 400.0f;
+    model_radius = 40.0f;
+}
+
+TOBarrierEnergy01::~TOBarrierEnergy01() {
+    unregister_object_by_id();
+    free_collision_body_parts(this);
+}
+
+void TOBarrierEnergy01::load_resources() {
+    BmlResource *archive = new BmlResource(1, &bm_fs_obj_lazerguard_resource_descriptor, 0, 0, NULL);
+    barrier_energy_shared_bml_archive = archive;
+    barrier_energy_model = (void *)get_bml_model((BmlResource *)archive, 0);
+    barrier_energy_texlists = (NJS_TEXLIST **)mem_alloc(3 * sizeof(*barrier_energy_texlists));
+    barrier_energy_texlists[0] = load_gvm_texture_file("fs_obj_laz_guard_r.gvm");
+    barrier_energy_texlists[1] = get_bml_texlist((BmlResource *)barrier_energy_shared_bml_archive, 1);
+    barrier_energy_texlists[2] = get_bml_texlist((BmlResource *)barrier_energy_shared_bml_archive, 0);
+}
+
+void TOBarrierEnergy01::free_resources() {
+    if (barrier_energy_texlists != NULL) {
+        TObjPlayer::free_if_valid((saddr)barrier_energy_texlists[0]);
+        if (barrier_energy_texlists != NULL) {
+            mem_free(barrier_energy_texlists);
+            barrier_energy_texlists = NULL;
+        }
+    }
+    if (barrier_energy_shared_bml_archive != NULL) {
+        delete barrier_energy_shared_bml_archive;
+        barrier_energy_shared_bml_archive = NULL;
+    }
+}
+
+void *TOBarrierEnergy01::create(void *set_data) {
+    return new TOBarrierEnergy01(tl_05, set_data);
+}
+
+void TOBarrierEnergy01::render() {
+    if (update_object_view_visibility(view_range, model_radius) != 0) {
+        push_matrix();
+        post_translate_matrix(&position.x);
+        rotate_matrix_y(NULL, rotation_y);
+        TObjFish::set_global_param(reinterpret_cast<NJS_TEXLIST *>(texlist));
+        TParticleCtrl::begin_effect_render();
+        draw_ginja_model_with_motion(model, motion, animation_frame);
+        TParticleCtrl::end_effect_render();
+        TObjFish::set_global_param(reinterpret_cast<NJS_TEXLIST *>(barrier_energy_texlists[2]));
+        draw_ginja_object(barrier_energy_model);
+        pop_matrix();
+    }
+}
+
+void TOBarrierEnergy01::update_closed() {
+    update_anim_phase();
+    play_ambient_loop_sound();
+    if (door_flags & DOOR_FLAG_UNLOCKED) {
+        object_state = DOOR_OPENING;
+        set_indexed_flags(0, 8);
+        texlist = barrier_energy_texlists[1];
+    }
+}
+
+void TOBarrierEnergy01::update_opening() {
+    update_anim_phase();
+    play_ambient_loop_sound();
+    object_state = DOOR_OPEN;
+}
+
+void TOBarrierEnergy01::update_open() {
+    update_anim_phase();
+    play_ambient_loop_sound();
+    if (!(door_flags & DOOR_FLAG_UNLOCKED)) {
+        object_state = DOOR_CLOSING;
+        clear_player_status_flag(0, 8);
+        texlist = barrier_energy_texlists[0];
+    }
+}
+
+void TOBarrierEnergy01::update_closing() {
+    update_anim_phase();
+    object_state = DOOR_CLOSED;
+    play_ambient_loop_sound();
+}
+
+void TOBarrierEnergy01::play_ambient_loop_sound() {
+    switch (get_current_floor_area()) {
+    case AREA_FOREST1:
+    case AREA_FOREST2:
+        play_persistent_sound(0x4CB09, this, &position, 0, 0);
+        return;
+    case AREA_CAVE1:
+    case AREA_CAVE2:
+    case AREA_CAVE3:
+        play_persistent_sound(0x44B08, this, &position, 0, 0);
+        return;
+    case AREA_MINE1:
+    case AREA_MINE2:
+        play_persistent_sound(0x4004CB02, this, &position, 0, 0);
+        return;
+    case AREA_RUINS1:
+    case AREA_RUINS2:
+    case AREA_RUINS3:
+        play_persistent_sound(0x4004CB09, this, &position, 0, 0);
+        return;
+    case AREA_PIONEER2_EP1:
+        return;
+    case AREA_DRAGON:
+        return;
+    case AREA_DE_ROL_LE:
+        return;
+    case AREA_VOL_OPT:
+        return;
+    case AREA_DARK_FALZ:
+        return;
+    case AREA_LOBBY:
+        return;
+    }
+}
+
+void TOBarrierEnergy01::update_demo() {}
+
+void *init_collision_subcommand_header(void *packet) {
+    TLobby__sub_80156BA8(packet);
+    return packet;
+}

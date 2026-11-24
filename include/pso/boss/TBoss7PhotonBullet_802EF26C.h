@@ -1,6 +1,0 @@
-#ifndef PSO_BOSS_TBOSS7PHOTONBULLET_802EF26C_H
-#define PSO_BOSS_TBOSS7PHOTONBULLET_802EF26C_H
-
-#include "types.h"
-
-#endif

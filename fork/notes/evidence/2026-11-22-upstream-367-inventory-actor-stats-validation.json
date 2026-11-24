@@ -1,0 +1,409 @@
+{
+  "upstream": "6aee940ecaf4775ef71659a74534127a49cf9412",
+  "actor_stats_donor": "c6dcd28e18b643eb30ecb4a105e2ea2c959ce721",
+  "actor_stats_on_cumulative_source": {
+    "base": "a69aba3b196d2b0a8f4f44223287c64a2c2ca81b",
+    "head": "7532966bcf28367c015d49217ad5974207edf0a5",
+    "tree": "c124f5fd19896403cf0dfefa4fe9e332c4c9599d",
+    "paths": 49,
+    "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2417,
+    "coverage_losses": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0
+    },
+    "changed_linker_labels": [
+      {
+        "module": "psov3",
+        "address": "0x8001882C",
+        "before": "set_motion_params__9TObjCharaFPv",
+        "after": "set_motion_params__9TObjCharaFP12player_stats"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80018990",
+        "before": "recalc_combat_stats__9TObjCharaFPvPvPvff",
+        "after": "recalc_combat_stats__9TObjCharaFP12player_statsP12AttackParamsP15ActorParamBlockff"
+      }
+    ],
+    "runtime": {
+      "actor-stats": {
+        "results": [
+          "PsoV3.dol: actor stat storage, combat scaling, equipment requirements and meseta passed.",
+          "psov3.dol: actor stat storage, combat scaling, equipment requirements and meseta passed."
+        ],
+        "log_sha256": "60864683e9740274da6af8e1645ef289929182946ace1bce64aa1b6d3cc6f787"
+      }
+    }
+  },
+  "inventory_review": {
+    "base": "25d14badb4e43f13105492b4eec959ffa05e4349",
+    "head": "61a66013a179485ff5923b6248c8b2b2d4b6de60",
+    "tree": "fdcfbfaf673cf51cd749c250ea7d3d9f09107d33",
+    "paths": 110,
+    "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2417,
+    "coverage_losses": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0
+    },
+    "changed_linker_labels": [
+      {
+        "module": "psov3",
+        "address": "0x8001882C",
+        "before": "set_motion_params__9TObjCharaFPv",
+        "after": "set_motion_params__9TObjCharaFP12player_stats"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80018990",
+        "before": "recalc_combat_stats__9TObjCharaFPvPvPvff",
+        "after": "recalc_combat_stats__9TObjCharaFP12player_statsP12AttackParamsP15ActorParamBlockff"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8010834C",
+        "before": "__ct__15TItemEffBringerFv",
+        "after": "__ct__15TItemEffBringerFPvPC3VecPC3Vecf"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80108A20",
+        "before": "TItemEffEquip__ct",
+        "after": "__ct__13TItemEffEquipFP7TObjectUslll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80108AFC",
+        "before": "create__13TItemEffEquipFPvPvPvPvPv",
+        "after": "create__13TItemEffEquipFP7TObjectUslll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80108C90",
+        "before": "__ct__13TUnk_8049F038FP7TObjectsl",
+        "after": "__ct__13TUnk_8049F038FP7TObjectUsl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801B0A90",
+        "before": "check_switch_available__6TLobbyFPvi",
+        "after": "check_switch_available__10TObjPlayerFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801B811C",
+        "before": "equip_saved_item_if_slot_empty__10TObjPlayerFPvPv",
+        "after": "equip_saved_item_if_slot_empty__10TObjPlayerFP10TObjPlayerP17TPlyInventoryItem"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801B81E8",
+        "before": "bind_saved_inventory_equipment__10TObjPlayerFPvPvi",
+        "after": "bind_saved_inventory_equipment__10TObjPlayerFP10TObjPlayerP17TPlyInventoryItemi"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801B9D50",
+        "before": "unequip_item__10TObjPlayerFiPv",
+        "after": "unequip_item__10TObjPlayerFP5TItem"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801B9EDC",
+        "before": "send_6x26_unequip_item__10TObjPlayerFPvUl",
+        "after": "send_6x26_unequip_item__10TObjPlayerFP10TObjPlayerUl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801B9F40",
+        "before": "equip_item_to_slot__10TObjPlayerFPvl",
+        "after": "equip_item_to_slot__10TObjPlayerFP5TIteml"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801C2060",
+        "before": "set_field4__10TObjPlayerFl",
+        "after": "set_field4__12Unk_801C2068Fl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D3554",
+        "before": "insert_item_node__10TObjPlayerFiiiii",
+        "after": "insert_item_node__10TObjPlayerFP13TUnk_804C445CP3VecP10TObjPlayerP9TItemDatal"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D3728",
+        "before": "start_placement_search__Flll",
+        "after": "start_placement_search__FP13TUnk_804C4450P3VecP8TObjBase"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4308",
+        "before": "export_inventory_entry__10TObjPlayerFiPv",
+        "after": "export_inventory_entry__5TItemFP17TPlyInventoryItem"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4678",
+        "before": "TObjPlayer__sub_801D4678",
+        "after": "__dt__13List_801D4744Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D46D4",
+        "before": "TObjPlayer__sub_801D46D4",
+        "after": "__ct__13List_801D4744Fl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4730",
+        "before": "TObjPlayer__sub_801D4730",
+        "after": "__ct__12Ent_801D4744Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4744",
+        "before": "sort_by_key__10TObjPlayerFv",
+        "after": "sort_by_key__13List_801D4744Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D47D8",
+        "before": "TObjPlayer__sub_801D47D8",
+        "after": "__as__12Ent_801D4744FR12Ent_801D4744"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4890",
+        "before": "run_and_get_result__8TPlyItemFl",
+        "after": "run_and_get_result__8TPlyItemFPl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D48C4",
+        "before": "run_state_query__8TPlyItemFi",
+        "after": "run_state_query__8TPlyItemFP17TPlyInventoryItem"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D48F8",
+        "before": "update_inventory_item__8TPlyItemFlllll",
+        "after": "update_inventory_item__8TPlyItemFP10TObjPlayerlPfll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4A6C",
+        "before": "remove_equipped_item__8TPlyItemFlPv",
+        "after": "remove_equipped_item__8TPlyItemFP10TObjPlayerP9TItemList"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4AEC",
+        "before": "reduce_item_amount__6TLobbyFlll",
+        "after": "reduce_item_amount__8TPlyItemFP10TObjPlayerP9TItemListl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4BB0",
+        "before": "use_item__6TLobbyFlll",
+        "after": "use_item__8TPlyItemFP10TObjPlayerll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4C58",
+        "before": "set_globals_and_update__6TLobbyFii",
+        "after": "set_globals_and_update__8TPlyItemFP10TObjPlayeri"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4C84",
+        "before": "set_globals_and_notify__6TLobbyFP10TObjPlayerPv",
+        "after": "set_globals_and_notify__8TPlyItemFP10TObjPlayerP12Unk_801C2068"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4CB8",
+        "before": "count_matching_items__8TPlyItemFPv",
+        "after": "count_matching_items__8TPlyItemFPP5TItem"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4CEC",
+        "before": "apply_shop_judgment__8TPlyItemFPv",
+        "after": "apply_shop_judgment__8TPlyItemFPP5TItem"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4D20",
+        "before": "set_flag_and_update__8TPlyItemFi",
+        "after": "set_flag_and_update__8TPlyItemFP10TObjPlayer"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4D48",
+        "before": "count_items_by_id__8TPlyItemFl",
+        "after": "count_items_by_id__8TPlyItemFPv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4DE8",
+        "before": "find_first_inventory_entry__8TPlyItemFi",
+        "after": "find_first_inventory_entry__8TPlyItemFPv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D4E38",
+        "before": "destroy_subobjects__8TPlyItemFi",
+        "after": "destroy_subobjects__8TPlyItemFP10TObjPlayer"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D5004",
+        "before": "reduce_owner_matched_items__6TLobbyFv",
+        "after": "reduce_owner_matched_items__9TItemListFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D50E0",
+        "before": "reduce_child_item_amounts__6TLobbyFv",
+        "after": "reduce_child_item_amounts__9TItemListFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D57A8",
+        "before": "set_field_1c__9TItemListFl",
+        "after": "set_field_1c__9TItemListFP5TItem"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D5814",
+        "before": "copy_item_data__9TItemListFv",
+        "after": "copy_item_data__12Unk_801C2068FP9TItemData"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D5ABC",
+        "before": "is_item_valid__9TItemListFl",
+        "after": "is_item_valid__9TItemListFP9TItemList"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D91F8",
+        "before": "get_current_state_field__10TObjPlayerFScl",
+        "after": "get_current_state_field__10TObjPlayerFll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D9250",
+        "before": "get_ply_level_table_row__FScl",
+        "after": "get_ply_level_table_row__Fll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802C3CD0",
+        "before": "send_command__10TNpcPlayerFlScllPSc",
+        "after": "send_command__10TNpcPlayerFllPC17TPlyInventoryItemlP12TPlyCharData"
+      }
+    ],
+    "runtime": {
+      "growth": {
+        "results": [
+          "Level lookup and growth caps, selective inventory copy, and companion initialization passed",
+          "Level lookup and growth caps, selective inventory copy, and companion initialization passed"
+        ],
+        "log_sha256": "db9c82fd62bf06b724675f8d6d062e9c362c52bbaa29e680f93287c28a84f7bd"
+      },
+      "companions": {
+        "results": [
+          "Companion archive and fallback records, buffer release, and sender arguments passed",
+          "Companion archive and fallback records, buffer release, and sender arguments passed"
+        ],
+        "log_sha256": "8eba93de04753d3f95372633956d9ae99811ac91149a441ea41636469acb0c2e"
+      },
+      "sort": {
+        "results": [
+          "PsoV3.dol: inventory ordering, stable ties, allocation release and record export passed.",
+          "psov3.dol: inventory ordering, stable ties, allocation release and record export passed."
+        ],
+        "log_sha256": "195a6d05ae93fee6a96e58c454e2b2be5f0ebeaf3d46225303e25f324b92f1bf"
+      },
+      "equipment": {
+        "results": [
+          "PsoV3.dol: equip and unequip frames, loadout iteration and effect lifecycle passed.",
+          "psov3.dol: equip and unequip frames, loadout iteration and effect lifecycle passed."
+        ],
+        "log_sha256": "2b062e70b7a183b4ff3985a83669d641505b72b0c733f91526cfb8408ba5485c"
+      },
+      "storage": {
+        "results": [
+          "PsoV3.dol: drop placement, occupied slots, telepipe search, inventory traversal and saved records passed.",
+          "psov3.dol: drop placement, occupied slots, telepipe search, inventory traversal and saved records passed."
+        ],
+        "log_sha256": "cae7a28e4262ffbb9fc0f5525d65287b4f81722ef8d148acc3bacc85cff39713"
+      },
+      "shop": {
+        "results": [
+          "PsoV3.dol: 12 shop cases passed across weapon, armor, mag and judgment lists.",
+          "psov3.dol: 12 shop cases passed across weapon, armor, mag and judgment lists."
+        ],
+        "log_sha256": "dcb48ea0c472d10f703983e3320271dd4dd15a3df0cca771a7cf7ecd5cdff1be"
+      },
+      "actor-stats": {
+        "results": [
+          "PsoV3.dol: actor stat storage, combat scaling, equipment requirements and meseta passed.",
+          "psov3.dol: actor stat storage, combat scaling, equipment requirements and meseta passed."
+        ],
+        "log_sha256": "60864683e9740274da6af8e1645ef289929182946ace1bce64aa1b6d3cc6f787"
+      }
+    }
+  },
+  "original_data_ranges": 90,
+  "original_data_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "review_commits": [
+    "5cc86457276baf2957f6c927bfe77858c86afbe4",
+    "2967ef0c7868447949abf680dc6848fe1a28465f",
+    "61a66013a179485ff5923b6248c8b2b2d4b6de60"
+  ],
+  "review_attribution": "matthewlewisnewton <19641807+matthewlewisnewton@users.noreply.github.com>",
+  "remaining_replay_previews_from_cumulative_head": {
+    "techniques": {
+      "paths": 113,
+      "conflicting_paths": 36
+    },
+    "asset-load": {
+      "paths": 119,
+      "conflicting_paths": 32
+    },
+    "population": {
+      "paths": 108,
+      "conflicting_paths": 88
+    },
+    "olga": {
+      "paths": 32,
+      "conflicting_paths": 21
+    }
+  },
+  "replay_decisions": [
+    "Share the original base stat, attack and resistance layouts across the actor and equipment callers.",
+    "Preserve the current attack_params, stat_block and combat-stat field names.",
+    "Retain native typed attack access already present in ten enemy units and keep the established movement and resource owners.",
+    "Convert the Shark and Zanzo offset reads when the stat-block pointer becomes typed.",
+    "Apply the same patch above inventory and above the full stack. Build both orders and run the complete inventory suite on the review branch."
+  ]
+}

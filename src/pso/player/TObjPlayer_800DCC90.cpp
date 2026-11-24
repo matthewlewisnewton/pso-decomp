@@ -1,17 +1,22 @@
-#include "pso/misc/ParticleFactory.h"
 #include "pso/system/SoundEffect.h"
-#include "pso/enemy/TObjEneNanoDrago.h"
+#define TOBJECT_OUT_OF_LINE_HELPERS
+#include "pso/effect/particle/ParticleFactory.h"
+#include "pso/unk/text_803D96A8.h"
+#include "pso/enemy/nanodrago/TObjEneNanoDrago.h"
 #include "types.h"
-#include "pso/system/NinjaUtil.h"
+#include "pso/render/NinjaUtil.h"
 #include "pso/system/vector.h"
-#include "pso/TParticleCtrl.h"
+#include "pso/effect/particle/TParticleCtrl.h"
 #include "pso/player/TUnk_80494E48.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/misc/TNowLoading.h"
-#include "pso/object/TObjGyaranzoMissile.h"
+#include "pso/ui/hud/TNowLoading.h"
+#include "pso/enemy/gyaranzo/TObjGyaranzoMissile.h"
+#include "pso/system/task/TObject.h"
+#include "pso/player/TObjPlayer_80011014.h"
+#include "pso/system/MatrixStack.h"
+#include "pso/npc/TNpcPlayer_800D87A8.h"
 
-struct Vec_800DCD04 { f32 x, y, z; };
- extern const Vec_800DCD04 lbl_8043C920 = {0.0f, 0.0f, 0.0f};
+ extern const Vec lbl_8043C920 = {0.0f, 0.0f, 0.0f};
 typedef struct Parm_800DC4B4 {
     s32 a;
     f32 b;
@@ -30,13 +35,11 @@ struct Obj_800DC4B4 : Base_800DC4B4 {
     f32 pos[3];
 };
 
-struct Vec_800DC9EC { f32 x, y, z; };
-
 struct Me_800DC9EC {
     u8 pad0[0xAC];
-    Vec_800DC9EC pos;
-    Vec_800DC9EC prev;
-    Vec_800DC9EC vel;
+    Vec pos;
+    Vec prev;
+    Vec vel;
     u8 padD0[0xEC - 0xD0];
     s32 timer;
     void *target;
@@ -48,37 +51,32 @@ struct Me_800DC9EC {
 };
 
 extern "C" { u8 *find_entity_by_id(s16);
-Obj_800DC4B4 *find_active_entity_by_id(u16);
-void queue_destruction__7TObjectFv(void *);
-
 s32 subtract_vector(void *, void *);
 s32 vec3_add_to(void *, void *);
 u32 csnVector(void *, void *, int);
-
-s32 is_split_screen();
 extern const f32 lbl_805D5260;
 extern const f32 lbl_805D5268;
 extern s32 lbl_805D5270;
 extern s32 local_client_id;
-void TObjPlayer::update_homing_shot() {
-    Vec_800DC9EC dir;
+void TUnk_80494E48::run_task() {
+    Vec dir;
     void *att;
     Obj_800DC4B4 *obj;
     Me_800DC9EC *arg0 = (Me_800DC9EC *)this;
     att = ((void *(*)(u16))find_entity_by_id)(arg0->attacker);
     if (att == NULL) {
-        queue_destruction__7TObjectFv(arg0);
+        ((TObject *)arg0)->queue_destruction();
         return;
     }
-    obj = find_active_entity_by_id(arg0->owner);
-    switch (this->m_fc) {
+    obj = reinterpret_cast<Obj_800DC4B4 *>(find_active_entity_by_id(arg0->owner));
+    switch ((*(int *)((u8 *)this + 0xFC))) {
     case 0:
         arg0->timer--;
         if (arg0->timer <= 0) {
             arg0->timer = 0;
             VecCopy((Vec *)&arg0->pos, (const Vec *)arg0->target);
-            this->m_fc = 1;
-            play_sound_effect(0x4003A328, (const Vec *)(&arg0->pos), 0, 0);
+            (*(int *)((u8 *)this + 0xFC)) = 1;
+            play_sound_effect(0x4003A328, &arg0->pos, 0, 0);
             return;
         }
         if (arg0->effect != NULL) {
@@ -88,7 +86,7 @@ void TObjPlayer::update_homing_shot() {
     case 1:
         arg0->timer++;
         if (arg0->timer >= 0x5A) {
-            queue_destruction__7TObjectFv(arg0);
+            ((TObject *)arg0)->queue_destruction();
             return;
         }
         if (obj != NULL) {
@@ -105,7 +103,7 @@ void TObjPlayer::update_homing_shot() {
             ((TParticleCtrl *)arg0->effect)->set_position(&arg0->pos);
         }
         if (csnVector(&arg0->prev, &arg0->pos, -1) != 0) {
-            queue_destruction__7TObjectFv(arg0);
+            ((TObject *)arg0)->queue_destruction();
             return;
         }
         if (obj == NULL) {
@@ -121,12 +119,12 @@ void TObjPlayer::update_homing_shot() {
             if (obj->flags & 0x800) {
                 ((TObjEneNanoDrago *)att)->request_growth();
             }
-            spawn_particle_effect((const Vec *)(obj->pos), 0xFB);
-            spawn_particle_effect((const Vec *)(obj->pos), 0xFC);
+            spawn_particle_effect((const Vec *)obj->pos, 0xFB);
+            spawn_particle_effect((const Vec *)obj->pos, 0xFC);
             if (is_split_screen() == 0 && local_client_id == arg0->owner) {
-                ((TObjEneNanoDrago *)att)->trigger_hit_camera_shake((u32)obj);
+                ((TObjEneNanoDrago *)att)->trigger_hit_camera_shake((uaddr)obj);
             }
-            queue_destruction__7TObjectFv(arg0);
+            ((TObject *)arg0)->queue_destruction();
         }
         break;
     }
@@ -138,11 +136,11 @@ struct Obj_800DCD04 {
     u8 pad0[0x18];
     void *vt;
     u8 pad1c[0xc4 - 0x1c];
-    Vec_800DCD04 fc4;
+    Vec fc4;
     u8 padd0[0xe8 - 0xd0];
     f32 fe8;
     s32 fec;
-    Vec_800DCD04 *pos;
+    Vec *pos;
     f32 ff4;
     s32 ff8;
     s32 ffc;
@@ -151,46 +149,33 @@ struct Obj_800DCD04 {
 };
 
 extern "C" {
-f32 atan2_float(f32, f32);
-void *spawn_particle_effect_with_rotation(void *pos, void *dir, s32 id, int e);
 void __ct__14TObjCollidableFP7TObject(void *, void *);
-void matrix_mult_vec(s32, Vec_800DCD04 *, Vec_800DCD04 *);
+void matrix_mult_vec(s32, Vec *, Vec *);
 void rotate_matrix_y(s32, s32);
 void rotate_matrix_x(s32, s32);
-s32 push_matrix_from(void *src);
-s32 pop_matrix(void);
-extern s32 lbl_80494E48[];
+extern s32 __vt__13TUnk_80494E48[];
 extern u8 identity_matrix[];
 extern f32 lbl_805D5264;
 extern void *tl_04;
-static const f32 lbl_805DA480 = 0.0f;
-static const f32 lbl_805DA484 = 22500.0f;
-extern const f32 lbl_805DA488;
-Obj_800DCD04 *TObjPlayer__sub_800DCD04(Obj_800DCD04 *self, Vec_800DCD04 *pos, s16 id, s32 *rot, s32 arg4, s16 arg5);
-void __dl__7TObjectFPv(void *);
+Obj_800DCD04 *TObjPlayer__sub_800DCD04(Obj_800DCD04 *self, Vec *pos, s16 id, s32 *rot, s32 arg4, s16 arg5);
 
-void *TUnk_80494E48::destroy_particle_obj(s16 arg1) {
-    if (this != NULL) {
-        *(s32 **)((s8 *)this + 0x18) = lbl_80494E48;
-        if (this->m_f8 != NULL) { queue_destruction__7TObjectFv(this->m_f8); this->m_f8 = 0; }
-        __dt__14TObjCollidableFv(this, 0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(this);
-        }
+TUnk_80494E48::~TUnk_80494E48() {
+    if (m_f8 != NULL) {
+        ((TObject *)m_f8)->queue_destruction();
+        m_f8 = 0;
     }
-    return this;
 }
-Obj_800DCD04 *TObjPlayer__sub_800DCD04(Obj_800DCD04 *self, Vec_800DCD04 *pos, s16 id, s32 *rot, s32 arg4, s16 arg5) {
-    Vec_800DCD04 *pp;
+Obj_800DCD04 *TObjPlayer__sub_800DCD04(Obj_800DCD04 *self, Vec *pos, s16 id, s32 *rot, s32 arg4, s16 entity_id) {
+    Vec *pp;
     __ct__14TObjCollidableFP7TObject(self, tl_04);
-    self->vt = lbl_80494E48;
+    self->vt = __vt__13TUnk_80494E48;
     self->id = id;
-    self->f102 = arg5;
+    self->f102 = entity_id;
     self->pos = pos;
-    self->fe8 = lbl_805DA480;
+    self->fe8 = 0.0f;
     push_matrix_from(identity_matrix);
     {
-        Vec_800DCD04 v = lbl_8043C920;
+        Vec v = lbl_8043C920;
         s32 ang[3];
         v.z = lbl_805D5260;
         rotate_matrix_y(0, rot[1]);
@@ -198,15 +183,15 @@ Obj_800DCD04 *TObjPlayer__sub_800DCD04(Obj_800DCD04 *self, Vec_800DCD04 *pos, s1
         matrix_mult_vec(0, &v, &self->fc4);
         pop_matrix();
         self->fec = arg4;
-        pp = (Vec_800DCD04 *)(find_entity_by_id(id) + 0x2fc);
+        pp = (Vec *)(find_entity_by_id(id) + 0x2fc);
         ang[0] = 0;
         ang[1] = (s32)(10430.38043493439 * atan2_float(pp->x - pos->x, pp->z - pos->z)) + 0x4000;
         ang[2] = 0x4000 - (s32)(10430.38043493439 * atan2_float(pp->y - pos->y, vec_xz_distance((Vec *)pp, (Vec *)pos)));
-        self->ff8 = (s32)spawn_particle_effect_with_rotation(pos, ang, 0xf4, 2);
+        self->ff8 = (saddr)spawn_particle_effect_with_rotation(pos, ang, 0xf4, 2);
     }
     self->ff4 = lbl_805D5264;
-    if (xz_distance_squared((Vec *)pp, (Vec *)pos) < lbl_805DA484) {
-        self->ff4 *= lbl_805DA488;
+    if (xz_distance_squared((Vec *)pp, (Vec *)pos) < 22500.0f) {
+        self->ff4 *= 2.0f;
     }
     self->ffc = 0;
     return self;

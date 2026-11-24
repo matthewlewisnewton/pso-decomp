@@ -1,21 +1,20 @@
 #define TOBJECT_OUT_OF_LINE_HELPERS
 
 #include "types.h"
-#include "pso/TMainTask.h"
+#include "pso/system/task/TMainTask.h"
 #include "pso/item/TUnk_8049FED0.h"
 #include "pso/item/TUnk_8049FEB8.h"
 #include "pso/item/TItemTimerEvent.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjPlayer_80011014.h"
+#include "pso/player/TObjPlayer_801AF2F0.h"
+#include "pso/object/base/TObjBase.h"
+#include "pso/player/PlayerSlots.h"
 
 // Written from the last function back (deferred code generation), which puts
 // TUnk_8049FEB8's vtable before this class's.
 
-extern "C" {
-void *get_player_by_client_id(s32 i);
-}
-
-TUnk_8049FED0 *TUnk_8049FED0::create(u8 *item) {
+TItem *TUnk_8049FED0::create(u8 *item) {
     if (item != NULL) {
         return new TUnk_8049FED0(tl_05, item);
     }
@@ -35,7 +34,7 @@ void TUnk_8049FEB8::create(TObject *parent, TObjPlayer *player) {
 }
 
 TUnk_8049FEB8::TUnk_8049FEB8(TObject *parent, TObjPlayer *player) : TObject(parent) {
-    client_id = get_entity_id(player);
+    client_id = player->get_entity_id();
     TItemTimerEvent::start_event_by_index(client_id);
     frames_left = 3;
 }

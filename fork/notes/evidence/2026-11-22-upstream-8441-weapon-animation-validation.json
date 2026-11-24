@@ -1,0 +1,141 @@
+{
+  "upstream": "8441b1b4feb550bf1fc4b0a897acd19b003a0437",
+  "source": "44c5eccf9710fe54f823eadb855a32f58a6cd973",
+  "source_base": "ce44868a80f4a0fc8657de9c3d6d03224814bb98",
+  "source_commits": 41,
+  "paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/effect/item/TItemEffOrgaFlowShot.h",
+    "include/pso/math/ClampedStep.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/player/TObjPlayer_8012105C.h",
+    "include/pso/system/MatrixStack.h",
+    "include/pso/weapon/TItemWeapon.h",
+    "include/pso/weapon/TUnk_804A6200.h",
+    "include/pso/weapon/TUnk_804A67D0.h",
+    "include/pso/weapon/TUnk_804F0AF8.h",
+    "include/pso/weapon/WeaponCanopyScale.h",
+    "src/pso/boss/barbaray/TObjBoss7Tunnel.cpp",
+    "src/pso/effect/item/TItemEffPG_8034EFDC.cpp",
+    "src/pso/effect/item/TItemEffPG_8034F470.cpp",
+    "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+    "src/pso/item/TItemMenuCtrl_80115AF0.cpp",
+    "src/pso/math/MatrixTransforms.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TObjPlayer_80357734.cpp",
+    "src/pso/unk/text_80357058.cpp",
+    "src/pso/weapon/TItemWeapon.cpp",
+    "src/pso/weapon/TUnk_804A0FA0.cpp",
+    "src/pso/weapon/TUnk_804A1D30.cpp",
+    "src/pso/weapon/TUnk_804A2358.cpp",
+    "src/pso/weapon/TUnk_804A2F78.cpp",
+    "src/pso/weapon/TUnk_804A3830.cpp",
+    "src/pso/weapon/TUnk_804A444C.cpp",
+    "src/pso/weapon/TUnk_804A4548.cpp",
+    "src/pso/weapon/TUnk_804A4D70.cpp",
+    "src/pso/weapon/TUnk_804A4F60.cpp",
+    "src/pso/weapon/TUnk_804A5150.cpp",
+    "src/pso/weapon/TUnk_804A5248.cpp",
+    "src/pso/weapon/TUnk_804A5458.cpp",
+    "src/pso/weapon/TUnk_804A5740.cpp",
+    "src/pso/weapon/TUnk_804A5B20.cpp",
+    "src/pso/weapon/TUnk_804A5C18.cpp",
+    "src/pso/weapon/TUnk_804A5D28.cpp",
+    "src/pso/weapon/TUnk_804A5F18.cpp",
+    "src/pso/weapon/TUnk_804A6200.cpp",
+    "src/pso/weapon/TUnk_804A67D0.cpp",
+    "src/pso/weapon/TUnk_804A68C8.cpp",
+    "src/pso/weapon/TUnk_804E24F0.cpp",
+    "src/pso/weapon/TUnk_804ED0A8.cpp",
+    "src/pso/weapon/TUnk_804ED1A0.cpp",
+    "src/pso/weapon/TUnk_804ED298.cpp",
+    "src/pso/weapon/TUnk_804ED390.cpp",
+    "src/pso/weapon/TUnk_804F28E0.cpp",
+    "src/pso/weapon/WeaponAttackActions.cpp"
+  ],
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "coverage_losses": {
+    "regressions": 0,
+    "data_coverage_lost": 0,
+    "padding_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0
+  },
+  "linked_labels": [
+    {
+      "module": "psov3",
+      "address": "0x80115B80",
+      "before": "approach_value__20TItemEffOrgaFlowShotFPfff",
+      "after": "approach_value"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80115BC0",
+      "before": "add_angle_clamped__10TObjPlayerFPlll",
+      "after": "add_angle_clamped"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803D9324",
+      "before": "copy_matrix__10TObjPlayerFPA4_fPA4_Cf",
+      "after": "copy_matrix"
+    }
+  ],
+  "original_data_bytes": 1147,
+  "original_data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "runtime": {
+    "source": {
+      "sha256": "57faf36f49eed5f4913aeb77274fc0ac7dd6fef120f257348984d58bb85c862e",
+      "observations": [
+        "PsoV3.dol: 18 clamp cases, 96 canopy frames, draw and lifetime cases, typed trail and angle slots, and all four matrix copy paths passed",
+        "psov3.dol: 18 clamp cases, 96 canopy frames, draw and lifetime cases, typed trail and angle slots, and all four matrix copy paths passed"
+      ]
+    },
+    "workspace": {
+      "sha256": "57faf36f49eed5f4913aeb77274fc0ac7dd6fef120f257348984d58bb85c862e",
+      "observations": [
+        "PsoV3.dol: 18 clamp cases, 96 canopy frames, draw and lifetime cases, typed trail and angle slots, and all four matrix copy paths passed",
+        "psov3.dol: 18 clamp cases, 96 canopy frames, draw and lifetime cases, typed trail and angle slots, and all four matrix copy paths passed"
+      ]
+    }
+  },
+  "historical_audit": {
+    "open_before": 251,
+    "open_after": 251,
+    "resolved": [
+      "include/pso/math/MatrixCopy.h"
+    ],
+    "restored_prior_replays": [
+      "include/pso/math/ClampedStep.h",
+      "include/pso/weapon/WeaponCanopyScale.h"
+    ],
+    "reopened": "src/pso/item/TItemMenuCtrl_80115AF0.cpp"
+  },
+  "fork_workspace": {
+    "parent": "44c5eccf9710fe54f823eadb855a32f58a6cd973",
+    "previous_workspace": "b77b153a90373ad08f697924c8efda3114a9a21b",
+    "overlay_paths": 130,
+    "updated_linker_labels": 0,
+    "materialized_tree_before_notes_update": "8e0e41397ba82ba771dd09764862028639a507b5",
+    "archive_sha256": "8f893c3e8f0d18deb473844d6bcb7cfd63268bd7138368431b748a23ef2a953f",
+    "tests": {
+      "tool": 294,
+      "fork": 11,
+      "host": 5
+    },
+    "host_executables": [
+      "vector_math_fallbacks",
+      "item_factory_callbacks",
+      "loader_transfer",
+      "ginja_parameter_callbacks",
+      "exi_ethernet_fallbacks"
+    ]
+  }
+}

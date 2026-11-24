@@ -1,52 +1,45 @@
-#include "pso/misc/ParticleFactory.h"
+#include "pso/item/ItemCreateFunction.h"
+#include "pso/effect/particle/ParticleFactory.h"
 #include "pso/map/FloorArea.h"
 #include "pso/item/TItemObject.h"
-#include "pso/item/ItemCreateFunction.h"
-#include "pso/object/TObjMotion.h"
+#include "pso/object/base/TObjMotion.h"
 #include "pso/item/TItemData.h"
-#include "pso/TMainTask.h"
+#include "pso/system/task/TMainTask.h"
 
 #include "types.h"
 #include "pso/item/TItem.h"
-#include "pso/item/TItemProShield.h"
-#include "pso/misc/TMainCursor.h"
-#include "pso/misc/TWindowSubStatusDisp.h"
+#include "pso/object/base/TObjChara.h"
+#include "pso/ui/hud/TLockOnCursor.h"
+#include "pso/ui/window/TWindowSubStatusDisp.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/protocol/subcmd_6x.h"
+#include "pso/network/protocol/subcmd_6x.h"
+#include "pso/player/TObjPlayer_801AF2F0.h"
+#include "pso/player/TObjPlayer_80011014.h"
+#include "pso/render/render_util.h"
+#include "pso/object/base/TObjBase.h"
+#include "pso/player/PlayerSlots.h"
 
 #pragma readonly_strings on
 
 extern "C" {
 const char *TItemObject_name = "TItemObject";
-}
-
-extern "C" {
-s16 get_entity_id(TObjPlayer *);
-f32 horizontal_distance_squared(void *, void *);
-s32 sub_801A1DDC__10TObjPlayerFv(void *);
-void *get_player_by_client_id(s32 i);
 void send_nearby_player_ids(TObjPlayer *self, f32 range);
-
 void *TObjPlayer__sub_80116620(void *, s32);
 void send_star_atomizer_targets(TObjPlayer *player);
-}
-void handle_6x66_use_star_atomizer(u8 *arg0);
-
-extern "C" {
 void *lookup_item_pmt_record(u8 *item);
 }
-
+void handle_6x66_use_star_atomizer(u8 *arg0);
 extern const char *TItemObject_name;
 
 s32 TItemObject::get_amount() {
-    return encoded_amount ^ (s32)&encoded_amount;
+    return encoded_amount ^ (saddr)&encoded_amount;
 }
 
 TItemObject::~TItemObject() {}
 
 TItem *TItemObject::create_tool(u8 *item) {
     if (item != NULL) {
-        TItem *(*factory)(u8 *) = TLobby__sub_8010440C(item);
+        ItemCreateFunction factory = TLobby__sub_8010440C(item);
         return factory(item);
     }
     return NULL;
@@ -134,15 +127,15 @@ void *TItemObject::get_center() {
 
 void send_star_atomizer_targets(TObjPlayer *player) {
     G_UseStarAtomizer_6x66 cmd;
-    s32 cursor;
+    LockOnActionSlot *slot;
     s32 i;
-    if (player != NULL && sub_801A1DDC__10TObjPlayerFv(player) != 0 && (TMainCursor *)player->m_424 != NULL) {
-        cursor = ((TMainCursor *)player->m_424)->find_by_pos(4, 0xA);
-        if (cursor != 0) {
+    if (player != NULL && ((TObjPlayer *)player)->sub_801A1DDC() != 0 && player->lock_on_cursor != NULL) {
+        slot = player->lock_on_cursor->find_by_pos(4, 0xA);
+        if (slot != NULL) {
             ((TObjPlayer *)&cmd)->set_type_bytes();
-            cmd.target_client_ids[0] = get_entity_id(player);
+            cmd.target_client_ids[0] = player->get_entity_id();
             for (i = 0; i != 3; i++) {
-                cmd.target_client_ids[i + 1] = ((TObjPlayer *)TObjPlayer__sub_80116620((void *)(cursor + 0x9C), i))->get_type_id();
+                cmd.target_client_ids[i + 1] = ((TObjPlayer *)TObjPlayer__sub_80116620(&slot->target_records, i))->get_type_id();
             }
             ((TObjPlayer *)&cmd)->bswap_and_send_item();
         }
@@ -154,14 +147,14 @@ void send_nearby_player_ids(TObjPlayer *self, f32 range) {
     s32 j;
     u16 i;
     TObjPlayer *player;
-    if (self != NULL && sub_801A1DDC__10TObjPlayerFv(self) != 0) {
+    if (self != NULL && ((TObjPlayer *)self)->sub_801A1DDC() != 0) {
         ((TObjPlayer *)&cmd)->set_type_bytes();
         j = 0;
         for (i = 0; i != 4; i++) {
-            player = (TObjPlayer *)get_player_by_client_id(i);
+            player = get_player_by_client_id(i);
             if (player != NULL) {
                 if (horizontal_distance_squared(&self->position, &player->position) < range) {
-                    cmd.target_client_ids[j++] = get_entity_id(player);
+                    cmd.target_client_ids[j++] = player->get_entity_id();
                 } else {
                     cmd.target_client_ids[j++] = -1;
                 }
@@ -179,14 +172,14 @@ void handle_6x66_use_star_atomizer(u8 *arg0) {
     s32 i;
     TObjPlayer *target;
     ((TObjPlayer *)cmd)->bswap_fields_x4();
-    user = (TObjPlayer *)get_player_by_client_id(cmd->target_client_ids[0]);
+    user = get_player_by_client_id(cmd->target_client_ids[0]);
     if (user != NULL) {
         i = 0;
         do {
-            target = (TObjPlayer *)get_player_by_client_id(cmd->target_client_ids[i]);
+            target = get_player_by_client_id(cmd->target_client_ids[i]);
             if (target != NULL && target->has_flag_0x800() == 0) {
                 if (user->get_floor() == target->get_floor()) {
-                    target->set_hp_clamped(((TItemProShield *)target)->get_field_2b8());
+                    target->set_hp_clamped(target->get_hpmax());
                     if (is_current_area_item_enabled() != 0) {
                         if (i == 0) {
                             spawn_particle_effect((const Vec *)((u8 *)target + 0x2FC), 0x19);
@@ -249,7 +242,7 @@ u8 TItemObject::get_pmt_amount() {
 u8 TItemObject::get_technique() { return technique; }
 
 void TItemObject::set_amount(s32 amount) {
-    encoded_amount = amount ^ (s32)&encoded_amount;
+    encoded_amount = amount ^ (saddr)&encoded_amount;
 }
 
 void TItemObject::carry_over_stats(TItemData *, TItem *) {}

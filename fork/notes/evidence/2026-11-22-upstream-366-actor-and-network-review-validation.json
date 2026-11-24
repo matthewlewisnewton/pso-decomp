@@ -1,0 +1,294 @@
+{
+  "upstream": "2ea1c02d4c0b7fa917ede02beac56fcaf3f4b87e",
+  "window_base": "7e38bacd3a3be70b715037db837d5366763d4502",
+  "standalone_network": "72703eff0b0926dc17e48aa1d6f1303b1949018a",
+  "actors": {
+    "files": 339,
+    "paths_counting_moves": 340,
+    "commit_map": [
+      {
+        "previous_head": "6cbdd29050b46f495d5cb949ba8db8dc3c0e0a77",
+        "head": "2de6c6ddc92743d4fedf2046537ec25c1c68c58f",
+        "tree": "b70b3ed9c6c6097bd68cdca7891910e9d29df0cc",
+        "paths": 266
+      },
+      {
+        "previous_head": "90c4a3923b81c7ad7c076c178af3e992e693b903",
+        "head": "51c93c3aca2513a0d3ae53c6b2ab67f82a41091e",
+        "tree": "5dd8268a3bf65f29fb330588a99320cb774b30ad",
+        "paths": 30
+      },
+      {
+        "previous_head": "c2dbaa42fb4626bf1f98cdad3e26255de454e83d",
+        "head": "9e66f00fc9eb338f48a6e390d39291d62fdff980",
+        "tree": "cc3fc003d2b0ccd729d0469447717ad22b3173a9",
+        "paths": 98
+      },
+      {
+        "previous_head": "6af1a8f8b0fb433fd6c7bbdde4422a040454996d",
+        "head": "f5d32cb405cecb2f4d1538a99278271163443c9f",
+        "tree": "ec88c198326e906a05282dc68cf4807f0cc2fef1",
+        "paths": 24
+      },
+      {
+        "previous_head": "688f231369208dfde04906467b470ea4606ea5ac",
+        "head": "ae86244c70c305a0ab65617d4962e81a473bf5d8",
+        "tree": "0457264fa55dc1e8dec94c994ec2ed69a7dcad24",
+        "paths": 8
+      },
+      {
+        "previous_head": "5db0dc93ed1e80eda57825a1852dbce705f0c648",
+        "head": "6fef559bb1293e2d14ff158822b96779199a95d1",
+        "tree": "2258dff4abbf20546acb6609628e2301ee50da86",
+        "paths": 67
+      }
+    ]
+  },
+  "validation": {
+    "actors": {
+      "head": "6fef559bb1293e2d14ff158822b96779199a95d1",
+      "base": "7e38bacd3a3be70b715037db837d5366763d4502",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": 217,
+      "check_sha256": "681ab4cab7cad3f6de565b85af0f454460c39ba42546d2a469071ace78de91bf",
+      "report_sha256": "f2131c676a0d8195e59b056d53ddddc42adf204ff16329068e80cd0835def8f4"
+    },
+    "network": {
+      "head": "8b22ee1626c71f6eb8a72648aa40fd3eb577cb43",
+      "base": "6fef559bb1293e2d14ff158822b96779199a95d1",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": 4,
+      "check_sha256": "7b8f1b6e623025515d9f05564f78e6b8302ebfe04289373f6eb5faf4a924e7a8",
+      "report_sha256": "1c0e07d7b63e393dd458b5a941cc5e27bb6fe2fa03bfe37c9c646b42009f8568"
+    }
+  },
+  "actors_runtime": {
+    "archives": {
+      "log_sha256": "c6866e817fe60142f644cb8faddded8ed9c25c6021205933f891186f9c37e854",
+      "results": [
+        "psov3.dol: Epsilon asset registration, nine polygon colors, and ordered resource release passed."
+      ]
+    },
+    "battle-motion": {
+      "log_sha256": "8fa2f6835d20a253c8062223df21bd93d439d1591c7b0aeba0953ce470890628",
+      "results": [
+        "/tmp/gm-stage-archive-replay.PGoFTj/upstream-review/build/GPOE8P/psov3.dol 384 table lookups, 32 full-file loads and release passed",
+        "/tmp/gm-stage-archive-replay.PGoFTj/upstream-review/build/GPOE8P/psov3.dol typed motion fields and HP/TP reload and reset passed"
+      ]
+    },
+    "boss2-arena": {
+      "log_sha256": "c1eec0b21a41609949ee153936c351a781b336d4f21ff1fc8923616fc1803897",
+      "results": [
+        "Tunnel model flags, particle paths, debris, tentacle and mine targets, and shared motion curves passed"
+      ]
+    },
+    "enemy-lifecycle": {
+      "log_sha256": "dfd3ca36934794bcbe8db779187df56dd7abda5d92a675d6f6c4ea409a56b392",
+      "results": [
+        "psov3.dol: 17 enemy lifecycle cases passed."
+      ]
+    },
+    "fade-phases": {
+      "log_sha256": "fa14a6d0f5b05a8f867fc255a8c5e3b6840c0f4dd70952373bc51133d9a2de2e",
+      "results": [
+        "psov3.dol: 23 actor fade phase cases passed."
+      ]
+    },
+    "matrix-contracts": {
+      "log_sha256": "fd96296d833e998e23ef4b2c04bfd94318895afe2a604712b8d6fe7a5adb149c",
+      "results": [
+        "{\"matrix_cases\": 27, \"view_cases\": 16}"
+      ]
+    },
+    "panarms-contacts": {
+      "log_sha256": "63864047b5292aa0cdfc12a36f31cb45acca92842acc525e14bf3216426d8dda",
+      "results": [
+        "psov3.dol: 28 Pan Arms contact and movement cases passed."
+      ]
+    },
+    "photon": {
+      "log_sha256": "d5e1714464deb581c23b3bce2c34aa1d194b61d562a2cfbe0cbd8ac3ce9b548b",
+      "results": [
+        "Rainbow variants, magic-square setup, six summon dispatches and Mylla's Youlla packet passed."
+      ]
+    },
+    "spawn-owners": {
+      "log_sha256": "c456242ac5c037d9d6901cb6447af927b0767053a12d7bee9054fcb30d995f60",
+      "results": [
+        "psov3.dol: 23 Gyaranzo and Fly Nest cases passed."
+      ]
+    },
+    "stealth": {
+      "log_sha256": "9f87fa787a04958a9fe90dccadd715c4cd8517300bace53364b7aa9e51f6cd8e",
+      "results": [
+        "psov3.dol: Ginja entry copies, five archive paths, native factory and action dispatch, and Ill Gill shadow inputs passed."
+      ]
+    },
+    "tentacle-inputs": {
+      "log_sha256": "e3872e6e8e742290c0b4a720dfcdb86cbeebe85f22694e536956bd8327f990c7",
+      "results": [
+        "{\"attack_cases\": 48, \"constructors\": 8}"
+      ]
+    }
+  },
+  "probe_alias": {
+    "probe_name": "__ct__11BmlResourceFlP21BmlResourceDescriptorPFPv_vPvPv",
+    "candidate_name": "__ct__11BmlResourceFlP21BmlResourceDescriptorllPv",
+    "address": "0x80020004",
+    "size": "0x588"
+  },
+  "network_runtime": {
+    "sdk-queues": {
+      "probe_sha256": "ed90ded6d9abadd5f381b21fcc344029dd93c919ad14f0442e7b8246c12393a7",
+      "log_sha256": "071c5f597d5d0471f933596f6d0307cefbd0f52ba86a15041d97b7272b0352ee",
+      "results": [
+        "{\"completion_cases\": 4, \"post_cases\": 8, \"receive_cases\": 8, \"shutdown_cases\": 8, \"startup_cases\": 12, \"update_cases\": 12}"
+      ]
+    },
+    "stack-lifecycle": {
+      "probe_sha256": "046900bbac560e7970f02d2748cfc6c469368d137199425a4dfcb63ed8fd6f3e",
+      "log_sha256": "5f5daee5776ec374acda2e0b8b636dd205a2884ec83d3ff5bda0c88cbbee3050",
+      "results": [
+        "{\"branches\": {\"compare_sockaddr\": 7, \"init_buffer_descriptor_a\": 1, \"init_buffer_descriptor_b\": 1, \"init_ipv6_interface_config\": 1, \"init_net_buffer_config\": 1, \"init_net_config\": 1, \"init_net_func_table\": 1, \"init_net_recv_desc\": 1, \"init_udp_socket_config\": 1, \"is_multicast_address\": 3, \"release_entry\": 41, \"request_network_info_load__FlPv\": 1}, \"headers\": 5, \"initializers\": 8, \"poll_cases\": 36, \"pool_cases\": 140, \"request_cases\": 42}"
+      ]
+    },
+    "modem-transport": {
+      "probe_sha256": "657831b542faf37b6a8ecabe573bade97f4c85ddb3a64f9a505a1be86fdef85e",
+      "log_sha256": "2dc155a9ff455a922c1113d6851848cb701ff40085afb49ade058d0148ccf56f",
+      "results": [
+        "PsoV3.dol: modem send, status, command filters, dialing and four ring cases passed.",
+        "psov3.dol: modem send, status, command filters, dialing and four ring cases passed."
+      ]
+    },
+    "modem-dial-script": {
+      "probe_sha256": "1fd32ba7c01a06a0125c768f99ef4215063467696bb56cf6e32e681d3c575221",
+      "log_sha256": "54c32f03287a4872062a3b24690b07c12488d0cd3412a98c97725c959b410767",
+      "results": [
+        "PsoV3.dol: 13 modem script cases passed.",
+        "psov3.dol: 13 modem script cases passed."
+      ]
+    },
+    "network-startup": {
+      "probe_sha256": "2f20cfc10be3c4a71291ce2c130e6f49ef6ff7f52bf4586a8dbd901fe0e4d805",
+      "log_sha256": "ef593cff8628a40ef50439544b1d58d5e23853bab5a08b4b01afe333ee13b3a7",
+      "results": [
+        "PsoV3.dol: 20 network startup and PPP cases passed.",
+        "psov3.dol: 20 network startup and PPP cases passed."
+      ]
+    },
+    "ppp-frames": {
+      "probe_sha256": "9660b2b4490e1623008049b8afb52517686e1dad6bd7447cac4ab8ff4858a983",
+      "log_sha256": "8633f77d0e86f65ca6732327d84883e3a78d51bacb2a22487ff39255bf861024",
+      "results": [
+        "PsoV3.dol: 28 PPP frame, dispatch, and compression cases passed.",
+        "psov3.dol: 28 PPP frame, dispatch, and compression cases passed."
+      ]
+    },
+    "ppp-callbacks": {
+      "probe_sha256": "89b11ef200288902d2b2c1b9f5085a02ee2fd63d0bc9008d2dc4f61dc52a5349",
+      "log_sha256": "a14c11134e0efb464676eb62d3ecb63dfa574195b6fdaea313af1e54191c03d3",
+      "results": [
+        "PsoV3.dol: 13 PPP callback-table and IPv6CP option cases passed.",
+        "psov3.dol: 13 PPP callback-table and IPv6CP option cases passed."
+      ]
+    },
+    "runtime-slots": {
+      "probe_sha256": "8924a82c94c2c4cbc11c45f957fc89693e859fbeb5a386d517d5702e9a68c083",
+      "log_sha256": "5174d9e08ddcce6bdc4dbd717dd96ca3be312da0083c68793afde61fe5eab108",
+      "results": [
+        "PsoV3.dol: seven network slot initialization cases passed.",
+        "psov3.dol: seven network slot initialization cases passed."
+      ]
+    },
+    "packet-receive-and-dhcp": {
+      "probe_sha256": "5587c776da77526c1746783b6e1abffe4d1c1816087e3bff12034d958e88578d",
+      "log_sha256": "2cd3e97cb747531215e493228c56f6ba972395665db300c16130d3bcd2599213",
+      "results": [
+        "PsoV3.dol: 15 receive and DHCP record cases passed.",
+        "psov3.dol: 15 receive and DHCP record cases passed."
+      ]
+    },
+    "socket-and-dhcp-handoffs": {
+      "probe_sha256": "e4c444684b3e527d1ab4baee37a321b795e15df7ed23e8b6eceabd623a3ead57",
+      "log_sha256": "a6a7dce6d5172ffe189d21284131b52ad23c8696b7421ccf2b9ea414a1c80660",
+      "results": [
+        "PsoV3.dol: 10 socket timer, send handoff and DHCP option cases passed.",
+        "psov3.dol: 10 socket timer, send handoff and DHCP option cases passed."
+      ]
+    },
+    "socket-queues": {
+      "probe_sha256": "0de4e9dbf95a835be9ea646541e5abda11115c6f0008d3c1ea5d859a7fc3b12f",
+      "log_sha256": "701852d4f7fe7a41d7ee822cef1724c0c0378c07d2f3b6e0d1022465ffb69cd6",
+      "results": [
+        "786 reassembly comparisons and 12 out-of-order receive cases passed.",
+        "2,528 gathers and 1,600 ACKs passed, including 1766 completion events."
+      ]
+    }
+  },
+  "residual": {
+    "rehearsed_head": "2bbf3682d6379626c64496d6b6a60d315bf238e3",
+    "consolidated_source": "156e375c1cfbd47c7a2f1c15f4115a01d87f43a0",
+    "index_sha256": "06824151e4b2418a90937aa0778f776cd5a18e1209e6bae78c2da3d3c9ca9f4e",
+    "files": 680,
+    "consolidated_only": 403,
+    "both_changed": 277,
+    "shared_identical": 529,
+    "queued_only": 0,
+    "open_comparisons_on_these_paths": 169,
+    "open_comparisons_in_ledger": 267,
+    "paths_by_area": {
+      "config/GPOE8P": 2,
+      "audio": 1,
+      "boss": 60,
+      "camera": 8,
+      "effect": 24,
+      "enemy": 53,
+      "item": 20,
+      "network": 7,
+      "npc": 55,
+      "object": 82,
+      "player": 69,
+      "quest": 21,
+      "render": 7,
+      "system": 17,
+      "technique": 26,
+      "ui": 111,
+      "unk": 107,
+      "libs/dolphin": 1,
+      "map": 3,
+      "weapon": 6
+    }
+  }
+}

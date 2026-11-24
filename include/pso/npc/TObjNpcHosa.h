@@ -2,28 +2,20 @@
 #define PSO_NPC_TOBJNPCHOSA_H
 
 #include "types.h"
-#include "pso/npc/TUnk_804A9F50.h"
+#include "pso/npc/TObjNpcMale.h"
 
-struct TObjNpcHosa : public TUnk_804A9F50 {
+struct BmlResource;
+
+struct TObjNpcHosa : public TObjNpcMale {
+    TObjNpcHosa(TObject *parent, void *set_data);
     virtual ~TObjNpcHosa();
     static void destroy_static_instance();
     static void load_static_resource();
+    static void *create(void *set_data);
+    static const char *name;
+    static BmlResource *static_model_resource;
 };
 
-typedef char TObjNpcHosa_size[sizeof(TObjNpcHosa) == 0x3B8 ? 1 : -1];
-
-extern "C" {
-u8 *TObjNpcHosa__ct(u8 *arg0, s32 arg1, s32 arg2);
-void *TObjNpcKenkyuW__create(void *arg0);
-void *__dt__11TObjNpcHosaFv(void *arg0, s16 arg1);
-}
-
-// --- C functions defined in TObjNpcHosa.cpp ---
-extern "C" {
-u8 *TObjNpcHosa__ct(u8 *player, s32 arg1, s32 arg2);
-void *TObjNpcKenkyuW__create(void *arg0);
-void *__dt__11TObjNpcHosaFv(void *arg0, s16 arg1);
-}
-// --- end of C functions
+LAYOUT_ASSERT(TObjNpcHosa_size, sizeof(TObjNpcHosa) == 0x3B8);
 
 #endif

@@ -1,0 +1,1229 @@
+{
+  "source": "fbb99312db95f1b3e4e9f39c49b797530a608bf1",
+  "previous_source": "081bc64d5286e6272b9bfeaab6085655e2661f7b",
+  "landing": "858ca994948e1f7de4bcef3160142623f19d71a9",
+  "working_fork_build": "e3683e84d7fc2f71c1de5203347c50b3c51e8cbd",
+  "source_files": 24,
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "review_queue": {
+    "head": "59eb1e00f15f8c20c7b4021fde541e2ec385867e",
+    "tree": "315b379be825da5189ea5cafb6778cbddc4ad7a1",
+    "previous": "39cf9fce76dc2bf4662e93f48cbfe41bb8c170ea",
+    "inputs": [
+      "b75c6f38a72228b2c5dc79f3198981f324474018",
+      "a4d7a8d2d908dc795ed2d7e929357d807e547955",
+      "2e737a05f5f1457fdc66da1b12472793635f002f",
+      "9a9d704b899922b8d4439be16dad34a85c23fd97",
+      "c3e7f90c1fd3d467ffef36be945b0d42d832cc59",
+      "d9e7ee7f3dfdbb7018ef9d50b394972b625fd72e",
+      "bb0a2828e3a31ddc506164215d32f5cd834ff234",
+      "cdfbc9ea796425975e1c113c20af714744ff6061",
+      "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
+      "beada8d9e43efd7d32bac3ccbfdbc55ff90afb50",
+      "5444617a9786f1728ec2d732bf5432811b37cd20",
+      "9bbc668b6121ceb6bc03f83427c98aaa931a0d31",
+      "a5aed4817c6718d9ea584baaa3f5f29fdd72d1ee",
+      "ac5aa002909d739722e26f4c3c9aef7f681b4425",
+      "12bdb900e51d333a482062d8cd0d9edab5a09a80",
+      "7bdbdaf5ba01344982227ac6b25f5315e800d9f5",
+      "f7a0122c73c00062937eac73bc56ea913630e522",
+      "9a277f6b061ec44eecf9395be11f3112c378a33c",
+      "ba580a76cbb0992a985eb947d48a178cbb36d1b2",
+      "04e0a137422e25a50c7ea48df4c35c9bcc7b14fb",
+      "182fb702e6a21c01f05a822fa77a49c1e484d0bd",
+      "0895f1cbb38bc55767e2428439e698a94b5bccf4",
+      "b18e36657fcb0ddb6227ce1cd1f5b869f53cdab8",
+      "8f26a3c7a707d4076bf84134da09276bc62991f9",
+      "501edde10f0683bd47469495199a13dd0ebeacb1",
+      "ae3da5ccb25c52f727ab0f41adcc3a3afbf0c4ef",
+      "a0c6dc4253dbf22cb0984501536a32673fa9b9e8",
+      "d90619b7c15b4300567435fdee477df7c1796a25",
+      "bd20994aa3698ab8f8f0098410b4da11d0ba0d2c",
+      "9935ca4090ba264f42a12317c104ab4a568036b5"
+    ],
+    "files": 2141,
+    "reviews": {
+      "standalone-redundant-compiler-directives": {
+        "head": "9935ca4090ba264f42a12317c104ab4a568036b5",
+        "previous": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 12,
+        "create": true,
+        "live_tip": null,
+        "queue_input": "9935ca4090ba264f42a12317c104ab4a568036b5",
+        "report": "/dev/shm/gm-pr622-current.b6MDLM/direct.report.json.gz",
+        "strict": "/dev/shm/gm-pr622-current.b6MDLM/direct.strict.json"
+      },
+      "standalone-camera-and-radar": {
+        "head": "2e737a05f5f1457fdc66da1b12472793635f002f",
+        "previous": "fd611e40a68f1c82795e3cabd46f87c61131ade4",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 126,
+        "create": false,
+        "live_tip": "fd611e40a68f1c82795e3cabd46f87c61131ade4",
+        "queue_input": "2e737a05f5f1457fdc66da1b12472793635f002f",
+        "report": "/dev/shm/gm-party-status-20261120/direct/provider-report.json.gz",
+        "strict": "/dev/shm/gm-party-status-20261120/direct/provider-strict.json"
+      },
+      "standalone-enemy-registration-and-formations": {
+        "head": "5444617a9786f1728ec2d732bf5432811b37cd20",
+        "previous": "cf1cb4ba7a329a83c766b7fb93dc61e9108c448a",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 243,
+        "create": false,
+        "live_tip": "cf1cb4ba7a329a83c766b7fb93dc61e9108c448a",
+        "queue_input": "5444617a9786f1728ec2d732bf5432811b37cd20",
+        "report": "/dev/shm/gm-enemy-20565490-review/barba-standalone-report.json.gz",
+        "strict": "/dev/shm/gm-enemy-20565490-review/barba-standalone-strict.json"
+      },
+      "standalone-equipment-and-item-list-windows": {
+        "head": "beada8d9e43efd7d32bac3ccbfdbc55ff90afb50",
+        "previous": "f05429eb8e62847890602a9bf209cd4a59181a27",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 538,
+        "create": false,
+        "live_tip": "f05429eb8e62847890602a9bf209cd4a59181a27",
+        "queue_input": "beada8d9e43efd7d32bac3ccbfdbc55ff90afb50",
+        "report": "/dev/shm/gm-symbol-chat-collision.mTXl1A/direct-report.json.gz",
+        "strict": "/dev/shm/gm-symbol-chat-collision.mTXl1A/direct-check.json"
+      }
+    },
+    "replays": {
+      "pragma": {
+        "canonical": "e9110e589588d84cffd1b0415205ecd72fd06289",
+        "standalone": "9935ca4090ba264f42a12317c104ab4a568036b5",
+        "queue": "9406d2b637431c36d6b252f46e2587dbe5355139"
+      },
+      "party": {
+        "canonical": "dcd0bf095d6f8c6c5db33d98a324e2b8df59e939",
+        "standalone": "2e737a05f5f1457fdc66da1b12472793635f002f",
+        "queue": "c8917caf326219a32d0348a9463efe13bd96f17e"
+      },
+      "barba": {
+        "canonical": "428ef9c6ddfcbfc790d1933fefbf1eacc9346915",
+        "standalone": "5444617a9786f1728ec2d732bf5432811b37cd20",
+        "queue": "3afee3df373fb21d1d43ec413ff05b43de2f73fa"
+      },
+      "symbolchat": {
+        "canonical": "ef2c8d186b22a8f4431c1dc2ec149a8cc0493f81",
+        "standalone": "beada8d9e43efd7d32bac3ccbfdbc55ff90afb50",
+        "queue": "31c70229a7e9ed464850d25cf4cc5105ab8a75d9"
+      }
+    },
+    "increment": 38
+  },
+  "reviews": {
+    "standalone-redundant-compiler-directives": {
+      "head": "9935ca4090ba264f42a12317c104ab4a568036b5",
+      "previous": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 12,
+      "create": true,
+      "live_tip": null,
+      "queue_input": "9935ca4090ba264f42a12317c104ab4a568036b5",
+      "report_sha256": "3be01c6fcf4bfeab5b2606641184f787f1f15e0e5b8f6a5608822b09be68af14",
+      "strict_sha256": "9c615f959fa1a7bf9bb3f5f91339497318f3273f801c2308e9946f3f6ba960a9"
+    },
+    "standalone-camera-and-radar": {
+      "head": "2e737a05f5f1457fdc66da1b12472793635f002f",
+      "previous": "fd611e40a68f1c82795e3cabd46f87c61131ade4",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 126,
+      "create": false,
+      "live_tip": "fd611e40a68f1c82795e3cabd46f87c61131ade4",
+      "queue_input": "2e737a05f5f1457fdc66da1b12472793635f002f",
+      "report_sha256": "59e23463a4dd43ae774f342c7d1ddedd0fd554a2a5bd96427584594f5776fade",
+      "strict_sha256": "5d502b0c3733e1641a92268669776548af07040c005ec7ddc00cb06835638a0e"
+    },
+    "standalone-enemy-registration-and-formations": {
+      "head": "5444617a9786f1728ec2d732bf5432811b37cd20",
+      "previous": "cf1cb4ba7a329a83c766b7fb93dc61e9108c448a",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 243,
+      "create": false,
+      "live_tip": "cf1cb4ba7a329a83c766b7fb93dc61e9108c448a",
+      "queue_input": "5444617a9786f1728ec2d732bf5432811b37cd20",
+      "report_sha256": "52eb630f3d123060ae99de5250acc8cd730b36f90d8e373b5f38931c79af5dcc",
+      "strict_sha256": "04f038202330642ed65842b2df92c506f252fa060e4520dbf789a1119c8fc4e7"
+    },
+    "standalone-equipment-and-item-list-windows": {
+      "head": "beada8d9e43efd7d32bac3ccbfdbc55ff90afb50",
+      "previous": "f05429eb8e62847890602a9bf209cd4a59181a27",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 538,
+      "create": false,
+      "live_tip": "f05429eb8e62847890602a9bf209cd4a59181a27",
+      "queue_input": "beada8d9e43efd7d32bac3ccbfdbc55ff90afb50",
+      "report_sha256": "0cb136381a73a01adde5947cbd883532f64871212ea597bf4302fa46b621df9d",
+      "strict_sha256": "97b30c9b07e5938e1dc49a523c2de8f5b9f675817d74f9ab2c597efd293468f0"
+    }
+  },
+  "source_audit": {
+    "source": "fbb99312db95f1b3e4e9f39c49b797530a608bf1",
+    "previous": "081bc64d5286e6272b9bfeaab6085655e2661f7b",
+    "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "entries": [
+      {
+        "row": 5564,
+        "historical_path": "src/pso/misc/TWindowPartyStatus.cpp",
+        "historical_blob": "ee59a6ccf781e737561fe0cbe9b5b9482f0b6fad",
+        "owners": {
+          "src/pso/ui/window/TWindowPartyStatus.cpp": "91f3bd5dfe723b4a66e1719d6d1fb4ac3f42bc5b",
+          "include/pso/ui/window/TWindowPartyStatus.h": "9208a6614e70d61c6d5b2bfec2a4cd8eb345a68c",
+          "include/pso/ui/window/TWindowBase.h": "b7f97f549bd49712f1ee0f012892e6b07c317ef6",
+          "include/pso/ui/window/WindowEntryRendering.h": "e04749e26e745fd371c1fb336ae1bbe871917933",
+          "include/pso/unk/WindowLayoutRecord.h": "529190260ba6361bf4e881d9e88b28075bbdcb0a"
+        },
+        "proofs": [
+          {
+            "group": "party-source",
+            "evidence": "The complete Party Status addition survives in the native class. HP gauge and level refresh, background transform and texture context, entry traversal and task sequencing, the 20-byte layout descriptor, and constructor/destructor are present in source at the original owners. The standalone and queue also recover native allocation through the constructor instead of hand-writing a vtable.",
+            "details": {
+              "lifecycle": [
+                "0x8030C280",
+                "0x8030C2D8",
+                "0x8030C340"
+              ],
+              "draw_and_task": [
+                "0x8030C090",
+                "0x8030C0C4",
+                "0x8030C1BC",
+                "0x8030C20C"
+              ],
+              "descriptor": "0x804E7808; 114 x 46, depth 70100, table 0x804E7750, flags 0xB28",
+              "entry_list": "canonical embedded list at +0x24; standalone preserves its legacy storage provider",
+              "slot": "canonical signed client field at +0x20; standalone store uses the established u16 field, same halfword bytes for any s32 and exact compiler schedule"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5569,
+        "historical_path": "src/pso/misc/TWindowSimpleStatus.cpp",
+        "historical_blob": "be7ae1817bb39d991ed9e4345aa62018c5a077f3",
+        "owners": {
+          "src/pso/ui/window/TWindowSimpleStatus.cpp": "62e56c8e7cca687f7151174b6f44a044f5592737",
+          "include/pso/ui/window/TWindowSimpleStatus.h": "811e61ee2729fea2b5b1ff36fd5785453d40e29e",
+          "include/pso/ui/window/TWindowBase.h": "b7f97f549bd49712f1ee0f012892e6b07c317ef6",
+          "include/pso/ui/window/WindowEntryRendering.h": "e04749e26e745fd371c1fb336ae1bbe871917933",
+          "include/pso/unk/WindowLayoutRecord.h": "529190260ba6361bf4e881d9e88b28075bbdcb0a"
+        },
+        "proofs": [
+          {
+            "group": "party-source",
+            "evidence": "The native Simple Status class retains the complete authored addition. Its renderer uses the default draw context and embedded entry list, task order retains HP/TP/level, lock-on, help, icons, fade, entry update and shake. The descriptor and factory are retained, the constructor initializes all five icon pointers, and teardown closes exactly four.",
+            "details": {
+              "lifecycle": [
+                "0x802705D8",
+                "0x80270668",
+                "0x802706F0"
+              ],
+              "render": "0x80270514",
+              "run_task": "0x80270564",
+              "descriptor": "0x804D0CB0; 153 x 50, depth 50100, table 0x804D0B58, flags 0xB28",
+              "fields": "+0x20 client halfword, +0x58 -1.0f, +0x60 shake countdown, +0x64 five pointer slots; terminal slot +0x74"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5658,
+        "historical_path": "include/pso/misc/TWindowLockOn.h",
+        "historical_blob": "90f545dfb0f2697050ba519c33c4d6f3deb3db8c",
+        "owners": {
+          "include/pso/ui/window/TWindowLockOn.h": "572d9128d56cb516a04a116b6caf794f5539f9b2",
+          "src/pso/ui/window/TWindowLockOn_80262C3C.cpp": "4ac3f791d75283bf7c857e45be0421f40d69e491",
+          "src/pso/ui/window/TWindowCtrlMain.cpp": "244dcc5f33797139df1c5a568ec83c83e5e49c81"
+        },
+        "proofs": [
+          {
+            "group": "party-source",
+            "evidence": "The native Lock-On member constructor, inherited base fields, typed callback storage and binder survive. The main controller still has a raw binder declaration under the current original destination; scope stays on the checked owner and original layout.",
+            "details": {
+              "constructor": "0x80263944 with actual s32 player and u16 target",
+              "bind_target": "0x8026366C; native s32 player and target constructors use the expected u16 ID only as binder argument",
+              "offsets": "+0x60 ID, +0x68 scale, +0x70 callback, size 0x7C",
+              "remaining": "TWindowCtrl::update_target_info_window C ABI invocation still uses the provisional void pointer and s32 declaration."
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5668,
+        "historical_path": "src/pso/misc/TWindowStatus.cpp",
+        "historical_blob": "c0d83b498cc00420c2c437e9ba680a81e7d8a47f",
+        "owners": {
+          "src/pso/ui/window/TWindowStatus.cpp": "fe1e4e4e24b90b46e68aaae610a6d0dd261055c9",
+          "include/pso/ui/window/TWindowStatus.h": "648c966400f67cd015beab12d2cf06d4d5925c61",
+          "src/pso/ui/window/TWindowSimpleStatus.cpp": "62e56c8e7cca687f7151174b6f44a044f5592737",
+          "include/pso/ui/window/TWindowSimpleStatus.h": "811e61ee2729fea2b5b1ff36fd5785453d40e29e",
+          "include/pso/ui/window/TWindowBase.h": "b7f97f549bd49712f1ee0f012892e6b07c317ef6",
+          "include/pso/unk/WindowLayoutRecord.h": "529190260ba6361bf4e881d9e88b28075bbdcb0a"
+        },
+        "proofs": [
+          {
+            "group": "party-source",
+            "evidence": "The authored full Status changes survive with typed native owners. HP/TP and photon-blast updates use the actual player/window methods, numeric offsets and the original ring bounds and texture context. The task and rendering order, 20-byte descriptor and native constructor/destructor survive, with split-screen selecting the Simple Status factory.",
+            "details": {
+              "historical_merge_base": "fba938223515e7ab721bd5574ee97eba57671de6",
+              "text": [
+                "0x80270F14",
+                "0x802710C4",
+                "0x80271280",
+                "0x802712F8",
+                "0x80271364",
+                "0x802713BC"
+              ],
+              "descriptor": "0x804D0F78; 228 x 76, depth 70050, table 0x804D0D98, flags 0xB28",
+              "boundary": "source lifetime was already canonical; standalone and queue now carry actual class constructors and factories"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5675,
+        "historical_path": "src/pso/misc/TWindowSubStatusDisp_8026F6DC.cpp",
+        "historical_blob": "66bf3960197029229c08f4cd1a72ca685c4ffddd",
+        "owners": {
+          "src/pso/ui/window/TWindowSimpleStatus.cpp": "62e56c8e7cca687f7151174b6f44a044f5592737",
+          "include/pso/ui/window/TWindowSimpleStatus.h": "811e61ee2729fea2b5b1ff36fd5785453d40e29e",
+          "src/pso/ui/window/TWindowStatus.cpp": "fe1e4e4e24b90b46e68aaae610a6d0dd261055c9",
+          "src/pso/ui/window/TWindowPartyStatus.cpp": "91f3bd5dfe723b4a66e1719d6d1fb4ac3f42bc5b",
+          "include/pso/player/PhotonBlastResults.h": "03d8e50a9fb0ab1c0033a92e34364d793e8ba45f",
+          "include/pso/ui/window/TWindowLockOn.h": "572d9128d56cb516a04a116b6caf794f5539f9b2",
+          "include/pso/unk/TUnk_804CF930.h": "854673143e0ee3c61ab300b3e51bef963bd8f2ba",
+          "include/pso/unk/TUnk_804CF948.h": "881af30fe84427c941ef9b4087e5ff77d8fb9e0a",
+          "include/pso/ui/window/TWindowSubStatusDisp_8026F6DC.h": "0a34f9056c6ffae6ae78f2fec9c9a3bcb0211145",
+          "src/pso/ui/window/TWindowLockOn_80262C3C.cpp": "4ac3f791d75283bf7c857e45be0421f40d69e491"
+        },
+        "proofs": [
+          {
+            "group": "party-source",
+            "evidence": "The complete authored changes from the original status-display unit survive in the folded Simple Status owner. Native gauge and player fields, child icon constructors and setters, typed triangle fans, the two-argument photon-blast chain ABI, lock-on virtuals and the entry-pointer marker all remain callable through their established implementations.",
+            "details": {
+              "historical_merge_base": "fba938223515e7ab721bd5574ee97eba57671de6",
+              "source_contracts": [
+                {
+                  "original": "0x8026F6DC / 0x8026F71C / 0x8026F77C / 0x8026F7E0 / 0x8026F8CC",
+                  "retained": "Native reset, level and gauge providers. The +0x20 maximum and +0x24 target belong to TUnk_804CF930 and its active TUnk_804CF948 subclass. Real player fields and signed TP and HP assessment preserve color branches and own +0x60 shake countdown."
+                },
+                {
+                  "original": "0x8026F9F4",
+                  "retained": "Actual client lookup and 0x20-byte PhotonBlastChainCopy output receive the same client. TUnk_804CE964 creation and index setters own both five-slot icon branches."
+                },
+                {
+                  "original": "0x8026FC5C / 0x8026FDC0 / 0x8026FEA8",
+                  "retained": "ColorLineList draws the same triangular fan at 0x801E35C4. Exact random shake, native array entries 6 and 7, and level updates retain original order."
+                },
+                {
+                  "original": "0x8026FF0C / 0x80270014",
+                  "retained": "Actual player get_name and has_flag_0x800 virtual slots replace stand-in virtual tables. Name hide/show and text helpers at 0x8024421C / 0x8024420C / 0x8025AC50 retain native equivalent owners."
+                },
+                {
+                  "original": "0x80270060 / 0x802701F0",
+                  "retained": "Real chain output and client arguments, void marker receives entry pointer, native array accessor and status help resolve same client. Lobby adjustment and six UV selections survive."
+                },
+                {
+                  "original": "0x80270244 / 0x80270394",
+                  "retained": "The original two fans, charge percentage cap, current texture list, draw context and UV rectangle stay at their source owners."
+                }
+              ],
+              "standalone_boundary": "Standalone preserves the upstream gauge receiver symbols and class carrier because the full equipment layout is a separate review. The provider lookup and virtual changes are exact against this carrier too."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 526,
+        "historical_path": "src/pso/boss/TBoss7Joint_802EE6E0.cpp",
+        "historical_blob": "44069a1fb30156db48998c1b0a98e47392034eb4",
+        "owners": {
+          "src/pso/boss/barbaray/TBoss7Joint_802EE704.cpp": "3e061e101745c72454fdfb4df39e4fdcdb8b272f",
+          "src/pso/boss/barbaray/TBoss7Joint.cpp": "9a46d7344e3c8fff92c8e1e731353f77356847f6",
+          "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp": "97024ab42591c41ae956b4fd74037ef5f0ee5762",
+          "include/pso/network/protocol/BossActionPacket.h": "b40328076485bfd5fa5735310b709aaeae70e6b0"
+        },
+        "proofs": [
+          {
+            "group": "barba-source",
+            "evidence": "Native A9/AA swap/send, typed joint singleton load, joint stats (base 0x10, attack 0xF, resistance 0x10), shell damage sound 0x3A312 and 50.0f/30.0f thresholds account for every branch-point hunk.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 527,
+        "historical_path": "src/pso/boss/TBoss7PhotonBullet_802EF26C.cpp",
+        "historical_blob": "3579240913e1e1f2074b685a902a28399cae42d4",
+        "owners": {
+          "src/pso/boss/barbaray/TBoss7PhotonBullet_802EF26C.cpp": "83cae5b849664e43713639f720652f9661257d19"
+        },
+        "proofs": [
+          {
+            "group": "barba-source",
+            "evidence": "All eight canonical native implementations match the historical bodies after normalizing whitespace, two class-string pointer spellings, one boss local name and const-removing call-site cast. The owner supplies three level records, the hit parameters and both class strings.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 951,
+        "historical_path": "src/pso/boss/Boss7DeRolLeCBehavior.cpp",
+        "historical_blob": "101ce307c7730b02596b27649a0873dd5cfb920e",
+        "owners": {
+          "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp": "97024ab42591c41ae956b4fd74037ef5f0ee5762",
+          "include/pso/network/protocol/BossActionPacket.h": "b40328076485bfd5fa5735310b709aaeae70e6b0",
+          "src/pso/boss/barbaray/TBoss7Joint_802EE704.cpp": "3e061e101745c72454fdfb4df39e4fdcdb8b272f"
+        },
+        "proofs": [
+          {
+            "group": "barba-source",
+            "evidence": "Outgoing records, both incoming handlers, action sequence and signed action/target application covered. The broader behavior source contains separate state and movement changes.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 528,
+        "historical_path": "src/pso/boss/TBoss7TentacleNeedle.cpp",
+        "historical_blob": "a65ad8427cf24d96e7289b4e2234fbc68bb2db2a",
+        "owners": {
+          "src/pso/boss/barbaray/TBoss7TentacleNeedle.cpp": "a7aae52384e8318b8cd57f887b73c915524b6740",
+          "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp": "97024ab42591c41ae956b4fd74037ef5f0ee5762"
+        },
+        "proofs": [
+          {
+            "group": "barba-source",
+            "evidence": "The terminal tentacle effect uses the typed boss singleton and its hit effect. Remaining tentacle object, animation and segment geometry migrations are independent.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1022,
+        "historical_path": "src/pso/boss/TBoss7LaserPtcl.cpp",
+        "historical_blob": "d434af7857bcb933b3144ce9e69ab5c58871b5d7",
+        "owners": {
+          "src/pso/boss/barbaray/TBoss7LaserPtcl.cpp": "f45528abe0d676669c5da9e81ec5ba48af8b9874",
+          "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp": "97024ab42591c41ae956b4fd74037ef5f0ee5762"
+        },
+        "proofs": [
+          {
+            "group": "barba-source",
+            "evidence": "The hit effect belongs to the boss parent, with a const Vec position, including the laser caller. Other laser helper and effect-lifecycle changes are separate.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6884,
+        "historical_path": "src/pso/misc/TOSymbolchatColli.cpp",
+        "historical_blob": "2dfae1a275d839e21a549f3660bbdf330ddc0141",
+        "owners": {
+          "src/pso/object/collision/TOSymbolchatColli.cpp": "64cb2b488f2955fe81f9185cca9c2c4de70df4f5",
+          "include/pso/ui/chat/SymbolChatPreset.h": "460433c165de8089a37adba5afd0651ec5bfeb79",
+          "include/pso/ui/chat/SymbolChatPayload.h": "ef48635008a5c5c0f324de3636ceb5d13d4b36ae"
+        },
+        "proofs": [
+          {
+            "group": "symbolchat-source",
+            "evidence": "All authored changes are present in canonical: original static 0.92 and 0.30 float encodings, shared demo predicate, array allocation and deallocation at 0x80147AA8 and 0x80147A80, and the native pointer file loader (0x800F9D38) and free interface. This patch additionally creates 24 genuine 0x58 preset records with native element lifetime and payload offset +0x1C. All 24 records get the original byte conversions. Direct preserves its own existing array allocator names and stages the real array with an inlined POD placement expression.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6775,
+        "historical_path": "src/pso/object/TObjRaderIcon.cpp",
+        "historical_blob": "2be1cb08574b0c1ee48ed0c6f28e3b23c13cdc1f",
+        "owners": {
+          "src/pso/object/collision/TObjRaderCol.cpp": "d12b3b0a7ea1ee21cc80520f401e246bca8c13a4",
+          "include/pso/ui/hud/RadarMapMarkers.h": "869b7a4408a6cef0e60ee920b2a57301c5e200c3"
+        },
+        "proofs": [
+          {
+            "group": "symbolchat-source",
+            "evidence": "Already present. The three authored renderer call sites use the shared native marker interface and actual Vec position; the green and red branches and configured color use original colors, yaw, zero auxiliary values and scale without TU-local prototype.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7331,
+        "historical_path": "src/pso/misc/TLobby_8020BF68.cpp",
+        "historical_blob": "1bdc7a2671ca01dddb01415f089c03db1c9985d6",
+        "owners": {
+          "src/pso/unk/TLobby_8020BF68.cpp": "2d8173d9dad87dc16586046e885d6ca6ab865386",
+          "include/pso/unk/text_8020B5CC.h": "e79470cf6fbb047207ac31c4f61d707c33b25ba6"
+        },
+        "proofs": [
+          {
+            "group": "symbolchat-source",
+            "evidence": "Already present. The whole authored replacement wrapper takes a real 0x10 header pointer and the original u16 length (unused), then calls the same floor flag importer at 0x8020B47C. Source spelling for the actual owner and field names follows the current native implementation.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7335,
+        "historical_path": "src/pso/unk/text_8020B5CC.cpp",
+        "historical_blob": "9f5811a2c9a4a63a80fc358de8d09860a97f3f10",
+        "owners": {
+          "src/pso/unk/text_8020B5CC.cpp": "5034c3bb9950c3815bd935e82fe4072d5ed17d73",
+          "include/pso/unk/text_8020B5CC.h": "e79470cf6fbb047207ac31c4f61d707c33b25ba6"
+        },
+        "proofs": [
+          {
+            "group": "symbolchat-source",
+            "evidence": "Already present. Real floor source and saved-set row layouts put flags at +2 (original raw rows 0x44 objects and 0x48 enemies; saved rows 8 bytes). Full authored exporter 0x8020B5CC has object then enemy walks across all 18 floors, original active-raw versus remote-saved routing, nil source suppression, clearing bit 1 and per-entry byte swap, counts and offsets in the original four-word header, original header/end call sequence. Both authored import paths use native quest-server allocation, pointer free and aligned copy routing.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7339,
+        "historical_path": "src/pso/unk/text_801A2B38.cpp",
+        "historical_blob": "0a8ab760a8c298d8d594295963fc35cf12278253",
+        "owners": {
+          "src/pso/unk/text_801A2B38.cpp": "7d7c5691d7b7409087c145a5853de6991e34ec0f",
+          "include/pso/object/collision/TObjRaderHideCol.h": "dbb3799149e95db88d6ab955403e86776132b580"
+        },
+        "proofs": [
+          {
+            "group": "symbolchat-source",
+            "evidence": "Already present. The only authored body change is the factory creating a real TObjRaderHideCol with tl_05 and set data. It uses the native constructor and preserves the original 0x98 object allocation and null handling.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      }
+    ],
+    "closed_rows": [
+      526,
+      527,
+      5564,
+      5569,
+      5668,
+      5675,
+      6775,
+      6884,
+      7331,
+      7335,
+      7339
+    ],
+    "remaining": {
+      "Owner comparison required": 244,
+      "Some anchored text changes found": 681
+    }
+  },
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "data_ranges": 90,
+  "local_tool_tests": 294,
+  "layer_tests": 11,
+  "fork_only_paths": 133,
+  "replay_validation": {
+    "pragma-source": {
+      "head": "e9110e589588d84cffd1b0415205ecd72fd06289",
+      "report_sha256": "0ec603dc05808a98ec2e6ccef3f65a678da2868ae0ee556eb27994d4a295c7ca",
+      "strict_sha256": "9c615f959fa1a7bf9bb3f5f91339497318f3273f801c2308e9946f3f6ba960a9"
+    },
+    "party-source": {
+      "head": "dcd0bf095d6f8c6c5db33d98a324e2b8df59e939",
+      "report_sha256": "0ec603dc05808a98ec2e6ccef3f65a678da2868ae0ee556eb27994d4a295c7ca",
+      "strict_sha256": "9c615f959fa1a7bf9bb3f5f91339497318f3273f801c2308e9946f3f6ba960a9"
+    },
+    "barba-source": {
+      "head": "428ef9c6ddfcbfc790d1933fefbf1eacc9346915",
+      "report_sha256": "0ec603dc05808a98ec2e6ccef3f65a678da2868ae0ee556eb27994d4a295c7ca",
+      "strict_sha256": "a2f6dff69b5c438388afc0cbc1b889556da01056b6173afee98be28d44c3e379"
+    },
+    "symbolchat-source": {
+      "head": "ef2c8d186b22a8f4431c1dc2ec149a8cc0493f81",
+      "report_sha256": "bffa12debcb16bd691b1595ad2bcf0a1d16b389bcccf9791e8ed217c000aa77c",
+      "strict_sha256": "8c52e262a06c3bcade23087e0cbecdbd62d10d367682db1c49e8580833aaefd1"
+    }
+  },
+  "combined_validation": {
+    "combined-source": {
+      "report_sha256": "bffa12debcb16bd691b1595ad2bcf0a1d16b389bcccf9791e8ed217c000aa77c",
+      "strict_sha256": "8c52e262a06c3bcade23087e0cbecdbd62d10d367682db1c49e8580833aaefd1"
+    },
+    "direct-union": {
+      "report_sha256": "22e0b796512a284758f8ea7584e62d7cba922849a2744ef6fbd9a9bf07ab2add",
+      "strict_sha256": "766ef3cc8bac869ddcf1fa3a1bec7319eceea9de24c36d4e4da6961b2138ee52"
+    },
+    "working-final": {
+      "report_sha256": "bffa12debcb16bd691b1595ad2bcf0a1d16b389bcccf9791e8ed217c000aa77c",
+      "strict_sha256": "9ae4a5b3dd85d2bae6d3aaeea043f4fb64179b4a8521a2753e4da6e3f4933c77"
+    }
+  },
+  "compiler_cleanup": {
+    "fork_pr": "https://github.com/matthewlewisnewton/pso-decomp/pull/622",
+    "fork_main_merge": "a93d6a1711a24df25402651dcc6fe25c9c2b1777",
+    "cleanup_commit": "2f05eb7b2e522dca70b6d319722cd9ecda014fa8",
+    "cleanup_parent": "71a85642f631bc3819f2058b569bcf89d95d5c7d",
+    "fork_only_exception_registers": [
+      "docs/porting-exceptions-generated.md",
+      "docs/porting-exceptions.md"
+    ],
+    "cleanup_source_paths": 76,
+    "fork_merge_source_paths": 75,
+    "verified_upstream_patch_sha256": "08774c60523739c99658e211f137af7ce2bbcdc27599d6c40a599eb9e8d2ac36",
+    "queue_patch_sha256": "c504c95e6ca6d0c10114b59410390d70a53cac987d338f0987e745c615adc4e5",
+    "previous_preview_heads": [
+      "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
+      "be07110eb4406ad71fcd333d070fa4978d02ff4d"
+    ],
+    "validation_rule": "Reconcile source conflicts at the current owner and build each remaining compilation unit against its exact baseline. Keep the exception register on the fork.",
+    "direct": {
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "head": "9935ca4090ba264f42a12317c104ab4a568036b5",
+      "tree": "13340600ff1a23553efba3a24cb76aa997311bb3",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "removed_pragmas": 108,
+      "removals_by_path": {
+        "src/musyx/runtime/Chorus/chorus_fx.c": 6,
+        "src/musyx/runtime/StdReverb/reverb.c": 3,
+        "src/pso/camera/TCameraCtrl_803D6960.cpp": 15,
+        "src/pso/effect/TEffStarLight2D_Base.cpp": 3,
+        "src/pso/effect/particle/ParticleBallistic.cpp": 1,
+        "src/pso/enemy/dubchik/TObjEneDubchik.cpp": 2,
+        "src/pso/network/TPlyMeetUserExtension_801DAC6C.cpp": 1,
+        "src/pso/npc/TNpcPlayer.cpp": 10,
+        "src/pso/object/TObjChip.cpp": 2,
+        "src/pso/player/TObjPlayer_803E21B8.cpp": 17,
+        "src/pso/render/GinjaMaterial.cpp": 44,
+        "src/pso/unk/TLobby_800F8AA8.cpp": 4
+      },
+      "report_sha256": "3be01c6fcf4bfeab5b2606641184f787f1f15e0e5b8f6a5608822b09be68af14",
+      "strict_sha256": "9c615f959fa1a7bf9bb3f5f91339497318f3273f801c2308e9946f3f6ba960a9"
+    },
+    "source": {
+      "base": "081bc64d5286e6272b9bfeaab6085655e2661f7b",
+      "head": "e9110e589588d84cffd1b0415205ecd72fd06289",
+      "tree": "a9fe0a5e60a4a375cf2163983b09136474dd768d",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "removed_pragmas": 23,
+      "removals_by_path": {
+        "src/musyx/runtime/Chorus/chorus_fx.c": 3,
+        "src/musyx/runtime/StdReverb/reverb.c": 3,
+        "src/pso/camera/TCameraCtrl_803D6960.cpp": 6,
+        "src/pso/effect/particle/ParticleBallistic.cpp": 1,
+        "src/pso/render/GinjaMaterial.cpp": 6,
+        "src/pso/unk/TLobby_800F8AA8.cpp": 4
+      },
+      "report_sha256": "0ec603dc05808a98ec2e6ccef3f65a678da2868ae0ee556eb27994d4a295c7ca",
+      "strict_sha256": "9c615f959fa1a7bf9bb3f5f91339497318f3273f801c2308e9946f3f6ba960a9",
+      "wholesale_conflicts": {
+        "src": [
+          "src/pso/boss/TBoss6Type2_802BE588.cpp",
+          "src/pso/boss/TBoss8Dragon.cpp",
+          "src/pso/boss/TBoss8Dragon_8002CC48.cpp",
+          "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+          "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+          "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+          "src/pso/boss/derolle/TBoss2Joint.cpp",
+          "src/pso/boss/dragon/TBoss1Dragon.cpp",
+          "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+          "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+          "src/pso/camera/TCameraCtrl_803D749C.cpp",
+          "src/pso/effect/particle/ParticleRadial.cpp",
+          "src/pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp",
+          "src/pso/enemy/TObjEneGyaranzo.cpp",
+          "src/pso/enemy/TObjEneSlimeTailAttack.cpp",
+          "src/pso/enemy/moja/TObjEneMoja.cpp",
+          "src/pso/map/CsnQuery.cpp",
+          "src/pso/math/MatrixTransforms.cpp",
+          "src/pso/math/MatrixVector.cpp",
+          "src/pso/menu/TAdTimeSetGC.cpp",
+          "src/pso/misc/ParticleOrbit.cpp",
+          "src/pso/misc/TCameraCtrl.cpp",
+          "src/pso/misc/TCameraCtrl_803D6538.cpp",
+          "src/pso/misc/TCameraCtrl_803D66DC.cpp",
+          "src/pso/misc/TCameraCtrl_803D676C.cpp",
+          "src/pso/misc/TDuelEffectNumber_80080460.cpp",
+          "src/pso/misc/TKeyBoardControl.cpp",
+          "src/pso/misc/TLobby_80228154.cpp",
+          "src/pso/misc/TLobby_803C1A58.cpp",
+          "src/pso/misc/TLobby_803FAEA0.cpp",
+          "src/pso/misc/TLobby_804050DC.cpp",
+          "src/pso/misc/TQuestVmDownLoadServer_803E9A24.cpp",
+          "src/pso/misc/TQuestVmDownLoadServer_803ED0CC.cpp",
+          "src/pso/misc/TSetManager_8020D918.cpp",
+          "src/pso/misc/TWindowDD.cpp",
+          "src/pso/misc/TWindowSubStatusDisp_8026DFE8.cpp",
+          "src/pso/misc/pso_date.cpp",
+          "src/pso/network/ModemRuntime.cpp",
+          "src/pso/network/TLobby_80426CAC.c",
+          "src/pso/network/TLobby_80429598.c",
+          "src/pso/network/TcpProtocol.cpp",
+          "src/pso/object/TObjCMName.cpp",
+          "src/pso/object/TObjHMS_EZRope_Player.cpp",
+          "src/pso/object/ambient/TObjFish.cpp",
+          "src/pso/object/ambient/TObjLight_803DF220.cpp",
+          "src/pso/player/TObjPlayer_801AF2F0.cpp",
+          "src/pso/player/TObjPlayer_801C7430.cpp",
+          "src/pso/player/TObjPlayer_803DF7A8.cpp",
+          "src/pso/player/TObjPlayer_803E21B8.cpp",
+          "src/pso/protocol/NetworkRuntime.cpp",
+          "src/pso/quest/QuestOpcodeHandlers.cpp",
+          "src/pso/quest/TQuestVmDownLoadServer_803E6970.cpp",
+          "src/pso/render/ChunkMaterialState.cpp",
+          "src/pso/render/GinjaMaterial.cpp",
+          "src/pso/technique/TTecCtrl.cpp",
+          "src/pso/ui/TAdPlayerLoadGC_803F18B8.cpp",
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+          "src/pso/ui/window/TObjResultWin.cpp",
+          "src/pso/unk/TLobby_8023F734.cpp",
+          "src/pso/unk/TLobby_802409AC.cpp",
+          "src/pso/unk/text_802EDE90.cpp",
+          "src/pso/unk/text_803D96A8.cpp",
+          "src/pso/unk/text_803E2D70.cpp",
+          "src/pso/unk/text_80421620.cpp"
+        ],
+        "docs": [
+          "docs/porting-exceptions-generated.md",
+          "docs/porting-exceptions.md"
+        ]
+      }
+    },
+    "queue": {
+      "base": "39cf9fce76dc2bf4662e93f48cbfe41bb8c170ea",
+      "head": "9406d2b637431c36d6b252f46e2587dbe5355139",
+      "tree": "7735c1d1782aa9c04d85e72eff2e33d1ae04d576",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "removed_pragmas": 108,
+      "removals_by_path": {
+        "src/musyx/runtime/Chorus/chorus_fx.c": 6,
+        "src/musyx/runtime/StdReverb/reverb.c": 3,
+        "src/pso/camera/TCameraCtrl_803D6960.cpp": 15,
+        "src/pso/effect/TEffStarLight2D_Base.cpp": 3,
+        "src/pso/effect/particle/ParticleBallistic.cpp": 1,
+        "src/pso/enemy/dubchik/TObjEneDubchik.cpp": 2,
+        "src/pso/network/TPlyMeetUserExtension_801DAC6C.cpp": 1,
+        "src/pso/npc/TNpcPlayer.cpp": 10,
+        "src/pso/object/TObjChip.cpp": 2,
+        "src/pso/player/TObjPlayer_803E21B8.cpp": 17,
+        "src/pso/render/GinjaMaterial.cpp": 44,
+        "src/pso/unk/TLobby_800F8AA8.cpp": 4
+      },
+      "report_sha256": "ebb5925b2394563da42d89c3cc853050d9d4411d61183c44b41686de67856556",
+      "strict_sha256": "ace33f517c9962b6bbb834ef04a4cdfcf66bbcf68786e9b349843c144496f762",
+      "wholesale_conflicts": {
+        "src": [
+          "src/pso/boss/TBoss6Type2_802BE588.cpp",
+          "src/pso/boss/TBoss8Dragon.cpp",
+          "src/pso/boss/TBoss8Dragon_8002CC48.cpp",
+          "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+          "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+          "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+          "src/pso/boss/derolle/TBoss2Joint.cpp",
+          "src/pso/boss/dragon/TBoss1Dragon.cpp",
+          "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+          "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+          "src/pso/camera/TCameraCtrl_803D749C.cpp",
+          "src/pso/effect/particle/ParticleRadial.cpp",
+          "src/pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp",
+          "src/pso/enemy/TObjEneGyaranzo.cpp",
+          "src/pso/enemy/TObjEneSlimeTailAttack.cpp",
+          "src/pso/map/CsnQuery.cpp",
+          "src/pso/math/MatrixTransforms.cpp",
+          "src/pso/math/MatrixVector.cpp",
+          "src/pso/menu/TAdTimeSetGC.cpp",
+          "src/pso/misc/ParticleOrbit.cpp",
+          "src/pso/misc/TCameraCtrl.cpp",
+          "src/pso/misc/TCameraCtrl_803D6538.cpp",
+          "src/pso/misc/TCameraCtrl_803D66DC.cpp",
+          "src/pso/misc/TCameraCtrl_803D676C.cpp",
+          "src/pso/misc/TDuelEffectNumber_80080460.cpp",
+          "src/pso/misc/TKeyBoardControl.cpp",
+          "src/pso/misc/TLobby_80228154.cpp",
+          "src/pso/misc/TLobby_803C1A58.cpp",
+          "src/pso/misc/TLobby_803FAEA0.cpp",
+          "src/pso/misc/TLobby_804050DC.cpp",
+          "src/pso/misc/TQuestVmDownLoadServer_803E9A24.cpp",
+          "src/pso/misc/TQuestVmDownLoadServer_803ED0CC.cpp",
+          "src/pso/misc/TSetManager_8020D918.cpp",
+          "src/pso/misc/TWindowDD.cpp",
+          "src/pso/misc/TWindowSubStatusDisp_8026DFE8.cpp",
+          "src/pso/misc/pso_date.cpp",
+          "src/pso/network/ModemRuntime.cpp",
+          "src/pso/network/TLobby_80426CAC.c",
+          "src/pso/network/TLobby_80429598.c",
+          "src/pso/network/TcpProtocol.cpp",
+          "src/pso/object/TObjCMName.cpp",
+          "src/pso/object/TObjEZRopeSimulation.cpp",
+          "src/pso/object/ambient/TObjFish.cpp",
+          "src/pso/object/ambient/TObjLight_803DF220.cpp",
+          "src/pso/player/TObjPlayer_800ACA60.cpp",
+          "src/pso/player/TObjPlayer_801AF2F0.cpp",
+          "src/pso/player/TObjPlayer_801C7430.cpp",
+          "src/pso/player/TObjPlayer_803DF7A8.cpp",
+          "src/pso/protocol/NetworkRuntime.cpp",
+          "src/pso/quest/QuestOpcodeHandlers.cpp",
+          "src/pso/quest/TQuestVmDownLoadServer_803E6970.cpp",
+          "src/pso/render/ChunkMaterialState.cpp",
+          "src/pso/technique/TTecCtrl.cpp",
+          "src/pso/ui/TAdPlayerLoadGC_803F18B8.cpp",
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+          "src/pso/ui/window/TObjResultWin.cpp",
+          "src/pso/unk/TLobby_8023F734.cpp",
+          "src/pso/unk/TLobby_802409AC.cpp",
+          "src/pso/unk/text_802EDE90.cpp",
+          "src/pso/unk/text_803D96A8.cpp",
+          "src/pso/unk/text_803E2D70.cpp",
+          "src/pso/unk/text_80421620.cpp"
+        ],
+        "docs": [
+          "docs/porting-exceptions-generated.md",
+          "docs/porting-exceptions.md"
+        ]
+      }
+    },
+    "remaining_source_units": {
+      "src/musyx/runtime/Chorus/chorus_fx.c": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "partial replay, validate any residual changes by unit",
+        "reason": null
+      },
+      "src/musyx/runtime/StdReverb/reverb.c": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "partial replay, validate any residual changes by unit",
+        "reason": null
+      },
+      "src/pso/boss/Boss5GryphonBehavior.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/boss/Boss7DeRolLeCBehavior.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/boss/TBoss1Dragon.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/boss/TBoss2DeRolLe.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/boss/TBoss2Joint.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/boss/TBoss4Type1.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/boss/TBoss6Type2.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/boss/TBoss6Type2_802BE588.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/boss/TBoss8Dragon.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/boss/TBoss8Dragon_8002CC48.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/effect/TEffStarLight2D_Base.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "partial replay, validate any residual changes by unit",
+        "reason": null
+      },
+      "src/pso/enemy/TObjEneDubchik.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/enemy/TObjEneGyaranzo.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/enemy/TObjEneSlimeTailAttack.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/map/CsnQuery.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/math/MatrixTransforms.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/math/MatrixVector.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/menu/TAdTimeSetGC.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/misc/ParticleBallistic.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/misc/ParticleOrbit.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/misc/ParticleRadial.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/misc/TCameraCtrl.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/misc/TCameraCtrl_803D6538.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/misc/TCameraCtrl_803D66DC.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/misc/TCameraCtrl_803D676C.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/misc/TCameraCtrl_803D6960.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/misc/TCameraCtrl_803D749C.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/misc/TDuelEffectNumber_80080460.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/misc/TKeyBoardControl.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/misc/TLobby_800F8AA8.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/misc/TLobby_80228154.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/misc/TLobby_8023F734.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/misc/TLobby_802409AC.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/misc/TLobby_803C1A58.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/misc/TLobby_803FAEA0.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/misc/TLobby_804050DC.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/misc/TLobby_80426CAC.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/misc/TLobby_80429598.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/misc/TNpcPlayer.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/misc/TPlyMeetUserExtension_801DAC6C.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/misc/TQuestVmDownLoadServer_803E6970.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/misc/TQuestVmDownLoadServer_803E9A24.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/misc/TQuestVmDownLoadServer_803ED0CC.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/misc/TSetManager_8020D918.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/misc/TTecCtrl.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/misc/TWindowDD.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/misc/TWindowSubStatusDisp_8026DFE8.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/misc/pso_date.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/network/ModemRuntime.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/network/TProtocol.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "pending per-unit validation",
+        "reason": "Two assignment operators differ in the retail build."
+      },
+      "src/pso/network/TcpProtocol.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/object/TObjCMName.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/object/TObjChip.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "partial replay, validate any residual changes by unit",
+        "reason": null
+      },
+      "src/pso/object/TObjEZRopeSimulation.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/object/TObjFish.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/object/TObjLight_803DF220.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/object/TObjResultWin.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/player/TObjPlayer_800ACA60.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/player/TObjPlayer_801542CC.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "pending per-unit validation",
+        "reason": "resolve_player_box_contact differs in the retail build."
+      },
+      "src/pso/player/TObjPlayer_801AF2F0.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/player/TObjPlayer_801C7430.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/player/TObjPlayer_803DF7A8.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/player/TObjPlayer_803E21B8.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "partial replay, validate any residual changes by unit",
+        "reason": null
+      },
+      "src/pso/protocol/NetworkRuntime.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/quest/QuestOpcodeHandlers.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/system/ChunkMaterialState.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/system/GinjaMaterial.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/ui/TAdPlayerLoadGC_803F18B8.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/ui/TAdSinglePlyChrSelectGC_8028EF14.cpp": {
+        "whole_cleanup_conflicts_on_queue": false,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/unk/text_802EDE90.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/unk/text_803D96A8.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/unk/text_803E2D70.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      },
+      "src/pso/unk/text_80421620.cpp": {
+        "whole_cleanup_conflicts_on_queue": true,
+        "status": "pending per-unit validation",
+        "reason": null
+      }
+    }
+  },
+  "stage_name_audit": {
+    "reviewed_head": "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
+    "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+    "reported_symbol_changes": 162,
+    "confirmed_rename_only": [
+      {
+        "module": "psov3",
+        "address": "0x8017D2AC",
+        "before": "get_archive_motion__19TObjGoalWarpAncientFl",
+        "after": "register_warp__19TObjGoalWarpAncientFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801A0324",
+        "before": "get_beam_frame_count__12TObjWarpJungFv",
+        "after": "get_static_field4_as_float__12TObjWarpJungFv"
+      }
+    ],
+    "local_candidate": "1920ce427e21a149ed52f2099c2f3d5bf66d4d29",
+    "local_symbol_changes": 160,
+    "local_candidate_paths": [
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/object/warp/TObjGoalWarpAncient.h",
+      "include/pso/object/warp/TObjWarpJung.h",
+      "include/pso/object/warp/TObjWarpJungMain.h",
+      "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+      "src/pso/object/warp/TObjMapWarpAncient.cpp",
+      "src/pso/object/warp/TObjWarpJungMain.cpp"
+    ],
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "strict_sha256": "188bf588a7c30639ddc09e6be722092b9ffc89cd3c573aa2e16402c42a926739",
+    "report_sha256": "35a04d307b1e571f7cf5ef1a598e9b03cd0bcc71132f57c06b1ec4172796560f",
+    "remaining_symbol_changes": "Includes type and owner corrections. Review remaining names without equivalent source changes.",
+    "published": false,
+    "confirmed_field_rename_only": {
+      "owner": "TObjWarpJungMain",
+      "upstream": "m_c4",
+      "pr": "beam_frame",
+      "type": "f32",
+      "offset": "0xC4"
+    }
+  }
+}

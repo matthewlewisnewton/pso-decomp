@@ -1,0 +1,373 @@
+{
+  "upstream": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "previous_source": "fb5ecf1bc2a9f30cb4d4c9071fc80c9a0e9e363f",
+  "source": "4493f2cf86de95f0ee8c2c228366387c65b77803",
+  "source_tree": "213d65dbee37addac556ca3837a729d2a3addcb0",
+  "source_review_files": 897,
+  "recovered_paths": [
+    {
+      "path": "config/GPOE8P/psov3/symbols.txt",
+      "previous_blob": "100644:05ff60b1f24a41923fd8584598712a7d2b27f019",
+      "review_blob": "100644:dc9e65fc6094ba9423b45146ad0f4c8d3d6c5753",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "include/pso/boss/dragon/TBoss1Dragon.h",
+      "previous_blob": "100644:19542d8c10f500f28a38d40b12e769a308b4cd73",
+      "review_blob": "100644:cb4cff69daa81cf1adfc2292a4196057fef95a12",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "include/pso/boss/dragon/TBoss1DragonColli_C.h",
+      "previous_blob": "100644:f94db1974c7160ba4c97acad45b4cb46b2cf64c8",
+      "review_blob": "100644:ee9c98e94d00a2325e7657a7b77a8f1c023e988e",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/boss/dragon/TBoss1DragonDemo.h",
+      "previous_blob": "100644:5beef2e94c973330fa8ff317952cd6685caa6d60",
+      "review_blob": "100644:306a7d317422acd7c899576c7eccc4a738154fd0",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/boss/olgaflow/TBoss6Demo15_TYPE2_WAIT.h",
+      "previous_blob": "100644:eedb37f8501fe11d6686ba0d8fbbd5db1996f8b1",
+      "review_blob": "100644:89226238857d1ec9a870a2da0fa218678045b5f5",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/boss/olgaflow/TBoss6PlotFalz.h",
+      "previous_blob": "100644:d46df35840700b64356e0ca725fa4eaec325cf97",
+      "review_blob": "100644:d5a9982a5df47eacb9c4303c14d840f407513244",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "include/pso/object/ambient/TObjFish.h",
+      "previous_blob": "100644:fd58c61e94ccfbb24508c7eec65121ce31b24347",
+      "review_blob": "100644:c8b4d416951b85f80506c004bf0f517ef965fac2",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "include/pso/player/TObjPlayer.h",
+      "previous_blob": "100644:2ae2b9ad71ddae95988d398e25cdc78753d00daf",
+      "review_blob": "100644:0d7f4b45f686d3cd5816053ad3dfb2331191f36a",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/boss/dragon/TBoss1Dragon.cpp",
+      "previous_blob": "100644:3305dcc192ac087319c42edec3f0618ff3b89184",
+      "review_blob": "100644:56058e256f4f1e2ff7614308ae72ecf72afbf2ac",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/boss/dragon/TBoss1DragonColli.cpp",
+      "previous_blob": "100644:9a9d5bdc91c7957d16f9efb6c0f86d0272f59afa",
+      "review_blob": "100644:2ce1cf8bc8d40d3fa2f54a7f2444b3ea312f7c51",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/boss/dragon/TBoss1DragonDemo.cpp",
+      "previous_blob": "100644:2ec348ec395a6f976b074fa393212a22dd5d810d",
+      "review_blob": "100644:ba335198849c32c2a43f1a550390f61c08efcadc",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/boss/dragon/TBoss1DragonEffBullet.cpp",
+      "previous_blob": "100644:4e16861e57e5c8a3577528195d7e597bd68ece33",
+      "review_blob": "100644:65c4a1be8110606382fcc7acf114c3623e71bc6a",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/boss/dragon/TObjBoss1Crater.cpp",
+      "previous_blob": "100644:7a66049ebdbf254ba2baeee8425056f1deeed88e",
+      "review_blob": "100644:555d00ddaa86db890520cf66b42bd534a1747a7c",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/boss/goldragon/TObjBoss8DemoRoom.cpp",
+      "previous_blob": "100644:5cbeb83bfe660c7daf4aee82d3e70dc8564a72e2",
+      "review_blob": "100644:d383abf3f970b68a404d98af1439038863169fa9",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6PlotFalz_802B0228.cpp",
+      "previous_blob": "100644:b5a88d68a112c036f03f8ec4563acab746215b80",
+      "review_blob": "100644:bb3b197a60bc7aa769f8cb1d5d82ad0daf88a3e2",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/ui/frontend/TAdPlyStatusGC_8033FD48.cpp",
+      "previous_blob": "100644:a13feb83440be2932b430f8022855007c1bf6346",
+      "review_blob": "100644:55e49d0b8c952a4c2a03de3639c3a39cb009ffb9",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    }
+  ],
+  "checks": {
+    "dragon-camera": {
+      "head": "2fd71cd0a7a9dfb4def66b80c1b3e5c0519d5afc",
+      "baseline": "fb5ecf1bc2a9f30cb4d4c9071fc80c9a0e9e363f",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068"
+    },
+    "boss-demo-room": {
+      "head": "78e2cbabc34368ddc64d9f894fc005dafe1335b7",
+      "baseline": "2fd71cd0a7a9dfb4def66b80c1b3e5c0519d5afc",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068"
+    },
+    "dragon-collision": {
+      "head": "9aa35cd5475307f3ee8216db593dd950eb28028a",
+      "baseline": "78e2cbabc34368ddc64d9f894fc005dafe1335b7",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068"
+    },
+    "olga-wait-task": {
+      "head": "4493f2cf86de95f0ee8c2c228366387c65b77803",
+      "baseline": "9aa35cd5475307f3ee8216db593dd950eb28028a",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 2,
+      "check_sha256": "ee8a4c686b144450094ae5fce11646a3272508ec9953cf108d01775ab77c7f2b"
+    },
+    "full-review": {
+      "head": "4493f2cf86de95f0ee8c2c228366387c65b77803",
+      "baseline": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 302,
+      "check_sha256": "0cb1e5dd8e10785ff4040cb495d164f485d5d536ac3916f07527f84bafe35ad8"
+    },
+    "layer": {
+      "head": "2f934214be3a47eb31a119cdc7765ee1bb24f86f",
+      "baseline": "4493f2cf86de95f0ee8c2c228366387c65b77803",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "294d5d4e65e3db3407ceff097811cede09728d2c21c1257d66d17135be0bdc4b"
+    }
+  },
+  "release_data": {
+    "olga-wait-task": {
+      "sha256": "5de19016f2ad42b25e5eb9cb449d20e48aee82cc23a2f2b9d58251bb5b178367",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "layer": {
+      "sha256": "5de19016f2ad42b25e5eb9cb449d20e48aee82cc23a2f2b9d58251bb5b178367",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    }
+  },
+  "typed_linker_labels": [
+    {
+      "module": "psov3",
+      "address": "0x8033FE28",
+      "before": "get_plot_state__10TObjPlayerFv",
+      "after": "get_plot_state__23TBoss6Demo15_TYPE2_WAITFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803403B0",
+      "before": "alloc__8TObjFishFPv",
+      "after": "alloc__23TBoss6Demo15_TYPE2_WAITFP14TBoss6PlotFalz"
+    }
+  ],
+  "closed_historical_rows": [
+    {
+      "row": 1158,
+      "fork_path": "include/pso/boss/TBoss1Dragon.h",
+      "fork_blob": "4976588fe2173f150b9c14f98c67e0906afde97d",
+      "historical_delta_sha256": "b6545b679b8654827b3ec2155742e797a541ccfd6698a598f80eb5db4a2c482f",
+      "owner": "include/pso/boss/dragon/TBoss1Dragon.h",
+      "owner_blob": "cb4cff69daa81cf1adfc2292a4196057fef95a12",
+      "final_comparison_sha256": "66c3c1965e9f95e2d699a4b9e0fe4b63e246c7197ec9453663f6d590ca23fd68",
+      "status": "Typed historical integration validated",
+      "rationale": "The Dragon mode query now returns the full register result and all callers use its native declaration. The trail pointer and target coordinates already occupy 0x6D8 and 0x394. Their current names remain."
+    },
+    {
+      "row": 723,
+      "fork_path": "src/pso/boss/TBoss1DragonDemo.cpp",
+      "fork_blob": "cdccb405bb9f3aa59bd189eef0e46d99d51c5b68",
+      "historical_delta_sha256": "39e15a1afaa262ec10b0b01482bb5215020062c27f893e950ced30ad50805dd0",
+      "owner": "src/pso/boss/dragon/TBoss1DragonDemo.cpp",
+      "owner_blob": "ba335198849c32c2a43f1a550390f61c08efcadc",
+      "final_comparison_sha256": "5b8054aa54e4f4de144e0ae996d831a28ea0bc0523a225f0e4d26fb1f48c980f",
+      "status": "Typed historical integration validated",
+      "rationale": "Both camera variants use the shared CameraPlayback layout and the same camera IDs and angles. The frame and active-flag fields now belong to TBoss1DragonDemo. The probe exercises both stop conditions."
+    },
+    {
+      "row": 557,
+      "fork_path": "src/pso/boss/TObjBoss8DemoRoom_8036B654.cpp",
+      "fork_blob": "f842b576ffae12bc78d36f89bc5a7920ebee6377",
+      "historical_delta_sha256": "decf15b24efbfc4547cc59f9a28d9491931f6d4a991a06007f83468696ce1f34",
+      "owner": "src/pso/boss/goldragon/TObjBoss8DemoRoom.cpp",
+      "owner_blob": "d383abf3f970b68a404d98af1439038863169fa9",
+      "final_comparison_sha256": "f15513dab42b07dc0142d0ceabe8ae8e159c95cc0b3c4e2eef9d2ec408d249c6",
+      "status": "Typed historical integration validated",
+      "rationale": "The constructor and packet validation retain their exact owners and results. The room now binds the native BML texture list and walks the child and its sibling for the two original polygon buffers. The load and free paths share a BmlResource pointer."
+    },
+    {
+      "row": 1101,
+      "fork_path": "src/pso/boss/TBoss1DragonColli.cpp",
+      "fork_blob": "acb5e9d7e18a0790ed2592e9dc24e0be4a582046",
+      "historical_delta_sha256": "d0bf786297a9b49291755d31f58b998bb3a7793edcb0dc27a374ccf48c1738e9",
+      "owner": "src/pso/boss/dragon/TBoss1DragonColli.cpp",
+      "owner_blob": "2ce1cf8bc8d40d3fa2f54a7f2444b3ea312f7c51",
+      "final_comparison_sha256": "5aff2709d8b5d4a1ca6e928b405648b4c8d283cf977a48da6091dd72e0df6baf",
+      "status": "Typed historical integration validated",
+      "rationale": "The native constructor uses the same segment counts, positions and scales. Its body storage has the original stride, radius and flags, and uses the original mem_alloc address. The flag-clearing loop uses the owning collision array."
+    },
+    {
+      "row": 754,
+      "fork_path": "include/pso/boss/TBoss6PlotFalz.h",
+      "fork_blob": "ee26fb13fb393eec003ad528cb9381ae0d55b497",
+      "historical_delta_sha256": "3fcd7bb80f7b7080a1b6b15273965753c2c7c6910a3cd6193d1b3074127a87eb",
+      "owner": "include/pso/boss/olgaflow/TBoss6PlotFalz.h",
+      "owner_blob": "d5a9982a5df47eacb9c4303c14d840f407513244",
+      "final_comparison_sha256": "05ab34650e92102a6182405aa11f5b2e1408901df0ea7e039667c5005c53515b",
+      "status": "Typed historical integration validated",
+      "rationale": "The typed tube and frame counter already carry the fork recovery, and active-player checks and camera actions use their existing declarations. The wait slot at 0x3DC now stores the actual cutscene task. Equivalent phase flag storage preserves the branch conditions and upstream names."
+    },
+    {
+      "row": 891,
+      "fork_path": "src/pso/unk/text_80050134.cpp",
+      "fork_blob": "ba5627dc307772154da76147e65579747587afdd",
+      "historical_delta_sha256": "e3f346cd919333ff8eb2b6c2da051c92ba2b4f4a856047f682ac580440dce5db",
+      "owner": "src/pso/boss/darkfalz/TObjDFDemoF_80050134.cpp",
+      "owner_blob": "a0c27f63205fd499fa2094a153fc7eb0abc29d04",
+      "final_comparison_sha256": "f516365f6a17eaba955684dfb77297247eaf674fe88b90933ce65eb6e552048a",
+      "status": "Current native owner verified",
+      "rationale": "The existing native Dark Falz constructor uses typed model, texture and motion arrays. The historical TObjFish helper at 0x8001EDB0 is the current get_bml_texlist. Retail provides -1.0f at 0x805D8A28, and the camera pose, playback angle, sound and rumble use their original inputs."
+    },
+    {
+      "row": 1064,
+      "fork_path": "include/pso/boss/TBoss6Type2.h",
+      "fork_blob": "438685b56c254a8b7759fc17991e757b8e3d045d",
+      "historical_delta_sha256": "0cb8dc39d404879f1c4edd5ff5c57c80d8c0e28876010f24082346fec9ebf7fd",
+      "owner": "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+      "owner_blob": "22fa5d9c111d156e8b573e985cf50c15c49272ff",
+      "final_comparison_sha256": "ee846b52a3df9ca54941b4bc8dd84d7a12a520b40017e79bb79313b7bda9f234",
+      "status": "Current native owner verified",
+      "rationale": "The current Type 2 layout carries state progress at 0x41C, timer words at 0x45C and 0x460, fields at 0x4D4, 0x504 and 0x55C, and the two contact locations in the Vec array at 0x620 and 0x62C. The three script callbacks use their native receiver."
+    },
+    {
+      "row": 649,
+      "fork_path": "src/pso/unk/data_805D9E78.cpp",
+      "fork_blob": "44c77ca059417e9bdf9468b5df7b970c14b495be",
+      "historical_delta_sha256": "4dc7f453c14be336ff540d9f20c100d1b1798fcea8312db841b6c70a83332032",
+      "owner": "src/pso/enemy/dd/TObjEneDD.cpp",
+      "owner_blob": "81f0c74207ada8303cdb6f9f612a2466bae7b326",
+      "final_comparison_sha256": "ee41d8d6e8b0f53d7cc9288b6a63c6c3591444196023b02425e3cb68a335a164",
+      "status": "Source-linked data and padding verified",
+      "rationale": "The original eight words have the same big-endian values. Seven floats occupy 28 exact linked bytes. The zero word at 0x805D9E7C is alignment padding between symbols. The active data owners supply the floats."
+    }
+  ],
+  "historical_ledger_sha256_before": "1a9309c77214ef301c50241c98d1a10e20fa4fbaf0e89500f390396dd7194a36",
+  "historical_ledger_sha256": "3df00026f0cb47c4972b97ce26131e1edb4330c83a16bae618b6c1971b46ff12",
+  "historical_rows_open": 569,
+  "older_dd_float_pool": [
+    {
+      "address": "0x805d9e78",
+      "float": 360,
+      "linked": true,
+      "alignment": false
+    },
+    {
+      "address": "0x805d9e7c",
+      "float": 0,
+      "linked": false,
+      "alignment": true
+    },
+    {
+      "address": "0x805d9e80",
+      "float": -0.1,
+      "linked": true,
+      "alignment": false
+    },
+    {
+      "address": "0x805d9e84",
+      "float": 310,
+      "linked": true,
+      "alignment": false
+    },
+    {
+      "address": "0x805d9e88",
+      "float": 155,
+      "linked": true,
+      "alignment": false
+    },
+    {
+      "address": "0x805d9e8c",
+      "float": 0,
+      "linked": true,
+      "alignment": false
+    },
+    {
+      "address": "0x805d9e90",
+      "float": 0.3,
+      "linked": true,
+      "alignment": false
+    },
+    {
+      "address": "0x805d9e94",
+      "float": 65535,
+      "linked": true,
+      "alignment": false
+    }
+  ],
+  "runtime_probe": {
+    "builds": [
+      "retail",
+      "stock",
+      "fork"
+    ],
+    "sha256": "dfe98d7522d12da064065590e61165e2774762f743467207eac1b51b3bd874ad",
+    "source_sha256": "a79f39cf1d860a39e329f8ae9e1cf6891c86858ee5822e86dde86daba73c3c9d",
+    "scope": "Two Dragon camera variants and their shutdown conditions, Dragon mode return, Dragon segment flags, both Gold Dragon polygon operands, and Olga Flow wait advancement. The emulator stubs game callbacks and skips two paired-single constructor save and restore instructions."
+  },
+  "overlay_paths": 130,
+  "overlay_sha256": "d9ea5c6f60a8a1c752d9050b1549cb61c68c67da3cd7bedcb567167d69209014",
+  "retained_symbols": 27033,
+  "workspace_checks": {
+    "tool": {
+      "count": 294,
+      "sha256": "9be7ed99e648b509aee5c353163fddd640ec2f3d3bdc1d45c12e338a7b259bf4"
+    },
+    "fork": {
+      "count": 11,
+      "sha256": "b5d0a1a6a710a54805d401cd3ebdafbd334950cff97fdb89bf42201de0af0378"
+    },
+    "host": {
+      "checks": [
+        "./vector_math_fallbacks",
+        "./item_factory_callbacks",
+        "./loader_transfer",
+        "./ginja_parameter_callbacks",
+        "./exi_ethernet_fallbacks"
+      ],
+      "sha256": "ad1227e7d6dde3aea88d51f241949b30f3d1fe42ec4c3abf078bd6309ee9bbdb"
+    }
+  },
+  "review_commit_attribution": {
+    "commits": 44,
+    "codex_attribution": 0,
+    "coauthor_trailers": 0
+  },
+  "public_refs_changed": false
+}

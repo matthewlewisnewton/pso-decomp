@@ -1,43 +1,51 @@
 #ifndef PSO_ITEM_TUNK_804E355C_H
 #define PSO_ITEM_TUNK_804E355C_H
 #include "types.h"
-#include "pso/TObject.h"
-#include <dolphin/mtx/GeoTypes.h>
+#include "pso/system/task/TObject.h"
+#include "pso/object/base/TObjMotion.h"
+
+// What TUnk_804E355C's constructor copies; reset_attack_params fills in
+// the defaults. The derived attack colliders' parameter blocks start with it.
+struct S_802E451C {
+    Vec position;
+    f32 radius;      // the collision body's radius
+    s32 hits;        // targets it may hit before it destroys itself
+    u16 client_id;   // the attacking player's
+    s16 room;
+    s32 item_id;     // the weapon's, for find_item_by_id
+    f32 pad_1C;
+    f32 pad_20;
+    s32 pad_24;
+};
+
+// Fills in an S_802E451C's defaults: no position, radius 5, one hit, no owner, room or weapon.
+extern "C" void reset_attack_params(S_802E451C *params);
 
 class TUnk_804E355C : public TObject {
 public:
-    TUnk_804E355C(TObject *parent, void *params);
+    TUnk_804E355C(TObject *parent, S_802E451C *params);
     virtual ~TUnk_804E355C();
     void check_hits();
-    s32 try_add_hit_target(void *);
-    virtual void vfunc_6(s32 *);
-    u8 has_game_join_id();
-    s32 resolve_attack_col_hit(u8 *);
-    u8 unk_1C[0x4];
-    s32 m_20;
+    s32 try_add_hit_target(const ActorBodyHit *hit);
+    virtual void vfunc_6(ActorBodyHit *hit);
+    s32 has_game_join_id();
+    s32 resolve_attack_col_hit(ActorBodyHit *hit);
+    CollisionBody *bodies;  // its one body below
+    s32 body_count;
     Vec position;
-    s32 facing_yaw;
-    u8 unk_34[0x4];
-    f32 m_38;
-    u8 unk_3C[0x4];
-    f32 m_40;
-    u8 unk_44[0x4];
-    s32 m_48;
-    u8 unk_4C[0x4];
-    f32 m_50;
-    u8 unk_54[0x4];
-    f32 m_58;
-    u8 unk_5C[0x44];
-    s32 m_a0;
-    s32 m_a4;
-    u16 m_a8;
-    u8 unk_AA[0x2];
-    s32 m_ac;
-    u8 unk_B0[0x4];
-    f32 m_b4;
-    u8 unk_B8[0x4];
-    s32 m_bc;
-    u8 unk_C0[0x4];
+    s32 rotation_y;
+    CollisionBody body;
+    ActorBodyHit hits[8];   // what it has hit so far
+    s32 hit_count;
+    s32 hits_left;
+    u16 client_id; // compared with get_entity_id() and passed to get_player_by_client_id()
+    s16 room;      // compared with the target's get_room()
+    s32 item_id;
+    f32 pad_B0;
+    f32 pad_B4;
+    s32 pad_B8;
+    s32 pad_BC;
+    s32 pad_C0;
 };
 
 #endif

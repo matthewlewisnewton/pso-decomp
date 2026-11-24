@@ -1,5 +1,7 @@
+#define PSMTXMultVecArraySR __hdr_PSMTXMultVecArraySR
 #include <dolphin.h>
 #include <dolphin/mtx.h>
+#undef PSMTXMultVecArraySR
 
 
 asm void PSMTXMultVec(const register Mtx44 m, const register Vec* src, register Vec* dst) {

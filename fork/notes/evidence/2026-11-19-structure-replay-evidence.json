@@ -1,0 +1,4281 @@
+{
+  "source": "5816ff85346d89cdab3cf5d9729d8d1c9bc32148",
+  "landing": "cfee2399944f37effb8f3d5f4abde53b3fdda1e5",
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "source_files": 75,
+  "batches": {
+    "window-word": {
+      "head": "f52b8300b8c4b3af324e0f756605c9d592211e21",
+      "files": 40
+    },
+    "tunnel-atmosphere": {
+      "head": "65668b8af39db00737a12890bd18b0bc3a3e766a",
+      "files": 14
+    },
+    "dark-falz": {
+      "head": "c534b30f569a27a5bebb6e27385fbda041b40864",
+      "files": 12
+    },
+    "gameplay-sound": {
+      "head": "9ffe9d8e7ef9430a9bd23c176825d7295a8b6739",
+      "files": 10
+    },
+    "model-hierarchy": {
+      "head": "2c407ea47335405c695fe3269faf1aca310a04a9",
+      "files": 6
+    }
+  },
+  "symbol_retention": 27065,
+  "source_coverage": {
+    "fuzzy_match_percent": 99.99999,
+    "total_code": "4353092",
+    "matched_code": "4353092",
+    "matched_code_percent": 100.0,
+    "total_data": "1758510",
+    "matched_data": "1758510",
+    "matched_data_percent": 100.0,
+    "total_functions": 27572,
+    "matched_functions": 27572,
+    "matched_functions_percent": 100.0,
+    "complete_code": "4353092",
+    "complete_code_percent": 100.0,
+    "complete_data": "1758510",
+    "complete_data_percent": 100.0,
+    "total_units": 2447,
+    "complete_units": 2447
+  },
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "fork_only_paths": 133,
+  "layer_tests": 11,
+  "coverage_comparisons": 28,
+  "delivery": {
+    "delivery-network-render-window": {
+      "old": "8d7fc86f08a1d452734533735e83ab1125181e10",
+      "head": "fddb20c8c42db17ddc32c8f27a1f6f62da9f6ec9",
+      "files": 40,
+      "upstream_diff_paths": 939
+    },
+    "delivery-network-world": {
+      "old": "b144f74c5cef51c2c4973df19fd0c80d443d2bea",
+      "head": "9f6bc23b9e3fcafe691b22a31f01903cf32b0b71",
+      "files": 36,
+      "upstream_diff_paths": 920
+    }
+  },
+  "source_audit": {
+    "source": "5816ff85346d89cdab3cf5d9729d8d1c9bc32148",
+    "remaining": {
+      "Owner comparison required": 806,
+      "Some anchored text changes found": 1037
+    },
+    "closed_rows": [
+      201,
+      211,
+      213,
+      387,
+      426,
+      487,
+      494,
+      499,
+      512,
+      719,
+      1157,
+      2167,
+      2181,
+      2196,
+      2199,
+      3421,
+      5196,
+      5465,
+      5466,
+      5494,
+      5509,
+      6013,
+      6048
+    ],
+    "entries": [
+      {
+        "row": 53,
+        "historical_path": "include/pso/misc/TLobby_80227A2C.h",
+        "owners": {
+          "include/pso/network/protocol/GameplaySoundPacket.h": "cc586ac2e2fab23a657d499e918250081241fef4"
+        },
+        "proofs": [
+          {
+            "group": "Packet and model owner",
+            "evidence": "The 6xB2 handler declaration moves into the actual packet dispatcher interface."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 154,
+        "historical_path": "config/GPOE8P/psov3/config.yml",
+        "owners": {
+          "config/GPOE8P/psov3/config.yml": "dcb56f122e322e769d44e7868e1b7dc716b60f0a"
+        },
+        "proofs": [
+          {
+            "group": "Tunnel atmosphere",
+            "evidence": "The linked owner retains the historical dust controller, splash timer and Vec layout, or their exact tunnel, trail and vertex contracts within the audited scope."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 157,
+        "historical_path": "config/GPOE8P/psov3/symbols.txt",
+        "owners": {
+          "config/GPOE8P/psov3/symbols.txt": "3d329238f0b4f72168e2a149643bb8dfb08f02cd"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller. Native Word page factory, selection queries or owned buffers in this owner."
+          },
+          {
+            "group": "Tunnel atmosphere",
+            "evidence": "The linked owner retains the historical dust controller, splash timer and Vec layout, or their exact tunnel, trail and vertex contracts within the audited scope."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 201,
+        "historical_path": "include/pso/misc/KeyboardTextAbi.h",
+        "owners": {
+          "include/pso/ui/window/KeyboardTextBuffer.h": "838b0fa72e3b5ed7191987e207bdce5c6513204b"
+        },
+        "proofs": [
+          {
+            "group": "Active native declarations",
+            "evidence": "The historical void* represents the existing 0x18 editable text record. The native member accepts the same char* and decodes into its embedded u16 storage. The historical header required no includes."
+          }
+        ],
+        "status": "Complete historical declarations retained at active native owners"
+      },
+      {
+        "row": 207,
+        "historical_path": "include/pso/misc/TWindowChatSymbol_802486A8.h",
+        "owners": {
+          "src/pso/ui/chat/TWindowChatSymbol.cpp": "ea468532824c6f8254585fbdd342de76395eaa78"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 211,
+        "historical_path": "include/pso/misc/TWindowKeyBoardBase_8008102C.h",
+        "owners": {
+          "include/pso/ui/window/KeyboardTextBuffer.h": "838b0fa72e3b5ed7191987e207bdce5c6513204b"
+        },
+        "proofs": [
+          {
+            "group": "Active native declarations",
+            "evidence": "Three text-holder exports are covered by the native 0x18 buffer constructor, destructor and width/line initializer. The unrelated lens-flare factory remains declared with the historical signature in the live split header. The native headers keep types.h."
+          }
+        ],
+        "status": "Complete historical declarations retained at active native owners"
+      },
+      {
+        "row": 213,
+        "historical_path": "include/pso/misc/TWindowKeyBoardSoft_8025B85C.h",
+        "owners": {
+          "include/pso/ui/window/TWindowKeyBoardBase.h": "545b59249ea1edd524c614837ab05686f92da258"
+        },
+        "proofs": [
+          {
+            "group": "Active native declarations",
+            "evidence": "The actual composer base owns the 0x8025C51C receiver operation, and its static is_alnum takes the same u16. The old Soft forward declaration existed for the misleading ownership; the native Base header provides the needed type and types.h."
+          }
+        ],
+        "status": "Complete historical declarations retained at active native owners"
+      },
+      {
+        "row": 226,
+        "historical_path": "src/pso/misc/TWindowChatSymbol_802486A8.cpp",
+        "owners": {
+          "src/pso/ui/chat/TWindowChatSymbol.cpp": "ea468532824c6f8254585fbdd342de76395eaa78"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 230,
+        "historical_path": "src/pso/misc/TWindowKeyBoardBase.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowKeyBoardBase.cpp": "c82d7fef58e5fe592005934ec571929f4811e1ba"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 235,
+        "historical_path": "src/pso/misc/TWindowSubSymbolChatFaceType.cpp",
+        "owners": {
+          "src/pso/ui/chat/TWindowSubSymbolChatFaceType.cpp": "afd14c7294eb0739c9b32da641780acaf8dd7644"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 238,
+        "historical_path": "src/pso/unk/text_80248840.cpp",
+        "owners": {
+          "src/pso/ui/chat/TWindowChatSymbol.cpp": "ea468532824c6f8254585fbdd342de76395eaa78"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 249,
+        "historical_path": "src/pso/misc/TWindowSubSymbolChatPartsSet_80247EFC.cpp",
+        "owners": {
+          "src/pso/ui/chat/TWindowChatSymbol.cpp": "ea468532824c6f8254585fbdd342de76395eaa78"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 255,
+        "historical_path": "src/pso/misc/TWindowSubSymbolChatHelp.cpp",
+        "owners": {
+          "src/pso/ui/chat/TWindowSubSymbolChatHelp.cpp": "71b4ba69dd077f6c8caf4c03840f575903dda044"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 264,
+        "historical_path": "src/pso/misc/TKeyBoardControl_8025EC04.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowKeyBoardHard.cpp": "fec188b7eb007f8893fcaca889c393e66e76fbd0"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 283,
+        "historical_path": "src/pso/misc/TWindowKeyBoardSoft.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowKeyBoardBase.cpp": "c82d7fef58e5fe592005934ec571929f4811e1ba"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 284,
+        "historical_path": "include/pso/misc/TWindowSubSymbolChatPartsSet_80247EFC.h",
+        "owners": {
+          "src/pso/ui/chat/TWindowChatSymbol.cpp": "ea468532824c6f8254585fbdd342de76395eaa78"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 285,
+        "historical_path": "src/pso/misc/TWindowSubSymbolChatFaceType_80283A70.cpp",
+        "owners": {
+          "src/pso/ui/chat/TWindowSubSymbolChatFaceType.cpp": "afd14c7294eb0739c9b32da641780acaf8dd7644"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 287,
+        "historical_path": "src/pso/misc/TWindowSubSymbolChatPartsSet.cpp",
+        "owners": {
+          "src/pso/ui/chat/TWindowSubSymbolChatPartsSet.cpp": "71ee5558d4f3162efe1848c0145bb5e176ee57cf"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 364,
+        "historical_path": "include/pso/TObjBoss2RaftSplash.h",
+        "owners": {
+          "src/pso/boss/derolle/TObjBoss2RaftSplash.cpp": "ac3112efd6c7494fb510a7a2b60c053efff9712c"
+        },
+        "proofs": [
+          {
+            "group": "Tunnel atmosphere",
+            "evidence": "The linked owner retains the historical dust controller, splash timer and Vec layout, or their exact tunnel, trail and vertex contracts within the audited scope."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 367,
+        "historical_path": "include/pso/TObjBoss7DustCtrl.h",
+        "owners": {
+          "src/pso/boss/barbaray/TObjBoss7Dust.cpp": "b9f9fa59e3acc7f951f0712b0c21b9b66b0a3b6a"
+        },
+        "proofs": [
+          {
+            "group": "Tunnel atmosphere",
+            "evidence": "The linked owner retains the historical dust controller, splash timer and Vec layout, or their exact tunnel, trail and vertex contracts within the audited scope."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 387,
+        "historical_path": "include/pso/boss/TBoss4ZakoDrawBuffer.h",
+        "owners": {
+          "include/pso/boss/darkfalz/TBoss4ZakoDrawBuffer.h": "01f198fbba5cfe8c5b824c2258f2ef806d5a921b"
+        },
+        "proofs": [
+          {
+            "group": "Dark Falz",
+            "evidence": "Recovered historical two buffers of 96 entries; sizeof and position, rotation and entry offsets are compile-time checked."
+          }
+        ],
+        "status": "Complete historical Dark Falz source or declarations recovered"
+      },
+      {
+        "row": 426,
+        "historical_path": "include/pso/boss/TObjBoss2Tunnel_8007EA74.h",
+        "owners": {
+          "include/pso/network/protocol/GameplaySoundPacket.h": "cc586ac2e2fab23a657d499e918250081241fef4"
+        },
+        "proofs": [
+          {
+            "group": "Gameplay sound packet",
+            "evidence": "Both historical functions retain the typed 12-byte command, with client at offset 6 and sound at offset 8. The exact sender and receiving table use the active shared header."
+          }
+        ],
+        "status": "Complete historical gameplay sound declarations retained"
+      },
+      {
+        "row": 428,
+        "historical_path": "include/pso/boss/TObjBoss5Ctrl.h",
+        "owners": {
+          "src/pso/boss/galgryphon/TObjBoss5Ctrl.cpp": "51d578be0b4ce0629edb3ae5f5b72e3f646ec606"
+        },
+        "proofs": [
+          {
+            "group": "Gal Gryphon retained controller",
+            "evidence": "Canonical controller header and owning constructor/task/destructor retain typed fields. Separate current native subunits own play_pillar_sound at 0x80067124 and create at 0x800673D0."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 432,
+        "historical_path": "include/pso/boss/TObjBoss7Dust.h",
+        "owners": {
+          "src/pso/boss/barbaray/TObjBoss7Dust.cpp": "b9f9fa59e3acc7f951f0712b0c21b9b66b0a3b6a"
+        },
+        "proofs": [
+          {
+            "group": "Tunnel atmosphere",
+            "evidence": "The linked owner retains the historical dust controller, splash timer and Vec layout, or their exact tunnel, trail and vertex contracts within the audited scope."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 433,
+        "historical_path": "include/pso/boss/TObjBoss7DustCtrl.h",
+        "owners": {
+          "src/pso/boss/barbaray/TObjBoss7Dust.cpp": "b9f9fa59e3acc7f951f0712b0c21b9b66b0a3b6a"
+        },
+        "proofs": [
+          {
+            "group": "Tunnel atmosphere",
+            "evidence": "The linked owner retains the historical dust controller, splash timer and Vec layout, or their exact tunnel, trail and vertex contracts within the audited scope."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 487,
+        "historical_path": "include/pso/object/TObjDFDemo4.h",
+        "owners": {
+          "include/pso/boss/darkfalz/TObjDFDemo4.h": "970346e2fbea5d91e2637489412c9ec52898feba"
+        },
+        "proofs": [
+          {
+            "group": "Dark Falz",
+            "evidence": "Restores typed static factory and camera position offset check; existing current constructor, afterimage/body and linked-node types cover the remaining declaration roles."
+          }
+        ],
+        "status": "Complete historical Dark Falz source or declarations recovered"
+      },
+      {
+        "row": 494,
+        "historical_path": "include/pso/unk/text_802AA8FC.h",
+        "owners": {
+          "include/pso/boss/olgaflow/TBoss6PlotFalz_802AABEC.h": "296a2003e9e0e7008f4b57367da7daf7c0a3f69a"
+        },
+        "proofs": [
+          {
+            "group": "Active native declarations",
+            "evidence": "All 2 original declarations use matching types in headers imported by the exact compiled providers."
+          }
+        ],
+        "status": "Complete historical forward declarations retained by exact providers"
+      },
+      {
+        "row": 499,
+        "historical_path": "src/pso/boss/Boss5GryphonConstants.cpp",
+        "owners": {
+          "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp": "5c301940b5f3e87ad4758d34f90de2db271c0146"
+        },
+        "proofs": [
+          {
+            "group": "Retained Gryphon constants",
+            "evidence": "All 41 historical values are emitted as the same retail bytes. 41 have matching named source initializers; remaining literals are emitted by the current owner."
+          }
+        ],
+        "status": "Complete historical Gryphon constant initializers retained"
+      },
+      {
+        "row": 502,
+        "historical_path": "src/pso/boss/DeRolLeDustConstants.cpp",
+        "owners": {
+          "src/pso/boss/derolle/TObjBoss2DustCtrl.cpp": "b18a0606872bb6770d78754cfe3c0aba88c93d8f"
+        },
+        "proofs": [
+          {
+            "group": "Tunnel atmosphere",
+            "evidence": "The linked owner retains the historical dust controller, splash timer and Vec layout, or their exact tunnel, trail and vertex contracts within the audited scope."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 512,
+        "historical_path": "src/pso/boss/TBoss4ZakoDraw.cpp",
+        "owners": {
+          "src/pso/boss/darkfalz/TBoss4ZakoDraw.cpp": "c900b4d3252c2e1ed2b7fc8bfd8f2c7cd29ecc70"
+        },
+        "proofs": [
+          {
+            "group": "Dark Falz",
+            "evidence": "Recovered typed run, draw, queue and clear operations, native constructor, matrix and material declarations, model/texture ownership and the viewport rectangle at +0x30."
+          }
+        ],
+        "status": "Complete historical Dark Falz source or declarations recovered"
+      },
+      {
+        "row": 544,
+        "historical_path": "src/pso/boss/TObjBoss2RaftSplash.cpp",
+        "owners": {
+          "src/pso/boss/derolle/TObjBoss2RaftSplash.cpp": "ac3112efd6c7494fb510a7a2b60c053efff9712c"
+        },
+        "proofs": [
+          {
+            "group": "Tunnel atmosphere",
+            "evidence": "The linked owner retains the historical dust controller, splash timer and Vec layout, or their exact tunnel, trail and vertex contracts within the audited scope."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 546,
+        "historical_path": "src/pso/boss/TObjBoss2Tunnel_802F2070.cpp",
+        "owners": {
+          "src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp": "c3ef945b79f0d2b0652a686db4ba3f064ea3427b"
+        },
+        "proofs": [
+          {
+            "group": "Tunnel atmosphere",
+            "evidence": "The linked owner retains the historical dust controller, splash timer and Vec layout, or their exact tunnel, trail and vertex contracts within the audited scope."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 547,
+        "historical_path": "src/pso/boss/TObjBoss5Ctrl.cpp",
+        "owners": {
+          "src/pso/boss/galgryphon/TObjBoss5Ctrl.cpp": "51d578be0b4ce0629edb3ae5f5b72e3f646ec606"
+        },
+        "proofs": [
+          {
+            "group": "Gal Gryphon retained controller",
+            "evidence": "Canonical controller header and owning constructor/task/destructor retain typed fields. Separate current native subunits own play_pillar_sound at 0x80067124 and create at 0x800673D0."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 554,
+        "historical_path": "src/pso/boss/TObjBoss7DustCtrl.cpp",
+        "owners": {
+          "src/pso/boss/barbaray/TObjBoss7Dust.cpp": "b9f9fa59e3acc7f951f0712b0c21b9b66b0a3b6a"
+        },
+        "proofs": [
+          {
+            "group": "Tunnel atmosphere",
+            "evidence": "The linked owner retains the historical dust controller, splash timer and Vec layout, or their exact tunnel, trail and vertex contracts within the audited scope."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 555,
+        "historical_path": "src/pso/boss/TObjBoss7TunnelCol.cpp",
+        "owners": {
+          "src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp": "c3ef945b79f0d2b0652a686db4ba3f064ea3427b"
+        },
+        "proofs": [
+          {
+            "group": "Tunnel atmosphere",
+            "evidence": "The linked owner retains the historical dust controller, splash timer and Vec layout, or their exact tunnel, trail and vertex contracts within the audited scope."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 643,
+        "historical_path": "src/pso/object/TObjDFDemo4.cpp",
+        "owners": {
+          "src/pso/boss/darkfalz/TObjDFDemo4.cpp": "5b054e382d2567b02a9534ba1643c63060ac3450"
+        },
+        "proofs": [
+          {
+            "group": "Dark Falz",
+            "evidence": "Restores the typed static Demo4 factory. The existing exact modern body and split decisions were retained."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 648,
+        "historical_path": "src/pso/unk/data_805D8D28.cpp",
+        "owners": {
+          "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp": "5c301940b5f3e87ad4758d34f90de2db271c0146"
+        },
+        "proofs": [
+          {
+            "group": "Retained Gryphon constants",
+            "evidence": "All 18 historical values are emitted as the same retail bytes. 1 have matching named source initializers; remaining literals are emitted by the current owner."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 653,
+        "historical_path": "src/pso/unk/text_8003AFBC.cpp",
+        "owners": {
+          "src/pso/boss/derolle/TObjBoss2RaftSplash.cpp": "ac3112efd6c7494fb510a7a2b60c053efff9712c"
+        },
+        "proofs": [
+          {
+            "group": "Tunnel atmosphere",
+            "evidence": "The linked owner retains the historical dust controller, splash timer and Vec layout, or their exact tunnel, trail and vertex contracts within the audited scope."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 662,
+        "historical_path": "src/pso/unk/text_802F1D1C.cpp",
+        "owners": {
+          "src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp": "c3ef945b79f0d2b0652a686db4ba3f064ea3427b"
+        },
+        "proofs": [
+          {
+            "group": "Tunnel atmosphere",
+            "evidence": "The linked owner retains the historical dust controller, splash timer and Vec layout, or their exact tunnel, trail and vertex contracts within the audited scope."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 706,
+        "historical_path": "src/pso/unk/text_8035A860.cpp",
+        "owners": {
+          "src/pso/boss/darkfalz/TOBoss4Rock_8035A7FC.cpp": "6be65556638f21abe35f5c8e4821344db95e80cd"
+        },
+        "proofs": [
+          {
+            "group": "Packet and model owner",
+            "evidence": "The native rock renderer constructor calls the historical typed model-tree count with its model resource."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 719,
+        "historical_path": "include/pso/TBoss4ZakoDraw.h",
+        "owners": {
+          "include/pso/boss/darkfalz/TBoss4ZakoDraw.h": "bf20da555d17c1ac9b5af4a0411645c4fb2b8023"
+        },
+        "proofs": [
+          {
+            "group": "Dark Falz",
+            "evidence": "Recovered the native TObject-parent constructor and removed the obsolete duplicate static render declaration."
+          }
+        ],
+        "status": "Complete historical Dark Falz source or declarations recovered"
+      },
+      {
+        "row": 794,
+        "historical_path": "src/pso/boss/TBoss4DarkFalz_8004C93C.cpp",
+        "owners": {
+          "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp": "e0a4fa676c9e40c8bf0f26eb1c824393afd65757"
+        },
+        "proofs": [
+          {
+            "group": "Dark Falz",
+            "evidence": "Restores the native Vec and s32 Demo4 arguments from the controller. No claim on unrelated state hunks."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 840,
+        "historical_path": "src/pso/misc/TOBoss4Rock_8035A7FC.cpp",
+        "owners": {
+          "src/pso/boss/darkfalz/TOBoss4Rock_8035A7FC.cpp": "6be65556638f21abe35f5c8e4821344db95e80cd"
+        },
+        "proofs": [
+          {
+            "group": "Packet and model owner",
+            "evidence": "The native rock renderer carries the same typed model-tree count in its current constructor."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 842,
+        "historical_path": "src/pso/boss/TObjBoss2Tunnel.cpp",
+        "owners": {
+          "src/pso/boss/derolle/TObjBoss2Tunnel.cpp": "e50a03a5bc1828cba04731b27e95a55205fb388b"
+        },
+        "proofs": [
+          {
+            "group": "Packet and model owner",
+            "evidence": "The snapshot sends a real 6xB2 command through its typed sender; tree and segment helpers read the original child and sibling fields."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 874,
+        "historical_path": "src/pso/boss/TBoss8Dragon.cpp",
+        "owners": {
+          "src/pso/boss/goldragon/TBoss8Dragon.cpp": "fec0d776e802a566d7058830f2817530cdf97d60"
+        },
+        "proofs": [
+          {
+            "group": "Packet and model owner",
+            "evidence": "Gol Dragon counts the original NJS_OBJECT tree through the active shared interface."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 878,
+        "historical_path": "include/pso/boss/TObjBoss2Tunnel_802F2070.h",
+        "owners": {
+          "src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp": "c3ef945b79f0d2b0652a686db4ba3f064ea3427b"
+        },
+        "proofs": [
+          {
+            "group": "Tunnel atmosphere",
+            "evidence": "The linked owner retains the historical dust controller, splash timer and Vec layout, or their exact tunnel, trail and vertex contracts within the audited scope."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 912,
+        "historical_path": "src/pso/boss/TObjBoss7Dust.cpp",
+        "owners": {
+          "src/pso/boss/barbaray/TObjBoss7Dust.cpp": "b9f9fa59e3acc7f951f0712b0c21b9b66b0a3b6a"
+        },
+        "proofs": [
+          {
+            "group": "Tunnel atmosphere",
+            "evidence": "The linked owner retains the historical dust controller, splash timer and Vec layout, or their exact tunnel, trail and vertex contracts within the audited scope."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 913,
+        "historical_path": "src/pso/boss/TBoss4Type1.cpp",
+        "owners": {
+          "src/pso/boss/darkfalz/TBoss4Type1.cpp": "fd62bd3ae8e5d77aa9b71401c35e3c100f4d43ad"
+        },
+        "proofs": [
+          {
+            "group": "Dark Falz",
+            "evidence": "The controller now passes its explicit TObject parent to create_all, which calls the recovered static Tenchu Furu factory. Other historical state hunks are outside this batch."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1005,
+        "historical_path": "src/pso/boss/TObjBoss7RaftSplash.cpp",
+        "owners": {
+          "src/pso/boss/barbaray/TObjBoss7RaftSplash.cpp": "34407f9073540baa7ad32b15c8187b182737d809"
+        },
+        "proofs": [
+          {
+            "group": "Tunnel atmosphere",
+            "evidence": "The linked owner retains the historical dust controller, splash timer and Vec layout, or their exact tunnel, trail and vertex contracts within the audited scope."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1069,
+        "historical_path": "src/pso/ui/TObjDFJisin.cpp",
+        "owners": {
+          "src/pso/boss/darkfalz/TObjDFJisin.cpp": "f8a1eff45e066caafa78d6f900d98634b711bf61"
+        },
+        "proofs": [
+          {
+            "group": "Dark Falz",
+            "evidence": "Restores the static Tenchu Furu factory with an explicit TObject parent; the NJS_OBJECT callback was already typed."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1070,
+        "historical_path": "src/pso/boss/TObjBoss2Tunnel_8003B138.cpp",
+        "owners": {
+          "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp": "4714fe85bd19a8f767d2eebf41e87ac44a6ddd0d"
+        },
+        "proofs": [
+          {
+            "group": "Tunnel atmosphere",
+            "evidence": "The linked owner retains the historical dust controller, splash timer and Vec layout, or their exact tunnel, trail and vertex contracts within the audited scope."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1150,
+        "historical_path": "src/pso/boss/TObjBoss2DustCtrl.cpp",
+        "owners": {
+          "src/pso/boss/derolle/TObjBoss2DustCtrl.cpp": "b18a0606872bb6770d78754cfe3c0aba88c93d8f"
+        },
+        "proofs": [
+          {
+            "group": "Tunnel atmosphere",
+            "evidence": "The linked owner retains the historical dust controller, splash timer and Vec layout, or their exact tunnel, trail and vertex contracts within the audited scope."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1157,
+        "historical_path": "include/pso/boss/TBoss4Zako.h",
+        "owners": {
+          "include/pso/boss/darkfalz/TBoss4Zako.h": "8bfe48e0bb1a1f88c754ab31b7c0fcd1320b4137"
+        },
+        "proofs": [
+          {
+            "group": "Dark Falz",
+            "evidence": "Uses the original Vec storage in the Zako producer; Bishi and Uro already use Vec in the owning TU."
+          }
+        ],
+        "status": "Complete historical Dark Falz source or declarations recovered"
+      },
+      {
+        "row": 1171,
+        "historical_path": "src/pso/boss/TBoss4Zako.cpp",
+        "owners": {
+          "src/pso/boss/darkfalz/TBoss4Zako.cpp": "a36a9f604200a513b04973911e04ee380255210d"
+        },
+        "proofs": [
+          {
+            "group": "Dark Falz",
+            "evidence": "Existing Bishi and Uro positions use Vec, matching the relevant producer change. This finding is specific to the draw-buffer cohort."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1299,
+        "historical_path": "include/pso/boss/derolle/TObjBoss2Tunnel_8007EA74.h",
+        "owners": {
+          "include/pso/network/protocol/GameplaySoundPacket.h": "cc586ac2e2fab23a657d499e918250081241fef4"
+        },
+        "proofs": [
+          {
+            "group": "Gameplay sound packet",
+            "evidence": "The native sender and receiver now share a packet header. It owns both active declarations that were formerly imported by the tunnel compatibility header."
+          }
+        ],
+        "status": "Legacy header replaced by shared gameplay packet interface"
+      },
+      {
+        "row": 2167,
+        "historical_path": "include/pso/ui/TAdDialingGC_80328B20.h",
+        "owners": {
+          "include/pso/ui/frontend/TAdDialingGC_80328B20.h": "33f7eac9b4a8d447deb21e4c8c889e6e75ca28bf"
+        },
+        "proofs": [
+          {
+            "group": "Active native declarations",
+            "evidence": "Complete by equivalence. The 0x80328B20 body is a no-op whose historical Dialing pointer is never read; render retains the call. The 0x80328B24 rectangle uses two native x/y float pairs (NJS_POINT2) with the original position and extent, and now builds the shared ColorLineList directly. No operational historical include remains unaccounted for."
+          }
+        ],
+        "status": "Complete historical declarations retained at active native owners"
+      },
+      {
+        "row": 2181,
+        "historical_path": "include/pso/ui/TAdMultiPlyChrSelectGC_802C50EC.h",
+        "owners": {
+          "include/pso/ui/frontend/TAdChrSelPlyPlateGC.h": "7b2766b90109ca8f01498000e5d69956f5bb1aff"
+        },
+        "proofs": [
+          {
+            "group": "Active native declarations",
+            "evidence": "The active plate header declares all six operations with the original widths, including the C++ slot-selection predicate at the original address. The active plate source owns all six definitions; local callers still resolve the same native operation."
+          }
+        ],
+        "status": "Complete historical declarations retained at active native owners"
+      },
+      {
+        "row": 2196,
+        "historical_path": "include/pso/ui/TAdSinglePlyChrSelectGC_8028D5D4.h",
+        "owners": {
+          "include/pso/ui/charcreate/TChCrLoadAfs.h": "f9bce1b7b123142e2e24a49bad844c837b56b542"
+        },
+        "proofs": [
+          {
+            "group": "Active native declarations",
+            "evidence": "The one historical s32 scene alias tests the AFS load-state value. The native TChCrLoadAfs method keeps the full-width result and reads its actual member."
+          }
+        ],
+        "status": "Complete historical declarations retained at active native owners"
+      },
+      {
+        "row": 2199,
+        "historical_path": "include/pso/ui/TAdSinglePlyChrSelectGC_802E13C8.h",
+        "owners": {
+          "include/pso/ui/frontend/TAdTimeSetGC.h": "35efa8832227b168dfe96f3854dd2e2a201c5705"
+        },
+        "proofs": [
+          {
+            "group": "Active native declarations",
+            "evidence": "The 15 distinct declarations are covered by 13 members of the startup settings scene and the actual calendar factory/destructor. The old duplicated C block and apparent call arities are recovered by their native receivers. The old int declaration at 0x802E18C8 is a phase request with no result consumer. The live calendar and scene headers retain all needed game types."
+          }
+        ],
+        "status": "Complete historical declarations retained at active native owners"
+      },
+      {
+        "row": 3003,
+        "historical_path": "src/pso/network/TGameProtocol.cpp",
+        "owners": {
+          "src/pso/network/TGameProtocol.cpp": "ceb67881911282bea12da3a6eb3e1a160c723527"
+        },
+        "proofs": [
+          {
+            "group": "Packet and model owner",
+            "evidence": "The original 6xB2 dispatcher takes the shared game command receiver and invokes the exact sound handler at 0x80227B70."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 3421,
+        "historical_path": "include/pso/player/TObjPlayer_801D4890.h",
+        "owners": {
+          "include/pso/item/TItemList.h": "b63b68368a901547e5c921cea1bc1bc1a3a3a4ad"
+        },
+        "proofs": [
+          {
+            "group": "Active native declarations",
+            "evidence": "All 1 original declarations use matching types in headers imported by the exact compiled providers."
+          }
+        ],
+        "status": "Complete historical forward declarations retained by exact providers"
+      },
+      {
+        "row": 4376,
+        "historical_path": "src/pso/item/TItemEffectWeapon.cpp",
+        "owners": {
+          "src/pso/effect/item/TItemEffectWeapon.cpp": "ef59ea65d2bae1a0f7cd3f01743a2e66ea03be52"
+        },
+        "proofs": [
+          {
+            "group": "Tunnel atmosphere",
+            "evidence": "The linked owner retains the historical dust controller, splash timer and Vec layout, or their exact tunnel, trail and vertex contracts within the audited scope."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5196,
+        "historical_path": "include/pso/system/NinjaHierarchy.h",
+        "owners": {
+          "include/pso/system/NinjaHierarchy.h": "78e814e8c858e9bab5daba667936a48d89e49fab"
+        },
+        "proofs": [
+          {
+            "group": "Typed model hierarchy",
+            "evidence": "The complete original shared header is restored. Its recursive NJS_OBJECT count lives at 0x8007E6C4 with the historical size and both original callers."
+          }
+        ],
+        "status": "Complete historical model hierarchy declaration restored"
+      },
+      {
+        "row": 5200,
+        "historical_path": "include/pso/system/TrailStrip.h",
+        "owners": {
+          "include/pso/system/TrailStrip.h": "b42df0fd7236864eca0d2e4b97d82fbae6e37c5e"
+        },
+        "proofs": [
+          {
+            "group": "Tunnel atmosphere",
+            "evidence": "The linked owner retains the historical dust controller, splash timer and Vec layout, or their exact tunnel, trail and vertex contracts within the audited scope."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5465,
+        "historical_path": "include/pso/misc/TWindowDD_80341334.h",
+        "owners": {
+          "include/pso/ui/window/TWindowDD_80341334.h": "7b9712357118ea1e71d83e060fa1e33da8b2246c"
+        },
+        "proofs": [
+          {
+            "group": "Active native declarations",
+            "evidence": "The factory keeps both vector arguments, text, style and width, returning the actual string window. The second declared operation was static initialization; the compiler-emitted initializer is exact at its original address and size. types.h remains in the active headers."
+          }
+        ],
+        "status": "Complete historical declarations retained at active native owners"
+      },
+      {
+        "row": 5466,
+        "historical_path": "include/pso/misc/TWindowDD_80342254.h",
+        "owners": {
+          "include/pso/ui/window/TWindowDD_80341A08.h": "a3af78b172f207b69e605294823b786087f2b1dd"
+        },
+        "proofs": [
+          {
+            "group": "Active native declarations",
+            "evidence": "Complete on f52b8300b8. The factory returns the actual Word page class, the .ctors initializer recreates the original descriptor data and initializer registration, and the dispatch entry retains its original opaque DD byte-pointer ABI while looking up a typed Word child. types.h remains available. The row is complete at the level of the original declarations, independent of remaining generic DD controller fields."
+          },
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native Word page factory, selection queries or owned buffers in this owner."
+          }
+        ],
+        "status": "Complete historical declarations retained at active native owners"
+      },
+      {
+        "row": 5494,
+        "historical_path": "include/pso/misc/TWindowSubEquip_80263AB0.h",
+        "owners": {
+          "include/pso/ui/window/TWindowMainMenu_80263AB0.h": "c7181cfd62bcda14442a0168ac54e8e548283a8c"
+        },
+        "proofs": [
+          {
+            "group": "Active native declarations",
+            "evidence": "Complete by equivalence. The empty hook and unsigned float adjustment retain their original declarations and bodies. The routed split helper now declares a second client word, which the provider does not read; the historical one-word split/non-null guard calls the same function at the same address. The parent storage layout remains opaque just as in the historical source; no ownership claim is made for those unrelated callers."
+          }
+        ],
+        "status": "Complete historical declarations retained at active native owners"
+      },
+      {
+        "row": 5509,
+        "historical_path": "include/pso/misc/WindowWordSelectionAbi.h",
+        "owners": {
+          "include/pso/ui/window/TWindowDD_80341A08.h": "a3af78b172f207b69e605294823b786087f2b1dd"
+        },
+        "proofs": [
+          {
+            "group": "Active native declarations",
+            "evidence": "The historical signed Word selection result and fallback survive at the original function. The shared declaration now uses the exact native Word page type."
+          }
+        ],
+        "status": "Complete historical forward declarations retained by exact providers"
+      },
+      {
+        "row": 5527,
+        "historical_path": "src/pso/misc/TWindowBreakIn.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowBreakIn.cpp": "185378eddec1ffcc6b94bb9581b4536bf56e0244"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5528,
+        "historical_path": "src/pso/misc/TWindowCallBack.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowCallBack.cpp": "907abea971b0ec9c2de19d933c1b7932e7afbc2e"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5530,
+        "historical_path": "src/pso/misc/TWindowComCard.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowComCard.cpp": "44fb8292b07c779416d777c17ccb50b4df2bff99"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5543,
+        "historical_path": "src/pso/misc/TWindowDD_8024662C.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowSubComCard_80244774.cpp": "ab7df0a66ef176e78d4e65e1372264b586062357"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5544,
+        "historical_path": "src/pso/misc/TWindowDD_80341334.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowDD_80341334.cpp": "24101ad5baa591b2ef8089eecd47789934a7a6e5"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5545,
+        "historical_path": "src/pso/misc/TWindowDD_803430BC.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowDD_803430BC.cpp": "8568774c3a0f40d00b86a679061ba7f473bef1e7"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native Word page factory, selection queries or owned buffers in this owner."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5564,
+        "historical_path": "src/pso/misc/TWindowPartyStatus.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowPartyStatus.cpp": "6c905a9da153802192f083481836e399efc43bfa"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5567,
+        "historical_path": "src/pso/misc/TWindowShortCut.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowShortCut.cpp": "316d8d7735181e85b9d94a82012271b0950ba44d"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5569,
+        "historical_path": "src/pso/misc/TWindowSimpleStatus.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowSimpleStatus.cpp": "52c736b776adaa019b1e8c0c7156b7a7e196dea3"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5570,
+        "historical_path": "src/pso/misc/TWindowSnapShot.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowSnapShot.cpp": "2cd9b12dc646abaf59a64ba7edec99535255235b"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5572,
+        "historical_path": "src/pso/misc/TWindowSnapShot_802A7D68.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowSnapShot.cpp": "2cd9b12dc646abaf59a64ba7edec99535255235b"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5590,
+        "historical_path": "src/pso/misc/TWindowSubStatusDisp_8026DFE8.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowShortCut.cpp": "316d8d7735181e85b9d94a82012271b0950ba44d"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5592,
+        "historical_path": "src/pso/misc/TWindowTimer.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowTimer.cpp": "725aaeeab72bf216abdd0e8c4e4144c58e11e716"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5596,
+        "historical_path": "src/pso/ui/TWindowRoom.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowRoom.cpp": "298a2d7574c8d61195b5d33072570c4f73c3b2fd"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5600,
+        "historical_path": "src/pso/unk/text_80271400.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowStatus.cpp": "3556e8de876ed1e127942d8296378e50d0ccb3dd"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5602,
+        "historical_path": "src/pso/unk/text_8030C340.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowPartyStatus.cpp": "6c905a9da153802192f083481836e399efc43bfa"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5619,
+        "historical_path": "src/pso/misc/TWindowDD_80341A08.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowDD_80341A08.cpp": "a21fe1a869813f92b0e248e7989e24196be22a5f"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller. Native Word page factory, selection queries or owned buffers in this owner."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5630,
+        "historical_path": "src/pso/misc/TWindowDD_80340EA8.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowDD_80340A78.cpp": "17db0c661a97de00e3771ad831f6148112a0b795"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5631,
+        "historical_path": "src/pso/misc/TWindowSubAreaMapDisp.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowSubAreaMapDisp.cpp": "01ce43e65ad8cfc528f91fe1528915da5829688e"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5636,
+        "historical_path": "src/pso/misc/TWindowDD_80342254.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowDD_80341A08.cpp": "a21fe1a869813f92b0e248e7989e24196be22a5f"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller. Native Word page factory, selection queries or owned buffers in this owner."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5652,
+        "historical_path": "src/pso/misc/TWindowUserSort.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowUserSort.cpp": "6250fbc71c7db2016b871a05cbc6f85faeed80b6"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5656,
+        "historical_path": "src/pso/misc/TWindowSoundBalance.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowSoundBalance.cpp": "b40c2f6e329ceed2bd2cf82c2d18ac3efaf86ccb"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5668,
+        "historical_path": "src/pso/misc/TWindowStatus.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowStatus.cpp": "3556e8de876ed1e127942d8296378e50d0ccb3dd"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5675,
+        "historical_path": "src/pso/misc/TWindowSubStatusDisp_8026F6DC.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowSimpleStatus.cpp": "52c736b776adaa019b1e8c0c7156b7a7e196dea3"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5677,
+        "historical_path": "include/pso/misc/TWindowSubMagPhoton.h",
+        "owners": {
+          "src/pso/ui/window/TWindowSubMagPhoton.cpp": "6e469d0c28fe72e522217708656b10de5176ecff"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5680,
+        "historical_path": "src/pso/misc/TWindowSubQuestBoardSelect.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp": "dffeef57869322be91cafbfbebdcded687d59bf3"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5686,
+        "historical_path": "src/pso/misc/TWindowDD_803488A8.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowDD_8034725C.cpp": "9d4a8c03f0396ec27b7478b9c5e627d75bfdda10"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native Word page factory, selection queries or owned buffers in this owner."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5757,
+        "historical_path": "include/pso/misc/TWindowSubComCard_80244774.h",
+        "owners": {
+          "src/pso/ui/window/TWindowSubComCard_80244774.cpp": "ab7df0a66ef176e78d4e65e1372264b586062357"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5773,
+        "historical_path": "src/pso/misc/TWindowSubCustomEquip.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowSubCustomEquip.cpp": "75cc535d512a4b4dfe6d049eaebe26078957ae37"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5783,
+        "historical_path": "include/pso/misc/TWindowDD_80341A08.h",
+        "owners": {
+          "include/pso/ui/window/TWindowDD_80341A08.h": "a3af78b172f207b69e605294823b786087f2b1dd"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native Word page factory, selection queries or owned buffers in this owner."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5790,
+        "historical_path": "src/pso/misc/TWindowSubMagPhoton.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowSubMagPhoton.cpp": "6e469d0c28fe72e522217708656b10de5176ecff"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5829,
+        "historical_path": "src/pso/misc/TWindowSubComCard_80244774.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowSubComCard_80244774.cpp": "ab7df0a66ef176e78d4e65e1372264b586062357"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5878,
+        "historical_path": "include/pso/misc/TWindowDD.h",
+        "owners": {
+          "include/pso/ui/window/TWindowDD.h": "50320d8fa1c6ad6ee84fa28cf3efa5ccc6af0e8d"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Removed obsolete declaration(s), now provided by their real owners."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5916,
+        "historical_path": "src/pso/misc/TWindowDD_80342E40.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowDD_80342E40.cpp": "1c520083719cf62b4b0a222de25a8d9d1c0839d8"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native Word page factory, selection queries or owned buffers in this owner."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5971,
+        "historical_path": "src/pso/misc/TWindowDD_803426CC.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowDD_803426CC.cpp": "8f8e55d4f4f95553f06d8cf0e1f7d4d9a6893777"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native Word page factory, selection queries or owned buffers in this owner."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5973,
+        "historical_path": "src/pso/misc/TWindowDD_8034725C.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowDD_8034725C.cpp": "9d4a8c03f0396ec27b7478b9c5e627d75bfdda10"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native Word page factory, selection queries or owned buffers in this owner."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6005,
+        "historical_path": "src/pso/unk/text_80287AD8.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowTimer.cpp": "725aaeeab72bf216abdd0e8c4e4144c58e11e716"
+        },
+        "proofs": [
+          {
+            "group": "Word Select and draw context",
+            "evidence": "Native TWindowBase default draw context provider/declaration or caller."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6006,
+        "historical_path": "include/pso/misc/ActionPaletteTagAbi.h",
+        "owners": {
+          "include/pso/ui/window/TWindowActionPalette.h": "ad14bc86f23fc4f2d3d927321955d5c313eec3d4"
+        },
+        "proofs": [
+          {
+            "group": "Active native declarations",
+            "evidence": "Both original one-byte stores and exact addresses survive, but the active declarations masquerade as TWindowActionPalette members. The historical header intentionally separated the four-byte borrowed tag prefix and explicit mode/slot value from the palette-window receiver. TObjPlayer.cpp still has one-argument aliases and the full tag declaration is not reconciled."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6013,
+        "historical_path": "include/pso/misc/SnapshotCaptureAbi.h",
+        "owners": {
+          "include/pso/system/RlcArchive.h": "0e79e787944f8486b8f3dda49fd0f5c7eb8d467f"
+        },
+        "proofs": [
+          {
+            "group": "Active native declarations",
+            "evidence": "Twelve former capture-storage aliases map to the 0x40 RlcArchive owner, with ordinary member interfaces and the original word-width address/status returns, including the constructor replacing init-and-reset. Width, height, default initialization, shared allocation/free, filename and motion-load contracts remain declared on their proper window or file owner. The archive vtable uses the original 0x3C lifetime slot and the buffer is at 0x08."
+          }
+        ],
+        "status": "Complete historical declarations retained at active native owners"
+      },
+      {
+        "row": 6048,
+        "historical_path": "include/pso/misc/SmallFontDrawing.h",
+        "owners": {
+          "include/pso/ui/window/TWindowSubStatusDisp.h": "8ba357575f93e2ebf36aded28d545141c15ba71f"
+        },
+        "proofs": [
+          {
+            "group": "Active native declarations",
+            "evidence": "Both native APIs are statics with no receiver or parameters. The exactly matched wrapper render_forward calls begin_render, which binds the localized alphabet texture list. This retains both no-register-input contracts and the original wrapper/binder binding."
+          }
+        ],
+        "status": "Complete historical declarations retained at active native owners"
+      },
+      {
+        "row": 7135,
+        "historical_path": "src/pso/object/TObjLight_803DF220.cpp",
+        "owners": {
+          "src/pso/object/ambient/TObjLight_803DF220.cpp": "49da4e36bd633bf60de692a9a1c1bb9cd7964974"
+        },
+        "proofs": [
+          {
+            "group": "Tunnel atmosphere",
+            "evidence": "The linked owner retains the historical dust controller, splash timer and Vec layout, or their exact tunnel, trail and vertex contracts within the audited scope."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      }
+    ],
+    "native_declaration_audit": {
+      "canonical": "7368e6ed1cb04a512314b8c57dd0113d600aa815",
+      "word_proof": "f52b8300b8c4b3af324e0f756605c9d592211e21",
+      "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+      "complete_rows": [
+        201,
+        211,
+        213,
+        2167,
+        2181,
+        2196,
+        2199,
+        5465,
+        5466,
+        5494,
+        6013,
+        6048
+      ],
+      "scoped_rows": [
+        6006
+      ],
+      "symbol_checks": 62,
+      "rows": [
+        {
+          "row": 201,
+          "historical_path": "include/pso/misc/KeyboardTextAbi.h",
+          "historical_blob": "ab75818a35d40a03693074c28fba6668a7f5589a",
+          "historical_includes": [],
+          "active_ref": "7368e6ed1cb04a512314b8c57dd0113d600aa815",
+          "status": "complete",
+          "active_paths": [
+            {
+              "path": "include/pso/ui/window/KeyboardTextBuffer.h",
+              "blob": "838b0fa72e3b5ed7191987e207bdce5c6513204b"
+            },
+            {
+              "path": "src/pso/ui/window/KeyboardTextBuffer.cpp",
+              "blob": "c5632bb7378b453f593fa89aea9abbc3528a3534"
+            }
+          ],
+          "evidence": "Complete. The historical void* represents the existing 0x18 editable text record. The native member accepts the same char* and decodes into its embedded u16 storage. The historical header required no includes.",
+          "symbols": [
+            {
+              "historical_declaration": "set_text_from_string__19TWindowKeyBoardSoftFPc",
+              "active_symbol": "set_text_from_string__18KeyboardTextBufferFPc",
+              "original_address": "0x8008081C",
+              "size_bytes": 224,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/KeyboardTextBuffer"
+            }
+          ]
+        },
+        {
+          "row": 211,
+          "historical_path": "include/pso/misc/TWindowKeyBoardBase_8008102C.h",
+          "historical_blob": "45888eeecf0c3b8a6c2716135aa887a053953d57",
+          "historical_includes": [
+            "\"types.h\""
+          ],
+          "active_ref": "7368e6ed1cb04a512314b8c57dd0113d600aa815",
+          "status": "complete",
+          "active_paths": [
+            {
+              "path": "include/pso/ui/window/KeyboardTextBuffer.h",
+              "blob": "838b0fa72e3b5ed7191987e207bdce5c6513204b"
+            },
+            {
+              "path": "include/pso/ui/window/TWindowKeyBoardBase_8008102C.h",
+              "blob": "0ae67efe568d7e086cd2d7e6a6cf0493cf0625f4"
+            },
+            {
+              "path": "src/pso/ui/window/TWindowKeyBoardBase_8008102C.cpp",
+              "blob": "5a2b9840bd5eab85c72a0fd36a3e4a67199640e5"
+            }
+          ],
+          "evidence": "Complete. Three text-holder exports are covered by the native 0x18 buffer constructor, destructor and width/line initializer. The unrelated lens-flare factory remains declared with the historical signature in the live split header. The native headers keep types.h.",
+          "symbols": [
+            {
+              "historical_declaration": "init_text_buffer_holder__19TWindowKeyBoardBaseFv",
+              "active_symbol": "__ct__18KeyboardTextBufferFv",
+              "original_address": "0x8008116C",
+              "size_bytes": 64,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowKeyBoardBase_8008102C"
+            },
+            {
+              "historical_declaration": "TEF_LensFlare__create",
+              "active_symbol": "TEF_LensFlare__create",
+              "original_address": "0x80081218",
+              "size_bytes": 96,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowKeyBoardBase_8008102C"
+            },
+            {
+              "historical_declaration": "destroy__19TWindowKeyBoardBaseFPvs",
+              "active_symbol": "__dt__18KeyboardTextBufferFv",
+              "original_address": "0x80081118",
+              "size_bytes": 84,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowKeyBoardBase_8008102C"
+            },
+            {
+              "historical_declaration": "init_keyboard_text_buffer",
+              "active_symbol": "init__18KeyboardTextBufferFUlUl",
+              "original_address": "0x8008102C",
+              "size_bytes": 236,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowKeyBoardBase_8008102C"
+            }
+          ]
+        },
+        {
+          "row": 213,
+          "historical_path": "include/pso/misc/TWindowKeyBoardSoft_8025B85C.h",
+          "historical_blob": "c682647b7f32b349fa24c8e074cc621e986531db",
+          "historical_includes": [
+            "\"types.h\""
+          ],
+          "active_ref": "7368e6ed1cb04a512314b8c57dd0113d600aa815",
+          "status": "complete",
+          "active_paths": [
+            {
+              "path": "include/pso/ui/window/TWindowKeyBoardBase.h",
+              "blob": "545b59249ea1edd524c614837ab05686f92da258"
+            },
+            {
+              "path": "src/pso/ui/window/TWindowKeyBoardBase_8025B85C.cpp",
+              "blob": "0d9354398f2268efa0e5ce6d5b54d21b8eae1829"
+            },
+            {
+              "path": "src/pso/ui/window/TWindowKeyBoardSoft.cpp",
+              "blob": "41c70b2c7ac81dcfa585293ac69dc40c2b455503"
+            }
+          ],
+          "evidence": "Complete. The actual composer base owns the 0x8025C51C receiver operation, and its static is_alnum takes the same u16. The old Soft forward declaration existed for the misleading ownership; the native Base header provides the needed type and types.h.",
+          "symbols": [
+            {
+              "historical_declaration": "TWindowKeyBoardSoft__sub_8025C51C",
+              "active_symbol": "sub_8025C51C__19TWindowKeyBoardBaseFl",
+              "original_address": "0x8025C51C",
+              "size_bytes": 216,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowKeyBoardBase_8025B85C"
+            },
+            {
+              "historical_declaration": "is_alnum__19TWindowKeyBoardSoftFUs",
+              "active_symbol": "is_alnum__19TWindowKeyBoardBaseFUs",
+              "original_address": "0x8025B85C",
+              "size_bytes": 108,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowKeyBoardBase_8025B85C"
+            }
+          ]
+        },
+        {
+          "row": 2167,
+          "historical_path": "include/pso/ui/TAdDialingGC_80328B20.h",
+          "historical_blob": "e49820a7ac904195840f450050086743c8ac64bd",
+          "historical_includes": [],
+          "active_ref": "7368e6ed1cb04a512314b8c57dd0113d600aa815",
+          "status": "complete",
+          "active_paths": [
+            {
+              "path": "include/pso/ui/frontend/TAdDialingGC_80328B20.h",
+              "blob": "33f7eac9b4a8d447deb21e4c8c889e6e75ca28bf"
+            },
+            {
+              "path": "include/pso/render/ColorLineList.h",
+              "blob": "52ead8b7065c6b0526eede058eaf97d1bff4caee"
+            },
+            {
+              "path": "src/pso/ui/frontend/TAdDialingGC.cpp",
+              "blob": "ca0ed8bc3321789e548c8ee22aeeb6b206bdef67"
+            },
+            {
+              "path": "src/pso/ui/frontend/TAdDialingMessageWindow.cpp",
+              "blob": "0fa881e14676db8e567f0d6ff35fbc870b94b390"
+            }
+          ],
+          "evidence": "Complete by equivalence. The 0x80328B20 body is a no-op whose historical Dialing pointer is never read; render retains the call. The 0x80328B24 rectangle uses two native x/y float pairs (NJS_POINT2) with the original position and extent, and now builds the shared ColorLineList directly. No operational historical include remains unaccounted for.",
+          "symbols": [
+            {
+              "historical_declaration": "TAdDialingGC__sub_80328B20",
+              "active_symbol": "TAdDialingGC__sub_80328B20",
+              "original_address": "0x80328B20",
+              "size_bytes": 4,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/frontend/TAdDialingGC"
+            },
+            {
+              "historical_declaration": "draw_dialing_rectangle",
+              "active_symbol": "TAdDialingGC__sub_80328B24",
+              "original_address": "0x80328B24",
+              "size_bytes": 236,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/frontend/TAdDialingGC"
+            }
+          ]
+        },
+        {
+          "row": 2181,
+          "historical_path": "include/pso/ui/TAdMultiPlyChrSelectGC_802C50EC.h",
+          "historical_blob": "e487a63e017d094d095893b1804a12b4b5d92077",
+          "historical_includes": [
+            "\"types.h\""
+          ],
+          "active_ref": "7368e6ed1cb04a512314b8c57dd0113d600aa815",
+          "status": "complete",
+          "active_paths": [
+            {
+              "path": "include/pso/ui/frontend/TAdChrSelPlyPlateGC.h",
+              "blob": "7b2766b90109ca8f01498000e5d69956f5bb1aff"
+            },
+            {
+              "path": "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp",
+              "blob": "327f8d6840ebe207560fdc992a5b0dce338c738a"
+            }
+          ],
+          "evidence": "Complete. The active plate header declares all six operations with the original widths, including the C++ slot-selection predicate at the original address. The active plate source owns all six definitions; local callers still resolve the same native operation.",
+          "symbols": [
+            {
+              "historical_declaration": "TAdMultiPlyChrSelectGC__sub_802C6558",
+              "active_symbol": "TAdMultiPlyChrSelectGC__sub_802C6558",
+              "original_address": "0x802C6558",
+              "size_bytes": 52,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/frontend/TAdChrSelPlyPlateGC"
+            },
+            {
+              "historical_declaration": "TAdMultiPlyChrSelectGC__sub_802C658C",
+              "active_symbol": "TAdMultiPlyChrSelectGC__sub_802C658C",
+              "original_address": "0x802C658C",
+              "size_bytes": 52,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/frontend/TAdChrSelPlyPlateGC"
+            },
+            {
+              "historical_declaration": "TAdMultiPlyChrSelectGC__sub_802C65C0",
+              "active_symbol": "TAdMultiPlyChrSelectGC__sub_802C65C0",
+              "original_address": "0x802C65C0",
+              "size_bytes": 160,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/frontend/TAdChrSelPlyPlateGC"
+            },
+            {
+              "historical_declaration": "TAdMultiPlyChrSelectGC__sub_802C6848",
+              "active_symbol": "TAdMultiPlyChrSelectGC__sub_802C6848",
+              "original_address": "0x802C6848",
+              "size_bytes": 84,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/frontend/TAdChrSelPlyPlateGC"
+            },
+            {
+              "historical_declaration": "get_multiplayer_controller_active_index",
+              "active_symbol": "get_multiplayer_controller_active_index",
+              "original_address": "0x802C5530",
+              "size_bytes": 100,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/frontend/TAdChrSelPlyPlateGC"
+            },
+            {
+              "historical_declaration": "is_multiplayer_character_slot_selected",
+              "active_symbol": "is_multiplayer_character_slot_selected__Fl",
+              "original_address": "0x802C64D0",
+              "size_bytes": 56,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/frontend/TAdChrSelPlyPlateGC"
+            }
+          ]
+        },
+        {
+          "row": 2196,
+          "historical_path": "include/pso/ui/TAdSinglePlyChrSelectGC_8028D5D4.h",
+          "historical_blob": "12266643ba06535a9bce4da019303b4a1c5c20e8",
+          "historical_includes": [
+            "\"types.h\""
+          ],
+          "active_ref": "7368e6ed1cb04a512314b8c57dd0113d600aa815",
+          "status": "complete",
+          "active_paths": [
+            {
+              "path": "include/pso/ui/charcreate/TChCrLoadAfs.h",
+              "blob": "f9bce1b7b123142e2e24a49bad844c837b56b542"
+            },
+            {
+              "path": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028D5D4.cpp",
+              "blob": "651c77139e3155c8abc53fa67eaafa7517151e4d"
+            }
+          ],
+          "evidence": "Complete. The one historical s32 scene alias tests the AFS load-state value. The native TChCrLoadAfs method keeps the full-width result and reads its actual member.",
+          "symbols": [
+            {
+              "historical_declaration": "is_selection_done__23TAdSinglePlyChrSelectGCFPv",
+              "active_symbol": "is_load_complete__12TChCrLoadAfsFv",
+              "original_address": "0x8028D5D4",
+              "size_bytes": 20,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028D5D4"
+            }
+          ]
+        },
+        {
+          "row": 2199,
+          "historical_path": "include/pso/ui/TAdSinglePlyChrSelectGC_802E13C8.h",
+          "historical_blob": "4c63d7d9cd5207f05474149050daab05da3494ed",
+          "historical_includes": [
+            "\"types.h\""
+          ],
+          "active_ref": "7368e6ed1cb04a512314b8c57dd0113d600aa815",
+          "status": "complete",
+          "active_paths": [
+            {
+              "path": "include/pso/ui/frontend/TAdTimeSetGC.h",
+              "blob": "35efa8832227b168dfe96f3854dd2e2a201c5705"
+            },
+            {
+              "path": "include/pso/ui/frontend/T_ATS_DrawCalendar.h",
+              "blob": "ecb2808c496efc196b3dd8d1ebd4cf55761a1fc1"
+            },
+            {
+              "path": "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+              "blob": "df0055251f11a140d9c4d37b1c4c9d9e1b39803c"
+            }
+          ],
+          "evidence": "Complete. The 15 distinct declarations are covered by 13 members of the startup settings scene and the actual calendar factory/destructor. The old duplicated C block and apparent call arities are recovered by their native receivers. The old int declaration at 0x802E18C8 is a phase request with no result consumer. The live calendar and scene headers retain all needed game types.",
+          "symbols": [
+            {
+              "historical_declaration": "TAdSinglePlyChrSelectGC__sub_802E1528",
+              "active_symbol": "sub_802E1528__12TAdTimeSetGCFv",
+              "original_address": "0x802E1528",
+              "size_bytes": 56,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/frontend/TAdTimeSetGC"
+            },
+            {
+              "historical_declaration": "TAdSinglePlyChrSelectGC__sub_802E15C8",
+              "active_symbol": "sub_802E15C8__12TAdTimeSetGCFv",
+              "original_address": "0x802E15C8",
+              "size_bytes": 52,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/frontend/TAdTimeSetGC"
+            },
+            {
+              "historical_declaration": "TAdSinglePlyChrSelectGC__sub_802E1868",
+              "active_symbol": "sub_802E1868__12TAdTimeSetGCFv",
+              "original_address": "0x802E1868",
+              "size_bytes": 96,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/frontend/TAdTimeSetGC"
+            },
+            {
+              "historical_declaration": "TAdSinglePlyChrSelectGC__sub_802E18C8",
+              "active_symbol": "sub_802E18C8__12TAdTimeSetGCFv",
+              "original_address": "0x802E18C8",
+              "size_bytes": 36,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/frontend/TAdTimeSetGC"
+            },
+            {
+              "historical_declaration": "TAdSinglePlyChrSelectGC__sub_802E1A04",
+              "active_symbol": "sub_802E1A04__12TAdTimeSetGCFllll",
+              "original_address": "0x802E1A04",
+              "size_bytes": 136,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/frontend/TAdTimeSetGC"
+            },
+            {
+              "historical_declaration": "__dt__18T_ATS_DrawCalendarFv",
+              "active_symbol": "__dt__18T_ATS_DrawCalendarFv",
+              "original_address": "0x802E13C8",
+              "size_bytes": 88,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/frontend/TAdTimeSetGC"
+            },
+            {
+              "historical_declaration": "apply_settings__23TAdSinglePlyChrSelectGCFi",
+              "active_symbol": "apply_settings__12TAdTimeSetGCFv",
+              "original_address": "0x802E18EC",
+              "size_bytes": 112,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/frontend/TAdTimeSetGC"
+            },
+            {
+              "historical_declaration": "close_and_dispatch__23TAdSinglePlyChrSelectGCFPvPvPvPvPv",
+              "active_symbol": "close_and_dispatch__12TAdTimeSetGCFUllUlUl",
+              "original_address": "0x802E19B0",
+              "size_bytes": 84,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/frontend/TAdTimeSetGC"
+            },
+            {
+              "historical_declaration": "close_and_next__23TAdSinglePlyChrSelectGCFPvPvPvPvPv",
+              "active_symbol": "close_and_next__12TAdTimeSetGCFllll",
+              "original_address": "0x802E195C",
+              "size_bytes": 84,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/frontend/TAdTimeSetGC"
+            },
+            {
+              "historical_declaration": "close_windows__23TAdSinglePlyChrSelectGCFPv",
+              "active_symbol": "close_windows__12TAdTimeSetGCFv",
+              "original_address": "0x802E1BF4",
+              "size_bytes": 120,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/frontend/TAdTimeSetGC"
+            },
+            {
+              "historical_declaration": "count_flags__23TAdSinglePlyChrSelectGCFPv",
+              "active_symbol": "count_flags__12TAdTimeSetGCFv",
+              "original_address": "0x802E1DC8",
+              "size_bytes": 48,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/frontend/TAdTimeSetGC"
+            },
+            {
+              "historical_declaration": "create__23TAdSinglePlyChrSelectGCFv",
+              "active_symbol": "create__18T_ATS_DrawCalendarFv",
+              "original_address": "0x802E147C",
+              "size_bytes": 60,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/frontend/TAdTimeSetGC"
+            },
+            {
+              "historical_declaration": "create_backgrounds__23TAdSinglePlyChrSelectGCFPv",
+              "active_symbol": "create_backgrounds__12TAdTimeSetGCFv",
+              "original_address": "0x802E1C6C",
+              "size_bytes": 128,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/frontend/TAdTimeSetGC"
+            },
+            {
+              "historical_declaration": "init__23TAdSinglePlyChrSelectGCFPv",
+              "active_symbol": "init__12TAdTimeSetGCFv",
+              "original_address": "0x802E1E7C",
+              "size_bytes": 152,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/frontend/TAdTimeSetGC"
+            },
+            {
+              "historical_declaration": "is_load_complete__23TAdSinglePlyChrSelectGCFv",
+              "active_symbol": "is_load_complete__12TAdTimeSetGCFv",
+              "original_address": "0x802E15FC",
+              "size_bytes": 60,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/frontend/TAdTimeSetGC"
+            }
+          ]
+        },
+        {
+          "row": 5465,
+          "historical_path": "include/pso/misc/TWindowDD_80341334.h",
+          "historical_blob": "8b7f2be371aba6f56a58b4c2d0751626612fed18",
+          "historical_includes": [
+            "\"types.h\""
+          ],
+          "active_ref": "f52b8300b8c4b3af324e0f756605c9d592211e21",
+          "status": "complete",
+          "active_paths": [
+            {
+              "path": "include/pso/ui/window/TWindowDD_80341334.h",
+              "blob": "7b9712357118ea1e71d83e060fa1e33da8b2246c"
+            },
+            {
+              "path": "include/pso/ui/window/TWindowDD_WS_String.h",
+              "blob": "66d4ed9a505251a178de5b344695aadd27c6addf"
+            },
+            {
+              "path": "src/pso/ui/window/TWindowDD_80341334.cpp",
+              "blob": "24101ad5baa591b2ef8089eecd47789934a7a6e5"
+            }
+          ],
+          "evidence": "Complete. The factory keeps both vector arguments, text, style and width, returning the actual string window. The second declared operation was static initialization; the compiler-emitted initializer is exact at its original address and size. types.h remains in the active headers.",
+          "symbols": [
+            {
+              "historical_declaration": "TWindowDD__sub_8034146C",
+              "active_symbol": "TWindowDD__sub_8034146C",
+              "original_address": "0x8034146C",
+              "size_bytes": 112,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowDD_80341334"
+            },
+            {
+              "historical_declaration": "TWindowDD__sub_803414DC",
+              "active_symbol": "__sinit_TWindowDD_80341334_cpp",
+              "original_address": "0x803414DC",
+              "size_bytes": 36,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowDD_80341334"
+            }
+          ]
+        },
+        {
+          "row": 5466,
+          "historical_path": "include/pso/misc/TWindowDD_80342254.h",
+          "historical_blob": "6fcaa46896ed118bc4b767b2e9b702e97d6a5ab1",
+          "historical_includes": [
+            "\"types.h\""
+          ],
+          "active_ref": "f52b8300b8c4b3af324e0f756605c9d592211e21",
+          "status": "complete",
+          "active_paths": [
+            {
+              "path": "include/pso/ui/window/TWindowDD_80341A08.h",
+              "blob": "a3af78b172f207b69e605294823b786087f2b1dd"
+            },
+            {
+              "path": "include/pso/ui/window/TWindowDD_80342428.h",
+              "blob": "82b3222ea8dc57e4fafee01e2b0f74111a2ac704"
+            },
+            {
+              "path": "include/pso/ui/window/TWindowDD_WS_Word.h",
+              "blob": "d7f1c34bbb16c05bab670cee8ab7d5b8a58c7a6e"
+            },
+            {
+              "path": "src/pso/ui/window/TWindowDD_80341A08.cpp",
+              "blob": "a21fe1a869813f92b0e248e7989e24196be22a5f"
+            },
+            {
+              "path": "src/pso/ui/window/TWindowDD_80342428.cpp",
+              "blob": "c527206cd15b65031e11e90822eaff866e00dc89"
+            }
+          ],
+          "evidence": "Complete on f52b8300b8. The factory returns the actual Word page class, the .ctors initializer recreates the original descriptor data and initializer registration, and the dispatch entry retains its original opaque DD byte-pointer ABI while looking up a typed Word child. types.h remains available. The row is complete at the level of the original declarations, independent of remaining generic DD controller fields.",
+          "symbols": [
+            {
+              "historical_declaration": "TWindowDD__sub_80342384",
+              "active_symbol": "TWindowDD__sub_80342384",
+              "original_address": "0x80342384",
+              "size_bytes": 92,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowDD_80341A08"
+            },
+            {
+              "historical_declaration": "TWindowDD__sub_803423E0",
+              "active_symbol": "__sinit_TWindowDD_80341A08_cpp",
+              "original_address": "0x803423E0",
+              "size_bytes": 72,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowDD_80341A08"
+            },
+            {
+              "historical_declaration": "TWindowDD__sub_80342428",
+              "active_symbol": "TWindowDD__sub_80342428",
+              "original_address": "0x80342428",
+              "size_bytes": 196,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowDD_80342428"
+            }
+          ]
+        },
+        {
+          "row": 5494,
+          "historical_path": "include/pso/misc/TWindowSubEquip_80263AB0.h",
+          "historical_blob": "f580fe4ccea44d5e87a9dfe5bdf3528c286ee0b1",
+          "historical_includes": [
+            "\"types.h\""
+          ],
+          "active_ref": "7368e6ed1cb04a512314b8c57dd0113d600aa815",
+          "status": "complete",
+          "active_paths": [
+            {
+              "path": "include/pso/ui/window/TWindowMainMenu_80263AB0.h",
+              "blob": "c7181cfd62bcda14442a0168ac54e8e548283a8c"
+            },
+            {
+              "path": "include/pso/ui/window/TWindowSubEquip_80263AB0.h",
+              "blob": "79681e5453df567f15e2f450c395bf4c63b0e57e"
+            },
+            {
+              "path": "src/pso/ui/window/TWindowMainMenu.cpp",
+              "blob": "e6817f6bfd8e4c7500365d94f6da2816feb63054"
+            }
+          ],
+          "evidence": "Complete by equivalence. The empty hook and unsigned float adjustment retain their original declarations and bodies. The routed split helper now declares a second client word, which the provider does not read; the historical one-word split/non-null guard calls the same function at the same address. The parent storage layout remains opaque just as in the historical source; no ownership claim is made for those unrelated callers.",
+          "symbols": [
+            {
+              "historical_declaration": "TWindowSubEquip__sub_80263AF4",
+              "active_symbol": "TWindowSubEquip__sub_80263AF4",
+              "original_address": "0x80263AF4",
+              "size_bytes": 4,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowMainMenu"
+            },
+            {
+              "historical_declaration": "TWindowSubEquip__sub_80263AF8",
+              "active_symbol": "TWindowSubEquip__sub_80263AF8",
+              "original_address": "0x80263AF8",
+              "size_bytes": 48,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowMainMenu"
+            },
+            {
+              "historical_declaration": "call_if_split_screen",
+              "active_symbol": "call_if_split_screen",
+              "original_address": "0x80263AB0",
+              "size_bytes": 68,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowMainMenu"
+            }
+          ]
+        },
+        {
+          "row": 6006,
+          "historical_path": "include/pso/misc/ActionPaletteTagAbi.h",
+          "historical_blob": "891db205127336183d15bae5384df956fefab38e",
+          "historical_includes": [
+            "\"types.h\""
+          ],
+          "active_ref": "7368e6ed1cb04a512314b8c57dd0113d600aa815",
+          "status": "scoped",
+          "active_paths": [
+            {
+              "path": "include/pso/ui/window/TWindowActionPalette.h",
+              "blob": "ad14bc86f23fc4f2d3d927321955d5c313eec3d4"
+            },
+            {
+              "path": "src/pso/ui/hud/TMainCursor.cpp",
+              "blob": "92dfc750546218370e2f5a23cbdc8c02b568c064"
+            },
+            {
+              "path": "src/pso/ui/window/TWindowActionPalette_801C1890.cpp",
+              "blob": "7babc39e4a57fd04e3ef5fc015f25de67dadce75"
+            },
+            {
+              "path": "src/pso/player/TObjPlayer.cpp",
+              "blob": "3c3675411b6dbcd9f0ff7c0996f61e7c91ba0603"
+            }
+          ],
+          "evidence": "Scoped. Both original one-byte stores and exact addresses survive, but the active declarations masquerade as TWindowActionPalette members. The historical header intentionally separated the four-byte borrowed tag prefix and explicit mode/slot value from the palette-window receiver. TObjPlayer.cpp still has one-argument aliases and the full tag declaration is not reconciled.",
+          "symbols": [
+            {
+              "historical_declaration": "set_slot__20TWindowActionPaletteFUc",
+              "active_symbol": "set_slot__20TWindowActionPaletteFUc",
+              "original_address": "0x8013DF4C",
+              "size_bytes": 8,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/hud/TMainCursor"
+            },
+            {
+              "historical_declaration": "set_mode__20TWindowActionPaletteFUc",
+              "active_symbol": "set_mode__20TWindowActionPaletteFUc",
+              "original_address": "0x8013DF54",
+              "size_bytes": 8,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/hud/TMainCursor"
+            }
+          ]
+        },
+        {
+          "row": 6013,
+          "historical_path": "include/pso/misc/SnapshotCaptureAbi.h",
+          "historical_blob": "abba0e9588adc4c21c29a1ceed4f3076c4041d6b",
+          "historical_includes": [
+            "\"types.h\""
+          ],
+          "active_ref": "7368e6ed1cb04a512314b8c57dd0113d600aa815",
+          "status": "complete",
+          "active_paths": [
+            {
+              "path": "include/pso/system/RlcArchive.h",
+              "blob": "0e79e787944f8486b8f3dda49fd0f5c7eb8d467f"
+            },
+            {
+              "path": "include/pso/ui/window/TWindowSnapShot.h",
+              "blob": "e6d50542703e79d07e7b6885f430a6b7287c1c90"
+            },
+            {
+              "path": "src/pso/ui/window/TWindowSnapShot_802A5B2C.cpp",
+              "blob": "6d3a2cc9f0f5a541a4f9bb3caf328a7df741c0cb"
+            },
+            {
+              "path": "src/pso/ui/window/TWindowSnapShot.cpp",
+              "blob": "6d878861dc019c5f706a4a200617a178c88f4f84"
+            }
+          ],
+          "evidence": "Complete. Twelve former capture-storage aliases map to the 0x40 RlcArchive owner, with ordinary member interfaces and the original word-width address/status returns, including the constructor replacing init-and-reset. Width, height, default initialization, shared allocation/free, filename and motion-load contracts remain declared on their proper window or file owner. The archive vtable uses the original 0x3C lifetime slot and the buffer is at 0x08.",
+          "symbols": [
+            {
+              "historical_declaration": "free_buffer__15TWindowSnapShotFv",
+              "active_symbol": "free_buffer__10RlcArchiveFv",
+              "original_address": "0x802A5D28",
+              "size_bytes": 64,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowSnapShot_802A5B2C"
+            },
+            {
+              "historical_declaration": "alloc_buffer__15TWindowSnapShotFPv",
+              "active_symbol": "alloc_buffer__10RlcArchiveFv",
+              "original_address": "0x802A5D68",
+              "size_bytes": 88,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowSnapShot_802A5B2C"
+            },
+            {
+              "historical_declaration": "open_stream__15TWindowSnapShotFPCv",
+              "active_symbol": "open_stream__10RlcArchiveFl",
+              "original_address": "0x802A5DC0",
+              "size_bytes": 104,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowSnapShot_802A5B2C"
+            },
+            {
+              "historical_declaration": "init__15TWindowSnapShotFPvi",
+              "active_symbol": "init__10RlcArchiveFl",
+              "original_address": "0x802A5E28",
+              "size_bytes": 92,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowSnapShot_802A5B2C"
+            },
+            {
+              "historical_declaration": "reset__15TWindowSnapShotFv",
+              "active_symbol": "reset__10RlcArchiveFv",
+              "original_address": "0x802A5E84",
+              "size_bytes": 88,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowSnapShot_802A5B2C"
+            },
+            {
+              "historical_declaration": "init_and_reset__15TWindowSnapShotFv",
+              "active_symbol": "__ct__10RlcArchiveFv",
+              "original_address": "0x802A5F24",
+              "size_bytes": 60,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowSnapShot_802A5B2C"
+            },
+            {
+              "historical_declaration": "update_both__15TWindowSnapShotFv",
+              "active_symbol": "update_both__10RlcArchiveFv",
+              "original_address": "0x802A5F60",
+              "size_bytes": 52,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowSnapShot_802A5B2C"
+            },
+            {
+              "historical_declaration": "start_capture__15TWindowSnapShotFPCv",
+              "active_symbol": "start_capture__10RlcArchiveFl",
+              "original_address": "0x802A5F94",
+              "size_bytes": 176,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowSnapShot_802A5B2C"
+            },
+            {
+              "historical_declaration": "set_mode__15TWindowSnapShotFl",
+              "active_symbol": "set_mode__10RlcArchiveFl",
+              "original_address": "0x802A604C",
+              "size_bytes": 8,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowSnapShot_802A5B2C"
+            },
+            {
+              "historical_declaration": "get_buffer_size__15TWindowSnapShotFv",
+              "active_symbol": "get_buffer_size__10RlcArchiveFv",
+              "original_address": "0x802A6054",
+              "size_bytes": 8,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowSnapShot_802A5B2C"
+            },
+            {
+              "historical_declaration": "get_size__15TWindowSnapShotFv",
+              "active_symbol": "get_size__10RlcArchiveFv",
+              "original_address": "0x802A7E94",
+              "size_bytes": 8,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowSnapShot"
+            },
+            {
+              "historical_declaration": "get_field_8__15TWindowSnapShotFv",
+              "active_symbol": "get_field_8__10RlcArchiveFv",
+              "original_address": "0x802A7E9C",
+              "size_bytes": 8,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowSnapShot"
+            },
+            {
+              "historical_declaration": "get_width__15TWindowSnapShotFv",
+              "active_symbol": "get_width__15TWindowSnapShotFv",
+              "original_address": "0x802A6044",
+              "size_bytes": 8,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowSnapShot_802A5B2C"
+            },
+            {
+              "historical_declaration": "get_height__15TWindowSnapShotFv",
+              "active_symbol": "get_height__15TWindowSnapShotFv",
+              "original_address": "0x802A7EA4",
+              "size_bytes": 8,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowSnapShot"
+            },
+            {
+              "historical_declaration": "init_default__15TWindowSnapShotFv",
+              "active_symbol": "init_default__15TWindowSnapShotFv",
+              "original_address": "0x802A7D68",
+              "size_bytes": 56,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowSnapShot"
+            },
+            {
+              "historical_declaration": "alloc_buffer__15TWindowSnapShotFv",
+              "active_symbol": "alloc_buffer__15TWindowSnapShotFv",
+              "original_address": "0x802A7DA4",
+              "size_bytes": 56,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowSnapShot"
+            },
+            {
+              "historical_declaration": "free_shared_instance__15TWindowSnapShotFv",
+              "active_symbol": "free_shared_instance__15TWindowSnapShotFv",
+              "original_address": "0x802A7DDC",
+              "size_bytes": 76,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowSnapShot"
+            },
+            {
+              "historical_declaration": "TWindowSnapShot__sub_802A7EAC",
+              "active_symbol": "get_player_motion_filename",
+              "original_address": "0x802A7EAC",
+              "size_bytes": 8,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowSnapShot"
+            },
+            {
+              "historical_declaration": "load_player_motion_data",
+              "active_symbol": "load_player_motion_data__Fv",
+              "original_address": "0x802A7E28",
+              "size_bytes": 108,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/window/TWindowSnapShot"
+            }
+          ]
+        },
+        {
+          "row": 6048,
+          "historical_path": "include/pso/misc/SmallFontDrawing.h",
+          "historical_blob": "3c866bcce44cbfd4d75cc5c73c603da4306b7f91",
+          "historical_includes": [],
+          "active_ref": "7368e6ed1cb04a512314b8c57dd0113d600aa815",
+          "status": "complete",
+          "active_paths": [
+            {
+              "path": "include/pso/ui/window/TWindowSubStatusDisp.h",
+              "blob": "8ba357575f93e2ebf36aded28d545141c15ba71f"
+            },
+            {
+              "path": "src/pso/ui/font/TFontSmallHelp.cpp",
+              "blob": "b36a68c5084a3f17c85e077b8bd7b4f5eb67abf6"
+            }
+          ],
+          "evidence": "Complete. Both native APIs are statics with no receiver or parameters. The exactly matched wrapper render_forward calls begin_render, which binds the localized alphabet texture list. This retains both no-register-input contracts and the original wrapper/binder binding.",
+          "symbols": [
+            {
+              "historical_declaration": "begin_small_font_draw",
+              "active_symbol": "render_forward__20TWindowSubStatusDispFv",
+              "original_address": "0x800FC3E0",
+              "size_bytes": 32,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/font/TFontSmallHelp"
+            },
+            {
+              "historical_declaration": "bind_small_font_texture_list",
+              "active_symbol": "begin_render__20TWindowSubStatusDispFv",
+              "original_address": "0x800FC400",
+              "size_bytes": 36,
+              "matched_pct": 100.0,
+              "linked_unit": "psov3/pso/ui/font/TFontSmallHelp"
+            }
+          ]
+        }
+      ]
+    },
+    "forward_audit": [
+      {
+        "row": 494,
+        "path": "include/pso/unk/text_802AA8FC.h",
+        "historical_blob": "14328773ed2f0cc0da8403818fe628a97cfe9dc9",
+        "decls": [
+          {
+            "historical": "s32 TBoss6PlotFalz__sub_802AAC74(TBoss6PlotFalz *arg0);",
+            "active": "extern \"C\" s32 TBoss6PlotFalz__sub_802AAC74(TBoss6PlotFalz *boss);",
+            "old_name": "TBoss6PlotFalz__sub_802AAC74",
+            "symbol": "TBoss6PlotFalz__sub_802AAC74",
+            "address": "0x802aac74",
+            "size": 36,
+            "declaration_owner": "include/pso/boss/olgaflow/TBoss6PlotFalz_802AABEC.h",
+            "header_blob": "296a2003e9e0e7008f4b57367da7daf7c0a3f69a",
+            "exact_provider": "src/pso/boss/olgaflow/TBoss6PlotFalz_802AABEC.cpp",
+            "compiler_dependency": "build/GPOE8P/src/pso/boss/olgaflow/TBoss6PlotFalz_802AABEC.o"
+          },
+          {
+            "historical": "s32 TBoss6PlotFalz__sub_802AAC74(TBoss6PlotFalz *arg0);",
+            "active": "extern \"C\" s32 TBoss6PlotFalz__sub_802AAC74(TBoss6PlotFalz *boss);",
+            "old_name": "TBoss6PlotFalz__sub_802AAC74",
+            "symbol": "TBoss6PlotFalz__sub_802AAC74",
+            "address": "0x802aac74",
+            "size": 36,
+            "declaration_owner": "include/pso/boss/olgaflow/TBoss6PlotFalz_802AABEC.h",
+            "header_blob": "296a2003e9e0e7008f4b57367da7daf7c0a3f69a",
+            "exact_provider": "src/pso/boss/olgaflow/TBoss6PlotFalz_802AABEC.cpp",
+            "compiler_dependency": "build/GPOE8P/src/pso/boss/olgaflow/TBoss6PlotFalz_802AABEC.o"
+          }
+        ],
+        "includes": [
+          "types.h"
+        ]
+      },
+      {
+        "row": 3421,
+        "path": "include/pso/player/TObjPlayer_801D4890.h",
+        "historical_blob": "51013bbdb4af71b6af6fd8e8aadcd959991284e9",
+        "decls": [
+          {
+            "historical": "s32 TObjPlayer__sub_801D49F4(TPlyItem *player, TObjPlayer *arg1, s32 *arg2, s32 arg3);",
+            "active": "s32 TObjPlayer__sub_801D49F4(TPlyItem *inventory, TObjPlayer *player, s32 *item_ids, s32 count);",
+            "old_name": "TObjPlayer__sub_801D49F4",
+            "symbol": "TObjPlayer__sub_801D49F4",
+            "address": "0x801d49f4",
+            "size": 120,
+            "declaration_owner": "include/pso/item/TItemList.h",
+            "header_blob": "b63b68368a901547e5c921cea1bc1bc1a3a3a4ad",
+            "exact_provider": "src/pso/player/TPlyItem.cpp",
+            "compiler_dependency": "build/GPOE8P/src/pso/player/TPlyItem.o"
+          }
+        ],
+        "includes": [
+          "types.h"
+        ]
+      },
+      {
+        "row": 5509,
+        "path": "include/pso/misc/WindowWordSelectionAbi.h",
+        "historical_blob": "20ad8e0109a2993ae0d24acd1d846e538a70e6ca",
+        "decls": [
+          {
+            "historical": "extern \"C\" int TWindowDD__sub_80342158(u8 *receiver);",
+            "active": "int TWindowDD__sub_80342158(const TWindowDD_WS_Word *page);",
+            "old_name": "TWindowDD__sub_80342158",
+            "symbol": "TWindowDD__sub_80342158",
+            "address": "0x80342158",
+            "size": 36,
+            "declaration_owner": "include/pso/ui/window/TWindowDD_80341A08.h",
+            "header_blob": "a3af78b172f207b69e605294823b786087f2b1dd",
+            "exact_provider": "src/pso/ui/window/TWindowDD_80341A08.cpp",
+            "compiler_dependency": "build/GPOE8P/src/pso/ui/window/TWindowDD_80341A08.o"
+          }
+        ],
+        "includes": [
+          "types.h"
+        ]
+      }
+    ],
+    "window_word": {
+      "parent": "7368e6ed1cb04a512314b8c57dd0113d600aa815",
+      "head": "f52b8300b8c4b3af324e0f756605c9d592211e21",
+      "donor_commits": {
+        "3a915a93c2": "Native draw context and explicit typed window/composer callers.",
+        "859b48fc3e": "Native Word constructor and owning page layout.",
+        "7743ff23de": "Exact Word display and selection fields.",
+        "6e4f192282": "Common original selection accessor prototype and word-window lifecycle."
+      },
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "symbols_rebound_at_same_address": [
+        {
+          "old": "draw_default_entry__9TWindowDDFl",
+          "new": "setup_default_draw_context__11TWindowBaseFv",
+          "address": "0x80244CF4",
+          "size": 56
+        },
+        {
+          "old": "init_and_mark_field8C__9TWindowDDFv",
+          "new": "init_and_mark_field8C__17TWindowDD_WS_WordFv",
+          "address": "0x80341EB8",
+          "size": 60
+        },
+        {
+          "old": "free_child__9TWindowDDFv",
+          "new": "free_child__17TWindowDD_WS_WordFv",
+          "address": "0x80341EF4",
+          "size": 84
+        },
+        {
+          "old": "init_child__9TWindowDDFPv",
+          "new": "init_child__17TWindowDD_WS_WordFl",
+          "address": "0x80341F48",
+          "size": 84
+        },
+        {
+          "old": "init_layout_entries__9TWindowDDFv",
+          "new": "init_layout_entries__17TWindowDD_WS_WordFv",
+          "address": "0x80341F9C",
+          "size": 60
+        },
+        {
+          "old": "reset_fields__9TWindowDDFv",
+          "new": "reset_fields__17TWindowDD_WS_WordFv",
+          "address": "0x80341FD8",
+          "size": 36
+        },
+        {
+          "old": "load_element_list__9TWindowDDFv",
+          "new": "load_element_list__17TWindowDD_WS_WordFv",
+          "address": "0x80341FFC",
+          "size": 312
+        }
+      ],
+      "word_selection_contract_row": 5509,
+      "entries": [
+        {
+          "current_owner": "config/GPOE8P/psov3/symbols.txt",
+          "historical_commit_paths": {
+            "3a915a93c2": [
+              "config/GPOE8P/psov3/symbols.txt"
+            ],
+            "859b48fc3e": [
+              "config/GPOE8P/psov3/symbols.txt"
+            ],
+            "7743ff23de": [
+              "config/GPOE8P/psov3/symbols.txt"
+            ],
+            "6e4f192282": [
+              "config/GPOE8P/psov3/symbols.txt"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 157,
+              "path": "config/GPOE8P/psov3/symbols.txt"
+            }
+          ],
+          "proven_scope": [
+            "Native TWindowBase default draw context provider/declaration or caller.",
+            "Native Word page factory, selection queries or owned buffers in this owner."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "include/pso/ui/window/TWindowBase.h",
+          "historical_commit_paths": {
+            "3a915a93c2": [
+              "include/pso/misc/TWindowBase.h"
+            ],
+            "6e4f192282": [
+              "include/pso/misc/TWindowBase.h"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5452,
+              "path": "include/pso/misc/TWindowBase.h"
+            }
+          ],
+          "proven_scope": [
+            "Native TWindowBase default draw context provider/declaration or caller."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "include/pso/ui/window/TWindowDD.h",
+          "historical_commit_paths": {
+            "7743ff23de": [
+              "include/pso/misc/TWindowDD.h"
+            ],
+            "6e4f192282": [
+              "include/pso/misc/TWindowDD.h"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5878,
+              "path": "include/pso/misc/TWindowDD.h"
+            }
+          ],
+          "proven_scope": [
+            "Removed obsolete declaration(s), now provided by their real owners."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "include/pso/ui/window/TWindowDD_80341A08.h",
+          "historical_commit_paths": {
+            "859b48fc3e": [
+              "include/pso/misc/TWindowDD_80342254.h"
+            ],
+            "6e4f192282": [
+              "include/pso/misc/TWindowDD_80341A08.h"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5466,
+              "path": "include/pso/misc/TWindowDD_80342254.h"
+            },
+            {
+              "row": 5783,
+              "path": "include/pso/misc/TWindowDD_80341A08.h"
+            }
+          ],
+          "proven_scope": [
+            "Native Word page factory, selection queries or owned buffers in this owner."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "include/pso/ui/window/TWindowDD_WS_Word.h",
+          "historical_commit_paths": {
+            "859b48fc3e": [
+              "include/pso/misc/TWindowDD_WS_Word.h"
+            ],
+            "7743ff23de": [
+              "include/pso/misc/TWindowDD_WS_Word.h"
+            ],
+            "6e4f192282": [
+              "include/pso/misc/TWindowDD_WS_Word.h"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5471,
+              "path": "include/pso/misc/TWindowDD_WS_Word.h"
+            }
+          ],
+          "proven_scope": [
+            "Native Word page factory, selection queries or owned buffers in this owner."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "include/pso/ui/window/WindowDrawContext.h",
+          "historical_commit_paths": {},
+          "ledger_rows": [],
+          "proven_scope": [
+            "Native TWindowBase default draw context provider/declaration or caller."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/chat/TWindowChatSymbol.cpp",
+          "historical_commit_paths": {
+            "6e4f192282": [
+              "include/pso/misc/TWindowChatSymbol_802486A8.h",
+              "include/pso/misc/TWindowSubSymbolChatPartsSet_80247EFC.h",
+              "src/pso/misc/TWindowChatSymbol_802486A8.cpp",
+              "src/pso/misc/TWindowSubSymbolChatPartsSet_80247EFC.cpp",
+              "src/pso/unk/text_80248840.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 207,
+              "path": "include/pso/misc/TWindowChatSymbol_802486A8.h"
+            },
+            {
+              "row": 225,
+              "path": "src/pso/misc/TWindowChatSymbol.cpp"
+            },
+            {
+              "row": 226,
+              "path": "src/pso/misc/TWindowChatSymbol_802486A8.cpp"
+            },
+            {
+              "row": 238,
+              "path": "src/pso/unk/text_80248840.cpp"
+            },
+            {
+              "row": 249,
+              "path": "src/pso/misc/TWindowSubSymbolChatPartsSet_80247EFC.cpp"
+            },
+            {
+              "row": 284,
+              "path": "include/pso/misc/TWindowSubSymbolChatPartsSet_80247EFC.h"
+            }
+          ],
+          "proven_scope": [
+            "Native TWindowBase default draw context provider/declaration or caller."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/chat/TWindowSubSymbolChatFaceType.cpp",
+          "historical_commit_paths": {
+            "6e4f192282": [
+              "include/pso/misc/TWindowSubSymbolChatFaceType_80283A70.h",
+              "src/pso/misc/TWindowSubSymbolChatFaceType.cpp",
+              "src/pso/misc/TWindowSubSymbolChatFaceType_80283A70.cpp",
+              "src/pso/misc/TWindowSubSymbolChat_802839C0.cpp",
+              "src/pso/unk/text_802841FC.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 215,
+              "path": "include/pso/misc/TWindowSubSymbolChatFaceType_80283A70.h"
+            },
+            {
+              "row": 235,
+              "path": "src/pso/misc/TWindowSubSymbolChatFaceType.cpp"
+            },
+            {
+              "row": 240,
+              "path": "src/pso/unk/text_802841FC.cpp"
+            },
+            {
+              "row": 251,
+              "path": "src/pso/misc/TWindowSubSymbolChat_802839C0.cpp"
+            },
+            {
+              "row": 285,
+              "path": "src/pso/misc/TWindowSubSymbolChatFaceType_80283A70.cpp"
+            }
+          ],
+          "proven_scope": [
+            "Native TWindowBase default draw context provider/declaration or caller."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/chat/TWindowSubSymbolChatHelp.cpp",
+          "historical_commit_paths": {
+            "6e4f192282": [
+              "src/pso/misc/TWindowSubSymbolChatHelp.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 255,
+              "path": "src/pso/misc/TWindowSubSymbolChatHelp.cpp"
+            }
+          ],
+          "proven_scope": [
+            "Native TWindowBase default draw context provider/declaration or caller."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/chat/TWindowSubSymbolChatPartsSet.cpp",
+          "historical_commit_paths": {
+            "6e4f192282": [
+              "src/pso/misc/TWindowSubSymbolChatPartsSet.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 287,
+              "path": "src/pso/misc/TWindowSubSymbolChatPartsSet.cpp"
+            }
+          ],
+          "proven_scope": [
+            "Native TWindowBase default draw context provider/declaration or caller."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowBreakIn.cpp",
+          "historical_commit_paths": {
+            "6e4f192282": [
+              "src/pso/misc/TWindowBreakIn.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5527,
+              "path": "src/pso/misc/TWindowBreakIn.cpp"
+            }
+          ],
+          "proven_scope": [
+            "Native TWindowBase default draw context provider/declaration or caller."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowCallBack.cpp",
+          "historical_commit_paths": {
+            "6e4f192282": [
+              "src/pso/misc/TWindowCallBack.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5528,
+              "path": "src/pso/misc/TWindowCallBack.cpp"
+            }
+          ],
+          "proven_scope": [
+            "Native TWindowBase default draw context provider/declaration or caller."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowComCard.cpp",
+          "historical_commit_paths": {
+            "6e4f192282": [
+              "src/pso/misc/TWindowComCard.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5530,
+              "path": "src/pso/misc/TWindowComCard.cpp"
+            }
+          ],
+          "proven_scope": [
+            "Native TWindowBase default draw context provider/declaration or caller."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowDD_8034055C.cpp",
+          "historical_commit_paths": {},
+          "ledger_rows": [],
+          "proven_scope": [
+            "Native TWindowBase default draw context provider/declaration or caller."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowDD_80340A78.cpp",
+          "historical_commit_paths": {
+            "3a915a93c2": [
+              "src/pso/misc/TWindowDD_80340EA8.cpp"
+            ],
+            "6e4f192282": [
+              "src/pso/misc/TWindowDD_80340EA8.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5630,
+              "path": "src/pso/misc/TWindowDD_80340EA8.cpp"
+            }
+          ],
+          "proven_scope": [
+            "Native TWindowBase default draw context provider/declaration or caller."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowDD_80341334.cpp",
+          "historical_commit_paths": {
+            "6e4f192282": [
+              "src/pso/misc/TWindowDD_80341334.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5544,
+              "path": "src/pso/misc/TWindowDD_80341334.cpp"
+            }
+          ],
+          "proven_scope": [
+            "Native TWindowBase default draw context provider/declaration or caller."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowDD_80341A08.cpp",
+          "historical_commit_paths": {
+            "3a915a93c2": [
+              "src/pso/misc/TWindowDD_80341A08.cpp"
+            ],
+            "859b48fc3e": [
+              "src/pso/misc/TWindowDD_80342254.cpp"
+            ],
+            "7743ff23de": [
+              "src/pso/misc/TWindowDD_80341A08.cpp"
+            ],
+            "6e4f192282": [
+              "src/pso/misc/TWindowDD_80341A08.cpp",
+              "src/pso/misc/TWindowDD_80342254.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5619,
+              "path": "src/pso/misc/TWindowDD_80341A08.cpp"
+            },
+            {
+              "row": 5636,
+              "path": "src/pso/misc/TWindowDD_80342254.cpp"
+            }
+          ],
+          "proven_scope": [
+            "Native TWindowBase default draw context provider/declaration or caller.",
+            "Native Word page factory, selection queries or owned buffers in this owner."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowDD_80342428.cpp",
+          "historical_commit_paths": {},
+          "ledger_rows": [],
+          "proven_scope": [
+            "Native Word page factory, selection queries or owned buffers in this owner."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowDD_803426CC.cpp",
+          "historical_commit_paths": {
+            "6e4f192282": [
+              "src/pso/misc/TWindowDD_803426CC.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5971,
+              "path": "src/pso/misc/TWindowDD_803426CC.cpp"
+            }
+          ],
+          "proven_scope": [
+            "Native Word page factory, selection queries or owned buffers in this owner."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowDD_80342AA0.cpp",
+          "historical_commit_paths": {
+            "6e4f192282": [
+              "src/pso/misc/TWindowDD_80342AA0.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5972,
+              "path": "src/pso/misc/TWindowDD_80342AA0.cpp"
+            }
+          ],
+          "proven_scope": [
+            "Native Word page factory, selection queries or owned buffers in this owner."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowDD_80342E40.cpp",
+          "historical_commit_paths": {
+            "6e4f192282": [
+              "src/pso/misc/TWindowDD_80342E40.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5635,
+              "path": "include/pso/misc/TWindowDD_80342E40.h"
+            },
+            {
+              "row": 5916,
+              "path": "src/pso/misc/TWindowDD_80342E40.cpp"
+            }
+          ],
+          "proven_scope": [
+            "Native Word page factory, selection queries or owned buffers in this owner."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowDD_803430BC.cpp",
+          "historical_commit_paths": {},
+          "ledger_rows": [
+            {
+              "row": 5545,
+              "path": "src/pso/misc/TWindowDD_803430BC.cpp"
+            }
+          ],
+          "proven_scope": [
+            "Native Word page factory, selection queries or owned buffers in this owner."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowDD_8034725C.cpp",
+          "historical_commit_paths": {
+            "3a915a93c2": [
+              "src/pso/misc/TWindowDD_803488A8.cpp"
+            ],
+            "7743ff23de": [
+              "src/pso/misc/TWindowDD_803488A8.cpp"
+            ],
+            "6e4f192282": [
+              "src/pso/misc/TWindowDD_8034725C.cpp",
+              "src/pso/misc/TWindowDD_803488A8.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5686,
+              "path": "src/pso/misc/TWindowDD_803488A8.cpp"
+            },
+            {
+              "row": 5973,
+              "path": "src/pso/misc/TWindowDD_8034725C.cpp"
+            }
+          ],
+          "proven_scope": [
+            "Native Word page factory, selection queries or owned buffers in this owner."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowKeyBoardBase.cpp",
+          "historical_commit_paths": {
+            "3a915a93c2": [
+              "src/pso/misc/TWindowKeyBoardBase.cpp",
+              "src/pso/misc/TWindowKeyBoardSoft.cpp"
+            ],
+            "6e4f192282": [
+              "src/pso/misc/TWindowKeyBoardBase.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 230,
+              "path": "src/pso/misc/TWindowKeyBoardBase.cpp"
+            },
+            {
+              "row": 283,
+              "path": "src/pso/misc/TWindowKeyBoardSoft.cpp"
+            }
+          ],
+          "proven_scope": [
+            "Native TWindowBase default draw context provider/declaration or caller."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+          "historical_commit_paths": {
+            "3a915a93c2": [
+              "src/pso/misc/TKeyBoardControl_8025EC04.cpp"
+            ],
+            "6e4f192282": [
+              "src/pso/misc/TKeyBoardControl_8025EC04.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 264,
+              "path": "src/pso/misc/TKeyBoardControl_8025EC04.cpp"
+            }
+          ],
+          "proven_scope": [
+            "Native TWindowBase default draw context provider/declaration or caller."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowKeyBoardSoft.cpp",
+          "historical_commit_paths": {},
+          "ledger_rows": [],
+          "proven_scope": [
+            "Native TWindowBase default draw context provider/declaration or caller."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowPartyStatus.cpp",
+          "historical_commit_paths": {
+            "6e4f192282": [
+              "src/pso/misc/TWindowPartyStatus.cpp",
+              "src/pso/unk/text_8030C340.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5564,
+              "path": "src/pso/misc/TWindowPartyStatus.cpp"
+            },
+            {
+              "row": 5602,
+              "path": "src/pso/unk/text_8030C340.cpp"
+            }
+          ],
+          "proven_scope": [
+            "Native TWindowBase default draw context provider/declaration or caller."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowRoom.cpp",
+          "historical_commit_paths": {
+            "6e4f192282": [
+              "src/pso/ui/TWindowRoom.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5596,
+              "path": "src/pso/ui/TWindowRoom.cpp"
+            }
+          ],
+          "proven_scope": [
+            "Native TWindowBase default draw context provider/declaration or caller."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowShortCut.cpp",
+          "historical_commit_paths": {
+            "6e4f192282": [
+              "src/pso/misc/TWindowShortCut.cpp",
+              "src/pso/misc/TWindowSubStatusDisp_8026DFE8.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5567,
+              "path": "src/pso/misc/TWindowShortCut.cpp"
+            },
+            {
+              "row": 5590,
+              "path": "src/pso/misc/TWindowSubStatusDisp_8026DFE8.cpp"
+            }
+          ],
+          "proven_scope": [
+            "Native TWindowBase default draw context provider/declaration or caller."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowSimpleStatus.cpp",
+          "historical_commit_paths": {
+            "6e4f192282": [
+              "src/pso/misc/TWindowSimpleStatus.cpp",
+              "src/pso/misc/TWindowSubStatusDisp_8026F6DC.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5569,
+              "path": "src/pso/misc/TWindowSimpleStatus.cpp"
+            },
+            {
+              "row": 5675,
+              "path": "src/pso/misc/TWindowSubStatusDisp_8026F6DC.cpp"
+            }
+          ],
+          "proven_scope": [
+            "Native TWindowBase default draw context provider/declaration or caller."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowSnapShot.cpp",
+          "historical_commit_paths": {
+            "6e4f192282": [
+              "src/pso/misc/TWindowSnapShot.cpp",
+              "src/pso/misc/TWindowSnapShot_802A7D68.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5570,
+              "path": "src/pso/misc/TWindowSnapShot.cpp"
+            },
+            {
+              "row": 5572,
+              "path": "src/pso/misc/TWindowSnapShot_802A7D68.cpp"
+            }
+          ],
+          "proven_scope": [
+            "Native TWindowBase default draw context provider/declaration or caller."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowSoundBalance.cpp",
+          "historical_commit_paths": {
+            "6e4f192282": [
+              "src/pso/misc/TWindowSoundBalance.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5656,
+              "path": "src/pso/misc/TWindowSoundBalance.cpp"
+            }
+          ],
+          "proven_scope": [
+            "Native TWindowBase default draw context provider/declaration or caller."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowStatus.cpp",
+          "historical_commit_paths": {
+            "6e4f192282": [
+              "src/pso/misc/TWindowStatus.cpp",
+              "src/pso/unk/text_80271400.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5600,
+              "path": "src/pso/unk/text_80271400.cpp"
+            },
+            {
+              "row": 5668,
+              "path": "src/pso/misc/TWindowStatus.cpp"
+            }
+          ],
+          "proven_scope": [
+            "Native TWindowBase default draw context provider/declaration or caller."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowSubAreaMapDisp.cpp",
+          "historical_commit_paths": {
+            "6e4f192282": [
+              "src/pso/misc/TWindowSubAreaMapDisp.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5631,
+              "path": "src/pso/misc/TWindowSubAreaMapDisp.cpp"
+            }
+          ],
+          "proven_scope": [
+            "Native TWindowBase default draw context provider/declaration or caller."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+          "historical_commit_paths": {
+            "3a915a93c2": [
+              "src/pso/misc/TWindowSubComCard_80244774.cpp"
+            ],
+            "6e4f192282": [
+              "src/pso/misc/TWindowDD_8024662C.cpp",
+              "src/pso/misc/TWindowSubComCard_80244774.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5543,
+              "path": "src/pso/misc/TWindowDD_8024662C.cpp"
+            },
+            {
+              "row": 5757,
+              "path": "include/pso/misc/TWindowSubComCard_80244774.h"
+            },
+            {
+              "row": 5829,
+              "path": "src/pso/misc/TWindowSubComCard_80244774.cpp"
+            }
+          ],
+          "proven_scope": [
+            "Native TWindowBase default draw context provider/declaration or caller."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowSubCustomEquip.cpp",
+          "historical_commit_paths": {
+            "6e4f192282": [
+              "src/pso/misc/TWindowSubCustomEquip.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5773,
+              "path": "src/pso/misc/TWindowSubCustomEquip.cpp"
+            }
+          ],
+          "proven_scope": [
+            "Native TWindowBase default draw context provider/declaration or caller."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowSubMagPhoton.cpp",
+          "historical_commit_paths": {
+            "6e4f192282": [
+              "include/pso/misc/TWindowSubMagPhoton.h",
+              "src/pso/misc/TWindowSubMagPhoton.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5677,
+              "path": "include/pso/misc/TWindowSubMagPhoton.h"
+            },
+            {
+              "row": 5790,
+              "path": "src/pso/misc/TWindowSubMagPhoton.cpp"
+            }
+          ],
+          "proven_scope": [
+            "Native TWindowBase default draw context provider/declaration or caller."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp",
+          "historical_commit_paths": {
+            "6e4f192282": [
+              "src/pso/misc/TWindowSubQuestBoardSelect.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5680,
+              "path": "src/pso/misc/TWindowSubQuestBoardSelect.cpp"
+            }
+          ],
+          "proven_scope": [
+            "Native TWindowBase default draw context provider/declaration or caller."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowTimer.cpp",
+          "historical_commit_paths": {
+            "6e4f192282": [
+              "src/pso/misc/TWindowTimer.cpp",
+              "src/pso/unk/text_80287AD8.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5592,
+              "path": "src/pso/misc/TWindowTimer.cpp"
+            },
+            {
+              "row": 6005,
+              "path": "src/pso/unk/text_80287AD8.cpp"
+            }
+          ],
+          "proven_scope": [
+            "Native TWindowBase default draw context provider/declaration or caller."
+          ],
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowUserSort.cpp",
+          "historical_commit_paths": {
+            "6e4f192282": [
+              "src/pso/misc/TWindowUserSort.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5652,
+              "path": "src/pso/misc/TWindowUserSort.cpp"
+            }
+          ],
+          "proven_scope": [
+            "Native TWindowBase default draw context provider/declaration or caller."
+          ],
+          "whole_row_reconciled": false
+        }
+      ]
+    },
+    "tunnel_atmosphere": {
+      "head": "65668b8af39db00737a12890bd18b0bc3a3e766a",
+      "parent": "7368e6ed1cb04a512314b8c57dd0113d600aa815",
+      "historical_fork": "3342e42983535b393148deb5b719202b9bf4b7d8",
+      "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "historical_anchors": {
+        "209b405e16fe1b902d07ce8be5e07685c064f17c": [
+          "TObjBoss7DustCtrl::TObjBoss7DustCtrl(TObject *)",
+          "Vec origin and color in the existing trail vertex"
+        ],
+        "e61adaaeca0cfd765f0f0fa414fef3840da3c446": [
+          "De Rol Le splash elapsed, interval, step, position and offset",
+          "Barba Ray counterpart uses the identical observed offsets; replay extends the same types to it"
+        ]
+      },
+      "paths": [
+        {
+          "path": "config/GPOE8P/psov3/config.yml",
+          "scope": "Keep the valid constructor force-active entry."
+        },
+        {
+          "path": "config/GPOE8P/psov3/symbols.txt",
+          "scope": "Map the native ctor to the exact existing function address at 0x802F13D8."
+        },
+        {
+          "path": "include/pso/boss/barbaray/TObjBoss7DustCtrl.h",
+          "scope": "Declare the native TObject-parent constructor."
+        },
+        {
+          "path": "include/pso/boss/barbaray/TObjBoss7RaftSplash.h",
+          "scope": "Give the corresponding Barba Ray receiver its same proven retail layout."
+        },
+        {
+          "path": "include/pso/boss/derolle/TObjBoss2RaftSplash.h",
+          "scope": "Declare the recovered splash timer, interval, shared time step and Vec storage with checked 0x40 size."
+        },
+        {
+          "path": "include/pso/system/TrailStrip.h",
+          "scope": "Share a Vec and packed color in the existing 16-byte trail vertex ABI."
+        },
+        {
+          "path": "src/pso/boss/barbaray/TObjBoss7Dust.cpp",
+          "scope": "Restore the native dust controller constructor and factory with the existing world field and vtable owners."
+        },
+        {
+          "path": "src/pso/boss/barbaray/TObjBoss7RaftSplash.cpp",
+          "scope": "Preserve the camera-mode gate and place the effect through the same typed raft state."
+        },
+        {
+          "path": "src/pso/boss/derolle/TObjBoss2DustCtrl.cpp",
+          "scope": "Pass the actual trail vertex position to the canonical matrix transform."
+        },
+        {
+          "path": "src/pso/boss/derolle/TObjBoss2RaftSplash.cpp",
+          "scope": "Access timer and Vec positions through original typed storage and preserve the tube speed constant."
+        },
+        {
+          "path": "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp",
+          "scope": "Pass the source position table, static offsets and live time step into the typed De Rol Le constructor."
+        },
+        {
+          "path": "src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp",
+          "scope": "Keep Barba Ray spawn allocation order and pass the typed shared Vec and time step."
+        },
+        {
+          "path": "src/pso/effect/item/TItemEffectWeapon.cpp",
+          "scope": "Adapt the remaining trail vertex consumer to the shared Vec layout."
+        },
+        {
+          "path": "src/pso/object/ambient/TObjLight_803DF220.cpp",
+          "scope": "Read the same trail Vec fields in the GPU consumer."
+        }
+      ],
+      "related_rows": [
+        {
+          "row": 154,
+          "fork_path": "config/GPOE8P/psov3/config.yml",
+          "owner": "config/GPOE8P/psov3/config.yml",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 157,
+          "fork_path": "config/GPOE8P/psov3/symbols.txt",
+          "owner": "config/GPOE8P/psov3/symbols.txt",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 363,
+          "fork_path": "include/pso/TObjBoss2DustCtrl.h",
+          "owner": "src/pso/boss/derolle/TObjBoss2DustCtrl.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 364,
+          "fork_path": "include/pso/TObjBoss2RaftSplash.h",
+          "owner": "src/pso/boss/derolle/TObjBoss2RaftSplash.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 366,
+          "fork_path": "include/pso/TObjBoss7Dust.h",
+          "owner": "src/pso/boss/barbaray/TObjBoss7Dust.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 367,
+          "fork_path": "include/pso/TObjBoss7DustCtrl.h",
+          "owner": "src/pso/boss/barbaray/TObjBoss7Dust.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 368,
+          "fork_path": "include/pso/TObjBoss7RaftSplash.h",
+          "owner": "src/pso/boss/barbaray/TObjBoss7RaftSplash.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 423,
+          "fork_path": "include/pso/boss/TObjBoss2DustCtrl.h",
+          "owner": "src/pso/boss/derolle/TObjBoss2DustCtrl.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 432,
+          "fork_path": "include/pso/boss/TObjBoss7Dust.h",
+          "owner": "src/pso/boss/barbaray/TObjBoss7Dust.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 433,
+          "fork_path": "include/pso/boss/TObjBoss7DustCtrl.h",
+          "owner": "src/pso/boss/barbaray/TObjBoss7Dust.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 434,
+          "fork_path": "include/pso/boss/TObjBoss7RaftSplash.h",
+          "owner": "src/pso/boss/barbaray/TObjBoss7RaftSplash.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 491,
+          "fork_path": "include/pso/unk/text_8003AFBC.h",
+          "owner": "src/pso/boss/derolle/TObjBoss2RaftSplash.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 496,
+          "fork_path": "include/pso/unk/text_802F1FB0.h",
+          "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 502,
+          "fork_path": "src/pso/boss/DeRolLeDustConstants.cpp",
+          "owner": "src/pso/boss/derolle/TObjBoss2DustCtrl.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 544,
+          "fork_path": "src/pso/boss/TObjBoss2RaftSplash.cpp",
+          "owner": "src/pso/boss/derolle/TObjBoss2RaftSplash.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 545,
+          "fork_path": "src/pso/boss/TObjBoss2Tunnel_802F1A58.cpp",
+          "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 546,
+          "fork_path": "src/pso/boss/TObjBoss2Tunnel_802F2070.cpp",
+          "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 554,
+          "fork_path": "src/pso/boss/TObjBoss7DustCtrl.cpp",
+          "owner": "src/pso/boss/barbaray/TObjBoss7Dust.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 555,
+          "fork_path": "src/pso/boss/TObjBoss7TunnelCol.cpp",
+          "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 653,
+          "fork_path": "src/pso/unk/text_8003AFBC.cpp",
+          "owner": "src/pso/boss/derolle/TObjBoss2RaftSplash.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 662,
+          "fork_path": "src/pso/unk/text_802F1D1C.cpp",
+          "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 663,
+          "fork_path": "src/pso/unk/text_802F1F58.cpp",
+          "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 664,
+          "fork_path": "src/pso/unk/text_802F1FB0.cpp",
+          "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 731,
+          "fork_path": "include/pso/boss/TObjBoss2Tunnel_802F1A58.h",
+          "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 790,
+          "fork_path": "include/pso/boss/TObjBoss7TunnelCol.h",
+          "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 878,
+          "fork_path": "include/pso/boss/TObjBoss2Tunnel_802F2070.h",
+          "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 912,
+          "fork_path": "src/pso/boss/TObjBoss7Dust.cpp",
+          "owner": "src/pso/boss/barbaray/TObjBoss7Dust.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 1005,
+          "fork_path": "src/pso/boss/TObjBoss7RaftSplash.cpp",
+          "owner": "src/pso/boss/barbaray/TObjBoss7RaftSplash.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 1070,
+          "fork_path": "src/pso/boss/TObjBoss2Tunnel_8003B138.cpp",
+          "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 1147,
+          "fork_path": "include/pso/boss/TObjBoss2Tunnel_8003B138.h",
+          "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 1150,
+          "fork_path": "src/pso/boss/TObjBoss2DustCtrl.cpp",
+          "owner": "src/pso/boss/derolle/TObjBoss2DustCtrl.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 4376,
+          "fork_path": "src/pso/item/TItemEffectWeapon.cpp",
+          "owner": "src/pso/effect/item/TItemEffectWeapon.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 4429,
+          "fork_path": "include/pso/item/TItemEffectWeapon.h",
+          "owner": "src/pso/effect/item/TItemEffectWeapon.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 5200,
+          "fork_path": "include/pso/system/TrailStrip.h",
+          "owner": "include/pso/system/TrailStrip.h",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        },
+        {
+          "row": 7135,
+          "fork_path": "src/pso/object/TObjLight_803DF220.cpp",
+          "owner": "src/pso/object/ambient/TObjLight_803DF220.cpp",
+          "scope": "Only the documented tunnel dust, splash layouts and trail fields"
+        }
+      ],
+      "preserved_scope": "The paired splash constructors retain their existing C linkage and explicit virtual table stores. Both retail speeds, dust constants and trigger modes already have exact native owners and were kept.",
+      "validation": {
+        "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+        "strict_parent": "PASS",
+        "strict_upstream": "PASS"
+      }
+    },
+    "dark_falz": {
+      "source_audit": "/dev/shm/gm-source-retention.IZcYKe/historical-source-audit.json",
+      "original_fork": "3342e42983",
+      "parent": "7368e6ed1cb04a512314b8c57dd0113d600aa815",
+      "commit": "c534b30f569a27a5bebb6e27385fbda041b40864",
+      "tree": "d324b51732c3e2bc06e13ecef67465eb80992d15",
+      "historical_donors": [
+        "e84492aa75",
+        "ed240b3ee4",
+        "1b0d3b7aac",
+        "ccc5470c02",
+        "166488ead9",
+        "1af4a92199",
+        "6c35e6fa97"
+      ],
+      "validation": "canonical-strict.json",
+      "counts": {
+        "recovered": 5,
+        "scoped": 4,
+        "already carried": 1
+      },
+      "rows": [
+        {
+          "row": 387,
+          "status": "recovered",
+          "historical_path": "include/pso/boss/TBoss4ZakoDrawBuffer.h",
+          "historical_blob": "ee3e346bf3098f0671803d3893cb30d7fea5ca73",
+          "owner": "include/pso/boss/darkfalz/TBoss4ZakoDrawBuffer.h",
+          "validated_blob": "01f198fbba5cfe8c5b824c2258f2ef806d5a921b",
+          "proof": "Recovered historical two buffers of 96 entries; sizeof and position, rotation and entry offsets are compile-time checked."
+        },
+        {
+          "row": 512,
+          "status": "recovered",
+          "historical_path": "src/pso/boss/TBoss4ZakoDraw.cpp",
+          "historical_blob": "c7f45f1b0862530164c895719c90a473e6f5212a",
+          "owner": "src/pso/boss/darkfalz/TBoss4ZakoDraw.cpp",
+          "validated_blob": "c900b4d3252c2e1ed2b7fc8bfd8f2c7cd29ecc70",
+          "proof": "Recovered typed run, draw, queue and clear operations, native constructor, matrix and material declarations, model/texture ownership and the viewport rectangle at +0x30."
+        },
+        {
+          "row": 719,
+          "status": "recovered",
+          "historical_path": "include/pso/TBoss4ZakoDraw.h",
+          "historical_blob": "e1ff64ef5cf403084b2c0eb28b45d7d26b2c3a19",
+          "owner": "include/pso/boss/darkfalz/TBoss4ZakoDraw.h",
+          "validated_blob": "bf20da555d17c1ac9b5af4a0411645c4fb2b8023",
+          "proof": "Recovered the native TObject-parent constructor and removed the obsolete duplicate static render declaration."
+        },
+        {
+          "row": 1157,
+          "status": "recovered",
+          "historical_path": "include/pso/boss/TBoss4Zako.h",
+          "historical_blob": "20216001d4e8d4ddab5af27418411e596f847b23",
+          "owner": "include/pso/boss/darkfalz/TBoss4Zako.h",
+          "validated_blob": "8bfe48e0bb1a1f88c754ab31b7c0fcd1320b4137",
+          "proof": "Uses the original Vec storage in the Zako producer; Bishi and Uro already use Vec in the owning TU."
+        },
+        {
+          "row": 487,
+          "status": "recovered",
+          "historical_path": "include/pso/object/TObjDFDemo4.h",
+          "historical_blob": "4c46ddad4f3671ee59a6f6a61798e0ec956cff56",
+          "owner": "include/pso/boss/darkfalz/TObjDFDemo4.h",
+          "validated_blob": "970346e2fbea5d91e2637489412c9ec52898feba",
+          "proof": "Restores typed static factory and camera position offset check; existing current constructor, afterimage/body and linked-node types cover the remaining declaration roles."
+        },
+        {
+          "row": 643,
+          "status": "scoped",
+          "historical_path": "src/pso/object/TObjDFDemo4.cpp",
+          "historical_blob": "85f8dcf032bcc6fa5b0d6563303f256756f890c5",
+          "owner": "src/pso/boss/darkfalz/TObjDFDemo4.cpp",
+          "validated_blob": "5b054e382d2567b02a9534ba1643c63060ac3450",
+          "proof": "Restores the typed static Demo4 factory. The existing exact modern body and split decisions were retained."
+        },
+        {
+          "row": 794,
+          "status": "scoped",
+          "historical_path": "src/pso/boss/TBoss4DarkFalz_8004C93C.cpp",
+          "historical_blob": "d255f4c5ec41a270b9e3de174390866707db668a",
+          "owner": "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp",
+          "validated_blob": "e0a4fa676c9e40c8bf0f26eb1c824393afd65757",
+          "proof": "Restores the native Vec and s32 Demo4 arguments from the controller. No claim on unrelated state hunks."
+        },
+        {
+          "row": 1069,
+          "status": "scoped",
+          "historical_path": "src/pso/ui/TObjDFJisin.cpp",
+          "historical_blob": "fc01b1d18149bb230443949b469a832b8e0fe3a3",
+          "owner": "src/pso/boss/darkfalz/TObjDFJisin.cpp",
+          "validated_blob": "f8a1eff45e066caafa78d6f900d98634b711bf61",
+          "proof": "Restores the static Tenchu Furu factory with an explicit TObject parent; the NJS_OBJECT callback was already typed."
+        },
+        {
+          "row": 913,
+          "status": "scoped",
+          "historical_path": "src/pso/boss/TBoss4Type1.cpp",
+          "historical_blob": "20bf52c847ff8a08b2e488cd3006a900e316f0a0",
+          "owner": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+          "validated_blob": "fd62bd3ae8e5d77aa9b71401c35e3c100f4d43ad",
+          "proof": "The controller now passes its explicit TObject parent to create_all, which calls the recovered static Tenchu Furu factory. Other historical state hunks are outside this batch."
+        },
+        {
+          "row": 1171,
+          "status": "already carried",
+          "historical_path": "src/pso/boss/TBoss4Zako.cpp",
+          "historical_blob": "164b95fba2effd645705b70d6d752d92c9c6551f",
+          "owner": "src/pso/boss/darkfalz/TBoss4Zako.cpp",
+          "validated_blob": "a36a9f604200a513b04973911e04ee380255210d",
+          "proof": "Existing Bishi and Uro positions use Vec, matching the relevant producer change. This finding is specific to the draw-buffer cohort."
+        }
+      ]
+    },
+    "retained_gryphon": {
+      "canonical": "7368e6ed1cb04a512314b8c57dd0113d600aa815",
+      "controller": {
+        "rows": [
+          428,
+          547
+        ],
+        "proof": "Canonical controller header and owning constructor/task/destructor retain typed fields. Separate current native subunits own play_pillar_sound at 0x80067124 and create at 0x800673D0."
+      },
+      "constants": [
+        {
+          "row": 499,
+          "original_path": "src/pso/boss/Boss5GryphonConstants.cpp",
+          "values": [
+            {
+              "symbol": "lbl_805D8E28",
+              "value": "16384.0f",
+              "retail_bytes": "46800000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8E2C",
+              "value": "5120.0f",
+              "retail_bytes": "45a00000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8E30",
+              "value": "230.0f",
+              "retail_bytes": "43660000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8E34",
+              "value": "0.25f",
+              "retail_bytes": "3e800000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8E38",
+              "value": "1.5f",
+              "retail_bytes": "3fc00000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8E3C",
+              "value": "2.1f",
+              "retail_bytes": "40066666",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8E40",
+              "value": "66.5f",
+              "retail_bytes": "42850000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8E44",
+              "value": "6144.0f",
+              "retail_bytes": "45c00000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8E48",
+              "value": "116.5f",
+              "retail_bytes": "42e90000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8E4C",
+              "value": "300.0f",
+              "retail_bytes": "43960000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8E50",
+              "value": "120.0f",
+              "retail_bytes": "42f00000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8E54",
+              "value": "-4.0f",
+              "retail_bytes": "c0800000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8E58",
+              "value": "3.5f",
+              "retail_bytes": "40600000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8E5C",
+              "value": "18.0f",
+              "retail_bytes": "41900000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8E60",
+              "value": "68.0f",
+              "retail_bytes": "42880000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8E64",
+              "value": "210.0f",
+              "retail_bytes": "43520000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8E68",
+              "value": "420.0f",
+              "retail_bytes": "43d20000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8E6C",
+              "value": "463.0f",
+              "retail_bytes": "43e78000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8E70",
+              "value": "290.0f",
+              "retail_bytes": "43910000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8E74",
+              "value": "405.0f",
+              "retail_bytes": "43ca8000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8E78",
+              "value": "455.0f",
+              "retail_bytes": "43e38000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8E7C",
+              "value": "265.0f",
+              "retail_bytes": "43848000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8E80",
+              "value": "600.0f",
+              "retail_bytes": "44160000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8E84",
+              "value": "110.0f",
+              "retail_bytes": "42dc0000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8E88",
+              "value": "-30.0f",
+              "retail_bytes": "c1f00000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8E8C",
+              "value": "115.0f",
+              "retail_bytes": "42e60000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8E90",
+              "value": "484.0f",
+              "retail_bytes": "43f20000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8E94",
+              "value": "23.0f",
+              "retail_bytes": "41b80000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8E98",
+              "value": "24.0f",
+              "retail_bytes": "41c00000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8E9C",
+              "value": "20.5f",
+              "retail_bytes": "41a40000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8EA0",
+              "value": "150.0f",
+              "retail_bytes": "43160000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8EA4",
+              "value": "0.15f",
+              "retail_bytes": "3e19999a",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8EA8",
+              "value": "27.0f",
+              "retail_bytes": "41d80000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8EAC",
+              "value": "30.0f",
+              "retail_bytes": "41f00000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8EB0",
+              "value": "28.0f",
+              "retail_bytes": "41e00000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8EB4",
+              "value": "1.8f",
+              "retail_bytes": "3fe66666",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8EB8",
+              "value": "70.0f",
+              "retail_bytes": "428c0000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8EBC",
+              "value": "14.0f",
+              "retail_bytes": "41600000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8EC0",
+              "value": "21.0f",
+              "retail_bytes": "41a80000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8EC4",
+              "value": "8000.0f",
+              "retail_bytes": "45fa0000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8EC8",
+              "value": "1000.0f",
+              "retail_bytes": "447a0000",
+              "explicit_at_current_owner": true
+            }
+          ]
+        },
+        {
+          "row": 648,
+          "original_path": "src/pso/unk/data_805D8D28.cpp",
+          "values": [
+            {
+              "symbol": "lbl_805D8D28",
+              "value": "30.0f",
+              "retail_bytes": "41f00000",
+              "explicit_at_current_owner": false
+            },
+            {
+              "symbol": "lbl_805D8D2C",
+              "value": "4369.0f",
+              "retail_bytes": "45888800",
+              "explicit_at_current_owner": false
+            },
+            {
+              "symbol": "lbl_805D8D30",
+              "value": "1092.0f",
+              "retail_bytes": "44888000",
+              "explicit_at_current_owner": false
+            },
+            {
+              "symbol": "lbl_805D8D34",
+              "value": "2184.0f",
+              "retail_bytes": "45088000",
+              "explicit_at_current_owner": false
+            },
+            {
+              "symbol": "lbl_805D8D38",
+              "value": "5.833333f",
+              "retail_bytes": "40baaaaa",
+              "explicit_at_current_owner": false
+            },
+            {
+              "symbol": "lbl_805D8D3C",
+              "value": "0.5833333f",
+              "retail_bytes": "3f155555",
+              "explicit_at_current_owner": false
+            },
+            {
+              "symbol": "lbl_805D8D40",
+              "value": "10.208332f",
+              "retail_bytes": "41235554",
+              "explicit_at_current_owner": false
+            },
+            {
+              "symbol": "lbl_805D8D44",
+              "value": "1.0208333f",
+              "retail_bytes": "3f82aaaa",
+              "explicit_at_current_owner": false
+            },
+            {
+              "symbol": "lbl_805D8D48",
+              "value": "6.0f",
+              "retail_bytes": "40c00000",
+              "explicit_at_current_owner": true
+            },
+            {
+              "symbol": "lbl_805D8D4C",
+              "value": "400.0f",
+              "retail_bytes": "43c80000",
+              "explicit_at_current_owner": false
+            },
+            {
+              "symbol": "lbl_805D8D50",
+              "value": "20.0f",
+              "retail_bytes": "41a00000",
+              "explicit_at_current_owner": false
+            },
+            {
+              "symbol": "lbl_805D8D54",
+              "value": "8.0f",
+              "retail_bytes": "41000000",
+              "explicit_at_current_owner": false
+            },
+            {
+              "symbol": "lbl_805D8D58",
+              "value": "2.0f",
+              "retail_bytes": "40000000",
+              "explicit_at_current_owner": false
+            },
+            {
+              "symbol": "lbl_805D8D5C",
+              "value": "0.0f",
+              "retail_bytes": "00000000",
+              "explicit_at_current_owner": false
+            },
+            {
+              "symbol": "lbl_805D8D60",
+              "value": "10000.0f",
+              "retail_bytes": "461c4000",
+              "explicit_at_current_owner": false
+            },
+            {
+              "symbol": "lbl_805D8D64",
+              "value": "45056.0f",
+              "retail_bytes": "47300000",
+              "explicit_at_current_owner": false
+            },
+            {
+              "symbol": "lbl_805D8D68",
+              "value": "20480.0f",
+              "retail_bytes": "46a00000",
+              "explicit_at_current_owner": false
+            },
+            {
+              "symbol": "lbl_805D8D6C",
+              "value": "100.0f",
+              "retail_bytes": "42c80000",
+              "explicit_at_current_owner": false
+            }
+          ]
+        }
+      ],
+      "behavior": {
+        "row": 992,
+        "status": "still scoped; previous lightning and pragma evidence remains valid"
+      }
+    }
+  }
+}

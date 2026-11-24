@@ -2,21 +2,21 @@
 #define PSO_OBJECT_TOBJTANK_H
 
 #include "types.h"
-#include "pso/object/TObjMotion.h"
+#include "pso/object/base/TObjMotion.h"
 
 struct TObjTank : public TObjCollidable {
+    TObjTank(TObject *parent, saddr set_data);
     virtual ~TObjTank();
     virtual void render();
     virtual void run_task();
     static void free_globals();
     static void load_globals();
+    static void *create(void *set_data);
 };
 
-typedef char TObjTank_size[sizeof(TObjTank) == 0xAC ? 1 : -1];
+LAYOUT_ASSERT(TObjTank_size, sizeof(TObjTank) == 0xAC);
 
 extern "C" {
-void *TObjTank__create(void *arg0);
-u8 *TObjTank__ct(u8 *arg0, s32 arg1, s32 arg2);
 void *__dt__8TObjTankFv(void *arg0, s16 arg1);
 }
 

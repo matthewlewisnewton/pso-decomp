@@ -1,29 +1,20 @@
+#include "pso/system/memory.h"
+#include "pso/render/GvmTextureArchive.h"
+#include "pso/system/Adxf.h"
 #include "types.h"
 #include "pso/system/TGStream.h"
 #include "pso/unk/text_800FA464.h"
-#include "pso/misc/TLobby.h"
-struct AsyncFileReadRequest {
-    u32 flags;
-    u8 pad04[4];
-    u8 name[0x20];
-    u8 *dst;
-    s32 size;
-    s32 count;
-    u8 pad34[8];
-    s32 tex;
-    u8 pad40[0x24];
-    s32 mode;
-};
-
-extern "C" {
-void load_gvm_texture_archive(u8 *, s32);
-}
-extern const char fsrv_read_pvm_buffer_tag[] = "FSVR_READPVM";
-extern AsyncFileReadRequest *async_file_read_current_request;
-extern s32 async_file_read_state;
-extern u8 *async_file_read_sector_buffer;
-extern AdxfHandle *lobby_download_state_ptr;
-extern u8 *async_file_read_texture_buffer;
+#include "pso/unk/TLobby.h"
+#include "pso/unk/TLobby_803DE778.h"
+AsyncFileReadRequest *async_file_read_current_request;
+AsyncFileReadRequest *lobby_stack_entry_list_tail;
+s32 lobby_list_entry_count;
+s32 async_file_read_state;
+u8 *async_file_read_sector_buffer;
+AdxfHandle *lobby_download_state_ptr;
+s32 lobby_list_next_id;
+s32 game_heap;
+u8 *async_file_read_texture_buffer;
 void process_async_file_reads(void) {
     switch (async_file_read_state) {
     case 0:
@@ -33,10 +24,10 @@ void process_async_file_reads(void) {
             } else {
                 async_file_read_current_request->flags |= 0x100;
                 if (async_file_read_current_request->flags & 2) {
-                    async_file_read_texture_buffer = TLobby::tmp_buf_use_req(fsrv_read_pvm_buffer_tag);
+                    async_file_read_texture_buffer = TLobby::tmp_buf_use_req("FSVR_READPVM");
                     if (async_file_read_texture_buffer != NULL) {
                         lobby_download_state_ptr = ADXF_Open(async_file_read_current_request->name, 0);
-                        TLobby::read_checked_align(lobby_download_state_ptr, async_file_read_current_request->count, async_file_read_texture_buffer);
+                        ADXF_ReadNw(lobby_download_state_ptr, async_file_read_current_request->count, async_file_read_texture_buffer);
                         async_file_read_state = 3;
                     }
                 } else if (async_file_read_current_request->flags & 4) {
@@ -45,10 +36,10 @@ void process_async_file_reads(void) {
                     AdxfHandle *h = lobby_download_state_ptr = ADXF_Open(async_file_read_current_request->name, 0);
                     if (h != 0) {
                         if (async_file_read_current_request->count > 1) {
-                            TLobby::read_checked_align(h, async_file_read_current_request->count - 1, async_file_read_current_request->dst);
+                            ADXF_ReadNw(h, async_file_read_current_request->count - 1, async_file_read_current_request->dst);
                             async_file_read_state = 1;
                         } else {
-                            TLobby::read_checked_align(h, 1, async_file_read_sector_buffer);
+                            ADXF_ReadNw(h, 1, async_file_read_sector_buffer);
                             async_file_read_state = 2;
                         }
                     }
@@ -62,7 +53,7 @@ void process_async_file_reads(void) {
             TLobby::pop_and_close();
             async_file_read_state = 0;
         } else if (ADXF_GetStat(lobby_download_state_ptr) == 3) {
-            TLobby::read_checked_align(lobby_download_state_ptr, 1, async_file_read_sector_buffer);
+            ADXF_ReadNw(lobby_download_state_ptr, 1, async_file_read_sector_buffer);
             async_file_read_state = 2;
         }
         break;
@@ -99,12 +90,12 @@ void process_async_file_reads(void) {
             async_file_read_state = 0;
         } else if (ADXF_GetStat(lobby_download_state_ptr) == 3) {
             load_gvm_texture_archive(async_file_read_texture_buffer, async_file_read_current_request->tex);
-            TLobby::tmp_buf_release(fsrv_read_pvm_buffer_tag);
+            TLobby::tmp_buf_release("FSVR_READPVM");
             TLobby::notify_and_close();
         }
         break;
     case 4:
-        if (TLobby::load_bml_exec((u8 *)async_file_read_current_request->mode, (u8 *)async_file_read_current_request->name) != 0) {
+        if (TLobby::load_bml_exec(async_file_read_current_request->mode, async_file_read_current_request->name) != 0) {
             TLobby::pop_and_close();
             async_file_read_state = 0;
         }

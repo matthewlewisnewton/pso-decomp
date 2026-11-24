@@ -2,21 +2,36 @@
 #define PSO_NETWORK_MODEMRUNTIME_H
 
 #include "types.h"
-#include "dolphin/os/OSContext.h"
 
+struct LaunchDolContext;
+struct OSContext;
+
+typedef struct ModemConnectionInfo {
+    s32 value;
+    s32 transmit_rate;
+    s32 receive_rate;
+    char carrier[5];
+    char error_control[5];
+    char compression[6];
+} ModemConnectionInfo;
+LAYOUT_ASSERT(ModemConnectionInfoSize, sizeof(ModemConnectionInfo) == 0x1C);
+
+#ifdef __cplusplus
 extern "C" {
-s32 TAdSinglePlyChrSelectGC__sub_8042CEF8(char *country);
-s32 TAdSinglePlyChrSelectGC__sub_8042DD70(u8 *data, s32 length, void (*callback)(s32));
-s32 TAdSinglePlyChrSelectGC__sub_8042E184(void);
+#endif
+s32 modem_init(const char *country);
+s32 copy_default_and_get_state(ModemConnectionInfo *out);
+void modem_hangup(void);
+s32 modem_send_at_command(char *command);
+s32 modem_dial(const char *number, s32 mode, void (*callback)(s32 result));
 s32 TAdSinglePlyChrSelectGC__sub_8042D7E0(u8 *buffer);
-void TAdSinglePlyChrSelectGC__sub_8042DDE4(s32 channel, OSContext *context);
-void TAdSinglePlyChrSelectGC__sub_8042D6A4(char *command);
-s32 TAdSinglePlyChrSelectGC__sub_8042CD64(void);
-s32 TAdSinglePlyChrSelectGC__sub_8042D49C(char *command);
-s32 TAdSinglePlyChrSelectGC__sub_8042E320(const char *number, s32 mode, void (*callback)(s32 result));
+s32 TAdSinglePlyChrSelectGC__sub_8042DD70(u8 *data, s32 length, void (*callback)(s32 sent));
+void TAdSinglePlyChrSelectGC__sub_8042DDE4(s32 channel, struct OSContext *context);
+s32 TAdSinglePlyChrSelectGC__sub_8042E184(void);
 void TAdSinglePlyChrSelectGC__sub_8042E488(s32 value);
-// Reserved launch-context address; converted to its record view by the caller.
-u32 fn_8042E8B8(void);
+struct LaunchDolContext *fn_8042E8B8(void);
+#ifdef __cplusplus
 }
+#endif
 
 #endif

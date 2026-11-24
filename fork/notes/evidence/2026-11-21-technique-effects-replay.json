@@ -1,0 +1,470 @@
+{
+  "source": "491cc9fed017610225881b86dc8da7d4111b83e0",
+  "previous_source": "da7c2eaa9775c3ae90ae9c25fceb96dde4327878",
+  "upstream": "5a4e7ced56fe7072359b6d279e94f4be3b8453c0",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "source_paths": 1219,
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/object/ambient/TObjFish_8001ED90.h",
+    "include/pso/system/BmlAccessors.h",
+    "include/pso/technique/TTecGiBarta.h",
+    "include/pso/technique/TTecZonde.h",
+    "include/pso/technique/TTecZondeEff.h",
+    "include/pso/technique/TechniqueBandSound.h",
+    "include/pso/technique/TechniqueResources.h",
+    "include/pso/unk/TLobby_8001EF5C.h",
+    "src/pso/boss/galgryphon/TBoss5GryphonShockWave.cpp",
+    "src/pso/boss/galgryphon/TBoss5GryphonTornado.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptP01.cpp",
+    "src/pso/camera/TObjCamera.cpp",
+    "src/pso/effect/TEffClitical.cpp",
+    "src/pso/effect/enemy/TeneFakeTecThunderEff.cpp",
+    "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+    "src/pso/enemy/moja/TObjEneMoja.cpp",
+    "src/pso/enemy/saver/SaverLifecycle.cpp",
+    "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+    "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+    "src/pso/object/trap/TOTrapAncient02.cpp",
+    "src/pso/player/TObjPlayer_80357B2C.cpp",
+    "src/pso/player/TPlyPhotonChair.cpp",
+    "src/pso/technique/TTecBarta.cpp",
+    "src/pso/technique/TTecCtrl.cpp",
+    "src/pso/technique/TTecGiBarta.cpp",
+    "src/pso/technique/TTecGiZonde.cpp",
+    "src/pso/technique/TTecMegid.cpp",
+    "src/pso/technique/TTecRaBarta.cpp",
+    "src/pso/technique/TTecRaFoie.cpp",
+    "src/pso/technique/TTecRaZonde_80238C6C.cpp",
+    "src/pso/technique/TTecZonde.cpp",
+    "src/pso/technique/TTecZondeEff.cpp",
+    "src/pso/technique/TechniqueRingwaveList.cpp",
+    "src/pso/technique/TechniqueRingwaveNames.cpp",
+    "src/pso/unk/TUnk_8048E1A4.cpp",
+    "src/pso/unk/TUnk_804CC870.cpp",
+    "src/pso/weapon/TUnk_804A1098.cpp"
+  ],
+  "author": {
+    "name": "matthewlewisnewton",
+    "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+    "coauthor_trailers": 0
+  },
+  "factory_sites": {
+    "gi_barta_aimed_and_facing": 9,
+    "lightning_bolt_effect": 36
+  },
+  "compiled_data_definitions": {
+    "controller_resource_and_light_constants": {
+      "entries": {
+        "lbl_8044CDF8": 21,
+        "lbl_8044CE10": 20,
+        "lbl_8044CE24": 20,
+        "lbl_8044CE38": 20,
+        "lbl_8044CE4C": 20,
+        "lbl_8044CE60": 19,
+        "lbl_8044CE74": 17,
+        "lbl_8044CE88": 20,
+        "lbl_8044CE9C": 20,
+        "lbl_8044CEB0": 24,
+        "lbl_8044CEC8": 18,
+        "lbl_8044CEDC": 14,
+        "lbl_8044CEEC": 22,
+        "lbl_8044CF04": 21,
+        "lbl_8044CF1C": 18,
+        "lbl_8044CF30": 21,
+        "lbl_8044CF48": 21,
+        "lbl_8044CF60": 15,
+        "TTecCtrl__class_name_string": 9,
+        "technique_charge_light_color": 16,
+        "lbl_8044CF8C": 12,
+        "technique_charge_light_params": 16,
+        "lbl_8044CFA8": 12,
+        "lbl_8044CFB4": 16,
+        "lbl_8044CFC4": 12,
+        "rabarta_charge_light_color": 16,
+        "lbl_8044CFE0": 12,
+        "zonde_charge_light_color": 16,
+        "lbl_8044CFFC": 12,
+        "resta_charge_light_color": 16,
+        "lbl_8044D018": 12,
+        "ryuker_charge_light_color": 16,
+        "lbl_8044D034": 12,
+        "shifta_charge_light_color": 16,
+        "lbl_8044D050": 12,
+        "megid_charge_light_color": 16,
+        "lbl_8044D06C": 12
+      },
+      "bytes": 612,
+      "objdiff_sha256": "5867330b2e4367b84d0bada71ead23662659b82cd14773b1818e8d95b859ce82"
+    },
+    "ringwave_texture_list_and_records": {
+      "entries": {
+        "lbl_804CC8C8": 108,
+        "technique_ringwave_texture_list": 12
+      },
+      "bytes": 120,
+      "objdiff_sha256": "85e3c2c866bf2a6ae512008b2b240d291e31c9c9a0bddf79dc3f3d108b3d2800"
+    },
+    "ringwave_names": {
+      "entries": {
+        "lbl_8044D5D0": 17,
+        "lbl_8044D5E4": 12,
+        "lbl_8044D5F0": 12,
+        "lbl_8044D5FC": 12,
+        "lbl_8044D608": 12,
+        "lbl_8044D614": 12,
+        "lbl_8044D620": 12,
+        "lbl_8044D62C": 12,
+        "lbl_8044D638": 12
+      },
+      "bytes": 113,
+      "objdiff_sha256": "95b636aa2185c19c514d79b32427ec3e17b83a7c33c487f89ca18813fccd0754"
+    }
+  },
+  "historical_comparison": {
+    "prior_verified_sources": [
+      "fec32dd03bde717f4121b610b234104b74101d0f",
+      "34970abfe3c4df2299c36c08ae2d6d69837c1267",
+      "2705bb565f55aa1177d5c59757e3777b29570b0c"
+    ],
+    "prior_open_rows": 447,
+    "open_rows": 443,
+    "closed": [
+      3682,
+      4326,
+      4388,
+      4430
+    ],
+    "touched_rows": [
+      {
+        "row": 1116,
+        "description": "The Saver lightning setup writes the original eight-byte typed texture task record and loads its surface ID through the native texture chain.",
+        "historical_path": "src/pso/enemy/SaverLifecycle.cpp",
+        "current_path": "src/pso/enemy/saver/SaverLifecycle.cpp",
+        "fork_blob": "9b93715c06d40111f6e840a5990c2cca6223a41c",
+        "current_blob": "51063e32d90edf8e07f160aa7c9829476cc48cb8",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 1167,
+        "description": "The bolt call uses the native lightning effect receiver and the facing ice factory takes all four real arguments.",
+        "historical_path": "src/pso/enemy/TObjEneBm5GibonU.cpp",
+        "current_path": "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+        "fork_blob": "4d5d56979e94408e4295f269d67f027493758b30",
+        "current_blob": "d2d99e6b543a842997257927d3f1e3e1900968ed",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 1168,
+        "description": "The sorcerer calls the native ice factory with its source vector, yaw and technique level.",
+        "historical_path": "src/pso/enemy/TObjEneRe4Sorcerer_800EDB98.cpp",
+        "current_path": "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+        "fork_blob": "4f07f4646222e4b4861a3b593136463172561c37",
+        "current_blob": "4b9c09c45e8373a04254977e43be3ed27f126e58",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 3456,
+        "description": "The shared Barta, Gi-Barta and Megid band sound helper is restored using upstream's set_sound_pitch_request name.",
+        "historical_path": "include/pso/technique/TechniqueBandSound.h",
+        "current_path": "include/pso/technique/TechniqueBandSound.h",
+        "fork_blob": "b4d06e2ce23a9279c6d1c855a6e96fbc67c300a4",
+        "current_blob": "9d5300bce81bafc11ababf17d8135f958e7e78e1",
+        "previous_status": "Complete fork technique-band sound helper retained",
+        "current_status": "Complete fork technique-band sound helper retained"
+      },
+      {
+        "row": 3643,
+        "description": "The 19 source-owned archive and class strings and 18 charge-light records now have exact named definitions in the active controller.",
+        "historical_path": "src/pso/misc/TTecCtrlResources.cpp",
+        "current_path": "src/pso/technique/TTecCtrl.cpp",
+        "fork_blob": "ce95536b6782062e8b9fb7b52aa9ea487913ba3a",
+        "current_blob": "420a778999b37f0a9c314afc2e0637330b40cba1",
+        "previous_status": "Complete fork technique resource definitions retained",
+        "current_status": "Complete fork technique resource definitions retained"
+      },
+      {
+        "row": 3644,
+        "description": "The nine original ring-wave names are typed character arrays in the existing split and the loader binds the real 12-byte descriptor.",
+        "historical_path": "src/pso/misc/TTecCtrlTextureNames.cpp",
+        "current_path": "src/pso/technique/TTecCtrl.cpp",
+        "fork_blob": "66e105f0b6ac540b7cba6deb01d1b8c7889900ab",
+        "current_blob": "420a778999b37f0a9c314afc2e0637330b40cba1",
+        "previous_status": "Complete fork texture names retained in current loader",
+        "current_status": "Complete fork texture names retained in current loader"
+      },
+      {
+        "row": 3682,
+        "description": "The 0x801225F8 ATP setter stays in its linked player implementation. The weapon owns the vector-valued Gi-Barta position and the facing factory call. Its notification, idle and attack functions use the landed names at their original addresses.",
+        "historical_path": "src/pso/player/TObjPlayer_801225F8.cpp",
+        "current_path": "src/pso/weapon/TUnk_804A1098.cpp",
+        "fork_blob": "4a2ef1f18e609ee02e1178f81d6f830c71ca407e",
+        "current_blob": "cbabb7f786469b9af4ca8969e60fe79419c1c64e",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete weapon and player split by native owners historical source reconciled",
+        "authored_delta_sha256": "6dc509e6701dca42ac24b01bca129454e241f451dc9d7dba5a3205c696cb65b4"
+      },
+      {
+        "row": 4172,
+        "description": "Eight typed lightning calls and the two typed BML model and motion users are restored in their linked player owner. Other effects remain open.",
+        "historical_path": "src/pso/player/TObjPlayer_80357734.cpp",
+        "current_path": "src/pso/player/TObjPlayer_80357B2C.cpp",
+        "fork_blob": "a7764ef6e3cddf0813d6d015ccfbc68150500c42",
+        "current_blob": "6e6b38cd0dc830104852def8c3c9ea72aca57adc",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 4210,
+        "description": "The active declaration again exposes the two static Gi-Barta factories with the four native arguments.",
+        "historical_path": "include/pso/misc/TTecGiBarta.h",
+        "current_path": "include/pso/technique/TTecGiBarta.h",
+        "fork_blob": "1f5599b5b742ba39254c88b5b35701fd974782dc",
+        "current_blob": "664b9f9d1f4b3ba2ae1dd187300e0c1c8f76cb0f",
+        "previous_status": "Complete historical source retained at native owners",
+        "current_status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4258,
+        "description": "The active lightning effect declaration owns the bolt constructor using the actual parent and vectors.",
+        "historical_path": "include/pso/TTecZondeEff.h",
+        "current_path": "include/pso/technique/TTecZondeEff.h",
+        "fork_blob": "c6573a39782bbc6e5e3b78a45619e1968ed7cc3f",
+        "current_blob": "c8684a914bd19789c8277450168c3690654236da",
+        "previous_status": "Complete historical source retained at native owners",
+        "current_status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4286,
+        "description": "The ice class owns its static factories and uses the common band sound and typed BML model and motion access. Other particle source edits remain open.",
+        "historical_path": "src/pso/misc/TTecGiBarta.cpp",
+        "current_path": "src/pso/technique/TTecGiBarta.cpp",
+        "fork_blob": "a1084122bb00057f71cab50f897d9dea4b1b00ba",
+        "current_blob": "10339aa2a1da1ace9067d31e5af48111a8263bf8",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 4302,
+        "description": "All 16 chain-lightning calls use the typed effect receiver and vectors. Other authored chain behavior remains open.",
+        "historical_path": "src/pso/misc/TTecGiZonde.cpp",
+        "current_path": "src/pso/technique/TTecGiZonde.cpp",
+        "fork_blob": "b36f239c07169e429f4bc3c294f072af1a1fc175",
+        "current_blob": "1f79cae2bb9fac0f542f5e76a69ebdca9c231b30",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 4326,
+        "description": "The native class supplies both constructor name stores. The original emitter rows, archive model and motion access, pitch schedule and positional updates use shared types. Upstream allocation names retain the original allocation and release addresses. The named numeric substitutions produce the same stored values and load targets.",
+        "historical_path": "src/pso/misc/TTecBarta.cpp",
+        "current_path": "src/pso/technique/TTecBarta.cpp",
+        "fork_blob": "bdbec13e4ea3ef5abd55928622a45f6faf41bec0",
+        "current_blob": "94f316b8b9349d24368dcff5563fc270447b1287",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete Barta band sound and original particle resources historical source reconciled",
+        "authored_delta_sha256": "f0be0ad2130616fe98ec5b30b99c715ddb03354ffcf3646bd3160bd2f41f1df2"
+      },
+      {
+        "row": 4327,
+        "description": "The seven original bolt constructions use the typed parent and positions. The remaining technique source comparison stays open.",
+        "historical_path": "src/pso/misc/TTecZonde.cpp",
+        "current_path": "src/pso/technique/TTecZonde.cpp",
+        "fork_blob": "65a77e934feef6facc751b60247abc756a3f9fc9",
+        "current_blob": "7c26046621b81bf4d2518ba3b79aa06c38ed0998",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 4366,
+        "description": "The ice emitter loads animation and model data through the original typed technique archive. Other historical edits remain open.",
+        "historical_path": "src/pso/misc/TTecRaBarta.cpp",
+        "current_path": "src/pso/technique/TTecRaBarta.cpp",
+        "fork_blob": "2cca6549a59d8b189d17192fe6b27a987a05a35b",
+        "current_blob": "e30ffa3f0b6f047e3a48ea08ef75fd62cb79715d",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 4378,
+        "description": "Both bolt calls now use the actual effect receiver and vectors. Other area lightning effects remain open.",
+        "historical_path": "src/pso/misc/TTecRaZonde_80238C6C.cpp",
+        "current_path": "src/pso/technique/TTecRaZonde_80238C6C.cpp",
+        "fork_blob": "f9cfa3aed6f38e6a43b27054291fe63932a9da40",
+        "current_blob": "8178239bd534b6f8ad4d731c29923f8cdd5a10f1",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 4382,
+        "description": "All model lookups use the shared typed technique archive. Other RaFoie changes remain open.",
+        "historical_path": "src/pso/misc/TTecRaFoie.cpp",
+        "current_path": "src/pso/technique/TTecRaFoie.cpp",
+        "fork_blob": "96f4878defecdbf739d4f2e86b639d6ebb133c67",
+        "current_blob": "9a5d45d69e69e69318501ab141e2f3bd5c5edb7c",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 4388,
+        "description": "The native constructors initialize the original zero scalar. The emitter lifecycle shares the positioned sound helper and the typed BML archive. Upstream allocation and release names retain the original addresses and the existing call sequence. The literal constants keep the original linked data values.",
+        "historical_path": "src/pso/misc/TTecMegid.cpp",
+        "current_path": "src/pso/technique/TTecMegid.cpp",
+        "fork_blob": "8087a5a9dd8132254ef1ee7667ccca5bc57342ae",
+        "current_blob": "92da14b8e70782a18e57987f88ed4eaca95d8820",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete Megid band sound and original particle resources historical source reconciled",
+        "authored_delta_sha256": "306c8a2f175f2f08a7d1d8eec706848a9702d5c08f10f1db915c65100b2b0bdf"
+      },
+      {
+        "row": 4398,
+        "description": "The controller owns the typed BML archive and ring-wave descriptor and resolves charge lights through the original typed color and direction constants. Other controller code remains open.",
+        "historical_path": "src/pso/misc/TTecCtrl.cpp",
+        "current_path": "src/pso/technique/TTecCtrl.cpp",
+        "fork_blob": "10a6018bc267e519d17112a904823a278c211c6f",
+        "current_blob": "420a778999b37f0a9c314afc2e0637330b40cba1",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 4430,
+        "description": "The bolt constructor belongs to TTecZondeEff and receives the typed parent and vectors. Point creation uses the native particle factory and all three scatter branches use upstream's typed normalizer at the original address.",
+        "historical_path": "src/pso/misc/TTecZondeEff.cpp",
+        "current_path": "src/pso/technique/TTecZondeEff.cpp",
+        "fork_blob": "bd89e4872dd22e0584fee2fa4dc368e7c8a5a5d8",
+        "current_blob": "c3aff14421a55cae7c4b04048ad36df439560b97",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete native lightning effect construction and shared factories historical source reconciled",
+        "authored_delta_sha256": "3012fa3d503234dd1b295da4bb25806399791c9dd0444b70c5d59ae96f94a096"
+      },
+      {
+        "row": 6451,
+        "description": "The technique trap uses the native bolt constructor and facing ice factory with its original position and angle. The broader trap source comparison remains open.",
+        "historical_path": "src/pso/misc/TOTrapAncient02.cpp",
+        "current_path": "src/pso/object/trap/TOTrapAncient02.cpp",
+        "fork_blob": "afdf046415827444fa01078d0cc95d5ab28f0b93",
+        "current_blob": "240bd599369cc6f3d0dbc7e4cf8506781b329c09",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      }
+    ]
+  },
+  "validation": {
+    "stock": {
+      "baseline": "da7c2eaa9775c3ae90ae9c25fceb96dde4327878",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x80230A98",
+          "before": "create__11TTecGiBartaFPvPvPv",
+          "after": "create__11TTecGiBartaFPvP3VecP3Vecl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80230AF0",
+          "before": "create_ex__11TTecGiBartaFPvPvPv",
+          "after": "create_ex__11TTecGiBartaFPvP3Vecll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8023DA10",
+          "before": "construct_bolt_effect__9TTecZondeFPUcPUcPUcllff",
+          "after": "construct_bolt_effect__12TTecZondeEffFP7TObjectPC3VecPC3Vecllff"
+        }
+      ],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "420b129f5937bacbe8975cbdead867a116efc1d31363ab2e7ecb3adf809c7e74",
+      "report_sha256": "810fc968524713369ebbff8b2fc2b57ef40d0979d894e486b58c6f359ff1049e"
+    },
+    "workspace": {
+      "baseline": "491cc9fed017610225881b86dc8da7d4111b83e0",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "810fc968524713369ebbff8b2fc2b57ef40d0979d894e486b58c6f359ff1049e"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "3188d483708fa90b1f5c045567a36896cb818e0095b8e04afd65c9ab3e6fd5cb"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "98505ac4456f4e22d7b9da36b03f955c061dae301fe26a9148dc54c27e79922c"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    },
+    "technique_runtime": {
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "checks": [
+        "All model and motion entries, ordering, terminators and the BML descriptor",
+        "Nine native ring-wave entries and the shared lightning texture setup and indexed lookup",
+        "Lightning parent, vectors, flags, point count, scale, length and initialization",
+        "Aimed and facing Gi-Barta constructors receive the preserved owner, origin, target or angle, and level",
+        "Nine charge-light branches pass the original color, direction and owner",
+        "All six sound bands, both out-of-range cases, and successful and failed sound handles",
+        "Previously validated cast state and 6x47 packet regression probes"
+      ],
+      "emulation": "The harness runs the matching instructions and observes service arguments with hooks.",
+      "log_sha256": "0d48133e26237044b6ce842510aab2a9db3e0b1c641b37d0baafea85bc63b65f",
+      "regression_log_sha256": "a32da797d5a9b6f44131f30ed70206f029ae6223f0393799c5d4041d8fd0827f",
+      "probe_sha256": "a5d1285f4cc00db8a5dc3a59fc4843d0afe7a41be790fa6fa48efeb747571345"
+    }
+  },
+  "fork_workspace": {
+    "overlay_paths": 130,
+    "overlay_patch_sha256": "bf42af4a2009898692443593c3a8841e0b2ab477c141180ffa6e41a798793d12",
+    "updated_overlay_paths": [],
+    "force_active_names": 27033,
+    "archive_test_head": "b601d5b3188f1efece7f6bfbbfaa23be442f1539",
+    "tested_materialized_tree": "3df634f0102bccb2788f06577ca57b6c7b54c2c7"
+  }
+}

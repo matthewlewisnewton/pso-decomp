@@ -4,21 +4,27 @@
 #include "types.h"
 #include <stddef.h>
 
-struct NetBufferRef {
-    u32 value;
+typedef struct NetBufferRef {
+    uaddr value;
     u8 kind;
     u8 padding[3];
-};
+} NetBufferRef;
 
-typedef char NetBufferRef_size_check[(sizeof(NetBufferRef) == 8) ? 1 : -1];
-typedef char NetBufferRef_kind_check[(offsetof(NetBufferRef, kind) == 4) ? 1 : -1];
-
-/* Native descriptor discriminants. The distinction between kinds 1 and 3 is
- * not inferred from the old TLobby placeholder names. */
+LAYOUT_ASSERT(NetBufferRef_size_check, sizeof(NetBufferRef) == 8);
+LAYOUT_ASSERT(NetBufferRef_kind_check, offsetof(NetBufferRef, kind) == 4);
+#ifdef __cplusplus
 extern "C" {
-void NetBufferRefInitKind1(NetBufferRef *ref, s32 value);
-void NetBufferRefInitKind3(NetBufferRef *ref, s32 value);
-void NetBufferRefInitKind4(NetBufferRef *ref, s32 value);
+#endif
+void set_value_and_enable(NetBufferRef *ref, s32 value);
+void init_packet_header(NetBufferRef *ref, s32 value);
+void init_msg(NetBufferRef *ref, s32 value);
+
+/* Advances a buffer reference by n bytes (TLobby_804050DC.c). */
+void netbuf_ref_advance(NetBufferRef *ref, s32 n);
+/* Frees the block behind a buffer reference of kind 2 or 4 (TLobby_804050DC.c). */
+s32 TLobby__sub_80406B6C(NetBufferRef *ref);
+#ifdef __cplusplus
 }
+#endif
 
 #endif

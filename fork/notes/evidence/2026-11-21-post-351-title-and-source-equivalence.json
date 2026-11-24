@@ -1,0 +1,1812 @@
+{
+  "upstream": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+  "previous_reconciled_review": "0d4c0812e7f2dc93649511ae0881831305555c31",
+  "review": "0e202610a693f30f95c7643d0522523556582ab1",
+  "review_ref": "great-merge/consolidated/after-upstream-351",
+  "review_tree": "3b1bcae4c998105e983a05a081052a0a7573d43e",
+  "new_files_changed": 44,
+  "total_review_files_changed": 879,
+  "commits": {
+    "title": {
+      "head": "75775d58a0d0a15caedba879540fa6e9710741ae",
+      "subject": "Recover the native title scene and sprite table owners",
+      "build_retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "5b7aae90a4bf5b4f24e4115c611335aae7e6ae4d867d3ed383bf5e1f4695bf3d",
+      "baseline": "0d4c0812e7f2dc93649511ae0881831305555c31",
+      "function_labels": [
+        {
+          "module": "psov3",
+          "address": "0x80336064",
+          "before": "start_offline_seq__23TAdSinglePlyChrSelectGCFv",
+          "after": "start_offline_seq__13TUnk_804EEF64Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803361C4",
+          "before": "set_flag_and_clear_download__6TLobbyFv",
+          "after": "set_flag_and_clear_download__13TUnk_804EEF64Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80336200",
+          "before": "open_keyboard__6TLobbyFv",
+          "after": "open_keyboard__13TUnk_804EEF64Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8033622C",
+          "before": "request_change_game_mode__6TLobbyFv",
+          "after": "request_change_game_mode__13TUnk_804EEF64Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80336254",
+          "before": "enter_game_mode_change__6TLobbyFv",
+          "after": "enter_game_mode_change__13TUnk_804EEF64Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8033627C",
+          "before": "enter_chg_game_mode__6TLobbyFv",
+          "after": "enter_chg_game_mode__13TUnk_804EEF64Fv"
+        }
+      ]
+    },
+    "slots": {
+      "head": "edaa8da8621c1141dfb0599f242abf0db2c35352",
+      "subject": "Use typed character slot labels and positions throughout the picker",
+      "build_retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "1d959bdd81c227860f771a63168378333017d540e4026cbddce87a6f62a9a8ef",
+      "baseline": "0d4c0812e7f2dc93649511ae0881831305555c31",
+      "function_labels": [
+        {
+          "module": "psov3",
+          "address": "0x802C74AC",
+          "before": "init_slot_entry__15TAdChrSelSlotGCFlPv",
+          "after": "init_slot_entry__15TAdChrSelSlotGCFlPC21CharacterSlotPosition"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80336064",
+          "before": "start_offline_seq__23TAdSinglePlyChrSelectGCFv",
+          "after": "start_offline_seq__13TUnk_804EEF64Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803361C4",
+          "before": "set_flag_and_clear_download__6TLobbyFv",
+          "after": "set_flag_and_clear_download__13TUnk_804EEF64Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80336200",
+          "before": "open_keyboard__6TLobbyFv",
+          "after": "open_keyboard__13TUnk_804EEF64Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8033622C",
+          "before": "request_change_game_mode__6TLobbyFv",
+          "after": "request_change_game_mode__13TUnk_804EEF64Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80336254",
+          "before": "enter_game_mode_change__6TLobbyFv",
+          "after": "enter_game_mode_change__13TUnk_804EEF64Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8033627C",
+          "before": "enter_chg_game_mode__6TLobbyFv",
+          "after": "enter_chg_game_mode__13TUnk_804EEF64Fv"
+        }
+      ]
+    },
+    "ground-layout": {
+      "head": "be2c1fdaba2b4e3cece9eefedc624c9aca0f7927",
+      "subject": "Use native vectors for actor velocity and ground contact records",
+      "build_retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "1d959bdd81c227860f771a63168378333017d540e4026cbddce87a6f62a9a8ef",
+      "baseline": "0d4c0812e7f2dc93649511ae0881831305555c31",
+      "function_labels": [
+        {
+          "module": "psov3",
+          "address": "0x802C74AC",
+          "before": "init_slot_entry__15TAdChrSelSlotGCFlPv",
+          "after": "init_slot_entry__15TAdChrSelSlotGCFlPC21CharacterSlotPosition"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80336064",
+          "before": "start_offline_seq__23TAdSinglePlyChrSelectGCFv",
+          "after": "start_offline_seq__13TUnk_804EEF64Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803361C4",
+          "before": "set_flag_and_clear_download__6TLobbyFv",
+          "after": "set_flag_and_clear_download__13TUnk_804EEF64Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80336200",
+          "before": "open_keyboard__6TLobbyFv",
+          "after": "open_keyboard__13TUnk_804EEF64Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8033622C",
+          "before": "request_change_game_mode__6TLobbyFv",
+          "after": "request_change_game_mode__13TUnk_804EEF64Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80336254",
+          "before": "enter_game_mode_change__6TLobbyFv",
+          "after": "enter_game_mode_change__13TUnk_804EEF64Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8033627C",
+          "before": "enter_chg_game_mode__6TLobbyFv",
+          "after": "enter_chg_game_mode__13TUnk_804EEF64Fv"
+        }
+      ]
+    },
+    "declarations": {
+      "head": "0e202610a693f30f95c7643d0522523556582ab1",
+      "subject": "Use shared launch, resource and vector declarations",
+      "build_retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "e7913443c2de913df17ca892e7bb02dd6658480e278a77c232be20eecb36a8e1",
+      "baseline": "0d4c0812e7f2dc93649511ae0881831305555c31",
+      "function_labels": [
+        {
+          "module": "psov3",
+          "address": "0x800970C4",
+          "before": "copy_from__25TBoss3VoloptBreakupParamsFPC25TBoss3VoloptBreakupParams",
+          "after": "copy__25TBoss3VoloptBreakupParamsFPC25TBoss3VoloptBreakupParams"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802C74AC",
+          "before": "init_slot_entry__15TAdChrSelSlotGCFlPv",
+          "after": "init_slot_entry__15TAdChrSelSlotGCFlPC21CharacterSlotPosition"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80336064",
+          "before": "start_offline_seq__23TAdSinglePlyChrSelectGCFv",
+          "after": "start_offline_seq__13TUnk_804EEF64Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803361C4",
+          "before": "set_flag_and_clear_download__6TLobbyFv",
+          "after": "set_flag_and_clear_download__13TUnk_804EEF64Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80336200",
+          "before": "open_keyboard__6TLobbyFv",
+          "after": "open_keyboard__13TUnk_804EEF64Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8033622C",
+          "before": "request_change_game_mode__6TLobbyFv",
+          "after": "request_change_game_mode__13TUnk_804EEF64Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80336254",
+          "before": "enter_game_mode_change__6TLobbyFv",
+          "after": "enter_game_mode_change__13TUnk_804EEF64Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8033627C",
+          "before": "enter_chg_game_mode__6TLobbyFv",
+          "after": "enter_chg_game_mode__13TUnk_804EEF64Fv"
+        }
+      ]
+    }
+  },
+  "new_review_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/effect/BreakupModelParams.h",
+    "include/pso/object/base/TObjChara.h",
+    "include/pso/ui/frontend/TAdChrSelASlotGC.h",
+    "include/pso/ui/frontend/TAdChrSelSlotGC.h",
+    "include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h",
+    "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_80336054.h",
+    "include/pso/ui/frontend/TAdSubPlyItemGC.h",
+    "include/pso/ui/frontend/TAdTrialAgreementGC_80335958.h",
+    "include/pso/ui/frontend/TitleSceneTables.h",
+    "include/pso/unk/SharedMemory.h",
+    "include/pso/unk/TLobby.h",
+    "include/pso/unk/TLobby_80335E08.h",
+    "include/pso/unk/TLobby_80335E7C.h",
+    "include/pso/unk/TLobby_803360CC.h",
+    "include/pso/unk/TUnk_8048E728.h",
+    "include/pso/unk/TUnk_8048E778.h",
+    "include/pso/unk/TUnk_8048E790.h",
+    "include/pso/unk/TUnk_804EEF64.h",
+    "include/pso/unk/text_803D8DE0.h",
+    "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp",
+    "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+    "src/pso/boss/derolle/TObjBoss2CeilJunk.cpp",
+    "src/pso/boss/olgaflow/TBoss6Mine.cpp",
+    "src/pso/effect/TBreakUpMdl.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+    "src/pso/enemy/darkgunner/DarkGunner.cpp",
+    "src/pso/enemy/darkgunner/TObjEneDarkGunCenter.cpp",
+    "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarmsAtkColli.cpp",
+    "src/pso/object/TDeadSpot.cpp",
+    "src/pso/object/TObjControl.cpp",
+    "src/pso/player/TPlayerFootStamp.cpp",
+    "src/pso/ui/TUnk_804EE458.cpp",
+    "src/pso/ui/frontend/TAdChrSelASlotGC.cpp",
+    "src/pso/ui/frontend/TAdChrSelBSlotGC.cpp",
+    "src/pso/ui/frontend/TAdChrSelSlotGC.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C8E0.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80336054.cpp",
+    "src/pso/ui/frontend/TAdSubPlyItemGC_802D6BEC.cpp",
+    "src/pso/unk/TLobby_80335E7C.cpp",
+    "src/pso/unk/text_803D8DE0.cpp"
+  ],
+  "attribution": {
+    "new_commits": 4,
+    "codex_attribution": 0,
+    "coauthor_trailers": 0
+  },
+  "closed_path_comparisons": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/effect/BreakupModelParams.h",
+    "include/pso/effect/PositionSoundEffects.h",
+    "include/pso/enemy/TObjEnemy.h",
+    "include/pso/object/base/TObjChara.h",
+    "include/pso/system/save/TCheckMemoryCard.h",
+    "include/pso/ui/frontend/TAdChrSelASlotGC.h",
+    "include/pso/ui/frontend/TAdChrSelBSlotGC.h",
+    "include/pso/ui/frontend/TAdChrSelSlotGC.h",
+    "include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h",
+    "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_80336054.h",
+    "include/pso/ui/frontend/TAdSubPlyItemGC.h",
+    "include/pso/ui/frontend/TAdTrialAgreementGC_80335958.h",
+    "include/pso/ui/frontend/TitleSceneTables.h",
+    "include/pso/unk/SharedMemory.h",
+    "include/pso/unk/TLobby.h",
+    "include/pso/unk/TLobby_80335E08.h",
+    "include/pso/unk/TLobby_80335E7C.h",
+    "include/pso/unk/TLobby_803360CC.h",
+    "include/pso/unk/TUnk_8048E728.h",
+    "include/pso/unk/TUnk_8048E778.h",
+    "include/pso/unk/TUnk_8048E790.h",
+    "include/pso/unk/TUnk_804CCB28.h",
+    "include/pso/unk/TUnk_804EEF64.h",
+    "include/pso/unk/text_803D8DE0.h",
+    "src/pso/boss/darkfalz/TBoss4Thanks.cpp",
+    "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+    "src/pso/boss/darkfalz/TBoss4Type3.cpp",
+    "src/pso/boss/darkfalz/TBoss4ZakoDraw.cpp",
+    "src/pso/boss/darkfalz/TBoss4Zanzo.cpp",
+    "src/pso/boss/darkfalz/TOBoss4.cpp",
+    "src/pso/boss/darkfalz/TObjDFDemo1.cpp",
+    "src/pso/boss/darkfalz/TObjDFDemo2.cpp",
+    "src/pso/boss/darkfalz/TObjDFDemo4.cpp",
+    "src/pso/boss/darkfalz/TObjDFDemo5.cpp",
+    "src/pso/boss/darkfalz/TObjDFDemoF_80050134.cpp",
+    "src/pso/boss/darkfalz/TObjDFJisin.cpp",
+    "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+    "src/pso/boss/derolle/TObjBoss2CeilJunk.cpp",
+    "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+    "src/pso/boss/dragon/TBoss1Dragon.cpp",
+    "src/pso/boss/dragon/TBoss1DragonEffBullet.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+    "src/pso/boss/goldragon/TBoss8DragonEffBullet.cpp",
+    "src/pso/boss/olgaflow/TBoss6DPB.cpp",
+    "src/pso/boss/olgaflow/TBoss6Demo11_TYPE1_DEAD.cpp",
+    "src/pso/boss/olgaflow/TBoss6Demo20_TYPE2_APPEAR.cpp",
+    "src/pso/boss/olgaflow/TBoss6Demo21_TYPE2_DEAD.cpp",
+    "src/pso/boss/olgaflow/TBoss6MagMine.cpp",
+    "src/pso/boss/olgaflow/TBoss6Mine.cpp",
+    "src/pso/boss/olgaflow/TBoss6Rock.cpp",
+    "src/pso/boss/olgaflow/TBoss6RockChase.cpp",
+    "src/pso/boss/olgaflow/TBoss6SwordShot.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2_802BE588.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptCore.cpp",
+    "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp",
+    "src/pso/boss/volopt/TObjVoloptShutter.cpp",
+    "src/pso/effect/particle/ParticleBallistic.cpp",
+    "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+    "src/pso/effect/photon/TPhotonRainbow.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+    "src/pso/enemy/beast/TObjEneBeast.cpp",
+    "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+    "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+    "src/pso/enemy/dimedian/TObjEneDimedian.cpp",
+    "src/pso/enemy/dubchik/TOCtrlDubchik_8015CA74.cpp",
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp",
+    "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+    "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+    "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+    "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGueBarrier.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGue_802CDB1C.cpp",
+    "src/pso/enemy/lappy/TObjEneLappy.cpp",
+    "src/pso/enemy/morfos/TObjEneMorfosArm.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarmsAtkColli.cpp",
+    "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+    "src/pso/enemy/shark/TObjEneShark.cpp",
+    "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp",
+    "src/pso/object/TDeadSpot.cpp",
+    "src/pso/object/TOBind_801586B8.cpp",
+    "src/pso/object/TOHealGeneral.cpp",
+    "src/pso/object/TObjChip.cpp",
+    "src/pso/object/TObjControl.cpp",
+    "src/pso/object/TObjHashi.cpp",
+    "src/pso/object/TObjParticle.cpp",
+    "src/pso/object/TObjSinBoard.cpp",
+    "src/pso/object/ambient/TOKurage.cpp",
+    "src/pso/object/base/TObjMapObject.cpp",
+    "src/pso/object/cave/TOAirconCave01.cpp",
+    "src/pso/object/cave/TOAirconCave02.cpp",
+    "src/pso/object/cave/TOCakeshopCave01.cpp",
+    "src/pso/object/cave/TODragonflyCave01.cpp",
+    "src/pso/object/cave/TOHangceilingCave01.cpp",
+    "src/pso/object/cave/TORevlightCave01.cpp",
+    "src/pso/object/cave/TORockCave.cpp",
+    "src/pso/object/city/CitySeason.cpp",
+    "src/pso/object/container/TOContainerAncientEnemy.cpp",
+    "src/pso/object/door/TODoorAncient01.cpp",
+    "src/pso/object/door/TODoorAncient03.cpp",
+    "src/pso/object/door/TODoorAncient04.cpp",
+    "src/pso/object/door/TODoorAncient05.cpp",
+    "src/pso/object/door/TODoorAncient06.cpp",
+    "src/pso/object/door/TODoorAncient07.cpp",
+    "src/pso/object/door/TODoorAncient08.cpp",
+    "src/pso/object/door/TODoorAncient09.cpp",
+    "src/pso/object/door/TODoorVS2Door01.cpp",
+    "src/pso/object/door/TODoorVoShip.cpp",
+    "src/pso/object/fence/TOBarrierEnergy01.cpp",
+    "src/pso/object/fence/TOFenceBase.cpp",
+    "src/pso/object/key/TODummyKeyCave01.cpp",
+    "src/pso/object/key/TOKeyAncient01.cpp",
+    "src/pso/object/key/TOKeyAncient02.cpp",
+    "src/pso/object/key/TOKeyGenericSw.cpp",
+    "src/pso/object/lobby/TObjButterflyLobby_80350958.cpp",
+    "src/pso/object/lobby/TObjWeddingLobby.cpp",
+    "src/pso/object/mine/TOCapsuleMachine01.cpp",
+    "src/pso/object/mine/TOComputerMachine01.cpp",
+    "src/pso/object/mine/TOHangerMachine01.cpp",
+    "src/pso/object/mine/TOLightMachine01.cpp",
+    "src/pso/object/mine/TOMonitorMachine01.cpp",
+    "src/pso/object/mine/TOSparkMachine01.cpp",
+    "src/pso/object/ruins/TOCapsuleAncient01.cpp",
+    "src/pso/object/ruins/TOMonumentAncient02.cpp",
+    "src/pso/object/switch/TOSensorAncient01.cpp",
+    "src/pso/object/trap/TOMineIcon01.cpp",
+    "src/pso/object/trap/TOMineIcon02.cpp",
+    "src/pso/object/trap/TOMineIcon03.cpp",
+    "src/pso/object/trap/TOMineIcon04.cpp",
+    "src/pso/object/trap/TOTrap.cpp",
+    "src/pso/object/trap/TOTrapAncient01.cpp",
+    "src/pso/object/trap/TOTrapAncient02.cpp",
+    "src/pso/object/warp/TObjWarpBossMulti.cpp",
+    "src/pso/player/PhotonBlastResults.cpp",
+    "src/pso/player/TPlayerFootStamp.cpp",
+    "src/pso/quest/TOQuestTalkBase.cpp",
+    "src/pso/system/scene/TSceneSora.cpp",
+    "src/pso/ui/TUnk_804EE458.cpp",
+    "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp",
+    "src/pso/ui/city/TMedicalCenterSequence.cpp",
+    "src/pso/ui/frontend/TAdChrSelASlotGC.cpp",
+    "src/pso/ui/frontend/TAdChrSelSlotGC.cpp",
+    "src/pso/ui/frontend/TAdMultiConfirmGC_802E03D0.cpp",
+    "src/pso/ui/frontend/TAdPlyStatusGC_8033FD48.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C8E0.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80336054.cpp",
+    "src/pso/unk/TLobby_80335E7C.cpp",
+    "src/pso/unk/TUnk_8048E1A4.cpp",
+    "src/pso/unk/text_8004D9A8.cpp",
+    "src/pso/unk/text_803D8DE0.cpp"
+  ],
+  "prior_open_path_comparisons": 244,
+  "open_path_comparisons": 90,
+  "original_data_coverage": {
+    "source": {
+      "report_sha256": "c73f97f68fd0cf0472bee51df533c49d3fd17c198b007e62f32048dabbd8acf9",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "fork": {
+      "report_sha256": "c73f97f68fd0cf0472bee51df533c49d3fd17c198b007e62f32048dabbd8acf9",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    }
+  },
+  "linked_source_units": 2448,
+  "exact_functions": 27572,
+  "runtime_probes": {
+    "title-slots-probe.log": "c68c822287a56a8b6fae2b320b84a698bbe3d8b33d8a581d19f3f6e8d31dbc78",
+    "layer-title-slots-probe.log": "77584eae2f3798e1ce4fef1e9ce6e39b3f4b116259024b8693e4081f40e2113e"
+  },
+  "probe_scope": [
+    "title sprite table and texture list",
+    "title transition callbacks and flags",
+    "typed character-slot positions"
+  ],
+  "source_equivalence": {
+    "src/pso/boss/darkfalz/TBoss4Thanks.cpp": {
+      "replay_blob": "100644:51c0a1de1ced40558c4f0c7559cad8e531a6eed0",
+      "historical_blob": "100644:811e9e56129c24aaf62c47ba587c493dbd6ca199",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/boss/darkfalz/TBoss4Type1.cpp": {
+      "replay_blob": "100644:74b47e29c89619c97db0c3aa569e2bfd465e5fa9",
+      "historical_blob": "100644:2ead706aedab6fa48cfa0ac094d8b14e89f6e1c4",
+      "changes": [
+        "same existing shared includes",
+        "verified existing name"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/boss/darkfalz/TBoss4Type3.cpp": {
+      "replay_blob": "100644:d4e05eff3e56733f4674aea50a612ccc681a4002",
+      "historical_blob": "100644:6c4ffb7ef80a47fca9f71179822211b8a96b09e2",
+      "changes": [
+        "same existing shared includes",
+        "verified existing name"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/boss/darkfalz/TBoss4ZakoDraw.cpp": {
+      "replay_blob": "100644:3f34bd34d3f206c275eb93b084fbad2490bffa7f",
+      "historical_blob": "100644:f01325699a99d6d12bd82bb400cf4869e57a0ee0",
+      "changes": [
+        "same existing shared includes"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/boss/darkfalz/TBoss4Zanzo.cpp": {
+      "replay_blob": "100644:68018ffd776f234a08c6dc1abd8d9aca41e5091f",
+      "historical_blob": "100644:c482252f452cc543154c7713d7c270d21104f737",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast",
+        "verified existing name"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/boss/darkfalz/TOBoss4.cpp": {
+      "replay_blob": "100644:9e6db694b394e34c2bf6acdda824f4929a289abc",
+      "historical_blob": "100644:a32c02642e63bd926d68c29ed828e7885cefc8f6",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/boss/darkfalz/TObjDFDemo1.cpp": {
+      "replay_blob": "100644:4b688e3f6772fb771611f45cdeed8991a82116a5",
+      "historical_blob": "100644:25b0431d21e7309e7253f2509408a25788bdbc31",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/boss/darkfalz/TObjDFDemo2.cpp": {
+      "replay_blob": "100644:eeab341c415ea4f816aa04e129f240e9940c0417",
+      "historical_blob": "100644:e01c1556d72398d3f754484d108565ea2497487a",
+      "changes": [
+        "direct include already provided by matching compile dependencies",
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [
+        "pso/effect/particle/ParticleFactory.h"
+      ],
+      "direct_include_retained": []
+    },
+    "src/pso/boss/darkfalz/TObjDFDemo4.cpp": {
+      "replay_blob": "100644:1d360231377332da8fe1d4a33997ac91731ca7a3",
+      "historical_blob": "100644:8beba263df8034e1ab993177aa2853ddc26a8126",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/boss/darkfalz/TObjDFDemo5.cpp": {
+      "replay_blob": "100644:46641ce039755651aba685c1e0f34813c3f4f67c",
+      "historical_blob": "100644:4539a86472b964c5cc5d34329e9a66b87d27cab5",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/boss/darkfalz/TObjDFDemoF_80050134.cpp": {
+      "replay_blob": "100644:a0c27f63205fd499fa2094a153fc7eb0abc29d04",
+      "historical_blob": "100644:3dbbd2495e3b9538fa92c42dc201eb14c1316ad5",
+      "changes": [
+        "same existing shared includes"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/boss/darkfalz/TObjDFJisin.cpp": {
+      "replay_blob": "100644:b0f786050dbbe23799a2837f72235ba80231bd6f",
+      "historical_blob": "100644:ea0fe60a550d4a7f69dfadd65bf32cc78e4a7b73",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/boss/derolle/TObjBoss2Tunnel.cpp": {
+      "replay_blob": "100644:36deb9f64be2ec1ffcb387d7b32e7420ccfec064",
+      "historical_blob": "100644:9ac418e772dab079b8244233c0401c212e23b1f5",
+      "changes": [
+        "direct include already provided by matching compile dependencies",
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": [
+        "pso/map/CsnGroundQuery.h"
+      ]
+    },
+    "src/pso/boss/dragon/TBoss1Dragon.cpp": {
+      "replay_blob": "100644:3305dcc192ac087319c42edec3f0618ff3b89184",
+      "historical_blob": "100644:3313c803099a9296a59672ae68f6100a2e80f4ae",
+      "changes": [
+        "direct include already provided by matching compile dependencies",
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [
+        "pso/effect/particle/ParticleFactory.h"
+      ],
+      "direct_include_retained": []
+    },
+    "src/pso/boss/dragon/TBoss1DragonEffBullet.cpp": {
+      "replay_blob": "100644:4e16861e57e5c8a3577528195d7e597bd68ece33",
+      "historical_blob": "100644:cf9622189412af6119b30c2a4c1038d48b981c5b",
+      "changes": [
+        "direct include already provided by matching compile dependencies",
+        "same typed Vec already passed to the particle factory"
+      ],
+      "already_in_compiled_dependency_set": [
+        "pso/effect/particle/ParticleFactory.h"
+      ],
+      "direct_include_retained": []
+    },
+    "src/pso/boss/goldragon/TBoss8Dragon.cpp": {
+      "replay_blob": "100644:3d5bb4ed80468d3b2a42577ad38d757a6106d15d",
+      "historical_blob": "100644:8f2863b5b4c0695ccfdda45a3adce5f8e6031677",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/boss/goldragon/TBoss8DragonEffBullet.cpp": {
+      "replay_blob": "100644:7aa4e2b4c65d7dc0ecd86242b2507442fbe6ba2b",
+      "historical_blob": "100644:8d80df3c9ce0e1de93d3ae510a360ed8f58466d4",
+      "changes": [
+        "direct include already provided by matching compile dependencies"
+      ],
+      "already_in_compiled_dependency_set": [
+        "pso/effect/particle/ParticleFactory.h"
+      ],
+      "direct_include_retained": []
+    },
+    "src/pso/boss/olgaflow/TBoss6DPB.cpp": {
+      "replay_blob": "100644:e16b34a3967416fc92f3785b8d4735a629c91315",
+      "historical_blob": "100644:53202e5c05a891caf67c932089deba73d0fcaae1",
+      "changes": [
+        "direct include already provided by matching compile dependencies"
+      ],
+      "already_in_compiled_dependency_set": [
+        "pso/effect/particle/ParticleFactory.h"
+      ],
+      "direct_include_retained": []
+    },
+    "src/pso/boss/olgaflow/TBoss6Demo11_TYPE1_DEAD.cpp": {
+      "replay_blob": "100644:b525a7889556f6a7cf3cbfbcb6f106e00abc2bda",
+      "historical_blob": "100644:5beca061576379c3b3b252a7806122ef3d6fe6de",
+      "changes": [
+        "direct include already provided by matching compile dependencies",
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [
+        "pso/effect/particle/ParticleFactory.h"
+      ],
+      "direct_include_retained": []
+    },
+    "src/pso/boss/olgaflow/TBoss6Demo20_TYPE2_APPEAR.cpp": {
+      "replay_blob": "100644:15c1614d21baa1e59a78564cea73c3c02b27dd81",
+      "historical_blob": "100644:3da8c7fc923eb487068afdb35806485bcc5ed229",
+      "changes": [
+        "direct include already provided by matching compile dependencies",
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [
+        "pso/effect/particle/ParticleFactory.h"
+      ],
+      "direct_include_retained": []
+    },
+    "src/pso/boss/olgaflow/TBoss6Demo21_TYPE2_DEAD.cpp": {
+      "replay_blob": "100644:39f1d0948b37d0b6fc54ce630f51501b79648c80",
+      "historical_blob": "100644:73386fa1369c195740066db44dd0861396e58c50",
+      "changes": [
+        "direct include already provided by matching compile dependencies",
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [
+        "pso/effect/particle/ParticleFactory.h"
+      ],
+      "direct_include_retained": []
+    },
+    "src/pso/boss/olgaflow/TBoss6MagMine.cpp": {
+      "replay_blob": "100644:76ead7022f30fe78c19cd69fdf8b0440cdb3d005",
+      "historical_blob": "100644:a0e85f1100fb81f0d8ed9bcb615526e397e16334",
+      "changes": [
+        "direct include already provided by matching compile dependencies",
+        "same existing shared includes",
+        "same texture-list pointer cast",
+        "verified existing name"
+      ],
+      "already_in_compiled_dependency_set": [
+        "pso/effect/particle/ParticleFactory.h"
+      ],
+      "direct_include_retained": []
+    },
+    "src/pso/boss/olgaflow/TBoss6Mine.cpp": {
+      "replay_blob": "100644:4d1bb1a6adb12e1a9251a455509db2e7ba5fa61c",
+      "historical_blob": "100644:59d6c3f919ddd1a52cb39f6fb1f6b7fe6d7f7bb9",
+      "changes": [
+        "direct include already provided by matching compile dependencies",
+        "same existing shared includes",
+        "same texture-list pointer cast",
+        "verified existing name"
+      ],
+      "already_in_compiled_dependency_set": [
+        "pso/effect/particle/ParticleFactory.h"
+      ],
+      "direct_include_retained": []
+    },
+    "src/pso/boss/olgaflow/TBoss6Rock.cpp": {
+      "replay_blob": "100644:d8198f56771cfdfe6d965c31bd67f5c6c704b5f5",
+      "historical_blob": "100644:da43aa84264455e094788e0eaaceaef03287f4e8",
+      "changes": [
+        "direct include already provided by matching compile dependencies",
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [
+        "pso/effect/particle/ParticleFactory.h"
+      ],
+      "direct_include_retained": []
+    },
+    "src/pso/boss/olgaflow/TBoss6RockChase.cpp": {
+      "replay_blob": "100644:37fd4444614bbf492377e88e24b9998b3701f559",
+      "historical_blob": "100644:41108df4c407997b893d24889e9699a46b636a65",
+      "changes": [
+        "direct include already provided by matching compile dependencies",
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [
+        "pso/effect/particle/ParticleFactory.h"
+      ],
+      "direct_include_retained": []
+    },
+    "src/pso/boss/olgaflow/TBoss6SwordShot.cpp": {
+      "replay_blob": "100644:651dbf939f9189f9bc830cba2cb95381113baa78",
+      "historical_blob": "100644:a6def434518a20cc0eb4eda591ada9578717acad",
+      "changes": [
+        "direct include already provided by matching compile dependencies",
+        "same position passed to particle factory"
+      ],
+      "already_in_compiled_dependency_set": [
+        "pso/effect/particle/ParticleFactory.h"
+      ],
+      "direct_include_retained": []
+    },
+    "src/pso/boss/olgaflow/TBoss6Type2.cpp": {
+      "replay_blob": "100644:22fa5d9c111d156e8b573e985cf50c15c49272ff",
+      "historical_blob": "100644:cdec8e11a1f7b3f0f69e0467b9d61ca408110484",
+      "changes": [
+        "direct include already provided by matching compile dependencies",
+        "same body-center pointer passed to particle factory",
+        "same existing shared includes",
+        "same texture-list pointer cast",
+        "verified existing name"
+      ],
+      "already_in_compiled_dependency_set": [
+        "pso/effect/particle/ParticleFactory.h"
+      ],
+      "direct_include_retained": []
+    },
+    "src/pso/boss/olgaflow/TBoss6Type2_802BE588.cpp": {
+      "replay_blob": "100644:defc6294eff2699c733318174718ad0b134a74d4",
+      "historical_blob": "100644:63a446d829afc2b6c4b6c595048dd1ec39de3bcb",
+      "changes": [
+        "direct include already provided by matching compile dependencies"
+      ],
+      "already_in_compiled_dependency_set": [
+        "pso/effect/particle/ParticleFactory.h"
+      ],
+      "direct_include_retained": []
+    },
+    "src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp": {
+      "replay_blob": "100644:58f105fa09a1f6433798f33f07d49458d5a6f5af",
+      "historical_blob": "100644:b07e9b12a5783e1032f89912296e7b384678f87f",
+      "changes": [
+        "direct include already provided by matching compile dependencies",
+        "same existing shared includes",
+        "same texture-list pointer cast",
+        "verified existing name"
+      ],
+      "already_in_compiled_dependency_set": [
+        "pso/effect/particle/ParticleFactory.h"
+      ],
+      "direct_include_retained": []
+    },
+    "src/pso/boss/volopt/TBoss3VoloptCore.cpp": {
+      "replay_blob": "100644:7ad50512a05b703f08a0d61cf0bf84a551daa805",
+      "historical_blob": "100644:3995dc1109ade9aa9f1891212aaca981861a866e",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast",
+        "verified existing name"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp": {
+      "replay_blob": "100644:ced641bd0ab5c5dff0706e4be31161f84e7549c5",
+      "historical_blob": "100644:71da719522e4d06cd213bb390804d807b3335426",
+      "changes": [
+        "same existing shared includes",
+        "verified existing name"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/boss/volopt/TObjVoloptShutter.cpp": {
+      "replay_blob": "100644:e490a0868123d09b792615f8eb810b4ae8708070",
+      "historical_blob": "100644:392e4ab8e0ab183d421d3bedb04d7fadae5869ec",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/effect/particle/ParticleBallistic.cpp": {
+      "replay_blob": "100644:e63b5620498e12d0454b16fedb6e952d07ae9368",
+      "historical_blob": "100644:5616bfb9e0e91d37e318a5c559575d4207c9b1bd",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp": {
+      "replay_blob": "100644:f104ad8c3ce0d9fe0ad9f1f7444f07cf22fd45a0",
+      "historical_blob": "100644:036ba82e502e0c87ab2b14054130ee4795f5f84e",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/effect/photon/TPhotonRainbow.cpp": {
+      "replay_blob": "100644:265339923b5b5af5ab6d9483f51da6e4945f56a2",
+      "historical_blob": "100644:7c68a56de0903c19901caf4c638e5342b4957f0a",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp": {
+      "replay_blob": "100644:13ebc2842983ab99bf8bc882fc17d2b9f10bacc0",
+      "historical_blob": "100644:0daed29fd667c7a7fcb9e7c02c73a4ab15ce812d",
+      "changes": [
+        "same Vec and first member address",
+        "same existing shared includes",
+        "same texture-list pointer cast",
+        "verified existing name"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/enemy/beast/TObjEneBeast.cpp": {
+      "replay_blob": "100644:98bfada028948f9d8090201097d80b8e1431e700",
+      "historical_blob": "100644:44cf43f6ddf422699456eb57f8a59f882ca8da92",
+      "changes": [
+        "redundant parentheses in existing typed call",
+        "same existing shared includes",
+        "same texture-list pointer cast",
+        "same typed actor receiver",
+        "verified existing name"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/enemy/berura/TObjEneRe7Berura.cpp": {
+      "replay_blob": "100644:2abf2d143c9e2c40a603c9eade4ba368b1c85be4",
+      "historical_blob": "100644:4ad3e192b27042ef94caadf5cfee4c80d419a268",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/enemy/deldepth/TObjEneDelDepth.cpp": {
+      "replay_blob": "100644:e9f484e868592ac2f874fb4fd3003063031ae012",
+      "historical_blob": "100644:38d3380dab1f992f68472fce9f083395c81de927",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast",
+        "verified existing name"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/enemy/dimedian/TObjEneDimedian.cpp": {
+      "replay_blob": "100644:18c3ad615f0f0c67edccaff247da54a85cb15dc5",
+      "historical_blob": "100644:ad2aa6afac497527d6c711156e2c0e0d243db0de",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast",
+        "same typed actor receiver",
+        "verified existing name"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/enemy/dubchik/TOCtrlDubchik_8015CA74.cpp": {
+      "replay_blob": "100644:cd899e9b04ad69ed9ac09c09d944f5057f8beb19",
+      "historical_blob": "100644:7646f0b2b7b5ffc15fcba7a9ae854a47a025c614",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast",
+        "same typed actor receiver"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp": {
+      "replay_blob": "100644:03430b2027844035cbdb56b3b79333487d653c20",
+      "historical_blob": "100644:11eedcab916f05706f608c98efa119aa0192d3ab",
+      "changes": [
+        "same Vec and first member address",
+        "same existing shared includes",
+        "same texture-list pointer cast",
+        "same typed attack position",
+        "verified existing name"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/enemy/flower/TObjEneRe2Flower.cpp": {
+      "replay_blob": "100644:c324f4b298c614ead409b88f93f06a6bac295b56",
+      "historical_blob": "100644:ac77365bc8cd59d19b842b76d2a35589ed0bc18e",
+      "changes": [
+        "same actor attack-parameter field",
+        "same existing shared includes"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/enemy/fly/TObjEneBm3Fly.cpp": {
+      "replay_blob": "100644:201069d4675d4b31c21c4af1f0e6c4392b72adec",
+      "historical_blob": "100644:5d4fe17dfa4a5ce20b860660f49a2a30ce762f0f",
+      "changes": [
+        "same actor attack-parameter field",
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp": {
+      "replay_blob": "100644:f9ec31b6b1c19da2244865979fb1cb38f6e96ac7",
+      "historical_blob": "100644:7b4274161b7f6670765fb1acb4c11396e8b70692",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast",
+        "verified existing name"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp": {
+      "replay_blob": "100644:1221fb7a52d010222947f23034a092592d280caf",
+      "historical_blob": "100644:882f93a0ee999dbd7577d74655979366897f7c60",
+      "changes": [
+        "redundant parentheses in existing typed call",
+        "same actor attack-parameter field",
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/enemy/gigue/TObjEneMe1GiGueBarrier.cpp": {
+      "replay_blob": "100644:2cd409dd5a14682ecba7461685009de25a74f6d4",
+      "historical_blob": "100644:5061aa8ac9937937df25615f3392fe692d9cd990",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/enemy/gigue/TObjEneMe1GiGue_802CDB1C.cpp": {
+      "replay_blob": "100644:7bd32dda89f81f6ce619a149a78069db3429fdab",
+      "historical_blob": "100644:c64fc7dc3127314477e13c62f8d59e4b27356819",
+      "changes": [
+        "same existing shared includes",
+        "same typed Vec already passed to the particle factory"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/enemy/lappy/TObjEneLappy.cpp": {
+      "replay_blob": "100644:e23850be853ecc666ffe980d41fb51d8d3342f8a",
+      "historical_blob": "100644:c3615396635c8fc69456bef599a1cf352508c00f",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast",
+        "verified existing name"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/enemy/morfos/TObjEneMorfosArm.cpp": {
+      "replay_blob": "100644:f764369595f7549f789aab86ca19d81ba54518e7",
+      "historical_blob": "100644:6a26f6e8a4f246af71ae86fbe73994c32e2b3240",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/enemy/panarms/TObjEnePanarmsAtkColli.cpp": {
+      "replay_blob": "100644:d82d216095521872d60b712ef4742505e379bd43",
+      "historical_blob": "100644:6ed6291ba0607ad34ce884238b3e4633827ae274",
+      "changes": [
+        "same existing shared includes"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp": {
+      "replay_blob": "100644:8e074ee1cdca3fbebdb16f8bdb9e00aefc43ac4c",
+      "historical_blob": "100644:98bb2dcba8e4fb756291de2abc70b2e617d7d88d",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast",
+        "verified existing name"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/enemy/shark/TObjEneShark.cpp": {
+      "replay_blob": "100644:0475a39f505b5215bf381fc5a3a0f2a7a0267999",
+      "historical_blob": "100644:139678c2745a5f1c7094a11375accb3c75d0efc5",
+      "changes": [
+        "redundant parentheses in existing typed call",
+        "same existing shared includes",
+        "same texture-list pointer cast",
+        "same typed actor receiver",
+        "verified existing name"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp": {
+      "replay_blob": "100644:41ec83c2d18e232cd788341e53d765ba8b3567a9",
+      "historical_blob": "100644:90d80730062390cbf83e3f94d7671c4433e616f5",
+      "changes": [
+        "redundant parentheses in existing typed call",
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/TDeadSpot.cpp": {
+      "replay_blob": "100644:3769055e1ea4741d5431767a17c9eb6f92a684e3",
+      "historical_blob": "100644:736dcd84587eef143ef68566fcfca752c4b5ea66",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/TOBind_801586B8.cpp": {
+      "replay_blob": "100644:8f0da289b5cf4857efa2c67a013d71a71faff2e7",
+      "historical_blob": "100644:a4c2e31a732968984a10934785363dc9fae189de",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/TOHealGeneral.cpp": {
+      "replay_blob": "100644:92da9aadaa7a8253075e90fe4da6f9000ac20b76",
+      "historical_blob": "100644:417cd992a103d47310651f0290e48d7097d29a33",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/TObjChip.cpp": {
+      "replay_blob": "100644:043d6e470ed6522e14d6da7f84e3293a426d3a86",
+      "historical_blob": "100644:84f20196fb5aa82d6adcbe16bb33f0849359341e",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/TObjControl.cpp": {
+      "replay_blob": "100644:72ff7dd9f35fe09629154887415f5277bfcccb4b",
+      "historical_blob": "100644:7e16747d742cdb8e26a53a10b990283f25dca3ce",
+      "changes": [
+        "verified existing name"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/TObjHashi.cpp": {
+      "replay_blob": "100644:2eae8385cc1e1e045dbc0d9001890bf4077654cd",
+      "historical_blob": "100644:ae50c2cd7533d074920679f1ea11ad70eaff09dc",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/TObjParticle.cpp": {
+      "replay_blob": "100644:f6762943bc695e334b1eac0b69edf045b4240df0",
+      "historical_blob": "100644:8fcd1775058e68a906b14c5053e5c1c931274f7b",
+      "changes": [
+        "same rotation and first member address"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/TObjSinBoard.cpp": {
+      "replay_blob": "100644:21b1ca15aa79d3b57096660b80140b71634f31c4",
+      "historical_blob": "100644:db41bf9ebd00f25c5cd892c06f1e0c3dee6ba7cf",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/ambient/TOKurage.cpp": {
+      "replay_blob": "100644:1224275ee1d40c7bf6d7086e42f51310f8c45d2b",
+      "historical_blob": "100644:595e44fd993d1b9559b172efa03f1be4bcf6b07d",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/base/TObjMapObject.cpp": {
+      "replay_blob": "100644:1368e89e2b1e65ed044efb86878b2451ffbe797a",
+      "historical_blob": "100644:276702e99f4761c921ed03b73f8ff932adad47e1",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/cave/TOAirconCave01.cpp": {
+      "replay_blob": "100644:fc13f458ba88230409cdfdc3c05676751dfff883",
+      "historical_blob": "100644:14cbd491b4075cd9e65ff6f147625747bc11f4a1",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/cave/TOAirconCave02.cpp": {
+      "replay_blob": "100644:f6365a742d977b9f36b6e7a65505cea38387a988",
+      "historical_blob": "100644:376e04da76026da40e10285eef95411f88fb78b3",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/cave/TOCakeshopCave01.cpp": {
+      "replay_blob": "100644:ee288b6e410b9e94124d410d4de910ef14617aa2",
+      "historical_blob": "100644:fc58e265e42784a881980f93f69f9ff46dbb2445",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/cave/TODragonflyCave01.cpp": {
+      "replay_blob": "100644:be19fcae56ce6dc5d1f35bb2b61ee8177bcb1da7",
+      "historical_blob": "100644:8d6eac6a7161d174821d321102fd56770a89a777",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/cave/TOHangceilingCave01.cpp": {
+      "replay_blob": "100644:f873dd7c9a66eca5032b01012513672616ccb5cd",
+      "historical_blob": "100644:f5fc0c9013809d4913b58491d6271ae856ddfd2e",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/cave/TORevlightCave01.cpp": {
+      "replay_blob": "100644:ed10c35a6cd0900b8ed4e3bcc7ac07537d48f12a",
+      "historical_blob": "100644:d23d1f9f12d8d8a7a9704419d1a5d61a37fcf424",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/cave/TORockCave.cpp": {
+      "replay_blob": "100644:e102887918ae561ae1d7ca659ee7e4acdbac51cb",
+      "historical_blob": "100644:1113d446fbe9c95bf8e7bbd206cf9b164b5c5f31",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/city/CitySeason.cpp": {
+      "replay_blob": "100644:72a142de42765d5effba644e88f4374f7ad8a767",
+      "historical_blob": "100644:dfb4c1042631d03ac8d6c583bdbc63da5a2a9295",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast",
+        "same typed Vec already passed to the particle factory"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/container/TOContainerAncientEnemy.cpp": {
+      "replay_blob": "100644:1f6889a23c33a316a8d47c73ecf8684fb4c9b6a3",
+      "historical_blob": "100644:09eb643f5942b3bdf6eff446167a4c6d6c17038a",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/door/TODoorAncient01.cpp": {
+      "replay_blob": "100644:75402faa4bb6b37ec8bee327590c36452009c9c9",
+      "historical_blob": "100644:808bfd70a61fb5ada77a65713962d158984e68a2",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/door/TODoorAncient03.cpp": {
+      "replay_blob": "100644:6bfb124e8587aa7422ca2598d18f8a1335eaadab",
+      "historical_blob": "100644:422f6036efd80fa090e00ceb572f8039cf036440",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/door/TODoorAncient04.cpp": {
+      "replay_blob": "100644:1327891afc35200b39805a10f85dad73918933db",
+      "historical_blob": "100644:c121d82d30029f83101fcec74ffbef05a6f261cc",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/door/TODoorAncient05.cpp": {
+      "replay_blob": "100644:21f0c4393cc1b25914495bd5e59e49cde82bb375",
+      "historical_blob": "100644:129afbfe6ba94f78322da1a7667d36f3b0963f96",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/door/TODoorAncient06.cpp": {
+      "replay_blob": "100644:f109bd18873cc12073a5550dc5bacfb71f90138b",
+      "historical_blob": "100644:0d4cea400fc8d7e7407ffb6a39349d1819c297e2",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/door/TODoorAncient07.cpp": {
+      "replay_blob": "100644:2c5cf86d66b15e5c4b166823a3f3ddc148abceeb",
+      "historical_blob": "100644:24712c63d7dddbff0770293d9ee528b93645a6b2",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/door/TODoorAncient08.cpp": {
+      "replay_blob": "100644:c7ab7ad6f64709be3a095466f7ae270fab9d8e02",
+      "historical_blob": "100644:92e41f282641edaa5ee272766559ce991234b60f",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/door/TODoorAncient09.cpp": {
+      "replay_blob": "100644:d663c59a891012c8d54ba61f0b9837c7508b1686",
+      "historical_blob": "100644:f1c831d2f77e29217de5fb42e78b977e5829fd10",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/door/TODoorVS2Door01.cpp": {
+      "replay_blob": "100644:87e242de783c83a196cd2ce4ce82f72bcf010b5e",
+      "historical_blob": "100644:ef89b6d5ccdf782bd7f2593db4b277c7bb47807f",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/door/TODoorVoShip.cpp": {
+      "replay_blob": "100644:1ba8f0a4f8affd4776b1160252c0c763a28e0938",
+      "historical_blob": "100644:6da978d1b90b9303bc86d5f857c43669acedc049",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/fence/TOBarrierEnergy01.cpp": {
+      "replay_blob": "100644:258af28434ee07779e524e4cf095d94de53d2957",
+      "historical_blob": "100644:e43815295039c21a40837e163721f72a3130ea6e",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/fence/TOFenceBase.cpp": {
+      "replay_blob": "100644:c786979a708c32e3fa56e1fc63cb0c290c6c9e0d",
+      "historical_blob": "100644:482ffbc787e80db2141fc6b36df562f312f4b4a1",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/key/TODummyKeyCave01.cpp": {
+      "replay_blob": "100644:35d4a3089d4f81f41c48ba583e56b7fccf52dea2",
+      "historical_blob": "100644:9d57aea159c783c4182047ecbcd36f8a27dd2cc9",
+      "changes": [
+        "same existing shared includes"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/key/TOKeyAncient01.cpp": {
+      "replay_blob": "100644:be5ad55fdfe831f6a74e7c2fb34332f820834b05",
+      "historical_blob": "100644:3cd16fd00a465db6abcf45b5c35cfcbe19f1122c",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/key/TOKeyAncient02.cpp": {
+      "replay_blob": "100644:76d4f68dc85e1e9c5418c2f4c9bcc32877066d8c",
+      "historical_blob": "100644:68695774fb4c052637aeeb87b9f40cddda85d3b0",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/key/TOKeyGenericSw.cpp": {
+      "replay_blob": "100644:d3cc53cc462f2cd19fbcc942cc318b2ead1256e0",
+      "historical_blob": "100644:8c3cc8bb7dcd0164c0be70698268cc110962b873",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/lobby/TObjButterflyLobby_80350958.cpp": {
+      "replay_blob": "100644:14c1281e18ee986d8adfee1e9c4ed846189d1be9",
+      "historical_blob": "100644:53efe94b1722a5e9a07d09718e106d5ec65af1d2",
+      "changes": [
+        "same existing shared includes",
+        "same rotation and first member address",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/lobby/TObjWeddingLobby.cpp": {
+      "replay_blob": "100644:30ac81bcb57a59f243692aa754bd331cd5ce886f",
+      "historical_blob": "100644:05c10c7e9ab2ab08cfe35172d4335da84cb75851",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/mine/TOCapsuleMachine01.cpp": {
+      "replay_blob": "100644:8172cdb269aa24aa1ee0b90af4d4f587de3d344d",
+      "historical_blob": "100644:b8db910b7d0d5f705cf8d031fd258fdb6d75e30f",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/mine/TOComputerMachine01.cpp": {
+      "replay_blob": "100644:8c85c503508a30a8a4654ea8d1232abea9879522",
+      "historical_blob": "100644:c96168eea9da946c18a3861222ab17f6d8ad0a29",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/mine/TOHangerMachine01.cpp": {
+      "replay_blob": "100644:9f50a1a133603f65225b63c67d45db9899fc8989",
+      "historical_blob": "100644:7e3de7dafd4ade9320fb09b7233fc73937a36935",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/mine/TOLightMachine01.cpp": {
+      "replay_blob": "100644:52b9e9f9ce01ea5614a3306ac982357ceff62a31",
+      "historical_blob": "100644:09d44d9daa0c6e2b700154c8409d5d3fb1e68ef7",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/mine/TOMonitorMachine01.cpp": {
+      "replay_blob": "100644:2e8b94044e082ed4d80f3023f6f1d7c92a6b701a",
+      "historical_blob": "100644:950ce979769dd196b4aa0b7ed1ab8b19a7f04f38",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/mine/TOSparkMachine01.cpp": {
+      "replay_blob": "100644:83499c2fd137d6a11828fb67fc9f819999b981d7",
+      "historical_blob": "100644:0ac89a5d6fd7482fd1d156cfa4aec863f55b4360",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/ruins/TOCapsuleAncient01.cpp": {
+      "replay_blob": "100644:3e3e1e7604765740f195f78b58841f52f34f684b",
+      "historical_blob": "100644:6dcc9139c6e458634657295f20a6049e78af4639",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/ruins/TOMonumentAncient02.cpp": {
+      "replay_blob": "100644:c7f0300f8eaceaa4c9be05dcd6804aaec98c6e8f",
+      "historical_blob": "100644:ddcfc8734eb5261ce3fec18a9c75951ca7c013a8",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/switch/TOSensorAncient01.cpp": {
+      "replay_blob": "100644:467dfc3dca9f8494396c44663201cea6aa6ec074",
+      "historical_blob": "100644:5af7e10d2f898a1f624dc531944ea4f70ad306b5",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/trap/TOMineIcon01.cpp": {
+      "replay_blob": "100644:11d87d058e2ca7e7f5b1bd71cd73c1a7395f0d92",
+      "historical_blob": "100644:a35abca6809b08466a68da2ecd6e26fdd15c9eed",
+      "changes": [
+        "same existing shared includes",
+        "same typed actor receiver"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/trap/TOMineIcon02.cpp": {
+      "replay_blob": "100644:55dfc2d4575fb5819f60f464df9fac7f3854af96",
+      "historical_blob": "100644:b558a6ba4bffbe635256179d1dc80295f693784c",
+      "changes": [
+        "same existing shared includes",
+        "same typed actor receiver"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/trap/TOMineIcon03.cpp": {
+      "replay_blob": "100644:53b72fe985cf57c9da95152e4661786168fc0345",
+      "historical_blob": "100644:3ceea3f185c564f93c5715176c2dd8c9dd2f5e06",
+      "changes": [
+        "same existing shared includes",
+        "same typed actor receiver"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/trap/TOMineIcon04.cpp": {
+      "replay_blob": "100644:d0ebf6233a5edee0905bd46ce9cd7dc696c7760f",
+      "historical_blob": "100644:a235227cde79db2fb2283fc181749478cc00fd5c",
+      "changes": [
+        "same existing shared includes",
+        "same typed actor receiver"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/trap/TOTrap.cpp": {
+      "replay_blob": "100644:1e495f59ca70c0144581f53766bba755965d7777",
+      "historical_blob": "100644:9d1d0c352c6f39d74224a1336034f816f629115a",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/trap/TOTrapAncient01.cpp": {
+      "replay_blob": "100644:a18a4d59fe8a97e279855bd177bac004222babd9",
+      "historical_blob": "100644:7dcc4fb7bde4442bab27c54e54e0fb3a6827437a",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast",
+        "same typed actor receiver"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/trap/TOTrapAncient02.cpp": {
+      "replay_blob": "100644:5f58997addf4d925ab65fef39a5ef9b4f14fd2af",
+      "historical_blob": "100644:86b2e7c481a5760e9655ac7865411d96fa404710",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast",
+        "same typed actor receiver"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/object/warp/TObjWarpBossMulti.cpp": {
+      "replay_blob": "100644:038fc070ab59fa7fd48a8295479e659b62a2d036",
+      "historical_blob": "100644:61b64039602dfb5880991fab83e6382416ec3f32",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/player/PhotonBlastResults.cpp": {
+      "replay_blob": "100644:5ca7fe3609c960aed8791e570325ecb157e9493f",
+      "historical_blob": "100644:15bcabeb1d9dafc708e5f978a4a7040f9dc80805",
+      "changes": [
+        "same existing shared includes"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/quest/TOQuestTalkBase.cpp": {
+      "replay_blob": "100644:cca7ee96525ddce43708360fda65d422df96d1de",
+      "historical_blob": "100644:79145118484ab01a63c495d5f1fe36f474f5da59",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/system/scene/TSceneSora.cpp": {
+      "replay_blob": "100644:442547626e9e5db720f9a399e7f4e5cd16c8e78c",
+      "historical_blob": "100644:0599384da1ab0cc4034ece7d5a67a46fa96bcd1b",
+      "changes": [
+        "same existing shared includes"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp": {
+      "replay_blob": "100644:6ca6335b9b622661939f62c4e2f4a08d7ad6ac9c",
+      "historical_blob": "100644:0e0bc3cb3276671d2260ba8981645ef249e58f03",
+      "changes": [
+        "same existing shared includes",
+        "verified existing name"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp": {
+      "replay_blob": "100644:ebd28f696c8ffbf4c61c0e03f4ad03f8cb044dc6",
+      "historical_blob": "100644:00728a1510bb76aed5f035fce2f89c8ed0331b5f",
+      "changes": [
+        "same existing shared includes",
+        "verified existing name"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/ui/city/TMedicalCenterSequence.cpp": {
+      "replay_blob": "100644:216651d95018f97b02b309be19475e891a52191a",
+      "historical_blob": "100644:afab64b16e6283524b0ff5a0eed8c4d71b6b4d15",
+      "changes": [
+        "direct include already provided by matching compile dependencies"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": [
+        "pso/player/PlayerStats.h"
+      ]
+    },
+    "src/pso/ui/frontend/TAdMultiConfirmGC_802E03D0.cpp": {
+      "replay_blob": "100644:473cc76f26e1534763119fae511457251acd0c9a",
+      "historical_blob": "100644:e80a59454e723ae97fa1216eac3c4d8e50600596",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/ui/frontend/TAdPlyStatusGC_8033FD48.cpp": {
+      "replay_blob": "100644:a13feb83440be2932b430f8022855007c1bf6346",
+      "historical_blob": "100644:c673cef48f3f6f78afba2eb8f9c5d9cdce392b5c",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/unk/TUnk_8048E1A4.cpp": {
+      "replay_blob": "100644:295da73b4a8be12c80e6d6067fc04dcd5c310154",
+      "historical_blob": "100644:9092f68b68ab78dc21d374f1de8ada02ddb442f6",
+      "changes": [
+        "same actor action mask",
+        "same existing shared includes"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    },
+    "src/pso/unk/text_8004D9A8.cpp": {
+      "replay_blob": "100644:e316c541ceaefb6380581b0f7ed23b7d9f66ea6e",
+      "historical_blob": "100644:3b87de4ec8ec52594ce8119d606ab4ab14ec8c6d",
+      "changes": [
+        "same existing shared includes",
+        "same texture-list pointer cast"
+      ],
+      "already_in_compiled_dependency_set": [],
+      "direct_include_retained": []
+    }
+  },
+  "declaration_equivalence": {
+    "config/GPOE8P/psov3/symbols.txt": {
+      "replay_blob": "100644:441c2794d8339eff54a97103e7fbcbeb7de687f5",
+      "historical_blob": "100644:7c124812996e0f2b51797003c083cc1bf8401e53",
+      "changes": [
+        "same symbol addresses, section, type and size with verified existing labels"
+      ]
+    },
+    "config/GPOE8P/psov3/config.yml": {
+      "replay_blob": "100644:f0e9d93d39eeff8de52b0f782abfb20b882a408b",
+      "historical_blob": "100644:b2545a5977fc6e592d98c87e7d2a364665d5e67a",
+      "changes": [
+        "same symbol retention list after the verified names and existing list order"
+      ]
+    },
+    "include/pso/enemy/TObjEnemy.h": {
+      "replay_blob": "100644:195b4a7b39da48eeb7195210a60adc9aa5a7f1dd",
+      "historical_blob": "100644:6fc1b286ac5ac140b0124e72829a39d917b43711",
+      "changes": [
+        "same nonvirtual declarations with the retained names"
+      ]
+    },
+    "include/pso/effect/PositionSoundEffects.h": {
+      "replay_blob": "100644:b557a0bc91b210ca36c0abafc117e6bd7b5870d5",
+      "historical_blob": "100644:354853886b9134574fab984f97c83651a80bcdfe",
+      "changes": [
+        "same C declarations and parameter types with the retained names"
+      ]
+    },
+    "include/pso/object/base/TObjChara.h": {
+      "replay_blob": "100644:044054834f85e88b37bf90396a57838d4abaec2d",
+      "historical_blob": "100644:366f51d2b23ab8d722d5869c3f4183a75ab8bd05",
+      "changes": [
+        "all previous layout checks plus the resistance-parameter offset on the current shared class"
+      ]
+    },
+    "include/pso/ui/frontend/TAdChrSelBSlotGC.h": {
+      "replay_blob": "100644:37509ad5c6cb798b7f27d761453d371d09178794",
+      "historical_blob": "100644:403e46db1d79462b4ce89475f3f1cb07914bc076",
+      "changes": [
+        "same forward declarations in the existing order"
+      ]
+    },
+    "include/pso/unk/TLobby.h": {
+      "replay_blob": "100644:890d4188bf04ab997c009111e75ed0fa0df38e34",
+      "historical_blob": "100644:c28d98363763aa5b2fad1140ae7fd2c7766e802a",
+      "changes": [
+        "shared forward declarations and removal of obsolete title-scene declarations on TLobby"
+      ]
+    },
+    "include/pso/system/save/TCheckMemoryCard.h": {
+      "replay_blob": "100644:bcf773c0337586795717f2ef1dbf0d17bd1632ab",
+      "historical_blob": "100644:74fe47dcb2dca63a8203c5b1ecb058de3c0032e2",
+      "changes": [
+        "the same verified offset checks and declarations are already present"
+      ]
+    },
+    "include/pso/unk/TUnk_804CCB28.h": {
+      "replay_blob": "100644:a61ee54b7f58e94f77a38a8310cdb8f30593bc49",
+      "historical_blob": "100644:7176eb202f2818c81dc79a30ddf93905824c4fb8",
+      "changes": [
+        "the same verified offset checks and declarations are already present"
+      ]
+    }
+  },
+  "equivalence_criterion": "Identical source tokens after the stated name, pointer-expression or shared include normalization. Newly redundant explicit historical includes must occur in the current matching compile dependency set. Linked symbol metadata and compile-time assertions are compared separately.",
+  "compile_dependencies_sha256": "26bcbe5cfef27c76e3f369841feba8b7adfa5b90e220a326eb7f49007bcd5a3d",
+  "upstream_names_retained": [
+    "get_record",
+    "get_title_texture_list",
+    "start_offline_seq",
+    "init_slot_entry",
+    "refresh_lobby_state",
+    "link_chain_nodes",
+    "reset_photon_effect",
+    "copy"
+  ],
+  "fork_workspace_ref": "great-merge/consolidated/after-upstream-351-fork-workspace",
+  "fork_tool_overlay_paths": 130,
+  "fork_overlay_sha256": "d9ea5c6f60a8a1c752d9050b1549cb61c68c67da3cd7bedcb567167d69209014",
+  "retained_symbols": 27033,
+  "fork_validation": {
+    "build_retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "check_sha256": "294d5d4e65e3db3407ceff097811cede09728d2c21c1257d66d17135be0bdc4b",
+    "baseline": "0e202610a693f30f95c7643d0522523556582ab1",
+    "function_labels": []
+  },
+  "fork_workspace_tests": {
+    "tool": {
+      "count": 294,
+      "sha256": "a3336ade2d2462b813cfcd7df9ec79698b28df9b1fd75f9500152a645e95f5e1"
+    },
+    "fork": {
+      "count": 11,
+      "sha256": "304aa6cf6f6594ef119c178c4731b3166cda18525f4061e268fce5d57e39aaa0"
+    },
+    "host": {
+      "paths": [
+        "./vector_math_fallbacks",
+        "./item_factory_callbacks",
+        "./loader_transfer",
+        "./ginja_parameter_callbacks",
+        "./exi_ethernet_fallbacks"
+      ],
+      "sha256": "85e85a6957ceac43ffc42171a626de879b3565ef2bedb84b1a71cfb8c0928eda"
+    }
+  },
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "existing_full_cutover_preview": "e4135b0c555e633bcd53f555eca1df6059afaf53",
+  "public_refs_changed": false
+}

@@ -1,0 +1,973 @@
+{
+  "source": "400f9f254fe4b5e4641819ee5585e5188c35b113",
+  "previous_source": "cda3481cb00e4dad6ad9bbcf00c40d7836223291",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "include/pso/effect/particle/ParticleParam.h",
+    "include/pso/player/TObjPlayer_803E112C.h",
+    "include/pso/ui/frontend/TAdChrSelPlyPlateGC.h",
+    "include/pso/ui/frontend/TAdTimeSetGC.h",
+    "include/pso/ui/window/TWindowHelpItem.h",
+    "include/pso/unk/TUnk_8048E728.h",
+    "src/pso/ui/font/TFontSmallLobby_801C013C.cpp",
+    "src/pso/ui/frontend/TAdTimeSetGC.cpp"
+  ],
+  "combined_paths_from_upstream": 1316,
+  "validation": {
+    "source": {
+      "baseline": "cda3481cb00e4dad6ad9bbcf00c40d7836223291",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "b7ef59ce5f05d52a0b99f5c11907f7321b16c8c6c24753265640cf14dc5d402b",
+      "report_sha256": "e5f592259f2f8ae0344642692fadde75f8a6ddf40eab98180fe22afcd38a691b"
+    },
+    "layer": {
+      "baseline": "400f9f254fe4b5e4641819ee5585e5188c35b113",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "0d0505ff2d6750e611c1caeddd6c815b7e23c1307e306f42ee8cc59bb78deb14",
+      "report_sha256": "e5f592259f2f8ae0344642692fadde75f8a6ddf40eab98180fe22afcd38a691b"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "1b490ae60b5b1773a5880574c890eeb86732f5a59684f5a5c60543678c19a4b0"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "a7578f51f9a894d59b38c3a2fd78f37a50e22be36b639de683d744f84862be17"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "ad1227e7d6dde3aea88d51f241949b30f3d1fe42ec4c3abf078bd6309ee9bbdb"
+    }
+  },
+  "exact_providers_at_historical_addresses": {
+    "TAdTimeSetGC": [
+      {
+        "historical": "poll_load_status__12TAdTimeSetGCFv",
+        "current": "poll_load_status__12TAdTimeSetGCFv",
+        "address": "0x802E1638",
+        "size": 560,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "check_capacity__12TAdTimeSetGCFv",
+        "current": "check_capacity__12TAdTimeSetGCFv",
+        "address": "0x802E1CEC",
+        "size": 112,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "count_selected_flags__12TAdTimeSetGCFv",
+        "current": "count_selected_flags__12TAdTimeSetGCFv",
+        "address": "0x802E1D5C",
+        "size": 108,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "change_state__12TAdTimeSetGCFl",
+        "current": "change_state__12TAdTimeSetGCFl",
+        "address": "0x802E1DF8",
+        "size": 132,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "sub_802E1F14__12TAdTimeSetGCFv",
+        "current": "sub_802E1F14__12TAdTimeSetGCFv",
+        "address": "0x802E1F14",
+        "size": 40,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "finish_settings__12TAdTimeSetGCFv",
+        "current": "update_state__12TAdTimeSetGCFv",
+        "address": "0x802E1F3C",
+        "size": 80,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "sub_802E1F8C__12TAdTimeSetGCFv",
+        "current": "sub_802E1F8C__12TAdTimeSetGCFv",
+        "address": "0x802E1F8C",
+        "size": 32,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "sub_802E1FAC__12TAdTimeSetGCFv",
+        "current": "sub_802E1FAC__12TAdTimeSetGCFv",
+        "address": "0x802E1FAC",
+        "size": 144,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "show_confirm_dialog__12TAdTimeSetGCFv",
+        "current": "show_confirm_dialog__12TAdTimeSetGCFv",
+        "address": "0x802E203C",
+        "size": 284,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "sub_802E2158__12TAdTimeSetGCFv",
+        "current": "sub_802E2158__12TAdTimeSetGCFv",
+        "address": "0x802E2158",
+        "size": 4,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "create_result_bg__12TAdTimeSetGCFv",
+        "current": "create_result_bg__12TAdTimeSetGCFv",
+        "address": "0x802E215C",
+        "size": 80,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "build_selection_summary__12TAdTimeSetGCFv",
+        "current": "build_selection_summary__12TAdTimeSetGCFv",
+        "address": "0x802E21AC",
+        "size": 248,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "sub_802E22A4__12TAdTimeSetGCFv",
+        "current": "sub_802E22A4__12TAdTimeSetGCFv",
+        "address": "0x802E22A4",
+        "size": 208,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "init_menu_window__12TAdTimeSetGCFv",
+        "current": "init_menu_window__12TAdTimeSetGCFv",
+        "address": "0x802E2374",
+        "size": 116,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "sub_802E23E8__12TAdTimeSetGCFv",
+        "current": "sub_802E23E8__12TAdTimeSetGCFv",
+        "address": "0x802E23E8",
+        "size": 104,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "sub_802E2450__12TAdTimeSetGCFv",
+        "current": "sub_802E2450__12TAdTimeSetGCFv",
+        "address": "0x802E2450",
+        "size": 104,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "sub_802E24B8__12TAdTimeSetGCFv",
+        "current": "sub_802E24B8__12TAdTimeSetGCFv",
+        "address": "0x802E24B8",
+        "size": 104,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "sub_802E2520__12TAdTimeSetGCFv",
+        "current": "sub_802E2520__12TAdTimeSetGCFv",
+        "address": "0x802E2520",
+        "size": 104,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "sub_802E2588__12TAdTimeSetGCFv",
+        "current": "sub_802E2588__12TAdTimeSetGCFv",
+        "address": "0x802E2588",
+        "size": 136,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "sub_802E2610__12TAdTimeSetGCFv",
+        "current": "sub_802E2610__12TAdTimeSetGCFv",
+        "address": "0x802E2610",
+        "size": 96,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "update_close_on_load__12TAdTimeSetGCFv",
+        "current": "update_close_on_load__12TAdTimeSetGCFv",
+        "address": "0x802E2670",
+        "size": 104,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "try_setup__12TAdTimeSetGCFv",
+        "current": "try_setup__12TAdTimeSetGCFv",
+        "address": "0x802E26D8",
+        "size": 80,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "start_settings__12TAdTimeSetGCFv",
+        "current": "sub_802E2728__12TAdTimeSetGCFv",
+        "address": "0x802E2728",
+        "size": 104,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "update_close_timer__12TAdTimeSetGCFv",
+        "current": "update_close_timer__12TAdTimeSetGCFv",
+        "address": "0x802E2790",
+        "size": 184,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "sub_802E2848__12TAdTimeSetGCFv",
+        "current": "sub_802E2848__12TAdTimeSetGCFv",
+        "address": "0x802E2848",
+        "size": 84,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "sub_802E289C__12TAdTimeSetGCFv",
+        "current": "sub_802E289C__12TAdTimeSetGCFv",
+        "address": "0x802E289C",
+        "size": 184,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "init_screen__12TAdTimeSetGCFv",
+        "current": "init_screen__12TAdTimeSetGCFv",
+        "address": "0x802E2954",
+        "size": 132,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "update_char_timer__12TAdTimeSetGCFv",
+        "current": "update_char_timer__12TAdTimeSetGCFv",
+        "address": "0x802E29D8",
+        "size": 164,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "sub_802E2A7C__12TAdTimeSetGCFv",
+        "current": "arm_guildcard_delete_timer__12TAdTimeSetGCFv",
+        "address": "0x802E2A7C",
+        "size": 12,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "advance_when_load_done__12TAdTimeSetGCFv",
+        "current": "advance_when_load_done__12TAdTimeSetGCFv",
+        "address": "0x802E2A88",
+        "size": 76,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "create_backgrounds__12TAdTimeSetGCFv",
+        "current": "sub_802E2AD4__12TAdTimeSetGCFv",
+        "address": "0x802E2AD4",
+        "size": 80,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "update_timer__12TAdTimeSetGCFv",
+        "current": "update_timer__12TAdTimeSetGCFv",
+        "address": "0x802E2B24",
+        "size": 164,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "sub_802E2BC8__12TAdTimeSetGCFv",
+        "current": "arm_char_delete_timer__12TAdTimeSetGCFv",
+        "address": "0x802E2BC8",
+        "size": 12,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "sub_802E2BD4__12TAdTimeSetGCFv",
+        "current": "sub_802E2BD4__12TAdTimeSetGCFv",
+        "address": "0x802E2BD4",
+        "size": 76,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "close_scene__12TAdTimeSetGCFv",
+        "current": "close_scene__12TAdTimeSetGCFv",
+        "address": "0x802E2C20",
+        "size": 80,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "update_load_countdown__12TAdTimeSetGCFv",
+        "current": "update_load_countdown__12TAdTimeSetGCFv",
+        "address": "0x802E2C70",
+        "size": 204,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "sub_802E2D3C__12TAdTimeSetGCFv",
+        "current": "arm_load_countdown__12TAdTimeSetGCFv",
+        "address": "0x802E2D3C",
+        "size": 12,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "update_load_state__12TAdTimeSetGCFv",
+        "current": "update_load_state__12TAdTimeSetGCFv",
+        "address": "0x802E2D48",
+        "size": 96,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "close_and_next_cancel__12TAdTimeSetGCFv",
+        "current": "close_and_next_cancel__12TAdTimeSetGCFv",
+        "address": "0x802E2DA8",
+        "size": 48,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "handle_confirm_menu__12TAdTimeSetGCFv",
+        "current": "handle_confirm_menu__12TAdTimeSetGCFv",
+        "address": "0x802E2DD8",
+        "size": 136,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "open_char_select__12TAdTimeSetGCFv",
+        "current": "open_char_select__12TAdTimeSetGCFv",
+        "address": "0x802E2E60",
+        "size": 120,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "reset_on_load_complete__12TAdTimeSetGCFv",
+        "current": "reset_on_load_complete__12TAdTimeSetGCFv",
+        "address": "0x802E2ED8",
+        "size": 72,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "sub_802E2F20__12TAdTimeSetGCFv",
+        "current": "sub_802E2F20__12TAdTimeSetGCFv",
+        "address": "0x802E2F20",
+        "size": 4,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "ensure_player_loaded__12TAdTimeSetGCFv",
+        "current": "ensure_player_loaded__12TAdTimeSetGCFv",
+        "address": "0x802E2F24",
+        "size": 68,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "sub_802E2F68__12TAdTimeSetGCFv",
+        "current": "sub_802E2F68__12TAdTimeSetGCFv",
+        "address": "0x802E2F68",
+        "size": 32,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "poll_loaded_player__12TAdTimeSetGCFv",
+        "current": "sub_802E2F88__12TAdTimeSetGCFv",
+        "address": "0x802E2F88",
+        "size": 100,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "sub_802E2FEC__12TAdTimeSetGCFv",
+        "current": "sub_802E2FEC__12TAdTimeSetGCFv",
+        "address": "0x802E2FEC",
+        "size": 4,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "ensure_system_file_loaded__12TAdTimeSetGCFv",
+        "current": "ensure_system_file_loaded__12TAdTimeSetGCFv",
+        "address": "0x802E2FF0",
+        "size": 72,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "sub_802E3038__12TAdTimeSetGCFv",
+        "current": "sub_802E3038__12TAdTimeSetGCFv",
+        "address": "0x802E3038",
+        "size": 32,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "report_card_status__12TAdTimeSetGCFv",
+        "current": "report_card_status__12TAdTimeSetGCFv",
+        "address": "0x802E3058",
+        "size": 568,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "rebuild_and_maybe_close__12TAdTimeSetGCFv",
+        "current": "rebuild_and_maybe_close__12TAdTimeSetGCFv",
+        "address": "0x802E3290",
+        "size": 88,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "run_task__12TAdTimeSetGCFv",
+        "current": "run_task__12TAdTimeSetGCFv",
+        "address": "0x802E32E8",
+        "size": 180,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      },
+      {
+        "historical": "__dt__12TAdTimeSetGCFv",
+        "current": "__dt__12TAdTimeSetGCFv",
+        "address": "0x802E339C",
+        "size": 184,
+        "provider": "psov3/pso/ui/frontend/TAdTimeSetGC"
+      }
+    ],
+    "TAdChrSelPlyPlateGC": [
+      {
+        "historical": "draw_selection_cursors__19TAdChrSelPlyPlateGCFv",
+        "current": "draw_selection_cursors__19TAdChrSelPlyPlateGCFv",
+        "address": "0x802C5314",
+        "size": 432,
+        "provider": "psov3/pso/ui/frontend/TAdChrSelPlyPlateGC"
+      },
+      {
+        "historical": "render__19TAdChrSelPlyPlateGCFv",
+        "current": "render__19TAdChrSelPlyPlateGCFv",
+        "address": "0x802C54C4",
+        "size": 108,
+        "provider": "psov3/pso/ui/frontend/TAdChrSelPlyPlateGC"
+      },
+      {
+        "historical": "find_first_open_cell__19TAdChrSelPlyPlateGCFPUl",
+        "current": "find_first_open_cell__19TAdChrSelPlyPlateGCFPUl",
+        "address": "0x802C5C28",
+        "size": 92,
+        "provider": "psov3/pso/ui/frontend/TAdChrSelPlyPlateGC"
+      },
+      {
+        "historical": "move_cursor__19TAdChrSelPlyPlateGCFlllll",
+        "current": "move_cursor__19TAdChrSelPlyPlateGCFlllll",
+        "address": "0x802C5C84",
+        "size": 664,
+        "provider": "psov3/pso/ui/frontend/TAdChrSelPlyPlateGC"
+      },
+      {
+        "historical": "update_option_cursor__19TAdChrSelPlyPlateGCFv",
+        "current": "update_option_cursor__19TAdChrSelPlyPlateGCFv",
+        "address": "0x802C6008",
+        "size": 476,
+        "provider": "psov3/pso/ui/frontend/TAdChrSelPlyPlateGC"
+      },
+      {
+        "historical": "handle_dpad_input__19TAdChrSelPlyPlateGCFv",
+        "current": "handle_dpad_input__19TAdChrSelPlyPlateGCFv",
+        "address": "0x802C61E4",
+        "size": 564,
+        "provider": "psov3/pso/ui/frontend/TAdChrSelPlyPlateGC"
+      },
+      {
+        "historical": "find_active_slot__19TAdChrSelPlyPlateGCFv",
+        "current": "find_active_slot__19TAdChrSelPlyPlateGCFv",
+        "address": "0x802C6A68",
+        "size": 96,
+        "provider": "psov3/pso/ui/frontend/TAdChrSelPlyPlateGC"
+      },
+      {
+        "historical": "run_task__19TAdChrSelPlyPlateGCFv",
+        "current": "run_task__19TAdChrSelPlyPlateGCFv",
+        "address": "0x802C6AC8",
+        "size": 668,
+        "provider": "psov3/pso/ui/frontend/TAdChrSelPlyPlateGC"
+      },
+      {
+        "historical": "__dt__19TAdChrSelPlyPlateGCFv",
+        "current": "__dt__19TAdChrSelPlyPlateGCFv",
+        "address": "0x802C6D64",
+        "size": 112,
+        "provider": "psov3/pso/ui/frontend/TAdChrSelPlyPlateGC"
+      },
+      {
+        "historical": "__ct__19TAdChrSelPlyPlateGCFP7TObjectPC24TAdChrSelPlyPlateGCPoint",
+        "current": "__ct__19TAdChrSelPlyPlateGCFP7TObjectP5vec2f",
+        "address": "0x802C6DD4",
+        "size": 332,
+        "provider": "psov3/pso/ui/frontend/TAdChrSelPlyPlateGC"
+      }
+    ],
+    "TWindowHelpItem": [
+      {
+        "historical": "set_help_text__15TWindowHelpItemFll",
+        "current": "set_help_text__15TWindowHelpItemFll",
+        "address": "0x80243408",
+        "size": 92,
+        "provider": "psov3/pso/ui/window/TWindowActionPalette"
+      },
+      {
+        "historical": "set_flag0_bit2__15TWindowHelpItemFv",
+        "current": "set_flag0_bit2__15TWindowHelpItemFv",
+        "address": "0x8024421C",
+        "size": 16,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem"
+      },
+      {
+        "historical": "is_item_already_equipped__15TWindowHelpItemFv",
+        "current": "is_item_already_equipped__15TWindowHelpItemFv",
+        "address": "0x802530D0",
+        "size": 132,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_802530D0"
+      },
+      {
+        "historical": "format_description_with_price__15TWindowHelpItemFv",
+        "current": "format_description_with_price__15TWindowHelpItemFv",
+        "address": "0x80253154",
+        "size": 76,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_80253154"
+      },
+      {
+        "historical": "init_text__15TWindowHelpItemFPv",
+        "current": "init_text__15TWindowHelpItemFPv",
+        "address": "0x802531A4",
+        "size": 136,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_802531A0"
+      },
+      {
+        "historical": "update_displayed_item__15TWindowHelpItemFv",
+        "current": "update_displayed_item__15TWindowHelpItemFv",
+        "address": "0x8025322C",
+        "size": 60,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_802531A0"
+      },
+      {
+        "historical": "update_tech_disk_details__15TWindowHelpItemFv",
+        "current": "update_tech_disk_details__15TWindowHelpItemFv",
+        "address": "0x802532E8",
+        "size": 456,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_802531A0"
+      },
+      {
+        "historical": "sub_802534B0__15TWindowHelpItemFv",
+        "current": "sub_802534B0__15TWindowHelpItemFv",
+        "address": "0x802534B0",
+        "size": 180,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_802531A0"
+      },
+      {
+        "historical": "refresh_copied_items__15TWindowHelpItemFv",
+        "current": "refresh_copied_items__15TWindowHelpItemFv",
+        "address": "0x80253630",
+        "size": 104,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_80253630"
+      },
+      {
+        "historical": "update_stat_disp__15TWindowHelpItemFv",
+        "current": "update_stat_disp__15TWindowHelpItemFv",
+        "address": "0x802540AC",
+        "size": 308,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_802540AC"
+      },
+      {
+        "historical": "update_resistance_rows__15TWindowHelpItemFPv",
+        "current": "update_resistance_rows__15TWindowHelpItemFPv",
+        "address": "0x802541E0",
+        "size": 540,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_802540AC"
+      },
+      {
+        "historical": "set_percentage_rows__15TWindowHelpItemFPvPvi",
+        "current": "set_percentage_rows__15TWindowHelpItemFPvPvi",
+        "address": "0x802544D8",
+        "size": 436,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_802540AC"
+      },
+      {
+        "historical": "update_stat_disp2__15TWindowHelpItemFPv",
+        "current": "update_stat_disp2__15TWindowHelpItemFPv",
+        "address": "0x8025468C",
+        "size": 308,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_802540AC"
+      },
+      {
+        "historical": "update_stat_comparison__15TWindowHelpItemFv",
+        "current": "update_stat_comparison__15TWindowHelpItemFv",
+        "address": "0x802549B0",
+        "size": 640,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_802540AC"
+      },
+      {
+        "historical": "update_level_requirement__15TWindowHelpItemFPv",
+        "current": "update_level_requirement__15TWindowHelpItemFPv",
+        "address": "0x80254C30",
+        "size": 180,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_802540AC"
+      },
+      {
+        "historical": "update_requirements__15TWindowHelpItemFv",
+        "current": "update_requirements__15TWindowHelpItemFv",
+        "address": "0x80254CE4",
+        "size": 264,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_802540AC"
+      },
+      {
+        "historical": "init_help_texts__15TWindowHelpItemFv",
+        "current": "init_help_texts__15TWindowHelpItemFv",
+        "address": "0x80254DEC",
+        "size": 300,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_802540AC"
+      },
+      {
+        "historical": "invoke_callback_pmf__15TWindowHelpItemFv",
+        "current": "invoke_callback_pmf__15TWindowHelpItemFv",
+        "address": "0x802553F8",
+        "size": 72,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_802540AC"
+      },
+      {
+        "historical": "dispatch_item_help__15TWindowHelpItemFv",
+        "current": "dispatch_item_help__15TWindowHelpItemFv",
+        "address": "0x80255440",
+        "size": 1040,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_802540AC"
+      },
+      {
+        "historical": "show_item_by_id__15TWindowHelpItemFPvi",
+        "current": "show_item_by_id__15TWindowHelpItemFPvi",
+        "address": "0x802558D0",
+        "size": 128,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_802540AC"
+      },
+      {
+        "historical": "set_displayed_item_colored__15TWindowHelpItemFUl",
+        "current": "set_displayed_item_colored__15TWindowHelpItemFUl",
+        "address": "0x80255950",
+        "size": 48,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_802540AC"
+      },
+      {
+        "historical": "set_displayed_item_data__15TWindowHelpItemFPvPv",
+        "current": "set_displayed_item_data__15TWindowHelpItemFPvPv",
+        "address": "0x80255980",
+        "size": 60,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_802540AC"
+      },
+      {
+        "historical": "set_items_and_refresh__15TWindowHelpItemFPvPv",
+        "current": "set_items_and_refresh__15TWindowHelpItemFPvPv",
+        "address": "0x802559BC",
+        "size": 60,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_802540AC"
+      },
+      {
+        "historical": "update_cursor_selection__15TWindowHelpItemFv",
+        "current": "update_cursor_selection__15TWindowHelpItemFv",
+        "address": "0x80255AB4",
+        "size": 108,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_80255AB4"
+      },
+      {
+        "historical": "render__15TWindowHelpItemFv",
+        "current": "render__15TWindowHelpItemFv",
+        "address": "0x80255B20",
+        "size": 116,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_80255AB4"
+      },
+      {
+        "historical": "run_task__15TWindowHelpItemFv",
+        "current": "run_task__15TWindowHelpItemFv",
+        "address": "0x80255B94",
+        "size": 208,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_80255AB4"
+      },
+      {
+        "historical": "__dt__15TWindowHelpItemFv",
+        "current": "__dt__15TWindowHelpItemFv",
+        "address": "0x80255C64",
+        "size": 104,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_80255AB4"
+      },
+      {
+        "historical": "__ct__15TWindowHelpItemFPvUs",
+        "current": "__ct__15TWindowHelpItemFPvUs",
+        "address": "0x80255CCC",
+        "size": 252,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_80255AB4"
+      },
+      {
+        "historical": "set_flag0_bit20__15TWindowHelpItemFv",
+        "current": "set_flag0_bit20__15TWindowHelpItemFv",
+        "address": "0x80255DE4",
+        "size": 16,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_80255AB4"
+      },
+      {
+        "historical": "set_flag60_bit4__15TWindowHelpItemFv",
+        "current": "set_flag60_bit4__15TWindowHelpItemFv",
+        "address": "0x80255E14",
+        "size": 16,
+        "provider": "psov3/pso/ui/window/TWindowSubMag_80255E14"
+      },
+      {
+        "historical": "sub_80255E24__15TWindowHelpItemFv",
+        "current": "sub_80255E24__15TWindowHelpItemFv",
+        "address": "0x80255E24",
+        "size": 24,
+        "provider": "psov3/pso/ui/window/TWindowSubMag_80255E14"
+      },
+      {
+        "historical": "update_visible_flags__15TWindowHelpItemFv",
+        "current": "update_visible_flags__15TWindowHelpItemFv",
+        "address": "0x8025A12C",
+        "size": 104,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_8025A12C"
+      },
+      {
+        "historical": "draw_number_value__15TWindowHelpItemFPvPflll",
+        "current": "draw_number_value__15TWindowHelpItemFPvPflll",
+        "address": "0x8025A194",
+        "size": 164,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_8025A12C"
+      },
+      {
+        "historical": "set_flag_0x10__15TWindowHelpItemFPUsl",
+        "current": "set_flag_0x10__15TWindowHelpItemFPUsl",
+        "address": "0x8025A238",
+        "size": 40,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_8025A12C"
+      },
+      {
+        "historical": "set_flag8_and_field20__15TWindowHelpItemFl",
+        "current": "set_flag8_and_field20__15TWindowHelpItemFl",
+        "address": "0x8025A260",
+        "size": 20,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_8025A12C"
+      },
+      {
+        "historical": "set_compare_color__15TWindowHelpItemFl",
+        "current": "set_compare_color__15TWindowHelpItemFl",
+        "address": "0x8025A274",
+        "size": 96,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_8025A12C"
+      },
+      {
+        "historical": "set_flag4_and_field1c__15TWindowHelpItemFl",
+        "current": "set_flag4_and_field1c__15TWindowHelpItemFl",
+        "address": "0x8025A2D4",
+        "size": 20,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_8025A12C"
+      },
+      {
+        "historical": "set_help_text__15TWindowHelpItemFUl",
+        "current": "set_help_text__15TWindowHelpItemFUl",
+        "address": "0x8025A2E8",
+        "size": 108,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_8025A12C"
+      },
+      {
+        "historical": "render_summary_row__15TWindowHelpItemFv",
+        "current": "render_summary_row__15TWindowHelpItemFv",
+        "address": "0x8025A354",
+        "size": 432,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_8025A12C"
+      },
+      {
+        "historical": "tick_display_timer__15TWindowHelpItemFPv",
+        "current": "tick_display_timer__15TWindowHelpItemFPv",
+        "address": "0x8025A504",
+        "size": 44,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_8025A12C"
+      },
+      {
+        "historical": "destroy__15TWindowHelpItemFPvs",
+        "current": "destroy__15TWindowHelpItemFPvs",
+        "address": "0x8025A530",
+        "size": 100,
+        "provider": "psov3/pso/ui/window/TWindowHelpItem_8025A12C"
+      },
+      {
+        "historical": "reset_float_field__15TWindowHelpItemFv",
+        "current": "reset_float_field__15TWindowHelpItemFv",
+        "address": "0x8025A9B4",
+        "size": 12,
+        "provider": "psov3/pso/ui/window/TWindowSubStatusDisp_8025A9B4"
+      }
+    ],
+    "TUnk_8048E728": [
+      {
+        "historical": "is_particle_sprite_additive__13TUnk_8048E728Fv",
+        "current": "is_particle_sprite_additive__13TUnk_8048E728Fl",
+        "address": "0x800861F4",
+        "size": 36,
+        "provider": "psov3/pso/effect/particle/TParticleCtrl_80085EE4"
+      },
+      {
+        "historical": "draw_particle_refraction_quad__13TUnk_8048E728Fv",
+        "current": "draw_particle_refraction_quad__13TUnk_8048E728Fv",
+        "address": "0x80086248",
+        "size": 464,
+        "provider": "psov3/pso/effect/particle/TParticleCtrl_80085EE4"
+      },
+      {
+        "historical": "apply_particle_model_fade_color__13TUnk_8048E728Fl",
+        "current": "apply_particle_model_fade_color__13TUnk_8048E728Fl",
+        "address": "0x80086418",
+        "size": 324,
+        "provider": "psov3/pso/effect/particle/TParticleCtrl_80085EE4"
+      },
+      {
+        "historical": "__dt__13TUnk_8048E728Fv",
+        "current": "__dt__13TUnk_8048E728Fv",
+        "address": "0x8008655C",
+        "size": 96,
+        "provider": "psov3/pso/effect/particle/TParticleCtrl_80085EE4"
+      },
+      {
+        "historical": "free_from_heap__13TUnk_8048E728Fv",
+        "current": "__dl__13TUnk_8048E728FPv",
+        "address": "0x800866F8",
+        "size": 68,
+        "provider": "psov3/pso/effect/particle/TParticleCtrl_80085EE4"
+      }
+    ],
+    "TAdChrSelPlyPlateGC__create_singleton": {
+      "historical": "fn_802C6F20",
+      "current": "TAdChrSelPlyPlateGC__create_singleton",
+      "address": "0x802C6F20",
+      "size": 104,
+      "provider": "psov3/pso/ui/frontend/TAdChrSelPlyPlateGC"
+    },
+    "assign_subcommand_header": {
+      "historical": "TFontSmallLobby__sub_801C0258",
+      "current": "assign_subcommand_header",
+      "address": "0x801C0258",
+      "size": 28,
+      "provider": "psov3/pso/ui/font/TFontSmallLobby_801C013C"
+    },
+    "spheres_overlap__FP15CollisionSphereP15CollisionSphere": {
+      "historical": "spheres_overlap__FP24CollisionSphere_80155C54P24CollisionSphere_80155C54",
+      "current": "spheres_overlap__FP15CollisionSphereP15CollisionSphere",
+      "address": "0x803E1864",
+      "size": 92,
+      "provider": "psov3/pso/player/TObjPlayer_803E112C"
+    }
+  },
+  "runtime": {
+    "layout_and_header_copy": {
+      "cases_per_image": 10,
+      "images": [
+        "retail",
+        "source",
+        "materialized fork"
+      ],
+      "probe_sha256": "3c059224629a548e3fe76f4800b7e317594ee90fd9a12975e5598249cd61808f",
+      "log_sha256": "a3098c2314178a6fbfef42d4dd17177f9a022fb599f052f689f3526298b3c86e"
+    },
+    "portable_copy": {
+      "alignment_cases": 64,
+      "instrumentation": [
+        "AddressSanitizer",
+        "UndefinedBehaviorSanitizer"
+      ],
+      "harness_sha256": "b1444a0b1d53784991ca4584b36fcd181107fbab6c41615f486098bd6b22f21e",
+      "log_sha256": "7e1063379ad8438549061ec4bdd47f302a312b490ca06cd97430f84f23cb999d"
+    }
+  },
+  "historical": {
+    "closed": [
+      {
+        "row": 2114,
+        "fork_path": "include/pso/TAdTimeSetGC.h",
+        "current_owners": [
+          "include/pso/ui/frontend/TAdTimeSetGC.h",
+          "src/pso/ui/frontend/TAdTimeSetGC.cpp"
+        ],
+        "detail": "The native startup scene retains the seven member offsets, the 0x468 instance, and both member callbacks in each of the 25 state rows. All 53 historical methods remain exact."
+      },
+      {
+        "row": 2166,
+        "fork_path": "include/pso/ui/TAdChrSelPlyPlateGC.h",
+        "current_owners": [
+          "include/pso/ui/frontend/TAdChrSelPlyPlateGC.h",
+          "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp"
+        ],
+        "detail": "The native plate retains its quad, cursor, home and alpha arrays and its origin at 0x4A4. Its factory passes the existing position type to the native constructor, which reads it into the plate. The singleton and factory retain their addresses and all ten class methods remain exact."
+      },
+      {
+        "row": 2386,
+        "fork_path": "src/pso/misc/TFontSmallLobby_801C013C.cpp",
+        "current_owners": [
+          "src/pso/ui/font/TFontSmallLobby_801C013C.cpp"
+        ],
+        "detail": "The native four-byte header assignment copies the first two bytes separately and safely copies the final two bytes with the target compiler intrinsic or the portable library function. Its retail function is exact."
+      },
+      {
+        "row": 4019,
+        "fork_path": "include/pso/player/TObjPlayer_803DF7A8.h",
+        "current_owners": [
+          "include/pso/player/TObjPlayer_803E112C.h",
+          "include/pso/player/TObjPlayer_803E1A58.h"
+        ],
+        "detail": "The native sphere has a three-coordinate center and radius at 0x0C. The overlap provider stays exact and the recovered matrix declarations are kept together at their shared owner."
+      },
+      {
+        "row": 5096,
+        "fork_path": "include/pso/misc/TUnk_8048E728.h",
+        "current_owners": [
+          "include/pso/effect/particle/ParticleParam.h",
+          "include/pso/unk/TUnk_8048E728.h",
+          "src/pso/effect/particle/TParticleCtrl_80085EE4.cpp"
+        ],
+        "detail": "The emitter retains the historical parameter prefix in its native 0x98-byte record and the task layout is checked at 0xC0. The native constructor and class allocator are linked at the particle owner. All five historical class methods remain exact, including deallocation at the native operator delete."
+      },
+      {
+        "row": 5693,
+        "fork_path": "include/pso/misc/TWindowHelpItem.h",
+        "current_owners": [
+          "include/pso/ui/window/TWindowHelpItem.h",
+          "include/pso/ui/window/TWindowBase.h"
+        ],
+        "detail": "The native help item retains its virtual lifecycle, typed PageIndicator and 12-byte callback. The display base checks the shared position at 0x30 and the derived class checks the remaining historical offsets and 0xBC size. All 42 class methods remain exact."
+      }
+    ],
+    "open_rows": 294,
+    "comparison_sha256": "622196a09510139fba1af9ce4564667aa5d5d63ceea8c78287e3805708d62f1d"
+  },
+  "fork_workspace": {
+    "trial": "de38ba96fdc6adabf73272b30a1edd5119aeaaba",
+    "overlay_paths": 130,
+    "archive_sha256": "88c8b53ebd8ed910f4beaa42ead994c40c2660de9dc814c9a2fa14667913d6d5",
+    "materialized_tree": "afa94d44e38326c4a87fadf83e6d940a1ced2ab9",
+    "force_active": 27029
+  }
+}

@@ -1,12 +1,13 @@
-#include "pso/math/VectorNormalize.h"
 #include "types.h"
+#include "pso/system/vector.h"
 #include "pso/system/PadRumble.h"
 #include "dolphin/pad.h"
-#include "pso/boss/TObjBoss2Tunnel.h"
-#include "pso/misc/TWindowKeyBoardHard.h"
+#include "pso/boss/derolle/TObjBoss2Tunnel.h"
+#include "pso/ui/window/TWindowKeyBoardHard.h"
 #include "pso/player/TObjPlayer.h"
 #include "pso/player/TObjPlayer_80011014.h"
 #include "pso/player/TObjPlayer_801AF2F0.h"
+#include "pso/player/PlayerSlots.h"
 
 extern s32 local_client_id;
 
@@ -25,7 +26,7 @@ void PadRumbleLevel::accumulate(s32 client_id, s32 channel) {
                     offset.x = effect->pos.x - player->position.x;
                     offset.y = effect->pos.y - player->position.y;
                     offset.z = effect->pos.z - player->position.z;
-                    s16 felt = effect->strength - 0.1f * normalize_vector_checked((Vec *)&offset);
+                    s16 felt = effect->strength - 0.1f * normalize_vector_safe(&offset);
                     if (felt < 10) {
                         felt = 10;
                     }

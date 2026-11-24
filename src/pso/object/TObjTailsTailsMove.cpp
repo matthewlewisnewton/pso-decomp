@@ -1,12 +1,11 @@
 #pragma readonly_strings on
-#include "pso/TObjTailsTailsMove.h"
+#include "pso/object/TObjTailsTailsMove.h"
 #include "pso/render/render_util.h"
 #include "pso/player/TObjPlayer.h"
+#include "pso/math/AngleLookup.h"
 
-extern "C" {
+
 const char *TObjTailsTailsMove_name = "TObjTailsTailsMove";
-f32 sin_table_lookup(s32);
-}
 
 #pragma push
 #pragma fp_contract on
@@ -74,7 +73,7 @@ void TObjTailsTailsMove::advance_phase() {
 }
 
 void TObjTailsTailsMove::find_vertex_list() {
-    if (m_player->m_cfc != 0) return;
+    if (m_player->model_load_flags != 0) return;
     NJS_OBJECT *root = (NJS_OBJECT *)m_player->model;
     if (root == NULL) return;
     NJS_OBJECT *child = root->child;

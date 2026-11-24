@@ -1,29 +1,245 @@
-#include <global_types.h>
-#include "pso/network/TProtocol_801DFCAC.h"
-#include "pso/misc/TPlyJoinLobbyEntry.h"
+// ---- pso/network/TProtocol_801DB474
 #include "pso/network/TProtocol.h"
-#include "pso/unk/text_801DFC3C.h"
+
+void TProtocol::send_server_time_request() {
+    packet_header header;
+    if (m_connected != 0) {
+        header.command = 0xB1;
+        header.flags = 0;
+        header.size = sizeof(header);
+        header.bswap();
+        send((u8*)&header, sizeof(header));
+    }
+}
+
+void TProtocol::send_server_time_accepted() {
+    packet_header header;
+    if (m_connected != 0) {
+        header.command = 0x99;
+        header.flags = 0;
+        header.size = sizeof(header);
+        header.bswap();
+        send((u8*)&header, sizeof(header));
+    }
+}
+
+// ---- pso/unk/text_801DB554
+#include "types.h"
+#include "pso/unk/TLobby.h"
+#include "pso/network/protocol/protocol.h"
+
+struct Stack_801DB554 {
+    s8 sp8;
+    s8 sp9;
+    s16 spA;
+};
+
+void TProtocol::send_6F_burst_done() {
+    Stack_801DB554 stack;
+    if (m_connected != 0) {
+        stack.sp8 = 0x6F;
+        stack.sp9 = 0;
+        stack.spA = 4;
+        ((packet_header *)((saddr) &stack.sp8))->bswap();
+        send((u8 *)&stack.sp8, 4);
+    }
+}
+
+// ---- pso/network/TProtocol_801DB5C4
+
+
+void TProtocol::send_quest_menu_closed() {
+    packet_header header;
+    memset(&header, 0, sizeof(header));
+    header.command = 0xA9;
+    header.size = sizeof(header);
+    header.bswap();
+    send((u8*)&header, sizeof(header));
+}
+
+// ---- pso/network/TProtocol_801DB630
+
+
+void TProtocol::handle_cmd_97(packet &pkt) {
+    packet_header header = pkt.pkt.header;
+    header.bswap();
+    u8 flags = header.flags;
+    if (m_recv_handlers.handle_97_checksum_reply_packet != NULL) {
+        m_recv_handlers.handle_97_checksum_reply_packet(flags);
+    }
+}
+
+// ---- pso/network/TProtocol_801DB684
+
+#include "pso/ui/chat/TChatMessage.h"
+#include "pso/player/TPlyGuildCardTag_8007B434.h"
+#include "pso/unk/text_801DF280.h"
+#include <stddef.h>
+
+struct CharacterSaveInfoPacket {
+    packet_header header;
+    C_CharSaveInfo_DCv2_PC_V3_BB_96 payload;
+};
+
+struct ChangeShipOrBlockPacket {
+    packet_header header;
+    C_ChangeShipOrBlock_A0_A1 payload;
+};
+
+LAYOUT_ASSERT(CharacterSaveInfoPacket_size, sizeof(CharacterSaveInfoPacket) == 0xC);
+LAYOUT_ASSERT(ChangeShipOrBlockPacket_size, sizeof(ChangeShipOrBlockPacket) == 0x1C);
+LAYOUT_ASSERT(TProtocol_connected_offset, offsetof(TProtocol, m_connected) == 0x1910);
+LAYOUT_ASSERT(TProtocol_guildcard_offset, offsetof(TProtocol, m_guildcard_tag) == 0x1900);
+
+void TProtocol::send_character_save_info(int creation_timestamp, int event_counter) {
+    CharacterSaveInfoPacket packet;
+    packet.header.command = 0x96;
+    packet.header.flags = 0;
+    packet.header.size = sizeof(packet);
+    packet.payload.creation_timestamp = creation_timestamp;
+    packet.payload.event_counter = event_counter;
+    bswap_save_packet((saddr)&packet);
+    send((u8 *)&packet, sizeof(packet));
+}
+
+void TProtocol::send_quest_menu_request() {
+    packet_header header;
+    if (m_connected != 0) {
+        header.command = 0xA2;
+        header.flags = 0;
+        header.size = sizeof(header);
+        header.bswap();
+        send((u8 *)&header, sizeof(header));
+    }
+}
+
+void TProtocol::send_block_list_request() {
+    ChangeShipOrBlockPacket packet;
+    u8 pad[8];
+    if (m_connected != 0) {
+        construct_change_ship_block_packet((saddr)&packet);
+        memset(&packet, 0, sizeof(packet));
+        packet.header.command = 0xA1;
+        packet.header.size = sizeof(packet);
+        __as__16TPlyGuildCardTagFRC16TPlyGuildCardTag(&packet.payload, &m_guildcard_tag);
+        bswap_change_ship_block_packet(&packet);
+        send((u8 *)&packet, sizeof(packet));
+    }
+}
+
+void TProtocol::send_ship_list_request() {
+    ChangeShipOrBlockPacket packet;
+    u8 pad[8];
+    if (m_connected != 0) {
+        construct_change_ship_block_packet((saddr)&packet);
+        memset(&packet, 0, sizeof(packet));
+        packet.header.command = 0xA0;
+        packet.header.size = sizeof(packet);
+        __as__16TPlyGuildCardTagFRC16TPlyGuildCardTag(&packet.payload, &m_guildcard_tag);
+        bswap_change_ship_block_packet(&packet);
+        send((u8 *)&packet, sizeof(packet));
+    }
+}
+
+void TProtocol::send_simple_mail(TChatMessage &message) {
+    if (m_connected != 0) {
+        message.header.command = 0x81;
+        message.header.flags = 0;
+        message.header.size = 0x220;
+        bswap__12TChatMessageFv((saddr)&message);
+        send((u8 *)&message, 0x220);
+    }
+}
+
+// ---- pso/network/TProtocol_801DB8EC
+
+
+void TProtocol::handle_cmd_95(packet &pkt) {
+    packet_header header = pkt.pkt.header;
+    header.bswap();
+    if (m_recv_handlers.handle_95_request_character_data_packet != NULL) {
+        m_recv_handlers.handle_95_request_character_data_packet();
+    }
+}
+void TProtocol::handle_cmd_92(packet &pkt) {
+    packet_header header = pkt.pkt.header;
+    header.bswap();
+    m_regist_state = header.flags;
+    if (m_recv_handlers.handle_92_9C_register_response_packet != NULL) {
+        m_recv_handlers.handle_92_9C_register_response_packet(header.flags);
+    }
+}
+
+// ---- pso/unk/text_801DB998
+
+#include "pso/player/TPlySmth.h"
+#include "pso/ui/chat/TChatMessage_801DF918.h"
+
+struct Stack_801DB998 {
+    u8 sp8;
+    u8 pad_9[0x1];
+    s16 spA;
+    u8 spC[8];
+    s32 sp14;
+    u8 pad_18[0x1];
+    s8 sp19;
+    u8 pad_1A[0x2];
+    char sp1C[0x30];
+    char sp4C[0x30];
+    char sp7C[0x30];
+};
+
+void TProtocol::send_register_9c() {
+    Stack_801DB998 stack;
+    construct_cmd_9c_send_pso_regist((&stack.sp8));
+    memset(&stack.sp8, 0, 0xA4);
+    stack.sp8 = 0x9C;
+    stack.spA = 0xA4;
+    __as__8TPlySmthFRC8TPlySmth((saddr)&stack.spC, (saddr)&m_smth);
+    stack.sp14 = (s32)m_sub_version;
+    stack.sp19 = (s8)m_language;
+    strncpy(stack.sp1C, m_serial_number, 0x30);
+    strncpy(stack.sp4C, m_access_key, 0x30);
+    strncpy(stack.sp7C, m_password, 0x30);
+    bswap_cmd_9c_send_pso_regist((&stack.sp8));
+    send(&stack.sp8, 0xA4);
+}
+
+// ---- pso/network/TProtocol_801DBA58
+
+
+void TProtocol::handle_cmd_90(packet &pkt) {
+    packet_header header = pkt.pkt.header;
+    header.bswap();
+    m_regist_state = header.flags;
+    if (m_recv_handlers.handle_18_90_9A_recv_pso_regist_check != NULL) {
+        m_recv_handlers.handle_18_90_9A_recv_pso_regist_check(header.flags);
+    }
+}
+
+// ---- pso/network/TProtocol
+#include <global_types.h>
+#include "pso/network/TPlyJoinLobbyEntry.h"
+
 #include "pso/system/byteswap.h"
-#include "pso/misc/TLobby.h"
-#include "pso/ui/TAdSinglePlyChrSelectGC.h"
+
+#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
 #include <string.h>
 #include <stdio.h>
 #include <stddef.h>
 #include "pso/forward.h"
 #include "pso/macros.h"
-#include "pso/TMainTask.h"
-#include "pso/TMenuList.h"
-#include "pso/TPlyCharData.h"
-#include "pso/TPlyDispData.h"
-#include "pso/TPlyInventory.h"
-#include "pso/TObject.h"
-#include "pso/TProtocol.h"
-#include "pso/TSocket.h"
+#include "pso/system/task/TMainTask.h"
+#include "pso/ui/TMenuList.h"
+#include "pso/player/TPlyCharData.h"
+#include "pso/player/TPlyDispData.h"
+#include "pso/player/TPlyInventory.h"
+#include "pso/system/task/TObject.h"
+#include "pso/network/TSocket.h"
 
 extern packet *server_packet;
-extern const char *port_map_copyright;
 
-#include "types.h"
+
 #include "pso/item/TItem.h"
 struct RecoveredFields_801DD33C_arg0 {
     u8 field_0;
@@ -152,7 +368,7 @@ void TProtocol::send_room_change(int idx) {
 	}
 }
 
-void TProtocol::send_pso_data_long2(char flags, long_game_command &packet, size_t size) {
+void TProtocol::send_pso_data_long2(u32 flags, long_game_command &packet, size_t size) {
 	const int header_size = sizeof(packet_header);
 	const int command_size = sizeof(long_game_command);
 	if (m_connected) {
@@ -190,19 +406,6 @@ void TProtocol::send_pso_data_long2(char flags, long_game_command &packet, size_
 	}
 }
 
-struct VBase_18_801DC084 { char pad[0x18]; };
-struct VObj_18_801DC084 : VBase_18_801DC084 {
-    virtual void m0();
-    virtual void m1();
-    virtual void m2();
-    virtual void m3();
-    virtual void m4();
-    virtual void m5();
-    virtual void m6();
-    virtual void m7();
-    virtual void m8(void *, u16);
-};
-
 struct Pkt_801DC084 {
     u8 cmd;
     u8 flag;
@@ -212,76 +415,60 @@ struct Pkt_801DC084 {
 
 extern "C" {
 void bswap__12TRecvPsoDataFv(void *);
-extern char TProtocol__send_pso_data2_log_format[];
-extern char TProtocol__send_pso_data_log_format[];
 
-void TProtocol::send_subcommand_to_client(s32 flag, s8 *src, s32 len) {
+void TProtocol::send_pso_data2(u32 flags, game_command &packet, u32 size) {
     char buf[0x80];
-    sprintf(buf, TProtocol__send_pso_data2_log_format, *src, len, flag);
+    sprintf(buf, "SndPsoData2 %d %d %d", packet.header.command, size, flags);
     if (this->m_connected != 0) {
         Pkt_801DC084 pkt;
-        int size;
+        int packet_size;
         pkt.cmd = 0x62;
-        pkt.flag = flag;
-        pkt.size = len + 4;
-        size = pkt.size;
-        memcpy(pkt.data, src, len);
+        pkt.flag = flags;
+        pkt.size = size + 4;
+        packet_size = pkt.size;
+        memcpy(pkt.data, &packet, size);
         bswap__12TRecvPsoDataFv(&pkt);
-        this->send((u8 *)&pkt, size);
+        this->send((u8 *)&pkt, packet_size);
     }
 }
 
-void TProtocol__send_60(VObj_18_801DC084 *obj, s8 *src, u32 len) {
+void TProtocol::send_pso_data(game_command &packet, u32 size) {
     char buf[0x80];
-    sprintf(buf, TProtocol__send_pso_data_log_format, *src, len);
-    if (*(s32 *)((char *)obj + 0x1910) != 0) {
+    sprintf(buf, "SndPsoData %d %d", packet.header.command, size);
+    if (this->m_connected != 0) {
         Pkt_801DC084 pkt;
-        int size;
+        int packet_size;
         pkt.cmd = 0x60;
         pkt.flag = 0;
-        pkt.size = len + 4;
-        size = pkt.size;
-        memcpy(pkt.data, src, len);
+        pkt.size = size + 4;
+        packet_size = pkt.size;
+        memcpy(pkt.data, &packet, size);
         bswap__12TRecvPsoDataFv(&pkt);
-        obj->m8(&pkt, size);
+        this->send((u8 *)&pkt, packet_size);
     }
 }
 
-struct Join_801DC1E4 {
-    u8 command;
-    u8 flags;
-    u16 size;
-    u8 char_data[0x41C];
-    u8 challenge[0x11C];
-    u8 choice_search_config[0x18];
-    char info_board[0xAC];
-    u32 blocked_senders[30];
-    u32 auto_reply_enabled;
-    char auto_reply[0x200];
-};
 struct List_801DC1E4 { u8 command; u8 flags; u16 size; u32 entries[30]; };
 struct Text_801DC1E4 { u8 command; u8 flags; u16 size; char text[0x200]; };
 struct Proto_801DC1E4 { u8 pad[0x1910]; s32 connected; u8 pad1914[0x74]; u8 char_data[0x41C]; };
 
-void TProtocol__sub_801DF774(void *, void *);
 }
 s32 validate_player_visual_record(void *arg0);
 extern "C" {
 
-void send_player_data_98__9TProtocolFPvPvPvPvPvPvPv(Proto_801DC1E4 *self, u8 *char_data, void *challenge, void *choice_search_config,
+void send_player_data_98__9TProtocolFPvPvPvPvPvPvPv(Proto_801DC1E4 *self, u8 *char_data, TPlyChallenge *challenge, TPlyChoiceSearchConfig *choice_search_config,
                                List_801DC1E4 *blocked_senders, Text_801DC1E4 *auto_reply, char *info_board) {
     if (self->connected) {
         validate_player_visual_record(char_data + 0x370);
-        copy_player_data__9TProtocolFPvPv(self->char_data, char_data);
-        Join_801DC1E4 tmp;
-        ((TProtocol *)(&tmp))->init_char_data();
+        TProtocol::copy_player_data(self->char_data, char_data);
+        TPlyJoinData tmp;
         memset(&tmp, 0, sizeof(tmp));
-        tmp.command = 0x98;
-        tmp.flags = 3;
-        tmp.size = sizeof(tmp);
-        copy_player_data__9TProtocolFPvPv(tmp.char_data, self->char_data);
-        ((TLobby *)(tmp.challenge))->copy_player_record((u8 *)challenge);
-        TProtocol__sub_801DF774(tmp.choice_search_config, choice_search_config);
+        tmp.header.command = 0x98;
+        tmp.header.flags = 3;
+        tmp.header.size = sizeof(tmp);
+        TProtocol::copy_player_data(&tmp.char_data, self->char_data);
+        tmp.challenge = *challenge;
+        copy_choice_search_parameters(&tmp.choice_search_config, choice_search_config);
         strncpy(tmp.info_board, info_board, sizeof(tmp.info_board));
         for (int i = 0; i < blocked_senders->flags; ++i) {
             tmp.blocked_senders[i] = blocked_senders->entries[i];
@@ -289,44 +476,30 @@ void send_player_data_98__9TProtocolFPvPvPvPvPvPvPv(Proto_801DC1E4 *self, u8 *ch
         tmp.auto_reply_enabled = auto_reply->flags;
         strncpy(tmp.auto_reply, auto_reply->text, sizeof(tmp.auto_reply) - 1);
         const int packet_size = strlen(tmp.auto_reply) + 0x680;
-        tmp.size = packet_size & ~3;
-        encode_uploaded_player_inventory(tmp.char_data);
-        bswap_player_record_upload((u8 *)&tmp);
+        tmp.header.size = packet_size & ~3;
+        encode_uploaded_player_inventory(&tmp.char_data);
+        tmp.bswap();
         ((TProtocol *)self)->send((u8 *)&tmp, packet_size & ~3);
-        destroy__9TProtocolFis((s32)&tmp, -1);
     }
 }
 
-struct Join_801DC34C {
-    u8 command;
-    u8 flags;
-    u16 size;
-    u8 char_data[0x41C];
-    u8 challenge[0x11C];
-    u8 choice_search_config[0x18];
-    char info_board[0xAC];
-    u32 blocked_senders[30];
-    u32 auto_reply_enabled;
-    char auto_reply[0x200];
-};
 struct List_801DC34C { u8 command; u8 flags; u16 size; u32 entries[30]; };
 struct Text_801DC34C { u8 command; u8 flags; u16 size; char text[0x200]; };
 struct Proto_801DC34C { u8 pad[0x1910]; s32 connected; u8 pad1914[0x74]; u8 char_data[0x41C]; };
 
-void send_player_data_61__9TProtocolFPvPvPvPvPvPvPv(Proto_801DC34C *self, u8 *char_data, void *challenge, void *choice_search_config,
+void send_player_data_61__9TProtocolFPvPvPvPvPvPvPv(Proto_801DC34C *self, u8 *char_data, TPlyChallenge *challenge, TPlyChoiceSearchConfig *choice_search_config,
                                List_801DC34C *blocked_senders, Text_801DC34C *auto_reply, char *info_board) {
     if (self->connected) {
         validate_player_visual_record(char_data + 0x370);
-        copy_player_data__9TProtocolFPvPv(self->char_data, char_data);
-        Join_801DC34C tmp;
-        ((TProtocol *)(&tmp))->init_char_data();
+        TProtocol::copy_player_data(self->char_data, char_data);
+        TPlyJoinData tmp;
         memset(&tmp, 0, sizeof(tmp));
-        tmp.command = 0x61;
-        tmp.flags = 3;
-        tmp.size = sizeof(tmp);
-        copy_player_data__9TProtocolFPvPv(tmp.char_data, self->char_data);
-        ((TLobby *)(tmp.challenge))->copy_player_record((u8 *)challenge);
-        TProtocol__sub_801DF774(tmp.choice_search_config, choice_search_config);
+        tmp.header.command = 0x61;
+        tmp.header.flags = 3;
+        tmp.header.size = sizeof(tmp);
+        TProtocol::copy_player_data(&tmp.char_data, self->char_data);
+        tmp.challenge = *challenge;
+        copy_choice_search_parameters(&tmp.choice_search_config, choice_search_config);
         strncpy(tmp.info_board, info_board, sizeof(tmp.info_board));
         for (int i = 0; i < blocked_senders->flags; ++i) {
             tmp.blocked_senders[i] = blocked_senders->entries[i];
@@ -334,11 +507,10 @@ void send_player_data_61__9TProtocolFPvPvPvPvPvPvPv(Proto_801DC34C *self, u8 *ch
         tmp.auto_reply_enabled = auto_reply->flags;
         strncpy(tmp.auto_reply, auto_reply->text, sizeof(tmp.auto_reply) - 1);
         const int packet_size = strlen(tmp.auto_reply) + 0x680;
-        tmp.size = packet_size & ~3;
-        encode_uploaded_player_inventory(tmp.char_data);
-        bswap_player_record_upload((u8 *)&tmp);
+        tmp.header.size = packet_size & ~3;
+        encode_uploaded_player_inventory(&tmp.char_data);
+        tmp.bswap();
         ((TProtocol *)self)->send((u8 *)&tmp, packet_size & ~3);
-        destroy__9TProtocolFis((s32)&tmp, -1);
     }
 }
 }
@@ -657,7 +829,6 @@ void TProtocol::recv_user_ans(packet &pkt) {
 	}
 };
 
-struct ByteBlock_C { u8 bytes[0xc]; };
 
 void TProtocol::recv_room_info(packet &pkt) {
 	typedef TMenuList<LobbyListEntry, 16, 0> lobby_list;
@@ -668,23 +839,26 @@ void TProtocol::recv_room_info(packet &pkt) {
 
 	if (enable_v2_features) {
 		for (int i = 0; i < m_lobby_list_count; ++i) {
-			__as__14LobbyListEntryFRC14LobbyListEntry(&m_lobby_entries[i], &tmp.entries[i]);
+			m_lobby_entries[i] = tmp.entries[i];
 		}
 	} else {
 		for (int i = 0; i < 10; ++i) {
-			__as__14LobbyListEntryFRC14LobbyListEntry(&m_lobby_entries[i], &tmp.entries[i]);
+			m_lobby_entries[i] = tmp.entries[i];
 		}
 	}
 };
 
 #pragma push
-#pragma inline_depth(1)
-#pragma dont_inline off
-u8 *__as__14LobbyListEntryFRC14LobbyListEntry(void *arg0, const void *arg1) {
-    *(ByteBlock_C *)(arg0) = *(const ByteBlock_C *)(arg1);
-    return (u8 *)arg0;
+#pragma scheduling off
+LobbyListEntry &LobbyListEntry::operator=(const LobbyListEntry &other) {
+#ifdef __MWERKS__
+    __memcpy(&tag, &other.tag, sizeof(tag));
+#else
+    tag = other.tag;
+#endif
+    smth = other.smth;
+    return *this;
 }
-struct ByteBlock_C;
 #pragma pop
 
 void TProtocol::recv_generate_id(packet &pkt) {
@@ -899,11 +1073,6 @@ void TProtocol::recv_start_game(packet &pkt) {
 
 };
 
-struct Tag_801DDB44 { u8 c[8]; };
-struct Name_801DDB44 { char c[16]; };
-struct Game_801DDB44 { Tag_801DDB44 tag; u8 difficulty_tag; u8 num_players; Name_801DDB44 name; u8 episode; u8 flags; };
-extern "C" Game_801DDB44 *__as__13GameListEntryFRC13GameListEntry(void *arg0, const void *arg1);
-
 void TProtocol::recv_text_list(packet &pkt) {
 	typedef TMenuList<GameListEntry, 64, 1> text_list;
 	text_list tmp = as(text_list &, pkt);
@@ -912,7 +1081,7 @@ void TProtocol::recv_text_list(packet &pkt) {
 	m_entry_count = tmp.header.flags;
 
 	for (int i = 0; i < m_entry_count; ++i) {
-		__as__13GameListEntryFRC13GameListEntry(&m_game_entries[i], &tmp.entries[i]);
+		m_game_entries[i] = tmp.entries[i];
 	}
 
 	if (m_recv_handlers.handle_1F_recv_text_list != nullptr) {
@@ -921,22 +1090,24 @@ void TProtocol::recv_text_list(packet &pkt) {
 };
 
 #pragma push
-#pragma inline_depth(1)
-#pragma dont_inline off
-#define arg0 ((Game_801DDB44 *)arg0_)
-#define arg1 ((const Game_801DDB44 *)arg1_)
-Game_801DDB44 *__as__13GameListEntryFRC13GameListEntry(void *arg0_, const void *arg1_) {
-    arg0->tag = arg1->tag;
-    arg0->difficulty_tag = arg1->difficulty_tag;
-    arg0->num_players = arg1->num_players;
-    arg0->name = arg1->name;
-    arg0->episode = arg1->episode;
-    arg0->flags = arg1->flags;
-    return arg0;
+#pragma scheduling off
+GameListEntry &GameListEntry::operator=(const GameListEntry &other) {
+#ifdef __MWERKS__
+    __memcpy(&tag, &other.tag, sizeof(tag));
+#else
+    tag = other.tag;
+#endif
+    difficulty_tag = other.difficulty_tag;
+    num_players = other.num_players;
+#ifdef __MWERKS__
+    __memcpy(name, other.name, sizeof(name));
+#else
+    memmove(name, other.name, sizeof(name));
+#endif
+    episode = other.episode;
+    flags = other.flags;
+    return *this;
 }
-#undef arg0
-#undef arg1
-struct Game_801DDB44;
 #pragma pop
 
 void TProtocol::recv_game_list(packet &pkt) {
@@ -947,7 +1118,7 @@ void TProtocol::recv_game_list(packet &pkt) {
 	m_entry_count = tmp.header.flags;
 
 	for (int i = 0; i < m_entry_count; ++i) {
-		__as__13GameListEntryFRC13GameListEntry(&m_game_entries[i], &tmp.entries[i]);
+		m_game_entries[i] = tmp.entries[i];
 	}
 
 	if (m_recv_handlers.handle_08_recv_game_list != nullptr) {
@@ -963,7 +1134,7 @@ void TProtocol::recv_dir_list(packet &pkt) {
 	m_entry_count = tmp.header.flags;
 
 	for (int i = 0; i < m_entry_count; ++i) {
-		__as__13GameListEntryFRC13GameListEntry(&m_game_entries[i], &tmp.entries[i]);
+		m_game_entries[i] = tmp.entries[i];
 	}
 
 	if (m_recv_handlers.handle_07_A0_A1_recv_dir_list != nullptr) {
@@ -1030,7 +1201,7 @@ void TProtocol::recv_error(packet &pkt) {
 	}
 };
 
-int TProtocol::handle_command(struct packet *pkt) {
+int TProtocol::handle_command(union packet *pkt) {
 	static const command_handler_entry handlers[] = {
 		{ 0x01, &TProtocol::recv_error },
 		{ 0x03, &TProtocol::recv_regist },
@@ -1116,7 +1287,7 @@ int TProtocol::handle_command(struct packet *pkt) {
 }
 
 void TProtocol::parse_packet() {
-	const int max_packet_size = sizeof(struct packet);
+	const int max_packet_size = sizeof(union packet);
 	while (!is_empty()) {
 		m_packet.bytes[m_packet_offset++] = next();
 		if (m_packet_offset == sizeof(packet_header)) {
@@ -1136,7 +1307,7 @@ void TProtocol::parse_packet() {
 			if (m_is_encrypted) {
 				m_recv_crypt.encrypt(&m_packet.pkt.data, m_packet_size-sizeof(packet_header));
 			}
-			struct packet *pkt = &m_packet;
+			union packet *pkt = &m_packet;
 			m_packet_size = 0;
 			m_packet_offset = 0;
 			if (m_handle_pings_only) {
@@ -1282,14 +1453,14 @@ void packet_header::bswap() {
     bswap_16(&size);
 }
 
-typedef char RecoveredFields_801DD33C_arg0_0_offset[offsetof(RecoveredFields_801DD33C_arg0, field_0) == 0x0 ? 1 : -1];
-typedef char RecoveredFields_801DD33C_arg0_1_offset[offsetof(RecoveredFields_801DD33C_arg0, field_1) == 0x1 ? 1 : -1];
-typedef char RecoveredFields_801DD33C_arg0_2_offset[offsetof(RecoveredFields_801DD33C_arg0, field_2) == 0x2 ? 1 : -1];
-typedef char RecoveredFields_801DD33C_arg0_4_offset[offsetof(RecoveredFields_801DD33C_arg0, field_4) == 0x4 ? 1 : -1];
-typedef char RecoveredFields_801DD33C_arg1_0_offset[offsetof(RecoveredFields_801DD33C_arg1, field_0) == 0x0 ? 1 : -1];
-typedef char RecoveredFields_801DD33C_arg1_1_offset[offsetof(RecoveredFields_801DD33C_arg1, field_1) == 0x1 ? 1 : -1];
-typedef char RecoveredFields_801DD33C_arg1_2_offset[offsetof(RecoveredFields_801DD33C_arg1, field_2) == 0x2 ? 1 : -1];
-typedef char RecoveredFields_801DD33C_arg1_4_offset[offsetof(RecoveredFields_801DD33C_arg1, field_4) == 0x4 ? 1 : -1];
+LAYOUT_ASSERT(RecoveredFields_801DD33C_arg0_0_offset, offsetof(RecoveredFields_801DD33C_arg0, field_0) == 0x0);
+LAYOUT_ASSERT(RecoveredFields_801DD33C_arg0_1_offset, offsetof(RecoveredFields_801DD33C_arg0, field_1) == 0x1);
+LAYOUT_ASSERT(RecoveredFields_801DD33C_arg0_2_offset, offsetof(RecoveredFields_801DD33C_arg0, field_2) == 0x2);
+LAYOUT_ASSERT(RecoveredFields_801DD33C_arg0_4_offset, offsetof(RecoveredFields_801DD33C_arg0, field_4) == 0x4);
+LAYOUT_ASSERT(RecoveredFields_801DD33C_arg1_0_offset, offsetof(RecoveredFields_801DD33C_arg1, field_0) == 0x0);
+LAYOUT_ASSERT(RecoveredFields_801DD33C_arg1_1_offset, offsetof(RecoveredFields_801DD33C_arg1, field_1) == 0x1);
+LAYOUT_ASSERT(RecoveredFields_801DD33C_arg1_2_offset, offsetof(RecoveredFields_801DD33C_arg1, field_2) == 0x2);
+LAYOUT_ASSERT(RecoveredFields_801DD33C_arg1_4_offset, offsetof(RecoveredFields_801DD33C_arg1, field_4) == 0x4);
 
 void TProtocol::bswap_cmd_AB() {
 	((packet_header *)this)->bswap();
@@ -1298,9 +1469,7 @@ void TProtocol::bswap_cmd_AB() {
 
 extern "C" {
 
-int bswap__13packet_headerFv(void*);
-
-void TProtocol::bswap_packet() { bswap__13packet_headerFv(this); bswap_16((u16 *)((char*)this + 0x4)); bswap_16((u16 *)((char*)this + 0x6)); bswap_16((u16 *)((char*)this + 0x8)); bswap_16((u16 *)((char*)this + 0xa)); { int i; for (i = 0; i < 8; i++) { bswap_32((u32 *)((char*)this + 0xc + i * 4)); } } }
-int TProtocol::bswap_packet_header() { return bswap__13packet_headerFv(this); }
+void TProtocol::bswap_packet() { ((packet_header *)this)->bswap(); bswap_16((u16 *)((char*)this + 0x4)); bswap_16((u16 *)((char*)this + 0x6)); bswap_16((u16 *)((char*)this + 0x8)); bswap_16((u16 *)((char*)this + 0xa)); { int i; for (i = 0; i < 8; i++) { bswap_32((u32 *)((char*)this + 0xc + i * 4)); } } }
+void TSendClientConfig::bswap() { header.bswap(); }
 
 }

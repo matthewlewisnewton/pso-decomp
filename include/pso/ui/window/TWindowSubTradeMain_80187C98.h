@@ -1,0 +1,6 @@
+#ifndef PSO_UI_WINDOW_TWINDOWSUBTRADEMAIN_80187C98_H
+#define PSO_UI_WINDOW_TWINDOWSUBTRADEMAIN_80187C98_H
+
+#include "pso/object/TObjGbAdvance.h"
+
+#endif

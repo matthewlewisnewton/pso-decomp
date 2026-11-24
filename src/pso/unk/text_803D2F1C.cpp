@@ -1,15 +1,11 @@
 #include "types.h"
+#include <string.h>
 #include "pso/unk/text_803D2F1C.h"
+#include "pso/audio/SjRingBuffer.h"
 
-#pragma inline_depth(1)
-#pragma auto_inline off
-#pragma dont_inline off
 struct ByteBlock_8 { u8 bytes[0x8]; };
 
-typedef struct Buf_803D2F1C { u8 *data; s32 size; } Buf_803D2F1C;
-
 extern "C" {
-int strncmp(const char *, const char *, u32);
 u32 lbl_804F9E60[112] = {
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -19,13 +15,8 @@ u32 lbl_804F9E60[112] = {
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 10, 11, 12, 13, 14, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 };
-u8 *find_archive_entry__6TLobbyFPvPvPvPv(Buf_803D2F1C *arc, const char *name, const char *stop, Buf_803D2F1C *out);
 
 #define HEX_803D2F1C(p, i) lbl_804F9E60[(s8)(p)[i]]
-#define SIZE_803D2F1C(p) ((((((((((((HEX_803D2F1C(p, 8) << 4) + HEX_803D2F1C(p, 9)) << 4) + HEX_803D2F1C(p, 10)) << 4) + HEX_803D2F1C(p, 11)) << 4) + HEX_803D2F1C(p, 12)) << 4) + HEX_803D2F1C(p, 13)) << 4) + HEX_803D2F1C(p, 14))
-#pragma push
-#pragma dont_inline off
-#pragma inline_depth(4)
 inline s32 size_803D2F1C(u8 *p) {
     s32 v = HEX_803D2F1C(p, 8);
     v = (v << 4) + HEX_803D2F1C(p, 9);
@@ -36,7 +27,7 @@ inline s32 size_803D2F1C(u8 *p) {
     v = (v << 4) + HEX_803D2F1C(p, 14);
     return v;
 }
-u8 *find_archive_entry__6TLobbyFPvPvPvPv(Buf_803D2F1C *arc, const char *name, const char *stop, Buf_803D2F1C *out) {
+u8 *find_archive_entry(SjChunk *arc, const char *name, const char *stop, SjChunk *out) {
     u8 *p;
     u8 *end;
     out->data = NULL;
@@ -59,22 +50,21 @@ u8 *find_archive_entry__6TLobbyFPvPvPvPv(Buf_803D2F1C *arc, const char *name, co
     }
     return NULL;
 }
-#pragma pop
 
 #pragma push
 #pragma scheduling off
-void TLobby__sub_803D3130(const void *arg0, s32 arg1, void *arg2, void *arg3) {
-    *(ByteBlock_8 *)(arg2) = *(const ByteBlock_8 *)(arg0);
-    *(s32 *)((s8 *)arg3 + 4) = (s32) *(s32 *)((s8 *)arg2 + 4);
-    if ((s32) *(s32 *)((s8 *)arg2 + 4) > arg1) {
-        *(s32 *)((s8 *)arg2 + 4) = arg1;
+void TLobby__sub_803D3130(const SjChunk *chunk, s32 size, SjChunk *prefix, SjChunk *remainder) {
+    *(ByteBlock_8 *)(prefix) = *(const ByteBlock_8 *)(chunk);
+    remainder->size = prefix->size;
+    if (prefix->size > size) {
+        prefix->size = size;
     }
-    *(s32 *)((s8 *)arg3 + 4) = (s32) (*(s32 *)((s8 *)arg3 + 4) - *(s32 *)((s8 *)arg2 + 4));
-    if ((s32) *(s32 *)((s8 *)arg3 + 4) == 0) {
-        *(s32 *)((s8 *)arg3 + 0) = 0;
+    remainder->size = remainder->size - prefix->size;
+    if (remainder->size == 0) {
+        remainder->data = NULL;
         return;
     }
-    *(s32 *)((s8 *)arg3 + 0) = (s32) (*(s32 *)((s8 *)arg2 + 0) + *(s32 *)((s8 *)arg2 + 4));
+    remainder->data = prefix->data + prefix->size;
 }
 #pragma pop
 

@@ -1,0 +1,279 @@
+{
+  "upstream": "8441b1b4feb550bf1fc4b0a897acd19b003a0437",
+  "source": "27a1646b0a679a59b9f7116ad719bfb83d936e5d",
+  "source_base": "00b762454b593eb229ca9718290ac1f8b2e1e389",
+  "motion_source": "c8ca48d81897d8255f7f7ff34ea3b2b60f90c8fd",
+  "camera_donor": "14f9743af7e35ba81f091b946cba634f9eed37ee",
+  "paths": {
+    "motion": [
+      "include/pso/boss/dragon/TBoss1Dragon.h",
+      "include/pso/system/NinjaTypes.h",
+      "src/pso/boss/derolle/TBoss2Tentacle.cpp",
+      "src/pso/boss/dragon/TBoss1Dragon.cpp"
+    ],
+    "camera": [
+      "include/pso/camera/CameraViewVectors.h",
+      "include/pso/unk/TUnk_80488AD8.h",
+      "include/pso/unk/TUnk_80488B38.h",
+      "src/pso/camera/TCameraCtrl.cpp",
+      "src/pso/camera/TCameraCtrl_8006B3D8.cpp",
+      "src/pso/unk/TUnk_80488B38.cpp"
+    ]
+  },
+  "coverage_losses": {
+    "motion": {
+      "regressions": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "renamed_functions": 0
+    },
+    "camera": {
+      "regressions": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "renamed_functions": 0
+    },
+    "workspace": {
+      "regressions": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "renamed_functions": 0
+    }
+  },
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "original_data_bytes": 1147,
+  "original_data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "runtime": {
+    "motion": {
+      "log_sha256": "7506aba9f9084bd27861b9842709fb089f17834685d9d24f7faf684b1202045f",
+      "observations": [
+        "PsoV3.dol: both Dragon archives, 30 position key edits, 14 tentacle nodes, and model/action/frame selection passed",
+        "psov3.dol: both Dragon archives, 30 position key edits, 14 tentacle nodes, and model/action/frame selection passed"
+      ]
+    },
+    "camera": {
+      "log_sha256": "822ce6bf965c0153fc1eddec9ba7f5cb9c4246741c58109811cef7fedc08f384",
+      "observations": [
+        "PsoV3.dol: four view slots, conversation setup and smoothing, camera factory, and second-controller orbit passed",
+        "psov3.dol: four view slots, conversation setup and smoothing, camera factory, and second-controller orbit passed"
+      ]
+    },
+    "camera_workspace": {
+      "log_sha256": "822ce6bf965c0153fc1eddec9ba7f5cb9c4246741c58109811cef7fedc08f384",
+      "observations": [
+        "PsoV3.dol: four view slots, conversation setup and smoothing, camera factory, and second-controller orbit passed",
+        "psov3.dol: four view slots, conversation setup and smoothing, camera factory, and second-controller orbit passed"
+      ]
+    },
+    "room_and_keyboard": {
+      "log_sha256": "5048dfec497f0f6b8ae35fd59fc8472a92e68ffaca41638ce5e8bf463ea0fa1e",
+      "observations": [
+        "PsoV3.dol: live room rendering, list scroll boundaries, keyboard frame visibility and dictionary DMA passed",
+        "psov3.dol: live room rendering, list scroll boundaries, keyboard frame visibility and dictionary DMA passed"
+      ]
+    }
+  },
+  "camera_matching_note": "The conversation camera reads the live view pointer separately at both retail call sites.",
+  "historical_audit": {
+    "open_before": 256,
+    "open_after": 253,
+    "resolved": [
+      {
+        "historical_path": "src/pso/misc/TCameraCtrl_8006BA68.cpp",
+        "historical_blob": "bc993111d7cfe5f0f4d2e8df82cfb8bce9417092",
+        "native_owners": [
+          "src/pso/camera/TCameraCtrl_8006B3D8.cpp",
+          "src/pso/unk/TUnk_80488B38.cpp"
+        ],
+        "functions": {
+          "0x8006ba68": {
+            "original": "__ct__13TUnk_80488B08Fv",
+            "current": "__ct__13TUnk_80488B08Fv",
+            "size": 76,
+            "owner": "src/pso/camera/TCameraCtrl_8006B3D8.cpp"
+          },
+          "0x8006bab4": {
+            "original": "TCameraCtrl__sub_8006BAB4",
+            "current": "TCameraCtrl__sub_8006BAB4",
+            "size": 20,
+            "owner": "src/pso/camera/TCameraCtrl_8006B3D8.cpp"
+          },
+          "0x8006bac8": {
+            "original": "TCameraCtrl__sub_8006BAC8",
+            "current": "TCameraCtrl__sub_8006BAC8",
+            "size": 20,
+            "owner": "src/pso/camera/TCameraCtrl_8006B3D8.cpp"
+          },
+          "0x8006badc": {
+            "original": "TCameraCtrl__sub_8006BADC",
+            "current": "TCameraCtrl__sub_8006BADC",
+            "size": 8,
+            "owner": "src/pso/camera/TCameraCtrl_8006B3D8.cpp"
+          },
+          "0x8006bae4": {
+            "original": "TCameraCtrl__vt4",
+            "current": "TCameraCtrl__vt4",
+            "size": 56,
+            "owner": "src/pso/unk/TUnk_80488B38.cpp"
+          },
+          "0x8006bb1c": {
+            "original": "run_task__13TUnk_80488B38Fv",
+            "current": "run_task__13TUnk_80488B38Fv",
+            "size": 280,
+            "owner": "src/pso/unk/TUnk_80488B38.cpp"
+          },
+          "0x8006bc34": {
+            "original": "__dt__13TUnk_80488B38Fv",
+            "current": "__dt__13TUnk_80488B38Fv",
+            "size": 88,
+            "owner": "src/pso/unk/TUnk_80488B38.cpp"
+          },
+          "0x8006bc8c": {
+            "original": "__ct__13TUnk_80488B38Fv",
+            "current": "__ct__13TUnk_80488B38Fv",
+            "size": 76,
+            "owner": "src/pso/unk/TUnk_80488B38.cpp"
+          }
+        },
+        "assessment": "The complete camera addition uses the four-player position and target banks and native types for the second controller, yaw, pitch and distance. The override returns the same zero-extended byte through the upstream declaration. The native factory, constructors and destructor remain linked."
+      },
+      {
+        "historical_path": "src/pso/ui/TWindowRoom.cpp",
+        "historical_blob": "7123b588a7b84d027ad36c191b891c935d26f018",
+        "native_owners": [
+          "src/pso/ui/window/TWindowRoom.cpp",
+          "src/pso/ui/window/TWindowSubStatusDisp_8026D740.cpp"
+        ],
+        "functions": {
+          "0x8026d504": {
+            "original": "get_title_entry__11TWindowRoomFv",
+            "current": "get_title_entry__11TWindowRoomFv",
+            "size": 36,
+            "owner": "src/pso/ui/window/TWindowRoom.cpp"
+          },
+          "0x8026d528": {
+            "original": "set_entry_display_value__20TWindowSubStatusDispFl",
+            "current": "set_entry_display_value__20TWindowSubStatusDispFl",
+            "size": 60,
+            "owner": "src/pso/ui/window/TWindowRoom.cpp"
+          },
+          "0x8026d564": {
+            "original": "draw_tab__11TWindowRoomFPv",
+            "current": "draw_tab__11TWindowRoomFP17WindowDrawContext",
+            "size": 48,
+            "owner": "src/pso/ui/window/TWindowRoom.cpp"
+          },
+          "0x8026d594": {
+            "original": "render__11TWindowRoomFv",
+            "current": "render__11TWindowRoomFv",
+            "size": 80,
+            "owner": "src/pso/ui/window/TWindowRoom.cpp"
+          },
+          "0x8026d5e4": {
+            "original": "run_task__11TWindowRoomFv",
+            "current": "run_task__11TWindowRoomFv",
+            "size": 56,
+            "owner": "src/pso/ui/window/TWindowRoom.cpp"
+          },
+          "0x8026d61c": {
+            "original": "__dt__11TWindowRoomFv",
+            "current": "__dt__11TWindowRoomFv",
+            "size": 88,
+            "owner": "src/pso/ui/window/TWindowRoom.cpp"
+          },
+          "0x8026d674": {
+            "original": "__ct__11TWindowRoomFPc",
+            "current": "__ct__11TWindowRoomFPc",
+            "size": 204,
+            "owner": "src/pso/ui/window/TWindowRoom.cpp"
+          },
+          "0x8026d740": {
+            "original": "clamp_list_scroll_offset",
+            "current": "clamp_list_scroll_offset",
+            "size": 80,
+            "owner": "src/pso/ui/window/TWindowSubStatusDisp_8026D740.cpp"
+          }
+        },
+        "assessment": "The complete room addition uses the live room descriptor, title, measured width, draw context and entry list. The list clamp uses NJS_POINT2 in its compiled owner."
+      },
+      {
+        "historical_path": "src/pso/misc/TWindowKeyBoardBase.cpp",
+        "historical_blob": "131034a1d578f2b9c04e61050ee3b4be812bfe56",
+        "native_owners": [
+          "src/pso/ui/window/TWindowKeyBoardBase.cpp"
+        ],
+        "functions": {
+          "0x8025e8b4": {
+            "original": "render__19TWindowKeyBoardBaseFv",
+            "current": "render__19TWindowKeyBoardBaseFv",
+            "size": 128,
+            "owner": "src/pso/ui/window/TWindowKeyBoardBase.cpp"
+          },
+          "0x8025e934": {
+            "original": "run_task__19TWindowKeyBoardBaseFv",
+            "current": "run_task__19TWindowKeyBoardBaseFv",
+            "size": 52,
+            "owner": "src/pso/ui/window/TWindowKeyBoardBase.cpp"
+          },
+          "0x8025e968": {
+            "original": "__dt__19TWindowKeyBoardBaseFv",
+            "current": "__dt__19TWindowKeyBoardBaseFv",
+            "size": 124,
+            "owner": "src/pso/ui/window/TWindowKeyBoardBase.cpp"
+          },
+          "0x8025e9e4": {
+            "original": "__ct__19TWindowKeyBoardBaseFv",
+            "current": "__ct__19TWindowKeyBoardBaseFv",
+            "size": 240,
+            "owner": "src/pso/ui/window/TWindowKeyBoardBase.cpp"
+          },
+          "0x8025ead4": {
+            "original": "load_ask_dictionary__6TLobbyFv",
+            "current": "load_ask_dictionary__6TLobbyFv",
+            "size": 148,
+            "owner": "src/pso/ui/window/TWindowKeyBoardBase.cpp"
+          }
+        },
+        "assessment": "The complete keyboard base addition retains its native descriptor, embedded buffer lifetimes, language-specific allocation, fade task, draw context, and aligned dictionary DMA and release."
+      }
+    ],
+    "restored_existing_camera_header_evidence": true
+  },
+  "fork_workspace": {
+    "parent": "27a1646b0a679a59b9f7116ad719bfb83d936e5d",
+    "previous_workspace": "42f51df0710c7d48a3faa63e857b2197fb3f49c6",
+    "overlay_paths": 130,
+    "materialized_tree_before_notes_update": "d862848ad0a95cd8712dc8f9cab9fb034c1f1f7f",
+    "archive_sha256": "fb8e3257103617967901dbb373a1e9f134d0851d3a6e327f9cf188f705688d36",
+    "tests": {
+      "tool": 294,
+      "fork": 11,
+      "host": 5
+    },
+    "host_executables": [
+      "vector_math_fallbacks",
+      "item_factory_callbacks",
+      "loader_transfer",
+      "ginja_parameter_callbacks",
+      "exi_ethernet_fallbacks"
+    ],
+    "test_log_sha256": {
+      "tool": "aca4c3985a59fa5c0f28d8d6d946df6f70ad2d89c49e3df1b3d27af5fd890d27",
+      "fork": "e0dccfc19a44fdba4a475573d55db351e31a20c054ff0e42048cf938853a789d",
+      "host": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  }
+}

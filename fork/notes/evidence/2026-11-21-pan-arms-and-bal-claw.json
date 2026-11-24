@@ -1,0 +1,954 @@
+{
+  "source": "865dfa4b44f3318faf0fdd8c7c289e5d1c2284d0",
+  "previous_source": "be98273edd37edde4da256aec3f8f5c5e64da5f6",
+  "review": {
+    "ref": "great-merge/consolidated/single-review-with-pan-arms-and-bal-claw",
+    "head": "89a757eb2758a58973b5e2dbfa707d2c3829222e",
+    "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+    "tree": "659bcbca72f6bb584190e1ab1bff2b42bb429748",
+    "tree_equivalent_to": "d195ce47f20f96c9f00ce6fb8398f2acb4af47a1",
+    "commits": [
+      {
+        "head": "2e33ab4cdde76248b1f7df05b7c4f436b362e8a3",
+        "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+        "tree": "fe39682610e91a6a5869bb6c9d9b567aece07cb5",
+        "checked_tree": "2e33ab4cdde76248b1f7df05b7c4f436b362e8a3",
+        "files_changed": 654,
+        "insertions": 10749,
+        "deletions": 12282
+      },
+      {
+        "head": "1cc9300b6775dabe89b368ed969daa9ba29da98d",
+        "base": "2e33ab4cdde76248b1f7df05b7c4f436b362e8a3",
+        "tree": "f46ca862dc64ee3d1a1b03ff8abba3d80a393ae8",
+        "checked_tree": "1cc9300b6775dabe89b368ed969daa9ba29da98d",
+        "files_changed": 679,
+        "insertions": 5760,
+        "deletions": 6296
+      },
+      {
+        "head": "a2b4e66a560d53d69d13ad12ff63d3aa713666eb",
+        "base": "1cc9300b6775dabe89b368ed969daa9ba29da98d",
+        "tree": "cda887a5d1594fc4b1cd88e7d0fac24e44512077",
+        "checked_tree": "a2b4e66a560d53d69d13ad12ff63d3aa713666eb",
+        "files_changed": 21,
+        "insertions": 372,
+        "deletions": 480
+      },
+      {
+        "head": "351a101687ff50b5832af3aad322bf0a4e151418",
+        "base": "a2b4e66a560d53d69d13ad12ff63d3aa713666eb",
+        "tree": "d49cf53e9c97ca59d1f44be73291cedf68c5398c",
+        "checked_tree": "351a101687ff50b5832af3aad322bf0a4e151418",
+        "files_changed": 968,
+        "insertions": 12597,
+        "deletions": 13408
+      },
+      {
+        "head": "5bf970f9ccfdfc2624052ef200039a06b6a8543e",
+        "base": "351a101687ff50b5832af3aad322bf0a4e151418",
+        "tree": "72d4f38d9a80fb43b3956ce73993e40c9601f25c",
+        "checked_tree": "5bf970f9ccfdfc2624052ef200039a06b6a8543e",
+        "files_changed": 24,
+        "insertions": 331,
+        "deletions": 396
+      },
+      {
+        "head": "2cd01e82147e0ad3ac02d70cabdb57538a02c6d4",
+        "base": "5bf970f9ccfdfc2624052ef200039a06b6a8543e",
+        "tree": "3b69faa170d4f4a38fe53e839557768ed7f8564f",
+        "checked_tree": "2cd01e82147e0ad3ac02d70cabdb57538a02c6d4",
+        "files_changed": 38,
+        "insertions": 646,
+        "deletions": 735
+      },
+      {
+        "head": "176bfd42251f7438d8f77a813b74e676430cdfe6",
+        "base": "2cd01e82147e0ad3ac02d70cabdb57538a02c6d4",
+        "tree": "00cf9b80b0e7a0cc7837b55717bf314ab98ad79f",
+        "checked_tree": "176bfd42251f7438d8f77a813b74e676430cdfe6",
+        "files_changed": 17,
+        "insertions": 256,
+        "deletions": 341
+      },
+      {
+        "head": "ce6336208b3c35a7acef029893bec424a17d3498",
+        "base": "176bfd42251f7438d8f77a813b74e676430cdfe6",
+        "tree": "f24560ce3c35902ce35af35ea229e7e1c817f3a4",
+        "checked_tree": "ce6336208b3c35a7acef029893bec424a17d3498",
+        "files_changed": 31,
+        "insertions": 475,
+        "deletions": 502
+      },
+      {
+        "head": "be4ac3f8f422c217d576331fa45a7bd7bd364b08",
+        "base": "ce6336208b3c35a7acef029893bec424a17d3498",
+        "tree": "40b91d2c9ea210f0d8aa5a0a4d587db8cccb1a25",
+        "checked_tree": "be4ac3f8f422c217d576331fa45a7bd7bd364b08",
+        "files_changed": 18,
+        "insertions": 341,
+        "deletions": 416
+      },
+      {
+        "head": "75396834cdfa4fc14d991dd37aefe500037e71a8",
+        "base": "be4ac3f8f422c217d576331fa45a7bd7bd364b08",
+        "tree": "de5d4633e8997367ca383c419883baae8a69be7b",
+        "checked_tree": "20a4bdc054f562084d67832e4c2ee2157d8129b4",
+        "files_changed": 18,
+        "insertions": 448,
+        "deletions": 448
+      },
+      {
+        "head": "89a757eb2758a58973b5e2dbfa707d2c3829222e",
+        "base": "75396834cdfa4fc14d991dd37aefe500037e71a8",
+        "tree": "659bcbca72f6bb584190e1ab1bff2b42bb429748",
+        "checked_tree": "d195ce47f20f96c9f00ce6fb8398f2acb4af47a1",
+        "files_changed": 12,
+        "insertions": 136,
+        "deletions": 139
+      }
+    ],
+    "commit_attribution": {
+      "audited_commits": 11,
+      "codex_attribution": 0,
+      "coauthor_trailers": 0
+    },
+    "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+    "files_changed": 1799,
+    "insertions": 31350,
+    "deletions": 34682
+  },
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/EnemyPlacement.h",
+    "include/pso/enemy/TObjEnePanBARA.h",
+    "include/pso/enemy/balclaw/TObjEneBalClawBody.h",
+    "include/pso/enemy/balclaw/TObjEneBalClawClaw.h",
+    "include/pso/enemy/panarms/TObjEnePanarms.h",
+    "include/pso/enemy/panarms/TObjEnePanarmsAtkColli.h",
+    "include/pso/enemy/panarms/TObjEnePanarms_800DCEB8.h",
+    "include/pso/enemy/panarms/TObjEnePanarms_800DFB74.h",
+    "src/pso/enemy/EnemyFactoryTables.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarmsAtkColli.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms_800DFB00.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms_800DFB74.cpp",
+    "src/pso/object/TObjControl.cpp"
+  ],
+  "patch_sha256": "cf7800a1a26edf250293e4284da4005a383c11d51ee29f05e0e0718efa1294e9",
+  "checked_original_functions": [
+    "TObjEnePanBARA::bind_parts",
+    "TObjEnePanBARA::check_can_attack",
+    "TObjEnePanBARA::is_below_half_hp",
+    "TObjEnePanarms::create",
+    "TObjEnePanarmsAtkColli::create",
+    "TObjEneBalClawClaw::create",
+    "TObjEnemy::apply_set_data"
+  ],
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "validation": {
+    "combat": {
+      "check_sha256": "410723002b07c96f57989582886e9c95221301bb89b523dd166e91d2092bd6b1",
+      "source_report_sha256": "05c55d363774dcbd875df3fdeb89d519900d7e5f6f4f31c2820b67450078d1a3",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x80090264",
+          "__ct__18TObjEneBalClawBodyFP7TObjectPv",
+          "__ct__18TObjEneBalClawBodyFP7TObjectP14EnemyPlacement"
+        ],
+        [
+          "0x80091970",
+          "create__18TObjEneBalClawClawFv",
+          "create__18TObjEneBalClawClawFPv"
+        ],
+        [
+          "0x80091C58",
+          "__ct__18TObjEneBalClawClawFP7TObjectPv",
+          "__ct__18TObjEneBalClawClawFP7TObjectP14EnemyPlacement"
+        ],
+        [
+          "0x800DE430",
+          "TObjEnePanarms__sub_800DE430",
+          "fn_800DE430__14TObjEnePanarmsFll"
+        ],
+        [
+          "0x800DE494",
+          "TObjEnePanarms__sub_800DE494",
+          "no_player_within_range__14TObjEnePanarmsFv"
+        ],
+        [
+          "0x800DE528",
+          "TObjEnePanarms__sub_800DE528",
+          "has_ground_around__14TObjEnePanarmsFP3Vec"
+        ],
+        [
+          "0x800DE6A8",
+          "check_ground_along_path__14TObjEnePanarmsFPvPvPvff",
+          "check_ground_along_path__14TObjEnePanarmsFP3VecP3Vecff"
+        ],
+        [
+          "0x800DE7EC",
+          "find_combine_position__14TObjEnePanarmsFPv",
+          "find_combine_position__14TObjEnePanarmsFv"
+        ],
+        [
+          "0x800DEB48",
+          "try_warp_to_position__14TObjEnePanarmsFPvPv",
+          "try_warp_to_position__14TObjEnePanarmsFP3Vec"
+        ],
+        [
+          "0x800DEEF8",
+          "TObjEnePanarms__sub_800DEEF8",
+          "draw_model__14TObjEnePanarmsFv"
+        ],
+        [
+          "0x800DF2B8",
+          "__ct__14TObjEnePanarmsFP7TObjectPv",
+          "__ct__14TObjEnePanarmsFP7TObjectP14EnemyPlacement"
+        ],
+        [
+          "0x800DF6E0",
+          "create__14TObjEnePanarmsFl",
+          "create__14TObjEnePanarmsFPv"
+        ],
+        [
+          "0x800DFB44",
+          "TObjEnePanarms__sub_800DFB44",
+          "is_in_state_7_or_8__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800DFB68",
+          "get_state_flag__14TObjEnePanarmsFv",
+          "get_state_flag__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800DFB74",
+          "TObjEnePanarms__sub_800DFB74",
+          "is_state_4_timer_expired__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800DFB9C",
+          "TObjEnePanarms__sub_800DFB9C",
+          "is_in_state_11__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800DFBB0",
+          "TObjEnePanarms__sub_800DFBB0",
+          "is_in_state_8__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E1774",
+          "TObjEnePanarms__sub_800E1774",
+          "acquire_target_in_front__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E18B0",
+          "try_move_with_detour__14TObjEnePanarmsFPvPv",
+          "try_move_with_detour__14TObjEnePanBARAFP3Vec"
+        ],
+        [
+          "0x800E1B50",
+          "calc_default_part_position__14TObjEnePanarmsFPv",
+          "calc_default_part_position__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E1B78",
+          "calc_part_position__14TObjEnePanBARAFPUcPl",
+          "calc_part_position__14TObjEnePanBARAFP3VecPl"
+        ],
+        [
+          "0x800E1C8C",
+          "TObjEnePanarms__sub_800E1C8C",
+          "bind_parts__14TObjEnePanBARAFP14TObjEnePanarmsP14TObjEnePanBARA"
+        ],
+        [
+          "0x800E1D38",
+          "TObjEnePanarms__sub_800E1D38",
+          "fn_800E1D38__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E1D94",
+          "TObjEnePanarms__sub_800E1D94",
+          "fn_800E1D94__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E1DB8",
+          "do_action_2__14TObjEnePanarmsFPv",
+          "do_action_2__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E1E14",
+          "TObjEnePanarms__sub_800E1E14",
+          "start_split_at_body__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E252C",
+          "__ct__14TObjEnePanBARAFP7TObjectPvl",
+          "__ct__14TObjEnePanBARAFP7TObjectP14EnemyPlacementl"
+        ],
+        [
+          "0x800E28F4",
+          "create_bara__14TObjEnePanarmsFPvl",
+          "create_bara__14TObjEnePanarmsFP14EnemyPlacementl"
+        ],
+        [
+          "0x800E2DF4",
+          "is_phase_12__14TObjEnePanarmsFPv",
+          "is_phase_12__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E2E08",
+          "check_can_attack__14TObjEnePanarmsFPv",
+          "check_can_attack__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E2E54",
+          "TObjEnePanarms__sub_800E2E54",
+          "is_in_state_13__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E2E68",
+          "TObjEnePanarms__sub_800E2E68",
+          "is_in_state_14__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E2E7C",
+          "is_below_half_hp__14TObjEnePanarmsFPv",
+          "is_below_half_hp__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E2FB4",
+          "TObjEnePanarms__sub_800E2FB4",
+          "is_in_state_9_or_11__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E372C",
+          "create__22TObjEnePanarmsAtkColliFPvPvPv",
+          "create__22TObjEnePanarmsAtkColliFP7TObjectPC3VecPC3Vecl"
+        ],
+        [
+          "0x800E37E4",
+          "__ct__22TObjEnePanarmsAtkColliFP7TObjectPvPvPv",
+          "__ct__22TObjEnePanarmsAtkColliFP7TObjectPC3VecPC3Vecl"
+        ]
+      ]
+    },
+    "full": {
+      "check_sha256": "410723002b07c96f57989582886e9c95221301bb89b523dd166e91d2092bd6b1",
+      "source_report_sha256": "05c55d363774dcbd875df3fdeb89d519900d7e5f6f4f31c2820b67450078d1a3",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x80090264",
+          "__ct__18TObjEneBalClawBodyFP7TObjectPv",
+          "__ct__18TObjEneBalClawBodyFP7TObjectP14EnemyPlacement"
+        ],
+        [
+          "0x80091970",
+          "create__18TObjEneBalClawClawFv",
+          "create__18TObjEneBalClawClawFPv"
+        ],
+        [
+          "0x80091C58",
+          "__ct__18TObjEneBalClawClawFP7TObjectPv",
+          "__ct__18TObjEneBalClawClawFP7TObjectP14EnemyPlacement"
+        ],
+        [
+          "0x800DE430",
+          "TObjEnePanarms__sub_800DE430",
+          "fn_800DE430__14TObjEnePanarmsFll"
+        ],
+        [
+          "0x800DE494",
+          "TObjEnePanarms__sub_800DE494",
+          "no_player_within_range__14TObjEnePanarmsFv"
+        ],
+        [
+          "0x800DE528",
+          "TObjEnePanarms__sub_800DE528",
+          "has_ground_around__14TObjEnePanarmsFP3Vec"
+        ],
+        [
+          "0x800DE6A8",
+          "check_ground_along_path__14TObjEnePanarmsFPvPvPvff",
+          "check_ground_along_path__14TObjEnePanarmsFP3VecP3Vecff"
+        ],
+        [
+          "0x800DE7EC",
+          "find_combine_position__14TObjEnePanarmsFPv",
+          "find_combine_position__14TObjEnePanarmsFv"
+        ],
+        [
+          "0x800DEB48",
+          "try_warp_to_position__14TObjEnePanarmsFPvPv",
+          "try_warp_to_position__14TObjEnePanarmsFP3Vec"
+        ],
+        [
+          "0x800DEEF8",
+          "TObjEnePanarms__sub_800DEEF8",
+          "draw_model__14TObjEnePanarmsFv"
+        ],
+        [
+          "0x800DF2B8",
+          "__ct__14TObjEnePanarmsFP7TObjectPv",
+          "__ct__14TObjEnePanarmsFP7TObjectP14EnemyPlacement"
+        ],
+        [
+          "0x800DF6E0",
+          "create__14TObjEnePanarmsFl",
+          "create__14TObjEnePanarmsFPv"
+        ],
+        [
+          "0x800DFB44",
+          "TObjEnePanarms__sub_800DFB44",
+          "is_in_state_7_or_8__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800DFB68",
+          "get_state_flag__14TObjEnePanarmsFv",
+          "get_state_flag__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800DFB74",
+          "TObjEnePanarms__sub_800DFB74",
+          "is_state_4_timer_expired__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800DFB9C",
+          "TObjEnePanarms__sub_800DFB9C",
+          "is_in_state_11__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800DFBB0",
+          "TObjEnePanarms__sub_800DFBB0",
+          "is_in_state_8__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E1774",
+          "TObjEnePanarms__sub_800E1774",
+          "acquire_target_in_front__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E18B0",
+          "try_move_with_detour__14TObjEnePanarmsFPvPv",
+          "try_move_with_detour__14TObjEnePanBARAFP3Vec"
+        ],
+        [
+          "0x800E1B50",
+          "calc_default_part_position__14TObjEnePanarmsFPv",
+          "calc_default_part_position__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E1B78",
+          "calc_part_position__14TObjEnePanBARAFPUcPl",
+          "calc_part_position__14TObjEnePanBARAFP3VecPl"
+        ],
+        [
+          "0x800E1C8C",
+          "TObjEnePanarms__sub_800E1C8C",
+          "bind_parts__14TObjEnePanBARAFP14TObjEnePanarmsP14TObjEnePanBARA"
+        ],
+        [
+          "0x800E1D38",
+          "TObjEnePanarms__sub_800E1D38",
+          "fn_800E1D38__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E1D94",
+          "TObjEnePanarms__sub_800E1D94",
+          "fn_800E1D94__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E1DB8",
+          "do_action_2__14TObjEnePanarmsFPv",
+          "do_action_2__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E1E14",
+          "TObjEnePanarms__sub_800E1E14",
+          "start_split_at_body__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E252C",
+          "__ct__14TObjEnePanBARAFP7TObjectPvl",
+          "__ct__14TObjEnePanBARAFP7TObjectP14EnemyPlacementl"
+        ],
+        [
+          "0x800E28F4",
+          "create_bara__14TObjEnePanarmsFPvl",
+          "create_bara__14TObjEnePanarmsFP14EnemyPlacementl"
+        ],
+        [
+          "0x800E2DF4",
+          "is_phase_12__14TObjEnePanarmsFPv",
+          "is_phase_12__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E2E08",
+          "check_can_attack__14TObjEnePanarmsFPv",
+          "check_can_attack__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E2E54",
+          "TObjEnePanarms__sub_800E2E54",
+          "is_in_state_13__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E2E68",
+          "TObjEnePanarms__sub_800E2E68",
+          "is_in_state_14__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E2E7C",
+          "is_below_half_hp__14TObjEnePanarmsFPv",
+          "is_below_half_hp__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E2FB4",
+          "TObjEnePanarms__sub_800E2FB4",
+          "is_in_state_9_or_11__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E372C",
+          "create__22TObjEnePanarmsAtkColliFPvPvPv",
+          "create__22TObjEnePanarmsAtkColliFP7TObjectPC3VecPC3Vecl"
+        ],
+        [
+          "0x800E37E4",
+          "__ct__22TObjEnePanarmsAtkColliFP7TObjectPvPvPv",
+          "__ct__22TObjEnePanarmsAtkColliFP7TObjectPC3VecPC3Vecl"
+        ]
+      ]
+    },
+    "linear-full": {
+      "check_sha256": "410723002b07c96f57989582886e9c95221301bb89b523dd166e91d2092bd6b1",
+      "source_report_sha256": "05c55d363774dcbd875df3fdeb89d519900d7e5f6f4f31c2820b67450078d1a3",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x80090264",
+          "__ct__18TObjEneBalClawBodyFP7TObjectPv",
+          "__ct__18TObjEneBalClawBodyFP7TObjectP14EnemyPlacement"
+        ],
+        [
+          "0x80091970",
+          "create__18TObjEneBalClawClawFv",
+          "create__18TObjEneBalClawClawFPv"
+        ],
+        [
+          "0x80091C58",
+          "__ct__18TObjEneBalClawClawFP7TObjectPv",
+          "__ct__18TObjEneBalClawClawFP7TObjectP14EnemyPlacement"
+        ],
+        [
+          "0x800DE430",
+          "TObjEnePanarms__sub_800DE430",
+          "fn_800DE430__14TObjEnePanarmsFll"
+        ],
+        [
+          "0x800DE494",
+          "TObjEnePanarms__sub_800DE494",
+          "no_player_within_range__14TObjEnePanarmsFv"
+        ],
+        [
+          "0x800DE528",
+          "TObjEnePanarms__sub_800DE528",
+          "has_ground_around__14TObjEnePanarmsFP3Vec"
+        ],
+        [
+          "0x800DE6A8",
+          "check_ground_along_path__14TObjEnePanarmsFPvPvPvff",
+          "check_ground_along_path__14TObjEnePanarmsFP3VecP3Vecff"
+        ],
+        [
+          "0x800DE7EC",
+          "find_combine_position__14TObjEnePanarmsFPv",
+          "find_combine_position__14TObjEnePanarmsFv"
+        ],
+        [
+          "0x800DEB48",
+          "try_warp_to_position__14TObjEnePanarmsFPvPv",
+          "try_warp_to_position__14TObjEnePanarmsFP3Vec"
+        ],
+        [
+          "0x800DEEF8",
+          "TObjEnePanarms__sub_800DEEF8",
+          "draw_model__14TObjEnePanarmsFv"
+        ],
+        [
+          "0x800DF2B8",
+          "__ct__14TObjEnePanarmsFP7TObjectPv",
+          "__ct__14TObjEnePanarmsFP7TObjectP14EnemyPlacement"
+        ],
+        [
+          "0x800DF6E0",
+          "create__14TObjEnePanarmsFl",
+          "create__14TObjEnePanarmsFPv"
+        ],
+        [
+          "0x800DFB44",
+          "TObjEnePanarms__sub_800DFB44",
+          "is_in_state_7_or_8__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800DFB68",
+          "get_state_flag__14TObjEnePanarmsFv",
+          "get_state_flag__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800DFB74",
+          "TObjEnePanarms__sub_800DFB74",
+          "is_state_4_timer_expired__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800DFB9C",
+          "TObjEnePanarms__sub_800DFB9C",
+          "is_in_state_11__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800DFBB0",
+          "TObjEnePanarms__sub_800DFBB0",
+          "is_in_state_8__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E1774",
+          "TObjEnePanarms__sub_800E1774",
+          "acquire_target_in_front__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E18B0",
+          "try_move_with_detour__14TObjEnePanarmsFPvPv",
+          "try_move_with_detour__14TObjEnePanBARAFP3Vec"
+        ],
+        [
+          "0x800E1B50",
+          "calc_default_part_position__14TObjEnePanarmsFPv",
+          "calc_default_part_position__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E1B78",
+          "calc_part_position__14TObjEnePanBARAFPUcPl",
+          "calc_part_position__14TObjEnePanBARAFP3VecPl"
+        ],
+        [
+          "0x800E1C8C",
+          "TObjEnePanarms__sub_800E1C8C",
+          "bind_parts__14TObjEnePanBARAFP14TObjEnePanarmsP14TObjEnePanBARA"
+        ],
+        [
+          "0x800E1D38",
+          "TObjEnePanarms__sub_800E1D38",
+          "fn_800E1D38__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E1D94",
+          "TObjEnePanarms__sub_800E1D94",
+          "fn_800E1D94__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E1DB8",
+          "do_action_2__14TObjEnePanarmsFPv",
+          "do_action_2__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E1E14",
+          "TObjEnePanarms__sub_800E1E14",
+          "start_split_at_body__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E252C",
+          "__ct__14TObjEnePanBARAFP7TObjectPvl",
+          "__ct__14TObjEnePanBARAFP7TObjectP14EnemyPlacementl"
+        ],
+        [
+          "0x800E28F4",
+          "create_bara__14TObjEnePanarmsFPvl",
+          "create_bara__14TObjEnePanarmsFP14EnemyPlacementl"
+        ],
+        [
+          "0x800E2DF4",
+          "is_phase_12__14TObjEnePanarmsFPv",
+          "is_phase_12__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E2E08",
+          "check_can_attack__14TObjEnePanarmsFPv",
+          "check_can_attack__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E2E54",
+          "TObjEnePanarms__sub_800E2E54",
+          "is_in_state_13__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E2E68",
+          "TObjEnePanarms__sub_800E2E68",
+          "is_in_state_14__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E2E7C",
+          "is_below_half_hp__14TObjEnePanarmsFPv",
+          "is_below_half_hp__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E2FB4",
+          "TObjEnePanarms__sub_800E2FB4",
+          "is_in_state_9_or_11__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E372C",
+          "create__22TObjEnePanarmsAtkColliFPvPvPv",
+          "create__22TObjEnePanarmsAtkColliFP7TObjectPC3VecPC3Vecl"
+        ],
+        [
+          "0x800E37E4",
+          "__ct__22TObjEnePanarmsAtkColliFP7TObjectPvPvPv",
+          "__ct__22TObjEnePanarmsAtkColliFP7TObjectPC3VecPC3Vecl"
+        ]
+      ]
+    },
+    "layer": {
+      "check_sha256": "58777355a8a2c2d2ff6e70557a1be0d91c2e99d33a811b750f0ca61951a32cb2",
+      "source_report_sha256": "05c55d363774dcbd875df3fdeb89d519900d7e5f6f4f31c2820b67450078d1a3",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x80090264",
+          "__ct__18TObjEneBalClawBodyFP7TObjectPv",
+          "__ct__18TObjEneBalClawBodyFP7TObjectP14EnemyPlacement"
+        ],
+        [
+          "0x80091970",
+          "create__18TObjEneBalClawClawFv",
+          "create__18TObjEneBalClawClawFPv"
+        ],
+        [
+          "0x80091C58",
+          "__ct__18TObjEneBalClawClawFP7TObjectPv",
+          "__ct__18TObjEneBalClawClawFP7TObjectP14EnemyPlacement"
+        ],
+        [
+          "0x800DE430",
+          "TObjEnePanarms__sub_800DE430",
+          "fn_800DE430__14TObjEnePanarmsFll"
+        ],
+        [
+          "0x800DE494",
+          "TObjEnePanarms__sub_800DE494",
+          "no_player_within_range__14TObjEnePanarmsFv"
+        ],
+        [
+          "0x800DE528",
+          "TObjEnePanarms__sub_800DE528",
+          "has_ground_around__14TObjEnePanarmsFP3Vec"
+        ],
+        [
+          "0x800DE6A8",
+          "check_ground_along_path__14TObjEnePanarmsFPvPvPvff",
+          "check_ground_along_path__14TObjEnePanarmsFP3VecP3Vecff"
+        ],
+        [
+          "0x800DE7EC",
+          "find_combine_position__14TObjEnePanarmsFPv",
+          "find_combine_position__14TObjEnePanarmsFv"
+        ],
+        [
+          "0x800DEB48",
+          "try_warp_to_position__14TObjEnePanarmsFPvPv",
+          "try_warp_to_position__14TObjEnePanarmsFP3Vec"
+        ],
+        [
+          "0x800DEEF8",
+          "TObjEnePanarms__sub_800DEEF8",
+          "draw_model__14TObjEnePanarmsFv"
+        ],
+        [
+          "0x800DF2B8",
+          "__ct__14TObjEnePanarmsFP7TObjectPv",
+          "__ct__14TObjEnePanarmsFP7TObjectP14EnemyPlacement"
+        ],
+        [
+          "0x800DF6E0",
+          "create__14TObjEnePanarmsFl",
+          "create__14TObjEnePanarmsFPv"
+        ],
+        [
+          "0x800DFB44",
+          "TObjEnePanarms__sub_800DFB44",
+          "is_in_state_7_or_8__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800DFB68",
+          "get_state_flag__14TObjEnePanarmsFv",
+          "get_state_flag__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800DFB74",
+          "TObjEnePanarms__sub_800DFB74",
+          "is_state_4_timer_expired__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800DFB9C",
+          "TObjEnePanarms__sub_800DFB9C",
+          "is_in_state_11__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800DFBB0",
+          "TObjEnePanarms__sub_800DFBB0",
+          "is_in_state_8__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E1774",
+          "TObjEnePanarms__sub_800E1774",
+          "acquire_target_in_front__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E18B0",
+          "try_move_with_detour__14TObjEnePanarmsFPvPv",
+          "try_move_with_detour__14TObjEnePanBARAFP3Vec"
+        ],
+        [
+          "0x800E1B50",
+          "calc_default_part_position__14TObjEnePanarmsFPv",
+          "calc_default_part_position__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E1B78",
+          "calc_part_position__14TObjEnePanBARAFPUcPl",
+          "calc_part_position__14TObjEnePanBARAFP3VecPl"
+        ],
+        [
+          "0x800E1C8C",
+          "TObjEnePanarms__sub_800E1C8C",
+          "bind_parts__14TObjEnePanBARAFP14TObjEnePanarmsP14TObjEnePanBARA"
+        ],
+        [
+          "0x800E1D38",
+          "TObjEnePanarms__sub_800E1D38",
+          "fn_800E1D38__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E1D94",
+          "TObjEnePanarms__sub_800E1D94",
+          "fn_800E1D94__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E1DB8",
+          "do_action_2__14TObjEnePanarmsFPv",
+          "do_action_2__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E1E14",
+          "TObjEnePanarms__sub_800E1E14",
+          "start_split_at_body__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E252C",
+          "__ct__14TObjEnePanBARAFP7TObjectPvl",
+          "__ct__14TObjEnePanBARAFP7TObjectP14EnemyPlacementl"
+        ],
+        [
+          "0x800E28F4",
+          "create_bara__14TObjEnePanarmsFPvl",
+          "create_bara__14TObjEnePanarmsFP14EnemyPlacementl"
+        ],
+        [
+          "0x800E2DF4",
+          "is_phase_12__14TObjEnePanarmsFPv",
+          "is_phase_12__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E2E08",
+          "check_can_attack__14TObjEnePanarmsFPv",
+          "check_can_attack__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E2E54",
+          "TObjEnePanarms__sub_800E2E54",
+          "is_in_state_13__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E2E68",
+          "TObjEnePanarms__sub_800E2E68",
+          "is_in_state_14__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E2E7C",
+          "is_below_half_hp__14TObjEnePanarmsFPv",
+          "is_below_half_hp__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E2FB4",
+          "TObjEnePanarms__sub_800E2FB4",
+          "is_in_state_9_or_11__14TObjEnePanBARAFv"
+        ],
+        [
+          "0x800E372C",
+          "create__22TObjEnePanarmsAtkColliFPvPvPv",
+          "create__22TObjEnePanarmsAtkColliFP7TObjectPC3VecPC3Vecl"
+        ],
+        [
+          "0x800E37E4",
+          "__ct__22TObjEnePanarmsAtkColliFP7TObjectPvPvPv",
+          "__ct__22TObjEnePanarmsAtkColliFP7TObjectPC3VecPC3Vecl"
+        ]
+      ]
+    }
+  },
+  "runtime_probes": {
+    "retail": "41c8819de76bab3dd6696b0a0ab8cc4905b9c007f926dd2dc60bdc65a89af149",
+    "review": "b42e88bea4b88ed2d2a22a3267a4d5eefe19f82686e266b31310a93b40126e75",
+    "layer": "8d56a9bca9673ca42c15defa93534fc7092af687ae87bb6d9ecaab2db526bc01"
+  },
+  "overlay_sha256": "57af04aad96e0fb04c8798fb9d13ed1d25b2e3f4d16814404ba5bc7661356996",
+  "fork_overlay_paths": 130,
+  "retained_symbols": 27031,
+  "workspace_checks": {
+    "tool": 294,
+    "fork": 11,
+    "host": [
+      "./vector_math_fallbacks",
+      "./item_factory_callbacks",
+      "./loader_transfer",
+      "./ginja_parameter_callbacks",
+      "./exi_ethernet_fallbacks"
+    ]
+  },
+  "historical_rows_closed": {
+    "465": "Reviewed the complete historical body declaration against the current owner. Its 0x47C layout and fade array are checked. The half links, ground height, hidden flags, ground and rejoin checks, warp helper and native drawing are represented by typed fields and methods. The existing particle-handle type and the upstream state method names preserve the same semantics",
+    "675": "Reviewed the original half layout and declarations against the current 0x470 class. It has typed body and sibling links, collision body and node capture, vector positioning and detour, target ID and effect position, and native split and state handlers. The matching build confirms method and state-table behavior while retaining upstream spellings"
+  },
+  "historical_rows_with_added_evidence": {
+    "603": "The typed half factory and native half state and detour methods use the original linked addresses. Exact builds retain preexisting targeting, registration and renderer interfaces",
+    "604": "The body uses the original node-capture owner, typed half links and typed ground checks, and passes captured arm origins to the native factory. The remaining raw effect and state inputs still need source comparison",
+    "971": "The constructor and factory accept typed direction, origin and kind, and retain the shared node-capture implementation and upstream names for the radius and segment collision routines. Other historical changes include a separate Sinow Mirage state callback",
+    "6723": "Enemy set-data parsing now reads the shared 0x40 placement record used by Pan Arms and Bal Claw. The retail probe confirms coordinates, rotation, room, wave, parameters, variants and seed propagation"
+  },
+  "existing_upstream_interfaces_kept": {},
+  "historical_rows_open": 595,
+  "public_refs_changed": false
+}

@@ -1,84 +1,41 @@
 #include "types.h"
-#include "pso/system/BmlResourceClass.h"
 #include "pso/npc/TObjNpcFemaleOld.h"
-#include "pso/npc/TUnk_804A8640.h"
-#include "pso/npc/TObjNpcFemaleTall.h"
-#include "pso/npc/TObjNpcBase.h"
-#include "pso/npc/TObjNpcFemaleBase.h"
+#include "pso/object/TObjControl.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/system/BmlResource.h"
+#include "pso/system/BmlResourceDescriptor.h"
+#include "pso/system/task/TMainTask.h"
 
-struct RecoveredGlobal_8014A718_lbl_804A8F90 { s32 value; u8 remaining[0xC]; };
-typedef char RecoveredGlobal_8014A718_lbl_804A8F90_size[sizeof(RecoveredGlobal_8014A718_lbl_804A8F90) == 0x10 ? 1 : -1];
+const char *bm_n_eow_i_body_motion_names[1] = { NULL };
+__declspec(section ".data") const char *bm_n_eow_i_body_model_names[2] = { "n_eow_i_body_2.nj", NULL };
+BmlResourceDescriptor bm_n_eow_i_body_resource_descriptor = { "bm_n_eow_i_body.bml", bm_n_eow_i_body_model_names, bm_n_eow_i_body_motion_names, 1, 0 };
+const char *TObjNpcFemaleOld::name = "TObjNpcFemaleOld";
+BmlResource *TObjNpcFemaleOld::static_instance;
 
-struct RecoveredGlobal_8014A7C0___vt__16TObjNpcFemaleOld {
-    s32 value;
-    u8 remaining[0x174];
-};
-
-extern "C" {
-extern const char lbl_8043F950[] = "n_eow_i_body_2.nj";
-extern const char lbl_8043F964[] = "bm_n_eow_i_body.bml";
-extern const char lbl_8043F978[] = "TObjNpcFemaleOld";
-extern RecoveredGlobal_8014A718_lbl_804A8F90 bm_n_eow_i_body_resource_descriptor;
-extern s32 __vt__16TObjNpcFemaleOld[];
-extern s32 TObjNpcFemaleOld__name;
-void *__ct__11TObjControlFP7TObject(void *, void *);
-void __dl__7TObjectFPv(void *);
-void *__nw__7TObjectFUl(int);
+void *TObjNpcFemaleOld::create(void *set_data) {
+    TObjControl *control = new TObjControl(tl_04);
+    return new TObjNpcFemaleOld(control, set_data);
+}
 
 void TObjNpcFemaleOld::destroy_static_instance() {
-    if ((u32) TObjNpcFemaleOld__static_instance != 0U) {
-        delete (BmlResource *)((void*)TObjNpcFemaleOld__static_instance);
-        TObjNpcFemaleOld__static_instance = 0U;
+    if (static_instance != NULL) {
+        delete static_instance;
+        static_instance = NULL;
     }
 }
+
 void TObjNpcFemaleOld::load_resource_instance() {
-    BmlResource *temp_r3;
-    BmlResource *var_r0;
-    temp_r3 = new BmlResource(1, (BmlResourceDescriptor *)(&bm_n_eow_i_body_resource_descriptor.value), 0, 0, (void *)(0));
-    var_r0 = temp_r3;
-    TObjNpcFemaleOld__static_instance = var_r0;
+    BmlResource *resource = new BmlResource(1, &bm_n_eow_i_body_resource_descriptor, 0, 0, NULL);
+    static_instance = resource;
 }
 
-void *__dt__16TObjNpcFemaleOldFv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = __vt__16TObjNpcFemaleOld;
-        ((TUnk_804A8640 *)arg0)->destroy_npc_female_base(0);
-        if (arg1 > 0) {
-            __dl__7TObjectFPv(arg0);
-        }
-    }
-    return arg0;
-}
+TObjNpcFemaleOld::~TObjNpcFemaleOld() {}
 
-extern void *tl_04;
-
-typedef char RecoveredGlobal_8014A7C0___vt__16TObjNpcFemaleOld_size[sizeof(RecoveredGlobal_8014A7C0___vt__16TObjNpcFemaleOld) == 0x178 ? 1 : -1];
-u8 *TObjNpcFemaleOld__ct(u8 *arg0, s32 arg1, s32 arg2) {
-    ((TUnk_804A8640 *)arg0)->construct_female_base();
-    *(s32 **)((s8 *)arg0 + 0x18) = &(*(RecoveredGlobal_8014A7C0___vt__16TObjNpcFemaleOld *)&__vt__16TObjNpcFemaleOld).value;
-    *(s32 *)((s8 *)arg0 + 0) = (s32) TObjNpcFemaleOld__name;
-    ((TObjNpcFemaleOld *)(arg0))->apply_set_data((void *)arg2);
-    ((TObjChara *)arg0)->initialize_position_copies();
-    *(s32 *)((s8 *)arg0 + 0x34) = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)TObjNpcFemaleOld__static_instance + 0x42C)) + 8);
-    ((TObjNpcFemaleOld *)arg0)->texlist = (s32) *(s32 *)((s8 *)(*(u8 **)((s8 *)TObjNpcFemaleOld__static_instance + 0x42C)) + 0xC);
-    ((TObjNpcBase *)arg0)->setup_common();
-    return arg0;
-}
-
-void * TObjNpcFemaleTall__create(void *arg0) {
-    void *o;
-    void *o2;
-    o = __nw__7TObjectFUl(0x20);
-    if (o != NULL) {
-        o = __ct__11TObjControlFP7TObject(o, tl_04);
-    }
-    o2 = __nw__7TObjectFUl(0x3B8);
-    if (o2 != NULL) {
-        o2 = TObjNpcFemaleTall__ct((u8 *)o2, (s32)o, (s32)arg0);
-    }
-    return o2;
-}
-
+TObjNpcFemaleOld::TObjNpcFemaleOld(TObject *parent, void *set_data) : TObjNpcFemale(parent) {
+    this->m_name = name;
+    this->apply_set_data(set_data);
+    init_position_vectors();
+    this->model = (void *)static_instance->models->model;
+    this->texlist = static_instance->models->texlist;
+    this->setup_common();
 }

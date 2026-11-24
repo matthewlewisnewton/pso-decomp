@@ -1,31 +1,32 @@
+#include "pso/ui/font/TNECFontEORFunction.h"
 #include "types.h"
-#include "pso/misc/TWindowSubStatusDisp_80144B14.h"
+#include <string.h>
+#include "pso/ui/window/TWindowSubStatusDisp_80144B14.h"
 #include "pso/unk/text_8026A14C.h"
-#include "pso/THeap.h"
+#include "pso/system/THeap.h"
 #include "pso/ui/Language.h"
 
-extern "C" {
+THeap *TAdScrollWinGC__chat_log_heap;
+char *chat_last_line_buffer;
+
+
 extern void *chat_log_lines[];
-extern void *TAdScrollWinGC__chat_log_heap;
-extern void *chat_last_line_buffer;
-char *strncpy(char *, const char *, u32);
-u32 strlen(const char *);
 void fn_8026A14C(void) {
     s32 i;
     for (i = 0x1D; i >= 0; i--) {
         if (chat_log_lines[i] != NULL) {
-            ((THeap *)TAdScrollWinGC__chat_log_heap)->heap_free(chat_log_lines[i]);
+            TAdScrollWinGC__chat_log_heap->heap_free(chat_log_lines[i]);
             chat_log_lines[i] = NULL;
         }
     }
     if (chat_last_line_buffer != NULL) {
-        ((THeap *)TAdScrollWinGC__chat_log_heap)->heap_free(chat_last_line_buffer);
+        TAdScrollWinGC__chat_log_heap->heap_free(chat_last_line_buffer);
         chat_last_line_buffer = NULL;
     }
 }
-void fn_8026A1C4(char *dst, char *src, s32 size) {
+void fn_8026A1C4(char *dst, const char *src, s32 size) {
     s32 sjis;
-    char *next;
+    const char *next;
     s32 len;
     s32 n;
     s8 c;
@@ -70,6 +71,4 @@ void fn_8026A1C4(char *dst, char *src, s32 size) {
         strncpy(dst, src, len);
         dst[len] = 0;
     }
-}
-
 }

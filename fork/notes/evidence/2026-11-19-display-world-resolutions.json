@@ -1,0 +1,1865 @@
+{
+  "checkpoint": "db40e8a83a4672e77c6993d57eb98226626390d2",
+  "initial_checkpoint": "428da611222dbe3a38a2aaba2da2c6145119a3c8",
+  "display_parent": "9bc06303e4ef84f0514df2ea76fb2e55264be10f",
+  "world_parent": "e5280c4a65589d47fe33ed2ee96304c8988a5239",
+  "compared_source": "ef8b7f3c2c14b778523b73695fc0021db160331f",
+  "initial_conflicted_paths": 133,
+  "initial_decisions": [
+    {
+      "path": "config/GPOE8P/psov3/config.yml",
+      "hunk": 1,
+      "rule": "world-force-active",
+      "donor": "third"
+    },
+    {
+      "path": "config/GPOE8P/psov3/config.yml",
+      "hunk": 2,
+      "rule": "world-force-active",
+      "donor": "third"
+    },
+    {
+      "path": "config/GPOE8P/psov3/config.yml",
+      "hunk": 3,
+      "rule": "world-force-active",
+      "donor": "display"
+    },
+    {
+      "path": "config/GPOE8P/psov3/symbols.txt",
+      "hunk": 1,
+      "rule": "capture-address-provider",
+      "donor": "third"
+    },
+    {
+      "path": "config/GPOE8P/psov3/symbols.txt",
+      "hunk": 2,
+      "rule": "color-line-provider",
+      "donor": "third"
+    },
+    {
+      "path": "config/GPOE8P/psov3/symbols.txt",
+      "hunk": 3,
+      "rule": "world-trail-symbols",
+      "donor": "third"
+    },
+    {
+      "path": "include/pso/boss/darkfalz/TObjDFDemo5.h",
+      "hunk": 1,
+      "rule": "display-model-capture",
+      "donor": "display"
+    },
+    {
+      "path": "include/pso/boss/goldragon/TBoss8Dragon.h",
+      "hunk": 1,
+      "rule": "provisional-world-actor-layout",
+      "donor": "third"
+    },
+    {
+      "path": "include/pso/boss/olgaflow/TBoss6Type1.h",
+      "hunk": 1,
+      "rule": "world-layout-with-pending-capture-port",
+      "donor": "third"
+    },
+    {
+      "path": "include/pso/boss/olgaflow/TBoss6Type1.h",
+      "hunk": 2,
+      "rule": "world-layout-with-pending-capture-port",
+      "donor": "third"
+    },
+    {
+      "path": "include/pso/boss/olgaflow/TBoss6Type2.h",
+      "hunk": 1,
+      "rule": "world-layout-with-pending-capture-port",
+      "donor": "third"
+    },
+    {
+      "path": "include/pso/boss/olgaflow/TBoss6Type2.h",
+      "hunk": 2,
+      "rule": "world-layout-with-pending-capture-port",
+      "donor": "third"
+    },
+    {
+      "path": "include/pso/boss/olgaflow/TBoss6Zanzo.h",
+      "hunk": 1,
+      "rule": "exact-world-donor-span",
+      "donor": "world"
+    },
+    {
+      "path": "include/pso/enemy/TObjEnePanBARA.h",
+      "hunk": 1,
+      "rule": "world-layout-with-pending-capture-port",
+      "donor": "third"
+    },
+    {
+      "path": "include/pso/enemy/canadin/TObjEneMe1Canadin.h",
+      "hunk": 1,
+      "rule": "provisional-world-actor-layout",
+      "donor": "third"
+    },
+    {
+      "path": "include/pso/enemy/gee/TObjEneMe1Gee.h",
+      "hunk": 1,
+      "rule": "provisional-world-actor-layout",
+      "donor": "world"
+    },
+    {
+      "path": "include/pso/enemy/panarms/TObjEnePanarms.h",
+      "hunk": 1,
+      "rule": "world-layout-with-pending-capture-port",
+      "donor": "third"
+    },
+    {
+      "path": "include/pso/item/TItemTexLoad.h",
+      "hunk": 1,
+      "rule": "provisional-world-actor-layout",
+      "donor": "world"
+    },
+    {
+      "path": "include/pso/unk/text_80320358.h",
+      "hunk": 1,
+      "rule": "display-rel-provider",
+      "donor": "display"
+    },
+    {
+      "path": "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+      "hunk": 2,
+      "rule": "display-model-capture",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/boss/darkfalz/TBoss4Type3.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/boss/darkfalz/TBoss4Zanzo.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/boss/darkfalz/TObjDFDemo3.cpp",
+      "hunk": 1,
+      "rule": "display-model-capture",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/boss/darkfalz/TObjDFDemo5.cpp",
+      "hunk": 1,
+      "rule": "display-model-capture",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/boss/darkfalz/TObjDFDemo5.cpp",
+      "hunk": 2,
+      "rule": "display-model-capture",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+      "hunk": 2,
+      "rule": "display-draw-with-world-archive",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+      "hunk": 3,
+      "rule": "display-draw-with-world-archive",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/boss/derolle/TBoss2Mine.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/boss/dragon/TBoss1Dragon.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/boss/dragon/TBoss1DragonEffBullet.cpp",
+      "hunk": 1,
+      "rule": "provisional-world-actor-layout",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+      "hunk": 2,
+      "rule": "provisional-world-actor-layout",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/boss/galgryphon/TBoss5GryphonLightningEff.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/boss/galgryphon/TBoss5GryphonShockWave.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/boss/galgryphon/TBoss5GryphonTornado.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/boss/goldragon/TBoss8DragonEffBullet.cpp",
+      "hunk": 1,
+      "rule": "provisional-world-actor-layout",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Demo10_TYPE1_APPEAR.cpp",
+      "hunk": 1,
+      "rule": "display-model-capture",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Demo11_TYPE1_DEAD.cpp",
+      "hunk": 1,
+      "rule": "display-model-capture",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Demo20_TYPE2_APPEAR.cpp",
+      "hunk": 1,
+      "rule": "display-model-capture",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Demo21_TYPE2_DEAD.cpp",
+      "hunk": 1,
+      "rule": "display-model-capture",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Demo21_TYPE2_DEAD.cpp",
+      "hunk": 2,
+      "rule": "display-model-capture",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Demo21_TYPE2_DEAD.cpp",
+      "hunk": 3,
+      "rule": "display-model-capture",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Demo21_TYPE2_DEAD.cpp",
+      "hunk": 4,
+      "rule": "display-model-capture",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+      "hunk": 2,
+      "rule": "world-layout-with-pending-capture-port",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+      "hunk": 3,
+      "rule": "world-layout-with-pending-capture-port",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+      "hunk": 4,
+      "rule": "world-layout-with-pending-capture-port",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+      "hunk": 2,
+      "rule": "world-layout-with-pending-capture-port",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+      "hunk": 3,
+      "rule": "world-layout-with-pending-capture-port",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp",
+      "hunk": 2,
+      "rule": "world-layout-with-pending-capture-port",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Zanzo.cpp",
+      "hunk": 1,
+      "rule": "provisional-world-actor-layout",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/camera/TObjCamera.cpp",
+      "hunk": 1,
+      "rule": "world-archive-implementation",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/effect/TEffIndirectCtrl.cpp",
+      "hunk": 1,
+      "rule": "world-archive-implementation",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/effect/TEffIndirectCtrl.cpp",
+      "hunk": 2,
+      "rule": "world-archive-implementation",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/enemy/TUnk_804909C4.cpp",
+      "hunk": 1,
+      "rule": "provisional-world-actor-layout",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/enemy/TUnk_804909C4.cpp",
+      "hunk": 2,
+      "rule": "provisional-world-actor-layout",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+      "hunk": 2,
+      "rule": "provisional-world-actor-layout",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+      "hunk": 3,
+      "rule": "world-archive-implementation",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+      "hunk": 4,
+      "rule": "provisional-world-actor-layout",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+      "hunk": 5,
+      "rule": "world-archive-implementation",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/enemy/bringer/BringerEffects.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/canadin/CanadinEffects.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+      "hunk": 2,
+      "rule": "provisional-world-actor-layout",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/dd/TObjEneDD.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+      "hunk": 1,
+      "rule": "world-archive-implementation",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+      "hunk": 2,
+      "rule": "provisional-world-actor-layout",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+      "hunk": 2,
+      "rule": "world-archive-implementation",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+      "hunk": 3,
+      "rule": "world-archive-implementation",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+      "hunk": 4,
+      "rule": "provisional-world-actor-layout",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+      "hunk": 5,
+      "rule": "world-archive-implementation",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+      "hunk": 6,
+      "rule": "provisional-world-actor-layout",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+      "hunk": 2,
+      "rule": "provisional-world-actor-layout",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/gigue/TObjEneMe1GiGueMissile.cpp",
+      "hunk": 1,
+      "rule": "world-archive-implementation",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+      "hunk": 1,
+      "rule": "provisional-world-actor-layout",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+      "hunk": 2,
+      "rule": "world-archive-implementation",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+      "hunk": 3,
+      "rule": "provisional-world-actor-layout",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+      "hunk": 4,
+      "rule": "provisional-world-actor-layout",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+      "hunk": 2,
+      "rule": "provisional-world-actor-layout",
+      "donor": "display"
+    },
+    {
+      "path": "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+      "hunk": 1,
+      "rule": "world-archive-implementation",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+      "hunk": 2,
+      "rule": "provisional-world-actor-layout",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+      "hunk": 3,
+      "rule": "world-archive-implementation",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+      "hunk": 4,
+      "rule": "provisional-world-actor-layout",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/enemy/moja/TObjEneMoja.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/moja/TObjEneMoja.cpp",
+      "hunk": 2,
+      "rule": "world-archive-implementation",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/moja/TObjEneMoja.cpp",
+      "hunk": 3,
+      "rule": "world-archive-implementation",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/moja/TObjEneMoja.cpp",
+      "hunk": 4,
+      "rule": "provisional-world-actor-layout",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/moja/TObjEneMoja.cpp",
+      "hunk": 5,
+      "rule": "provisional-world-actor-layout",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+      "hunk": 2,
+      "rule": "provisional-world-actor-layout",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+      "hunk": 3,
+      "rule": "provisional-world-actor-layout",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+      "hunk": 4,
+      "rule": "provisional-world-actor-layout",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+      "hunk": 5,
+      "rule": "provisional-world-actor-layout",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+      "hunk": 2,
+      "rule": "provisional-world-actor-layout",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+      "hunk": 3,
+      "rule": "display-model-capture",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/enemy/panarms/TObjEnePanarmsAtkColli.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+      "hunk": 2,
+      "rule": "display-model-capture",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+      "hunk": 3,
+      "rule": "display-model-capture",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/saver/SaverLifecycle.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+      "hunk": 2,
+      "rule": "provisional-world-actor-layout",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+      "hunk": 3,
+      "rule": "provisional-world-actor-layout",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+      "hunk": 1,
+      "rule": "provisional-world-actor-layout",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+      "hunk": 2,
+      "rule": "provisional-world-actor-layout",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/enemy/sorcerer/TObjEneRe4Bit.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/item/TItemLoad.cpp",
+      "hunk": 1,
+      "rule": "provisional-world-actor-layout",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/item/TItemTexLoad.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/item/TItemTexLoad.cpp",
+      "hunk": 2,
+      "rule": "provisional-world-actor-layout",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/object/TDeadSpot.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/object/TObjLiveMonitor.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/object/TObjLiveMonitor.cpp",
+      "hunk": 2,
+      "rule": "world-archive-implementation",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/object/TObjLiveMonitor.cpp",
+      "hunk": 3,
+      "rule": "world-archive-implementation",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/object/TObjSinBoard.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/object/ambient/TObjGrass.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/object/cave/TOAirconCave01.cpp",
+      "hunk": 1,
+      "rule": "world-archive-implementation",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/object/cave/TORevlightCave01.cpp",
+      "hunk": 1,
+      "rule": "world-archive-implementation",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/object/cave/TOSignCave01.cpp",
+      "hunk": 1,
+      "rule": "world-archive-implementation",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/object/cave/TOSignCave02.cpp",
+      "hunk": 1,
+      "rule": "world-archive-implementation",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/object/city/CityDoors.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/object/city/CitySeason.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/object/city/CitySeason.cpp",
+      "hunk": 2,
+      "rule": "provisional-world-actor-layout",
+      "donor": "display"
+    },
+    {
+      "path": "src/pso/object/city/CityTraffic.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/object/collision/TObjRaderCol.cpp",
+      "hunk": 1,
+      "rule": "exact-world-donor-span",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/object/ending/TObjOnlineEnding_802E4B80.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/object/mine/TOLightMachine01.cpp",
+      "hunk": 1,
+      "rule": "world-archive-implementation",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/object/switch/TOSensorGeneral01.cpp",
+      "hunk": 1,
+      "rule": "world-archive-implementation",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/object/switch/TOSensorGeneral01.cpp",
+      "hunk": 2,
+      "rule": "world-archive-implementation",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/player/PhotonBlastResults.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/player/TObjPlayer_80011014.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/player/TObjPlayer_8023E480.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/system/scene/TEndingAB.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/system/scene/TEndingC_8008D00C.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/system/scene/TEndingPic.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/system/scene/TEndingPic.cpp",
+      "hunk": 2,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/system/scene/TSceneSora.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp",
+      "hunk": 1,
+      "rule": "window-layout-with-world-archive-normalization",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp",
+      "hunk": 2,
+      "rule": "window-layout-with-world-archive-normalization",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp",
+      "hunk": 3,
+      "rule": "window-layout-with-world-archive-normalization",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/ui/charcreate/TChCrLoadGmNjReq.cpp",
+      "hunk": 1,
+      "rule": "window-layout-with-world-archive-normalization",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/ui/chat/TWindowSubSymbolChat.cpp",
+      "hunk": 1,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/ui/chat/TWindowSubSymbolChat.cpp",
+      "hunk": 2,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/chat/TWindowSubSymbolChatFaceType.cpp",
+      "hunk": 1,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/chat/TWindowSubSymbolChatFaceType.cpp",
+      "hunk": 2,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/chat/TWindowSubSymbolChatHelp.cpp",
+      "hunk": 1,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/chat/TWindowSubSymbolChatHelp.cpp",
+      "hunk": 2,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/frontend/TAdChrMoveEffectGC.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/ui/frontend/TAdChrSelMovePlateGC.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/ui/frontend/TAdChrSelMovePlateGC.cpp",
+      "hunk": 2,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp",
+      "hunk": 1,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/ui/frontend/TAdPlyChrSelPlateGC.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/ui/frontend/TAdPlyChrSelPlateGC.cpp",
+      "hunk": 2,
+      "rule": "provisional-display-layout",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+      "hunk": 2,
+      "rule": "provisional-display-layout",
+      "donor": "display"
+    },
+    {
+      "path": "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+      "hunk": 3,
+      "rule": "include-union",
+      "donor": "display"
+    },
+    {
+      "path": "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+      "hunk": 4,
+      "rule": "provisional-display-layout",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+      "hunk": 5,
+      "rule": "window-layout-with-world-archive-normalization",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+      "hunk": 6,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+      "hunk": 7,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+      "hunk": 8,
+      "rule": "provisional-display-layout",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/ui/hud/TRaderMapCore.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/ui/hud/TRaderMapCore.cpp",
+      "hunk": 2,
+      "rule": "provisional-display-layout",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/ui/hud/TRaderMapCore.cpp",
+      "hunk": 3,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/ui/hud/TRaderMapCore.cpp",
+      "hunk": 4,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowActionPalette.cpp",
+      "hunk": 1,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowActionPalette.cpp",
+      "hunk": 2,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowCtrlMain.cpp",
+      "hunk": 1,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowCtrlMain.cpp",
+      "hunk": 2,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowDD_80340A78.cpp",
+      "hunk": 1,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowDD_80340A78.cpp",
+      "hunk": 2,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "display"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowEffectLight.cpp",
+      "hunk": 1,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowEffectLight.cpp",
+      "hunk": 2,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowFukidasi.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowFukidasi.cpp",
+      "hunk": 2,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowHelpItem_802540AC.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowHelpItem_8025A60C.cpp",
+      "hunk": 1,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowHelpItem_8025A60C.cpp",
+      "hunk": 2,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowInputNumber.cpp",
+      "hunk": 1,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowInputNumber.cpp",
+      "hunk": 2,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowKeyBoardSoft.cpp",
+      "hunk": 1,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowKeyBoardSoft.cpp",
+      "hunk": 2,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+      "hunk": 1,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+      "hunk": 2,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowPartyStatus.cpp",
+      "hunk": 1,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowPartyStatus.cpp",
+      "hunk": 2,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSimpleStatus.cpp",
+      "hunk": 1,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSimpleStatus.cpp",
+      "hunk": 2,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowStatus.cpp",
+      "hunk": 1,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowStatus.cpp",
+      "hunk": 2,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubAreaMapDisp.cpp",
+      "hunk": 1,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubAreaMapDisp.cpp",
+      "hunk": 2,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+      "hunk": 1,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+      "hunk": 2,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+      "hunk": 3,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+      "hunk": 4,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+      "hunk": 5,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+      "hunk": 6,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubCustomEquip.cpp",
+      "hunk": 1,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubCustomEquip.cpp",
+      "hunk": 2,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubStatusDisp_80256B94.cpp",
+      "hunk": 1,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubStatusDisp_80256B94.cpp",
+      "hunk": 2,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubStatusDisp_8025737C.cpp",
+      "hunk": 1,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubStatusDisp_8025737C.cpp",
+      "hunk": 2,
+      "rule": "provisional-display-layout",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubStatusDisp_8025737C.cpp",
+      "hunk": 3,
+      "rule": "provisional-display-layout",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubStatusDisp_8025737C.cpp",
+      "hunk": 4,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubStatusDisp_80257BC0.cpp",
+      "hunk": 1,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubStatusDisp_80258164.cpp",
+      "hunk": 1,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubStatusDisp_8025B050.cpp",
+      "hunk": 1,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubStatusDisp_8025B050.cpp",
+      "hunk": 2,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubStatusDisp_8026D740.cpp",
+      "hunk": 1,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubStatusDisp_8026D740.cpp",
+      "hunk": 2,
+      "rule": "window-typed-draw-with-world-texture",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubStatusDisp_80287570.cpp",
+      "hunk": 1,
+      "rule": "exact-world-donor-span",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubStatusDisp_80287570.cpp",
+      "hunk": 2,
+      "rule": "exact-world-donor-span",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+      "hunk": 2,
+      "rule": "provisional-world-actor-layout",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+      "hunk": 3,
+      "rule": "provisional-world-actor-layout",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/unk/TLobby_800726F0.cpp",
+      "hunk": 1,
+      "rule": "provisional-world-actor-layout",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/unk/TLobby_800F8AA8.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/unk/TLobby_800FA388.cpp",
+      "hunk": 1,
+      "rule": "provisional-world-actor-layout",
+      "donor": "display"
+    },
+    {
+      "path": "src/pso/unk/TLobby_800FA388.cpp",
+      "hunk": 2,
+      "rule": "provisional-world-actor-layout",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/unk/TLobby_801E2F94.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/unk/TLobby_80299C4C.cpp",
+      "hunk": 1,
+      "rule": "provisional-world-actor-layout",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/unk/TLobby_80299C4C.cpp",
+      "hunk": 2,
+      "rule": "provisional-world-actor-layout",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/unk/TLobby_80299C4C.cpp",
+      "hunk": 3,
+      "rule": "provisional-world-actor-layout",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/unk/TLobby_803382E4.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/unk/text_800FA464.cpp",
+      "hunk": 1,
+      "rule": "include-union",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/unk/text_800FA464.cpp",
+      "hunk": 2,
+      "rule": "provisional-world-actor-layout",
+      "donor": "third"
+    },
+    {
+      "path": "src/pso/unk/text_800FA464.cpp",
+      "hunk": 3,
+      "rule": "world-archive-implementation",
+      "donor": "unanchored"
+    },
+    {
+      "path": "src/pso/unk/text_8026C664.cpp",
+      "hunk": 1,
+      "rule": "world-archive-implementation",
+      "donor": "world"
+    },
+    {
+      "path": "src/pso/unk/text_8026C664.cpp",
+      "hunk": 2,
+      "rule": "world-archive-implementation",
+      "donor": "world"
+    }
+  ],
+  "initial_archive_caller_adjustments": {
+    "src/pso/ui/window/TWindowSubStatusDisp_8026D740.cpp": {
+      "old_texture_setter": 2,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/ui/window/TWindowSubStatusDisp_8025B050.cpp": {
+      "old_texture_setter": 2,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/ui/window/TWindowSubStatusDisp_80258164.cpp": {
+      "old_texture_setter": 2,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/ui/window/TWindowSubStatusDisp_80257BC0.cpp": {
+      "old_texture_setter": 1,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/ui/window/TWindowSubStatusDisp_8025737C.cpp": {
+      "old_texture_setter": 2,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/ui/window/TWindowSubStatusDisp_80256B94.cpp": {
+      "old_texture_setter": 2,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/ui/window/TWindowSubCustomEquip.cpp": {
+      "old_texture_setter": 2,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/ui/window/TWindowSubComCard_80244774.cpp": {
+      "old_texture_setter": 6,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/ui/window/TWindowSubAreaMapDisp.cpp": {
+      "old_texture_setter": 2,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/ui/window/TWindowStatus.cpp": {
+      "old_texture_setter": 2,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/ui/window/TWindowSimpleStatus.cpp": {
+      "old_texture_setter": 2,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/ui/window/TWindowPartyStatus.cpp": {
+      "old_texture_setter": 2,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/ui/window/TWindowMainMenu_802AD538.cpp": {
+      "old_texture_setter": 2,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/ui/window/TWindowKeyBoardSoft.cpp": {
+      "old_texture_setter": 2,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/ui/window/TWindowInputNumber.cpp": {
+      "old_texture_setter": 2,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/ui/window/TWindowHelpItem_8025A60C.cpp": {
+      "old_texture_setter": 2,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/ui/window/TWindowFukidasi.cpp": {
+      "old_texture_setter": 2,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/ui/window/TWindowEffectLight.cpp": {
+      "old_texture_setter": 2,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/ui/window/TWindowDD_80340A78.cpp": {
+      "old_texture_setter": 2,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/ui/window/TWindowCtrlMain.cpp": {
+      "old_texture_setter": 2,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/ui/window/TWindowActionPalette.cpp": {
+      "old_texture_setter": 2,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/ui/hud/TRaderMapCore.cpp": {
+      "old_texture_setter": 1,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/ui/frontend/TAdRicoRingCtrl.cpp": {
+      "old_texture_setter": 1,
+      "old_resource_destructor": 2,
+      "old_resource_constructor": 2
+    },
+    "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp": {
+      "old_texture_setter": 1,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/ui/frontend/TAdChrSelMovePlateGC.cpp": {
+      "old_texture_setter": 1,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/ui/chat/TWindowSubSymbolChatHelp.cpp": {
+      "old_texture_setter": 2,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/ui/chat/TWindowSubSymbolChatFaceType.cpp": {
+      "old_texture_setter": 2,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/ui/chat/TWindowSubSymbolChat.cpp": {
+      "old_texture_setter": 2,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/ui/charcreate/TChCrLoadGmNjReq.cpp": {
+      "old_texture_setter": 0,
+      "old_resource_destructor": 1,
+      "old_resource_constructor": 0
+    },
+    "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp": {
+      "old_texture_setter": 0,
+      "old_resource_destructor": 3,
+      "old_resource_constructor": 0
+    },
+    "src/pso/system/scene/TEndingPic.cpp": {
+      "old_texture_setter": 1,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp": {
+      "old_texture_setter": 1,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/enemy/panarms/TObjEnePanarms.cpp": {
+      "old_texture_setter": 1,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/boss/olgaflow/TBoss6Demo21_TYPE2_DEAD.cpp": {
+      "old_texture_setter": 4,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/boss/olgaflow/TBoss6Demo20_TYPE2_APPEAR.cpp": {
+      "old_texture_setter": 1,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/boss/olgaflow/TBoss6Demo11_TYPE1_DEAD.cpp": {
+      "old_texture_setter": 2,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/boss/olgaflow/TBoss6Demo10_TYPE1_APPEAR.cpp": {
+      "old_texture_setter": 1,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/boss/derolle/TBoss2DeRolLe.cpp": {
+      "old_texture_setter": 2,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/boss/darkfalz/TObjDFDemo5.cpp": {
+      "old_texture_setter": 2,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    },
+    "src/pso/boss/darkfalz/TObjDFDemo3.cpp": {
+      "old_texture_setter": 1,
+      "old_resource_destructor": 0,
+      "old_resource_constructor": 0
+    }
+  },
+  "provisional_path_review": [
+    {
+      "path": "include/pso/boss/goldragon/TBoss8Dragon.h",
+      "initial_decisions": "provisional-world-actor-layout (1)",
+      "status": "source review remains"
+    },
+    {
+      "path": "include/pso/enemy/canadin/TObjEneMe1Canadin.h",
+      "initial_decisions": "provisional-world-actor-layout (1)",
+      "status": "matches Great Merge byte for byte"
+    },
+    {
+      "path": "include/pso/enemy/gee/TObjEneMe1Gee.h",
+      "initial_decisions": "provisional-world-actor-layout (1)",
+      "status": "source review remains"
+    },
+    {
+      "path": "include/pso/item/TItemTexLoad.h",
+      "initial_decisions": "provisional-world-actor-layout (1)",
+      "status": "matches Great Merge byte for byte"
+    },
+    {
+      "path": "src/pso/boss/dragon/TBoss1DragonEffBullet.cpp",
+      "initial_decisions": "provisional-world-actor-layout (1)",
+      "status": "same implementation, include differences"
+    },
+    {
+      "path": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+      "initial_decisions": "provisional-world-actor-layout (1)",
+      "status": "source review remains"
+    },
+    {
+      "path": "src/pso/boss/goldragon/TBoss8DragonEffBullet.cpp",
+      "initial_decisions": "provisional-world-actor-layout (1)",
+      "status": "same implementation, include differences"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Zanzo.cpp",
+      "initial_decisions": "provisional-world-actor-layout (1)",
+      "status": "source review remains"
+    },
+    {
+      "path": "src/pso/enemy/TUnk_804909C4.cpp",
+      "initial_decisions": "provisional-world-actor-layout (2)",
+      "status": "source review remains"
+    },
+    {
+      "path": "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+      "initial_decisions": "provisional-world-actor-layout (2)",
+      "status": "source review remains"
+    },
+    {
+      "path": "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+      "initial_decisions": "provisional-world-actor-layout (1)",
+      "status": "source review remains"
+    },
+    {
+      "path": "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+      "initial_decisions": "provisional-world-actor-layout (1)",
+      "status": "source review remains"
+    },
+    {
+      "path": "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+      "initial_decisions": "provisional-world-actor-layout (2)",
+      "status": "source review remains"
+    },
+    {
+      "path": "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+      "initial_decisions": "provisional-world-actor-layout (1)",
+      "status": "source review remains"
+    },
+    {
+      "path": "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+      "initial_decisions": "provisional-world-actor-layout (3)",
+      "status": "source review remains"
+    },
+    {
+      "path": "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+      "initial_decisions": "provisional-world-actor-layout (1)",
+      "status": "source review remains"
+    },
+    {
+      "path": "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+      "initial_decisions": "provisional-world-actor-layout (2)",
+      "status": "source review remains"
+    },
+    {
+      "path": "src/pso/enemy/moja/TObjEneMoja.cpp",
+      "initial_decisions": "provisional-world-actor-layout (2)",
+      "status": "source review remains"
+    },
+    {
+      "path": "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+      "initial_decisions": "provisional-world-actor-layout (4)",
+      "status": "source review remains"
+    },
+    {
+      "path": "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+      "initial_decisions": "provisional-world-actor-layout (1)",
+      "status": "source review remains"
+    },
+    {
+      "path": "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+      "initial_decisions": "provisional-world-actor-layout (2)",
+      "status": "source review remains"
+    },
+    {
+      "path": "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+      "initial_decisions": "provisional-world-actor-layout (2)",
+      "status": "source review remains"
+    },
+    {
+      "path": "src/pso/item/TItemLoad.cpp",
+      "initial_decisions": "provisional-world-actor-layout (1)",
+      "status": "source review remains"
+    },
+    {
+      "path": "src/pso/item/TItemTexLoad.cpp",
+      "initial_decisions": "provisional-world-actor-layout (1)",
+      "status": "source review remains"
+    },
+    {
+      "path": "src/pso/object/city/CitySeason.cpp",
+      "initial_decisions": "provisional-world-actor-layout (1)",
+      "status": "source review remains"
+    },
+    {
+      "path": "src/pso/ui/frontend/TAdPlyChrSelPlateGC.cpp",
+      "initial_decisions": "provisional-display-layout (1)",
+      "status": "same implementation, include differences"
+    },
+    {
+      "path": "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+      "initial_decisions": "provisional-display-layout (3)",
+      "status": "source review remains"
+    },
+    {
+      "path": "src/pso/ui/hud/TRaderMapCore.cpp",
+      "initial_decisions": "provisional-display-layout (1)",
+      "status": "source review remains"
+    },
+    {
+      "path": "src/pso/ui/window/TWindowSubStatusDisp_8025737C.cpp",
+      "initial_decisions": "provisional-display-layout (2)",
+      "status": "same implementation, include differences"
+    },
+    {
+      "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+      "initial_decisions": "provisional-world-actor-layout (2)",
+      "status": "source review remains"
+    },
+    {
+      "path": "src/pso/unk/TLobby_800726F0.cpp",
+      "initial_decisions": "provisional-world-actor-layout (1)",
+      "status": "source review remains"
+    },
+    {
+      "path": "src/pso/unk/TLobby_800FA388.cpp",
+      "initial_decisions": "provisional-world-actor-layout (2)",
+      "status": "source review remains"
+    },
+    {
+      "path": "src/pso/unk/TLobby_80299C4C.cpp",
+      "initial_decisions": "provisional-world-actor-layout (3)",
+      "status": "source review remains"
+    },
+    {
+      "path": "src/pso/unk/text_800FA464.cpp",
+      "initial_decisions": "provisional-world-actor-layout (1)",
+      "status": "source review remains"
+    }
+  ],
+  "review_counts": {
+    "matches Great Merge byte for byte": 2,
+    "same implementation, include differences": 4,
+    "source review remains": 28
+  }
+}

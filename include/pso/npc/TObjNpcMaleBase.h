@@ -2,14 +2,20 @@
 #define PSO_NPC_TOBJNPCMALEBASE_H
 
 #include "types.h"
-#include "pso/npc/TUnk_804A9F50.h"
+#include "pso/npc/TObjNpcMale.h"
 
-struct TObjNpcMaleBase : public TUnk_804A9F50 {
+struct BmlResource;
+
+struct TObjNpcMaleBase : public TObjNpcMale {
+    TObjNpcMaleBase(TObject *parent, void *set_data);
     virtual ~TObjNpcMaleBase();
-    void request_action(s32 arg1);
     static void free_static_data();
     static void load_shared_resource();
+    static void *create(void *set_data);
+    static const char *name;
+    static BmlResource *shared_bml_archive;
 };
 
-typedef char TObjNpcMaleBase_size[sizeof(TObjNpcMaleBase) == 0x3B8 ? 1 : -1];
+LAYOUT_ASSERT(TObjNpcMaleBase_size, sizeof(TObjNpcMaleBase) == 0x3B8);
+
 #endif

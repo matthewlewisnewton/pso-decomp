@@ -1,5 +1,4 @@
-#include "pso/system/BmlTextureList.h"
-#include "pso/system/CurrentTextureList.h"
+#include "pso/system/BmlAccessors.h"
 // The bridges: TObjHashiBase and its three set objects TObjHashi,
 // TObjHashiVersus1 and TObjHashiVersus2, and the packet 6x78 slot timers.
 //
@@ -9,29 +8,30 @@
 #include "pso/object/TObjHashi.h"
 #include "pso/object/TObjHashiVersus1.h"
 #include "pso/object/TObjHashiVersus2.h"
-#include "pso/TMainTask.h"
-#include "pso/misc/TCameraCtrl.h"
-#include "pso/misc/TSwitch.h"
-#include "pso/object/TObjFish.h"
-#include "pso/object/TObjInfoCol.h"
-#include "pso/protocol/subcmd_6x.h"
+#include "pso/system/task/TMainTask.h"
+#include "pso/camera/TCameraCtrl.h"
+#include "pso/object/switch/TSwitch.h"
+#include "pso/object/ambient/TObjFish.h"
+#include "pso/object/collision/TObjInfoCol.h"
+#include "pso/network/protocol/subcmd_6x.h"
 #include "pso/player/TObjPlayer_801542CC.h"
 #include "pso/player/TObjPlayer_803E4954.h"
 #include "pso/system/BmlResource.h"
 #include "pso/system/BmlResourceDescriptor.h"
-#include "pso/system/GinjaMaterial.h"
+#include "pso/render/GinjaMaterial.h"
 #include "pso/system/MatrixStack.h"
-#include "pso/system/NinjaUtil.h"
+#include "pso/render/NinjaUtil.h"
 #include "pso/unk/text_803D853C.h"
 #include "pso/unk/text_803D8F74.h"
+#include "pso/object/ambient/TObjFish_8001ED90.h"
 
-extern "C" {
 // The BML resource loader and its deleting destructor (TLobby_8001EF5C) and
 // a model's texture list (TObjFish_8001ED90), still named after their units.
-extern TCameraCtrl *camera_ctrl_instance;
-}
 
-// Definitions follow the functions so GC/2.6 retains the named pool order.
+// The unit's .sdata2 float pool (0x805DBE20-0x805DBE40) is still referenced
+// from the DOL: CW pools these in the order the functions need them, and no
+// source arrangement found yet gives the original order 120, 400, 40, 0, 640,
+// 0.15, 30 (written source gives 120, 0, 640, 400, 40, 0.15, 30).
 extern const f32 lbl_805DBE20; // 120.0f, TObjHashiVersus2's model radius
 extern const f32 lbl_805DBE24; // 400.0f, the view depth
 extern const f32 lbl_805DBE28; // 40.0f, the model radius
@@ -166,8 +166,8 @@ void TObjHashiBase::render() {
     if (update_object_view_visibility(view_range, model_radius) != 0) {
         push_matrix();
         post_translate_matrix(&position.x);
-        rotate_matrix_y(NULL, this->rotation.yaw);
-        set_current_texture_list((GinjaTextureList *)(texlist));
+        rotate_matrix_y(NULL, rotation_y);
+        TObjFish::set_global_param(reinterpret_cast<NJS_TEXLIST *>(texlist));
         if (motion != NULL) {
             draw_model_motion(model, motion, animation_frame);
         } else {
@@ -178,8 +178,9 @@ void TObjHashiBase::render() {
 }
 
 
-// Named constant loads need CSE disabled here to retain the original FPR use.
-// Literals avoid that constraint but reorder this unit's small-data pool.
+// Kept from the old unit: with the pool constants read through their DOL
+// symbols (above), common-subexpression elimination keeps 0.0f in a different
+// register; with literals the function matches without it.
 #pragma push
 #pragma opt_common_subs off
 s32 TObjHashiBase::update_object_view_visibility(f32 depth, f32 radius) {
@@ -188,7 +189,7 @@ s32 TObjHashiBase::update_object_view_visibility(f32 depth, f32 radius) {
     if (TMainTask::get_render_pass() == 1) {
         return visibility;
     }
-    if (xz_distance_squared(&camera_ctrl_instance->position, &position) < (radius * radius)) {
+    if (xz_distance_squared((const Vec *)&camera_ctrl_instance->pos.x, &position) < (radius * radius)) {
         visibility = 1;
         return 1;
     }
@@ -202,18 +203,18 @@ s32 TObjHashiBase::update_object_view_visibility(f32 depth, f32 radius) {
         return 0;
     }
     if (view.x < lbl_805DBE2C) {
-        view.x = (camera_right[0] * radius) + position.x;
-        view.y = (camera_right[1] * radius) + position.y;
-        view.z = (camera_right[2] * radius) + position.z;
+        view.x = (camera_right.x * radius) + position.x;
+        view.y = (camera_right.y * radius) + position.y;
+        view.z = (camera_right.z * radius) + position.z;
         project_world_to_screen(NULL, &view, screen);
         if (screen[0] < lbl_805DBE2C) {
             visibility = 0;
             return 0;
         }
     } else {
-        view.x = -((camera_right[0] * radius) - position.x);
-        view.y = -((camera_right[1] * radius) - position.y);
-        view.z = -((camera_right[2] * radius) - position.z);
+        view.x = -((camera_right.x * radius) - position.x);
+        view.y = -((camera_right.y * radius) - position.y);
+        view.z = -((camera_right.z * radius) - position.z);
         project_world_to_screen(NULL, &view, screen);
         if (screen[0] > lbl_805DBE30) {
             visibility = 0;
@@ -227,8 +228,8 @@ s32 TObjHashiBase::update_object_view_visibility(f32 depth, f32 radius) {
 
 TObjHashi::TObjHashi(TObject *parent, void *set_data) : TObjHashiBase(parent, set_data) {
     m_name = class_name;
-    model = (void *)get_bml_model(bml_resource, 0);
-    texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)bml_resource, 0);
+    model = (void *)get_bml_model((BmlResource *)bml_resource, 0);
+    texlist = get_bml_texlist((BmlResource *)bml_resource, 0);
     init_collision_body_parts(this, hashi_collision_bodies, 1);
     actorFlags |= 0x40000000;
     register_object_by_id();
@@ -240,13 +241,13 @@ TObjHashi::~TObjHashi() {
 }
 
 void TObjHashi::load_shared_resource() {
-    BmlResource *resource = new BmlResource(1, (BmlResourceDescriptor *)&fe_obj_hashi_resource_descriptor, 0, 0, NULL);
+    BmlResource *resource = new BmlResource(1, &fe_obj_hashi_resource_descriptor, 0, 0, NULL);
     bml_resource = resource;
 }
 
 void TObjHashi::unload_static_data() {
     if (bml_resource != NULL) {
-        delete (BmlResource *)(bml_resource);
+        delete (BmlResource *)bml_resource;
         bml_resource = NULL;
     }
 }
@@ -261,8 +262,8 @@ TObjHashiVersus1::TObjHashiVersus1(TObject *parent, void *set_data) : TObjHashiB
         position.y = position.y - scale.x;
     }
     riseSpeed = scale.y;
-    model = (void *)get_bml_model(bml_resource, 0);
-    texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)bml_resource, 0);
+    model = (void *)get_bml_model((BmlResource *)bml_resource, 0);
+    texlist = get_bml_texlist((BmlResource *)bml_resource, 0);
     init_collision_body_parts(this, hashi_versus1_collision_bodies, 2);
     actorFlags |= 0x40000000;
     register_object_by_id();
@@ -274,13 +275,13 @@ TObjHashiVersus1::~TObjHashiVersus1() {
 }
 
 void TObjHashiVersus1::load_shared_resource() {
-    BmlResource *resource = new BmlResource(1, (BmlResourceDescriptor *)&fe_obj306_hashi_resource_descriptor, 0, 0, NULL);
+    BmlResource *resource = new BmlResource(1, &fe_obj306_hashi_resource_descriptor, 0, 0, NULL);
     bml_resource = resource;
 }
 
 void TObjHashiVersus1::unload_static_data() {
     if (bml_resource != NULL) {
-        delete (BmlResource *)(bml_resource);
+        delete (BmlResource *)bml_resource;
         bml_resource = NULL;
     }
 }
@@ -296,8 +297,8 @@ TObjHashiVersus2::TObjHashiVersus2(TObject *parent, void *set_data) : TObjHashiB
     }
     riseSpeed = scale.y;
     model_radius = lbl_805DBE20;
-    model = (void *)get_bml_model(bml_resource, 0);
-    texlist = (s32)TObjFish__sub_8001EDB0((BmlResource *)bml_resource, 0);
+    model = (void *)get_bml_model((BmlResource *)bml_resource, 0);
+    texlist = get_bml_texlist((BmlResource *)bml_resource, 0);
     init_collision_body_parts(this, hashi_versus2_collision_bodies, 2);
     actorFlags |= 0x40000000;
     register_object_by_id();
@@ -309,13 +310,13 @@ TObjHashiVersus2::~TObjHashiVersus2() {
 }
 
 void TObjHashiVersus2::load_shared_resource() {
-    BmlResource *resource = new BmlResource(1, (BmlResourceDescriptor *)&fe_obj321_hashi_resource_descriptor, 0, 0, NULL);
+    BmlResource *resource = new BmlResource(1, &fe_obj321_hashi_resource_descriptor, 0, 0, NULL);
     bml_resource = resource;
 }
 
 void TObjHashiVersus2::unload_static_data() {
     if (bml_resource != NULL) {
-        delete (BmlResource *)(bml_resource);
+        delete (BmlResource *)bml_resource;
         bml_resource = NULL;
     }
 }
@@ -324,11 +325,10 @@ void *TObjHashiVersus2::create(void *set_data) {
     return new TObjHashiVersus2(tl_05, set_data);
 }
 
-// Keep the definitions after their consumers to avoid compiler-pooled copies.
-const f32 lbl_805DBE20 = 120.0f;
-const f32 lbl_805DBE24 = 400.0f;
-const f32 lbl_805DBE28 = 40.0f;
-const f32 lbl_805DBE2C = 0.0f;
-const f32 lbl_805DBE30 = 640.0f;
-const f32 lbl_805DBE34 = 0.15f;
-const f32 lbl_805DBE38 = 30.0f;
+extern const f32 lbl_805DBE20 = 120.0f;
+extern const f32 lbl_805DBE24 = 400.0f;
+extern const f32 lbl_805DBE28 = 40.0f;
+extern const f32 lbl_805DBE2C = 0.0f;
+extern const f32 lbl_805DBE30 = 640.0f;
+extern const f32 lbl_805DBE34 = 0.15f;
+extern const f32 lbl_805DBE38 = 30.0f;

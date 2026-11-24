@@ -1,0 +1,161 @@
+{
+  "source_head": "48d7dc5012777f44f656f21fc74f170a0f8a4267",
+  "source_parent": "7907034f669b5cc59d724cd855637d319ad28156",
+  "source_paths": [
+    "include/pso/system/save/CardSaveMetadata.h",
+    "include/pso/ui/frontend/TAdPlayerLoadGC_801E0C30.h",
+    "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+    "src/pso/system/save/TSaveChCr.cpp",
+    "src/pso/ui/frontend/TAdMultiChgGameModeGC_8036DE10.cpp",
+    "src/pso/ui/frontend/TAdPlayerLoadGC.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80243218.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8033A8EC.cpp",
+    "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+    "src/pso/ui/frontend/TAdTrialAgreementGC.cpp",
+    "src/pso/ui/window/TWindowKeyBoardHard_801FBA48.cpp"
+  ],
+  "upstream_master": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "effects_overlap": [
+    "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8033A8EC.cpp"
+  ],
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "builds": {
+    "source": {
+      "head": "48d7dc5012777f44f656f21fc74f170a0f8a4267",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "check_report_sha256": "ec167389dbd490e17ac3a61384def77d8d58a7485e34e9bf913ffed6e489dc0a"
+    },
+    "private": {
+      "head": "6617ff43c605f71bccbdad06cd558528fd747336",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "check_report_sha256": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011"
+    },
+    "review": {
+      "head": "e9c6535d63902cd6f3eb96aa76c80f3feb5181f4",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "check_report_sha256": "565820650f2723f6ebd5d88838db2487e94f9f02681774c3377480720b62c497"
+    },
+    "combined": {
+      "head": "957ab82823d1533572460883b56e9bcb77bc595a",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "check_report_sha256": "d9ec78aa98b277095f51b1746466d638218b5e281023cdc902fd0b736b02c748"
+    }
+  },
+  "matching_constraint": "CodeWarrior changes positioning and register allocation when the three writers address each metadata symbol separately. They preserve the original character-record anchor and use offsets derived from the typed layout of the neighboring records.",
+  "source_quality": {
+    "total": {
+      "base": 142615,
+      "head": 142549,
+      "added": 2,
+      "removed": 68
+    },
+    "changed_labels": 0,
+    "newly_stale_retention_entries": 0
+  },
+  "historical_source_comparison": {
+    "closed": {
+      "src/pso/misc/TChCrTagInformationStr.cpp": {
+        "exact_functions": 5,
+        "exact_data_bytes": 44,
+        "source_evidence": "The current native tag keeps all seven localized lines, the four glow rings, the selection-specific fade rates, and the original origin and line spacing. It restores the camera with the established helper."
+      },
+      "src/pso/misc/TChCrTagPlGraphic.cpp": {
+        "exact_functions": 8,
+        "exact_data_bytes": 48,
+        "source_evidence": "The class tag has its native constructor, destructor, render, fade and selection dispatch. Its typed twelve-row table preserves the value at +4 used for the matching pass and the position pair at +8 copied into the tag."
+      },
+      "src/pso/ui/TAdMultiChgGameModeGC_8036DE10.cpp": {
+        "exact_functions": 35,
+        "exact_data_bytes": 3628,
+        "source_evidence": "The established English and Japanese descriptor tables, background object construction, message state and close/advance path remain at the original addresses. The three card checks use their established filename fields."
+      },
+      "src/pso/ui/TAdSelectGameModeGC_802C4748.cpp": {
+        "exact_functions": 8,
+        "exact_data_bytes": 40,
+        "source_evidence": "The native destructor and draw-line factory call are retained. The relocated plate helper keeps the original four rectangular points, per-vertex color copy and depth step using NJS_POINT2COL, its tex field, and the native point and color records."
+      },
+      "src/pso/ui/TAdChrSelSlotGC.cpp": {
+        "exact_functions": 16,
+        "exact_data_bytes": 64,
+        "source_evidence": "TAdChrSelSlotGC keeps the language-specific slot textures, both slot heights, width and render depth, and the typed quad state. TUnk_804E0B28 owns its 150/300-frame slide state and constructs the native status window and callback task."
+      },
+      "src/pso/ui/TAdEnterPasswordGC.cpp": {
+        "exact_functions": 14,
+        "exact_data_bytes": 148,
+        "source_evidence": "The native dispatch task queues the actual TObject, traverses active parents and guards queueing while rendering. Password input uses the established keyboard copy, confirmation and free entry points at 0x80131BC4, 0x80131C34 and 0x80147A80."
+      },
+      "src/pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp": {
+        "exact_functions": 158,
+        "exact_data_bytes": 944,
+        "source_evidence": "Retains the card metadata, save/read paths, exact CRC and payload sizes, correct character class and level fields, temporary buffer cleanup and save dialog geometry. The new shared header resolves conflicting card metadata declarations and the original reader receives the native filename and destination types."
+      }
+    },
+    "remaining": 148
+  },
+  "historical_fork_data": {
+    "ranges": 90,
+    "linked": 980,
+    "alignment_padding": 167,
+    "unaccounted": 0
+  },
+  "materialized_fork": {
+    "tree": "7114b360c1386f996c1e901a238e7980f6090274",
+    "retention_entries": 27007,
+    "checks": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    }
+  },
+  "runtime": {
+    "images": [
+      "original retail",
+      "Great Merge source",
+      "standalone review"
+    ],
+    "card_writer_cases_per_image": 4,
+    "card_selection_cases": "load status, slot geometry, warnings, card polling and file metadata"
+  },
+  "upstream_review": {
+    "previous_local_head": "119ba158117b3ca965ee4a95ebcf15f1b42c0fc7",
+    "head": "e9c6535d63902cd6f3eb96aa76c80f3feb5181f4",
+    "paths": 182,
+    "inventory_preview_previous": "d82b56c8c8e512fde33a69be8c633c579d7b7943",
+    "inventory_preview": "957ab82823d1533572460883b56e9bcb77bc595a",
+    "benchmark": {
+      "total": {
+        "base": 147293,
+        "head": 146520,
+        "added": 19,
+        "removed": 792
+      },
+      "changed_labels": 35,
+      "flagged_labels": 0,
+      "newly_stale_retention_entries": 0
+    }
+  },
+  "evidence_sha256": {
+    "probe-card-metadata.py": "9634d3e2b5b107f17bc54b97a3ee2fb3687cdd354607ec2db50e0a830a4b77e1",
+    "probe-card-metadata.log": "2b444a110ba6700a3917087f7524946a6a0abf0a55a7228a54a07b98c4af6962",
+    "probe-card-selection.log": "d88ba3ad99bcb0597804caa22312398ebd9043fe65f7b15178beee74af07e7fd",
+    "review-card-metadata.log": "bfb60afb8198026810e4b68c48f6cea71f1e00266290da4ac4ef54c25a1a3bdf",
+    "review-card-selection.log": "0cddcc2c83a9bb88f0d56c1816400d73fe94466958e30ea217e2dd703c60a14c",
+    "quality.json": "c7de24f802b5ad24c383642a1b695044c8c8e02230d634a711da3e6a91c5c21f",
+    "review-quality.json": "9ac22d0e730194f0078daedb2ea134d23297274e3eb682d9207ab668c28e82de",
+    "delta-02.json": "ef911594f61dd2e5fc3b74eca9ecd722410760145f536c60664429b458ad8fd4",
+    "source-fork-data.json": "1785153998ba85975e5422de864296c54072c8031df8b0fd72f4d86b46f23714",
+    "private-fork-data.json": "1785153998ba85975e5422de864296c54072c8031df8b0fd72f4d86b46f23714",
+    "tool-tests.log": "a0d9e43b7dba3c67b10f5b23f8f6f4d4116a13bd7cf091c8c600d723f7e39493",
+    "fork-tests.log": "6bbd3092f7d61661b9a6558f7a3611333f39d0cd2451a8f9df81c30010947546",
+    "host-tests.log": "06a65228ef64279f7bf6e236670e241912e264efa0de67e39b15cbf003afe729",
+    "retention.log": "b3325169ce9d5755b2340e455b52eb7ac52edcb6fa173dc4f2486f46f713350c"
+  }
+}

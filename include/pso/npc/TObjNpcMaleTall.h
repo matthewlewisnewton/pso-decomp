@@ -2,26 +2,20 @@
 #define PSO_NPC_TOBJNPCMALETALL_H
 
 #include "types.h"
-#include "pso/npc/TUnk_804A9F50.h"
+#include "pso/npc/TObjNpcMale.h"
 
-struct TObjNpcMaleTall : public TUnk_804A9F50 {
+struct BmlResource;
+
+struct TObjNpcMaleTall : public TObjNpcMale {
+    TObjNpcMaleTall(TObject *parent, void *set_data);
     virtual ~TObjNpcMaleTall();
     static void destroy_instance();
     static void load_resource_instance();
+    static void *create(void *set_data);
+    static const char *name;
+    static BmlResource *shared_model_resource;
 };
 
-typedef char TObjNpcMaleTall_size[sizeof(TObjNpcMaleTall) == 0x3B8 ? 1 : -1];
-
-extern "C" {
-u8 *TObjNpcMaleTall__ct(u8 *arg0, s32 arg1, s32 arg2);
-void *__dt__15TObjNpcMaleTallFv(void *arg0, s16 arg1);
-}
-
-// --- C functions defined in TObjNpcMaleTall.cpp ---
-extern "C" {
-u8 *TObjNpcMaleTall__ct(u8 *player, s32 arg1, s32 arg2);
-void *__dt__15TObjNpcMaleTallFv(void *arg0, s16 arg1);
-}
-// --- end of C functions
+LAYOUT_ASSERT(TObjNpcMaleTall_size, sizeof(TObjNpcMaleTall) == 0x3B8);
 
 #endif

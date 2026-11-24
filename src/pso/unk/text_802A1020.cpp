@@ -1,18 +1,69 @@
+#include "pso/system/ControllerInput.h"
+#include "pso/system/memory.h"
+#include "pso/system/ResourceFile.h"
 #include "types.h"
 #include "pso/unk/text_802A1020.h"
-#include "pso/misc/TLobby.h"
-#include "pso/ui/TAdSinglePlyChrSelectGC.h"
+#include "pso/unk/text_802A1144.h"
+#include "pso/unk/text_802A1154.h"
+#include "pso/ui/keyboard/TKeyBoardControl_802A1180.h"
+#include "pso/ui/keyboard/TKeyBoardControl.h"
+#include "pso/unk/TUnk_804DCB64.h"
+#include "pso/unk/TLobby.h"
+#include "pso/quest/TQuestVmDownLoadServer.h"
+#include "pso/system/task/TMainTask.h"
+#include "pso/system/task/TObject.h"
+#include "pso/ui/frontend/TAdSelectGameModeGC.h"
+#include "pso/system/main_loop.h"
+#include "pso/ui/frontend/TAdSinglePlyChrSelectGC.h"
+#include "pso/ui/Language.h"
+#include "pso/effect/particle/TParticleCtrl.h"
+
 typedef struct Entry_802A1020 {
     const char *file;
     u32 size;
     u32 crc;
 } Entry_802A1020;
 
+s32 opening_movie_selector = 1;
 extern "C" {
-u8 *set_stream_and_load_file__6TLobbyFPCv(const char *);
-extern Entry_802A1020 file_integrity_table[];
-extern s32 lobby_cursor_active_flag;
-s32 fn_802A1020(void) {
+s32 TKeyBoardControl__sub_8000F92C();
+s32 request_queued_main_phase();
+void request_main_phase(s32 arg0);
+s32 init_fresh_character_card();
+void TKeyBoardControl__sub_8000F90C(s32 arg0);
+void set_queued_main_phase(s32 queued_main_phase);
+void reset_controller_input_state(void);
+u8 *__ct__6TMovieFP7TObjectPSclll(void *, void *, const char *, void (*)(s32), s32, s32, s32);
+}
+void process_async_file_reads(void);
+void update_sound_request_slots(void);
+s8 movie_finished_flag;
+u8 opening_movie_purpose;
+s32 game_files_modified_flag;
+
+// File size and CRC-32 of the files checked by verify_game_file_integrity (crc 0: size check only).
+Entry_802A1020 file_integrity_table[11] = {
+    {"ending_normal.sfd", 0x75C7800, 0},
+    {"psogc_j.sfd", 0x35FC7D8, 0},
+    {"psogc_j2.sfd", 0x512229E, 0},
+    {"ult01.sfd", 0x15FA000, 0},
+    {"ult02.sfd", 0x1940000, 0},
+    {"ult03.sfd", 0x1973000, 0},
+    {"ult04.sfd", 0x541000, 0},
+    {"ItemPMT.prs", 0x3D39, 0x67F7CD63},
+    {"itemrt.gsl", 0x3F000, 0x55A2BDA0},
+    {"itempt.gsl", 0xA3000, 0x976CE1D9},
+    {"PlyLevelTbl.cpt", 0x2DFE, 0x4A62F666},
+};
+
+// [opening_movie_selector][current_language]
+const char *opening_movie_path_table[10] = {
+    "psogc_j.sfd", "psogc_j.sfd", "psogc_j.sfd", "psogc_j.sfd", "psogc_j.sfd",
+    "psogc_j2.sfd", "psogc_j2.sfd", "psogc_j2.sfd", "psogc_j2.sfd", "psogc_j2.sfd",
+};
+
+
+s32 verify_game_file_integrity(void) {
     s32 i;
     u32 size;
     u8 *buf;
@@ -21,16 +72,16 @@ s32 fn_802A1020(void) {
     s32 j;
     s32 k;
     for (i = 0; i < 11; i++) {
-        size = TLobby::get_file_size(file_integrity_table[i].file);
+        size = get_disc_file_size(file_integrity_table[i].file);
         if (size != file_integrity_table[i].size) {
-            lobby_cursor_active_flag = 1;
+            game_files_modified_flag = 1;
             return 1;
         }
         if (file_integrity_table[i].size <= 1000000) {
-            buf = set_stream_and_load_file__6TLobbyFPCv(file_integrity_table[i].file);
+            buf = load_disc_file(file_integrity_table[i].file);
             if (buf == NULL) {
-                TAdSinglePlyChrSelectGC::safe_free((void *)buf);
-                lobby_cursor_active_flag = 0;
+                safe_free(buf);
+                game_files_modified_flag = 0;
                 return 0;
             }
             crc = 0xFFFFFFFF;
@@ -44,15 +95,95 @@ s32 fn_802A1020(void) {
                     }
                 }
             }
-            TAdSinglePlyChrSelectGC::safe_free((void *)buf);
+            safe_free(buf);
             if (~crc != file_integrity_table[i].crc) {
-                lobby_cursor_active_flag = 1;
+                game_files_modified_flag = 1;
                 return 1;
             }
         }
     }
-    lobby_cursor_active_flag = 0;
+    game_files_modified_flag = 0;
     return 0;
 }
 
+unsigned char get_opening_movie_purpose(void) { return opening_movie_purpose; }
+
+void set_opening_movie_purpose(int a0) { opening_movie_purpose = a0; }
+
+
+void fn_802A1154(void) {
+    main_task.delete_layer_children();
+    render_tick();
+}
+
+void update_movie_phase(void) {
+    controller_stuff();
+    TKeyBoardControl::update_input_frame();
+    main_task.begin_frame();
+    main_task.run_task();
+    main_task.render();
+    main_task.render_screen_overlay();
+    process_async_file_reads();
+    update_sound_request_slots();
+    TAdSinglePlyChrSelectGC::noop();
+    if ((s32) (*(u8 *)&movie_finished_flag) == 1) {
+        request_queued_main_phase();
+    }
+    if (static_cast<s8>(func_801A5E54()) != 0) {
+        TKeyBoardControl__sub_8000F92C();
+    }
+    if (TQuestVmDownLoadServer::is_ready() != 0) {
+        request_main_phase(0);
+    }
+    render_tick();
+}
+
+void TKeyBoardControl::update_menu_scene() {
+    set_copy_clear_color_argb(0, 0, 0);
+    reset_controller_input_state();
+    TKeyBoardControl__sub_8000F90C(2);
+    switch ((s8) opening_movie_purpose) {
+    case 0:
+        set_queued_main_phase(1);
+        TKeyBoardControl__sub_8000F90C(9);
+        break;
+    case 1:
+        TLobby::update_keyboard_menu();
+        init_fresh_character_card();
+        TLobby::free_keyboard_soft_resources();
+        set_queued_main_phase(5);
+        break;
+    }
+    movie_finished_flag = 0;
+    new TUnk_804DCB64;
+    render_tick();
+}
+
+void TUnk_804DCB64::render() {  }
+void TUnk_804DCB64::run_task() {  }
+void set_movie_finished_flag(s32) { (*(unsigned char *)&movie_finished_flag) = 1; }
+TUnk_804DCB64::~TUnk_804DCB64() {
+
+}
+
+// Plays the opening movie (or, from the lobby keyboard path, the movie of
+// opening_movie_purpose) and raises movie_finished_flag when it ends.
+TUnk_804DCB64::TUnk_804DCB64() : TObject(tl_01) {
+    TLobby::update_menu_cursor();
+    if ((TAdSinglePlyChrSelectGC::get_data() == 1) && (TAdSelectGameModeGC::get_mode_data() == 1)) {
+        set_movie_finished_flag(0);
+        return;
+    }
+    if ((s8) opening_movie_purpose == 0) {
+        u8 *movie = (u8 *)TObject::operator new(0x4C);
+        if (movie != NULL) {
+            __ct__6TMovieFP7TObjectPSclll(movie, tl_00, opening_movie_path_table[current_language + (opening_movie_selector * 5)], set_movie_finished_flag, 1, 1, 0);
+        }
+        opening_movie_selector = 1 - opening_movie_selector;
+    } else {
+        u8 *movie = (u8 *)TObject::operator new(0x4C);
+        if (movie != NULL) {
+            __ct__6TMovieFP7TObjectPSclll(movie, tl_00, opening_movie_path_table[current_language], set_movie_finished_flag, 1, 1, 0);
+        }
+    }
 }

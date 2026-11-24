@@ -13,13 +13,13 @@ struct TItemMoney : public TItem {
     virtual void write_item_data(TItemData *data);
 
     // The meseta entry of construct_item's table: NULL without data.
-    static TItem *create(TItemData *data);
+    static TItem *create(u8 *item);
 
     s32 amount;
 };
 
-typedef char TItemMoneyAmountOffset[(offsetof(TItemMoney, amount) == 0xF8) ? 1 : -1];
-typedef char TItemMoneySize[(sizeof(TItemMoney) == 0xFC) ? 1 : -1];
+LAYOUT_ASSERT(TItemMoneyAmountOffset, offsetof(TItemMoney, amount) == 0xF8);
+LAYOUT_ASSERT(TItemMoneySize, sizeof(TItemMoney) == 0xFC);
 
 // The most meseta one stack holds.
 #define ITEM_MONEY_MAX 999999

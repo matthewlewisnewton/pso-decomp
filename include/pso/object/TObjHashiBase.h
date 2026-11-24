@@ -1,7 +1,7 @@
 #ifndef PSO_OBJECT_TOBJHASHIBASE_H
 #define PSO_OBJECT_TOBJHASHIBASE_H
 #include "types.h"
-#include "pso/object/TObjMapObject.h"
+#include "pso/object/base/TObjMapObject.h"
 
 // A bridge that rises into place once its floor switch is set.
 // m_ac is its phase: 0 waiting for the switch, 1 rising, 2 raised (its
@@ -18,5 +18,5 @@ public:
     f32 raisedHeight;  // the y it rises to
     f32 riseSpeed;     // y step per frame while rising
 };
-typedef char TObjHashiBase_size[sizeof(TObjHashiBase) == 0xD4 ? 1 : -1];
+LAYOUT_ASSERT(TObjHashiBase_size, sizeof(TObjHashiBase) == 0xD4);
 #endif

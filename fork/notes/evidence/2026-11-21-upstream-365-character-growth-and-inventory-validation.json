@@ -1,0 +1,290 @@
+{
+  "source": "aa20e169de480faf9805f8404f7f452cd688b9ec",
+  "previous_source": "a4a87cf1832bec395c0dfa9de44196716c7a546f",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/item/InventoryEntryCopy.h",
+    "include/pso/item/TItem.h",
+    "include/pso/npc/TNpcPlayer.h",
+    "include/pso/npc/TNpcPlayer_802C3CD0.h",
+    "include/pso/player/PlayerLevelTable.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/player/TObjPlayer_801C1FF8.h",
+    "include/pso/player/TObjPlayer_802C367C.h",
+    "include/pso/player/TPlyItem.h",
+    "include/pso/unk/text_801D40D4.h",
+    "src/pso/npc/TNpcPlayer.cpp",
+    "src/pso/npc/TNpcPlayer_80190E64.cpp",
+    "src/pso/npc/TNpcPlayer_802C3CD0.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TObjPlayer_801C1FF8.cpp",
+    "src/pso/player/TObjPlayer_801D8ADC.cpp",
+    "src/pso/player/TObjPlayer_802A1440.cpp",
+    "src/pso/player/TObjPlayer_802C367C.cpp",
+    "src/pso/player/TObjPlayer_802C3B14.cpp",
+    "src/pso/player/TPlayerBattleCtrl4P.cpp",
+    "src/pso/player/TPlayerFootStamp.cpp",
+    "src/pso/player/TPlyItem.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+    "src/pso/unk/TLobby_801C25B4.cpp",
+    "src/pso/unk/TLobby_80291D94.cpp",
+    "src/pso/unk/text_80071B30.cpp",
+    "src/pso/unk/text_802C39F8.cpp",
+    "src/pso/unk/text_802C3AC0.cpp"
+  ],
+  "combined_paths_from_upstream": 960,
+  "historical_basis": {
+    "character_growth_donor": "b64574a02d",
+    "inventory_sort_donor": "4c56068484",
+    "companion_saved_record_donor": "eee8412310",
+    "growth_checkpoint": "d15f0f111040bd720fb3538f2f37a2a07cffdd1e",
+    "sort_checkpoint": "89d02683e3fe3a19f0f4bc9dc36e3c022d4ff6e0"
+  },
+  "source_scope": [
+    "typed player level table, character growth and companion initialization",
+    "native inventory sort list and record lifetimes with the original array runtime calls",
+    "typed item exports and companion visual templates and saved-character inventory records"
+  ],
+  "validation": {
+    "source": {
+      "baseline": "a4a87cf1832bec395c0dfa9de44196716c7a546f",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x801D4308",
+          "before": "export_inventory_entry__10TObjPlayerFiPv",
+          "after": "export_inventory_entry__5TItemFP17TPlyInventoryItem"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D4678",
+          "before": "TObjPlayer__sub_801D4678",
+          "after": "__dt__13List_801D4744Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D46D4",
+          "before": "TObjPlayer__sub_801D46D4",
+          "after": "__ct__13List_801D4744Fl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D4730",
+          "before": "TObjPlayer__sub_801D4730",
+          "after": "__ct__12Ent_801D4744Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D4744",
+          "before": "sort_by_key__10TObjPlayerFv",
+          "after": "sort_by_key__13List_801D4744Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D47D8",
+          "before": "TObjPlayer__sub_801D47D8",
+          "after": "__as__12Ent_801D4744FR12Ent_801D4744"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D91F8",
+          "before": "get_current_state_field__10TObjPlayerFScl",
+          "after": "get_current_state_field__10TObjPlayerFll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D9250",
+          "before": "get_ply_level_table_row__FScl",
+          "after": "get_ply_level_table_row__Fll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802C3CD0",
+          "before": "send_command__10TNpcPlayerFlScllPSc",
+          "after": "send_command__10TNpcPlayerFllPC17TPlyInventoryItemlP12TPlyCharData"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "38df9d673718a43c57efd8ccb18df0bf6bfe1ff2baca20a9839898c9186bfcd2",
+      "report_sha256": "6ae32f025974ab94c2ea5704cd3c570e7a08583fac902b2cbead2f8cdc5cfaeb"
+    },
+    "layer": {
+      "baseline": "aa20e169de480faf9805f8404f7f452cd688b9ec",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "52e7b7c44c895ea98e91fe1a9ea21805885753879d1966b15b6b684ebe565d0b",
+      "report_sha256": "6ae32f025974ab94c2ea5704cd3c570e7a08583fac902b2cbead2f8cdc5cfaeb"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "dd428279e2da9e6f4e5271a044da4d8a66c5716516c70522e972bae45e145109"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "20891c23d59686441da4e7b5819125e5e3c7e2cd8b19db385150e2d4452e7738"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "character-growth": {
+      "probe_sha256": "5d552d54e423ec111f2447ac8ea3246d6c822a0796eeeba3effffcf627a576db",
+      "log_sha256": "e672738b06752f1536a9ac8bb2e50940491494995b8a6139d61437d3ca76cca6",
+      "coverage": "Level lookup and growth caps, selective inventory copy, and companion initialization passed"
+    },
+    "inventory-sort": {
+      "probe_sha256": "6faeb5105d002bd0889a8ffcdce8d10de18ac9e806381bce5c9f50be10c44cf1",
+      "log_sha256": "5302b05e7f15f2b85a304e8b0b086ef4c2357a9f9b041d36a14a5628e4b267ba",
+      "coverage": "inventory ordering, stable ties, allocation release and record export passed."
+    },
+    "companion-templates": {
+      "probe_sha256": "1b60b9811b996a83f8593dc47bdf0607d115927239801f686f9460cc60fa6604",
+      "log_sha256": "f522db1028a123571ffd5668f9b4f6fcfe41e813efc241a6fbae6fca0c382245",
+      "coverage": "Companion archive and fallback records, buffer release, and sender arguments passed"
+    },
+    "images": [
+      "retail",
+      "source",
+      "materialized fork workspace"
+    ]
+  },
+  "historical": {
+    "open_rows": 415,
+    "scoped_rows": [
+      [
+        157,
+        "config/GPOE8P/psov3/symbols.txt",
+        "config/GPOE8P/psov3/symbols.txt"
+      ],
+      [
+        2714,
+        "src/pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp"
+      ],
+      [
+        3181,
+        "include/pso/TItemList.h",
+        "src/pso/player/TPlyItem.cpp"
+      ],
+      [
+        3600,
+        "src/pso/item/TItemList_801D3780.cpp",
+        "src/pso/player/TPlyItem.cpp"
+      ],
+      [
+        3637,
+        "src/pso/misc/TPlayerBattleCtrl4P_80311800.cpp",
+        "src/pso/player/TPlayerBattleCtrl4P.cpp"
+      ],
+      [
+        3963,
+        "src/pso/unk/text_801D40D4.cpp",
+        "src/pso/player/TPlyItem.cpp"
+      ],
+      [
+        3998,
+        "include/pso/player/TObjPlayer.h",
+        "include/pso/player/TObjPlayer.h"
+      ],
+      [
+        4049,
+        "src/pso/item/TItemList.cpp",
+        "src/pso/player/TPlyItem.cpp"
+      ],
+      [
+        4121,
+        "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "src/pso/player/TObjPlayer_801AF2F0.cpp"
+      ],
+      [
+        4142,
+        "src/pso/player/TObjPlayer_801D84CC.cpp",
+        "src/pso/player/TObjPlayer_801D8ADC.cpp"
+      ],
+      [
+        4183,
+        "src/pso/player/TPlyItem.cpp",
+        "src/pso/player/TPlyItem.cpp"
+      ],
+      [
+        4212,
+        "src/pso/misc/TPlayerBattleCtrl4P_8031012C.cpp",
+        "src/pso/player/TPlayerBattleCtrl4P.cpp"
+      ],
+      [
+        4220,
+        "include/pso/TPlayerFootStamp.h",
+        "src/pso/player/TPlayerFootStamp.cpp"
+      ],
+      [
+        4409,
+        "src/pso/misc/TPlayerFootStamp.cpp",
+        "src/pso/player/TPlayerFootStamp.cpp"
+      ],
+      [
+        4510,
+        "src/pso/misc/TLobby_801C25B4.cpp",
+        "src/pso/unk/TLobby_801C25B4.cpp"
+      ],
+      [
+        7277,
+        "src/pso/misc/TNpcPlayer.cpp",
+        "src/pso/npc/TNpcPlayer.cpp"
+      ]
+    ]
+  },
+  "fork_workspace": {
+    "trial": "f0d151d36aa2c13bfaed79bc0d1629ca5f3e78a1",
+    "overlay_paths": 130,
+    "updated_overlay_paths": [
+      "config/GPOE8P/psov3/config.yml"
+    ],
+    "archive_sha256": "86d0803f56a1774250a906487cc1808feab92125ec8d69b830f73149bc216c50",
+    "materialized_tree": "28424f086afedbacb08ebb3e366cfb5612f85000",
+    "force_active": 27027
+  }
+}

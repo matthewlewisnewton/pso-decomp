@@ -1,7 +1,10 @@
 #include "types.h"
+#include "pso/unk/text_803D96A8.h"
+#include "pso/player/TObjPlayer_80362E60.h"
+#include "pso/system/task/TMainTask.h"
 #include "pso/player/TObjPlayer.h"
-#include "pso/items/TItemWeapon.h"
-#include "pso/player/TUnk_804F27E0.h"
+#include "pso/weapon/TItemWeapon.h"
+#include "pso/weapon/TUnk_804F27E0.h"
 
 struct VBase_18_f1aa6a { char pad[0x18]; };
 
@@ -74,82 +77,68 @@ struct VObj_18_f1aa6a : VBase_18_f1aa6a {
 
 #include <stddef.h>
 #include "pso/item/TItem.h"
-struct Stack_80362FB4 {
-    s32 sp8;
-    s32 spC;
-    s32 sp10;
-};
+#include "pso/system/NinjaTypes.h"
+#include "pso/effect/item/TItemWpnCardEffect.h"
 
-struct RecoveredGlobal_80362FB4_lbl_80479FC8 {
-    s32 value;
-    u8 remaining[0xC];
-};
+extern "C" void get_weapon_color__11TItemWeaponFPv(void *, void *);
+
+void TUnk_804F27E0::init_weapon_effect_descriptor(Desc_8011E5C4 *desc) {
+    u8 sp8[16];
+    desc->scale = 5.0f;
+    desc->spin[2] = 0xC000;
+    desc->flags |= 0x282;
+    get_weapon_color__11TItemWeaponFPv(sp8, this);
+    copy_argb(&desc->color, (NJS_ARGB *)sp8);
+    desc->hit_effect = (void *)TObjPlayer::create_network_object;
+    desc->wall_effect = (void *)start_wall_card;
+}
 
 extern "C" {
-s16 get_validated_attack_stage(u8 *arg0);
-u8 *__nw__5TItemFUl(s32);
-extern s32 tl_05;
-u8 *TObjPlayer__sub_803630F0(u8 *arg0);
 s32 rotate_matrix_x(int, int);
-s32 push_matrix();
-s32 pop_matrix();
 f32 post_translate_matrix(void *);
-extern RecoveredGlobal_80362FB4_lbl_80479FC8 lbl_80479FC8;
-void TObjPlayer__sub_80362FB4(u8 *arg0);
-void *__dt__13TUnk_804F27E0Fv(void *arg0, s16 arg1);
-void construct_srank_weapon(void *);
-void *__dt__13TUnk_804A4948Fv(void *arg0, s16 arg1);
 
 void TUnk_804F27E0::update_weapon() {
-    if (((TItemWeapon *)this)->get_attack_stage() == 2) {
+    if (this->get_attack_stage() == 2) {
         (*(s32 *)((u8 *)this + 0x1FC)) = (s32) ((*(s32 *)((u8 *)this + 0x1FC)) | 1);
         return;
     }
     (*(s32 *)((u8 *)this + 0x1FC)) = (s32) ((*(s32 *)((u8 *)this + 0x1FC)) & 0xFFFFFFFE);
 }
 
-void TObjPlayer::create_cane_if_ready(s32 arg0, void *position) {
-    if (((TItemWeapon *)arg0)->get_attack_stage() == 0) {
-        ((TObjPlayer *)tl_05)->create_item_eff_cane((TItem*)arg0, -1, 0x1BD);
+void TObjPlayer::create_cane_if_ready(saddr item, void *position) {
+    if (((TItemWeapon *)item)->get_attack_stage() == 0) {
+        ((TObjPlayer *)tl_05)->create_item_eff_cane((TItem*)item, -1, 0x1BD);
     }
 }
 
-extern s32 lbl_804F27E0[];
 
 void TUnk_804F27E0::emit_marker_effects() {
     u8 *arg0 = (u8 *)this;
     s32 sp8;
     ((VObj_18_f1aa6a *)(this->owner))->m63(0x30, &sp8);
-    if (get_validated_attack_stage(*(u8 * *)&this->owner + 0x7CC) == 2) {
-        ((TItemWeapon *)arg0)->fire_shot_at_target((void *)(&sp8), (void *)(*(s32 *)((s8 *)arg0 + 0xF4)), 0);
-        ((TItemWeapon *)arg0)->fire_shot_at_target((void *)(&sp8), (void *)(*(s32 *)((s8 *)arg0 + 0xF4)), 0x1555);
-        ((TItemWeapon *)arg0)->fire_shot_at_target((void *)(&sp8), (void *)(*(s32 *)((s8 *)arg0 + 0xF4)), -0x1555);
+    if (owner->attack_state.get_validated_attack_stage() == 2) {
+        ((TItemWeapon *)arg0)->fire_shot_at_target(&sp8, (void *)(*(saddr *)((s8 *)arg0 + 0xF4)), 0);
+        ((TItemWeapon *)arg0)->fire_shot_at_target(&sp8, (void *)(*(saddr *)((s8 *)arg0 + 0xF4)), 0x1555);
+        ((TItemWeapon *)arg0)->fire_shot_at_target(&sp8, (void *)(*(saddr *)((s8 *)arg0 + 0xF4)), -0x1555);
     } else {
-        ((TItemWeapon *)arg0)->fire_shot_at_target((void *)(&sp8), (void *)(*(s32 *)((s8 *)arg0 + 0xF4)), 0);
+        ((TItemWeapon *)arg0)->fire_shot_at_target(&sp8, (void *)(*(saddr *)((s8 *)arg0 + 0xF4)), 0);
     }
-    TObjPlayer::create_cane_if_ready((s32)arg0, (void *)((void *)&sp8));
+    TObjPlayer::create_cane_if_ready((saddr)arg0, (void *)((void *)&sp8));
 }
 
-typedef char RecoveredGlobal_80362FB4_lbl_80479FC8_size[sizeof(RecoveredGlobal_80362FB4_lbl_80479FC8) == 0x10 ? 1 : -1];
-void TObjPlayer__sub_80362FB4(u8 *item_weapon) {
-    typedef char sp8_offset[(offsetof(Stack_80362FB4, sp8) == 0x0) ? 1 : -1];
-    typedef char spC_offset[(offsetof(Stack_80362FB4, spC) == 0x4) ? 1 : -1];
-    typedef char sp10_offset[(offsetof(Stack_80362FB4, sp10) == 0x8) ? 1 : -1];
-    Stack_80362FB4 stack;
+void TUnk_804F27E0::vfunc_60() {
     if (TObjPlayer::get_player_list() == 0) {
-        stack.sp8 = *(s32 *)((s8 *)&lbl_80479FC8.value + 0);
-        stack.spC = *(s32 *)((s8 *)&lbl_80479FC8.value + 4);
-        stack.sp10 = *(s32 *)((s8 *)&lbl_80479FC8.value + 8);
-        post_translate_matrix((void *)&stack.sp8);
+        Vec offset = {0.0f, 0.0f, 0.5f};
+        post_translate_matrix(&offset);
         rotate_matrix_x(0, 0x18E3);
-        if (*(s32 *)((s8 *)item_weapon + 0x1FC) & 1) {
+        if (*(s32 *)((s8 *)((u8 *)this) + 0x1FC) & 1) {
             push_matrix();
             rotate_matrix_x(0, 0x2AAA);
-            ((TItem *)item_weapon)->draw_model();
+            this->draw_model();
             pop_matrix();
             push_matrix();
             rotate_matrix_x(0, -0x2AAA);
-            ((TItem *)item_weapon)->draw_model();
+            this->draw_model();
             pop_matrix();
         }
     }
@@ -162,36 +151,17 @@ void TUnk_804F27E0::reserved_53() {
     }
 }
 
-void *TUnk_804F27E0::enter_state_804F27E0(s32 _w1, void *_w2) {
-    construct_srank_weapon(this);
-    *(s32 **)((s8 *)this + 0x18) = lbl_804F27E0;
-    ((TItemWeapon *)this)->set_weapon_flags(3);
-    *(u32 *)&(*(s32 *)((u8 *)this + 0x1FC)) = 0;
-    return this;
+TUnk_804F27E0::TUnk_804F27E0(TObject *parent, u8 *item) : TUnk_804A4948(parent, item) {
+    set_weapon_flags(3);
+    pad_1fc = 0;
 }
-u8 *TObjPlayer__sub_803630F0(u8 *arg0) {
-    u8 *temp_r3;
-    u8 *var_r0;
-    if (arg0 != NULL) {
-        temp_r3 = (u8 *)(__nw__5TItemFUl(0x200));
-        var_r0 = temp_r3;
-        if (var_r0 != NULL) {
-            var_r0 = (u8 *)(((u8 *)((TUnk_804F27E0 *)temp_r3)->enter_state_804F27E0(tl_05, arg0)));
-        }
-        return var_r0;
+TItem *TObjPlayer__sub_803630F0(u8 *item) {
+    if (item != NULL) {
+        return new TUnk_804F27E0(tl_05, item);
     }
     return NULL;
 }
 
-void *__dt__13TUnk_804F27E0Fv(void *arg0, s16 arg1) {
-    if (arg0 != NULL) {
-        *(s32 **)((s8 *)arg0 + 0x18) = lbl_804F27E0;
-        __dt__13TUnk_804A4948Fv(arg0, 0);
-        if (arg1 > 0) {
-            TItem::operator delete(arg0);
-        }
-    }
-    return arg0;
-}
+TUnk_804F27E0::~TUnk_804F27E0() {}
 
 }

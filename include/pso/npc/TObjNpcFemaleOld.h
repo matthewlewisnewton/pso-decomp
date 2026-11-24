@@ -2,34 +2,20 @@
 #define PSO_NPC_TOBJNPCFEMALEOLD_H
 
 #include "types.h"
-#include "pso/npc/TUnk_804A8640.h"
+#include "pso/npc/TObjNpcFemale.h"
 
 struct BmlResource;
 
-struct TObjNpcFemaleOld : public TUnk_804A8640 {
+struct TObjNpcFemaleOld : public TObjNpcFemale {
+    TObjNpcFemaleOld(TObject *parent, void *set_data);
     virtual ~TObjNpcFemaleOld();
     static void destroy_static_instance();
     static void load_resource_instance();
+    static void *create(void *set_data);
+    static const char *name;
+    static BmlResource *static_instance;
 };
 
-typedef char TObjNpcFemaleOld_size[sizeof(TObjNpcFemaleOld) == 0x3B8 ? 1 : -1];
-
-extern "C" {
-u8 *TObjNpcFemaleOld__ct(u8 *arg0, s32 arg1, s32 arg2);
-void *TObjNpcFemaleTall__create(void *arg0);
-void *__dt__16TObjNpcFemaleOldFv(void *arg0, s16 arg1);
-}
-
-// --- C functions defined in TObjNpcFemaleOld.cpp ---
-extern "C" {
-u8 *TObjNpcFemaleOld__ct(u8 *arg0, s32 arg1, s32 arg2);
-void *TObjNpcFemaleTall__create(void *arg0);
-void *__dt__16TObjNpcFemaleOldFv(void *arg0, s16 arg1);
-}
-// --- end of C functions
-
-extern "C" {
-extern BmlResource *TObjNpcFemaleOld__static_instance;
-}
+LAYOUT_ASSERT(TObjNpcFemaleOld_size, sizeof(TObjNpcFemaleOld) == 0x3B8);
 
 #endif

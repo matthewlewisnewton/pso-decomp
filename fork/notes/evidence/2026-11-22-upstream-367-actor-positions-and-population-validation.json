@@ -1,0 +1,248 @@
+{
+  "upstream": "6aee940ecaf4775ef71659a74534127a49cf9412",
+  "source_base": "6713e1f36fa999e7606677ff5874c496f2b590c9",
+  "source": "c02a1fcb0f3b0e896d25d5b623a8235cba0ed3c6",
+  "review_base": "c4f687452c70a63311e699ea5e773c9e7cdf6ca5",
+  "review": "93772a11ffb81be3ee592432feac3a4fe70c2c66",
+  "tree": "3d935d794850b9159d2ed2fdc30fed3187ad21f5",
+  "review_commits": [
+    "a539685f92eee1b154c5f6d32fc56f1ac46c0e9e",
+    "93772a11ffb81be3ee592432feac3a4fe70c2c66"
+  ],
+  "paths": 56,
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "original_data_bytes": 1147,
+  "original_data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "coverage_losses": {
+    "regressions": 0,
+    "data_coverage_lost": 0,
+    "padding_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0
+  },
+  "function_labels": [
+    {
+      "module": "psov3",
+      "address": "0x80041B08",
+      "before": "copy_position__20TBoss3VoloptHiraisinFv",
+      "after": "copy_position__9TObjCharaFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800F9AE8",
+      "before": "create_named_object__Fl",
+      "after": "create_named_object__FPCc"
+    }
+  ],
+  "review_attribution": "Both review commits use the configured fork author and committer.",
+  "shark_table_ranges": [
+    {
+      "name": "TObjEneShark__action_table",
+      "address": "0x80491504",
+      "bytes": 176
+    },
+    {
+      "name": "shark_movement_params",
+      "address": "0x804915B4",
+      "bytes": 84
+    },
+    {
+      "name": "shark_collision_body_table",
+      "address": "0x80491608",
+      "bytes": 132
+    }
+  ],
+  "replay_decisions": {
+    "native_names": "Keep current movement fields, Flower states and notify_bomb_hit, Recobox getters, Fly nest methods, and Gee status methods.",
+    "recovered": "Place copy_position on TObjChara, type REL archives and NPC models and textures, recover Flower bomb state and collision fields, and split the existing typed Shark data tables in the symbol map.",
+    "already_present": "Upstream owns character position initialization, typed floor movement, Shark construction and BML resources, the Fly factory, and Recobox parameters and factory."
+  },
+  "runtime": {
+    "population-rel": {
+      "result": "native position copies, REL relocation and load failures, and 56 NPC archive lifecycle cases passed.",
+      "log_sha256": "abdec6646222d357cda3b5732029a8205d24f0f369cfbce01f516d6202a031f5"
+    },
+    "shark": {
+      "result": "2 actor copy cases, 5 Shark subtype cases, typed table records, and both Shark resource lifecycles passed.",
+      "log_sha256": "65041256e2a64dbd248c77cd92cd62ce56d277c7ad42d8c44b67ea634ce88543"
+    },
+    "flower-recon": {
+      "result": "Flower action entry, 3 melee outcomes, bomb initialization and 2 Recobox parameters passed.",
+      "log_sha256": "7d881b902b787a9276fdc936e03cee29a4c7f822785e211c0ef7ece818ea886d"
+    },
+    "flight-actors": {
+      "result": "movement destinations, Fly family lifecycle, Gee color state and Gi Gue parameters passed.",
+      "log_sha256": "6a7492c14b0a6124eadc866f247f22c38736d0a37f0665800b60aac635238148"
+    }
+  },
+  "probe_symbol_aliases": {
+    "shark": [
+      [
+        "shark_movement_parameters",
+        ".data:0x804915B4",
+        "0x54",
+        "shark_movement_params"
+      ],
+      [
+        "shark_collision_bodies",
+        ".data:0x80491608",
+        "0x84",
+        "shark_collision_body_table"
+      ]
+    ],
+    "flower-recon": [
+      [
+        "fn_800C3088",
+        ".text:0x800C3088",
+        "0x254",
+        "state_attack__16TObjEneRe2FlowerFl"
+      ],
+      [
+        "remap_sound_for_variant",
+        ".text:0x800C3A60",
+        "0x120",
+        "remap_sound_for_variant__16TObjEneRe2FlowerFl"
+      ],
+      [
+        "get_field_4d4__14TObjEneRecoboxFv",
+        ".text:0x8031E7F0",
+        "0x8",
+        "get_recon_rotate_rad__14TObjEneRecoboxFv"
+      ],
+      [
+        "get_field_4d0__14TObjEneRecoboxFv",
+        ".text:0x8031E7F8",
+        "0x8",
+        "get_recon_offset_max__14TObjEneRecoboxFv"
+      ]
+    ],
+    "flight-combined": [
+      [
+        "remove_child__17TObjEneBm3FlyNestFP14TObjCollidable",
+        ".text:0x800B2A5C",
+        "0x98",
+        "remove_child__17TObjEneBm3FlyNestFP13TObjEneBm3Fly"
+      ],
+      [
+        "sub_800B3AC8__17TObjEneBm3FlyNestCFv",
+        ".text:0x800B3AC8",
+        "0x14",
+        "has_pending_spawns__17TObjEneBm3FlyNestFv"
+      ],
+      [
+        "sub_800CB5A0__13TObjEneMe1GeeFUl",
+        ".text:0x800CB5A0",
+        "0x18",
+        "has_status_flag__13TObjEneMe1GeeFl"
+      ],
+      [
+        "destroy_subobj__13TObjEneMe1GeeFPC8NJS_ARGB",
+        ".text:0x800CB72C",
+        "0x38",
+        "set_core_color__13TObjEneMe1GeeFPC8NJS_ARGB"
+      ],
+      [
+        "sub_800CB764__13TObjEneMe1GeeFl",
+        ".text:0x800CB764",
+        "0x58",
+        "start_fade_sequence__13TObjEneMe1GeeFl"
+      ],
+      [
+        "move_xz_on_ground__9TObjEneDDFPUc",
+        ".text:0x800BADDC",
+        "0x98",
+        "move_xz_on_ground__9TObjEneDDFPC3Vec"
+      ],
+      [
+        "try_move_actor_xz_on_ground__9TObjEneDDFPUc",
+        ".text:0x800BAE74",
+        "0xA8",
+        "try_move_actor_xz_on_ground__9TObjEneDDFPC3Vec"
+      ],
+      [
+        "get_gigue_int_parameter__15TObjEneMe1GiGueFl",
+        ".text:0x802CDAC4",
+        "0x14",
+        "get_gigue_int_parameter__FP15TObjEneMe1GiGuel"
+      ],
+      [
+        "get_gigue_float_parameter__15TObjEneMe1GiGueFl",
+        ".text:0x802CDAD8",
+        "0x10",
+        "get_gigue_float_parameter__FP15TObjEneMe1GiGuel"
+      ]
+    ]
+  },
+  "remaining_replay_previews": {
+    "boss_and_enemy_actors": {
+      "paths": 266,
+      "conflicting_paths": 193
+    },
+    "enemy_lifecycle": {
+      "paths": 66,
+      "conflicting_paths": 54
+    }
+  },
+  "fork_workspace": {
+    "parent": "c02a1fcb0f3b0e896d25d5b623a8235cba0ed3c6",
+    "previous_workspace": "ac27a20fd3cbc67f86503c93cb47408dda76b017",
+    "overlay_paths": 130,
+    "retained_linker_labels": 26965,
+    "added_linker_labels": [
+      "shark_collision_body_table",
+      "shark_movement_params"
+    ],
+    "updated_linker_labels": {
+      "TObjPlayer__sub_801C7360": "copy_from__18PlayerShrinkPacketFRC18PlayerShrinkPacket",
+      "__ct__11TBoss6Type1FP7TObjectPl": "__ct__11TBoss6Type1FP7TObjectP20Boss6BodySpawnParams",
+      "__ct__11TBoss6Type2FP7TObjectPl": "__ct__11TBoss6Type2FP7TObjectP20Boss6BodySpawnParams",
+      "__ct__12TEffCliticalFPv": "__ct__12TEffCliticalFPC3Vec",
+      "__ct__15TBoss6SwordWaveFP7TObjectPC3Vecllf": "__ct__15TBoss6SwordWaveFP11TBoss6Type2PC3Vecllf",
+      "__ct__9TBoss6DPBFP7TObjectlf": "__ct__9TBoss6DPBFP7TObjectPC3Vecf",
+      "bswap_shrink__10TObjPlayerFv": "byte_swap__18PlayerShrinkPacketFv",
+      "clear_shrink_flag__10TObjPlayerFv": "clear_shrink_flag__16PlayerScaleStateFv",
+      "copy_block__11TBoss6Type1FP12Blk_802B8624PC12Blk_802B8624": "copy_block__11TBoss6Type1FP21Boss6Type1MotionStatePC21Boss6Type1MotionState",
+      "copy_tech_params__10TObjPlayerFPvPv": "copy_tech_params__FP15TechniqueTargetP15TechniqueTarget",
+      "get_6x47_cast_packet_size__FPUc": "get_6x47_cast_packet_size__FP20G_CastTechnique_6x47",
+      "get_obj_type__10TObjPlayerFv": "get_actor_id__16PlayerScaleStateFv",
+      "handle_6x87_shrink__10TObjPlayerFf": "apply_shrink__16PlayerScaleStateFf",
+      "init_6x88_packet__10TObjPlayerFv": "initialize__23PlayerRestoreSizePacketFv",
+      "init_pair__10TObjPlayerFv": "clear__24PlayerScaleCameraOffsetsFv",
+      "init_player_scale_state__FP10TObjPlayer": "reset__16PlayerScaleStateFv",
+      "init_shrink_effect__10TObjPlayerFv": "initialize__18PlayerShrinkPacketFv",
+      "obj_clearArrS16_FC__FP8ObjArrFCi": "obj_clearArrS16_FC__FP9TObjCharal",
+      "restore_shrunken_font__10TObjPlayerFv": "copy_from__23PlayerRestoreSizePacketFRC23PlayerRestoreSizePacket",
+      "send_font_update_60__10TObjPlayerFv": "send__23PlayerRestoreSizePacketFv",
+      "set_scale_xyz__10TObjPlayerFf": "set_model_scale__16PlayerScaleStateFf",
+      "update_and_send_60__10TObjPlayerFv": "send__18PlayerShrinkPacketFv"
+    },
+    "materialized_tree_before_notes_update": "15093d24efd38f21c6f4db4e1cb17a0415eb8cfe",
+    "archive_sha256": "e3f4b9f0b54a02945699153e81b67d7dfe1581430364159bac903d9ea391bd8f",
+    "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "coverage_check": "pass",
+    "tests": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    },
+    "test_log_sha256": {
+      "fork": "5a55dee9e58cb3aa32b00624e7c935fb78958cc12ae207a02b12badccaa1a5bc",
+      "tool": "a046f28784888d9f56d468b2837ef2caaf3fb599e85dceef1617f7b7b914a279",
+      "host": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    },
+    "host_executables": [
+      "vector_math_fallbacks",
+      "item_factory_callbacks",
+      "loader_transfer",
+      "ginja_parameter_callbacks",
+      "exi_ethernet_fallbacks"
+    ]
+  }
+}

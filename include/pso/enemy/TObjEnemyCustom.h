@@ -21,35 +21,37 @@ struct TObjEnemyCustom : public TObjEnemy {
     BOOL select_nearest_target(f32 radius);
     bool has_target() const { return target != NULL; }
     BOOL find_target_in_range(f32 radius);
-    void target_nearest_player(f32 radius);
     u16 pick_random_nearby_player(f32 radius);
     void pick_open_direction(f32 *dir, f32 reach, f32 radius);
     void move_along_ground_avoiding_walls(Vec dest, f32 speed, f32 probe);
     s32 turn_toward_point(Vec *point, s32 max_step, s32 angle_offset);
     void render_anim_model_at_pos();
     void run_demo_task();
-    void sub_800C73F4();
-    void sub_800C7860();
+    // Enters action 7 (the subclass's appear / fade-in) with the action lock set.
+    void start_appear();
     void release_destroyed_target();
-    void sub_8004292C();
+    // Clears the actorFlags bits set_flags_30 sets (0x04040000).
+    void clear_flags_30();
     void set_flags_30();
-    virtual void vfunc_79(s32 *);
+    virtual void apply_enemy_state(s32 *);
     virtual void get_anim_node_position(s32 node, Vec *out);
-    virtual void vfunc_63();
-    virtual void vfunc_62();
-    virtual void vfunc_61();
-    virtual void vfunc_60();
-    virtual void vfunc_59();
-    virtual void vfunc_58();
-    virtual void vfunc_28();
+    virtual void run_death_reaction();
+    virtual void run_hit_reaction();
+    virtual void run_miss_reaction();
+    virtual void run_attack_action();
+    virtual void run_move_action();
+    virtual void run_idle_action();
+    virtual void refresh_target();
     virtual void render();
     virtual void run_task();
-    u32 next_action;
-    u32 m_378;
+    s32 next_action;
+    u32 resume_action;  // the action to go back to after a reaction (Gyaranzo update_if_active(resume_action))
     u32 state;
-    u32 m_380;
-    s32 m_384;
-    u32 m_388;
+    u32 previous_action;  // set_state stores the mode it leaves
+    s32 state_timer;  // frames left in the current state
+    // Bit 0 locks the action (hit, death and appear set it, update_if_active then
+    // requests nothing); the other bits belong to each subclass.
+    u32 behavior_flags;
     void update_if_active(s32 action);
     void set_state(s32 action);
     void update_dying_state();
@@ -61,7 +63,7 @@ struct TObjEnemyCustom : public TObjEnemy {
     void dispatch_state();
 };
 
-typedef char TObjEnemyCustom_size[sizeof(TObjEnemyCustom) == 0x38C ? 1 : -1];
+LAYOUT_ASSERT(TObjEnemyCustom_size, sizeof(TObjEnemyCustom) == 0x38C);
 
 // Ninja node helpers (NJD_EVAL_HIDE on NULL-terminated node lists).
 void hide_model_nodes(NJS_OBJECT **nodes);

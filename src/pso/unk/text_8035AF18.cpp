@@ -1,36 +1,25 @@
 #include "types.h"
-#include "pso/TObject.h"
-#include "pso/TMainTask.h"
+#include "pso/system/task/TObject.h"
+#include "pso/system/task/TMainTask.h"
 #include "pso/macros.h"
-#include "pso/misc/TPlyPhotonChair.h"
-
-struct PhotonChairSeat {
-    u16 m_0;
-    u16 owner_id;
-};
+#include "pso/player/TPlyPhotonChair.h"
+#include "pso/player/PhotonChairSeat.h"
 
 extern "C" {
-extern s32 lbl_805D4418;
-s32 check_value_equals__7TObjectFPCc(void *, s32);
 int TPlyPhotonChair__sub_8035B520(void *p);
-u8 *TPlyPhotonChair__ct(u8 *arg0, s32 arg1, s32 parent);
-int fn_8035AF18(PhotonChairSeat *seat);
 }
 
-int fn_8035AF18(PhotonChairSeat *seat) {
-    u8 *chair;
+int PhotonChairSeat::create_chair() {
+    TPlyPhotonChair *chair;
 
     FOREACH_NODE(TObject, tl_05->m_down, node) {
-        if (check_value_equals__7TObjectFPCc(node, lbl_805D4418) != 0
-            && seat->owner_id == ((TPlyPhotonChair *)node)->sub_8035B530()
+        if (node->check_value_equals(TPlyPhotonChair__class_name) != 0
+            && owner_id == ((TPlyPhotonChair *)node)->sub_8035B530()
             && TPlyPhotonChair__sub_8035B520(node) != 0) {
             return 0;
         }
     }
-    chair = (u8 *)TObject::operator new(0xE4);
-    if (chair != NULL) {
-        chair = TPlyPhotonChair__ct(chair, seat->owner_id, (s32)tl_05);
-    }
+    chair = new TPlyPhotonChair(owner_id, (TObject *)tl_05);
     if (chair == NULL) {
         return 0;
     }

@@ -1,0 +1,737 @@
+{
+  "source": "15c165cf89498d815dcd8fcef83c6201850cdbe4",
+  "previous_source": "7dac72568843efc0ea3a4213099e560a1d7fb48d",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/linked_units.txt",
+    "config/GPOE8P/psov3/splits.txt",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/flower/TObjEneRe2Flower.h",
+    "include/pso/enemy/saver/TObjEneSaver.h",
+    "include/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.h",
+    "include/pso/enemy/sinowzoa/TObjEneMe3SinowZoa_800D72A4.h",
+    "include/pso/render/TUnk_80490470.h",
+    "include/pso/render/TUnk_80494938.h",
+    "include/pso/unk/text_800C2A88.h",
+    "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+    "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+    "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp",
+    "src/pso/enemy/darkgunner/DarkGunner.cpp",
+    "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+    "src/pso/enemy/dimedian/TObjEneDimedian.cpp",
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+    "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+    "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+    "src/pso/enemy/saver/SaverLifecycle.cpp",
+    "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+    "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa_800D72A4.cpp",
+    "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+    "src/pso/render/TUnk_80490470.cpp",
+    "src/pso/render/TUnk_80494938.cpp",
+    "src/pso/unk/text_800C2A88.cpp"
+  ],
+  "combined_paths_from_upstream": 1327,
+  "validation": {
+    "source": {
+      "baseline": "7dac72568843efc0ea3a4213099e560a1d7fb48d",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x800A04F0",
+          "before": "TObjPlayer__sub_800A04F0",
+          "after": "start_positive_fade_phase__13TUnk_80490470Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800A0554",
+          "before": "TObjPlayer__sub_800A0554",
+          "after": "start_negative_fade_phase__13TUnk_80490470Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C2AC4",
+          "before": "fn_800C2AC4",
+          "after": "fn_800C2AC4__16TObjEneRe2FlowerFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800D72A4",
+          "before": "TObjEneMe3SinowZoa__sub_800D72A4",
+          "after": "has_partial_opacity__13TUnk_80494938Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800D7310",
+          "before": "advance_timer__18TObjEneMe3SinowZoaFf",
+          "after": "advance_to__13TUnk_80494938Ff"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800D7478",
+          "before": "copy_position_vector__18TObjEneMe3SinowZoaFPv",
+          "after": "set_color__13TUnk_80494938FPC8NJS_ARGB"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800D74E4",
+          "before": "set_field_10__18TObjEneMe3SinowZoaFf",
+          "after": "set_rate__13TUnk_80494938Ff"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800D7524",
+          "before": "init_death_params__18TObjEneMe3SinowZoaFv",
+          "after": "start_fade_out__13TUnk_80494938Fv"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "8c594cb6ba804d944b61ce91bdf56e3956b96c793711f04197b9a3c9f209eb64",
+      "report_sha256": "51d557902de3740359770d48abd22304b533f2c19b415f32bca75cb6ffe263f5"
+    },
+    "layer": {
+      "baseline": "15c165cf89498d815dcd8fcef83c6201850cdbe4",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "51d557902de3740359770d48abd22304b533f2c19b415f32bca75cb6ffe263f5"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "8e21f7ead7e441a1e0623496e85680f52ba5ab536479227aeee3b4ae23e504c0"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "9904041a84d07ea38695c4cd981b0a8ccf3d2cdf4c9937ed2df5150625e707e4"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "exact_units": {
+    "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp": {
+      "functions": 29,
+      "sections": {
+        ".bss": [
+          2152728488,
+          32
+        ],
+        ".data": [
+          2152263144,
+          676
+        ],
+        ".rodata": [
+          2151914304,
+          56
+        ],
+        ".sdata": [
+          2153589104,
+          4
+        ],
+        ".sdata2": [
+          2153616920,
+          112
+        ],
+        ".text": [
+          2148064280,
+          10288
+        ]
+      }
+    },
+    "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp": {
+      "functions": 32,
+      "sections": {
+        ".data": [
+          2152263824,
+          568
+        ],
+        ".rodata": [
+          2151914360,
+          36
+        ],
+        ".sbss": [
+          2153598760,
+          16
+        ],
+        ".sdata": [
+          2153589112,
+          4
+        ],
+        ".sdata2": [
+          2153617032,
+          80
+        ],
+        ".text": [
+          2148074636,
+          6208
+        ]
+      }
+    },
+    "src/pso/enemy/berura/TObjEneRe7Berura.cpp": {
+      "functions": 52,
+      "sections": {
+        ".bss": [
+          2152728520,
+          220
+        ],
+        ".data": [
+          2152265296,
+          736
+        ],
+        ".rodata": [
+          2151914944,
+          336
+        ],
+        ".sbss": [
+          2153598808,
+          80
+        ],
+        ".sdata": [
+          2153589128,
+          8
+        ],
+        ".sdata2": [
+          2153617176,
+          120
+        ],
+        ".text": [
+          2148084496,
+          13064
+        ]
+      }
+    },
+    "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp": {
+      "functions": 43,
+      "sections": {
+        ".bss": [
+          2152728744,
+          16
+        ],
+        ".data": [
+          2152266256,
+          1016
+        ],
+        ".rodata": [
+          2151915376,
+          440
+        ],
+        ".sbss": [
+          2153598888,
+          40
+        ],
+        ".sdata": [
+          2153589152,
+          8
+        ],
+        ".sdata2": [
+          2153617368,
+          120
+        ],
+        ".text": [
+          2148102400,
+          11768
+        ]
+      }
+    },
+    "src/pso/enemy/darkgunner/DarkGunner.cpp": {
+      "functions": 42,
+      "sections": {
+        ".data": [
+          2152269320,
+          912
+        ],
+        ".rodata": [
+          2151916696,
+          592
+        ],
+        ".sbss": [
+          2153598968,
+          56
+        ],
+        ".sdata": [
+          2153589200,
+          4
+        ],
+        ".sdata2": [
+          2153617784,
+          88
+        ],
+        ".text": [
+          2148143020,
+          8932
+        ]
+      }
+    },
+    "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp": {
+      "functions": 51,
+      "sections": {
+        ".bss": [
+          2152996424,
+          12
+        ],
+        ".data": [
+          2152622960,
+          1080
+        ],
+        ".rodata": [
+          2152157496,
+          512
+        ],
+        ".sbss": [
+          2153605664,
+          40
+        ],
+        ".sdata": [
+          2153595000,
+          8
+        ],
+        ".sdata2": [
+          2153639864,
+          136
+        ],
+        ".text": [
+          2150642412,
+          13992
+        ]
+      }
+    },
+    "src/pso/enemy/dimedian/TObjEneDimedian.cpp": {
+      "functions": 23,
+      "sections": {
+        ".bss": [
+          2152728968,
+          24
+        ],
+        ".data": [
+          2152271120,
+          888
+        ],
+        ".rodata": [
+          2151917784,
+          488
+        ],
+        ".sbss": [
+          2153599088,
+          32
+        ],
+        ".sdata": [
+          2153589232,
+          8
+        ],
+        ".sdata2": [
+          2153618080,
+          52
+        ],
+        ".text": [
+          2148169572,
+          4376
+        ]
+      }
+    },
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp": {
+      "functions": 55,
+      "sections": {
+        ".bss": [
+          2153003504,
+          40
+        ],
+        ".data": [
+          2152669744,
+          696
+        ],
+        ".rodata": [
+          2152176784,
+          528
+        ],
+        ".sbss": [
+          2153607040,
+          32
+        ],
+        ".sdata": [
+          2153596000,
+          4
+        ],
+        ".sdata2": [
+          2153644552,
+          64
+        ],
+        ".text": [
+          2151019976,
+          12512
+        ]
+      }
+    },
+    "src/pso/enemy/flower/TObjEneRe2Flower.cpp": {
+      "functions": 29,
+      "sections": {
+        ".data": [
+          2152280184,
+          864
+        ],
+        ".rodata": [
+          2151922640,
+          64
+        ],
+        ".sbss": [
+          2153599344,
+          24
+        ],
+        ".sdata": [
+          2153589320,
+          8
+        ],
+        ".text": [
+          2148282504,
+          5412
+        ]
+      }
+    },
+    "src/pso/enemy/morfos/TObjEneMorfos.cpp": {
+      "functions": 47,
+      "sections": {
+        ".bss": [
+          2153002192,
+          24
+        ],
+        ".data": [
+          2152652992,
+          748
+        ],
+        ".rodata": [
+          2152166592,
+          344
+        ],
+        ".sbss": [
+          2153606408,
+          48
+        ],
+        ".sdata": [
+          2153595440,
+          8
+        ],
+        ".sdata2": [
+          2153642080,
+          80
+        ],
+        ".text": [
+          2150835160,
+          11840
+        ]
+      }
+    },
+    "src/pso/enemy/saver/SaverLifecycle.cpp": {
+      "functions": 42,
+      "sections": {
+        ".bss": [
+          2152728952,
+          16
+        ],
+        ".data": [
+          2152270384,
+          732
+        ],
+        ".rodata": [
+          2151917368,
+          416
+        ],
+        ".sbss": [
+          2153599040,
+          48
+        ],
+        ".sdata": [
+          2153589224,
+          4
+        ],
+        ".sdata2": [
+          2153617936,
+          144
+        ],
+        ".text": [
+          2148156040,
+          13532
+        ]
+      }
+    },
+    "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp": {
+      "functions": 73,
+      "sections": {
+        ".bss": [
+          2153000880,
+          80
+        ],
+        ".data": [
+          2152630184,
+          1456
+        ],
+        ".rodata": [
+          2152161432,
+          16
+        ],
+        ".sbss": [
+          2153605848,
+          16
+        ],
+        ".sdata": [
+          2153595168,
+          8
+        ],
+        ".sdata2": [
+          2153640688,
+          160
+        ],
+        ".text": [
+          2150721168,
+          20360
+        ]
+      }
+    },
+    "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp": {
+      "functions": 50,
+      "sections": {
+        ".bss": [
+          2152730736,
+          16
+        ],
+        ".data": [
+          2152296160,
+          732
+        ],
+        ".rodata": [
+          2151928560,
+          328
+        ],
+        ".sbss": [
+          2153599696,
+          40
+        ],
+        ".sdata": [
+          2153589488,
+          8
+        ],
+        ".sdata2": [
+          2153621384,
+          104
+        ],
+        ".text": [
+          2148457368,
+          10760
+        ]
+      }
+    },
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp": {
+      "functions": 75,
+      "sections": {
+        ".bss": [
+          2152730848,
+          80
+        ],
+        ".data": [
+          2152298184,
+          1432
+        ],
+        ".rodata": [
+          2151929680,
+          16
+        ],
+        ".sbss": [
+          2153599744,
+          24
+        ],
+        ".sdata": [
+          2153589496,
+          8
+        ],
+        ".sdata2": [
+          2153621512,
+          184
+        ],
+        ".text": [
+          2148469580,
+          19800
+        ]
+      }
+    },
+    "src/pso/render/TUnk_80490470.cpp": {
+      "functions": 15,
+      "sections": {
+        ".data": [
+          2152268912,
+          44
+        ],
+        ".rodata": [
+          2151916648,
+          8
+        ],
+        ".sdata2": [
+          2153617752,
+          24
+        ],
+        ".text": [
+          2148139808,
+          1144
+        ]
+      }
+    },
+    "src/pso/render/TUnk_80494938.cpp": {
+      "functions": 16,
+      "sections": {
+        ".data": [
+          2152286520,
+          44
+        ],
+        ".rodata": [
+          2151925496,
+          8
+        ],
+        ".sdata2": [
+          2153620296,
+          28
+        ],
+        ".text": [
+          2148364964,
+          1004
+        ]
+      }
+    },
+    "src/pso/unk/text_800C2A88.cpp": {
+      "functions": 2,
+      "sections": {
+        ".sdata2": [
+          2153619400,
+          8
+        ],
+        ".text": [
+          2148280968,
+          600
+        ]
+      }
+    }
+  },
+  "runtime": {
+    "images": [
+      "retail",
+      "source",
+      "materialized fork"
+    ],
+    "checks": {
+      "fade-phases": {
+        "cases_per_image": 23,
+        "probe_sha256": "a29e172153c819a0abb2dcc419b34ff50383c8375cad932085b220bbc6c55062",
+        "log_sha256": "5de4f95422f710e763619ff688a1b457cf8b320810a95d2d55664bff7b11e651"
+      },
+      "spawn-owners": {
+        "cases_per_image": 23,
+        "probe_sha256": "1bacef8863edaf108201a18ca5e5fc1e9b574683be7ff2b36b1fcf8776746c9d",
+        "log_sha256": "42225e11e9fb4d014f6d87d1f5e14d30b810aba39453cd811064768aec8d2aba"
+      }
+    }
+  },
+  "historical": {
+    "closed": {
+      "row": 1200,
+      "path": "src/pso/unk/text_800C2A88.cpp",
+      "historical_hunks": [
+        "The native fade header, the existing sound and ground-effect headers and shared declarations supply the historical includes.",
+        "The direct player effects still share TObjPlayer_800D8FDC.h in the current tree.",
+        "The fake fade virtual table and its typedef are gone. The typed fade field provides virtual decay.",
+        "The shared enemy header declares the existing hook and SoundEffect declares the stock playback entry.",
+        "The sound event uses the typed position and original ID and options.",
+        "The Flower member initializes the actual fade field, passes the Vec to the ground effect, and advances the original phase through native decay."
+      ]
+    },
+    "scoped": {
+      "599": "Both original fade types use native entry and completion calls on their declared fields.",
+      "607": "The Flower dispatcher calls its own state method for state 10.",
+      "608": "The Berura rise and death fades call both original phase methods on the typed field.",
+      "718": "The two partial-opacity calls use the existing Epsilon body fade field.",
+      "727": "The misplaced fade declarations moved from the Sinow Zoa header to the native fade header.",
+      "814": "The partial opacity predicate, rate and threshold advance use native fade methods.",
+      "895": "The Dell Biter death phase starts on its existing fade field.",
+      "958": "Stelth uses the real color layout and threshold method.",
+      "986": "The Bringer fade phase uses the existing native field.",
+      "1053": "The Dark Gunner death phase and decay use its native render-control field.",
+      "1055": "The Dimedian entrance phase and advancement use its native render-control field.",
+      "1116": "Saver's fade field, two entry points and virtual dispatches use the native fade class.",
+      "1168": "The Sorcerer death phase uses the existing native fade field."
+    },
+    "existing_records_updated": [
+      [
+        482,
+        "include/pso/misc/MaterialOpacityFade.h",
+        "include/pso/render/TUnk_80494938.h",
+        "The existing upstream fade class now owns all historical helpers and retains the original field layout."
+      ],
+      [
+        641,
+        "src/pso/misc/MaterialOpacityFade.cpp",
+        "src/pso/render/TUnk_80494938.cpp",
+        "The native render unit supplies all 16 functions and the original virtual table at their original addresses."
+      ]
+    ],
+    "removals_reconciled": [
+      [
+        1359,
+        "include/pso/enemy/sinowzoa/TObjEneMe3SinowZoa_800D72A4.h",
+        "include/pso/render/TUnk_80494938.h",
+        "Transitional header removed after the only caller switched to the shared fade declaration."
+      ],
+      [
+        1434,
+        "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa_800D72A4.cpp",
+        "src/pso/render/TUnk_80494938.cpp",
+        "All 16 functions and the full original data and vtable remain linked at the render owner."
+      ]
+    ],
+    "open_rows": 282,
+    "comparison_sha256": "622196a09510139fba1af9ce4564667aa5d5d63ceea8c78287e3805708d62f1d"
+  },
+  "fork_workspace": {
+    "trial": "d61d4f649d391e7f7127123cf4e6c163587a1597",
+    "overlay_paths": 130,
+    "force_active_count": 27033,
+    "materialized_tree": "077f2e5e04817afbaaa07bf236b7120a3f803472",
+    "archive_sha256": "db2587a7b4fba6880a4b26629c79df0f9c3b28b06a790297049b13f313ae2dbb"
+  }
+}

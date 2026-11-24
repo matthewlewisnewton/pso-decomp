@@ -3,13 +3,12 @@
 
 #include "types.h"
 
-#include "pso/system/Adxf.h"
-
 extern "C" {
 void TLobby__sub_803CC884(void);
+void TLobby__sub_803CD804(void);
 s32 check_803CC294(s32 arg0, s32 arg1);
 s32 rd32_803CD5C4(u8 *p);
-s32 state_803CD5C4(s32 base);
+s32 state_803CD5C4(void);
 }
 
 #endif

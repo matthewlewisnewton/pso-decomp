@@ -1,0 +1,172 @@
+{
+  "source": "57992f7139c623e24466d6ed05cc559bf7c6841e",
+  "previous_source": "c298d767f25772e4dbc9f486c44be2fdbcd7a5eb",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/render/ChunkTextureStripCollector.h",
+    "include/pso/unk/TLobby.h",
+    "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+    "src/pso/effect/photon/TPhotonEstlla.cpp",
+    "src/pso/effect/photon/TPhotonFarlla.cpp",
+    "src/pso/effect/photon/TPhotonGolla.cpp",
+    "src/pso/effect/photon/TPhotonLeilla.cpp",
+    "src/pso/effect/photon/TPhotonPilla.cpp",
+    "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+    "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp",
+    "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+    "src/pso/object/city/CityTraffic.cpp",
+    "src/pso/render/ChunkTextureStripCollector.cpp",
+    "src/pso/unk/TLobby_800F5CF0.cpp",
+    "src/pso/unk/text_8004AA04.cpp",
+    "src/pso/unk/text_800F5BC0.cpp",
+    "src/pso/unk/text_80184C2C.cpp"
+  ],
+  "combined_paths_from_upstream": 903,
+  "historical_basis": {
+    "pre_feature": "01ce4c820e",
+    "matching_replay": "6d9e393439"
+  },
+  "source_scope": [
+    "strip buffer allocation, model-node traversal, UV collection, scrolling and cleanup",
+    "Photon Blast, Olga Flow, enemy, appearance scene and city traffic callers"
+  ],
+  "validation": {
+    "source": {
+      "baseline": "c298d767f25772e4dbc9f486c44be2fdbcd7a5eb",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x800F591C",
+          "before": "collect_plist_strips_by_texture__FPvPsl",
+          "after": "collect_plist_strips_by_texture__FP15StripBufferPairPsl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800F5AC8",
+          "before": "count_plist_strips_by_texture__FPvPvPv",
+          "after": "count_plist_strips_by_texture__FP15StripBufferPairPsl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800F5CF0",
+          "before": "alloc_tables__6TLobbyFll",
+          "after": "alloc_tables__15StripBufferPairFP10NJS_OBJECTl"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "c1d448ab5e8029b2d73a6d474c03003c245bb68a423b75c967343cd7379fc432",
+      "report_sha256": "66aaa892172b456e360b53c890e87f67387ec3245a9be5ea4b6b61e7a24e6777"
+    },
+    "layer": {
+      "baseline": "57992f7139c623e24466d6ed05cc559bf7c6841e",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "52e7b7c44c895ea98e91fe1a9ea21805885753879d1966b15b6b684ebe565d0b",
+      "report_sha256": "66aaa892172b456e360b53c890e87f67387ec3245a9be5ea4b6b61e7a24e6777"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "edf0a0e0e9597e7c0565966b2ae2fcd5a9e53b5cd9a2b4ffd6126d9c65c70b9f"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "72a3968e94b5bbad2e4526721a8671bfae95a9ebf79b7a4a64eb749ebcf4403d"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "images": [
+      "retail",
+      "source",
+      "materialized fork workspace"
+    ],
+    "coverage": [
+      "child and sibling model traversal",
+      "texture selection and both winding signs",
+      "signed UV scrolling",
+      "failed allocation and release"
+    ],
+    "probe_sha256": "5b9d28c735039fc748c56586b777e31d060c7fe961b0e29086f81bb563a19387",
+    "log_sha256": "539accaaa961a38d7fdf69e798848ce5b0bf74841affd39dbb1ce728e7196d7f"
+  },
+  "historical": {
+    "open_rows": 415,
+    "scoped_rows": [
+      [
+        157,
+        "config/GPOE8P/psov3/symbols.txt",
+        "config/GPOE8P/psov3/symbols.txt"
+      ],
+      [
+        608,
+        "src/pso/enemy/TObjEneRe7Berura.cpp",
+        "src/pso/enemy/berura/TObjEneRe7Berura.cpp"
+      ],
+      [
+        986,
+        "src/pso/enemy/TObjEneDf2Bringer_800972B0.cpp",
+        "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp"
+      ],
+      [
+        1168,
+        "src/pso/enemy/TObjEneRe4Sorcerer_800EDB98.cpp",
+        "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp"
+      ]
+    ]
+  },
+  "fork_workspace": {
+    "trial": "189122d057668692212f7ec00816bb8e2dcccfd0",
+    "overlay_paths": 130,
+    "updated_overlay_paths": [
+      "config/GPOE8P/psov3/config.yml"
+    ],
+    "archive_sha256": "5f84fc438d99763f05899a47816732fe4c95a9d4a73f421c6c4a4481b07b18fc",
+    "materialized_tree": "07058ab4863ff83e00c889da81498f6ed9de1dff",
+    "force_active": 27027
+  }
+}

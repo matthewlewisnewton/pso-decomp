@@ -1,0 +1,193 @@
+{
+  "source": "7b3da3891a91c483ae3f96150579589f13bffb92",
+  "previous_source": "bc3d32eb3ffe91bb920d62ef1dc1e2b15b097e4f",
+  "earlier_verified_source": "a0ab810dd1684b53eac5578277c4defdb158350b",
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "validation": {
+    "card": {
+      "report_sha256": "6ee0333ee4501a7f250491c4444510b23a85c9d51219ed1b1b1e153b412059ef",
+      "updated_function_labels": [
+        {
+          "module": "psov3",
+          "address": "0x802C7560",
+          "before": "init_slot__13TAdMcSelectGCFlPv",
+          "after": "init_slot__15TAdChrSelSlotGCFlPC21CharacterSlotPosition"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A154",
+          "before": "get_slot_index__13TAdMcSelectGCFv",
+          "after": "get_slot_index__19TAdMcSelectCursorGCFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A168",
+          "before": "set_field_13c__13TAdMcSelectGCFl",
+          "after": "set_field_13c__19TAdMcSelectCursorGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A170",
+          "before": "set_field_0x1c__13TAdMcSelectGCFl",
+          "after": "set_field_0x1c__15TAdMcSelectMcGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A178",
+          "before": "set_select_index__13TAdMcSelectGCFl",
+          "after": "set_select_index__15TAdChrSelSlotGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A188",
+          "before": "set_field_134__13TAdMcSelectGCFl",
+          "after": "set_field_134__10TAdTitleGCFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032A610",
+          "before": "get_instance__19TAdMcSelectCursorGCFl",
+          "after": "get_instance__19TAdMcSelectCursorGCFP7TObject"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8033F2A4",
+          "before": "__ct__12TAdMcCheckGCFP7TObjectPv",
+          "after": "__ct__12TAdMcCheckGCFP7TObjectl"
+        }
+      ]
+    },
+    "photon": {
+      "report_sha256": "140b4f725e9a14d30877187c2ecb96802915af4d0c5ff4faf2db96a56d4692f6",
+      "updated_function_labels": [
+        {
+          "module": "psov3",
+          "address": "0x801A8618",
+          "before": "is_photon_blast_presentation_admitted__FUlPv",
+          "after": "is_photon_blast_presentation_admitted__FUlP15PhotonBlastSlot"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A86E0",
+          "before": "apply_photon_blast_action_hold__Flll",
+          "after": "apply_photon_blast_action_hold__FP13TUnk_804C349Cll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A8868",
+          "before": "admit_photon_blast_sequence__FPUcPv",
+          "after": "admit_photon_blast_sequence__FP15PhotonBlastSlotP8TObjBase"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801A9E10",
+          "before": "__ct__13TUnk_804C349CFlPUcPlll",
+          "after": "__ct__13TUnk_804C349CFlP15PhotonBlastSlotPClll"
+        }
+      ]
+    },
+    "balclaw": {
+      "report_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+      "updated_function_labels": []
+    },
+    "layer": {
+      "report_sha256": "b4d93864c6c48b13733e46b7a31e201ac7304fc2d7522904a7365cf68fa6b312",
+      "updated_function_labels": []
+    }
+  },
+  "fork_overlay_paths": 130,
+  "fork_overlay_sha256": "4631372b7d3e664a37022644013f3d6e9d6c6dcb82e582cbf505df4abf869e69",
+  "tool_tests": 294,
+  "fork_tests": 11,
+  "host_tests": [
+    "./vector_math_fallbacks",
+    "./item_factory_callbacks",
+    "./loader_transfer",
+    "./ginja_parameter_callbacks",
+    "./exi_ethernet_fallbacks"
+  ],
+  "refreshed_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/player/PhotonBlastResults.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/ui/frontend/TAdChrSelSlotGC.h",
+    "include/pso/ui/frontend/TAdMcCheckGC.h",
+    "include/pso/ui/frontend/TAdMcSelectCursorGC.h",
+    "include/pso/ui/frontend/TAdMcSelectCursorGC_8032A610.h",
+    "include/pso/ui/frontend/TAdMcSelectGC.h",
+    "include/pso/ui/frontend/TAdMcSelectMcGC.h",
+    "include/pso/ui/frontend/TAdTitleGC.h",
+    "include/pso/unk/TUnk_804C349C.h",
+    "include/pso/unk/text_8033F314.h",
+    "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+    "src/pso/player/PhotonBlastResults.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TObjPlayer_801C7430.cpp",
+    "src/pso/ui/frontend/TAdChrSelASlotGC.cpp",
+    "src/pso/ui/frontend/TAdChrSelBSlotGC.cpp",
+    "src/pso/ui/frontend/TAdChrSelSlotGC.cpp",
+    "src/pso/ui/frontend/TAdMcCheckGC.cpp",
+    "src/pso/ui/frontend/TAdMcSelectCursorGC.cpp",
+    "src/pso/ui/frontend/TAdMcSelectGC.cpp",
+    "src/pso/ui/frontend/TAdMcSelectMcGC.cpp",
+    "src/pso/unk/text_8033F314.cpp"
+  ],
+  "paths_in_prior_batch_with_recovery": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/player/PhotonBlastResults.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/ui/frontend/TAdChrSelSlotGC.h",
+    "include/pso/ui/frontend/TAdMcCheckGC.h",
+    "include/pso/ui/frontend/TAdMcSelectCursorGC.h",
+    "include/pso/ui/frontend/TAdMcSelectCursorGC_8032A610.h",
+    "include/pso/ui/frontend/TAdMcSelectGC.h",
+    "include/pso/ui/frontend/TAdMcSelectMcGC.h",
+    "include/pso/ui/frontend/TAdTitleGC.h",
+    "include/pso/unk/TUnk_804C349C.h",
+    "include/pso/unk/text_8033F314.h",
+    "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+    "src/pso/player/PhotonBlastResults.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TObjPlayer_801C7430.cpp",
+    "src/pso/ui/frontend/TAdChrSelASlotGC.cpp",
+    "src/pso/ui/frontend/TAdChrSelBSlotGC.cpp",
+    "src/pso/ui/frontend/TAdChrSelSlotGC.cpp",
+    "src/pso/ui/frontend/TAdMcCheckGC.cpp",
+    "src/pso/ui/frontend/TAdMcSelectCursorGC.cpp",
+    "src/pso/ui/frontend/TAdMcSelectGC.cpp",
+    "src/pso/ui/frontend/TAdMcSelectMcGC.cpp",
+    "src/pso/unk/text_8033F314.cpp"
+  ],
+  "other_paths_in_prior_batch": [
+    "include/pso/enemy/balclaw/TObjEneBalClaw.h",
+    "include/pso/enemy/balclaw/TObjEneBalClawBody.h",
+    "include/pso/enemy/balclaw/TObjEneBalClawClaw.h",
+    "include/pso/quest/TQuestListChallenge.h",
+    "include/pso/ui/city/THunterGuildSeqOffline.h",
+    "include/pso/ui/frontend/TAdBackGC.h",
+    "include/pso/ui/frontend/TAdBackTxtGC.h",
+    "include/pso/ui/frontend/TAdPlayerLoadGC.h",
+    "include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h",
+    "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.h",
+    "src/pso/quest/TQuestListChallenge.cpp",
+    "src/pso/quest/TQuestListVM.cpp",
+    "src/pso/ui/city/THunterGuildSeqOffline_8021250C.cpp",
+    "src/pso/ui/city/THunterGuildSeqOffline_80212564.cpp",
+    "src/pso/ui/city/THunterGuildSeqOffline_80212644.cpp",
+    "src/pso/ui/city/THunterGuildSeqOffline_8021269C.cpp",
+    "src/pso/ui/city/THunterGuildSeqOffline_802126C4.cpp",
+    "src/pso/ui/city/THunterGuildSeqOffline_8021277C.cpp",
+    "src/pso/ui/city/THunterGuildSeqOffline_8021282C.cpp",
+    "src/pso/ui/frontend/TAdMultiChgGameModeGC_8036DE10.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80243218.cpp",
+    "src/pso/ui/window/TMessageWindowController.cpp"
+  ],
+  "ledger_rows_refreshed": 11,
+  "historical_review_rows_remaining": 659,
+  "ordered_full_source": "d927f13d1490c03e7e62a9589a35c0182a111497"
+}

@@ -1,0 +1,163 @@
+{
+  "base_upstream": "5cf9da024a0d526227c07273f045ebe71e146496",
+  "base_network": "7b66b623b1fddbc9c3a208db6baca63406a682d8",
+  "stage_branch": "great-merge/rehearsal/after-372/stage-chip-contracts",
+  "stage_head": "2ead0126f1cbe3752404928b2a69e1697daf1d9d",
+  "historical_stage_replay": "04dcce065b5b748ee382035bf25d310a492f5837",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2393,
+  "coverage_losses": {
+    "regressions": 0,
+    "data_regressions": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0,
+    "data_coverage_lost": 0,
+    "padding_coverage_lost": 0
+  },
+  "data_inventory": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "verified_data_objects": {
+    "TOTrapAncient01__bml_resource": {
+      "address": "0x805d5ad0",
+      "size": 4
+    },
+    "TOTrapSeabed01__bml_resource": {
+      "address": "0x805d6810",
+      "size": 4
+    },
+    "TOTrapSeabed01__texture_file": {
+      "address": "0x805d6814",
+      "size": 4
+    },
+    "TOTrapSeabed01__transform_params": {
+      "address": "0x80472044",
+      "size": 76
+    },
+    "TOWreckAncientBrakable__debris_param_table": {
+      "address": "0x804435c8",
+      "size": 76
+    },
+    "TObjTombstone__shared_resource_object": {
+      "address": "0x805d4e48",
+      "size": 4
+    },
+    "container_jung_debris_desc": {
+      "address": "0x8044523c",
+      "size": 76
+    },
+    "explosive_machine_model_archive": {
+      "address": "0x805d59a8",
+      "size": 4
+    },
+    "forest_box_break_params": {
+      "address": "0x804b63e8",
+      "size": 304
+    },
+    "lbl_805D5A50": {
+      "address": "0x805d5a50",
+      "size": 4
+    },
+    "vs2_wall_debris_desc": {
+      "address": "0x8044311c",
+      "size": 76
+    }
+  },
+  "changed_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/object/TObjChip.h",
+    "include/pso/object/TObjChipParams.h",
+    "include/pso/object/jungle/TORockJungleS01.h",
+    "include/pso/object/seabed/TObjSeabedSuisoBrakable.h",
+    "include/pso/object/trap/TOExplosiveMachine.h",
+    "src/pso/boss/volopt/TObjVoloptPillar.cpp",
+    "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+    "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+    "src/pso/object/TObjChip.cpp",
+    "src/pso/object/TObjTombstone.cpp",
+    "src/pso/object/cave/TORockCave.cpp",
+    "src/pso/object/container/TOContainerAncientEnemy.cpp",
+    "src/pso/object/container/TObjContainerItem.cpp",
+    "src/pso/object/container/TObjContainerJung.cpp",
+    "src/pso/object/fence/TOVS2Wall01.cpp",
+    "src/pso/object/jungle/TORockJungleL01.cpp",
+    "src/pso/object/seabed/TObjSuisoChip.cpp",
+    "src/pso/object/trap/TOExplosiveMachine.cpp",
+    "src/pso/object/trap/TOMine.cpp",
+    "src/pso/object/trap/TOMineIcon01.cpp",
+    "src/pso/object/trap/TOMineIcon02.cpp",
+    "src/pso/object/trap/TOMineIcon03.cpp",
+    "src/pso/object/trap/TOMineIcon04.cpp",
+    "src/pso/object/trap/TOTrapAncient01.cpp",
+    "src/pso/object/trap/TOTrapSeabed01.cpp",
+    "src/pso/object/wreck/TOWreckAncient.cpp"
+  ],
+  "source_quality": {
+    "total": {
+      "base": 161201,
+      "head": 161138,
+      "added": 3,
+      "removed": 66
+    },
+    "labels": [
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80180B38",
+        "type": "function",
+        "old": "copy_debris_params__8TObjChipFPvPv",
+        "new": "copy_debris_params__8TObjChipFP14TObjChipParamsPC14TObjChipParams",
+        "flags": []
+      }
+    ],
+    "stale_force_active": [],
+    "additional_findings": [
+      {
+        "key": "address_type",
+        "path": "src/pso/object/TObjChip.cpp",
+        "line": 441,
+        "text": "Obj_8017FE58"
+      },
+      {
+        "key": "address_type",
+        "path": "src/pso/object/TObjChip.cpp",
+        "line": 531,
+        "text": "Obj_8017FE58"
+      },
+      {
+        "key": "address_type",
+        "path": "src/pso/object/TObjChip.cpp",
+        "line": 544,
+        "text": "Obj_8017FE58"
+      }
+    ],
+    "report_sha256": "579da0780cc704975cf82a9ac7494361f36fd69ae058225fa66c6db7f26a4425"
+  },
+  "resolved_paths": [
+    "src/pso/object/container/TOContainerAncientEnemy.cpp",
+    "src/pso/object/trap/TOTrapSeabed01.cpp"
+  ],
+  "resource_api_adaptations": [
+    "Retain upstream name comparisons and GVM loading and release signatures at the two overlapping call sites."
+  ],
+  "runtime_probes": {
+    "images": [
+      "retail",
+      "stage preview"
+    ],
+    "result": "debris copy guards, three stage fragments, and Mine and Tombstone resource lifetimes passed",
+    "constructor_hook": {
+      "address": "0x80020004",
+      "label": "__ct__11BmlResourceFlP21BmlResourceDescriptorllPv"
+    },
+    "log_sha256": "8f6fa0b20d2dd877d8dd1847ffa2bed57015c855c052989dcd4fd040d71e5b63",
+    "script_sha256": "65592e23bacb5f3ea5d86771a3a266a6fc087caf6d0967456d78f9edf7ad2c24"
+  },
+  "coverage_report_sha256": "bba248d02caf1c4480b70ffbfc0fb74fa1e7b5bf16c47b428dabb1af9fb9a51a",
+  "build_report_sha256": "c7ae58c2175a3091e14050dbcebc44cf13f0296218fd86a42c9993c7851abddf"
+}

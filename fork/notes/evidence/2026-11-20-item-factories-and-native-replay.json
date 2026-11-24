@@ -1,0 +1,3006 @@
+{
+  "source": "5991ac7b121fc0e83ca1316ae4eedba494afc22e",
+  "previous_source": "5b16fd51a8ece943a308ae8c1b67a074c36451c6",
+  "landing": "d4f2793c657be39f5c403a7edc9f21deadcd78b8",
+  "working_fork_build": "a6f50138c4dbaf6f964f4d00a226068c50fe3d7a",
+  "source_files": 178,
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "review_queue": {
+    "head": "908b958882463676614861f12520bd246960c638",
+    "tree": "0b46479f45727975c432e3fada6de58b473cdeea",
+    "previous": "6a4b148223a7c91448bdf07274981bcff784941f",
+    "inputs": [
+      "b75c6f38a72228b2c5dc79f3198981f324474018",
+      "a4d7a8d2d908dc795ed2d7e929357d807e547955",
+      "a0ae8422d0940e24c0e5ce3298747d5991d40472",
+      "ff194d014bb79b47d0609f99403deb7c9ab8cb3e",
+      "4e93b2bb3cf2240c27977414e5bc94d71e0e860c",
+      "d9e7ee7f3dfdbb7018ef9d50b394972b625fd72e",
+      "bb0a2828e3a31ddc506164215d32f5cd834ff234",
+      "cdfbc9ea796425975e1c113c20af714744ff6061",
+      "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
+      "e9a0de33c63cf4cd2a071c7ae9e5072ef21126a3",
+      "3272f488a83172ba06ba9496dd53525f834081d0",
+      "9bbc668b6121ceb6bc03f83427c98aaa931a0d31",
+      "a5aed4817c6718d9ea584baaa3f5f29fdd72d1ee",
+      "ac5aa002909d739722e26f4c3c9aef7f681b4425",
+      "12bdb900e51d333a482062d8cd0d9edab5a09a80",
+      "7bdbdaf5ba01344982227ac6b25f5315e800d9f5",
+      "f7a0122c73c00062937eac73bc56ea913630e522",
+      "9a277f6b061ec44eecf9395be11f3112c378a33c",
+      "ba580a76cbb0992a985eb947d48a178cbb36d1b2",
+      "04e0a137422e25a50c7ea48df4c35c9bcc7b14fb",
+      "182fb702e6a21c01f05a822fa77a49c1e484d0bd",
+      "0895f1cbb38bc55767e2428439e698a94b5bccf4",
+      "92628b23dfdd756305d360da7cbc02d066f418ac",
+      "8f26a3c7a707d4076bf84134da09276bc62991f9",
+      "cbc36c08404d4fbddd2dcbc30074cb2e5ed146b1",
+      "ae3da5ccb25c52f727ab0f41adcc3a3afbf0c4ef",
+      "a0c6dc4253dbf22cb0984501536a32673fa9b9e8",
+      "d90619b7c15b4300567435fdee477df7c1796a25",
+      "bd20994aa3698ab8f8f0098410b4da11d0ba0d2c",
+      "9935ca4090ba264f42a12317c104ab4a568036b5",
+      "1f23677cb3c8366b142119fd3204b5bfd83d58a8",
+      "090a3d41d70c6601ad8720c95160e8f43c2b05d4",
+      "e03302a7034b338e6cfdaf448a1beddd27f97128"
+    ],
+    "files": 2312,
+    "reviews": {
+      "standalone-weapon-factory-registry": {
+        "head": "ff194d014bb79b47d0609f99403deb7c9ab8cb3e",
+        "previous": "f7a0573964b36b98973f3f328c0d72fb32b5449a",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 243,
+        "create": false,
+        "live_tip": "f7a0573964b36b98973f3f328c0d72fb32b5449a",
+        "queue_input": "ff194d014bb79b47d0609f99403deb7c9ab8cb3e",
+        "report": "/dev/shm/gm-item-factories-and-native.Uc0za0/native-factory-direct-report.json.gz",
+        "strict": "/dev/shm/gm-item-factories-and-native.Uc0za0/native-factory-direct-check.json"
+      },
+      "standalone-enemy-registration-and-formations": {
+        "head": "3272f488a83172ba06ba9496dd53525f834081d0",
+        "previous": "efb79ab229953ff79c9c5a9c2bb13310b5a69edf",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 260,
+        "create": false,
+        "live_tip": "efb79ab229953ff79c9c5a9c2bb13310b5a69edf",
+        "queue_input": "3272f488a83172ba06ba9496dd53525f834081d0",
+        "report": "/dev/shm/gm-enemy-20565490-review/crawfish-standalone-report.json.gz",
+        "strict": "/dev/shm/gm-enemy-20565490-review/crawfish-standalone-strict.json"
+      },
+      "standalone-player-slot-registry": {
+        "head": "92628b23dfdd756305d360da7cbc02d066f418ac",
+        "previous": "b18e36657fcb0ddb6227ce1cd1f5b869f53cdab8",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 175,
+        "create": false,
+        "live_tip": "b18e36657fcb0ddb6227ce1cd1f5b869f53cdab8",
+        "queue_input": "92628b23dfdd756305d360da7cbc02d066f418ac",
+        "report": "/dev/shm/gm-npc-partner-state.yFm66G/direct-report.json.gz",
+        "strict": "/dev/shm/gm-npc-partner-state.yFm66G/direct-check.json"
+      },
+      "standalone-equipment-and-item-list-windows": {
+        "head": "e9a0de33c63cf4cd2a071c7ae9e5072ef21126a3",
+        "previous": "0a61128e9a42b5567f890ac3d4f8440c1219a8a4",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 547,
+        "create": false,
+        "live_tip": "0a61128e9a42b5567f890ac3d4f8440c1219a8a4",
+        "queue_input": "e9a0de33c63cf4cd2a071c7ae9e5072ef21126a3",
+        "report": "/dev/shm/gm-comcard-native-20261120/direct/display-report.json.gz",
+        "strict": "/dev/shm/gm-comcard-native-20261120/direct/display-strict.json"
+      }
+    },
+    "replays": {
+      "factory": {
+        "canonical": "9ed29ecdae027c7ac4e299c38f145aac4ffae416",
+        "standalone": "ff194d014bb79b47d0609f99403deb7c9ab8cb3e",
+        "queue": "4baeb7eae5fc49cc2a5fbb9727b896beceea51ae"
+      },
+      "crawfish": {
+        "canonical": "34ac0842c34c7fe9b875f8ca9a158228dbd11ccd",
+        "standalone": "3272f488a83172ba06ba9496dd53525f834081d0",
+        "queue": "f06ee58e589fbb141d444ee44c248577c01eb514"
+      },
+      "companion": {
+        "canonical": "516f4bc6b709c2a0e5a50463e93e0a602b3193a2",
+        "standalone": "92628b23dfdd756305d360da7cbc02d066f418ac",
+        "queue": "b412603fa26fe22506e81bfc80c5dcb14702138e"
+      },
+      "card": {
+        "canonical": "b6b52e27de62e3f7fb065bd4a072c127f06a55e6",
+        "standalone": "e9a0de33c63cf4cd2a071c7ae9e5072ef21126a3",
+        "queue": "ed65a7be7dad50f2abad6a3584ea1997444a942c"
+      }
+    },
+    "increment": 181
+  },
+  "reviews": {
+    "standalone-weapon-factory-registry": {
+      "head": "ff194d014bb79b47d0609f99403deb7c9ab8cb3e",
+      "previous": "f7a0573964b36b98973f3f328c0d72fb32b5449a",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 243,
+      "create": false,
+      "live_tip": "f7a0573964b36b98973f3f328c0d72fb32b5449a",
+      "queue_input": "ff194d014bb79b47d0609f99403deb7c9ab8cb3e",
+      "report_sha256": "5ca28b73a37459a563985c11b00dca1d9e5b10ffb3bc37e68ef2fb9115f265c2",
+      "strict_sha256": "ed1227e62a54a700684ba716ecd28c2aef9109e9a126e968204e0791f4a38f3a"
+    },
+    "standalone-enemy-registration-and-formations": {
+      "head": "3272f488a83172ba06ba9496dd53525f834081d0",
+      "previous": "efb79ab229953ff79c9c5a9c2bb13310b5a69edf",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 260,
+      "create": false,
+      "live_tip": "efb79ab229953ff79c9c5a9c2bb13310b5a69edf",
+      "queue_input": "3272f488a83172ba06ba9496dd53525f834081d0",
+      "report_sha256": "5700f97b389a39c3db84c96e50140a986be72ad0a55dcddb32ddac333992b4b2",
+      "strict_sha256": "3b97d81b3a7d3974f4ce6240f3a4f1ce00ae363ede71b3cf5aa399a54e5c1be0"
+    },
+    "standalone-player-slot-registry": {
+      "head": "92628b23dfdd756305d360da7cbc02d066f418ac",
+      "previous": "b18e36657fcb0ddb6227ce1cd1f5b869f53cdab8",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 175,
+      "create": false,
+      "live_tip": "b18e36657fcb0ddb6227ce1cd1f5b869f53cdab8",
+      "queue_input": "92628b23dfdd756305d360da7cbc02d066f418ac",
+      "report_sha256": "e539891c52b9c88aa4c1f0ddedf7f0759e3f2bb26131d0f45b1e124337caf122",
+      "strict_sha256": "b9564c51890fc883680b3d657e5de363f2e9668af700f5ce9ddb83e2951bb4fb"
+    },
+    "standalone-equipment-and-item-list-windows": {
+      "head": "e9a0de33c63cf4cd2a071c7ae9e5072ef21126a3",
+      "previous": "0a61128e9a42b5567f890ac3d4f8440c1219a8a4",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 547,
+      "create": false,
+      "live_tip": "0a61128e9a42b5567f890ac3d4f8440c1219a8a4",
+      "queue_input": "e9a0de33c63cf4cd2a071c7ae9e5072ef21126a3",
+      "report_sha256": "e6e8c1d542184969e9c011c0553dc736322d650f79a6f6348ab9e2e0e54775a3",
+      "strict_sha256": "8c8fb17cc58e74e4a49e778a5e27e621ed39d1b9723681626ca520e176ef1893"
+    }
+  },
+  "source_audit": {
+    "source": "5991ac7b121fc0e83ca1316ae4eedba494afc22e",
+    "previous": "5b16fd51a8ece943a308ae8c1b67a074c36451c6",
+    "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "entries": [
+      {
+        "row": 3094,
+        "historical_path": "src/pso/misc/TLobby_80103F5C.cpp",
+        "historical_blob": "df19a9df1c8d9048052b6a38940dd830fc21df71",
+        "owners": {
+          "src/pso/unk/TLobby_80104374.cpp": "49cc29ceaac6880180dd65f262935690a53b5bd5",
+          "include/pso/item/ItemCreateFunction.h": "c087e0945eb5c0a62ddfb3f68154178843884e14"
+        },
+        "proofs": [
+          {
+            "group": "factory-source",
+            "evidence": "The original 24 tool entries and the weapon lookup and fallback use the shared typed factory and preserve every selection. This verifies the factory portion of the larger historical lobby unit.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 3288,
+        "historical_path": "include/pso/item/TItemSpecialEvent.h",
+        "historical_blob": "1897798f6506cc710449c33e5a45923fc17fa1e3",
+        "owners": {
+          "include/pso/item/TItemSpecialEvent.h": "5dac44d3faa7b05a537ab07247536e99411e1985",
+          "src/pso/item/TItemSpecialEvent.cpp": "a1b90a5d9334d64211fe9ce68d222b9899986f9a",
+          "src/pso/unk/TLobby_80104374.cpp": "49cc29ceaac6880180dd65f262935690a53b5bd5"
+        },
+        "proofs": [
+          {
+            "group": "factory-source",
+            "evidence": "The event-item type retains its native owner at +0xF0, constructor, destructor, nine member handlers, virtual use dispatch and original tool-table entry. The shared return signature preserves the exact original allocation.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 3976,
+        "historical_path": "include/pso/item/TItemObject.h",
+        "historical_blob": "2df72f91839df6dacca4ffbe050ddafcbba976b3",
+        "owners": {
+          "include/pso/item/TItemObject.h": "04d5bd166bf10f63a3fe92735ca7a909177c4ff0",
+          "src/pso/item/TItemObject.cpp": "63e125d91567c0626d5a070dd6cbea709418b2ae",
+          "src/pso/unk/TLobby_80104374.cpp": "49cc29ceaac6880180dd65f262935690a53b5bd5"
+        },
+        "proofs": [
+          {
+            "group": "factory-source",
+            "evidence": "The generic tool producer returns TItem* through its native constructor and directly fills the original tool slots and fallback.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4004,
+        "historical_path": "include/pso/player/TObjPlayer_80120FC4.h",
+        "historical_blob": "c81a76af92e25c9d03385252319b34ba846cc44f",
+        "owners": {
+          "include/pso/player/TObjPlayer_80120FC4.h": "c81a76af92e25c9d03385252319b34ba846cc44f",
+          "src/pso/weapon/TItemWeapon.cpp": "d3522f99b2275786ea95aa61ec7216ca7cf39637",
+          "src/pso/unk/TLobby_80104374.cpp": "49cc29ceaac6880180dd65f262935690a53b5bd5"
+        },
+        "proofs": [
+          {
+            "group": "factory-source",
+            "evidence": "The common weapon producer returns TItem* and directly fills the original weapon slots and out-of-range fallback.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4070,
+        "historical_path": "src/pso/item/TItemObject.cpp",
+        "historical_blob": "55756626c39ce88d961375b3509710c12fa877f7",
+        "owners": {
+          "src/pso/item/TItemObject.cpp": "63e125d91567c0626d5a070dd6cbea709418b2ae",
+          "include/pso/item/ItemCreateFunction.h": "c087e0945eb5c0a62ddfb3f68154178843884e14",
+          "include/pso/effect/particle/ParticleFactory.h": "08c3f7a97295f170368635f593bcedee9f135828"
+        },
+        "proofs": [
+          {
+            "group": "factory-source",
+            "evidence": "The tool object uses its shared callback and TItem* factory. Its star atomizer handler already compares the players\u2019 native floors and calls the typed particle factory with the original body-center pointer for effects 0x19 and 0xC2.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4474,
+        "historical_path": "src/pso/unk/text_80104FCC.cpp",
+        "historical_blob": "ab3cea31e2f718e21c0939bef43361ae7f485b91",
+        "owners": {
+          "src/pso/unk/TLobby_80104374.cpp": "49cc29ceaac6880180dd65f262935690a53b5bd5",
+          "include/pso/item/ItemCreateFunction.h": "c087e0945eb5c0a62ddfb3f68154178843884e14",
+          "include/pso/item/TItemMoney.h": "73f74469bb484fc2f8371b671b82af35f0cb43be",
+          "src/pso/item/TItemMoney.cpp": "f82848193c37a5b4c8e2e647ae1b485f76fcc1b3"
+        },
+        "proofs": [
+          {
+            "group": "factory-source",
+            "evidence": "All general and armor item dispatch entries use the common callback and preserve the original allocation addresses. The meseta constructor receives the typed item record after the shared factory boundary. The broader historic equipment check remains scoped.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 554,
+        "historical_path": "src/pso/boss/TObjBoss7DustCtrl.cpp",
+        "historical_blob": "052b6d22806c5f5eacd13a35221a43fbf627db81",
+        "owners": {
+          "src/pso/boss/barbaray/TObjBoss7Dust.cpp": "7581397fd75caccead2b8e46cfdaad39b6a8516c",
+          "src/pso/boss/barbaray/TObjBoss7DustSdata2.cpp": "30c8875a28d38fe9692ee138c5a23d0c0e4d8237",
+          "include/pso/system/TrailStrip.h": "b42df0fd7236864eca0d2e4b97d82fbae6e37c5e",
+          "include/pso/math/AngleLookup.h": "30f87334109269cc2e5c83a7a7d07ce90ce82a2d"
+        },
+        "proofs": [
+          {
+            "group": "crawfish-source",
+            "evidence": "All dust-controller actions, including lifecycle, ten-slot rollover, six-point helix and 60 packed position/color vertices, two rotations per strip, lookup API, source constants and draw destination.",
+            "details": {
+              "historical_change": null
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 771,
+        "historical_path": "src/pso/boss/TBoss7Crawfish_80308E0C.cpp",
+        "historical_blob": "9668e4b41b0edaf6eb246f7418656d4fdf40a33a",
+        "owners": {
+          "src/pso/boss/barbaray/TBoss7Crawfish.cpp": "d6072461064afd7aa265fb3016e32c146eada7ad",
+          "include/pso/boss/barbaray/TBoss7Crawfish.h": "19bd2a4009b31e8ef17a3e501f974c14cec2b1a4"
+        },
+        "proofs": [
+          {
+            "group": "crawfish-source",
+            "evidence": "Whole new movement provider explicitly forms the three component sums, tests candidate and current arena eligibility, commits just X and Z, saves previous position on both success/failure and returns moved. Owns exact 9.0f frame constant.",
+            "details": {
+              "historical_change": null
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 821,
+        "historical_path": "src/pso/boss/TBoss7Crawfish_8030908C.cpp",
+        "historical_blob": "e87f1de21e110bacb4826163c35e7db303882c46",
+        "owners": {
+          "src/pso/boss/barbaray/TBoss7Crawfish.cpp": "d6072461064afd7aa265fb3016e32c146eada7ad",
+          "include/pso/boss/barbaray/TBoss7Crawfish.h": "19bd2a4009b31e8ef17a3e501f974c14cec2b1a4",
+          "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp": "6b01195c19ff415876266647cc5dc76d180070b4"
+        },
+        "proofs": [
+          {
+            "group": "crawfish-source",
+            "evidence": "Both actor variants load actual stats and movement records (8/9), models 0/1 and texture record 0, native six-action table and motion array. Boss constructs the child with its task parent and typed set. Shared five-kind BML archive lifecycle verified.",
+            "details": {
+              "historical_change": null
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 831,
+        "historical_path": "src/pso/boss/TBoss7Joint.cpp",
+        "historical_blob": "9af502f190cae3a5e4132b28faf8f9317df8c6cd",
+        "owners": {
+          "src/pso/boss/barbaray/TBoss7Joint.cpp": "9a46d7344e3c8fff92c8e1e731353f77356847f6",
+          "include/pso/boss/barbaray/TBoss7Joint.h": "ac330e353b1ab3ad2ac34aab9b471d092bd5ce13"
+        },
+        "proofs": [
+          {
+            "group": "crawfish-source",
+            "evidence": "All authored changes: native constructor/destructor base, known parent and borrowed position; entity/set indices, segment, original demo check, battle records (0x10,0xF,0x10), 1.2/3/15/12 float sources.",
+            "details": {
+              "historical_change": null
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 917,
+        "historical_path": "src/pso/boss/TBoss2Joint.cpp",
+        "historical_blob": "790a503dd32c4aa9b44ee6e2941a1f97fb91c6b7",
+        "owners": {
+          "src/pso/boss/derolle/TBoss2Joint.cpp": "5bc16186ffcd460b1f82e64567a4bdc3350110e2",
+          "include/pso/boss/derolle/TBoss2Joint.h": "c38d4f10cbabbbcbc3e35a9e16defc2d3c30608f"
+        },
+        "proofs": [
+          {
+            "group": "crawfish-source",
+            "evidence": "Shell lifecycle uses real float-taking virtual owner, three battle records and HP/HPmax 20000 with original effect and demo check. Donor removed an explicit compiler option and declared a two-float pool at 0x805D8490; current owner keeps the option and uses a single local 3.0f. No whole-row credit.",
+            "details": {
+              "historical_change": null
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1004,
+        "historical_path": "src/pso/boss/TBoss7Crawfish.cpp",
+        "historical_blob": "2cc6e19414885eddc21e35bb0ac1636920d7d7d9",
+        "owners": {
+          "src/pso/boss/barbaray/TBoss7Crawfish.cpp": "d6072461064afd7aa265fb3016e32c146eada7ad",
+          "include/pso/boss/barbaray/TBoss7Crawfish.h": "19bd2a4009b31e8ef17a3e501f974c14cec2b1a4"
+        },
+        "proofs": [
+          {
+            "group": "crawfish-source",
+            "evidence": "All authored sound/particle/rotation/object-state calls, including read then clear exchange, plus scalar constants for random factor, half, 100 damage and frame 14. Typed registry is extra.",
+            "details": {
+              "historical_change": null
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 1007,
+        "historical_path": "src/pso/boss/TBoss2PhotonBullet_80038DCC.cpp",
+        "historical_blob": "673e3955e8a8335bd1c9e1176bfe506576b4d6d8",
+        "owners": {
+          "src/pso/boss/derolle/TBoss2PhotonBullet_80038DCC.cpp": "1ccfa3207133a64b6aa4281d99c61f4459cc4f59",
+          "include/pso/enemy/dd/TObjEneDD.h": "8f3ed4bbc2b5bd704ba1b37792ed0b28ca64eafc"
+        },
+        "proofs": [
+          {
+            "group": "crawfish-source",
+            "evidence": "Only fork-authored line dispatches oriented shadow with position +0x38, normal +0xCC, zero and a borrowed Vec scale. The compiled photon render now calls the native TObjEneDD equivalent.",
+            "details": {
+              "historical_change": null
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7277,
+        "historical_path": "src/pso/misc/TNpcPlayer.cpp",
+        "historical_blob": "af8ffa0c288430271ddec1c532f6b22c861af154",
+        "owners": {
+          "include/pso/npc/TNpcPlayer.h": "54865df53895a4ea4751921dda0be9cce3109b5e",
+          "src/pso/npc/TNpcPlayer.cpp": "07fac0635cc7b495969026292e843ba27e22816a",
+          "src/pso/npc/TNpcPlayer_8014DADC.cpp": "5ac1ff8b9921ba6b2cd4ec6ba5757b5e60593b97"
+        },
+        "proofs": [
+          {
+            "group": "companion-source",
+            "evidence": "Scoped to the live NPC AI partner/leader owner and readers from the larger historical task source. The two allocated 0x108 records at controller +0x74/+0x78 now own the actual candidate array, signed previous HP, unsigned client ID, action state, conditions and TObjPlayer pointer at +0x94. Both constructors attach the original records and seed the follower goal. The true actor-refresh gate, inactive sentinel, chatter counters, HP/condition refresh, movement reader, combat/cast selection and attack-stage ID keep their original linked order. Both record releases use the same collision-body free/queued-destruction/free sequence. Scope does not cover every authored task, packet, target scanner or template body in this large historical translation unit.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5530,
+        "historical_path": "src/pso/misc/TWindowComCard.cpp",
+        "historical_blob": "239bc819c3e9d27beaee7a40cc9e23d42c186b79",
+        "owners": {
+          "src/pso/ui/window/TWindowComCard.cpp": "d9e9ad24be6db76dfcfd9464b7f83b6f707e02d4",
+          "include/pso/ui/window/TWindowComCard.h": "d4c079f9c86334e6825bd1da4fc3f5a1640458d4",
+          "include/pso/player/GuildCardEntry.h": "81da3241ff7e9c8c18b0bda1dee3a7abcec866e7",
+          "src/pso/ui/window/TWindowSubComCard_8007A810.cpp": "80bcfc360c20ef628e07a4284a684bb3543bcb5e"
+        },
+        "proofs": [
+          {
+            "group": "card-source",
+            "evidence": "The complete historical card display lands at the current drawer. Its three allocation paths still select the live card, the saved slot or the packed card, preserve allocation failure and retain the original constructor and deleting entry. Update and rendering advance the shared WindowLayoutEntries list. The flags, kind and UV write use the actual sprite part. All card text slots use the native text part and the original string and help tables remain.",
+            "details": {
+              "constructors_and_factories": [
+                "0x80249920",
+                "0x80249BA8"
+              ],
+              "deleting_dispatch": "0x80249B50",
+              "table_data": [
+                "0x804CE820 (0xB0)",
+                "0x804CE8D0 (0x14)",
+                "0x804CE8E4 (0x18)"
+              ],
+              "card_text_and_metadata": [
+                "name +8",
+                "text +0x20",
+                "flags +0x8C",
+                "signed values +0x8D to +0x8F"
+              ],
+              "layout_entries": "+0x24",
+              "proof": "Original function/relocation shape and retail artifact, plus manual full donor comparison."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5531,
+        "historical_path": "src/pso/misc/TWindowComCard_80249CBC.cpp",
+        "historical_blob": "328556ffcb4d27795f9bfbd31502a8b3405e1986",
+        "owners": {
+          "src/pso/ui/window/TWindowComCard.cpp": "d9e9ad24be6db76dfcfd9464b7f83b6f707e02d4",
+          "include/pso/ui/window/TUnk_804CE964.h": "1187970fa152467e17685675bc1da2b6660e4c1b",
+          "src/pso/ui/window/TWindowSimpleStatus.cpp": "7b90a530049a6f7422e290ebd1911262e52b73f9"
+        },
+        "proofs": [
+          {
+            "group": "card-source",
+            "evidence": "The full split drawer and follower source is accounted for at its current owner. It retains the descriptor and 14-word table, controller closure through +0x38, trade child release at +0x40, initial and retargeted position with the original fused multiply-add, the six-word dispatch table, native parent-frame following, menu selection and entry rendering.",
+            "details": {
+              "data": [
+                "0x804CE918 (0x38)",
+                "0x804CE950 (0x14)",
+                "0x804CE964 (0x18)"
+              ],
+              "life_and_drawing": [
+                "0x80249D34",
+                "0x80249D7C",
+                "0x80249E24",
+                "0x80249E80",
+                "0x80249ED8"
+              ],
+              "layout": "parent +0x60, 2D offset +0x64, column +0x6C, selected mode +0x70, size 0x74",
+              "independent_linkage": "Standalone and queue use established upstream constructor, destructor, and vtable spellings with the actual typed follower fields."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5573,
+        "historical_path": "src/pso/misc/TWindowSubComCardList.cpp",
+        "historical_blob": "e21d7dc6e18e2076174e9dc404ed6d98aa9a6d3f",
+        "owners": {
+          "src/pso/ui/window/TWindowSubComCardList.cpp": "6379558b9a07fa06a038b1bdbbf03d453d8d5db6",
+          "include/pso/ui/window/TWindowSubComCardList.h": "605b6b88b5884f9e91e2e92abf1ba0756f7d654d",
+          "src/pso/unk/text_80275360.cpp": "52de0fbcad134c4e9ed13ffde0d672bfbefcb66f",
+          "src/pso/ui/window/TWindowSubComCardList_802752D8.cpp": "87fa65981cafd39dd9157a06db9723f5d7ed60cf",
+          "include/pso/player/GuildCardEntry.h": "81da3241ff7e9c8c18b0bda1dee3a7abcec866e7"
+        },
+        "proofs": [
+          {
+            "group": "card-source",
+            "evidence": "The complete historical list frame, task, destructor and both constructors are recovered at the list owner. Both paths retain the exact page count rounding and minimum, local client, selection reset and scroll target. Render, page flip and destruction use the original indicator. Page fill chooses the correct card layout and flags.",
+            "details": {
+              "original_body_span": "0x80275550 through 0x802758C8",
+              "indicator_at": "+0x8C",
+              "list_pointers_at": [
+                "packed +0x90",
+                "saved +0x94"
+              ],
+              "card_stride": [
+                144,
+                256
+              ],
+              "standalone_and_queue": "Retain established raw constructor entry points while providing the same recovered layout and initialization fields."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5601,
+        "historical_path": "src/pso/unk/text_802752D8.cpp",
+        "historical_blob": "224101b69a86fb5edaed1f1289d23cc0aeed821c",
+        "owners": {
+          "src/pso/ui/window/TWindowSubComCardList_802752D8.cpp": "87fa65981cafd39dd9157a06db9723f5d7ed60cf",
+          "include/pso/ui/window/TWindowSubComCardList.h": "605b6b88b5884f9e91e2e92abf1ba0756f7d654d",
+          "src/pso/unk/text_80275360.cpp": "52de0fbcad134c4e9ed13ffde0d672bfbefcb66f"
+        },
+        "proofs": [
+          {
+            "group": "card-source",
+            "evidence": "The complete selection renderer reads the established frame phase, subtracts seven times the current page, range-checks the page index, gets the actual native entry and checks bit 0 before drawing one bar.",
+            "details": {
+              "function_range": "0x802752D8\u20130x80275360",
+              "entry_getter_call": "0x8027532C",
+              "page_size": 7,
+              "entry_flags_at": "+0"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5688,
+        "historical_path": "include/pso/misc/TWindowSubComCard_80265410.h",
+        "historical_blob": "d2f768b5044323a7655de235d298e18773066904",
+        "owners": {
+          "include/pso/ui/window/TWindowSubComCard_80265410.h": "7b7aa39f92dc1752095610c4021d38f62cdb0cdd",
+          "src/pso/ui/window/TWindowSubComCard_80265410.cpp": "5e8f3ffb5edd55b5a57fae5df08000193fd58750",
+          "include/pso/ui/window/TWindowMenu.h": "02bf3d2986eeda018f28f962fd5f6f025513555b"
+        },
+        "proofs": [
+          {
+            "group": "card-source",
+            "evidence": "The complete historical header delta removes its four false or duplicate declarations. Canonical constructor, destructor and renderer are declared on TWindowMenu. The obsolete update_chat_window declaration is absent and the original 0x80265410 implementation belongs to the existing TKeyBoardControl composer method.",
+            "details": {
+              "canonical_only_declaration_closure": true,
+              "source_owners": [
+                "TWindowMenu construction, virtual destruction and render",
+                "TKeyBoardControl composer flag provider"
+              ],
+              "standalone_and_queue": "Keep their existing constructor/render ABI declarations pending the native menu dependency."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5880,
+        "historical_path": "include/pso/misc/TWindowSubComCard.h",
+        "historical_blob": "7a677afa30cb22efbc8570b3a6d0334b8949ce68",
+        "owners": {
+          "include/pso/ui/window/TWindowSubComCard.h": "032d59b7d54b75b129f9ffadc71722717d420eaa",
+          "src/pso/ui/keyboard/TKeyBoardControl_80131BC4.cpp": "25ed159f77d920ce8e0cd774201226a9a6148a20",
+          "src/pso/system/save/TCheckMemoryCard.cpp": "66b13ded36fdb31d5dce02f0f3e93d2b5dcb952a"
+        },
+        "proofs": [
+          {
+            "group": "card-source",
+            "evidence": "Both authored declaration removals are accounted for. Three supposed card methods resolve to the real keyboard control receiver. All nine removed memory-card lifecycle declarations resolve to the actual TCheckMemoryCard owner. The active card class carries neither group.",
+            "details": {
+              "keyboard_addrs": [
+                "0x80131BC4",
+                "0x80131C10",
+                "0x80131C34"
+              ],
+              "memory_card_addrs": [
+                "0x8033BC34",
+                "0x8033BDB0",
+                "0x8033BF90",
+                "0x8033C024",
+                "0x8033C0A8",
+                "0x8033C10C",
+                "0x8033C1CC",
+                "0x8033C2E8",
+                "0x8033C3D0"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5885,
+        "historical_path": "src/pso/misc/TWindowGetComCard.cpp",
+        "historical_blob": "dba630e2b7644247e6a56222aa5aa50cbaca895e",
+        "owners": {
+          "src/pso/ui/window/TWindowGetComCard.cpp": "df90e77016c156355249de76c3a951d04a9bd5cd",
+          "src/pso/ui/window/TWindowGetComCard_8007B54C.cpp": "2df7db63b4be31f473d4b60c7f4013fff4d1df24",
+          "src/pso/ui/window/TWindowSubComCard_8007A810.cpp": "80bcfc360c20ef628e07a4284a684bb3543bcb5e",
+          "include/pso/player/GuildCardEntry.h": "81da3241ff7e9c8c18b0bda1dee3a7abcec866e7"
+        },
+        "proofs": [
+          {
+            "group": "card-source",
+            "evidence": "The complete historical confirmation changes survive. The received card uses the original confirmation rectangle and the typed four-argument sound call. Constructor and destructor disable and re-enable the local player menu. The received record remains the actual 0x90 card and the confirmation now calls its native menu methods.",
+            "details": {
+              "confirmation_rect": "0x804CF120, {152.0f, 370.0f}",
+              "original_menu_dispatch": [
+                "0x8024ABDC",
+                "0x8024AC20"
+              ],
+              "sound_call": "0x80252EA8",
+              "lifetime": [
+                "0x80252CCC",
+                "0x80252F10",
+                "0x80252FCC"
+              ],
+              "standalone_and_queue": "Preserve upstream spelling for the two existing linked player-menu functions."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5941,
+        "historical_path": "src/pso/misc/TWindowSubComCard_80271E7C.cpp",
+        "historical_blob": "9ca0d5928dfb04eb206742d708874c9f6ebf58cf",
+        "owners": {
+          "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp": "9c2e50f85af2a0cdfc4df1a8f13a4d85f9207aa0",
+          "src/pso/ui/window/TWindowComCard.cpp": "d9e9ad24be6db76dfcfd9464b7f83b6f707e02d4",
+          "include/pso/ui/window/TWindowComCard.h": "d4c079f9c86334e6825bd1da4fc3f5a1640458d4",
+          "include/pso/player/GuildCardEntry.h": "81da3241ff7e9c8c18b0bda1dee3a7abcec866e7"
+        },
+        "proofs": [
+          {
+            "group": "card-source",
+            "evidence": "The scoped selection and keyboard boundary uses the actual saved-slot return and card name/ID, and passes the actual packed record to the keyboard-text accessor. The remaining mixed lifecycle differences of the historical 82-block file remain open.",
+            "details": {
+              "scope": "card window selection, card entry lookup, keyboard buffer initialization and cleanup",
+              "exclusion": "other options, trade, and keyboard task ownership changes"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5983,
+        "historical_path": "src/pso/misc/TWindowSubComCard_8007A810.cpp",
+        "historical_blob": "9f9965e4180f08b2347b9b82ad3d595dfe933222",
+        "owners": {
+          "src/pso/ui/window/TWindowSubComCard_8007A810.cpp": "80bcfc360c20ef628e07a4284a684bb3543bcb5e",
+          "include/pso/player/GuildCardEntry.h": "81da3241ff7e9c8c18b0bda1dee3a7abcec866e7",
+          "src/pso/ui/window/TWindowGetComCard_8007B54C.cpp": "2df7db63b4be31f473d4b60c7f4013fff4d1df24"
+        },
+        "proofs": [
+          {
+            "group": "card-source",
+            "evidence": "The complete authored code delta is the saved-card deletion word move. It calls the existing shared word-move ABI, tests the original boundary, compacts 0x100 slots, clears the same final active flag and empties its first saved text byte.",
+            "details": {
+              "donor_delta": "single non-include hunk in historical rename",
+              "move_address": "0x803DE7BC",
+              "saved_slot_count": 210,
+              "saved_text_at": "+0x94",
+              "received_card_provider": "still used independently with 0x90 stride"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 1199,
+        "historical_path": "src/pso/misc/TLobby_800F9D38.cpp",
+        "historical_blob": "0eb1d797fcaa223fc05f273e7cd019ab2c7ed7f1",
+        "owners": {
+          "src/pso/unk/TLobby_800F8AA8.cpp": "c8c83d92eaee2c023bc06c7d4874628e7e941604"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "Both original resource wrappers use the filename pointer and pass the sector destination explicitly through the current stream interface.",
+            "details": {
+              "historical_delta": [
+                "-int load_sct_file__8TGStreamFll(void);",
+                "+int load_sct_file__8TGStreamFlPUc(void);",
+                "-    extern int disc_read_filename;",
+                "-void TLobby::set_stream_and_load_file(int a0) { disc_read_filename = a0; load_file__8TGStreamFl(); }",
+                "+    extern const void *disc_read_filename;",
+                "+s32 TLobby::set_stream_and_load_file(const void *name) {",
+                "+    disc_read_filename = name;",
+                "+    return load_file__8TGStreamFl();",
+                "+}",
+                "-void TLobby::set_stream_state(int a0) { disc_read_filename = a0; load_sct_file__8TGStreamFll(); }",
+                "+void TLobby::set_stream_state(const void *name) { disc_read_filename = name; load_sct_file__8TGStreamFlPUc(); }"
+              ],
+              "verified_fragments": {
+                "src/pso/unk/TLobby_800F8AA8.cpp": [
+                  "u8 *load_disc_file(const char *filename)",
+                  "return TGStream::load_file(filename);",
+                  "return TGStream::load_sct_file(filename, (u8 *)destination);",
+                  "const char *disc_read_filename ="
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2343,
+        "historical_path": "src/pso/unk/text_8033FF78.cpp",
+        "historical_blob": "3cd35cdaeb014d7e3148e38599c57474ba772c16",
+        "owners": {
+          "src/pso/ui/frontend/TAdPlyStatusGC_8033FD48.cpp": "c32d40eebfee870f3a57d246f89d37ec98bfb02a"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "The status scene checks activation on the actual player and creates collision maps through the native parameter object.",
+            "details": {
+              "historical_delta": [
+                "+#include \"pso/object/TObjMapCsn.h\"",
+                "-s32 create__10TObjMapCsnFl(void *);",
+                "-        if (((TBoss6PlotFalz *)p)->is_active() != 0) {",
+                "+        if (TBoss6PlotFalz::is_active((TObjPlayer *)p) != 0) {",
+                "-        arg0->o[i] = (void *)create__10TObjMapCsnFl(&prm);",
+                "+        arg0->o[i] = TObjMapCsn::create(&prm);"
+              ],
+              "verified_fragments": {
+                "src/pso/ui/frontend/TAdPlyStatusGC_8033FD48.cpp": [
+                  "#include \"pso/map/TObjMapCsn.h\"",
+                  "TBoss6PlotFalz::is_active((TObjPlayer *)p)",
+                  "csn_objects[i] = TObjMapCsn::create(&prm);"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2731,
+        "historical_path": "src/pso/unk/text_801A5778.cpp",
+        "historical_blob": "f4ac4867155de8933d34b897e38ca2d1e89e85de",
+        "owners": {
+          "src/pso/unk/text_801A5778.cpp": "81a2f0f386479b19b783e69463f53a8363fec2ae",
+          "include/pso/system/ResourceFile.h": "4cae78918e6ba03d06100af36e3f7504229ff390"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "The original file-loading routine uses the shared filename signature and releases its result through the pointer-based allocator interface.",
+            "details": {
+              "historical_delta": [
+                "-u8 *set_stream_and_load_file__6TLobbyFi();",
+                "+u8 *set_stream_and_load_file__6TLobbyFPCv();",
+                "-    temp_r3 = (u8 *)(set_stream_and_load_file__6TLobbyFi());",
+                "+    temp_r3 = (u8 *)(set_stream_and_load_file__6TLobbyFPCv());",
+                "-    TAdSinglePlyChrSelectGC::safe_free((int)temp_r3);",
+                "+    TAdSinglePlyChrSelectGC::safe_free((void *)temp_r3);"
+              ],
+              "verified_fragments": {
+                "src/pso/unk/text_801A5778.cpp": [
+                  "temp_r3 = load_disc_file(filename);",
+                  "safe_free(temp_r3);"
+                ],
+                "include/pso/system/ResourceFile.h": [
+                  "u8 *load_disc_file(const char *filename);"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2743,
+        "historical_path": "src/pso/unk/text_80349B8C.cpp",
+        "historical_blob": "c92cd74a5831cc555e40e5ed9e15344de969261f",
+        "owners": {
+          "src/pso/unk/text_80349B8C.cpp": "3aa5cbffe4552a9ce82e3c3207a3d6e0c48748e7",
+          "config/GPOE8P/psov3/symbols.txt": "98b09891e9b48d93a713409654efa89209dc6a0e"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "Both triangle fans use their native ColorLineList receivers and the original local value at 0x805DFD18.",
+            "details": {
+              "historical_delta": [
+                "+#include \"pso/render/ColorLineList.h\"",
+                "-    ((TObjCMHairMenu *)pd)->draw_tri_fan_2d(4, 3, lbl_805DFD18);",
+                "+    ((ColorLineList *)pd)->draw_tri_fan_2d(4, 3, lbl_805DFD18);",
+                "-            ((TObjCMHairMenu *)(&d))->draw_tri_fan_2d(4, 3, lbl_805DFD18);",
+                "+            ((ColorLineList *)(&d))->draw_tri_fan_2d(4, 3, lbl_805DFD18);"
+              ],
+              "verified_fragments": {
+                "src/pso/unk/text_80349B8C.cpp": [
+                  "ColorLineList *pd = &d;",
+                  "pd->draw_tri_fan_2d(4, 3, -1.0f);",
+                  "d.draw_tri_fan_2d(4, 3, -1.0f);"
+                ],
+                "config/GPOE8P/psov3/symbols.txt": [
+                  "lbl_805DFD18 = .sdata2:0x805DFD18; // type:object size:0x4 scope:local"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2956,
+        "historical_path": "include/pso/protocol/NetworkRuntime.h",
+        "historical_blob": "fd40540d536fc0f2473cdbd80f2e946f49f1714d",
+        "owners": {
+          "include/pso/network/NetworkRuntime.h": "c53c2d89a17f6dc09a6d29fe7eeec626111133c7",
+          "src/pso/network/NetworkMessageTransport.c": "b51080f3c0e59a58659ab16b25574008e6f4bc77",
+          "src/pso/network/NetworkTransport.c": "269c74204af844c7b094b31e842c72ab934a1a73"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "The two client thread handles use the shared unsigned 32-bit registration type at their native message and transport owners.",
+            "details": {
+              "historical_delta": [
+                "+// Thread keys carry native address bits; they are four-byte opaque words.",
+                "+typedef u32 NetThreadHandle;",
+                "+",
+                "+extern NetThreadHandle queue_thread_handle;",
+                "+extern NetThreadHandle lobby_message_thread_handle;",
+                "+"
+              ],
+              "verified_fragments": {
+                "include/pso/network/NetworkRuntime.h": [
+                  "typedef u32 NetThreadHandle;"
+                ],
+                "src/pso/network/NetworkMessageTransport.c": [
+                  "NetThreadHandle lobby_message_thread_handle;"
+                ],
+                "src/pso/network/NetworkTransport.c": [
+                  "NetThreadHandle queue_thread_handle;"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2989,
+        "historical_path": "include/pso/network/NetworkMessageTransport.h",
+        "historical_blob": "817c1131758c06a20073cbf90fa3bb7afb2a187e",
+        "owners": {
+          "include/pso/network/NetworkMessageTransport.h": "940a6ab4c11267e30fa2f417aacb51b644f4a39d"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "The shared transport interface uses the signed halfword result and native opaque frame pointer for both calls.",
+            "details": {
+              "historical_delta": [
+                "+s16 post_send_message(u8 *frame, u16 arg1);",
+                "+void forward_to_channel(void *frame, void *b);",
+                "-extern \"C\" {",
+                "-s32 post_send_message__6TLobbyFUs(s32 arg0, u16 arg1);",
+                "-}"
+              ],
+              "verified_fragments": {
+                "include/pso/network/NetworkMessageTransport.h": [
+                  "s16 post_send_message(void *data, u16 len);",
+                  "void forward_to_channel(void *frame, void *b);"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 3446,
+        "historical_path": "include/pso/player/TUnk_804E2000.h",
+        "historical_blob": "c90cdc15c5e9e62cf0c30477f50ad6c827061393",
+        "owners": {
+          "include/pso/weapon/TUnk_804E2000.h": "a20d67bd009d8016ad386e08402ef5444959eb56",
+          "include/pso/weapon/TUnk_804E23F0.h": "32bf5094883f159782a6bf009268d9af0f40bc2e"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "The concrete weapon inherits wall and hit effects at +0x204 and +0x208 from its actual base.",
+            "details": {
+              "historical_delta": [
+                "-    u8 unk_204[0x4];",
+                "-    s32 * m_208;"
+              ],
+              "verified_fragments": {
+                "include/pso/weapon/TUnk_804E2000.h": [
+                  "class TUnk_804E2000 : public TUnk_804E23F0"
+                ],
+                "include/pso/weapon/TUnk_804E23F0.h": [
+                  "void *wall_effect;",
+                  "void *hit_effect;"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 3448,
+        "historical_path": "include/pso/player/TUnk_804E22F4.h",
+        "historical_blob": "713f3a42be7f203eb6ea06474d84f42215226d43",
+        "owners": {
+          "include/pso/weapon/TUnk_804E22F4.h": "17fe004c1be627b68746cb0eb6af20c0a11dc989",
+          "include/pso/weapon/TUnk_804E23F0.h": "32bf5094883f159782a6bf009268d9af0f40bc2e"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "The weapon inherits the effects at their original offsets and declares the slot-62 Vec override on the concrete class.",
+            "details": {
+              "historical_delta": [
+                "+    virtual void vfunc_62(Vec *);",
+                "-    u8 unk_204[0x4];",
+                "-    s32 * m_208;"
+              ],
+              "verified_fragments": {
+                "include/pso/weapon/TUnk_804E22F4.h": [
+                  "class TUnk_804E22F4 : public TUnk_804E23F0",
+                  "virtual void vfunc_62(Vec *pos);"
+                ],
+                "include/pso/weapon/TUnk_804E23F0.h": [
+                  "void *wall_effect;",
+                  "void *hit_effect;"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 3640,
+        "historical_path": "src/pso/misc/TScene_800838C4.cpp",
+        "historical_blob": "f2e9b359ed9b17ce4fb90fa2de0f7d1415ada26e",
+        "owners": {
+          "src/pso/player/TObjPlayer_80083594.cpp": "9cfbfd4b6eafa7d2d8dc7504d67a24c1c7cf428e",
+          "config/GPOE8P/psov3/symbols.txt": "98b09891e9b48d93a713409654efa89209dc6a0e"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "The original FOV calculation now emits the localized double scale and single-precision fallback and correction values directly.",
+            "details": {
+              "historical_delta": [
+                "-extern const f64 lbl_80439360;",
+                "+static const f64 lbl_80439360 = 10430.38043493439;",
+                "-extern const f32 lbl_805D9428;",
+                "-extern const f32 lbl_805D942C;",
+                "+static const f32 lbl_805D9428 = 11832.0f;",
+                "+static const f32 lbl_805D942C = 0.85f;"
+              ],
+              "verified_fragments": {
+                "src/pso/player/TObjPlayer_80083594.cpp": [
+                  "var_f1 = 11832.0f;",
+                  "temp_f2 *= 0.85f;",
+                  "10430.38043493439 * get_end_text_value"
+                ],
+                "config/GPOE8P/psov3/symbols.txt": [
+                  "lbl_80439360 = .rodata:0x80439360; // type:object size:0x8 scope:local"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4011,
+        "historical_path": "include/pso/player/TObjPlayer_801BE778.h",
+        "historical_blob": "c086924219885200b70d49c096e382b547c09cd7",
+        "owners": {
+          "src/pso/player/TObjPlayer_801BDF5C.cpp": "bb5ff436428ee6bd1b0da29a57d37c2e11c6493b",
+          "include/pso/player/TObjPlayer.h": "3ae68ce6f9cd44944f478017e731658f0c32c16e",
+          "config/GPOE8P/psov3/symbols.txt": "98b09891e9b48d93a713409654efa89209dc6a0e"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "Both player equipment updates use their real TObjPlayer receiver and shared declarations at the original addresses.",
+            "details": {
+              "historical_delta": [
+                "+#include \"pso/player/PlayerEquipmentUpdate.h\"",
+                "-void TObjPlayer__sub_801BE9A8(s32 arg0);",
+                "+",
+                "-void set_flag_20000__10TObjPlayerFi(s32 arg0);",
+                "+"
+              ],
+              "verified_fragments": {
+                "src/pso/player/TObjPlayer_801BDF5C.cpp": [
+                  "void TObjPlayer::sub_801BE9A8()",
+                  "void TObjPlayer::set_flag_20000()"
+                ],
+                "include/pso/player/TObjPlayer.h": [
+                  "void sub_801BE9A8();",
+                  "void set_flag_20000();"
+                ],
+                "config/GPOE8P/psov3/symbols.txt": [
+                  "sub_801BE9A8__10TObjPlayerFv = .text:0x801BE9A8;",
+                  "set_flag_20000__10TObjPlayerFv = .text:0x801BE9CC;"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4050,
+        "historical_path": "src/pso/item/TItemList_801D57B0.cpp",
+        "historical_blob": "a32fc3c3d0543452a7661abb0437fa7b7f91a4bd",
+        "owners": {
+          "src/pso/player/TPlyItem.cpp": "a710bc4f0a6a273e6b31eb4ae3a0a2822fcaea4e",
+          "config/GPOE8P/psov3/symbols.txt": "98b09891e9b48d93a713409654efa89209dc6a0e"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "The original item list constructor calls the native TObject base, sets the class name, clears the item owner and disables rendering.",
+            "details": {
+              "historical_delta": [
+                "+#define TOBJECT_OUT_OF_LINE_HELPERS",
+                "-void __ct__7TObjectFP7TObject(void *);",
+                "-extern s32 __vt__9TItemList[];",
+                "-extern void *TItemList__name;",
+                "+extern const char *TItemList__name;",
+                "-void *__ct__9TItemListFv(void *item_list) {",
+                "-    __ct__7TObjectFP7TObject(item_list);",
+                "-    *(s32 **)((s8 *)item_list + 0x18) = __vt__9TItemList;",
+                "-    *(void * *)&((TItemList *)item_list)->m_name = TItemList__name;",
+                "-    *(u32 *)((s8 *)item_list + 0x1C) = 0;",
+                "-    disallow_rendering__7TObjectFv((TObject *)item_list);",
+                "-    return item_list;",
+                "+TItemList::TItemList(TObject *parent) : TObject(parent) {",
+                "+    m_name = TItemList__name;",
+                "+    item = NULL;",
+                "+    disallow_rendering();"
+              ],
+              "verified_fragments": {
+                "src/pso/player/TPlyItem.cpp": [
+                  "TItemList::TItemList(TObject *parent) : TObject(parent)",
+                  "m_name = TItemList__name;",
+                  "item_owner = NULL;",
+                  "disallow_rendering();"
+                ],
+                "config/GPOE8P/psov3/symbols.txt": [
+                  "__ct__9TItemListFP7TObject = .text:0x801D57B0;"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4077,
+        "historical_path": "src/pso/item/TObjItemLight.cpp",
+        "historical_blob": "cbe28477669ca3e5e027bcb306387b53f7906906",
+        "owners": {
+          "src/pso/item/TObjItemLight.cpp": "6cbf991b15d8010a6d00f322caed33d644a01f1e",
+          "config/GPOE8P/psov3/symbols.txt": "98b09891e9b48d93a713409654efa89209dc6a0e"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "The item light reads the player's real floor and emits the two exact local distance constants in its constructor.",
+            "details": {
+              "historical_delta": [
+                "-        if (p != 0 && ((TObjPlayer *)p)->get_field_3e4() == get_current_floor()",
+                "+        if (p != 0 && ((TObjPlayer *)p)->get_floor() == get_current_floor()",
+                "-extern const f32 lbl_805DBE40;",
+                "-extern const f32 lbl_805DBE44;",
+                "-    if (*(f32 *)((s8 *)item_light + 0x90) < lbl_805DBE40) {",
+                "-        *(f32 *)((s8 *)item_light + 0x90) = (f32) lbl_805DBE44;",
+                "+    if (*(f32 *)((s8 *)item_light + 0x90) < 0.0f) {",
+                "+        *(f32 *)((s8 *)item_light + 0x90) = (f32) 30.0f;"
+              ],
+              "verified_fragments": {
+                "src/pso/item/TObjItemLight.cpp": [
+                  "->get_floor() == get_current_floor()",
+                  "+ 0x90) < 0.0f)",
+                  "+ 0x90) = 30.0f;"
+                ],
+                "config/GPOE8P/psov3/symbols.txt": [
+                  "lbl_805DBE40 = .sdata2:0x805DBE40; // type:object size:0x4 scope:local",
+                  "lbl_805DBE44 = .sdata2:0x805DBE44; // type:object size:0x4 scope:local"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4099,
+        "historical_path": "src/pso/player/TObjPlayer_80083594.cpp",
+        "historical_blob": "f34a6af39718af3a3564d8ebb8973659b7c19e27",
+        "owners": {
+          "src/pso/player/TObjPlayer_80083594.cpp": "9cfbfd4b6eafa7d2d8dc7504d67a24c1c7cf428e",
+          "config/GPOE8P/psov3/symbols.txt": "98b09891e9b48d93a713409654efa89209dc6a0e"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "The shared camera capture texture list uses the native setter and record at both preserved call sites. Its FOV conversion emits the original local double.",
+            "details": {
+              "historical_delta": [
+                "+#include \"pso/system/CurrentTextureList.h\"",
+                "-extern const f64 lbl_80439358;",
+                "+static const f64 lbl_80439358 = 0.0054931640625;",
+                "-        TObjFish::set_global_param((s32)shared_capture_texture_list);",
+                "+        set_current_texture_list((GinjaTextureList *)(shared_capture_texture_list));",
+                "-        TObjFish::set_global_param((s32)shared_capture_texture_list);",
+                "+        set_current_texture_list((GinjaTextureList *)(shared_capture_texture_list));"
+              ],
+              "verified_fragments": {
+                "src/pso/player/TObjPlayer_80083594.cpp": [
+                  "set_current_texture_list((GinjaTextureList *)(&shared_capture_texture_list));",
+                  "0.0054931640625 * calc_camera_fov_degrees()"
+                ],
+                "config/GPOE8P/psov3/symbols.txt": [
+                  "lbl_80439358 = .rodata:0x80439358; // type:object size:0x8 scope:local"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4105,
+        "historical_path": "src/pso/player/TObjPlayer_800C4714.cpp",
+        "historical_blob": "da5482057a1d35108ec93d6cd1f95ff3967f092f",
+        "owners": {
+          "src/pso/player/TObjPlayer_800C4714.cpp": "a9211b6e55331797feb7185f0c30972685e7aadc"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "The shadow draws with typed position and ground normal, and the ground query reads the real object's start position through the shared API.",
+            "details": {
+              "historical_delta": [
+                "+#include \"pso/map/CsnGroundQuery.h\"",
+                "-",
+                "-s32 *csnVecterUnder(s32 origin, s32 mask);",
+                "-    u8 *arg0 = (u8 *)this;",
+                "-        ((TObjEneDD *)(arg0 + 0x38))->draw_oriented_shadow((s32)(arg0 + 0xD8), 0, (u32)0);",
+                "+        TObjEneDD::draw_oriented_shadow(&position, &ground_normal, 0, NULL);",
+                "-        hit = (Hit_800C4754 *)csnVecterUnder((s32)&o->start, 0x16EF);",
+                "+        hit = (Hit_800C4754 *)csnVecterUnder((const Vec *)&o->start, 0x16EF);"
+              ],
+              "verified_fragments": {
+                "src/pso/player/TObjPlayer_800C4714.cpp": [
+                  "#include \"pso/map/CsnGroundQuery.h\"",
+                  "TObjEneDD::draw_oriented_shadow(&position, &ground_normal, 0, NULL);",
+                  "hit = csnVecterUnder(&o->start_position, 0x16EF);"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4133,
+        "historical_path": "src/pso/player/TObjPlayer_801BDF5C.cpp",
+        "historical_blob": "a8e069876688c2236f7782bb67ec22d6018d1aab",
+        "owners": {
+          "src/pso/player/TObjPlayer_801BDF5C.cpp": "bb5ff436428ee6bd1b0da29a57d37c2e11c6493b"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "Both shared player buffers use the original array deallocator through the shared allocator header.",
+            "details": {
+              "historical_delta": [
+                "+#include \"pso/system/ArrayAllocation.h\"",
+                "-void mem_free(void*);",
+                "-        mem_free((void*)player_shared_buffer_base);",
+                "+        ::operator delete[]((void*)player_shared_buffer_base);",
+                "-        mem_free((void*)TObjPlayer__shared_model_buffer);",
+                "+        ::operator delete[]((void*)TObjPlayer__shared_model_buffer);"
+              ],
+              "verified_fragments": {
+                "src/pso/player/TObjPlayer_801BDF5C.cpp": [
+                  "#include \"pso/system/ArrayAllocation.h\"",
+                  "::operator delete[]((void*)player_shared_buffer_base);",
+                  "::operator delete[]((void*)TObjPlayer__shared_model_buffer);"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4145,
+        "historical_path": "src/pso/player/TObjPlayer_801D9B18.cpp",
+        "historical_blob": "d73ac9fc37f9da398ccc5d422540d38445ed3cea",
+        "owners": {
+          "src/pso/player/TObjPlayer_801D9B18.cpp": "f54fecb974b310e7c7f1d52c650c771a2bb9aa48",
+          "include/pso/player/TechniqueCastState.h": "9eceb7d3459bc82abde0e23c211c48e4855c2a2e",
+          "config/GPOE8P/psov3/symbols.txt": "98b09891e9b48d93a713409654efa89209dc6a0e"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "The target-count clamp sets the real signed halfword at +6 on the native cast-state receiver.",
+            "details": {
+              "historical_delta": [
+                "-#include \"pso/player/TObjPlayer.h\"",
+                "+#include \"pso/player/TechniqueCastState.h\"",
+                "-void TObjPlayer::set_tech_level(s16 arg1) {",
+                "+void TechniqueCastState::set_target_count(s16 arg1) {",
+                "-    this->m_id = var_r4;",
+                "+    *(s16 *)((char *)this + 6) = var_r4;"
+              ],
+              "verified_fragments": {
+                "src/pso/player/TObjPlayer_801D9B18.cpp": [
+                  "void TechniqueCastState::set_target_count(s16 count)",
+                  "this->target_count = var_r4;"
+                ],
+                "include/pso/player/TechniqueCastState.h": [
+                  "s16 target_count;"
+                ],
+                "config/GPOE8P/psov3/symbols.txt": [
+                  "set_target_count__18TechniqueCastStateFs = .text:0x801D9B18;"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4914,
+        "historical_path": "src/pso/unk/text_8007F574.cpp",
+        "historical_blob": "b59ec8fe4ebfe77bcf933cc40c33eb5e17caba83",
+        "owners": {
+          "src/pso/render/TDLGraph.cpp": "a2a976bf24646e47630e631acaa7bd46994531b0",
+          "config/GPOE8P/psov3/symbols.txt": "98b09891e9b48d93a713409654efa89209dc6a0e"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "The graph animation emits all three original local pulse constants through its source literals.",
+            "details": {
+              "historical_delta": [
+                "-extern const f32 lbl_805D92C0;",
+                "-extern const f32 lbl_805D92C4;",
+                "-extern const f32 lbl_805D92C8;",
+                "+static const f32 lbl_805D92C0 = 64.0f;",
+                "+static const f32 lbl_805D92C4 = 32.0f;",
+                "+static const f32 lbl_805D92C8 = 128.0f;"
+              ],
+              "verified_fragments": {
+                "src/pso/render/TDLGraph.cpp": [
+                  "32.0f * fabs_float(sin_table_lookup(m_pulse << 11)) + 64.0f",
+                  "128.0f * (1.0f - fabs_float(sin_table_lookup(m_pulse << 7))) + 64.0f"
+                ],
+                "config/GPOE8P/psov3/symbols.txt": [
+                  "lbl_805D92C0 = .sdata2:0x805D92C0; // type:object size:0x4 scope:local",
+                  "lbl_805D92C4 = .sdata2:0x805D92C4; // type:object size:0x4 scope:local",
+                  "lbl_805D92C8 = .sdata2:0x805D92C8; // type:object size:0x4 scope:local"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4915,
+        "historical_path": "src/pso/unk/text_8007FA94.cpp",
+        "historical_blob": "e193359264b0c04cd9679111e3db76ee51512e5b",
+        "owners": {
+          "src/pso/effect/TDuelEffectCtrl.cpp": "1a5d0afd4733a83458a9486f0e2a19b786623349",
+          "config/GPOE8P/psov3/symbols.txt": "98b09891e9b48d93a713409654efa89209dc6a0e"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "The duel effect uses the shared sound declaration and emits the two ADX filenames in their original read-only data slots.",
+            "details": {
+              "historical_delta": [
+                "+#include \"pso/system/SoundEffect.h\"",
+                "-extern u8 lbl_80438D50[];",
+                "+extern const u8 lbl_80438D50[] = \"end.adx\";",
+                "-s32 play_sound_effect(s32, void *, s32, s32);",
+                "+",
+                "-extern u8 lbl_80438D58[];",
+                "+extern const u8 lbl_80438D58[] = \"start.adx\";"
+              ],
+              "verified_fragments": {
+                "src/pso/effect/TDuelEffectCtrl.cpp": [
+                  "#include \"pso/system/SoundEffect.h\"",
+                  "\"end.adx\"",
+                  "\"start.adx\""
+                ],
+                "config/GPOE8P/psov3/symbols.txt": [
+                  "lbl_80438D50 = .rodata:0x80438D50; // type:object size:0x8 scope:local",
+                  "lbl_80438D58 = .rodata:0x80438D58; // type:object size:0xA scope:local"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4922,
+        "historical_path": "include/pso/effect/TEF_LensFlare.h",
+        "historical_blob": "feb50b3839c77a309a2fd144db6992004bee4697",
+        "owners": {
+          "include/pso/effect/TEF_LensFlare.h": "769369de290e809a8f3f7dd8227c18f2ce797d10",
+          "src/pso/effect/TEF_LensFlare.cpp": "be943a0ad53cb4f8cd90c0d8ebe8673f138767ad"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "The lens flare uses the actual task constructor and stores the typed element table at +0x90.",
+            "details": {
+              "historical_delta": [
+                "+struct LensFlareElement;",
+                "+",
+                "+    TEF_LensFlare(TObject *parent, void *set_data);",
+                "-    u8 unk_90[0x4];",
+                "+    LensFlareElement *elements;"
+              ],
+              "verified_fragments": {
+                "include/pso/effect/TEF_LensFlare.h": [
+                  "TEF_LensFlare(TObject *parent, void *set_data);",
+                  "LensFlareElement *elements;  // 0x90"
+                ],
+                "src/pso/effect/TEF_LensFlare.cpp": [
+                  "TEF_LensFlare::TEF_LensFlare(TObject *parent, void *set_data)"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5101,
+        "historical_path": "src/pso/misc/TCameraCtrl_80067C88.cpp",
+        "historical_blob": "4969a17767c0a6f1b8e2627e9dbb3a9012b142a7",
+        "owners": {
+          "src/pso/unk/TUnk_804887F8.cpp": "47fd0cae05636488e7f1eed58093edfe053e5dde",
+          "config/GPOE8P/psov3/symbols.txt": "98b09891e9b48d93a713409654efa89209dc6a0e"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "The camera construction emits its own 0.65f at the original local pool address.",
+            "details": {
+              "historical_delta": [
+                "-    extern const float lbl_805D8F60;",
+                "-void*TUnk_804887F8::init() { construct_view_controller__11TCameraCtrlFPv(); *(int*)((char*)this + 0x18) = (int)lbl_804887F8; this->m_38 = 21; this->m_58 = lbl_805D8F60; this->m_114 = 0; (*(int *)((u8 *)this + 0x110)) = 0; return this; }",
+                "+// The constructor is the only observed user of the 0.65f literal at 0x805D8F60;",
+                "+// the next pool starts at 0x805D8F68 after four bytes of alignment padding.",
+                "+void*TUnk_804887F8::init() { construct_view_controller__11TCameraCtrlFPv(); *(int*)((char*)this + 0x18) = (int)lbl_804887F8; this->m_38 = 21; this->m_58 = 0.65f; this->m_114 = 0; (*(int *)((u8 *)this + 0x110)) = 0; return this; }"
+              ],
+              "verified_fragments": {
+                "src/pso/unk/TUnk_804887F8.cpp": [
+                  "m_58 = 0.65f;"
+                ],
+                "config/GPOE8P/psov3/symbols.txt": [
+                  "lbl_805D8F60 = .sdata2:0x805D8F60; // type:object size:0x4 scope:local"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5307,
+        "historical_path": "src/pso/unk/text_80066F10.cpp",
+        "historical_blob": "97f5d74810c15419af82f9bd9fb3549b7fb836bb",
+        "owners": {
+          "src/pso/unk/text_80066F10.cpp": "40dff4ec9133761b9b7d626c80aab5b7c3e6d077",
+          "include/pso/system/EnemyBmlResource.h": "d1d74000c781f96d0e1e5de041d155f9a1f71705"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "The boss asset loader passes the native BML descriptor and original GVM filename to the exact resource providers.",
+            "details": {
+              "historical_delta": [
+                "+#include \"pso/system/EnemyBmlResource.h\"",
+                "-        lbl_805D4DD8 = (void *)load_enemy_bml_resource((u8 *)bm_obj_boss5_common_resource_descriptor);",
+                "-        boss5_common_texture_list = load_gvm_texture_file((s32)lbl_8043810C);",
+                "+        lbl_805D4DD8 = (void *)(s32)load_enemy_bml_resource((BmlResourceDescriptor *)((u8 *)bm_obj_boss5_common_resource_descriptor));",
+                "+        boss5_common_texture_list = load_gvm_texture_file(lbl_8043810C);"
+              ],
+              "verified_fragments": {
+                "src/pso/unk/text_80066F10.cpp": [
+                  "BmlResourceDescriptor bm_obj_boss5_common_resource_descriptor",
+                  "load_enemy_bml_resource(&bm_obj_boss5_common_resource_descriptor)",
+                  "load_gvm_texture_file(\"obj_boss5_common.gvm\")"
+                ],
+                "include/pso/system/EnemyBmlResource.h": [
+                  "BmlResource *load_enemy_bml_resource(BmlResourceDescriptor *descriptor);"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5436,
+        "historical_path": "include/pso/TWindowEffectLight.h",
+        "historical_blob": "82e26a8aaccad60b469a141974b33bfac9650012",
+        "owners": {
+          "include/pso/ui/window/TWindowEffectLight.h": "a0b042e0fc943a9084dfbea59ce50e228ce74b0b"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "The real effect-light class uses the original signed effect kind and unsigned player ID with all five scalar fields and the 0x2C size checked.",
+            "details": {
+              "historical_delta": [
+                "-    static void *create(void *arg0, void *arg1, void *arg2);",
+                "+    static void *create(void *arg0, s16 arg1, u32 arg2);",
+                "+    f32 x, y;",
+                "+    s16 effect_kind, age;",
+                "+    u32 player_id;",
+                "+typedef char TWindowEffectLight_size[sizeof(TWindowEffectLight) == 0x2C ? 1 : -1];",
+                "+"
+              ],
+              "verified_fragments": {
+                "include/pso/ui/window/TWindowEffectLight.h": [
+                  "static void *create(void *position, s16 effect_kind, u32 player_id);",
+                  "f32 x;",
+                  "f32 y;",
+                  "s16 effect_kind;",
+                  "s16 age;",
+                  "u32 player_id;",
+                  "sizeof(TWindowEffectLight) == 0x2C"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6030,
+        "historical_path": "src/pso/unk/text_80248994.cpp",
+        "historical_blob": "0d8db719805b1eed77797a3f397a897f4f2ff5c7",
+        "owners": {
+          "src/pso/unk/text_80248994.cpp": "0ef93c1e53ff0191ef2edee3e86ee1a075682ac9"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "The list recolor entry point and its element lookup already use the shared window base at the original address.",
+            "details": {
+              "historical_delta": [
+                "-#include \"pso/misc/TUnk_804CE018.h\"",
+                "+#include \"pso/misc/TWindowBase.h\"",
+                "-extern \"C\" void fn_80248994(TUnk_804CE018 *list, u32 color, s32 pos);",
+                "+extern \"C\" void fn_80248994(TWindowBase *list, u32 color, s32 pos);",
+                "-void fn_80248994(TUnk_804CE018 *list, u32 color, s32 pos) {",
+                "+void fn_80248994(TWindowBase *list, u32 color, s32 pos) {",
+                "-        e = list->get_array_entry(i);",
+                "+        e = (s32)list->get_array_entry(i);"
+              ],
+              "verified_fragments": {
+                "src/pso/unk/text_80248994.cpp": [
+                  "#include \"pso/ui/window/TWindowBase.h\"",
+                  "void fn_80248994(TWindowBase *list, u32 color, s32 pos)",
+                  "e = list->get_array_entry(i);"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7327,
+        "historical_path": "src/pso/unk/text_8029EC3C.cpp",
+        "historical_blob": "2796140509afe417402e66963319f3bd871c9e1c",
+        "owners": {
+          "src/pso/render/reflection.cpp": "2bb7fc4a0dbf3690a1cbdb1ba820a1cfc48f69d7",
+          "config/GPOE8P/psov3/symbols.txt": "98b09891e9b48d93a713409654efa89209dc6a0e"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "The reflection probe passes its native Vec to the shared ground query and emits 80 and 300 at the original local pool addresses.",
+            "details": {
+              "historical_delta": [
+                "+#include \"pso/map/CsnGroundQuery.h\"",
+                "-s32 *csnVecterUnder(s32 origin, s32 mask);",
+                "-extern const f32 lbl_805DDD98;",
+                "-extern const f32 lbl_805DDD9C;",
+                "+static const f32 lbl_805DDD98 = 80.0f;",
+                "+static const f32 lbl_805DDD9C = 300.0f;",
+                "-        r = (Hit_8029EC3C *)csnVecterUnder((s32)&a, arg1);",
+                "+        r = (Hit_8029EC3C *)csnVecterUnder((const Vec *)&a, arg1);"
+              ],
+              "verified_fragments": {
+                "src/pso/render/reflection.cpp": [
+                  "r = csnVecterUnder(&a, arg1);",
+                  "scale = 80.0f;",
+                  "scale = 300.0f;"
+                ],
+                "config/GPOE8P/psov3/symbols.txt": [
+                  "lbl_805DDD98 = .sdata2:0x805DDD98; // type:object size:0x4 scope:local",
+                  "lbl_805DDD9C = .sdata2:0x805DDD9C; // type:object size:0x4 scope:local"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      }
+    ],
+    "closed_rows": [
+      554,
+      771,
+      821,
+      831,
+      1004,
+      1007,
+      1199,
+      2343,
+      2731,
+      2743,
+      2956,
+      2989,
+      3288,
+      3446,
+      3448,
+      3640,
+      3976,
+      4004,
+      4011,
+      4050,
+      4070,
+      4077,
+      4099,
+      4105,
+      4133,
+      4145,
+      4914,
+      4915,
+      4922,
+      5101,
+      5307,
+      5436,
+      5530,
+      5531,
+      5573,
+      5601,
+      5688,
+      5880,
+      5885,
+      5983,
+      6030,
+      7327
+    ],
+    "remaining": {
+      "Owner comparison required": 178,
+      "Some anchored text changes found": 606
+    }
+  },
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "data_ranges": 90,
+  "local_tool_tests": 294,
+  "layer_tests": 11,
+  "fork_only_paths": 133,
+  "replay_validation": {
+    "factory-source": {
+      "head": "9ed29ecdae027c7ac4e299c38f145aac4ffae416",
+      "report_sha256": "e58ec361c06639a113cf5e7e0f50be5ef772f13f709a5f8b5dfb35e387958d9b",
+      "strict_sha256": "ed1227e62a54a700684ba716ecd28c2aef9109e9a126e968204e0791f4a38f3a"
+    },
+    "crawfish-source": {
+      "head": "34ac0842c34c7fe9b875f8ca9a158228dbd11ccd",
+      "report_sha256": "501b7d892f1f447b3ce89333ca5ee07160bdec3e369abf7d146f6c0e491997b1",
+      "strict_sha256": "3b97d81b3a7d3974f4ce6240f3a4f1ce00ae363ede71b3cf5aa399a54e5c1be0"
+    },
+    "companion-source": {
+      "head": "516f4bc6b709c2a0e5a50463e93e0a602b3193a2",
+      "report_sha256": "04373104355b57d41a7558531ea31fecbc009548040f07203e77b308e183cfc5",
+      "strict_sha256": "b9564c51890fc883680b3d657e5de363f2e9668af700f5ce9ddb83e2951bb4fb"
+    },
+    "card-source": {
+      "head": "b6b52e27de62e3f7fb065bd4a072c127f06a55e6",
+      "report_sha256": "5532b747d040f54c4155289cc094815f1f1a3810723e99ad4c2a8309b1708dd4",
+      "strict_sha256": "9c615f959fa1a7bf9bb3f5f91339497318f3273f801c2308e9946f3f6ba960a9"
+    }
+  },
+  "combined_validation": {
+    "combined-source": {
+      "report_sha256": "a4c43d879e9125b90916b0d9d8e993cbd50561704f71a0f9adec56487c5fbb4e",
+      "strict_sha256": "75a75771eb1122a447c35bd53b83ba77e52dca318d9e525ab2166e965b8b8854"
+    },
+    "direct-union": {
+      "report_sha256": "a475eb222a6f37415fc85a207c2535a0623adf9b39a6f0dced261315c9a146e1",
+      "strict_sha256": "5786a23f4d73e9c2312f09767656f50c76ad423febf6b7839eba2e7df9ff1fe8"
+    },
+    "working-final": {
+      "report_sha256": "a4c43d879e9125b90916b0d9d8e993cbd50561704f71a0f9adec56487c5fbb4e",
+      "strict_sha256": "2b54c7297aae7f905246fb84d701c6d4273848c35bd161c21b2e88a54e4d8ad5"
+    }
+  },
+  "factory_dispatch": {
+    "source": {
+      "head": "9ed29ecdae027c7ac4e299c38f145aac4ffae416",
+      "base": "5b16fd51a8ece943a308ae8c1b67a074c36451c6",
+      "paths": 148,
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "entries_checked": 203,
+      "byte_matched_ranges": {
+        "weapon_factory_table": {
+          "address": "0x8049eb58",
+          "entries": 170,
+          "sha256": "95d877663d485a92fadca69257a438fad82e243c24b02fd2ec14ebc60d8a89b0"
+        },
+        "item_tool_factory_table": {
+          "address": "0x8049ee00",
+          "entries": 24,
+          "sha256": "5f23e12e495bed26c5b6d1519bbb062c589feeb8c6b0a286ddb4e7bac7ce7e40"
+        },
+        "item_pro_create_fn_table": {
+          "address": "0x8049eed8",
+          "entries": 4,
+          "sha256": "22879afbaf1743db449025c0c917ad347dcd583f245ca21ab37cb43e1dbd1efe"
+        },
+        "item_create_fn_table": {
+          "address": "0x8049eee8",
+          "entries": 5,
+          "sha256": "35c57e68933ea7b0a506e25d3460daa8f234c44b44dc1d6a4ee9469a1a6a2d3f"
+        }
+      },
+      "new_direct_weapon_slots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        21,
+        22,
+        23,
+        24,
+        26,
+        28,
+        29,
+        31,
+        32,
+        35,
+        36,
+        38,
+        39,
+        41,
+        42,
+        43,
+        45,
+        50,
+        51,
+        52,
+        53,
+        55,
+        56,
+        57,
+        58,
+        61,
+        62,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        72,
+        73,
+        75,
+        76,
+        77,
+        78,
+        79,
+        84,
+        86,
+        87,
+        88,
+        101,
+        102,
+        103,
+        106,
+        107,
+        108,
+        110,
+        111,
+        114,
+        116,
+        120,
+        123,
+        126,
+        136,
+        138,
+        142,
+        143,
+        144,
+        146,
+        148,
+        151,
+        152,
+        156,
+        157,
+        159,
+        162,
+        163,
+        165,
+        167,
+        168
+      ],
+      "new_direct_weapon_factories": [
+        "TObjPlayer__sub_80121318",
+        "TObjPlayer__sub_801228CC",
+        "TObjPlayer__sub_801229EC",
+        "TObjPlayer__sub_8012380C",
+        "TObjPlayer__sub_80123950",
+        "TObjPlayer__sub_80125428",
+        "TObjPlayer__sub_80126054",
+        "TObjPlayer__sub_80127314",
+        "TObjPlayer__sub_801277EC",
+        "TObjPlayer__sub_80128308",
+        "TObjPlayer__sub_80128440",
+        "TObjPlayer__sub_8012AB1C",
+        "TObjPlayer__sub_8012CE44",
+        "TObjPlayer__sub_8012CF84",
+        "TObjPlayer__sub_8012EFAC",
+        "TObjPlayer__sub_8012F298",
+        "TObjPlayer__sub_80307800",
+        "TObjPlayer__sub_803265C0",
+        "TObjPlayer__sub_8034F1AC",
+        "TObjPlayer__sub_803630F0",
+        "alloc_and_init_obj_effect",
+        "create_agito_weapon",
+        "create_baranz_launcher",
+        "create_belra_cannon",
+        "create_cane_weapon",
+        "create_claw_weapon",
+        "create_common_weapon",
+        "create_dagger_weapon",
+        "create_dark_flow",
+        "create_delsabers_buster_weapon",
+        "create_guardianna",
+        "create_guld_milla",
+        "create_handgun_weapon",
+        "create_knuckle_weapon",
+        "create_mechgun_weapon",
+        "create_morning_glory",
+        "create_panzer_faust",
+        "create_partisan_weapon",
+        "create_photon_field_weapon",
+        "create_psycho_wand",
+        "create_rifle_weapon",
+        "create_rod_weapon",
+        "create_s_rank_bazooka",
+        "create_s_rank_j_cutter_weapon",
+        "create_s_rank_knuckle",
+        "create_s_rank_shot",
+        "create_s_rank_slicer_weapon",
+        "create_saber_weapon",
+        "create_shot_weapon",
+        "create_slicer_weapon",
+        "create_sorcerers_cane",
+        "create_soul_eater_weapon",
+        "create_suppressed_gun_weapon",
+        "create_sword_weapon",
+        "create_twin_psychogun",
+        "create_wand_weapon",
+        "create_yasminkov_2000h",
+        "create_yasminkov_3000r",
+        "create_yasminkov_7000v",
+        "create_yasminkov_9000m",
+        "dark_bridge_create",
+        "frozen_shooter_create",
+        "sealed_j_sword_create",
+        "yamigarasu_create"
+      ],
+      "native_additional_weapons": {
+        "TObjPlayer__sub_80121318": {
+          "allocated": "TUnk_804A07C0",
+          "header": "include/pso/weapon/TUnk_804A07C0.h",
+          "implementation": "src/pso/weapon/TUnk_804A07C0.cpp"
+        },
+        "TObjPlayer__sub_801228CC": {
+          "allocated": "TUnk_804A1098",
+          "header": "include/pso/weapon/TUnk_804A1098.h",
+          "implementation": "src/pso/weapon/TUnk_804A1098.cpp"
+        },
+        "TObjPlayer__sub_801229EC": {
+          "allocated": "TUnk_804A1190",
+          "header": "include/pso/weapon/TUnk_804A1190.h",
+          "implementation": "src/pso/weapon/TUnk_804A1190.cpp"
+        },
+        "TObjPlayer__sub_8012380C": {
+          "allocated": "TUnk_804A1A48",
+          "header": "include/pso/weapon/TUnk_804A1A48.h",
+          "implementation": "src/pso/weapon/TUnk_804A1A48.cpp"
+        },
+        "TObjPlayer__sub_80123950": {
+          "allocated": "TUnk_804A1B40",
+          "header": "include/pso/weapon/TUnk_804A1B40.h",
+          "implementation": "src/pso/weapon/TUnk_804A1B40.cpp"
+        },
+        "TObjPlayer__sub_80125428": {
+          "allocated": "TUnk_804A2450",
+          "header": "include/pso/unk/text_80125428.h",
+          "implementation": "src/pso/weapon/TUnk_804A2450.cpp"
+        },
+        "TObjPlayer__sub_80126054": {
+          "allocated": "TUnk_804A2868",
+          "header": "include/pso/weapon/TUnk_804A2868.h",
+          "implementation": "src/pso/weapon/TUnk_804A2868.cpp"
+        },
+        "TObjPlayer__sub_80127314": {
+          "allocated": "TUnk_804A3168",
+          "header": "include/pso/weapon/TUnk_804A3168.h",
+          "implementation": "src/pso/weapon/TUnk_804A3168.cpp"
+        },
+        "TObjPlayer__sub_801277EC": {
+          "allocated": "TUnk_804A3358",
+          "header": "include/pso/weapon/TUnk_804A3358.h",
+          "implementation": "src/pso/weapon/TUnk_804A3358.cpp"
+        },
+        "TObjPlayer__sub_80128308": {
+          "allocated": "TUnk_804A3A20",
+          "header": "include/pso/unk/text_80128308.h",
+          "implementation": "src/pso/weapon/TUnk_804A3A20.cpp"
+        },
+        "TObjPlayer__sub_80128440": {
+          "allocated": "TUnk_804A3B20",
+          "header": "include/pso/unk/text_80128440.h",
+          "implementation": "src/pso/weapon/TUnk_804A3B20.cpp"
+        },
+        "TObjPlayer__sub_8012AB1C": {
+          "allocated": "TUnk_804A4A88",
+          "header": "include/pso/weapon/TUnk_804A4A88.h",
+          "implementation": "src/pso/weapon/TUnk_804A4A88.cpp"
+        },
+        "TObjPlayer__sub_8012CE44": {
+          "allocated": "TUnk_804A5648",
+          "header": "include/pso/weapon/TUnk_804A5648.h",
+          "implementation": "src/pso/weapon/TUnk_804A5648.cpp"
+        },
+        "TObjPlayer__sub_8012CF84": {
+          "allocated": "TUnk_804A5740",
+          "header": "include/pso/weapon/TUnk_804A5740.h",
+          "implementation": "src/pso/weapon/TUnk_804A5740.cpp"
+        },
+        "TObjPlayer__sub_8012EFAC": {
+          "allocated": "TUnk_804A6108",
+          "header": "include/pso/weapon/TUnk_804A6108.h",
+          "implementation": "src/pso/weapon/TUnk_804A6108.cpp"
+        },
+        "TObjPlayer__sub_8012F298": {
+          "allocated": "TUnk_804A6200",
+          "header": "include/pso/weapon/TUnk_804A6200.h",
+          "implementation": "src/pso/weapon/TUnk_804A6200.cpp"
+        },
+        "TObjPlayer__sub_80307800": {
+          "allocated": "TUnk_804E70A8",
+          "header": "include/pso/player/TObjPlayer_80307618.h",
+          "implementation": "src/pso/player/TObjPlayer_80307618.cpp"
+        },
+        "TObjPlayer__sub_803265C0": {
+          "allocated": "TUnk_804ECDC0",
+          "header": "include/pso/weapon/TUnk_804ECDC0.h",
+          "implementation": "src/pso/weapon/TUnk_804ECDC0.cpp"
+        },
+        "TObjPlayer__sub_8034F1AC": {
+          "allocated": "TUnk_804F0810",
+          "header": "include/pso/effect/item/TItemEffPG.h",
+          "implementation": "src/pso/effect/item/TItemEffPG_8034EFDC.cpp"
+        },
+        "TObjPlayer__sub_803630F0": {
+          "allocated": "TUnk_804F27E0",
+          "header": "include/pso/player/TObjPlayer_80362E60.h",
+          "implementation": "src/pso/player/TObjPlayer_80362E60.cpp"
+        },
+        "alloc_and_init_obj_effect": {
+          "allocated": "TUnk_804F1EC8",
+          "header": "include/pso/unk/text_8035D444.h",
+          "implementation": "src/pso/unk/text_8035D444.cpp"
+        },
+        "create_agito_weapon": {
+          "allocated": "TUnk_804A3070",
+          "header": "include/pso/weapon/TUnk_804A3070.h",
+          "implementation": "src/pso/weapon/TUnk_804A3070.cpp"
+        },
+        "create_baranz_launcher": {
+          "allocated": "TUnk_804A2A58",
+          "header": "include/pso/unk/text_80126740.h",
+          "implementation": "src/pso/weapon/TUnk_804A2A58.cpp"
+        },
+        "create_belra_cannon": {
+          "allocated": "TUnk_804A0CB8",
+          "header": "include/pso/weapon/TUnk_804A0CB8.h",
+          "implementation": "src/pso/weapon/TUnk_804A0CB8.cpp"
+        },
+        "create_claw_weapon": {
+          "allocated": "TUnk_804A1C38",
+          "header": "include/pso/weapon/TUnk_804A1C38.h",
+          "implementation": "src/pso/weapon/TUnk_804A1C38.cpp"
+        },
+        "create_dark_flow": {
+          "allocated": "TUnk_804ED488",
+          "header": "include/pso/weapon/TUnk_804ED488.h",
+          "implementation": "src/pso/weapon/TUnk_804ED488.cpp"
+        },
+        "create_delsabers_buster_weapon": {
+          "allocated": "TUnk_804A1F20",
+          "header": "include/pso/weapon/TUnk_804A1F20.h",
+          "implementation": "src/pso/weapon/TUnk_804A1F20.cpp"
+        },
+        "create_guardianna": {
+          "allocated": "TUnk_804EDC28",
+          "header": "include/pso/weapon/TUnk_804EDC28.h",
+          "implementation": "src/pso/effect/item/TItemWpnCardEffect.cpp"
+        },
+        "create_guld_milla": {
+          "allocated": "TUnk_804A0EA8",
+          "header": "include/pso/weapon/TUnk_804A0EA8.h",
+          "implementation": "src/pso/weapon/TUnk_804A0EA8.cpp"
+        },
+        "create_knuckle_weapon": {
+          "allocated": "TUnk_804A2B98",
+          "header": "include/pso/unk/text_80126A34.h",
+          "implementation": "src/pso/weapon/TItemWeaponFist.cpp"
+        },
+        "create_morning_glory": {
+          "allocated": "TUnk_804ED1A0",
+          "header": "include/pso/weapon/TUnk_804ED1A0.h",
+          "implementation": "src/pso/weapon/TUnk_804ED1A0.cpp"
+        },
+        "create_panzer_faust": {
+          "allocated": "TUnk_804A2564",
+          "header": "include/pso/player/TObjPlayer_80125780.h",
+          "implementation": "src/pso/player/TUnk_804A2548.cpp"
+        },
+        "create_photon_field_weapon": {
+          "allocated": "TUnk_804F1320",
+          "header": "include/pso/unk/text_80355C1C.h",
+          "implementation": "src/pso/unk/text_80355C1C.cpp"
+        },
+        "create_psycho_wand": {
+          "allocated": "TUnk_804A4F60",
+          "header": "include/pso/weapon/TUnk_804A4F60.h",
+          "implementation": "src/pso/weapon/TUnk_804A4F60.cpp"
+        },
+        "create_s_rank_bazooka": {
+          "allocated": "TUnk_804A4548",
+          "header": "include/pso/unk/text_80129D18.h",
+          "implementation": "src/pso/weapon/TUnk_804A4548.cpp"
+        },
+        "create_s_rank_j_cutter_weapon": {
+          "allocated": "TUnk_804A4238",
+          "header": "include/pso/weapon/TUnk_804A4238.h",
+          "implementation": "src/pso/weapon/TUnk_804A4238.cpp"
+        },
+        "create_s_rank_knuckle": {
+          "allocated": "TUnk_804F26E0",
+          "header": "include/pso/weapon/TUnk_804F26E0.h",
+          "implementation": "src/pso/weapon/TUnk_804F26E0.cpp"
+        },
+        "create_s_rank_shot": {
+          "allocated": "TUnk_804A444C",
+          "header": "include/pso/unk/text_80129AB0.h",
+          "implementation": "src/pso/weapon/TUnk_804A444C.cpp"
+        },
+        "create_s_rank_slicer_weapon": {
+          "allocated": "TUnk_804A4338",
+          "header": "include/pso/weapon/TUnk_804A4338.h",
+          "implementation": "src/pso/weapon/TUnk_804A4338.cpp"
+        },
+        "create_sorcerers_cane": {
+          "allocated": "TUnk_804A1E28",
+          "header": "include/pso/weapon/TUnk_804A1E28.h",
+          "implementation": "src/pso/weapon/TUnk_804A1E28.cpp"
+        },
+        "create_soul_eater_weapon": {
+          "allocated": "TUnk_804A5838",
+          "header": "include/pso/weapon/TUnk_804A5838.h",
+          "implementation": "src/pso/weapon/TUnk_804A5838.cpp"
+        },
+        "create_suppressed_gun_weapon": {
+          "allocated": "TUnk_804A2D88",
+          "header": "include/pso/weapon/TUnk_804A2C90.h",
+          "implementation": "src/pso/weapon/TUnk_804A2C90.cpp"
+        },
+        "create_twin_psychogun": {
+          "allocated": "TUnk_804A66D8",
+          "header": "include/pso/weapon/TUnk_804A66D8.h",
+          "implementation": "src/pso/weapon/TUnk_804A66D8.cpp"
+        },
+        "create_wand_weapon": {
+          "allocated": "TUnk_804A1478",
+          "header": "include/pso/weapon/TUnk_804A1478.h",
+          "implementation": "src/pso/weapon/TUnk_804A1478.cpp"
+        },
+        "create_yasminkov_2000h": {
+          "allocated": "TUnk_804A6CC8",
+          "header": "include/pso/weapon/TUnk_804A6CC8.h",
+          "implementation": "src/pso/weapon/TUnk_804A6CC8.cpp"
+        },
+        "create_yasminkov_3000r": {
+          "allocated": "TUnk_804A6BD0",
+          "header": "include/pso/weapon/TUnk_804A6BD0.h",
+          "implementation": "src/pso/weapon/TUnk_804A6BD0.cpp"
+        },
+        "create_yasminkov_7000v": {
+          "allocated": "TUnk_804A6DC0",
+          "header": "include/pso/weapon/TUnk_804A6DC0.h",
+          "implementation": "src/pso/weapon/TUnk_804A6DC0.cpp"
+        },
+        "create_yasminkov_9000m": {
+          "allocated": "TUnk_804A6AD8",
+          "header": "include/pso/weapon/TUnk_804A6AD8.h",
+          "implementation": "src/pso/weapon/TUnk_804A6AD8.cpp"
+        },
+        "dark_bridge_create": {
+          "allocated": "TUnk_804ECFB0",
+          "header": "include/pso/weapon/TUnk_804ECFB0.h",
+          "implementation": "src/pso/weapon/TUnk_804ECFB0.cpp"
+        },
+        "frozen_shooter_create": {
+          "allocated": "TUnk_804A2960",
+          "header": "include/pso/weapon/TUnk_804A2960.h",
+          "implementation": "src/pso/weapon/TUnk_804A2960.cpp"
+        },
+        "sealed_j_sword_create": {
+          "allocated": "TUnk_804A5930",
+          "header": "include/pso/weapon/TUnk_804A5930.h",
+          "implementation": "src/pso/weapon/TUnk_804A5930.cpp"
+        },
+        "yamigarasu_create": {
+          "allocated": "TUnk_804A3738",
+          "header": "include/pso/weapon/TUnk_804A3738.h",
+          "implementation": "src/pso/weapon/TUnk_804A3738.cpp"
+        }
+      }
+    },
+    "direct": {
+      "head": "ff194d014bb79b47d0609f99403deb7c9ab8cb3e",
+      "base": "f7a0573964b36b98973f3f328c0d72fb32b5449a",
+      "paths": 149,
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "entries_checked": 203,
+      "byte_matched_ranges": {
+        "weapon_factory_table": {
+          "address": "0x8049eb58",
+          "entries": 170,
+          "sha256": "95d877663d485a92fadca69257a438fad82e243c24b02fd2ec14ebc60d8a89b0"
+        },
+        "item_tool_factory_table": {
+          "address": "0x8049ee00",
+          "entries": 24,
+          "sha256": "5f23e12e495bed26c5b6d1519bbb062c589feeb8c6b0a286ddb4e7bac7ce7e40"
+        },
+        "item_pro_create_fn_table": {
+          "address": "0x8049eed8",
+          "entries": 4,
+          "sha256": "22879afbaf1743db449025c0c917ad347dcd583f245ca21ab37cb43e1dbd1efe"
+        },
+        "item_create_fn_table": {
+          "address": "0x8049eee8",
+          "entries": 5,
+          "sha256": "35c57e68933ea7b0a506e25d3460daa8f234c44b44dc1d6a4ee9469a1a6a2d3f"
+        }
+      },
+      "new_direct_weapon_slots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        21,
+        22,
+        23,
+        24,
+        26,
+        28,
+        29,
+        31,
+        32,
+        35,
+        36,
+        38,
+        39,
+        41,
+        42,
+        43,
+        45,
+        50,
+        51,
+        52,
+        53,
+        55,
+        56,
+        57,
+        58,
+        61,
+        62,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        72,
+        73,
+        75,
+        76,
+        77,
+        78,
+        79,
+        84,
+        86,
+        87,
+        88,
+        101,
+        102,
+        103,
+        106,
+        107,
+        108,
+        110,
+        111,
+        114,
+        116,
+        120,
+        123,
+        126,
+        136,
+        138,
+        142,
+        143,
+        144,
+        146,
+        148,
+        151,
+        152,
+        156,
+        157,
+        159,
+        162,
+        163,
+        165,
+        167,
+        168
+      ],
+      "new_direct_weapon_factories": [
+        "TObjPlayer__sub_80121318",
+        "TObjPlayer__sub_801228CC",
+        "TObjPlayer__sub_801229EC",
+        "TObjPlayer__sub_8012380C",
+        "TObjPlayer__sub_80123950",
+        "TObjPlayer__sub_80125428",
+        "TObjPlayer__sub_80126054",
+        "TObjPlayer__sub_80127314",
+        "TObjPlayer__sub_801277EC",
+        "TObjPlayer__sub_80128308",
+        "TObjPlayer__sub_80128440",
+        "TObjPlayer__sub_8012AB1C",
+        "TObjPlayer__sub_8012CE44",
+        "TObjPlayer__sub_8012CF84",
+        "TObjPlayer__sub_8012EFAC",
+        "TObjPlayer__sub_8012F298",
+        "TObjPlayer__sub_80307800",
+        "TObjPlayer__sub_803265C0",
+        "TObjPlayer__sub_8034F1AC",
+        "TObjPlayer__sub_803630F0",
+        "alloc_and_init_obj_effect",
+        "create_agito_weapon",
+        "create_baranz_launcher",
+        "create_belra_cannon",
+        "create_cane_weapon",
+        "create_claw_weapon",
+        "create_common_weapon",
+        "create_dagger_weapon",
+        "create_dark_flow",
+        "create_delsabers_buster_weapon",
+        "create_guardianna",
+        "create_guld_milla",
+        "create_handgun_weapon",
+        "create_knuckle_weapon",
+        "create_mechgun_weapon",
+        "create_morning_glory",
+        "create_panzer_faust",
+        "create_partisan_weapon",
+        "create_photon_field_weapon",
+        "create_psycho_wand",
+        "create_rifle_weapon",
+        "create_rod_weapon",
+        "create_s_rank_bazooka",
+        "create_s_rank_j_cutter_weapon",
+        "create_s_rank_knuckle",
+        "create_s_rank_shot",
+        "create_s_rank_slicer_weapon",
+        "create_saber_weapon",
+        "create_shot_weapon",
+        "create_slicer_weapon",
+        "create_sorcerers_cane",
+        "create_soul_eater_weapon",
+        "create_suppressed_gun_weapon",
+        "create_sword_weapon",
+        "create_twin_psychogun",
+        "create_wand_weapon",
+        "create_yasminkov_2000h",
+        "create_yasminkov_3000r",
+        "create_yasminkov_7000v",
+        "create_yasminkov_9000m",
+        "dark_bridge_create",
+        "frozen_shooter_create",
+        "sealed_j_sword_create",
+        "yamigarasu_create"
+      ],
+      "native_additional_weapons": {
+        "TObjPlayer__sub_80121318": {
+          "allocated": "TUnk_804A07C0",
+          "header": "include/pso/weapon/TUnk_804A07C0.h",
+          "implementation": "src/pso/weapon/TUnk_804A07C0.cpp"
+        },
+        "TObjPlayer__sub_801228CC": {
+          "allocated": "TUnk_804A1098",
+          "header": "include/pso/weapon/TUnk_804A1098.h",
+          "implementation": "src/pso/weapon/TUnk_804A1098.cpp"
+        },
+        "TObjPlayer__sub_801229EC": {
+          "allocated": "TUnk_804A1190",
+          "header": "include/pso/weapon/TUnk_804A1190.h",
+          "implementation": "src/pso/weapon/TUnk_804A1190.cpp"
+        },
+        "TObjPlayer__sub_8012380C": {
+          "allocated": "TUnk_804A1A48",
+          "header": "include/pso/weapon/TUnk_804A1A48.h",
+          "implementation": "src/pso/weapon/TUnk_804A1A48.cpp"
+        },
+        "TObjPlayer__sub_80123950": {
+          "allocated": "TUnk_804A1B40",
+          "header": "include/pso/weapon/TUnk_804A1B40.h",
+          "implementation": "src/pso/weapon/TUnk_804A1B40.cpp"
+        },
+        "TObjPlayer__sub_80125428": {
+          "allocated": "TUnk_804A2450",
+          "header": "include/pso/unk/text_80125428.h",
+          "implementation": "src/pso/weapon/TUnk_804A2450.cpp"
+        },
+        "TObjPlayer__sub_80126054": {
+          "allocated": "TUnk_804A2868",
+          "header": "include/pso/weapon/TUnk_804A2868.h",
+          "implementation": "src/pso/weapon/TUnk_804A2868.cpp"
+        },
+        "TObjPlayer__sub_80127314": {
+          "allocated": "TUnk_804A3168",
+          "header": "include/pso/weapon/TUnk_804A3168.h",
+          "implementation": "src/pso/weapon/TUnk_804A3168.cpp"
+        },
+        "TObjPlayer__sub_801277EC": {
+          "allocated": "TUnk_804A3358",
+          "header": "include/pso/weapon/TUnk_804A3358.h",
+          "implementation": "src/pso/weapon/TUnk_804A3358.cpp"
+        },
+        "TObjPlayer__sub_80128308": {
+          "allocated": "TUnk_804A3A20",
+          "header": "include/pso/unk/text_80128308.h",
+          "implementation": "src/pso/weapon/TUnk_804A3A20.cpp"
+        },
+        "TObjPlayer__sub_80128440": {
+          "allocated": "TUnk_804A3B20",
+          "header": "include/pso/unk/text_80128440.h",
+          "implementation": "src/pso/weapon/TUnk_804A3B20.cpp"
+        },
+        "TObjPlayer__sub_8012AB1C": {
+          "allocated": "TUnk_804A4A88",
+          "header": "include/pso/weapon/TUnk_804A4A88.h",
+          "implementation": "src/pso/weapon/TUnk_804A4A88.cpp"
+        },
+        "TObjPlayer__sub_8012CE44": {
+          "allocated": "TUnk_804A5648",
+          "header": "include/pso/weapon/TUnk_804A5648.h",
+          "implementation": "src/pso/weapon/TUnk_804A5648.cpp"
+        },
+        "TObjPlayer__sub_8012CF84": {
+          "allocated": "TUnk_804A5740",
+          "header": "include/pso/weapon/TUnk_804A5740.h",
+          "implementation": "src/pso/weapon/TUnk_804A5740.cpp"
+        },
+        "TObjPlayer__sub_8012EFAC": {
+          "allocated": "TUnk_804A6108",
+          "header": "include/pso/weapon/TUnk_804A6108.h",
+          "implementation": "src/pso/weapon/TUnk_804A6108.cpp"
+        },
+        "TObjPlayer__sub_8012F298": {
+          "allocated": "TUnk_804A6200",
+          "header": "include/pso/weapon/TUnk_804A6200.h",
+          "implementation": "src/pso/weapon/TUnk_804A6200.cpp"
+        },
+        "TObjPlayer__sub_80307800": {
+          "allocated": "TUnk_804E70A8",
+          "header": "include/pso/player/TObjPlayer_80307618.h",
+          "implementation": "src/pso/player/TObjPlayer_80307618.cpp"
+        },
+        "TObjPlayer__sub_803265C0": {
+          "allocated": "TUnk_804ECDC0",
+          "header": "include/pso/weapon/TUnk_804ECDC0.h",
+          "implementation": "src/pso/weapon/TUnk_804ECDC0.cpp"
+        },
+        "TObjPlayer__sub_8034F1AC": {
+          "allocated": "TUnk_804F0810",
+          "header": "include/pso/effect/item/TItemEffPG.h",
+          "implementation": "src/pso/effect/item/TItemEffPG_8034EFDC.cpp"
+        },
+        "TObjPlayer__sub_803630F0": {
+          "allocated": "TUnk_804F27E0",
+          "header": "include/pso/player/TObjPlayer_80362E60.h",
+          "implementation": "src/pso/player/TObjPlayer_80362E60.cpp"
+        },
+        "alloc_and_init_obj_effect": {
+          "allocated": "TUnk_804F1EC8",
+          "header": "include/pso/unk/text_8035D444.h",
+          "implementation": "src/pso/unk/text_8035D444.cpp"
+        },
+        "create_agito_weapon": {
+          "allocated": "TUnk_804A3070",
+          "header": "include/pso/weapon/TUnk_804A3070.h",
+          "implementation": "src/pso/weapon/TUnk_804A3070.cpp"
+        },
+        "create_baranz_launcher": {
+          "allocated": "TUnk_804A2A58",
+          "header": "include/pso/unk/text_80126740.h",
+          "implementation": "src/pso/weapon/TUnk_804A2A58.cpp"
+        },
+        "create_belra_cannon": {
+          "allocated": "TUnk_804A0CB8",
+          "header": "include/pso/weapon/TUnk_804A0CB8.h",
+          "implementation": "src/pso/weapon/TUnk_804A0CB8.cpp"
+        },
+        "create_claw_weapon": {
+          "allocated": "TUnk_804A1C38",
+          "header": "include/pso/weapon/TUnk_804A1C38.h",
+          "implementation": "src/pso/weapon/TUnk_804A1C38.cpp"
+        },
+        "create_dark_flow": {
+          "allocated": "TUnk_804ED488",
+          "header": "include/pso/weapon/TUnk_804ED488.h",
+          "implementation": "src/pso/weapon/TUnk_804ED488.cpp"
+        },
+        "create_delsabers_buster_weapon": {
+          "allocated": "TUnk_804A1F20",
+          "header": "include/pso/weapon/TUnk_804A1F20.h",
+          "implementation": "src/pso/weapon/TUnk_804A1F20.cpp"
+        },
+        "create_guardianna": {
+          "allocated": "TUnk_804EDC28",
+          "header": "include/pso/weapon/TUnk_804EDC28.h",
+          "implementation": "src/pso/effect/item/TItemWpnCardEffect.cpp"
+        },
+        "create_guld_milla": {
+          "allocated": "TUnk_804A0EA8",
+          "header": "include/pso/weapon/TUnk_804A0EA8.h",
+          "implementation": "src/pso/weapon/TUnk_804A0EA8.cpp"
+        },
+        "create_knuckle_weapon": {
+          "allocated": "TUnk_804A2B98",
+          "header": "include/pso/unk/text_80126A34.h",
+          "implementation": "src/pso/weapon/TItemWeaponFist.cpp"
+        },
+        "create_morning_glory": {
+          "allocated": "TUnk_804ED1A0",
+          "header": "include/pso/weapon/TUnk_804ED1A0.h",
+          "implementation": "src/pso/weapon/TUnk_804ED1A0.cpp"
+        },
+        "create_panzer_faust": {
+          "allocated": "TUnk_804A2564",
+          "header": "include/pso/player/TObjPlayer_80125780.h",
+          "implementation": "src/pso/player/TUnk_804A2548.cpp"
+        },
+        "create_photon_field_weapon": {
+          "allocated": "TUnk_804F1320",
+          "header": "include/pso/unk/text_80355C1C.h",
+          "implementation": "src/pso/unk/text_80355C1C.cpp"
+        },
+        "create_psycho_wand": {
+          "allocated": "TUnk_804A4F60",
+          "header": "include/pso/weapon/TUnk_804A4F60.h",
+          "implementation": "src/pso/weapon/TUnk_804A4F60.cpp"
+        },
+        "create_s_rank_bazooka": {
+          "allocated": "TUnk_804A4548",
+          "header": "include/pso/unk/text_80129D18.h",
+          "implementation": "src/pso/weapon/TUnk_804A4548.cpp"
+        },
+        "create_s_rank_j_cutter_weapon": {
+          "allocated": "TUnk_804A4238",
+          "header": "include/pso/weapon/TUnk_804A4238.h",
+          "implementation": "src/pso/weapon/TUnk_804A4238.cpp"
+        },
+        "create_s_rank_knuckle": {
+          "allocated": "TUnk_804F26E0",
+          "header": "include/pso/weapon/TUnk_804F26E0.h",
+          "implementation": "src/pso/weapon/TUnk_804F26E0.cpp"
+        },
+        "create_s_rank_shot": {
+          "allocated": "TUnk_804A444C",
+          "header": "include/pso/unk/text_80129AB0.h",
+          "implementation": "src/pso/weapon/TUnk_804A444C.cpp"
+        },
+        "create_s_rank_slicer_weapon": {
+          "allocated": "TUnk_804A4338",
+          "header": "include/pso/weapon/TUnk_804A4338.h",
+          "implementation": "src/pso/weapon/TUnk_804A4338.cpp"
+        },
+        "create_sorcerers_cane": {
+          "allocated": "TUnk_804A1E28",
+          "header": "include/pso/weapon/TUnk_804A1E28.h",
+          "implementation": "src/pso/weapon/TUnk_804A1E28.cpp"
+        },
+        "create_soul_eater_weapon": {
+          "allocated": "TUnk_804A5838",
+          "header": "include/pso/weapon/TUnk_804A5838.h",
+          "implementation": "src/pso/weapon/TUnk_804A5838.cpp"
+        },
+        "create_suppressed_gun_weapon": {
+          "allocated": "TUnk_804A2D88",
+          "header": "include/pso/weapon/TUnk_804A2C90.h",
+          "implementation": "src/pso/weapon/TUnk_804A2C90.cpp"
+        },
+        "create_twin_psychogun": {
+          "allocated": "TUnk_804A66D8",
+          "header": "include/pso/weapon/TUnk_804A66D8.h",
+          "implementation": "src/pso/weapon/TUnk_804A66D8.cpp"
+        },
+        "create_wand_weapon": {
+          "allocated": "TUnk_804A1478",
+          "header": "include/pso/weapon/TUnk_804A1478.h",
+          "implementation": "src/pso/weapon/TUnk_804A1478.cpp"
+        },
+        "create_yasminkov_2000h": {
+          "allocated": "TUnk_804A6CC8",
+          "header": "include/pso/weapon/TUnk_804A6CC8.h",
+          "implementation": "src/pso/weapon/TUnk_804A6CC8.cpp"
+        },
+        "create_yasminkov_3000r": {
+          "allocated": "TUnk_804A6BD0",
+          "header": "include/pso/weapon/TUnk_804A6BD0.h",
+          "implementation": "src/pso/weapon/TUnk_804A6BD0.cpp"
+        },
+        "create_yasminkov_7000v": {
+          "allocated": "TUnk_804A6DC0",
+          "header": "include/pso/weapon/TUnk_804A6DC0.h",
+          "implementation": "src/pso/weapon/TUnk_804A6DC0.cpp"
+        },
+        "create_yasminkov_9000m": {
+          "allocated": "TUnk_804A6AD8",
+          "header": "include/pso/weapon/TUnk_804A6AD8.h",
+          "implementation": "src/pso/weapon/TUnk_804A6AD8.cpp"
+        },
+        "dark_bridge_create": {
+          "allocated": "TUnk_804ECFB0",
+          "header": "include/pso/weapon/TUnk_804ECFB0.h",
+          "implementation": "src/pso/weapon/TUnk_804ECFB0.cpp"
+        },
+        "frozen_shooter_create": {
+          "allocated": "TUnk_804A2960",
+          "header": "include/pso/weapon/TUnk_804A2960.h",
+          "implementation": "src/pso/weapon/TUnk_804A2960.cpp"
+        },
+        "sealed_j_sword_create": {
+          "allocated": "TUnk_804A5930",
+          "header": "include/pso/weapon/TUnk_804A5930.h",
+          "implementation": "src/pso/weapon/TUnk_804A5930.cpp"
+        },
+        "yamigarasu_create": {
+          "allocated": "TUnk_804A3738",
+          "header": "include/pso/weapon/TUnk_804A3738.h",
+          "implementation": "src/pso/weapon/TUnk_804A3738.cpp"
+        }
+      }
+    },
+    "queue": {
+      "head": "4baeb7eae5fc49cc2a5fbb9727b896beceea51ae",
+      "base": "6a4b148223a7c91448bdf07274981bcff784941f",
+      "paths": 149,
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "entries_checked": 203,
+      "byte_matched_ranges": {
+        "weapon_factory_table": {
+          "address": "0x8049eb58",
+          "entries": 170,
+          "sha256": "95d877663d485a92fadca69257a438fad82e243c24b02fd2ec14ebc60d8a89b0"
+        },
+        "item_tool_factory_table": {
+          "address": "0x8049ee00",
+          "entries": 24,
+          "sha256": "5f23e12e495bed26c5b6d1519bbb062c589feeb8c6b0a286ddb4e7bac7ce7e40"
+        },
+        "item_pro_create_fn_table": {
+          "address": "0x8049eed8",
+          "entries": 4,
+          "sha256": "22879afbaf1743db449025c0c917ad347dcd583f245ca21ab37cb43e1dbd1efe"
+        },
+        "item_create_fn_table": {
+          "address": "0x8049eee8",
+          "entries": 5,
+          "sha256": "35c57e68933ea7b0a506e25d3460daa8f234c44b44dc1d6a4ee9469a1a6a2d3f"
+        }
+      },
+      "new_direct_weapon_slots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        21,
+        22,
+        23,
+        24,
+        26,
+        28,
+        29,
+        31,
+        32,
+        35,
+        36,
+        38,
+        39,
+        41,
+        42,
+        43,
+        45,
+        50,
+        51,
+        52,
+        53,
+        55,
+        56,
+        57,
+        58,
+        61,
+        62,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        72,
+        73,
+        75,
+        76,
+        77,
+        78,
+        79,
+        84,
+        86,
+        87,
+        88,
+        101,
+        102,
+        103,
+        106,
+        107,
+        108,
+        110,
+        111,
+        114,
+        116,
+        120,
+        123,
+        126,
+        136,
+        138,
+        142,
+        143,
+        144,
+        146,
+        148,
+        151,
+        152,
+        156,
+        157,
+        159,
+        162,
+        163,
+        165,
+        167,
+        168
+      ],
+      "new_direct_weapon_factories": [
+        "TObjPlayer__sub_80121318",
+        "TObjPlayer__sub_801228CC",
+        "TObjPlayer__sub_801229EC",
+        "TObjPlayer__sub_8012380C",
+        "TObjPlayer__sub_80123950",
+        "TObjPlayer__sub_80125428",
+        "TObjPlayer__sub_80126054",
+        "TObjPlayer__sub_80127314",
+        "TObjPlayer__sub_801277EC",
+        "TObjPlayer__sub_80128308",
+        "TObjPlayer__sub_80128440",
+        "TObjPlayer__sub_8012AB1C",
+        "TObjPlayer__sub_8012CE44",
+        "TObjPlayer__sub_8012CF84",
+        "TObjPlayer__sub_8012EFAC",
+        "TObjPlayer__sub_8012F298",
+        "TObjPlayer__sub_80307800",
+        "TObjPlayer__sub_803265C0",
+        "TObjPlayer__sub_8034F1AC",
+        "TObjPlayer__sub_803630F0",
+        "alloc_and_init_obj_effect",
+        "create_agito_weapon",
+        "create_baranz_launcher",
+        "create_belra_cannon",
+        "create_cane_weapon",
+        "create_claw_weapon",
+        "create_common_weapon",
+        "create_dagger_weapon",
+        "create_dark_flow",
+        "create_delsabers_buster_weapon",
+        "create_guardianna",
+        "create_guld_milla",
+        "create_handgun_weapon",
+        "create_knuckle_weapon",
+        "create_mechgun_weapon",
+        "create_morning_glory",
+        "create_panzer_faust",
+        "create_partisan_weapon",
+        "create_photon_field_weapon",
+        "create_psycho_wand",
+        "create_rifle_weapon",
+        "create_rod_weapon",
+        "create_s_rank_bazooka",
+        "create_s_rank_j_cutter_weapon",
+        "create_s_rank_knuckle",
+        "create_s_rank_shot",
+        "create_s_rank_slicer_weapon",
+        "create_saber_weapon",
+        "create_shot_weapon",
+        "create_slicer_weapon",
+        "create_sorcerers_cane",
+        "create_soul_eater_weapon",
+        "create_suppressed_gun_weapon",
+        "create_sword_weapon",
+        "create_twin_psychogun",
+        "create_wand_weapon",
+        "create_yasminkov_2000h",
+        "create_yasminkov_3000r",
+        "create_yasminkov_7000v",
+        "create_yasminkov_9000m",
+        "dark_bridge_create",
+        "frozen_shooter_create",
+        "sealed_j_sword_create",
+        "yamigarasu_create"
+      ],
+      "native_additional_weapons": {
+        "TObjPlayer__sub_80121318": {
+          "allocated": "TUnk_804A07C0",
+          "header": "include/pso/weapon/TUnk_804A07C0.h",
+          "implementation": "src/pso/weapon/TUnk_804A07C0.cpp"
+        },
+        "TObjPlayer__sub_801228CC": {
+          "allocated": "TUnk_804A1098",
+          "header": "include/pso/weapon/TUnk_804A1098.h",
+          "implementation": "src/pso/weapon/TUnk_804A1098.cpp"
+        },
+        "TObjPlayer__sub_801229EC": {
+          "allocated": "TUnk_804A1190",
+          "header": "include/pso/weapon/TUnk_804A1190.h",
+          "implementation": "src/pso/weapon/TUnk_804A1190.cpp"
+        },
+        "TObjPlayer__sub_8012380C": {
+          "allocated": "TUnk_804A1A48",
+          "header": "include/pso/weapon/TUnk_804A1A48.h",
+          "implementation": "src/pso/weapon/TUnk_804A1A48.cpp"
+        },
+        "TObjPlayer__sub_80123950": {
+          "allocated": "TUnk_804A1B40",
+          "header": "include/pso/weapon/TUnk_804A1B40.h",
+          "implementation": "src/pso/weapon/TUnk_804A1B40.cpp"
+        },
+        "TObjPlayer__sub_80125428": {
+          "allocated": "TUnk_804A2450",
+          "header": "include/pso/unk/text_80125428.h",
+          "implementation": "src/pso/weapon/TUnk_804A2450.cpp"
+        },
+        "TObjPlayer__sub_80126054": {
+          "allocated": "TUnk_804A2868",
+          "header": "include/pso/weapon/TUnk_804A2868.h",
+          "implementation": "src/pso/weapon/TUnk_804A2868.cpp"
+        },
+        "TObjPlayer__sub_80127314": {
+          "allocated": "TUnk_804A3168",
+          "header": "include/pso/weapon/TUnk_804A3168.h",
+          "implementation": "src/pso/weapon/TUnk_804A3168.cpp"
+        },
+        "TObjPlayer__sub_801277EC": {
+          "allocated": "TUnk_804A3358",
+          "header": "include/pso/weapon/TUnk_804A3358.h",
+          "implementation": "src/pso/weapon/TUnk_804A3358.cpp"
+        },
+        "TObjPlayer__sub_80128308": {
+          "allocated": "TUnk_804A3A20",
+          "header": "include/pso/unk/text_80128308.h",
+          "implementation": "src/pso/weapon/TUnk_804A3A20.cpp"
+        },
+        "TObjPlayer__sub_80128440": {
+          "allocated": "TUnk_804A3B20",
+          "header": "include/pso/unk/text_80128440.h",
+          "implementation": "src/pso/weapon/TUnk_804A3B20.cpp"
+        },
+        "TObjPlayer__sub_8012AB1C": {
+          "allocated": "TUnk_804A4A88",
+          "header": "include/pso/weapon/TUnk_804A4A88.h",
+          "implementation": "src/pso/weapon/TUnk_804A4A88.cpp"
+        },
+        "TObjPlayer__sub_8012CE44": {
+          "allocated": "TUnk_804A5648",
+          "header": "include/pso/weapon/TUnk_804A5648.h",
+          "implementation": "src/pso/weapon/TUnk_804A5648.cpp"
+        },
+        "TObjPlayer__sub_8012CF84": {
+          "allocated": "TUnk_804A5740",
+          "header": "include/pso/weapon/TUnk_804A5740.h",
+          "implementation": "src/pso/weapon/TUnk_804A5740.cpp"
+        },
+        "TObjPlayer__sub_8012EFAC": {
+          "allocated": "TUnk_804A6108",
+          "header": "include/pso/weapon/TUnk_804A6108.h",
+          "implementation": "src/pso/weapon/TUnk_804A6108.cpp"
+        },
+        "TObjPlayer__sub_8012F298": {
+          "allocated": "TUnk_804A6200",
+          "header": "include/pso/weapon/TUnk_804A6200.h",
+          "implementation": "src/pso/weapon/TUnk_804A6200.cpp"
+        },
+        "TObjPlayer__sub_80307800": {
+          "allocated": "TUnk_804E70A8",
+          "header": "include/pso/player/TObjPlayer_80307618.h",
+          "implementation": "src/pso/player/TObjPlayer_80307618.cpp"
+        },
+        "TObjPlayer__sub_803265C0": {
+          "allocated": "TUnk_804ECDC0",
+          "header": "include/pso/weapon/TUnk_804ECDC0.h",
+          "implementation": "src/pso/weapon/TUnk_804ECDC0.cpp"
+        },
+        "TObjPlayer__sub_8034F1AC": {
+          "allocated": "TUnk_804F0810",
+          "header": "include/pso/effect/item/TItemEffPG.h",
+          "implementation": "src/pso/effect/item/TItemEffPG_8034EFDC.cpp"
+        },
+        "TObjPlayer__sub_803630F0": {
+          "allocated": "TUnk_804F27E0",
+          "header": "include/pso/player/TObjPlayer_80362E60.h",
+          "implementation": "src/pso/player/TObjPlayer_80362E60.cpp"
+        },
+        "alloc_and_init_obj_effect": {
+          "allocated": "TUnk_804F1EC8",
+          "header": "include/pso/unk/text_8035D444.h",
+          "implementation": "src/pso/unk/text_8035D444.cpp"
+        },
+        "create_agito_weapon": {
+          "allocated": "TUnk_804A3070",
+          "header": "include/pso/weapon/TUnk_804A3070.h",
+          "implementation": "src/pso/weapon/TUnk_804A3070.cpp"
+        },
+        "create_baranz_launcher": {
+          "allocated": "TUnk_804A2A58",
+          "header": "include/pso/unk/text_80126740.h",
+          "implementation": "src/pso/weapon/TUnk_804A2A58.cpp"
+        },
+        "create_belra_cannon": {
+          "allocated": "TUnk_804A0CB8",
+          "header": "include/pso/weapon/TUnk_804A0CB8.h",
+          "implementation": "src/pso/weapon/TUnk_804A0CB8.cpp"
+        },
+        "create_claw_weapon": {
+          "allocated": "TUnk_804A1C38",
+          "header": "include/pso/weapon/TUnk_804A1C38.h",
+          "implementation": "src/pso/weapon/TUnk_804A1C38.cpp"
+        },
+        "create_dark_flow": {
+          "allocated": "TUnk_804ED488",
+          "header": "include/pso/weapon/TUnk_804ED488.h",
+          "implementation": "src/pso/weapon/TUnk_804ED488.cpp"
+        },
+        "create_delsabers_buster_weapon": {
+          "allocated": "TUnk_804A1F20",
+          "header": "include/pso/weapon/TUnk_804A1F20.h",
+          "implementation": "src/pso/weapon/TUnk_804A1F20.cpp"
+        },
+        "create_guardianna": {
+          "allocated": "TUnk_804EDC28",
+          "header": "include/pso/weapon/TUnk_804EDC28.h",
+          "implementation": "src/pso/effect/item/TItemWpnCardEffect.cpp"
+        },
+        "create_guld_milla": {
+          "allocated": "TUnk_804A0EA8",
+          "header": "include/pso/weapon/TUnk_804A0EA8.h",
+          "implementation": "src/pso/weapon/TUnk_804A0EA8.cpp"
+        },
+        "create_knuckle_weapon": {
+          "allocated": "TUnk_804A2B98",
+          "header": "include/pso/unk/text_80126A34.h",
+          "implementation": "src/pso/weapon/TItemWeaponFist.cpp"
+        },
+        "create_morning_glory": {
+          "allocated": "TUnk_804ED1A0",
+          "header": "include/pso/weapon/TUnk_804ED1A0.h",
+          "implementation": "src/pso/weapon/TUnk_804ED1A0.cpp"
+        },
+        "create_panzer_faust": {
+          "allocated": "TUnk_804A2564",
+          "header": "include/pso/player/TObjPlayer_80125780.h",
+          "implementation": "src/pso/player/TUnk_804A2548.cpp"
+        },
+        "create_photon_field_weapon": {
+          "allocated": "TUnk_804F1320",
+          "header": "include/pso/unk/text_80355C1C.h",
+          "implementation": "src/pso/unk/text_80355C1C.cpp"
+        },
+        "create_psycho_wand": {
+          "allocated": "TUnk_804A4F60",
+          "header": "include/pso/weapon/TUnk_804A4F60.h",
+          "implementation": "src/pso/weapon/TUnk_804A4F60.cpp"
+        },
+        "create_s_rank_bazooka": {
+          "allocated": "TUnk_804A4548",
+          "header": "include/pso/unk/text_80129D18.h",
+          "implementation": "src/pso/weapon/TUnk_804A4548.cpp"
+        },
+        "create_s_rank_j_cutter_weapon": {
+          "allocated": "TUnk_804A4238",
+          "header": "include/pso/weapon/TUnk_804A4238.h",
+          "implementation": "src/pso/weapon/TUnk_804A4238.cpp"
+        },
+        "create_s_rank_knuckle": {
+          "allocated": "TUnk_804F26E0",
+          "header": "include/pso/weapon/TUnk_804F26E0.h",
+          "implementation": "src/pso/weapon/TUnk_804F26E0.cpp"
+        },
+        "create_s_rank_shot": {
+          "allocated": "TUnk_804A444C",
+          "header": "include/pso/unk/text_80129AB0.h",
+          "implementation": "src/pso/weapon/TUnk_804A444C.cpp"
+        },
+        "create_s_rank_slicer_weapon": {
+          "allocated": "TUnk_804A4338",
+          "header": "include/pso/weapon/TUnk_804A4338.h",
+          "implementation": "src/pso/weapon/TUnk_804A4338.cpp"
+        },
+        "create_sorcerers_cane": {
+          "allocated": "TUnk_804A1E28",
+          "header": "include/pso/weapon/TUnk_804A1E28.h",
+          "implementation": "src/pso/weapon/TUnk_804A1E28.cpp"
+        },
+        "create_soul_eater_weapon": {
+          "allocated": "TUnk_804A5838",
+          "header": "include/pso/weapon/TUnk_804A5838.h",
+          "implementation": "src/pso/weapon/TUnk_804A5838.cpp"
+        },
+        "create_suppressed_gun_weapon": {
+          "allocated": "TUnk_804A2D88",
+          "header": "include/pso/weapon/TUnk_804A2C90.h",
+          "implementation": "src/pso/weapon/TUnk_804A2C90.cpp"
+        },
+        "create_twin_psychogun": {
+          "allocated": "TUnk_804A66D8",
+          "header": "include/pso/weapon/TUnk_804A66D8.h",
+          "implementation": "src/pso/weapon/TUnk_804A66D8.cpp"
+        },
+        "create_wand_weapon": {
+          "allocated": "TUnk_804A1478",
+          "header": "include/pso/weapon/TUnk_804A1478.h",
+          "implementation": "src/pso/weapon/TUnk_804A1478.cpp"
+        },
+        "create_yasminkov_2000h": {
+          "allocated": "TUnk_804A6CC8",
+          "header": "include/pso/weapon/TUnk_804A6CC8.h",
+          "implementation": "src/pso/weapon/TUnk_804A6CC8.cpp"
+        },
+        "create_yasminkov_3000r": {
+          "allocated": "TUnk_804A6BD0",
+          "header": "include/pso/weapon/TUnk_804A6BD0.h",
+          "implementation": "src/pso/weapon/TUnk_804A6BD0.cpp"
+        },
+        "create_yasminkov_7000v": {
+          "allocated": "TUnk_804A6DC0",
+          "header": "include/pso/weapon/TUnk_804A6DC0.h",
+          "implementation": "src/pso/weapon/TUnk_804A6DC0.cpp"
+        },
+        "create_yasminkov_9000m": {
+          "allocated": "TUnk_804A6AD8",
+          "header": "include/pso/weapon/TUnk_804A6AD8.h",
+          "implementation": "src/pso/weapon/TUnk_804A6AD8.cpp"
+        },
+        "dark_bridge_create": {
+          "allocated": "TUnk_804ECFB0",
+          "header": "include/pso/weapon/TUnk_804ECFB0.h",
+          "implementation": "src/pso/weapon/TUnk_804ECFB0.cpp"
+        },
+        "frozen_shooter_create": {
+          "allocated": "TUnk_804A2960",
+          "header": "include/pso/weapon/TUnk_804A2960.h",
+          "implementation": "src/pso/weapon/TUnk_804A2960.cpp"
+        },
+        "sealed_j_sword_create": {
+          "allocated": "TUnk_804A5930",
+          "header": "include/pso/weapon/TUnk_804A5930.h",
+          "implementation": "src/pso/weapon/TUnk_804A5930.cpp"
+        },
+        "yamigarasu_create": {
+          "allocated": "TUnk_804A3738",
+          "header": "include/pso/weapon/TUnk_804A3738.h",
+          "implementation": "src/pso/weapon/TUnk_804A3738.cpp"
+        }
+      }
+    }
+  }
+}

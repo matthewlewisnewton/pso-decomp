@@ -1,0 +1,177 @@
+{
+  "source": "544f0644c989e4791da2a7cfad7e6312ad45c88c",
+  "previous_source": "a19b741e05ed83630c22a276adaf09f7dfab833b",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/epsilon/TObjEneEpsilonGuard.h",
+    "include/pso/enemy/morfos/TObjEneMorfosArm.h",
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp",
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+    "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+    "src/pso/enemy/morfos/TObjEneMorfosArm.cpp"
+  ],
+  "combined_paths_from_upstream": 1328,
+  "validation": {
+    "source": {
+      "baseline": "a19b741e05ed83630c22a276adaf09f7dfab833b",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x80335430",
+          "before": "create__16TObjEneMorfosArmFPvPv",
+          "after": "create__16TObjEneMorfosArmFP7TObjectP13TObjEneMorfos"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8035DEF8",
+          "before": "set_target__19TObjEneEpsilonGuardFlll",
+          "after": "set_target__19TObjEneEpsilonGuardFPC3Vecll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8035F1C8",
+          "before": "create__19TObjEneEpsilonGuardFllPC3Vecl",
+          "after": "create_guard__18TObjEneEpsilonBodyFUllPC3Vecl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8035F970",
+          "before": "assign_guard_targets__19TObjEneEpsilonGuardFv",
+          "after": "assign_guard_targets__18TObjEneEpsilonBodyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80360D9C",
+          "before": "handle_warp_state__19TObjEneEpsilonGuardFl",
+          "after": "handle_warp_state__18TObjEneEpsilonBodyFl"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "08fade3086bf0de7de170c3e6ae75ecabfbb304a286b78e2fa972bd23a00c687",
+      "report_sha256": "7943edfda91c67917f7c8637dc30e67e334158134e8d61b1c6fd564cf62f9ce9"
+    },
+    "layer": {
+      "baseline": "544f0644c989e4791da2a7cfad7e6312ad45c88c",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "7943edfda91c67917f7c8637dc30e67e334158134e8d61b1c6fd564cf62f9ce9"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "aa57ec78bd9869baa5ebc3e88cb5ce6be487533eda96aabe990ec2356f0151ad"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "1533ae00551bace091f0461713b35e5046b48e9dd31b4c417da2e9b57b692238"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "exact_units": {
+    "psov3/pso/enemy/morfos/TObjEneMorfos": 47,
+    "psov3/pso/enemy/morfos/TObjEneMorfosArm": 7,
+    "psov3/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68": 39,
+    "psov3/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8": 55,
+    "psov3/pso/unk/text_803D853C": 17
+  },
+  "runtime": {
+    "images": [
+      "retail",
+      "source",
+      "materialized fork"
+    ],
+    "enemy_ownership": {
+      "probe_sha256": "139451b8c7a0a7ff86c24627334400b30edddf1b9ed75973d03d53a92449c12f",
+      "log_sha256": "6a54509e329dd42fa3f0d87f1dcd17fb6b7113e9a6a9414827bdad348e41cf7d"
+    },
+    "panarms_contacts": {
+      "cases_per_image": 28,
+      "probe_sha256": "275f7e2eae75d858c354ef563e4a6d85ef8395a2e0241cf1802b75fb9d030c55",
+      "log_sha256": "9b1c1691a89bef7bc8b3b89b9bebe6f9d19b1584054cb1cc20eefcae3f60e421"
+    }
+  },
+  "historical": {
+    "closed": {
+      "row": 1183,
+      "path": "src/pso/unk/text_803D853C.cpp",
+      "hunks": [
+        "The cursor and renderer routines already run in the current exact unit, with typed SDK calls and the same glyph quads and stream reset.",
+        "The queue and padded print use the shared DebugTextRecord offsets and text-pool advancement.",
+        "The compiled format literal retains all six bytes at 0x805D46A0.",
+        "The four-argument matrix-array implementation and matching matrix wrappers share the current source owner. The fork's header and duplicate extern changes followed its file split."
+      ]
+    },
+    "scoped": {
+      "599": "The arm factory receives the actual parent and body types. Both projectile states pass the typed model-node vector to the emitter and projectile constructor. The full comparison remains open.",
+      "718": "The native body owns guard creation, target assignment and warp dispatch. Live guards take a const Vec pointer for their assigned target. The full comparison remains open."
+    },
+    "open_rows": 280,
+    "comparison_sha256": "622196a09510139fba1af9ce4564667aa5d5d63ceea8c78287e3805708d62f1d"
+  },
+  "fork_workspace": {
+    "trial": "4bfa1472dd1d4e4fd82834863a5ad0cca3e77e11",
+    "overlay_paths": 130,
+    "force_active_count": 27033,
+    "keep_list_updates": [
+      {
+        "module": "psov3",
+        "address": "0x8035F970",
+        "before": "assign_guard_targets__19TObjEneEpsilonGuardFv",
+        "after": "assign_guard_targets__18TObjEneEpsilonBodyFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80360D9C",
+        "before": "handle_warp_state__19TObjEneEpsilonGuardFl",
+        "after": "handle_warp_state__18TObjEneEpsilonBodyFl"
+      }
+    ],
+    "materialized_tree": "bbbac1e06c1fc2090ebb26595f1da6b2b4fb96cc",
+    "archive_sha256": "895a91481a1387fb129edf011801890f39bee3989b28334b879cf6cda22cff2a"
+  }
+}
