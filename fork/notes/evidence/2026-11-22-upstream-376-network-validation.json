@@ -1,0 +1,245 @@
+{
+  "upstream_master": "e39eb9e13801cc5c2d298ca42c616731d3d06296",
+  "pull_request": "https://github.com/zeroz41/pso-decomp/pull/376",
+  "published_head": "67618d4db8a2f0d4d1d746dc2dc14f1235f9d55c",
+  "matching_ci": "https://github.com/zeroz41/pso-decomp/actions/runs/45109746613/job/137479127616",
+  "local_cumulative": "5caa0255a7507dc1e0ce8cd1d9e7655376cafdb3",
+  "previous_cumulative": "496ea1d0543745152b8017e869435c27a533b693",
+  "materialized_tree": "1baf132e0cc26f7959d4ed93945bf23b7bba4842",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "matching_functions": 27572,
+  "linked_units": 2394,
+  "initial_fork_data_ranges": {
+    "linked": 980,
+    "padding": 167,
+    "ranges": 90,
+    "remaining": 0
+  },
+  "source_quality": {
+    "base": 158724,
+    "head": 158060,
+    "added": 0,
+    "removed": 664,
+    "flagged_labels": 0,
+    "stale_force_active": 0,
+    "renames": [
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80078378",
+        "type": "function",
+        "old": "handle_socket_event__10TUdpSocketFsP11UdpDatagram",
+        "new": "handle_socket_event__10TUdpSocketFsP20NetworkReceivePrefix",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8042BF48",
+        "type": "function",
+        "old": "wake_load_thread__23TAdSinglePlyChrSelectGCFv",
+        "new": "wake_load_thread__23TAdSinglePlyChrSelectGCFlP9OSContext",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8042E768",
+        "type": "function",
+        "old": "copy_default_and_get_state__23TAdSinglePlyChrSelectGCFv",
+        "new": "copy_default_and_get_state",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8042E84C",
+        "type": "function",
+        "old": "send_modem_hangup__23TAdSinglePlyChrSelectGCFl",
+        "new": "send_modem_hangup__23TAdSinglePlyChrSelectGCFi",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".bss",
+        "address": "0x805C0180",
+        "type": "object",
+        "old": "lbl_805C0180",
+        "new": "ppp_chap_authentication_state",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".bss",
+        "address": "0x805C04D8",
+        "type": "object",
+        "old": "lbl_805C04D8",
+        "new": "ppp_pap_authentication_state",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".sdata",
+        "address": "0x805D4920",
+        "type": "object",
+        "old": "lbl_805D4920",
+        "new": "modem_tone_dial_prefix",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".sdata",
+        "address": "0x805D4928",
+        "type": "object",
+        "old": "lbl_805D4928",
+        "new": "modem_pulse_ratio_default_command",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".sdata",
+        "address": "0x805D4930",
+        "type": "object",
+        "old": "lbl_805D4930",
+        "new": "modem_pulse_dial_prefix",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".sdata",
+        "address": "0x805D4938",
+        "type": "object",
+        "old": "lbl_805D4938",
+        "new": "modem_pulse_ratio_alt_command",
+        "flags": []
+      }
+    ]
+  },
+  "pr375_merge_preview": {
+    "head": "8dcc7ef89216d10c9fecca755468748f93b4edcb",
+    "tree": "4d695eec4ac475f3b453b0cb14dca69ea68fe950"
+  },
+  "private_checks": 310,
+  "runtime_suites": {
+    "sdk-queues": {
+      "probe_sha256": "ed90ded6d9abadd5f381b21fcc344029dd93c919ad14f0442e7b8246c12393a7",
+      "log_sha256": "071c5f597d5d0471f933596f6d0307cefbd0f52ba86a15041d97b7272b0352ee",
+      "results": [
+        "{\"completion_cases\": 4, \"post_cases\": 8, \"receive_cases\": 8, \"shutdown_cases\": 8, \"startup_cases\": 12, \"update_cases\": 12}"
+      ]
+    },
+    "stack-lifecycle": {
+      "probe_sha256": "046900bbac560e7970f02d2748cfc6c469368d137199425a4dfcb63ed8fd6f3e",
+      "log_sha256": "5f5daee5776ec374acda2e0b8b636dd205a2884ec83d3ff5bda0c88cbbee3050",
+      "results": [
+        "{\"branches\": {\"compare_sockaddr\": 7, \"init_buffer_descriptor_a\": 1, \"init_buffer_descriptor_b\": 1, \"init_ipv6_interface_config\": 1, \"init_net_buffer_config\": 1, \"init_net_config\": 1, \"init_net_func_table\": 1, \"init_net_recv_desc\": 1, \"init_udp_socket_config\": 1, \"is_multicast_address\": 3, \"release_entry\": 41, \"request_network_info_load__FlPv\": 1}, \"headers\": 5, \"initializers\": 8, \"poll_cases\": 36, \"pool_cases\": 140, \"request_cases\": 42}"
+      ]
+    },
+    "modem-transport": {
+      "probe_sha256": "657831b542faf37b6a8ecabe573bade97f4c85ddb3a64f9a505a1be86fdef85e",
+      "log_sha256": "e875c2ef1973995305bc1b8a56e32165851f11bf163311d204b0cef0ed7d2261",
+      "results": [
+        "PsoV3.dol: modem send, status, command filters, dialing and four ring cases passed.",
+        "candidate.dol: modem send, status, command filters, dialing and four ring cases passed."
+      ]
+    },
+    "modem-dial-script": {
+      "probe_sha256": "1fd32ba7c01a06a0125c768f99ef4215063467696bb56cf6e32e681d3c575221",
+      "log_sha256": "5d9af8d393281d979b93d44258917b3cc961c1acbcfcfc79ffe24db22afcd0e4",
+      "results": [
+        "PsoV3.dol: 13 modem script cases passed.",
+        "candidate.dol: 13 modem script cases passed."
+      ]
+    },
+    "network-startup": {
+      "probe_sha256": "2f20cfc10be3c4a71291ce2c130e6f49ef6ff7f52bf4586a8dbd901fe0e4d805",
+      "log_sha256": "ca2306644032441ec56c77568b943178bec7ec3f8d440a45453362588da62cc1",
+      "results": [
+        "PsoV3.dol: 20 network startup and PPP cases passed.",
+        "candidate.dol: 20 network startup and PPP cases passed."
+      ]
+    },
+    "ppp-frames": {
+      "probe_sha256": "9660b2b4490e1623008049b8afb52517686e1dad6bd7447cac4ab8ff4858a983",
+      "log_sha256": "81462831494804ea45f679597de7c41b88dbab392895d0592a90074880379ee1",
+      "results": [
+        "PsoV3.dol: 28 PPP frame, dispatch, and compression cases passed.",
+        "candidate.dol: 28 PPP frame, dispatch, and compression cases passed."
+      ]
+    },
+    "ppp-callbacks": {
+      "probe_sha256": "89b11ef200288902d2b2c1b9f5085a02ee2fd63d0bc9008d2dc4f61dc52a5349",
+      "log_sha256": "1100d0d2f87c278c7c6832b702f866a08d1f7616c02113cc05109056f0fdbe2a",
+      "results": [
+        "PsoV3.dol: 13 PPP callback-table and IPv6CP option cases passed.",
+        "candidate.dol: 13 PPP callback-table and IPv6CP option cases passed."
+      ]
+    },
+    "runtime-slots": {
+      "probe_sha256": "8924a82c94c2c4cbc11c45f957fc89693e859fbeb5a386d517d5702e9a68c083",
+      "log_sha256": "21159f78617b4c4a08a683735f25ebeb42c19b4cf6299f874b58ccd914c475a8",
+      "results": [
+        "PsoV3.dol: seven network slot initialization cases passed.",
+        "candidate.dol: seven network slot initialization cases passed."
+      ]
+    },
+    "packet-receive-and-dhcp": {
+      "probe_sha256": "5587c776da77526c1746783b6e1abffe4d1c1816087e3bff12034d958e88578d",
+      "log_sha256": "989b17e2183d3e025016125bdaa43b9198ae23d1549ebdd457a95d8cfae50d76",
+      "results": [
+        "PsoV3.dol: 15 receive and DHCP record cases passed.",
+        "candidate.dol: 15 receive and DHCP record cases passed."
+      ]
+    },
+    "socket-and-dhcp-handoffs": {
+      "probe_sha256": "e4c444684b3e527d1ab4baee37a321b795e15df7ed23e8b6eceabd623a3ead57",
+      "log_sha256": "b7bd415f43953094a0e646b9f8fff3e012eb8ab2dd3faaf9cecdccab9c59c9f3",
+      "results": [
+        "PsoV3.dol: 10 socket timer, send handoff and DHCP option cases passed.",
+        "candidate.dol: 10 socket timer, send handoff and DHCP option cases passed."
+      ]
+    },
+    "socket-queues": {
+      "probe_sha256": "0de4e9dbf95a835be9ea646541e5abda11115c6f0008d3c1ea5d859a7fc3b12f",
+      "log_sha256": "701852d4f7fe7a41d7ee822cef1724c0c0378c07d2f3b6e0d1022465ffb69cd6",
+      "results": [
+        "786 reassembly comparisons and 12 out-of-order receive cases passed.",
+        "2,528 gathers and 1,600 ACKs passed, including 1766 completion events."
+      ]
+    },
+    "probe-dispatcher": {
+      "probe_sha256": "2efcf4bff77d91bf98ada5731a55be9262f2c16960787c2bea7cd26c08aab0ec",
+      "log_sha256": "e56dd2e34435f0ed066a335f886a9dd50887705b8378a036f9a3f03b2c3c9ffc",
+      "results": [
+        "PsoV3.dol: dispatcher initialization, all unwind paths, and message layout passed.",
+        "candidate.dol: dispatcher initialization, all unwind paths, and message layout passed."
+      ]
+    },
+    "probe-frame-layouts": {
+      "probe_sha256": "c8b98f15c434a8a9daf2878834d93d40e1f1de6b7c318e58c0ff1ad3fd83bc08",
+      "log_sha256": "d68639f777c42b4d83bcabfd24198c32a975e6c7bb20895b5569e1a410c19cf0",
+      "results": [
+        "PsoV3.dol: PPP frame length and headroom, IPv4 options, and TCP header fields passed",
+        "candidate.dol: PPP frame length and headroom, IPv4 options, and TCP header fields passed"
+      ]
+    },
+    "probe-udp-callbacks": {
+      "probe_sha256": "53cf999b8856b70034d5dc88c610f02cfe5aef389b8cd48020a7510307b2756b",
+      "log_sha256": "dd9f60fdb2526967160a0f0c5b773896c77436bf1c324727f17624bf86179653",
+      "results": [
+        "PsoV3.dol: typed UDP connect, independent event and receive slots, duplicate rejection and close passed.",
+        "candidate.dol: typed UDP connect, independent event and receive slots, duplicate rejection and close passed."
+      ]
+    }
+  },
+  "artifacts_sha256": {
+    "quality.json": "4606ef93f15c40e058bd9a4987e60056c3a2f40fb6cb76b7c9ef7f0ff1d34cab",
+    "check.json": "65e9ba1df40878ef201902cf6f82ef3c7f2202e0aafc51fd1d92430fb02e4237",
+    "report.json.gz": "179d9d25c0d6d511bb23c602d32788ac87511dd4c6344ae62f02825cacb16b64",
+    "cumulative-check.json": "12117efc47b8ca97131cd05b3f400b410b8e6578c32c963dc43d59941b268f4b",
+    "cumulative-report.json.gz": "6c19d29b190e705efccd6c57a2beeab4add37c2b0d50e3d930cf892cda63860a",
+    "private-check.json": "32b4051a8bc235b336030f70b7596e70985a7243fa45e98265a7cac8ce650132",
+    "private-report.json.gz": "6c19d29b190e705efccd6c57a2beeab4add37c2b0d50e3d930cf892cda63860a",
+    "workspace.patch.gz": "83747ba31cdd25b835cdd9edcc3c4821975965bd39e4540460c44832e7805615"
+  }
+}

@@ -1,0 +1,820 @@
+"""Local-only fixtures: no GitHub writes, original game files or compiler builds."""
+import copy
+import contextlib
+import io
+import os
+import hashlib
+import importlib.util
+import json
+from pathlib import Path
+import subprocess
+import sys
+import tempfile
+import unittest
+from unittest.mock import patch
+
+MODULE = Path(__file__).resolve().parents[1] / 'merge_batch.py'
+spec = importlib.util.spec_from_file_location('merge_batch_under_test', MODULE)
+m = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(m)
+
+
+def git(path, *args):
+    return subprocess.check_output(['git', '-C', str(path), *args], text=True, stderr=subprocess.DEVNULL).strip()
+
+
+class LocalAPI:
+    def __init__(self, remote, spec):
+        self.remote, self.spec, self.overrides = remote, spec, {}
+
+    def branch(self, name):
+        return {'name': name, 'head': git(self.remote, 'rev-parse', 'refs/heads/' + name)}
+
+    def prs(self, spec):
+        result = {}
+        target = self.branch('main')['head']
+        for p in spec['prs']:
+            merged = subprocess.run(['git', '-C', str(self.remote), 'merge-base', '--is-ancestor', p['head'], target], capture_output=True).returncode == 0
+            result[p['number']] = dict(p, repository=m.REPOSITORY, state='closed' if merged else 'open',
+                                      draft=False, checks={'source-checks': 'success'}, merged=merged,
+                                      merge_commit=target if merged else None)
+            result[p['number']].update(self.overrides)
+        return result
+
+
+class LocalQueue(m.Queue):
+    def publication_destination(self):
+        with patch.object(m, 'REMOTE', str(self.api.remote)):
+            return super().publication_destination()
+
+    # Deliberate test-only transport: production code has no local-remote override.
+    def git(self, *args, **kw):
+        if args == ('remote', 'get-url', 'origin'):
+            return m.REMOTE
+        return super().git(*args, **kw)
+
+
+class QueueTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.root = Path(self.temp.name)
+        self.remote = self.root / 'remote.git'
+        self.author = self.root / 'author'
+        subprocess.run(['git', 'init', '--bare', str(self.remote)], check=True, capture_output=True)
+        subprocess.run(['git', 'init', str(self.author)], check=True, capture_output=True)
+        git(self.author, 'config', 'user.name', 'Fixture')
+        git(self.author, 'config', 'user.email', 'fixture@localhost')
+        git(self.author, 'checkout', '-b', 'main')
+        (self.author / 'file').write_text('base\n')
+        git(self.author, 'add', 'file'); git(self.author, 'commit', '-m', 'base')
+        target = git(self.author, 'rev-parse', 'HEAD')
+        git(self.author, 'remote', 'add', 'origin', str(self.remote))
+        git(self.author, 'push', 'origin', 'main')
+        git(self.author, 'checkout', '-b', 'feature')
+        (self.author / 'file').write_text('recovery\n')
+        git(self.author, 'commit', '-am', 'change')
+        head = git(self.author, 'rev-parse', 'HEAD')
+        git(self.author, 'push', 'origin', 'feature')
+        self.review = self.root / 'review.txt'; self.review.write_text('independent fixture review')
+        self.batch = {'version': 1, 'repository': m.REPOSITORY, 'default_branch': 'main', 'target': target,
+                      'policy': 'recovery', 'authorization': 'fixture', 'commit_epoch': 1793476000,
+                      'prs': [{'number': 1, 'head': head, 'head_ref': 'feature', 'base_ref': 'main',
+                               'base_sha': target, 'review_base': target, 'kind': 'recovery',
+                               'required_checks': ['source-checks'], 'review': {
+                                   'verdict': 'pass', 'independent': True, 'reviewer': 'fixture reviewer',
+                                   'head': head, 'base': target, 'path': str(self.review), 'sha256': m.digest(self.review)}}]}
+        self.state = self.root / 'state'; self.state.mkdir()
+        self.api = LocalAPI(self.remote, self.batch)
+        self.q = LocalQueue(self.batch, self.state, self.api)
+        subprocess.run(['git', 'clone', str(self.remote), str(self.q.repo)], check=True, capture_output=True)
+        self.result = {'version': 1, 'target': target, 'tree': head, 'checks': dict.fromkeys(m.CHECKS, True),
+                       'losses': {'code': 0, 'data': 0, 'link': 0},
+                       'delta': {'matched_code': 4, 'matched_data': 0, 'complete_code': 0, 'complete_data': 0},
+                       'dol_sha1': '0d85744b51d7379efb025a943d0cd5aaae2191a3'}
+
+    def tearDown(self):
+        self.temp.cleanup()
+
+    def rejects(self, code, fn):
+        with self.assertRaises(m.Rejected) as caught:
+            fn()
+        self.assertEqual(caught.exception.code, code)
+
+    def test_wrong_repository(self):
+        self.batch['repository'] = 'zeroz41/pso-decomp'
+        self.rejects('wrong_repository', lambda: m.validate_spec(self.batch))
+
+    def test_missing_review(self):
+        self.batch['prs'][0]['review']['independent'] = False
+        self.rejects('missing_review', lambda: m.validate_spec(self.batch))
+
+    def test_changed_review_evidence(self):
+        self.review.write_text('changed')
+        self.rejects('stale_review', self.q.live_guard)
+
+    def test_stale_head_and_base(self):
+        for field in ('head', 'base_sha', 'base_ref', 'head_ref'):
+            with self.subTest(field=field):
+                self.api.overrides = {field: 'different'}
+                self.rejects('stale_pr', self.q.live_guard)
+
+    def test_missing_hosted_check(self):
+        self.api.overrides = {'checks': {'source-checks': 'queued'}}
+        self.rejects('missing_checks', self.q.live_guard)
+
+    def test_failed_build_and_missing_validation_check(self):
+        for key in m.CHECKS:
+            r = copy.deepcopy(self.result); r['checks'][key] = False
+            self.rejects('failed_checks', lambda: m.check_validation(self.batch, r, r['tree']))
+
+    def test_code_data_and_link_loss(self):
+        for key in ('code', 'data', 'link'):
+            r = copy.deepcopy(self.result); r['losses'][key] = 1
+            self.rejects('coverage_loss', lambda: m.check_validation(self.batch, r, r['tree']))
+
+    def test_zero_gain_prerequisite_batch_rejected(self):
+        self.result['delta']['matched_code'] = 0
+        self.rejects('zero_gain', lambda: m.check_validation(self.batch, self.result, self.result['tree']))
+
+    def test_source_maintenance_zero_gain_and_guard_evidence(self):
+        self.batch['policy'] = 'source-maintenance'
+        self.batch['prs'][0]['kind'] = 'source-maintenance'
+        m.validate_spec(self.batch)
+        self.result['delta'] = dict.fromkeys(('matched_code', 'matched_data', 'complete_code', 'complete_data', 'matched_functions', 'total_functions', 'total_code', 'total_data'), 0)
+        ranges = ('code_coverage', 'code_exact', 'code_linked', 'data_coverage', 'data_exact', 'data_linked', 'function_coverage', 'function_exact', 'function_linked')
+        self.result['zero_lost_address_ranges'] = dict.fromkeys(ranges, 0)
+        self.result['raw_report_sha256'] = {'baseline': 'a' * 64, 'candidate': 'b' * 64}
+        m.check_validation(self.batch, self.result, self.result['tree'])
+        for field in ('zero_lost_address_ranges', 'raw_report_sha256'):
+            bad = copy.deepcopy(self.result); del bad[field]
+            self.rejects('missing_extent_gate' if field.startswith('zero') else 'missing_raw_reports', lambda: m.check_validation(self.batch, bad, bad['tree']))
+        bad = copy.deepcopy(self.result); bad['zero_lost_address_ranges']['code_exact'] = False
+        self.rejects('missing_extent_gate', lambda: m.check_validation(self.batch, bad, bad['tree']))
+        bad = copy.deepcopy(self.result); bad['delta']['matched_functions'] = -1
+        self.rejects('coverage_loss', lambda: m.check_validation(self.batch, bad, bad['tree']))
+
+    def test_source_maintenance_scope_and_mode(self):
+        for path in ('src/game/foo.cpp', 'include/game/foo.h'):
+            self.assertTrue(m.source_maintenance_path(path))
+        for path in ('tools/check_pr.py', 'configure.py', 'src/../tools/check.cpp', 'src/build.ninja', 'docs/foo.cpp', 'src/foo.cpp\n', ''):
+            self.assertFalse(m.source_maintenance_path(path), path)
+        self.batch['policy'] = 'source-maintenance'
+        self.rejects('invalid_policy', lambda: m.validate_spec(self.batch))
+        self.batch['prs'][0]['kind'] = 'source-maintenance'
+        self.batch['policy'] = 'recovery'
+        self.rejects('invalid_policy', lambda: m.validate_spec(self.batch))
+
+    def test_source_maintenance_construct_checks_unmodified_git_paths(self):
+        cases = [('src/good.cpp', True), ('include/sub/good.h', True),
+                 ('tools/no.cpp', False), (' src/outside.cpp', False),
+                 ('\nsrc/outside.cpp', False), ('src/trailing.cpp ', False),
+                 ('src/leading name.cpp', False), ('src/tab\tname.cpp', False),
+                 ('src/odd\nname.cpp', False), ('src/unicode-é.cpp', False)]
+        for i, (name, allowed) in enumerate(cases):
+            with self.subTest(name=repr(name)):
+                branch = 'scope' + str(i)
+                git(self.author, 'checkout', '-b', branch, self.batch['target'])
+                path = self.author / name; path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text('fixture\n')
+                git(self.author, 'add', '--', name); git(self.author, 'commit', '-m', 'scope case')
+                git(self.author, 'push', 'origin', branch)
+                batch = copy.deepcopy(self.batch); batch['policy'] = 'source-maintenance'
+                pr = batch['prs'][0]; pr['kind'] = 'source-maintenance'
+                pr['head'] = git(self.author, 'rev-parse', 'HEAD'); pr['head_ref'] = branch
+                pr['review']['head'] = pr['head']
+                state = self.root / ('scope-state-' + str(i)); state.mkdir()
+                queue = LocalQueue(batch, state, LocalAPI(self.remote, batch))
+                with patch.object(m, 'REMOTE', str(self.remote)):
+                    if allowed:
+                        queue.construct()
+                        self.assertEqual(queue.record['state'], 'planned')
+                    else:
+                        self.rejects('source_maintenance_scope', queue.construct)
+
+    def test_external_checkout_filter_is_rejected_before_planning(self):
+        marker=self.root/'filter-ran'
+        git(self.q.repo,'config','filter.fixture.smudge','touch '+str(marker))
+        with patch.object(m,'REMOTE',str(self.remote)):
+            self.rejects('unsafe_local_git_config',self.q.construct)
+        self.assertFalse(marker.exists())
+
+    def test_dirty_checkout_filter_never_runs_before_boundary(self):
+        git(self.q.repo,'checkout','main')
+        marker=self.root/'filter-callback';script=self.root/'filter.sh'
+        script.write_text('#!/bin/sh\ntouch '+str(marker)+'\ncat\n');script.chmod(0o755)
+        (self.q.repo/'file').write_text('XXXX\n')
+        (self.q.repo/'.git/info/attributes').write_text('file filter=fixture\n')
+        git(self.q.repo,'config','filter.fixture.clean',str(script))
+        git(self.q.repo,'config','filter.fixture.process',str(script))
+        with patch.object(m,'REMOTE',str(self.remote)):
+            self.rejects('unsafe_local_git_config',self.q.construct)
+        self.assertFalse(marker.exists())
+
+    def test_global_and_environment_filter_configuration_is_ignored(self):
+        root=self.root/'env-fixture';root.mkdir();git(root,'init','-q')
+        git(root,'config','user.name','Fixture');git(root,'config','user.email','fixture@localhost')
+        (root/'.gitattributes').write_text('file filter=fixture\n');(root/'file').write_text('test\n')
+        git(root,'add','.gitattributes','file');git(root,'commit','-qm','fixture')
+        (root/'file').write_text('xxxx\n')
+        marker=self.root/'global-filter';script=self.root/'global.sh'
+        script.write_text('#!/bin/sh\ntouch '+str(marker)+'\ncat\n');script.chmod(0o755)
+        config=self.root/'global.config';config.write_text('[filter "fixture"]\n clean = '+str(script)+'\n')
+        with patch.dict(os.environ,{'GIT_CONFIG_GLOBAL':str(config),'GIT_CONFIG_COUNT':'1','GIT_CONFIG_KEY_0':'filter.fixture.clean','GIT_CONFIG_VALUE_0':str(script)}):
+            m._safety.boundary(root.resolve())
+            self.assertTrue(m._safety.git(root,'status','--porcelain'))
+        self.assertFalse(marker.exists())
+
+    def test_recovery_rejects_gratuitous_config_packet(self):
+        self.batch['config_admission']={'checker':{'path':str(self.review),'sha256':m.digest(self.review)},
+                                        'packet':{'path':str(self.review),'sha256':m.digest(self.review)}}
+        with patch.object(m,'REMOTE',str(self.remote)):
+            self.rejects('invalid_config_admission',self.q.construct)
+
+    def test_recovery_config_requires_exact_operator_packet_at_construction(self):
+        from tools import merge_batch_config_delta as c
+        git(self.author,'checkout','main')
+        base=(b'from typing import Dict, Any\nGAME_EXCEPTIONS: Dict[str, Dict[str, Any]] = {\n'
+              b'    "other.cpp": {"cflags": []},\n}\n')
+        config=self.author/'configure.py';config.write_bytes(base);config.chmod(0o755)
+        git(self.author,'add','configure.py');git(self.author,'commit','-m','base config');git(self.author,'push','origin','main')
+        target=git(self.author,'rev-parse','HEAD');git(self.author,'checkout','-b','config-feature')
+        config.write_bytes(base.replace(b'    "other.cpp"',b'    "pso/misc/TOTrapAncient01.cpp": {"cflags": _switch(cflags_pso, "-inline off,deferred")},\n    "other.cpp"'))
+        git(self.author,'commit','-qam','config');git(self.author,'push','origin','config-feature');head=git(self.author,'rev-parse','HEAD')
+        batch=copy.deepcopy(self.batch);batch['target']=target
+        pr=batch['prs'][0];pr.update(head=head,head_ref='config-feature',base_sha=target,review_base=target)
+        pr['review'].update(head=head,base=target)
+        state=self.root/'config-plan';state.mkdir();queue=LocalQueue(batch,state,LocalAPI(self.remote,batch))
+        with patch.object(m,'REMOTE',str(self.remote)):
+            self.rejects('invalid_config_admission',queue.construct)
+            tree=git(queue.repo,'merge-tree','--write-tree',target,head).splitlines()[0]
+            env=os.environ.copy();env.update(GIT_AUTHOR_NAME='PSO mechanical queue',GIT_AUTHOR_EMAIL='queue@localhost',
+                GIT_COMMITTER_NAME='PSO mechanical queue',GIT_COMMITTER_EMAIL='queue@localhost',
+                GIT_AUTHOR_DATE=f"@{batch['commit_epoch']} +0000",GIT_COMMITTER_DATE=f"@{batch['commit_epoch']} +0000")
+            candidate=subprocess.check_output(['git','-C',str(queue.repo),'commit-tree',tree,'-p',target,'-p',head,'-m','Merge reviewed fork PR #1'],env=env,text=True).strip()
+            commits=[{'pr':1,'commit':candidate,'tree':tree,'head':head}]
+            checker=Path(c.__file__).resolve();tool=self.root/'reviewed-tool';tool.write_text('fixture')
+            td=self.root/'config-tool-dir';td.mkdir();(td/'compiler').write_text('compiler')
+            pin=lambda x:{'path':str(x),'sha256':m.digest(x)}
+            inventory=[['compiler',m.digest(td/'compiler'),(td/'compiler').stat().st_mode & 0o777]]
+            dirpin={'path':str(td),'sha256':c.tree_digest(td)}
+            pins={name:pin(tool) for name in c.PIN_NAMES}
+            pins.update(cli=pin(Path(m.__file__).resolve()),checker=pin(checker),python=pin(Path(sys.executable).resolve()),git=pin(Path('/usr/bin/git').resolve()),compiler=pin(td/'compiler'))
+            change=c.step(queue.repo,target,candidate)
+            packet={'version':1,'repository':c.REPO,'policy':'recovery','target':target,'candidate':candidate,'tree':tree,
+                    'prs':[{'number':1,'head':head,'base_sha':target,'review_base':target,'review':{'path':str(self.review),'sha256':m.digest(self.review)}}],
+                    'steps':[change],'cumulative':change,'pins':pins,'effective_argv':[str(tool),str(td/'compiler'),'-inline','off,deferred','-c','src/'+c.UNIT],
+                    'configure_paths':{name:(dirpin if name in ('compilers','binutils') else pin(tool)) for name in ('dtk','objdiff','wrapper','compilers','binutils')},
+                    'originals':{role:{'tree_sha256':'a'*64,'dol_sha256':'b'*64} for role in ('baseline','candidate')},
+                    'dependent_compile':[], 'ordered_inputs':{role:{'ordered_inputs_sha256':'c'*64,'source_inputs':1,'fallback_inputs':0} for role in ('baseline','candidate')},
+                    'verdict':'pass','independent':True,'reviewer':'independent fixture'}
+            path=self.root/'config-packet.json';path.write_text(json.dumps(packet))
+            batch['config_admission']={'checker':pin(checker),'packet':pin(path)}
+            queue.construct();self.assertEqual(queue.record['candidate'],candidate)
+            self.assertEqual(queue.record['config_plan']['packet_sha256'],m.digest(path))
+            path.write_text('{}');self.rejects('stale_config_admission',queue.live_guard)
+
+    def test_config_prepublish_rechecks_pinned_adapter_and_request(self):
+        self.q.execute('plan')
+        config={'checker':{'path':str(self.review),'sha256':m.digest(self.review)},'packet':{'path':str(self.review),'sha256':m.digest(self.review)}}
+        self.batch['config_admission']=config
+        adapter=self.root/'config-adapter.py';adapter.write_text('import sys\nassert sys.argv[1] == "--check-config"\n')
+        environment=self.root/'config-env.json';environment.write_text(json.dumps({'strict_loss_guard':{'adapter':{'path':str(adapter),'sha256':m.digest(adapter)}}}))
+        validator=self.root/'guard.py';validator.write_text('# fixture')
+        self.batch['environment_sha256']=m.digest(environment)
+        request=self.root/'request.json';request.write_text(json.dumps({'candidate':self.q.record['candidate'],'tree':self.q.record['tree'],
+               'target':self.batch['target'],'config_admission':config,'environment':str(environment),
+               'prs':self.batch['prs'],'commits':self.q.record['commits']}))
+        self.q.record.update(environment_path=str(environment),validator_path=str(validator),validator_sha256=m.digest(validator),
+                             validation_request=str(request),validation_request_sha256=m.digest(request))
+        self.q.check_config_before_publication()
+        request.write_text('{}');self.rejects('stale_config_request',self.q.check_config_before_publication)
+    def test_symbol_rename_parser_rejects_metadata_and_collisions(self):
+        before=(b'set_flag2__12TObjEneReconFv = .text:0x8031DDDC; // type:function size:0x50\n'
+                b'other = .text:0x8031DE2C; // type:function size:0x5C scope:local\n')
+        after=before.replace(b'ReconFv',b'ReconFfff')
+        self.assertEqual(m.symbol_renames(before, after), [{'old':'set_flag2__12TObjEneReconFv','new':'set_flag2__12TObjEneReconFfff','section':'.text','address':'0x8031DDDC','size':'0x50'}])
+        cases=[after.replace(b'8031DDDC',b'8031DDDD'), after.replace(b'size:0x50',b'size:0x54'),
+               after.replace(b'.text:0x8031DDDC',b'.data:0x8031DDDC'),
+               after.replace(b'size:0x50',b'size:0x50 scope:local'), after.replace(b'TObjEneReconFfff',b'TObjEneOtherFfff'), after.replace(b'set_flag2__',b'otherfunc__'), after.replace(b'ReconFfff',b'ReconFbad'),
+               after.replace(b'set_flag2__12TObjEneReconFfff',b'other'), after.replace(b'type:function',b'type:function bad!',1),
+               after.replace(b'ReconFfff',b'ReconFv'), after+b'broken record\n',
+               b'\n'.join(reversed(after.splitlines()))+b'\n', after.replace(b'0x50',b'0x00')]
+        for altered in cases:
+            with self.subTest(altered=altered[:60]), self.assertRaises(ValueError): m.symbol_renames(before, altered)
+        existing_dupes=before+b'local = .text:0x8031DEF0; // type:function size:0x4\n'+b'local = .text:0x8031DEF4; // type:function size:0x4\n'
+        self.assertEqual(len(m.symbol_renames(existing_dupes, existing_dupes.replace(b'ReconFv',b'ReconFfff'))),1)
+
+    def test_symbol_rename_raw_record_framing_and_real_inventory(self):
+        base=(b'set_flag2__12TObjEneReconFv = .text:0x8031DDDC; // type:function size:0x50\n'
+              b'other = .text:0x8031DE2C; // type:function size:0x5C\n')
+        renamed=base.replace(b'ReconFv',b'ReconFfff')
+        self.assertEqual(len(m.symbol_renames(base, renamed)),1)
+        for separator in (b'\x0b',b'\x0c',b'\x1c',b'\x1d',b'\x1e',b'\r',b'\r\n',b'\x00',b'\x7f',b'\x85'):
+            altered=renamed.replace(b'\n',separator,1)
+            with self.subTest(separator=repr(separator)), self.assertRaises(ValueError): m.symbol_renames(base,altered)
+        inventory=(MODULE.parents[1]/m.SYMBOL_FILE).read_bytes()
+        original=b'set_flag2__12TObjEneReconFv = .text:0x8031DDDC; // type:function size:0x50\n'
+        renamed=original.replace(b'ReconFv',b'ReconFfff')
+        self.assertIn((inventory.count(original),inventory.count(renamed)),((1,0),(0,1)))
+        before=inventory.replace(renamed,original) if renamed in inventory else inventory
+        after=before.replace(original,renamed)
+        # Both real pre- and post-rename inventories must reconstruct the exact
+        # same forward check. Neither missing nor duplicate records are accepted.
+        for state in (before,after):
+            with self.subTest(inventory='pre' if state==before else 'post'):
+                self.assertIn((state.count(original),state.count(renamed)),((1,0),(0,1)))
+                reconstructed=state.replace(renamed,original) if renamed in state else state
+                self.assertEqual(m.symbol_renames(reconstructed,reconstructed.replace(original,renamed)),
+                    [{'old':'set_flag2__12TObjEneReconFv','new':'set_flag2__12TObjEneReconFfff',
+                      'section':'.text','address':'0x8031DDDC','size':'0x50'}])
+
+    def test_symbol_rename_real_git_construction_and_review_binding(self):
+        old=(b'set_flag2__12TObjEneReconFv = .text:0x8031DDDC; // type:function size:0x50\n'
+             b'other = .text:0x8031DE2C; // type:function size:0x5C\n')
+        new=old.replace(b'ReconFv',b'ReconFfff')
+        git(self.author,'checkout','main')
+        symbol=self.author/m.SYMBOL_FILE; symbol.parent.mkdir(parents=True);symbol.write_bytes(old)
+        git(self.author,'add',m.SYMBOL_FILE);git(self.author,'commit','-m','symbol baseline');git(self.author,'push','origin','main')
+        target=git(self.author,'rev-parse','HEAD')
+        cases=('accept','missing-review','wrong-head','stale-review-file','stale-after','unexpected-config','changed-size','collision','wrong-target','not-independent','wrong-rename',
+               'framing-0b','framing-0c','framing-1c','framing-1d','framing-1e','framing-cr','framing-crlf')
+        for i,case in enumerate(cases):
+            with self.subTest(case=case):
+                branch='symbol'+str(i);git(self.author,'checkout','-b',branch,target)
+                candidate=new
+                if case=='changed-size':candidate=new.replace(b'0x50',b'0x54')
+                if case=='collision':candidate=new+b'set_flag2__12TObjEneReconFfff = .text:0x8031DDFC; // type:function size:0x4\n'
+                if case.startswith('framing-'):
+                    separators={'framing-0b':b'\x0b','framing-0c':b'\x0c','framing-1c':b'\x1c','framing-1d':b'\x1d','framing-1e':b'\x1e','framing-cr':b'\r','framing-crlf':b'\r\n'}
+                    candidate=candidate.replace(b'\n',separators[case],1)
+                symbol.write_bytes(candidate)
+                if case=='unexpected-config':
+                    extra=self.author/'config/other.txt';extra.write_text('forbidden')
+                git(self.author,'add','config')
+                # Write and stage exact blob bytes, bypassing Git worktree text filters.
+                blob=subprocess.check_output(['git','-C',str(self.author),'hash-object','-w','--stdin'],input=candidate).decode().strip()
+                git(self.author,'update-index','--cacheinfo','100644,'+blob+','+m.SYMBOL_FILE)
+                git(self.author,'commit','-m','source rename');git(self.author,'push','origin',branch)
+                head=git(self.author,'rev-parse','HEAD')
+                batch=copy.deepcopy(self.batch);batch.update(target=target,policy='source-maintenance')
+                pr=batch['prs'][0];pr.update(head=head,head_ref=branch,base_sha=target,review_base=target,kind='source-maintenance')
+                pr['review'].update(head=head,base=target)
+                doc={'version':1,'verdict':'pass','independent':True,'reviewer':'independent fixture','target':target,'heads':[head],
+                     'path':m.SYMBOL_FILE,'before_sha256':hashlib.sha256(old).hexdigest(),
+                     'after_sha256':hashlib.sha256(candidate).hexdigest(),'renames':[{'old':'set_flag2__12TObjEneReconFv',
+                      'new':'set_flag2__12TObjEneReconFfff','section':'.text','address':'0x8031DDDC','size':'0x50'}]}
+                if case=='wrong-head':doc['heads']=['f'*40]
+                if case=='wrong-target':doc['target']='f'*40
+                if case=='not-independent':doc['independent']=False
+                if case=='wrong-rename':doc['renames'][0]['new']='wrong'
+                if case=='stale-after':doc['after_sha256']='f'*64
+                review=self.root/('symbol-review-'+str(i)+'.json');review.write_text(json.dumps(doc))
+                if case!='missing-review':batch['symbol_rename_review']={'path':str(review),'sha256':m.digest(review)}
+                if case=='stale-review-file':review.write_text('{}')
+                state=self.root/('symbol-state-'+str(i));state.mkdir()
+                queue=LocalQueue(batch,state,LocalAPI(self.remote,batch))
+                expected={'missing-review':'source_maintenance_scope','wrong-head':'stale_symbol_review','stale-review-file':'stale_symbol_review',
+                          'stale-after':'stale_symbol_review','wrong-target':'stale_symbol_review','not-independent':'stale_symbol_review','wrong-rename':'stale_symbol_review','unexpected-config':'source_maintenance_scope','changed-size':'invalid_symbol_delta','collision':'invalid_symbol_delta'}
+                with patch.object(m,'REMOTE',str(self.remote)):
+                    if case=='accept':
+                        queue.construct();self.assertEqual(queue.record['state'],'planned');m.evidence(batch)
+                    elif case.startswith('framing-'):
+                        with self.assertRaises(m.Rejected) as rejected: queue.construct()
+                        self.assertIn(rejected.exception.code, ('invalid_symbol_delta','command_failed') if case in ('framing-cr','framing-crlf') else ('invalid_symbol_delta',))
+                    else:self.rejects(expected[case],queue.construct)
+
+    def test_validation_wrong_tree(self):
+        self.rejects('wrong_validation_tree', lambda: m.check_validation(self.batch, self.result, 'f' * 40))
+
+    def test_plan_preserves_remote_and_deterministic_lineage(self):
+        before = self.api.branch('main')['head']
+        first = self.q.execute('plan')['candidate']
+        second = self.q.execute('plan')['candidate']
+        self.assertEqual(first, second)
+        self.assertEqual(self.api.branch('main')['head'], before)
+        self.assertEqual(git(self.q.repo, 'show', '-s', '--format=%P', first).split(),
+                         [before, self.batch['prs'][0]['head']])
+
+    def test_conflict_rejects_without_publication(self):
+        git(self.author, 'checkout', 'main')
+        (self.author / 'file').write_text('conflicting base\n')
+        git(self.author, 'commit', '-am', 'conflict'); git(self.author, 'push', 'origin', 'main')
+        self.batch['target'] = git(self.author, 'rev-parse', 'HEAD')
+        self.batch['prs'][0]['base_sha'] = self.batch['target']
+        self.rejects('conflict', self.q.construct)
+        self.assertEqual(self.api.branch('main')['head'], self.batch['target'])
+
+    def test_atomic_publication_and_idempotent_recovery(self):
+        self.q.execute('plan')
+        self.q.publish()
+        self.assertEqual(self.q.record['state'], 'published')
+        self.assertEqual(self.api.branch('main')['head'], self.q.record['candidate'])
+        fresh = LocalQueue(self.batch, self.state, self.api)
+        self.assertEqual(fresh.execute('execute')['state'], 'published')
+
+    def readme_transaction(self, improvement=True):
+        self.q.execute('plan')
+        git(self.q.repo, 'config', 'user.name', 'Fixture'); git(self.q.repo, 'config', 'user.email', 'fixture@localhost')
+        (self.q.repo / 'README.md').write_text((MODULE.parents[1] / 'README.md').read_text())
+        git(self.q.repo, 'add', 'README.md'); git(self.q.repo, 'commit', '-m', 'source fixture')
+        source = git(self.q.repo, 'rev-parse', 'HEAD')
+        self.q.record.update(candidate=source, tree=git(self.q.repo, 'rev-parse', 'HEAD^{tree}'))
+        def report(matched):
+            return {'measures': {'total_code': 10, 'matched_code': matched, 'complete_code': 4,
+                    'total_data': 10, 'matched_data': 5, 'complete_data': 4, 'total_functions': 10,
+                    'matched_functions': 5, 'total_units': 2, 'complete_units': 1}, 'units':[{},{}]}
+        files = {}
+        for role, n in (('baseline', 5), ('candidate', 6 if improvement else 5)):
+            path=self.root/(role+'-report.json'); path.write_text(json.dumps(report(n))); files[role]=str(path)
+        coverage=self.state/'coverage.json'; coverage.write_text('{}')
+        provenance={'ordered_inputs_sha256':'a'*64,'source_inputs':1,'fallback_inputs':1}
+        review=self.root/'graph-review.json'; review.write_text('{}')
+        env=self.root/'readme-env.json'; env.write_text(json.dumps({'acceptance_capacity':{'review':{'path':str(review),'sha256':m.digest(review)}}}))
+        result={'review_sha256':m.digest(review), 'raw_report_paths':files, 'raw_report_sha256':{k:m.digest(v) for k,v in files.items()},
+                'coverage_receipt':str(coverage), 'coverage_receipt_sha256':m.digest(coverage), 'acceptance_builds':{k:{'provenance':provenance} for k in files}}
+        validation=self.state/'validated.json'; validation.write_text(json.dumps(result))
+        self.q.record.update(validation=str(validation),validation_sha256=m.digest(validation))
+        generator=MODULE.with_name('merge_batch_readme.py')
+        self.batch['readme_update']={'generator':str(generator),'sha256':m.digest(generator)}
+        self.q.record['spec_sha256'] = hashlib.sha256(m.canonical(self.batch).encode()).hexdigest()
+        return files
+
+    def test_readme_atomic_publication_and_crash_recovery(self):
+        self.readme_transaction()
+        self.q.prepare_readme(self.root/'readme-env.json')
+        source=self.q.record['candidate']; publication=self.q.record['publication_candidate']
+        self.assertNotEqual(source,publication)
+        self.assertEqual(git(self.q.repo,'show','-s','--format=%P',publication),source)
+        self.q.prepare_readme(self.root/'readme-env.json'); self.assertEqual(self.q.record['publication_candidate'],publication)
+        self.q.write(state='publishing')
+        git(self.q.repo,'push','--atomic','origin',publication+':refs/heads/main')
+        fresh=LocalQueue(self.batch,self.state,self.api)
+        self.assertEqual(fresh.execute('execute')['published_commit'],publication)
+
+    def test_readme_no_gain_and_stale_evidence(self):
+        files=self.readme_transaction(False); self.q.prepare_readme(self.root/'readme-env.json')
+        self.assertEqual(self.q.record['publication_candidate'],self.q.record['candidate'])
+        Path(files['candidate']).write_text('{}')
+        self.rejects('stale_readme_evidence',self.q.check_readme_publication)
+
+    def test_readme_rejects_coverage_replaced_after_validation(self):
+        self.readme_transaction()
+        coverage=self.state/'coverage.json'; coverage.write_text('{"result":"fail"}')
+        self.rejects('stale_coverage_receipt', lambda: self.q.prepare_readme(self.root/'readme-env.json'))
+        self.assertNotIn('publication_candidate', self.q.record)
+
+    def test_readme_requires_validation_coverage_hash(self):
+        for value in (None, '', '0'*63, 'Z'*64, True, '0'*64):
+            with self.subTest(value=value):
+                self.readme_transaction()
+                validation=Path(self.q.record['validation']); data=json.loads(validation.read_text())
+                if value is None: del data['coverage_receipt_sha256']
+                else: data['coverage_receipt_sha256']=value
+                validation.write_text(json.dumps(data)); self.q.record['validation_sha256']=m.digest(validation)
+                code='stale_coverage_receipt' if value == '0'*64 else 'missing_coverage_binding'
+                self.rejects(code, lambda: self.q.prepare_readme(self.root/'readme-env.json'))
+
+    def test_readme_journals_original_coverage_binding(self):
+        self.readme_transaction(); self.q.prepare_readme(self.root/'readme-env.json')
+        validation=json.loads(Path(self.q.record['validation']).read_text())
+        self.assertEqual(self.q.record['readme_evidence']['coverage_sha256'], validation['coverage_receipt_sha256'])
+        self.q.check_readme_publication()
+        self.q.record['readme_evidence']['coverage_sha256']='0'*64
+        self.rejects('coverage_binding_mismatch',self.q.check_readme_publication)
+        self.q.record['readme_evidence']['coverage_sha256']=validation['coverage_receipt_sha256']
+        (self.state/'coverage.json').write_text('{"result":"fail"}')
+        self.rejects('stale_readme_evidence',self.q.check_readme_publication)
+
+    def test_readme_rejects_tampered_publication_tree(self):
+        self.readme_transaction(); self.q.prepare_readme(self.root/'readme-env.json')
+        final=self.q.record['publication_candidate']
+        git(self.q.repo,'checkout','--detach',final)
+        (self.q.repo/'other').write_text('unexpected')
+        git(self.q.repo,'add','other');git(self.q.repo,'commit','-m','unexpected')
+        self.q.record['publication_candidate']=git(self.q.repo,'rev-parse','HEAD')
+        self.q.record['publication_tree']=git(self.q.repo,'rev-parse','HEAD^{tree}')
+        self.rejects('readme_scope',self.q.check_readme_publication)
+
+    def test_readme_stale_generator_pin_rejected(self):
+        self.readme_transaction()
+        self.batch['readme_update']['sha256']='0'*64
+        self.rejects('stale_readme_generator',lambda:self.q.prepare_readme(self.root/'readme-env.json'))
+
+    def test_readme_generator_cannot_change_unrelated_content(self):
+        self.readme_transaction()
+        generator=self.root/'bad_generator.py'
+        generator.write_text("import json,sys\nfrom pathlib import Path\nr=json.loads(Path(sys.argv[1]).read_text()); Path(r['output']).write_text(Path(r['readme']).read_text().replace('## Legal','## Changed'))\n")
+        self.batch['readme_update']={'generator':str(generator),'sha256':m.digest(generator)}
+        self.rejects('readme_scope',lambda:self.q.prepare_readme(self.root/'readme-env.json'))
+
+    def test_push_failure_changes_no_remote_prefix(self):
+        self.q.execute('plan')
+        hook = self.remote / 'hooks/pre-receive'
+        hook.write_text('#!/bin/sh\nexit 1\n'); hook.chmod(0o755)
+        self.rejects('publication_rejected', self.q.publish)
+        self.assertEqual(self.api.branch('main')['head'], self.batch['target'])
+        self.assertEqual(self.q.record['state'], 'not_published')
+
+    def test_lost_response_after_push_is_recovered(self):
+        self.q.execute('plan')
+        # Simulate interruption exactly after remote success but before receipt.
+        self.q.write(state='publishing')
+        git(self.q.repo, 'push', '--atomic', 'origin', self.q.record['candidate'] + ':refs/heads/main')
+        fresh = LocalQueue(self.batch, self.state, self.api)
+        self.assertEqual(fresh.execute('execute')['state'], 'published')
+
+    def test_stale_target_before_mutation(self):
+        self.q.execute('plan')
+        git(self.author, 'checkout', 'main')
+        (self.author / 'other').write_text('external update')
+        git(self.author, 'add', 'other'); git(self.author, 'commit', '-m', 'external'); git(self.author, 'push', 'origin', 'main')
+        self.rejects('stale_target', self.q.publish)
+
+    def test_changed_manifest_cannot_reuse_state(self):
+        self.q.execute('plan')
+        self.batch['commit_epoch'] += 1
+        self.rejects('different_batch', lambda: LocalQueue(self.batch, self.state, self.api))
+
+    def test_failed_external_validator_never_publishes(self):
+        self.q.execute('plan')
+        validator = self.root / 'fail.py'; validator.write_text('raise SystemExit(2)\n')
+        environment = self.root / 'environment.json'; environment.write_text('{}')
+        self.batch['environment_sha256'] = m.digest(environment)
+        self.rejects('failed_build_or_checks', lambda: self.q.verify(validator, m.digest(validator), environment))
+        self.assertEqual(self.api.branch('main')['head'], self.batch['target'])
+
+    def add_second_pr(self):
+        git(self.author, 'checkout', '-b', 'second')
+        (self.author / 'second').write_text('second recovery')
+        git(self.author, 'add', 'second'); git(self.author, 'commit', '-m', 'second')
+        git(self.author, 'push', 'origin', 'second')
+        p = copy.deepcopy(self.batch['prs'][0])
+        p.update(number=2, head=git(self.author, 'rev-parse', 'HEAD'), head_ref='second',
+                 base_ref='feature', base_sha=self.batch['prs'][0]['head'],
+                 review_base=self.batch['prs'][0]['head'])
+        p['review'].update(head=p['head'], base=p['review_base'])
+        self.batch['prs'].append(p)
+
+    def test_two_pr_batch_has_no_partial_publication_on_rejection(self):
+        self.add_second_pr()
+        self.q.execute('plan')
+        self.assertEqual(len(self.q.record['commits']), 2)
+        hook = self.remote / 'hooks/pre-receive'
+        hook.write_text('#!/bin/sh\nexit 1\n'); hook.chmod(0o755)
+        self.rejects('publication_rejected', self.q.publish)
+        self.assertEqual(self.api.branch('main')['head'], self.batch['target'])
+        self.assertTrue(all(not p['merged'] for p in self.api.prs(self.batch).values()))
+
+    def test_two_pr_publication_preserves_both_lineages(self):
+        self.add_second_pr()
+        self.q.execute('plan'); self.q.publish()
+        self.assertTrue(all(p['merged'] for p in self.api.prs(self.batch).values()))
+        rows = self.q.record['commits']
+        self.assertEqual(git(self.q.repo, 'show', '-s', '--format=%P', rows[1]['commit']).split(),
+                         [rows[0]['commit'], self.batch['prs'][1]['head']])
+
+    def test_wrong_dependency_order_rejected(self):
+        self.add_second_pr()
+        self.batch['prs'].reverse()
+        self.rejects('command_failed', self.q.construct)
+
+    def test_successful_synthetic_dry_run_does_not_publish(self):
+        validator = self.root / 'fixture_validator.py'
+        validator.write_text('import json,sys,pathlib\nr=json.loads(pathlib.Path(sys.argv[1]).read_text())\n'
+                             + 'v=' + repr(self.result) + '\n'
+                             + "v.update(target=r['target'],tree=r['tree'])\n"
+                             + "pathlib.Path(r['output']).write_text(json.dumps(v))\n")
+        environment = self.root / 'environment.json'; environment.write_text('{}')
+        self.batch['environment_sha256'] = m.digest(environment)
+        r = self.q.execute('dry-run', validator, m.digest(validator), environment)
+        self.assertEqual(r['state'], 'dry_run_pass')
+        self.assertEqual(self.api.branch('main')['head'], self.batch['target'])
+
+    def test_nonfinite_delta_rejected(self):
+        self.result['delta']['matched_code'] = float('inf')
+        self.rejects('coverage_loss', lambda: m.check_validation(self.batch, self.result, self.result['tree']))
+
+    def test_bundled_maintenance_validator_supports_project_imports(self):
+        (self.author / 'configure.py').write_text('')
+        (self.author / 'tools/tests').mkdir(parents=True)
+        (self.author / 'tools/__init__.py').write_text('VALUE = 7')
+        (self.author / 'tools/tests/test_fixture.py').write_text(
+            'import unittest,tools\nclass Test(unittest.TestCase):\n'
+            ' def test_import(self): self.assertEqual(tools.VALUE,7)\n')
+        git(self.author, 'add', 'configure.py', 'tools')
+        git(self.author, 'commit', '-m', 'fixture source checks')
+        head = git(self.author, 'rev-parse', 'HEAD')
+        environment = self.root / 'environment.json'; environment.write_text('{}')
+        request = self.root / 'request.json'
+        output = self.root / 'result.json'
+        request.write_text(json.dumps({'checkout': str(self.author), 'state': str(self.state),
+            'target': head, 'candidate': head, 'tree': git(self.author, 'rev-parse', 'HEAD^{tree}'),
+            'environment': str(environment), 'policy': 'maintenance', 'output': str(output)}))
+        subprocess.run([m.sys.executable, '-I', str(MODULE.with_name('merge_batch_validate.py')), str(request)],
+                       check=True, capture_output=True)
+        self.assertEqual(json.loads(output.read_text())['checks'], {'source': True})
+
+    def test_dirty_state_checkout_is_preserved(self):
+        self.q.execute('plan')
+        (self.q.repo / 'file').write_text('preserve local work')
+        self.rejects('dirty_state_checkout', self.q.construct)
+        self.assertEqual((self.q.repo / 'file').read_text(), 'preserve local work')
+
+    def test_omitted_review_base_cannot_import_unreviewed_commit(self):
+        hidden = self.batch['prs'][0]['head']
+        (self.author / 'selected').write_text('selected delta')
+        git(self.author, 'add', 'selected'); git(self.author, 'commit', '-m', 'selected')
+        git(self.author, 'push', 'origin', 'feature')
+        p = self.batch['prs'][0]
+        p.update(head=git(self.author, 'rev-parse', 'HEAD'), review_base=hidden)
+        p['review'].update(head=p['head'], base=hidden)
+        self.rejects('unreviewed_prerequisite', lambda: self.q.execute('plan'))
+        self.assertEqual(self.api.branch('main')['head'], self.batch['target'])
+
+    def wrong_remote(self):
+        wrong = self.root / 'wrong.git'
+        subprocess.run(['git', 'clone', '--bare', str(self.remote), str(wrong)], check=True, capture_output=True)
+        return wrong
+
+    def test_actual_pushurl_is_checked_not_fetch_url(self):
+        self.q.execute('plan')
+        wrong = self.wrong_remote()
+        git(self.q.repo, 'config', 'remote.origin.pushurl', str(wrong))
+        self.rejects('unsafe_publication_destination', self.q.publish)
+        self.assertEqual(git(wrong, 'rev-parse', 'main'), self.batch['target'])
+        self.assertEqual(self.api.branch('main')['head'], self.batch['target'])
+
+    def test_additional_push_destination_rejected(self):
+        self.q.execute('plan')
+        wrong = self.wrong_remote()
+        git(self.q.repo, 'config', '--add', 'remote.origin.pushurl', str(self.remote))
+        git(self.q.repo, 'config', '--add', 'remote.origin.pushurl', str(wrong))
+        self.rejects('unsafe_publication_destination', self.q.publish)
+        self.assertEqual(git(wrong, 'rev-parse', 'main'), self.batch['target'])
+
+    def test_effective_rewritten_push_destination_rejected(self):
+        self.q.execute('plan')
+        wrong = self.wrong_remote()
+        git(self.q.repo, 'config', 'url.' + str(wrong) + '.pushInsteadOf', str(self.remote))
+        self.assertEqual(git(self.q.repo, 'remote', 'get-url', '--push', 'origin'), str(wrong))
+        self.rejects('unsafe_publication_destination', self.q.publish)
+        self.assertEqual(git(wrong, 'rev-parse', 'main'), self.batch['target'])
+
+    def test_exact_old_lease_rejects_selected_ancestor_race(self):
+        self.q.execute('plan')
+        original = self.q.live_guard
+        def guard_then_race():
+            original()
+            git(self.author, 'push', 'origin', self.batch['prs'][0]['head'] + ':refs/heads/main')
+        self.q.live_guard = guard_then_race
+        self.rejects('publication_diverged', self.q.publish)
+        self.assertEqual(self.api.branch('main')['head'], self.batch['prs'][0]['head'])
+        self.assertNotEqual(self.api.branch('main')['head'], self.q.record['candidate'])
+        self.assertNotEqual(self.q.record['push_returncode'], 0)
+
+    def invoke_main_publication(self):
+        batch = self.root / 'batch.json'; batch.write_text(json.dumps(self.batch))
+        original_open = open
+        def private_lock(path, *args, **kwargs):
+            if str(path) == '/tmp/pso-mechanical-merge-queue.lock':
+                path = self.root / 'private.lock'
+            return original_open(path, *args, **kwargs)
+        out = io.StringIO()
+        with patch.object(m, 'Queue', return_value=self.q), \
+             patch.object(self.q, 'execute', side_effect=lambda *a: self.q.publish()), \
+             patch('builtins.open', private_lock), contextlib.redirect_stdout(out):
+            code = m.main(['execute', '--batch', str(batch), '--state', str(self.state)])
+        return code, json.loads(out.getvalue())
+
+    def test_postpush_api_outage_reports_uncertain_not_rejected(self):
+        self.q.execute('plan')
+        with patch.object(self.q, 'recover_publication', side_effect=m.Rejected('command_failed', 'API unavailable')):
+            code, output = self.invoke_main_publication()
+        self.assertEqual(code, 1)
+        self.assertEqual(output['state'], 'publication_uncertain')
+        self.assertEqual(output['candidate'], self.api.branch('main')['head'])
+        self.assertIn('Rerun', output['recovery'])
+        self.assertEqual(json.loads(self.q.journal.read_text())['state'], 'publication_uncertain')
+        self.assertTrue(self.q.recover_publication())
+
+    def test_proven_publication_is_durable_before_metadata_failure(self):
+        self.q.execute('plan')
+        original = self.api.prs
+        calls = []
+        def metadata_failure(spec):
+            calls.append(1)
+            if len(calls) > 1:
+                raise m.Rejected('command_failed', 'Metadata unavailable')
+            return original(spec)
+        with patch.object(self.api, 'prs', side_effect=metadata_failure):
+            code, output = self.invoke_main_publication()
+        self.assertEqual(code, 1)
+        self.assertEqual(output['state'], 'published_unverified')
+        self.assertEqual(output['published_commit'], self.api.branch('main')['head'])
+        self.assertEqual(json.loads(self.q.journal.read_text())['published_commit'], output['published_commit'])
+        self.assertTrue(self.q.recover_publication())
+
+    def test_candidate_root_cannot_shadow_unittest(self):
+        (self.author / 'configure.py').write_text('')
+        (self.author / 'tools/tests').mkdir(parents=True)
+        (self.author / 'tools/__init__.py').write_text('')
+        (self.author / 'tools/tests/test_fails.py').write_text(
+            'import unittest\nclass T(unittest.TestCase):\n def test_fails(self): self.fail("must run")\n')
+        git(self.author, 'add', 'configure.py', 'tools'); git(self.author, 'commit', '-m', 'trusted test')
+        target = git(self.author, 'rev-parse', 'HEAD')
+        (self.author / 'unittest.py').write_text('from pathlib import Path\nPath("shadow-ran").touch()\n')
+        git(self.author, 'add', 'unittest.py'); git(self.author, 'commit', '-m', 'shadow')
+        head = git(self.author, 'rev-parse', 'HEAD')
+        environment = self.root / 'environment.json'; environment.write_text('{}')
+        request = self.root / 'request.json'; output = self.root / 'result.json'
+        request.write_text(json.dumps({'checkout': str(self.author), 'state': str(self.state), 'target': target,
+            'candidate': head, 'tree': git(self.author, 'rev-parse', 'HEAD^{tree}'),
+            'environment': str(environment), 'policy': 'recovery', 'output': str(output)}))
+        result = subprocess.run([m.sys.executable, '-I', str(MODULE.with_name('merge_batch_validate.py')), str(request)],
+                                capture_output=True, text=True)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('must run', result.stderr)
+        self.assertFalse((self.author / 'shadow-ran').exists())
+        self.assertFalse(output.exists())
+
+    def test_controlled_configure_and_child_checker_imports(self):
+        loader = importlib.util.spec_from_file_location('validator_fixture', MODULE.with_name('merge_batch_validate.py'))
+        validator = importlib.util.module_from_spec(loader); loader.loader.exec_module(validator)
+        (self.author / 'tools').mkdir()
+        (self.author / 'tools/__init__.py').write_text('')
+        (self.author / 'json.py').write_text('raise RuntimeError("root shadow ran")')
+        (self.author / 'tools/check.py').write_text('import json\nassert json.loads("1") == 1\n')
+        (self.author / 'configure.py').write_text('import json,subprocess,sys\nassert json.loads("1") == 1\n'
+                                                'subprocess.run([sys.executable,"tools/check.py"],check=True)\n')
+        launcher = validator.python_launcher(self.state, [self.author])
+        result = subprocess.run([str(launcher), 'configure.py'], cwd=self.author,
+                                env=dict(os.environ, PSO_QUEUE_PYTHON=str(launcher)), capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+
+    def test_error_journal_write_keeps_real_flock_until_persisted(self):
+        # Reproduce the reviewer's exact interleaving at the failed writer's
+        # journal update. Real nonblocking flock must prevent B from publishing
+        # before A persists its failure. No sleeps or mocked flock results.
+        self.batch['publication_freeze'] = True
+        self.batch['readme_update'] = {'generator': 'fixture', 'sha256': 'fixture'}
+        environment = self.root / 'environment.json'; environment.write_text('{}')
+        self.batch['environment_sha256'] = m.digest(environment)
+        validator = self.root / 'validator.py'
+        validator.write_text('import json,sys,pathlib\nr=json.loads(pathlib.Path(sys.argv[1]).read_text())\n'
+                             + 'v=' + repr(self.result) + '\n'
+                             + "v.update(target=r['target'],tree=r['tree'])\n"
+                             + "pathlib.Path(r['output']).write_text(json.dumps(v))\n")
+        self.q = LocalQueue(self.batch, self.state, self.api)
+        self.q.execute('plan')
+        batch = self.root / 'batch.json'; batch.write_text(json.dumps(self.batch))
+        lockpath = self.root / 'queue.lock'
+        original_open = open
+        def private_open(path, *args, **kwargs):
+            if str(path) == '/tmp/pso-mechanical-merge-queue.lock':
+                path = lockpath
+            return original_open(path, *args, **kwargs)
+        original_write = self.q.write
+        observed = {}
+        def competing_retry(lock):
+            retry = LocalQueue(self.batch, self.state, self.api)
+            retry.lock_fd = lock.fileno()
+            with patch.object(retry, 'prepare_readme'), patch.object(retry, 'check_readme_publication', side_effect=lambda: retry.record['candidate']):
+                return retry.execute('execute', validator, m.digest(validator), environment)
+        def error_write(**fields):
+            if 'last_error' in fields:
+                with original_open(lockpath, 'a') as other:
+                    try:
+                        m.fcntl.flock(other, m.fcntl.LOCK_EX | m.fcntl.LOCK_NB)
+                    except BlockingIOError:
+                        observed['retry_blocked'] = True
+                    else:
+                        observed['retry_blocked'] = False
+                        observed['early_publication'] = competing_retry(other)['published_commit']
+            return original_write(**fields)
+        def fail_validation(*args):
+            self.q.write(state='validating')
+            raise m.Rejected('failed_build_or_checks', 'Synthetic first validation failure')
+        output = io.StringIO()
+        with patch.object(m, 'Queue', return_value=self.q), \
+             patch.object(self.q, 'execute', side_effect=fail_validation), \
+             patch.object(self.q, 'write', side_effect=error_write), \
+             patch('builtins.open', private_open), contextlib.redirect_stdout(output):
+            code = m.main(['execute', '--batch', str(batch), '--state', str(self.state)])
+        self.assertEqual(code, 1)
+        self.assertEqual(json.loads(output.getvalue())['state'], 'rejected')
+        self.assertTrue(observed['retry_blocked'], 'A released its lock before error journaling; B published and A overwrote its receipt')
+        self.assertEqual(self.api.branch('main')['head'], self.batch['target'])
+        # Once A's error is durable and its lock is released, B can safely finish.
+        with original_open(lockpath, 'a') as other:
+            m.fcntl.flock(other, m.fcntl.LOCK_EX | m.fcntl.LOCK_NB)
+            published = competing_retry(other)
+            self.assertEqual(published['state'], 'published')
+            recovered = competing_retry(other)
+            self.assertEqual(recovered['state'], 'published')
+        saved = json.loads(self.q.journal.read_text())
+        self.assertEqual(saved['published_commit'], self.api.branch('main')['head'])
+        self.assertEqual(saved['state'], 'published')
+
+
+if __name__ == '__main__':
+    unittest.main()

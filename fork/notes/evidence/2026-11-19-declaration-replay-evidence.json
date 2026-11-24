@@ -1,0 +1,665 @@
+{
+  "source": "5d585c5540df0edf2fa65657f08fe875a7a2e5a0",
+  "landing": "fff0d3a1e3facfc4a82f856b214c355f87fad50b",
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "source_batches": {
+    "battle-standing": "48cd592477aee0dd7d46a07be04a65825253e434",
+    "slime-effects": "b752921176eacb4febf82017668f85e9f673ec47",
+    "fish-school": "4dfd9766e466475ebbaa948203bbd3f423af33b9"
+  },
+  "source_files": 18,
+  "delivery": {
+    "delivery-network-render-window": {
+      "old_full": "d1c26559e5f1624eb1d6000174dee7138a60291f",
+      "head": "f8fee4e3c979d3fa8d4e8526d757578625a4fc77",
+      "files": 10,
+      "upstream_diff_paths": 933
+    },
+    "delivery-network-world": {
+      "old_full": "b5ff4bf24a867dbce40e1a035809f0ed8475e9d7",
+      "head": "df959f6a2f8f8e923caab9f8552b2052fed8b005",
+      "files": 8,
+      "upstream_diff_paths": 885
+    }
+  },
+  "matched_functions": 27572,
+  "exact_data_bytes": 1758510,
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "fork_only_paths": 133,
+  "layer_tests": 11,
+  "closed_rows": [
+    46,
+    479,
+    480,
+    2561,
+    3359,
+    3363,
+    4178,
+    4321,
+    5279,
+    5315,
+    7237
+  ],
+  "remaining_full_owner_checks": 926,
+  "remaining_partial_checks": 984,
+  "entries": [
+    {
+      "row": 46,
+      "historical_path": "src/pso/unk/text_803D4714.cpp",
+      "current_owner": "src/pso/unk/text_803D4714.cpp",
+      "status": "Complete fork source changes and includes retained",
+      "evidence": "All 1 changed code hunks and every added header are retained at the active owner."
+    },
+    {
+      "row": 479,
+      "historical_path": "include/pso/enemy/TObjEneSlimeTailAttack.h",
+      "current_owner": "include/pso/enemy/slime/TObjEneSlimeTailAttack.h",
+      "status": "Complete fork Slime declarations retained at native owner",
+      "evidence": "Native tail class layout, owner and pose offsets, constructor, typed factory, and shadow owner."
+    },
+    {
+      "row": 480,
+      "historical_path": "include/pso/enemy/TObjEneSlimeWaterBomb.h",
+      "current_owner": "include/pso/enemy/slime/TObjEneSlimeWaterBomb.h",
+      "status": "Complete fork Slime declarations retained at native owner",
+      "evidence": "Native water bomb class layout, typed movement, particle and owner fields, constructor, factory, and hit check."
+    },
+    {
+      "row": 637,
+      "historical_path": "src/pso/enemy/TObjEneSlimeTailAttack.cpp",
+      "current_owner": "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+      "status": "Some anchored text changes found",
+      "evidence": "Both effect lifecycles and both SlimeOne effect-spawn calls. SlimeOne's separate own lifecycle is outside this batch."
+    },
+    {
+      "row": 2561,
+      "historical_path": "src/pso/menu/TAdPlyChrSelPlateGC.cpp",
+      "current_owner": "src/pso/ui/frontend/TAdPlyChrSelPlateGC.cpp",
+      "status": "Complete fork source changes and includes retained",
+      "evidence": "All 1 changed code hunks and every added header are retained at the active owner."
+    },
+    {
+      "row": 3359,
+      "historical_path": "include/pso/player/PlayerEquipmentUpdate.h",
+      "current_owner": "include/pso/player/TObjPlayer.h",
+      "status": "Complete fork declaration retained at native owner",
+      "evidence": "Both declarations are native player methods, with all equipment calls using the matched methods at 0x801BE9A8 and 0x801BE9CC."
+    },
+    {
+      "row": 3363,
+      "historical_path": "include/pso/player/StatsCopy.h",
+      "current_owner": "include/pso/player/PlayerLevelTable.h",
+      "status": "Complete fork declaration retained at native owner",
+      "evidence": "The shared level-table header declares the typed stat copy. The exact body at 0x801B68E8 retains the seven halfword reads and writes in order."
+    },
+    {
+      "row": 4121,
+      "historical_path": "src/pso/player/TObjPlayer_801AF2F0.cpp",
+      "current_owner": "src/pso/player/TObjPlayer_801AF2F0.cpp",
+      "status": "Some anchored text changes found",
+      "evidence": "Player battle rank lookup shares the eight-byte standing record with both original providers."
+    },
+    {
+      "row": 4178,
+      "historical_path": "src/pso/player/TObjPlayer_803DA204.cpp",
+      "current_owner": "src/pso/player/TObjPlayer_803DA204.cpp",
+      "status": "Complete fork source changes and includes retained",
+      "evidence": "All 1 changed code hunks and every added header are retained at the active owner."
+    },
+    {
+      "row": 4212,
+      "historical_path": "src/pso/misc/TPlayerBattleCtrl4P_8031012C.cpp",
+      "current_owner": "src/pso/player/TPlayerBattleCtrl4P.cpp",
+      "status": "Some anchored text changes found",
+      "evidence": "The split-screen standings provider and comparator use the typed client, rank and score fields."
+    },
+    {
+      "row": 4321,
+      "historical_path": "src/pso/player/TUnk_804A5D28.cpp",
+      "current_owner": "src/pso/weapon/TUnk_804A5D28.cpp",
+      "status": "Complete fork source changes and includes retained",
+      "evidence": "All 2 changed code hunks and every added header are retained at the active owner."
+    },
+    {
+      "row": 4510,
+      "historical_path": "src/pso/misc/TLobby_801C25B4.cpp",
+      "current_owner": "src/pso/unk/TLobby_801C25B4.cpp",
+      "status": "Some anchored text changes found",
+      "evidence": "The lobby standings provider copies each original field in the original order."
+    },
+    {
+      "row": 5279,
+      "historical_path": "src/pso/misc/TScene_80327B00.cpp",
+      "current_owner": "src/pso/system/scene/TScene_80327B00.cpp",
+      "status": "Complete fork source changes and includes retained",
+      "evidence": "All 5 changed code hunks and every added header are retained at the active owner."
+    },
+    {
+      "row": 5315,
+      "historical_path": "src/pso/unk/text_801E4F04.cpp",
+      "current_owner": "src/pso/unk/text_801E4F04.cpp",
+      "status": "Complete fork source changes and includes retained",
+      "evidence": "All 4 changed code hunks and every added header are retained at the active owner."
+    },
+    {
+      "row": 5548,
+      "historical_path": "src/pso/misc/TWindowDuelResult_801C2528.cpp",
+      "current_owner": "src/pso/ui/window/TWindowDuelResult_801C2528.cpp",
+      "status": "Some anchored text changes found",
+      "evidence": "The duel results window takes the typed standings list and copies its original record count."
+    },
+    {
+      "row": 5777,
+      "historical_path": "src/pso/misc/TWindowDuelResult.cpp",
+      "current_owner": "src/pso/ui/window/TWindowDuelResult.cpp",
+      "status": "Some anchored text changes found",
+      "evidence": "Name, rank and score rendering consume the original typed standing records."
+    },
+    {
+      "row": 6512,
+      "historical_path": "src/pso/object/TObjFish.cpp",
+      "current_owner": "src/pso/object/ambient/TObjFish.cpp",
+      "status": "Some anchored text changes found",
+      "evidence": "Native TObjFish::render consumes the same TObjFishEntry array as init_fish_school and run_task, replacing the two local layouts. All three seabed draw and all three motion draw paths use the shared typed model, motion and texture accessors. The area archive is a BmlResource pointer throughout load, render and release."
+    },
+    {
+      "row": 6742,
+      "historical_path": "src/pso/quest/QuestOpcodeHandlers.cpp",
+      "current_owner": "src/pso/quest/QuestOpcodeHandlers.cpp",
+      "status": "Some anchored text changes found",
+      "evidence": "Both quest opcodes use the same typed battle record for score and place."
+    },
+    {
+      "row": 6779,
+      "historical_path": "include/pso/object/TObjFish.h",
+      "current_owner": "include/pso/object/ambient/TObjFish.h",
+      "status": "Some anchored text changes found",
+      "evidence": "Native halfword event state at offset 0x90 and the retail width register for update_state. Shared 0x44-byte TObjFishEntry layout checked at all native render, initialization and update fields."
+    },
+    {
+      "row": 7237,
+      "historical_path": "src/pso/misc/TODummyKeyCave01.cpp",
+      "current_owner": "src/pso/object/key/TODummyKeyCave01.cpp",
+      "status": "Complete fork source changes and includes retained",
+      "evidence": "All 4 changed code hunks and every added header are retained at the active owner."
+    }
+  ],
+  "include_proof": [
+    {
+      "row": 46,
+      "fork_path": "src/pso/unk/text_803D4714.cpp",
+      "current_owner": "src/pso/unk/text_803D4714.cpp",
+      "exact_anchored": 1,
+      "hunks": 1,
+      "all_changed_code_hunks": true,
+      "checks": [
+        {
+          "old_line": 37,
+          "new_line": 37,
+          "retained": true,
+          "old_tokens": 15,
+          "new_tokens": 0
+        }
+      ],
+      "includes": [
+        {
+          "historical": "pso/unk/text_803D2F1C.h",
+          "current": "pso/unk/text_803D2F1C.h",
+          "method": "same direct include is present",
+          "current_blob": "b109445cad8069dbd9495246b209bcfcafb74158"
+        }
+      ],
+      "current_blob": "5d4b4e31f7eaae4bbc140934e0132e16a2932c92"
+    },
+    {
+      "row": 2561,
+      "fork_path": "src/pso/menu/TAdPlyChrSelPlateGC.cpp",
+      "current_owner": "src/pso/ui/frontend/TAdPlyChrSelPlateGC.cpp",
+      "exact_anchored": 1,
+      "hunks": 1,
+      "all_changed_code_hunks": true,
+      "checks": [
+        {
+          "old_line": 39,
+          "new_line": 39,
+          "retained": true,
+          "old_tokens": 27,
+          "new_tokens": 19
+        }
+      ],
+      "includes": [
+        {
+          "historical": "pso/render/ColorCopy.h",
+          "current": "pso/render/ColorCopy.h",
+          "method": "same direct include is present",
+          "current_blob": "7f8dc7500c7620f2aaa84e09914f0479b58fc288"
+        }
+      ],
+      "current_blob": "d117877496ec64f6c20983b4e6e6021767bdaebb"
+    },
+    {
+      "row": 4178,
+      "fork_path": "src/pso/player/TObjPlayer_803DA204.cpp",
+      "current_owner": "src/pso/player/TObjPlayer_803DA204.cpp",
+      "exact_anchored": 1,
+      "hunks": 1,
+      "all_changed_code_hunks": true,
+      "checks": [
+        {
+          "old_line": 18,
+          "new_line": 18,
+          "retained": true,
+          "old_tokens": 96,
+          "new_tokens": 35
+        }
+      ],
+      "includes": [
+        {
+          "historical": "pso/system/GinjaTextureInput.h",
+          "current": "pso/render/GinjaTextureInput.h",
+          "method": "the full input structure and original size check are unchanged under the current shared header",
+          "old_blob": "a22446bb2f80c8c33f9c87f28c1542aadd6f23dc",
+          "current_blob": "ddd5fd6b1592dd499b2bc1f50a96df4486c9d035"
+        }
+      ],
+      "current_blob": "f7f081799e6368a0155fa3adb7845f37e3451f26"
+    },
+    {
+      "row": 4321,
+      "fork_path": "src/pso/player/TUnk_804A5D28.cpp",
+      "current_owner": "src/pso/weapon/TUnk_804A5D28.cpp",
+      "exact_anchored": 2,
+      "hunks": 2,
+      "all_changed_code_hunks": true,
+      "checks": [
+        {
+          "old_line": 114,
+          "new_line": 114,
+          "retained": true,
+          "old_tokens": 26,
+          "new_tokens": 24
+        },
+        {
+          "old_line": 127,
+          "new_line": 127,
+          "retained": true,
+          "old_tokens": 20,
+          "new_tokens": 18
+        }
+      ],
+      "includes": [
+        {
+          "historical": "pso/math/ClampedStep.h",
+          "current": "pso/math/ClampedStep.h",
+          "method": "same direct include is present",
+          "current_blob": "21bec8bb9a1b542b0acb219b0cf520643d875099"
+        }
+      ],
+      "current_blob": "b31d8a44b70b2cd1cb1c9f3334ea9a8c22f4e7d4"
+    },
+    {
+      "row": 5279,
+      "fork_path": "src/pso/misc/TScene_80327B00.cpp",
+      "current_owner": "src/pso/system/scene/TScene_80327B00.cpp",
+      "exact_anchored": 5,
+      "hunks": 5,
+      "all_changed_code_hunks": true,
+      "checks": [
+        {
+          "old_line": 7,
+          "new_line": 7,
+          "retained": true,
+          "old_tokens": 8,
+          "new_tokens": 0
+        },
+        {
+          "old_line": 9,
+          "new_line": 8,
+          "retained": true,
+          "old_tokens": 8,
+          "new_tokens": 0
+        },
+        {
+          "old_line": 37,
+          "new_line": 35,
+          "retained": true,
+          "old_tokens": 7,
+          "new_tokens": 11
+        },
+        {
+          "old_line": 41,
+          "new_line": 39,
+          "retained": true,
+          "old_tokens": 7,
+          "new_tokens": 11
+        },
+        {
+          "old_line": 61,
+          "new_line": 59,
+          "retained": true,
+          "old_tokens": 48,
+          "new_tokens": 56
+        }
+      ],
+      "includes": [
+        {
+          "historical": "pso/system/ArrayAllocation.h",
+          "current": "pso/system/ArrayAllocation.h",
+          "method": "same direct include is present",
+          "current_blob": "4cb6c1b6e1f6a14ceff5bc91ee034f639b9c71f8"
+        }
+      ],
+      "current_blob": "7a5e4af478ce108ad3a331435cd2de728d56bafa"
+    },
+    {
+      "row": 5315,
+      "fork_path": "src/pso/unk/text_801E4F04.cpp",
+      "current_owner": "src/pso/unk/text_801E4F04.cpp",
+      "exact_anchored": 4,
+      "hunks": 4,
+      "all_changed_code_hunks": true,
+      "checks": [
+        {
+          "old_line": 3,
+          "new_line": 3,
+          "retained": true,
+          "old_tokens": 15,
+          "new_tokens": 0
+        },
+        {
+          "old_line": 8,
+          "new_line": 6,
+          "retained": true,
+          "old_tokens": 19,
+          "new_tokens": 23
+        },
+        {
+          "old_line": 10,
+          "new_line": 8,
+          "retained": true,
+          "old_tokens": 19,
+          "new_tokens": 23
+        },
+        {
+          "old_line": 19,
+          "new_line": 17,
+          "retained": true,
+          "old_tokens": 45,
+          "new_tokens": 53
+        }
+      ],
+      "includes": [
+        {
+          "historical": "pso/system/ArrayAllocation.h",
+          "current": "pso/system/ArrayAllocation.h",
+          "method": "same direct include is present",
+          "current_blob": "4cb6c1b6e1f6a14ceff5bc91ee034f639b9c71f8"
+        }
+      ],
+      "current_blob": "8547733a88713274e299d71b3aadb5f7545d2269"
+    },
+    {
+      "row": 7237,
+      "fork_path": "src/pso/misc/TODummyKeyCave01.cpp",
+      "current_owner": "src/pso/object/key/TODummyKeyCave01.cpp",
+      "exact_anchored": 4,
+      "hunks": 4,
+      "all_changed_code_hunks": true,
+      "checks": [
+        {
+          "old_line": 63,
+          "new_line": 63,
+          "retained": true,
+          "old_tokens": 14,
+          "new_tokens": 15
+        },
+        {
+          "old_line": 78,
+          "new_line": 78,
+          "retained": true,
+          "old_tokens": 14,
+          "new_tokens": 15
+        },
+        {
+          "old_line": 81,
+          "new_line": 81,
+          "retained": true,
+          "old_tokens": 14,
+          "new_tokens": 15
+        },
+        {
+          "old_line": 95,
+          "new_line": 95,
+          "retained": true,
+          "old_tokens": 12,
+          "new_tokens": 10
+        }
+      ],
+      "includes": [
+        {
+          "historical": "pso/player/demo_mode.h",
+          "current": "pso/player/demo_mode.h",
+          "method": "same direct include is present",
+          "current_blob": "032e99d339c84ac84964850e0ea6856b5a445615"
+        }
+      ],
+      "current_blob": "458da500a37cd43ee5c9b99e7b9863250aeb34fa"
+    }
+  ],
+  "player_header_proofs": [
+    {
+      "row": 3359,
+      "path": "include/pso/player/PlayerEquipmentUpdate.h",
+      "owner": "include/pso/player/TObjPlayer.h",
+      "addresses": {
+        "sub_801BE9A8__10TObjPlayerFv": "0x801BE9A8",
+        "set_flag_20000__10TObjPlayerFv": "0x801BE9CC"
+      },
+      "signatures": [
+        "void sub_801BE9A8();",
+        "void set_flag_20000();"
+      ],
+      "message": "Both declarations are native player methods, with all equipment calls using the matched methods at 0x801BE9A8 and 0x801BE9CC.",
+      "fork_blob": "bc7f1426f7f45877ff0300157646388b4374a128",
+      "active_blob": "32d854dda462c2c39500ecd03fc5170a319a8959"
+    },
+    {
+      "row": 3363,
+      "path": "include/pso/player/StatsCopy.h",
+      "owner": "include/pso/player/PlayerLevelTable.h",
+      "addresses": {
+        "copy_stats__10TObjPlayerFPv": "0x801B68E8"
+      },
+      "signatures": [
+        "void copy_stats__10TObjPlayerFPv(stats *out, const stats *source);"
+      ],
+      "message": "The shared level-table header declares the typed stat copy. The exact body at 0x801B68E8 retains the seven halfword reads and writes in order.",
+      "fork_blob": "80a7d63a6abdcb92fa6c88b6c5b93ff6d7c15bff",
+      "active_blob": "1ef2cc8f4773700f18d245bef74de48af4c80a83"
+    }
+  ],
+  "slime_proof": {
+    "audit": "/dev/shm/gm-source-retention.IZcYKe/historical-source-audit.json",
+    "candidate": "b752921176eacb4febf82017668f85e9f673ec47",
+    "recovered_function_addresses": [
+      {
+        "address": "0x800E81B4",
+        "previous": "draw_blob_shadows__10TObjPlayerFv",
+        "native": "draw_blob_shadows__22TObjEneSlimeTailAttackFv"
+      },
+      {
+        "address": "0x800E88EC",
+        "previous": "create__22TObjEneSlimeTailAttackFiiii",
+        "native": "create__22TObjEneSlimeTailAttackFlPC3VeclP15TObjEneSlimeOne"
+      },
+      {
+        "address": "0x800E8964",
+        "previous": "dt__22TObjEneSlimeTailAttackFPvs",
+        "native": "__dt__22TObjEneSlimeTailAttackFv"
+      },
+      {
+        "address": "0x800E89BC",
+        "previous": "TObjEneSlimeTailAttack__ct",
+        "native": "__ct__22TObjEneSlimeTailAttackFP7TObjectPC3VeclP15TObjEneSlimeOne"
+      },
+      {
+        "address": "0x800E8AD0",
+        "previous": "water_bomb_hit_nearby__FPUc",
+        "native": "check_hits__21TObjEneSlimeWaterBombFv"
+      },
+      {
+        "address": "0x800E8EA4",
+        "previous": "create__21TObjEneSlimeWaterBombFPv",
+        "native": "create__21TObjEneSlimeWaterBombFP15TObjEneSlimeOneP15TObjEneSlimeOne"
+      },
+      {
+        "address": "0x800E8F68",
+        "previous": "TObjEneSlimeWaterBomb__ct",
+        "native": "__ct__21TObjEneSlimeWaterBombFP15TObjEneSlimeOneP15TObjEneSlimeOne"
+      }
+    ],
+    "reconciled_contracts": [
+      {
+        "row": 479,
+        "fork_path": "include/pso/enemy/TObjEneSlimeTailAttack.h",
+        "current_owner": "include/pso/enemy/slime/TObjEneSlimeTailAttack.h",
+        "original_blob": "dce7c0b6cb9661373da3cdee8ac6793b09055c63",
+        "fork_blob": "02648d3e0d34ddd49dfdb77c564b9b5aab01118b",
+        "current_blob": "6c6a74de6bad52132a80e5d529a8dbc9948e0025",
+        "status": "source comparison remains",
+        "scope": "Native tail class layout, owner and pose offsets, constructor, typed factory, and shadow owner.",
+        "validated_blob": "ea5635ef06d863443369c79732f31c86880e2039"
+      },
+      {
+        "row": 480,
+        "fork_path": "include/pso/enemy/TObjEneSlimeWaterBomb.h",
+        "current_owner": "include/pso/enemy/slime/TObjEneSlimeWaterBomb.h",
+        "original_blob": "98e53f26cf695e5c880200625df7ff8d0398f0b5",
+        "fork_blob": "31f4fc0202b30e378f439cb02c78f4a7cf9b9318",
+        "current_blob": "ec367127370989eb7bd3ba6d776bd043c1c5943d",
+        "status": "source comparison remains",
+        "scope": "Native water bomb class layout, typed movement, particle and owner fields, constructor, factory, and hit check.",
+        "validated_blob": "4529622eda142f3d9c96d22b7f7c7e586a0e4cde"
+      },
+      {
+        "row": 637,
+        "fork_path": "src/pso/enemy/TObjEneSlimeTailAttack.cpp",
+        "current_owner": "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+        "original_blob": "362f78e7cb7e886fe9ed008d038c3cdb411b471d",
+        "fork_blob": "45c095b94a6e7972835dc637acfa60a75423df0d",
+        "current_blob": "f5d0d236f0a80c23cf282fc02225124ccabe41e4",
+        "status": "source comparison remains",
+        "scope": "Both effect lifecycles and both SlimeOne effect-spawn calls. SlimeOne's separate own lifecycle is outside this batch.",
+        "validated_blob": "e651ab393ddb5ebf6df8587ee15901bc2a238cd1"
+      }
+    ],
+    "separate_owners": [
+      {
+        "row": 444,
+        "fork_path": "include/pso/enemy/SlimeAnimationState.h",
+        "current_owner": "include/pso/enemy/slime/SlimeAnimationState.h",
+        "original_blob": null,
+        "fork_blob": "b7deff29449c1e0a84a3074cf1fe3c1a347b42a6",
+        "current_blob": "2e75fd691ecf534235ad1d9ac361e26fa4b9039e",
+        "status": "historical addition needs owner context"
+      },
+      {
+        "row": 477,
+        "fork_path": "include/pso/enemy/TObjEneSlimeOne.h",
+        "current_owner": "include/pso/enemy/slime/TObjEneSlimeOne.h",
+        "original_blob": "777984ff8be733d07226df365b83dc118356acf8",
+        "fork_blob": "3f05537ea4d190c77d9a3a6abd6c9d63363e1bf3",
+        "current_blob": "e90c1b2495fdc411afdee555648c115c89c3eb08",
+        "status": "source comparison remains"
+      },
+      {
+        "row": 636,
+        "fork_path": "src/pso/enemy/TObjEneSlimeOne_800EC394.cpp",
+        "current_owner": "src/pso/enemy/slime/TObjEneSlimeOne_800EC394.cpp",
+        "original_blob": "9dca8b1ee75361fb2a821dc529efa3b9b37734bf",
+        "fork_blob": "757ff44b6a172bf787c9d36b9c9906873d75e4d6",
+        "current_blob": "99fbb405eb8208c1854d808506bbd1337d845fdd",
+        "status": "source comparison remains"
+      },
+      {
+        "row": 777,
+        "fork_path": "include/pso/enemy/TObjEneSlime.h",
+        "current_owner": "include/pso/enemy/slime/TObjEneSlime.h",
+        "original_blob": "d4988238ad1cdd6121104467824be6e03414e23d",
+        "fork_blob": "1395d5a39709dacffcf8890e75162740dfe06fad",
+        "current_blob": "81ad35dd88f3108936a5c4a6ca1260d2b5617e58",
+        "status": "source comparison remains"
+      },
+      {
+        "row": 3510,
+        "fork_path": "src/pso/enemy/TObjEneSlimeTailAttack_search.cpp",
+        "current_owner": "src/pso/player/TObjPlayer_800EBE2C.cpp",
+        "original_blob": null,
+        "fork_blob": "9f05215f78ced7a0fff5f9fe00ea981c3a289fe1",
+        "current_blob": "b5527ca2371d9a4e9d13208d0b98f7eea76367c0",
+        "status": "historical addition needs owner context"
+      }
+    ]
+  },
+  "fish_school_proof": {
+    "base": "75b5a6951a2fdb2668c3dae5793843693a8d0ba9",
+    "head": "4dfd9766e466475ebbaa948203bbd3f423af33b9",
+    "fork": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+    "donors": [
+      "dd56934219",
+      "93c5d139d2"
+    ],
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "original_addresses": {
+      "update_state": "0x8029D504",
+      "render": "0x8029D5C8",
+      "init_fish_school": "0x8029E170",
+      "free_resource": "0x8029E5B0",
+      "load_area_resource": "0x8029E5E8",
+      "area_bml_resource": "0x805D65E8"
+    },
+    "scoped_replay_rows": [
+      {
+        "row": 6512,
+        "historical_path": "src/pso/object/TObjFish.cpp",
+        "current_path": "src/pso/object/ambient/TObjFish.cpp",
+        "evidence": [
+          "Native TObjFish::render consumes the same TObjFishEntry array as init_fish_school and run_task, replacing the two local layouts.",
+          "All three seabed draw and all three motion draw paths use the shared typed model, motion and texture accessors.",
+          "The area archive is a BmlResource pointer throughout load, render and release."
+        ]
+      },
+      {
+        "row": 6779,
+        "historical_path": "include/pso/object/TObjFish.h",
+        "current_path": "include/pso/object/ambient/TObjFish.h",
+        "evidence": [
+          "Native halfword event state at offset 0x90 and the retail width register for update_state.",
+          "Shared 0x44-byte TObjFishEntry layout checked at all native render, initialization and update fields."
+        ]
+      }
+    ],
+    "existing_provider_row": 6669,
+    "existing_provider": "Six floor lifecycle table entries already use the native load and free methods. The named descriptors and native placement constructor are already present."
+  },
+  "open_player_class_trial": "0db038f6a1455c9eef099e34ccf267e2edf67216",
+  "open_player_class_functions": [
+    {
+      "module": "psov3",
+      "address": "0x801D8D8C",
+      "name": "get_class_starting_inventory"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802C38B4",
+      "name": "init_character_stats_for_level"
+    }
+  ]
+}

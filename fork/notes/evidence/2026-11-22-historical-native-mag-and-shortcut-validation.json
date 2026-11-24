@@ -1,0 +1,221 @@
+{
+  "source_head": "e645fc2f0d636ab346a6d88212de42c71df2cb53",
+  "source_tree": "0cef29be8c06608cdbdfbb37bd77d925bd27d81f",
+  "previous_cumulative": "659bbf49da7ae75baf0d1ed328b50d4daaedfb2b",
+  "upstream_master": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "effects_overlap_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "src/pso/ui/window/TWindowSubMagPhoton.cpp"
+  ],
+  "source_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/item/TItemData.h",
+    "include/pso/ui/window/TWindowHelpItem.h",
+    "include/pso/ui/window/TWindowSubMag.h",
+    "include/pso/ui/window/TWindowSubMagPhoton.h",
+    "include/pso/ui/window/TWindowSubShortCut.h",
+    "include/pso/ui/window/TWindowSubShortCutList.h",
+    "include/pso/unk/text_8025373C.h",
+    "src/pso/ui/window/TWindowHelpItem_80253154.cpp",
+    "src/pso/ui/window/TWindowHelpItem_80255AB4.cpp",
+    "src/pso/ui/window/TWindowSubMag.cpp",
+    "src/pso/ui/window/TWindowSubMagPhoton.cpp",
+    "src/pso/ui/window/TWindowSubShortCut.cpp",
+    "src/pso/ui/window/TWindowSubShortCutList.cpp",
+    "src/pso/unk/text_8025373C.cpp",
+    "src/pso/unk/text_80253974.cpp",
+    "src/pso/unk/text_80255A38.cpp"
+  ],
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "matching_functions": 27572,
+  "linked_units": 2368,
+  "coverage_regressions": {
+    "regressions": 0,
+    "data_regressions": 0,
+    "data_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0,
+    "failures": 0
+  },
+  "source_benchmark": {
+    "total": {
+      "base": 142809,
+      "head": 142773,
+      "added": 4,
+      "removed": 40
+    },
+    "symbol_changes": [
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80253974",
+        "type": "function",
+        "old": "update_mag_status_gauges__9TItemDataFv",
+        "new": "update_mag_status_gauges__15TWindowHelpItemFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8027C0C4",
+        "type": "function",
+        "old": "get_selected_blast__13TWindowSubMagFv",
+        "new": "get_selected_blast__19TWindowSubMagPhotonFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8027C114",
+        "type": "function",
+        "old": "set_flag60_bit8__13TWindowSubMagFv",
+        "new": "set_flag60_bit8__15TWindowHelpItemFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8027C124",
+        "type": "function",
+        "old": "clear_flag60_bit8__13TWindowSubMagFv",
+        "new": "clear_flag60_bit8__15TWindowHelpItemFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8027C134",
+        "type": "function",
+        "old": "get_mag_state__13TWindowSubMagFv",
+        "new": "get_mag_state__15TWindowHelpItemFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8027C6B4",
+        "type": "function",
+        "old": "__ct__19TWindowSubMagPhotonFPC10NJS_POINT2ll",
+        "new": "__ct__19TWindowSubMagPhotonFPC10NJS_POINT2P9TItemDatal",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8027E3B4",
+        "type": "function",
+        "old": "create__22TWindowSubShortCutListFPv",
+        "new": "create__22TWindowSubShortCutListFPvl",
+        "flags": []
+      }
+    ],
+    "stale_retention_entries": 0,
+    "new_occurrences_of_existing_offsets": [
+      {
+        "key": "offset_member",
+        "path": "src/pso/ui/window/TWindowSubMag.cpp",
+        "line": 129,
+        "text": "m_60"
+      },
+      {
+        "key": "offset_member",
+        "path": "src/pso/ui/window/TWindowSubMag.cpp",
+        "line": 131,
+        "text": "m_60"
+      },
+      {
+        "key": "offset_member",
+        "path": "src/pso/ui/window/TWindowSubMag.cpp",
+        "line": 139,
+        "text": "m_60"
+      },
+      {
+        "key": "offset_member",
+        "path": "src/pso/ui/window/TWindowSubMag.cpp",
+        "line": 144,
+        "text": "m_61"
+      }
+    ],
+    "offset_note": "The typed help and Photon Blast accessors reference the existing flag byte and signed selection slot. The changes preserve those shared member names."
+  },
+  "runtime": {
+    "images": [
+      "retail",
+      "Great Merge source"
+    ],
+    "help_flag_states": 256,
+    "photon_blast_combinations": 12,
+    "shortcut_render_paths": 4,
+    "shortcut_factory_and_caller_cases": 9,
+    "total_per_image": 281
+  },
+  "historical_source_comparison": {
+    "closed": {
+      "src/pso/misc/TWindowSubShortCutList.cpp": "Verified all six linked routines and 68 data bytes. The static factory takes the original position and signed selector. Its native caller returns the allocated list. Refresh selects the four original record types. Render passes the live WindowDrawContext, WindowLayoutEntries at +0x24 and the optional status/page children. The linked run task, destructor and signed cursor/page setup are retained.",
+      "src/pso/misc/TWindowSubMag.cpp": "Verified all 21 linked routines and 208 data bytes. Both toast calls use the native message factory at 0x80269CC0. The slot texture child retains the factory at 0x802628C0 and receives the typed item at 0x80262814. The real help instance supplies the displayed item, owns the flag setters and inherits the original close call at 0x80244A4C. The native Photon Blast constructor keeps its original position, selected item and client. Sound declarations and the original player action check stay on their native providers.",
+      "src/pso/unk/text_80253974.cpp": "Both linked gauge routines and the eight original read-only bytes are exact. The gauge update receives TWindowHelpItem, uses its displayed-item pointer and draws from the existing base entry list. The original initializer uses measure_message_text_width_default at 0x80246F8C, the same linked provider as the fork's measure_text_entry."
+    },
+    "linked_units": {
+      "text_8025373C": {
+        "functions": 1,
+        "linked_data_bytes": 0
+      },
+      "text_80253974": {
+        "functions": 2,
+        "linked_data_bytes": 8
+      },
+      "TWindowSubMag": {
+        "functions": 21,
+        "linked_data_bytes": 208
+      },
+      "TWindowSubMagPhoton": {
+        "functions": 10,
+        "linked_data_bytes": 296
+      },
+      "TWindowSubShortCut": {
+        "functions": 10,
+        "linked_data_bytes": 108
+      },
+      "TWindowSubShortCutList": {
+        "functions": 6,
+        "linked_data_bytes": 68
+      }
+    },
+    "remaining": 168
+  },
+  "historical_fork_data": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "validation_sha256": {
+    "check.json": "151d52ca11c80efae96b26d870f7351aa58cae1099689dea9b89f3343f559a18",
+    "delta.json": "2f90a001403784350d5ac2a8fe6ae465d4885c83b80c8663e97bd4c9e20c281f",
+    "quality-verified.json": "f2e676c13252a298b0a47849ba73b1bd245b6c6288dc9842527d083b9c9533fe",
+    "probe-mag-shortcuts.py": "4ffeef0aee70c1c341c044d215188410b89586d0339c0601a13bd2a75b4d00d3",
+    "probe-windows.log": "f4cb0572a224ced5845a300fbef10044f4639786162c10cfec3d0f3a5078b99c"
+  },
+  "materialized_fork": {
+    "tree": "a71cce9f14f8db291887d62012ad77183f3dd43b",
+    "retention_entries": 27007,
+    "replaced_owner_names": 4,
+    "new_stale_retention_entries": 0,
+    "checks": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    },
+    "validation_sha256": {
+      "workspace.patch.gz": "f72ff8e9da1fd89eda03e782b78207f860706a36439ba72155b548a8eac12294",
+      "private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011",
+      "retention.log": "b3325169ce9d5755b2340e455b52eb7ac52edcb6fa173dc4f2486f46f713350c",
+      "fork-tests-verified.log": "baa8907fbdf667f67bf731bc2bf7bb6464dc4c1bc0abaacbccf6bfd409fec022",
+      "tool-tests-verified.log": "378309e2fb462952d60570c72f2937fa16bc77cf26ffeacf96f20630a5d965e7",
+      "host-tests-verified.log": "30982efe110038aa94f2d8972e6bc0113da92d1c60daf4e40f965f3e15ccfa0d"
+    }
+  }
+}

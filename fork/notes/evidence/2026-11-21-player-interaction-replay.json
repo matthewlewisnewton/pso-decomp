@@ -1,0 +1,258 @@
+{
+  "source": "21be236e7fdb45a0195dba9651fb75b54762f48f",
+  "previous_source": "b91b12324e28e36040674c5f482a5bdc4acb83de",
+  "upstream": "5a4e7ced56fe7072359b6d279e94f4be3b8453c0",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "source_paths": 1194,
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/player/TObjPlayer_801C00C4.h",
+    "include/pso/player/TechniqueCastState.h",
+    "src/pso/boss/volopt/TObjVoloptCage.cpp",
+    "src/pso/item/TItem.cpp",
+    "src/pso/item/armor/TItemProUnit.cpp",
+    "src/pso/npc/TNpcPlayer_8034DAA0.cpp",
+    "src/pso/npc/TObjNpcBase.cpp",
+    "src/pso/object/TObjLuker.cpp",
+    "src/pso/object/trap/TOTrap.cpp",
+    "src/pso/object/trap/TOTrapAncient01.cpp",
+    "src/pso/object/trap/TOTrapAncient02.cpp",
+    "src/pso/object/trap/TOTrapSeabed01.cpp",
+    "src/pso/object/warp/TObjCityMainWarp_80186C44.cpp",
+    "src/pso/object/warp/TObjWarpBossMulti.cpp",
+    "src/pso/player/PhotonBlastResults.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TObjPlayer_801BC194.cpp",
+    "src/pso/player/TObjPlayer_801C00C4.cpp",
+    "src/pso/player/TObjPlayer_801C7430.cpp",
+    "src/pso/player/TObjPlayer_801D95B8.cpp",
+    "src/pso/player/TObjPlayer_801D9A04.cpp",
+    "src/pso/player/TPlayerBattleCtrl4P.cpp",
+    "src/pso/player/TPlyItem.cpp",
+    "src/pso/quest/TOQuestTalkBase.cpp",
+    "src/pso/quest/challenge/TChallenge4PItemSelect.cpp",
+    "src/pso/technique/TTecLuker.cpp",
+    "src/pso/unk/TLobby_800726F0.cpp",
+    "src/pso/unk/TLobby_801C25B4.cpp",
+    "src/pso/unk/TLobby_80299C4C.cpp",
+    "src/pso/unk/text_801D9870.cpp",
+    "src/pso/unk/text_802233F8.cpp"
+  ],
+  "author": {
+    "name": "matthewlewisnewton",
+    "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+    "coauthor_trailers": 0
+  },
+  "layouts": {
+    "player_technique_state_offset": 1064,
+    "technique_state_size": 132,
+    "targets_offset": 32,
+    "learned_levels_offset": 72,
+    "maximum_levels_offset": 92,
+    "effective_levels_offset": 112
+  },
+  "historical_comparison": {
+    "prior_open_rows": 449,
+    "open_rows": 449,
+    "closed": [
+      4144,
+      6055
+    ],
+    "reopened": [
+      3453,
+      4134
+    ],
+    "touched_rows": [
+      {
+        "row": 3423,
+        "description": "The current owner uses ActorBodyHit and the output Vec. The const direction variants still change the target unit's instruction schedule. Keep the exact current function while the remaining historical const signature is reviewed.",
+        "historical_path": "include/pso/player/TObjPlayer_802D5B78.h",
+        "current_path": "include/pso/player/TObjPlayer_802D5174.h",
+        "fork_blob": "7460b6702430571c978cdfe75087b96e9a1a067a",
+        "current_blob": "722d70bcf244c8f03edf8c7f4e0d1842e1239fab",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found",
+        "prior_evidence_head": null
+      },
+      {
+        "row": 3998,
+        "description": "The verified 0x84 cast state at player offset 0x428 is restored with typed target, learned level, cap and effective level fields. Its level check and hold and release interfaces have typed callers. Other player header changes remain open.",
+        "historical_path": "include/pso/player/TObjPlayer.h",
+        "current_path": "include/pso/player/TObjPlayer.h",
+        "fork_blob": "55eae4b73abddd9e0bc3e78b90398d7e34196396",
+        "current_blob": "09632490bde61f785b447a9a411ae29d15958ad4",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found",
+        "prior_evidence_head": null
+      },
+      {
+        "row": 4138,
+        "description": "The 6x47 and 6x48 caller lanes carry the real TechniqueCastState at their original addresses, and the original register allocation is preserved at the 6x48 call. Other historical player action edits remain under review.",
+        "historical_path": "src/pso/player/TObjPlayer_801C7430.cpp",
+        "current_path": "src/pso/player/TObjPlayer_801C7430.cpp",
+        "fork_blob": "8774ee999d0c7ef266bf7578575368480b02c07a",
+        "current_blob": "3666db413c72efe073003a27a66f373dad59dd10",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found",
+        "prior_evidence_head": null
+      },
+      {
+        "row": 4144,
+        "description": "The exact 32-bit is_valid_technique_slot and the native TechniqueCastState::check_technique_level are present at their historical addresses. Every live caller uses the state, and the two register-sensitive sites use the typed entry point with its explicit receiver.",
+        "historical_path": "src/pso/player/TObjPlayer_801D9A04.cpp",
+        "current_path": "src/pso/player/TObjPlayer_801D9A04.cpp",
+        "fork_blob": "e3b0e3fcc59a5201d43ccf4a1f93d26f7e1555ef",
+        "current_blob": "4e46630c54d0004d19729decfda35c12c5595bdf",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete native technique level check historical source reconciled",
+        "prior_evidence_head": null
+      },
+      {
+        "row": 6055,
+        "description": "Both dispatch scans use the shared typed player lookup, the native check_player_flag1 and the typed hold and release methods. The existing upstream menu entry names identify the same calls and client IDs.",
+        "historical_path": "src/pso/unk/text_802233F8.cpp",
+        "current_path": "src/pso/unk/text_802233F8.cpp",
+        "fork_blob": "7110a118749129e9f06e89e2456d60e617bdfdd4",
+        "current_blob": "5f821dac2953cdcc59c9a45a06f31671355342df",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete player window dispatch historical source reconciled",
+        "prior_evidence_head": null
+      },
+      {
+        "row": 3453,
+        "description": "The current source before this replay had no TechniqueCastState header. This replay restores its layout and level check, while the previously validated native technique, level, slot and target helpers have still to be restored.",
+        "historical_path": "include/pso/player/TechniqueCastState.h",
+        "current_path": "include/pso/player/TechniqueCastState.h",
+        "fork_blob": "e4fd4b1d1d2e9c40b4b89389910025f176acf267",
+        "current_blob": "80e3ee3323c5c3ca4e3e5a54c5dd5fc87c6eba99",
+        "previous_status": "Complete fork technique cast declarations retained",
+        "current_status": "Some anchored text changes found",
+        "prior_evidence_head": "bdc5b56af7b3c73e91fad1276ef7ffa427ecf903"
+      },
+      {
+        "row": 4134,
+        "description": "The short technique setter at 0x801C011C had reverted to TObjPlayer::set_technique_id on the embedded state. The new patch types the two table lookups, and the earlier native setter still needs replay.",
+        "historical_path": "src/pso/player/TObjPlayer_801C00C4.cpp",
+        "current_path": "src/pso/player/TObjPlayer_801C00C4.cpp",
+        "fork_blob": "60417e9710f6fbe41816e1beb8710aaefbf35b85",
+        "current_blob": "52ad34d563508a41e7a2360ef99d35089bb487d0",
+        "previous_status": "Complete historical source retained at native owners",
+        "current_status": "Some anchored text changes found",
+        "prior_evidence_head": "bdc5b56af7b3c73e91fad1276ef7ffa427ecf903"
+      }
+    ]
+  },
+  "validation": {
+    "stock": {
+      "baseline": "b91b12324e28e36040674c5f482a5bdc4acb83de",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x801B5200",
+          "before": "send_code_45_1__10TObjPlayerFl",
+          "after": "send_code_45_1__10TObjPlayerFP10TObjPlayer"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801B5408",
+          "before": "play_effect_default__10TObjPlayerFii",
+          "after": "play_effect_default__10TObjPlayerFP10TObjPlayerl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D9A44",
+          "before": "check_technique_level__10TObjPlayerFllUc",
+          "after": "check_technique_level__18TechniqueCastStateFlUc"
+        }
+      ],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "3946680f4ecb9ebc3bd1a09fb46a97c9dca957c0be2a3a4e68e506d07c098586",
+      "report_sha256": "2190c0de908e846a59c454f6fb7e66bb7741b23d47849adc84b4e05689fb3946"
+    },
+    "workspace": {
+      "baseline": "21be236e7fdb45a0195dba9651fb75b54762f48f",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "2190c0de908e846a59c454f6fb7e66bb7741b23d47849adc84b4e05689fb3946"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "95c91c51d26912f633834c61144473f5a723ffa3554721064a86efbb69beae61"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "4f9a51f4e4db3784cfd2228794a6e87b9f838eeffe2124f9ab540eab93139af8"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    },
+    "player_runtime": {
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "checks": [
+        "Invalid slot and requested level boundaries",
+        "The cap table and effective level table read through the cast-state receiver",
+        "Hold packet position, effect and radius",
+        "Release packet identity, invulnerable and null actor cases",
+        "Split-screen gate, view owner exclusion, missing slot, and menu enable and disable"
+      ],
+      "emulation": "The harness executes the eligibility and dispatch routines and supplies game services and packet observers.",
+      "log_sha256": "57714af05e28cbcecdde3a1d078bbc273a81a389ebf4940f13eb4cfdfaee7ad4",
+      "probe_sha256": "fce47071dfb3af1fe754c6e37ae36ab7584e75190852824dc475583287bd23dd"
+    }
+  },
+  "fork_workspace": {
+    "overlay_paths": 130,
+    "overlay_patch_sha256": "deccf0c47860f8ed902f95bc8b3afca1ceea19b186a05e1b0b9cb19292a33cd2",
+    "updated_overlay_paths": [],
+    "force_active_names": 27033,
+    "archive_test_head": "1064185f0f5c3fbfac743f9dc387e1024867db01",
+    "tested_materialized_tree": "7e2f62bfd9668218386f1840a60aabfdb1f8e46b"
+  }
+}

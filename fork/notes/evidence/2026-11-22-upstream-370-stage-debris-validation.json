@@ -1,0 +1,183 @@
+{
+  "upstream": "d8c0a969d273c9e2cdb1c6c34a1e6aa2be4cc571",
+  "previous_source": "507e578a137e47d02db536d633114c45eea43ead",
+  "source": "04dcce065b5b748ee382035bf25d310a492f5837",
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "original_data_bytes": 1147,
+  "data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "coverage": {
+    "check.json": {
+      "losses": {
+        "regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "labels_changed": [
+        {
+          "module": "psov3",
+          "address": "0x80180B38",
+          "before": "copy_debris_params__8TObjChipFPvPv",
+          "after": "copy_debris_params__8TObjChipFP14TObjChipParamsPC14TObjChipParams"
+        }
+      ]
+    },
+    "layer-check.json": {
+      "losses": {
+        "regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "labels_changed": []
+    }
+  },
+  "source_quality": {
+    "total": {
+      "base": 160059,
+      "head": 159996,
+      "added": 3,
+      "removed": 66
+    },
+    "flagged_symbol_labels": 0,
+    "newly_stale_force_active": [],
+    "added_findings": [
+      {
+        "key": "address_type",
+        "path": "src/pso/object/TObjChip.cpp",
+        "line": 439,
+        "text": "Obj_8017FE58"
+      },
+      {
+        "key": "address_type",
+        "path": "src/pso/object/TObjChip.cpp",
+        "line": 529,
+        "text": "Obj_8017FE58"
+      },
+      {
+        "key": "address_type",
+        "path": "src/pso/object/TObjChip.cpp",
+        "line": 542,
+        "text": "Obj_8017FE58"
+      }
+    ],
+    "reason_for_added_findings": "The three existing render accesses now use the model and texture members of the established Obj_8017FE58 view. Its original type name is retained.",
+    "label_change_reason": "TObjChip::copy_debris_params takes the destination and const source parameter records it copies."
+  },
+  "verified_data_objects": {
+    "TOTrapAncient01__bml_resource": {
+      "address": "0x805d5ad0",
+      "size": 4
+    },
+    "TOTrapSeabed01__bml_resource": {
+      "address": "0x805d6810",
+      "size": 4
+    },
+    "TOTrapSeabed01__texture_file": {
+      "address": "0x805d6814",
+      "size": 4
+    },
+    "TOTrapSeabed01__transform_params": {
+      "address": "0x80472044",
+      "size": 76
+    },
+    "TOWreckAncientBrakable__debris_param_table": {
+      "address": "0x804435c8",
+      "size": 76
+    },
+    "TObjTombstone__shared_resource_object": {
+      "address": "0x805d4e48",
+      "size": 4
+    },
+    "container_jung_debris_desc": {
+      "address": "0x8044523c",
+      "size": 76
+    },
+    "explosive_machine_model_archive": {
+      "address": "0x805d59a8",
+      "size": 4
+    },
+    "forest_box_break_params": {
+      "address": "0x804b63e8",
+      "size": 304
+    },
+    "lbl_805D5A50": {
+      "address": "0x805d5a50",
+      "size": 4
+    },
+    "vs2_wall_debris_desc": {
+      "address": "0x8044311c",
+      "size": 76
+    }
+  },
+  "compile_scope": "A local scheduling-off directive preserves the original 156-byte copy. The three pre-existing 12-byte block copies keep their original representation. Element copies and standard memcpy produced different instructions.",
+  "runtime_probes": {
+    "images": [
+      "retail",
+      "source",
+      "materialized fork layer"
+    ],
+    "result": "debris copy guards, three stage fragments, and Mine and Tombstone resource lifetimes passed"
+  },
+  "changed_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/object/TObjChip.h",
+    "include/pso/object/TObjChipParams.h",
+    "include/pso/object/jungle/TORockJungleS01.h",
+    "include/pso/object/seabed/TObjSeabedSuisoBrakable.h",
+    "include/pso/object/trap/TOExplosiveMachine.h",
+    "src/pso/boss/volopt/TObjVoloptPillar.cpp",
+    "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+    "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+    "src/pso/object/TObjChip.cpp",
+    "src/pso/object/TObjTombstone.cpp",
+    "src/pso/object/cave/TORockCave.cpp",
+    "src/pso/object/container/TOContainerAncientEnemy.cpp",
+    "src/pso/object/container/TObjContainerItem.cpp",
+    "src/pso/object/container/TObjContainerJung.cpp",
+    "src/pso/object/fence/TOVS2Wall01.cpp",
+    "src/pso/object/jungle/TORockJungleL01.cpp",
+    "src/pso/object/seabed/TObjSuisoChip.cpp",
+    "src/pso/object/trap/TOExplosiveMachine.cpp",
+    "src/pso/object/trap/TOMine.cpp",
+    "src/pso/object/trap/TOMineIcon01.cpp",
+    "src/pso/object/trap/TOMineIcon02.cpp",
+    "src/pso/object/trap/TOMineIcon03.cpp",
+    "src/pso/object/trap/TOMineIcon04.cpp",
+    "src/pso/object/trap/TOTrapAncient01.cpp",
+    "src/pso/object/trap/TOTrapSeabed01.cpp",
+    "src/pso/object/wreck/TOWreckAncient.cpp"
+  ],
+  "open_comparisons_annotated": [
+    "src/pso/misc/TOContainerAncientEnemy.cpp",
+    "src/pso/misc/TOTrapAncient01.cpp",
+    "src/pso/misc/TOTrapSeabed01.cpp",
+    "src/pso/object/TObjTombstone.cpp",
+    "src/pso/misc/TOMineTrap_8016F6F8.cpp",
+    "src/pso/item/TObjContainerItem.cpp",
+    "src/pso/item/TObjContainerJung.cpp"
+  ],
+  "remaining_source_comparisons": 201,
+  "workspace": {
+    "materialized_tree": "34c75367e70bb4e06366cadc15929e8f453af205",
+    "overlay_paths": 130,
+    "updated_retention_labels": {},
+    "checks": {
+      "tool": 294,
+      "fork": 11,
+      "host": 5
+    },
+    "archive_sha256": "a037c8a98f75d538424fb1fe21604d4a0dafd498ed06a6435078c3c5bde76e50",
+    "normalized_overlay_edits_sha256": "cf145f1b072c58a198a78fadf07136d8527ac3d1f61ae61122c689c390ca0fdf"
+  }
+}

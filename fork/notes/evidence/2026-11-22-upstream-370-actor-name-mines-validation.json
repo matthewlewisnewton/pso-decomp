@@ -1,0 +1,117 @@
+{
+  "upstream": "d8c0a969d273c9e2cdb1c6c34a1e6aa2be4cc571",
+  "previous_source": "4a16f9abb7a7b04c5e90268de4d7b74b1710985e",
+  "source": "24380ad7fb886aafca04e6740a1ca97f3ac31b68",
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "original_data_bytes": 1147,
+  "data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "coverage": {
+    "check.json": {
+      "losses": {
+        "regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "labels_changed": [
+        {
+          "module": "psov3",
+          "address": "0x8003F3C8",
+          "before": "check_value_equals__13TUnk_804B6C24CFl",
+          "after": "check_value_equals__7TObjectCFPCc"
+        }
+      ]
+    },
+    "layer-check.json": {
+      "losses": {
+        "regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "labels_changed": []
+    }
+  },
+  "source_quality": {
+    "total": {
+      "base": 160345,
+      "head": 160286,
+      "added": 1,
+      "removed": 60
+    },
+    "flagged_symbol_labels": 0,
+    "newly_stale_force_active": [],
+    "added_findings": {
+      "local_decl": 1
+    },
+    "separate_ownership_diagnostics": {},
+    "reason_for_added_findings": "The particle-controller validation unit declares the existing two-element name descriptor with its real type. The match still uses the first name pointer, and the descriptor layout and address are unchanged."
+  },
+  "runtime_probes": {
+    "images": [
+      "retail",
+      "source",
+      "materialized fork layer"
+    ],
+    "result": "task-name pointer identity and both Vol Opt cage initialization branches passed."
+  },
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/boss/volopt/TObjVoloptCage.h",
+    "include/pso/player/TUnk_804B6C24.h",
+    "include/pso/system/task/TObject.h",
+    "src/pso/boss/volopt/TBoss3Volopt.cpp",
+    "src/pso/boss/volopt/TObjVoloptCage.cpp",
+    "src/pso/effect/particle/TParticleCtrl_801D6B3C.cpp",
+    "src/pso/enemy/darkgunner/TObjEneDarkGunCenter.cpp",
+    "src/pso/enemy/dubchik/TOCtrlDubchik_8015CA74.cpp",
+    "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+    "src/pso/map/TSetEvtDestroy.cpp",
+    "src/pso/object/TDeadSpot.cpp",
+    "src/pso/object/collision/TOAttackableCol.cpp",
+    "src/pso/object/container/TOContainerAncientEnemy.cpp",
+    "src/pso/object/door/TObjDoorKey.cpp",
+    "src/pso/object/fence/TOVS2Wall01.cpp",
+    "src/pso/object/quest/TObjQuestCol.cpp",
+    "src/pso/object/trap/TOMine.cpp",
+    "src/pso/object/trap/TOTrapAncient01.cpp",
+    "src/pso/object/trap/TOTrapSeabed01.cpp",
+    "src/pso/player/PlayerTaskEffects.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TObjPlayer_801BD928.cpp",
+    "src/pso/player/TObjPlayer_801C7430.cpp",
+    "src/pso/player/TPlayerBattleCtrl4P.cpp",
+    "src/pso/player/TPlyItem.cpp",
+    "src/pso/quest/TQuestThread.cpp",
+    "src/pso/unk/TLobby_801C25B4.cpp",
+    "src/pso/unk/text_8035AF18.cpp"
+  ],
+  "closed_source_comparisons": [
+    "src/pso/object/TObjVoloptCage.cpp",
+    "src/pso/boss/TBoss3Volopt.cpp",
+    "src/pso/enemy/TObjEneDubchik.cpp",
+    "src/pso/misc/TOCtrlDubchik_8015CA74.cpp",
+    "src/pso/quest/TQuestThread.cpp"
+  ],
+  "remaining_source_comparisons": 209,
+  "workspace": {
+    "materialized_tree": "dc0860c8c8f5fa570611a2e64d2cf808e8cc9cac",
+    "overlay_paths": 130,
+    "updated_retention_labels": {},
+    "checks": {
+      "tool": 294,
+      "fork": 11,
+      "host": 5
+    },
+    "archive_sha256": "6378ba3c40b486fff256007643e583c86c3b5a48955cabeaea2f20f5fffba712"
+  }
+}

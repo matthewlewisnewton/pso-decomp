@@ -1,0 +1,493 @@
+{
+  "upstream_master": "e39eb9e13801cc5c2d298ca42c616731d3d06296",
+  "pull_request": "https://github.com/zeroz41/pso-decomp/pull/377",
+  "published_head": "39848c3108c370a24eff842e241a1ea0d70a2da8",
+  "first_published_head": "04a74e96200a181e03a9ab43c3732078f9fa22bd",
+  "matching_ci": {
+    "__typename": "CheckRun",
+    "completedAt": "2026-11-23T04:24:54Z",
+    "conclusion": "SUCCESS",
+    "detailsUrl": "https://github.com/zeroz41/pso-decomp/actions/runs/45111357914/job/137484292834",
+    "name": "match-gate",
+    "startedAt": "2026-11-23T04:21:44Z",
+    "status": "COMPLETED",
+    "workflowName": "CI"
+  },
+  "local_cumulative": "fef51af69a6cf767ca9a5dd6591bba4321589160",
+  "previous_cumulative": "5caa0255a7507dc1e0ce8cd1d9e7655376cafdb3",
+  "materialized_tree": "e7eef283c7c56caa5830f69dee3b93dbc55a12c2",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "matching_functions": 27572,
+  "linked_units": 2394,
+  "initial_fork_data_ranges": {
+    "linked": 980,
+    "padding": 167,
+    "ranges": 90,
+    "remaining": 0
+  },
+  "fork_data_ranges_by_build": {
+    "pr375": {
+      "head": "d66984dc994bc110dd7b58196224c4ca49270f22",
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0,
+      "ranges": 90
+    },
+    "cumulative": {
+      "head": "fef51af69a6cf767ca9a5dd6591bba4321589160",
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0,
+      "ranges": 90
+    },
+    "private": {
+      "head": "49f5d12cd8e533ca2d83af7954bd35ce954c0cc7",
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0,
+      "ranges": 90
+    }
+  },
+  "source_quality": {
+    "base": 158724,
+    "head": 157703,
+    "added": 102,
+    "removed": 1123,
+    "flagged_labels": 0,
+    "stale_force_active": 0,
+    "renames": [
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8001882C",
+        "type": "function",
+        "old": "set_motion_params__9TObjCharaFPv",
+        "new": "set_motion_params__9TObjCharaFP12player_stats",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80018990",
+        "type": "function",
+        "old": "recalc_combat_stats__9TObjCharaFPvPvPvff",
+        "new": "recalc_combat_stats__9TObjCharaFP12player_statsP12AttackParamsP15ActorParamBlockff",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8011AB64",
+        "type": "function",
+        "old": "process_enemy_drop_request__FScsisiff",
+        "new": "process_enemy_drop_request__Flsisiff",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8011B0C8",
+        "type": "function",
+        "old": "send_item_packet__6TLobbyFv",
+        "new": "send__24G_DropItem_PC_V3_BB_6x5FFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8011B130",
+        "type": "function",
+        "old": "init_header_packet__6TLobbyFv",
+        "new": "__ct__24G_DropItem_PC_V3_BB_6x5FFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8011B188",
+        "type": "function",
+        "old": "init_header__6TLobbyFv",
+        "new": "__ct__18G_DropItem_DC_6x5FFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801B0A90",
+        "type": "function",
+        "old": "check_switch_available__6TLobbyFPvi",
+        "new": "check_switch_available__10TObjPlayerFl",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801B811C",
+        "type": "function",
+        "old": "equip_saved_item_if_slot_empty__10TObjPlayerFPvPv",
+        "new": "equip_saved_item_if_slot_empty__10TObjPlayerFP10TObjPlayerP17TPlyInventoryItem",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801B81E8",
+        "type": "function",
+        "old": "bind_saved_inventory_equipment__10TObjPlayerFPvPvi",
+        "new": "bind_saved_inventory_equipment__10TObjPlayerFP10TObjPlayerP17TPlyInventoryItemi",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801B9F40",
+        "type": "function",
+        "old": "equip_item_to_slot__10TObjPlayerFPvl",
+        "new": "equip_item_to_slot__10TObjPlayerFP5TIteml",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801C2060",
+        "type": "function",
+        "old": "set_field4__10TObjPlayerFl",
+        "new": "set_source_id__15PendingItemDropFl",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801C2068",
+        "type": "function",
+        "old": "__ct__12Unk_801C2068Fv",
+        "new": "__ct__15PendingItemDropFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D3554",
+        "type": "function",
+        "old": "insert_item_node__10TObjPlayerFiiiii",
+        "new": "insert_item_node__10TObjPlayerFP13TUnk_804C445CP3VecP10TObjPlayerP9TItemDatal",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D3728",
+        "type": "function",
+        "old": "start_placement_search__Flll",
+        "new": "start_placement_search__FP13TUnk_804C4450P3VecP8TObjBase",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D4308",
+        "type": "function",
+        "old": "export_inventory_entry__10TObjPlayerFiPv",
+        "new": "export_inventory_entry__5TItemFP17TPlyInventoryItem",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D4678",
+        "type": "function",
+        "old": "TObjPlayer__sub_801D4678",
+        "new": "__dt__19InventorySortBufferFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D46D4",
+        "type": "function",
+        "old": "TObjPlayer__sub_801D46D4",
+        "new": "__ct__19InventorySortBufferFl",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D4730",
+        "type": "function",
+        "old": "TObjPlayer__sub_801D4730",
+        "new": "__ct__18InventorySortEntryFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D4744",
+        "type": "function",
+        "old": "sort_by_key__10TObjPlayerFv",
+        "new": "sort_by_key__19InventorySortBufferFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D47D8",
+        "type": "function",
+        "old": "TObjPlayer__sub_801D47D8",
+        "new": "__as__18InventorySortEntryFR18InventorySortEntry",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D4890",
+        "type": "function",
+        "old": "run_and_get_result__8TPlyItemFl",
+        "new": "run_and_get_result__8TPlyItemFPl",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D48C4",
+        "type": "function",
+        "old": "run_state_query__8TPlyItemFi",
+        "new": "run_state_query__8TPlyItemFP17TPlyInventoryItem",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D48F8",
+        "type": "function",
+        "old": "update_inventory_item__8TPlyItemFlllll",
+        "new": "update_inventory_item__8TPlyItemFP10TObjPlayerlPfll",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D4A6C",
+        "type": "function",
+        "old": "remove_equipped_item__8TPlyItemFlPv",
+        "new": "remove_equipped_item__8TPlyItemFP10TObjPlayerP9TItemList",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D4AEC",
+        "type": "function",
+        "old": "reduce_item_amount__6TLobbyFlll",
+        "new": "reduce_item_amount__8TPlyItemFP10TObjPlayerP9TItemListl",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D4BB0",
+        "type": "function",
+        "old": "use_item__6TLobbyFlll",
+        "new": "use_item__8TPlyItemFP10TObjPlayerll",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D4C58",
+        "type": "function",
+        "old": "set_globals_and_update__6TLobbyFii",
+        "new": "set_globals_and_update__8TPlyItemFP10TObjPlayeri",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D4C84",
+        "type": "function",
+        "old": "set_globals_and_notify__6TLobbyFP10TObjPlayerPv",
+        "new": "set_globals_and_notify__8TPlyItemFP10TObjPlayerP15PendingItemDrop",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D4CB8",
+        "type": "function",
+        "old": "count_matching_items__8TPlyItemFPv",
+        "new": "count_matching_items__8TPlyItemFPP5TItem",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D4CEC",
+        "type": "function",
+        "old": "apply_shop_judgment__8TPlyItemFPv",
+        "new": "apply_shop_judgment__8TPlyItemFPP5TItem",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D4D20",
+        "type": "function",
+        "old": "set_flag_and_update__8TPlyItemFi",
+        "new": "set_flag_and_update__8TPlyItemFP10TObjPlayer",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D4D48",
+        "type": "function",
+        "old": "count_items_by_id__8TPlyItemFl",
+        "new": "count_items_by_id__8TPlyItemFP9TItemData",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D4DE8",
+        "type": "function",
+        "old": "find_first_inventory_entry__8TPlyItemFi",
+        "new": "find_first_inventory_entry__8TPlyItemFP9TItemData",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D4E38",
+        "type": "function",
+        "old": "destroy_subobjects__8TPlyItemFi",
+        "new": "destroy_subobjects__8TPlyItemFP10TObjPlayer",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D5004",
+        "type": "function",
+        "old": "reduce_owner_matched_items__6TLobbyFv",
+        "new": "reduce_owner_matched_items__9TItemListFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D50E0",
+        "type": "function",
+        "old": "reduce_child_item_amounts__6TLobbyFv",
+        "new": "reduce_child_item_amounts__9TItemListFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D57A8",
+        "type": "function",
+        "old": "set_field_1c__9TItemListFl",
+        "new": "set_field_1c__9TItemListFP5TItem",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D5814",
+        "type": "function",
+        "old": "copy_item_data__9TItemListFv",
+        "new": "copy_item_data__15PendingItemDropFP9TItemData",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D5ABC",
+        "type": "function",
+        "old": "is_item_valid__9TItemListFl",
+        "new": "is_item_valid__9TItemListFP9TItemList",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D91F8",
+        "type": "function",
+        "old": "get_current_state_field__10TObjPlayerFScl",
+        "new": "get_current_state_field__10TObjPlayerFll",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D9250",
+        "type": "function",
+        "old": "get_ply_level_table_row__FScl",
+        "new": "get_ply_level_table_row__Fll",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x802C3CD0",
+        "type": "function",
+        "old": "send_command__10TNpcPlayerFlScllPSc",
+        "new": "send_command__10TNpcPlayerFllPC17TPlyInventoryItemlP12TPlyCharData",
+        "flags": []
+      }
+    ]
+  },
+  "pr375_merge_preview": {
+    "head": "8dcc7ef89216d10c9fecca755468748f93b4edcb",
+    "git_tree": "ecaa9a7d61ee3cbfd4078ff1d6dac2569a54d3f6",
+    "local_validation_commit": "d66984dc994bc110dd7b58196224c4ca49270f22",
+    "linked_units": 2367
+  },
+  "pr376_clean_git_merge_tree": "7199a453f1d0f4010ab63b5804e6a32cb2c19f9a",
+  "private_checks": 310,
+  "runtime_suites": {
+    "actor-stats": [
+      "PsoV3.dol: actor stat storage, combat scaling, equipment requirements and meseta passed.",
+      "inventory.dol: actor stat storage, combat scaling, equipment requirements and meseta passed."
+    ],
+    "companions": [
+      "Companion archive and fallback records, buffer release, and sender arguments passed",
+      "Companion archive and fallback records, buffer release, and sender arguments passed"
+    ],
+    "equipment": [
+      "PsoV3.dol: equip and unequip frames, loadout iteration and effect lifecycle passed.",
+      "inventory.dol: equip and unequip frames, loadout iteration and effect lifecycle passed."
+    ],
+    "footstamp": [
+      "PsoV3.dol: footprint GVM load, culling, texture binding and ordered release passed.",
+      "inventory.dol: footprint GVM load, culling, texture binding and ordered release passed."
+    ],
+    "growth": [
+      "Level lookup and growth caps, selective inventory copy, and companion initialization passed",
+      "Level lookup and growth caps, selective inventory copy, and companion initialization passed"
+    ],
+    "shop": [
+      "PsoV3.dol: 12 shop cases passed across weapon, armor, mag and judgment lists.",
+      "inventory.dol: 12 shop cases passed across weapon, armor, mag and judgment lists."
+    ],
+    "sort": [
+      "PsoV3.dol: inventory ordering, stable ties, allocation release and record export passed.",
+      "inventory.dol: inventory ordering, stable ties, allocation release and record export passed."
+    ],
+    "storage": [
+      "PsoV3.dol: drop placement, occupied slots, telepipe search, inventory traversal and saved records passed.",
+      "inventory.dol: drop placement, occupied slots, telepipe search, inventory traversal and saved records passed."
+    ]
+  },
+  "artifacts_sha256": {
+    "source-only-quality.json": "d632b9872b2e085913d20c2c74c3d3451380d54c3b516fa742979dd9e2afd8e3",
+    "source-only-check.json": "4e1ff1b04953f421f64ef25cde66e9bb4b6282f1790dab5e8d4fde315d41f5b7",
+    "source-only-report.json.gz": "0c35571794ae3d6ddd52446bfbd3213143d5d31732f878a666ebeeb5a61d7b5c",
+    "pr375-source-only-check.json": "ae5ab0b474dfb7cb56de42aae69efe3b9770eaab245b81698c09f7b077a0fc75",
+    "pr375-source-only-report.json.gz": "f435f86ac3ee1d3f5d24c3c795d9e01bf4ae2e0fd81f96c30a7e76dc3e75893b",
+    "cumulative-source-only-quality-check.json": "7efc0e32d3e01d99489bdb56a72be7702e07f6a599c7ea2e104cc2f1168c4d5e",
+    "cumulative-source-only-quality-report.json.gz": "7dab9a5ceefccf5e07aa2e109ab51152a25f6007bb1d9937b8c99bb14a27dce3",
+    "private-check.json": "e5d5af12ddc08a3078cee93802ff91bfb7f8067a4b047753aa36a77ea489c878",
+    "private-report.json.gz": "7dab9a5ceefccf5e07aa2e109ab51152a25f6007bb1d9937b8c99bb14a27dce3",
+    "workspace.patch.gz": "48aeeb6c8249fe3d8fcd6f074123790271455c3e76b9b7e392b9d197a261d6ab"
+  }
+}

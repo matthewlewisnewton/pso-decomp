@@ -1,0 +1,108 @@
+{
+  "upstream": "6aee940ecaf4775ef71659a74534127a49cf9412",
+  "source_base": "c02a1fcb0f3b0e896d25d5b623a8235cba0ed3c6",
+  "source": "10ca214f4e7a4b529ab0b10be4496343c8728574",
+  "paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/boss/barbaray/TObjBoss7Tunnel.h",
+    "include/pso/boss/derolle/TObjBoss2CeilJunk.h",
+    "include/pso/boss/derolle/TObjBoss2Tunnel.h",
+    "src/pso/boss/barbaray/TObjBoss7RaftSplash.cpp",
+    "src/pso/boss/derolle/TObjBoss2CeilJunk_8003A81C.cpp",
+    "src/pso/boss/derolle/TObjBoss2RaftSplash.cpp",
+    "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/enemy/saver/SaverLifecycle.cpp",
+    "src/pso/object/ambient/TObjGrass.cpp",
+    "src/pso/player/TObjPlayer_8002E784.cpp"
+  ],
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "original_data_bytes": 1147,
+  "original_data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "coverage_losses": {
+    "regressions": 0,
+    "data_coverage_lost": 0,
+    "padding_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0
+  },
+  "function_labels": [
+    {
+      "module": "psov3",
+      "address": "0x8003A81C",
+      "before": "create__17TObjBoss2CeilJunkFPv",
+      "after": "create__17TObjBoss2CeilJunkFPC3Vec"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8003B07C",
+      "before": "create_particle__17TObjBoss2CeilJunkFPCvl",
+      "after": "create_particle__17TObjBoss2CeilJunkFPC3Vecl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8003B138",
+      "before": "create_particle_effect__15TObjBoss2TunnelFPCvlf",
+      "after": "create_particle_effect__15TObjBoss2TunnelFPC3Veclf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8007E884",
+      "before": "transform_vec_by_camera__15TObjBoss2TunnelFlll",
+      "after": "transform_vec_by_camera__15TObjBoss2TunnelFPvPC3VecP3Vec"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802F178C",
+      "before": "create_particle__15TObjBoss7TunnelFPCvl",
+      "after": "create_particle__15TObjBoss7TunnelFPC3Vecl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802F1848",
+      "before": "create_particle_effect__15TObjBoss7TunnelFPCvlf",
+      "after": "create_particle_effect__15TObjBoss7TunnelFPC3Veclf"
+    }
+  ],
+  "runtime": {
+    "arena": {
+      "result": "Tunnel model flags, particle paths, debris, tentacle and mine targets, and shared motion curves passed",
+      "images": [
+        "retail",
+        "local replay"
+      ],
+      "log_sha256": "7385f9bfd1602aa7250bc47f46e15b8b80f91d770be880a2231ed61d46c18c46"
+    }
+  },
+  "probe_symbol_aliases": [
+    [
+      "lbl_805D4C04",
+      ".sbss:0x805D4C04",
+      "0x4",
+      "boss2_tunnel_slide_node_b"
+    ],
+    [
+      "lbl_805D4C08",
+      ".sbss:0x805D4C08",
+      "0x4",
+      "boss2_tunnel_slide_node_a"
+    ],
+    [
+      "lbl_805D6960",
+      ".sbss:0x805D6960",
+      "0x4",
+      "TObjBoss7Tunnel_parent_object"
+    ]
+  ],
+  "replay_decisions": {
+    "retained": "The current tunnel particle children use TUnk_8048E728. The Dark Falz controller already shares TBoss4FormSetData with its three native form factories and uses G_DarkFalzActions_6x19 for the wire packet.",
+    "recovered": "Debris allocation, splash particle positions and the camera transform use typed vectors. Breakup, Ill Gill, Saver and grass effects pass the corresponding vectors directly."
+  }
+}

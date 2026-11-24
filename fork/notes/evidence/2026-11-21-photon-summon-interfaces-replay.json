@@ -1,0 +1,270 @@
+{
+  "source": "3f8b2039e18b698df4cf35ddabeda9b9fa13ff32",
+  "previous_source": "3fb65f36aac3814d2d5e217a055eefa6508431b0",
+  "upstream": "5a4e7ced56fe7072359b6d279e94f4be3b8453c0",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "source_paths": 1142,
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/effect/photon/PhotonBlastSummon.h",
+    "include/pso/effect/photon/TPhotonEstlla.h",
+    "include/pso/effect/photon/TPhotonLeilla.h",
+    "include/pso/effect/photon/TPhotonMagicSquare.h",
+    "include/pso/effect/photon/TPhotonMagicSquare_801ACE1C.h",
+    "include/pso/effect/photon/TPhotonMylla.h",
+    "include/pso/effect/photon/TPhotonRainbow_801AE640.h",
+    "include/pso/effect/photon/TPhotonYoulla.h",
+    "include/pso/unk/text_801AAB74.h",
+    "include/pso/unk/text_801AB370.h",
+    "include/pso/unk/text_801ABE14.h",
+    "include/pso/unk/text_801AE1F8.h",
+    "src/pso/effect/photon/PhotonBlastSummon.cpp",
+    "src/pso/effect/photon/TPhotonEstlla.cpp",
+    "src/pso/effect/photon/TPhotonFarlla.cpp",
+    "src/pso/effect/photon/TPhotonGolla.cpp",
+    "src/pso/effect/photon/TPhotonLeilla.cpp",
+    "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+    "src/pso/effect/photon/TPhotonMylla.cpp",
+    "src/pso/effect/photon/TPhotonPilla.cpp",
+    "src/pso/effect/photon/TPhotonRainbow.cpp",
+    "src/pso/effect/photon/TPhotonYoulla.cpp",
+    "src/pso/player/PhotonBlastResults.cpp"
+  ],
+  "author": {
+    "name": "matthewlewisnewton",
+    "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+    "coauthor_trailers": 0
+  },
+  "prior_photon_recovery": "6d9e3934392ebfb3dc49df7ee171c6ad3951dc38",
+  "historical_comparison": {
+    "prior_open_rows": 487,
+    "open_rows": 477,
+    "closed_rows": [
+      {
+        "row": 4873,
+        "description": "The summon header exposes the hit queue fields and all requested helper signatures. The attachment spawn and base constructor use their native C++ owners at the same addresses. The fog and scene wrappers declare their unused effect receiver.",
+        "historical_path": "include/pso/misc/PhotonBlastSummon.h",
+        "current_path": "include/pso/effect/photon/PhotonBlastSummon.h",
+        "fork_blob": "71628ee5d8fdfe6426af23e32bf9924eed8f0252",
+        "current_blob": "38314060534b111cc2956acb48ebd39153410879",
+        "authored_diff_sha256": "3dc33e7a6d3f95cda3e91834802c4860a354f6ae6b2daa338f3424872bd4d615"
+      },
+      {
+        "row": 4964,
+        "description": "The queue entries, camera playback, joint callback, attachment table, allocation and particle updates use the common records. The native base lifetime, fog and scene wrappers and original vector defaults account for the other historical changes at their retail addresses.",
+        "historical_path": "src/pso/misc/PhotonBlastSummon.cpp",
+        "current_path": "src/pso/effect/photon/PhotonBlastSummon.cpp",
+        "fork_blob": "7beb1d4e3329b3e3657a45b1c626e23e33f72bd6",
+        "current_blob": "aaa0bce741dd0219862ffbb8905bb44f2f4adee1",
+        "authored_diff_sha256": "b5f9a98a4856c03cbf0149e1da6aad0ef43721b1dbbb797f8258d580bfdb6e7c"
+      },
+      {
+        "row": 4966,
+        "description": "Youlla reads the shared packet and binds its original archive, action table, motion list, tint and joint callback. The live texture setter, class string, fade and child lifecycle preserve the original addresses.",
+        "historical_path": "src/pso/misc/TPhotonYoulla.cpp",
+        "current_path": "src/pso/effect/photon/TPhotonYoulla.cpp",
+        "fork_blob": "ae1b3a1ccfd8160a15ecf15c043b404a26f9afbb",
+        "current_blob": "95fb96fb0d9c96023fb3033f4bbfe4223598f709",
+        "authored_diff_sha256": "cdc925a8705d2be0d11f14cf224a500d55e6a7b35406db8462d5e00c17ec47d1"
+      },
+      {
+        "row": 4968,
+        "description": "Estlla is a native constructor using the shared packet and draws through the original BML model and strip buffer. The line uses an actual owner yaw, the current position and the original launch record.",
+        "historical_path": "src/pso/misc/TPhotonEstlla.cpp",
+        "current_path": "src/pso/effect/photon/TPhotonEstlla.cpp",
+        "fork_blob": "0620d6882a637ebcfcd925412a9daa28b837d2a5",
+        "current_blob": "0674d82cf43123141edca34f0f229bf407d0d595",
+        "authored_diff_sha256": "ceac416dc33b55daae18ff2bc2b7613adf5c4f05d7bfe58d89a2cf9ebc236b3b"
+      },
+      {
+        "row": 4979,
+        "description": "The in-place constructor uses the real object, shared packet and native enter_scene slot. Draw and fade use the native color. The strip buffer, two action records, audio cues and persistent sound retain their retail owners.",
+        "historical_path": "src/pso/misc/TPhotonLeilla.cpp",
+        "current_path": "src/pso/effect/photon/TPhotonLeilla.cpp",
+        "fork_blob": "e0df5ec41a2ee069448a932882ad124568a80def",
+        "current_blob": "8f839fb00633385b1410e2ff0b881f43e0f6152d",
+        "authored_diff_sha256": "bf41ff75eb8ef7c3a0f36a4ddd25ae9bcf36f8605bff333205fc0d2900a2bd32"
+      },
+      {
+        "row": 5016,
+        "description": "Pilla uses the shared summon packet and the original typed laser record, source-linked counters, action and motion data, strip buffer, cues and persistent sound.",
+        "historical_path": "src/pso/misc/TPhotonPilla.cpp",
+        "current_path": "src/pso/effect/photon/TPhotonPilla.cpp",
+        "fork_blob": "d06385fec926cec25c67594f32a60187f75ae251",
+        "current_blob": "8e5aa44c7878597e88218b64e1a6f164ac160232",
+        "authored_diff_sha256": "b47bedfd1fff4bae82aa78b2a33504cc95155f50ee085df07ceaa7e43c512682"
+      },
+      {
+        "row": 5027,
+        "description": "Farlla forwards the live parent and position to both auxiliary constructors. The native archive, root strip buffer and Estlla strip owner, particle calls, cue values and action state remain at retail addresses.",
+        "historical_path": "src/pso/misc/TPhotonFarlla.cpp",
+        "current_path": "src/pso/effect/photon/TPhotonFarlla.cpp",
+        "fork_blob": "9b16f391e100c6c92650c0a8dd8747a9a119b5d2",
+        "current_blob": "a5435e06cbe8119cabe1d9fdbf2fc436835064d1",
+        "authored_diff_sha256": "2c950fea261abf25ad3e2b83c40592827a2f8cd4d777ca98b65d1848b24b27d5"
+      },
+      {
+        "row": 5032,
+        "description": "Golla uses the shared packet, typed concentrate descriptor and the joint position from the original attachment slot. Farlla's related root strip resource is covered in its owner. The native body, cues and sound remain linked.",
+        "historical_path": "src/pso/misc/TPhotonGolla.cpp",
+        "current_path": "src/pso/effect/photon/TPhotonGolla.cpp",
+        "fork_blob": "fdf024fd4f5228f63e5ec2180c36ef493e1ea2e4",
+        "current_blob": "ed20639aee6fc1d3c66704bc0516ba7af845fecb",
+        "authored_diff_sha256": "d4550602a6d71ddecd4adb4f78a5e5eef98a18b4c7312431c8920b43543d75ae"
+      },
+      {
+        "row": 5033,
+        "description": "The Mylla lifetime provides the shared packet to Youlla and wraps the real in-place receiver. Native material storage covers initialization, rendering and fading. The same effect, audio and allocation calls use the original position, asset entries and data addresses.",
+        "historical_path": "src/pso/misc/TPhotonMylla.cpp",
+        "current_path": "src/pso/effect/photon/TPhotonMylla.cpp",
+        "fork_blob": "61ca6a926668e2e5193b1a2be4de6b7fc080de52",
+        "current_blob": "d1424fea8aeb2c0f30cb15973b3a80157dac9115",
+        "authored_diff_sha256": "35beda2c5746e3fa7a69cae8fe1ccedd2230dbb3dfaa441a56f66c1030579237"
+      },
+      {
+        "row": 5041,
+        "description": "The two in-place paths pass the original parent and position, and the native owner-id constructor binds the same palette and BML records. Both draw and update operate on the checked native color and frame fields.",
+        "historical_path": "src/pso/misc/TPhotonMagicSquare_801ACE1C.cpp",
+        "current_path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+        "fork_blob": "468b07f713f2247c9ca123a614556874498f6b71",
+        "current_blob": "a24df978622ba57cae83d3533e07c9a26dbce876",
+        "authored_diff_sha256": "013c218f31743e976cc43615f047a2b73a5b2857bc8e3791d554e2dc52c3884b"
+      }
+    ],
+    "partial_rows": {
+      "4085": "The sequence now passes one checked summon record to all six effects. The independent historical result dispatch comparison remains open."
+    },
+    "same_address_names": {
+      "0x801A7150": [
+        "queue_deferred_photon_blast_hit__FUlllf",
+        "queue_deferred_photon_blast_hit__FUlllf"
+      ],
+      "0x801A720C": [
+        "queue_photon_blast_hit",
+        "queue_photon_blast_hit__FUlllf"
+      ],
+      "0x801A72C8": [
+        "queue_deferred_photon_blast_support",
+        "queue_deferred_photon_blast_support__FUlll"
+      ],
+      "0x801A7748": [
+        "spawn_photon_blast_attachment_effects",
+        "spawn_photon_blast_attachment_effects__13TUnk_804C3248Fl"
+      ],
+      "0x801A7D98": [
+        "photon_base_ct",
+        "__ct__13TUnk_804C3248Fv"
+      ],
+      "0x801AD330": [
+        "construct_at_owner__18TPhotonMagicSquareFP7TObjectll",
+        "__ct__18TPhotonMagicSquareFP7TObjectlUs"
+      ],
+      "0x803DA798": [
+        "set_current_texture_list",
+        "set_global_param"
+      ]
+    }
+  },
+  "validation": {
+    "stock": {
+      "baseline": "3fb65f36aac3814d2d5e217a055eefa6508431b0",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x801AAB74",
+          "before": "__ct__13TPhotonEstllaFPUc",
+          "after": "__ct__13TPhotonEstllaFP18PhotonSummonParams"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801AD218",
+          "before": "construct_photon_magic_square_normal__FPUcllll",
+          "after": "construct_photon_magic_square_normal__FP18TPhotonMagicSquareP7TObjectlPC3Vecl"
+        }
+      ],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "66bc08b3d0fad938877aa85d6da8584442aeacda46a8acef49b058812df13a5d",
+      "report_sha256": "efcac0545da82a9db1b9a6d47178f8fa940086e97e016df62d98ecc0d4797dd2"
+    },
+    "workspace": {
+      "baseline": "3f8b2039e18b698df4cf35ddabeda9b9fa13ff32",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "efcac0545da82a9db1b9a6d47178f8fa940086e97e016df62d98ecc0d4797dd2"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "f4eeb21e4aae8422fe95ee11c4c08032a3aad0c1832dfedf0020116d46abf877"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "6f6f59dea89e094da91a2b69f9c71bc6d0ef5ac98d84ac059d5e00eef80a4ef2"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    },
+    "photon": {
+      "result": "Rainbow variants, magic-square setup, six summon dispatches and Mylla's Youlla packet passed.",
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "cases_per_image": 20,
+      "harness_detail": "The explicit-rate magic square uses scalar f31 spills in the emulator. The adjacent paired-single spills are bypassed because Unicorn lacks those opcodes.",
+      "log_sha256": "ebaa7592f149bd992946056f8dd03cf0f344876320156ed1001eb6a4330afd7d",
+      "probe_sha256": "d55b85b078699cd800cc24de9cb8af52490479590e27c9bd655ea30b038dc652"
+    }
+  },
+  "fork_workspace": {
+    "overlay_paths": 130,
+    "overlay_patch_sha256": "b5ceb3e23d45f88e3040fc2d18c70df76e7041439a848e799676f6a3a3d0eb8e",
+    "updated_overlay_paths": [],
+    "force_active_names": 27033,
+    "force_active_symbol_changes": [],
+    "archive_test_head": "8bbc09a88cf9e0e13711e8e97c5935e6047eb496",
+    "tested_materialized_tree": "b0b79cff9d55e7afb8df7742137a161e79ea8c13"
+  }
+}

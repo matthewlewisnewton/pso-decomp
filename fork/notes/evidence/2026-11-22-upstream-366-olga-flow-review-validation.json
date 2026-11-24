@@ -1,0 +1,309 @@
+{
+  "review": {
+    "head": "315777bbb10acfa77a8defe55704d17f5f02b202",
+    "base": "0a8586d2fe82628319f89e4f1b1d2fba88520d90",
+    "paths": [
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/boss/olgaflow/TBoss6Mine.h",
+      "include/pso/boss/olgaflow/TBoss6SwordWave.h",
+      "include/pso/boss/olgaflow/TBoss6Type1.h",
+      "include/pso/boss/olgaflow/TBoss6Type2.h",
+      "include/pso/boss/olgaflow/TBoss6Type2_8032E708.h",
+      "include/pso/boss/olgaflow/TBoss6Type2_8036A92C.h",
+      "include/pso/object/base/TObjChara.h",
+      "include/pso/player/TObjPlayer.h",
+      "include/pso/player/TObjPlayer_80011014.h",
+      "include/pso/unk/text_800F5BC0.h",
+      "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp",
+      "src/pso/boss/darkfalz/TBoss4DarkFalz_8004D8C8.cpp",
+      "src/pso/boss/olgaflow/TBoss6DPB.cpp",
+      "src/pso/boss/olgaflow/TBoss6Mine.cpp",
+      "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+      "src/pso/boss/olgaflow/TBoss6PlotFalz_802B0228.cpp",
+      "src/pso/boss/olgaflow/TBoss6Rock.cpp",
+      "src/pso/boss/olgaflow/TBoss6RockChase.cpp",
+      "src/pso/boss/olgaflow/TBoss6SwordShot.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type1_802B20C0.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type2_802BE588.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type2_803309D8.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type2_8036A92C.cpp",
+      "src/pso/effect/photon/TPhotonEstlla.cpp",
+      "src/pso/effect/photon/TPhotonFarlla.cpp",
+      "src/pso/effect/photon/TPhotonGolla.cpp",
+      "src/pso/effect/photon/TPhotonLeilla.cpp",
+      "src/pso/effect/photon/TPhotonPilla.cpp",
+      "src/pso/object/TObjControl.cpp",
+      "src/pso/player/TObjPlayer_80011014.cpp",
+      "src/pso/player/TObjPlayer_802C422C.cpp"
+    ],
+    "donors": [
+      "d33146f6f4bbb3d9c5ccdfa5a9db72d00e794449",
+      "f522bc6af1e21f6383732f8eec562b80bc0d51cb"
+    ],
+    "method": "Use the validated consolidated implementation for every path changed by the two donor commits."
+  },
+  "review_validation": {
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2447,
+    "linker_label_changes": [
+      {
+        "module": "psov3",
+        "address": "0x80019324",
+        "before": "obj_clearArrS16_FC__FP8ObjArrFCi",
+        "after": "obj_clearArrS16_FC__FP9TObjCharal"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802B57D4",
+        "before": "request_jittered_camera__11TBoss6Type1FPvPvPvi",
+        "after": "request_jittered_camera__11TBoss6Type1FPC3VecPC3Veci"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802B93C4",
+        "before": "TBoss6Type1__ct",
+        "after": "__ct__11TBoss6Type1FP7TObjectP15Boss6PhaseSpawn"
+      },
+      {
+        "module": "psov3",
+        "address": "0x802BE0D4",
+        "before": "__ct__11TBoss6Type2FP7TObjectPl",
+        "after": "__ct__11TBoss6Type2FP7TObjectP15Boss6PhaseSpawn"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8032E710",
+        "before": "set_action_field_0x408__11TBoss6Type2FUs",
+        "after": "set_action_field_0x408__9TBoss6MagFUs"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8032E740",
+        "before": "set_anim_frame__11TBoss6Type2Fl",
+        "after": "set_anim_frame__9TBoss6MagFP9TBoss6Mag"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8032EEA8",
+        "before": "compute_random_dir_vec__11TBoss6Type2FlPUcll",
+        "after": "compute_random_dir_vec__9TBoss6MagFlPUcll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8032F2C4",
+        "before": "init_with_global_table__11TBoss6Type2Fv",
+        "after": "init_with_global_table__9TBoss6MagFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80330240",
+        "before": "fn_80330240",
+        "after": "receive_direct_attack__9TBoss6MagFPv19DirectAttackPayloadPvll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80330384",
+        "before": "spawn_ground_effect__10TObjPlayerFPv",
+        "after": "run_hit_reaction__9TBoss6MagFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803303E0",
+        "before": "save_position__10TObjPlayerFv",
+        "after": "save_position__9TBoss6MagFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8033068C",
+        "before": "fn_8033068C",
+        "after": "__dt__9TBoss6MagFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80330724",
+        "before": "TBoss6Mag__ct",
+        "after": "__ct__9TBoss6MagFP7TObjectP13Boss6MagSpawn"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80356B18",
+        "before": "__ct__15TBoss6SwordWaveFv",
+        "after": "__ct__15TBoss6SwordWaveFP11TBoss6Type2PC3Vecllf"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8035DC60",
+        "before": "create_dpb__11TBoss6Type2Fllf",
+        "after": "create_dpb__11TBoss6Type2FP7TObjectPC3Vecf"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8036A98C",
+        "before": "create_flow_soul__11TBoss6Type2FPvPvll",
+        "after": "create_flow_soul__11TBoss6Type2FP7TObjectP3Vecll"
+      }
+    ],
+    "coverage_losses": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0
+    },
+    "data_inventory": {
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "report_sha256": "b6337ebe2af9ab0f562ef4c3cb09d313d531469c35c853d71ef446a589879ac8",
+    "check_sha256": "3426ce0cbda0eb52c0d78ee65bf082d26f72ba15e1f4fa5bda225519a6b2a9de"
+  },
+  "residual": {
+    "rehearsal_head": "2e513f2fa77d5c0ccf4f03beced3a1fe6f17a1a1",
+    "before": 51,
+    "after": 16,
+    "newly_identical_paths": [
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/boss/olgaflow/TBoss6Mine.h",
+      "include/pso/boss/olgaflow/TBoss6SwordWave.h",
+      "include/pso/boss/olgaflow/TBoss6Type1.h",
+      "include/pso/boss/olgaflow/TBoss6Type2.h",
+      "include/pso/boss/olgaflow/TBoss6Type2_8032E708.h",
+      "include/pso/boss/olgaflow/TBoss6Type2_8036A92C.h",
+      "include/pso/object/base/TObjChara.h",
+      "include/pso/player/TObjPlayer.h",
+      "include/pso/player/TObjPlayer_80011014.h",
+      "include/pso/unk/text_800F5BC0.h",
+      "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp",
+      "src/pso/boss/darkfalz/TBoss4DarkFalz_8004D8C8.cpp",
+      "src/pso/boss/olgaflow/TBoss6DPB.cpp",
+      "src/pso/boss/olgaflow/TBoss6Mine.cpp",
+      "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+      "src/pso/boss/olgaflow/TBoss6PlotFalz_802B0228.cpp",
+      "src/pso/boss/olgaflow/TBoss6Rock.cpp",
+      "src/pso/boss/olgaflow/TBoss6RockChase.cpp",
+      "src/pso/boss/olgaflow/TBoss6SwordShot.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type1_802B20C0.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type2_802BE588.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type2_803309D8.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type2_8036A92C.cpp",
+      "src/pso/effect/photon/TPhotonEstlla.cpp",
+      "src/pso/effect/photon/TPhotonFarlla.cpp",
+      "src/pso/effect/photon/TPhotonGolla.cpp",
+      "src/pso/effect/photon/TPhotonLeilla.cpp",
+      "src/pso/effect/photon/TPhotonPilla.cpp",
+      "src/pso/object/TObjControl.cpp",
+      "src/pso/player/TObjPlayer_80011014.cpp",
+      "src/pso/player/TObjPlayer_802C422C.cpp"
+    ],
+    "remaining_paths": [
+      "include/pso/effect/particle/ParticleParam.h",
+      "include/pso/network/TProtocol.h",
+      "include/pso/network/protocol/packet_classes.h",
+      "include/pso/player/TObjPlayer_803E112C.h",
+      "include/pso/ui/frontend/TAdChrSelPlyPlateGC.h",
+      "include/pso/ui/frontend/TAdTimeSetGC.h",
+      "include/pso/ui/window/TWindowHelpItem.h",
+      "include/pso/unk/TUnk_8048E728.h",
+      "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+      "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+      "src/pso/enemy/illgill/TObjIllGillKage.cpp",
+      "src/pso/network/TPlyJoinLobbyEntry.cpp",
+      "src/pso/network/TProtocol.cpp",
+      "src/pso/ui/font/TFontSmallLobby_801C013C.cpp",
+      "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp"
+    ]
+  },
+  "runtime": {
+    "mag": {
+      "checks": "Mag creation, peer slots, action entry, animation, draw, and teardown",
+      "probe_sha256": "99ec8dc3a6acd5c445a984903e4ae7af97fd8b4e41a2d4e727285cd4a3e0b583",
+      "log_sha256": "72a05bb224ddb85b4b3d9ba6df70382fb7c6406f55820f346a5905bf1c68be5f",
+      "images": [
+        "retail",
+        "review"
+      ]
+    },
+    "phases": {
+      "checks": "phase-one dispatch, motion and packets, phase-result transfer, credit slots, and rock collision",
+      "probe_sha256": "d5d8df99906ad3e128ea1b2c75ee63222625b43126b261a49cce8b645d40764c",
+      "log_sha256": "1d0ec60d984f9af3c150082e782a988b927ce33875f1a34ad882f5255055086d",
+      "images": [
+        "retail",
+        "review"
+      ]
+    },
+    "contacts": {
+      "checks": "player relocation, seven part flags, both collision layouts, lower contact, and both emitter lifecycles",
+      "probe_sha256": "0b1e14c0cfce30eec951636691046faad9071ec5c1a0fd111e70a3a89e2b8157",
+      "log_sha256": "2043168047666ab393566436499dd5f3f7b634cb2ac082532fd35362091e0863",
+      "images": [
+        "retail",
+        "review"
+      ]
+    },
+    "plot": {
+      "checks": "damage and charge, experience branches, strip ownership, sway, and 24 particle slots",
+      "probe_sha256": "4f9abef7b88ac5f222a670ecd78e19dc9e43b06fab634903765a8fb086e250ae",
+      "log_sha256": "dc0e8c43d107da367c27b258fd9c1647088d8e6d939f6e07620b559d60e8235e",
+      "images": [
+        "retail",
+        "review"
+      ]
+    },
+    "actions": {
+      "checks": "grid, arena radius, camera forwarding, direct damage, and possession save and restore",
+      "probe_sha256": "29075370d88a717ca3f51442e756e84cbae72b8d9951a00b4feefbf280787caf",
+      "log_sha256": "cf01c08710c2e7f0dae15bc1b9f400aec64425b6d10e37c54b3621770d6e6502",
+      "images": [
+        "retail",
+        "review"
+      ]
+    },
+    "motion-state": {
+      "checks": "exact 64-byte motion copy and archive-backed two-track reset",
+      "probe_sha256": "45b3a0078d4a235a8ab208cda1da3b480696f0c14f186f33e1f8b74f0282ca76",
+      "log_sha256": "8561b2c78297b5647a7aea1876fd1afedb0ebf282f44128ff9f760318be9b76d",
+      "images": [
+        "retail",
+        "review"
+      ]
+    },
+    "attacks": {
+      "checks": "wave angle wraparound, damage dispatch, mine release and rock resources",
+      "probe_sha256": "0f5b1e48cff5cfc748e4b08a2646e08ef6d7c5fe05cd4d2749379dbb27d1fcc7",
+      "log_sha256": "a565f7ce5a019ebf40fa409725c1024ef2076b102341ba26abea7dc23deaab0d",
+      "images": [
+        "retail",
+        "review"
+      ]
+    },
+    "factories": {
+      "checks": "phase-two spawn, effect construction, and active Mag shower positions",
+      "probe_sha256": "75e3ff6d3d00de083e98b13c6671457f551a6d4f32248b1b68a67626ca061f94",
+      "log_sha256": "4826792e55bfa53b2eac22a6a4452c57b8ae1d1aef6af988ee35c7e94bb3b16b",
+      "images": [
+        "retail",
+        "review"
+      ]
+    }
+  },
+  "probe_symbol_aliases": [
+    "set_global_param = .text:0x803DA798; // type:function size:0x10",
+    "find_model_node__FP10NJS_OBJECTl = .text:0x80131700; // type:function size:0x44",
+    "safe_free__23TAdSinglePlyChrSelectGCFPv = .text:0x8007EBB4; // type:function size:0x28"
+  ],
+  "upstream": "2ea1c02d4c0b7fa917ede02beac56fcaf3f4b87e",
+  "source": "15201748bd3a0450053d84001294eca3e6de3a01",
+  "historical_comparisons_open": 262
+}

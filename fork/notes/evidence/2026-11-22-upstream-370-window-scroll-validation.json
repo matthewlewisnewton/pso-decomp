@@ -1,0 +1,150 @@
+{
+  "upstream": "d8c0a969d273c9e2cdb1c6c34a1e6aa2be4cc571",
+  "previous_source": "0370f8f6cd323b1c50b78d1aa6256024a52d4339",
+  "gauge_source": "f28794a302154ef8f3dec9166286fc6ec98aa8a3",
+  "source": "9c97cc5dafc31487e265578e6e3592e2099a319f",
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "original_data_bytes": 1147,
+  "coverage": {
+    "gauge/check.json": {
+      "losses": {
+        "regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "labels_changed": [
+        {
+          "module": "psov3",
+          "address": "0x802572F0",
+          "before": "init_from__18TWindowStatusGaugeFP17StatusGaugeLayoutl",
+          "after": "__ct__18TWindowStatusGaugeFP17StatusGaugeLayoutl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80257B4C",
+          "before": "init_layout_entry_copy__26TWindowStatusGaugeFeedbackFP21LayoutEntryCopyRecordl",
+          "after": "__ct__26TWindowStatusGaugeFeedbackFP21LayoutEntryCopyRecordl"
+        }
+      ]
+    },
+    "gauge/layer-check.json": {
+      "losses": {
+        "regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "labels_changed": []
+    },
+    "scrollbar_and_options/check.json": {
+      "losses": {
+        "regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "labels_changed": [
+        {
+          "module": "psov3",
+          "address": "0x8026D9C0",
+          "before": "increment_counter__20TWindowSubStatusDispFv",
+          "after": "increment_counter__15Scroll_8026D790Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80270DCC",
+          "before": "__ct__19TWindowSoundBalanceFl",
+          "after": "__ct__19TWindowSoundBalanceFPC10NJS_POINT2"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80277638",
+          "before": "draw_cursor__22TWindowSubCustomSelectFPUc",
+          "after": "draw_cursor__22TWindowSubCustomSelectFP17WindowDrawContext"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8027C6B4",
+          "before": "TWindowSubMagPhoton__ct",
+          "after": "__ct__19TWindowSubMagPhotonFPC10NJS_POINT2ll"
+        }
+      ]
+    },
+    "scrollbar_and_options/layer-check.json": {
+      "losses": {
+        "regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "labels_changed": []
+    }
+  },
+  "runtime_probes": {
+    "gauges": "both gauge constructors preserve layout values, client truncation, vtables, and feedback state.",
+    "scrollbar_and_mag": "scrollbar gates, thumb geometry and frame, and Mag Photon window position and initialization passed."
+  },
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/ui/window/Scroll_8026D790.h",
+    "include/pso/ui/window/TWindowSoundBalance.h",
+    "include/pso/ui/window/TWindowSubCustomSelect.h",
+    "include/pso/ui/window/TWindowSubMagPhoton.h",
+    "include/pso/ui/window/TWindowSubStatusDisp.h",
+    "include/pso/unk/TWindowStatusGauge.h",
+    "include/pso/unk/TWindowStatusGaugeFeedback.h",
+    "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp",
+    "src/pso/ui/window/TWindowChoiceSetting.cpp",
+    "src/pso/ui/window/TWindowChoiceSetting_80249078.cpp",
+    "src/pso/ui/window/TWindowMessageLog.cpp",
+    "src/pso/ui/window/TWindowOptionCtrl.cpp",
+    "src/pso/ui/window/TWindowShop.cpp",
+    "src/pso/ui/window/TWindowSoundBalance.cpp",
+    "src/pso/ui/window/TWindowSubComCard_80265410.cpp",
+    "src/pso/ui/window/TWindowSubCustomSelect.cpp",
+    "src/pso/ui/window/TWindowSubEquipKind.cpp",
+    "src/pso/ui/window/TWindowSubItemList.cpp",
+    "src/pso/ui/window/TWindowSubMag.cpp",
+    "src/pso/ui/window/TWindowSubMagPhoton.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_80248BE8.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_80256B94.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_8025737C.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_80257BC0.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_8026D740.cpp"
+  ],
+  "closed_source_comparisons": [
+    "src/pso/misc/TWindowSubStatusDisp_80256B94.cpp",
+    "src/pso/misc/TWindowSoundBalance.cpp",
+    "src/pso/misc/TWindowSubMagPhoton.cpp",
+    "src/pso/misc/TWindowSubCustomSelect.cpp",
+    "src/pso/misc/TWindowSubCustomEquip.cpp"
+  ],
+  "remaining_source_comparisons": 221,
+  "workspace": {
+    "materialized_tree": "064d3123b75b672510c01ac0d0cfc6632a645da5",
+    "overlay_paths": 130,
+    "updated_retention_labels": {
+      "draw_cursor__22TWindowSubCustomSelectFPUc": "draw_cursor__22TWindowSubCustomSelectFP17WindowDrawContext"
+    },
+    "checks": {
+      "tool": 294,
+      "fork": 11,
+      "host": 5
+    },
+    "archive_sha256": "eee337deb4223d361a2fcb6327f834b3114e49eb33c3ba6ab51a0ab632622ea9"
+  }
+}

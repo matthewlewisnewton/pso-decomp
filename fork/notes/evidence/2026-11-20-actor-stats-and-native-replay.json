@@ -1,0 +1,2220 @@
+{
+  "source": "cbff37c9f950f3e2c7ed2411e1856a3a54028e4b",
+  "previous_source": "5991ac7b121fc0e83ca1316ae4eedba494afc22e",
+  "landing": "5dc354c2d465264ee44319d7911b0e0817c0a86c",
+  "working_fork_build": "ffa6f1c1f85219fdd265cd5578df6b4e42b6caed",
+  "source_files": 60,
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "review_queue": {
+    "head": "62222c16029867cb06884695798e0b39a04f5dd4",
+    "tree": "c23ecfaa2b1fe7ba368c40ef964d924ee6dbb362",
+    "previous": "908b958882463676614861f12520bd246960c638",
+    "inputs": [
+      "b75c6f38a72228b2c5dc79f3198981f324474018",
+      "a4d7a8d2d908dc795ed2d7e929357d807e547955",
+      "a0ae8422d0940e24c0e5ce3298747d5991d40472",
+      "ff194d014bb79b47d0609f99403deb7c9ab8cb3e",
+      "4e93b2bb3cf2240c27977414e5bc94d71e0e860c",
+      "d9e7ee7f3dfdbb7018ef9d50b394972b625fd72e",
+      "bb0a2828e3a31ddc506164215d32f5cd834ff234",
+      "cdfbc9ea796425975e1c113c20af714744ff6061",
+      "9241aaaf9be027a7c6dc459b063c2a98ef2064c8",
+      "e9a0de33c63cf4cd2a071c7ae9e5072ef21126a3",
+      "8c328dc0a0b7807cb40439b9b787a444366900bf",
+      "9bbc668b6121ceb6bc03f83427c98aaa931a0d31",
+      "a5aed4817c6718d9ea584baaa3f5f29fdd72d1ee",
+      "ac5aa002909d739722e26f4c3c9aef7f681b4425",
+      "12bdb900e51d333a482062d8cd0d9edab5a09a80",
+      "7bdbdaf5ba01344982227ac6b25f5315e800d9f5",
+      "f7a0122c73c00062937eac73bc56ea913630e522",
+      "9a277f6b061ec44eecf9395be11f3112c378a33c",
+      "ba580a76cbb0992a985eb947d48a178cbb36d1b2",
+      "04e0a137422e25a50c7ea48df4c35c9bcc7b14fb",
+      "182fb702e6a21c01f05a822fa77a49c1e484d0bd",
+      "0895f1cbb38bc55767e2428439e698a94b5bccf4",
+      "9448059d81db540704b609616e96771e90827654",
+      "8f26a3c7a707d4076bf84134da09276bc62991f9",
+      "cbc36c08404d4fbddd2dcbc30074cb2e5ed146b1",
+      "ae3da5ccb25c52f727ab0f41adcc3a3afbf0c4ef",
+      "7b1a1843fd091beeae2d0440f0ed9f5976b7faab",
+      "d90619b7c15b4300567435fdee477df7c1796a25",
+      "bd20994aa3698ab8f8f0098410b4da11d0ba0d2c",
+      "9935ca4090ba264f42a12317c104ab4a568036b5",
+      "1f23677cb3c8366b142119fd3204b5bfd83d58a8",
+      "090a3d41d70c6601ad8720c95160e8f43c2b05d4",
+      "e03302a7034b338e6cfdaf448a1beddd27f97128"
+    ],
+    "files": 2322,
+    "reviews": {
+      "standalone-player-slot-registry": {
+        "head": "9448059d81db540704b609616e96771e90827654",
+        "previous": "92628b23dfdd756305d360da7cbc02d066f418ac",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 199,
+        "create": false,
+        "live_tip": "92628b23dfdd756305d360da7cbc02d066f418ac",
+        "queue_input": "9448059d81db540704b609616e96771e90827654",
+        "report": "/dev/shm/gm-actor-stats-and-native.5BXJvL/stats-direct-report.json.gz",
+        "strict": "/dev/shm/gm-actor-stats-and-native.5BXJvL/stats-direct-check.json"
+      },
+      "standalone-enemy-registration-and-formations": {
+        "head": "8c328dc0a0b7807cb40439b9b787a444366900bf",
+        "previous": "3272f488a83172ba06ba9496dd53525f834081d0",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 264,
+        "create": false,
+        "live_tip": "3272f488a83172ba06ba9496dd53525f834081d0",
+        "queue_input": "8c328dc0a0b7807cb40439b9b787a444366900bf",
+        "report": "/dev/shm/gm-enemy-20565490-review/tunnel-standalone-report.json.gz",
+        "strict": "/dev/shm/gm-enemy-20565490-review/tunnel-standalone-strict.json"
+      },
+      "standalone-main-menu-and-child-windows": {
+        "head": "7b1a1843fd091beeae2d0440f0ed9f5976b7faab",
+        "previous": "a0c6dc4253dbf22cb0984501536a32673fa9b9e8",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 158,
+        "create": false,
+        "live_tip": "a0c6dc4253dbf22cb0984501536a32673fa9b9e8",
+        "queue_input": "7b1a1843fd091beeae2d0440f0ed9f5976b7faab",
+        "report": "/dev/shm/gm-snapshot-native-20261120/direct/widen-report.json.gz",
+        "strict": "/dev/shm/gm-snapshot-native-20261120/direct/widen-strict.json"
+      },
+      "standalone-stage-doors-fences-and-contacts": {
+        "head": "9241aaaf9be027a7c6dc459b063c2a98ef2064c8",
+        "previous": "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 491,
+        "create": false,
+        "live_tip": "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
+        "queue_input": "9241aaaf9be027a7c6dc459b063c2a98ef2064c8",
+        "report": "/dev/shm/gm-stage-archive-pool.Xv7pfV/direct-report.json.gz",
+        "strict": "/dev/shm/gm-stage-archive-pool.Xv7pfV/direct-check.json"
+      }
+    },
+    "replays": {
+      "stats": {
+        "canonical": "465e89e2dbf9b7e08646a150426737db0ed88990",
+        "standalone": "9448059d81db540704b609616e96771e90827654",
+        "queue": "577101c24f82f6a7215ef5e6e6c13c40abd54add"
+      },
+      "tunnel": {
+        "canonical": "456a9da8af61526df7c5fdcc4f3b6f4e47b8be59",
+        "standalone": "8c328dc0a0b7807cb40439b9b787a444366900bf",
+        "queue": "0e90811507ceac0d050d82ae8cc89af7c5129a24"
+      },
+      "snapshot": {
+        "canonical": "ca1467859d8b117d94137ef99921a5f1f7c0b5e9",
+        "standalone": "7b1a1843fd091beeae2d0440f0ed9f5976b7faab",
+        "queue": "93ca085833e0a48326bbc6254baffe648b8ba815"
+      },
+      "stage": {
+        "canonical": "706023145a964bc239acb4eae9d27e7614cf617a",
+        "standalone": "9241aaaf9be027a7c6dc459b063c2a98ef2064c8",
+        "queue": "4a6a8b40c0971d1a67761b08645cb5735c9d4c89"
+      }
+    },
+    "increment": 60
+  },
+  "reviews": {
+    "standalone-player-slot-registry": {
+      "head": "9448059d81db540704b609616e96771e90827654",
+      "previous": "92628b23dfdd756305d360da7cbc02d066f418ac",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 199,
+      "create": false,
+      "live_tip": "92628b23dfdd756305d360da7cbc02d066f418ac",
+      "queue_input": "9448059d81db540704b609616e96771e90827654",
+      "report_sha256": "674cf51835a4d492f5edd74fb59f1fbb1349eca873146cedc9f614914b9ea2b2",
+      "strict_sha256": "5420300ca2bd7ab12467dca2c6cd6aa6871412feb95a3224151d00b604ffe18f"
+    },
+    "standalone-enemy-registration-and-formations": {
+      "head": "8c328dc0a0b7807cb40439b9b787a444366900bf",
+      "previous": "3272f488a83172ba06ba9496dd53525f834081d0",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 264,
+      "create": false,
+      "live_tip": "3272f488a83172ba06ba9496dd53525f834081d0",
+      "queue_input": "8c328dc0a0b7807cb40439b9b787a444366900bf",
+      "report_sha256": "64ae4a24895e1f9385b88ee2ddde969989587eb9d47dfcecf2ec4a04eb2fb8c3",
+      "strict_sha256": "a64b531dda1a00131edc8155a617a0e49806f5c3a3efabb5d5f3b79eaa2a4721"
+    },
+    "standalone-main-menu-and-child-windows": {
+      "head": "7b1a1843fd091beeae2d0440f0ed9f5976b7faab",
+      "previous": "a0c6dc4253dbf22cb0984501536a32673fa9b9e8",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 158,
+      "create": false,
+      "live_tip": "a0c6dc4253dbf22cb0984501536a32673fa9b9e8",
+      "queue_input": "7b1a1843fd091beeae2d0440f0ed9f5976b7faab",
+      "report_sha256": "1eea20f7841abb4f28172acea9517a09c795bb55218012099549a4dff0285f22",
+      "strict_sha256": "c58db57c4929df611d126c5aad07a97d3792193b2da604bba01098e127a43d55"
+    },
+    "standalone-stage-doors-fences-and-contacts": {
+      "head": "9241aaaf9be027a7c6dc459b063c2a98ef2064c8",
+      "previous": "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 491,
+      "create": false,
+      "live_tip": "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
+      "queue_input": "9241aaaf9be027a7c6dc459b063c2a98ef2064c8",
+      "report_sha256": "8a214298a104a3b2f327d848dada7415fe22c148bc5f7f1468efcef0b82581c8",
+      "strict_sha256": "099a0e4fc9cce86f47cfcf079a4303a10509f4504b1397d10ffdf44aff01d8f1"
+    }
+  },
+  "source_audit": {
+    "source": "cbff37c9f950f3e2c7ed2411e1856a3a54028e4b",
+    "previous": "5991ac7b121fc0e83ca1316ae4eedba494afc22e",
+    "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "entries": [
+      {
+        "row": 3610,
+        "historical_path": "src/pso/item/TItemSpecialEvent_803531FC.cpp",
+        "historical_blob": "a11cdff2697c54451cc81fafde31bc554e98d343",
+        "owners": {
+          "src/pso/item/TItemSpecialEvent.cpp": "cfb3a68d664d566c4334a6dbbabee4d75be30bbe",
+          "include/pso/item/TItemSpecialEvent.h": "5dac44d3faa7b05a537ab07247536e99411e1985",
+          "include/pso/object/base/TObjChara.h": "95ef64f40fdf84ac223f1f47f55c3218bf66be9e",
+          "src/pso/player/TObjPlayer_80011014.cpp": "c4b8c8715de48fc8786f98fdb27a0521c4f2904e",
+          "src/pso/item/armor/TItemProShield_80076B5C.cpp": "28fbb7506e91ffac9dcad1c68ce170c5abb505b2"
+        },
+        "proofs": [
+          {
+            "group": "stats-source",
+            "evidence": "All nine original event-item handlers retain their order and use the actual actor owner. The two recovery handlers now read the actor\u2019s typed signed HP and TP maxima. The four direct-attack values, local shock check, 10000.0f nearby request and selected handler are preserved.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4089,
+        "historical_path": "src/pso/player/TObjPlayer_80011014.cpp",
+        "historical_blob": "fbf22f3f6c3e2cd97cac0128f9986e7b2b4bf06c",
+        "owners": {
+          "src/pso/player/TObjPlayer_80011014.cpp": "c4b8c8715de48fc8786f98fdb27a0521c4f2904e",
+          "include/pso/object/base/TObjChara.h": "95ef64f40fdf84ac223f1f47f55c3218bf66be9e",
+          "src/pso/item/armor/TItemProShield_80076B5C.cpp": "28fbb7506e91ffac9dcad1c68ce170c5abb505b2"
+        },
+        "proofs": [
+          {
+            "group": "stats-source",
+            "evidence": "The actor stat getters and recovery clamps read the native signed stats. The exact three getter bodies and all 54 originating branch instructions are preserved. The larger original translation unit remains scoped.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6955,
+        "historical_path": "include/pso/player/TObjChara.h",
+        "historical_blob": "3cad2798309d1a040af158ae498dd098b0e4ffda",
+        "owners": {
+          "include/pso/object/base/TObjChara.h": "95ef64f40fdf84ac223f1f47f55c3218bf66be9e",
+          "src/pso/player/TObjPlayer_80011014.cpp": "c4b8c8715de48fc8786f98fdb27a0521c4f2904e",
+          "src/pso/item/armor/TItemProShield_80076B5C.cpp": "28fbb7506e91ffac9dcad1c68ce170c5abb505b2"
+        },
+        "proofs": [
+          {
+            "group": "stats-source",
+            "evidence": "The original signed actor maxima now provide the typed recovery interface at +0x2B8 and +0x2BA. The current TP member keeps its stored halfword while the accessor reads the original signed value at +0x32E.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7277,
+        "historical_path": "src/pso/misc/TNpcPlayer.cpp",
+        "historical_blob": "af8ffa0c288430271ddec1c532f6b22c861af154",
+        "owners": {
+          "src/pso/npc/TNpcPlayer.cpp": "96213a4b734b890665f859004a0a9581dc495592",
+          "include/pso/object/base/TObjChara.h": "95ef64f40fdf84ac223f1f47f55c3218bf66be9e",
+          "src/pso/player/TObjPlayer_80011014.cpp": "c4b8c8715de48fc8786f98fdb27a0521c4f2904e",
+          "src/pso/item/armor/TItemProShield_80076B5C.cpp": "28fbb7506e91ffac9dcad1c68ce170c5abb505b2"
+        },
+        "proofs": [
+          {
+            "group": "stats-source",
+            "evidence": "The companion decision and health-change readers now use the real actor\u2019s current TP and maximum HP and TP. Their existing threshold arithmetic and caller branches reproduce retail.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 424,
+        "historical_path": "include/pso/boss/TObjBoss2Tunnel.h",
+        "historical_blob": "94a60a77897cb50e43c55c32921abf66e03996a7",
+        "owners": {
+          "include/pso/boss/derolle/TObjBoss2Tunnel.h": "b40dd9a411505a492501d20106fe8e73d2882208",
+          "include/pso/boss/TUnk_804E4B3C.h": "a64ddf6fd397026c9b52d30f258f724b0aa322cd",
+          "src/pso/boss/derolle/TObjBoss2Tunnel.cpp": "458612e123095d6dbeeb317af2b243a8abb154a1",
+          "src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp": "bf48d125c9e5f1d547bc40386a73697a32a6bec1"
+        },
+        "proofs": [
+          {
+            "group": "tunnel-source",
+            "evidence": "Recovered checksum signed width, explicit vector arguments, and phase method ownership; the historical proposed m_2c/m_30 pointers conflict with the De Rol Le integer segment ring used by init_queue_from_start. Header also spans unrelated service helpers.",
+            "details": {
+              "original_hunk_headers": [
+                "@@ -6,0 +7,43 @@",
+                "@@ -19,2 +62,2 @@ struct TObjBoss2Tunnel : public TObject {",
+                "@@ -51,3 +94,5 @@ struct TObjBoss2Tunnel : public TObject {",
+                "@@ -63 +108,2 @@ struct TObjBoss2Tunnel : public TObject {",
+                "@@ -69,7 +115,8 @@ struct TObjBoss2Tunnel : public TObject {",
+                "@@ -77,3 +124 @@ struct TObjBoss2Tunnel : public TObject {",
+                "@@ -81 +125,0 @@ struct TObjBoss2Tunnel : public TObject {",
+                "@@ -83 +127 @@ struct TObjBoss2Tunnel : public TObject {",
+                "@@ -85,2 +129 @@ struct TObjBoss2Tunnel : public TObject {",
+                "@@ -89,6 +131,0 @@ struct TObjBoss2Tunnel : public TObject {"
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 546,
+        "historical_path": "src/pso/boss/TObjBoss2Tunnel_802F2070.cpp",
+        "historical_blob": "25a188430ed09092c97e45e4d2b5861ff4c1c842",
+        "owners": {
+          "src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp": "bf48d125c9e5f1d547bc40386a73697a32a6bec1",
+          "include/pso/boss/TUnk_804E4B3C.h": "a64ddf6fd397026c9b52d30f258f724b0aa322cd"
+        },
+        "proofs": [
+          {
+            "group": "tunnel-source",
+            "evidence": "Whole historical actor port reviewed: native allocation, curve construction/destruction, two splash children, three draw children, optional tunnel collision child, both initial-row layouts, phase dispatch, camera sway, four render passes, 30-frame dust cadence, both spawn timer tables, 12 float effect-tail words and global flag helpers. The remaining two phase getters are now on the actual controller. Typed integer index lists and native construction preserve the retail interpretation of donor raw name pointers and constructor wrappers.",
+            "details": {
+              "original_hunk_headers": [
+                "@@ -0,0 +1 @@",
+                "@@ -1,0 +3 @@",
+                "@@ -3 +5,3 @@",
+                "@@ -8,10 +11,0 @@",
+                "@@ -19,5 +13,3 @@ struct Stack_802F2664 {",
+                "@@ -26,3 +18 @@ extern \"C\" {",
+                "@@ -32,3 +21,0 @@ s32 TObjBoss2Tunnel__sub_802F22F4(void);",
+                "@@ -44,9 +31 @@ extern const f32 lbl_805DECC8;",
+                "@@ -55,3 +33,0 @@ extern const f32 lbl_805DECFC;",
+                "@@ -59 +34,0 @@ f32 fabs_float(f32);",
+                "@@ -64,2 +38,0 @@ extern const f32 lbl_805DED08;",
+                "@@ -68 +40,0 @@ void TObjBoss2Tunnel__sub_802F2C4C(void);",
+                "@@ -73,0 +46 @@ s32 query_teammate_state__9TObjEneDDFv();",
+                "@@ -75,3 +48,3 @@ void draw_particle_effect(void *a0);",
+                "@@ -80,2 +52,0 @@ s32 get_current_floor();",
+                "@@ -85,2 +56,2 @@ s32 TObjBoss7RaftSplash__ct(void *, void *, void *, void *, void *);",
+                "@@ -89,3 +59,0 @@ extern u8 TObjBoss2Tunnel__raft_splash_offset_table[];",
+                "@@ -94 +62 @@ extern const f32 lbl_805DED10;",
+                "@@ -96 +63,0 @@ f32 rand_signed_unit();",
+                "@@ -98 +64,0 @@ s32 rand();",
+                "@@ -101,2 +66,0 @@ s32 TObjBoss2Tunnel__sub_802F2070(void);",
+                "@@ -103,0 +68,29 @@ s32 TObjBoss2Tunnel__sub_802F2070(void) {",
+                "@@ -105,11 +98,7 @@ s32 TObjBoss2Tunnel__sub_802F2070(void) {",
+                "@@ -119,9 +108,33 @@ struct TunnelVector3 { f32 x,y,z; };",
+                "@@ -130,6 +143,3 @@ void TunnelSceneController::spawn_segment_row_b() {",
+                "@@ -137,8 +147,26 @@ void TUnk_804E4B3C::spawn(s32 arg1, s32 arg2) {",
+                "@@ -147,3 +175,11 @@ void TObjBoss2Tunnel__sub_802F22C4(void) {",
+                "@@ -152,12 +188,10 @@ void TObjBoss2Tunnel__sub_802F22DC(void) {",
+                "@@ -166,17 +200,7 @@ s32 TObjBoss2Tunnel::check_both(s32 arg0) {",
+                "@@ -185,15 +209,9 @@ void TUnk_804E4B3C::render() {",
+                "@@ -201,2 +219,3 @@ void TObjBoss2Tunnel__sub_802F2400(u8 *boss2_tunnel) {",
+                "@@ -204,3 +223,6 @@ void TObjBoss2Tunnel__sub_802F2400(u8 *boss2_tunnel) {",
+                "@@ -209,3 +231,9 @@ void TObjBoss2Tunnel__sub_802F2400(u8 *boss2_tunnel) {",
+                "@@ -214,3 +242,6 @@ void TObjBoss2Tunnel__sub_802F2400(u8 *boss2_tunnel) {",
+                "@@ -217,0 +249,2 @@ void TObjBoss2Tunnel__sub_802F2400(u8 *boss2_tunnel) {",
+                "@@ -220,10 +252,0 @@ void TObjBoss2Tunnel__sub_802F2400(u8 *boss2_tunnel) {",
+                "@@ -231,16 +254,6 @@ void TObjBoss2Tunnel::init_effect() {",
+                "@@ -249 +261,0 @@ void TObjBoss2Tunnel::update_dust_spawn() {",
+                "@@ -251,0 +264,2 @@ void TObjBoss2Tunnel::update_dust_spawn() {",
+                "@@ -253,6 +267,2 @@ void TObjBoss2Tunnel::update_dust_spawn() {",
+                "@@ -260,2 +270,2 @@ void TObjBoss2Tunnel::update_spawn_timer(s32 arg1, s32 arg2, s32 arg3) {",
+                "@@ -263,3 +273,3 @@ void TObjBoss2Tunnel::update_spawn_timer(s32 arg1, s32 arg2, s32 arg3) {",
+                "@@ -267 +277 @@ void TObjBoss2Tunnel::update_spawn_timer(s32 arg1, s32 arg2, s32 arg3) {",
+                "@@ -269 +279 @@ void TObjBoss2Tunnel::update_spawn_timer(s32 arg1, s32 arg2, s32 arg3) {",
+                "@@ -272,4 +282,4 @@ void TObjBoss2Tunnel::update_spawn_timer(s32 arg1, s32 arg2, s32 arg3) {",
+                "@@ -280,4 +290,23 @@ void TObjBoss2Tunnel::update_spawn_timer(s32 arg1, s32 arg2, s32 arg3) {",
+                "@@ -284,0 +314 @@ void TObjBoss2Tunnel::advance_effect_timer() {",
+                "@@ -286,11 +316,15 @@ void TObjBoss2Tunnel::advance_effect_timer() {",
+                "@@ -298,10 +332 @@ void TUnk_804E4B3C::update_phase_motion() {",
+                "@@ -310,9 +335,3 @@ void TUnk_804E4B3C::update_phase_motion() {",
+                "@@ -321,5 +340,3 @@ void TUnk_804E4B3C::update_phase_motion() {",
+                "@@ -328,12 +345,3 @@ void TUnk_804E4B3C::update_phase_motion() {",
+                "@@ -342 +349,0 @@ void *TUnk_804E4B3C::destroy(s16 arg1) {",
+                "@@ -345,42 +352,7 @@ void *TUnk_804E4B3C::destroy(s16 arg1) {",
+                "@@ -388,22 +360,8 @@ void *TObjBoss2Tunnel__sub_802F2A2C(void *arg0p, s32 parent) {",
+                "@@ -411,9 +368,0 @@ void *TObjBoss2Tunnel__sub_802F2A2C(void *arg0p, s32 parent) {",
+                "@@ -421 +369,0 @@ void *TObjBoss2Tunnel__sub_802F2A2C(void *arg0p, s32 parent) {",
+                "@@ -423,2 +370,0 @@ void *TObjBoss2Tunnel__sub_802F2A2C(void *arg0p, s32 parent) {",
+                "@@ -426,6 +372,6 @@ void *TObjBoss2Tunnel__sub_802F2A2C(void *arg0p, s32 parent) {",
+                "@@ -433 +378,0 @@ void TObjBoss2Tunnel__sub_802F2C50(void) {",
+                "@@ -435,3 +380,3 @@ void TObjBoss2Tunnel__sub_802F2C84(void) { (*(int *)&boss2_tunnel_state_flags) =",
+                "@@ -439,3 +384,3 @@ void TObjBoss2Tunnel__sub_802F2C84(void) { (*(int *)&boss2_tunnel_state_flags) =",
+                "@@ -443,3 +388,4 @@ void TObjBoss2Tunnel__sub_802F2C84(void) { (*(int *)&boss2_tunnel_state_flags) =",
+                "@@ -447,4 +393,49 @@ void TObjBoss2Tunnel__sub_802F2C84(void) { (*(int *)&boss2_tunnel_state_flags) ="
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 672,
+        "historical_path": "include/pso/boss/TUnk_804E4B3C.h",
+        "historical_blob": "db6cddd09bb759ad5e401273643bd3e1ce8d54ab",
+        "owners": {
+          "include/pso/boss/TUnk_804E4B3C.h": "a64ddf6fd397026c9b52d30f258f724b0aa322cd",
+          "src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp": "bf48d125c9e5f1d547bc40386a73697a32a6bec1"
+        },
+        "proofs": [
+          {
+            "group": "tunnel-source",
+            "evidence": "All authored native methods including the two independent phase queries, real child owners, position Vec, 0x94 size and all nine explicit member offsets, retaining existing field names.",
+            "details": {
+              "original_hunk_headers": [
+                "@@ -3,0 +4 @@",
+                "@@ -4,0 +6,3 @@",
+                "@@ -12 +16,12 @@ public:",
+                "@@ -14 +29,13 @@ public:",
+                "@@ -16,3 +43,3 @@ public:",
+                "@@ -20,0 +48,9 @@ typedef char TUnk_804E4B3C_size[sizeof(TUnk_804E4B3C) == 0x94 ? 1 : -1];"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 778,
+        "historical_path": "src/pso/enemy/TObjEneMe3Shinowa.cpp",
+        "historical_blob": "8697ef118f28d96e1d89e81ce84938ab05cb452b",
+        "owners": {
+          "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp": "9212de8676332604464a065326e1e07e393ef1b7",
+          "src/pso/boss/derolle/TObjBoss2Tunnel.cpp": "458612e123095d6dbeeb317af2b243a8abb154a1",
+          "include/pso/boss/derolle/TObjBoss2Tunnel.h": "b40dd9a411505a492501d20106fe8e73d2882208"
+        },
+        "proofs": [
+          {
+            "group": "tunnel-source",
+            "evidence": "cast-free offset/position rotation only. Other authored changes are outside this proof.",
+            "details": {
+              "original_hunk_headers": [
+                "@@ -0,0 +1,13 @@",
+                "@@ -4 +16,0 @@",
+                "@@ -5,0 +18,234 @@",
+                "@@ -8 +253,0 @@",
+                "@@ -23,2 +267,0 @@ extern \"C\" void test_flag_256__9TObjCharaFv();",
+                "@@ -481,32 +724,16 @@ struct Info_800E5CE4 { u8 pad[0x8]; f32 f8; u8 pad2[0x14]; s32 f20; };",
+                "@@ -516,2 +743 @@ f64 atan2_float(f32, f32);",
+                "@@ -520,2 +746 @@ s32 approach_angle_limited(int, int, int);",
+                "@@ -523,0 +749,6 @@ s32 rotate_matrix_y(int, int);",
+                "@@ -528 +759 @@ extern const f64 TObjEneMe3ShinowaMirage__data_8043CFE0;",
+                "@@ -536 +767 @@ void *create_particle_emitter(void *, s32);",
+                "@@ -699,15 +929,0 @@ struct RecoveredGlobal_800F4758_lbl_8050110C {",
+                "@@ -829,8 +1044,0 @@ struct VBase_14_763762",
+                "@@ -847 +1055 @@ struct RecoveredFields_800E50D8_arg0",
+                "@@ -958,119 +1165,0 @@ typedef struct { f32 x, y, z; } Vec_800E4FE8;",
+                "@@ -1339 +1428 @@ typedef struct VBase_18_4a41ce VBase_18_4a41ce;",
+                "@@ -1347,25 +1435,0 @@ typedef char RecoveredGlobal_800F4758_lbl_8050110C_size[sizeof(RecoveredGlobal_8",
+                "@@ -1400,0 +1465,5 @@ struct VObj_18_c44252 : VBase_18_c44252 {",
+                "@@ -1401,0 +1471,4 @@ struct VObj_18_c44252 : VBase_18_c44252 {",
+                "@@ -1415,7 +1488 @@ struct E_800E728C { u8 pad[0x60]; s32 f60; u8 pad64[0x390 - 0x64]; s32 f390; u8",
+                "@@ -1451 +1518 @@ struct Mirage_800E7884 {",
+                "@@ -1467 +1534 @@ s32 get_main_phase();",
+                "@@ -1469 +1536 @@ s32 is_split_screen();",
+                "@@ -1477,3 +1544,3 @@ void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);",
+                "@@ -1483,2 +1549,0 @@ void init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, s32);",
+                "@@ -1495 +1560 @@ void action__17TObjEneMe3ShinowaFl(u8 *arg0, s32 arg1);",
+                "@@ -1497 +1562 @@ void TObjEneMe3ShinowaMirage__sub_800E6F0C(Obj_800E6F0C *self);",
+                "@@ -1503 +1568 @@ u8 check_body_collision_at__17TObjEneMe3ShinowaFlf(Obj_800E750C *arg0, s32 arg1,",
+                "@@ -1507,2 +1571,0 @@ void vfunc_28__17TObjEneMe3ShinowaFv(void);",
+                "@@ -1520,7 +1583,9 @@ s32 push_matrix_from(void *);",
+                "@@ -1529,3 +1594,3 @@ extern Vec lbl_8043CF94;",
+                "@@ -1614 +1679 @@ extern \"C\" {",
+                "@@ -1638,3 +1702,0 @@ extern \"C\" {",
+                "@@ -1695,3 +1756,0 @@ extern \"C\" {",
+                "@@ -1767 +1826 @@ extern \"C\" {",
+                "@@ -1893,2 +1952,2 @@ void update_poison_status__9TObjCharaFv();",
+                "@@ -1904,7 +1963,2 @@ void *shinowa_mirage_model_init_data[11] = {",
+                "@@ -1912,2 +1966,4 @@ void *bm_ene_me3_shinowa_motion_names[11] = {",
+                "@@ -1915,12 +1971,3 @@ void *shinowa_mirage_resource_descriptor[4] = {",
+                "@@ -1928,31 +1975,12 @@ void *shinowa_mirage_motion_param_table[44] = {",
+                "@@ -1962 +1990,2 @@ void *__vt__23TObjEneMe3ShinowaMirage[119] = {",
+                "@@ -1964,58 +1992,0 @@ void TObjEneMe3Shinowa::update_mirage() { if (get_target_info() != 0) { ((int (*",
+                "@@ -2023,6 +1994 @@ void TObjEneMe3ShinowaMirage::draw_model() {",
+                "@@ -2030 +1995,0 @@ void TObjEneMe3ShinowaMirage::advance_camera_ctrl_step() {",
+                "@@ -2032 +1997,20 @@ void TObjEneMe3Shinowa::vfunc_116(s32) {  }",
+                "@@ -2034 +2017,0 @@ void TObjEneMe3Shinowa::vfunc_115() {  }",
+                "@@ -2038,51 +2021,124 @@ void TObjEneMe3Shinowa::vfunc_114(s32) {  }",
+                "@@ -2089,0 +2146,45 @@ void TObjEneMe3ShinowaMirage::state_break_apart(s32 arg1) {",
+                "@@ -2090,0 +2192 @@ void TObjEneMe3ShinowaMirage::state_break_apart(s32 arg1) {",
+                "@@ -2093,28 +2195,2 @@ void TObjEneMe3ShinowaMirage::state_break_apart(s32 arg1) {",
+                "@@ -2123,16 +2199,4 @@ void TObjEneMe3ShinowaMirage__sub_800E4FE8(u8 *ene_dd_st, s32 arg1) {",
+                "@@ -2140,7 +2204,3 @@ void TObjEneMe3ShinowaMirage__sub_800E50D8(u8 *ene_dd, s32 arg1) {",
+                "@@ -2148,18 +2208,15 @@ void TObjEneMe3ShinowaMirage__sub_800E50D8(u8 *ene_dd, s32 arg1) {",
+                "@@ -2167,3 +2223,0 @@ void TObjEneMe3ShinowaMirage__sub_800E50D8(u8 *ene_dd, s32 arg1) {",
+                "@@ -2172,2 +2226,7 @@ void TObjEneMe3ShinowaMirage__sub_800E50D8(u8 *ene_dd, s32 arg1) {",
+                "@@ -2175,8 +2234,949 @@ void TObjEneMe3ShinowaMirage__sub_800E5220(void *ene_dd, s32 arg1) {",
+                "@@ -2185,4 +3185,65 @@ void TObjEneMe3ShinowaMirage__sub_800E5220(void *ene_dd, s32 arg1) {",
+                "@@ -2190 +3251 @@ void TObjEneMe3ShinowaMirage__sub_800E5220(void *ene_dd, s32 arg1) {",
+                "@@ -2192,4 +3253,92 @@ void TObjEneMe3ShinowaMirage__sub_800E5220(void *ene_dd, s32 arg1) {",
+                "@@ -2197,0 +3347,4 @@ void TObjEneMe3ShinowaMirage__sub_800E5220(void *ene_dd, s32 arg1) {",
+                "@@ -2202,2 +3355,14 @@ void TObjEneMe3ShinowaMirage__sub_800E5220(void *ene_dd, s32 arg1) {",
+                "@@ -2206,6 +3371,9 @@ void TObjEneMe3ShinowaMirage::state_cast_support(s32 arg1) {",
+                "@@ -2214,2 +3382,2 @@ void TObjEneMe3ShinowaMirage::state_cast_support(s32 arg1) {",
+                "@@ -2221,2 +3389,2 @@ void TObjEneMe3ShinowaMirage::state_cast_support(s32 arg1) {",
+                "@@ -2224,4 +3392,6 @@ void TObjEneMe3ShinowaMirage::state_cast_support(s32 arg1) {",
+                "@@ -2229 +3399 @@ void TObjEneMe3ShinowaMirage::state_cast_support(s32 arg1) {",
+                "@@ -2231 +3401,14 @@ void TObjEneMe3ShinowaMirage::state_cast_support(s32 arg1) {",
+                "@@ -2235,2 +3418,85 @@ void TObjEneMe3ShinowaMirage::state_cast_support(s32 arg1) {",
+                "@@ -2238,7 +3504,2 @@ void TObjEneMe3ShinowaMirage::state_cast_support(s32 arg1) {",
+                "@@ -2246 +3507,3 @@ void TObjEneMe3ShinowaMirage::state_cast_support(s32 arg1) {",
+                "@@ -2248 +3511,4 @@ void TObjEneMe3ShinowaMirage::state_cast_support(s32 arg1) {",
+                "@@ -2251,0 +3518 @@ void TObjEneMe3ShinowaMirage::state_cast_support(s32 arg1) {",
+                "@@ -2252,0 +3520,5 @@ void TObjEneMe3ShinowaMirage::state_cast_support(s32 arg1) {",
+                "@@ -2253,0 +3526,2 @@ void TObjEneMe3ShinowaMirage::state_cast_support(s32 arg1) {",
+                "@@ -2257,3 +3530,0 @@ void TObjEneMe3ShinowaMirage::state_cast_support(s32 arg1) {",
+                "@@ -2385,2 +3655,0 @@ void TObjEneMe3ShinowaMirage__sub_800E54E8(void *arg0_, s32 arg1) {",
+                "@@ -2389,0 +3659,6 @@ void TObjEneMe3ShinowaMirage__sub_800E54E8(void *arg0_, s32 arg1) {",
+                "@@ -2391,2 +3666,5 @@ void TObjEneMe3ShinowaMirage__sub_800E54E8(void *arg0_, s32 arg1) {",
+                "@@ -2395,19 +3673,7 @@ void TObjEneMe3ShinowaReal__sub_800E5950(u8 *arg0, s32 arg1) {",
+                "@@ -2415,14 +3681,2 @@ void TObjEneMe3ShinowaReal__sub_800E5950(u8 *arg0, s32 arg1) {",
+                "@@ -2430,0 +3685,2 @@ void TObjEneMe3ShinowaReal__sub_800E5950(u8 *arg0, s32 arg1) {",
+                "@@ -2435,5 +3691,8 @@ void TObjEneMe3ShinowaReal__sub_800E5950(u8 *arg0, s32 arg1) {",
+                "@@ -2441,3 +3700 @@ void TObjEneMe3ShinowaReal__sub_800E5950(u8 *arg0, s32 arg1) {",
+                "@@ -2445,9 +3702,2 @@ void TObjEneMe3ShinowaReal__sub_800E5950(u8 *arg0, s32 arg1) {",
+                "@@ -2455,2 +3705,7 @@ void TObjEneMe3ShinowaReal__sub_800E5950(u8 *arg0, s32 arg1) {",
+                "@@ -2458,3 +3713,128 @@ void TObjEneMe3ShinowaReal__sub_800E5950(u8 *arg0, s32 arg1) {",
+                "@@ -2462,0 +3843,9 @@ void TObjEneMe3ShinowaReal__sub_800E5950(u8 *arg0, s32 arg1) {",
+                "@@ -2464,2 +3853,2 @@ void TObjEneMe3ShinowaReal__sub_800E5950(u8 *arg0, s32 arg1) {",
+                "@@ -2470,3 +3859,14 @@ void TObjEneMe3ShinowaReal__sub_800E5950(u8 *arg0, s32 arg1) {",
+                "@@ -2475,9 +3875,5 @@ void TObjEneMe3ShinowaMirage__sub_800E5CE4(u8 *ene_epsilon, s32 arg1) {",
+                "@@ -2486,4 +3881,0 @@ void TObjEneMe3ShinowaMirage__sub_800E5CE4(u8 *ene_epsilon, s32 arg1) {",
+                "@@ -2493,2 +3885 @@ void TObjEneMe3ShinowaMirage__sub_800E5CE4(u8 *ene_epsilon, s32 arg1) {",
+                "@@ -2496,19 +3887,3 @@ void TObjEneMe3ShinowaMirage__sub_800E5CE4(u8 *ene_epsilon, s32 arg1) {",
+                "@@ -2516,3 +3891,8 @@ void TObjEneMe3ShinowaMirage__sub_800E5CE4(u8 *ene_epsilon, s32 arg1) {",
+                "@@ -2522,3 +3902,10 @@ void TObjEneMe3ShinowaMirage__sub_800E5CE4(u8 *ene_epsilon, s32 arg1) {",
+                "@@ -2526 +3913,4 @@ void TObjEneMe3ShinowaMirage__sub_800E5CE4(u8 *ene_epsilon, s32 arg1) {",
+                "@@ -2529 +3918,0 @@ void TObjEneMe3ShinowaMirage__sub_800E5CE4(u8 *ene_epsilon, s32 arg1) {",
+                "@@ -2533,0 +3923,7 @@ void TObjEneMe3ShinowaMirage__sub_800E5CE4(u8 *ene_epsilon, s32 arg1) {",
+                "@@ -2535,49 +3930,0 @@ void TObjEneMe3ShinowaMirage__sub_800E5CE4(u8 *ene_epsilon, s32 arg1) {",
+                "@@ -2585,103 +3932,82 @@ __declspec(section \".sdata2\") extern const u32 lbl_805DA624[1] = { 0x43960000 };",
+                "@@ -2689,4 +4014,0 @@ void TObjEneMe3ShinowaMirage__sub_800E5F64(u8 *arg0, s32 arg1) {",
+                "@@ -2694,10 +4016,15 @@ void TObjEneMe3ShinowaMirage__sub_800E5F64(u8 *arg0, s32 arg1) {",
+                "@@ -2704,0 +4032,2 @@ void TObjEneMe3ShinowaMirage__sub_800E5F64(u8 *arg0, s32 arg1) {",
+                "@@ -2706,7 +4035,6 @@ void TObjEneMe3ShinowaMirage__sub_800E5F64(u8 *arg0, s32 arg1) {",
+                "@@ -2713,0 +4042 @@ void TObjEneMe3ShinowaMirage__sub_800E5F64(u8 *arg0, s32 arg1) {",
+                "@@ -2714,0 +4044,6 @@ void TObjEneMe3ShinowaMirage__sub_800E5F64(u8 *arg0, s32 arg1) {",
+                "@@ -2718,12 +4053,23 @@ void TObjEneMe3ShinowaMirage__sub_800E5F64(u8 *arg0, s32 arg1) {",
+                "@@ -2731 +4077 @@ void TObjEneMe3ShinowaMirage::state_chase_target(s32 arg1) {",
+                "@@ -2733,10 +4079,4 @@ void TObjEneMe3ShinowaMirage::state_chase_target(s32 arg1) {",
+                "@@ -2744,16 +4084,9 @@ void TObjEneMe3ShinowaMirage::state_chase_target(s32 arg1) {",
+                "@@ -2761 +4094,34 @@ void TObjEneMe3ShinowaMirage::state_chase_target(s32 arg1) {",
+                "@@ -2763,0 +4130,6 @@ void TObjEneMe3ShinowaMirage::state_chase_target(s32 arg1) {",
+                "@@ -2766,4 +4138 @@ void TObjEneMe3ShinowaMirage::state_chase_target(s32 arg1) {",
+                "@@ -2771,63 +4140,120 @@ void TObjEneMe3ShinowaMirage__sub_800E66FC(u8 *arg0, s32 arg1) {",
+                "@@ -2835,4 +4261,21 @@ void TObjEneMe3ShinowaMirage__sub_800E66FC(u8 *arg0, s32 arg1) {",
+                "@@ -2840,4 +4283,29 @@ void TObjEneMe3ShinowaMirage__sub_800E66FC(u8 *arg0, s32 arg1) {",
+                "@@ -2847,3 +4315,14 @@ void TObjEneMe3ShinowaMirage__sub_800E66FC(u8 *arg0, s32 arg1) {",
+                "@@ -2852,7 +4331,6 @@ void TObjEneMe3ShinowaMirage__sub_800E69F0(u8 *ene_me3_shinowa_mirage, s32 arg1)",
+                "@@ -2860,12 +4338,6 @@ void TObjEneMe3ShinowaMirage__sub_800E69F0(u8 *ene_me3_shinowa_mirage, s32 arg1)",
+                "@@ -2873,2 +4345,2 @@ void TObjEneMe3ShinowaMirage__sub_800E69F0(u8 *ene_me3_shinowa_mirage, s32 arg1)",
+                "@@ -2876,5 +4348,15 @@ void TObjEneMe3ShinowaMirage__sub_800E69F0(u8 *ene_me3_shinowa_mirage, s32 arg1)",
+                "@@ -2882,6 +4364,9 @@ void TObjEneMe3ShinowaMirage__sub_800E69F0(u8 *ene_me3_shinowa_mirage, s32 arg1)",
+                "@@ -2888,0 +4374,6 @@ void TObjEneMe3ShinowaMirage__sub_800E69F0(u8 *ene_me3_shinowa_mirage, s32 arg1)",
+                "@@ -2891,5 +4382,3 @@ void TObjEneMe3ShinowaMirage__sub_800E69F0(u8 *ene_me3_shinowa_mirage, s32 arg1)",
+                "@@ -2897,2 +4386,3 @@ void TObjEneMe3ShinowaMirage__sub_800E69F0(u8 *ene_me3_shinowa_mirage, s32 arg1)",
+                "@@ -2900 +4389,0 @@ void TObjEneMe3ShinowaMirage__sub_800E69F0(u8 *ene_me3_shinowa_mirage, s32 arg1)",
+                "@@ -2905,4 +4394,18 @@ void TObjEneMe3ShinowaMirage__sub_800E69F0(u8 *ene_me3_shinowa_mirage, s32 arg1)",
+                "@@ -2911,9 +4414,7 @@ void TObjEneMe3Shinowa::sub_800E6BB8(s32 arg1) {",
+                "@@ -2922,2 +4423,3 @@ void TObjEneMe3Shinowa::sub_800E6BB8(s32 arg1) {",
+                "@@ -2925,2 +4426,0 @@ void TObjEneMe3Shinowa::sub_800E6BB8(s32 arg1) {",
+                "@@ -2928,22 +4428,42 @@ void TObjEneMe3Shinowa::sub_800E6BB8(s32 arg1) {",
+                "@@ -2951 +4471,2 @@ void TObjEneMe3Shinowa::action(s32 arg1) {",
+                "@@ -2953,4 +4473,0 @@ void TObjEneMe3Shinowa::action(s32 arg1) {",
+                "@@ -2958,7 +4475,4 @@ void TObjEneMe3Shinowa::action(s32 arg1) {",
+                "@@ -2970,56 +4484,6 @@ void TObjEneMe3Shinowa::action(s32 arg1) {",
+                "@@ -3027,4 +4491 @@ void dispatch_action__23TObjEneMe3ShinowaMirageFPvUii(Obj_800E6DD8 *arg0_, u32 a",
+                "@@ -3032,12 +4492,0 @@ void TObjEneMe3ShinowaMirage__sub_800E6F0C(Obj_800E6F0C *self) {",
+                "@@ -3045,3 +4494,2 @@ void TObjEneMe3Shinowa::sub_800E6F64() {",
+                "@@ -3050 +4498,8 @@ s32 TObjEneMe3Shinowa::sub_800E6FE0() {",
+                "@@ -3052,4 +4507,37 @@ int select_and_apply_target__23TObjEneMe3ShinowaMirageFPv(void* p) { return sele",
+                "@@ -3057,6 +4545 @@ s32 TObjEneMe3Shinowa::sub_800E701C() {",
+                "@@ -3064,5 +4547,17 @@ void TObjEneMe3Shinowa::vfunc_89() {",
+                "@@ -3071 +4566,3 @@ void TObjEneMe3ShinowaMirage::update_by_distance() {",
+                "@@ -3074,5 +4571,6 @@ void TObjEneMe3ShinowaMirage::update_by_distance() {",
+                "@@ -3080,13 +4578,6 @@ void TObjEneMe3Shinowa::apply_effect_pair() {",
+                "@@ -3094 +4584,0 @@ void TObjEneMe3Shinowa::apply_effect_pair() {",
+                "@@ -3097,4 +4587,6 @@ void TObjEneMe3Shinowa::apply_effect_pair() {",
+                "@@ -3102,3 +4594 @@ void TObjEneMe3Shinowa::vfunc_111() {  }",
+                "@@ -3106,3 +4596,4 @@ void TObjEneMe3Shinowa::dispatch_if_active() {",
+                "@@ -3109,0 +4601 @@ void TObjEneMe3Shinowa::dispatch_if_active() {",
+                "@@ -3112,3 +4604,6 @@ void TObjEneMe3Shinowa::dispatch_if_active() {",
+                "@@ -3116,6 +4611 @@ s32 TObjEneMe3Shinowa::update_effect() {",
+                "@@ -3123,5 +4612,0 @@ s32 TObjEneMe3Shinowa::update_effect() {",
+                "@@ -3129,4 +4614 @@ void TObjEneMe3ShinowaReal::sub_800E7250() {",
+                "@@ -3134 +4616,6 @@ void TObjEneMe3Shinowa__sub_800E7268(u8 *arg0) {",
+                "@@ -3137,17 +4624,9 @@ void TObjEneMe3Shinowa::vfunc_107() {  }",
+                "@@ -3157,7 +4636,4 @@ u8 TObjEneMe3Shinowa::can_hit_same_target() {",
+                "@@ -3164,0 +4641,6 @@ void TObjEneMe3Shinowa::update_player_state_default() {",
+                "@@ -3168,3 +4650,15 @@ void TObjEneMe3Shinowa::update_player_state_default() {",
+                "@@ -3172,13 +4666,24 @@ void TObjEneMe3Shinowa::vfunc_105() {",
+                "@@ -3186,0 +4692,6 @@ void TObjEneMe3Shinowa::vfunc_105() {",
+                "@@ -3190,3 +4700,0 @@ void TObjEneMe3Shinowa::vfunc_105() {",
+                "@@ -3194,6 +4702,3 @@ s32 check_in_range__23TObjEneMe3ShinowaMirageFPv(void *arg0) {",
+                "@@ -3200,0 +4706,6 @@ s32 check_in_range__23TObjEneMe3ShinowaMirageFPv(void *arg0) {",
+                "@@ -3204,21 +4715,5 @@ s32 check_in_range__23TObjEneMe3ShinowaMirageFPv(void *arg0) {",
+                "@@ -3225,0 +4721,6 @@ u8 TObjEneMe3Shinowa::check_body_collision_at(s32 arg1, f32 farg0) {",
+                "@@ -3229,16 +4730,5 @@ u8 TObjEneMe3Shinowa::check_body_collision_at(s32 arg1, f32 farg0) {",
+                "@@ -3245,0 +4736,6 @@ f32 TObjEneMe3Shinowa::get_node_world_y() {",
+                "@@ -3248 +4744 @@ f32 TObjEneMe3Shinowa::get_node_world_y() {",
+                "@@ -3250,3 +4746,7 @@ void fn_800E762C(void) {  }",
+                "@@ -3255 +4755,6 @@ void TObjEneMe3Shinowa::vfunc_88() {",
+                "@@ -3257 +4762 @@ void TObjEneMe3Shinowa::copy_position_vector() { VecCopy((Vec *)((char*)this + 0",
+                "@@ -3259,13 +4764,4 @@ void TObjEneMe3Shinowa::vfunc_61() {  }",
+                "@@ -3274 +4770,6 @@ void TObjEneMe3Shinowa::vfunc_62() {",
+                "@@ -3276 +4777 @@ void TObjEneMe3Shinowa::vfunc_63() { if (this->mode != 13) { ((int (*)(void*, vo",
+                "@@ -3278,12 +4778,0 @@ void TObjEneMe3Shinowa::vfunc_28() {  }",
+                "@@ -3291,18 +4780,8 @@ void TObjEneMe3Shinowa::run_task() {",
+                "@@ -3311,20 +4790,5 @@ void *__dt__17TObjEneMe3ShinowaFv(void *arg0, s16 arg1) {",
+                "@@ -3332,25 +4795,0 @@ void TObjEneMe3Shinowa::init_enemy() {",
+                "@@ -3357,0 +4797,6 @@ void TObjEneMe3Shinowa::init_enemy() {",
+                "@@ -3360,6 +4804,0 @@ void TObjEneMe3Shinowa::init_enemy() {",
+                "@@ -3366,0 +4806,43 @@ void *TObjEneMe3Shinowa__ct(void *ene_me3_shinowa) {"
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 814,
+        "historical_path": "src/pso/enemy/TObjEneMe3SinowZoa.cpp",
+        "historical_blob": "0a55041069ef21a8bf06622fa2696c59f98f24f2",
+        "owners": {
+          "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp": "e91d5ed8e71471101445dfa963e35577034f03cd",
+          "src/pso/boss/derolle/TObjBoss2Tunnel.cpp": "458612e123095d6dbeeb317af2b243a8abb154a1",
+          "include/pso/boss/derolle/TObjBoss2Tunnel.h": "b40dd9a411505a492501d20106fe8e73d2882208"
+        },
+        "proofs": [
+          {
+            "group": "tunnel-source",
+            "evidence": "cast-free offset/position rotation only. Other authored changes are outside this proof.",
+            "details": {
+              "original_hunk_headers": [
+                "@@ -1 +1,10 @@",
+                "@@ -3,3 +12,9 @@",
+                "@@ -7 +22,4 @@",
+                "@@ -8,0 +27 @@",
+                "@@ -9,0 +29,5 @@",
+                "@@ -10,0 +35,102 @@",
+                "@@ -13,2 +138,0 @@",
+                "@@ -19 +142,0 @@ extern \"C\" void test_flag_256__9TObjCharaFv();",
+                "@@ -22 +144,0 @@ extern \"C\" void test_flag_256__9TObjCharaFv();",
+                "@@ -29,2 +150,0 @@ extern \"C\" void test_flag_256__9TObjCharaFv();",
+                "@@ -34 +153,0 @@ extern \"C\" void test_flag_256__9TObjCharaFv();",
+                "@@ -44 +163,2 @@ s32 transition_enemy_state__9TObjEneDDFl(void *, int);",
+                "@@ -46 +165,0 @@ extern const f32 lbl_805DF334;",
+                "@@ -48,8 +166,0 @@ struct VBase_14_948132 { char pad[0x14]; };",
+                "@@ -287,122 +397,0 @@ struct VObj_18_e66632 : VBase_18_e66632 {",
+                "@@ -411,2 +399,0 @@ struct Param_8031A2A0 { u8 pad[0x18]; s32 level; };",
+                "@@ -463,10 +449,0 @@ struct VObj8031A598_Base { char pad[0x14]; };",
+                "@@ -476,9 +452,0 @@ struct VObj8031A5E0_Base { char pad[0x14]; };",
+                "@@ -501,29 +468,0 @@ struct Obj_800E750C { u8 pad0[0x60]; s32 f60; u8 pad1[0xA4 - 0x64]; Sub_800E750C",
+                "@@ -532,10 +470,0 @@ typedef char RecoveredGlobal_800E7324_lbl_8043CF94_size[sizeof(RecoveredGlobal_8",
+                "@@ -543 +471,0 @@ struct VObj_14_c143b1 : VBase_14_c143b1 {",
+                "@@ -545,6 +472,0 @@ struct VBase_14_2ab9de { char pad[0x14]; };",
+                "@@ -552 +473,0 @@ struct VObj_14_2ab9de : VBase_14_2ab9de {",
+                "@@ -559 +480 @@ void *create_timed_particle_emitter(void *owner, s32 id, s32 b, s32 c);",
+                "@@ -564 +485 @@ extern \"C\" {",
+                "@@ -567 +488 @@ s32 check_v2_mode__9TObjEneDDFv(s32, s32);",
+                "@@ -573,3 +494 @@ s32 init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, int, int);",
+                "@@ -580 +499 @@ void send_6x26_unequip_item__10TObjPlayerFPvPv(void *, s32);",
+                "@@ -585,3 +504,3 @@ s32 TObjEneMe3SinowZoa__sub_80316840(void *);",
+                "@@ -598,2 +517 @@ void TObjEneMe3SinowZoa__sub_80319B8C(u8 *arg0, s32 arg1);",
+                "@@ -602 +520 @@ u8 sub_8031A454__18TObjEneMe3SinowZoaFv(u8 *arg0);",
+                "@@ -605,7 +523 @@ s32 sub_8031A4D0__18TObjEneMe3SinowZoaFv(u8 *arg0);",
+                "@@ -614,7 +526 @@ u8 check_body_collision_at__18TObjEneMe3SinowZoaFlf(Obj_800E750C *arg0, s32 arg1",
+                "@@ -628,3 +534,2 @@ s32 pop_matrix();",
+                "@@ -642,2 +547,5 @@ extern u8 sinow_zoa_breakup_params[];",
+                "@@ -654,2 +562,2 @@ extern const f32 lbl_805DF378;",
+                "@@ -659,125 +567 @@ extern const f32 lbl_805DF38C;",
+                "@@ -786,0 +571 @@ void *__dt__22TObjEneMe3SinowZoaRealFv(void *arg0, s16 arg1);",
+                "@@ -788,28 +573 @@ extern \"C\" {",
+                "@@ -818 +576 @@ extern \"C\" {",
+                "@@ -821 +579 @@ extern \"C\" {",
+                "@@ -824 +582 @@ extern \"C\" {",
+                "@@ -827 +585 @@ extern \"C\" {",
+                "@@ -830 +588 @@ extern \"C\" {",
+                "@@ -833 +591 @@ extern \"C\" {",
+                "@@ -836 +594 @@ extern \"C\" {",
+                "@@ -839 +597 @@ extern \"C\" {",
+                "@@ -842 +600 @@ extern \"C\" {",
+                "@@ -845 +603 @@ extern \"C\" {",
+                "@@ -848 +606 @@ extern \"C\" {",
+                "@@ -851 +609 @@ extern \"C\" {",
+                "@@ -854 +612 @@ extern \"C\" {",
+                "@@ -857,128 +615 @@ extern \"C\" {",
+                "@@ -985,0 +617 @@ void update_poison_status__9TObjCharaFv();",
+                "@@ -987 +619 @@ extern void *lbl_804E87F0[2];",
+                "@@ -989 +621 @@ extern void *lbl_804E8838[2];",
+                "@@ -994,4 +626,2 @@ void *TObjEneMe3SinowZoa_init_params[7] = {",
+                "@@ -1002,6 +632,2 @@ __declspec(section \".data\") void *lbl_804E87F0[2] = {",
+                "@@ -1011,51 +637,16 @@ __declspec(section \".data\") void *lbl_804E8838[2] = {",
+                "@@ -1063 +653,0 @@ void *__vt__22TObjEneMe3SinowZoaReal[116] = {",
+                "@@ -1065,11 +654,0 @@ void *__vt__22TObjEneMe3SinowZoaReal[116] = {",
+                "@@ -1203 +782 @@ struct Zoa_8031786C {",
+                "@@ -1206 +784,0 @@ struct Zoa_8031786C {",
+                "@@ -1213 +791 @@ extern u8 saved_model_draw_color[];",
+                "@@ -1226,91 +803,0 @@ extern const f32 lbl_805DF318;",
+                "@@ -1320 +807 @@ u32 csnVector(void *, void *, int);",
+                "@@ -1323,9 +810 @@ extern const f32 TObjEneMe3SinowZoa__data_805DF308;",
+                "@@ -1333,230 +812 @@ void TObjEneMe3SinowZoa__sub_80317B50(void *arg0_, s32 arg1) {",
+                "@@ -1564 +813,0 @@ void TObjEneMe3SinowZoa__sub_803182F8(u8 *ene_dd, s32 arg1) {",
+                "@@ -1568,27 +817 @@ extern \"C\" {",
+                "@@ -1702,8 +924,0 @@ struct VObj_80318564 : Base18_80318564 {",
+                "@@ -1716,81 +931 @@ extern const f32 TObjEneMe3SinowZoa__data_805DF310;",
+                "@@ -1907,2 +1042 @@ f64 atan2_float(f32, f32);",
+                "@@ -1913,86 +1047 @@ extern const f32 lbl_805DF344;",
+                "@@ -2000,8 +1048,0 @@ void TObjEneMe3SinowZoa__sub_8031884C(void *arg0_, s32 arg1) {",
+                "@@ -2125,95 +1166 @@ s32 move_to_shot_position__9TObjEneDDFfff(void *, f32 *, f32, f32, f32);",
+                "@@ -2223,8 +1169,0 @@ struct Vec_80318F7C { f32 x, y, z; };",
+                "@@ -2310,2 +1249,2 @@ struct Ene_80318F7C : Obj_80318F7C {",
+                "@@ -2320 +1258,0 @@ extern \"C\" {",
+                "@@ -2325,141 +1263 @@ extern const f32 lbl_805DF354;",
+                "@@ -2467,46 +1264,0 @@ void TObjEneMe3SinowZoa__sub_80318F7C(Ene_80318F7C *self, s32 arg1) {",
+                "@@ -2514,6 +1265,0 @@ void TObjEneMe3SinowZoa::state_chase_target(s32 arg1) {",
+                "@@ -2521,70 +1267 @@ void TObjEneMe3SinowZoa__sub_80319748(u8 *ene_me3_sinow_zoa, s32 arg1) {",
+                "@@ -2597,48 +1273,0 @@ extern const u32 lbl_805DF368;",
+                "@@ -2761,30 +1390,2 @@ extern const f32 lbl_805DF370;",
+                "@@ -2792,4 +1392,0 @@ void TObjEneMe3SinowZoa__sub_80319B8C(u8 *ene_dd, s32 arg1) {",
+                "@@ -2797,50 +1394 @@ void TObjEneMe3SinowZoa::state_chase(s32 arg1) {",
+                "@@ -2848 +1396 @@ void TObjEneMe3SinowZoa::state_chase(s32 arg1) {",
+                "@@ -2850,41 +1397,0 @@ void TObjEneMe3SinowZoa::state_chase(s32 arg1) {",
+                "@@ -2893,3 +1400,9 @@ void TObjEneMe3SinowZoa::sub_80319E74(s32 arg1) {",
+                "@@ -2897,44 +1409,0 @@ void action__18TObjEneMe3SinowZoaFPvi(u8 *ene_me3_sinow_zoa, s32 arg1) {",
+                "@@ -2943,62 +1412,12 @@ void action__18TObjEneMe3SinowZoaFPvi(u8 *ene_me3_sinow_zoa, s32 arg1) {",
+                "@@ -3007,11 +1426,28 @@ void dispatch_state__18TObjEneMe3SinowZoaFPvUii(u8 *arg0, u32 arg1, s32 arg2) {",
+                "@@ -3019 +1455,85 @@ void cast_technique__18TObjEneMe3SinowZoaFPv(u8 *arg0) {",
+                "@@ -3023,6 +1543,3 @@ void cast_technique__18TObjEneMe3SinowZoaFPv(u8 *arg0) {",
+                "@@ -3030,3 +1547 @@ void TObjEneMe3SinowZoa::sub_8031A3D8() {",
+                "@@ -3035,2 +1550,2 @@ void TObjEneMe3SinowZoa::sub_8031A3D8() {",
+                "@@ -3039,9 +1554,4 @@ u8 TObjEneMe3SinowZoa::sub_8031A454() {",
+                "@@ -3049,3 +1558,0 @@ u8 TObjEneMe3SinowZoa::is_outside_visible_range() {",
+                "@@ -3053,14 +1560,44 @@ s32 TObjEneMe3SinowZoa::sub_8031A4D0() {",
+                "@@ -3068 +1604,0 @@ void TObjEneMe3SinowZoa::update_distance_state() {",
+                "@@ -3071,6 +1607,6 @@ void TObjEneMe3SinowZoa::update_distance_state() {",
+                "@@ -3078,3 +1614,23 @@ s32 TObjEneMe3SinowZoa::try_run_effect_m7() {",
+                "@@ -3082 +1637,0 @@ s32 TObjEneMe3SinowZoa::try_run_effect_m7() {",
+                "@@ -3085 +1640,3 @@ s32 TObjEneMe3SinowZoa::try_run_effect_m7() {",
+                "@@ -3087,4 +1644,26 @@ s32 TObjEneMe3SinowZoa::try_run_effect_m6() {",
+                "@@ -3092 +1670,0 @@ s32 TObjEneMe3SinowZoa::try_run_effect_m6() {",
+                "@@ -3095 +1673 @@ s32 TObjEneMe3SinowZoa::try_run_effect_m6() {",
+                "@@ -3097,3 +1675 @@ void TObjEneMe3SinowZoa::vfunc_107() {  }",
+                "@@ -3101,5 +1677,6 @@ u8 TObjEneMe3SinowZoa::is_target_in_range() {",
+                "@@ -3106,0 +1684,2 @@ u8 TObjEneMe3SinowZoa::is_target_in_range() {",
+                "@@ -3108 +1686,0 @@ u8 TObjEneMe3SinowZoa::is_target_in_range() {",
+                "@@ -3111 +1689 @@ u8 TObjEneMe3SinowZoa::is_target_in_range() {",
+                "@@ -3113,26 +1691,5 @@ void TObjEneMe3SinowZoa::vfunc_108() {  }",
+                "@@ -3141,10 +1698,13 @@ void TObjEneMe3SinowZoa__sub_8031A6A0(u8 *arg0) {",
+                "@@ -3152,3 +1712,5 @@ bool TObjEneMe3SinowZoa__sub_8031A820(u8 *ene_dd) {",
+                "@@ -3156,2 +1718,5 @@ block_4:",
+                "@@ -3159 +1723,0 @@ block_4:",
+                "@@ -3161,2 +1724,0 @@ block_4:",
+                "@@ -3163,0 +1726,17 @@ block_4:",
+                "@@ -3184 +1762,0 @@ u8 TObjEneMe3SinowZoa::check_body_collision_at(s32 arg1, f32 farg0) {",
+                "@@ -3186,19 +1764,1309 @@ u8 TObjEneMe3SinowZoa::check_body_collision_at(s32 arg1, f32 farg0) {",
+                "@@ -3206,11 +3074,13 @@ f32 TObjEneMe3SinowZoa::get_node_height() {",
+                "@@ -3218,5 +3088 @@ void TObjEneMe3SinowZoa::setup_move_bounds() {",
+                "@@ -3225,6 +3091,88 @@ void TObjEneMe3SinowZoa::setup_move_bounds() {",
+                "@@ -3233,5 +3181,32 @@ void TObjEneMe3SinowZoa::vfunc_88() {",
+                "@@ -3240,8 +3215,19 @@ void TObjEneMe3SinowZoa::copy_pos_with_height_offset() {",
+                "@@ -3249,2 +3235,10 @@ void TObjEneMe3SinowZoa::vfunc_62() {",
+                "@@ -3254,20 +3248,21 @@ void TObjEneMe3SinowZoa::vfunc_62() {",
+                "@@ -3275,7 +3270,30 @@ void TObjEneMe3SinowZoa::sub_8031AC74() {",
+                "@@ -3283,3 +3301,64 @@ void TObjEneMe3SinowZoa::sub_8031AC74() {",
+                "@@ -3286,0 +3366 @@ void TObjEneMe3SinowZoa::sub_8031AC74() {",
+                "@@ -3287,0 +3368 @@ void TObjEneMe3SinowZoa::sub_8031AC74() {",
+                "@@ -3289,19 +3370,20 @@ void TObjEneMe3SinowZoa::sub_8031AC74() {",
+                "@@ -3309,2 +3391,4 @@ void TObjEneMe3SinowZoa::run_task() {",
+                "@@ -3312,2 +3396,14 @@ void TObjEneMe3SinowZoa::run_task() {",
+                "@@ -3314,0 +3411 @@ void TObjEneMe3SinowZoa::run_task() {",
+                "@@ -3317,13 +3414,4 @@ void TObjEneMe3SinowZoa::run_task() {",
+                "@@ -3332 +3419,0 @@ void *__dt__18TObjEneMe3SinowZoaFv(void *arg0, s16 arg1) {",
+                "@@ -3334,4 +3421,9 @@ void *__dt__18TObjEneMe3SinowZoaFv(void *arg0, s16 arg1) {",
+                "@@ -3339,44 +3431,12 @@ void TObjEneMe3SinowZoaReal::init_enemy() {",
+                "@@ -3383,0 +3444 @@ void TObjEneMe3SinowZoaReal::init_enemy() {",
+                "@@ -3385,2 +3446,7 @@ void TObjEneMe3SinowZoaReal::init_enemy() {"
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 842,
+        "historical_path": "src/pso/boss/TObjBoss2Tunnel.cpp",
+        "historical_blob": "8760f4138328318c3ee9f70f2e4f5241d8cfbc91",
+        "owners": {
+          "src/pso/boss/derolle/TObjBoss2Tunnel.cpp": "458612e123095d6dbeeb317af2b243a8abb154a1",
+          "include/pso/boss/derolle/TObjBoss2Tunnel.h": "b40dd9a411505a492501d20106fe8e73d2882208"
+        },
+        "proofs": [
+          {
+            "group": "tunnel-source",
+            "evidence": "Corrected 0x8007E560 offset rotation and translation, 0x8007E884 matrix/camera vector pointers, and 0x8007CB50 full word result. Snapshot, controller/card, projected rendering, packet, and other merged unit deltas are outside this credit.",
+            "details": {
+              "original_hunk_headers": [
+                "@@ -0,0 +1,2 @@",
+                "@@ -1,0 +4,18 @@",
+                "@@ -2,0 +23,31 @@",
+                "@@ -3,0 +55,82 @@",
+                "@@ -4,0 +138,13 @@ extern \"C\" {",
+                "@@ -6,3 +152,5 @@ extern \"C\" {",
+                "@@ -10 +158,20 @@ extern const f32 TObjBoss2Tunnel__data_805D9234;",
+                "@@ -12,3 +179,3 @@ extern f32 lbl_805D923C;",
+                "@@ -17,2 +184,4 @@ void TObjBoss2Tunnel::advance_phase() {",
+                "@@ -21,4 +190,375 @@ void TObjBoss2Tunnel::update_position() {",
+                "@@ -26 +566 @@ f32 TObjBoss2Tunnel::eval_piecewise_curve(f32 farg0) {",
+                "@@ -30,2 +570,2 @@ f32 TObjBoss2Tunnel::eval_piecewise_curve(f32 farg0) {",
+                "@@ -33 +573 @@ f32 TObjBoss2Tunnel::eval_piecewise_curve(f32 farg0) {",
+                "@@ -35,2 +575,2 @@ f32 TObjBoss2Tunnel::eval_piecewise_curve(f32 farg0) {",
+                "@@ -38 +578 @@ f32 TObjBoss2Tunnel::eval_piecewise_curve(f32 farg0) {",
+                "@@ -44,0 +585,384 @@ f32 TObjBoss2Tunnel::eval_piecewise_curve(f32 farg0) {",
+                "@@ -46,0 +971,380 @@ f32 TObjBoss2Tunnel::eval_piecewise_curve(f32 farg0) {"
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 956,
+        "historical_path": "src/pso/enemy/TObjEneIllGill.cpp",
+        "historical_blob": "1a8dd20059a86c4193c758cd520f6d36f5b1c4bb",
+        "owners": {
+          "src/pso/enemy/illgill/TObjEneIllGill.cpp": "5ecff9481e767c3e2759325a6b0898dee34d7467",
+          "src/pso/boss/derolle/TObjBoss2Tunnel.cpp": "458612e123095d6dbeeb317af2b243a8abb154a1",
+          "include/pso/boss/derolle/TObjBoss2Tunnel.h": "b40dd9a411505a492501d20106fe8e73d2882208"
+        },
+        "proofs": [
+          {
+            "group": "tunnel-source",
+            "evidence": "four in-place camera transforms only. Other authored changes are outside this proof.",
+            "details": {
+              "original_hunk_headers": [
+                "@@ -0,0 +1,8 @@",
+                "@@ -19 +27 @@ extern \"C\" void render__15TObjIllGillKageFv();",
+                "@@ -35,0 +44 @@ extern \"C\" void render__15TObjIllGillKageFv();",
+                "@@ -50 +59 @@ s32 angle_difference_abs(s32, s32);",
+                "@@ -52 +61 @@ s32 minimap_render_dot(void *, int, int, int);",
+                "@@ -56 +65 @@ void subtract_vector(void *, void *);",
+                "@@ -61 +69,0 @@ s32 obj_setFlags30(void *, int);",
+                "@@ -98 +106 @@ extern \"C\" {",
+                "@@ -103 +110,0 @@ s32 project_actor_to_ground(void *, void *, int);",
+                "@@ -111 +118 @@ s32 obj_is_hit_receivable(void *);",
+                "@@ -123 +129,0 @@ s32 approach_angle_limited(s32, s32, s32);",
+                "@@ -125 +130,0 @@ extern Vec scratch_vec;",
+                "@@ -201,3 +206,3 @@ void TObjEneIllGill::update_charge_attack() {",
+                "@@ -230 +235 @@ void TObjEneIllGill::update_charge_attack() {",
+                "@@ -232 +237 @@ void TObjEneIllGill::update_charge_attack() {",
+                "@@ -247,2 +252,2 @@ void TObjEneIllGill::update_charge_attack() {",
+                "@@ -253 +258 @@ void TObjEneIllGill::update_charge_attack() {",
+                "@@ -255 +260 @@ void TObjEneIllGill::update_charge_attack() {",
+                "@@ -273 +278 @@ void TObjEneIllGill::update_charge_attack() {",
+                "@@ -275 +280 @@ void TObjEneIllGill::update_charge_attack() {",
+                "@@ -290,2 +295,2 @@ void TObjEneIllGill::update_charge_attack() {",
+                "@@ -363 +368 @@ void TObjEneIllGill::update_charge_attack() {",
+                "@@ -365 +370 @@ void TObjEneIllGill::update_charge_attack() {",
+                "@@ -382 +387 @@ void TObjEneIllGill::update_charge_attack() {",
+                "@@ -415 +420 @@ void TObjEneIllGill::update_shadow_attack() {",
+                "@@ -419,2 +424,2 @@ void TObjEneIllGill::update_shadow_attack() {",
+                "@@ -438,2 +443,2 @@ void TObjEneIllGill::update_shadow_attack() {",
+                "@@ -455 +460 @@ void TObjEneIllGill::update_shadow_attack() {",
+                "@@ -469 +474 @@ void TObjEneIllGill::update_shadow_attack() {",
+                "@@ -473,3 +478,3 @@ void TObjEneIllGill::update_shadow_attack() {",
+                "@@ -477 +482 @@ void TObjEneIllGill::update_shadow_attack() {",
+                "@@ -481 +486 @@ void TObjEneIllGill::update_shadow_attack() {",
+                "@@ -509 +514 @@ void TObjEneIllGill::update_shadow_attack() {",
+                "@@ -514 +519 @@ extern s32 illGillModelNodeIndex;",
+                "@@ -522 +527 @@ void TObjEneIllGill::capture_effect_positions() {",
+                "@@ -529 +534 @@ void TObjEneIllGill::capture_effect_positions() {",
+                "@@ -536 +541 @@ void TObjEneIllGill::capture_effect_positions() {",
+                "@@ -543 +548 @@ void TObjEneIllGill::capture_effect_positions() {",
+                "@@ -562 +567 @@ void TObjEneIllGill::update_death_fall() {",
+                "@@ -568 +573 @@ void TObjEneIllGill::update_death_fall() {",
+                "@@ -570,2 +575,2 @@ void TObjEneIllGill::update_death_fall() {",
+                "@@ -575 +580 @@ void TObjEneIllGill::update_death_fall() {",
+                "@@ -582 +587 @@ void TObjEneIllGill::update_death_fall() {",
+                "@@ -611,2 +616,2 @@ void TObjEneIllGill::vfunc_63() {",
+                "@@ -621,2 +626,2 @@ void TObjEneIllGill::update_damage_recovery() {",
+                "@@ -624 +629 @@ void TObjEneIllGill::update_damage_recovery() {",
+                "@@ -626 +631 @@ void TObjEneIllGill::update_damage_recovery() {",
+                "@@ -635,2 +640,2 @@ void TObjEneIllGill::update_damage_recovery() {",
+                "@@ -674 +679 @@ void TObjEneIllGill::sub_803669B0() {",
+                "@@ -712 +717 @@ void TObjEneIllGill::update_weapon_attack() {",
+                "@@ -717,2 +722,2 @@ void TObjEneIllGill::update_weapon_attack() {",
+                "@@ -724 +729 @@ void TObjEneIllGill::update_weapon_attack() {",
+                "@@ -743,2 +748,2 @@ void TObjEneIllGill::update_weapon_attack() {",
+                "@@ -774 +779 @@ void TObjEneIllGill::update_weapon_attack() {",
+                "@@ -786 +791 @@ void TObjEneIllGill::update_weapon_attack() {",
+                "@@ -801 +806 @@ void TObjEneIllGill::update_weapon_attack() {",
+                "@@ -810 +815 @@ void TObjEneIllGill::update_weapon_attack() {",
+                "@@ -821 +826 @@ void TObjEneIllGill::update_weapon_attack() {",
+                "@@ -827 +832 @@ void TObjEneIllGill::update_weapon_attack() {",
+                "@@ -835 +840 @@ void TObjEneIllGill::update_weapon_attack() {",
+                "@@ -839 +844 @@ void TObjEneIllGill::update_weapon_attack() {",
+                "@@ -873 +878 @@ void TObjEneIllGill::update_weapon_attack() {",
+                "@@ -911 +916 @@ s32 TObjEneIllGill::is_target_in_attack_range() {",
+                "@@ -913 +918 @@ s32 TObjEneIllGill::is_target_in_attack_range() {",
+                "@@ -920 +925 @@ s32 TObjEneIllGill::is_target_in_attack_range() {",
+                "@@ -922,2 +927,2 @@ s32 TObjEneIllGill::is_target_in_attack_range() {",
+                "@@ -931 +936 @@ s32 TObjEneIllGill::is_target_in_attack_range() {",
+                "@@ -984,2 +989,2 @@ void TObjEneIllGill::update_chase_target() {",
+                "@@ -987 +992 @@ void TObjEneIllGill::update_chase_target() {",
+                "@@ -990,3 +995,3 @@ void TObjEneIllGill::update_chase_target() {",
+                "@@ -1000,2 +1005,2 @@ void TObjEneIllGill::update_chase_target() {",
+                "@@ -1003 +1008 @@ void TObjEneIllGill::update_chase_target() {",
+                "@@ -1006 +1011 @@ void TObjEneIllGill::update_chase_target() {",
+                "@@ -1023 +1028 @@ void TObjEneIllGill::update_chase_target() {",
+                "@@ -1026 +1031 @@ void TObjEneIllGill::update_chase_target() {",
+                "@@ -1029 +1034 @@ void TObjEneIllGill::update_chase_target() {",
+                "@@ -1060 +1065 @@ void TObjEneIllGill::update_forward_movement() {",
+                "@@ -1064 +1069 @@ void TObjEneIllGill::update_forward_movement() {",
+                "@@ -1084 +1089 @@ void TObjEneIllGill::update_idle() {",
+                "@@ -1102 +1107 @@ void TObjEneIllGill::update_idle() {",
+                "@@ -1125 +1130 @@ void TObjEneIllGill::move_toward_dest_with_detour() {",
+                "@@ -1127,3 +1132,3 @@ void TObjEneIllGill::move_toward_dest_with_detour() {",
+                "@@ -1132,2 +1137,2 @@ void TObjEneIllGill::move_toward_dest_with_detour() {",
+                "@@ -1135,2 +1140,2 @@ void TObjEneIllGill::move_toward_dest_with_detour() {",
+                "@@ -1138 +1143 @@ void TObjEneIllGill::move_toward_dest_with_detour() {",
+                "@@ -1142,2 +1147,2 @@ void TObjEneIllGill::move_toward_dest_with_detour() {",
+                "@@ -1145,2 +1150,2 @@ void TObjEneIllGill::move_toward_dest_with_detour() {",
+                "@@ -1148 +1153 @@ void TObjEneIllGill::move_toward_dest_with_detour() {",
+                "@@ -1152,2 +1157,2 @@ void TObjEneIllGill::move_toward_dest_with_detour() {",
+                "@@ -1160,2 +1165,2 @@ void TObjEneIllGill::move_toward_dest_with_detour() {",
+                "@@ -1172,3 +1177,3 @@ s32 TObjEneIllGill::project_step_to_ground(s32 angle) {",
+                "@@ -1177 +1182 @@ s32 TObjEneIllGill::project_step_to_ground(s32 angle) {",
+                "@@ -1179,2 +1184,2 @@ s32 TObjEneIllGill::project_step_to_ground(s32 angle) {",
+                "@@ -1253 +1258 @@ void TObjEneIllGill::vfunc_28() {",
+                "@@ -1273,2 +1278,2 @@ void TObjEneIllGill::vfunc_28() {",
+                "@@ -1276 +1281 @@ void TObjEneIllGill::vfunc_28() {",
+                "@@ -1289,2 +1294,2 @@ void TObjEneIllGill::vfunc_28() {",
+                "@@ -1300 +1305 @@ void TObjEneIllGill::vfunc_28() {",
+                "@@ -1329 +1334 @@ void TObjEneIllGill::render() {",
+                "@@ -1332 +1337 @@ void TObjEneIllGill::render() {",
+                "@@ -1335,2 +1340,2 @@ void TObjEneIllGill::render() {",
+                "@@ -1353 +1358 @@ void TObjEneIllGill::render() {",
+                "@@ -1394 +1399 @@ void TObjEneIllGill::run_task() {",
+                "@@ -1400 +1405 @@ void TObjEneIllGill::run_task() {",
+                "@@ -1421 +1426 @@ TObjEneIllGill::TObjEneIllGill(TObject *parent, void *setData) : TObjEnemy(paren",
+                "@@ -1424 +1429 @@ TObjEneIllGill::TObjEneIllGill(TObject *parent, void *setData) : TObjEnemy(paren",
+                "@@ -1427 +1432 @@ TObjEneIllGill::TObjEneIllGill(TObject *parent, void *setData) : TObjEnemy(paren",
+                "@@ -1438 +1443 @@ TObjEneIllGill::TObjEneIllGill(TObject *parent, void *setData) : TObjEnemy(paren",
+                "@@ -1473,2 +1478,2 @@ TObjEneIllGill::TObjEneIllGill(TObject *parent, void *setData) : TObjEnemy(paren",
+                "@@ -1480 +1485 @@ void TObjEneIllGill::free_effect() {",
+                "@@ -1488,4 +1493,3 @@ struct IllGillSharedMotionSetup {",
+                "@@ -1498,4 +1502 @@ void TObjEneIllGill::load_shared_resources() {",
+                "@@ -1503,7 +1504,7 @@ void TObjEneIllGill::load_shared_resources() {",
+                "@@ -1523 +1524 @@ void TObjEneIllGill::load_shared_resources() {",
+                "@@ -1527,0 +1529,4 @@ void TObjEneIllGill::load_shared_resources() {"
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 958,
+        "historical_path": "src/pso/enemy/TObjEneMe3Stelth.cpp",
+        "historical_blob": "ab4dd2ee99897a7552865162aa5b20c1cbdc35d9",
+        "owners": {
+          "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp": "93fa70cb3dff323314f367e903771135f622addb",
+          "src/pso/boss/derolle/TObjBoss2Tunnel.cpp": "458612e123095d6dbeeb317af2b243a8abb154a1",
+          "include/pso/boss/derolle/TObjBoss2Tunnel.h": "b40dd9a411505a492501d20106fe8e73d2882208"
+        },
+        "proofs": [
+          {
+            "group": "tunnel-source",
+            "evidence": "cast-free offset/position rotation only. Other authored changes are outside this proof.",
+            "details": {
+              "original_hunk_headers": [
+                "@@ -0,0 +1,3 @@",
+                "@@ -2,0 +6,9 @@",
+                "@@ -3,0 +16,2 @@",
+                "@@ -26 +39,0 @@ extern \"C\" void test_flag_256__9TObjCharaFv();",
+                "@@ -35 +47,0 @@ extern \"C\" void test_flag_256__9TObjCharaFv();",
+                "@@ -40,0 +53 @@ extern \"C\" void test_flag_256__9TObjCharaFv();",
+                "@@ -50 +62,0 @@ s32 stelth_projection_texture_handle;",
+                "@@ -76 +87,0 @@ s32 get_flag_b4__9TObjEneDDFv(void *);",
+                "@@ -83,5 +93,0 @@ extern const f32 lbl_805DA838;",
+                "@@ -100 +106 @@ void exec__16TObjEneMe3StelthFPvi(u8 *arg0, s32 arg1) {",
+                "@@ -119 +125 @@ void exec__16TObjEneMe3StelthFPvi(u8 *arg0, s32 arg1) {",
+                "@@ -124 +130 @@ void exec__16TObjEneMe3StelthFPvi(u8 *arg0, s32 arg1) {",
+                "@@ -190 +196 @@ s32 post_translate_matrix(void *);",
+                "@@ -195,10 +200,0 @@ s32 draw_ginja_model_with_motion(s32, void *, f32);",
+                "@@ -220 +216 @@ void TObjEneMe3Stelth::draw_with_debug_info() {",
+                "@@ -222 +218 @@ void TObjEneMe3Stelth::draw_with_debug_info() {",
+                "@@ -225 +221 @@ void TObjEneMe3Stelth::draw_with_debug_info() {",
+                "@@ -227 +223 @@ void TObjEneMe3Stelth::draw_with_debug_info() {",
+                "@@ -229,4 +225,4 @@ void TObjEneMe3Stelth::draw_with_debug_info() {",
+                "@@ -234 +230 @@ void TObjEneMe3Stelth::draw_with_debug_info() {",
+                "@@ -236 +232 @@ void TObjEneMe3Stelth::draw_with_debug_info() {",
+                "@@ -241 +237 @@ void TObjEneMe3Stelth::draw_with_debug_info() {",
+                "@@ -319,13 +314,0 @@ void TObjEneMe3Stelth::setup_move() { if (get_target_info__9TObjEneDDFv(this) !=",
+                "@@ -451 +433,0 @@ struct VObj_18_18102d : VBase_18_18102d {",
+                "@@ -459 +440,0 @@ s32 defer_render__7TObjectFv(void *);",
+                "@@ -462 +442,0 @@ void translate_matrix(u32 arg0, f32 x, f32 y, f32 z);",
+                "@@ -466,4 +445,0 @@ void set_chunk_material_override_pair(s32 arg0, s32 arg1);",
+                "@@ -485 +461 @@ void render__16TObjEneMe3StelthFv(void *arg0_);",
+                "@@ -490 +466 @@ void TObjEneMe3Stelth::render() {",
+                "@@ -504 +480 @@ void TObjEneMe3Stelth::render() {",
+                "@@ -526 +502 @@ void TObjEneMe3Stelth::render() {",
+                "@@ -529,2 +505,2 @@ void TObjEneMe3Stelth::render() {",
+                "@@ -542,2 +518,2 @@ void TObjEneMe3Stelth::render() {",
+                "@@ -547 +523 @@ void TObjEneMe3Stelth::render() {",
+                "@@ -562 +538 @@ void TObjEneMe3Stelth::render() {",
+                "@@ -574,2 +550,2 @@ void TObjEneMe3Stelth::render() {",
+                "@@ -582,2 +558,2 @@ void TObjEneMe3Stelth::render() {",
+                "@@ -586 +562 @@ void TObjEneMe3Stelth::render() {",
+                "@@ -630 +605,0 @@ void TObjEneMe3Stelth::render() {",
+                "@@ -851,10 +825,0 @@ struct VObj_800F2270 : VBase_800F2270 {",
+                "@@ -866 +830,0 @@ s32 clear_attack_receipts__9TObjEneDDFv(void *);",
+                "@@ -872 +835,0 @@ f32 cos_table_lookup(int);",
+                "@@ -903 +866 @@ void TObjEneMe3Stelth__sub_800F2270(u8 *arg0, s32 arg1);",
+                "@@ -946 +909 @@ void TObjEneMe3Stelth__sub_800F2270(u8 *arg0, s32 arg1) {",
+                "@@ -950 +913 @@ void TObjEneMe3Stelth__sub_800F2270(u8 *arg0, s32 arg1) {",
+                "@@ -956 +919 @@ void TObjEneMe3Stelth__sub_800F2270(u8 *arg0, s32 arg1) {",
+                "@@ -1001 +964 @@ void TObjEneMe3Stelth::handle_breakup_state(s32 arg1) {",
+                "@@ -1018 +981 @@ void TObjEneMe3Stelth::handle_breakup_state(s32 arg1) {",
+                "@@ -1026 +989 @@ void TObjEneMe3Stelth::handle_breakup_state(s32 arg1) {",
+                "@@ -1040 +1003 @@ void TObjEneMe3Stelth::handle_breakup_state(s32 arg1) {",
+                "@@ -1045 +1008 @@ void TObjEneMe3Stelth::handle_breakup_state(s32 arg1) {",
+                "@@ -1069 +1032 @@ void TObjEneMe3Stelth__sub_800F290C(u8 *arg0, s32 arg1) {",
+                "@@ -1096 +1058,0 @@ void TObjEneMe3Stelth__sub_800F290C(u8 *arg0, s32 arg1) {",
+                "@@ -1101,9 +1062,0 @@ void action__16TObjEneMe3StelthFPvi(u8 *arg0, s32 arg1);",
+                "@@ -1119 +1072 @@ void action__16TObjEneMe3StelthFPvi(u8 *ene_dd, s32 arg1) {",
+                "@@ -1136 +1089 @@ void action__16TObjEneMe3StelthFPvi(u8 *ene_dd, s32 arg1) {",
+                "@@ -1405,28 +1357,0 @@ struct VObj_18_bb4b7f : VBase_18_bb4b7f {",
+                "@@ -1888 +1812,0 @@ extern \"C\" {",
+                "@@ -1903 +1826,0 @@ f64 atan2_float(f32, f32);",
+                "@@ -1906,2 +1828,0 @@ s32 approach_angle_limited(int, int, int);",
+                "@@ -1909 +1830 @@ s32 set_matrix_identity(int);",
+                "@@ -2039 +1960 @@ void run_walk_state__16TObjEneMe3StelthFPvi(u8 *arg0, s32 arg1) {",
+                "@@ -2094 +2015 @@ void TObjEneMe3Stelth__sub_800F3214(u8 *ene_epsilon, s32 arg1) {",
+                "@@ -2097 +2018 @@ void TObjEneMe3Stelth__sub_800F3214(u8 *ene_epsilon, s32 arg1) {",
+                "@@ -2099 +2020 @@ void TObjEneMe3Stelth__sub_800F3214(u8 *ene_epsilon, s32 arg1) {",
+                "@@ -2101,3 +2022,3 @@ void TObjEneMe3Stelth__sub_800F3214(u8 *ene_epsilon, s32 arg1) {",
+                "@@ -2109 +2030 @@ void TObjEneMe3Stelth__sub_800F3214(u8 *ene_epsilon, s32 arg1) {",
+                "@@ -2169 +2090 @@ void TObjEneMe3Stelth__sub_800F348C(u8 *arg0, s32 arg1) {",
+                "@@ -2185 +2106 @@ void TObjEneMe3Stelth__sub_800F348C(u8 *arg0, s32 arg1) {",
+                "@@ -2198 +2119 @@ void TObjEneMe3Stelth__sub_800F348C(u8 *arg0, s32 arg1) {",
+                "@@ -2203 +2124 @@ void TObjEneMe3Stelth__sub_800F348C(u8 *arg0, s32 arg1) {",
+                "@@ -2234 +2155 @@ void TObjEneMe3Stelth__sub_800F348C(u8 *arg0, s32 arg1) {",
+                "@@ -2248 +2169 @@ void TObjEneMe3Stelth__sub_800F348C(u8 *arg0, s32 arg1) {",
+                "@@ -2442,3 +2363 @@ void TObjEneMe3Stelth__sub_800F3FE4(u8 *ene_dd, s32 arg1) {",
+                "@@ -2452,2 +2371,2 @@ void TObjEneMe3Stelth__sub_800F3FE4(u8 *ene_dd, s32 arg1) {",
+                "@@ -2455,2 +2374,2 @@ void TObjEneMe3Stelth__sub_800F3FE4(u8 *ene_dd, s32 arg1) {",
+                "@@ -2459 +2378 @@ void TObjEneMe3Stelth__sub_800F3FE4(u8 *ene_dd, s32 arg1) {",
+                "@@ -2515 +2434 @@ void TObjEneMe3Stelth::state_chase(s32 arg1) {",
+                "@@ -2529 +2448 @@ void TObjEneMe3Stelth::sub_800F42B8(s32 arg1) {",
+                "@@ -2538 +2457 @@ void TObjEneMe3Stelth::sub_800F42B8(s32 arg1) {",
+                "@@ -2543 +2462 @@ void TObjEneMe3Stelth::sub_800F42B8(s32 arg1) {",
+                "@@ -2549 +2468 @@ void TObjEneMe3Stelth::sub_800F42B8(s32 arg1) {",
+                "@@ -2573 +2491,0 @@ void TObjEneMe3Stelth::sub_800F42B8(s32 arg1) {",
+                "@@ -2892,25 +2809,0 @@ struct VObj_800F48B8 : Base_800F48B8 {",
+                "@@ -3068,9 +2960,0 @@ struct VObj_18 : VBase_18 {",
+                "@@ -3080 +2964 @@ f32 fabs_float(f32);",
+                "@@ -3084 +2968 @@ void *__dt__12TObjEneDD_STFv(void *arg0, s16 arg1);",
+                "@@ -3092 +2975,0 @@ s32 init_model__9TObjEneDDFP13CollisionBodyl(void *, void *, int, int);",
+                "@@ -3125 +3007,0 @@ void send_6x26_unequip_item__10TObjPlayerFPvPv(void *, s32);",
+                "@@ -3210 +3092 @@ extern \"C\" void vfunc_77__9TObjCharaFv();",
+                "@@ -3219,15 +3100,0 @@ extern \"C\" void is_target_in_attack_range__9TObjCharaFv();",
+                "@@ -3269 +3136 @@ __declspec(section \".data\") void *lbl_80497710[2] = {",
+                "@@ -3272,3 +3139,3 @@ void *lbl_80497718[12] = {",
+                "@@ -3277 +3144 @@ void *stelth_bml_resource_desc[4] = {",
+                "@@ -3280 +3147 @@ __declspec(section \".data\") void *lbl_80497758[2] = {",
+                "@@ -3283,3 +3150,3 @@ void *lbl_80497760[12] = {",
+                "@@ -3288 +3155 @@ void *me3_stelth_bml_resource_desc[4] = {",
+                "@@ -3290,14 +3157,14 @@ void *me3_stelth_bml_resource_desc[4] = {",
+                "@@ -3325 +3192 @@ void *__vt__20TObjEneMe3StelthReal[116] = {",
+                "@@ -3467 +3334 @@ s32 TObjEneMe3Stelth::check_flag() {",
+                "@@ -3476 +3343 @@ s32 TObjEneMe3Stelth::check_active_flag() {",
+                "@@ -3491 +3358 @@ u8 TObjEneMe3Stelth::check_target_in_range() {",
+                "@@ -3514 +3381 @@ void attack_and_unequip__16TObjEneMe3StelthFPv(Stelth_800F4A90 *self) {",
+                "@@ -3521 +3388 @@ void attack_and_unequip__16TObjEneMe3StelthFPv(Stelth_800F4A90 *self) {",
+                "@@ -3544 +3411 @@ u8 TObjEneMe3Stelth::test_body_collision(s32 arg1, f32 farg0) {",
+                "@@ -3552 +3419 @@ u8 TObjEneMe3Stelth::test_body_collision(s32 arg1, f32 farg0) {",
+                "@@ -3557 +3424 @@ u8 TObjEneMe3Stelth::test_body_collision(s32 arg1, f32 farg0) {",
+                "@@ -3598 +3465 @@ void TObjEneMe3Stelth::vfunc_88() {",
+                "@@ -3629 +3496 @@ void TObjEneMe3Stelth::run_task() {",
+                "@@ -3652 +3519 @@ void *__dt__16TObjEneMe3StelthFv(void *arg0, s16 arg1) {",
+                "@@ -3675,2 +3542,2 @@ void TObjEneMe3StelthReal::init_common() {",
+                "@@ -3679 +3546 @@ void TObjEneMe3StelthReal::init_common() {",
+                "@@ -3692 +3559 @@ void TObjEneMe3StelthReal::init_common() {",
+                "@@ -3722 +3588,0 @@ void TObjEneMe3StelthReal::init_common() {",
+                "@@ -3735 +3601 @@ void *TObjEneMe3Stelth__ct(void *ene_me3_stelth) {",
+                "@@ -3752,2 +3617,0 @@ extern \"C\" {",
+                "@@ -3779 +3643 @@ void TObjEneMe3Stelth::free_shared_resources() {",
+                "@@ -3783 +3647 @@ void TObjEneMe3Stelth::free_shared_resources() {",
+                "@@ -3798,2 +3661,0 @@ struct Res_800F53E8 { u8 pad[0x42C]; u8 *f42C; struct Ent_800F53E8 *f430; };",
+                "@@ -3802,4 +3664,2 @@ struct V3_800F53E8 { f32 x, y, z; };",
+                "@@ -3807,7 +3666,0 @@ void *init__11TBreakUpMdlFPviif(void *, s32, s32, f32);",
+                "@@ -3818,15 +3670,0 @@ extern const f32 lbl_805DA8BC;",
+                "@@ -3847 +3685 @@ void TObjEneMe3Stelth::load_shared_resources() {",
+                "@@ -3849 +3687 @@ void TObjEneMe3Stelth::load_shared_resources() {",
+                "@@ -3854 +3692 @@ void TObjEneMe3Stelth::load_shared_resources() {",
+                "@@ -3862 +3700 @@ void TObjEneMe3Stelth::load_shared_resources() {",
+                "@@ -3865 +3703 @@ void TObjEneMe3Stelth::load_shared_resources() {",
+                "@@ -3868 +3706 @@ void TObjEneMe3Stelth::load_shared_resources() {",
+                "@@ -3871 +3709 @@ void TObjEneMe3Stelth::load_shared_resources() {",
+                "@@ -3899 +3737 @@ void TObjEneMe3Stelth::load_shared_resources() {",
+                "@@ -3919 +3757 @@ void TObjEneMe3Stelth::load_shared_resources() {",
+                "@@ -3933,4 +3771,4 @@ void TObjEneMe3Stelth::load_shared_resources() {"
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1070,
+        "historical_path": "src/pso/boss/TObjBoss2Tunnel_8003B138.cpp",
+        "historical_blob": "3e40cf0de112792356331816eed0fbdaa300a455",
+        "owners": {
+          "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp": "4714fe85bd19a8f767d2eebf41e87ac44a6ddd0d",
+          "include/pso/boss/derolle/TObjBoss2Tunnel.h": "b40dd9a411505a492501d20106fe8e73d2882208"
+        },
+        "proofs": [
+          {
+            "group": "tunnel-source",
+            "evidence": "Embedded 0x68 curve is used by all five movement transitions and native lifetime; canonical has typed sound/texture calls and owns global flags. Historical removal of the two codegen pragmas is not established on this tree.",
+            "details": {
+              "original_hunk_headers": [
+                "@@ -0,0 +1,3 @@",
+                "@@ -127 +130 @@ typedef struct Tunnel_8003B6E8 {",
+                "@@ -174 +176,0 @@ s32 is_flag_set__15TObjBoss2TunnelFv(s32 _w0);",
+                "@@ -176,2 +177,0 @@ f32 fabs_float(f32);",
+                "@@ -188,2 +188 @@ void *__ct__13TObjBoss2DustFv(void *, void *, Vec_8003B6E8 *);",
+                "@@ -230 +229 @@ void render__15TObjBoss2TunnelFv(u8 *arg0) {",
+                "@@ -311,2 +309,0 @@ void render__15TObjBoss2TunnelFv(u8 *arg0) {",
+                "@@ -393 +390 @@ void run_task__15TObjBoss2TunnelFv(Tunnel_8003B6E8 *o) {",
+                "@@ -401 +398 @@ void run_task__15TObjBoss2TunnelFv(Tunnel_8003B6E8 *o) {",
+                "@@ -403 +400 @@ void run_task__15TObjBoss2TunnelFv(Tunnel_8003B6E8 *o) {",
+                "@@ -412 +409 @@ void run_task__15TObjBoss2TunnelFv(Tunnel_8003B6E8 *o) {",
+                "@@ -416 +413 @@ void run_task__15TObjBoss2TunnelFv(Tunnel_8003B6E8 *o) {",
+                "@@ -505 +502 @@ void run_task__15TObjBoss2TunnelFv(Tunnel_8003B6E8 *o) {",
+                "@@ -537 +534 @@ void run_task__15TObjBoss2TunnelFv(Tunnel_8003B6E8 *o) {",
+                "@@ -618 +614,0 @@ void run_task__15TObjBoss2TunnelFv(Tunnel_8003B6E8 *o) {",
+                "@@ -768 +764 @@ struct Tunnel_8003C45C {",
+                "@@ -792 +787,0 @@ u8 *TObjBoss2RaftSplash__ct(u8 *arg0, u8 *arg1, f32 *arg2, u8 *arg3, f32 *arg4);",
+                "@@ -806 +801 @@ void *__dt__15TObjBoss2TunnelFv(void *arg0, s16 arg1) {",
+                "@@ -821 +816 @@ void *TObjBoss2Tunnel__ct(void *object, void *arg1) {",
+                "@@ -837 +832 @@ void *TObjBoss2Tunnel__ct(void *object, void *arg1) {",
+                "@@ -923,2 +917,0 @@ extern s32 lbl_804835D8[];",
+                "@@ -941 +933,0 @@ void TUnk_804835D8::run_task() {",
+                "@@ -968,0 +961,5 @@ void *TUnk_804835D8::init() {"
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1116,
+        "historical_path": "src/pso/enemy/SaverLifecycle.cpp",
+        "historical_blob": "9b93715c06d40111f6e840a5990c2cca6223a41c",
+        "owners": {
+          "src/pso/enemy/saver/SaverLifecycle.cpp": "9f781147829b70380734860941cd32bb7749370f",
+          "src/pso/boss/derolle/TObjBoss2Tunnel.cpp": "458612e123095d6dbeeb317af2b243a8abb154a1",
+          "include/pso/boss/derolle/TObjBoss2Tunnel.h": "b40dd9a411505a492501d20106fe8e73d2882208"
+        },
+        "proofs": [
+          {
+            "group": "tunnel-source",
+            "evidence": "one in-place camera transform only. Other authored changes are outside this proof.",
+            "details": {
+              "original_hunk_headers": [
+                "@@ -0,0 +1,2 @@",
+                "@@ -1,0 +4,6 @@",
+                "@@ -2,0 +11 @@",
+                "@@ -29,0 +39 @@ extern \"C\" void test_flag_1000__9TObjCharaFv();",
+                "@@ -61,5 +70,0 @@ s32 update_action_hold_status__12TObjEneSaverFv(u8 *arg0);",
+                "@@ -91 +95,0 @@ void* get_center__12TObjEneSaverFv(void* p);",
+                "@@ -139 +143 @@ s32 TObjPlayer__sub_800A04F0(void *);",
+                "@@ -149 +152,0 @@ s32 submit_cursor_candidate(void *, int);",
+                "@@ -156 +158,0 @@ s32 minimap_render_dot(void *, int, int, int);",
+                "@@ -210 +212 @@ void vfunc_77__9TObjCharaFv();",
+                "@@ -302 +304 @@ void *TObjEneSaver__vtable[83] = {",
+                "@@ -327,2 +329,2 @@ void TObjEneSaver::apply_lookup_entry_effect() {",
+                "@@ -397 +399 @@ void TObjEneSaver::update_collapse_and_destroy() {",
+                "@@ -403 +405 @@ void TObjEneSaver::update_collapse_and_destroy() {",
+                "@@ -430 +432 @@ void TObjEneSaver::vfunc_63() {",
+                "@@ -446 +448 @@ void TObjEneSaver::update_entry_motion() {",
+                "@@ -522 +524 @@ void TObjEneSaver::update_knockback_state() {",
+                "@@ -674 +676 @@ extern \"C\" {",
+                "@@ -693 +695 @@ s32 get_current_floor();",
+                "@@ -695 +697 @@ f32 newton_sqrtf(f32);",
+                "@@ -700,2 +701,0 @@ u8 *get_enemy_entity(u16);",
+                "@@ -737 +737 @@ void TObjPlayer__sub_800A49B4(TObjEneSaver *self) {",
+                "@@ -799 +799 @@ int TObjEneSaver::test_flag_256() {",
+                "@@ -830 +830 @@ void TObjEneSaver::sub_800A4D9C() {",
+                "@@ -870 +870 @@ void TObjEneSaver::sub_800A4D9C() {",
+                "@@ -876 +876 @@ void TObjEneSaver::sub_800A4D9C() {",
+                "@@ -881 +881 @@ void TObjEneSaver::sub_800A4D9C() {",
+                "@@ -892 +892 @@ void TObjEneSaver::sub_800A4D9C() {",
+                "@@ -904,2 +904,2 @@ void TObjEneSaver::sub_800A4D9C() {",
+                "@@ -986 +986 @@ void TObjPlayer__sub_800A5154(void *arg0) {",
+                "@@ -1005 +1005 @@ void TObjPlayer__sub_800A5154(void *arg0) {",
+                "@@ -1020 +1020 @@ void TObjPlayer__sub_800A5154(void *arg0) {",
+                "@@ -1030 +1030 @@ void TObjPlayer__sub_800A5154(void *arg0) {",
+                "@@ -1065 +1065 @@ void TObjPlayer__sub_800A54B4(u8 *arg0) {",
+                "@@ -1094 +1094 @@ void TObjPlayer__sub_800A54B4(u8 *arg0) {",
+                "@@ -1107 +1107 @@ void TObjPlayer__sub_800A54B4(u8 *arg0) {",
+                "@@ -1127 +1127 @@ void TObjPlayer__sub_800A54B4(u8 *arg0) {",
+                "@@ -1147 +1147 @@ void TObjPlayer__sub_800A54B4(u8 *arg0) {",
+                "@@ -1219 +1219 @@ void TObjEneSaver::vfunc_60() {",
+                "@@ -1250,2 +1250,2 @@ s32 TObjEneSaver::is_target_in_attack_range() {",
+                "@@ -1254 +1254 @@ s32 TObjEneSaver::is_target_in_attack_range() {",
+                "@@ -1256,2 +1256,2 @@ s32 TObjEneSaver::is_target_in_attack_range() {",
+                "@@ -1259 +1259 @@ s32 TObjEneSaver::is_target_in_attack_range() {",
+                "@@ -1289 +1289 @@ void TObjEneSaver::update_move_toward_target() {",
+                "@@ -1296 +1296 @@ void TObjEneSaver::update_move_toward_target() {",
+                "@@ -1309 +1309 @@ void TObjEneSaver::update_move_toward_target() {",
+                "@@ -1349 +1349 @@ void TObjEneSaver::sub_800A5FA8() {",
+                "@@ -1377 +1377 @@ void TObjEneSaver::advance_motion_state() {",
+                "@@ -1394,2 +1393,0 @@ void TObjEneSaver::advance_motion_state() {",
+                "@@ -1504 +1502 @@ extern s32 model_render_flags;",
+                "@@ -1509 +1506,0 @@ void * create_ene_saver(void *arg0);",
+                "@@ -1511 +1507,0 @@ void *__ct__11TObjControlFP7TObject(void *, void *);",
+                "@@ -1765 +1761 @@ void find_nearest_target__10TObjPlayerFPv(Obj_800A677C *self) {",
+                "@@ -1800 +1796 @@ void find_nearest_target__10TObjPlayerFPv(Obj_800A677C *self) {",
+                "@@ -1861 +1857 @@ typedef char RecoveredGlobal_800A6BE0_lbl_80500978_size[sizeof(RecoveredGlobal_8",
+                "@@ -1869 +1865 @@ void TObjPlayer::step_cutscene_frame() {",
+                "@@ -1880 +1876 @@ void TObjEneSaver::render() {",
+                "@@ -1883 +1879 @@ void TObjEneSaver::render() {",
+                "@@ -1886 +1882 @@ void TObjEneSaver::render() {",
+                "@@ -1926 +1922 @@ void TObjEneSaver::render() {",
+                "@@ -1936 +1932 @@ void TObjEneSaver::render() {",
+                "@@ -1952 +1948 @@ void TObjEneSaver::run_task() {",
+                "@@ -1957 +1953 @@ void TObjEneSaver::run_task() {",
+                "@@ -2003 +1999 @@ void TObjEneSaver::run_task() {",
+                "@@ -2011 +2007 @@ void TObjEneSaver::run_task() {",
+                "@@ -2032 +2028 @@ void TObjPlayer::free_resources() {",
+                "@@ -2048 +2044 @@ void TObjPlayer::free_resources() {",
+                "@@ -2072,4 +2068 @@ void initialize_saver_resources(void) {",
+                "@@ -2096,7 +2089,7 @@ void initialize_saver_resources(void) {",
+                "@@ -2105 +2098 @@ void initialize_saver_resources(void) {",
+                "@@ -2137 +2130 @@ u8 *TObjEneSaver__ct(TObjEneSaver *arg0, void *arg1, void *arg2) {",
+                "@@ -2158 +2151 @@ u8 *TObjEneSaver__ct(TObjEneSaver *arg0, void *arg1, void *arg2) {",
+                "@@ -2170 +2163 @@ u8 *TObjEneSaver__ct(TObjEneSaver *arg0, void *arg1, void *arg2) {",
+                "@@ -2210 +2203 @@ void TObjEneSaver::sub_800A7734(s32 i) {",
+                "@@ -2211,0 +2205,5 @@ void TObjEneSaver::sub_800A7734(s32 i) {"
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6950,
+        "historical_path": "src/pso/object/TObjGrass.cpp",
+        "historical_blob": "f1642978006be983cef15930adf0e2773e78261a",
+        "owners": {
+          "src/pso/object/ambient/TObjGrass.cpp": "3bad303dbfca728fe6515896cf28884b4330bc15",
+          "src/pso/boss/derolle/TObjBoss2Tunnel.cpp": "458612e123095d6dbeeb317af2b243a8abb154a1",
+          "include/pso/boss/derolle/TObjBoss2Tunnel.h": "b40dd9a411505a492501d20106fe8e73d2882208"
+        },
+        "proofs": [
+          {
+            "group": "tunnel-source",
+            "evidence": "three in-place camera transforms only. Other authored changes are outside this proof.",
+            "details": {
+              "original_hunk_headers": [
+                "@@ -0,0 +1,2 @@",
+                "@@ -1,0 +4,11 @@",
+                "@@ -2,0 +16,4 @@",
+                "@@ -13 +29,0 @@",
+                "@@ -15 +30,0 @@",
+                "@@ -28,0 +44 @@ extern \"C\" void render__12TObjGrassWebFv();",
+                "@@ -160,7 +175,0 @@ struct Grass_800BD10C {",
+                "@@ -195 +204 @@ struct Grass_800BE8FC {",
+                "@@ -269,9 +277,0 @@ struct Grass_800BD4D8 {",
+                "@@ -283 +283 @@ extern \"C\" {",
+                "@@ -286,2 +286,2 @@ s32 minimap_render_dot(void *, s32, s32, s32);",
+                "@@ -291 +290,0 @@ void queue_destruction__7TObjectFv(void *arg0);",
+                "@@ -311,2 +310,2 @@ s32 get_current_floor();",
+                "@@ -317,7 +315,0 @@ extern s32 lbl_805D5870;",
+                "@@ -335 +326,0 @@ f32 random_ratio__9TObjCharaFv(s32 arg0);",
+                "@@ -362,2 +352,0 @@ s32 project_actor_to_ground(void *, void *, s32);",
+                "@@ -386 +374,0 @@ u8 *TObjGrass__ct(u8 *arg0, s32 arg1, s32 arg2);",
+                "@@ -390 +377,0 @@ s32 update_action_hold_status__9TObjCharaFv();",
+                "@@ -520 +507 @@ void TObjGrass::update_dying(void *arg0_) {",
+                "@@ -527 +514 @@ void TObjGrass::update_dying(void *arg0_) {",
+                "@@ -530 +517 @@ void TObjGrass::update_dying(void *arg0_) {",
+                "@@ -540 +527 @@ void TObjGrass::update_dying(void *arg0_) {",
+                "@@ -556 +543 @@ void TObjGrass::update_dying(void *arg0_) {",
+                "@@ -558 +545 @@ void TObjGrass::update_dying(void *arg0_) {",
+                "@@ -576 +563 @@ void TObjGrass::update_dying(void *arg0_) {",
+                "@@ -588 +575 @@ extern u8 lbl_804FF5E8[];",
+                "@@ -597 +584 @@ void TObjGrass::update_camera_vec_by_stage() {",
+                "@@ -608 +595 @@ void TObjGrass::update_camera_vec_by_stage() {",
+                "@@ -619 +606 @@ void TObjGrass::update_camera_vec_by_stage() {",
+                "@@ -634,2 +621,2 @@ void TObjGrass::vfunc_63() {",
+                "@@ -646 +633 @@ s32 TObjGrass::sub_800BCE44() {",
+                "@@ -649 +636 @@ s32 TObjGrass::sub_800BCE44() {",
+                "@@ -652 +639 @@ s32 TObjGrass::sub_800BCE44() {",
+                "@@ -671 +658 @@ s32 TObjGrass::sub_800BCE44() {",
+                "@@ -694,2 +681,2 @@ s32 TObjGrass::update() {",
+                "@@ -721,2 +708,2 @@ s32 TObjGrass::update_web_attack() {",
+                "@@ -752 +739 @@ s32 TObjGrass::update_web_attack() {",
+                "@@ -797,2 +784,2 @@ s32 TObjGrass::update_web_attack() {",
+                "@@ -808,2 +795,2 @@ void TObjGrass::sub_800BD4D8() {",
+                "@@ -831 +818 @@ void TObjGrass::sub_800BD4D8() {",
+                "@@ -862 +849 @@ void TObjGrass::sub_800BD4D8() {",
+                "@@ -946 +933 @@ void TObjGrass::sub_800BD4D8() {",
+                "@@ -1003,2 +990,2 @@ void TObjGrass::sub_800BDD70() {",
+                "@@ -1028 +1015 @@ void TObjGrass::sub_800BDD70() {",
+                "@@ -1033 +1020 @@ void TObjGrass::sub_800BDD70() {",
+                "@@ -1040 +1027 @@ void TObjGrass::sub_800BDD70() {",
+                "@@ -1062 +1049 @@ void TObjGrass::sub_800BDD70() {",
+                "@@ -1064 +1051 @@ void TObjGrass::sub_800BDD70() {",
+                "@@ -1086,2 +1073,2 @@ void TObjGrass::sub_800BDD70() {",
+                "@@ -1124 +1111 @@ s32 TObjGrass::is_target_in_attack_range() {",
+                "@@ -1127 +1114 @@ s32 TObjGrass::is_target_in_attack_range() {",
+                "@@ -1133 +1120 @@ s32 TObjGrass::is_target_in_attack_range() {",
+                "@@ -1138 +1125 @@ s32 TObjGrass::is_target_in_attack_range() {",
+                "@@ -1140,2 +1127,2 @@ s32 TObjGrass::is_target_in_attack_range() {",
+                "@@ -1148 +1135 @@ s32 TObjGrass::is_target_in_attack_range() {",
+                "@@ -1190 +1177 @@ void TObjGrass::update_chase_target(void *arg0_) {",
+                "@@ -1192 +1179 @@ void TObjGrass::update_chase_target(void *arg0_) {",
+                "@@ -1232 +1219 @@ void TObjGrass::update_chase_target(void *arg0_) {",
+                "@@ -1261 +1248 @@ s32 TObjGrass::sub_800BE75C() {",
+                "@@ -1290,2 +1277,2 @@ void TObjGrass::update_ai(void *arg0) {",
+                "@@ -1296 +1283 @@ void TObjGrass::update_ai(void *arg0) {",
+                "@@ -1310,2 +1297,2 @@ void TObjGrass::update_ai(void *arg0) {",
+                "@@ -1316,3 +1303,3 @@ void TObjGrass::update_ai(void *arg0) {",
+                "@@ -1320 +1307 @@ void TObjGrass::update_ai(void *arg0) {",
+                "@@ -1325 +1312 @@ void TObjGrass::update_ai(void *arg0) {",
+                "@@ -1327,2 +1314,2 @@ void TObjGrass::update_ai(void *arg0) {",
+                "@@ -1330 +1317 @@ void TObjGrass::update_ai(void *arg0) {",
+                "@@ -1334,2 +1321,2 @@ void TObjGrass::update_ai(void *arg0) {",
+                "@@ -1340 +1327 @@ void TObjGrass::update_ai(void *arg0) {",
+                "@@ -1344 +1331 @@ void TObjGrass::update_ai(void *arg0) {",
+                "@@ -1346,2 +1333,2 @@ void TObjGrass::update_ai(void *arg0) {",
+                "@@ -1349 +1336 @@ void TObjGrass::update_ai(void *arg0) {",
+                "@@ -1354 +1341 @@ void TObjGrass::update_ai(void *arg0) {",
+                "@@ -1357 +1344 @@ void TObjGrass::update_ai(void *arg0) {",
+                "@@ -1360 +1347 @@ void TObjGrass::update_ai(void *arg0) {",
+                "@@ -1364 +1351 @@ void TObjGrass::update_ai(void *arg0) {",
+                "@@ -1366,2 +1353,2 @@ void TObjGrass::update_ai(void *arg0) {",
+                "@@ -1369 +1356 @@ void TObjGrass::update_ai(void *arg0) {",
+                "@@ -1465 +1452 @@ void TObjGrass::vfunc_28() {",
+                "@@ -1489 +1476 @@ void TObjGrass::vfunc_28() {",
+                "@@ -1507 +1494 @@ void TObjGrass::vfunc_28() {",
+                "@@ -1523,12 +1509,0 @@ void TObjGrass::vfunc_28() {",
+                "@@ -1562 +1537 @@ struct Grass_800BF19C : VObj_18_ca64a0 {",
+                "@@ -1577 +1552 @@ void TObjGrass::render() {",
+                "@@ -1583 +1558 @@ void TObjGrass::render() {",
+                "@@ -1588 +1563 @@ void TObjGrass::render() {",
+                "@@ -1590 +1565 @@ void TObjGrass::render() {",
+                "@@ -1594 +1569 @@ void TObjGrass::render() {",
+                "@@ -1598 +1573 @@ void TObjGrass::render() {",
+                "@@ -1614 +1589 @@ void TObjGrass::render() {",
+                "@@ -1642,3 +1617,3 @@ void TObjGrass::run_task() {",
+                "@@ -1650 +1625 @@ void TObjGrass::run_task() {",
+                "@@ -1652 +1627 @@ void TObjGrass::run_task() {",
+                "@@ -1700 +1675 @@ void TObjGrass::run_task() {",
+                "@@ -1706 +1681 @@ void TObjGrass::run_task() {",
+                "@@ -1727 +1702 @@ void TObjGrass::destroy_all() {",
+                "@@ -1739 +1714 @@ void TObjGrass::destroy_all() {",
+                "@@ -1747 +1722 @@ void TObjGrass::load_resources() {",
+                "@@ -1749,4 +1724 @@ void TObjGrass::load_resources() {",
+                "@@ -1763,7 +1735,7 @@ void TObjGrass::load_resources() {",
+                "@@ -1773 +1745 @@ void TObjGrass::load_resources() {",
+                "@@ -1790 +1762 @@ Obj_800BF880 *__dt__9TObjGrassFv(Obj_800BF880 *arg0, s16 arg1) {",
+                "@@ -1803 +1775 @@ u8 *TObjGrass__ct(u8 *arg0, s32 arg1, s32 arg2) {",
+                "@@ -1806 +1778 @@ u8 *TObjGrass__ct(u8 *arg0, s32 arg1, s32 arg2) {",
+                "@@ -1818 +1790 @@ u8 *TObjGrass__ct(u8 *arg0, s32 arg1, s32 arg2) {",
+                "@@ -1833 +1805 @@ u8 *TObjGrass__ct(u8 *arg0, s32 arg1, s32 arg2) {",
+                "@@ -1842 +1814 @@ u8 *TObjGrass__ct(u8 *arg0, s32 arg1, s32 arg2) {"
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5570,
+        "historical_path": "src/pso/misc/TWindowSnapShot.cpp",
+        "historical_blob": "b060f45271ffd931d77ad2b7f5141669d6b2600a",
+        "owners": {
+          "src/pso/ui/window/TWindowSnapShot.cpp": "feef5e5639ba6f1f4ea27b721fe7d924b20aa7f7",
+          "include/pso/ui/window/TWindowSnapShot.h": "f7a4c7f6205e348d089dd324a65ba77faa899c00",
+          "include/pso/system/RlcArchive.h": "a247412b4dc550b4dc163d96ce6a77392e57d0cf"
+        },
+        "proofs": [
+          {
+            "group": "snapshot-source",
+            "evidence": "The original window has its real virtual renderer, task, constructor and destructor. It uses the established frame, entry, snapshot rectangle and unavailable-message paths, the original input contexts and sound, and native RlcArchive lifetime and accessors. The generated deletion path remains exact. A byte-for-byte three-way replay verifies the shared file across tunnel, snapshot.",
+            "details": {
+              "render_at": "0x802A7F00",
+              "task_at": "0x802A7FB0",
+              "destroy_at": "0x802A8048",
+              "controller_inputs": [
+                "+0x20 first controller",
+                "+0x160 keyboard"
+              ],
+              "window_flags": "+0x60 flags in 0x64-byte window",
+              "scope": "The independent branch uses its original base-layout carrier. The native equivalent renders through the existing layout and context."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5571,
+        "historical_path": "src/pso/misc/TWindowSnapShot_802A5B2C.cpp",
+        "historical_blob": "d84c8292efe367dd2fa7f1a0e79d88010c668f47",
+        "owners": {
+          "src/pso/ui/window/TWindowSnapShot_802A5B2C.cpp": "bbee3b93fcd0290b90da8c2c9226e3b396ea5322",
+          "include/pso/system/RlcArchive.h": "a247412b4dc550b4dc163d96ce6a77392e57d0cf",
+          "include/pso/ui/window/TWindowSnapShot_802A5B2C.h": "1691a62f42d9805331a6d55c8bb378902a8f537b"
+        },
+        "proofs": [
+          {
+            "group": "snapshot-source",
+            "evidence": "The complete added archive implementation is retained. The two word readers preserve big-endian byte lanes, and the window no longer masquerades as a 0x40-byte archive. The lifecycle owns the constructor, virtual cleanup, filename copy and termination, five error paths, directory setup, accessors and word-sized transfer range setters.",
+            "details": {
+              "native_entries": 25,
+              "original_body_span": "0x802A5B2C\u20130x802A6080",
+              "archive_layout": {
+                "header": 0,
+                "directory": 4,
+                "buffer": 8,
+                "file_size": 12,
+                "loaded": 20,
+                "error": 24,
+                "name": 28,
+                "vptr": 60,
+                "size": 64
+              },
+              "name_limit": 31,
+              "transfer_range": [
+                "address at +0",
+                "size at +4"
+              ],
+              "standalone_allocation": "Existing mem_alloc/mem_free link targets retained; source and queue use their already-merged array operator ABI at those original addresses."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5572,
+        "historical_path": "src/pso/misc/TWindowSnapShot_802A7D68.cpp",
+        "historical_blob": "921ed80c53728b720bda7fc6f0b4352cad5d8cbd",
+        "owners": {
+          "src/pso/ui/window/TWindowSnapShot.cpp": "feef5e5639ba6f1f4ea27b721fe7d924b20aa7f7",
+          "include/pso/ui/window/TWindowSnapShot.h": "f7a4c7f6205e348d089dd324a65ba77faa899c00",
+          "include/pso/system/RlcArchive.h": "a247412b4dc550b4dc163d96ce6a77392e57d0cf",
+          "include/pso/ui/window/TWindowSnapShot_802A7D68.h": "c8463656ed40732dd60a62e37f2b4b8654597eb9"
+        },
+        "proofs": [
+          {
+            "group": "snapshot-source",
+            "evidence": "All three historical functions survive at the original addresses. The synchronous ARAM transfer reads the native archive buffer. The allocation path reads the real player-motion filename, rounds only the transfer size to 32 bytes and passes the original size to ARAlloc. The original empty hook remains. A byte-for-byte three-way replay verifies the shared file across tunnel, snapshot.",
+            "details": {
+              "functions": [
+                "0x802A7D68",
+                "0x802A7DA0",
+                "0x802A7DA4"
+              ],
+              "original_name": "PlyMotionData.rlc",
+              "rounding": "(file_size + 31) & ~31"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5622,
+        "historical_path": "include/pso/misc/TWindowSnapShot_802A5B2C.h",
+        "historical_blob": "9e5b10e890e73cb2f377aee9d8d6144211f38123",
+        "owners": {
+          "include/pso/system/RlcArchive.h": "a247412b4dc550b4dc163d96ce6a77392e57d0cf",
+          "include/pso/ui/window/TWindowSnapShot_802A5B2C.h": "1691a62f42d9805331a6d55c8bb378902a8f537b",
+          "src/pso/ui/window/TWindowSnapShot_802A5B2C.cpp": "bbee3b93fcd0290b90da8c2c9226e3b396ea5322",
+          "include/pso/ui/window/TWindowSnapShot.h": "f7a4c7f6205e348d089dd324a65ba77faa899c00"
+        },
+        "proofs": [
+          {
+            "group": "snapshot-source",
+            "evidence": "The entire declaration migration is accounted for. The false TWindowSnapShot storage receiver is gone. Filename copying, initialization and stream open take their actual pointer and the header/directory/allocating members live on RlcArchive. The native archive constructor and destructor replace its old manual lifetime entries. The two originally declared transfer writes now name their real extent.",
+            "details": {
+              "historical_filename_input": "const void* in the old declaration, the real null-terminated file path in both file I/O calls",
+              "retail_signature_changes": [
+                "0x802A5CC4",
+                "0x802A5DC0",
+                "0x802A5E28",
+                "0x802A5F94"
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5871,
+        "historical_path": "src/pso/misc/TLobby_802A7848.cpp",
+        "historical_blob": "b209d84df49f1a67e924d320e9947b7b024c0184",
+        "owners": {
+          "src/pso/unk/TUnk_804DDD28.cpp": "c4dc7f6c8f83e771e9eded4f6ca85c7f5b4ec926",
+          "src/pso/ui/window/TWindowSnapShot.cpp": "feef5e5639ba6f1f4ea27b721fe7d924b20aa7f7",
+          "include/pso/system/RlcArchive.h": "a247412b4dc550b4dc163d96ce6a77392e57d0cf",
+          "include/pso/unk/TUnk_804DDD28.h": "3bb10cc57b7dee3294aeabcd3d92ab0ca5fee96c"
+        },
+        "proofs": [
+          {
+            "group": "snapshot-source",
+            "evidence": "Every authored hunk of the old folded motion archive source has its active owner. The packet and metadata buffers retain their allocation and release pairs, the copy uses the actual native archive header, the established height and width getters size the secondary buffer, and the split synchronous transfer/allocation is on the window. A byte-for-byte three-way replay verifies the shared file across tunnel, snapshot.",
+            "details": {
+              "body_hunks": [
+                "send_packet array allocation/release",
+                "secondary buffer array allocation/release",
+                "archive header copy",
+                "height and width getter interface",
+                "removed split routines now at 0x802A7D68\u20130x802A7DDC"
+              ],
+              "copy_size": "retail secondary buffer size; directory limit remains 0x258",
+              "motion_lookup": "Resolve original eight-byte directory entry to original two-word ARAM transfer range.",
+              "standalone_allocation": "Existing mem_alloc/mem_free spellings keep the original transfer allocation and deallocation targets."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 1201,
+        "historical_path": "src/pso/misc/TLobby_8001D6A0.cpp",
+        "historical_blob": "482e85f316ac7e1a256fefbc28a3bc6cafe788ab",
+        "owners": {
+          "src/pso/unk/TLobby_8001D6A0.cpp": "6f97aac804588bc2f8ce7724eca7d31b7940f3b2",
+          "include/pso/enemy/BattleParameters.h": "6013f95ec68f942029fd2064410b9f47c66c85f6"
+        },
+        "proofs": [
+          {
+            "group": "stage-source",
+            "evidence": "Every authored fork-point hunk in the historical lobby source is accounted for in canonical before this patch. The battle file uses the original array allocation and deletion and its four destination-first section copies. The stats, attacks, resistances and movement blocks preserve their old offsets and sizes through named views; all four historical typed accessors and the battle arena bank allocation/free remain native. This wave changes only the adjacent ARAM stage archive lifecycle, which has no battle parameter changes.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7218,
+        "historical_path": "src/pso/object/TObjMapObject.cpp",
+        "historical_blob": "3e426333d4fed53ead001d96b33a5326aaa854cd",
+        "owners": {
+          "src/pso/object/base/TObjMapObject.cpp": "10a778a7bc3cf7f11693d52b509cbdbc72a07276",
+          "include/pso/player/demo_mode.h": "032e99d339c84ac84964850e0ea6856b5a445615",
+          "include/pso/render/CurrentTextureList.h": "ced69b099a5995e16a6e70376e49c11c9a215375"
+        },
+        "proofs": [
+          {
+            "group": "stage-source",
+            "evidence": "All fork-point changes match the canonical native map-object source: actual TObjPlayer::get_floor(), shared check_demo_mode(), rotation.yaw, and the shared typed texture-list setter. The historical headers exist at their current owning paths. No new source changes needed for this row.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7264,
+        "historical_path": "src/pso/object/ObjectFactoryTables.cpp",
+        "historical_blob": "ab0e2ad0218faf2465b5c40f3bb8e57ea7fac577",
+        "owners": {
+          "src/pso/object/base/ObjectFactoryTables.cpp": "5eb146bd87864ec2bcd260c905b1923ef9cc7f8c",
+          "include/pso/map/TObjMapCsn.h": "e7c77ee03c9f3ebdefab2f756d0ad7bf863f8765",
+          "include/pso/boss/darkfalz/TOBoss4Tower.h": "644b3a9d1965ccbfff64dca28ba2f436be33d9ac"
+        },
+        "proofs": [
+          {
+            "group": "stage-source",
+            "evidence": "All 21 original 0x0014 collision table slots use the actual TObjMapCsn::create, and the original 0x0171 boss tower slot uses TOBoss4Tower::create. The live definitions are declared through their owning headers; both old independent forward names have no compiled users. The generic table cast remains the original typed-factory boundary.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 3513,
+        "historical_path": "src/pso/item/SpecialProjectileWeapons.cpp",
+        "historical_blob": "fe56b080d3b41cb5a2d3414f6d8fd4002015e669",
+        "owners": {
+          "src/pso/weapon/SpecialProjectileWeapons.cpp": "401adb455520e2dffeadad52aa2ff591987d83b5",
+          "include/pso/weapon/TUnk_804A204C.h": "e22365e0f2e2e4dd55b7533e396bd8ee5bb84259",
+          "include/pso/weapon/TUnk_804A2164.h": "91fef498a6c13b4239bf7a82eee611adf33a589c",
+          "include/pso/weapon/TItemWeapon.h": "22122db095656d04fdc0d0bbafa1cdf469a970b3",
+          "config/GPOE8P/psov3/symbols.txt": "22e311d0fd33fedeb9ff65c4cd7e64630e432a1d"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "The projectile constructors use the shared typed follower factory. Both native weapon classes inherit the original descriptor virtual, whose slot on each original retail table points to 0x8011E5C4.",
+            "details": {
+              "vtable_entry_addresses": {
+                "0x804a204c": "0x804a2138",
+                "0x804a2164": "0x804a2250"
+              },
+              "historical_diff": "diff --git a/src/pso/item/SpecialProjectileWeapons.cpp b/src/pso/item/SpecialProjectileWeapons.cpp\nindex 9c58bf90bc..fe56b080d3 100644\n--- a/src/pso/item/SpecialProjectileWeapons.cpp\n+++ b/src/pso/item/SpecialProjectileWeapons.cpp\n@@ -0,0 +1 @@\n+#include \"pso/item/TItemMenuCtrl_80115AF0.h\"\n@@ -101 +101,0 @@ int get_item_system_generation(void);\n-u8 *spawn_star_light_2d(s32 arg0, s32 arg1, s32 arg2);\n@@ -176 +176 @@ TUnk_804A2018::TUnk_804A2018(TObject *parent, s32 a, s32 b) : TObject(parent) {\n-        ((StarLightFollowerView *)this)->f24 = (s32)spawn_star_light_2d((s32)&v, (s32)&blk, (s32)((StarLightFollowerView *)this));\n+        ((StarLightFollowerView *)this)->f24 = (s32)spawn_star_light_2d(&v, &blk, this);\n@@ -300 +300 @@ extern \"C\" s8 get_attach_slot__14TItemEquipBaseFv(TItemEquipBase *arg0);\n-extern \"C\" void vfunc_59__11TItemWeaponFv();\n+extern \"C\" void init_weapon_effect_descriptor__11TItemWeaponFP13Desc_8011E5C4();\n@@ -371 +371 @@ void *megid_projectile_weapon_vtable[63] = {\n-    (void *)&update_weapon__13TUnk_804A204CFv, (void *)&init_armor__10TObjPlayerFPv, (void *)&vfunc_58__11TItemWeaponFv, (void *)&vfunc_59__11TItemWeaponFv,\n+    (void *)&update_weapon__13TUnk_804A204CFv, (void *)&init_armor__10TObjPlayerFPv, (void *)&vfunc_58__11TItemWeaponFv, (void *)&init_weapon_effect_descriptor__11TItemWeaponFP13Desc_8011E5C4,\n@@ -393 +393 @@ void *recoiling_projectile_weapon_vtable[63] = {\n-    (void *)&update_weapon__13TUnk_804A2164Fv, (void *)&vfunc_57__11TItemWeaponFv, (void *)&vfunc_58__11TItemWeaponFv, (void *)&vfunc_59__11TItemWeaponFv,\n+    (void *)&update_weapon__13TUnk_804A2164Fv, (void *)&vfunc_57__11TItemWeaponFv, (void *)&vfunc_58__11TItemWeaponFv, (void *)&init_weapon_effect_descriptor__11TItemWeaponFP13Desc_8011E5C4,\n",
+              "verified_fragments": {
+                "src/pso/weapon/SpecialProjectileWeapons.cpp": [
+                  "#include \"pso/item/TItemMenuCtrl_80115AF0.h\"",
+                  "spawn_star_light_2d(&v, &blk, this)"
+                ],
+                "include/pso/weapon/TUnk_804A204C.h": [
+                  "class TUnk_804A204C : public TItemWeapon"
+                ],
+                "include/pso/weapon/TUnk_804A2164.h": [
+                  "class TUnk_804A2164 : public TItemWeapon"
+                ],
+                "include/pso/weapon/TItemWeapon.h": [
+                  "virtual void init_weapon_effect_descriptor(Desc_8011E5C4 *desc);"
+                ],
+                "config/GPOE8P/psov3/symbols.txt": [
+                  "init_weapon_effect_descriptor__11TItemWeaponFP13Desc_8011E5C4 = .text:0x8011E5C4"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 3629,
+        "historical_path": "src/pso/item/WeaponAttackActions.cpp",
+        "historical_blob": "912e0d20f5914e14187fd18215fa8a3f3884b297",
+        "owners": {
+          "src/pso/weapon/WeaponAttackActions.cpp": "e1f8a7e13bb0c3c54092e27d7b23e68262ef0d78",
+          "config/GPOE8P/psov3/symbols.txt": "22e311d0fd33fedeb9ff65c4cd7e64630e432a1d"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "All three historical floats are emitted at the original local pool addresses. Slot 59 uses the native descriptor callback on TItemWeapon.",
+            "details": {
+              "historical_diff": "diff --git a/src/pso/item/WeaponAttackActions.cpp b/src/pso/item/WeaponAttackActions.cpp\nindex 78275e2f6d..912e0d20f5 100644\n--- a/src/pso/item/WeaponAttackActions.cpp\n+++ b/src/pso/item/WeaponAttackActions.cpp\n@@ -96 +96 @@ extern s32 tl_07;\n-extern const f32 lbl_805DAC88;\n+static const f32 lbl_805DAC88 = 0.2f;\n@@ -349,2 +349,2 @@ f32 xyz_distance(void *, void *);\n-extern const f32 lbl_805DAC8C;\n-extern const f32 lbl_805DAC90;\n+static const f32 lbl_805DAC8C = 3.0517578e-05f;\n+static const f32 lbl_805DAC90 = 255.0f;\n@@ -414 +414 @@ void TItemWeapon::vfunc_60() {  }\n-void TItemWeapon::vfunc_59() {  }\n+void TItemWeapon::init_weapon_effect_descriptor(Desc_8011E5C4 *) {  }\n",
+              "verified_fragments": {
+                "src/pso/weapon/WeaponAttackActions.cpp": [
+                  "construct_actor_light_task)(0.2f,",
+                  "3.0517578e-05f * (f32) rand()",
+                  "255.0f * w.alpha",
+                  "void TItemWeapon::init_weapon_effect_descriptor(Desc_8011E5C4 *desc) {}"
+                ],
+                "config/GPOE8P/psov3/symbols.txt": [
+                  "lbl_805DAC88 = .sdata2:0x805DAC88; // type:object size:0x4 scope:local",
+                  "lbl_805DAC8C = .sdata2:0x805DAC8C; // type:object size:0x4 scope:local",
+                  "lbl_805DAC90 = .sdata2:0x805DAC90; // type:object size:0x4 scope:local"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4433,
+        "historical_path": "src/pso/item/TItemProArmorParticle.cpp",
+        "historical_blob": "f8f6e96375c63450bbba47d59f658bcee011de18",
+        "owners": {
+          "src/pso/item/armor/TItemProArmorParticle.cpp": "159636fccdc3cc3b52aa181f056fbc3ddd7a81c8",
+          "include/pso/object/base/TObjChara.h": "95ef64f40fdf84ac223f1f47f55c3218bf66be9e"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "The armor particle uses the same player body-center position with the established field spelling. The authored fork delta changes only the field spelling.",
+            "details": {
+              "historical_diff": "diff --git a/src/pso/item/TItemProArmorParticle.cpp b/src/pso/item/TItemProArmorParticle.cpp\nindex 8b92d53f7e..f8f6e96375 100644\n--- a/src/pso/item/TItemProArmorParticle.cpp\n+++ b/src/pso/item/TItemProArmorParticle.cpp\n@@ -154 +154 @@ void TItemEffArmorParticle::run_task() {\n-                    ((TParticleCtrl *)particle)->set_position(&player->m_2fc);\n+                    ((TParticleCtrl *)particle)->set_position(&player->body_center_position);\n",
+              "verified_fragments": {
+                "src/pso/item/armor/TItemProArmorParticle.cpp": [
+                  "set_position(&player->body_center_position.x);"
+                ],
+                "include/pso/object/base/TObjChara.h": [
+                  "Vec body_center_position;"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5338,
+        "historical_path": "src/pso/unk/text_800F9B84.cpp",
+        "historical_blob": "ff7c07811c861e39a567139a215a6f62448a9179",
+        "owners": {
+          "src/pso/unk/TLobby_800F8AA8.cpp": "c8c83d92eaee2c023bc06c7d4874628e7e941604",
+          "include/pso/system/ResourceFile.h": "4cae78918e6ba03d06100af36e3f7504229ff390"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "The named-object loader shares the filename-aware size and load providers and forwards both original caller arguments through the native interfaces.",
+            "details": {
+              "historical_diff": "diff --git a/src/pso/unk/text_800F9B84.cpp b/src/pso/unk/text_800F9B84.cpp\nindex b267726ddf..ff7c07811c 100644\n--- a/src/pso/unk/text_800F9B84.cpp\n+++ b/src/pso/unk/text_800F9B84.cpp\n@@ -3,0 +4 @@\n+#include \"pso/misc/TScene.h\"\n@@ -17,2 +18 @@ u8 *ct_object__13TUnk_8049C658Fv(u8 *, s32 *);\n-s32 set_stream_and_load_file__6TLobbyFi(s32);\n-s32 update_lobby_scene__6TSceneFv();\n+s32 set_stream_and_load_file__6TLobbyFPCv(s32);\n@@ -29 +29 @@ s32 create_named_object(s32 arg0) {\n-    temp_r3 = update_lobby_scene__6TSceneFv();\n+    temp_r3 = TScene::update_lobby_scene((const void *)arg0);\n@@ -38 +38 @@ s32 create_named_object(s32 arg0) {\n-        *(s32 *)((s8 *)var_r30 + 0x1C) = set_stream_and_load_file__6TLobbyFi(arg0);\n+        *(s32 *)((s8 *)var_r30 + 0x1C) = set_stream_and_load_file__6TLobbyFPCv(arg0);\n",
+              "verified_fragments": {
+                "src/pso/unk/TLobby_800F8AA8.cpp": [
+                  "s32 create_named_object(s32 name)",
+                  "get_resource_file_size((const char *)name)",
+                  "file->data = load_disc_file((const char *)name);",
+                  "return TGStream::get_resource_file_size(filename);",
+                  "return TGStream::load_file(filename);"
+                ],
+                "include/pso/system/ResourceFile.h": [
+                  "u8 *load_disc_file(const char *filename);"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7154,
+        "historical_path": "src/pso/misc/TOHealGeneral.cpp",
+        "historical_blob": "74f259a7344f65e09bbd4f7d88a93af8736210a9",
+        "owners": {
+          "src/pso/object/TOHealGeneral.cpp": "1c8d6fd106334d6d9299e5a8a689b5eb00751c6f"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "The healing object retains the exact hold order, typed sound and Ginja calls, native BML allocation and release, and the actual texture list from the model. Its recovery checks now use the native actor stats.",
+            "details": {
+              "historical_diff": "diff --git a/src/pso/misc/TOHealGeneral.cpp b/src/pso/misc/TOHealGeneral.cpp\nindex 6a288774c5..74f259a734 100644\n--- a/src/pso/misc/TOHealGeneral.cpp\n+++ b/src/pso/misc/TOHealGeneral.cpp\n@@ -0,0 +1,2 @@\n+#include \"pso/player/demo_mode.h\"\n+#include \"pso/system/CurrentTextureList.h\"\n@@ -147 +149 @@ void TOHealGeneral::find_heal_target() {\n-                send_6x2C_impose_hold(player, &position, 0x3C, 0, r);\n+                send_6x2C_impose_hold(r, player, &position, 0x3C, 0);\n@@ -161 +163 @@ void TOHealGeneral::find_heal_target() {\n-            play_sound_effect(0x4002AB0E, &position, 0, 0);\n+            play_sound_effect(0x4002AB0E, (const Vec *)(&position), 0, 0);\n@@ -169 +171 @@ void TOHealGeneral::run_task() {\n-    if (TObjPlayer::check_demo_mode() == 1) {\n+    if (check_demo_mode() == 1) {\n@@ -196,2 +198,2 @@ void TOHealGeneral::render() {\n-        rotate_matrix_y(NULL, rotation_y);\n-        TObjFish::set_global_param(texlist);\n+        rotate_matrix_y(NULL, this->rotation.yaw);\n+        set_current_texture_list((GinjaTextureList *)(texlist));\n@@ -200 +202 @@ void TOHealGeneral::render() {\n-        draw_ginja_model((s32)base->model);\n+        draw_ginja_model(base->model);\n@@ -205 +207 @@ void TOHealGeneral::render() {\n-        draw_ginja_model((s32)rotor->model);\n+        draw_ginja_model(rotor->model);\n@@ -211 +213 @@ void TOHealGeneral::render() {\n-        draw_ginja_model((s32)ring->model);\n+        draw_ginja_model(ring->model);\n@@ -223 +225 @@ void TOHealGeneral::unload_resources() {\n-        TLobby__sub_8001FE7C(model_resource, 1);\n+        delete (BmlResource *)(model_resource);\n@@ -240,4 +242 @@ void TOHealGeneral::load_resources() {\n-        resource = (BmlResource *)::operator new(0x440);\n-        if (resource != NULL) {\n-            resource = load_resource_from_descriptor(resource, 1, &fe_obj_kaifuku_moto_2_resource_descriptor, 0, 0, 0);\n-        }\n+        resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&fe_obj_kaifuku_moto_2_resource_descriptor), 0, 0, (void *)(0));\n@@ -247,4 +246 @@ void TOHealGeneral::load_resources() {\n-    resource = (BmlResource *)::operator new(0x440);\n-    if (resource != NULL) {\n-        resource = load_resource_from_descriptor(resource, 1, &bm_fe_obj_kaifuku_moto_resource_descriptor, 0, 0, 0);\n-    }\n+    resource = (BmlResource *)new BmlResource(1, (BmlResourceDescriptor *)(&bm_fe_obj_kaifuku_moto_resource_descriptor), 0, 0, (void *)(0));\n@@ -270 +266 @@ TOHealGeneral::TOHealGeneral(void *set_data) : TObjMapObject(tl_05) {\n-    texlist = model_resource->models->m_c;\n+    texlist = (s32)model_resource->models->m_c;\n",
+              "verified_fragments": {
+                "src/pso/object/TOHealGeneral.cpp": [
+                  "player->get_max_hp()",
+                  "player->get_max_tp()",
+                  "send_6x2C_impose_hold(r, player, &position, 0x3C, 0)",
+                  "play_sound_effect(0x4002AB0E, &position, 0, 0)",
+                  "check_demo_mode() == 1",
+                  "rotate_matrix_y(NULL, this->rotation.yaw)",
+                  "set_current_texture_list((GinjaTextureList *)texlist)",
+                  "draw_ginja_model((void *)base->model)",
+                  "draw_ginja_model((void *)rotor->model)",
+                  "draw_ginja_model((void *)ring->model)",
+                  "delete (BmlResource *)model_resource;",
+                  "new BmlResource(1, &fe_obj_kaifuku_moto_2_resource_descriptor, 0, 0, NULL)",
+                  "new BmlResource(1, &bm_fe_obj_kaifuku_moto_resource_descriptor, 0, 0, NULL)",
+                  "texlist = (s32)model_resource->models->m_c;"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4345,
+        "historical_path": "src/pso/misc/item_pmt.cpp",
+        "historical_blob": "6cfad5c5af03b692f7c94acf3094d6f56d1b259d",
+        "owners": {
+          "src/pso/item/item_pmt.cpp": "f63aea91cc3aeacea79fb630f79bdbc82fbfdd3a",
+          "config/GPOE8P/psov3/symbols.txt": "22e311d0fd33fedeb9ff65c4cd7e64630e432a1d"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "The item parameter table owner already defines the original pointer at 0x805D54F0 with the actual relocated-file type.",
+            "details": {
+              "historical_diff": "diff --git a/src/pso/misc/item_pmt.cpp b/src/pso/misc/item_pmt.cpp\nindex 3bae240384..6cfad5c5af 100644\n--- a/src/pso/misc/item_pmt.cpp\n+++ b/src/pso/misc/item_pmt.cpp\n@@ -38,0 +39,4 @@ void load_items() {\n+\n+extern \"C\" {\n+void *item_pmt;\n+}\n",
+              "verified_fragments": {
+                "src/pso/item/item_pmt.cpp": [
+                  "RelocatedFile *item_pmt;"
+                ],
+                "config/GPOE8P/psov3/symbols.txt": [
+                  "item_pmt = .sbss:0x805D54F0; // type:object size:0x4"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4449,
+        "historical_path": "src/pso/item/TItemMag.cpp",
+        "historical_blob": "9896d2e07978a05be5862f1133ad22b3e691b2eb",
+        "owners": {
+          "src/pso/item/mag/TItemMag.cpp": "a80083313a60508a8f0e9e960e2429e90be5ba14",
+          "include/pso/player/PlayerScaleState.h": "5bf6a417661d3068a1e2e3e883577d388e13eaf5",
+          "include/pso/system/SoundEffect.h": "d00e7b4bc393ea07e574f2c4bf6aa23fef56de25",
+          "include/pso/effect/particle/ParticleFactory.h": "08c3f7a97295f170368635f593bcedee9f135828"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "The scale view passes its native signed flag word at +4. Both sound callers and the feed particle already use shared const-Vec interfaces.",
+            "details": {
+              "historical_diff": "diff --git a/src/pso/item/TItemMag.cpp b/src/pso/item/TItemMag.cpp\nindex 7e76618feb..9896d2e079 100644\n--- a/src/pso/item/TItemMag.cpp\n+++ b/src/pso/item/TItemMag.cpp\n@@ -0,0 +1 @@\n+#include \"pso/misc/ParticleFactory.h\"\n@@ -339 +340 @@ void MagOwnerWatch::clear_flags(u32 mask) { flags &= ~mask; }\n-int PlayerScaleState::is_scaled() { return test_flags_any(&flags, 1); }\n+int PlayerScaleState::is_scaled() { return test_flags_any(&flags.bits, 1); }\n@@ -526 +527 @@ void TItemMag::on_equip() {\n-        play_sound_effect(0x4000B20A, &owner->position, 0, 0);\n+        play_sound_effect(0x4000B20A, (const Vec *)(&owner->position), 0, 0);\n@@ -922 +923 @@ s32 TItemMag::feed(TItemData *food) {\n-                spawn_particle_effect(&pos, 0x9B);\n+                spawn_particle_effect((const Vec *)(&pos), 0x9B);\n@@ -925 +926 @@ s32 TItemMag::feed(TItemData *food) {\n-        play_sound_effect(0x5B211, &owner->position, 0, 0);\n+        play_sound_effect(0x5B211, (const Vec *)(&owner->position), 0, 0);\n@@ -1083 +1084 @@ void TItemMag::on_form_changed() {\n-        play_sound_effect(0x4000B20A, &owner->position, 0, 0);\n+        play_sound_effect(0x4000B20A, (const Vec *)(&owner->position), 0, 0);\n",
+              "verified_fragments": {
+                "src/pso/item/mag/TItemMag.cpp": [
+                  "#include \"pso/effect/particle/ParticleFactory.h\"",
+                  "int PlayerScaleState::is_scaled() { return test_flags_any(&flags, 1); }",
+                  "spawn_particle_effect(&pos, 0x9B);",
+                  "play_sound_effect(0x5B211, &owner->position, 0, 0);",
+                  "play_sound_effect(0x4000B20A, &owner->position, 0, 0);"
+                ],
+                "include/pso/player/PlayerScaleState.h": [
+                  "s32 flags;",
+                  "offsetof(PlayerScaleState, flags) == 4"
+                ],
+                "include/pso/system/SoundEffect.h": [
+                  "play_sound_effect(s32 id, const Vec *position"
+                ],
+                "include/pso/effect/particle/ParticleFactory.h": [
+                  "spawn_particle_effect(const Vec *position, s32 id)"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5323,
+        "historical_path": "src/pso/misc/TLobby_80328F7C.cpp",
+        "historical_blob": "00af380ffcb6ad9dc60430f6b285f2469549e4b2",
+        "owners": {
+          "src/pso/unk/TLobby_80328F7C.cpp": "94217e902b5a45b908fe2eb79716d0f4394439f7"
+        },
+        "proofs": [
+          {
+            "group": "verified at existing owners",
+            "evidence": "The shared allocator header and both array operators already own the original 0x1C0000-byte window buffer lifecycle.",
+            "details": {
+              "historical_diff": "diff --git a/src/pso/misc/TLobby_80328F7C.cpp b/src/pso/misc/TLobby_80328F7C.cpp\nindex d632bde8b2..00af380ffc 100644\n--- a/src/pso/misc/TLobby_80328F7C.cpp\n+++ b/src/pso/misc/TLobby_80328F7C.cpp\n@@ -0,0 +1 @@\n+#include \"pso/system/ArrayAllocation.h\"\n@@ -380 +380,0 @@ s32 apply_player_flag_2__6TLobbyFv();\n-void mem_free(void*);\n@@ -399 +399 @@ void TLobby::free_singleton_805D6C80() {\n-        mem_free((void*)(*(u32 *)&lbl_805D6C80));\n+        ::operator delete[]((void*)(*(u32 *)&lbl_805D6C80));\n@@ -405 +404,0 @@ void alloc_work_buffer__6TLobbyFv(void);\n-void *mem_alloc(u32 size);\n@@ -408 +407 @@ void alloc_work_buffer__6TLobbyFv(void) {\n-    lbl_805D6C80 = (s32)mem_alloc(0x1C0000);\n+    lbl_805D6C80 = (s32)::operator new[](0x1C0000);\n",
+              "verified_fragments": {
+                "src/pso/unk/TLobby_80328F7C.cpp": [
+                  "#include \"pso/system/ArrayAllocation.h\"",
+                  "::operator delete[]((void*)(*(u32 *)&lbl_805D6C80));",
+                  "lbl_805D6C80 = (s32)::operator new[](0x1C0000);"
+                ]
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      }
+    ],
+    "closed_rows": [
+      546,
+      672,
+      1201,
+      3513,
+      3610,
+      3629,
+      4345,
+      4433,
+      4449,
+      5323,
+      5338,
+      5570,
+      5571,
+      5572,
+      5622,
+      5871,
+      7154,
+      7218,
+      7264
+    ],
+    "remaining": {
+      "Owner comparison required": 174,
+      "Some anchored text changes found": 591
+    }
+  },
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "data_ranges": 90,
+  "local_tool_tests": 294,
+  "layer_tests": 11,
+  "fork_only_paths": 133,
+  "replay_validation": {
+    "stats-source": {
+      "head": "465e89e2dbf9b7e08646a150426737db0ed88990",
+      "report_sha256": "a3b7236cf032e05bdd91ed4c4c8916ccb97d423be11077e6365fc0ce40111c4c",
+      "strict_sha256": "5420300ca2bd7ab12467dca2c6cd6aa6871412feb95a3224151d00b604ffe18f"
+    },
+    "tunnel-source": {
+      "head": "456a9da8af61526df7c5fdcc4f3b6f4e47b8be59",
+      "report_sha256": "2761b7e59333bbb032a103ad0bf8960e24023de0f29d1fee3c417da63af0546d",
+      "strict_sha256": "a64b531dda1a00131edc8155a617a0e49806f5c3a3efabb5d5f3b79eaa2a4721"
+    },
+    "snapshot-source": {
+      "head": "ca1467859d8b117d94137ef99921a5f1f7c0b5e9",
+      "report_sha256": "8a7ac732465cb204faf4cf1cb424e0116bf2fcb0cba9b5cf120a0837fd3a90bb",
+      "strict_sha256": "c58db57c4929df611d126c5aad07a97d3792193b2da604bba01098e127a43d55"
+    },
+    "stage-source": {
+      "head": "706023145a964bc239acb4eae9d27e7614cf617a",
+      "report_sha256": "f6fd9fba7efba3211536776a7902deafaba44f594bffdbe1e466d6154ba87807",
+      "strict_sha256": "7de55bb8afcb0fa515dd5284390e166d1bc4e2fe9ee7a13d1aa4e763aa086f58"
+    }
+  },
+  "combined_validation": {
+    "combined-source": {
+      "report_sha256": "a4ca4c640d0907bef2d7519edcfa0e78ee36887b9f5d9f15acf3946349db2471",
+      "strict_sha256": "5d5726d1afa888f4c4b1c239b4670e55ca2f7a14ab4bb69ca973ef5fce71a2eb"
+    },
+    "direct-union": {
+      "report_sha256": "8049abd72494095325051ebc63d694a0125ae363f9c39a999a72f044ea3f9c14",
+      "strict_sha256": "0d7584261184cd10a83620552f507e3d3d5db01e23fe2ca495f9c4a83e028841"
+    },
+    "working-final": {
+      "report_sha256": "a4ca4c640d0907bef2d7519edcfa0e78ee36887b9f5d9f15acf3946349db2471",
+      "strict_sha256": "c91bd78fe0d4062e8986794bd3a52f8a928e20a79963797c6a8986babb24f0b9"
+    }
+  },
+  "actor_stat_proof": {
+    "source": {
+      "head": "465e89e2dbf9b7e08646a150426737db0ed88990",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "providers": {
+        "current_tp": {
+          "address": "0x80019350",
+          "original_field": "0x32e",
+          "symbol": "get_actor_tp__9TObjCharaFv",
+          "opcodes": "a863032e4e800020",
+          "call_addresses": [
+            "0x80012490",
+            "0x800124c4",
+            "0x80098f60",
+            "0x801006cc",
+            "0x80100c14",
+            "0x80113868",
+            "0x80123dac",
+            "0x80123e10",
+            "0x8012bac8",
+            "0x8014fc20",
+            "0x80150d04",
+            "0x801693f8",
+            "0x801b4e04",
+            "0x801e7bf0",
+            "0x802c3d80",
+            "0x802c3fbc",
+            "0x80326734",
+            "0x803267c0"
+          ]
+        },
+        "max_tp": {
+          "address": "0x80019370",
+          "original_field": "0x2ba",
+          "symbol": "get_max_tp__9TObjCharaFv",
+          "opcodes": "a86302ba4e800020",
+          "call_addresses": [
+            "0x80011df8",
+            "0x8011725c",
+            "0x80118694",
+            "0x8014fc4c",
+            "0x80150d3c",
+            "0x801693ec",
+            "0x801c5e4c",
+            "0x801e7bd4",
+            "0x80262f74",
+            "0x80263314",
+            "0x8026f830",
+            "0x80271024",
+            "0x8034dbfc",
+            "0x803531ac"
+          ]
+        },
+        "max_hp": {
+          "address": "0x80076b5c",
+          "original_field": "0x2b8",
+          "symbol": "get_max_hp__9TObjCharaFv",
+          "opcodes": "a86302b84e800020",
+          "call_addresses": [
+            "0x80076868",
+            "0x800ef764",
+            "0x800ef78c",
+            "0x8011275c",
+            "0x80115fa4",
+            "0x8011668c",
+            "0x80118600",
+            "0x8011864c",
+            "0x8011e328",
+            "0x8014f974",
+            "0x8014fb00",
+            "0x801693cc",
+            "0x801c5e40",
+            "0x801e7b9c",
+            "0x801f03dc",
+            "0x80262f10",
+            "0x802632a8",
+            "0x8026f91c",
+            "0x80270f84",
+            "0x80327178",
+            "0x8034dbe8",
+            "0x80353170"
+          ]
+        }
+      },
+      "full_register_sites": [
+        "TUnk_8049FE00::get_max_tp at 0x8011724C",
+        "TObjPlayer::fill_player_record at 0x801B4CE4",
+        "TLobby__sub_8034DAA0 at 0x8034DAA0"
+      ]
+    },
+    "direct": {
+      "head": "9448059d81db540704b609616e96771e90827654",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "providers": {
+        "current_tp": {
+          "address": "0x80019350",
+          "original_field": "0x32e",
+          "symbol": "get_actor_tp__9TObjCharaFv",
+          "opcodes": "a863032e4e800020",
+          "call_addresses": [
+            "0x80012490",
+            "0x800124c4",
+            "0x80098f60",
+            "0x801006cc",
+            "0x80100c14",
+            "0x80113868",
+            "0x80123dac",
+            "0x80123e10",
+            "0x8012bac8",
+            "0x8014fc20",
+            "0x80150d04",
+            "0x801693f8",
+            "0x801b4e04",
+            "0x801e7bf0",
+            "0x802c3d80",
+            "0x802c3fbc",
+            "0x80326734",
+            "0x803267c0"
+          ]
+        },
+        "max_tp": {
+          "address": "0x80019370",
+          "original_field": "0x2ba",
+          "symbol": "get_max_tp__9TObjCharaFv",
+          "opcodes": "a86302ba4e800020",
+          "call_addresses": [
+            "0x80011df8",
+            "0x8011725c",
+            "0x80118694",
+            "0x8014fc4c",
+            "0x80150d3c",
+            "0x801693ec",
+            "0x801c5e4c",
+            "0x801e7bd4",
+            "0x80262f74",
+            "0x80263314",
+            "0x8026f830",
+            "0x80271024",
+            "0x8034dbfc",
+            "0x803531ac"
+          ]
+        },
+        "max_hp": {
+          "address": "0x80076b5c",
+          "original_field": "0x2b8",
+          "symbol": "get_max_hp__9TObjCharaFv",
+          "opcodes": "a86302b84e800020",
+          "call_addresses": [
+            "0x80076868",
+            "0x800ef764",
+            "0x800ef78c",
+            "0x8011275c",
+            "0x80115fa4",
+            "0x8011668c",
+            "0x80118600",
+            "0x8011864c",
+            "0x8011e328",
+            "0x8014f974",
+            "0x8014fb00",
+            "0x801693cc",
+            "0x801c5e40",
+            "0x801e7b9c",
+            "0x801f03dc",
+            "0x80262f10",
+            "0x802632a8",
+            "0x8026f91c",
+            "0x80270f84",
+            "0x80327178",
+            "0x8034dbe8",
+            "0x80353170"
+          ]
+        }
+      },
+      "full_register_sites": [
+        "TUnk_8049FE00::get_max_tp at 0x8011724C",
+        "TObjPlayer::fill_player_record at 0x801B4CE4",
+        "TLobby__sub_8034DAA0 at 0x8034DAA0"
+      ]
+    },
+    "queue": {
+      "head": "577101c24f82f6a7215ef5e6e6c13c40abd54add",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "providers": {
+        "current_tp": {
+          "address": "0x80019350",
+          "original_field": "0x32e",
+          "symbol": "get_actor_tp__9TObjCharaFv",
+          "opcodes": "a863032e4e800020",
+          "call_addresses": [
+            "0x80012490",
+            "0x800124c4",
+            "0x80098f60",
+            "0x801006cc",
+            "0x80100c14",
+            "0x80113868",
+            "0x80123dac",
+            "0x80123e10",
+            "0x8012bac8",
+            "0x8014fc20",
+            "0x80150d04",
+            "0x801693f8",
+            "0x801b4e04",
+            "0x801e7bf0",
+            "0x802c3d80",
+            "0x802c3fbc",
+            "0x80326734",
+            "0x803267c0"
+          ]
+        },
+        "max_tp": {
+          "address": "0x80019370",
+          "original_field": "0x2ba",
+          "symbol": "get_max_tp__9TObjCharaFv",
+          "opcodes": "a86302ba4e800020",
+          "call_addresses": [
+            "0x80011df8",
+            "0x8011725c",
+            "0x80118694",
+            "0x8014fc4c",
+            "0x80150d3c",
+            "0x801693ec",
+            "0x801c5e4c",
+            "0x801e7bd4",
+            "0x80262f74",
+            "0x80263314",
+            "0x8026f830",
+            "0x80271024",
+            "0x8034dbfc",
+            "0x803531ac"
+          ]
+        },
+        "max_hp": {
+          "address": "0x80076b5c",
+          "original_field": "0x2b8",
+          "symbol": "get_max_hp__9TObjCharaFv",
+          "opcodes": "a86302b84e800020",
+          "call_addresses": [
+            "0x80076868",
+            "0x800ef764",
+            "0x800ef78c",
+            "0x8011275c",
+            "0x80115fa4",
+            "0x8011668c",
+            "0x80118600",
+            "0x8011864c",
+            "0x8011e328",
+            "0x8014f974",
+            "0x8014fb00",
+            "0x801693cc",
+            "0x801c5e40",
+            "0x801e7b9c",
+            "0x801f03dc",
+            "0x80262f10",
+            "0x802632a8",
+            "0x8026f91c",
+            "0x80270f84",
+            "0x80327178",
+            "0x8034dbe8",
+            "0x80353170"
+          ]
+        }
+      },
+      "full_register_sites": [
+        "TUnk_8049FE00::get_max_tp at 0x8011724C",
+        "TObjPlayer::fill_player_record at 0x801B4CE4",
+        "TLobby__sub_8034DAA0 at 0x8034DAA0"
+      ]
+    }
+  },
+  "prior_whole_delta_comparison": {
+    "head": "5991ac7b121fc0e83ca1316ae4eedba494afc22e",
+    "compared": 722,
+    "rows": []
+  },
+  "clean_donor_comparison": {
+    "head": "cbff37c9f950f3e2c7ed2411e1856a3a54028e4b",
+    "compared": 722,
+    "rows": [
+      {
+        "row": 4345,
+        "owner": "src/pso/item/item_pmt.cpp",
+        "owner_blob": "f63aea91cc3aeacea79fb630f79bdbc82fbfdd3a",
+        "historical_path": "src/pso/misc/item_pmt.cpp",
+        "historical_blob": "6cfad5c5af03b692f7c94acf3094d6f56d1b259d",
+        "family": "Player combat, techniques and items",
+        "preview_hash": "116cac8be6fe6901487dd6fc79f86c8ee2e6cfbb0e6e6fa17142c661cba49da3",
+        "lines": 4,
+        "change": [
+          "+",
+          "+extern \"C\" {",
+          "+void *item_pmt;",
+          "+}"
+        ]
+      },
+      {
+        "row": 4449,
+        "owner": "src/pso/item/mag/TItemMag.cpp",
+        "owner_blob": "a80083313a60508a8f0e9e960e2429e90be5ba14",
+        "historical_path": "src/pso/item/TItemMag.cpp",
+        "historical_blob": "9896d2e07978a05be5862f1133ad22b3e691b2eb",
+        "family": "Player combat, techniques and items",
+        "preview_hash": "331633c447108e37f49ae7a24301c73ed5d5f0eb2f3b7da6cdcf1a7d237b3049",
+        "lines": 14,
+        "change": [
+          "-int PlayerScaleState::is_scaled() { return test_flags_any(&flags, 1); }",
+          "+int PlayerScaleState::is_scaled() { return test_flags_any(&flags.bits, 1); }",
+          "-        play_sound_effect(0x4000B20A, &owner->position, 0, 0);",
+          "+        play_sound_effect(0x4000B20A, (const Vec *)(&owner->position), 0, 0);",
+          "-                spawn_particle_effect(&pos, 0x9B);",
+          "-            }",
+          "-        }",
+          "-        play_sound_effect(0x5B211, &owner->position, 0, 0);",
+          "+                spawn_particle_effect((const Vec *)(&pos), 0x9B);",
+          "+            }",
+          "+        }",
+          "+        play_sound_effect(0x5B211, (const Vec *)(&owner->position), 0, 0);",
+          "-        play_sound_effect(0x4000B20A, &owner->position, 0, 0);",
+          "+        play_sound_effect(0x4000B20A, (const Vec *)(&owner->position), 0, 0);"
+        ]
+      },
+      {
+        "row": 5323,
+        "owner": "src/pso/unk/TLobby_80328F7C.cpp",
+        "owner_blob": "94217e902b5a45b908fe2eb79716d0f4394439f7",
+        "historical_path": "src/pso/misc/TLobby_80328F7C.cpp",
+        "historical_blob": "00af380ffcb6ad9dc60430f6b285f2469549e4b2",
+        "family": "Resource loading and game systems",
+        "preview_hash": "1700a8c8fded155c4fde311d8a0010ddc7d63ef463bfc43a5c946ba53bed17c7",
+        "lines": 1,
+        "change": [
+          "+#include \"pso/system/ArrayAllocation.h\""
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "upstream": "8441b1b4feb550bf1fc4b0a897acd19b003a0437",
+  "source": "3cdbfc86523af2f997c6072fc644e09311a275b9",
+  "source_base": "677fef25b2928a088924bde21522ebde1da7e879",
+  "source_commits": 46,
+  "paths": [
+    "include/pso/unk/SharedMemory.h",
+    "include/pso/unk/text_8042EAD4.h",
+    "include/pso/unk/text_8042EE4C.h",
+    "src/pso/system/SwitcherLaunch.cpp"
+  ],
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "coverage_losses": {
+    "regressions": 0,
+    "data_coverage_lost": 0,
+    "padding_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0
+  },
+  "linked_labels": [],
+  "original_data_bytes": 1147,
+  "original_data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "runtime": {
+    "source": {
+      "sha256": "35a6bb0692a711d462eb2e58021e4f268d5f4d4f39f7c625e811af0b5e34dc28",
+      "observations": [
+        "PsoV3.dol: ten modem setters, device and cache paths, launch data bounds and disc messages passed",
+        "psov3.dol: ten modem setters, device and cache paths, launch data bounds and disc messages passed"
+      ]
+    },
+    "workspace": {
+      "sha256": "35a6bb0692a711d462eb2e58021e4f268d5f4d4f39f7c625e811af0b5e34dc28",
+      "observations": [
+        "PsoV3.dol: ten modem setters, device and cache paths, launch data bounds and disc messages passed",
+        "psov3.dol: ten modem setters, device and cache paths, launch data bounds and disc messages passed"
+      ]
+    }
+  },
+  "historical_audit": {
+    "open_before": 248,
+    "open_after": 246,
+    "resolved": [
+      "include/pso/unk/text_8042EAD4.h",
+      "src/pso/unk/text_8042EE4C.cpp"
+    ],
+    "current_status_owner": "src/pso/ui/frontend/TAdTrialModemChkGC_8042E9FC.cpp"
+  },
+  "fork_workspace": {
+    "parent": "3cdbfc86523af2f997c6072fc644e09311a275b9",
+    "previous_workspace": "7587f613887392cb8a3ceb5ad90c224e05079193",
+    "overlay_paths": 130,
+    "updated_linker_labels": 0,
+    "materialized_tree_before_notes_update": "2df47ca341c3372548e518770379f001f6367eb9",
+    "archive_sha256": "8fcebede89bc141f6f496711a5212b23dfd3b5c4cf51e081b71a7d78accdad20",
+    "tests": {
+      "tool": 294,
+      "fork": 11,
+      "host": 5
+    },
+    "host_executables": [
+      "vector_math_fallbacks",
+      "item_factory_callbacks",
+      "loader_transfer",
+      "ginja_parameter_callbacks",
+      "exi_ethernet_fallbacks"
+    ]
+  }
+}

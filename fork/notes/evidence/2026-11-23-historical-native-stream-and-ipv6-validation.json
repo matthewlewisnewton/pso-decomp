@@ -1,0 +1,128 @@
+{
+  "source_head": "e70fd0190e942298d82fef37482c9eb5a308254f",
+  "source_tree": "9705d298c070ff26255e753b35d7072f3a156986",
+  "previous_cumulative": "3697255babead7aae7d4cedcad4bd6e9d54ae400",
+  "upstream_master": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "effects_overlap_paths": [],
+  "source_paths": [
+    "include/pso/network/TLobby_804050DC.h",
+    "include/pso/network/TLobby_8041112C.h",
+    "src/pso/network/NetIPv6NeighborDiscovery.c",
+    "src/pso/network/NetIpv6.c",
+    "src/pso/network/TLobby_8041112C.c",
+    "src/pso/unk/text_803CE568.cpp"
+  ],
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "matching_functions": 27572,
+  "linked_units": 2368,
+  "coverage_regressions": {
+    "regressions": 0,
+    "data_regressions": 0,
+    "data_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0,
+    "failures": 0
+  },
+  "source_benchmark": {
+    "total": {
+      "base": 141978,
+      "head": 141960,
+      "added": 1,
+      "removed": 19
+    },
+    "changed_labels": 0,
+    "flagged_labels": 0,
+    "newly_stale_retention_entries": 0,
+    "added_finding": "The checker counts ATTRIBUTE_ALIGN(4) in the C linkage block for the character buffer."
+  },
+  "matching_constraint": "The CVFS path const-qualification changes three compiled functions. A typed allocator result independently changes cvFsOpen. The final branch preserves those signatures and carries the exact character-storage change.",
+  "runtime": {
+    "images": [
+      "retail",
+      "Great Merge source"
+    ],
+    "cvfs_cases_per_image": 6,
+    "ipv6_cases_per_image": 2,
+    "coverage": "Explicit, default and prefixed paths, extended size, open and close, and unicast and multicast egress with the original header and buffer fields."
+  },
+  "historical_source_comparison": {
+    "closed": {
+      "src/pso/unk/text_803CE568.cpp": {
+        "historical_functions": 13,
+        "exact_data_bytes": 4104,
+        "source_evidence": "CVFS retains the native open, size and extended-size callbacks, the GCD and MFS device layouts, device-name resolution and prefix formatting, error reporting, handle allocation and invalidation, and all 86 original diagnostic strings. Its device-name and formatting buffers now use character storage and preserve the original alignment and extent. The linker still strips the same unused diagnostic-only wrappers."
+      },
+      "src/pso/misc/TLobby_8040FF0C.cpp": {
+        "historical_functions": 9,
+        "exact_data_bytes": 312,
+        "source_evidence": "The IPv6 owner retains startup, protocol registration, the extension parser and socket handoff, route selection and header forwarding, the shared option lengths, link-layer dispatch, fragmentation and pseudo-header checksum. The forwarding path now carries one NetIPv6SendParameters record. The original packet and header types reach both interface handlers through the native dispatch calls."
+      }
+    },
+    "partial": {
+      "src/pso/misc/TLobby_8041112C.cpp": "Its two send dispatch helpers now receive native packet and destination records, with address words confined to the generic handler boundary."
+    },
+    "remaining": 129
+  },
+  "historical_fork_data": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "validation_sha256": {
+    "check.json": "ec167389dbd490e17ac3a61384def77d8d58a7485e34e9bf913ffed6e489dc0a",
+    "delta-03.json": "ef911594f61dd2e5fc3b74eca9ecd722410760145f536c60664429b458ad8fd4",
+    "quality.json": "2f1b073119e150099b1b5ca8c9da6f25b6141841ee6c3aa1686e1595e7de20a5",
+    "probe-stream-transport.py": "8331b2b78b7110a088ec77968d8d0eba0a2ff93c31daaa5339e97e49e73d26ec",
+    "stream-transport-probe.log": "4b1c9c7336cacb76eb434414a92499e300541a5e22dc4f072016ff3fa272c822",
+    "source-fork-data.json": "82d59f20ed1bd3def36813b6f8b3f63e5eb7604943397ad2c9b2176411b240d3"
+  },
+  "materialized_fork": {
+    "tree": "56ecd35b3c20aa96ca726b8248b9a1f18081845e",
+    "retention_entries": 27007,
+    "newly_stale_retention_entries": 0,
+    "checks": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    },
+    "validation_sha256": {
+      "private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011",
+      "retention.log": "b3325169ce9d5755b2340e455b52eb7ac52edcb6fa173dc4f2486f46f713350c",
+      "private-fork-data.json": "82d59f20ed1bd3def36813b6f8b3f63e5eb7604943397ad2c9b2176411b240d3",
+      "fork-tests.log": "8bc653d257e44adb07c7ac090fb34a3a7cf40d014253eff78a71196868189856",
+      "tool-tests.log": "8951c4ac998850d6d0bf39a580a5df8dcc57ceff4debb8798e91de02f3d19e90",
+      "host-tests.log": "140b508fc1f1abdcca8f6e646be4a97584003f6bab4996a77abbc7664df3ec68"
+    }
+  },
+  "upstream_review": {
+    "head": "1dca6f270be13b2ec868f37531da32527411b2a6",
+    "previous_head": "e9c6535d63902cd6f3eb96aa76c80f3feb5181f4",
+    "paths": 183,
+    "inventory_preview": "8594730e1491dd15d9b8b164fcbf6f70c4148202",
+    "inventory_preview_previous": "957ab82823d1533572460883b56e9bcb77bc595a",
+    "cvfs_source_commit": "348bcd43c609ee7bc6ae3e09b1bdd7a471ec725e",
+    "all_authors_and_committers": [
+      "matthewlewisnewton"
+    ],
+    "benchmark": {
+      "total": {
+        "base": 147293,
+        "head": 146521,
+        "added": 20,
+        "removed": 792
+      },
+      "changed_labels": 35,
+      "flagged_labels": 0,
+      "newly_stale_retention_entries": 0
+    },
+    "validation_sha256": {
+      "review-check.json": "ec167389dbd490e17ac3a61384def77d8d58a7485e34e9bf913ffed6e489dc0a",
+      "preview-check.json": "85d8d27b5183584f4638941185dfdb163bb62dd6dd8b81237eb4cc8472dfa7d7",
+      "review-quality.json": "add09899d90f3d4696880e2b414b86255664a214e5474bda9a27a4847098bc0a",
+      "review-fork-data.json": "82d59f20ed1bd3def36813b6f8b3f63e5eb7604943397ad2c9b2176411b240d3",
+      "preview-fork-data.json": "82d59f20ed1bd3def36813b6f8b3f63e5eb7604943397ad2c9b2176411b240d3"
+    }
+  }
+}

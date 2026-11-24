@@ -1,0 +1,405 @@
+{
+  "upstream": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "previous_source": "135eb79203f6e9dd18f012b04cd43120b88fd535",
+  "source": "df9868bce839e3306b0081e71388031d5fe5f975",
+  "source_tree": "a9c2c556e07ddd14b6827f2f94664749d0bbe9ba",
+  "source_review_files": 1008,
+  "recovered_paths": [
+    {
+      "path": "config/GPOE8P/psov3/config.yml",
+      "previous_blob": "100644:938fcbde1bb0fb0c870915d2797eef78bb74ef53",
+      "review_blob": "100644:850ebc764ec9598688a4a2f09f05932eeea5eea8",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "config/GPOE8P/psov3/symbols.txt",
+      "previous_blob": "100644:8e8a8620b696b0f09ff5ba9583c1d093eb88807e",
+      "review_blob": "100644:5f5dd8e78d38602ac6b89c2ae03149fcfc9c329e",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "include/pso/object/TObjDoaEx01.h",
+      "previous_blob": "100644:b3e02f447e815546382a64083f56d5d125496b48",
+      "review_blob": "100644:618a67981985aea931806b6dfeff6c774f130a50",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/object/TObjHashi.h",
+      "previous_blob": "100644:c3d073600066411dcccd7095ab6c8ed35f70ec4e",
+      "review_blob": "100644:8546714bb4b73419cf9d149d1a5804f2ab2e67ea",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/object/collision/TObjInfoCol.h",
+      "previous_blob": "100644:6a6ce267d4acc3dd69771335b4a6fdb3c22cdf91",
+      "review_blob": "100644:180ed9e844ac3479f6c1ba66a52ca4ee0730defd",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/object/warp/TObjCityMainWarpChallenge.h",
+      "previous_blob": "100644:d6aa13dabb8baa4d1596f8a23e74dbd6ef621d06",
+      "review_blob": "100644:167029f437d9f0e3ce3ca3a10ec2f83266204b26",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/object/warp/TObjWarpBase.h",
+      "previous_blob": "100644:41222b4a2555bca1e669c4c76b80c91767270c28",
+      "review_blob": "100644:d93c67de01424aada36eabc0a80f8726e6a05c7a",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/object/warp/TObjWarpString.h",
+      "previous_blob": "100644:2060dc2affeb5dbc58ed3d228e4f28cca260ff08",
+      "review_blob": "100644:82a7194c742f8080fe6d0d9e008d5ca4ba7667f1",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/network/TGameProtocol.cpp",
+      "previous_blob": "100644:03b2d9cbf81f26c1ec2574f1d75a3b4aaf96243f",
+      "review_blob": "100644:a72072981430432fc923060c097d37da5c2c8777",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/object/TObjDoaEx01.cpp",
+      "previous_blob": "100644:01ad95b36c9eeb459c0cfa6c0343c218dfa7ef0b",
+      "review_blob": "100644:ca377365d4ecdd0828a1b96e1ef9fb525410ffb8",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "native archive source with existing style"
+    },
+    {
+      "path": "src/pso/object/TObjHashi.cpp",
+      "previous_blob": "100644:2eae8385cc1e1e045dbc0d9001890bf4077654cd",
+      "review_blob": "100644:fdeb208260877423cb5b1754ee0bfa3864958316",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/object/collision/TObjInfoCol.cpp",
+      "previous_blob": "100644:acf18fc060a81d9b6cefa35859fdcb703c1457a6",
+      "review_blob": "100644:bd8b82106bcad71941ec045306d5f2674bfb142d",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+      "previous_blob": "100644:0818dd62dfaa8beac2b47429784b626edc9f1428",
+      "review_blob": "100644:15c9c066b0f0473044ef8feadc490e01bd43a2b7",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/object/warp/TObjCityMainWarpChallenge.cpp",
+      "previous_blob": "100644:c6cdbab34cce1688491b22fbe6560b00239a3815",
+      "review_blob": "100644:a14384ee853020fc08305a138ccfb0bf8741a201",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/object/warp/TObjCityMainWarp_80186C44.cpp",
+      "previous_blob": "100644:4babb4a3d3ac0a6975c0e8af6d4dd8845062050f",
+      "review_blob": "100644:9f885efcdc471953d3939ccd5dd1482fc3877951",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/object/warp/TObjCityMainWarp_80186F84.cpp",
+      "previous_blob": "100644:d5f4233adccf39fc88dc3d10a81657b253c51487",
+      "review_blob": "100644:9d7d183c4ae9d64b71769bf4173e2b5fdb9b5d67",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "src/pso/object/warp/TObjLaboMapWarp.cpp",
+      "previous_blob": "100644:625dc5b57810210d43b08893aeb50b7a811a09c2",
+      "review_blob": "100644:8b66ab6c410fc3095b5f75d3d82819a18f5b8170",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/object/warp/TObjWarpBossMulti.cpp",
+      "previous_blob": "100644:038fc070ab59fa7fd48a8295479e659b62a2d036",
+      "review_blob": "100644:47ca20f797f506731d615a7534858af1d4dd89e1",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/object/warp/TObjWarpJungMain.cpp",
+      "previous_blob": "100644:899c81e453266459c4daac437a234957455f0d84",
+      "review_blob": "100644:e23b2116cd19a7d8e158c6d993ed9cc4ec61be2f",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/object/warp/TObjWarpLobby.cpp",
+      "previous_blob": "100644:568aa2aeb1ffb7d4ba5d93aaf376a02352554ea5",
+      "review_blob": "100644:80ef95cbd5f0f2f228f689ff68848fbb6f64c01b",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    }
+  ],
+  "checks": {
+    "labels": {
+      "head": "bd1cf67f5689b2aa44130293ed44ea5699e6ad0a",
+      "baseline": "135eb79203f6e9dd18f012b04cd43120b88fd535",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 3,
+      "check_sha256": "561b71b38c21c246b35052f379bddce86e73e48d0abf6373910e19ea6c8b291d"
+    },
+    "menus": {
+      "head": "e6c87d82f5a66b8924ac4a422f898c6f429716b7",
+      "baseline": "bd1cf67f5689b2aa44130293ed44ea5699e6ad0a",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068"
+    },
+    "doors": {
+      "head": "df9868bce839e3306b0081e71388031d5fe5f975",
+      "baseline": "e6c87d82f5a66b8924ac4a422f898c6f429716b7",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 4,
+      "check_sha256": "f225cc19a55a1aa91c0e66c25bf44b1c175904068131048a0aab7a13e6f48682"
+    },
+    "full-review": {
+      "head": "df9868bce839e3306b0081e71388031d5fe5f975",
+      "baseline": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 413,
+      "check_sha256": "f4bb4d7ea4ec486001cb1ef13fa9344f499fe3ab13be08802f1529848d75c285"
+    },
+    "layer": {
+      "head": "b248d434776db9743f2978d703557d86f307925f",
+      "baseline": "df9868bce839e3306b0081e71388031d5fe5f975",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "294d5d4e65e3db3407ceff097811cede09728d2c21c1257d66d17135be0bdc4b"
+    }
+  },
+  "release_data": {
+    "doors": {
+      "sha256": "e74e72b4a4140d77eec68e046c69f74251d7c7a21c2af9b769ae27d9c8d7d653",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "layer": {
+      "sha256": "e74e72b4a4140d77eec68e046c69f74251d7c7a21c2af9b769ae27d9c8d7d653",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    }
+  },
+  "typed_linker_labels": [
+    {
+      "module": "psov3",
+      "address": "0x8019B6E4",
+      "before": "fade_and_destroy__14TObjWarpStringFPv",
+      "after": "fade_and_destroy__14TObjWarpStringFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8019B744",
+      "before": "update_fade_in__14TObjWarpStringFPv",
+      "after": "update_fade_in__14TObjWarpStringFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8019B854",
+      "before": "__ct__14TObjWarpStringFv",
+      "after": "__ct__14TObjWarpStringFP7TObjectPCcUs"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8018DD0C",
+      "before": "draw_object_tree__11TObjDoaEx01Fl",
+      "after": "draw_object_tree__11TObjDoaEx01FP10NJS_OBJECT"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8018E064",
+      "before": "__ct__11TObjDoaEx01Fll",
+      "after": "__ct__11TObjDoaEx01FP7TObjectPv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80191CC0",
+      "before": "handle_6x78__FPv",
+      "after": "handle_6x78__FP14G_Unknown_6x78"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80191D80",
+      "before": "bswap_6x78__11TObjInfoColFv",
+      "after": "bswap_6x78__FP14G_Unknown_6x78"
+    }
+  ],
+  "closed_historical_rows": [
+    {
+      "row": 6365,
+      "fork_path": "include/pso/object/TObjWarpResources.h",
+      "fork_blob": "6ae5b672a7f149c25f8d1248843ac494608d62f0",
+      "historical_delta_sha256": "9b82f1da36483a89bb352259094ac4395ead1b0b0ba7240443b06f5a4ce995cb",
+      "owner": "include/pso/object/warp/ForestWarpResources.h",
+      "owner_blob": "de779aa1b9bfcebf904aff32ebb961a90941f064",
+      "final_comparison_sha256": "1179f9da28a19901f33fa32c320ba06f454cf653b308896bcd082221dfb32d29",
+      "status": "Equivalent current source validated",
+      "rationale": "The shared forest resource declarations, warp positions and quest flag have their native types. The debug offset is local to its caller and the original three float values are verified at 0x804462FC."
+    },
+    {
+      "row": 6499,
+      "fork_path": "src/pso/object/TOKeyJungleMain.cpp",
+      "fork_blob": "9737019a743248fdf1e5faf764a34a6a8faf0e42",
+      "historical_delta_sha256": "59ffce805b3164c7c52c75188347b9cd0ce0b2d6cc496b54cb6739907bd51063",
+      "owner": "src/pso/object/key/TOKeyJungleMain.cpp",
+      "owner_blob": "672873bd05f3e4c483e820f8a96550fe55cc127d",
+      "final_comparison_sha256": "0d7e660f752a38e79a95f10edffa6dfc50717c381f2b5d717332279f767df1d7",
+      "status": "Equivalent current source validated",
+      "rationale": "The jungle key uses its native constructor and destructor, a typed archive with the same descriptor, original motion frames, and the shared story flag table and dispatch. The source retains the upstream texture accessor."
+    },
+    {
+      "row": 6528,
+      "fork_path": "src/pso/object/TObjWarpJungMain.cpp",
+      "fork_blob": "887e6590db6541b6880de6af416477bc55aa9ebf",
+      "historical_delta_sha256": "34b369cd743ee805d815793ee0e2035d7e5abbd6a3f054b53e00d4f7878ad99a",
+      "owner": "src/pso/object/warp/TObjWarpJungMain.cpp",
+      "owner_blob": "e23b2116cd19a7d8e158c6d993ed9cc4ec61be2f",
+      "final_comparison_sha256": "612b0c850c98f27d65b146aebdfe549250a9045397503eda283d36ec0fc00231",
+      "status": "Typed historical integration validated",
+      "rationale": "Both jungle warp classes use native constructors and destructors, typed BML models and motion, the shared beam texture selector, and the real player pointer for transfer confirmation. The main warp continues using upstream field names for equivalent data."
+    },
+    {
+      "row": 6539,
+      "fork_path": "src/pso/ui/TAdStorySelectGC_8019DC14.cpp",
+      "fork_blob": "cc7744db062851f760a97e2a0348ed3932f9391a",
+      "historical_delta_sha256": "7ac7c96b6bea7f066f65cb65df9341008bcb13735bb7ddcbb1479eda5426e0b0",
+      "owner": "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+      "owner_blob": "15c9c066b0f0473044ef8feadc490e01bd43a2b7",
+      "final_comparison_sha256": "5ab5a1b225a3351c3405dcddd860e4b213605acd6bfc54d01eaee70088e88954",
+      "status": "Equivalent current source validated",
+      "rationale": "The five short routines match the original functions by address, including the actual story cursor at 0x8019DC14 and the separate typed forest texture getter at 0x8019DC1C. The motion/model getters return native pointers and the force-warp confirmation remains empty."
+    },
+    {
+      "row": 6724,
+      "fork_path": "src/pso/object/TObjDoaEx01.cpp",
+      "fork_blob": "11ffe67a929abd1435e12fadeee3fc24d6683a2f",
+      "historical_delta_sha256": "f0b5b3aff1aff6f973d42e1c6ead211da7b92149b2c26ed470892fe2dac8c8f9",
+      "owner": "src/pso/object/TObjDoaEx01.cpp",
+      "owner_blob": "ca377365d4ecdd0828a1b96e1ef9fb525410ffb8",
+      "final_comparison_sha256": "8c349552103b4194659fef7aedc9d15c97fd49176f95e70290dac61738325bcf",
+      "status": "Typed historical integration validated",
+      "rationale": "The door uses its native parent, flags, model nodes and material color. The two transparency nodes, recursive model traversal, collision registration, archive loading and motion frame count preserve their retail behavior. The container resource functions live with their native separate owner."
+    },
+    {
+      "row": 6726,
+      "fork_path": "src/pso/object/TObjHashi.cpp",
+      "fork_blob": "4dd2d6b672fbfecf888be768a7ce6c6bf4eef937",
+      "historical_delta_sha256": "27cd04cebda25f051c477a4421eaf367640afb00b6837bfd6758ad23382458b3",
+      "owner": "src/pso/object/TObjHashi.cpp",
+      "owner_blob": "fdeb208260877423cb5b1754ee0bfa3864958316",
+      "final_comparison_sha256": "1717d1ac07431d3b81e51897d1bae9d616abd833a71128f4475d0fdf7daf3209",
+      "status": "Typed historical integration validated",
+      "rationale": "The forest and versus bridges use the native inheritance, typed archives, shared camera declaration, and upstream texture accessor. The bridge packet additionally uses the typed wire record."
+    }
+  ],
+  "historical_ledger_sha256_before": "4fc971e24aae36f32d5bbb6e0ccfa9f4a7121e214fd1b8e95bb93457029a5b3d",
+  "historical_ledger_sha256": "5effcd2f5381219d0f3b40857cb2eb48f4aa7b2ecc1b4190ec86a42d6cb3f014",
+  "historical_rows_open": 526,
+  "partially_reconciled_rows": [
+    {
+      "row": 6848,
+      "path": "src/pso/object/warp/TObjCityMainWarpChallenge.cpp",
+      "current_blob": "a14384ee853020fc08305a138ccfb0bf8741a201",
+      "scope": "The challenge warp keeps the actual model, checkbox and yes/no window pointers. It uses the shared camera position for its range check. Other legacy dialog wrappers and city warp state sharing remain under review. The broader historical row is still open."
+    },
+    {
+      "row": 7071,
+      "path": "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+      "current_blob": "15c9c066b0f0473044ef8feadc490e01bd43a2b7",
+      "scope": "The warp sign has native construction, text storage, viewport selection and a typed fade state. Base and map popup paths use typed window pointers. The broader area-transfer and scene entry changes still need review. The broader historical row is still open."
+    },
+    {
+      "row": 7213,
+      "path": "src/pso/object/warp/TObjWarpBossMulti.cpp",
+      "current_blob": "47ca20f797f506731d615a7534858af1d4dd89e1",
+      "scope": "The boss warp menu lifecycle operates on the shared typed window pointer. Its larger state, prompt and archive comparison remains open. The broader historical row is still open."
+    }
+  ],
+  "symbol_aliases": {
+    "0x8001EDB0": {
+      "historical": "TObjFish__sub_8001EDB0",
+      "current": "get_bml_texlist",
+      "size": "0x14"
+    },
+    "0x8019DC14": {
+      "historical": "TAdStorySelectGC__sub_8019DC14",
+      "current": "get_story_select__16TAdStorySelectGCFv",
+      "size": "0x8"
+    },
+    "0x8019DC1C": {
+      "historical": "get_story_select__16TAdStorySelectGCFv",
+      "current": "get_forest_warp_textures__Fv",
+      "size": "0x8"
+    },
+    "0x8019DC24": {
+      "historical": "register_area_warp_object__16TAdStorySelectGCFPv",
+      "current": "get_forest_warp_motion__Fl",
+      "size": "0x28"
+    },
+    "0x8019DC4C": {
+      "historical": "register_warp__16TObjMapForceWarpFPv",
+      "current": "get_forest_warp_model__Fl",
+      "size": "0x28"
+    },
+    "0x803DA798": {
+      "historical": "set_current_texture_list",
+      "current": "set_global_param",
+      "size": "0x10"
+    }
+  },
+  "compiler_sensitive_forms": {
+    "map_popup": "The two indexed popup methods keep the original displaced loads and stores. A direct C++ reference to the array element causes CodeWarrior to reserve an extra nonvolatile register.",
+    "door_model": "The animated and static door paths use one address-sized local. Separate locals insert a register move before fetching the animated model."
+  },
+  "runtime_probe": {
+    "builds": [
+      "retail",
+      "stock",
+      "fork"
+    ],
+    "sha256": "92ec76e80a6e7b8f9e85e5367d8727cdfed9eb313a875e5e8e5ce3944ad6a5a4",
+    "source_sha256": "a00551f0faa9381e8f45749e5037b64df883d9597c60170a0779d5a3302c9285",
+    "scope": "The probe covers label text truncation, all fade phases and split-view positioning, the forest debug offset and getter separation, per-client popup lifecycle, the 6x78 byte swap and bridge timer toggle, and the door color pulse. Camera layout, menu factories and player lookup use controlled fixtures."
+  },
+  "overlay_paths": 130,
+  "overlay_sha256": "3f26029cc978254407e1ff2526c38d18cefadf30094a319847ff2259b3ffe1a4",
+  "retained_symbols": 27033,
+  "workspace_checks": {
+    "tool": {
+      "count": 294,
+      "sha256": "81a3e77e49bb901ca21dc9a63c06a4bea2f15733ce9e0a871f2e2d5e8a2bf835"
+    },
+    "fork": {
+      "count": 11,
+      "sha256": "8313eae1f16d1331324badf286069244c7cd7472c9e34d0a67b41d86f2771a7e"
+    },
+    "host": {
+      "checks": [
+        "./vector_math_fallbacks",
+        "./item_factory_callbacks",
+        "./loader_transfer",
+        "./ginja_parameter_callbacks",
+        "./exi_ethernet_fallbacks"
+      ],
+      "sha256": "ad1227e7d6dde3aea88d51f241949b30f3d1fe42ec4c3abf078bd6309ee9bbdb"
+    }
+  },
+  "review_commit_attribution": {
+    "commits": 95,
+    "codex_attribution": 0,
+    "coauthor_trailers": 0
+  },
+  "public_refs_changed": false
+}

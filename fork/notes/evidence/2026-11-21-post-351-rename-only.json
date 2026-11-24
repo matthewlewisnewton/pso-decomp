@@ -1,0 +1,653 @@
+{
+  "upstream": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+  "review": "9e2b9a7c07a64f3542c5a2865773d9cfa9d9200b",
+  "historical_source": "82ef099ef2c33679d5cbb9f7b50058a87e0c21e3",
+  "criterion": "Exact byte equality after substituting verified identifiers at token boundaries. The replay keeps the spelling on upstream master. Type, owner and expression changes require separate review.",
+  "known_window_field_offsets": {
+    "TWindowBase.client_index": "0x20",
+    "TWindowBase.window_flags": "0x2C",
+    "TWindowBase.open_tick": "0x5C",
+    "TWindowMainMenu.client_index": "0x54"
+  },
+  "linked_function_addresses": {
+    "ADXF_GetStat": "0x803CC4C0",
+    "ADXF_GetFsizeSct": "0x803CC53C",
+    "free_if_not_in_arena": "0x8001EF5C",
+    "allocate_bml_chunk": "0x8001EF8C",
+    "reset_photon_effect": "0x8003F0E8",
+    "destroy_rel_module": "0x80320358",
+    "get_rel_module_image": "0x803204B0",
+    "draw_selection_plate": "0x802C4B64",
+    "draw_dialing_rectangle": "0x80328B24"
+  },
+  "inspected_rename_commits": [
+    "54128af4ad",
+    "91d8ae494d",
+    "4afc3ef4d0",
+    "5689ad0d35",
+    "be98273edd"
+  ],
+  "paths_skipped": 44,
+  "remaining_path_comparisons": 516,
+  "paths": {
+    "include/pso/system/Adxf.h": {
+      "replay_blob": "100644:8286b9d0d4a0a39b556cc480581fc908772bdd63",
+      "historical_blob": "100644:a4ee03f7a584ac941efb0d3b05942449815e3428",
+      "identifier_correspondence": [
+        {
+          "kept": "ADXF_GetFsizeSct",
+          "skipped": "adxf_get_fsize_sct",
+          "occurrences": 1
+        },
+        {
+          "kept": "ADXF_GetStat",
+          "skipped": "adxf_get_stat",
+          "occurrences": 1
+        }
+      ]
+    },
+    "include/pso/system/BmlResource.h": {
+      "replay_blob": "100644:00a41ff3ed6ca26563d4f5e262e9a8994c074621",
+      "historical_blob": "100644:3b4470843968eea9de724a956fb4d408c2d33fa0",
+      "identifier_correspondence": [
+        {
+          "kept": "free_if_not_in_arena",
+          "skipped": "free_if_not_owner",
+          "occurrences": 1
+        }
+      ]
+    },
+    "include/pso/system/RelModuleBuffer.h": {
+      "replay_blob": "100644:2a1940ab432b0cf892c59ecc2e116c15198cc30a",
+      "historical_blob": "100644:40e43c0048cbbe8a38dfe0a297d53cfe5b864cd1",
+      "identifier_correspondence": [
+        {
+          "kept": "destroy_rel_module",
+          "skipped": "fn_80320358",
+          "occurrences": 1
+        },
+        {
+          "kept": "get_rel_module_image",
+          "skipped": "fn_803204B0",
+          "occurrences": 1
+        }
+      ]
+    },
+    "include/pso/ui/frontend/TAdDialingGC_80328B20.h": {
+      "replay_blob": "100644:15662498c6a4b1ce654820aa00a0b04448bbda32",
+      "historical_blob": "100644:d15040e669566954b337f157479d749d7effdc32",
+      "identifier_correspondence": [
+        {
+          "kept": "draw_dialing_rectangle",
+          "skipped": "TAdDialingGC__sub_80328B24",
+          "occurrences": 1
+        }
+      ]
+    },
+    "include/pso/ui/frontend/TAdLoadQuestPrtTxtGC.h": {
+      "replay_blob": "100644:66a4cbde702d3fe548ad1e141ff257ea223421d9",
+      "historical_blob": "100644:bb4ef6096ea11dd751df78413fc10c41ecb4e74b",
+      "identifier_correspondence": [
+        {
+          "kept": "timer",
+          "skipped": "m_224",
+          "occurrences": 2
+        }
+      ]
+    },
+    "include/pso/ui/frontend/TAdPlyChrSelPlateGC.h": {
+      "replay_blob": "100644:4d15fce21d73e7b27cb0cc9ca805998b27e29980",
+      "historical_blob": "100644:d4f27c27aed58a658e140df12551c00d650bcea4",
+      "identifier_correspondence": [
+        {
+          "kept": "draw_selection_plate",
+          "skipped": "TAdEnterSerialAccessGC__sub_802C4B64",
+          "occurrences": 1
+        },
+        {
+          "kept": "plate_progress",
+          "skipped": "pad_2A8",
+          "occurrences": 2
+        }
+      ]
+    },
+    "include/pso/ui/window/TWindowBase.h": {
+      "replay_blob": "100644:93cec81be18f123e7066737306a2026de0ae1447",
+      "historical_blob": "100644:7905a1bd66afadb4fbc21f01cd6d2def517d195f",
+      "identifier_correspondence": [
+        {
+          "kept": "client_index",
+          "skipped": "m_20",
+          "occurrences": 2
+        },
+        {
+          "kept": "open_tick",
+          "skipped": "m_5c",
+          "occurrences": 2
+        },
+        {
+          "kept": "window_flags",
+          "skipped": "m_2c",
+          "occurrences": 2
+        }
+      ]
+    },
+    "include/pso/ui/window/TWindowMainMenu.h": {
+      "replay_blob": "100644:1c7e91d9d2b3c65f20408829880b1e698e1f6599",
+      "historical_blob": "100644:8b61e922b06267e214291b1f281e56f1931a52ba",
+      "identifier_correspondence": [
+        {
+          "kept": "client_index",
+          "skipped": "m_54",
+          "occurrences": 2
+        }
+      ]
+    },
+    "include/pso/unk/TLobby_8001EF5C.h": {
+      "replay_blob": "100644:8cd4e50225b644dcf4f0f4c8b8a20ff11da35635",
+      "historical_blob": "100644:eea3dd5c242ec100578e17d98da5837a214c09cd",
+      "identifier_correspondence": [
+        {
+          "kept": "allocate_bml_chunk",
+          "skipped": "alloc_load_data",
+          "occurrences": 1
+        }
+      ]
+    },
+    "src/pso/enemy/lappy/TObjEneLappy_800F5DE0.cpp": {
+      "replay_blob": "100644:c69871a72c3f1083bd939f6d83287761dd75c9fa",
+      "historical_blob": "100644:fbf3b8dfbfa6d384b4a37aff2b6b33a1e53d2794",
+      "identifier_correspondence": [
+        {
+          "kept": "reset_photon_effect",
+          "skipped": "register_by_id",
+          "occurrences": 1
+        }
+      ]
+    },
+    "src/pso/player/TObjPlayer_8023E480.cpp": {
+      "replay_blob": "100644:9a7ceb73e626b66bb1a4abf24fdfe2b0ecc25674",
+      "historical_blob": "100644:12487859a12fbbb4f3aa31d9a9851200a84c09f6",
+      "identifier_correspondence": [
+        {
+          "kept": "ADXF_GetFsizeSct",
+          "skipped": "adxf_get_fsize_sct",
+          "occurrences": 1
+        }
+      ]
+    },
+    "src/pso/system/TGStream.cpp": {
+      "replay_blob": "100644:1128227cd617dcd8c0984e46f92ece7da9c5936f",
+      "historical_blob": "100644:1a46994d79f70610315ffc58ea8271269a1ef849",
+      "identifier_correspondence": [
+        {
+          "kept": "ADXF_GetStat",
+          "skipped": "adxf_get_stat",
+          "occurrences": 3
+        }
+      ]
+    },
+    "src/pso/system/movie/TMovie.cpp": {
+      "replay_blob": "100644:3de9ca5a1c57f4852dea2ffe31003263883b55a6",
+      "historical_blob": "100644:0adf773322547816ceabd20660eb27ba51c894e2",
+      "identifier_correspondence": [
+        {
+          "kept": "destroy_rel_module",
+          "skipped": "fn_80320358",
+          "occurrences": 1
+        }
+      ]
+    },
+    "src/pso/ui/charcreate/TChCrLoadAfs.cpp": {
+      "replay_blob": "100644:c3ddc7807ee40a3cf941f50cf617a47aebd38b22",
+      "historical_blob": "100644:7527ab3d3f1b05ff3d67add925d8063d6d538d9a",
+      "identifier_correspondence": [
+        {
+          "kept": "ADXF_GetFsizeSct",
+          "skipped": "adxf_get_fsize_sct",
+          "occurrences": 2
+        },
+        {
+          "kept": "ADXF_GetStat",
+          "skipped": "adxf_get_stat",
+          "occurrences": 3
+        }
+      ]
+    },
+    "src/pso/ui/frontend/TAdDialingGC.cpp": {
+      "replay_blob": "100644:dd4dda275527bf6c1a7c55e979a6708ab6383c24",
+      "historical_blob": "100644:64f63e97aeca0867fce60026e57db871c8f86946",
+      "identifier_correspondence": [
+        {
+          "kept": "draw_dialing_rectangle",
+          "skipped": "TAdDialingGC__sub_80328B24",
+          "occurrences": 3
+        }
+      ]
+    },
+    "src/pso/ui/frontend/TAdEnterBaseGC.cpp": {
+      "replay_blob": "100644:2631bc4fa4d56dad563fb81a3f02ed7af561f82b",
+      "historical_blob": "100644:dc870e10dd951101d708d32c8933757b90fe7f75",
+      "identifier_correspondence": [
+        {
+          "kept": "draw_selection_plate",
+          "skipped": "TAdEnterSerialAccessGC__sub_802C4B64",
+          "occurrences": 2
+        }
+      ]
+    },
+    "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp": {
+      "replay_blob": "100644:9c7d49ecb8970ff9f6320b8c36a62a47560324da",
+      "historical_blob": "100644:3b5060cb0e1c036f4697bf53065c8cc9a4a0a172",
+      "identifier_correspondence": [
+        {
+          "kept": "draw_selection_plate",
+          "skipped": "TAdEnterSerialAccessGC__sub_802C4B64",
+          "occurrences": 3
+        }
+      ]
+    },
+    "src/pso/ui/frontend/TAdLoadQuestPrtTxtGC.cpp": {
+      "replay_blob": "100644:1635a753ff749d16469a9ab72a46f8d74c5a45e7",
+      "historical_blob": "100644:fcc29ee8da82833a5e8974501bfedf37ce932dfc",
+      "identifier_correspondence": [
+        {
+          "kept": "timer",
+          "skipped": "m_224",
+          "occurrences": 6
+        }
+      ]
+    },
+    "src/pso/ui/frontend/TAdPlyChrSelPlateGC.cpp": {
+      "replay_blob": "100644:95a6550c90f6c6a3d53405bcf7301edb5a6b36a0",
+      "historical_blob": "100644:fd812b91304f265de563015ac8c0864d64c4620c",
+      "identifier_correspondence": [
+        {
+          "kept": "draw_selection_plate",
+          "skipped": "TAdEnterSerialAccessGC__sub_802C4B64",
+          "occurrences": 2
+        },
+        {
+          "kept": "plate_progress",
+          "skipped": "pad_2A8",
+          "occurrences": 7
+        }
+      ]
+    },
+    "src/pso/ui/keyboard/TKeyBoardControl_8025CB70.cpp": {
+      "replay_blob": "100644:dbe07ad4c2d12404936fe86cfa8c1709469ba997",
+      "historical_blob": "100644:9b902495f5c9da6c6ebc044b38b2c6f789881633",
+      "identifier_correspondence": [
+        {
+          "kept": "client_index",
+          "skipped": "m_20",
+          "occurrences": 4
+        }
+      ]
+    },
+    "src/pso/ui/window/TWindowActionPalette.cpp": {
+      "replay_blob": "100644:29b349e80a456db093508fbefa070fc87765681a",
+      "historical_blob": "100644:395a097e097a7b54aad17f1101ddf7b1e38e98e6",
+      "identifier_correspondence": [
+        {
+          "kept": "client_index",
+          "skipped": "m_20",
+          "occurrences": 12
+        },
+        {
+          "kept": "open_tick",
+          "skipped": "m_5c",
+          "occurrences": 1
+        },
+        {
+          "kept": "window_flags",
+          "skipped": "m_2c",
+          "occurrences": 2
+        }
+      ]
+    },
+    "src/pso/ui/window/TWindowChoiceSetting_80249078.cpp": {
+      "replay_blob": "100644:25719c27f912676883351cb80647d4ce1722886f",
+      "historical_blob": "100644:6d4932fdbf82b36081a880b459a364b71a1f5751",
+      "identifier_correspondence": [
+        {
+          "kept": "open_tick",
+          "skipped": "m_5c",
+          "occurrences": 1
+        },
+        {
+          "kept": "window_flags",
+          "skipped": "m_2c",
+          "occurrences": 1
+        }
+      ]
+    },
+    "src/pso/ui/window/TWindowDD_80341A08.cpp": {
+      "replay_blob": "100644:0ce4a55b28245538a767ccb8ebb85e0571315347",
+      "historical_blob": "100644:de996ff16df91140433916eaaaf5c6569a1efc20",
+      "identifier_correspondence": [
+        {
+          "kept": "open_tick",
+          "skipped": "m_5c",
+          "occurrences": 1
+        }
+      ]
+    },
+    "src/pso/ui/window/TWindowDuelResult.cpp": {
+      "replay_blob": "100644:3d73eb6db22bac4a13571069fd04cf6250973b2c",
+      "historical_blob": "100644:667d8ce4699d3c33a552bd469e0d0d87d3d2348c",
+      "identifier_correspondence": [
+        {
+          "kept": "client_index",
+          "skipped": "m_20",
+          "occurrences": 4
+        },
+        {
+          "kept": "open_tick",
+          "skipped": "m_5c",
+          "occurrences": 1
+        },
+        {
+          "kept": "window_flags",
+          "skipped": "m_2c",
+          "occurrences": 1
+        }
+      ]
+    },
+    "src/pso/ui/window/TWindowFukidasi.cpp": {
+      "replay_blob": "100644:c5969d6f18fb74f90799fbd5a870242961dd4684",
+      "historical_blob": "100644:66bbff44f75ffa5e62c21676f53b7a0228bfc85e",
+      "identifier_correspondence": [
+        {
+          "kept": "client_index",
+          "skipped": "m_20",
+          "occurrences": 5
+        },
+        {
+          "kept": "window_flags",
+          "skipped": "m_2c",
+          "occurrences": 6
+        }
+      ]
+    },
+    "src/pso/ui/window/TWindowHelpItem_802531A0.cpp": {
+      "replay_blob": "100644:2e0e3448eba3865478d1a59c5c230d8129f5cca5",
+      "historical_blob": "100644:db711c10dccd608d0eb33b5b53bbce99371d942e",
+      "identifier_correspondence": [
+        {
+          "kept": "client_index",
+          "skipped": "m_20",
+          "occurrences": 4
+        }
+      ]
+    },
+    "src/pso/ui/window/TWindowHelpItem_802540AC.cpp": {
+      "replay_blob": "100644:b084e2b23ecd325594171c6a9009c125e03602a7",
+      "historical_blob": "100644:a7a4dc0e39f026a4989eab7fa884ba7d0184ea00",
+      "identifier_correspondence": [
+        {
+          "kept": "client_index",
+          "skipped": "m_20",
+          "occurrences": 2
+        }
+      ]
+    },
+    "src/pso/ui/window/TWindowHelpItem_80255AB4.cpp": {
+      "replay_blob": "100644:56ded23084b3ce05b0bd61536b13e0b629bd7c2d",
+      "historical_blob": "100644:f223dbb0d05382e9955f144216a7205c91b3dd86",
+      "identifier_correspondence": [
+        {
+          "kept": "client_index",
+          "skipped": "m_20",
+          "occurrences": 3
+        },
+        {
+          "kept": "open_tick",
+          "skipped": "m_5c",
+          "occurrences": 1
+        },
+        {
+          "kept": "window_flags",
+          "skipped": "m_2c",
+          "occurrences": 2
+        }
+      ]
+    },
+    "src/pso/ui/window/TWindowInputNumber.cpp": {
+      "replay_blob": "100644:ccd5bda827a98ef21dd6990232350d1f4a18c933",
+      "historical_blob": "100644:7388ba73380dd65ad139a417daedd4a089532675",
+      "identifier_correspondence": [
+        {
+          "kept": "client_index",
+          "skipped": "m_20",
+          "occurrences": 2
+        },
+        {
+          "kept": "window_flags",
+          "skipped": "m_2c",
+          "occurrences": 2
+        }
+      ]
+    },
+    "src/pso/ui/window/TWindowMainMenu1P.cpp": {
+      "replay_blob": "100644:f7fd7971f175a1f9f0a9002e510531b8174dd0d5",
+      "historical_blob": "100644:b827ded0501838f7c309539386a798e566bc24b3",
+      "identifier_correspondence": [
+        {
+          "kept": "client_index",
+          "skipped": "m_54",
+          "occurrences": 2
+        }
+      ]
+    },
+    "src/pso/ui/window/TWindowMainMenu4P.cpp": {
+      "replay_blob": "100644:8c73a8a6e0fb8ab0e06a34b3954be17cb45fb613",
+      "historical_blob": "100644:f62b7f1eeba386c975f4055429180ed2d12d1ac0",
+      "identifier_correspondence": [
+        {
+          "kept": "client_index",
+          "skipped": "m_54",
+          "occurrences": 1
+        }
+      ]
+    },
+    "src/pso/ui/window/TWindowMainMenu_802AD538.cpp": {
+      "replay_blob": "100644:4823d22142b4fe6d36a53c67814d43796313d8d8",
+      "historical_blob": "100644:1d150d896c5c8643b488a9d472e24280cd6c7466",
+      "identifier_correspondence": [
+        {
+          "kept": "client_index",
+          "skipped": "m_20",
+          "occurrences": 1
+        },
+        {
+          "kept": "window_flags",
+          "skipped": "m_2c",
+          "occurrences": 1
+        }
+      ]
+    },
+    "src/pso/ui/window/TWindowMessage.cpp": {
+      "replay_blob": "100644:47fa243f3d271d30b9b6067cb6afa115d16c4f64",
+      "historical_blob": "100644:698d7198f88076d210a7fd8647b50e81d3694bc2",
+      "identifier_correspondence": [
+        {
+          "kept": "open_tick",
+          "skipped": "m_5c",
+          "occurrences": 1
+        },
+        {
+          "kept": "window_flags",
+          "skipped": "m_2c",
+          "occurrences": 2
+        }
+      ]
+    },
+    "src/pso/ui/window/TWindowPartyStatus.cpp": {
+      "replay_blob": "100644:7e0f1be61337137e83d864642d2f5da3354605af",
+      "historical_blob": "100644:6bfb99413cc7f7f064273c81ef96e445bbdc38ec",
+      "identifier_correspondence": [
+        {
+          "kept": "client_index",
+          "skipped": "m_20",
+          "occurrences": 1
+        }
+      ]
+    },
+    "src/pso/ui/window/TWindowSubComCard_80244774.cpp": {
+      "replay_blob": "100644:6fb91faa20e1d5b3794eb427e28337dede98da7f",
+      "historical_blob": "100644:b27e26bc642beac0d85230f17c7069827c114a3f",
+      "identifier_correspondence": [
+        {
+          "kept": "client_index",
+          "skipped": "m_20",
+          "occurrences": 3
+        },
+        {
+          "kept": "open_tick",
+          "skipped": "m_5c",
+          "occurrences": 3
+        },
+        {
+          "kept": "window_flags",
+          "skipped": "m_2c",
+          "occurrences": 14
+        }
+      ]
+    },
+    "src/pso/ui/window/TWindowSubCustomSelect.cpp": {
+      "replay_blob": "100644:816660cdc3c31dd771d13e0ac1ae3f0f4057ba05",
+      "historical_blob": "100644:e54d4c3d505cedb550712102843906a85f032fa1",
+      "identifier_correspondence": [
+        {
+          "kept": "client_index",
+          "skipped": "m_20",
+          "occurrences": 7
+        },
+        {
+          "kept": "open_tick",
+          "skipped": "m_5c",
+          "occurrences": 2
+        },
+        {
+          "kept": "window_flags",
+          "skipped": "m_2c",
+          "occurrences": 1
+        }
+      ]
+    },
+    "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp": {
+      "replay_blob": "100644:adba50a721f638f539c8c66efc28e6a9ea406cb6",
+      "historical_blob": "100644:60b7c64344120dd5519e99f2acad90f618872494",
+      "identifier_correspondence": [
+        {
+          "kept": "client_index",
+          "skipped": "m_20",
+          "occurrences": 1
+        },
+        {
+          "kept": "open_tick",
+          "skipped": "m_5c",
+          "occurrences": 2
+        }
+      ]
+    },
+    "src/pso/ui/window/TWindowSubStatusDisp_80257BC0.cpp": {
+      "replay_blob": "100644:256c074ff14879ab4013733c160edfa7a3a004e5",
+      "historical_blob": "100644:0e7f50fe58453839ca7f7b38bede33bd4005d274",
+      "identifier_correspondence": [
+        {
+          "kept": "open_tick",
+          "skipped": "m_5c",
+          "occurrences": 1
+        },
+        {
+          "kept": "window_flags",
+          "skipped": "m_2c",
+          "occurrences": 1
+        }
+      ]
+    },
+    "src/pso/ui/window/TWindowSubStatusDisp_8025B050.cpp": {
+      "replay_blob": "100644:02c1d966a7ed4708d9d555787b671eb6f82e8ea0",
+      "historical_blob": "100644:ded48e593d58b6ae80684897c799e7f472552ff9",
+      "identifier_correspondence": [
+        {
+          "kept": "window_flags",
+          "skipped": "m_2c",
+          "occurrences": 1
+        }
+      ]
+    },
+    "src/pso/ui/window/TWindowSubStatusDisp_8027FD88.cpp": {
+      "replay_blob": "100644:0f4b070fc3efbfc8447c1e0890eeb4268e01eabc",
+      "historical_blob": "100644:8a4c4fa720a08087effe74dcd0c69dd23dcf18ef",
+      "identifier_correspondence": [
+        {
+          "kept": "client_index",
+          "skipped": "m_20",
+          "occurrences": 10
+        },
+        {
+          "kept": "open_tick",
+          "skipped": "m_5c",
+          "occurrences": 3
+        },
+        {
+          "kept": "window_flags",
+          "skipped": "m_2c",
+          "occurrences": 1
+        }
+      ]
+    },
+    "src/pso/unk/TLobby_800FA388.cpp": {
+      "replay_blob": "100644:6941ee159b3c404b042d44bcef26ce9193503fc9",
+      "historical_blob": "100644:4990c31d661458f1ddcac6b7fc6c455fb382c8d3",
+      "identifier_correspondence": [
+        {
+          "kept": "ADXF_GetFsizeSct",
+          "skipped": "adxf_get_fsize_sct",
+          "occurrences": 1
+        }
+      ]
+    },
+    "src/pso/unk/text_80278460.cpp": {
+      "replay_blob": "100644:c64750efc29f35a267f66795866c0216b6c36119",
+      "historical_blob": "100644:521783855bdb40cad91bd440fa3fadb188ca173c",
+      "identifier_correspondence": [
+        {
+          "kept": "client_index",
+          "skipped": "m_20",
+          "occurrences": 1
+        }
+      ]
+    },
+    "src/pso/unk/text_80320358.cpp": {
+      "replay_blob": "100644:d01a0aede6893a9d72cb099db087258d9b5dd2dd",
+      "historical_blob": "100644:1102ffedaaa88379215e91526b064ff04050023c",
+      "identifier_correspondence": [
+        {
+          "kept": "destroy_rel_module",
+          "skipped": "fn_80320358",
+          "occurrences": 1
+        },
+        {
+          "kept": "get_rel_module_image",
+          "skipped": "fn_803204B0",
+          "occurrences": 3
+        }
+      ]
+    },
+    "src/pso/weapon/TUnk_804A5D28.cpp": {
+      "replay_blob": "100644:5a9ca272991c46300456b14bd4b18760e68c9ee4",
+      "historical_blob": "100644:5422f63aee7fb79b6feb777a72c68c3b1f093d0a",
+      "identifier_correspondence": [
+        {
+          "kept": "barrel_offset",
+          "skipped": "pad_1f8",
+          "occurrences": 6
+        }
+      ]
+    }
+  }
+}

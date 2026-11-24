@@ -1,0 +1,722 @@
+{
+  "source": "fb452dd84280eb4ba6056464cee03889fb1f2577",
+  "previous_source": "2ba14c9b1013a6dcbc80036d94c437ce2f370479",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/system/BmlResource.h",
+    "include/pso/system/GbaDownloadRuntime.h",
+    "include/pso/system/ResourceFile.h",
+    "include/pso/system/TLanguage.h",
+    "include/pso/system/TLanguage_801E4874.h",
+    "include/pso/unk/TLobby.h",
+    "include/pso/unk/TLobby_8001EF5C.h",
+    "include/pso/unk/TLobby_800FA2A0.h",
+    "include/pso/unk/TLobby_800FA848.h",
+    "include/pso/unk/text_800FA464.h",
+    "src/pso/boss/dragon/TObjBoss1Crater.cpp",
+    "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+    "src/pso/boss/galgryphon/TBoss5GryphonLightningEff.cpp",
+    "src/pso/boss/goldragon/TBoss8DragonEffTail.cpp",
+    "src/pso/boss/olgaflow/TBoss6Rock.cpp",
+    "src/pso/boss/olgaflow/TBoss6Tube.cpp",
+    "src/pso/effect/TBGLightningCtrl.cpp",
+    "src/pso/effect/particle/TParticleCtrl_800874F4.cpp",
+    "src/pso/enemy/darkgunner/DarkGunner.cpp",
+    "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+    "src/pso/enemy/lappy/TObjEneLappy.cpp",
+    "src/pso/npc/TNpcPlayer_80190E64.cpp",
+    "src/pso/npc/TObjNpcAHM01.cpp",
+    "src/pso/npc/TObjNpcARM00.cpp",
+    "src/pso/npc/TObjNpcARW00.cpp",
+    "src/pso/npc/TObjNpcHFW00.cpp",
+    "src/pso/npc/TObjNpcHFW01.cpp",
+    "src/pso/npc/TObjNpcHHM00.cpp",
+    "src/pso/npc/TObjNpcHRM00.cpp",
+    "src/pso/npc/TObjNpcHRM01.cpp",
+    "src/pso/npc/TObjNpcNFM00.cpp",
+    "src/pso/npc/TObjNpcNFM01.cpp",
+    "src/pso/npc/TObjNpcNFW00.cpp",
+    "src/pso/npc/TObjNpcNFW01.cpp",
+    "src/pso/npc/TObjNpcNHW00.cpp",
+    "src/pso/npc/TObjNpcNHW01.cpp",
+    "src/pso/object/TMotorcycle.cpp",
+    "src/pso/object/TObjComputer.cpp",
+    "src/pso/object/TObjTank.cpp",
+    "src/pso/object/cave/TOHangceilingCave01.cpp",
+    "src/pso/object/city/CityDoors.cpp",
+    "src/pso/object/container/TOContainerAncientEnemy.cpp",
+    "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp",
+    "src/pso/object/container/TObjContainerItem.cpp",
+    "src/pso/object/door/TODoorAncient01.cpp",
+    "src/pso/object/door/TODoorAncient03.cpp",
+    "src/pso/object/door/TODoorAncient04.cpp",
+    "src/pso/object/door/TODoorAncient05.cpp",
+    "src/pso/object/door/TODoorAncient06.cpp",
+    "src/pso/object/door/TODoorAncient07.cpp",
+    "src/pso/object/door/TODoorAncient08.cpp",
+    "src/pso/object/door/TODoorAncient09.cpp",
+    "src/pso/object/door/TODoorCave01.cpp",
+    "src/pso/object/door/TODoorCave02.cpp",
+    "src/pso/object/door/TODoorJungleMain.cpp",
+    "src/pso/object/door/TODoorLabo.cpp",
+    "src/pso/object/door/TODoorMachine01.cpp",
+    "src/pso/object/door/TODoorMachine02.cpp",
+    "src/pso/object/door/TODoorVS2Door01.cpp",
+    "src/pso/object/door/TObjDoorKey.cpp",
+    "src/pso/object/door/TObjDoor_8018E358.cpp",
+    "src/pso/object/fence/TLazerFenceSw.cpp",
+    "src/pso/object/fence/TOBarrierEnergy01.cpp",
+    "src/pso/object/fence/TOFenceAncient01.cpp",
+    "src/pso/object/fence/TOFenceAncient02.cpp",
+    "src/pso/object/fence/TOFenceAncient03.cpp",
+    "src/pso/object/fence/TOFenceAncient04.cpp",
+    "src/pso/object/fence/TObjLazerFenceNorm.cpp",
+    "src/pso/object/jungle/TOGrassJungle.cpp",
+    "src/pso/object/jungle/TORockJungleL01.cpp",
+    "src/pso/object/key/TOKeyAncient01.cpp",
+    "src/pso/object/key/TOKeyAncient02.cpp",
+    "src/pso/object/key/TOKeyAncient03.cpp",
+    "src/pso/object/key/TOKeyCave01.cpp",
+    "src/pso/object/key/TOKeyGenericSw.cpp",
+    "src/pso/object/key/TOKeyMachine01.cpp",
+    "src/pso/object/lobby/LobbyGoGoBall.cpp",
+    "src/pso/object/lobby/LobbyPigeonPath.cpp",
+    "src/pso/object/seabed/TObjSeabedSuisoBrakable.cpp",
+    "src/pso/object/switch/TOSensorAncient01.cpp",
+    "src/pso/object/switch/TOSensorGeneral01.cpp",
+    "src/pso/object/trap/TOTrapSeabed01.cpp",
+    "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+    "src/pso/object/warp/TObjMapWarpAncient.cpp",
+    "src/pso/player/TObjPlayer_803DA204.cpp",
+    "src/pso/player/TPlayerFootStamp.cpp",
+    "src/pso/quest/QuestOpcodeHandlers.cpp",
+    "src/pso/render/BlobShadow.cpp",
+    "src/pso/system/GbaDownloadRuntime.cpp",
+    "src/pso/system/SwitcherLaunch.cpp",
+    "src/pso/system/TLanguage_80132A5C.cpp",
+    "src/pso/system/scene/TSceneSora.cpp",
+    "src/pso/technique/TTecCtrl.cpp",
+    "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C650.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+    "src/pso/ui/hud/TRaderMapCore.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp",
+    "src/pso/unk/TLobbyEventTheme.cpp",
+    "src/pso/unk/TLobby_8001EF5C.cpp",
+    "src/pso/unk/TLobby_800FA044.cpp",
+    "src/pso/unk/TLobby_800FA0A4.cpp",
+    "src/pso/unk/TLobby_800FA12C.cpp",
+    "src/pso/unk/TLobby_800FA164.cpp",
+    "src/pso/unk/TLobby_800FA2A0.cpp",
+    "src/pso/unk/TLobby_800FA388.cpp",
+    "src/pso/unk/TLobby_800FA73C.cpp",
+    "src/pso/unk/TLobby_800FA774.cpp",
+    "src/pso/unk/TLobby_800FA848.cpp",
+    "src/pso/unk/TLobby_801E43E4.cpp",
+    "src/pso/unk/TLobby_803382E4.cpp",
+    "src/pso/unk/text_80066F10.cpp",
+    "src/pso/unk/text_800F9FD0.cpp",
+    "src/pso/unk/text_800FA260.cpp",
+    "src/pso/unk/text_800FA464.cpp",
+    "src/pso/unk/text_800FA7E0.cpp",
+    "src/pso/unk/text_8028A820.cpp",
+    "src/pso/unk/text_802D1C84.cpp"
+  ],
+  "combined_paths_from_upstream": 1123,
+  "replay_preview": {
+    "base": "3f8b2039e1",
+    "donor": "f764ab538a",
+    "live": "2ba14c9b1013a6dcbc80036d94c437ce2f370479",
+    "paths": {
+      "config/GPOE8P/psov3/symbols.txt": "conflict",
+      "include/pso/player/TObjPlayer.h": "already mapped",
+      "include/pso/render/GinjaTextureInput.h": "same blob",
+      "include/pso/system/BmlResource.h": "clean",
+      "include/pso/system/GbaDownloadRuntime.h": "conflict",
+      "include/pso/system/ResourceFile.h": "clean",
+      "include/pso/system/TLanguage.h": "clean",
+      "include/pso/system/TLanguage_801E4874.h": "clean",
+      "include/pso/ui/charcreate/TChCrLoadGmNjReq.h": "already mapped",
+      "include/pso/unk/TLobby.h": "conflict",
+      "include/pso/unk/TLobby_8001EF5C.h": "conflict",
+      "include/pso/unk/TLobby_800FA2A0.h": "clean",
+      "include/pso/unk/TLobby_800FA848.h": "clean",
+      "include/pso/unk/text_800FA464.h": "conflict",
+      "src/pso/boss/dragon/TObjBoss1Crater.cpp": "conflict",
+      "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp": "conflict",
+      "src/pso/boss/galgryphon/TBoss5GryphonLightningEff.cpp": "conflict",
+      "src/pso/boss/goldragon/TBoss8DragonEffTail.cpp": "conflict",
+      "src/pso/boss/olgaflow/TBoss6Rock.cpp": "clean",
+      "src/pso/boss/olgaflow/TBoss6Tube.cpp": "conflict",
+      "src/pso/effect/TBGLightningCtrl.cpp": "conflict",
+      "src/pso/effect/TEffIndirectCtrl.cpp": "conflict",
+      "src/pso/effect/particle/TParticleCtrl_800874F4.cpp": "conflict",
+      "src/pso/enemy/darkgunner/DarkGunner.cpp": "clean",
+      "src/pso/enemy/dubchik/TObjEneDubchik.cpp": "conflict",
+      "src/pso/enemy/flower/TObjEneRe2Flower_800C4B78.cpp": "already mapped",
+      "src/pso/enemy/lappy/TObjEneLappy.cpp": "conflict",
+      "src/pso/npc/TObjNpcAHM01.cpp": "clean",
+      "src/pso/npc/TObjNpcARM00.cpp": "clean",
+      "src/pso/npc/TObjNpcARW00.cpp": "clean",
+      "src/pso/npc/TObjNpcHFW00.cpp": "conflict",
+      "src/pso/npc/TObjNpcHFW01.cpp": "conflict",
+      "src/pso/npc/TObjNpcHHM00.cpp": "clean",
+      "src/pso/npc/TObjNpcHRM00.cpp": "clean",
+      "src/pso/npc/TObjNpcHRM01.cpp": "clean",
+      "src/pso/npc/TObjNpcNFM00.cpp": "conflict",
+      "src/pso/npc/TObjNpcNFM01.cpp": "conflict",
+      "src/pso/npc/TObjNpcNFW00.cpp": "conflict",
+      "src/pso/npc/TObjNpcNFW01.cpp": "conflict",
+      "src/pso/npc/TObjNpcNHW00.cpp": "clean",
+      "src/pso/npc/TObjNpcNHW01.cpp": "clean",
+      "src/pso/object/TMotorcycle.cpp": "clean",
+      "src/pso/object/TObjComputer.cpp": "conflict",
+      "src/pso/object/TObjSinBoard.cpp": "conflict",
+      "src/pso/object/TObjTank.cpp": "clean",
+      "src/pso/object/cave/TOHangceilingCave01.cpp": "clean",
+      "src/pso/object/city/CityDoors.cpp": "conflict",
+      "src/pso/object/container/TOContainerAncientEnemy.cpp": "clean",
+      "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp": "conflict",
+      "src/pso/object/container/TObjContainerItem.cpp": "clean",
+      "src/pso/object/door/TODoorAncient01.cpp": "clean",
+      "src/pso/object/door/TODoorAncient03.cpp": "clean",
+      "src/pso/object/door/TODoorAncient04.cpp": "clean",
+      "src/pso/object/door/TODoorAncient05.cpp": "clean",
+      "src/pso/object/door/TODoorAncient06.cpp": "clean",
+      "src/pso/object/door/TODoorAncient07.cpp": "clean",
+      "src/pso/object/door/TODoorAncient08.cpp": "clean",
+      "src/pso/object/door/TODoorAncient09.cpp": "clean",
+      "src/pso/object/door/TODoorCave01.cpp": "clean",
+      "src/pso/object/door/TODoorCave02.cpp": "clean",
+      "src/pso/object/door/TODoorJungleMain.cpp": "conflict",
+      "src/pso/object/door/TODoorLabo.cpp": "conflict",
+      "src/pso/object/door/TODoorMachine01.cpp": "clean",
+      "src/pso/object/door/TODoorMachine02.cpp": "clean",
+      "src/pso/object/door/TODoorVS2Door01.cpp": "clean",
+      "src/pso/object/door/TObjDoorKey.cpp": "conflict",
+      "src/pso/object/door/TObjDoor_8018E358.cpp": "conflict",
+      "src/pso/object/fence/TLazerFenceSw.cpp": "conflict",
+      "src/pso/object/fence/TOBarrierEnergy01.cpp": "clean",
+      "src/pso/object/fence/TOFenceAncient01.cpp": "clean",
+      "src/pso/object/fence/TOFenceAncient02.cpp": "clean",
+      "src/pso/object/fence/TOFenceAncient03.cpp": "clean",
+      "src/pso/object/fence/TOFenceAncient04.cpp": "clean",
+      "src/pso/object/fence/TObjLazerFenceNorm.cpp": "conflict",
+      "src/pso/object/jungle/TOGrassJungle.cpp": "clean",
+      "src/pso/object/jungle/TORockJungleL01.cpp": "clean",
+      "src/pso/object/key/TOKeyAncient01.cpp": "clean",
+      "src/pso/object/key/TOKeyAncient02.cpp": "clean",
+      "src/pso/object/key/TOKeyAncient03.cpp": "clean",
+      "src/pso/object/key/TOKeyCave01.cpp": "clean",
+      "src/pso/object/key/TOKeyGenericSw.cpp": "clean",
+      "src/pso/object/key/TOKeyMachine01.cpp": "clean",
+      "src/pso/object/lobby/LobbyGoGoBall.cpp": "clean",
+      "src/pso/object/lobby/LobbyPigeonPath.cpp": "conflict",
+      "src/pso/object/seabed/TObjSeabedSuisoBrakable.cpp": "clean",
+      "src/pso/object/switch/TOSensorAncient01.cpp": "clean",
+      "src/pso/object/switch/TOSensorGeneral01.cpp": "clean",
+      "src/pso/object/trap/TOTrapSeabed01.cpp": "clean",
+      "src/pso/object/warp/TObjAreaWarpEndingJung.cpp": "clean",
+      "src/pso/object/warp/TObjMapWarpAncient.cpp": "clean",
+      "src/pso/player/TObjPlayer_80083594.cpp": "already mapped",
+      "src/pso/player/TObjPlayer_8029F694.cpp": "conflict",
+      "src/pso/player/TObjPlayer_803DA204.cpp": "clean",
+      "src/pso/player/TPlayerFootStamp.cpp": "conflict",
+      "src/pso/quest/QuestOpcodeHandlers.cpp": "conflict",
+      "src/pso/render/BlobShadow.cpp": "clean",
+      "src/pso/system/GbaDownloadRuntime.cpp": "clean",
+      "src/pso/system/SwitcherLaunch.cpp": "clean",
+      "src/pso/system/TLanguage_80132A5C.cpp": "clean",
+      "src/pso/system/scene/TSceneSora.cpp": "conflict",
+      "src/pso/technique/TTecCtrl.cpp": "conflict",
+      "src/pso/ui/charcreate/TChCrLoadAfs.cpp": "already mapped",
+      "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp": "conflict",
+      "src/pso/ui/charcreate/TChCrLoadGmNjReq.cpp": "same blob",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80145778.cpp": "already mapped",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801E4CF0.cpp": "same blob",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C650.cpp": "conflict",
+      "src/pso/ui/hud/TRaderMapCore.cpp": "conflict",
+      "src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp": "conflict",
+      "src/pso/unk/TLobbyEventTheme.cpp": "clean",
+      "src/pso/unk/TLobby_8001EF5C.cpp": "conflict",
+      "src/pso/unk/TLobby_800FA044.cpp": "clean",
+      "src/pso/unk/TLobby_800FA0A4.cpp": "clean",
+      "src/pso/unk/TLobby_800FA12C.cpp": "clean",
+      "src/pso/unk/TLobby_800FA164.cpp": "conflict",
+      "src/pso/unk/TLobby_800FA2A0.cpp": "conflict",
+      "src/pso/unk/TLobby_800FA388.cpp": "conflict",
+      "src/pso/unk/TLobby_800FA73C.cpp": "conflict",
+      "src/pso/unk/TLobby_800FA774.cpp": "clean",
+      "src/pso/unk/TLobby_800FA848.cpp": "clean",
+      "src/pso/unk/TLobby_801E43E4.cpp": "clean",
+      "src/pso/unk/TLobby_803382E4.cpp": "conflict",
+      "src/pso/unk/text_80066F10.cpp": "clean",
+      "src/pso/unk/text_800F9FD0.cpp": "clean",
+      "src/pso/unk/text_800FA260.cpp": "clean",
+      "src/pso/unk/text_800FA464.cpp": "conflict",
+      "src/pso/unk/text_800FA7E0.cpp": "clean",
+      "src/pso/unk/text_8028A820.cpp": "clean",
+      "src/pso/unk/text_802D1C84.cpp": "conflict"
+    }
+  },
+  "additional_typed_read_callers": [
+    "src/pso/npc/TNpcPlayer_80190E64.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp"
+  ],
+  "validation": {
+    "source": {
+      "baseline": "2ba14c9b1013a6dcbc80036d94c437ce2f370479",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8001F018",
+          "before": "load_texture_sub__11BmlResourceFPvl",
+          "after": "load_texture_sub__11BmlResourceFPCcl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8001F128",
+          "before": "load_bml_exec__6TLobbyFPUcPUc",
+          "after": "load_bml_exec__6TLobbyFP11BmlResourcePCc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8001F998",
+          "before": "load_bin_motion_callback__FP20BmlMotionLoadRequest",
+          "after": "load_bin_motion_callback__FPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8001FA1C",
+          "before": "load_bin_model_callback__FP19BmlModelLoadRequest",
+          "after": "load_bin_model_callback__FPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8001FCC4",
+          "before": "load_bin_motion__11BmlResourceFPvl",
+          "after": "load_bin_motion__11BmlResourceFPCcl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8001FD98",
+          "before": "load_bin_model__11BmlResourceFPvl",
+          "after": "load_bin_model__11BmlResourceFPCcl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80020004",
+          "before": "__ct__11BmlResourceFlP21BmlResourceDescriptorllPv",
+          "after": "__ct__11BmlResourceFlP21BmlResourceDescriptorPFPv_vPvPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800FA044",
+          "before": "add_named_entry__6TLobbyFll",
+          "after": "add_named_entry__6TLobbyFP11BmlResourcePCc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800FA164",
+          "before": "create_file_load_entry__6TLobbyFllUllPPv",
+          "after": "create_file_load_entry__6TLobbyFPCcP16GinjaTextureListPFPv_vPCvPPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800FA2A0",
+          "before": "create_named_entry__6TLobbyFiiUiiPv",
+          "after": "create_named_entry__6TLobbyFPCcPvPFPv_vPCvPPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800FA388",
+          "before": "request_file_read__6TLobbyFllPlPPv",
+          "after": "request_file_read__6TLobbyFPCcPvPlPPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800FA7E0",
+          "before": "pop_stack_entry__6TLobbyFs",
+          "after": "pop_stack_entry__6TLobbyFP20AsyncFileReadRequests"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800FA848",
+          "before": "link_into_list__FPv",
+          "after": "link_into_list__FP20AsyncFileReadRequest"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801E4874",
+          "before": "load_gvm_texture_file__Fl",
+          "after": "load_gvm_texture_file__FPCc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801E4A44",
+          "before": "read_file_header__9TLanguageFiPv",
+          "after": "read_file_header__9TLanguageFPUcP13GvmFileHeader"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801E4AB0",
+          "before": "read_into_buffer__9TLanguageFll",
+          "after": "read_into_buffer__9TLanguageFPvl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032C854",
+          "before": "send_data__6TLobbyFl",
+          "after": "send_data__6TLobbyFPCc"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "d2421920f36b171f949e17558c2d89868be83680827bffd91841175ba49d375b",
+      "report_sha256": "a350fdf7348800d4602d242495592332225a9df5ac6ddc56242569bfd0297d9e"
+    },
+    "layer": {
+      "baseline": "fb452dd84280eb4ba6056464cee03889fb1f2577",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "52e7b7c44c895ea98e91fe1a9ea21805885753879d1966b15b6b684ebe565d0b",
+      "report_sha256": "a350fdf7348800d4602d242495592332225a9df5ac6ddc56242569bfd0297d9e"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "51a0eff5796e16efafd416afb9248f3e0073bae36fe74f0cac8a406cf7608172"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "f51054037258b0ab853ab5e7cbfe01bda4f2df7932b114a36ab2ac2339b51be0"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "images": [
+      "retail",
+      "source",
+      "materialized fork workspace"
+    ],
+    "groups": {
+      "resources": {
+        "results": [
+          "File queue lifecycle, sector tails and both GVM buffer paths passed.",
+          "GBA filename and destination dispatch at the original size limit passed."
+        ],
+        "probe_sha256": "102f11ae2db8b1c102aa5eab8f15bf7c5cd7ccf6030f3a548fe196759f294a31",
+        "logs_sha256": {
+          "source": "c9223bf156f3e72d1f73b59d59d8dafa53d54d76a25ad93615d9e4b02a374e06",
+          "workspace": "1b01bf7b002baf4258237c2af03533ea26de0c03b4197e131d48589c3b3548be"
+        }
+      },
+      "bml": {
+        "results": [
+          "BML initialization, named requests, archive reads, completion and cancellation passed.",
+          "Texture input layout and both entry flag paths passed."
+        ],
+        "probe_sha256": "4eef472b705cb30cb49c5e100d68f31debbd7741bd1be645bf17c479cbd051ca",
+        "logs_sha256": {
+          "source": "413468fee061dba939767d88602fdf41da816327e5a5baa3c23a8cad6f9cfd97",
+          "workspace": "817c1e952f2e96a4540bbf755baddd0e2bcc71952ac044ade0b6f9213ce88d7f"
+        }
+      }
+    }
+  },
+  "original_branches": {
+    "gvm": {
+      "count": 153,
+      "source_callers": [
+        "src/pso/boss/dragon/TObjBoss1Crater.cpp",
+        "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+        "src/pso/boss/galgryphon/TBoss5GryphonLightningEff.cpp",
+        "src/pso/boss/goldragon/TBoss8DragonEffTail.cpp",
+        "src/pso/boss/olgaflow/TBoss6Rock.cpp",
+        "src/pso/boss/olgaflow/TBoss6Tube.cpp",
+        "src/pso/effect/TBGLightningCtrl.cpp",
+        "src/pso/effect/particle/TParticleCtrl_800874F4.cpp",
+        "src/pso/enemy/darkgunner/DarkGunner.cpp",
+        "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+        "src/pso/enemy/lappy/TObjEneLappy.cpp",
+        "src/pso/npc/TObjNpcAHM01.cpp",
+        "src/pso/npc/TObjNpcARM00.cpp",
+        "src/pso/npc/TObjNpcARW00.cpp",
+        "src/pso/npc/TObjNpcHFW00.cpp",
+        "src/pso/npc/TObjNpcHFW01.cpp",
+        "src/pso/npc/TObjNpcHHM00.cpp",
+        "src/pso/npc/TObjNpcHRM00.cpp",
+        "src/pso/npc/TObjNpcHRM01.cpp",
+        "src/pso/npc/TObjNpcNFM00.cpp",
+        "src/pso/npc/TObjNpcNFM01.cpp",
+        "src/pso/npc/TObjNpcNFW00.cpp",
+        "src/pso/npc/TObjNpcNFW01.cpp",
+        "src/pso/npc/TObjNpcNHW00.cpp",
+        "src/pso/npc/TObjNpcNHW01.cpp",
+        "src/pso/object/TMotorcycle.cpp",
+        "src/pso/object/TObjComputer.cpp",
+        "src/pso/object/TObjTank.cpp",
+        "src/pso/object/cave/TOHangceilingCave01.cpp",
+        "src/pso/object/city/CityDoors.cpp",
+        "src/pso/object/container/TOContainerAncientEnemy.cpp",
+        "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp",
+        "src/pso/object/container/TObjContainerItem.cpp",
+        "src/pso/object/door/TODoorAncient01.cpp",
+        "src/pso/object/door/TODoorAncient03.cpp",
+        "src/pso/object/door/TODoorAncient04.cpp",
+        "src/pso/object/door/TODoorAncient05.cpp",
+        "src/pso/object/door/TODoorAncient06.cpp",
+        "src/pso/object/door/TODoorAncient07.cpp",
+        "src/pso/object/door/TODoorAncient08.cpp",
+        "src/pso/object/door/TODoorAncient09.cpp",
+        "src/pso/object/door/TODoorCave01.cpp",
+        "src/pso/object/door/TODoorCave02.cpp",
+        "src/pso/object/door/TODoorJungleMain.cpp",
+        "src/pso/object/door/TODoorLabo.cpp",
+        "src/pso/object/door/TODoorMachine01.cpp",
+        "src/pso/object/door/TODoorMachine02.cpp",
+        "src/pso/object/door/TODoorVS2Door01.cpp",
+        "src/pso/object/door/TObjDoorKey.cpp",
+        "src/pso/object/door/TObjDoor_8018E358.cpp",
+        "src/pso/object/fence/TLazerFenceSw.cpp",
+        "src/pso/object/fence/TOBarrierEnergy01.cpp",
+        "src/pso/object/fence/TOFenceAncient01.cpp",
+        "src/pso/object/fence/TOFenceAncient02.cpp",
+        "src/pso/object/fence/TOFenceAncient03.cpp",
+        "src/pso/object/fence/TOFenceAncient04.cpp",
+        "src/pso/object/fence/TObjLazerFenceNorm.cpp",
+        "src/pso/object/jungle/TOGrassJungle.cpp",
+        "src/pso/object/jungle/TORockJungleL01.cpp",
+        "src/pso/object/key/TOKeyAncient01.cpp",
+        "src/pso/object/key/TOKeyAncient02.cpp",
+        "src/pso/object/key/TOKeyAncient03.cpp",
+        "src/pso/object/key/TOKeyCave01.cpp",
+        "src/pso/object/key/TOKeyGenericSw.cpp",
+        "src/pso/object/key/TOKeyMachine01.cpp",
+        "src/pso/object/lobby/LobbyGoGoBall.cpp",
+        "src/pso/object/lobby/LobbyPigeonPath.cpp",
+        "src/pso/object/seabed/TObjSeabedSuisoBrakable.cpp",
+        "src/pso/object/switch/TOSensorAncient01.cpp",
+        "src/pso/object/switch/TOSensorGeneral01.cpp",
+        "src/pso/object/trap/TOTrapSeabed01.cpp",
+        "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+        "src/pso/object/warp/TObjMapWarpAncient.cpp",
+        "src/pso/player/TPlayerFootStamp.cpp",
+        "src/pso/render/BlobShadow.cpp",
+        "src/pso/system/TLanguage_80132A5C.cpp",
+        "src/pso/technique/TTecCtrl.cpp",
+        "src/pso/ui/hud/TRaderMapCore.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp",
+        "src/pso/unk/TLobbyEventTheme.cpp",
+        "src/pso/unk/TLobby_803382E4.cpp",
+        "src/pso/unk/text_80066F10.cpp",
+        "src/pso/unk/text_8028A820.cpp"
+      ],
+      "address_report_sha256": "86754387894ee9f4933b410febe68ced51fcb9b3aec0a7fd1f9aef8836021fc2"
+    },
+    "bml_and_texture_inputs": {
+      "counts": {
+        "0x80020004": 267,
+        "0x8002058c": 3,
+        "0x803da204": 10,
+        "0x803da218": 10
+      },
+      "address_report_sha256": "e4b37eea853d3d98fec5ed66341d3a67f5da929faa3ea75f62027ddf18f62baf"
+    }
+  },
+  "historical": {
+    "closed_rows": [
+      {
+        "row": 4220,
+        "fork_path": "include/pso/TPlayerFootStamp.h",
+        "owner": "src/pso/player/TPlayerFootStamp.cpp",
+        "header": "include/pso/player/TPlayerFootStamp.h",
+        "detail": "The native constructor and class-name member are present. The retail compiler verifies both class sizes and all seven original field offsets. The implementation links and matches exactly.",
+        "fork_delta_sha256": "0193b5082287f2a928c104b06288f33e89be65ee48108407bce3a2461e4a6f98",
+        "header_blob": "f7a9b39a6ca1c81c489bcfaf49fd60b02b469d30",
+        "layout": {
+          "vertex_bytes": 24,
+          "task_bytes": 196,
+          "offsets": {
+            "verts": 28,
+            "position": 124,
+            "corners": 136,
+            "color": 184,
+            "side": 188,
+            "texture": 190,
+            "timer": 192
+          },
+          "probe_sha256": "7beccd3adb96dce18f207ffa2594c905e03c1724a08438b3b356a876db097670",
+          "compiler_log_sha256": "eb10fabb45887efd2ac773addf4693e87dfadcd4e601ef08fb89be647641c16b"
+        }
+      }
+    ],
+    "scoped_rows": [
+      {
+        "row": 948,
+        "fork_path": "src/pso/enemy/TObjEneLappy.cpp",
+        "owner": "src/pso/enemy/lappy/TObjEneLappy.cpp",
+        "owner_blob": "3f2cb03044ad1a67d7c903fe9c0586f91c295f06",
+        "evidence": "The matching asset replay verifies the source-linked resource calls in this unit. The complete historical comparison remains open."
+      },
+      {
+        "row": 992,
+        "fork_path": "src/pso/boss/Boss5GryphonBehavior.cpp",
+        "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+        "owner_blob": "c60d432e43d59a920bdec55e89fcd65d16bde4f8",
+        "evidence": "The matching asset replay verifies the source-linked resource calls in this unit. The complete historical comparison remains open."
+      },
+      {
+        "row": 1053,
+        "fork_path": "src/pso/enemy/DarkGunner.cpp",
+        "owner": "src/pso/enemy/darkgunner/DarkGunner.cpp",
+        "owner_blob": "8c40fe514c79f6e2067dd103f41679efd3eae1bd",
+        "evidence": "The matching asset replay verifies the source-linked resource calls in this unit. The complete historical comparison remains open."
+      },
+      {
+        "row": 1143,
+        "fork_path": "src/pso/enemy/TObjEneDubchik.cpp",
+        "owner": "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+        "owner_blob": "f0210e6a726b17584e9d006578586f100fd5df38",
+        "evidence": "The matching asset replay verifies the source-linked resource calls in this unit. The complete historical comparison remains open."
+      },
+      {
+        "row": 2577,
+        "fork_path": "src/pso/ui/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+        "owner": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+        "owner_blob": "120c926e12d7e4f8a851fd31dde3432f4d087c75",
+        "evidence": "The matching asset replay verifies the source-linked resource calls in this unit. The complete historical comparison remains open."
+      },
+      {
+        "row": 2602,
+        "fork_path": "src/pso/misc/TRaderMapCore.cpp",
+        "owner": "src/pso/ui/hud/TRaderMapCore.cpp",
+        "owner_blob": "7100543568ed33b74222ea922dca53ca076d13f5",
+        "evidence": "The matching asset replay verifies the source-linked resource calls in this unit. The complete historical comparison remains open."
+      },
+      {
+        "row": 4398,
+        "fork_path": "src/pso/misc/TTecCtrl.cpp",
+        "owner": "src/pso/technique/TTecCtrl.cpp",
+        "owner_blob": "302a8742b01f174155aebbac5a0eec06dbab0ecc",
+        "evidence": "The matching asset replay verifies the source-linked resource calls in this unit. The complete historical comparison remains open."
+      },
+      {
+        "row": 4409,
+        "fork_path": "src/pso/misc/TPlayerFootStamp.cpp",
+        "owner": "src/pso/player/TPlayerFootStamp.cpp",
+        "owner_blob": "6c5ee0ec43fd82aceda0ef4a18d2daf43834fb3b",
+        "evidence": "The matching asset replay verifies the source-linked resource calls in this unit. The complete historical comparison remains open."
+      },
+      {
+        "row": 5087,
+        "fork_path": "src/pso/misc/TLobby_803382E4.cpp",
+        "owner": "src/pso/unk/TLobby_803382E4.cpp",
+        "owner_blob": "a023a28a7194047bc511a763652bf1d010b6eefc",
+        "evidence": "The asset replay verifies the shared GVM load and projected-vertex call. The sprite descriptor storage still needs its historical source comparison."
+      },
+      {
+        "row": 6421,
+        "fork_path": "src/pso/misc/TOContainerAncientEnemy.cpp",
+        "owner": "src/pso/object/container/TOContainerAncientEnemy.cpp",
+        "owner_blob": "267e375cf7b17f2e83015ce8497d9b3db0fd7e3a",
+        "evidence": "The matching asset replay verifies the source-linked resource calls in this unit. The complete historical comparison remains open."
+      },
+      {
+        "row": 6452,
+        "fork_path": "src/pso/misc/TOTrapSeabed01.cpp",
+        "owner": "src/pso/object/trap/TOTrapSeabed01.cpp",
+        "owner_blob": "f9aeab6af08c6bbfbfedd929047448f9cff64867",
+        "evidence": "The matching asset replay verifies the source-linked resource calls in this unit. The complete historical comparison remains open."
+      },
+      {
+        "row": 6722,
+        "fork_path": "src/pso/object/TObjComputer.cpp",
+        "owner": "src/pso/object/TObjComputer.cpp",
+        "owner_blob": "74c27e830f7a83f42873fbaa6f38ab24b0d20cb1",
+        "evidence": "The matching asset replay verifies the source-linked resource calls in this unit. The complete historical comparison remains open."
+      },
+      {
+        "row": 6742,
+        "fork_path": "src/pso/quest/QuestOpcodeHandlers.cpp",
+        "owner": "src/pso/quest/QuestOpcodeHandlers.cpp",
+        "owner_blob": "9cea520771eb93c6676e7da6da3ee70177dc0877",
+        "evidence": "The matching asset replay verifies the source-linked resource calls in this unit. The complete historical comparison remains open."
+      },
+      {
+        "row": 6841,
+        "fork_path": "src/pso/item/TObjContainerItem.cpp",
+        "owner": "src/pso/object/container/TObjContainerItem.cpp",
+        "owner_blob": "abacb667802f0fd9af9fee46529a6e4880a5efd8",
+        "evidence": "The matching asset replay verifies the source-linked resource calls in this unit. The complete historical comparison remains open."
+      },
+      {
+        "row": 7030,
+        "fork_path": "src/pso/object/LobbyPigeonPath.cpp",
+        "owner": "src/pso/object/lobby/LobbyPigeonPath.cpp",
+        "owner_blob": "a983902b70b1260c1cd76dc125a3f7d24be67c1d",
+        "evidence": "The matching asset replay verifies the source-linked resource calls in this unit. The complete historical comparison remains open."
+      },
+      {
+        "row": 7071,
+        "fork_path": "src/pso/object/TObjAreaWarpEndingJung.cpp",
+        "owner": "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+        "owner_blob": "b403033b779d14a20fa3efea03df79a08f0fa894",
+        "evidence": "The matching asset replay verifies the source-linked resource calls in this unit. The complete historical comparison remains open."
+      }
+    ],
+    "open_rows": 352
+  },
+  "fork_workspace": {
+    "trial": "6bf3b07b22eb2fe21f213c0e1ffd2bab94ca2082",
+    "overlay_paths": 130,
+    "updated_overlay_paths": [
+      "config/GPOE8P/psov3/config.yml"
+    ],
+    "archive_sha256": "01929041ff7fd42153be631b4397bbd8bdbdae03deb03610ea20e57ec2a7a63b",
+    "materialized_tree": "8bbbf6f78d4614a4ed24dc8774b8faaff350e856",
+    "force_active": 27027
+  }
+}

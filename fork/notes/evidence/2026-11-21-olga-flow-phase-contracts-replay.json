@@ -1,0 +1,264 @@
+{
+  "source": "3d651c8b70002b03f02ed8c0bddad537c8bf7480",
+  "previous_source": "3370bff81a4b79e4da35c13139445151d1771420",
+  "upstream": "5a4e7ced56fe7072359b6d279e94f4be3b8453c0",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "source_paths": 1181,
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/boss/olgaflow/OlgaFlowActions.h",
+    "include/pso/boss/olgaflow/TBoss6Type1.h",
+    "include/pso/object/base/TObjChara.h",
+    "include/pso/player/TObjPlayer_80011014.h",
+    "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp",
+    "src/pso/boss/darkfalz/TBoss4DarkFalz_8004D8C8.cpp",
+    "src/pso/boss/olgaflow/TBoss6PlotFalz_802B0228.cpp",
+    "src/pso/boss/olgaflow/TBoss6Rock.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type1_802B20C0.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+    "src/pso/object/TObjControl.cpp",
+    "src/pso/player/TObjPlayer_80011014.cpp",
+    "src/pso/player/TObjPlayer_802C422C.cpp"
+  ],
+  "author": {
+    "name": "matthewlewisnewton",
+    "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+    "coauthor_trailers": 0
+  },
+  "layouts": {
+    "phase_one_action_row_bytes": 48,
+    "phase_one_action_count": 41,
+    "phase_one_table": "0x804DED14",
+    "phase_one_table_startup": "0x802B3C3C",
+    "plot_rows": 9,
+    "plot_table": "0x804DE66C",
+    "credit_slots_offset": 252,
+    "credit_slots": 4,
+    "credit_slot_bytes": 2,
+    "phase_one_motion_bytes": 28,
+    "phase_one_motions_offset": 1092,
+    "phase_one_polar_arg_bytes": 3,
+    "arena_rock_kinds": 2
+  },
+  "table_history": {
+    "TBoss6PlotFalz__data_804DE66C": {
+      "rows": 9,
+      "fork_path": "src/pso/boss/TBoss6PlotFalz_802B0228.cpp",
+      "current_path": "src/pso/boss/olgaflow/TBoss6PlotFalz_802B0228.cpp",
+      "identity_matches": 9,
+      "mismatches": [],
+      "fork_blob": "79ed3ed246e7fd39552924b17593ff0d5b0fcdae",
+      "current_blob": "8dde0f5e685d24024a7a6760d6f3e9926d17ebec"
+    },
+    "boss6_type1_action_table": {
+      "rows": 41,
+      "fork_path": "src/pso/boss/TBoss6Type1_802B20C0.cpp",
+      "current_path": "src/pso/boss/olgaflow/TBoss6Type1_802B20C0.cpp",
+      "identity_matches": 41,
+      "mismatches": [],
+      "fork_blob": "64219f76492efede21345e934d3c1ddea61b4b51",
+      "current_blob": "4c206c456be72ed8ff4ac3b014ee8af59b0a73fd"
+    }
+  },
+  "historical_comparison": {
+    "prior_open_rows": 457,
+    "open_rows": 454,
+    "closed_rows": [
+      {
+        "row": 520,
+        "description": "All nine plot rows retain their names and linked callbacks. The scene uses the original camera, archive, wait task and ending factories. The phase-two handoff copies both native halfwords and the four typed credit slots.",
+        "historical_path": "src/pso/boss/TBoss6PlotFalz_802B0228.cpp",
+        "current_path": "src/pso/boss/olgaflow/TBoss6PlotFalz_802B0228.cpp",
+        "fork_blob": "79ed3ed246e7fd39552924b17593ff0d5b0fcdae",
+        "current_blob": "8dde0f5e685d24024a7a6760d6f3e9926d17ebec",
+        "authored_diff_sha256": "a0e6f0c692dc6a93867c1ba88826f6f9b73c585ab2b00573936c715b7cffc940"
+      },
+      {
+        "row": 522,
+        "description": "All 41 historical action rows retain their numeric data and callback references. The consumer uses the shared native action table, and motion, signed timer and effect ownership follow the validated current code.",
+        "historical_path": "src/pso/boss/TBoss6Type1_802B20C0.cpp",
+        "current_path": "src/pso/boss/olgaflow/TBoss6Type1_802B20C0.cpp",
+        "fork_blob": "64219f76492efede21345e934d3c1ddea61b4b51",
+        "current_blob": "4c206c456be72ed8ff4ac3b014ee8af59b0a73fd",
+        "authored_diff_sha256": "5bc17c37b05de35083029df4b7fd5e93daf058ab3db8a002bbe1f573b3f8f1ed"
+      },
+      {
+        "row": 907,
+        "description": "The rock retains the original resource, four rings, point table and vector push-out. Its landing damage uses the shared battle row. The typed footprint and map object creation preserve the original dimensions for both kinds, and the renderer retains its native model and texture-list pointers.",
+        "historical_path": "src/pso/boss/TBoss6Rock.cpp",
+        "current_path": "src/pso/boss/olgaflow/TBoss6Rock.cpp",
+        "fork_blob": "ed8a07e411f83b9eb4b57ce750845c1090ed0d6b",
+        "current_blob": "2fb1f4f320c9c08630d59cde9f67c0f2ce2e2cdf",
+        "authored_diff_sha256": "41251fff0de476f8f34eb90e6e6777e536f97c150e78fe1ca9b5622cfb68b227"
+      }
+    ],
+    "partial_rows": {
+      "521": "The active phase-one consumer now uses the shared callback table, motion records, battle rows, camera vectors and three-byte action args. Other historical helpers remain under review.",
+      "738": "The checked motion record owns its copy routine. Attack selection, camera and typed action payloads now use their real types while retaining the original linkage. Other historical layout and helper edits remain open.",
+      "1076": "Phase two reads both native halfwords and all four shared credit slots to hand the encounter result to the plot task. The wider second-phase behavior remains open."
+    },
+    "same_address_names": {
+      "0x803DA798": [
+        "set_current_texture_list",
+        "set_global_param"
+      ]
+    }
+  },
+  "validation": {
+    "stock": {
+      "baseline": "3370bff81a4b79e4da35c13139445151d1771420",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x80019324",
+          "before": "obj_clearArrS16_FC__FP8ObjArrFCi",
+          "after": "obj_clearArrS16_FC__FP9TObjCharal"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802B52E0",
+          "before": "pick_random_entry__11TBoss6Type1Flll",
+          "after": "pick_random_entry__11TBoss6Type1FPCll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802B5378",
+          "before": "rand_range_inclusive__11TBoss6Type1Flii",
+          "after": "rand_range_inclusive__11TBoss6Type1Fii"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802B57D4",
+          "before": "request_jittered_camera__11TBoss6Type1FPvPvPvi",
+          "after": "request_jittered_camera__11TBoss6Type1FPC3VecPC3Veci"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802B6078",
+          "before": "set_part_default_value__11TBoss6Type1FiPv",
+          "after": "set_part_default_value__11TBoss6Type1FP3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802B85E8",
+          "before": "copy_transform__11TBoss6Type1FPv",
+          "after": "copy_transform__15Boss6PartMotionFPC15Boss6PartMotion"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802B9178",
+          "before": "send_6xA4_action__11TBoss6Type1FlPl",
+          "after": "send_6xA4_action__11TBoss6Type1FlPC15Boss6ActionArgs"
+        }
+      ],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "bf6699c4a05738eb2420ee9912ca63008d217deb008e26e33473a851994578ed",
+      "report_sha256": "afea108a6b2788badcd428ac643e3a5d8577e9d09132d73cbdd1a6e6859f51cb"
+    },
+    "workspace": {
+      "baseline": "3d651c8b70002b03f02ed8c0bddad537c8bf7480",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "afea108a6b2788badcd428ac643e3a5d8577e9d09132d73cbdd1a6e6859f51cb"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "7105c267ae0f1fdec932353cb4274375bf96972e23d8b514c6a7797ac33f7a7a"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "e62b30684456f6027fff992fd9df5e85fd1ebed72c298a3e4f386e39f0159fd7"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    },
+    "phase_runtime": {
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "checks": [
+        "High-bit and duplicate credit IDs",
+        "Split-screen credit merging and full slots",
+        "41 phase-one action rows and selected callbacks",
+        "Native motion copy, looping and blend completion",
+        "Idle gating and signed and unsigned polar packet bytes",
+        "Results and scene teardown order",
+        "Collision creation for both rock kinds and suppression of duplicate creation"
+      ],
+      "emulation": "The harness supplies selected encounter, packet, and collision providers while executing the original target routines.",
+      "log_sha256": "1cea4827bdb980bfad3a9a8fc4585f94cee7a78429bb09b5489776e58568f692",
+      "probe_sha256": "d5d8df99906ad3e128ea1b2c75ee63222625b43126b261a49cce8b645d40764c"
+    }
+  },
+  "fork_workspace": {
+    "overlay_paths": 130,
+    "overlay_patch_sha256": "deccf0c47860f8ed902f95bc8b3afca1ceea19b186a05e1b0b9cb19292a33cd2",
+    "updated_overlay_paths": [
+      "config/GPOE8P/psov3/config.yml"
+    ],
+    "force_active_names": 27033,
+    "force_active_symbol_changes": [
+      "-  - copy_transform__11TBoss6Type1FPv",
+      "+  - copy_transform__15Boss6PartMotionFPC15Boss6PartMotion",
+      "-  - obj_clearArrS16_FC__FP8ObjArrFCi",
+      "+  - obj_clearArrS16_FC__FP9TObjCharal",
+      "-  - pick_random_entry__11TBoss6Type1Flll",
+      "+  - pick_random_entry__11TBoss6Type1FPCll",
+      "-  - rand_range_inclusive__11TBoss6Type1Flii",
+      "+  - rand_range_inclusive__11TBoss6Type1Fii",
+      "-  - request_jittered_camera__11TBoss6Type1FPvPvPvi",
+      "+  - request_jittered_camera__11TBoss6Type1FPC3VecPC3Veci",
+      "-  - send_6xA4_action__11TBoss6Type1FlPl",
+      "+  - send_6xA4_action__11TBoss6Type1FlPC15Boss6ActionArgs",
+      "-  - set_part_default_value__11TBoss6Type1FiPv",
+      "+  - set_part_default_value__11TBoss6Type1FP3Vec"
+    ],
+    "archive_test_head": "46a43bfde7df8f8fd6ad0c012f514eb030a575f3",
+    "tested_materialized_tree": "eb7fdc060ef86088278731530826a7f866dfe2f8"
+  }
+}

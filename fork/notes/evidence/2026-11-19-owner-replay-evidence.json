@@ -1,0 +1,198 @@
+{
+  "source": "ff9f04376530087f40cd5be477f22c2a991f45ca",
+  "landing": "02c7592bb35128ff6f9997dad8cd68f0fec70797",
+  "upstream": "6b080e67ab66fd3fe6d82b76e27441a01457b4d2",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "source_batches": {
+    "player-combat": "dcfb22ef9690e2fa44bf923597dc2a53fb477386",
+    "enemy-panarms": "3a0b0092d3feccbfaa6a939da18fd3930640e5f0",
+    "display-keyboard": "5af9e721530dd1b29944ed73661bba76694f8547",
+    "quest-workspace": "08284edce7a96e1b7ff2528d690ddea2ad674dec"
+  },
+  "review_ports": {
+    "delivery-network-render-window": {
+      "old_full": "28c2e9303e18007f10c40b54a7b48aa90ec2683b",
+      "head": "ad2a91dacd48e3d14aed8e5821fa9b2d1bbc6549",
+      "files": 3
+    },
+    "delivery-network-world": {
+      "old_full": "1ebb4636336a0af5eb6a00d80cb53e09912cdda4",
+      "head": "2715532ccc752b57964fd0c78694ffbde251c307",
+      "files": 7
+    },
+    "delivery-network-player-spatial": {
+      "old_full": "74e7cb1163cc2f2cfdfd99d966e29c068ea27730",
+      "head": "67fca574b81fa12f0872f2f76b90cbcfb4a3d5fb",
+      "files": 13
+    }
+  },
+  "coverage_ranges": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "tooling_paths": 133,
+  "fork_layer_tests": 11,
+  "host_checks": {
+    "quest_files_syntax_check": 2,
+    "native_host_smoke_programs": 5,
+    "32_bit_extended_smoke": "not run: the machine lacks the 32-bit C/C++ linker runtime"
+  },
+  "rows_reconciled": [
+    2124,
+    3358,
+    3647,
+    4999,
+    5242,
+    7291,
+    7324,
+    7325
+  ],
+  "entries": [
+    {
+      "row": 2124,
+      "historical_path": "include/pso/TChCrTagPlGraphic.h",
+      "current_owner": "src/pso/ui/charcreate/TChCrTagPlGraphic.cpp",
+      "status": "Historical edit is formatting or comments only",
+      "detail": "Fork-point and fork source have identical non-comment tokens on each logical line (567a2f20ac, 460564a62f)."
+    },
+    {
+      "row": 4999,
+      "historical_path": "include/pso/system/NinjaUtil.h",
+      "current_owner": "src/pso/render/NinjaUtil.cpp",
+      "status": "Historical edit is formatting or comments only",
+      "detail": "Fork-point and fork source have identical non-comment tokens on each logical line (a67bac26e4, 98858a8aa0)."
+    },
+    {
+      "row": 5242,
+      "historical_path": "include/pso/object/TObject_80019A50.h",
+      "current_owner": "src/pso/system/task/TObject_80019A50.cpp",
+      "status": "Historical edit is formatting or comments only",
+      "detail": "Fork-point and fork source have identical non-comment tokens on each logical line (ee50bd0561, d895676d80)."
+    },
+    {
+      "row": 3358,
+      "historical_path": "include/pso/player/PlayerCombatConstants.h",
+      "current_owner": "include/pso/player/PlayerCombatConstants.h",
+      "status": "Complete fork declaration restored at native owner",
+      "detail": "The shared header matches the original fork blob and the provider and consumer both include it."
+    },
+    {
+      "row": 3647,
+      "historical_path": "src/pso/player/PlayerCombatConstants.cpp",
+      "current_owner": "src/pso/player/TObjPlayer_80011014Data.cpp",
+      "status": "Complete fork data retained under current linked owner",
+      "detail": "All six named constants and both end addresses are retained in the exact 48-byte source-linked pool at 0x80434090\u20130x804340C0."
+    },
+    {
+      "row": 4121,
+      "historical_path": "src/pso/player/TObjPlayer_801AF2F0.cpp",
+      "current_owner": "src/pso/player/TObjPlayer_801AF2F0.cpp",
+      "status": null,
+      "detail": "Restores the CsnHit result and native Vec slide/projection contracts at 0x801B7298, 0x801B786C, 0x801B78A8, and 0x801B7930. Other player edits remain open."
+    },
+    {
+      "row": 256,
+      "historical_path": "include/pso/misc/TWindowKeyBoardSoft.h",
+      "current_owner": "include/pso/ui/window/TWindowKeyBoardSoft.h",
+      "status": null,
+      "detail": "Restores the typed WindowDrawContext frame drawing signature at 0x80262038."
+    },
+    {
+      "row": 268,
+      "historical_path": "src/pso/misc/TKeyBoardControl.cpp",
+      "current_owner": "src/pso/ui/keyboard/TKeyBoardControl.cpp",
+      "status": null,
+      "detail": "The relocated frame and reveal helpers use WindowDrawContext and the shared TexturedQuad. Other hunks remain open."
+    },
+    {
+      "row": 465,
+      "historical_path": "include/pso/enemy/TObjEnePanarms.h",
+      "current_owner": "include/pso/enemy/panarms/TObjEnePanarms.h",
+      "status": null,
+      "detail": "Captured-position array, draw callback owner, visibility and shadow flags, and state timer with size and offset checks."
+    },
+    {
+      "row": 603,
+      "historical_path": "src/pso/enemy/TObjEnePanarms.cpp",
+      "current_owner": "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+      "status": null,
+      "detail": "Typed BARA capture and effect position, target storage, transition state at 0x800E1C98, and native movement owner at 0x800E18B0 with all five calls."
+    },
+    {
+      "row": 604,
+      "historical_path": "src/pso/enemy/TObjEnePanarms_800DCEB8.cpp",
+      "current_owner": "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+      "status": null,
+      "detail": "Typed combined-body lifecycle, shadow, render, particle and initial collision position callers."
+    },
+    {
+      "row": 675,
+      "historical_path": "include/pso/enemy/TObjEnePanBARA.h",
+      "current_owner": "include/pso/enemy/TObjEnePanBARA.h",
+      "status": null,
+      "detail": "Typed half capture, movement, effect and targeting layout, including historical class size and offsets."
+    },
+    {
+      "row": 7324,
+      "historical_path": "include/pso/misc/QuestDownloadQueryTypes.h",
+      "current_owner": "include/pso/quest/QuestDownloadWorkspace.h",
+      "status": "Complete fork query contract recovered",
+      "detail": "Shared 32-entry query result, six-byte record, and exact 0x990-byte object, with the result at 0x8C0. Query writers and build_item_list use that type."
+    },
+    {
+      "row": 7325,
+      "historical_path": "include/pso/misc/QuestDownloadScratch.h",
+      "current_owner": "include/pso/quest/QuestDownloadWorkspace.h",
+      "status": "Complete fork scratch layout recovered",
+      "detail": "Twelve-byte display prefix and aligned 0x404-byte byte storage with explicit character-code and ID object lifetimes. The four pre-existing request buffers retain addresses 8058DC48, 8058DC98, 8058DCE8 and 8058DD38. Romaji source is read-only."
+    },
+    {
+      "row": 6410,
+      "historical_path": "src/pso/misc/QuestDownloadBuffers.cpp",
+      "current_owner": "src/pso/quest/TQuestVmDownLoadServer_803E6970.cpp",
+      "status": null,
+      "detail": "Recovered shared typed declarations at 80595008, 80595998, 80596258 and 80596264. The six preceding cache objects are already in their exact current source or linked owners. This patch does not revisit their remaining declarations."
+    },
+    {
+      "row": 6480,
+      "historical_path": "src/pso/misc/TQuestVmDownLoadServer_803E5668.cpp",
+      "current_owner": "src/pso/quest/TQuestVmDownLoadServer_803E5668.cpp",
+      "status": null,
+      "detail": "Removes conflicting local slot and scratch declarations, uses typed chain member and display text, and starts the halfword scratch lifetime in 803E64C8."
+    },
+    {
+      "row": 6482,
+      "historical_path": "src/pso/misc/TQuestVmDownLoadServer_803E9A24.cpp",
+      "current_owner": "src/pso/quest/TQuestVmDownLoadServer_803E9A24.cpp",
+      "status": null,
+      "detail": "The pooled retail addressing in 803EA428 and 803EA9E8 accesses the defined 0x990-byte workspace and separate adjacent slots. The candidate item builder consumes the shared query records at 803EA384. Other local node views remain."
+    },
+    {
+      "row": 6483,
+      "historical_path": "src/pso/misc/TQuestVmDownLoadServer_803ED0CC.cpp",
+      "current_owner": "src/pso/quest/TQuestVmDownLoadServer_803EB0D8.cpp",
+      "status": null,
+      "detail": "Typed query output/entry in 803F0268, 803F03B4 and 803F06B8. Restores typed display prefix and ID scratch placement in 803EE580, while preserving native linked paths."
+    },
+    {
+      "row": 7291,
+      "historical_path": "include/pso/misc/QuestDownloadCharacter.h",
+      "current_owner": "include/pso/quest/QuestDownloadText.h",
+      "status": "Historical fork conversion declarations retained",
+      "detail": "All six historical single-code conversion signatures from 2853d7602f were already equivalent in 5c2f0eb. The patch adds the read-only romaji string conversion source from the scratch declaration."
+    }
+  ],
+  "anchored_hunk_summary": {
+    "canonical": "ff9f04376530087f40cd5be477f22c2a991f45ca",
+    "rows_with_anchored_code": 588,
+    "all_code_hunks": 11,
+    "exact_anchored_hunks": 2863
+  },
+  "pan_arms_attack_collision_rows_open": [
+    871,
+    971
+  ],
+  "remaining_full_file_owner_checks": 971,
+  "remaining_partial_file_checks": 957
+}

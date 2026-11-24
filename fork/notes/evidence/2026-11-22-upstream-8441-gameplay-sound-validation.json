@@ -1,0 +1,101 @@
+{
+  "upstream": "8441b1b4feb550bf1fc4b0a897acd19b003a0437",
+  "source": "87e6918ced826b069b902378b3264e54913fd81d",
+  "source_base": "1084e7c2bf54823e758082eed257f863f7bb8a5f",
+  "source_commits": 38,
+  "paths": [
+    "M\tconfig/GPOE8P/psov3/symbols.txt",
+    "D\tinclude/pso/boss/derolle/TObjBoss2Tunnel_8007EA74.h",
+    "A\tinclude/pso/network/protocol/GameplaySoundPacket.h",
+    "M\tinclude/pso/unk/TLobby_80227A2C.h",
+    "M\tinclude/pso/unk/TLobby_80227AA0.h",
+    "M\tsrc/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+    "M\tsrc/pso/network/TGameProtocol.cpp",
+    "M\tsrc/pso/unk/TLobby_80227AA0.cpp"
+  ],
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "coverage_losses": {
+    "regressions": 0,
+    "data_coverage_lost": 0,
+    "padding_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0
+  },
+  "linked_labels": [
+    {
+      "module": "psov3",
+      "address": "0x80227B70",
+      "before": "handle_6xB2_play_sound_from_player__FPv",
+      "after": "handle_6xB2_play_sound_from_player__FP19game_command_header"
+    }
+  ],
+  "original_data_bytes": 1147,
+  "original_data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "runtime": {
+    "source": {
+      "sha256": "3ebb2467dd90911cd1a40c938ee68c03163b482491447496ac3c1deeb41ac9ad",
+      "observations": [
+        "PsoV3.dol: 6xB2 dispatch, signed floor, wire round trip, and guarded local player playback passed",
+        "psov3.dol: 6xB2 dispatch, signed floor, wire round trip, and guarded local player playback passed"
+      ]
+    },
+    "workspace": {
+      "sha256": "3ebb2467dd90911cd1a40c938ee68c03163b482491447496ac3c1deeb41ac9ad",
+      "observations": [
+        "PsoV3.dol: 6xB2 dispatch, signed floor, wire round trip, and guarded local player playback passed",
+        "psov3.dol: 6xB2 dispatch, signed floor, wire round trip, and guarded local player playback passed"
+      ]
+    }
+  },
+  "historical_audit": {
+    "open_before": 252,
+    "open_after": 253,
+    "restored_packet_header": "include/pso/network/protocol/GameplaySoundPacket.h",
+    "confirmed_native_owners": [
+      "src/pso/enemy/dd/TObjEneDD.cpp",
+      "src/pso/boss/barbaray/TBoss7TentacleNeedle.cpp"
+    ],
+    "reopened": {
+      "path": "include/pso/enemy/MojaResourceState.h",
+      "owner": "src/pso/enemy/moja/TObjEneMoja.cpp",
+      "generic_tables": [
+        "moja_boss_stats_handles",
+        "moja_attack_params",
+        "moja_object_handles",
+        "moja_behavior_params"
+      ]
+    }
+  },
+  "fork_workspace": {
+    "parent": "87e6918ced826b069b902378b3264e54913fd81d",
+    "previous_workspace": "33c3191279afd30ce61aaeea1ba9d2ad8716384e",
+    "overlay_paths": 130,
+    "updated_linker_labels": 0,
+    "materialized_tree_before_notes_update": "d3a4f79f89f8c99d7db47ce73294b3bdb34224dd",
+    "archive_sha256": "ac0ce573813ffba1bfef079b412f2f96c65a085d5b10d987140c50de94d53575",
+    "tests": {
+      "tool": 294,
+      "fork": 11,
+      "host": 5
+    },
+    "host_executables": [
+      "vector_math_fallbacks",
+      "item_factory_callbacks",
+      "loader_transfer",
+      "ginja_parameter_callbacks",
+      "exi_ethernet_fallbacks"
+    ],
+    "test_log_sha256": {
+      "tool": "2db1ab188cabf61b233c0b89626f3d563aa047b44ea119935b57f8fedf297ec2",
+      "fork": "831a106db7aa60d2642b796e329d8eb1326a3f0a09c3a83b4fdac6c83def10a7",
+      "host": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  }
+}

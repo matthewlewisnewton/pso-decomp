@@ -1,0 +1,1046 @@
+{
+  "source_queue": "a4ff1e6d23e057871481721ae43aa8f8a013b021",
+  "network_replay_commit": "499ab8e59466ea109029f1c9a80c1005d7841f9a",
+  "dispatcher_changes_from": "16d656e439fd1f5cbdafa7fbce48163a7893a874",
+  "cases": {
+    "standalone": {
+      "base": "d8c0a969d273c9e2cdb1c6c34a1e6aa2be4cc571",
+      "head": "93e3933edb176e3c5eec71b541a72f608871bbd7",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "files": 63,
+      "exact_functions": 27572,
+      "linked_units": 2416,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "source_quality": {
+        "total": {
+          "base": 167998,
+          "head": 167515,
+          "added": 65,
+          "removed": 548
+        },
+        "labels": [
+          {
+            "file": "config/GPOE8P/psov3/symbols.txt",
+            "section": ".text",
+            "address": "0x80078378",
+            "type": "function",
+            "old": "handle_socket_event__10TUdpSocketFsP11UdpDatagram",
+            "new": "handle_socket_event__10TUdpSocketFsP20NetworkReceivePrefix",
+            "flags": []
+          },
+          {
+            "file": "config/GPOE8P/psov3/symbols.txt",
+            "section": ".text",
+            "address": "0x8042BF48",
+            "type": "function",
+            "old": "wake_load_thread__23TAdSinglePlyChrSelectGCFv",
+            "new": "wake_load_thread__23TAdSinglePlyChrSelectGCFlP9OSContext",
+            "flags": []
+          },
+          {
+            "file": "config/GPOE8P/psov3/symbols.txt",
+            "section": ".text",
+            "address": "0x8042E768",
+            "type": "function",
+            "old": "copy_default_and_get_state__23TAdSinglePlyChrSelectGCFv",
+            "new": "copy_default_and_get_state",
+            "flags": []
+          },
+          {
+            "file": "config/GPOE8P/psov3/symbols.txt",
+            "section": ".text",
+            "address": "0x8042E84C",
+            "type": "function",
+            "old": "send_modem_hangup__23TAdSinglePlyChrSelectGCFl",
+            "new": "send_modem_hangup__23TAdSinglePlyChrSelectGCFi",
+            "flags": []
+          }
+        ],
+        "stale_force_active": [],
+        "additional_findings": [
+          {
+            "key": "address_type",
+            "path": "include/pso/network/PppIpcp.h",
+            "line": 35,
+            "text": "Obj_80403F4C"
+          },
+          {
+            "key": "address_type",
+            "path": "include/pso/network/TLobby_803FCF44.h",
+            "line": 119,
+            "text": "Obj_80403F4C"
+          },
+          {
+            "key": "address_type",
+            "path": "include/pso/network/TLobby_804048E8.h",
+            "line": 89,
+            "text": "Obj_80403F4C"
+          },
+          {
+            "key": "address_type",
+            "path": "include/pso/network/TLobby_804048E8.h",
+            "line": 90,
+            "text": "Obj_80403F4C"
+          },
+          {
+            "key": "address_type",
+            "path": "include/pso/network/TLobby_804048E8.h",
+            "line": 91,
+            "text": "Obj_80403F4C"
+          },
+          {
+            "key": "address_type",
+            "path": "include/pso/network/TLobby_804048E8.h",
+            "line": 92,
+            "text": "Obj_80403F4C"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/ModemRuntime.cpp",
+            "line": 945,
+            "text": "lbl_805D4920"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/ModemRuntime.cpp",
+            "line": 946,
+            "text": "lbl_805D4928"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/ModemRuntime.cpp",
+            "line": 947,
+            "text": "lbl_805D4930"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/ModemRuntime.cpp",
+            "line": 948,
+            "text": "lbl_805D4938"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/ModemRuntime.cpp",
+            "line": 964,
+            "text": "lbl_805D4920"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/ModemRuntime.cpp",
+            "line": 967,
+            "text": "lbl_805D4928"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/ModemRuntime.cpp",
+            "line": 968,
+            "text": "lbl_805D4930"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/ModemRuntime.cpp",
+            "line": 971,
+            "text": "lbl_805D4938"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/ModemRuntime.cpp",
+            "line": 972,
+            "text": "lbl_805D4930"
+          },
+          {
+            "key": "local_decl",
+            "path": "src/pso/network/NetDns.c",
+            "line": 82,
+            "text": "s16 net_register_timer(NetTimerCallback callback, s32 interval)"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/NetworkThreadRuntime.c",
+            "line": 297,
+            "text": "->f10"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/NetworkThreadRuntime.c",
+            "line": 298,
+            "text": "->f14"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/NetworkThreadRuntime.c",
+            "line": 299,
+            "text": "->f18"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/NetworkThreadRuntime.c",
+            "line": 300,
+            "text": "->f1C"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/NetworkThreadRuntime.c",
+            "line": 301,
+            "text": "->f20"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/NetworkThreadRuntime.c",
+            "line": 302,
+            "text": "->f24"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/NetworkThreadRuntime.c",
+            "line": 303,
+            "text": "->f28"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/NetworkThreadRuntime.c",
+            "line": 304,
+            "text": "->f2C"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/NetworkThreadRuntime.c",
+            "line": 305,
+            "text": "->f30"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/NetworkThreadRuntime.c",
+            "line": 306,
+            "text": "->f34"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/NetworkThreadRuntime.c",
+            "line": 307,
+            "text": "->f38"
+          },
+          {
+            "key": "offset_cast",
+            "path": "src/pso/network/NetworkThreadRuntime.c",
+            "line": 309,
+            "text": "(PppFsm *)(ctx + 0xd4)"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/PppFsm.c",
+            "line": 73,
+            "text": "->f14"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/PppFsm.c",
+            "line": 88,
+            "text": "->f20"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/PppFsm.c",
+            "line": 154,
+            "text": "->f18"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/PppFsm.c",
+            "line": 163,
+            "text": "->f28"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/PppFsm.c",
+            "line": 203,
+            "text": "->f24"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/PppFsm.c",
+            "line": 276,
+            "text": "->f1C"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/PppIpcp.c",
+            "line": 130,
+            "text": "->f10"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/PppIpcp.c",
+            "line": 137,
+            "text": "->f2C"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/PppIpcp.c",
+            "line": 138,
+            "text": "->f30"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/PppIpcp.c",
+            "line": 139,
+            "text": "->f34"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/PppIpcp.c",
+            "line": 140,
+            "text": "->f38"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/network/PppPap.c",
+            "line": 66,
+            "text": "Names_80403168"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/network/PppVj.c",
+            "line": 19,
+            "text": "Obj_80403F4C"
+          },
+          {
+            "key": "offset_cast",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 83,
+            "text": "(PppFsm *)(conn + 0xA0)"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 88,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 89,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 90,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 91,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 92,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 93,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 94,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 95,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 96,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 97,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 98,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 99,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 100,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 101,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 102,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 103,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 104,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 105,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 106,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 108,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/network/TLobby_804048E8.c",
+            "line": 189,
+            "text": "Obj_80403F4C"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/network/TLobby_804048E8.c",
+            "line": 196,
+            "text": "Ent_80403F4C"
+          },
+          {
+            "key": "local_decl",
+            "path": "src/pso/network/TLobby_804050DC.c",
+            "line": 290,
+            "text": "extern u16 TLobby__sub_803FE934(u8 *obj, PppFrame *buf, u16 n)"
+          }
+        ],
+        "report_sha256": "1b1a7a9c2a542f7f40a439d34c3d02ff5801fccbe9a44e4cf5e54428ddbba892"
+      },
+      "coverage_report_sha256": "3a5eb2344677d24d9cfd04e0d3fe5f842eaca9fe1623a5f69faeb3a619f89a5f",
+      "build_report_sha256": "eec8179b717e817a5d64d9e3af6ba65474ec3b1497499cd66dd53ae8c26c79f9"
+    },
+    "after_pr_371": {
+      "base": "084cec228c06a73ea36333f383419b4ed4f7bfc2",
+      "head": "6da1100681dc984ae71e1972190739d40b61021c",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "files": 63,
+      "exact_functions": 27572,
+      "linked_units": 2417,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "source_quality": {
+        "total": {
+          "base": 165438,
+          "head": 164955,
+          "added": 65,
+          "removed": 548
+        },
+        "labels": [
+          {
+            "file": "config/GPOE8P/psov3/symbols.txt",
+            "section": ".text",
+            "address": "0x80078378",
+            "type": "function",
+            "old": "handle_socket_event__10TUdpSocketFsP11UdpDatagram",
+            "new": "handle_socket_event__10TUdpSocketFsP20NetworkReceivePrefix",
+            "flags": []
+          },
+          {
+            "file": "config/GPOE8P/psov3/symbols.txt",
+            "section": ".text",
+            "address": "0x8042BF48",
+            "type": "function",
+            "old": "wake_load_thread__23TAdSinglePlyChrSelectGCFv",
+            "new": "wake_load_thread__23TAdSinglePlyChrSelectGCFlP9OSContext",
+            "flags": []
+          },
+          {
+            "file": "config/GPOE8P/psov3/symbols.txt",
+            "section": ".text",
+            "address": "0x8042E768",
+            "type": "function",
+            "old": "copy_default_and_get_state__23TAdSinglePlyChrSelectGCFv",
+            "new": "copy_default_and_get_state",
+            "flags": []
+          },
+          {
+            "file": "config/GPOE8P/psov3/symbols.txt",
+            "section": ".text",
+            "address": "0x8042E84C",
+            "type": "function",
+            "old": "send_modem_hangup__23TAdSinglePlyChrSelectGCFl",
+            "new": "send_modem_hangup__23TAdSinglePlyChrSelectGCFi",
+            "flags": []
+          }
+        ],
+        "stale_force_active": [],
+        "additional_findings": [
+          {
+            "key": "address_type",
+            "path": "include/pso/network/PppIpcp.h",
+            "line": 35,
+            "text": "Obj_80403F4C"
+          },
+          {
+            "key": "address_type",
+            "path": "include/pso/network/TLobby_803FCF44.h",
+            "line": 119,
+            "text": "Obj_80403F4C"
+          },
+          {
+            "key": "address_type",
+            "path": "include/pso/network/TLobby_804048E8.h",
+            "line": 89,
+            "text": "Obj_80403F4C"
+          },
+          {
+            "key": "address_type",
+            "path": "include/pso/network/TLobby_804048E8.h",
+            "line": 90,
+            "text": "Obj_80403F4C"
+          },
+          {
+            "key": "address_type",
+            "path": "include/pso/network/TLobby_804048E8.h",
+            "line": 91,
+            "text": "Obj_80403F4C"
+          },
+          {
+            "key": "address_type",
+            "path": "include/pso/network/TLobby_804048E8.h",
+            "line": 92,
+            "text": "Obj_80403F4C"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/ModemRuntime.cpp",
+            "line": 945,
+            "text": "lbl_805D4920"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/ModemRuntime.cpp",
+            "line": 946,
+            "text": "lbl_805D4928"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/ModemRuntime.cpp",
+            "line": 947,
+            "text": "lbl_805D4930"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/ModemRuntime.cpp",
+            "line": 948,
+            "text": "lbl_805D4938"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/ModemRuntime.cpp",
+            "line": 964,
+            "text": "lbl_805D4920"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/ModemRuntime.cpp",
+            "line": 967,
+            "text": "lbl_805D4928"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/ModemRuntime.cpp",
+            "line": 968,
+            "text": "lbl_805D4930"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/ModemRuntime.cpp",
+            "line": 971,
+            "text": "lbl_805D4938"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/ModemRuntime.cpp",
+            "line": 972,
+            "text": "lbl_805D4930"
+          },
+          {
+            "key": "local_decl",
+            "path": "src/pso/network/NetDns.c",
+            "line": 82,
+            "text": "s16 net_register_timer(NetTimerCallback callback, s32 interval)"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/NetworkThreadRuntime.c",
+            "line": 297,
+            "text": "->f10"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/NetworkThreadRuntime.c",
+            "line": 298,
+            "text": "->f14"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/NetworkThreadRuntime.c",
+            "line": 299,
+            "text": "->f18"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/NetworkThreadRuntime.c",
+            "line": 300,
+            "text": "->f1C"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/NetworkThreadRuntime.c",
+            "line": 301,
+            "text": "->f20"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/NetworkThreadRuntime.c",
+            "line": 302,
+            "text": "->f24"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/NetworkThreadRuntime.c",
+            "line": 303,
+            "text": "->f28"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/NetworkThreadRuntime.c",
+            "line": 304,
+            "text": "->f2C"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/NetworkThreadRuntime.c",
+            "line": 305,
+            "text": "->f30"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/NetworkThreadRuntime.c",
+            "line": 306,
+            "text": "->f34"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/NetworkThreadRuntime.c",
+            "line": 307,
+            "text": "->f38"
+          },
+          {
+            "key": "offset_cast",
+            "path": "src/pso/network/NetworkThreadRuntime.c",
+            "line": 309,
+            "text": "(PppFsm *)(ctx + 0xd4)"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/PppFsm.c",
+            "line": 73,
+            "text": "->f14"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/PppFsm.c",
+            "line": 88,
+            "text": "->f20"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/PppFsm.c",
+            "line": 154,
+            "text": "->f18"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/PppFsm.c",
+            "line": 163,
+            "text": "->f28"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/PppFsm.c",
+            "line": 203,
+            "text": "->f24"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/PppFsm.c",
+            "line": 276,
+            "text": "->f1C"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/PppIpcp.c",
+            "line": 130,
+            "text": "->f10"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/PppIpcp.c",
+            "line": 137,
+            "text": "->f2C"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/PppIpcp.c",
+            "line": 138,
+            "text": "->f30"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/PppIpcp.c",
+            "line": 139,
+            "text": "->f34"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/network/PppIpcp.c",
+            "line": 140,
+            "text": "->f38"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/network/PppPap.c",
+            "line": 66,
+            "text": "Names_80403168"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/network/PppVj.c",
+            "line": 19,
+            "text": "Obj_80403F4C"
+          },
+          {
+            "key": "offset_cast",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 83,
+            "text": "(PppFsm *)(conn + 0xA0)"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 88,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 89,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 90,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 91,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 92,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 93,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 94,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 95,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 96,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 97,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 98,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 99,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 100,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 101,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 102,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 103,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 104,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 105,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 106,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "data_label",
+            "path": "src/pso/network/TLobby_803FC178.c",
+            "line": 108,
+            "text": "lbl_805C0180"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/network/TLobby_804048E8.c",
+            "line": 189,
+            "text": "Obj_80403F4C"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/network/TLobby_804048E8.c",
+            "line": 196,
+            "text": "Ent_80403F4C"
+          },
+          {
+            "key": "local_decl",
+            "path": "src/pso/network/TLobby_804050DC.c",
+            "line": 290,
+            "text": "extern u16 TLobby__sub_803FE934(u8 *obj, PppFrame *buf, u16 n)"
+          }
+        ],
+        "report_sha256": "e057302d52885eee5777c52dbe6b3cf6ea5ae4d715cb9d9255f897a8efbdb300"
+      },
+      "coverage_report_sha256": "c4bdfc9f6203941ce752db1ed3c756221a362d3eba1ac64f1deb9cd0f797c1e7",
+      "build_report_sha256": "3a030fc18894e7e4c0fc552b7f96ad4b07bf20cc4f3c3594386ed9381bc7237d"
+    }
+  },
+  "runtime_probes": {
+    "sdk-queues": {
+      "probe_sha256": "ed90ded6d9abadd5f381b21fcc344029dd93c919ad14f0442e7b8246c12393a7",
+      "log_sha256": "071c5f597d5d0471f933596f6d0307cefbd0f52ba86a15041d97b7272b0352ee",
+      "results": [
+        "{\"completion_cases\": 4, \"post_cases\": 8, \"receive_cases\": 8, \"shutdown_cases\": 8, \"startup_cases\": 12, \"update_cases\": 12}"
+      ]
+    },
+    "stack-lifecycle": {
+      "probe_sha256": "046900bbac560e7970f02d2748cfc6c469368d137199425a4dfcb63ed8fd6f3e",
+      "log_sha256": "5f5daee5776ec374acda2e0b8b636dd205a2884ec83d3ff5bda0c88cbbee3050",
+      "results": [
+        "{\"branches\": {\"compare_sockaddr\": 7, \"init_buffer_descriptor_a\": 1, \"init_buffer_descriptor_b\": 1, \"init_ipv6_interface_config\": 1, \"init_net_buffer_config\": 1, \"init_net_config\": 1, \"init_net_func_table\": 1, \"init_net_recv_desc\": 1, \"init_udp_socket_config\": 1, \"is_multicast_address\": 3, \"release_entry\": 41, \"request_network_info_load__FlPv\": 1}, \"headers\": 5, \"initializers\": 8, \"poll_cases\": 36, \"pool_cases\": 140, \"request_cases\": 42}"
+      ]
+    },
+    "modem-transport": {
+      "probe_sha256": "657831b542faf37b6a8ecabe573bade97f4c85ddb3a64f9a505a1be86fdef85e",
+      "log_sha256": "e875c2ef1973995305bc1b8a56e32165851f11bf163311d204b0cef0ed7d2261",
+      "results": [
+        "PsoV3.dol: modem send, status, command filters, dialing and four ring cases passed.",
+        "candidate.dol: modem send, status, command filters, dialing and four ring cases passed."
+      ]
+    },
+    "modem-dial-script": {
+      "probe_sha256": "1fd32ba7c01a06a0125c768f99ef4215063467696bb56cf6e32e681d3c575221",
+      "log_sha256": "5d9af8d393281d979b93d44258917b3cc961c1acbcfcfc79ffe24db22afcd0e4",
+      "results": [
+        "PsoV3.dol: 13 modem script cases passed.",
+        "candidate.dol: 13 modem script cases passed."
+      ]
+    },
+    "network-startup": {
+      "probe_sha256": "2f20cfc10be3c4a71291ce2c130e6f49ef6ff7f52bf4586a8dbd901fe0e4d805",
+      "log_sha256": "ca2306644032441ec56c77568b943178bec7ec3f8d440a45453362588da62cc1",
+      "results": [
+        "PsoV3.dol: 20 network startup and PPP cases passed.",
+        "candidate.dol: 20 network startup and PPP cases passed."
+      ]
+    },
+    "ppp-frames": {
+      "probe_sha256": "9660b2b4490e1623008049b8afb52517686e1dad6bd7447cac4ab8ff4858a983",
+      "log_sha256": "81462831494804ea45f679597de7c41b88dbab392895d0592a90074880379ee1",
+      "results": [
+        "PsoV3.dol: 28 PPP frame, dispatch, and compression cases passed.",
+        "candidate.dol: 28 PPP frame, dispatch, and compression cases passed."
+      ]
+    },
+    "ppp-callbacks": {
+      "probe_sha256": "89b11ef200288902d2b2c1b9f5085a02ee2fd63d0bc9008d2dc4f61dc52a5349",
+      "log_sha256": "1100d0d2f87c278c7c6832b702f866a08d1f7616c02113cc05109056f0fdbe2a",
+      "results": [
+        "PsoV3.dol: 13 PPP callback-table and IPv6CP option cases passed.",
+        "candidate.dol: 13 PPP callback-table and IPv6CP option cases passed."
+      ]
+    },
+    "runtime-slots": {
+      "probe_sha256": "8924a82c94c2c4cbc11c45f957fc89693e859fbeb5a386d517d5702e9a68c083",
+      "log_sha256": "21159f78617b4c4a08a683735f25ebeb42c19b4cf6299f874b58ccd914c475a8",
+      "results": [
+        "PsoV3.dol: seven network slot initialization cases passed.",
+        "candidate.dol: seven network slot initialization cases passed."
+      ]
+    },
+    "packet-receive-and-dhcp": {
+      "probe_sha256": "5587c776da77526c1746783b6e1abffe4d1c1816087e3bff12034d958e88578d",
+      "log_sha256": "989b17e2183d3e025016125bdaa43b9198ae23d1549ebdd457a95d8cfae50d76",
+      "results": [
+        "PsoV3.dol: 15 receive and DHCP record cases passed.",
+        "candidate.dol: 15 receive and DHCP record cases passed."
+      ]
+    },
+    "socket-and-dhcp-handoffs": {
+      "probe_sha256": "e4c444684b3e527d1ab4baee37a321b795e15df7ed23e8b6eceabd623a3ead57",
+      "log_sha256": "b7bd415f43953094a0e646b9f8fff3e012eb8ab2dd3faaf9cecdccab9c59c9f3",
+      "results": [
+        "PsoV3.dol: 10 socket timer, send handoff and DHCP option cases passed.",
+        "candidate.dol: 10 socket timer, send handoff and DHCP option cases passed."
+      ]
+    },
+    "socket-queues": {
+      "probe_sha256": "0de4e9dbf95a835be9ea646541e5abda11115c6f0008d3c1ea5d859a7fc3b12f",
+      "log_sha256": "701852d4f7fe7a41d7ee822cef1724c0c0378c07d2f3b6e0d1022465ffb69cd6",
+      "results": [
+        "786 reassembly comparisons and 12 out-of-order receive cases passed.",
+        "2,528 gathers and 1,600 ACKs passed, including 1766 completion events."
+      ]
+    },
+    "dispatcher": {
+      "results": [
+        "PsoV3.dol: dispatcher initialization, all unwind paths, and message layout passed.",
+        "candidate.dol: dispatcher initialization, all unwind paths, and message layout passed."
+      ],
+      "log_sha256": "e56dd2e34435f0ed066a335f886a9dd50887705b8378a036f9a3f03b2c3c9ffc"
+    },
+    "udp": {
+      "results": [
+        "PsoV3.dol: typed UDP connect, independent event and receive slots, duplicate rejection and close passed.",
+        "candidate.dol: typed UDP connect, independent event and receive slots, duplicate rejection and close passed."
+      ],
+      "log_sha256": "dd9f60fdb2526967160a0f0c5b773896c77436bf1c324727f17624bf86179653"
+    },
+    "frames": {
+      "results": [
+        "PsoV3.dol: PPP frame length and headroom, IPv4 options, and TCP header fields passed",
+        "candidate.dol: PPP frame length and headroom, IPv4 options, and TCP header fields passed"
+      ],
+      "log_sha256": "d68639f777c42b4d83bcabfd24198c32a975e6c7bb20895b5569e1a410c19cf0"
+    }
+  },
+  "published_pull_request": 371,
+  "publication": "Local review candidate, pending the current upstream review"
+}

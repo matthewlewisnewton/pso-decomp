@@ -1,0 +1,298 @@
+{
+  "source": "3e0ea227b44545182b30428eb3f6b234eed2865d",
+  "previous_source": "1a9ea0eb0b8a1ccf30d38f2ec9ffb5a49a13e15d",
+  "upstream": "5a4e7ced56fe7072359b6d279e94f4be3b8453c0",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "source_paths": 1106,
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/quest/QuestDownloadServer.h",
+    "include/pso/quest/TQuestVmDownLoadServer.h",
+    "include/pso/quest/TQuestVmDownLoadServer_803E5668.h",
+    "include/pso/quest/TQuestVmDownLoadServer_803E6970.h",
+    "src/pso/quest/QuestDownloadAramFile.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer_803E5668.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer_803E6970.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer_803E8918.cpp",
+    "src/pso/quest/TQuestVmDownLoadServer_803EB0D8.cpp"
+  ],
+  "author": {
+    "name": "matthewlewisnewton",
+    "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+    "coauthor_trailers": 0
+  },
+  "historical_comparison": {
+    "prior_open_rows": 493,
+    "open_rows": 492,
+    "closed_row": {
+      "row": 6480,
+      "description": "The current source preserves all 16 historical request and conversion functions and all five original buffer ranges. The original dispatch state tests, cursor and page walks, borrowed request text, shared conversion calls and scratch-word lifetime are preserved. The conversion buffer now has its full byte extent. Fork PR #636 changed only identifiers in this source and the old formatter. The current tree keeps its accepted names and typed interfaces.",
+      "fork_blob": "385a2d2f403da2497bf7c9a9d762a79c235145ba",
+      "current_blob": "bb6e4da9c3643481dc685f3a94bbc314f30fb2ca",
+      "exact_source_functions": [
+        {
+          "address": "0x803E5668",
+          "size": 8,
+          "fork": "TQuestVmDownLoadServer__sub_803E5668",
+          "current": "quest_download_request_unassigned"
+        },
+        {
+          "address": "0x803E5670",
+          "size": 268,
+          "fork": "TQuestVmDownLoadServer__sub_803E5670",
+          "current": "quest_download_request_0x25"
+        },
+        {
+          "address": "0x803E577C",
+          "size": 248,
+          "fork": "TQuestVmDownLoadServer__sub_803E577C",
+          "current": "quest_download_request_0x24"
+        },
+        {
+          "address": "0x803E5874",
+          "size": 284,
+          "fork": "TQuestVmDownLoadServer__sub_803E5874",
+          "current": "quest_download_request_0x23"
+        },
+        {
+          "address": "0x803E5990",
+          "size": 252,
+          "fork": "TQuestVmDownLoadServer__sub_803E5990",
+          "current": "quest_download_request_0x22"
+        },
+        {
+          "address": "0x803E5A8C",
+          "size": 264,
+          "fork": "TQuestVmDownLoadServer__sub_803E5A8C",
+          "current": "quest_download_request_0x21"
+        },
+        {
+          "address": "0x803E5B94",
+          "size": 396,
+          "fork": "TQuestVmDownLoadServer__sub_803E5B94",
+          "current": "quest_download_request_0x20"
+        },
+        {
+          "address": "0x803E5D20",
+          "size": 408,
+          "fork": "TQuestVmDownLoadServer__sub_803E5D20",
+          "current": "quest_download_request_0x1E"
+        },
+        {
+          "address": "0x803E5EB8",
+          "size": 68,
+          "fork": "reset_download_buffers__22TQuestVmDownLoadServerFv",
+          "current": "reset_download_buffers__22TQuestVmDownLoadServerFPl"
+        },
+        {
+          "address": "0x803E5EFC",
+          "size": 96,
+          "fork": "poll_download_status__22TQuestVmDownLoadServerFv",
+          "current": "poll_download_status__22TQuestVmDownLoadServerFPl"
+        },
+        {
+          "address": "0x803E5F5C",
+          "size": 368,
+          "fork": "TQuestVmDownLoadServer__sub_803E5F5C",
+          "current": "quest_download_request_0x19"
+        },
+        {
+          "address": "0x803E60CC",
+          "size": 104,
+          "fork": "TQuestVmDownLoadServer__sub_803E60CC",
+          "current": "quest_download_request_0x18"
+        },
+        {
+          "address": "0x803E6134",
+          "size": 248,
+          "fork": "TQuestVmDownLoadServer__sub_803E6134",
+          "current": "quest_download_request_0x16"
+        },
+        {
+          "address": "0x803E622C",
+          "size": 368,
+          "fork": "handle_list_scroll__22TQuestVmDownLoadServerFv",
+          "current": "handle_list_scroll__22TQuestVmDownLoadServerFPl"
+        },
+        {
+          "address": "0x803E639C",
+          "size": 300,
+          "fork": "OSFillFPUContext",
+          "current": "OSFillFPUContext"
+        },
+        {
+          "address": "0x803E64C8",
+          "size": 328,
+          "fork": "convert_jis_to_sjis_string__22TQuestVmDownLoadServerFv",
+          "current": "convert_jis_to_sjis_string__22TQuestVmDownLoadServerFPl"
+        }
+      ],
+      "buffer_symbols": [
+        {
+          "address": "0x8058DC48",
+          "size": 80,
+          "fork": "lbl_8058DC48",
+          "current": "lbl_8058DC48"
+        },
+        {
+          "address": "0x8058DC98",
+          "size": 80,
+          "fork": "lbl_8058DC98",
+          "current": "lbl_8058DC98"
+        },
+        {
+          "address": "0x8058DCE8",
+          "size": 80,
+          "fork": "lbl_8058DCE8",
+          "current": "lbl_8058DCE8"
+        },
+        {
+          "address": "0x8058DD38",
+          "size": 80,
+          "fork": "lbl_8058DD38",
+          "current": "quest_request_text_buffer"
+        },
+        {
+          "address": "0x8058DD88",
+          "size": 128,
+          "fork": "lbl_8058DD88",
+          "current": "quest_convert_string"
+        }
+      ]
+    },
+    "partial_rows": {
+      "6481": "The real signed file handle and byte count stay typed through the cache reader, reopen paths, and transfer helpers. The other historical glyph and entry routines remain open.",
+      "6483": "The ARAM source split now exposes the actual handle and signed return. The full historical formatter remains open. The final fork edits from PR #636 only changed identifiers in this file.",
+      "7299": "Open, seek, and close share one signed-handle declaration block. The original cache-index and file state layouts remain covered. Other historical header sections remain open."
+    },
+    "last_fork_rename": {
+      "commit": "5a7a047c3e6b8f8310066e517cbaf2e19df1f105",
+      "paths": [
+        "src/pso/misc/TQuestVmDownLoadServer_803E5668.cpp",
+        "src/pso/misc/TQuestVmDownLoadServer_803ED0CC.cpp"
+      ],
+      "pairs": {
+        "TQuestVmDownLoadServer__sub_803EDF64": "convert_romaji_to_kana",
+        "TQuestVmDownLoadServer__sub_803EE2E4": "reset_entry_text_accumulator",
+        "TQuestVmDownLoadServer__sub_803EE2F4": "process_entry_text_range",
+        "TQuestVmDownLoadServer__sub_803EE718": "get_entry_text",
+        "TQuestVmDownLoadServer__sub_803EE828": "convert_all_entry_text",
+        "TQuestVmDownLoadServer__sub_803EE870": "free_slot_node_chain",
+        "TQuestVmDownLoadServer__sub_803EE934": "build_all_entry_text",
+        "TQuestVmDownLoadServer__sub_803EEA48": "format_number_text_all_modes"
+      },
+      "method": "Full tokens equal after replacing the listed identifiers"
+    }
+  },
+  "validation": {
+    "stock": {
+      "baseline": "1a9ea0eb0b8a1ccf30d38f2ec9ffb5a49a13e15d",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x803E8790",
+          "before": "aram_read_thunk__22TQuestVmDownLoadServerFUli",
+          "after": "aram_read_thunk__22TQuestVmDownLoadServerFlPvl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803F0AB8",
+          "before": "aram_dma_read__22TQuestVmDownLoadServerFPvPvi",
+          "after": "aram_dma_read__22TQuestVmDownLoadServerFlPvl"
+        }
+      ],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "9bcd037df26860bc81b25f1a47ffe2958e3cce5e581c9a5fef7489ff1e8ab583",
+      "report_sha256": "7480a11b12f35da95e360f632055f707aa4a1f799cfb02591af365e85387a6fe"
+    },
+    "workspace": {
+      "baseline": "3e0ea227b44545182b30428eb3f6b234eed2865d",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "7480a11b12f35da95e360f632055f707aa4a1f799cfb02591af365e85387a6fe"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "775deae074d9a88e2c7bab302e5c0d244f6e8ecc6ba0733402d27ff49ffa9976"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "facc31d756526e7c0e818dd090ca66828ef8b5464e1bd42ec15c8951f1c79d20"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    },
+    "aram": {
+      "result": "Quest ARAM callback ownership, rounded reads, EOF clamping and timeout cleanup passed",
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "log_sha256": "bfde7e4c0d5243a860c79f56b127a00a2b3b47cb95c5fcacfe8da7bd3beae3e6"
+    },
+    "cache": {
+      "result": "128 slots, ten linked pages, 80 buckets, 512 free-list nodes, file reads and page eviction passed",
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "log_sha256": "48eec7de2dcf40b3fbc3f7439dbf6841c8f35aa54b6cc1b09d71e05dfafc20ae"
+    }
+  },
+  "fork_workspace": {
+    "overlay_paths": 130,
+    "overlay_patch_sha256": "43dd38964b69494fd9fad9632b368740a80e7c5bde6664e0a794c888acd88297",
+    "rebased_overlay_paths": [
+      "include/pso/quest/QuestDownloadServer.h",
+      "tools/probes/check_quest_download_cache.py"
+    ],
+    "force_active_names": 27033,
+    "archive_test_head": "be976caa3369423cc6df094a42312f6b1afe988e",
+    "tested_materialized_tree": "3ea99a9016fdeb16d3bcb0f6f603da5034e3be2a",
+    "previous_archive_failure": "error: patch failed: include/pso/quest/QuestDownloadServer.h:113\nerror: include/pso/quest/QuestDownloadServer.h: patch does not apply"
+  }
+}

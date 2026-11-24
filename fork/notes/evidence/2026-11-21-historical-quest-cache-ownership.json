@@ -1,0 +1,214 @@
+{
+  "source": "1a9ea0eb0b8a1ccf30d38f2ec9ffb5a49a13e15d",
+  "previous_source": "e6fd736c174757890fda2ea8ee171b89366fe64d",
+  "upstream": "5a4e7ced56fe7072359b6d279e94f4be3b8453c0",
+  "source_paths": 1100,
+  "changed_paths": [
+    "include/pso/quest/QuestDownloadRecords.h",
+    "include/pso/quest/QuestDownloadServer.h",
+    "include/pso/quest/QuestDownloadText.h",
+    "include/pso/quest/TQuestVmDownLoadServer_803E6970.h",
+    "libs/dolphin/include/dolphin/ar.h",
+    "src/pso/quest/QuestDownloadAramFile.cpp"
+  ],
+  "author": {
+    "name": "matthewlewisnewton",
+    "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+    "coauthor_trailers": 0
+  },
+  "upstream_task_names_retained": {
+    "0x801F6B00": "check_dismiss_to_close_input",
+    "0x801F6C74": "handle_download_done_input",
+    "0x801F718C": "build_file_info_image",
+    "0x801F770C": "build_file_slot_image",
+    "0x801F7FEC": "count_download_file_blocks"
+  },
+  "completion_flags": {
+    "TQuestVmDownLoadServer__dat_download_complete": "0x805D5F00",
+    "TQuestVmDownLoadServer__bin_download_complete": "0x805D5F04",
+    "TQuestVmDownLoadServer__pvr_download_complete": "0x805D5F08",
+    "TQuestVmDownLoadServer__gba_download_complete": "0x805D5F0C"
+  },
+  "native_workspace_donor": "bcc8d2433a0929acf2c749af05d665b0f7da493c",
+  "native_donor_unit_blobs": {
+    "src/pso/quest/TQuestVmDownLoadServer_803E5668.cpp": {
+      "donor": "9796e4e4a08cd4fef4b480e18638ae4e71332eba",
+      "current": "9848954a1b54c791ead0fc5b63d2471d8dd69e32"
+    },
+    "src/pso/quest/TQuestVmDownLoadServer_803E6970.cpp": {
+      "donor": "5c1c04d316da4cf27b081718f9db5cea1f8a1a54",
+      "current": "68ba9ba4ce5ab68dc578dd0638f393b2fd5e148a"
+    },
+    "src/pso/quest/TQuestVmDownLoadServer_803E8918.cpp": {
+      "donor": "dbd794f2ac721626d71ea5e19e5212d5ce09a105",
+      "current": "eaaadf7bb59916144b44b952b56ef11dde7db009"
+    },
+    "src/pso/quest/TQuestVmDownLoadServer_803E9A24.cpp": {
+      "donor": "8e1a51df1d9bf78816693d920d10b55dfc1f2fef",
+      "current": "56f2a8f98270447e6c56ad1173c1ecb053140730"
+    },
+    "src/pso/quest/TQuestVmDownLoadServer_803EB0D8.cpp": {
+      "donor": "3be61f65eeff59e69b0caec9b1c1cb14ba909faa",
+      "current": "7a6130e3e374e73d6d6817550caeb9d89e57bc2c"
+    },
+    "src/pso/quest/QuestDownloadBuffers.cpp": {
+      "donor": "62f7352ab5e74674a7f45956901c73148008b896",
+      "current": "62f7352ab5e74674a7f45956901c73148008b896"
+    }
+  },
+  "donor_to_current_diff_sha256": {
+    "src/pso/quest/TQuestVmDownLoadServer_803E5668.cpp": "da6484bd7c9660919d9e8b5a172571bcf699ca403132e905ed9baaba86e512a0",
+    "src/pso/quest/TQuestVmDownLoadServer_803E6970.cpp": "77218ecd4d72b6ca69383b42a08e058bc43c90af4e30a460c06860e0ef643a2a",
+    "src/pso/quest/TQuestVmDownLoadServer_803E8918.cpp": "43ce8c828e9a1adcdcfbca65d8f28c3d4083a0c978cec3721f0906b806b00fd2",
+    "src/pso/quest/TQuestVmDownLoadServer_803E9A24.cpp": "61705edbb313ae741768f2f8cee667539ca26f46d55207c03f2524b50c5b0fc5",
+    "src/pso/quest/TQuestVmDownLoadServer_803EB0D8.cpp": "a7b481980820a82de5ea1954fb6d79dc1a34050811c3fdaf98d223a166ae01ab",
+    "src/pso/quest/QuestDownloadBuffers.cpp": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "dma_unit": {
+    "address": "0x805A06C0",
+    "size": 8288,
+    "buffer_offset": 64,
+    "buffer_size": 8192,
+    "sdk_request_offset": 8256,
+    "exact_functions": {
+      "TQuestVmDownLoadServer__sub_803F09A4": "0x803F09A4",
+      "TQuestVmDownLoadServer__sub_803F09FC": "0x803F09FC",
+      "aram_dma_read__22TQuestVmDownLoadServerFPvPvi": "0x803F0AB8",
+      "TQuestVmDownLoadServer__sub_803F0BD8": "0x803F0BD8",
+      "TQuestVmDownLoadServer__sub_803F0BE0": "0x803F0BE0",
+      "TQuestVmDownLoadServer__sub_803F0BE8": "0x803F0BE8",
+      "TQuestVmDownLoadServer__sub_803F0C04": "0x803F0C04"
+    }
+  },
+  "historical_comparison": {
+    "prior_open_rows": 496,
+    "open_rows": 493,
+    "closed_rows": {
+      "7195": "The header declares the byte-wide lookup result and retains the five upstream task method names. Obsolete member declarations use their current owners and signatures. The seed pair has one shared declaration and retains its linked data symbol.",
+      "7259": "Current source uses the shared move_data helper, pointer-taking safe_free, and the shared memory-card capacity method. All four completion flags link at their original addresses. Upstream task names still dispatch the same five actions. The old umbrella include adds no dependency to this compilation unit.",
+      "7315": "Native records preserve the fork's 4-, 12-, 16-, 20- and 28-byte layouts. The text continuation uses the original bytes +1 through +0xF of a live node. Typed scoring and text-chain operations use the current names. The shared 0x10-byte request, token sentinel and 80-slot table retain their data contracts."
+    },
+    "closed_blob_ids": {
+      "7195": {
+        "ancestor_blob": "275ac2d9db666d6628a14672fc3752bdb4cd45da",
+        "fork_blob": "4e0556e4208cb08535c1e50d4d1df7847c7e381d",
+        "current_owner_blobs": {
+          "include/pso/quest/TQuestVmDownLoadServer.h": "cd302df889bfb9a273e8f722544125888227d757",
+          "include/pso/quest/QuestDownloadServer.h": "c04e5498c4f2cb70f01718c8faac86bd86b49642"
+        },
+        "fork_side_diff_sha256": "d4b8d22fbfba09b3d973c64e69b6fcfd5463cf94430a15c0767b11803df92233"
+      },
+      "7259": {
+        "ancestor_blob": "929b2e50c188425c55c1a9896899fb141af00502",
+        "fork_blob": "00f14842754842baec632e077873c97b0b02879f",
+        "current_owner_blobs": {
+          "src/pso/quest/TQuestVmDownLoadServer.cpp": "a63c5e8327a42be2a090f3ccfb7441709e50c3e1"
+        },
+        "fork_side_diff_sha256": "d5b39a63353f825bb1fc5b8f023ed030e2f1af6ba2a8cf0d5630edfb9e3d9914"
+      },
+      "7315": {
+        "ancestor_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "fork_blob": "78849626074366ee1c27b237ec554a5a1b3de428",
+        "current_owner_blobs": {
+          "include/pso/quest/QuestDownloadRecords.h": "074bf2c6cf51331af29d760d65ecfc91338eac70",
+          "include/pso/quest/QuestDownloadText.h": "6855187b35098899901c97a09037fc7213ca7f69",
+          "src/pso/quest/TQuestVmDownLoadServer_803E9A24.cpp": "56f2a8f98270447e6c56ad1173c1ecb053140730",
+          "src/pso/quest/TQuestVmDownLoadServer_803EB0D8.cpp": "7a6130e3e374e73d6d6817550caeb9d89e57bc2c"
+        },
+        "fork_side_diff_sha256": "3a1a6dbd1dc4440d8e8d4e2e1a1d15d6e9f0a9a6a8f62b4fe24032ddd56c4c9a"
+      }
+    },
+    "partial_rows": {
+      "6480": "The request controllers retain the donor\u2019s native text calls and checked layouts, using current string and address types. The full historical controller comparison remains open.",
+      "6481": "The text and cache paths retain the donor\u2019s typed input and cache records. The current code uses the accepted SJIS and page access names and pointer-sized types. The ARAM unit now uses the SDK request layout and owns the callback declaration. The full historical unit comparison remains open.",
+      "6482": "The finder retains the donor\u2019s typed input, result and slot geometry. It uses the accepted pool helper names. The original dictionary, separate slot table, and search workspace keep their prior source ownership. The full historical matcher comparison remains open.",
+      "6483": "The folded owner retains the donor\u2019s pool, cache, queue and formatting recovery. The current implementation uses the accepted text and pool names and a shared layout assertion. Independent comparisons of the larger historical formatter remain open.",
+      "7299": "The SDK header now owns the typed ARAM API, and the DMA buffer type lives beside its single provider. This records the transfer contract within the wider historical internal header."
+    }
+  },
+  "validation": {
+    "stock": {
+      "baseline": "e6fd736c174757890fda2ea8ee171b89366fe64d",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "b7ef59ce5f05d52a0b99f5c11907f7321b16c8c6c24753265640cf14dc5d402b",
+      "report_sha256": "958d9e96d0eb341bc84273d91fa8eb085dd5e709d166f2ddba198cef7d54dcd8"
+    },
+    "workspace": {
+      "baseline": "1a9ea0eb0b8a1ccf30d38f2ec9ffb5a49a13e15d",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "958d9e96d0eb341bc84273d91fa8eb085dd5e709d166f2ddba198cef7d54dcd8"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "a2539fc7c5ce6a2515e2104262bc4289eceb8bd14988fb958bcfa2da3adac780"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "6bc6a1f068b8c8007ee0bfdc7199d84cc33c4277402912e8c8a3978b29b18341"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    },
+    "aram": {
+      "result": "Quest ARAM callback ownership, rounded reads, EOF clamping and timeout cleanup passed",
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "log_sha256": "bfde7e4c0d5243a860c79f56b127a00a2b3b47cb95c5fcacfe8da7bd3beae3e6"
+    }
+  },
+  "fork_workspace": {
+    "overlay_paths": 130,
+    "overlay_patch_sha256": "f2aa3467d6554c15d93544e376492ed2b319767768cf592461942e71dfc60091",
+    "rebased_overlay_paths": [
+      "include/pso/quest/QuestDownloadServer.h"
+    ],
+    "force_active_names": 27033
+  }
+}

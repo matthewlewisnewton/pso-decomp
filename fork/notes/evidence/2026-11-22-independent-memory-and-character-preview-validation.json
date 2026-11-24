@@ -1,0 +1,507 @@
+{
+  "upstream_master": "e39eb9e13801cc5c2d298ca42c616731d3d06296",
+  "origin_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "standalone_memory_review": "34db28e7c70439736ffe7f458fb5937956f2bf0e",
+  "combined_memory_review": "dad6841b5cd406b14b635e47efda71fda8399a44",
+  "combined_memory_base": "02d6f9de870b82aa45422231e43d98f9aea6b092",
+  "combined_character_preview": "097ebbca6a1b49233906d9f76146f2d94bf3804a",
+  "previous_cumulative": "a4f1941c6e0e672d071b92088f7ff258b6948e8e",
+  "cumulative": "3eecd531ce49ddd056509904c7c895e0b03e7d87",
+  "materialized_tree": "1ceb0013cead5a57578ecae29f13ca318789cf0e",
+  "changed_paths": {
+    "review": 229,
+    "peer": 229,
+    "preview-on-peer": 13,
+    "cumulative": 13
+  },
+  "initial_memory_conflicts": {
+    "373": 1,
+    "374": 0,
+    "375": 8,
+    "376": 0,
+    "377": 1,
+    "saves": 22,
+    "paired": 28
+  },
+  "appearance_overlap_resolutions": {
+    "include/pso/ui/frontend/TAdPlyStatusGC.h": [
+      {
+        "peer": "",
+        "result": "struct CharacterPreviewLoadData;\n"
+      },
+      {
+        "peer": "    s32 get_field_498();\n    void*get_chara_making_data();\n    s32 get_field_49c();\n    s32 get_field_4a0();\n    void*get_status_data();\n    saddr get_field_4a4();\n    void*get_status_sub();\n    static void set_status_param(int a0, int a1);\n",
+        "result": "    static void set_status_param(int a0, CharacterPreviewLoadData *data);\n"
+      }
+    ],
+    "src/pso/ui/frontend/TAdMultiConfirmGC_802E03D0.cpp": [
+      {
+        "peer": "    TObjFish::set_global_param(reinterpret_cast<GinjaTextureList *>((saddr)m_170->get_status_sub()));\n    draw_model_with_arg((void *)m_170->get_field_4a4());\n",
+        "result": "    TObjFish::set_global_param(preview_data->get_status_sub());\n    draw_model_with_arg((void *)preview_data->get_body_model());\n"
+      }
+    ],
+    "src/pso/ui/frontend/TAdPlyStatusGC.cpp": [
+      {
+        "peer": "    if ((u32)ply_status_chcr_load_afs != 0 && ((TChCrLoadAfs *)ply_status_chcr_load_afs)->is_unloaded() != 0 && TAdPlyStatusGC__is_shown != 0 &&\n        (*(Status_8033F3D8 **)((TAdPlyStatusGC *)ply_status_chcr_load_afs)->get_status_sub())->f8 != 0) {\n",
+        "result": "    if (ply_status_chcr_load_afs != NULL && ply_status_chcr_load_afs->is_unloaded() != 0 && TAdPlyStatusGC__is_shown != 0 &&\n        ply_status_chcr_load_afs->get_status_sub()->entries[0].texture != NULL) {\n"
+      },
+      {
+        "peer": "        TObjFish::set_global_param(reinterpret_cast<GinjaTextureList *>((Status_8033F3D8 **)((TAdPlyStatusGC *)ply_status_chcr_load_afs)->get_status_sub()));\n",
+        "result": "        TObjFish::set_global_param(ply_status_chcr_load_afs->get_status_sub());\n"
+      }
+    ],
+    "src/pso/ui/frontend/TAdPlyStatusGC_802E1128.cpp": [
+      {
+        "peer": "s32 TAdPlyStatusGC::get_field_498() { return *(s32*)((char*)this + 0x498); }\nvoid*TAdPlyStatusGC::get_chara_making_data() { return (char*)this + 0x1b8; }\ns32 TAdPlyStatusGC::get_field_49c() { return *(s32*)((char*)this + 0x49c); }\ns32 TAdPlyStatusGC::get_field_4a0() { return *(s32*)((char*)this + 0x4a0); }\nvoid*TAdPlyStatusGC::get_status_data() { return (char*)this + 0x324; }\nsaddr TAdPlyStatusGC::get_field_4a4() { return *(s32*)((char*)this + 0x4a4); }\nvoid*TAdPlyStatusGC::get_status_sub() { return (char*)this + 0x490; }\n",
+        "result": "s32 CharacterPreviewLoadData::get_hair_model() { return part_models[0]; }\nGinjaTextureList *CharacterPreviewLoadData::get_chara_making_data() { return &head_textures.list; }\ns32 CharacterPreviewLoadData::get_head_model() { return part_models[1]; }\ns32 CharacterPreviewLoadData::get_attachment_model() { return part_models[2]; }\nGinjaTextureList *CharacterPreviewLoadData::get_status_data() { return &other_textures.list; }\nsaddr CharacterPreviewLoadData::get_body_model() { return body_model; }\nGinjaTextureList *CharacterPreviewLoadData::get_status_sub() { return &body_textures.list; }\n"
+      }
+    ]
+  },
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": {
+    "review": 2394,
+    "peer": 2367,
+    "preview-on-peer": 2367,
+    "cumulative": 2394,
+    "private": 2394
+  },
+  "data_ranges": {
+    "review": {
+      "head": "34db28e7c70439736ffe7f458fb5937956f2bf0e",
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0,
+      "ranges": 90
+    },
+    "peer": {
+      "head": "dad6841b5cd406b14b635e47efda71fda8399a44",
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0,
+      "ranges": 90
+    },
+    "preview-on-peer": {
+      "head": "097ebbca6a1b49233906d9f76146f2d94bf3804a",
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0,
+      "ranges": 90
+    },
+    "cumulative": {
+      "head": "3eecd531ce49ddd056509904c7c895e0b03e7d87",
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0,
+      "ranges": 90
+    },
+    "private": {
+      "head": "80171345161a8b3b1ebe34e7e4ebf70eee32d806",
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0,
+      "ranges": 90
+    }
+  },
+  "source_quality": {
+    "review": {
+      "total": {
+        "base": 158724,
+        "head": 158685,
+        "added": 0,
+        "removed": 39
+      },
+      "renames": [
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x8007EBB4",
+          "type": "function",
+          "old": "safe_free__23TAdSinglePlyChrSelectGCFUl",
+          "new": "safe_free__FPv",
+          "flags": []
+        }
+      ],
+      "stale_force_active": []
+    },
+    "peer": {
+      "total": {
+        "base": 148179,
+        "head": 148140,
+        "added": 0,
+        "removed": 39
+      },
+      "renames": [
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x8007EBB4",
+          "type": "function",
+          "old": "safe_free__23TAdSinglePlyChrSelectGCFUl",
+          "new": "safe_free__FPv",
+          "flags": []
+        }
+      ],
+      "stale_force_active": []
+    },
+    "preview-on-peer": {
+      "total": {
+        "base": 148140,
+        "head": 148016,
+        "added": 0,
+        "removed": 124
+      },
+      "renames": [
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x8028B714",
+          "type": "function",
+          "old": "free_chcr_resources__FPUcs",
+          "new": "free_chcr_resources__FP24CharacterPreviewLoadDatas",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x8028B8B8",
+          "type": "function",
+          "old": "is_unloaded__12TChCrLoadAfsFv",
+          "new": "is_unloaded__24CharacterPreviewLoadDataFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802E1128",
+          "type": "function",
+          "old": "get_field_498__14TAdPlyStatusGCFv",
+          "new": "get_hair_model__24CharacterPreviewLoadDataFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802E1130",
+          "type": "function",
+          "old": "get_chara_making_data__14TAdPlyStatusGCFv",
+          "new": "get_chara_making_data__24CharacterPreviewLoadDataFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802E1138",
+          "type": "function",
+          "old": "get_field_49c__14TAdPlyStatusGCFv",
+          "new": "get_head_model__24CharacterPreviewLoadDataFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802E1140",
+          "type": "function",
+          "old": "get_field_4a0__14TAdPlyStatusGCFv",
+          "new": "get_attachment_model__24CharacterPreviewLoadDataFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802E1148",
+          "type": "function",
+          "old": "get_status_data__14TAdPlyStatusGCFv",
+          "new": "get_status_data__24CharacterPreviewLoadDataFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802E1150",
+          "type": "function",
+          "old": "get_field_4a4__14TAdPlyStatusGCFv",
+          "new": "get_body_model__24CharacterPreviewLoadDataFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802E1158",
+          "type": "function",
+          "old": "get_status_sub__14TAdPlyStatusGCFv",
+          "new": "get_status_sub__24CharacterPreviewLoadDataFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802E1160",
+          "type": "function",
+          "old": "set_status_param__14TAdPlyStatusGCFii",
+          "new": "set_status_param__14TAdPlyStatusGCFiP24CharacterPreviewLoadData",
+          "flags": []
+        }
+      ],
+      "stale_force_active": []
+    },
+    "cumulative": {
+      "total": {
+        "base": 152402,
+        "head": 152283,
+        "added": 0,
+        "removed": 119
+      },
+      "renames": [
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x8028B714",
+          "type": "function",
+          "old": "free_chcr_resources__FPUcs",
+          "new": "free_chcr_resources__FP24CharacterPreviewLoadDatas",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x8028B8B8",
+          "type": "function",
+          "old": "is_unloaded__12TChCrLoadAfsFv",
+          "new": "is_unloaded__24CharacterPreviewLoadDataFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802E1128",
+          "type": "function",
+          "old": "get_field_498__14TAdPlyStatusGCFv",
+          "new": "get_hair_model__24CharacterPreviewLoadDataFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802E1130",
+          "type": "function",
+          "old": "get_chara_making_data__14TAdPlyStatusGCFv",
+          "new": "get_chara_making_data__24CharacterPreviewLoadDataFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802E1138",
+          "type": "function",
+          "old": "get_field_49c__14TAdPlyStatusGCFv",
+          "new": "get_head_model__24CharacterPreviewLoadDataFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802E1140",
+          "type": "function",
+          "old": "get_field_4a0__14TAdPlyStatusGCFv",
+          "new": "get_attachment_model__24CharacterPreviewLoadDataFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802E1148",
+          "type": "function",
+          "old": "get_status_data__14TAdPlyStatusGCFv",
+          "new": "get_status_data__24CharacterPreviewLoadDataFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802E1150",
+          "type": "function",
+          "old": "get_field_4a4__14TAdPlyStatusGCFv",
+          "new": "get_body_model__24CharacterPreviewLoadDataFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802E1158",
+          "type": "function",
+          "old": "get_status_sub__14TAdPlyStatusGCFv",
+          "new": "get_status_sub__24CharacterPreviewLoadDataFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802E1160",
+          "type": "function",
+          "old": "set_status_param__14TAdPlyStatusGCFii",
+          "new": "set_status_param__14TAdPlyStatusGCFiP24CharacterPreviewLoadData",
+          "flags": []
+        }
+      ],
+      "stale_force_active": []
+    }
+  },
+  "standalone_release_cast_checks": {
+    "paths": 48,
+    "casts_kept": 87,
+    "report_sha256": "86404fb315f46297f262a23f5200ebbd313a8dad2a2b103a22620427397ee62d"
+  },
+  "reports_sha256": {
+    "review": {
+      "coverage": "bbb9c71b0b830fc224756eabbde6745c2a23cac2dd2294dd5cbcc07d3b0db369",
+      "build": "f8809644f7738e70aedcfa96105837cb15d7f30e8f35bb8b8cccc7145cea818b"
+    },
+    "peer": {
+      "coverage": "3d043076a5f248c4ebff47493e8fc15aeb74cc03173ea96a0342bdcae9bb003a",
+      "build": "bfbfbd801caf1b499cf31f1f7abe8ce33f58267289d3841ef55f58c3abb66158"
+    },
+    "preview-on-peer": {
+      "coverage": "9ec09c1ccd00ace15b921ec72ded54035455b0684293a35fdb36956bba4a099e",
+      "build": "e9fbec27169c7cbb799d8d3991722ae45c72b91f98727acb07bee9b9a9f6b66a"
+    },
+    "cumulative": {
+      "coverage": "e9b665a3a96d2d0985a3746d2c2d6cd26663b6720e9b3a8ae45578e75b25837d",
+      "build": "928851cf7665a770952a95850d82f7a60b42deff59550c3300b0e96a19acb22a"
+    },
+    "private": {
+      "coverage": "ae52f3c53ae3ebbb686222e256af33ec3dddb383c8be72f939d34f4e3e4bafbb",
+      "build": "928851cf7665a770952a95850d82f7a60b42deff59550c3300b0e96a19acb22a"
+    }
+  },
+  "private_checks": {
+    "fork": 11,
+    "tool": 294,
+    "host": 5
+  },
+  "private_overlay_sha256": "48aeeb6c8249fe3d8fcd6f074123790271455c3e76b9b7e392b9d197a261d6ab",
+  "probes": {
+    "footstamp": [
+      "PsoV3.dol: footprint GVM load, culling, texture binding and ordered release passed.",
+      "review.dol: footprint GVM load, culling, texture binding and ordered release passed."
+    ],
+    "item-buffer": [
+      "PsoV3.dol: five item buffer allocation and three release cases passed.",
+      "review.dol: five item buffer allocation and three release cases passed."
+    ],
+    "memory": [
+      "PsoV3.dol: overlapping byte and word moves, raw allocation, and nullable releases passed.",
+      "review.dol: overlapping byte and word moves, raw allocation, and nullable releases passed."
+    ]
+  },
+  "historical_index": {
+    "open": 177,
+    "by_subsystem": {
+      "Audio and disc streaming": 2,
+      "Build, verification and automation": 1,
+      "Chat and text entry": 10,
+      "Enemy and boss behavior": 55,
+      "Front-end scenes and UI": 21,
+      "Network and protocol": 9,
+      "Player combat, techniques and items": 26,
+      "Rendering, camera and effects": 7,
+      "Shared ABI declarations by owning caller": 1,
+      "Window layout, menus and results": 21,
+      "World objects, NPCs and quests": 24
+    },
+    "previous_sha256": "1e1a2593f45accfc5c4211ab838256dc27018f529babcc67cbf92ccac1a44a67",
+    "historical_source": "src/pso/misc/TChCrLoadAfs.cpp",
+    "live_source": "src/pso/ui/charcreate/TChCrLoadAfs.cpp",
+    "owner_review": "The native AFS task retains the shared slot guard, ADXF polling and reads, buffer lifetime and texture archive lookup. The checked sector read and texture rectangle setup keep their original linked addresses at 0x803CCB5C and 0x803DA204. The completion query belongs to the 0x4AC preview record allocated by multiplayer character selection. The same record now owns the three Ginja texture sets, model getters and completion flags through rendering and release. All 14 original function extents and 188 data bytes match.",
+    "data_bytes": 188,
+    "fork_blob": "8f724e0c7d5390418d0b7814936b47c14789442d",
+    "current_blob": "caa09842022447f30eeb6d1ee0e768f64526fe62",
+    "original_exact_functions": [
+      {
+        "address": "0x8028b8b8",
+        "size": 16,
+        "historical": "is_unloaded__12TChCrLoadAfsFv",
+        "current": "is_unloaded__24CharacterPreviewLoadDataFv"
+      },
+      {
+        "address": "0x8028b8c8",
+        "size": 52,
+        "historical": "release_load_slot__12TChCrLoadAfsFv",
+        "current": "release_load_slot__12TChCrLoadAfsFv"
+      },
+      {
+        "address": "0x8028b8fc",
+        "size": 68,
+        "historical": "try_begin_load__12TChCrLoadAfsFPv",
+        "current": "try_begin_load__12TChCrLoadAfsFv"
+      },
+      {
+        "address": "0x8028b940",
+        "size": 4,
+        "historical": "sub_8028B940__12TChCrLoadAfsFv",
+        "current": "sub_8028B940__12TChCrLoadAfsFv"
+      },
+      {
+        "address": "0x8028b944",
+        "size": 4,
+        "historical": "sub_8028B944__12TChCrLoadAfsFv",
+        "current": "sub_8028B944__12TChCrLoadAfsFv"
+      },
+      {
+        "address": "0x8028b948",
+        "size": 128,
+        "historical": "poll_load__12TChCrLoadAfsFv",
+        "current": "poll_load__12TChCrLoadAfsFv"
+      },
+      {
+        "address": "0x8028b9c8",
+        "size": 156,
+        "historical": "start_download__12TChCrLoadAfsFv",
+        "current": "start_download__12TChCrLoadAfsFv"
+      },
+      {
+        "address": "0x8028ba64",
+        "size": 216,
+        "historical": "run_task__12TChCrLoadAfsFv",
+        "current": "run_task__12TChCrLoadAfsFv"
+      },
+      {
+        "address": "0x8028bb3c",
+        "size": 172,
+        "historical": "__dt__12TChCrLoadAfsFv",
+        "current": "__dt__12TChCrLoadAfsFv"
+      },
+      {
+        "address": "0x8028bbe8",
+        "size": 112,
+        "historical": "__ct__12TChCrLoadAfsFP7TObjectPvPv",
+        "current": "__ct__12TChCrLoadAfsFP7TObjectUlUl"
+      },
+      {
+        "address": "0x8028bc58",
+        "size": 88,
+        "historical": "create__12TChCrLoadAfsFPvPv",
+        "current": "create__12TChCrLoadAfsFP7TObjectUlUl"
+      },
+      {
+        "address": "0x8028bcb0",
+        "size": 336,
+        "historical": "find_player_texture_name_ordinal__FPUc",
+        "current": "find_player_texture_name_ordinal__FPUc"
+      },
+      {
+        "address": "0x8028be00",
+        "size": 420,
+        "historical": "update_loading__22TChCrLoadAfsTextureReqFPv",
+        "current": "update_loading__22TChCrLoadAfsTextureReqFv"
+      },
+      {
+        "address": "0x8028bfa4",
+        "size": 176,
+        "historical": "start_read__22TChCrLoadAfsTextureReqFPv",
+        "current": "start_read__22TChCrLoadAfsTextureReqFv"
+      }
+    ],
+    "sha256": "d5a465216c0828c8c01cf6b8b59813c9457ad28985b7f10bb5c37ecc6286858e"
+  }
+}

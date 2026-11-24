@@ -1,0 +1,2112 @@
+{
+  "master": "e39eb9e13801cc5c2d298ca42c616731d3d06296",
+  "stage_base": "6f4dd7a7314d8b67834e44cbf6473398a9af7b10",
+  "battle_base": "fcd2b1c84f85eb934964b8ecbb7d864e6f34a2b7",
+  "strip_buffers": "87f27155a71264d66fcc853a3bbeb6335fde0f07",
+  "actor_review": "5ed9ddfd771f5a2ad450b0619c6204f4bcbca2af",
+  "previous_cumulative": "32a077ad177ed06e2a922c5a37f3d5bd76b345f7",
+  "cumulative": "98acbeca9791152639434d85b7bb50a509b53e3f",
+  "changed_paths": {
+    "review": [
+      "config/GPOE8P/psov3/config.yml",
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/effect/photon/PhotonBlastSummon.h",
+      "include/pso/effect/photon/TPhotonEstlla.h",
+      "include/pso/effect/photon/TPhotonLeilla.h",
+      "include/pso/effect/photon/TPhotonLine.h",
+      "include/pso/effect/photon/TPhotonMagicSquare.h",
+      "include/pso/effect/photon/TPhotonMagicSquare_801ACE1C.h",
+      "include/pso/effect/photon/TPhotonMylla.h",
+      "include/pso/effect/photon/TPhotonRainbow.h",
+      "include/pso/effect/photon/TPhotonRainbow_801AE640.h",
+      "include/pso/effect/photon/TPhotonYoulla.h",
+      "include/pso/object/base/TObjMotion.h",
+      "include/pso/player/PhotonBlastRequests.h",
+      "include/pso/player/PhotonBlastResults.h",
+      "include/pso/player/TObjPlayer.h",
+      "include/pso/player/TObjPlayer_803130BC.h",
+      "include/pso/render/ChunkTextureStripCollector.h",
+      "include/pso/render/StripBufferPair.h",
+      "include/pso/unk/TLobby.h",
+      "include/pso/unk/TUnk_804C3248.h",
+      "include/pso/unk/TUnk_804C349C.h",
+      "include/pso/unk/text_801AB370.h",
+      "include/pso/unk/text_801ABE14.h",
+      "include/pso/unk/text_801AE1F8.h",
+      "src/pso/boss/barbaray/TBoss7Crawfish.cpp",
+      "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+      "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+      "src/pso/boss/dragon/TBoss1Dragon.cpp",
+      "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+      "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+      "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptCore.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptHiraisin.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptP01.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+      "src/pso/effect/photon/PhotonBlastSummon.cpp",
+      "src/pso/effect/photon/TPhotonEstlla.cpp",
+      "src/pso/effect/photon/TPhotonFarlla.cpp",
+      "src/pso/effect/photon/TPhotonGolla.cpp",
+      "src/pso/effect/photon/TPhotonLeilla.cpp",
+      "src/pso/effect/photon/TPhotonLine.cpp",
+      "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+      "src/pso/effect/photon/TPhotonMylla.cpp",
+      "src/pso/effect/photon/TPhotonPilla.cpp",
+      "src/pso/effect/photon/TPhotonRainbow.cpp",
+      "src/pso/effect/photon/TPhotonYoulla.cpp",
+      "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+      "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+      "src/pso/enemy/beast/TObjEneBeast.cpp",
+      "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+      "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp",
+      "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+      "src/pso/enemy/darkgunner/DarkGunner.cpp",
+      "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+      "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+      "src/pso/enemy/dimedian/TObjEneDimedian.cpp",
+      "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+      "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+      "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp",
+      "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+      "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+      "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+      "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+      "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+      "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+      "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+      "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+      "src/pso/enemy/gigue/TObjEneMe1GiGueBarrier.cpp",
+      "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+      "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+      "src/pso/enemy/lappy/TObjEneLappy.cpp",
+      "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+      "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+      "src/pso/enemy/moja/TObjEneMoja.cpp",
+      "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+      "src/pso/enemy/morfos/TObjEneMorfosArm.cpp",
+      "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+      "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+      "src/pso/enemy/recon/TObjEneRecon.cpp",
+      "src/pso/enemy/saver/SaverLifecycle.cpp",
+      "src/pso/enemy/shark/TObjEneShark.cpp",
+      "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+      "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+      "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+      "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+      "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+      "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp",
+      "src/pso/object/ambient/TObjCGrass.cpp",
+      "src/pso/object/ambient/TObjGrass.cpp",
+      "src/pso/object/base/TObjMotion.cpp",
+      "src/pso/object/city/CityTraffic.cpp",
+      "src/pso/object/container/TContainerAncient01.cpp",
+      "src/pso/player/PhotonBlastResults.cpp",
+      "src/pso/player/TObjPlayer_801AA508.cpp",
+      "src/pso/player/TObjPlayer_801AA5C0.cpp",
+      "src/pso/player/TObjPlayer_801AF2F0.cpp",
+      "src/pso/player/TObjPlayer_801BCFBC.cpp",
+      "src/pso/player/TObjPlayer_801BDF5C.cpp",
+      "src/pso/player/TObjPlayer_801C1FF8.cpp",
+      "src/pso/player/TObjPlayer_801C7430.cpp",
+      "src/pso/player/TObjPlayer_803130BC.cpp",
+      "src/pso/render/ChunkTextureStripCollector.cpp",
+      "src/pso/ui/frontend/TAdMultiConfirmGC_802E03D0.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+      "src/pso/unk/TLobby_800F5CF0.cpp",
+      "src/pso/unk/text_8004AA04.cpp",
+      "src/pso/unk/text_800F5BC0.cpp",
+      "src/pso/unk/text_80184C2C.cpp",
+      "src/pso/unk/text_80312C50.cpp"
+    ],
+    "cumulative": [
+      "config/GPOE8P/psov3/config.yml",
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/effect/photon/TPhotonLeilla.h",
+      "src/pso/effect/photon/TPhotonLeilla.cpp",
+      "src/pso/player/PhotonBlastResults.cpp"
+    ]
+  },
+  "aggregate_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/effect/photon/PhotonBlastSummon.h",
+    "include/pso/effect/photon/TPhotonEstlla.h",
+    "include/pso/effect/photon/TPhotonLeilla.h",
+    "include/pso/effect/photon/TPhotonLine.h",
+    "include/pso/effect/photon/TPhotonMagicSquare.h",
+    "include/pso/effect/photon/TPhotonMagicSquare_801ACE1C.h",
+    "include/pso/effect/photon/TPhotonMylla.h",
+    "include/pso/effect/photon/TPhotonRainbow.h",
+    "include/pso/effect/photon/TPhotonRainbow_801AE640.h",
+    "include/pso/effect/photon/TPhotonYoulla.h",
+    "include/pso/enemy/BattleParameters.h",
+    "include/pso/enemy/TObjEnemy.h",
+    "include/pso/enemy/dd/TObjEneDD.h",
+    "include/pso/enemy/deldepth/TObjEneDelDepth.h",
+    "include/pso/enemy/slime/TObjEneSlime.h",
+    "include/pso/enemy/slime/TObjEneSlimeOne.h",
+    "include/pso/npc/NpcModelRegistry.h",
+    "include/pso/npc/TObjNpcEnemy.h",
+    "include/pso/object/base/TObjMotion.h",
+    "include/pso/player/PhotonBlastRequests.h",
+    "include/pso/player/PhotonBlastResults.h",
+    "include/pso/player/PlayerAttackParams.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/player/TObjPlayer_803130BC.h",
+    "include/pso/render/ChunkTextureStripCollector.h",
+    "include/pso/render/StripBufferPair.h",
+    "include/pso/unk/TLobby.h",
+    "include/pso/unk/TLobbyBattleParamData.h",
+    "include/pso/unk/TLobby_8001D6A0.h",
+    "include/pso/unk/TUnk_804C3248.h",
+    "include/pso/unk/TUnk_804C349C.h",
+    "include/pso/unk/text_801AB370.h",
+    "include/pso/unk/text_801ABE14.h",
+    "include/pso/unk/text_801AE1F8.h",
+    "src/pso/boss/barbaray/TBoss7Crawfish.cpp",
+    "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+    "src/pso/boss/barbaray/TBoss7Joint.cpp",
+    "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+    "src/pso/boss/darkfalz/TBoss4Type3.cpp",
+    "src/pso/boss/darkfalz/TBoss4Zako.cpp",
+    "src/pso/boss/darkfalz/TBoss4Zanzo.cpp",
+    "src/pso/boss/darkfalz/TObjDFHorming.cpp",
+    "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+    "src/pso/boss/derolle/TBoss2Joint.cpp",
+    "src/pso/boss/derolle/TBoss2Mine.cpp",
+    "src/pso/boss/dragon/TBoss1Dragon.cpp",
+    "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+    "src/pso/boss/olgaflow/TBoss6Mag.cpp",
+    "src/pso/boss/olgaflow/TBoss6MagMine.cpp",
+    "src/pso/boss/olgaflow/TBoss6Mine.cpp",
+    "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptCore.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptHiraisin.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptP01.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+    "src/pso/effect/photon/PhotonBlastSummon.cpp",
+    "src/pso/effect/photon/TPhotonEstlla.cpp",
+    "src/pso/effect/photon/TPhotonFarlla.cpp",
+    "src/pso/effect/photon/TPhotonGolla.cpp",
+    "src/pso/effect/photon/TPhotonLeilla.cpp",
+    "src/pso/effect/photon/TPhotonLine.cpp",
+    "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+    "src/pso/effect/photon/TPhotonMylla.cpp",
+    "src/pso/effect/photon/TPhotonPilla.cpp",
+    "src/pso/effect/photon/TPhotonRainbow.cpp",
+    "src/pso/effect/photon/TPhotonYoulla.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+    "src/pso/enemy/beast/TObjEneBeast.cpp",
+    "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+    "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp",
+    "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+    "src/pso/enemy/darkgunner/DarkGunner.cpp",
+    "src/pso/enemy/dd/TObjEneDD.cpp",
+    "src/pso/enemy/deldepth/DelDepthMotion.cpp",
+    "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+    "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+    "src/pso/enemy/dimedian/TObjEneDimedian.cpp",
+    "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+    "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp",
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+    "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+    "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+    "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+    "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+    "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+    "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGueBarrier.cpp",
+    "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/enemy/lappy/TObjEneLappy.cpp",
+    "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+    "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+    "src/pso/enemy/moja/TObjEneMoja.cpp",
+    "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+    "src/pso/enemy/morfos/TObjEneMorfosArm.cpp",
+    "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+    "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+    "src/pso/enemy/recon/TObjEneRecon.cpp",
+    "src/pso/enemy/saver/SaverLifecycle.cpp",
+    "src/pso/enemy/shark/TObjEneShark.cpp",
+    "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+    "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+    "src/pso/enemy/slime/TObjEneSlimeOne_800EC394.cpp",
+    "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+    "src/pso/enemy/sorcerer/TObjEneRe4Bit.cpp",
+    "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+    "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp",
+    "src/pso/npc/TObjNpcEnemy.cpp",
+    "src/pso/object/TObjControl.cpp",
+    "src/pso/object/ambient/TObjCGrass.cpp",
+    "src/pso/object/ambient/TObjGrass.cpp",
+    "src/pso/object/base/TObjMotion.cpp",
+    "src/pso/object/city/CityTraffic.cpp",
+    "src/pso/object/container/TContainerAncient01.cpp",
+    "src/pso/object/lobby/LobbyPigeonPath.cpp",
+    "src/pso/player/PhotonBlastResults.cpp",
+    "src/pso/player/TObjPlayer_801AA508.cpp",
+    "src/pso/player/TObjPlayer_801AA5C0.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TObjPlayer_801BCFBC.cpp",
+    "src/pso/player/TObjPlayer_801BDF5C.cpp",
+    "src/pso/player/TObjPlayer_801C1FF8.cpp",
+    "src/pso/player/TObjPlayer_801C7430.cpp",
+    "src/pso/player/TObjPlayer_803130BC.cpp",
+    "src/pso/quest/QuestOpcodeHandlers.cpp",
+    "src/pso/render/ChunkTextureStripCollector.cpp",
+    "src/pso/ui/frontend/TAdMultiConfirmGC_802E03D0.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+    "src/pso/unk/TLobbyBattleParamData.cpp",
+    "src/pso/unk/TLobby_8001D6A0.cpp",
+    "src/pso/unk/TLobby_800F5CF0.cpp",
+    "src/pso/unk/text_8004AA04.cpp",
+    "src/pso/unk/text_800F5BC0.cpp",
+    "src/pso/unk/text_80184C2C.cpp",
+    "src/pso/unk/text_80312C50.cpp",
+    "src/pso/unk/text_8035B6B0.cpp",
+    "src/pso/unk/text_8035B750.cpp"
+  ],
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2394,
+  "coverage_sha256": {
+    "refined-check.json": "124d6735cb58e51e32d575d2eb42f14f3e97d44be124c2342f5186ec1f8b6f83",
+    "actor-stack-check.json": "7bef60a3c983cd4151d2c2a7f98ba7a125c391d1bbce542340983b385c845e53",
+    "cumulative-check.json": "77c9bc3656f5965bbe2980a6663f2d194360088efdedb12b150358813ea45b28",
+    "private-check.json": "20b655cf1e8a6aaf315c1c3c85da1dbe9929f23a86c9ee30ca922d184441e044"
+  },
+  "data_inventory": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0,
+    "ranges": 90
+  },
+  "source_quality": {
+    "refined-quality.json": {
+      "base": "fcd2b1c84f85eb934964b8ecbb7d864e6f34a2b7",
+      "total": {
+        "base": 157856,
+        "head": 157111,
+        "added": 83,
+        "removed": 828
+      },
+      "renames": [
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x8002AE7C",
+          "type": "function",
+          "old": "set_field_dc__10TObjMotionFl",
+          "new": "set_field_dc__10TObjMotionFP14BmlMotionEntry",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x8002AE84",
+          "type": "function",
+          "old": "set_field_d8__10TObjMotionFl",
+          "new": "set_field_d8__10TObjMotionFP16TObjMotionAction",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800F591C",
+          "type": "function",
+          "old": "collect_plist_strips_by_texture__FPvPsl",
+          "new": "collect_plist_strips_by_texture__FP15StripBufferPairPsl",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800F5AC8",
+          "type": "function",
+          "old": "count_plist_strips_by_texture__FPvPvPv",
+          "new": "count_plist_strips_by_texture__FP15StripBufferPairPsl",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800F5CF0",
+          "type": "function",
+          "old": "alloc_tables__6TLobbyFll",
+          "new": "alloc_tables__15StripBufferPairFP10NJS_OBJECTl",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801A7150",
+          "type": "function",
+          "old": "queue_deferred_photon_blast_hit__FUlll",
+          "new": "queue_deferred_photon_blast_hit__FUlllf",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801A72EC",
+          "type": "function",
+          "old": "queue_photon_blast_support__Fv",
+          "new": "queue_photon_blast_support__FUlll",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801A753C",
+          "type": "function",
+          "old": "copy_effect_params__FPUcPUc",
+          "new": "copy_effect_params__FP19PhotonOpeningEffectP19PhotonOpeningEffect",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801A826C",
+          "type": "function",
+          "old": "calc_photon_blast_power__10TObjPlayerFlf",
+          "new": "calc_photon_blast_power__13TUnk_804C349CFlf",
+          "flags": [
+            "member of TUnk_804C349C, a class named after an address"
+          ]
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801A8618",
+          "type": "function",
+          "old": "is_photon_blast_presentation_admitted__FUlPv",
+          "new": "is_photon_blast_presentation_admitted__FUlP15PhotonBlastSlot",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801A86E0",
+          "type": "function",
+          "old": "apply_photon_blast_action_hold__Flll",
+          "new": "apply_photon_blast_action_hold__FP13TUnk_804C349Cll",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801A8868",
+          "type": "function",
+          "old": "admit_photon_blast_sequence__FPUcPv",
+          "new": "admit_photon_blast_sequence__FP15PhotonBlastSlotP8TObjBase",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801A9E10",
+          "type": "function",
+          "old": "__ct__13TUnk_804C349CFlPUcPlll",
+          "new": "__ct__13TUnk_804C349CFlP15PhotonBlastSlotPClll",
+          "flags": [
+            "member of TUnk_804C349C, a class named after an address"
+          ]
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801AA510",
+          "type": "function",
+          "old": "get_section_id__10TObjPlayerFv",
+          "new": "get_section_id__15PhotonBlastSlotFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801AA518",
+          "type": "function",
+          "old": "set_field_2__10TObjPlayerFs",
+          "new": "set_field_2__15PhotonBlastSlotFs",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801AA520",
+          "type": "function",
+          "old": "set_type__10TObjPlayerFs",
+          "new": "set_type__15PhotonBlastSlotFUl",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801AA5C0",
+          "type": "function",
+          "old": "init_arrays__10TObjPlayerFv",
+          "new": "init_arrays__15PhotonBlastSlotFP15PhotonBlastSlot",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801AAB74",
+          "type": "function",
+          "old": "__ct__13TPhotonEstllaFPUc",
+          "new": "__ct__13TPhotonEstllaFP18PhotonSummonParams",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801AC444",
+          "type": "function",
+          "old": "sub_801AC444__13TPhotonLeillaFv",
+          "new": "clear_color__13TPhotonLeillaFUc",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801AC808",
+          "type": "function",
+          "old": "TPhotonLeilla__ct",
+          "new": "__ct__13TPhotonLeillaFP18PhotonSummonParams",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801AD218",
+          "type": "function",
+          "old": "construct_photon_magic_square_normal__FPUcllll",
+          "new": "construct_photon_magic_square_normal__FP18TPhotonMagicSquareP7TObjectlPC3Vecl",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801CBDD4",
+          "type": "function",
+          "old": "apply_photon_blast__10TObjPlayerFll",
+          "new": "apply_photon_blast__10TObjPlayerFUls",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801D2AFC",
+          "type": "function",
+          "old": "get_element__10TObjPlayerFPvi",
+          "new": "get_element__19PhotonBlastRegistryFl",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80312C50",
+          "type": "function",
+          "old": "release_photon_blast_requests__FPv",
+          "new": "release_photon_blast_requests__FP19PhotonBlastRegistry",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80312CCC",
+          "type": "function",
+          "old": "find_by_section_id__10TObjPlayerFUs",
+          "new": "find_by_section_id__19PhotonBlastRegistryFUs",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80312D4C",
+          "type": "function",
+          "old": "create_party_effects__10TObjPlayerFl",
+          "new": "create_party_effects__19PhotonBlastRegistryFl",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80312E0C",
+          "type": "function",
+          "old": "find_first_valid_target_id__10TObjPlayerFv",
+          "new": "find_first_valid_target_id__19PhotonBlastRegistryFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80312F0C",
+          "type": "function",
+          "old": "process_all_elements__10TObjPlayerFv",
+          "new": "process_all_elements__19PhotonBlastRegistryFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x803130BC",
+          "type": "function",
+          "old": "update_children__10TObjPlayerFv",
+          "new": "update_children__15PhotonBlastSlotFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80313138",
+          "type": "function",
+          "old": "reset_id_entry__10TObjPlayerFv",
+          "new": "reset_id_entry__15PhotonBlastSlotFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x803131C8",
+          "type": "function",
+          "old": "process_indexed_element__10TObjPlayerFl",
+          "new": "process_indexed_element__19PhotonBlastRegistryFl",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x803131F0",
+          "type": "function",
+          "old": "check_flag_at_4__10TObjPlayerFv",
+          "new": "check_flag_at_4__15PhotonBlastSlotFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80313260",
+          "type": "function",
+          "old": "get_max_children__10TObjPlayerFPv",
+          "new": "get_max_children__15PhotonBlastSlotFPC15PhotonBlastSlot",
+          "flags": []
+        }
+      ],
+      "remaining_findings": [
+        {
+          "key": "address_type",
+          "path": "include/pso/effect/photon/PhotonBlastSummon.h",
+          "line": 11,
+          "text": "class TUnk_804C3248"
+        },
+        {
+          "key": "offset_member",
+          "path": "include/pso/effect/photon/TPhotonLine.h",
+          "line": 23,
+          "text": "unk_340"
+        },
+        {
+          "key": "offset_member",
+          "path": "include/pso/effect/photon/TPhotonLine.h",
+          "line": 25,
+          "text": "unk_348"
+        },
+        {
+          "key": "offset_member",
+          "path": "include/pso/effect/photon/TPhotonMagicSquare.h",
+          "line": 11,
+          "text": "m_90"
+        },
+        {
+          "key": "offset_member",
+          "path": "include/pso/effect/photon/TPhotonMagicSquare.h",
+          "line": 12,
+          "text": "unk_94"
+        },
+        {
+          "key": "offset_member",
+          "path": "include/pso/effect/photon/TPhotonMagicSquare.h",
+          "line": 14,
+          "text": "unk_9C"
+        },
+        {
+          "key": "offset_member",
+          "path": "include/pso/effect/photon/TPhotonMagicSquare.h",
+          "line": 18,
+          "text": "m_b8"
+        },
+        {
+          "key": "offset_member",
+          "path": "include/pso/effect/photon/TPhotonMagicSquare.h",
+          "line": 28,
+          "text": "m_b8"
+        },
+        {
+          "key": "offset_member",
+          "path": "include/pso/effect/photon/TPhotonRainbow.h",
+          "line": 12,
+          "text": "m_90"
+        },
+        {
+          "key": "address_type",
+          "path": "include/pso/player/PhotonBlastResults.h",
+          "line": 29,
+          "text": "TUnk_804C349C"
+        },
+        {
+          "key": "offset_member",
+          "path": "include/pso/render/StripBufferPair.h",
+          "line": 19,
+          "text": "unk_10"
+        },
+        {
+          "key": "offset_member",
+          "path": "include/pso/unk/TUnk_804C3248.h",
+          "line": 49,
+          "text": "unk_138"
+        },
+        {
+          "key": "offset_member",
+          "path": "include/pso/unk/TUnk_804C3248.h",
+          "line": 56,
+          "text": "unk_154"
+        },
+        {
+          "key": "local_class",
+          "path": "src/pso/effect/photon/PhotonBlastSummon.cpp",
+          "line": 147,
+          "text": "struct PhotonOpeningEffect"
+        },
+        {
+          "key": "local_class",
+          "path": "src/pso/effect/photon/PhotonBlastSummon.cpp",
+          "line": 157,
+          "text": "struct PhotonAttachmentSpec"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonEstlla.cpp",
+          "line": 89,
+          "text": "m_17c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonEstlla.cpp",
+          "line": 104,
+          "text": "m_17c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonEstlla.cpp",
+          "line": 223,
+          "text": "m_17c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonEstlla.cpp",
+          "line": 229,
+          "text": "m_c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonEstlla.cpp",
+          "line": 236,
+          "text": "m_194"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonEstlla.cpp",
+          "line": 237,
+          "text": "m_198"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonEstlla.cpp",
+          "line": 261,
+          "text": "m_150"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonFarlla.cpp",
+          "line": 276,
+          "text": "m_17c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonFarlla.cpp",
+          "line": 280,
+          "text": "m_17c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonFarlla.cpp",
+          "line": 286,
+          "text": "m_c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonFarlla.cpp",
+          "line": 292,
+          "text": "m_194"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonFarlla.cpp",
+          "line": 293,
+          "text": "m_198"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonFarlla.cpp",
+          "line": 295,
+          "text": "m_1a0"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonFarlla.cpp",
+          "line": 296,
+          "text": "m_134"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonFarlla.cpp",
+          "line": 318,
+          "text": "m_150"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonFarlla.cpp",
+          "line": 319,
+          "text": "m_198"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonFarlla.cpp",
+          "line": 322,
+          "text": "m_198"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonFarlla.cpp",
+          "line": 323,
+          "text": "m_194"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonFarlla.cpp",
+          "line": 324,
+          "text": "m_1a0"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonFarlla.cpp",
+          "line": 325,
+          "text": "m_17c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonFarlla.cpp",
+          "line": 337,
+          "text": "m_17c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonGolla.cpp",
+          "line": 432,
+          "text": "m_1a4"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonGolla.cpp",
+          "line": 440,
+          "text": "m_c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonGolla.cpp",
+          "line": 450,
+          "text": "m_134"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonGolla.cpp",
+          "line": 468,
+          "text": "m_19c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonLeilla.cpp",
+          "line": 74,
+          "text": "unk_14C"
+        },
+        {
+          "key": "this_cast",
+          "path": "src/pso/effect/photon/TPhotonLeilla.cpp",
+          "line": 91,
+          "text": "TPhotonLeilla: (TObjPlayer *)this"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonLeilla.cpp",
+          "line": 177,
+          "text": "m_17c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonLeilla.cpp",
+          "line": 178,
+          "text": "m_17c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonLeilla.cpp",
+          "line": 183,
+          "text": "m_c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonLeilla.cpp",
+          "line": 189,
+          "text": "m_190"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonLeilla.cpp",
+          "line": 190,
+          "text": "m_194"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonLeilla.cpp",
+          "line": 191,
+          "text": "m_198"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonLeilla.cpp",
+          "line": 192,
+          "text": "m_19c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonLeilla.cpp",
+          "line": 195,
+          "text": "m_1ac"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonLeilla.cpp",
+          "line": 216,
+          "text": "m_198"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonLeilla.cpp",
+          "line": 220,
+          "text": "m_194"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonLeilla.cpp",
+          "line": 224,
+          "text": "m_190"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonLeilla.cpp",
+          "line": 225,
+          "text": "m_19c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 41,
+          "text": "m_b8"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 58,
+          "text": "m_90"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 58,
+          "text": "unk_9C"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 98,
+          "text": "unk_9C"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 98,
+          "text": "unk_94"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 99,
+          "text": "unk_9C"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 99,
+          "text": "unk_9C"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 101,
+          "text": "unk_9C"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 134,
+          "text": "m_90"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 135,
+          "text": "unk_9C"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 136,
+          "text": "unk_94"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 138,
+          "text": "m_c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 143,
+          "text": "m_b8"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 160,
+          "text": "unk_94"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 162,
+          "text": "m_c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 167,
+          "text": "m_b8"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 185,
+          "text": "m_c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 192,
+          "text": "m_b8"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMylla.cpp",
+          "line": 59,
+          "text": "unknown_184"
+        },
+        {
+          "key": "this_cast",
+          "path": "src/pso/effect/photon/TPhotonMylla.cpp",
+          "line": 135,
+          "text": "TPhotonMylla: (TObjPlayer *)this"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMylla.cpp",
+          "line": 250,
+          "text": "m_c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMylla.cpp",
+          "line": 258,
+          "text": "m_19c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMylla.cpp",
+          "line": 267,
+          "text": "m_19c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonPilla.cpp",
+          "line": 259,
+          "text": "m_c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonRainbow.cpp",
+          "line": 64,
+          "text": "m_c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonRainbow.cpp",
+          "line": 65,
+          "text": "m_c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonRainbow.cpp",
+          "line": 69,
+          "text": "m_c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonRainbow.cpp",
+          "line": 70,
+          "text": "m_c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonYoulla.cpp",
+          "line": 149,
+          "text": "m_c"
+        },
+        {
+          "key": "address_type",
+          "path": "src/pso/player/PhotonBlastResults.cpp",
+          "line": 149,
+          "text": "TUnk_804C349C"
+        },
+        {
+          "key": "address_type",
+          "path": "src/pso/player/PhotonBlastResults.cpp",
+          "line": 228,
+          "text": "TUnk_804C349C"
+        }
+      ],
+      "stale_force_active": [],
+      "report_sha256": "41902a20ad9ec967e256ec3d392f2004e3e7af4b2df0e5fb84910be7c3c8daf6"
+    },
+    "actor-stack-quality.json": {
+      "base": "6f4dd7a7314d8b67834e44cbf6473398a9af7b10",
+      "total": {
+        "base": 157974,
+        "head": 157111,
+        "added": 91,
+        "removed": 954
+      },
+      "renames": [
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x8001E41C",
+          "type": "function",
+          "old": "swap_endian__6TLobbyFv",
+          "new": "swap_endian__15ActorParamBlockFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x8001E498",
+          "type": "function",
+          "old": "byteswap_packet__6TLobbyFv",
+          "new": "byteswap_packet__12AttackParamsFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x8002AE7C",
+          "type": "function",
+          "old": "set_field_dc__10TObjMotionFl",
+          "new": "set_field_dc__10TObjMotionFP14BmlMotionEntry",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x8002AE84",
+          "type": "function",
+          "old": "set_field_d8__10TObjMotionFl",
+          "new": "set_field_d8__10TObjMotionFP16TObjMotionAction",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800B9E84",
+          "type": "function",
+          "old": "reload_stats_keep_hp_tp__9TObjEneDDFPUcPUcPUc",
+          "new": "reload_stats_keep_hp_tp__9TObjEneDDFP12player_statsP12AttackParamsP15ActorParamBlock",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800B9ED0",
+          "type": "function",
+          "old": "reset_hp__9TObjEneDDFPUcPUcPUc",
+          "new": "reset_hp__9TObjEneDDFP12player_statsP12AttackParamsP15ActorParamBlock",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800F591C",
+          "type": "function",
+          "old": "collect_plist_strips_by_texture__FPvPsl",
+          "new": "collect_plist_strips_by_texture__FP15StripBufferPairPsl",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800F5AC8",
+          "type": "function",
+          "old": "count_plist_strips_by_texture__FPvPvPv",
+          "new": "count_plist_strips_by_texture__FP15StripBufferPairPsl",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800F5CF0",
+          "type": "function",
+          "old": "alloc_tables__6TLobbyFll",
+          "new": "alloc_tables__15StripBufferPairFP10NJS_OBJECTl",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800F7478",
+          "type": "function",
+          "old": "bind_enemy_combat_stats__9TObjEnemyFPUcPUcPUc",
+          "new": "bind_enemy_combat_stats__9TObjEnemyFP12player_statsP12AttackParamsP15ActorParamBlock",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801A7150",
+          "type": "function",
+          "old": "queue_deferred_photon_blast_hit__FUlll",
+          "new": "queue_deferred_photon_blast_hit__FUlllf",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801A72EC",
+          "type": "function",
+          "old": "queue_photon_blast_support__Fv",
+          "new": "queue_photon_blast_support__FUlll",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801A753C",
+          "type": "function",
+          "old": "copy_effect_params__FPUcPUc",
+          "new": "copy_effect_params__FP19PhotonOpeningEffectP19PhotonOpeningEffect",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801A826C",
+          "type": "function",
+          "old": "calc_photon_blast_power__10TObjPlayerFlf",
+          "new": "calc_photon_blast_power__13TUnk_804C349CFlf",
+          "flags": [
+            "member of TUnk_804C349C, a class named after an address"
+          ]
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801A8618",
+          "type": "function",
+          "old": "is_photon_blast_presentation_admitted__FUlPv",
+          "new": "is_photon_blast_presentation_admitted__FUlP15PhotonBlastSlot",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801A86E0",
+          "type": "function",
+          "old": "apply_photon_blast_action_hold__Flll",
+          "new": "apply_photon_blast_action_hold__FP13TUnk_804C349Cll",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801A8868",
+          "type": "function",
+          "old": "admit_photon_blast_sequence__FPUcPv",
+          "new": "admit_photon_blast_sequence__FP15PhotonBlastSlotP8TObjBase",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801A9E10",
+          "type": "function",
+          "old": "__ct__13TUnk_804C349CFlPUcPlll",
+          "new": "__ct__13TUnk_804C349CFlP15PhotonBlastSlotPClll",
+          "flags": [
+            "member of TUnk_804C349C, a class named after an address"
+          ]
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801AA510",
+          "type": "function",
+          "old": "get_section_id__10TObjPlayerFv",
+          "new": "get_section_id__15PhotonBlastSlotFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801AA518",
+          "type": "function",
+          "old": "set_field_2__10TObjPlayerFs",
+          "new": "set_field_2__15PhotonBlastSlotFs",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801AA520",
+          "type": "function",
+          "old": "set_type__10TObjPlayerFs",
+          "new": "set_type__15PhotonBlastSlotFUl",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801AA5C0",
+          "type": "function",
+          "old": "init_arrays__10TObjPlayerFv",
+          "new": "init_arrays__15PhotonBlastSlotFP15PhotonBlastSlot",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801AAB74",
+          "type": "function",
+          "old": "__ct__13TPhotonEstllaFPUc",
+          "new": "__ct__13TPhotonEstllaFP18PhotonSummonParams",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801AC444",
+          "type": "function",
+          "old": "sub_801AC444__13TPhotonLeillaFv",
+          "new": "clear_color__13TPhotonLeillaFUc",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801AC808",
+          "type": "function",
+          "old": "TPhotonLeilla__ct",
+          "new": "__ct__13TPhotonLeillaFP18PhotonSummonParams",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801AD218",
+          "type": "function",
+          "old": "construct_photon_magic_square_normal__FPUcllll",
+          "new": "construct_photon_magic_square_normal__FP18TPhotonMagicSquareP7TObjectlPC3Vecl",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801CBDD4",
+          "type": "function",
+          "old": "apply_photon_blast__10TObjPlayerFll",
+          "new": "apply_photon_blast__10TObjPlayerFUls",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x801D2AFC",
+          "type": "function",
+          "old": "get_element__10TObjPlayerFPvi",
+          "new": "get_element__19PhotonBlastRegistryFl",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802D71E0",
+          "type": "function",
+          "old": "register_animated_chunk__16NpcModelRegistryFsPvPvPC19NpcAnimationBindingff",
+          "new": "register_animated_chunk__16NpcModelRegistryFsP10NJS_OBJECTP16GinjaTextureListPC19NpcAnimationBindingff",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802D7260",
+          "type": "function",
+          "old": "spawn_child__12TObjEneSlimeFsllff",
+          "new": "register_chunk__16NpcModelRegistryFsP10NJS_OBJECTP16GinjaTextureListff",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80312C50",
+          "type": "function",
+          "old": "release_photon_blast_requests__FPv",
+          "new": "release_photon_blast_requests__FP19PhotonBlastRegistry",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80312CCC",
+          "type": "function",
+          "old": "find_by_section_id__10TObjPlayerFUs",
+          "new": "find_by_section_id__19PhotonBlastRegistryFUs",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80312D4C",
+          "type": "function",
+          "old": "create_party_effects__10TObjPlayerFl",
+          "new": "create_party_effects__19PhotonBlastRegistryFl",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80312E0C",
+          "type": "function",
+          "old": "find_first_valid_target_id__10TObjPlayerFv",
+          "new": "find_first_valid_target_id__19PhotonBlastRegistryFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80312F0C",
+          "type": "function",
+          "old": "process_all_elements__10TObjPlayerFv",
+          "new": "process_all_elements__19PhotonBlastRegistryFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x803130BC",
+          "type": "function",
+          "old": "update_children__10TObjPlayerFv",
+          "new": "update_children__15PhotonBlastSlotFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80313138",
+          "type": "function",
+          "old": "reset_id_entry__10TObjPlayerFv",
+          "new": "reset_id_entry__15PhotonBlastSlotFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x803131C8",
+          "type": "function",
+          "old": "process_indexed_element__10TObjPlayerFl",
+          "new": "process_indexed_element__19PhotonBlastRegistryFl",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x803131F0",
+          "type": "function",
+          "old": "check_flag_at_4__10TObjPlayerFv",
+          "new": "check_flag_at_4__15PhotonBlastSlotFv",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80313260",
+          "type": "function",
+          "old": "get_max_children__10TObjPlayerFPv",
+          "new": "get_max_children__15PhotonBlastSlotFPC15PhotonBlastSlot",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".rodata",
+          "address": "0x80472490",
+          "type": "object",
+          "old": "lbl_80472490",
+          "new": "mericarol_render_shadow_scale",
+          "flags": []
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".rodata",
+          "address": "0x8047249C",
+          "type": "object",
+          "old": "lbl_8047249C",
+          "new": "mericarol_variant_shadow_scale",
+          "flags": []
+        }
+      ],
+      "remaining_findings": [
+        {
+          "key": "address_type",
+          "path": "include/pso/effect/photon/PhotonBlastSummon.h",
+          "line": 11,
+          "text": "class TUnk_804C3248"
+        },
+        {
+          "key": "offset_member",
+          "path": "include/pso/effect/photon/TPhotonLine.h",
+          "line": 23,
+          "text": "unk_340"
+        },
+        {
+          "key": "offset_member",
+          "path": "include/pso/effect/photon/TPhotonLine.h",
+          "line": 25,
+          "text": "unk_348"
+        },
+        {
+          "key": "offset_member",
+          "path": "include/pso/effect/photon/TPhotonMagicSquare.h",
+          "line": 11,
+          "text": "m_90"
+        },
+        {
+          "key": "offset_member",
+          "path": "include/pso/effect/photon/TPhotonMagicSquare.h",
+          "line": 12,
+          "text": "unk_94"
+        },
+        {
+          "key": "offset_member",
+          "path": "include/pso/effect/photon/TPhotonMagicSquare.h",
+          "line": 14,
+          "text": "unk_9C"
+        },
+        {
+          "key": "offset_member",
+          "path": "include/pso/effect/photon/TPhotonMagicSquare.h",
+          "line": 18,
+          "text": "m_b8"
+        },
+        {
+          "key": "offset_member",
+          "path": "include/pso/effect/photon/TPhotonMagicSquare.h",
+          "line": 28,
+          "text": "m_b8"
+        },
+        {
+          "key": "offset_member",
+          "path": "include/pso/effect/photon/TPhotonRainbow.h",
+          "line": 12,
+          "text": "m_90"
+        },
+        {
+          "key": "address_type",
+          "path": "include/pso/player/PhotonBlastResults.h",
+          "line": 29,
+          "text": "TUnk_804C349C"
+        },
+        {
+          "key": "offset_member",
+          "path": "include/pso/render/StripBufferPair.h",
+          "line": 19,
+          "text": "unk_10"
+        },
+        {
+          "key": "offset_member",
+          "path": "include/pso/unk/TUnk_804C3248.h",
+          "line": 49,
+          "text": "unk_138"
+        },
+        {
+          "key": "offset_member",
+          "path": "include/pso/unk/TUnk_804C3248.h",
+          "line": 56,
+          "text": "unk_154"
+        },
+        {
+          "key": "local_class",
+          "path": "src/pso/effect/photon/PhotonBlastSummon.cpp",
+          "line": 147,
+          "text": "struct PhotonOpeningEffect"
+        },
+        {
+          "key": "local_class",
+          "path": "src/pso/effect/photon/PhotonBlastSummon.cpp",
+          "line": 157,
+          "text": "struct PhotonAttachmentSpec"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonEstlla.cpp",
+          "line": 89,
+          "text": "m_17c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonEstlla.cpp",
+          "line": 104,
+          "text": "m_17c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonEstlla.cpp",
+          "line": 223,
+          "text": "m_17c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonEstlla.cpp",
+          "line": 229,
+          "text": "m_c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonEstlla.cpp",
+          "line": 236,
+          "text": "m_194"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonEstlla.cpp",
+          "line": 237,
+          "text": "m_198"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonEstlla.cpp",
+          "line": 261,
+          "text": "m_150"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonFarlla.cpp",
+          "line": 276,
+          "text": "m_17c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonFarlla.cpp",
+          "line": 280,
+          "text": "m_17c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonFarlla.cpp",
+          "line": 286,
+          "text": "m_c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonFarlla.cpp",
+          "line": 292,
+          "text": "m_194"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonFarlla.cpp",
+          "line": 293,
+          "text": "m_198"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonFarlla.cpp",
+          "line": 295,
+          "text": "m_1a0"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonFarlla.cpp",
+          "line": 296,
+          "text": "m_134"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonFarlla.cpp",
+          "line": 318,
+          "text": "m_150"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonFarlla.cpp",
+          "line": 319,
+          "text": "m_198"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonFarlla.cpp",
+          "line": 322,
+          "text": "m_198"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonFarlla.cpp",
+          "line": 323,
+          "text": "m_194"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonFarlla.cpp",
+          "line": 324,
+          "text": "m_1a0"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonFarlla.cpp",
+          "line": 325,
+          "text": "m_17c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonFarlla.cpp",
+          "line": 337,
+          "text": "m_17c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonGolla.cpp",
+          "line": 432,
+          "text": "m_1a4"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonGolla.cpp",
+          "line": 440,
+          "text": "m_c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonGolla.cpp",
+          "line": 450,
+          "text": "m_134"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonGolla.cpp",
+          "line": 468,
+          "text": "m_19c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonLeilla.cpp",
+          "line": 74,
+          "text": "unk_14C"
+        },
+        {
+          "key": "this_cast",
+          "path": "src/pso/effect/photon/TPhotonLeilla.cpp",
+          "line": 91,
+          "text": "TPhotonLeilla: (TObjPlayer *)this"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonLeilla.cpp",
+          "line": 177,
+          "text": "m_17c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonLeilla.cpp",
+          "line": 178,
+          "text": "m_17c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonLeilla.cpp",
+          "line": 183,
+          "text": "m_c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonLeilla.cpp",
+          "line": 189,
+          "text": "m_190"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonLeilla.cpp",
+          "line": 190,
+          "text": "m_194"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonLeilla.cpp",
+          "line": 191,
+          "text": "m_198"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonLeilla.cpp",
+          "line": 192,
+          "text": "m_19c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonLeilla.cpp",
+          "line": 195,
+          "text": "m_1ac"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonLeilla.cpp",
+          "line": 216,
+          "text": "m_198"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonLeilla.cpp",
+          "line": 220,
+          "text": "m_194"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonLeilla.cpp",
+          "line": 224,
+          "text": "m_190"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonLeilla.cpp",
+          "line": 225,
+          "text": "m_19c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 41,
+          "text": "m_b8"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 58,
+          "text": "m_90"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 58,
+          "text": "unk_9C"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 98,
+          "text": "unk_9C"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 98,
+          "text": "unk_94"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 99,
+          "text": "unk_9C"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 99,
+          "text": "unk_9C"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 101,
+          "text": "unk_9C"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 134,
+          "text": "m_90"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 135,
+          "text": "unk_9C"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 136,
+          "text": "unk_94"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 138,
+          "text": "m_c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 143,
+          "text": "m_b8"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 160,
+          "text": "unk_94"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 162,
+          "text": "m_c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 167,
+          "text": "m_b8"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 185,
+          "text": "m_c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMagicSquare_801ACE1C.cpp",
+          "line": 192,
+          "text": "m_b8"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMylla.cpp",
+          "line": 59,
+          "text": "unknown_184"
+        },
+        {
+          "key": "this_cast",
+          "path": "src/pso/effect/photon/TPhotonMylla.cpp",
+          "line": 135,
+          "text": "TPhotonMylla: (TObjPlayer *)this"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMylla.cpp",
+          "line": 250,
+          "text": "m_c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMylla.cpp",
+          "line": 258,
+          "text": "m_19c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonMylla.cpp",
+          "line": 267,
+          "text": "m_19c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonPilla.cpp",
+          "line": 259,
+          "text": "m_c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonRainbow.cpp",
+          "line": 64,
+          "text": "m_c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonRainbow.cpp",
+          "line": 65,
+          "text": "m_c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonRainbow.cpp",
+          "line": 69,
+          "text": "m_c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonRainbow.cpp",
+          "line": 70,
+          "text": "m_c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/effect/photon/TPhotonYoulla.cpp",
+          "line": 149,
+          "text": "m_c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+          "line": 1165,
+          "text": "m_c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+          "line": 720,
+          "text": "m_c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+          "line": 266,
+          "text": "m_c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+          "line": 181,
+          "text": "m_c"
+        },
+        {
+          "key": "flat_name",
+          "path": "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+          "line": 81,
+          "text": "TObjEneBm9Mericarol__class_name_string"
+        },
+        {
+          "key": "flat_name",
+          "path": "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+          "line": 142,
+          "text": "TObjEneBm9Mericarol__class_name_string"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/object/TObjControl.cpp",
+          "line": 356,
+          "text": "m_2f6"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/object/TObjControl.cpp",
+          "line": 358,
+          "text": "m_2fa"
+        },
+        {
+          "key": "address_type",
+          "path": "src/pso/player/PhotonBlastResults.cpp",
+          "line": 149,
+          "text": "TUnk_804C349C"
+        },
+        {
+          "key": "address_type",
+          "path": "src/pso/player/PhotonBlastResults.cpp",
+          "line": 228,
+          "text": "TUnk_804C349C"
+        }
+      ],
+      "stale_force_active": [],
+      "report_sha256": "3dcd64a93801cb0e63ff434fe764742d19ce99cc8626f630ffd7021404a8e7d8"
+    }
+  },
+  "explain_advisories": {
+    "0x801A826C": "The damage calculation reads the active Photon Blast sequence. Its member receiver moves from TObjPlayer to the existing TUnk_804C349C class.",
+    "0x801A9E10": "The existing TUnk_804C349C constructor accepts the registry slots and read-only participant counts. The class retains its upstream name."
+  },
+  "runtime_probes": {
+    "review-probes.log": {
+      "reported_cases": {
+        "leilla_setup": 20,
+        "line_constructors": 8,
+        "line_motion_and_hits": 16
+      },
+      "sha256": "94c0f28e43cf5de2968a94a93531422d7701e843bf41c7d103cd9ab423754a95"
+    },
+    "cumulative-probes.log": {
+      "reported_cases": {
+        "leilla_setup": 20,
+        "line_constructors": 8,
+        "line_motion_and_hits": 16
+      },
+      "sha256": "6360bebb7e840e5f11a5f29c5cfe75cf5726f8d69dc1e580395a945717c6856c"
+    }
+  },
+  "private_workspace": {
+    "paths": 130,
+    "materialized_tree": "38c92ea912d349095f50bacc509c458a32459438",
+    "patch_sha256": "cf78ff20fc149aa262cb62e1564ecf3c49c3c81d35f93ca2cc61c308744d1d83",
+    "tests": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    }
+  }
+}

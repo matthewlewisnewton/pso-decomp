@@ -1,0 +1,2483 @@
+# Porting exceptions register
+
+Every place where the source is not plain portable C/C++ because matching the
+GameCube binary needs it: assembly, CodeWarrior-only intrinsics and pragmas,
+direct hardware access, per-unit compiler overrides, and approved regressions.
+A port to another platform must rewrite or neutralize every entry here.
+
+The mechanical inventory (each line and file) is generated into
+[porting-exceptions-generated.md](porting-exceptions-generated.md):
+
+    python3 tools/list_port_exceptions.py           # regenerate
+    python3 tools/list_port_exceptions.py --check   # fail if stale
+    python3 tools/list_port_exceptions.py --pr N    # list exceptions added by open PR N
+
+Reasons are cited only where a file, PR or approval records one; otherwise the
+entry says *reason not recorded*.
+
+### Title resources and multiplayer game-mode messages
+
+`pso/unk/text_803367F4.cpp` and `pso/ui/TAdMultiChgGameModeGC_8036DE10.cpp`
+use `-str reuse,readonly` for the title texture names, archive names and
+game-mode prompts. The original pointer tables reference read-only storage.
+The message unit also uses the project's Shift-JIS wrapper and CodeWarrior's
+`-multibyte` setting. For example, the second byte of 能 is 0x5C, which the
+compiler otherwise consumes as a backslash. A port can use its normal string
+pooling and encode these messages for the game text renderer at its boundary.
+
+### LSC initialization
+
+`pso/system/LscInit.cpp` uses the CRI middleware's GC/2.0 profile with
+`-str reuse,readonly`, following the split recovered in upstream
+matchpass 18 (`b0b44cbda2`). Read-only string pooling keeps the build banner in
+`.rodata` and its volatile pointer in `.sdata2`. Ports can use ordinary C++
+string storage and retain the volatile read in `lsc_init`.
+
+### Shared warning-window lifecycle
+
+The `TObjBagWarnWin` and `TObjBagWarnWin4P` units use guarded
+`dont_inline off` / `inline_depth(2)` controls from the start of each unit
+through deferred template emission. Scoped controls restored before the end
+leave the lifecycle and policy adapters out of line in GC/2.6. The common
+warning lifecycle retains distinct predicates, creation methods and original
+virtual entry points. Ports can remove the pragmas and retain the ordinary
+template and composed warning state.
+
+### Shared three-channel weapon animation
+
+The idle and attack wrappers of `TUnk_804A6200` and `TUnk_804A67D0` use
+guarded, scoped `dont_inline off` / `inline_depth(1)` to expand the common
+`WeaponAnimationChannels` operations at the existing virtual entry points.
+Ports can remove the pragmas and retain the composed state and ordinary C++
+methods. The channels do not establish a new intermediate base class.
+
+### Shared technique band sounds
+
+The Barta, GiBarta and Megid sound wrappers use guarded, scoped
+`dont_inline off` / `inline_depth(1)` to expand `play_technique_band_sound`
+at their original entry points, keeping the native sound IDs, pitch schedule
+and switch tables. Ports can remove the pragmas and retain the ordinary inline
+function and inherited technique fields.
+
+### Shared cave-sign rendering
+
+`TOSignCave01::render` and `TOSignCave02::render` use guarded, scoped
+`dont_inline off` / `inline_depth(1)` to expand `render_cave_sign` at each
+existing entry point. This retains the two original virtual methods and their
+model traversal while sharing the implementation. Ports can remove the pragmas
+and retain the ordinary inline function; no intermediate class is inferred.
+
+### Zako shadow falloff
+
+`TObjPlayer__sub_8030A9B0` in `src/pso/boss/TBoss4ZakoDraw.cpp` retains
+its existing scoped `fp_contract on`: the cubic distance falloff and alpha
+calculation use the native fused multiply-add/subtract instructions. The unit
+fold removes the old `inline_depth` and `dont_inline` controls and trailing
+redeclaration; ordinary `Vec` copy initialization needs none of them. Ports
+should preserve the floating-point contraction/rounding behavior where required,
+using the platform compiler's equivalent support. See the
+[renderer consolidation evidence](evidence/zako-renderer-consolidation.md).
+
+### TCP out-of-order receive queue
+
+The receive-range routines at `0x8041F66C` and `0x8041F914` in
+`src/pso/network/SocketProtocolRuntime.cpp` share the existing
+`dont_inline off` and `inline_depth(4)` scope. CodeWarrior inlines the
+range length and removal helpers. Ports can use ordinary inline functions
+and preserve the unsigned endpoint subtraction. The receive-room clamp
+and the range array copies use the existing shared control-block layout.
+[Receive queue recovery](evidence/tcp-out-of-order-queue.md)
+
+### Retail SACK compaction lookahead
+
+The CodeWarrior path in `TLobby__sub_8041FED4` deliberately retains the retail
+bounds bug: compaction reads the eight bytes immediately after the five-entry
+SACK array before clearing its last slot. Non-CodeWarrior builds stop at source
+slot four. `PSO_SOCKET_BOUNDED_SACK` selects that bounded implementation for a
+diagnostic CodeWarrior build. Ports must retain the bounded form unless they
+are reproducing the retail memory access with an equivalent valid storage
+boundary. [Socket runtime evidence](evidence/socket-protocol-runtime.md)
+
+### TCP send acknowledgement
+
+The same unit disables inlining and lifetime optimization around `0x8041FFF8`.
+Its native local declaration order and the `Acknowledgement` aggregate reproduce
+the 96-byte stack frame and FIFO descriptor offset. The aggregate groups the
+existing handle and remaining count, including alignment; it is not unused frame
+storage. Ports can use separate variables and omit the optimizer settings while
+keeping the post-callback queue-head reload.
+[Socket runtime evidence](evidence/socket-protocol-runtime.md)
+
+### TCP send gathering
+
+`0x80420410` uses a scoped `opt_propagation off` control to reproduce the
+native reverse and shift walks. The walks use typed indices and a
+`NetPacketFragment *` cursor rather than integer native addresses. The original
+unused final decrement can precede the array. Ports should keep the cursor
+within the array or use bounded typed indices and can omit the optimizer
+setting. The unreachable retail partial-fragment tail remains for exact
+matching. [Socket runtime evidence](evidence/socket-protocol-runtime.md)
+
+### Logo texture descriptor declaration
+
+`src/pso/misc/TLogo_8001C134.cpp` marks the existing eight-byte
+`texture_logo_e_descriptor` declaration as `.data` for CodeWarrior, matching
+its definition in `TAdSEGAlogo_8001BF4C.cpp`. Without it, the typed declaration
+changes the original absolute-address loads into small-data references.
+Ports can drop the guarded annotation and retain the `NJS_TEXLIST` type.
+
+### Duel-effect string lifetime data
+
+`src/pso/misc/TDuelEffectNumber_80080460.cpp` gives the final two-float
+object `lbl_805D9330` a guarded `.sdata2` section annotation. Its first
+float is the 30-frame lifetime; the second is the original zero tail.
+Without the annotation the array leaves the small-data constant section,
+changing the load and the object layout. The late definition keeps it after
+the digit-transform and opacity literals. Ports can drop the annotation and
+keep the ordinary array and C++ expressions.
+
+### Grass placement angle constant
+
+The two-float `lbl_805D9E78` object in `src/pso/unk/data_805D9E78.cpp` holds
+the 360-degree angle and its original zero word. The guarded CodeWarrior
+section annotation keeps the array in `.sdata2`. The matching declaration
+in `TObjCGrass.cpp` preserves the single small-data float load. Ports use
+the same array and first-element access without the section annotations.
+
+### De Rol Le constant pool
+
+The eight-byte slots at `0x805D8460` and `0x805D8490` each contain a float
+and a trailing zero word. The guarded CodeWarrior section annotations in
+`src/pso/unk/data_805D8444.cpp`, `TBoss2Fin.cpp`, and `TBoss2Joint.cpp`
+keep the definitions in `.sdata2` and preserve the consumers' single float
+loads. The pool starts at `0x805D8444`, so `cw_align: .sdata2=4` records its
+original alignment in ELF and the CodeWarrior comment section. Ports can use
+the C++ arrays and first-element reads with their compiler's default layout.
+
+### Dark Falz demo constant pool
+
+The guarded CodeWarrior section annotations on `lbl_805D8A28` place the
+initial animation frame and its trailing zero word in `.sdata2`. The matching
+declaration in `src/pso/unk/text_80050134.cpp` lets the constructor keep its
+single small-data float load. Ports can compile the array and first-element
+read with their compiler's normal placement.
+
+### Scalar collision-area helper
+
+`TObjPlayer__sub_803DF840` in `src/pso/player/TObjPlayer_803DF7A8.cpp` adds
+two `__fabs` and two `__frsqrte` uses. The lengths retain three double-precision
+Newton refinements and volatile float rounding homes. A double carrier and
+separate absolute-value and float-conversion assignments preserve the native
+register allocation; the arithmetic consumes the rounded float values. The
+unit defaults reproduce the original separate rounding operations. A port can use ordinary
+`fabs` and `sqrt`, retain the `0.025f` near-vertical rule, and validate rounding
+behavior. See [the scalar recovery evidence](evidence/scalar-collision-area-helper.md).
+
+### Quadrilateral and sphere contact units
+
+`TObjPlayer__sub_803DFB1C` and `test_box_sphere_contact` use scoped
+`opt_loop_invariants off` and inline controls to reproduce the native register
+allocation and square-root refinement. A port can use its own inline settings
+and square root while validating floating-point behavior. See [the evidence](evidence/collision-contact-units.md).
+
+### Dark Gunner center native emission
+
+`src/pso/enemy/TObjEneDarkGunCenter.cpp` uses `#pragma defer_codegen on`
+with reverse function definitions to retain the native vtable before the
+seven-entry switch table. Immediate generation preserves function instructions
+but puts the switch table first, moving the vtable by 28 bytes. Deferred
+generation reproduces all seven function positions, section contents and
+relocations with normal C++ virtual dispatch and destruction. Ports can drop
+the pragma and arrange definitions normally. The two late scalar definitions
+preserve named constant loads without generating duplicate literals.
+
+### Critical-hit effect data placement
+
+`src/pso/effect/TEffClitical.cpp` uses guarded section annotations for the
+owned eight-byte texture-list descriptor (`.data`) and the existing
+`lbl_805D93B0[2]` scalar object (`.sdata2`). The descriptor must use its real
+absolute address; ordinary small-data inference changes the renderer. The
+late scalar definition retains the original 1.0 value and zero tail without
+introducing an anonymous duplicate. Ports can drop both annotations and keep
+the ordinary declarations, array and C++ bodies. The prior common-subexpression
+and propagation pragmas are removed. See [the recovery evidence](evidence/critical-hit-effect-unit.md).
+
+### Equipment-effect native emission
+
+`src/pso/item/TItemEffEquip.cpp` uses `#pragma defer_codegen on` and reverse
+function definitions to emit the two compiler-generated vtables in their original
+order (`TItemEffEquip`, then `TUnk_8049F038`) while preserving all twelve function
+positions. Immediate generation emits the vtables in the opposite order. A port
+can drop the pragma and use ordinary definition order; both classes retain normal
+C++ constructors, destructors and virtual dispatch.
+
+### Raft splash shared constant
+
+`src/pso/boss/TObjBoss2RaftSplash.cpp` defines the shared scalar at
+`0x805D85B0` after `run_task` so CodeWarrior retains the named load rather
+than emitting a duplicate literal. Its guarded `__declspec(section ".sdata2")`
+keeps the scalar in the original small-data section; without it the scalar lands in
+`.sdata`. Dust, the raft-splash constructor and the tunnel update also read
+this exported scalar. Other compilers use the ordinary `const f32` definition
+and need no section placement or definition-order constraint.
+
+## Summary
+
+See the [generated inventory counts](porting-exceptions-generated.md#counts) for
+totals by category and the number of affected files. The inventory counts an
+`asm` line and its `orig_asm` include separately. This register also tracks
+[approved regressions](#6-approved-regressions).
+
+## Rule for assembly
+
+If assembly is approved, a scalar C/C++ equivalent ships next to it (Matt,
+2026-11-04). The asm is guarded for the GameCube/MWCC build (`#ifdef __MWERKS__`)
+and the scalar version is the compiled fallback, so a port builds the C. Approved
+asm always has an entry in this register.
+
+### MusyX DSP firmware
+
+`src/musyx/runtime/dsp_import.c` defines the 32-byte-aligned firmware buffer
+and its 16-bit byte count. The firmware runs on the GameCube DSP.
+`tools/musyx_dsp.py` generates the initializer under the build directory
+from the user's verified DOL. Ports that emulate the GameCube DSP can
+supply the same firmware input. Ports with native audio can replace the
+DSP upload in `salInitDsp` with their audio backend.
+
+### TCP protocol recovery
+
+`src/pso/network/TcpProtocol.cpp` is source-linked with all 45 functions and its
+168-byte BSS exact. Its scoped optimizer constraints, guarded `__cntlzw` zero
+predicate and MWCC-only unused output-frame homes are recorded in
+[the TCP evidence](evidence/tcp-protocol-unit.md). The homes reproduce measured
+native compiler storage; they are not recovered TCP fields. A port removes the
+homes and optimizer steering and uses the scalar equality fallback. The record
+views retain native 32-bit address/callback and overlapping-layout debt;
+consolidate those providers before claiming portable TCP interfaces. The
+route-send result declaration also retains the documented inherited short/word
+provider discrepancy. This recovery introduces no assembly.
+
+### Rope-controller native emission
+
+`src/pso/object/TObjEZRopeSimulation.cpp` uses GC/2.6 `-inline deferred`,
+reverse definitions and three record-copy helpers. The unit flag alone preserves
+all twelve functions and both compiler-generated vtables. This replaces the old handwritten derived vtable and its `force_active`
+pragma; it adds no assembly. See [the object-layout evidence](evidence/rope-controller-native-emission.md).
+
+## 1. Assembly
+
+| File | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `src/musyx/runtime/Chorus/chorus_fx.c` | `do_src1`, `do_src2` | `asm` body from `orig_asm` include under `#ifdef __MWERKS__`; scalar C in the `#else` | Vendor MusyX hand-written assembly. Matt approved keeping it on 2026-11-04 with a scalar fallback ([#316](https://github.com/matthewlewisnewton/pso-decomp/pull/316)). Evidence: [musyx-asm-fallbacks.md](evidence/musyx-asm-fallbacks.md). | Compile the scalar C fallback. |
+| `src/musyx/runtime/StdReverb/reverb.c` | `DoCrossTalk`, `HandleReverb` | Same: MWCC assembly, scalar C fallback | Same approval and evidence as the chorus pair ([#316](https://github.com/matthewlewisnewton/pso-decomp/pull/316)). | Compile the scalar C fallback. |
+| `src/pso/math/MatrixVector.cpp` | `vector_length`, `matrix_identity` | `asm` body from `orig_asm` include under `#ifdef __MWERKS__`; scalar C++ in the `#else` | Hand-written Gekko kernels (`frsqrte`+`fres` estimates at 0x803D8BD8; paired-single `ps_sub`/`ps_merge01`/`psq_st` at 0x803D8CA8) that CW 2.6 cannot emit. Matt approved them on 2026-11-04 with a scalar fallback ([#356](https://github.com/matthewlewisnewton/pso-decomp/pull/356)). Evidence: [matrixvector-asm-kernels-evidence.md](evidence/matrixvector-asm-kernels-evidence.md). | Compile the scalar C++ fallback. |
+| `src/pso/unk/text_803D8910.cpp` | `vec3_add_to` | hand-written `asm void` under `#ifdef __MWERKS__`; scalar add in the `#else` | In-place paired-single add (`psq_l`/`ps_add`/`psq_st`, z with W=1) at 0x803D8910 that CW 2.6 cannot emit from C. Matt confirmed this exception in the [#128 approval](#approval-for-the-ginja-vector-kernels). Evidence: [vec3-add-to-paired-single.md](evidence/vec3-add-to-paired-single.md). | Compile the scalar add fallback. |
+| `src/pso/unk/text_803D8910.cpp`, `src/pso/unk/text_803D96A8.cpp` | `vec3_dot`, `vec3_cross`, `normalize_vector` | standard `orig_asm` body from the disc under `#ifdef __MWERKS__`; scalar C/C++ in the `#else` | GC/2.6 did not reproduce the register allocation and load order of `vec3_dot` (0x803D89C0). The typed intrinsics also insert an extra rounding step when reproducing the estimate sequence in `vec3_cross` (0x803D8A18) and `normalize_vector` (0x803D97B4). Matt approved these three disc-generated bodies in the [#128 approval](#approval-for-the-ginja-vector-kernels). Evidence: [vec3-add-to-paired-single.md](evidence/vec3-add-to-paired-single.md). | Compile the scalar C/C++ fallback. |
+| `src/pso/unk/text_803E2D70.cpp` | `transform_chunk_vertices_pos_normal` | hand-written `asm void` under `#ifdef __MWERKS__` | One-time asm exception approved by Matt on 2026-11-04 ([#281](https://github.com/matthewlewisnewton/pso-decomp/pull/281)): SDK `PSMTXROMultVecArray`-style paired-single code (`psq_l`/`ps_madds*`/`psq_stu`) that MWCC cannot emit from C; other GameCube decomps keep it as asm. Evidence: [docs/evidence/paired-single-sdk-asm.md](evidence/paired-single-sdk-asm.md). | Use the scalar C++ `#else` fallback that ships with it. |
+| `src/pso/unk/text_8042E9FC.cpp` | `pad_03_8042E9FC_text` | Disc-generated local assembly and scoped `force_active`, guarded by `__MWERKS__` | Approved for [#285](https://github.com/matthewlewisnewton/pso-decomp/pull/285) with the portable behavior condition below. Retention reproduces exact native linkage without invented references. | Compile `step_loader_restore` in the `#else` and dispatch it against guest state; see `ports/include/pso/port/LoaderTransfer.h`. |
+| `src/pso/unk/text_8042E8C4.cpp` | `LaunchDol` handoff | Existing generated native assembly; new scalar handoff handler in the `#else` | Preserve the nonlinking LR transfer and live guest frame. | Use `step_loader_handoff` for the final four instructions; the remaining relocation/reset body still requires platform implementation or PPC execution. |
+
+### Loader restore approval
+
+Matt approved PR #285's generated 20-byte restore and scoped `force_active` on
+2026-11-11 UTC, conditional on portable builds having a path to identical
+behavior. Both loader source units now compile scalar handoff/restore handlers
+in their non-Metrowerks branches. The portable execution backend supplies guest
+memory, instruction synchronization and dispatch; this is not a full host loader.
+The pragma retains a local fragment otherwise discarded by the native linker.
+Original source ownership remains provisional. See [native and portable
+validation](evidence/loader-restore-retention.md).
+
+### Approval for the Ginja vector kernels
+
+On 2026-11-09, Matt approved merging
+[PR #128](https://github.com/matthewlewisnewton/pso-decomp/pull/128) with
+the hand-written paired-single `vec3_add_to` body and the disc-generated
+`vec3_dot`, `vec3_cross` and `normalize_vector` bodies. The approval covers
+their scalar C++ fallbacks and the `ports/` layout in that PR. See the
+[merge review](https://github.com/matthewlewisnewton/pso-decomp/pull/128#pullrequestreview-5820919265)
+for the decision it resolves and [#356](https://github.com/matthewlewisnewton/pso-decomp/pull/356)
+for the earlier `vector_length` precedent.
+
+## 2. MWCC intrinsics
+
+The [generated list of MWCC intrinsics](porting-exceptions-generated.md#mwcc-intrinsics)
+identifies each use. These intrinsics reproduce individual PowerPC instructions
+in the original compiled code.
+
+Port should: `__fabsf`/`__fabs` → `fabsf`/`fabs`; `__abs` → `abs`; `__cntlzw` →
+a count-leading-zeros helper (`__builtin_clz` with a zero check, returns 32 for 0);
+`__frsqrte` → `1.0 / sqrt(x)` (the Newton refinement loops around it then become
+redundant but harmless); `__rlwinm` → shift/rotate + mask; `__builtin_va_info` →
+standard `va_start`.
+
+### EXI Ethernet driver
+
+`src/pso/misc/TLobby_80429598.cpp` uses guarded `__lhbrx`, `__rlwinm` and
+`__cntlzw` for the receive-page swap, register-command mask and highest-bit
+interrupt dispatch. The mask's backend temporary identity is required for the
+844-byte receiver match. Its non-MWERKS branch calls the scalar byte-swap,
+mask and zero-safe leading-zero helpers in
+`ports/include/pso/port/ExiEthernetFallbacks.h`; the host tests exercise these
+same helpers. See [recovery and validation](evidence/exi-ethernet-unit.md).
+
+## 3. Direct hardware access
+
+Several files write the GX write-gather pipe at `0xCC008000` directly (inlined
+`GXPosition*`/`GXColor*` style emission), e.g. `TObjPlayer_803E21B8.cpp`,
+`TObjLight_803DF220.cpp`, `text_803E2D70.cpp`, `ChunkMaterialState.cpp`. See the
+[generated hardware-access list](porting-exceptions-generated.md#direct-hardware-access).
+Reason not recorded per site; it mirrors the SDK's inline GX macros. Port should:
+route through the GX abstraction of the target renderer (call `GXPosition3f32`
+etc. or their port equivalents) instead of the fixed address.
+
+The EXI Ethernet initializer in `src/pso/misc/TLobby_80429598.cpp` clears
+bit 31 of the SI register at `0xCC00643C` through `__SIRegs[15]`. The native
+mapped-register header is guarded. A port supplies the guest register view and
+EXI/OS backend; the scalar bit helpers alone do not implement the driver.
+
+## 4. CodeWarrior pragmas
+
+
+### PPP control unit: measured scopes and unresolved source blockers
+
+`pso/misc/TLobby_803FC178.cpp` remains 129/129 exact and source-linked.
+The rework removes both frame-padding arrays. Ordinary inline checksum
+acquisition and folding helpers reproduce the IPv4 native 0x78 frame and
+64-byte header at stack offset 0x20. Consumed inline MRU and signed magic-value readers give LCP its exact
+0x30 frame; the round-two staging aggregate is removed.
+Typed buffer allocation and length functions replace the false `TLobby` interfaces throughout their callers.
+`optimization_level 0`, redundant settings and empty/nested push stacks
+are removed. No compiler flags or unit overrides change.
+
+**This is a partial rework, not approval of the remaining source patterns.**
+The sender at 0x803FE6CC now uses a typed buffer, a separate wire length,
+a counted cursor-range initializer and a direct length-member clear, at
+100%/0x40. Its payload/length reuse and containing-prefix recovery are removed,
+along with its unnecessary lifetime setting and reset. The inherited PAP
+alias-return local, VJ length normalization and bounded opaque/offset callback
+interfaces remain unresolved; the EXI receiver precedent below does not
+authorize them.
+See [PPP rework evidence](evidence/ppp-control-rework.md) for alternatives
+and native storage evidence. Ports can inline the two configuration readers and must
+keep frame pointers and lengths separate, clear the real length member
+directly, and preserve explicit wire-byte order and existing error behavior.
+
+Each row below records one remaining directive in source order, including
+inherited controls. Scores are independent ablations against the final source
+using the existing GC/1.2.5n configuration, remeasured after round three
+with the sender measurements updated in round five;
+every listed function is 100% with the directive present. Push/pop restores belong to the corresponding
+scope. The `reset` row measures omitting that restoration. These are measured
+compiler constraints, not claims about original source pragmas. A port drops
+each listed control and keeps the ordinary C++ operation (including explicit
+Boolean comparisons, configuration readers and checksum helpers). Shared
+inline scopes retain separate lifetime/propagation resets: each reset has its
+own independently measured row below.
+
+| Register ID | Function / address | Directive | Function score without directive | Port action |
+|---|---|---|---|---|
+| PPP-01 | TLobby__sub_803FC820 (`0x803FC820`) | `opt_common_subs on` | 97.853170% | Drop control; retain C++ semantics. |
+| PPP-02 | TLobby__sub_803FC820 (`0x803FC820`) | `dont_inline off` | 66.071430% | Drop control; retain C++ semantics. |
+| PPP-03 | TLobby__sub_803FC820 (`0x803FC820`) | `inline_depth(4)` | 66.071430% | Drop control; retain C++ semantics. |
+| PPP-04 | TLobby__sub_803FCC10 (`0x803FCC10`) | `dont_inline off` | 56.970730% | Drop control; retain C++ semantics. |
+| PPP-05 | TLobby__sub_803FCC10 (`0x803FCC10`) | `inline_depth(4)` | 56.970730% | Drop control; retain C++ semantics. |
+| PPP-06 | TLobby__sub_803FCC10 (`0x803FCC10`) | `opt_common_subs on` | 95.839030% | Drop control; retain C++ semantics. |
+| PPP-07 | TLobby__sub_803FCC10 (`0x803FCC10`) | `opt_propagation off` | 99.658540% | Drop control; retain C++ semantics. |
+| PPP-08 | TLobby__sub_803FCC10 (`0x803FCC10`) | `opt_lifetimes off` | 99.853660% | Drop control; retain C++ semantics. |
+| PPP-09 | TLobby__sub_803FCF44 (`0x803FCF44`) | `opt_common_subs on` | 82.646340% | Drop control; retain C++ semantics. |
+| PPP-10 | TLobby__sub_803FD21C (`0x803FD21C`) | `optimization_level 3` | 97.770490% | Drop control; retain C++ semantics. |
+| PPP-11 | TLobby__sub_803FD310 (`0x803FD310`) | `optimization_level 3` | 97.770490% | Drop control; retain C++ semantics. |
+| PPP-12 | TLobby__sub_803FDBF8 (`0x803FDBF8`) | `opt_common_subs on` | 99.267914% | Drop control; retain C++ semantics. |
+| PPP-13 | TLobby__sub_803FDBF8 (`0x803FDBF8`) | `dont_inline off` | 96.595020% | Drop control; retain C++ semantics. |
+| PPP-14 | TLobby__sub_803FDBF8 (`0x803FDBF8`) | `inline_depth(4)` | 96.595020% | Drop control; retain C++ semantics. |
+| PPP-16 | TLobby__sub_803FE6CC (`0x803FE6CC`)<br>NetIPv4WriteHeader (`0x803FEBFC`) | `dont_inline off` | 89.352940%<br>92.231580% | Drop control; retain C++ semantics. |
+| PPP-17 | TLobby__sub_803FE6CC (`0x803FE6CC`)<br>NetIPv4WriteHeader (`0x803FEBFC`) | `inline_depth(4)` | 89.352940%<br>92.231580% | Drop control; retain C++ semantics. |
+| PPP-19 | TLobby__sub_803FEF4C (`0x803FEF4C`) | `opt_propagation off` | 62.609756% | Drop control; retain C++ semantics. |
+| PPP-20 | TLobby__sub_803FF50C (`0x803FF50C`)<br>TLobby__sub_803FF698 (`0x803FF698`) | `opt_common_subs on` | 96.717170%<br>90.687500% | Drop control; retain C++ semantics. |
+| PPP-21 | TLobby__sub_803FF50C (`0x803FF50C`)<br>TLobby__sub_803FF698 (`0x803FF698`) | `dont_inline off` | 62.868687%<br>60.080357% | Drop control; retain C++ semantics. |
+| PPP-22 | TLobby__sub_803FF50C (`0x803FF50C`)<br>TLobby__sub_803FF698 (`0x803FF698`) | `inline_depth(4)` | 62.868687%<br>60.080357% | Drop control; retain C++ semantics. |
+| PPP-23 | TLobby__sub_803FF858 (`0x803FF858`) | `opt_lifetimes off` | 99.578316% | Drop control; retain C++ semantics. |
+| PPP-24 | TLobby__sub_803FF858 (`0x803FF858`) | `opt_dead_assignments off` | 99.963850% | Drop control; retain C++ semantics. |
+| PPP-25 | TLobby__sub_803FF858 (`0x803FF858`) | `dont_inline off` | 51.975903% | Drop control; retain C++ semantics. |
+| PPP-26 | TLobby__sub_803FF858 (`0x803FF858`) | `inline_depth(4)` | 51.975903% | Drop control; retain C++ semantics. |
+| PPP-27 | TLobby__sub_803FF9A4 (`0x803FF9A4`) | `opt_common_subs on` | 99.125000% | Drop control; retain C++ semantics. |
+| PPP-28 | TLobby__sub_803FF9A4 (`0x803FF9A4`) | `bool off` | 99.000000% | Drop control; retain C++ semantics. |
+| PPP-29 | TLobby__sub_803FF9A4 (`0x803FF9A4`) | `dont_inline off` | 87.958336% | Drop control; retain C++ semantics. |
+| PPP-30 | TLobby__sub_803FF9A4 (`0x803FF9A4`) | `inline_depth(4)` | 87.958336% | Drop control; retain C++ semantics. |
+| PPP-31 | TLobby__sub_803FFB84 (`0x803FFB84`)<br>TLobby__sub_80400174 (`0x80400174`) | `dont_inline off` | 95.171050%<br>36.968254% | Drop control; retain C++ semantics. |
+| PPP-32 | TLobby__sub_803FFB84 (`0x803FFB84`)<br>TLobby__sub_80400174 (`0x80400174`) | `inline_depth(4)` | 95.171050%<br>36.968254% | Drop control; retain C++ semantics. |
+| PPP-33 | TLobby__sub_803FFB84 (`0x803FFB84`) | `opt_common_subs on` | 98.513160% | Drop control; retain C++ semantics. |
+| PPP-34 | TLobby__sub_8040059C (`0x8040059C`) | `opt_propagation off` | 92.679245% | Drop control; retain C++ semantics. |
+| PPP-35 | TLobby__sub_80400744 (`0x80400744`) | `opt_propagation reset` | 99.351720% | Drop control; retain C++ semantics. |
+| PPP-36 | TLobby__sub_80400744 (`0x80400744`) | `dont_inline off` | 90.558624% | Drop control; retain C++ semantics. |
+| PPP-37 | TLobby__sub_80400744 (`0x80400744`) | `inline_depth(4)` | 90.558624% | Drop control; retain C++ semantics. |
+| PPP-38 | TLobby__sub_80400DA8 (`0x80400DA8`) | `opt_common_subs on` | 92.043015% | Drop control; retain C++ semantics. |
+| PPP-39 | TLobby__sub_80400F1C (`0x80400F1C`)<br>TLobby__sub_804010A0 (`0x804010A0`) | `dont_inline off` | 40.278350%<br>85.944440% | Drop control; retain C++ semantics. |
+| PPP-40 | TLobby__sub_80400F1C (`0x80400F1C`)<br>TLobby__sub_804010A0 (`0x804010A0`) | `inline_depth(4)` | 40.278350%<br>85.944440% | Drop control; retain C++ semantics. |
+| PPP-41 | TLobby__sub_804010A0 (`0x804010A0`) | `bool off` | 99.166664% | Drop control; retain C++ semantics. |
+| PPP-42 | TLobby__sub_8040172C (`0x8040172C`) | `dont_inline off` | 49.604652% | Drop control; retain C++ semantics. |
+| PPP-43 | TLobby__sub_8040172C (`0x8040172C`) | `inline_depth(4)` | 49.604652% | Drop control; retain C++ semantics. |
+| PPP-44 | TLobby__sub_80401B20 (`0x80401B20`) | `opt_propagation off` | 86.111115% | Drop control; retain C++ semantics. |
+| PPP-45 | TLobby__sub_80401D2C (`0x80401D2C`)<br>TLobby__sub_80401EB8 (`0x80401EB8`)<br>MD5Transform__FPUlPUc (`0x80401FE8`)<br>TLobby__sub_80402CE0 (`0x80402CE0`)<br>TLobby__sub_80403D28 (`0x80403D28`) | `opt_propagation reset` | 89.797980%<br>85.083336%<br>99.620544%<br>99.597404%<br>57.281250% | Drop control; retain C++ semantics. |
+| PPP-46 | init_net_buffer_entry__6TLobbyFUs (`0x80401CE8`) | `opt_propagation off` | 62.647060% | Drop control; retain C++ semantics. |
+| PPP-47 | TLobby__sub_80401D2C (`0x80401D2C`) | `dont_inline off` | 26.151516% | Drop control; retain C++ semantics. |
+| PPP-48 | TLobby__sub_80401D2C (`0x80401D2C`) | `inline_depth(4)` | 26.151516% | Drop control; retain C++ semantics. |
+| PPP-49 | MD5Transform__FPUlPUc (`0x80401FE8`) | `dont_inline off` | 89.661910% | Drop control; retain C++ semantics. |
+| PPP-50 | MD5Transform__FPUlPUc (`0x80401FE8`) | `inline_depth(4)` | 89.661910% | Drop control; retain C++ semantics. |
+| PPP-51 | MD5Transform__FPUlPUc (`0x80401FE8`) | `opt_common_subs on` | 91.425110% | Drop control; retain C++ semantics. |
+| PPP-52 | NetPapDispatch (`0x80402E68`) | `opt_propagation off` | 98.432290% | Drop control; retain C++ semantics. |
+| PPP-53 | NetPapDispatch (`0x80402E68`) | `dont_inline off` | 29.286459% | Drop control; retain C++ semantics. |
+| PPP-54 | NetPapDispatch (`0x80402E68`) | `inline_depth(4)` | 29.286459% | Drop control; retain C++ semantics. |
+| PPP-55 | TLobby__sub_80403308 (`0x80403308`) | `dont_inline off` | 53.817734% | Drop control; retain C++ semantics. |
+| PPP-56 | TLobby__sub_80403308 (`0x80403308`) | `inline_depth(8)` | 53.817734% | Drop control; retain C++ semantics. |
+| PPP-57 | TLobby__sub_80403308 (`0x80403308`) | `bool off` | 99.704440% | Drop control; retain C++ semantics. |
+| PPP-58 | TLobby__sub_804040E0 (`0x804040E0`) | `dont_inline off` | 37.112840% | Drop control; retain C++ semantics. |
+| PPP-59 | TLobby__sub_804040E0 (`0x804040E0`) | `inline_depth(4)` | 37.112840% | Drop control; retain C++ semantics. |
+
+`src/pso/boss/TObjBoss5Ctrl.cpp` retains its existing `fp_contract on` when
+its three fragments are consolidated. Both countdown calculations use the
+original fused `60 * normalized_random + 90`. Ports should preserve fused
+rounding if required. See [controller evidence](evidence/boss5-controller-unit.md).
+
+The EXI Ethernet receiver in `src/pso/misc/TLobby_80429598.cpp` uses scoped
+`opt_propagation off`, helper inlining and ordered volatile snapshot/publication
+accesses to preserve the original descriptor copy and callback lifetimes.
+Four guarded unused byte arrays retain the observed native 0x50-byte frame;
+they are a matching workaround, not evidence of original source declarations
+or wire-record fields. A port omits these MWCC-only slots and pragmas and
+provides its own callback synchronization. [Measured constraints and scalar
+fallbacks](evidence/exi-ethernet-unit.md) record the native and portable limits.
+
+
+The Spanish formatter in `src/pso/misc/TWindowDD_8034435C.cpp` uses scoped
+`dont_inline off` and `inline_depth(1)` to inline its separator/form helper.
+This preserves the selected word across separator formatting and reproduces
+the original register allocation. The extracted lookup/formatter group also
+retains the `opt_common_subs off` setting inherited from the former combined
+source. Ports can drop these controls and keep the C++ helper and lookups.
+See [word-select completion evidence](evidence/word-select-completion.md).
+
+`pso/network/ModemRuntime.cpp` retains three levels of explicit inlining for
+its nested EXI and AT-command helpers. GC/1.2.5's inlined result locals and
+command-object lifetimes reproduce the native frames; selection and setup
+results remain ignored where the original ignores them. The initializer uses
+the character representation of eight-byte-aligned `u64` storage for its used
+0x88-byte command buffer. This reproduces its native placement without a dummy
+padding object; the original text-capacity declaration remains unknown.
+The interrupt dispatcher guards `__cntlzw` with `__MWERKS__` and supplies an
+ordinary C++ leading-zero-count fallback, exercised by the exhaustive host
+status/mask fixture. Ports should use the fallback and drop the inlining
+controls; preserve transaction, cache, lock and callback ordering. The two
+12-byte setup-command records preserve their observed stride and full data
+extent; their zero-filled record tails are part of those records.
+
+The two renderers at `0x8034055C` and `0x80340A78` in `TWindowDD.cpp`
+use scoped `opt_propagation off` and ordered scalar declarations to retain
+independent coordinate and texture values. The scrollbar also disables common
+subexpression elimination and enables `fp_contract` for its native fused edge
+calculations. Ports may drop the optimizer controls and declaration-order
+constraint; preserve fused arithmetic where native rounding is required. The
+`.ctors` declaration registers `init_layout_constants` at the original startup
+position; a port should call that initializer during equivalent UI startup.
+The draw-buffer helpers retain their existing native link names at a bounded
+ABI interface rather than casting vertex buffers to window objects; ports
+should map those legacy names to the corresponding shared draw operations.
+
+### Ancient wreck virtual tables
+
+The eight compiler-generated `TOWreckAncient` family tables use `.data=4`
+linker metadata so the first table starts immediately after the collision
+records at `0x804B554C`. The last virtual table ends at `0x804B570C` and
+the linker supplies four zero alignment bytes before the next unit. A port
+can use ordinary virtual dispatch and section alignment.
+
+### Forest warp virtual tables
+
+`src/pso/object/TObjAreaWarpEndingJung.cpp` uses its existing deferred
+CodeWarrior code generation for the contiguous warp tables. The class
+`TObjMapWarpForest` declares `run_task` before its destructor so the
+compiler emits its table alongside the other warp tables. The `.data=4`
+linker metadata places the first table at `0x804B918C`, immediately after
+the typed resource tables. A port can use its ordinary class declarations
+and section alignment.
+
+### Lobby animal virtual tables
+
+`src/pso/object/LobbyPigeonPath.cpp` defines the five animal destructors and
+`TObjPathObj` destructor in C++. Immediate emission places their six virtual
+tables in reverse address order. A scoped `#pragma defer_codegen on` and
+reverse definition order restore both the original function order and all
+six table addresses at `0x804E0898` through `0x804E09C4`. The existing
+GC/2.0 compiler profile is sufficient. A port can use ordinary definition
+order and its compiler's virtual dispatch.
+
+### `pso/boss/TBoss4Type1.cpp`
+
+The six trailing functions use `#pragma defer_codegen on` and reverse source
+order so the constructor addresses the compiler-generated vtable through the
+unit's shared data base while code stays in address order. The unit's `-sdata 4`
+keeps its two effect IDs in `.data`; the position generator uses scoped
+`#pragma fp_contract on` to reproduce fused arithmetic. A port can use normal
+compiler emission and data placement, preserving fused rounding where required.
+The constructor's existing `opt_loop_invariants off` pragma remains in place.
+
+
+`pso/boss/TBoss8Dragon_8002CC48.cpp` uses guarded `defer_codegen on/off`
+around its reversed first twelve definitions to preserve both native vtable
+offsets and scalar emission order. The initializer at `0x8002D5F8` uses scoped
+`opt_propagation off` with a named grid width so backend dead-load cleanup runs
+before instruction scheduling. A guarded `.sdata2` attribute preserves the named
+16.0 default scale's pool position. See [the unit evidence](evidence/dragon-ground-grid-recovery.md).
+Ports should drop these emission/optimizer controls and the section attribute;
+keep the ordinary C++ grid construction, UV calculations, and native vtables.
+
+The name-plate renderer at `0x80251EC8` in `TWindowFukidasi.cpp` uses scoped
+`opt_propagation off`, `opt_common_subs off`, and `opt_lifetimes off` with
+its `fp_contract on` scope. The controls retain the separate text/background
+colors and quad-coordinate registers across drawing calls. Ports can drop
+the optimizer controls; preserve fused arithmetic when native rounding is
+required. See [the unit evidence](evidence/fukidasi-name-plate-recovery.md).
+
+The character-creation shape coefficient function in
+`src/pso/ui/TAdSinglePlyChrSelectGC_8028EF14.cpp` uses a scoped
+`opt_propagation off` and ordered scalar declarations to preserve the original
+GC/2.6 register allocation. The two recovered blending bodies use the existing
+`fp_contract on` scope for fused arithmetic. Ports may drop the propagation
+pragma and declaration-order constraint; retain fused operations when original
+rounding is required. See [shape blending evidence](evidence/creation-shape-blending.md).
+
+
+The download graph unit uses a scoped `fp_contract on` for the filled edge in
+`fn_8007F27C`. Its section declarations and one four-byte string alignment
+preserve the graph's exported constants and format strings. See
+[download graph recovery](evidence/download-graph-recovery.md) for the
+compiler and data layout evidence.
+
+The word-select row renderer at `0x80341674` in `TWindowDD_80341A08.cpp` uses
+a scoped `fp_contract on` for the scaled row and highlight positions and
+the clipped texture coordinates. With contraction disabled, GC/2.6 emits
+separate multiply and add/subtract instructions in those expressions. Ports
+that need the original rounding should fuse those operations.
+
+The [generated inventory](porting-exceptions-generated.md) lists the current
+directives by file and kind. The cleanup of 76 units removed 1,772 directives,
+including the clamp exception from #312. The submission notes below record
+compiler experiments against the source at the time of each submission.
+
+Port should: drop optimization/scheduling/inlining pragmas (they only steer
+MWCC). **Keep the semantics** of `pack` (use the target's packing attribute and
+check struct layout), `bool`, and `fp_contract` where float results must match
+bit-for-bit (`fp_contract on` means fused multiply-add was used; a port may see
+small float differences without FMA).
+
+### Player battle reset and wall response
+
+This unit uses `-inline off,deferred` and reversed function definitions to
+emit the native player vtable before the jump tables while preserving the
+original text order. The ten equipment-joint indices and compiler-generated
+vtable reclaim the aligned `.data` prefix at `0x804C3BA8`; ordinary emission
+places the vtable after the jump tables. All 379 function instruction streams
+remain exact. Ports can drop the emission switch and reorder definitions.
+
+`src/pso/player/TObjPlayer_801AF2F0.cpp` uses two new scoped
+`opt_propagation off` settings: `apply_wall_response` retains the original
+scalar float registers, and `spawn_level_change_feedback__10TObjPlayerFv`
+retains the register order of its named constant loads. The wall routine
+also keeps its declaration order. These are measured GC/2.6 constraints,
+not evidence of original pragmas. Ports can drop the steering while keeping
+the same collision queries and arithmetic.
+
+The owned newline and thirteen float constants use `__declspec(section
+".sdata2")` on their declarations and definitions. Without placement,
+CodeWarrior puts the exported constants in `.sdata`, selecting the wrong
+small-data base. Ports should use ordinary read-only constants. The new
+level-row and vector interfaces preserve historical export labels without
+claiming that the records are player objects. The previously matched code
+in this newly linked unit retains its existing provisional offset views,
+legacy receiver aliases and compiler settings; those interfaces still need
+native types when porting.
+
+The recovered class-byte providers, character-stat initializer and NPC builder
+use plain `char`, distinct from `s8`, under the native build's existing
+`-char signed`. Mutable `char` views borrow the encoded class representation;
+they do not create a character-record object in raw storage. A port should
+preserve the signed low-byte interpretation and migrate callers and providers
+together if choosing an explicit byte type. The NPC's visual temporary is the
+existing trivial `disp_data_part2` record; item counts remain full scalar
+words. Its item-address word and the inventory copier's provisional entry
+view remain inherited boundaries. Other legacy player aliases, including the
+no-argument class-normalizer call and word-typed experience-accessor alias,
+are not unified by this recovery.
+
+### Symbol-chat part-grid rendering
+
+`fn_802857C4` at `0x802857C4` in `TWindowSubSymbolChatParts.cpp` uses
+scoped `opt_propagation off` to preserve the row-height load and floating-point
+register lifetimes with a `32.0f` literal. With propagation enabled, eleven
+register operands differ at 99.421486%. The literal shares the unit's existing
+pool entry and resolves the former undefined constant reference, allowing the
+complete unit to link. This is a measured matching constraint, not evidence of
+an original pragma. Ports can drop propagation steering and retain the same
+literal and arithmetic. The existing `fp_contract on` scope is unchanged.
+See [the unit evidence](evidence/symbol-chat-parts-recovery-evidence.md).
+
+### Shortcut preview at `0x8026E1D4`
+
+`TWindowShortCut::initialize_preview` uses scoped `fp_contract on` for the
+fused coordinate calculations and `opt_propagation off` to preserve the
+saved-register allocation across the entry and formatter calls. Keep fused
+subtraction if exact float results matter on a port. Drop the optimizer
+pragma on other compilers.
+
+The thirteen `__declspec(section ".sdata2")` definitions in
+`TWindowSubStatusDisp_8026DFE8.cpp` put the separator, icon table and
+preview constants at `0x805DD348..0x805DD37C`. CodeWarrior places these
+named constants in writable small data without the declarations. The
+matching CodeWarrior build indexes the icon table with `kind - 1`.
+For kind zero the emitted load reads the separator's final zero byte at
+`0x805DD34B`, one byte before the table. The portable branch handles
+zero explicitly so it can use independent objects and stay within the
+array bounds.
+
+### Item attack collider
+
+`TItemAttackCol::TItemAttackCol` at `0x802E40AC` uses a scoped
+`opt_lifetimes off` and three `__memcpy` sites for the StarLight setup.
+The 20-byte default record is copied as two pairs of words and a final
+`alpha_step` word. A plain aggregate copy gives the loop different
+registers and moves its tail relative to the color conversions. Reusing the
+scale temporary for width with lifetimes disabled reproduces the original
+floating-point register and conversion order. The GameCube branch keeps the
+copy cursors as integer addresses and forms pointers only for words inside the
+two records. Other builds use the ordinary aggregate copy in the same body.
+
+The unit's named effect and angle constants use CodeWarrior section placement
+to retain their `.rodata` and `.sdata2` addresses and direct relocations. A
+port can use ordinary constants and omit the section attributes and pragma.
+
+### Orbit particle update and constant tail
+
+`src/pso/misc/ParticleOrbit.cpp` scopes `fp_contract on` to
+`TUnk_8048E790::run_task` at `0x8008A080` for its fused orbit and color
+calculations. It places the final eight-byte `lbl_805D9550` scalar object
+in `.sdata2` with `__declspec(section)`; ordinary array placement changes
+the initializer addressing and layout. The native packed color is written
+through unsigned bytes of a live word. See
+[orbit particle recovery](evidence/orbit-particle-recovery.md) for the
+source alternatives, compiler tracing, and complete-object checks.
+
+Port should: drop the inlining and section annotations, preserve fused
+floating-point calculations where native rounding is required, and pack
+0xAARRGGBB explicitly on little-endian targets. No new optimizer steering
+pragma remains in this unit.
+
+### Ground collision debug hook
+
+In `src/pso/map/CsnQuery.cpp`, CodeWarrior leaves the selected contact pointer
+unset until a contact slot is written. The original call to
+`TObjPlayer__sub_8007910C` can occur before any slot is written, and the hook
+consists of a return instruction. The matching build preserves the original
+register state at that call. The portable branch initializes the debug pointer
+to null.
+
+### Ginja material dispatch
+
+`src/pso/system/GinjaMaterial.cpp` adds scoped `use_lmw_stmw off` for
+`apply_ginja_material_params` (`0x803DBE1C`), preserving the original save/restore
+helpers. Its format-field reference preserves the surface address across the
+GX call and the subsequent field-read timing; an ordinary pointer changes eight
+register operands. Ports can retain the reference or use an ordinary surface
+pointer and omit the pragma.
+
+The fallback RGBA aggregate at `0x805E0F68` uses a guarded `.sdata2` section
+attribute. Its definition sits after the consuming material-color function
+and before the dispatcher's float literals, preserving the named load and
+small-constant order/alignment. Ports can use the ordinary constant without
+the section attribute or definition-order constraint.
+
+The native parameter table calls heterogeneous one- and two-word handlers
+through the two-word MWCC ABI. `GinjaParameterHandler.h` restores each entry's
+actual function type on other compilers; ports must keep that typed dispatch.
+Native draw/matrix callbacks retain pre-existing unspecified return-register
+paths, while portable branches explicitly return zero. The shared draw-callback
+interface remains provisional. Existing raw GX declarations, layout views,
+callback casts and pragmas also become source-linked with this unit; they still
+need consolidation for a port. See [the recovery evidence](evidence/ginja-material-recovery.md).
+
+### ADX stream decode at `0x803C0238`
+
+`src/pso/misc/TLobby_803BFE50.cpp` extends its existing inlining scope to the
+input preparation, output publication, and format-specific counter update.
+Under GC/2.6, flattening those phases into the caller changes the saved
+register allocation. The chunk declaration order within the output helper
+also places the two descriptors at stack offsets 8 and 16. Ports can use the
+same helpers with ordinary inlining and native pointer-sized handles.
+
+### Action palette
+
+| File | Scope | What | Why | Port should |
+|---|---|---|---|---|
+| `configure.py` | `pso/misc/TWindowActionPalette.cpp` | `-inline off,deferred` with reversed definitions | Places the compiler-generated vtable at `.data+0x308` before the icon switch table at `+0x320`, while retaining the original function order. See [unit evidence](evidence/action-palette-unit.md). | Use ordinary function ordering and compiler-generated virtual dispatch. |
+| `src/pso/misc/TWindowActionPalette.cpp` | Frame, slot-light position, and count-label position | Scoped `fp_contract on` | Preserves the existing fused coordinate arithmetic when the three fragments are consolidated. | Preserve fused float rounding when exact original positioning is required. |
+
+### Ending scene startup
+
+`TEnding::start_ending_scene` uses scoped `pool_data off` because CodeWarrior
+otherwise shares a `.rodata` base across both camera initializers and the
+music filename. The original loads their addresses independently. Ports can
+use the same vectors and filename without the pragma.
+
+### Dark Falz demo 4
+
+| File | Scope | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/object/TObjDFDemo4.cpp` | Translation unit | `readonly_strings on` and `defer_codegen on` | Places the class name in `.rodata` and emits the seven functions in reverse definition order. Deferred generation also places the camera initializers before the signed conversion constant. | Use ordinary string and function definitions. |
+| `src/pso/object/TObjDFDemo4.cpp` | Constructor at `0x8004F6AC` | Weak linkage for the strip-node table | With strong linkage CodeWarrior pools the strip table and both camera initializers under a shared `.rodata` base. Weak linkage preserves the original direct relocations and keeps the shared `.data` base for the motion tables and vtable. | Use the same const table with ordinary linkage. |
+| `configure.py` | `pso/object/TObjDFDemo4.cpp` | `-sdata 4` | The two eight-byte afterimage index tables use normal data addressing. The class-name pointer still uses small data. | Use ordinary arrays and a string pointer. |
+
+### Lobby spatial audio and guild-card startup
+
+| File | Scope | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TLobby_802409AC.cpp` | `calc_sound_spatial_params` at `0x80241C84` | Scoped `opt_propagation off` and `opt_lifetimes off` | Keeping the quarter-turn adjustments separate preserves the angle instruction order. The lifetime setting preserves the register assignment and operand order of the surround add at `0x80241F2C`. The direct signed-byte conversion emits the original pan truncation and sign extension. | Drop the pragmas and preserve the float evaluation and integer truncation. |
+| `configure.py` | `pso/misc/TLobby_802409AC.cpp` | `-sym on` and source-private tail header | CodeWarrior emits the startup routine at `0x8024287C` at the end of the first text contribution and places the record constructor and two accessors in the following contribution. Without source-file sections, the compiler puts the startup routine after all three functions. | Use the ordinary C++ globals and constructor. The source-file sections preserve the GameCube link order. |
+
+### Dark Falz Type 1 death cutscene
+
+| File | Scope | What | Why | Port should |
+|---|---|---|---|---|
+| `configure.py` | `pso/object/TObjFish_8033CCC8.cpp` | `-inline off,deferred` and reverse definition order | The constructor shares a `.data` base at `0x804EF9D8` for the motion indices, origin at +8 and compiler-generated vtable at +0x14. Immediate emission addresses the vtable separately. Deferred emission also places the signed conversion constant after the read-only tables. | Use ordinary C++ definitions and compiler-generated virtual dispatch. |
+| `src/pso/object/TObjFish_8033CCC8.cpp` | Constructor at `0x8033D1AC` and its data | CodeWarrior section placement and weak linkage for the three read-only capture and camera tables | The motion indices are eight bytes and need normal `.data` addressing to share the constructor's base. Weak linkage gives the three capture and camera tables direct relocations, matching the original's independent address loads. | Use ordinary definitions and linkage for the same tables. |
+
+### `request_network_info_load` frame and instruction ordering
+
+`src/pso/network/NetworkInfoRequests.cpp` uses scoped `scheduling off` and
+`peephole off` pragmas and an MWCC-only 32-byte alignment attribute on its
+first parameter. The pragmas reproduce the original instruction order and
+switch lowering; the attribute reproduces its aligned frame. This is a
+code-generation device, not evidence that the channel value requires alignment
+or that the original source used an aligned parameter. The original and the
+compiled function both pass the channel in the same register and do not access
+an aligned stack object. A port should ignore these settings and use the plain
+`s32` parameter and function body. See
+[the comparison](evidence/network-info-request-frame.md).
+
+### Network config initializer at `0x803F3BF8`
+
+`src/pso/network/NetworkConfigLifecycle.cpp` uses a scoped `scheduling off`
+pragma and an MWCC-only 32-byte alignment attribute on the first parameter.
+The pragma preserves the status and allocation-state stores before their
+following comparisons. The attribute gives GC/2.6 the original 64-byte aligned
+frame, with the arguments in the same registers and no accesses to aligned
+locals. GC/1.2.5 emits an ordinary frame for the same source, while GC/2.6
+changes all nine preceding card-loading functions. The provisional split now
+places the initializer with the adjacent network-config update and teardown
+routines under the existing ntInf profile. Ports use the plain `s32` parameter
+and the same function body.
+
+### Barba Ray constructor at `0x802EDE90`
+
+| File | What | Why | Port should |
+|---|---|---|---|
+| `src/pso/unk/text_802EDE90.cpp` | Scoped `opt_common_subs off` and `opt_lifetimes off` | With CSE enabled the vector resets share a computed address instead of using indexed stores (96.78%, 1,600 bytes). Lifetime splitting changes register allocation for the part and matrix loops (99.53%, 1,616 bytes). The two remaining pragmas preserve all 1,616 bytes with the existing unit flags. | Drop the optimizer pragmas. Keep the initialization order and use the target compiler's ordinary constructor and virtual dispatch when porting the rest of the class. |
+
+### Barba Ray behavior at `0x802E7888`
+
+| File | Function or data | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/boss/Boss7DeRolLeCBehavior.cpp` | Native data and function emission | `defer_codegen on`, reverse function definitions and unit inline-expansion defaults | The compiler emits the actual `TBoss7DeRolLeC` vtable before the switch tables. Reverse definitions retain native text order; `dont_inline off` and `inline_depth(1)` preserve the existing explicit helper and aggregate-copy expansion during deferred generation. `render_shadows` is declared first among the class overrides so this unit owns vtable emission. All sections and resolved relocations match. | Definition and vtable-emission order are immaterial; omit the compiler controls. |
+| `src/pso/boss/Boss7DeRolLeCBehavior.cpp` | Pattern selector at `0x802E7BE8` | Scoped `opt_propagation off` | The real action, position and yaw arrays now form the compiler data pool. Ordinary indexing matches all 220 bytes; the former scaled byte offsets and pointer-to-integer conversion are removed. The positions pointer remains at function scope, and its table pointer at branch scope, preserving register lifetimes. See [table-pool recovery](evidence/barba-ray-table-pool-recovery.md). | Keep ordinary indexing and omit the pragma. |
+| `src/pso/boss/Boss7DeRolLeCBehavior.cpp` | Crawfish spawn at `0x802E7D70` | Inline short-valued reference update with an explicit narrowing write; scoped `opt_propagation off` and `opt_lifetimes off` | Preserves the original in-place `addi` / `extsh` displacement update. A plain scalar assignment, scalar reference helper, or removing the second narrowing write changes two register operands. The complete 304-byte function matches with the typed update. | Use a scalar `(s16)(slot + 11)` and omit the compiler pragmas and helper. |
+| `src/pso/boss/Boss7DeRolLeCBehavior.cpp` | Movement state handler at `0x802EB270` | Scoped `fp_contract on` and `opt_common_subs off`; cached byte views of the actual `Vec` array's y and z members | Fused scalar operations and independent component-address lifetimes reproduce the original float registers, loads and stores. The views use `sizeof(Vec)` and `offsetof` within the complete array object. | Use ordinary `Vec` component accesses and omit the optimizer pragma; preserve fused float rounding where required. |
+| `src/pso/boss/Boss7DeRolLeCBehavior.cpp` | Particle state handler at `0x802EAAC8` | Scoped `opt_propagation off` for the named random ratio and displacement | Keeps the random call before loading the exported 20.0f coefficient, with the original float register allocation. | Keep the call order and the scalar displacement calculation; omit the pragma. |
+| `src/pso/boss/Boss7DeRolLeCBehavior.cpp` | Coefficients at `0x805DEA10..0x805DEBA4` | Explicit `.sdata2` placement and ordered named definitions | Preserves the shared exported constants, their original order, and SDA relocations without a second anonymous 20.0f word. | Use ordinary constant definitions and target linkage. |
+
+### Retired exception for `TBoss6Type2::sub_802BEC28`
+
+Fork [#312](https://github.com/matthewlewisnewton/pso-decomp/pull/312) approved
+disabling common-subexpression elimination for this clamp. Commit `f07cbb9dc7`
+recovered the unit’s constants at `0x805DE4E0` and `0x805DE4E4`. With those
+definitions in the unit, the literal bounds `0.0f` and `1.0f` reproduce the
+original object under the normal optimizer settings.
+
+### Retired Moja constructor exception
+
+Fork [#394](https://github.com/matthewlewisnewton/pso-decomp/pull/394) approved
+disabling common-subexpression elimination and scaling a variant index to a byte
+offset and back. The constructor and the preceding Moja behavior functions now
+share the original constant pool. The constructor clamps both probability fields
+with literal bounds and indexes the base and resistance tables directly.
+
+### Approved: `TEF_LensFlare::render` ([#272](https://github.com/matthewlewisnewton/pso-decomp/pull/272))
+
+| File | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/effect/TEF_LensFlare.cpp` | `TEF_LensFlare::render` | one scoped `#pragma opt_propagation off` | MWCC propagation needed for the exact receiver/descriptor cursor codegen. Approved by Matt 2026-11-04. | Drop it. |
+
+### Approved: `TObjBoss2Tunnel__sub_8007D1D0` ([#290](https://github.com/matthewlewisnewton/pso-decomp/pull/290))
+
+| File | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/boss/TObjBoss2Tunnel.cpp` | `TObjBoss2Tunnel__sub_8007D1D0` (`0x8007D1D0`, size `0x658`) | one `#pragma opt_propagation off` | Approved by Matt 2026-11-04 4:38 PM PT (per-function `opt_propagation off` for #290). It replaces upstream #185's unit switch `-opt nopropagation`; every other function in the unit is 100% without it. The original tests `lbz r3, boss2_tunnel_state_flag` / `cmplwi r3, 0` and computes the copy-filter flag (`clrlwi r3, r3, 31; xori r28, r3, 1`) before `bl TObjBoss2Tunnel__sub_8036EF44`. With propagation on, the load stays live in r30 across the calls, `clrlwi`/`xori` move after `TObjBoss2Tunnel__sub_8036EF44` and `set_display_copy_filter__Fi`, and each early exit branches to a shorter epilogue (`b 0x1210` instead of `b 0x1224`): 92.25%. | Drop the pragma. The flag is `!(boss2_tunnel_state_flag & 1)`; a port does not need MWCC's propagation schedule. |
+
+### Approved: `TLobby__sub_8020DC78` ([#357](https://github.com/matthewlewisnewton/pso-decomp/pull/357))
+
+| File | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TSetManager_8020D918.cpp` | `TLobby__sub_8020DC78` | one scoped `#pragma opt_propagation off` | Approved by Matt 2026-11-05, t250s1179. Propagation merged the separate null locals into one register, leaving six callee-saved register rows different at 99.77419%. Disabling it preserves the distinct object-pool and enemy-row null locals: the target is 100% (620/620 bytes), the whole unit `.text` is 100% (1728/1728), and every sibling stays exact. Precedents: `TObjBoss2Tunnel__sub_8007D1D0` and `TEF_LensFlare::render`. | Drop the pragma. A port does not need MWCC's propagation schedule. |
+
+### Approved: `TUnk_804E4B3C::update_spawn_timer` ([#290](https://github.com/matthewlewisnewton/pso-decomp/pull/290))
+
+| File | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/boss/TObjBoss2Tunnel_802F2070.cpp` | `TUnk_804E4B3C::update_spawn_timer` (`0x802F2664`) | one `#pragma opt_common_subs off` | Approved by Matt 2026-11-04 4:38 PM PT. The original prologue is `lfs f0, lbl_805DECB4` then `lfs f2, 0x58(r3)` / `lfs f1, 0x5c(r3)` / `fadds f1, f2, f1` (threshold in f0, then `m_58` and `m_5c`). Without the pragma, common-subexpression elimination sinks that load: the same 44 instructions come out with the threshold in f2 and the add in f1/f0 (8 words differ) whether the threshold is a local, a compound assignment, or the direct compare. A unit `-opt nocse` keeps the timer and breaks `spawn_segment_row_a`, `spawn_segment_row_b`, and `advance_effect_timer`. The constructor `TObjBoss2Tunnel__sub_802F2A2C` does not use this pragma. | Drop the pragma. The value is `m_58 += m_5c`, then subtract `lbl_805DECB4` on wrap; a port does not need MWCC's load schedule. |
+
+### Retired keyboard fade exception
+
+Fork [#219](https://github.com/matthewlewisnewton/pso-decomp/pull/219) approved
+a CSE override for the 128-byte fade at `0x8024E7B8`. The draw-context unit now
+emits its scale, stretch, fade and clip constants in their
+original order at `0x805DCC78..0x805DCC98`. Ordinary float literals reproduce
+the fade under the unit’s existing compiler settings.
+
+### Approved: `TLobby__sub_803FCF44` ([#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298))
+
+| File | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TLobby_803FC178.cpp` | `TLobby__sub_803FCF44` @ `0x803FCF44` (size `0x148`) | one scoped `#pragma opt_common_subs on` | Approved by Matt 2026-11-04 6:14 PM PT. This avetcp unit is compiled `-opt nocse`, so common-subexpression elimination is off for the file. The original reuses common subexpressions in this one function: two direct `lis`/`addi` of `lbl_805C02D0` (`0x803FD034` and `0x803FD058`) and a length clamp of `lhz` / `extsh` / `addi r0,r4,0` (`0x803FD03C`–`0x803FD04C`), frame 32. Without the pragma those reads become one hoisted `...bss.0` base (frame 32→40, saves r29) and the clamp folds to `lha`. The function is then 83.24% (objdiff instruction match 82.65%). `#pragma opt_propagation off` does not change that. `-inline` (`auto`, `deferred`, `auto,deferred`, `noauto`, `on`, `off`, `all`) and `-fp_contract on`/`off` leave the builder at 82.65%, and the auto modes regress other exact functions. Unit-wide `-opt commonsubs` drops other functions in the file. | Drop the pragma. The value is the clamped copy into the challenge buffer; a port does not need MWCC's addressing. |
+
+### Network runtime recovered from upstream #213/#215
+
+| File | Functions / scope | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/protocol/NetworkRuntime.cpp` | `TLobby__sub_803F8E9C` (`0x803F8E9C`) | One new scoped `pool_data on`; pooled cross-array queue addresses, word views, pointer-valued 32-bit handles, explicit initialization order and unused upstream temporaries | Exact native BSS references, register schedule and stack frame. Typed alternatives range from 74.49% to 99.95%; concrete offsets and probes are in [the evidence](evidence/upstream-network-runtime.md). | Use the actual typed slot arrays and native handle types; remove unused locals and optimizer steering. Do not preserve cross-array pointer arithmetic. |
+| `src/pso/protocol/NetworkRuntime.cpp` | `TLobby__sub_803FABDC` (`0x803FABDC`) | Redundant second null test/allocation branch and `goto`, `A_803FADA0` option-block view, explicit allocator ABI name | These reproduce the original control flow and existing protocol ABI. The callback signature itself is corrected consistently. | Remove redundant control flow and consolidate the packet/option/allocator interfaces. |
+| `src/pso/protocol/NetworkRuntime.cpp` | Previously exact code now linked | 24 remaining native pragmas, `-opt nocse`, raw protocol views and mangled names, provisional class wrappers, direct bus-clock reads | Existing native matching debt becomes source-linked with this unit; no new hardware access, asm, intrinsic or compiler override. See [the bounded inventory and port guidance](evidence/upstream-network-runtime.md). | Replace clock/OS operations with target services and consolidate protocol interfaces; remove optimizer-only pragmas/overrides. |
+
+### PPPoE discovery recovered from upstream #213/#215
+
+| File | Function / scope | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TLobby_80426CAC.cpp` | `TLobby__sub_804275B0` (`0x804275B0`) | Unused upstream `pad[2]` and `spare[2]` locals | Preserve the original MWCC stack frame/slot offsets; removing them scores 99.90–99.97%. Typed fields and consistent helper signatures retain 100%; see [the evidence](evidence/upstream-pppoe.md). | Remove unused locals; use typed buffers and explicit byte-order/length handling. |
+| `src/pso/misc/TLobby_80426CAC.cpp` | Previously exact code now linked | 5 remaining native pragmas, opaque/overlapping table views, 32-bit address tokens, raw packet/tag accesses, redundant expressions and provisional class wrappers | Existing native matching debt becomes source-linked; no new pragma or compiler override. [The evidence](evidence/upstream-pppoe.md) records its limits. | Use one typed table, explicit buffer/free-function interfaces and portable pointer/token types; validate lengths and remove optimizer-only steering. |
+
+### Focused DHCP recovery from fork #303
+
+| File | Scope | What remains | Port should |
+|---|---|---|---|
+| `src/pso/unk/text_80421620.cpp` | DHCP timer/request/discovery and previously exact code now linked | Provisional class wrappers on packet buffers, fixed reply/options offsets, 32-bit pointer/callback words, native byte-order and volatile-state assumptions; existing optimizer steering and release-frame padding. The new callback header makes callback declarations consistent. See [evidence](evidence/dhcp-focused-recovery.md). | Use shared typed packet/state definitions, explicit byte order and length checks, pointer-sized handles and appropriate synchronization; remove optimizer-only constraints. |
+
+### PPP/session control recovered from upstream #213/#215
+
+| File | Function / scope | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TLobby_803FAEA0.cpp` | `TLobby__sub_803FB358` | Redundant base initialization and otherwise-unused `new_var` assignment | Simplifying the native temporary pattern changes the base register (99.882355%); [evidence](evidence/upstream-ppp-session.md). | Use a typed protocol/status copy and remove matching-only temporaries. |
+| `src/pso/misc/TLobby_803FAEA0.cpp` | Connection routine and previously exact code now linked | Bounded session views, raw status offsets, native-endian words, 32-bit addresses, notification macros/goto | Existing native representation/emission constraints; new status helper declarations and definitions are consistent. No new pragma or compiler override. | Consolidate layouts and signatures, use portable handles and explicit byte order, and preserve callback timing. |
+
+### Keyboard control recovered from upstream #208
+
+| File | Function / scope | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TKeyBoardControl.cpp` | Keyboard glyph/tab and key-frame drawing | Existing scoped `pool_data off` and `fp_contract` pragmas, provisional receiver/layout views and explicit mangled helper names | Native table references, floating-point instructions and class boundaries; see [the evidence](evidence/upstream-keyboard-control.md). The existing `opt_loop_invariants off` is removed. | Drop optimizer steering, preserve required floating-point semantics, and consolidate keyboard/rendering types. |
+| `src/pso/misc/TWindowSubStatusDisp_8024FBA8.cpp` | Font-code mapper declaration | Existing wide input declaration remains `s32`, while the shared mapper interface takes `u16`; return type is corrected to `u16` | Narrowing the caller declaration changes original instruction selection. The new glyph-drawing signature is consistent in all callers, but this neighboring legacy boundary remains unresolved. | Use the shared narrow mapper interface and explicit character decoding; do not preserve the declaration discrepancy. |
+
+### Dispatcher extraction using upstream #213/#215 boundaries
+
+| File | Functions | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/network/NetworkDispatcher.cpp` | All 12 dispatcher functions | Four existing pragma lines (`opt_common_subs on` x3, `pool_data off` x1), inherited `-opt nocse`, 32-bit handles and provisional `TLobby`/`TUdpSocket` wrappers; reset status and thread-creation callback/return declarations remain inconsistent across units | Extracts the fork's already-exact dispatcher and its 248-byte BSS so it can link. The follow-up replaces reset/shutdown/handler overlays with the shared state and names both thread handles without changing native objects. The reset callee now explicitly returns `s32`, but the incompatible DHCP caller is retained after a type-correct probe changed its frame and result copy; this is not a completed ABI repair. See [upstream-dispatcher.md](evidence/upstream-dispatcher.md). | Remove compiler-only steering and recover explicit dispatcher/OS contracts with portable handle types, validating callers and callees together. |
+| `src/pso/network/TcpProtocol.cpp` | Complete TCP unit; source-linked | Inherited `-opt nocse`; 22 remaining native pragmas, including `dont_inline off` and `inline_depth(4)` that previously carried into this range from earlier source | Without the ambient settings, timer callbacks `8041A3CC` / `8041A5B4` have different stack frames and `8041D584` no longer inlines its segment-removal helper. Scores are 99.78432%, 99.916664% and 65.69705%; restoring the settings retains all 40 previously exact TCP functions. Existing raw views, local ABI redeclarations and provisional members remain unresolved. | Remove compiler steering; unify TCP layouts and callback/status interfaces. All 45 functions now match; output also needs scoped loop-pass constraints and scalar workspaces documented in the TCP evidence. |
+
+### Quest-download cache address and traversal recovery
+
+`__VIRetraceHandler` in `TQuestVmDownLoadServer_803E6970.cpp` is the existing
+placeholder for the cache initializer. Its scoped `opt_common_subs off` preserves
+the native independent node-list bounds. Separate scopes in `803E8DA0`,
+`803E93DC` and `803E95BC` preserve the independently calculated bucket links.
+The rotation and rebuild routines inline their shared bounded name search at
+depth one after copying and terminating the name in the caller; this helper
+returns the stopping node and publishes the corresponding link address. The
+rebuild additionally uses a depth-two fixed-image/byte-count read boundary to
+recover the native name-buffer stack offset without padding. An MWCC-only integer address adapter
+reaches the separate canonical name index at cache address plus 0x2000; this
+records native placement rather than declaring a larger owner. The portable
+branch names `lbl_80593EC8` directly. Ports can drop the optimization pragma and
+keep ordinary typed traversal of the actual index and cache byte array. See
+[the unit investigation](evidence/quest-download-unit-completion.md).
+
+The cache mover (`803E8904`) uses a non-owning record view with a borrowed
+pointer constructor and depth-two byte/length accessors. The inline boundaries
+recover its native 0x90-byte frame and name buffer at offset 0x20. Chained
+source-pointer initialization preserves the native copy instruction; the
+identity comparison uses the live cursor before it advances. Ports may use
+ordinary accessors and separate initialization with the same pointer values.
+
+### Quest-download primary-record removal
+
+The whole-record tail helper for `803EF208` in
+`TQuestVmDownLoadServer_803ED0CC.cpp` uses an MWCC-only integer address sum
+to preserve native displacement/base operand order; its portable branch uses
+ordinary byte-pointer addition. The existing depth-two inline scope also
+contains a distinct forwarding boundary for partial-message compaction. These
+choices reproduce the native code and name-buffer stack offset without dummy
+locals. Ports may inline freely and retain the ordinary pointer arithmetic.
+The helper's source must be strictly past its backing page's start, as proved
+for this nonempty-record caller in [the evidence](evidence/quest-download-unit-completion.md).
+
+### Quest-download scratch storage and native workspace addressing
+
+`QuestDownloadScratch.h` declares the shared aligned byte storage consistently.
+The conversion producer and ID-list producer use tagged placement construction
+to begin complete halfword-array and ID-array objects before writing them.
+Scoped `dont_inline off` / `inline_depth(1)` regions inline the empty placement
+operator in the frontend conversion and request producer; a port can use the
+ordinary placement-new operator with the same storage and lifetime transitions.
+The scratch operator has its own tag, separate from the allocator-pool tag.
+
+The two recovered candidate routines retain the original workspace address and
+reach the following, separately owned slot array through native integer address
+arithmetic under `__MWERKS__`. The fallback accesses the real slot array directly.
+The display-prefix adapter likewise reaches the following scratch object only
+through native address arithmetic; ports name the real byte array.
+The workspace result remains a real member of the workspace object. These
+adapters do not assert a larger encompassing object or change the link map.
+The complete provider now links as three native layout groups; see
+[the completion evidence](evidence/quest-download-unit-completion.md).
+
+## 5. Per-unit compiler overrides (`configure.py`)
+
+The default compiler and linker now use GC/2.0. The
+[adoption record](evidence/compiler-default-gc20-adoption.md) follows the
+[reverse migration](evidence/compiler-default-gc20-impact.md), which found
+3,392 former GC/2.6 objects unchanged under GC/2.0. Four remaining game
+units use the retained GC/1.3.2 compiler, with unchanged source and flags:
+
+| Unit | Reason for GC/1.3.2 | Port should |
+|---|---|---|
+| `pso/network/TProtocol.cpp` | All 79 original-owned functions match. Fourteen other emitted helpers differ; the full link validates weak-definition selection. | Use the port compiler; preserve record layouts and ordinary copy semantics. |
+| `pso/object/TObjTombstone.cpp` | The record assignment's scalar-copy scheduling matches; the complete object is equivalent to GC/2.6. | Use the port compiler; preserve the record layout. |
+| `pso/object/TObjResultWin.cpp` | `copy_challenge_result_record` and the complete object match GC/2.6. | Use the port compiler and ordinary record copying. |
+| `pso/misc/TPlyMeetUserExtension_801DAC6C.cpp` | The name-field assignment and the complete object match GC/2.6. | Use the port compiler and ordinary record copying. |
+
+Gryphon, Slime and Dragon inherit GC/2.0; their source and effective flags
+remain unchanged. De Rol Le retains main's GC/2.0 profile and `-inline on`, with all 110 functions exact. No compiler or linker assignment requires GC/2.6. The remaining
+older compiler profiles are a separate consolidation task.
+
+The initial [GC/2.0 consolidation](evidence/compiler-consolidation-gc20.md)
+experiment moved nine game units to GC/1.3.2 while planning to retire GC/2.0.
+With GC/2.0 now the default, those nine units inherit it again, preserving
+main's effective compiler, source, flags and symbol mappings. Their earlier
+recovery records remain historical evidence. The current assignments and
+[main-merge validation](evidence/compiler-default-gc20-main-merge.md) are
+authoritative for this PR. Ports use their normal compiler for these units.
+
+Units override the default `GAME_COMPILER = "GC/2.0"`/`cflags_pso` in
+`GAME_EXCEPTIONS` or the `MIDDLEWARE` table: other MWCC versions (GC/1.2.5,
+1.2.5n, 1.3, 1.3.2) and switches (`-inline deferred`, `-fp_contract on`,
+`-str reuse,readonly`, `-sdata 4`, `-opt nocse`, `-use_lmw_stmw off`, ...). The
+`configure.py` comment above each entry is its recorded reason (e.g.
+`pso_date.cpp`: GC/1.3.2 scheduling, see
+[calendar-conversion-evidence.md](evidence/calendar-conversion-evidence.md);
+`TObjTombstone.cpp`: `-fp_contract on` because two calculations fuse
+multiply-adds). The generated table copies each comment; 93 entries have no
+comment of their own (several share a comment with the entry above). Library
+groups (SDK, runtime, TRK, MusyX, CRI, Ginja, mcFs, ntInf, avetcp, modem, ntUtl)
+use their own compiler versions as recorded there.
+
+Port should: build everything with one modern compiler. Only `-fp_contract on`
+(float results) and deferred emission order (no semantic effect) need thought;
+nothing else changes behaviour.
+
+### Window native lifetime emission (deferred codegen)
+
+Approved by Matt (Nov 14 2026, 1:35 PM PT: "#562: approve deferred codegen on
+the window units, with a register row, to replace WindowConstructorAbi.h").
+
+| File | Functions | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TWindowDD.cpp` | `TUnk_804EFBAC` ctor/dtor/`render`/`run_task`; `TWindowDD_WS_ScrollBar::render`/`run_task` | unit `configure.py` override `-inline off,deferred`; definitions written in reverse order | The original constructors reach the compiler-generated vtable from the same data base register as the layout/descriptor arrays. MWCC pools only data already defined when a function is generated; without deferral the generated vtable is created at the end of the unit and loaded separately (54.9% best). Deferred emission makes the vtable available during pooling and reverses definition order, so the definitions are written bottom to top. | Drop the flag; keep the ordinary constructor, destructor and `new`. |
+| `src/pso/misc/TWindowDD_80340EA8.cpp` | `TWindowDD_WS_ScrollBar` ctor/dtor | same | Same pooling timing (61.5% without deferral); reversed definitions also restore the `.sdata2` order. | Same. |
+| `src/pso/misc/TWindowDD_80342254.cpp` | `TWindowDD_WS_Word` ctor/dtor | same | Same pooling timing (70.9% without deferral). Word detail: [Word native lifetime emission](#word-native-lifetime-emission). | Same. |
+| `src/pso/misc/TWindowComCard_80249CBC.cpp` | `TUnk_804CE964` ctor/dtor and the rest of the former `TWindowComCard.cpp` tail from `0x80249CBC` | same; `TWindowComCard.cpp` is split at `0x80249CBC` and its first part needs no override | The follower window's generated vtable follows the deferred emission order; the first part of the old unit matches without deferral. | Same. |
+| `src/pso/misc/TWindowChallengeResult.cpp` | `TWindowChallengeResult` ctor/dtor/`run_task` | same | Same pooling timing; with the class native, its sole producer `TObjOnlineEnding::create_result_window` uses ordinary `new` at 100%. | Same. |
+| `src/pso/misc/TWindowFukidasi.cpp` | Balloon virtual table and scalar pools | `-inline off,deferred` with scoped `defer_codegen off` on the first three functions | Immediate emission puts the unsigned conversion bias before the named angle scale. The deferred functions then emit the signed bias and place the native vtable before the jump tables. The shared inline text-measurement body supplies each unit’s float literal; the linker selects the ChallengeResult definition. See [balloon lifetime evidence](evidence/balloon-native-lifetime.md). | Drop the flag and pragma. Keep the ordinary destructor and scalar definitions. Define `measure_text_entry` once out of line. |
+
+These entries replace the [former raw lifetime calls](evidence/window-lifetime-recovery-history.md)
+with ordinary C++ lifetime and compiler-generated vtables. The DD, ComCard
+and ChallengeResult records are covered in
+[the deferred lifetime evidence](evidence/window-native-lifetime-deferred.md).
+Vtable symbols are 0x18 bytes. The earlier 0x1C entries included four bytes of
+alignment padding. The balloon now owns its float pool from the eight-byte
+aligned address `0x805DCD08`, which retires its alignment override.
+
+### Challenge window data placement
+
+`pso/misc/TWindowSubComCard_8007341C.cpp` uses `-str reuse,readonly` to
+place the short and long strings in `.sdata2` and `.rodata` respectively.
+With data pooling enabled, CodeWarrior shares a base register across the long
+strings and changes the formatter's registers and address loads. The
+`-pooldata=off` setting restores the separate loads. `-sdata 4` keeps the
+eight-byte window extent in `.data` and preserves its two-instruction
+address loads. Ports can compile the ordinary C++ strings, table and extent
+with their default settings.
+
+### Download status coordinate alignment
+
+`pso/misc/TDLGraph.cpp` uses `cw_align: .sdata2=4` for the three floats
+at `0x805D92CC..0x805D92D8`. GC/2.0 emits the original floats and loads
+but requests eight-byte alignment for the pool. Ports can use the
+ordinary C++ coordinates directly and omit the object alignment override.
+
+### Dark Falz effect constant alignment
+
+`pso/boss/DarkFalzEffectConstants.cpp` uses `cw_align: .sdata2=4`. Its
+44-byte float pool starts at `0x805D8AB4`. GC/2.0 requests eight-byte section
+alignment, which would move the pool four bytes forward. The existing alignment
+tool records four-byte alignment in ELF and the CodeWarrior comment section.
+Ports can use the C++ definitions with their compiler's normal alignment.
+
+### Camera controller constant alignment
+
+`pso/misc/CameraControllerConstants.cpp` uses `cw_align: .sdata2=4` to
+place its floats at `0x805D8F7C`, where GC/2.0's default eight-byte
+section alignment would shift the pool. The following camera pool starts
+on an eight-byte boundary and the linker supplies the four-byte zero tail
+after `lbl_805D8FA0`. Ports can compile the ordinary float definitions
+with their compiler's default alignment.
+
+### Shadow projection constant alignment
+
+`pso/render/ShadowProjectionConstants.cpp` uses `cw_align: .sdata2=4`
+to preserve the pool at `0x805D9414..0x805D9428`. Both C and C++ trials
+emit the original 20 bytes with GC/2.0's default eight-byte section
+alignment. The override records four-byte alignment in ELF and the
+CodeWarrior linker metadata. Ports can compile the C++ definitions with
+their compiler's default alignment.
+
+### Time setting and calendar startup
+
+| File | Scope | Setting | Original layout | Port behavior |
+|---|---|---|---|---|
+| `configure.py` | `pso/menu/TAdTimeSetGC.cpp` | `-sdata 4` | The three eight-byte positions share the initializer’s normal data base at `0x804E3040` with the compiler-generated member-function-pointer records and destination table. The default threshold puts the positions in small data. | Use ordinary vectors and the typed state table. |
+| `configure.py` | Same unit | `-fp_contract on` | The calendar renderer and the initializer fuse multiply-adds. The initializer’s `fmadds` at `0x802E3548` computes the calendar’s x coordinate. | Preserve fused arithmetic if the target needs identical rounding. |
+| `src/pso/menu/TAdTimeSetGC.cpp` | `ply_status_date_format` | MWCC weak linkage | Strong linkage for all three calendar formats lets CodeWarrior share a read-only data base and shortens the renderer by 20 bytes. One weak declaration restores the separate relocations to the three formats. | Use ordinary const strings. |
+
+The calendar renderer and the initializer at `0x802E34AC` both load the same
+`0.5f` at `0x805DE8E8`. Folding the intervening time-setting code with those
+ranges lets CodeWarrior pool the literal once and emit the original constructor
+entry at `0x80433FD0`. The state table has 25 rows, with an entry action and a
+per-frame action in each. The null entry in row 15 accounts for the initializer’s
+`__ptmf_null` reference. The 49 other entries are emitted as individual 12-byte
+member-pointer constants, recorded at their original addresses in
+`symbols.txt`.
+
+### `pso/ui/TAdDialingGC_80328B20.cpp` with GC/1.3.2
+
+GC/1.3.2 preserves the 59-instruction sequence of `draw_dialing_rectangle`
+at `0x80328B24`. With the same source, GC/2.6 reuses coordinate loads and
+sums across the vertex writes and emits 49 instructions. The older compiler
+also matches the other three functions with the default game flags.
+
+The four coordinate pairs at `0x804767A8..0x804767C8` stay in the existing
+original read-only data contribution. Assigning them to this split would
+reverse its order relative to the dialing constructor's string and create a
+link-order cycle. The single referenced float at `0x805DF6F8` belongs to this
+split. The following zero word has no reference and stays with the original
+data.
+
+A port can use its regular compiler. Bind the legacy
+`draw_tri_fan_2d__14TObjCMHairMenuFllf` entry to the renderer that takes a
+`ColorLineList`, and supply the four coordinate pairs as typed constants.
+
+### `pso/ui/TAdSelectGameModeGC_802C4748.cpp` with GC/1.3.2 and `-fp_contract on`
+
+`draw_selection_plate` at `0x802C4B64` uses the caller's position and the two
+floats at plate offsets `0x21C` and `0x220` to build a four-vertex fan. The
+character-select, serial-entry, and password-entry callers pass the same
+four-byte color by value. GC/1.3.2 preserves the coordinate load schedule,
+as in the dialing rectangle. Assigning the vertex pointer before the color
+pointer reproduces the original register allocation. The depth expression
+fuses the index adjustment and base depth in the `fmadds` at `0x802C4C84`.
+The unsigned conversion bias and two float literals supply the new
+`.rodata` and `.sdata2` contributions.
+
+A port can use its regular compiler and call the renderer through a
+`ColorLineList` interface. Preserve the fused depth calculation if the port
+requires identical rounding.
+
+### Vol Opt pillar debris and collision handling
+
+GC/2.0 interleaves the BML resource and model-table loads with the final
+load and store of the initializer copy. It loads all three
+position components before storing them. GC/2.6 groups the copy tail and
+interleaves the position loads and stores. The same GC/2.0 aggregate pattern
+is used for debris in `TOExplosiveMachine.cpp` and `TOTrapAncient01.cpp`.
+
+The local initializer emits the 76-byte template at `0x80436748`. The
+original relocations to this template come from `fn_80049FD8`, and the split
+maps it to the compiler's local `@15` symbol in `TObjVoloptPillar.cpp`.
+
+GC/2.0 pools the collision handler's read-only operands through a shared
+base and changes register allocation when their definitions are in the
+same translation unit. Scoped `pool_data off` in `TObjVoloptPillar::run_task`
+at `0x8004A1CC` restores the separate address loads and all 784 bytes.
+Ports can omit the pragma and use their default compiler.
+
+### `pso/unk/text_8031EF14.cpp` with GC/2.0 and `-pooldata=off`
+
+`TObjEneRecon::spawn_death_debris` at `0x8031F1A8` is called by Recon's
+death-state handler and reads three models from the shared Recobox BML
+resource. As in the Vol Opt initializer, GC/2.0 schedules the model and
+position loads across the tails of the aggregate copies. Explicit copies of
+named templates and GC/2.6's schedule differ from the original.
+
+The three local aggregates generate the 228 bytes at
+`0x804762F0..0x804763D4`. The debris function supplies all references to
+these records. Disabling pooling keeps the two identical templates separate,
+and the symbol mappings associate each original record with its compiler
+local. Ports can use their regular compiler and allow pooling.
+
+### `pso/unk/text_8007ECF0.cpp` with GC/1.3.2
+
+GC/1.3.2 matches the border pass in `fn_8007F27C` at `0x8007F27C`, where
+the original loads the two-pixel margin before the first coordinate and
+interleaves the fan descriptor copy with the edge arithmetic. GC/2.6
+schedules the first coordinate load ahead of the margin with the same source.
+The dialing rectangle unit uses GC/1.3.2 for a similar scheduling difference.
+A port can use its regular compiler and preserve the fused filled-edge
+calculation and the legacy renderer ABI.
+
+### `pso/misc/TLobby_8001EF5C.cpp`: `-inline on`
+
+`init_from_id_lists` at `0x8002058C` (size `0x30C`) contains the
+model-count walk, the motion-count walk, and the flag `& 2` download walk in
+its body. The project default `-inline off` outlines those `static inline`
+walks, so the function is not the original bytes. Measured with objdiff
+(`functionRelocDiffs=data_value`):
+
+| Flag | Result |
+|---|---|
+| `-inline auto` | `.text` 62.53%, `.data` 0% |
+| `-inline auto,deferred` | `.text` 52.51%, `.data` 0% |
+| `-inline deferred` | Per-function match on the previous `extern "C"` body. On this C++ function it emits `init_from_id_lists` at `.text+0` instead of `.text+0x1630`, so the linked DOL does not match. |
+| `-inline on` | Every function 100%, `.text` and `.data` 100%, function at `.text+0x1630`. The unit links. |
+
+`-inline on` is the least invasive flag that keeps the whole unit identical,
+including section order. Precedent for this family of unit-level inline switches:
+[dtk-template `-inline auto`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203)
+and [Brawl `-inline on`](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264).
+
+The current source walks each id list with a pointer and a caller-born index
+(`load_model_list`, `load_motion_list`, and the flag `& 2` model request).
+Objdiff of that body is 100% (780 bytes, at `.text+0x1630`). The unit links.
+The typed file API recovery is recorded in
+[pr308-typed-file-apis.md](evidence/pr308-typed-file-apis.md).
+
+### `pso/quest/QuestOpcodeHandlers.cpp`: `-inline on`
+
+This existing unit switch also inlines the scalar accessor on the VM's per-slot
+`QuestVmArgument` union. String-push writes the pointer alternative directly;
+the GBA disk opcode reads that same alternative, and saved contexts use the
+same slot type. Whole-unit objdiff after the typed recovery: `.text` 51,176
+bytes, `.data` 88 bytes, and `.bss` 1,392 bytes, all 100%; the linked DOL has
+the original SHA-1. Direct numeric member reads keep the four affected handlers
+exact without any added optimization pragma. Evidence and iteration details:
+[pr308-typed-file-apis.md](evidence/pr308-typed-file-apis.md).
+
+| Unit | Flags | What needs the fused multiply-adds | Original asm | Rest of the unit |
+|---|---|---|---|---|
+| `pso/player/TObjPlayer_801542CC.cpp` | `-fp_contract on` | `TObjPlayer__sub_8015434C` and `resolve_player_box_contact`. `body->center.x = body->offset.x * sine + pos.x` and `body->center.z = body->offset.z * cosine + pos.z`. | `fmadds f0, f1, f30, f0` at `0x80154408` (offset.x * sin + pos.x); `fadds f0, f1, f0` at `0x8015441C` (pos.y + offset.y, not fused); `fmadds f0, f1, f31, f0` at `0x8015442C` (offset.z * cos + pos.z). No `fmsubs` in this function. | At introduction, the flag changed only `TObjPlayer__sub_8015434C`. All other functions and data stayed exact. `resolve_actor_sphere_contact`'s `(x * x) + (z * z)` stays `fmuls` + `fadds`. The unit flag also covers the two fused operations in `resolve_player_box_contact` at `0x8015532C` and `0x8015533C`, which previously used a scoped pragma. Precedent: GC/Wii projects put `-fp_contract on` in the base flags ([dtk-template configure.py](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209)). `cflags_pso` omits it, so this one unit opts back in, the same kind of override as `TObjTombstone.cpp`. |
+`TObjBoss2Tunnel.cpp`, `TObjBoss2Tunnel_8003B138.cpp`, and `TObjBoss2Tunnel_802F2070.cpp` set `-fp_contract on` because the curve and tunnel helpers fuse multiply-adds. Each unit stays byte-exact, which is why the flag is on the unit rather than a per-function `fp_contract` pragma. Precedent: [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209) and Melee, TP, TWW, and Pikmin 2, which contract globally.
+
+### `TAdChrSelPlyPlateGC.cpp` ([#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250))
+
+| File | Functions | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/ui/TAdChrSelPlyPlateGC.cpp` | `TAdMultiPlyChrSelectGC__sub_802C5F1C`; also `mark_grid_cell_occupied` inlined into `sub_802C5688` and `sub_802C6660` | unit `-inline on,deferred` together with the `-fp_contract on` row below | The slot clamp is a `static inline` helper with no symbol of its own. Under `-inline off` the helper is a real call and the function is 332 bytes (42.79518%). Under `-inline on` the row stays in `r8` and the cell in `r7`, and the function is 236 bytes. `v0` and `v1` are `a / 256.0f` and `(lbl_805DE588 + a) / 256.0f`. MWCC folds that into `fmuls` by the pooled reciprocal at `805DE584` (exactly 1/256) with the dividend on the left. The same flag inlines `mark_grid_cell_occupied(row, col)`. `802C6660` passes `row + 1, col + 1` (its `row`/`col` are the 0-based quad indices); the inlined arguments are the `addi` before `mulli 0x14` and `stwx` at `0x802C67xx`. `802C5688` already holds grid coordinates and stays 700/700. `-inline auto` inlines other functions (`update` 108→572, `update_option_cursor` 476→700, `handle_dpad_input` 564→788). The original 36-function split matched with `-inline on` and `-fp_contract on`. The complete unit also uses deferred emission for the constructor. Evidence: [chr-select-slot-clamp-inline.md](evidence/chr-select-slot-clamp-inline.md), [chr-select-confirm-cell-store.md](evidence/chr-select-confirm-cell-store.md). Precedent: [Brawl `-inline on`](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264) (only functions marked `inline`); [`-inline auto` in dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) was tried and does not keep this unit identical. | Drop the flag. The value is `min(slot, 3)` applied to each cell's texture row, and the occupied-cell store is `grid[row][col] = -1`. A port does not need MWCC's inline-local numbering. |
+| `src/pso/ui/TAdChrSelPlyPlateGC.cpp` | Constructor at `0x802C6DD4` and whole-unit layout | deferred emission with definitions in reverse address order | The constructor shares the `.data` base at `0x804E0A48` for the native vtable at +0xC8 and the ready-tag arrays at +0x98 and +0xA8. Immediate emission addresses all three separately. Deferred emission with reversed definitions restores the instruction, relocation and pool order. See [plate constructor evidence](evidence/chr-select-confirm-cell-store.md#constructor-and-factory). | Use an ordinary C++ constructor and compiler-generated vtable. Function order and shared relocation bases are CodeWarrior layout details. |
+
+`pso/effect/TEF_LensFlare.cpp` (this change) sets `-fp_contract on` because the
+recovered renderer contracts its attenuation and displacement multiply-adds
+into `fnmsubs`/`fmadds`. The same unit places `lbl_80438E40` with
+`__declspec(section ".rodata")` so the original `{0,0,-1}` vector symbol stays
+in `.rodata`. Port: keep FMA or accept small float differences; a normal
+`const` is enough for the vector.
+
+### `pso/misc/TOMineTrap_8016F6F8.cpp`: `-inline on`, `-fp_contract on` ([#321](https://github.com/matthewlewisnewton/pso-decomp/pull/321))
+
+Allowed by Matt on 2026-11-04: unit-wide switches in `configure.py`. No
+function pragma.
+
+| Unit | Functions | What | Why | Port should |
+|---|---|---|---|---|
+| `pso/misc/TOMineTrap_8016F6F8.cpp` | `TOMineTrap::run_task` (`0x8016F90C`, 952 bytes); no other function changes | unit switch `-inline on`, which expands the inline members `strike_actor(TObjChara *, TObjPlayer *)`, `strike_player(TObjChara *)` and `strike_enemy(TObjChara *, TObjPlayer *)` into mode 4's loop | The original keeps `this` in r29, the owner in r31, `i` in r30, the entity id in r28 and the actor in r27 (`mr r29, r3` at `0x8016F91C`, `mr. r27, r3` at `0x8016F9F4`, `mr r28, r3` at `0x8016FA48`). With the actor as a named local in `run_task` it is virtual r34, degree 30, and every temp it could lose a neighbour to is numbered above it. MWCC's simplify pass only pushes a node whose degree is already below 29 when the ascending sweep reaches it, so the actor is coloured before the id and gets r29 (`this` r28, id r27; 98.49%). Copy propagation cannot remove the named copy because the actor is passed to calls (`mr r3, actor`). When `get_player_data(i)` is the argument of an inline call, the actor is the inline's argument temp: it is numbered above the two room loads that the frontend CSE pass shares, so the sweep sees degree 28 and gives it the last callee-saved register. The player and enemy branches are their own inlines: nested inlines are expanded one pass later in statement order. That keeps the two `DirectAttackPayload` argument copies in the original stack slots (`0x10(r1)` for the player hit at `0x8016FB10`, `0x8(r1)` for the enemy hit at `0x8016FBE4`). With one inline for the whole body the slots swap (99.97%). With the switch, `run_task` is 100% and every other function, `.rodata` and the symbol table are byte-identical to the object built without it from the previous source (`-inline off` and `-inline on` give identical objects for that source). Without the switch, the new source keeps the three helpers out of line as weak functions and `run_task` is 33.82%. Other keywords tested: `noauto` gives the same object as `on`. `deferred` matches `run_task` but writes the functions in reverse order. `auto`, `auto,deferred` and `all` also auto-inline small members: `run_task` falls to 95.95% (76.70% with `auto,deferred`), and six other functions drop, for example `check_trigger`/`can_trigger` to 39.48% and `receive_direct_attack` to 60.34%. Precedent: [brawl `configure.py`](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264) (`-inline on`), [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) per-group `-inline`, and this repo's `-inline on` units `QuestOpcodeHandlers.cpp` and `TQuestThread.cpp`. | Drop the switch. The helpers are plain inline members. |
+
+#### `-fp_contract on`
+
+The original text has three `fmadds` and no `fmsubs`.
+
+| Function | Instruction | Address | Expression |
+|---|---|---|---|
+| `TOMineTrap::TOMineTrap` | `fmadds f2,f3,f4,f2` | `0x80170058` | damage product `lbl_805DB878 * (float)level + lbl_805DB874`, then two `fmuls` |
+| `TOMine::follow_target` | `fmadds f0,f1,f0,f2` | `0x80170B9C` | `lbl_805DB884 * ((lbl_805DB888 + target_y) - held_y) + held_y` |
+| `TOMine::update_float_height` | `fmadds f0,f3,f1,f0` | `0x80170D30` | `lbl_805DB884 * ((lbl_805DB888 + home_y) - height) + constant`, then `fadds` the old height |
+
+Objdiff of the whole unit (`GC/2.6`, `-O4,s -inline on -sdata2 4`), flag on
+versus flag omitted: `run_task` is byte-identical either way (100%, 952
+bytes). Every other function that is exact without the flag stays exact with
+it. `.rodata` (`lbl_804421F8`, 8 bytes) is exact either way. The three
+functions above change, from 98.82% (1076 bytes) / 97.81% (296) / 95.60%
+(172) without the flag to 100% (1072 bytes) / 100% / 100% with it. `run_task`
+is byte-identical either way. Those multiply-adds compile as `fmuls`+`fadds`
+when `-fp_contract` is omitted and `fmadds` when it is on.
+
+The constructor clamp at `0x80170068` uses an ordinary named comparison
+and assignment, `if (attack.power < lbl_805DB85C) attack.power = lbl_805DB85C`.
+Scoped `opt_common_subs off` around the constructor preserves the original
+register allocation without an address cast. With the default CSE setting,
+the same source swaps the compare's `f0`/`f1` (99.91%). A `0.0f` literal for
+both the comparison and assignment matches the instructions but adds a
+second four-byte zero to `.sdata2`, failing the original-DOL hash.
+
+| Symbol / unit | Construct | Reason | Port action |
+| --- | --- | --- | --- |
+| `TOMineTrap::TOMineTrap` (`0x80170068`), `pso/misc/TOMineTrap_8016F6F8.cpp` | Scoped `#pragma opt_common_subs off` | The ordinary named clamp matches all constructor instructions with CSE disabled; the whole object retains its 6,132 code bytes, 8 `.rodata` bytes and single 4-byte shared zero. This is a matching setting, not proof of the original compiler option. | Drop the pragma; keep the ordinary comparison and assignment. |
+
+The `__declspec(section ".sdata2")` definition follows the last use so
+CodeWarrior keeps the named loads. Both `text_8016F1C0.cpp` and `TOMine.cpp`
+reference that same exported zero.
+
+The unit's four-byte `.sdata2` starts at `0x805DB85C`. CodeWarrior gives
+the section eight-byte alignment by default. The existing `cw_align` build
+step sets the ELF and linker comment alignment to four, keeping the original
+address. Ports can compare directly against zero and use ordinary alignment
+for the shared constant.
+
+`follow_target` and `update_float_height` are exact on main through
+function-local `fp_contract` pragmas. This PR removes those pragmas; the unit
+flag is what keeps their `fmadds`.
+
+Port should: fuse those three multiply-adds, or accept the float difference.
+
+### `pso/effect/TEffIndirectCtrl.cpp`: GC/2.0, `-inline off,deferred`, `-fp_contract on`, `-str reuse,readonly` ([#161](https://github.com/matthewlewisnewton/pso-decomp/pull/161))
+
+#161 merges the seven split files between `0x802A8140` and `0x802A9588`
+(`TScene_802A8140`, `text_802A8210`, `TObjPlayer_802A8368`,
+`TEffIndirectCtrl_802A88AC`, `TEffIndirectCtrl_802A9284`, `TEffIndirectCtrl`,
+`text_802A9568`) back into the one translation unit that owns `.text`, `.rodata`,
+`.data`, `.bss`, `.sdata`, `.sbss` and `.sdata2` for that range. The unit is linked
+and all 34 functions and every section are byte-exact.
+
+| Unit | Functions | What | Why | Port should |
+|---|---|---|---|---|
+| `pso/effect/TEffIndirectCtrl.cpp` | `TEffIndirectCtrl::run_task` (`0x802A88B0`); the whole unit is built with it | `mw_version` GC/2.0 | `run_task`'s 36-byte local array of member-function pointers interleaves its copy tail with `actor_frame_tick` (load, tail load, `clrlwi.`, table load, tail store). GC/2.6 packs the tail pair and moves the tick relocation from +0xE4 to +0xEC. GC/2.5 and GC/2.7 match 2.6. GC/2.0p1 and GC/1.3.2 drop the wave helpers. The initializer also produces the original data: a 0x24 zero template in `.rodata` (`lbl_8046FBE8`) and the 3×12-byte pool in `.data` (`eff_indirect_task_table`), as in `TItemSpecialEvent_803531FC.cpp`. Precedent: `TObjEneGyaranzo.cpp` (GC/2.0 with `-inline off,deferred`). | Build with the port compiler. |
+| `pso/effect/TEffIndirectCtrl.cpp` | unit layout: `TUnk_804DDF04::~TUnk_804DDF04` (`0x802A81B8`), `TEffIndirectCtrl::~TEffIndirectCtrl` (`0x802A8AD4`), and the order of every function | unit switch `-inline off,deferred`; the source is written last-defined first | MWCC emits vtables in reverse order of their key functions. In the DOL the `TUnk_804DDF04` destructor comes first in `.text`, but its vtable (`0x804DDF04`) is before `__vt__16TEffIndirectCtrl` (`0x804DDF1C`) in `.data`. With the source in `.text` order and no deferred code generation, the `.text` order is right but the vtables come out swapped (`__vt__16TEffIndirectCtrl` at `.data+0x24`, `TUnk_804DDF04`'s at `+0x3C`). Deferred code generation emits functions last-defined first. With the definitions reversed, both `.text` and `.data` come out in the original order, and so do the float pool and the local array templates. Precedent: the per-group `-inline` settings in [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) and [brawl](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264), and this repo's `-inline off,deferred` units (`TObjChip.cpp`, `TObjTombstone.cpp`, `TBoss6PlotFalz_802B0228.cpp`, ...). | Drop the switch. Emission order has no semantic effect. |
+| `pso/effect/TEffIndirectCtrl.cpp` | `deform_indirect_texture_wave` (`0x802A8CC0`), `update_indirect_texture_wave` (`0x802A8E4C`) | unit switch `-fp_contract on`; replaces the two scoped `#pragma fp_contract on` blocks that came over from `TEffIndirectCtrl_802A88AC.cpp` | Each helper fuses the wave offset into one `fmadds f0,f2,f1,f0` (`+0xC8C`, `+0xE18`). Without contraction both drop to 98.38%: each fused multiply-add becomes an `fmuls` and an `fadds`, and `.text` grows from 5192 to 5200 bytes. No other function in the unit contracts. With the unit switch the object is identical to the one the pragmas produced. Precedent: [dtk-template `configure.py`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209) (`-fp_contract on`), and the same pragma-to-unit-switch change for `TWindowKeyBoardSoft_8024E68C.cpp` (#219, below). | Keep fused multiply-add, or accept small float differences. |
+| `pso/effect/TEffIndirectCtrl.cpp` | `load_indirect_dat`, `load_indirect_info`, `TEffIndirectCtrl__name` (data) | unit switch `-str reuse,readonly` | `"indirect.dat"`, `"indinfo.dat"` and `"TEffIndirectCtrl"` are in this unit's `.rodata` (`0x8046FBB8`, `0x8046FBC8`, `0x8046FBD4`), with `.sdata` pointers to them. Without the switch MWCC puts the three literals in `.data`: `.rodata` shrinks from 160 to 112 bytes, `.data` grows from 84 to 132, and `.data` falls to 57%. Same switch and reason as `TObjTombstone.cpp`; the same pair of switches as `TBoss6PlotFalz_802B0228.cpp`. | Drop the switch. |
+
+#322 (split from #240) builds `pso/misc/TWindowSubStatusDisp_80256B94.cpp`
+with `-fp_contract on` and `-inline off,deferred` (unit-level flags allowed
+under Matt's 2026-11-04 2:37 PM PT policy).
+
+`-fp_contract on`: the original fuses the depth term of
+`render__13TUnk_804CF930FP18TWindowDrawContext` into one `fmadds` at
+`0x80257118` (`0.299f * depth + ctx->depth`, then `-1.0f / ...`); MWCC only
+emits that from plain C with contraction on. Only that function's code
+changes when contraction is turned off. The bar is `sum *= 7.5f; bar =
+(tick - sum) * 17.0f;`, which stays `fmuls` / `fsubs` / `fmuls`. The other
+functions and `.sdata2` stay byte-identical with contraction off.
+
+`-inline off,deferred`: the two vtables `__vt__13TUnk_804CF918` (`.data`
+`0x804CF918`) and `__vt__13TUnk_804CF930` (`0x804CF930`) are emitted by the
+virtual destructors. With `-inline off` and the functions defined in address
+order, MWCC puts the derived table at the lower address. Defining the
+derived functions first and compiling `-inline off` puts the base table
+first but emits the derived functions first in `.text`. `-inline off,deferred`
+emits that reversed source in address order and still puts
+`__vt__13TUnk_804CF918` ahead of `__vt__13TUnk_804CF930`. Each table is
+`0x18` bytes (top offset 0, RTTI 0, then the four virtuals; the base
+`calc_bar_width` slot is the pure-virtual zero). The whole unit, including
+`.text` `0x7e8`, `.rodata` 8, `.data` `0x30` and `.sdata2` `0x78`, matches
+with the flag. Without deferred the same source does not. Precedent:
+[dtk-template configure.py#L203](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203)
+(`-inline auto`) and #L209 (`-fp_contract on`), and this tree's
+`TQuestListVM.cpp` / `TObjTombstone.cpp` deferred units. Functions affected:
+the whole translation unit. The destructors are `__dt__13TUnk_804CF918Fv`
+and `__dt__13TUnk_804CF930Fv`; the other virtuals are
+`update__13TUnk_804CF918Fv`, `render__13TUnk_804CF918FP18TWindowDrawContext`,
+`calc_bar_width__13TUnk_804CF930Fv`, `update__13TUnk_804CF930Fv`, and
+`render__13TUnk_804CF930FP18TWindowDrawContext`.
+The signed `open_tick` cast's `0x4330000080000000` bias is
+`lbl_8044EE40`. That object was an unclaimed 8-byte `.rodata` gap; the only
+relocation to it is the `lis`/`lfd` in `render__13TUnk_804CF930FP18TWindowDrawContext`,
+so the range `0x8044EE40..0x8044EE48` belongs to this unit. It is
+`scope:local` for the same reason as the other unreferenced compiler pools
+(`TObjFish_8033CCC8`'s `lbl_80477F08`): the compiler names the pool `@N`, and
+nothing else loads the export. With the bytes in the unit, objdiff's
+`functionRelocDiffs=data_value` treats `@N` and `lbl_8044EE40` as the same
+load, and `render__13TUnk_804CF930FP18TWindowDrawContext` is byte-identical. The unit's `.sdata2` floats
+`lbl_805DCE58` through `lbl_805DCECC` are the same kind of unreferenced pool
+(`0.0f` and the other literals, including `lbl_805DCECC` = 2.0f) and are
+`scope:local` too, which is what makes the whole unit linkable. Port: drop the flag;
+`0.299f * depth + ctx->depth` may become a separate multiply and add. The
+cast stays a cast.
+
+### `TWindowKeyBoardSoft_8024E68C.cpp`: `-fp_contract on` ([#219](https://github.com/matthewlewisnewton/pso-decomp/pull/219))
+
+| File | Functions | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TWindowKeyBoardSoft_8024E68C.cpp` | `scale_point_about_pivot`, `apply_context_transform_to_rect`, `apply_window_closing_stretch`, `clip_textured_quad`, `init_text_window_layout` | unit `configure.py` override `-fp_contract on` | These five functions emit contracted multiplies. In the matched object: `fmadds` at `scale_point_about_pivot`+0x1c/+0x40, `apply_context_transform_to_rect`+0x1c/+0x34/+0x58/+0x70, `apply_window_closing_stretch`+0x40, `clip_textured_quad`+0x80/+0xa8, and `fnmsubs` at `clip_textured_quad`+0xd0/+0xf8; `init_text_window_layout` has four `fmadds` and four `fnmsubs`. Turning contraction off drops the unit from 2156/2156 (17/17) to 1652/2156 (14/17): the transform 79.35% of 124, the stretch 92% of 100, the clip 87.86% of 280. The unit-level flag matches every section of the object that the old per-function `#pragma fp_contract on` produced (`.text` 2156 bytes, `.rodata` 8, `.mwcats.text`, `.comment`). Precedent: [dtk-template `configure.py`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209) (`-fp_contract on`), and the same switch already used here for `PadRumble.cpp` and `CreationCamera.cpp`. | Keep fused multiply-add, or accept the float differences. |
+### `TBoss7TentacleNeedle.cpp`: GC/2.0, `-inline off,deferred`, `-fp_contract on` ([#299](https://github.com/matthewlewisnewton/pso-decomp/pull/299))
+
+| File | Functions | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/boss/TBoss7TentacleNeedle.cpp` | `__ct__20TBoss7TentacleNeedleFP7TObjectP3Vec` (`0x802EFD08`, GC/2.0); `TBoss7Tentacle__sub_802F0608` and the constructor (`-fp_contract on`); `TObjPlayer__sub_802F0D30` and the unit's `.rodata`/`.sdata2` (`-inline off,deferred`) | unit `configure.py` override `mw_version: GC/2.0` with `-inline off,deferred -fp_contract on` | The constructor passes `create_particle_emitter` a stack copy of `pos`, written as `const Vec emitter_position = *pos;`. The original loads all three words before storing any: `lwz r6,0(r31); lwz r5,4(r31); lwz r0,8(r31); stw r6,8(r1); stw r5,0xc(r1); stw r0,0x10(r1)` at `0x802EFE38`. MWCC before 2.5 leaves a `const` local whose address escapes out of the worst-case alias set, so the scheduler may move the third load above the stores; GC/2.6 adds it and interleaves them (`lwz r5; lwz r0; stw r5; stw r0; lwz r0; stw r0`). Under GC/2.6 the constructor is 97.88% and the unit 40/41; under GC/2.0 every one of the 41 functions and every section matches, and no other function changes between the two compilers. Without `-fp_contract on` the unit drops to 39/41 (`TBoss7Tentacle__sub_802F0608` 91.13%, constructor 96.92%): the tentacle curve and the position jitter fuse to `fmadds`. Without deferred inlining `TObjPlayer__sub_802F0D30` falls to 69.59% and `.rodata`/`.sdata2` are emitted out of order (the vtables also come out tentacle first). No pragmas, no asm, no casts in the copy. Precedent: per-object `mw_version` in [dtk-template `configure.py`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L257), and this repo's GC/2.0 units for compiler-expanded struct copies (`TItemSpecialEvent_803531FC.cpp`, `Boss5GryphonBehavior.cpp`, `TBoss8Dragon.cpp`, ...). | Drop the overrides; the C++ is the behavior. |
+
+### `TBoss7PhotonBullet_802EF26C.cpp`: `-inline off,deferred`, `-fp_contract on` ([#299](https://github.com/matthewlewisnewton/pso-decomp/pull/299))
+
+| File | Functions | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/boss/TBoss7PhotonBullet_802EF26C.cpp` | `run_task__18TBoss7PhotonBulletFv` (`0x802EF2AC`); unit vtable order | unit `configure.py` override `-inline off,deferred -fp_contract on` | `run_task` contracts `2.0f * aim + travel` into `fmadds`; with `-fp_contract off` the function grows by `0x10`. Deferred emission, with the definitions written bottom to top, places `__vt__18TBoss7PhotonBullet` then `__vt__15TBoss7PhotonPad` while `.text` stays in address order; without it the compiler emits the pad vtable first. Both vtables are the compiler's own (virtual destructor, `run_task`, `render`); `TOBJECT_OUT_OF_LINE_HELPERS` keeps `queue_destruction` as the external call. With the flags the unit matches every section (`.text` 1428, `.data` 116, `.sdata2` 28, 8/8 functions). Precedent: `-fp_contract on` in [dtk-template `configure.py`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209), and `-inline off,deferred` on `TObjTombstone.cpp` and other units here. | Drop the flags; the C++ is the behavior. |
+
+
+### `text_8034A090.cpp`: `-fp_contract on`
+
+| File | Functions | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/unk/text_8034A090.cpp` | `TAdLoadQuestPrtTxtGC::TAdLoadQuestPrtTxtGC` (`0x8034A254`, 890 bytes) | unit `configure.py` override `-fp_contract on` | The constructor's three particle layouts contract `scale * index + base` into `fmadds` (case 0 at ctor+0x120, `ec 1d d8 3a`; the same form in cases 1 and 2). With the flag the unit is 1452/1452 code, 4/4 functions, `.rodata` 8 and `.data` 36. Without it those three functions and both data sections stay 100%, and the constructor falls to 93.32% and grows from 890 to 908 bytes (separate `fmul`/`fadd`). No `-inline` change was needed. Precedent: [dtk-template `configure.py`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209) (`-fp_contract on`). | Keep fused multiply-add, or accept the float differences. |
+
+### `TItemAttackCol_802E4798.cpp` vtable alignment
+
+The base collider destructor emits its native vtable at `0x804E355C`,
+immediately after the derived vtable. CodeWarrior declares eight-byte
+`.data` alignment. The unit uses `cw_align: .data=4` to retain the
+four-byte boundary in the ELF and CodeWarrior metadata. A port can use its
+default vtable placement.
+
+### `TObjRaderHideCol.cpp` native data alignment
+
+`pso/object/TObjRaderHideCol.cpp` uses `cw_align: .data=4 .sdata=4`.
+Its compiler-generated vtable starts at `0x804B890C`, and its class-name
+pointer at `0x805D3414`. Both addresses have four-byte alignment, while
+GC/2.6 records eight-byte alignment for the emitted sections. The existing
+`cw_comment_align.py` adapter changes only the ELF and CodeWarrior alignment
+metadata; instructions, data and relocations remain compiler-generated.
+A port can use its compiler's default vtable and pointer alignment.
+
+### `TWindowGetComCard.cpp` confirmation window position
+
+The two floats at `0x804CF120` precede the compiler-emitted
+`TWindowGetComCard` vtable in `.data`. Under the default small-data settings,
+CodeWarrior puts the eight-byte position in `.sdata` and emits one SDA-relative
+instruction at the factory call. The guarded `.data` placement keeps the
+original `lis` and `addi` relocation pair and the vtable layout. A port can use
+the ordinary `WindowLayoutPosition` definition and its default data placement.
+
+### `TCheckMemoryCard.cpp` section placement
+
+The native static initializer at `0x8033C69C` computes the card-menu position and layout
+height, then initializes four pairs of `TCheckMemoryCard` member callbacks. CodeWarrior
+emits the eight member-pointer templates between the menu position and the callback
+table. The card vtable follows at `0x804EF9A0`. The initializer's text follows the card
+methods and character-select factory, so a separate initializer unit would impose
+opposite object orders in `.data` and `.text`. The combined unit preserves both orders,
+as in the [calendar conversion fold](evidence/calendar-conversion-evidence.md).
+
+- `-sdata 4` keeps the eight-byte menu position in `.data`, ahead of the callback
+  templates, and retains the four-byte height in `.sbss`. With the default threshold,
+  the menu position goes into `.sdata` and the initializer uses different offsets.
+- `cw_align: .rodata=4` preserves the start of the two float pairs at `0x80477DB4`.
+  CodeWarrior otherwise declares eight-byte section alignment. The existing
+  `cw_comment_align.py` rule adjusts the ELF and CodeWarrior alignment metadata.
+
+A port can use the C++ initializers and its normal section layout.
+
+### `TOTrapAncient01.cpp` unit overrides ([#221](https://github.com/matthewlewisnewton/pso-decomp/pull/221))
+
+| File | Functions | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TOTrapAncient01.cpp` | whole unit; `TOTrapAncient01::TOTrapAncient01`, `render`, `play_sounds` | `configure.py`: `mw_version` `GC/2.0`, `-inline off,deferred`, `-fp_contract on`, `-str reuse,readonly`, `-pooldata=off`, `-opt nolifetimes` | Every section of the object is byte-identical with all six settings; each row below is the score with only that setting removed. `GC/2.0`: `play_sounds` (`0x801794CC`, size `0x2B8`) builds three `const TObjChipParams` records from a `.rodata` template and `position`. The original loads `x`/`y`/`z` into `f2`/`f1`/`f0` before the template's tail `stw r0,4(r5)` (`lfs f2,0x38(r31)` at `+0x48`, `stw` at `+0x4C`, `lfs f1`/`lfs f0` at `+0x50`/`+0x54`, then three `stfs`). GC/2.6 stores the tail first and alternates `lfs`/`stfs`, which leaves the length unchanged but changes the bytes of all three records: `play_sounds` 91.09%, `.text` 98.32%. The sibling trap `TOExplosiveMachine.cpp` builds its debris records the same way and is GC/2.0 for the same reason. Precedent for a per-unit compiler version: [dtk-template `configure.py`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L257) (`GC/1.2.5n` and `GC/1.3.2` objects under a different linker version). `-fp_contract on`: the constructor's `0.5f * scale.x + 30.0f` is an `fmadds`. Without contraction, `TOTrapAncient01::TOTrapAncient01` is 98.86% and `render` 97.66%. Precedent: [dtk-template `configure.py`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209) and the same switch on `TWindowKeyBoardSoft_8024E68C.cpp`. `-inline off,deferred`: deferred emission keeps the vtable ahead of the switch tables and preserves the original function order. Without it, `.rodata` is 42.21%, `.data` 63.58%, and `.sdata2` 56.25%. Precedent for a unit `-inline` switch: [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) (`-inline auto`) and [brawl](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264) (`-inline on`). `-opt nolifetimes`: `render` is 99.42% without it. Precedent for a unit `-opt nolifetimes`: [Petari `configure.py`](https://github.com/SMGCommunity/Petari/blob/50c1eae28478c8b1b1c8708ab8ce9a3b845ee6c6/configure.py#L2137). `-pooldata=off`: without it, `play_sounds` is 94.54% (the copy prologue becomes `stmw` instead of the original `stwu`/`stw r31`) and `.data` is 63.58%. Precedent for a unit `-pooldata off`: [FFCC-Decomp `configure.py`](https://github.com/zcanann/FFCC-Decomp/blob/48eec39b00014bac8ef9e585d2beb55f5ab6c68d/configure.py#L594) and [marioparty6 `configure.py`](https://github.com/iirg4x/marioparty6/blob/3be3802ab7c1c79e7060500f2aca0e85ad9962dd/configure.py#L1089). `-str reuse,readonly` drops the default `,pool`, so the strings stay in the read-only layout. Without it, `.rodata` is 75%, `.data` 61.97%, and `.sdata` 75%. Precedent: [FFCC-Decomp `configure.py`](https://github.com/zcanann/FFCC-Decomp/blob/48eec39b00014bac8ef9e585d2beb55f5ab6c68d/configure.py#L600) builds a unit with `-pooldata off` and `-str reuse,readonly`; [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L237) uses `-str reuse,pool,readonly` for its runtime libraries. `-opt nopropagation` is not set. | Build with the default compiler: keep contraction for the constructor's float result. The other settings change only scheduling and layout. |
+
+### `TOTrapSeabed01.cpp` unit override ([#221](https://github.com/matthewlewisnewton/pso-decomp/pull/221))
+
+| File | Functions | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TOTrapSeabed01.cpp` | whole unit | `configure.py`: `-inline deferred` in place of the default `-inline off`; definitions in reverse order | Every section of the object is byte-identical. The native `TOTrapSeabed01` vtable references TOTrap's inline slots 20, 21, 23 and 24, so this object emits weak copies of them. The linker keeps `TOTrap.o`'s copies. The original `.sdata2` at `0x805DE640` is `1.0, 0.0, 0.5, 15, 0.1, 10, 30`: the copies' `1.0f`/`0.0f` come first, then the unit's literals in function order. Deferred generation emits the copies first, and the reversed definitions in the original `.text` order. With the default `-inline off`, the copies are generated last: `.sdata2` is 71.43%, `.rodata` 50% (the two conversion constants swap), and `clamp_params_and_init` 69.32% because its clamp helpers are not inlined. `-inline off,deferred` fixes the pools but still leaves `clamp_params_and_init` at 69.32%. `-inline auto` loses `draw_object_tree` and `create` entirely (0%). The unit matches without its former per-function `fp_contract`, `opt_common_subs`, `inline_depth` and `dont_inline` pragmas, so they are removed. Precedent: the same switch on `TQuestVmDownLoadServer.cpp`, `TMedicalCenterSequence.cpp` and `TBoss7LaserLight.cpp`, and unit `-inline` switches in [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) and [brawl](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264). | Ignore it: generation order has no semantic effect. |
+
+### `TOTrapAncient02.cpp` unit override ([#221](https://github.com/matthewlewisnewton/pso-decomp/pull/221))
+
+| File | Functions | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/misc/TOTrapAncient02.cpp` | whole unit | `configure.py`: `-inline deferred` in place of the default `-inline off`, and `-fp_contract on`; definitions in reverse order | Every section of the object is byte-identical. The unit defines `~TOTrapAncient02` and `~TOTrapAncient02R`, so it emits both native vtables in place of the former hand-written `s32[90]` table, its `extern "C"` alias for `vfunc_87__6TOTrapFf` and the C-named `__dt__15TOTrapAncient02Fv` with its raw vptr store. It also owns the ten `TOTrapAncient02R` methods at `0x8017B878`..`0x8017B9AC`, formerly split into `pso_const_ids7.cpp` and `text_8017B8A0.cpp`, and its `.sdata2` pool at `0x805DBA78` (`1.0, 2.0, 0.0, 7, 10.15, 0.00001, 240, 20, 1.8, 30, 0.5, 400`) as literals. The original `.data` is the three resource records and the collision body, the `TOTrapAncient02R` vtable at `0x804B4B4C`, `TOTrapAncient02::vfunc_84`'s switch table at `0x804B4CB4`, then the `TOTrapAncient02` vtable at `0x804B4D10`. The `TOTrapAncient02` vtable references TOTrap's inline slots 20, 21, 23 and 24, so this object emits weak copies of them, and the linker keeps `TOTrap.o`'s copies. Deferred generation emits the `TOTrapAncient02R` vtable before any function, so before the switch table, and the reversed definitions keep the original `.text` order. With the default `-inline off`, `.data` is 90.09%, `.sdata2` 70.83%, and `vfunc_84` 99.79% because its switch-table relocation moves, along with most other functions at about 99.8%. Unit `-fp_contract on` replaces the seven per-function `fp_contract on` pragmas from main: without it `.text` is 99.5% (`calc_trap_count` 94.74%, `TOTrapAncient02R::vfunc_81` 99.38%, both constructors about 98%) because their multiply-adds stay unfused; no function in the unit needs it off. Precedent: the `TOTrapSeabed01.cpp` entry above, the same switch on `TQuestVmDownLoadServer.cpp`, `TMedicalCenterSequence.cpp` and `TBoss7LaserLight.cpp`, unit `-inline` switches in [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) and [brawl](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264), and unit `-fp_contract on` on `TWindowKeyBoardSoft_8024E68C.cpp` and in [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209). | Ignore them: generation order has no semantic effect, and the unit's fused multiply-adds are the ones its pragmas already selected. |
+
+### `-opt noprop`: `TEffIndirectCtrl.cpp` ([#291](https://github.com/matthewlewisnewton/pso-decomp/pull/291))
+
+#291 approved this for `TEffIndirectCtrl_802A88AC.cpp`, which #161 merged into
+`pso/effect/TEffIndirectCtrl.cpp`. The switch now covers the merged unit. Two
+functions from the other old splits were written around propagation and now use
+plain source: `free_all` (no copied loop-counter alias) and
+`setup_indirect_tev_alternate` (no `u8` copy of the argument).
+
+| Unit | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `pso/effect/TEffIndirectCtrl.cpp` (was `TEffIndirectCtrl_802A88AC.cpp`) | `deform_indirect_texture_scroll` (`0x802A8FD8`) | unit switch `-opt noprop`, the unit-wide form of `opt_propagation off` (approved for `TEF_LensFlare::render`, #272) | The original keeps the scroll offset as a named `s16` local: `clrlwi r30,r21,26; clrlwi r29,r20,26; extsh r28,r4` at `0x802A90E4`, then `add r5,r5,r28` at `0x802A9158`. With propagation, the frontend replaces the single `off16 = offset` with a hoisted temp, which is coloured before the masks: `clrlwi r29; clrlwi r28; extsh r30`, six operands, 99.79%. Main matched only with a cancelling `off16++; off16--;`, removed here. No `-inline` or `-fp_contract` setting moves it. With the switch, the object is identical to main's in every section, relocation, and symbol. Every other function in the unit is unchanged. Precedent: per-object switches in [brawl](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264) (`-opt peephole -opt schedule` on `nt_etc_so.cpp`, L723), and this repo's `-opt nocse` / `-opt nopeephole` units. The precedent is weak: brawl uses `-opt peephole/schedule`, not `noprop`; no other decomp found using `-opt noprop`. Accepted by Matt 2026-11-04 4:34 PM PT. Evidence: [indirect-scroll-offset-propagation.md](evidence/indirect-scroll-offset-propagation.md). | Drop the switch. The source is plain C++. |
+
+### `TObjBoss2Tunnel_802F2070.cpp` and `TObjBoss2Tunnel.cpp`: `-inline off,deferred` and upstream #185's switches ([#290](https://github.com/matthewlewisnewton/pso-decomp/pull/290))
+
+| Unit | Functions | What | Why | Port should |
+|---|---|---|---|---|
+| `pso/boss/TObjBoss2Tunnel_802F2070.cpp` | all 27 functions (`0x802F2070`-`0x802F2C84`), written in reverse address order | unit switch `-inline off,deferred` | Data order. The original `.sbss` holds the ctor's function-local static `constructed$35` (+0) and its guard `init$36` (+4) before `run_task`'s handler-table guard `init$59` (+5), although `run_task` (`0x802F28E0`) comes before the ctor `TObjBoss2Tunnel__sub_802F2A2C` in `.text`. Target asm: `lbz r0,init$59` at `0x802F2900` and `stb r0,init$59` at `0x802F295C`; `lbz r0,init$36` at `0x802F2BA0`, then `li r0,1; stw r0,constructed$35; stb r0,init$36` at `0x802F2BAC`-`0x802F2BB4`. MWCC creates function-local statics in parse order and, with `deferred`, emits code in reverse definition order ([compiler-emission-evidence.md](evidence/compiler-emission-evidence.md)); only that combination gives both orders. Without the switch the guard was emulated with two hand-written globals set in the ctor. With it the ctor has a real `static s32 constructed = 1;`, `.sbss` goes from 66.67% to 100%, `.data` gets real symbol sizes (`@56`-`@58`, `handlers$55`, `boss2_tunnel_effect_tail`), and `.text`, `.rodata` and `.sdata2` stay identical (27/27 functions 100%). check_pr: 0 regressions. The sibling `TObjBoss2Tunnel.cpp` and `TBoss6PlotFalz_802B0228.cpp` (upstream #183) use the same switch, as do `TObjEneRe2Flower_800C3E14.cpp` and `TObjEneEpsilonGuard_8035F5C8.cpp`. Precedent: per-object `-inline` settings in [dtk-template `configure.py`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) and [brawl](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264). | Drop the switch; definition order does not matter to a port. |
+| `pso/boss/TObjBoss2Tunnel.cpp` | the unit (all functions; upstream [#185](https://github.com/zeroz41/pso-decomp/pull/185)'s `configure.py` entry) | unit switches `-inline off,deferred -pool off -sdata 4` | Copied from upstream zeroz41 [#185](https://github.com/zeroz41/pso-decomp/pull/185) with the code. Upstream's fourth switch, `-opt nopropagation`, is replaced by the approved per-function `opt_propagation off` on `TObjBoss2Tunnel__sub_8007D1D0` (section 4). Measured by dropping one switch at a time: without `-pool off`, `run_confirm_message_loop` is 90.25%; without `-sdata 4`, `draw_snapshot_capture_overlay` 78.35%, `TObjBoss2Tunnel__sub_8007DB80` 85.33%, `reset_state` 93.33%, `show_message_and_wait` 96.50%, `run_confirm_message_loop` 97.15%, `TObjBoss2Tunnel__sub_8007D1D0` 99.61%; without `deferred`, the function order flips and most functions drop to 99.2-99.9%. With all three and the pragma, every section of the unit is 100%. `-pool off` and `-sdata 4` are already used by `TOKurage.cpp`, the `TOKey*`/`TOSensor*` units and `TObjEnemyCustom.cpp`. | Drop the switches. |
+
+Linking `TObjBoss2Tunnel_802F2070.cpp` also needs `cw_align` (`.sbss=4 .sdata2=4` in `configure.py`, applied by `tools/cw_comment_align.py`). mwld places small data using the alignment stored in the CodeWarrior `.comment` record. GC/2.6 writes 8 there, and `-sdata 4` does not change it, so `.sbss` (original start `0x805D696C`) and `.sdata2` (original start `0x805DECCC`) were each inserted 4 bytes late. That one pad shifted the rest of `.sdata2` and every `sda21` offset that follows. The script rewrites the comment record and `sh_addralign` after compile; the section bytes are unchanged. Objdiff stays at 100% either way, because it matches relocations symbolically.
+
+### `-opt nolifetimes,nocse,noprop,noloop`: `TMovie_80143988.cpp` ([#167](https://github.com/matthewlewisnewton/pso-decomp/pull/167))
+
+| Unit | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `pso/misc/TMovie_80143988.cpp` | `pack_movie_frame` (`0x80143988`, 564 bytes; the only function in the unit) | unit switch `-opt nolifetimes,nocse,noprop,noloop` | The original keeps each named local in one register for the whole function: the packed word is built in place in `r25`, and `mr r24, r25` copies it for the second scanline before every luma insert (`0x80143A4C`, `0x80143A70`, ... eight times). The cache-touch offset is the single `li r0, 0x20` hoisted to the entry (`0x8014398C`) and reused by both `dcbt r31, r0` / `dcbt r9, r0` (`0x80143A30`, `0x80143ADC`). The pad scales are recomputed late in the entry (`slwi r5, r25, 2` ... `slwi r3, r24, 2`, `0x80143A18`–`0x80143A20`). Without `nolifetimes` the unit is 53.40% (568 bytes, `stmw r21`). Without `noprop`, `touch` is propagated as a constant: 70.50%, 596 bytes. Without `nocse` or `noloop` the shared stride and pad shifts become frontend temps coloured in the wrong order: 93.06%, 564 bytes. With the switch, `.text` (564 bytes), relocations and symbols match the target object. The source is plain C++ (no `__rlwinm`/`__rlwimi`); only `__dcbt` (section 2) remains. Precedent: Petari uses these keywords per object: [`-opt nolifetimes,nocse,noprop`](https://github.com/SMGCommunity/Petari/blob/50c1eae28478c8b1b1c8708ab8ce9a3b845ee6c6/configure.py#L3735), [`-opt nolifetimes,noloop`](https://github.com/SMGCommunity/Petari/blob/50c1eae28478c8b1b1c8708ab8ce9a3b845ee6c6/configure.py#L2974), [`-opt noloop`](https://github.com/SMGCommunity/Petari/blob/50c1eae28478c8b1b1c8708ab8ce9a3b845ee6c6/configure.py#L1532). SFA uses [`-opt nolifetimes`](https://github.com/zcanann/SFA-Decomp/blob/f561e933ecc7356259bccdd6a7ce9a4462a950a0/configure.py#L1586). This repo already has `-opt noprop` and `-opt nocse` units. Evidence: [pack-movie-frame-unit-flags.md](evidence/pack-movie-frame-unit-flags.md). | Drop the switch. The source is plain C++; drop the cache touch too. |
+
+### Moja resource and vtable emission
+
+The loader at `0x800AF56C` uses a shared `.data` base for the two BML descriptors, action table and collision body. With a single external struct view, CodeWarrior folds two subobject offsets into their loads and emits a 680-byte function. Defining the individual tables in the same translation unit restores the two address instructions and the original 688 bytes.
+
+The Moja vtable at `0x804919BC` lies between those tables and the `run_task` switch table at `0x80491B08`. Moving only the resource tables into the loader creates a cycle because the code for `run_task` precedes the loader while its switch table follows the resource tables. The consolidated unit owns both tables and generates the vtable from the real destructor. Immediate compilation puts the switch table before the vtable. Reverse definitions under `defer_codegen on` in the final six-function group preserve both the function order and the original data order. The adjacent constructor uses the same `.data` base at `0x80491828` for the vtable, action table, collision body and movement table, so it joins this unit.
+
+The earlier behavior functions use immediate emission. The collision flag word
+`0x8001` sits between two groups of compiler-generated float constants at
+`0x805D9BFC` and uses the native small read-only section. Ports can use the
+ordinary integer definition and omit the deferred-emission setting.
+
+### `TBoss8Dragon.cpp`: `-inline off,deferred` ([#302](https://github.com/matthewlewisnewton/pso-decomp/pull/302))
+
+| Unit | Functions | What | Why | Port should |
+|---|---|---|---|---|
+| `pso/boss/TBoss8Dragon.cpp` | `TBoss8Dragon::TBoss8Dragon` (`__ct__12TBoss8DragonFP7TObjectPv`, `0x802FD47C`, 0x554) and the compiler vtable `__vt__12TBoss8Dragon` (`0x804E5534`) | unit switch `-inline off,deferred` | The constructor stores the vptr with `addi r0, r31, 2348` off the `.data` anchor (`TBoss8Dragon__camera_offset_index_table` at `0x804E4C08`). Under plain `-inline off` that store is `lis`/`addi` of `__vt__12TBoss8Dragon` and the function is 0x558. Deferred code generation restores the anchor form and places the 107-slot compiler vtable at `.data+0x92C`. The destructor, `create`, and the other functions keep the same instructions; only their order in the object follows deferred emission. Precedent: [dtk-template `-inline auto`](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) was not needed; this is the `-inline off,deferred` form already used for `TObjEneGyaranzo.cpp` and [the per-group inline settings in brawl](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264). `-inline auto,deferred` was tried in an earlier pass and rewrote 56 functions. | Drop the switch. Emission order has no semantic effect. |
+
+### `TeneFakeTecThunderEff.cpp` deferred emission
+
+`-inline off,deferred` lets CodeWarrior place the seven late-defined beam
+constants in `.sdata2` while keeping the original loads. With immediate
+generation, those definitions land in `.sdata`. Using literals instead
+reorders the increments in the beam builder loop and folds away the final
+vertex calculations' multiplies by one. Reverse definition order preserves
+the five original function offsets under deferred generation. The bridge and item-light
+recovery uses the same late-definition arrangement.
+[Bridge constant ownership](evidence/bridge-item-light-constant-pool.md)
+
+A port can drop the switch and order the definitions for readability. Keep the
+C++ expressions and constants.
+
+### `TAdChrSelPlyPlateGC.cpp`: `-fp_contract on` ([#214](https://github.com/matthewlewisnewton/pso-decomp/pull/214), folded by [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250))
+
+| File | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `src/pso/ui/TAdChrSelPlyPlateGC.cpp` | `sub_802C50EC` (`fmadds` at `0x802C5148`), `sub_802C522C` (`0x802C5274`), `sub_802C5688` (`0x802C58AC`), `sub_802C6660` (`0x802C676C`) | unit `-fp_contract on`, together with the `-inline on,deferred` rows above | The original unit has one `fmadds` in each of those four functions, so the whole unit was built with contraction on. Main had `#pragma fp_contract on` around the first two only; the unit flag replaces that pragma. Without contraction, `sub_802C50EC` drops to 97.81%, `sub_802C522C` to 96.98%, `sub_802C5688` to 98.03%, and `sub_802C6660` to 93.89%. With both unit flags, every function and section matches. Precedent: [#219](https://github.com/matthewlewisnewton/pso-decomp/pull/219) (`TWindowKeyBoardSoft_8024E68C.cpp`, above) and `TObjTombstone.cpp`, both unit `-fp_contract on`. | Keep fused multiply-add, or accept small float differences. |
+
+### `TBoss6Type1.cpp` ([#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289))
+
+| Flag | Why | Evidence |
+|---|---|---|
+| `-inline deferred` | Least inline mode that keeps this unit's object identical. | Against `-inline noauto,deferred,level=1` (the previous profile): every section and relocation is byte-identical, so `noauto` and `level=1` do nothing here. `-inline off,deferred` changes 3 functions (`Boss6Anim::copy_transform`, `copy_block` and `TBoss6Type1__sub_802B96C0`). `-inline noauto` changes 2 (`load_params_from_table` and `TBoss6Type1__sub_802B6C30`). `-inline auto` changes 20, including `draw_model`, `run_task` and the constructor. Measured on the source with every function exact. |
+| `-fp_contract on` | The unit's multiply-adds are `fmadds`. | `-fp_contract off` changes 16 functions, including `fire_at_all_players`, `spawn_grav_ball`, `update_sway` and `TBoss6Type1__sub_802B626C`. |
+
+Precedent: [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) (`-inline auto`) and [#L209](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L209) (`-fp_contract on`); Melee, TP, TWW and Pikmin 2 contract globally; [Brawl](https://github.com/doldecomp/brawl/blob/5efd9ce/configure.py#L264) uses `-inline on`.
+
+The unit has no per-function pragmas.
+
+Source construct MWCC accepts and standard C++ does not:
+
+| File | What | Why | Port should |
+|---|---|---|---|
+| `src/pso/boss/TBoss6Type1.cpp` | Seven `s32` constants (`boss6_type1_particle_slot_count`, `boss6_type1_sway_speed_min`/`_range`, `boss6_type1_sway_hold_min`/`_range`, `boss6_type1_anim_count`, `boss6_type1_main_anim`) are declared `extern const` near the top and defined `static const` at the end of the file. | The original reads them with `lwz` from `.sdata2` (`0x805DE2D4`, `0x805DE3A8`..`0x805DE3B4`, `0x805DE3C4`/`0x805DE3C8`), each placed at its first reader in deferred generation order. MWCC folds a `const` scalar read after its definition, and writes an external-linkage one at parse time (offset 0, ahead of every literal). Only an internal-linkage definition after its readers gives both the loads and the positions. Before, the values were externs, `.sdata2` was 95.73% and `0x805DE2C8`..`0x805DE2D0` / `0x805DE3C4`..`0x805DE3F0` were unowned; now the split owns `0x805DE2C8`..`0x805DE3F0`, the section is 296/296 bytes and the unit links. Evidence: [tboss6type1-sdata2-constants.md](evidence/tboss6type1-sdata2-constants.md). | Drop the `extern` declarations and define the constants (`static const` or `constexpr`) above their first use. |
+
+### `-inline noauto`: inventory child links ([#304](https://github.com/matthewlewisnewton/pso-decomp/pull/304))
+
+| Unit | Function | What | Why | Port should |
+|---|---|---|---|---|
+| `pso/unk/text_801D40D4.cpp`, `pso/player/TObjPlayer_801D5220.cpp`, `pso/player/TPlyItem.cpp`, `pso/player/TObjPlayer_801D4CB8.cpp` | inventory walks (`TObjPlayer__sub_801D4368`, the `TItemList` walks, `destroy_subobjects_recursive`) | unit switch `-inline noauto` | `m_down` / `m_next` are `TObject *`. The slots are `TItemList`. `TItemList::link_down` / `link_next` are class-body inline and hold the one downcast. `-inline noauto` folds each call to `lwz` of `+0x14` / `+0xC`, the same bytes as the old cast. `-inline off` leaves a `bl` and grows the walks (`TObjPlayer__sub_801D4368` `0x248` → `0x278`). `-inline auto` also inlines unmarked `TObjPlayer__sub_801D4730` into `sort_by_key`, so it is not used. Every other function in these objects is unchanged versus `-inline off`. Precedent: [dtk-template](https://github.com/encounter/dtk-template/blob/d366876/configure.py#L203) (`-inline auto`); this repo's `TWindowMainMenu_802AD538.cpp` (`-inline noauto,level=1`). | Drop the switch and the accessors; a downcast at the walk is the portable spelling. |
+
+### Technique controller recovered from upstream #208
+
+| Unit / scope | What | Why | Port should |
+|---|---|---|---|
+| `pso/misc/TTecCtrl.cpp` | `-fp_contract on`, `-inline on,deferred` | Fused parameter scaling, inline global-load order and vtable/switch-table emission order reproduce the native object. [Evidence](evidence/upstream-technique-control.md). | Drop optimizer steering; retain fused arithmetic if identical floating-point results are needed. |
+| Parameter calculator and folded native interfaces | Provisional `pad_*` parameter fields, TTecAnti receiver cast over parameter storage, explicit mangled names, legacy actor/light function-pointer casts and raw offset views | Existing interface/layout assumptions from upstream and the fork remain bounded native recovery debt. | Use typed parameter copy/free functions, consolidate actor/light signatures and recover field meanings. |
+
+The former `TTecCtrl_8022C444.cpp` conversion-pool post-process is retired.
+Folding its readers into one object allows the compiler to emit local biases
+without symbol rewriting. The old hand-written TTecCtrl vtable is also removed;
+the class destructor emits it. [Historical evidence](evidence/conversion-pool-constants.md).
+
+### Fish behavior recovered from upstream #240
+
+| Unit / scope | What | Why | Port should |
+|---|---|---|---|
+| `pso/object/TObjFish.cpp` | Upstream `-pool off`; existing FMA and inline pragmas | The update loads each table/conversion constant separately; pooling uses another saved register and changes the frame. [Evidence](evidence/upstream-fish-behavior.md). | Drop pool/inline steering; preserve required floating-point behavior. |
+| `src/pso/object/TObjFish.cpp`, final `load_area_resource` definition | Scoped `defer_codegen on`, restored at EOF after the linkage block | Native class lifetime emits the vtable at `.data+0xF0`; deferring the loader places its switch table at `+0x124`. Immediate emission reverses them. The final `pop` must follow the linkage block with no subsequent declarations. This replaces the hand-written vtable and manual lifetime/vptr writes. Approved by Matt on 2026-11-10. | Remove the emission pragmas and retain ordinary C++ constructors, destructor and compiler-generated virtual dispatch. |
+| Other consumers of the shared BML and heap interfaces | Inherited integer-held addresses at bounded legacy callers and loading callbacks | Fish uses pointer-typed model/texture storage, accessors, allocation and release. Other recovered actors retain explicit conversions at their existing target-sized fields and provisional loading interfaces. | Recover those actors and loading contracts separately; preserve the shared pointer APIs. |
+
+### Footprint unit recovered from upstream #208
+
+| Unit | Compiler settings | Reason and port action |
+|---|---|---|
+| `pso/misc/TPlayerFootStamp.cpp` | `-fp_contract on`, `-inline off,deferred`, `-str reuse,readonly` | Adapted from upstream [#208](https://github.com/zeroz41/pso-decomp/pull/208), `ae797d392`. Removing fusion drops the constructor to 90.710144%; removing deferred emission changes function/vtable/switch/constant order (`.data` 33.333332%, `.sdata2` 14.285715%); writable strings move the class name (`.rodata` 95.38461%, `.sdata` 50%). All settings together give an exact, linked unit. A port can drop the flags, retaining explicit fused arithmetic if its results are required. [Evidence and remaining API boundaries](evidence/upstream-footstamp.md). |
+
+### Sprite frame draw recovered from upstream #208
+
+| Unit | Compiler settings | Reason and port action |
+|---|---|---|
+| `pso/misc/TLobby_80228154.cpp` | `mw_version` GC/1.3.2 | Adapted from upstream [#208](https://github.com/zeroz41/pso-decomp/pull/208), `ae797d392`, which links the unit exact under GC/1.3.2. `TLobby__sub_80228154` (`0x80228154`, sprite frame draw) is plain C++: no asm, casts or pragmas. Under GC/2.6 the unit's `.text` is 1720 bytes instead of 1732 (the sprite draw's frame and flag tests come out shorter); under GC/1.3.2 every section and relocation is identical to upstream's linked object. The unit's other functions are unchanged fork code. Build with the port compiler. |
+
+
+The recovered sprite draw retains three bounded native interfaces. `SpriteColor_80228154`
+uses the GameCube's big-endian byte order and the native compiler's union representation
+when reading its packed color; a port must form the ARGB integer explicitly rather than
+reuse that byte overlay on a little-endian host. The existing caller in
+`TLobby_801E2F94.cpp` still declares its first argument and unused result as `s32`,
+where this definition takes a sprite pointer and returns `void`; those declarations
+need a shared typed boundary before a 64-bit port. The existing
+`draw_textured_quad_at_depth` renderer indexes eight floats through a `void *`,
+while this caller supplies the first member of a contiguous eight-float quad struct.
+That native layout matches, but a port should give both sides one shared representation
+instead of relying on indexing across struct members. These source-interface limitations
+are not cleared by the exact native object or DOL checks.
+
+### CVFS path/device helper inlining
+
+`pso/unk/text_803CE568.cpp` retains its existing file-level `dont_inline off`
+and `inline_depth(4)` controls. The recovered path splitter, default-device
+lookup, prefix handling and handle allocation now share that established scope.
+No unit flags, scheduling controls or intrinsics are added. Ordinary C++ inline
+helpers are sufficient for a port; their grouping reproduces the original CRI
+inlining and native pool-register lifetimes for the matching build.
+
+## 6. Approved regressions
+
+None on main.
+
+## 7. Upstream catch-up (rewrite later)
+
+Matt, 2026-11-04 6:55 PM PT: "Yes, allow the one-time upstream asm exception with
+those guardrails." Code taken unchanged from upstream zeroz41/pso-decomp #167-#191
+may keep upstream's asm and other patterns the fork otherwise bans, so the fork can
+catch up quickly. Each instance gets one row here; the C++ rewrite comes later.
+Guardrails: the code is upstream's own (cite the upstream PR), check_pr passes with
+0 matched/linked regressions, and new fork code still follows the full rules.
+
+Matt, 2026-11-04 ~8:17 PM PT, on [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298): "Allow #298's as upstream catch-up with
+register rows." The rows below are the instances kept under that decision.
+
+Matt, 2026-11-05 10:17 AM PT, on [#302](https://github.com/matthewlewisnewton/pso-decomp/pull/302): register the named
+`__ct__17AccelerationCurveFv` calls and the hand table `lbl_80481280` on `TBoss1Dragon__ct`, and stop trying to
+replace those sites with a real constructor. A real `TBoss1Dragon` constructor matches the `addi`/`bl` only with
+`-inline off,deferred`, which reverses emission order in that linked unit. The named calls are this PR's rename of
+`reset_coords_pass`, not unchanged upstream text. The compiler-vtable / real-destructor alternative does not match
+the DOL homes (`mr. r31, r3` / `mr r30, r4`; a real `~T()` is `mr. r30, r3` / `mr r31, r4`). This approval is only
+those sites. It does not cover any other function, cast, or hand table. The two rows below record that decision in
+this table; their upstream column is [#191](https://github.com/zeroz41/pso-decomp/pull/191) because that is the
+catch-up this branch integrates, not because those lines appear unchanged in #191.
+
+
+Matt, 2026-11-09, authorized this carrier after the #207 exception-scope limitation
+was identified: "Skip the license change (or don’t, the two are equivalent) and merge
+the rest." He also requested documentation of outstanding inherited cheats. This
+adds only the #207 sites below to the catch-up scope; it does not grant a blanket
+exception to #193–#228. Some listed constructs already existed in these three fork
+units before this carrier; they are included because the units now link from source.
+The #207 source uses the fork's existing include paths and symbol names. The explicit
+BmlResource constructor symbol is the fork spelling of upstream's
+`load_resource_from_descriptor`; real `StripBufferPair` construction replaces the
+old `TLobby::alloc_tables` calls. Reasons, measured alternatives, port guidance, and
+deferred upstream work are in [the carrier audit](evidence/upstream-catchup-207.md).
+
+Columns (all required; `tools/list_port_exceptions.py --check` validates them):
+function/symbol; unit; file (repo path); upstream PR (#167-#192 or the specifically authorized #207 sites); cheat type (`asm`,
+`raw offset cast`, `extern "C" mangled name`, `steering pragma`, `shadow struct`,
+or `other: <what>`); the fork PR that brought it in; and the tag
+`upstream catch-up, rewrite later`. List and count them with
+`python3 tools/list_port_exceptions.py --upstream-catchup`; check_pr prints the count.
+
+| Function/symbol | Unit | File | Upstream PR | Cheat type | Fork PR | Tag |
+|---|---|---|---|---|---|---|
+| `subtract_vector` | `pso/math/MatrixTransforms.cpp` | `src/pso/math/MatrixTransforms.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#361](https://github.com/matthewlewisnewton/pso-decomp/pull/361) | upstream catch-up, rewrite later |
+| `matrix_apply_translation` | `pso/unk/text_803D9650.cpp` | `src/pso/unk/text_803D9650.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#361](https://github.com/matthewlewisnewton/pso-decomp/pull/361) | upstream catch-up, rewrite later |
+| `transform_point_by_current_matrix` | `pso/unk/text_803D96A8.cpp` | `src/pso/unk/text_803D96A8.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#361](https://github.com/matthewlewisnewton/pso-decomp/pull/361) | upstream catch-up, rewrite later |
+| `rotate_vector_by_current_matrix` | `pso/unk/text_803D96A8.cpp` | `src/pso/unk/text_803D96A8.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#361](https://github.com/matthewlewisnewton/pso-decomp/pull/361) | upstream catch-up, rewrite later |
+| `rotate_matrix_by_node_angles` | `pso/unk/text_803D96A8.cpp` | `src/pso/unk/text_803D96A8.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#361](https://github.com/matthewlewisnewton/pso-decomp/pull/361) | upstream catch-up, rewrite later |
+| `push_matrix` | `pso/unk/text_803D96A8.cpp` | `src/pso/unk/text_803D96A8.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#361](https://github.com/matthewlewisnewton/pso-decomp/pull/361) | upstream catch-up, rewrite later |
+| `scale_current_matrix` | `pso/unk/text_803D96A8.cpp` | `src/pso/unk/text_803D96A8.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#361](https://github.com/matthewlewisnewton/pso-decomp/pull/361) | upstream catch-up, rewrite later |
+| `post_translate_matrix` | `pso/unk/text_803D96A8.cpp` | `src/pso/unk/text_803D96A8.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#361](https://github.com/matthewlewisnewton/pso-decomp/pull/361) | upstream catch-up, rewrite later |
+| `sin_table_lookup` | `pso/unk/text_803D647C.cpp` | `src/pso/unk/text_803D647C.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#361](https://github.com/matthewlewisnewton/pso-decomp/pull/361) | upstream catch-up, rewrite later |
+| `cos_table_lookup` | `pso/unk/text_803D647C.cpp` | `src/pso/unk/text_803D647C.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#361](https://github.com/matthewlewisnewton/pso-decomp/pull/361) | upstream catch-up, rewrite later |
+| `convert_color_f32_to_u8` | `pso/misc/TCameraCtrl_803D749C.cpp` | `src/pso/misc/TCameraCtrl_803D749C.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#361](https://github.com/matthewlewisnewton/pso-decomp/pull/361) | upstream catch-up, rewrite later |
+| `convert_color_u8_to_f32` | `pso/misc/TCameraCtrl_803D749C.cpp` | `src/pso/misc/TCameraCtrl_803D749C.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | asm | [#361](https://github.com/matthewlewisnewton/pso-decomp/pull/361) | upstream catch-up, rewrite later |
+| `TCameraCtrl::update_projection_params` `#pragma opt_common_subs off` | `pso/misc/TCameraCtrl_803D66DC.cpp` | `src/pso/misc/TCameraCtrl_803D66DC.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | steering pragma | [#361](https://github.com/matthewlewisnewton/pso-decomp/pull/361) | upstream catch-up, rewrite later |
+| `sample_camera_motion` `#pragma use_lmw_stmw off` | `pso/misc/TCameraCtrl_803D6960.cpp` | `src/pso/misc/TCameraCtrl_803D6960.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | steering pragma | [#361](https://github.com/matthewlewisnewton/pso-decomp/pull/361) | upstream catch-up, rewrite later |
+| `multi_chg_game_mode_window_extent` | `pso/ui/TAdMultiChgGameModeGC_8036DE10.cpp` | `src/pso/ui/TAdMultiChgGameModeGC_8036DE10.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | other: __declspec(section ".data") | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `lbl_804F3A18` | `pso/ui/TAdMultiChgGameModeGC_8036DE10.cpp` | `src/pso/ui/TAdMultiChgGameModeGC_8036DE10.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | other: __declspec(section ".data") | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `TObjDFDemo1.cpp:149` `#pragma defer_codegen on` | `pso/object/TObjDFDemo1.cpp` | `src/pso/object/TObjDFDemo1.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | steering pragma | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `TObjDFDemo1.cpp:204` `#pragma fp_contract on` | `pso/object/TObjDFDemo1.cpp` | `src/pso/object/TObjDFDemo1.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | steering pragma | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| `configure.py:440` `-sdata 4` | `pso/object/TObjDFDemo1.cpp` | `configure.py` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | other: per-unit cflags override | [#351](https://github.com/matthewlewisnewton/pso-decomp/pull/351) | upstream catch-up, rewrite later |
+| TObjEneDubchik.cpp | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | other: unit flags -inline off,deferred and -str reuse,readonly | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjEneDubchik.cpp:166 inline_depth | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | steering pragma | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800AA82C:547 opt_common_subs | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | steering pragma | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800AA82C:548 opt_propagation | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | steering pragma | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjEneDubchik::render:707 opt_common_subs | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | steering pragma | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| Vec_800A9C38 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| VBase_800AA704 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| VObj_800AA704 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| VBase_18_fe09eb | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| VObj_18_fe09eb | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| Mdl_800AA82C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| Res_800AA82C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| Node_800AA82C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| Desc_800AA82C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| Base_Sub | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| V_Sub | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| Obj_800AA528 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| Obj_800A8A7C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| Vec_800A8C4C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| VBase_14_fddec9 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| VObj_14_fddec9 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| VBase_18_ca64a0 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| VObj_18_ca64a0 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| Self_800AA334 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| Ids_800AA82C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| Vec_800A93E4 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| Pair_800A93E4 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| VB_800A93E4 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| VO_800A93E4 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| Params_800A93E4 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| Ene_800A93E4 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| T_800AAF98 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| O_800AAF98 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| PADV/PADV4 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | other: hand-padded virtual stubs | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800AAF98 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| queue_destruction__7TObjectFv | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| __ct__13TUnk_80491460FPvlll | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| render_anim_model_at_pos__15TObjEnemyCustomFv | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| __nw__7TObjectFUl | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| __dt__11BmlResourceFv | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| __ct__11BmlResourceFlP21BmlResourceDescriptorllPv | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A4294 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800AA82C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8E04 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800AB7A0 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800AA330 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| obj_testFlags30__14TObjCollidableFUl | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800AAFF0 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A93E4 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9C38 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8C4C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| defer_render__7TObjectFv | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| random_ratio__9TObjCharaFv | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| find_target_in_range__15TObjEnemyCustomFf | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| sub_8004292C__15TObjEnemyCustomFv | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9E9C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| update_shock_clock__9TObjCharaFv | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| update_movement_status__9TObjCharaFv | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjEneDubchik::sub_800AB068:437 0x38 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjEneDubchik::sub_800AB068:437 0x44 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjEneDubchik::sub_800AB068:437 0x40 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjEneDubchik::sub_800AB068:437 0x4C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjEneDubchik::sub_800AB068:439 0x38 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer::set_invuln_flags:449 0x18 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer::clear_flag_04000000:457 0x18 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer::clear_flag_04000000:461 0x8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjEneDubchik::sub_800AAF78:493 0x3C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjEneDubchik::sub_800AAF78:494 0x3E | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjEneDubchik::sub_800AAF78:523 0xA | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800AA82C:566 0x1C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800AA82C:572 0x18 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800AA82C:577 0x18 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjEneDubchik::run_task:671 0x338 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjEneDubchik::render:727 0x38 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjEneDubchik::render:732 0x34 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjEneDubchik::sub_800AA10C:785 0x2A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjEneDubchik::sub_800AA10C:792 0x354 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjEneDubchik::sub_800AA10C:795 0x2A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjEneDubchik::sub_800AA10C:803 0x38 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjEneDubchik::sub_800AA10C:803 0x2A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9E9C:823 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9E9C:827 0x388 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9E9C:829 0x380 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9E9C:831 0x392 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9E9C:834 0x368 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9E9C:836 0xB8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9E9C:838 0xB8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9E9C:840 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9E9C:842 0x38 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9E9C:843 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9E9C:845 0x2A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9E9C:846 0x29C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9E9C:846 0x2A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9E9C:846 0x2FC | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9E9C:851 0xB8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9E9C:853 0x392 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9E9C:856 0x368 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9E9C:858 0xB8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9E9C:860 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9E9C:865 0x392 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9E9C:870 0x38 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9E9C:871 0x2A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9E9C:872 0x392 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9E9C:875 0x368 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9E9C:878 0x2A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9E9C:878 0x2FC | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9E9C:881 0x3A4 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9E9C:882 0x308 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9C38:896 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9C38:899 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9C38:901 0xB8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9C38:902 0x60 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9C38:903 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9C38:904 0x38 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9C38:905 0x3CC | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9C38:907 0x30 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9C38:911 0x3CC | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9C38:915 0x2FC | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9C38:916 0x308 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9C38:917 0x310 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9C38:921 0x308 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9C38:921 0x310 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9C38:924 0x308 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9C38:925 0x310 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9C38:926 0xB8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9C38:927 0x308 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9C38:927 0x310 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9C38:928 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9C38:936 0xC0 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9C38:939 0xB4 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9C38:940 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9C38:944 0x384 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9C38:945 0x384 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9C38:946 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9C38:952 0x388 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9C38:953 0x33E | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A9C38:953 0x32C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A93E4:1116 0x2FC | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1171 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1173 0x39C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1175 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1178 0x38E | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1178 0x354 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1179 0x38E | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1180 0x38E | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1184 0x392 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1187 0xB8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1190 0x38E | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1192 0x392 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1195 0xB8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1197 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1199 0x2A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1200 0x29C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1200 0x2A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1200 0x2FC | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1201 0x350 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1208 0x392 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1209 0xB8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1212 0xB8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1217 0x410 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1218 0x3A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1218 0x410 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1219 0x33C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1220 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1224 0x2A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1225 0x29C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1225 0x2A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1225 0x2FC | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1226 0x350 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1232 0x410 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1233 0x3A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1234 0x3A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1234 0x410 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1236 0x33C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1238 0x38E | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1241 0x410 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1241 0x60 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1243 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1244 0x3A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1245 0x3A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1246 0x3A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1248 0x38 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1256 0x38E | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1257 0x392 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1263 0x33C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1264 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1266 0xB4 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1267 0x33C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1268 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1275 0x33C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1276 0x33C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1277 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1284 0x33C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1285 0x33C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1286 0x38E | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1287 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1290 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1295 0x3A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1296 0x3A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8FB4:1297 0x3A8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer::update_timed_state:1324 0x33A | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8E04:1336 0x2FC | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8E04:1337 0x3B0 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8E04:1340 0x3B0 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8C4C:1355 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8C4C:1360 0x392 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8C4C:1363 0x368 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8C4C:1365 0xB8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8C4C:1367 0xB8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8C4C:1369 0x29C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8C4C:1369 0x50 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8C4C:1370 0x37C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8C4C:1377 0x392 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8C4C:1380 0x368 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8C4C:1382 0x290 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8C4C:1382 0x2FC | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8C4C:1383 0x290 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8C4C:1383 0x29C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8C4C:1384 0x308 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8C4C:1386 0x38 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8C4C:1386 0x50 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8C4C:1387 0xB8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer__sub_800A8C4C:1389 0x388 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| dubchik_start_dying:1397 0x388 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjEneDubchik::sub_800A8B8C:1405 0x318 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjEneDubchik::sub_800A8B8C:1405 0x392 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjEneDubchik::sub_800A8A7C:1418 0x68 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjEneDubchik::sub_800A8A7C:1420 0x68 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjEneDubchik::sub_800A8A7C:1423 0x78 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjEneDubchik::sub_800A8A7C:1425 0x78 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjEneDubchik::sub_800A8A7C:1428 0xA8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjEneDubchik::sub_800A8A7C:1430 0xA8 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TObjPlayer::set_flag_start_effect:1469 0x2FC | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| dubchik_update_dying:1476 0x33C | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| dubchik_update_dying:1481 0x38 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| dubchik_update_dying:1485 0x38 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| dubchik_update_dying:1487 0x24 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| dubchik_update_dying:1487 0x2FC | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| dubchik_update_dying:1487 0x60 | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| dubchik_update_dying:1490 0x2FC | pso/enemy/TObjEneDubchik.cpp | src/pso/enemy/TObjEneDubchik.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TLobby__sub_80146314 `(char *)&lbl_8050CCE8 + 0x7C` | pso/misc/TLobby_801461EC.cpp | src/pso/misc/TLobby_801461EC.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TLobby__sub_80146314 `(char *)&lbl_8050CCE8 + 0xFC` | pso/misc/TLobby_801461EC.cpp | src/pso/misc/TLobby_801461EC.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | raw offset cast | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TLobby__sub_80146314 `send_and_handle__6TLobbyFv` | pso/misc/TLobby_801461EC.cpp | src/pso/misc/TLobby_801461EC.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TLobby__sub_8014734C `send_and_handle__6TLobbyFv` | pso/misc/TLobby_801461EC.cpp | src/pso/misc/TLobby_801461EC.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TLobby__sub_80146314 `func_801A5E54__Fv` | pso/misc/TLobby_801461EC.cpp | src/pso/misc/TLobby_801461EC.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TLobby__sub_8014734C `func_801A5E54__Fv` | pso/misc/TLobby_801461EC.cpp | src/pso/misc/TLobby_801461EC.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | extern "C" mangled name | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| AccountEntry, NetConnectCfg, NetLinkStatus, ModemDialConfig | pso/misc/TLobby_801461EC.cpp | src/pso/misc/TLobby_801461EC.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | shadow struct | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| `TNpcPlayer.cpp` | `pso/misc/TNpcPlayer.cpp` | `configure.py` | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | `other: per-unit cflags override` | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| `is_small_obstacle` | `pso/misc/TNpcPlayer.cpp` | `src/pso/misc/TNpcPlayer.cpp` | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | `other: dead function for sdata2 pool order` | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| `is_hp_low` | `pso/misc/TNpcPlayer.cpp` | `src/pso/misc/TNpcPlayer.cpp` | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | `other: dead function for sdata2 pool order` | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TNpcPlayer.cpp:2410 fp_contract (calc_follow_goal) | pso/misc/TNpcPlayer.cpp | src/pso/misc/TNpcPlayer.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | steering pragma | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TNpcPlayer.cpp:2582 opt_common_subs (deliver_partner_action) | pso/misc/TNpcPlayer.cpp | src/pso/misc/TNpcPlayer.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | steering pragma | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TNpcPlayer.cpp:2865 fp_contract (select_path_waypoint__10TNpcPlayerFv) | pso/misc/TNpcPlayer.cpp | src/pso/misc/TNpcPlayer.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | steering pragma | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TNpcPlayer.cpp:3001 opt_common_subs (needs_movement__10TNpcPlayerFPvPvi) | pso/misc/TNpcPlayer.cpp | src/pso/misc/TNpcPlayer.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | steering pragma | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TNpcPlayer.cpp:3463 fp_contract (partner_route_around_wall) | pso/misc/TNpcPlayer.cpp | src/pso/misc/TNpcPlayer.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | steering pragma | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TNpcPlayer.cpp:3464 opt_common_subs (partner_route_around_wall) | pso/misc/TNpcPlayer.cpp | src/pso/misc/TNpcPlayer.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | steering pragma | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TNpcPlayer.cpp:3522 fp_contract (partner_compute_stalled_detour) | pso/misc/TNpcPlayer.cpp | src/pso/misc/TNpcPlayer.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | steering pragma | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TNpcPlayer.cpp:3568 fp_contract (route_around_object__10TNpcPlayerFv) | pso/misc/TNpcPlayer.cpp | src/pso/misc/TNpcPlayer.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | steering pragma | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| TNpcPlayer.cpp:3769 fp_contract (partner_clip_path_point) | pso/misc/TNpcPlayer.cpp | src/pso/misc/TNpcPlayer.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | steering pragma | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| `refresh_npc_view_actor_lost` (TNpcPlayer.cpp:3268 `__cntlzw`) | pso/misc/TNpcPlayer.cpp | src/pso/misc/TNpcPlayer.cpp | [#190](https://github.com/zeroz41/pso-decomp/pull/190) | other: compiler intrinsic | [#354](https://github.com/matthewlewisnewton/pso-decomp/pull/354) | upstream catch-up, rewrite later |
+| `advance_rng__6TLobbyFPv` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | raw offset cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `advance_rng__6TLobbyFPv` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `TLobby__sub_8023F754` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | raw offset cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `get_field_2a4__6TLobbyFPv` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | raw offset cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `get_field_2a4__6TLobbyFPv` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `get_field_0x280__6TLobbyFPv` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | raw offset cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `get_field_0x280__6TLobbyFPv` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `set_menu_index__6TLobbyFPvi` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | raw offset cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `set_menu_index__6TLobbyFPvi` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `set_mode__6TLobbyFPvi` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | raw offset cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `set_mode__6TLobbyFPvi` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `set_clamped_field27c__6TLobbyFPvf` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | raw offset cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `set_clamped_field27c__6TLobbyFPvf` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `TLobby__sub_8023F880` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | steering pragma | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `TLobby__sub_8023F880` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | other: reused local | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `fade_out_sound_slot` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | steering pragma | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `fade_out_sound_slot` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | other: function-pointer cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `set_sound_slot_pitch` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | steering pragma | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `alloc_looping_sound_slot` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | steering pragma | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `alloc_one_shot_sound_slot` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | steering pragma | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `resolve_sound_effect_bank` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | steering pragma | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `resolve_sound_effect_bank` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | raw offset cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `is_ready__6TLobbyFPv` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | raw offset cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `is_ready__6TLobbyFPv` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `TLobby__sub_8023FCC0` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | other: receiver cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `reset_sound_group_fade__6TLobbyFv` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `fade_voice_channels__6TLobbyFi` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `fade_voice_channels__6TLobbyFi` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | other: function-pointer cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `TLobby__sub_8023FFB8` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | raw offset cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `TLobby__sub_8023FFB8` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | other: receiver cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `update_sound_frame` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | other: absolute address | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `reset_sound_state__6TLobbyFPv` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | raw offset cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `reset_sound_state__6TLobbyFPv` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `init_sound_aux_effects` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | steering pragma | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `init_sound_aux_effects` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | other: receiver cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `init_sound_aux_effects` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | other: pointer-to-int cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `pop_sound_groups__6TLobbyFPvi` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `pop_sound_groups__6TLobbyFPvi` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | other: function-pointer cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `pop_sound_groups__6TLobbyFPvi` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | other: receiver cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `validate_and_set_selection__6TLobbyFPvi` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | raw offset cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `validate_and_set_selection__6TLobbyFPvi` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `TLobby__sub_80240808` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | raw offset cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `reset_sound_owner_state` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | raw offset cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `update_crc16_ccitt__6TLobbyFUsUc` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `Range_8023FBBC` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | shadow struct | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `Owner_8023FBBC` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | shadow struct | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `Ent_8023FCC0` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | shadow struct | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `Obj_8023FCC0` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | shadow struct | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `Slot_802405B0` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | shadow struct | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `Mgr_802405B0` | `pso/misc/TLobby_8023F734.cpp` | `src/pso/misc/TLobby_8023F734.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | shadow struct | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `set_field0__6TLobbyFPvi` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `set_field0__6TLobbyFPvi` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | other: receiver cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `clamp_field9c__6TLobbyFPvf` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | raw offset cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `clamp_field9c__6TLobbyFPvf` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `TLobby__sub_802409E4` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | raw offset cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `update__6TLobbyFPv` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | raw offset cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `update__6TLobbyFPv` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `update__6TLobbyFPv` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | other: function-pointer cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `set_voice_pitch_slide` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | raw offset cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `tick_sound_voice` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | other: function-pointer cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `update_random_flip_flag__6TLobbyFPv` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | raw offset cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `update_random_flip_flag__6TLobbyFPv` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `update_random_flip_flag__6TLobbyFPv` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | other: function-pointer cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `TLobby__sub_80241798` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | other: function-pointer cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `send_voice_controller_updates` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | raw offset cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `clamp_params__6TLobbyFPv` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | raw offset cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `clamp_params__6TLobbyFPv` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `init_sound_voice__6TLobbyFPviiii` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | raw offset cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `init_sound_voice__6TLobbyFPviiii` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `__dt__17SoundRequestVoiceFv` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | steering pragma | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `__ct__17SoundRequestVoiceFv` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | steering pragma | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `get_field_308__6TLobbyFPv` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | steering pragma | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `get_field_308__6TLobbyFPv` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | raw offset cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `get_field_308__6TLobbyFPv` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `forward_8024273C__6TLobbyFPv` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | steering pragma | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `forward_8024273C__6TLobbyFPv` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `send_find_user_self_tag__6TLobbyFi` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | steering pragma | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `send_find_user_self_tag__6TLobbyFi` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | raw offset cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `send_find_user_self_tag__6TLobbyFi` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `load_selected_guild_card_record` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | steering pragma | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `TLobby__sub_802422EC` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | steering pragma | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `find_and_load_com_card__6TLobbyFUi` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | steering pragma | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `find_and_load_com_card__6TLobbyFUi` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `find_and_load_com_card__6TLobbyFUi` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | other: function-pointer cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `copy_com_card_entry__6TLobbyFPvPv` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | steering pragma | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `copy_com_card_entry__6TLobbyFPvPv` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `get_com_card_entry__6TLobbyFi` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | steering pragma | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `get_com_card_entry__6TLobbyFi` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `parse_csv_token__6TLobbyFPvPv` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | steering pragma | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `parse_csv_token__6TLobbyFPvPv` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `skip_to_comma_field__6TLobbyFPvii` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | steering pragma | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `skip_to_comma_field__6TLobbyFPvii` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `build_text_from_comma_list__6TLobbyFPv` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | steering pragma | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `build_text_from_comma_list__6TLobbyFPv` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `TLobby__sub_8024259C` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | steering pragma | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `TLobby__sub_8024259C` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | raw offset cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `init_player_entry__6TLobbyFPvPv` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | raw offset cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `init_player_entry__6TLobbyFPvPv` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `init_player_entry__6TLobbyFPvPv` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | other: function-pointer cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `init_player_entry__6TLobbyFPvPv` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | other: receiver cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `remove_com_card_entry__6TLobbyFi` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | raw offset cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `remove_com_card_entry__6TLobbyFi` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `remove_com_card_entry__6TLobbyFi` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | other: receiver cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `TLobby__sub_8024273C` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | raw offset cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `remove_com_card_by_id__6TLobbyFUi` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `remove_com_card_by_id__6TLobbyFUi` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | other: function-pointer cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `remove_com_card_by_id__6TLobbyFUi` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | other: receiver cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `reset_state_805D63DC__6TLobbyFv` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `reset_state__6TLobbyFPv` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `construct_entry_arrays__6TLobbyFv` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `TLobby__sub_802428C4` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | raw offset cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `TLobby__sub_802428F8` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | raw offset cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `get_com_card_data__6TLobbyFv` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | extern "C" mangled name | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `Entry_8024220C` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | shadow struct | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `Src_8024220C` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | shadow struct | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `Voice_80241FD8` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | shadow struct | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `Ctl_80240B64` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | shadow struct | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `Params_80240B64` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | shadow struct | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `Owner_80241798` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | shadow struct | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `Sound_80241798` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | shadow struct | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `Tag_802421C4` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | shadow struct | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `Pair_80242380` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | shadow struct | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `Ext_80242380` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | shadow struct | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `Entry_80242380` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | shadow struct | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `RecoveredGlobal_8024259C_TLobby__data_8050AAAC` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | shadow struct | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `RecoveredGlobal_802426E8_lbl_80517F9C` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | shadow struct | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `RecoveredGlobal_8024287C_lbl_80517EE0` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | shadow struct | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `RecoveredGlobal_8024287C_lbl_80517F9C` | `pso/misc/TLobby_802409AC.cpp` | `src/pso/misc/TLobby_802409AC.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | shadow struct | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `TLobby::set_read_params` | `pso/misc/TLobby_800F8AA8.cpp` | `src/pso/misc/TLobby_800F8AA8.cpp` | [#188](https://github.com/zeroz41/pso-decomp/pull/188) | other: pointer cast | [#355](https://github.com/matthewlewisnewton/pso-decomp/pull/355) | upstream catch-up, rewrite later |
+| `clear_sound_listener_position` | `pso/misc/TLobby_802268F4.cpp` | `src/pso/misc/TLobby_802268F4.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | other: dead-stripped function | [#352](https://github.com/matthewlewisnewton/pso-decomp/pull/352) | upstream catch-up, rewrite later |
+| `__vt__25TObjCityMainWarpChallenge` | `pso/object/TObjCityMainWarpChallenge.cpp` | `src/pso/object/TObjCityMainWarpChallenge.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | other: hand-written vtable | [#352](https://github.com/matthewlewisnewton/pso-decomp/pull/352) | upstream catch-up, rewrite later |
+| `TObjCityMainWarpChallenge.cpp` | `pso/object/TObjCityMainWarpChallenge.cpp` | `configure.py` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | other: per-unit cflags override | [#352](https://github.com/matthewlewisnewton/pso-decomp/pull/352) | upstream catch-up, rewrite later |
+| TLobby_80228818.cpp:391 opt_propagation (`render__14TUnk_804CC048Fv`) | pso/misc/TLobby_80228818.cpp | src/pso/misc/TLobby_80228818.cpp | [#192](https://github.com/zeroz41/pso-decomp/pull/192) | steering pragma | [#360](https://github.com/matthewlewisnewton/pso-decomp/pull/360) | upstream catch-up, rewrite later |
+| `TObjPlayer::apply_status_effect` | `TObjPlayer_801542CC` | `src/pso/player/TObjPlayer_801542CC.cpp` | [#171](https://github.com/zeroz41/pso-decomp/pull/171) | other: s32-to-pointer cast | #305 | upstream catch-up, rewrite later |
+| `TObjBoss2Tunnel__sub_8007D1D0` (`0x8007D1D0`): snapshot cursor `flags = (u32 *)p`, `levels = (u32 *)(p + 0x30)`, `name = (char *)(p + 0x60)` | `pso/boss/TObjBoss2Tunnel.cpp` | `src/pso/boss/TObjBoss2Tunnel.cpp` | [#185](https://github.com/zeroz41/pso-decomp/pull/185) | raw offset cast | [#290](https://github.com/matthewlewisnewton/pso-decomp/pull/290) | upstream catch-up, rewrite later |
+| `TObjBoss2Tunnel__sub_8007D1D0`: `((TLobby *)p)->move_data(...)` on the snapshot buffer | `pso/boss/TObjBoss2Tunnel.cpp` | `src/pso/boss/TObjBoss2Tunnel.cpp` | [#185](https://github.com/zeroz41/pso-decomp/pull/185) | other: receiver cast | [#290](https://github.com/matthewlewisnewton/pso-decomp/pull/290) | upstream catch-up, rewrite later |
+| `is_on_current_screen__11TCameraCtrlFv` (declared `extern "C"` with a wide `(ControllerInputContext *, s32)` signature; called by `TObjBoss2Tunnel__sub_8007D1D0`) | `pso/boss/TObjBoss2Tunnel.cpp` | `src/pso/boss/TObjBoss2Tunnel.cpp` | [#185](https://github.com/zeroz41/pso-decomp/pull/185) | extern "C" mangled name | [#290](https://github.com/matthewlewisnewton/pso-decomp/pull/290) | upstream catch-up, rewrite later |
+| `TObjBoss2Tunnel::eval_piecewise_curve` (`0x8007DE80`): `f32 r = 0.0f; if (farg0 < r) { r = r; }` | `pso/boss/TObjBoss2Tunnel.cpp` | `src/pso/boss/TObjBoss2Tunnel.cpp` | [#185](https://github.com/zeroz41/pso-decomp/pull/185) | other: no-op self-assignment | [#290](https://github.com/matthewlewisnewton/pso-decomp/pull/290) | upstream catch-up, rewrite later |
+| `load_data_buffers`: `((TScene *)screen_binary_filename)->update_lobby_scene()` | `pso/boss/TObjBoss2Tunnel.cpp` | `src/pso/boss/TObjBoss2Tunnel.cpp` | [#185](https://github.com/zeroz41/pso-decomp/pull/185) | other: receiver cast | [#290](https://github.com/matthewlewisnewton/pso-decomp/pull/290) | upstream catch-up, rewrite later |
+| `TObjBoss2Tunnel__sub_8007CAE8`: `((TWindowSubSymbolChatPartsSet *)(&stack.sp10))->copy_vec2((void *)arg0)` | `pso/boss/TObjBoss2Tunnel.cpp` | `src/pso/boss/TObjBoss2Tunnel.cpp` | [#185](https://github.com/zeroz41/pso-decomp/pull/185) | other: receiver cast | [#290](https://github.com/matthewlewisnewton/pso-decomp/pull/290) | upstream catch-up, rewrite later |
+| `TObjBoss2Tunnel::transform_vec_by_camera`: `(u32)TCameraCtrl::get_view_matrix()` for the `TCameraCtrl::concat_matrix(u32, u32)` header signature (upstream called `get_view_matrix__11TCameraCtrlFv`) | `pso/boss/TObjBoss2Tunnel.cpp` | `src/pso/boss/TObjBoss2Tunnel.cpp` | [#185](https://github.com/zeroz41/pso-decomp/pull/185) | other: pointer-to-int cast | [#290](https://github.com/matthewlewisnewton/pso-decomp/pull/290) | upstream catch-up, rewrite later |
+| `TObjBoss2Tunnel__sub_8007D1D0`: `((TLobby *)lbl_8048DF34)->tmp_buf_release()`; `save_screen_snapshot`: `((TAdSinglePlyChrSelectGC *)1)->load_player_slot((int)..., (int)...)`; `show_message_and_wait` and `run_confirm_message_loop`: `((TLobby *)win)->send_and_handle(...)` / `set_field_1c(...)` (6 calls). The fork headers declare these as non-static `TLobby`/`TAdSinglePlyChrSelectGC` members, and their other callers across the repo use the same casts | `pso/boss/TObjBoss2Tunnel.cpp` | `src/pso/boss/TObjBoss2Tunnel.cpp` | [#185](https://github.com/zeroz41/pso-decomp/pull/185) | other: receiver cast | [#290](https://github.com/matthewlewisnewton/pso-decomp/pull/290) | upstream catch-up, rewrite later |
+| `load_data_buffers`: `memmove(..., (void *)temp_r30, ...)` on the `s32` address from `TLobby::set_stream_and_load_file`; `TObjBoss2Tunnel::load_snapshot`: `memcpy((void *)buf, (void *)(stack.sp60 + 8), ...)` on `s32` addresses; `show_message_and_wait` and `run_confirm_message_loop`: `TLobby::create_message_window((s32)window_pos, (s32)window_size, ...)` for the `(s32, s32, u32, s16)` header signature | `pso/boss/TObjBoss2Tunnel.cpp` | `src/pso/boss/TObjBoss2Tunnel.cpp` | [#185](https://github.com/zeroz41/pso-decomp/pull/185) | other: int/pointer casts | [#290](https://github.com/matthewlewisnewton/pso-decomp/pull/290) | upstream catch-up, rewrite later |
+| `update_connection_state__6TLobbyFP13Self_803FD74C` (extern "C" declaration) | `pso/misc/TLobby_803FAEA0.cpp` | `src/pso/misc/TLobby_803FAEA0.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | extern "C" mangled name | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
+| `TLobby__sub_803FB6A0`: call `update_connection_state__6TLobbyFP13Self_803FD74C(state, &lbl_805BFF68)` | `pso/misc/TLobby_803FAEA0.cpp` | `src/pso/misc/TLobby_803FAEA0.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | extern "C" mangled name | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
+| `TLobby::dispatch_received_packet`: `(Self_803FD74C *)((u8 *)temp_r30_4 + 0xA0)` | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | raw offset cast | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
+| `TLobby__sub_803FC728`: `(Self_803FD74C *)(sub + 0xA0)` (first call) | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | raw offset cast | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
+| `TLobby__sub_803FC728`: `(Self_803FD74C *)(sub + 0xA0)` (second call) | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | raw offset cast | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
+| `TLobby__sub_80402CE0`: `*(u8 *)((u8 *)g + 0x15A)` | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | raw offset cast | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
+| `TLobby__sub_80402CE0`: `*(u8 *)((u8 *)g + 0x15B)` | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | raw offset cast | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
+| `TLobby__sub_80402CE0`: `*(u16 *)((u8 *)g + 0x15C)` | `pso/misc/TLobby_803FC178.cpp` | `src/pso/misc/TLobby_803FC178.cpp` | [#183](https://github.com/zeroz41/pso-decomp/pull/183) | raw offset cast | [#298](https://github.com/matthewlewisnewton/pso-decomp/pull/298) | upstream catch-up, rewrite later |
+| `TBoss1Dragon__ct` (`0x80029DE4`): `extern "C" void __ct__17AccelerationCurveFv` and the two calls `(AccelerationCurve *)(arg0 + 0x5F4)` and `(arg0 + 0x618)`. Matt, 2026-11-05 10:17 AM PT: do not replace these with a real constructor. It matches only under `-inline off,deferred`, which reverses this linked unit. The calls are this PR's rename of `reset_coords_pass` | `pso/boss/TBoss1Dragon.cpp` | `src/pso/boss/TBoss1Dragon.cpp` | [#191](https://github.com/zeroz41/pso-decomp/pull/191) | extern "C" mangled name | [#302](https://github.com/matthewlewisnewton/pso-decomp/pull/302) | upstream catch-up, rewrite later |
+| `lbl_80481280` (`.data` `0x80481280`, 107 pointers) and its stores in `TBoss1Dragon__ct` (`+0x18`) and `destroy__12TBoss1DragonFPvs`. Matt, 2026-11-05 10:17 AM PT: a compiler vtable and real destructor do not match the DOL r31/r30 homes. Only this table | `pso/boss/TBoss1Dragon.cpp` | `src/pso/boss/TBoss1Dragon.cpp` | [#191](https://github.com/zeroz41/pso-decomp/pull/191) | other: hand-written vtable | [#302](https://github.com/matthewlewisnewton/pso-decomp/pull/302) | upstream catch-up, rewrite later |
+| `TBoss6Rock::run_task` | `pso/boss/TBoss6Rock.cpp` | `src/pso/boss/TBoss6Rock.cpp` | [#181](https://github.com/zeroz41/pso-decomp/pull/181) | `other: u64 pointer widen` | [#313](https://github.com/matthewlewisnewton/pso-decomp/pull/313) | upstream catch-up, rewrite later |
+| `LaunchDol` | `pso/unk/text_8042E8C4.cpp` | `src/pso/unk/text_8042E8C4.cpp` | [#172](https://github.com/zeroz41/pso-decomp/pull/172) | asm | [#350](https://github.com/matthewlewisnewton/pso-decomp/pull/350) | upstream catch-up, rewrite later |
+| `TEffStarLight2D` `#pragma defer_codegen on` | `pso/effect/TEffStarLight2D_Base.cpp` | `src/pso/effect/TEffStarLight2D_Base.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | steering pragma | [#361](https://github.com/matthewlewisnewton/pso-decomp/pull/361) | upstream catch-up, rewrite later |
+| `TObjDFDemo5` `#pragma defer_codegen on` | `pso/object/TObjDFDemo5.cpp` | `src/pso/object/TObjDFDemo5.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | steering pragma | [#361](https://github.com/matthewlewisnewton/pso-decomp/pull/361) | upstream catch-up, rewrite later |
+| `__ct__20TAdLoadQuestPrtTxtGCFP7TObjectl` | `pso/unk/text_8034A090.cpp` | `src/pso/unk/text_8034A090.cpp` | [#180](https://github.com/zeroz41/pso-decomp/pull/180) | extern "C" mangled name | [#361](https://github.com/matthewlewisnewton/pso-decomp/pull/361) | upstream catch-up, rewrite later |
+
+
+| `Pos_8001AD8C` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `Box_8001AD8C` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `Self_8001AD8C` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `Pos_8001AF80` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `Box_8001AF80` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `Self_8001AF80` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `Box_8001B190` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `Self_8001B190` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `TAdEndText.cpp:137 #pragma readonly_strings on` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | steering pragma | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `TAdEndText__ending_font_texture_list` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".data") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `TAdEndText.cpp:311 #pragma fp_contract on` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | steering pragma | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_804347B0` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".rodata") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_804347C0` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".rodata") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7DF0` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7DF4` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `TAdEndText__data_805D7DF8` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7DFC` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E00` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E04` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E08` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E0C` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E10` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E14` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E18` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E1C` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E20` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E24` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E28` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E2C` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E30` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E34` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E38` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E3C` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `lbl_805D7E40` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: __declspec(section ".sdata2") | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `Obj_80185160` | `pso/unk/text_80184C2C.cpp` | `src/pso/unk/text_80184C2C.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `VBase_802A2A00` | `pso/unk/text_802A2A00.cpp` | `src/pso/unk/text_802A2A00.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `TChCrTag_802A2A00` | `pso/unk/text_802A2A00.cpp` | `src/pso/unk/text_802A2A00.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | shadow struct | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `text_802A2A00.cpp:17 #pragma fp_contract on` | `pso/unk/text_802A2A00.cpp` | `src/pso/unk/text_802A2A00.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | steering pragma | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `render__10TAdEndTextFv` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | extern "C" mangled name | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `run_task__10TAdEndTextFv` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | extern "C" mangled name | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `__ct__10TAdEndTextFv` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | extern "C" mangled name | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `__ct__7TObjectFP7TObject` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | extern "C" mangled name | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `__vt__10TAdEndText assignment in __ct__10TAdEndTextFv` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: explicit compiler-vtable pointer assignment | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `render__10TAdEndTextFv` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | raw offset cast | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `run_task__10TAdEndTextFv` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | raw offset cast | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `__ct__10TAdEndTextFv` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | raw offset cast | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `TAdEndText__sub_8001B3BC` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | raw offset cast | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `TAdEndText__sub_8001B3D4` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | raw offset cast | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `TAdEndText__sub_8001B3EC` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | raw offset cast | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `TAdEndText__sub_8001B404` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | raw offset cast | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `TAdEndText::free_resources` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: pointer stored in 32-bit integer ABI | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `TAdEndText::load_ending_font` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: pointer stored in 32-bit integer ABI | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `__cvt_fp2unsigned in render__10TAdEndTextFv` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: CodeWarrior conversion runtime helper | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `TAdEndText::~TAdEndText placement` | `pso/menu/TAdEndText.cpp` | `src/pso/menu/TAdEndText.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: source ordering for compiler vtable emission | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `TLobby__sub_80184DF4` | `pso/unk/text_80184C2C.cpp` | `src/pso/unk/text_80184C2C.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | raw offset cast | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `TObjLaboMapWarp::slot4C` | `pso/unk/text_80184C2C.cpp` | `src/pso/unk/text_80184C2C.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | raw offset cast | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `__ct__11BmlResourceFlP21BmlResourceDescriptorllPv in TLobby__sub_80184DF4` | `pso/unk/text_80184C2C.cpp` | `src/pso/unk/text_80184C2C.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | extern "C" mangled name | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `clear_global_array__6TLobbyFPv in TLobby__sub_80184DF4` | `pso/unk/text_80184C2C.cpp` | `src/pso/unk/text_80184C2C.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | extern "C" mangled name | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `fn_802A2A00` | `pso/unk/text_802A2A00.cpp` | `src/pso/unk/text_802A2A00.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | raw offset cast | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+| `fn_802A2A00 self-assignment, identical branches and goto` | `pso/unk/text_802A2A00.cpp` | `src/pso/unk/text_802A2A00.cpp` | [#207](https://github.com/zeroz41/pso-decomp/pull/207) | other: matching-oriented source control flow | [#367](https://github.com/matthewlewisnewton/pso-decomp/pull/367) | upstream catch-up, rewrite later |
+
+## Pending in open PRs
+
+Found by `tools/list_port_exceptions.py --pr N` on 2026-11-04. Add or remove the
+entry when the PR merges.
+
+| PR | Exception | Status / reason |
+|---|---|---|
+| [#296](https://github.com/matthewlewisnewton/pso-decomp/pull/296) | `scheduling` ×5, `peephole`, `optimize_for_size` pragmas | Reason not recorded. Drop in a port. |
+| [#250](https://github.com/matthewlewisnewton/pso-decomp/pull/250) | `fp_contract` ×3 | Reason not recorded. |
+| [#295](https://github.com/matthewlewisnewton/pso-decomp/pull/295) | `inline_depth(2)` (main's existing region uses depth 1) on `src/pso/misc/TQuestVmDownLoadServer_803E6970.cpp` | The nested `flags & 1` group walk only inlines at depth 2, which is required for both page-fit expansions in `sub_803EC284` to match. A port can drop the pragma and keep the scalar loop. |
+| [#303](https://github.com/matthewlewisnewton/pso-decomp/pull/303), [#289](https://github.com/matthewlewisnewton/pso-decomp/pull/289), [#225](https://github.com/matthewlewisnewton/pso-decomp/pull/225), [#222](https://github.com/matthewlewisnewton/pso-decomp/pull/222), [#215](https://github.com/matthewlewisnewton/pso-decomp/pull/215), [#128](https://github.com/matthewlewisnewton/pso-decomp/pull/128) | 1 to 4 inlining/optimization pragmas each | Reason not recorded. Drop in a port. |
+| [#240](https://github.com/matthewlewisnewton/pso-decomp/pull/240) | Not scanned | Diff exceeds GitHub's 300-file limit; scan locally after it merges. |
+| [#313](https://github.com/matthewlewisnewton/pso-decomp/pull/313) | `configure.py`: `TBoss6Rock.cpp` `-fp_contract on`, `-str reuse,readonly`, `-inline off,deferred`; `TOBoss4.cpp` `-fp_contract on`, `-str reuse,readonly`, `-sdata 4`, `-inline deferred` | One TU each, written last-defined first. Deferred emission puts the late helpers and vtables in address order. `-fp_contract on` fuses the fall and spin multiply-adds (and TOBoss4's). `-str reuse,readonly` keeps the literals in the unit's rodata. `-sdata 4` keeps TOBoss4's 8-byte motion-name array in `.data`. |
+| [#167](https://github.com/matthewlewisnewton/pso-decomp/pull/167) | Unit switch `-opt nolifetimes,nocse,noprop,noloop` on `TMovie_80143988.cpp` (section 5); the pre-existing `__dcbt` in `pack_movie_frame` | `pack_movie_frame` matches 100% in plain C++. The earlier `__rlwinm` / `__rlwimi` calls are gone. `__dcbt` is the original data-cache touch (`dcbt r31, r0` / `dcbt r9, r0`). Port: drop the switch and the cache touch. |
+
+The scan covers source lines only; `configure.py` overrides added by PRs show up
+in the generated table once merged.
+
+
+## 8. Native item factory callback ABI
+
+| File | Boundary | Why | Port should |
+|---|---|---|---|
+| `src/pso/unk/text_80104FCC.cpp`, `include/pso/item/ItemCreateFunction.h` | `item_create_fn_table[4]` stores `TItemMoney::create(TItemData*)` in the byte-buffer callback type and the MWCC branch invokes that type | The original relocation targets the typed money factory, while the dispatcher makes the same indirect call for all five item categories. Native PPC passes either record pointer in `r3`; this is an ABI dependency, not portable C++ call compatibility. The complete 124-byte data section and 2012-byte code section match and link. [Evidence](evidence/equip-requirements-match.md). | Compile the non-MWCC `invoke_item_factory` path, which converts the stored money callback back to its actual function type before calling it. Keep the typed money declaration; do not erase it globally. `ports/tests/item_factory_callbacks.cpp` exercises this fallback. |
+
+This callback boundary is documented for review; it does not add assembly,
+steering pragmas, per-unit compiler switches or link-check exceptions. The
+mechanical inventory does not currently enumerate function-pointer conversions.
+
+### TObjBoss5Ctrl pillar-controller ABI
+
+| File | Boundary | Why | Port should |
+|---|---|---|---|
+| `src/pso/boss/TObjBoss5Ctrl.cpp` | `create__19TObjBoss5PillarCtrlFv` and `play_sound_once__19TObjBoss5PillarCtrlFv` retain explicit `TObject *` ABI boundaries | Their legacy member names have unresolved receiver ownership. See [controller evidence](evidence/boss5-controller-unit.md). | Unify those helper declarations when recovering the neighboring classes. |
+
+### Radial particle interpolation and colour packing
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/misc/ParticleRadial.cpp`, `TUnk_8048E7A8::run_task` at `0x8008B590` | New scoped `fp_contract on`; big-endian ARGB byte writes into a `u32` through `unsigned char` | The original's twelve channel interpolations are `fmadds`. Without the new contraction scope the routine is 94.10405%; with it all 1,384 bytes match. Existing constructor scopes are unchanged. The colour representation reproduces four native byte stores and one packed-word load without inactive-union aliasing. See [source, type and arithmetic evidence](evidence/radial-particle-update.md). New compiler control remains subject to independent source-quality review before publication. | Use single-rounded `fmaf` interpolation when native rounding is required. On little-endian hosts, pack the converted channels explicitly as `(a << 24) | (r << 16) | (g << 8) | b`. |
+
+### Ballistic particle update and constant layout
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/misc/ParticleBallistic.cpp`, update at `0x800888E8` | Scoped `fp_contract on`; big-endian ARGB byte writes into a live `u32` | The original has fused bounce and colour interpolation. The recovered update matches all 2,060 bytes, using the radial particle's clamp and local-value layout. [Recovery evidence](evidence/ballistic-particle-recovery.md). | Preserve required single rounding with `fmaf`; pack converted ARGB channels explicitly on little-endian hosts. |
+| Same file, renderer at `0x800890F4` | Scoped `pool_data off` | With all owned constants defined, ordinary pooling shares a `.rodata` base and changes the renderer to 1,412 bytes / 94.68715%. Independent addresses reproduce the original 1,432 bytes exactly. Late definitions preserve instructions but put the constants in the wrong section order. | Drop the layout control; keep the ordinary constant values. |
+| Same file, `lbl_805D9520` | MWCC-only `.sdata2` placement for the existing two-float object | Retains the angular range and trailing zero in the original eight-byte object, instead of a four-byte literal. | Use the ordinary const array; the section annotation is guarded for MWCC. |
+### Ancient container data and virtual tables
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/misc/TOContainerAncientEnemy.cpp` | Deferred generation and reverse function definitions | GC/2.0 emits the seven class virtual tables in reverse native order with immediate generation. Deferred generation and reverse definitions reproduce both the original text order and the table order at `0x804B00F4..0x804B0A08`. The resource loader shares the unit because its descriptors precede the tables in data and its functions follow the classes in text. | Use ordinary class definitions and compiler-generated virtual tables in any source order. |
+| Same file, `TLanguage::load_container_fragment_textures` at `0x8015C680` | Scoped `pool_data off` | With the texture names and loader in the same unit, GC/2.0 normally addresses the names through one read-only base and emits 464 bytes. Independent references restore the original 516-byte routine and its relocations. | Omit the pragma and retain the typed resource definitions and load order. |
+
+### Jungle container virtual tables and shared debris signature
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/item/TObjContainerJung.cpp` | Deferred generation and reverse function definitions | Immediate generation emits the three virtual tables in reverse order. Deferred generation reverses the function definitions and emits the tables in their native order. The existing scoped propagation controls still apply to the three debris methods. | Use ordinary class definitions and omit the emission and propagation pragmas. |
+| `src/pso/misc/TOContainerAncientEnemy.cpp` | Existing GC/1.3 compiler profile for this unit | GC/2.0 changes load scheduling in the two ancient-container debris methods when the shared virtual slot uses its native const-qualified signature. GC/1.3 restores the original instructions and the rest of the unit stays exact. | Keep the const-qualified override and use the port's normal compiler. |
+
+### Forest and Seabed container data
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/item/TObjContainerItem.cpp` | Deferred emission and reverse definition order | CodeWarrior 1.3.2 emits the six compiler-generated virtual tables and the intervening switch table at their original addresses. The first out-of-line base override anchors its table here, while its destructor remains in the ancient-container text range. | Use ordinary class definitions and omit the emission pragma. |
+| Same file, `TUnk_804B6C24::debug_print_item_box_info` at `0x80189E3C` | Scoped `pool_data off` | Linking the diagnostic strings into this object makes the compiler pool their addresses and changes the routine. Independent addresses reproduce its original 232 bytes. | Use the named strings and omit the pooling pragma. |
+
+### Weapon factory virtual tables
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/unk/text_802D5F44.cpp` | Deferred generation for seven destructors | Immediate generation in the factory emits its switch table first. Reverse destructor definitions under deferred generation emit the seven compiler-generated virtual tables in the original order after that switch table. | Use ordinary destructor definitions and omit the emission pragma. |
+
+### Ceiling-debris renderer data addresses
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/boss/TObjBoss2CeilJunk.cpp`, `TObjBoss2CeilJunk::render` at `0x8003A1B4` | Scoped `pool_data off` | With the tables and color defined in the same file, GC/2.0 forms a shared read-only data base and saves an extra register. The scope restores the three separate addresses and all 352 original instruction bytes. | Omit the pragma and keep the typed table and material initializers. |
+
+### Loading-screen data ownership
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/misc/TLoadCtrl.cpp`, `TLoadCtrl::run_task` at `0x8001C620` | Scoped `pool_data off` | GC/2.0 otherwise uses a shared read-only data base and saves an extra register. The scope restores the independent addresses and the exact 384-byte function. See [loading-screen data ownership](evidence/loading-screen-data-ownership.md). | Omit the pragma and keep the three vector initializers. |
+
+### AIFF parsing and ADX block transfer
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/misc/TLobby_803C1A58.cpp`, `TLobby__sub_803C2388` | Scoped `opt_propagation off`, `opt_common_subs off` | Preserve the original byte-swap/load sequence and chunk traversal; all 624 bytes match. [Recovery evidence](evidence/audio-formats-and-adx-transfer.md). | Drop these compiler controls; retain explicit endian decoding and original parsing behavior, or harden input validation as a separate behavioral change. |
+| Same file, `TLobby__sub_803C3570` | Scoped `opt_common_subs off`, `opt_lifetimes off`, `opt_propagation off`; existing decoder API passes pointers through `s32` | The two-phase block transfer needs the original saved-register lifetimes and arithmetic/load ordering; all 1,028 bytes match. The bounded record and shared legacy decoder interface are documented in the recovery evidence. | Drop the compiler controls, use fixed-width scalar fields and typed pointer arguments at the decoder boundary. Ordinary sample-copy loops remain C++. |
+
+### Technique-contact dispatcher evaluation order
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/npc/TObjNpcKenkyuW.cpp`, `TNeedleShoot::check_actor_contacts` at `0x802A445C` | Scoped `scheduling off` and `global_optimizer off` | Preserve the original argument setup and the contact-load/receiver-copy/contact-store order. The explicit pointer value conversion in the comma expression avoids an addressable temporary and retains the original 16-byte frame. All 228 bytes and the full 2,376-byte unit match. See [compiler and comparison evidence](evidence/kenkyuw-dispatcher-continuation.md). | Drop the compiler controls. The contact assignment can be a separate statement before the virtual call; retain the actor value passed to that call. |
+
+
+### Character-creation menus (`TObjCMName.cpp`)
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/object/TObjCMName.cpp`, `configure.py` | Deferred generation with reversed definitions; `-sym on`, private `TObjCMNameTail.h`, `.sdata2=4` alignment | Reproduces all 71 functions, native member-pointer initialization, and five compiler-generated vtables. The initializer at `0x80298DE0` precedes `get_creation_pad` at `0x80298F08`; a separate source-file text contribution preserves that order. The complete `.sdata2` starts at `0x805DDA6C`, on a four-byte boundary. Follows the existing compiler-emission, Dark Falz initializer, and Panarms PMF recovery precedents. | Use ordinary definitions and member pointers; remove native section/debug-layout controls and the private-header arrangement. |
+| Same source, footer at `0x802979BC` | Scoped `opt_lifetimes off`, with existing floating-point contraction | Keeps the footer's fade and text-position values in the native registers; all 348 bytes match. Hair rendering needs no new optimizer override: ordinary compound alpha updates, shared scalar lifetimes, and quad construction reproduce all 1,840 bytes. | Remove the optimizer control; preserve floating-point contraction when identical rounding matters. |
+| Same source, three late scalar constants | MWCC-only `extern const` declarations followed by `static const` definitions, plus existing explicit data-section annotations | Defining the `0.4f` fade step and two color masks after their readers preserves lazy native constant-pool order and loads. Standard-linkage definitions are supplied for other compilers. This follows the `TBoss6Type1.cpp` constant-pool precedent. | Move ordinary constant definitions before use and remove native section annotations. |
+| Same source, hair color alpha | Native byte-three write to a packed RGBA word | Reproduces the original `stb` and unsigned-byte float conversion. The non-MWCC branch updates the low alpha byte numerically, independent of host byte order. | Keep the numerical masked update. |
+
+### Memory-card request snapshots
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/ui/TAdPlayerLoadGC_803F18B8.cpp`, request steps at `0x803F2240`, `0x803F2610`, `0x803F282C`, `0x803F2A4C` | Scoped `inline_depth(2)`, `dont_inline off`, and `opt_lifetimes` controls; one-word `CardChannel` snapshots | With the existing propagation control, inline channel reads/completion helpers and explicit snapshot lifetimes reproduce all 2,704 newly recovered instruction bytes. The value objects carry channel IDs, not file-record indices; they introduce no alternate view of a record. | Drop the compiler controls and retain ordinary value snapshots and the restore/completion sequence. No special object layout is required for these local values in a port. |
+| Same request steps, `read_card_channel` | Read the existing `s32` channel through a volatile-qualified lvalue | The native steps reload the channel after publishing CARD results and before disk-ID restoration. Qualification preserves those read boundaries without changing the shared record type or asserting another object at that address. This is a matching constraint, not evidence of concurrent channel writes. | Define how request steps, callbacks and bulk record resets are serialized before coalescing these reads. Volatile supplies neither atomicity nor synchronization. |
+
+The SDK includes use the existing `PSO_SDK_COMPACT_MATH` header mode so unused
+square-root inlines do not emit 32 bytes of static constants outside this unit's
+owned sections. A port can use its ordinary SDK/math declarations.
+
+### Native ADX runtime recovery
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `configure.py`, the nine `pso/system/Adx*.cpp` units extracted from `AdxStreamRuntime.cpp` | GC/2.6 `-O4,p -inline auto -str reuse,readonly` | The native object boundaries and CRI profile follow upstream matchpass 18 (`b0b44cbda2`). Separate encoder and playback conversion pools reproduce their original addresses; ordinary inline helpers reproduce the encoder work-pool register lifetimes. Other CRI units retain their existing profiles. | Use normal optimization and string storage; retain the encoder, stream, playback and manager interfaces. |
+| `src/pso/system/AdxEncoder.cpp` | Two inherited `opt_propagation off` scopes around header and terminal-block writers | Moved from the formerly combined unit. They preserve the existing byte-write and load/store sequences. | Drop optimizer steering; preserve explicit ADX byte encoding. |
+| `src/pso/system/AdxtServer.cpp`, per-handle state helpers and dispatcher at `803CA8B4` | Scoped `opt_common_subs off` | Ordinary compilation is 99.87578%: four uses of the playback handle occupy r26 rather than r28. Declaration-order trials and `opt_lifetimes off` do not fix it. This scope preserves the original lifetime shared with the later silence-padding phase; all 644 bytes match. | Drop the pragma. The state machine and silence padding use ordinary C++. |
+| Native ADX runtime boundary | Existing legacy `TLobby` entry names, bounded record views, pointer/integer handle and callback casts, OS thread entry casts and volatile flags; inherited floating-point contraction in decoder and playback helpers | These are retained native ABI obligations. New encoder records use size/offset assertions and the shared SJ interface; stream-file callers share one recovered record definition. No assembly or hardware access is added. | Replace native handle words and thread casts with typed platform interfaces, provide synchronization for shared flags, and preserve fused rounding where required. |
+| `src/pso/system/AdxEncoder.cpp`, residual magnitude | MWCC `__abs` through `ADXENC_ABS`, with a compiled scalar conditional fallback on other compilers | A scalar sign-mask helper scores 99.816666% and a conditional helper 98.76667% in `fn_803C8020`; the native intrinsic retains the original repeated absolute-value sequences. The input is a signed 16-bit residual, so negation fits in `s32`. | Use the scalar fallback. |
+
+### Quest-download candidate and request construction
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `TQuestVmDownLoadServer_803E9A24.cpp`, `803EA428` and its local helpers | Scoped `dont_inline off`, `inline_depth(2)`, `opt_propagation off`, and `opt_lifetimes off`; borrowed workspace-address value and branch-local displacement/address reuse | Restores the native append handoffs, signed span promotion, temporary lifetime, and candidate-length flow. All 1,336 bytes match exactly. See [the candidate-builder evidence](evidence/quest-download-unit-completion.md). | Drop compiler steering and keep the ordinary scalar/list operations. The existing non-MWCC address adapters name the actual workspace result and separate slot array. |
+| `TQuestVmDownLoadServer_803ED0CC.cpp`, `803EE580` | Existing scoped `dont_inline off` / `inline_depth(1)` also inlines the borrowed request-storage view | The view constructor and leading-request handoff preserve the native temporary lifetimes and remove an extra address copy; all 408 bytes match. See [request-emitter evidence](evidence/quest-download-unit-completion.md). | Keep the real storage/subobject relationship and ordinary scratch placement construction; compiler controls can be removed. |
+| `TQuestVmDownLoadServer_803E6970.cpp`, `803E8DA0` | Scoped depth-two inlining, CSE off, propagation on and lifetimes off; sequenced record-length arithmetic and six retained scalar declarations | All 776 bytes, including the native 104-byte frame, match. Removing the now-unused caller locals leaves the instructions unchanged but shrinks the frame to 80 bytes (99.97423%). These are matching constraints, not evidence of original declarations. See [cache completion evidence](evidence/quest-download-unit-completion.md). | Remove the six unused locals and compiler controls; use the same search, length and record-writing operations. |
+| `TQuestVmDownLoadServer_803ED0CC.cpp`, `803EDC20` | Existing depth-one inlining plus scoped `opt_propagation off`; pending lead-byte state constructor | All 388 native bytes match. The actual decoder state preserves initialization and reset copies; an inlined scan hands off the entry pointer. See [decoder evidence](evidence/quest-download-unit-completion.md). | Drop compiler steering; retain the decoder state and scan operations. |
+
+| `TQuestVmDownLoadServer_803E9A24.cpp`, `803EA9E8`, and shared inline helpers | Scoped depth-three inlining with propagation and lifetime splitting off | Separate validation/pruning cursors, the consumed selected-length result, and the leading-slot handoff reproduce all 1,004 bytes and the 80-byte frame. A 3,000-case native differential check covers failure and consolidation paths. | Drop the compiler controls; retain the list operations and consumed snapshots. |
+
+### Quest-download character predicates
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `TQuestVmDownLoadServer_803E6970.cpp`, `803E6F98` and `803E7018` | Scoped `bool off` | These integer predicates have shared `s32(u16)` declarations. Disabling the legacy compiler's distinct Boolean type preserves the native integer comparison result without an extra byte mask. Both functions remain exact with two-byte output buffers. | Remove the pragma; retain the shared integer-return interfaces and two-byte buffers. |
+### Complete Gol Dragon behavior unit
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/boss/TBoss8Dragon.cpp`: `fn_802F7B70`, `fn_802F89F8`, `TBoss8Dragon__sub_802FBFA4` | Three scoped `opt_common_subs off` settings; `fp_contract on` in the recovered state handler | Preserve native fused arithmetic and the original floating-point load lifetimes and register operands with the owned named constants. Propagation-only and lifetime-only trials did not fix these differences. The last helper also uses explicit acceleration and velocity intermediates to preserve the fused multiply-add operand order. See [complete-unit evidence](evidence/gol-dragon-complete-unit.md). | Drop the optimizer controls; retain the arithmetic and fused rounding where required. |
+| Same unit, complete object | Descending function definitions under the existing GC/2.0 `-inline off,deferred` settings; the three Bezier arrays follow the dispatcher's local static table in source | Reproduces native function, member-pointer initializer, runtime table, vtable and switch-table placement. No new compiler override, inline helper, hand-written member-pointer table or vtable is introduced. | Use ordinary C++ member pointers and compiler-generated virtual dispatch; source and emitted order need not agree. |
+
+### Complete draw-line component
+
+`src/pso/ui/DrawLine.cpp` uses GC/2.6 `-inline off,deferred` with reverse definitions to preserve the original function order and the compiler-generated controller/task vtables. Unit `-fp_contract on` replaces the task constructor's existing pragma and preserves its fused length calculation. Immediate emission with ascending definitions preserves instructions but reverses the two vtables; reverse/deferred emission preserves all code and symbolic data relocations.
+
+The four named float constants are declared with a guarded `.sdata2` placement attribute and defined after their uses. Their original order is `1.0, 0.0, -1.0, 0.5`. Literal-only probes instead emit `0.0, -1.0, 1.0, 0.5`; defining named constants before their uses also introduces anonymous duplicates. The guard becomes empty outside MWCC. A port can keep the ordinary constant definitions, use its normal compiler settings, and ignore definition order and section placement. No assembly or hand-written vtables are used.
+
+### Complete quest-download source organization
+
+The former `TQuestVmDownLoadServer_803E6970.cpp` range is represented by
+`TQuestVmDownLoadServer_803E6970.cpp`, `TQuestVmDownLoadServer_803E9A24.cpp`,
+and `TQuestVmDownLoadServer_803ED0CC.cpp`, sharing `QuestDownloadInternal.h`.
+Ordinary compiler-generated switch tables require two eight-byte-aligned
+object boundaries; the final group defines its real BSS after its functions
+to preserve native address materialization. The shared header retains the
+existing scoped inline-helper options. Default-only and empty declaration
+scopes are removed. These are source organization constraints, not new
+compiler profiles or recovered original filenames. All 173 functions and
+allocated sections match and link. Ports can organize these declarations and
+functions normally; preserve the real storage ownership and documented ABI
+boundaries. See [the complete-unit evidence](evidence/quest-download-unit-completion.md).
+
+### TDPBShower name-data alignment
+
+`pso/effect/TDPBShower.cpp` uses the existing `cw_align` adapter with
+`.rodata=4 .sdata=4`. Its name string starts at `0x80479C3C` and its name
+pointer at `0x805D4454`; neither address is eight-byte aligned. Stock GC/2.6
+emits eight-byte alignment in both the ELF headers and its private comment
+record. The adapter changes only those alignment records, preserving all
+payloads and relocations. Ordinary string pooling instead moves the string
+into `.data`; an explicit const array keeps the original read-only placement.
+The array has eleven bytes; the linker supplies the one-byte alignment tail
+before the next eight-byte-aligned read-only contribution. Ports can keep the
+ordinary C++ string, pointer, constructor and literals and omit this native
+object-alignment adapter. This does not establish the original compiler
+settings or filename.
+### Gol Dragon fireball table addressing
+
+`src/pso/boss/TBoss8DragonEffBullet.cpp` scopes `pool_data off` to its
+constructor. Defining its three particle descriptors in source otherwise makes
+GC/2.6 hoist a shared read-only-data base, changing the constructor's register
+allocation. Late definitions preserve the independent addresses but emit the
+descriptors in writable data. The scoped control retains the native code and
+read-only data together. Ports can drop this pragma and keep the ordinary
+constant descriptors and constructor. The existing `fp_contract on` scope in
+`run_task` preserves the three fused movement updates; a port needing the same
+rounding can use `fmaf` for those expressions. See the
+[unit evidence](evidence/gol-dragon-fireball-unit.md).
+
+### Word native lifetime emission
+
+The Word row in [Window native lifetime emission (deferred codegen)](#window-native-lifetime-emission-deferred-codegen)
+covers `src/pso/misc/TWindowDD_80342254.cpp`. The unit uses the CodeWarrior
+`-inline off,deferred` option and reverse function definitions. The native
+constructor needs its compiler-generated table available during data pooling;
+deferred emission supplies that timing and reverses definition order. The
+arrangement reproduces all original text, data, startup destinations and
+relocations, as detailed in [the evidence](evidence/window-word-native-emission.md).
+It reconstructs emitted layout and does not establish the retail build options
+or original source order. Ports should use the ordinary native constructor,
+destructor and new expression, omit this compiler override and arrange source
+for readability. Existing raw reset/list-loader and storage interfaces remain
+qualified separately.
+
+
+### De Rol Le compiler and native scalar pool
+
+`src/pso/boss/TBoss2DeRolLe.cpp` uses GC/2.0 with `-inline on`. With the
+single-argument `free_laser` boundary, GC/2.0 reproduces the attack handler's
+native parameter-copy registers and load scheduling. GC/2.6 leaves that copy
+at 99.38865% even after the saved-register permutation is resolved. All 110
+functions and all allocated sections match together under GC/2.0; this is a
+reproducible compiler selection, not proof of the historical build command.
+
+The shared `add_motion_delta` helper preserves the moving value as the left
+operand after substitution of the native scalar literals. Direct literal
+additions are commuted during parsing and change load order and floating-point
+register allocation. Division by two similarly preserves the left operand when
+the backend folds it to multiplication by one half. The color-halfword swap
+uses ordinary masks instead of `__rlwimi`. A port can keep the ordinary C++
+arithmetic, masks and single-argument release call with its normal compiler;
+the compiler version, operand order and literal-emission order serve native
+matching. See the [complete unit evidence](evidence/tboss2-derolle-register-allocation.md).
+
+### Weighted chunk geometry unit
+
+Matt explicitly authorized the 640-byte `GXSetVtxAttrFmtv` at `0x803E3110` as
+an assembly exception on 2026-11-13. It is the weighted indexed transform,
+not the SDK descriptor-list API. The Metrowerks branch retains the original
+paired-single schedule and GQR1 setup; the scalar C++ fallback uses `fmaf` to
+retain fused rounding and leaves vertex padding untouched. Ports compile the
+fallback and need no GQR state. See [the contract](evidence/paired-single-sdk-asm.md).
+
+The polygon dispatcher uses scoped `use_lmw_stmw off`, `bool off`, and
+`opt_propagation off` to preserve native save/restore helpers, integer predicate
+results, and decoded-word lifetimes. Ports can drop these pragmas and keep the
+ordinary C++ dispatch. Separate signed wire, promoted header, and masked-word
+members permit the native compiler's scalar replacement and register
+coalescing; no bitfield or extra lifetime pragma is required. See the
+[complete unit evidence](evidence/chunk-geometry-compiler-research.md).
+The unit's `.sdata2` contribution begins at
+`0x805E109C`, so `cw_align: .sdata2=4` retains its four-byte alignment in both
+ELF and CodeWarrior metadata without modifying section contents. Ports need no
+object metadata adjustment.
+
+### Rico ring and controller unit
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `pso/menu/TAdRicoRing.cpp`, all 19 functions and both native vtables | Unit `-inline off,deferred`, with reverse definitions | Immediate emission places the ring vtable before the controller vtable. Deferred emission with reverse definitions preserves the original text and both vtable offsets (`.data+0x90` and `+0xA8`). The existing Gee and indirect-controller investigations document the same compiler behavior; see [compiler emission evidence](evidence/compiler-emission-evidence.md). | Use ordinary C++ definitions in any order; retain native constructors and virtual methods. |
+| Same unit, resource names and class names | Unit `-str reuse,readonly` and `-sdata 4` | Readonly strings preserve `.rodata`; the small-data threshold keeps the two eight-byte filename lists in `.data`, before their `BmlResourceDescriptor`. Without these switches the strings enter `.data` and the lists enter `.sdata`. Existing `TOBoss4.cpp` uses the same switches for its resource lists. | Drop the switches; retain the typed lists and resource descriptor. |
+| Same unit, named render records and constants | MWCC-only `RICO_SECTION` annotations | Preserve the existing initialized `.data` records, readonly vector/fan records, and scalar `.sdata2` constants. The macro is empty on other compilers. The three short zero tails are linker alignment, not additional source objects. | Keep the ordinary typed values and ignore their GameCube sections. |
+| Same unit, `TAdRicoRingCtrl::render`, `run_task`, and `sub_8001B424` | Existing scoped `opt_common_subs off` (two), `opt_dead_assignments off` (one), and `fp_contract on` (one), moved with their functions | These controls were already in the retired fragments. Removing render CSE control gives 94.86%; removing its dead-assignment control gives 99.46%; removing both gives 95.29%. Removing the update CSE control gives 97%. Contraction retains the original fused reflected-position calculation. Six formerly manual scalar guards are now native local statics. | Drop the optimization pragmas; retain the scalar calculations and local statics. Preserve fused arithmetic if identical floating-point rounding is required. |
+
+
+### Lobby network recovery
+
+The `TLobby_804050DC`, `TLobby_8040FF0C`, and `TLobby_8041112C` object groups
+retain GC/1.2.5n and the existing `-opt nocse` configuration. Their per-object
+`-inline noauto,level=4` default in `configure.py` inlines explicitly marked
+helpers without automatically inlining other functions. This replaces the
+repeated source inline controls. The shared `LobbyNetworkInternal.h` needs
+no pragmas. `-inline auto,level=4` changes native instructions in the first
+and third groups, while `noauto,level=4` preserves all three complete objects.
+
+The remaining optimizer pragmas are accepted as scoped matching exceptions for
+this recovery. Each region is listed below and was tested against its complete
+object. Removing a setting or its restoration changes native instruction
+selection or register lifetimes. Adjacent functions share a setting only where
+the region table identifies the full range. The four `optimization_level`
+regions retain push/pop to restore every optimizer option affected by the level
+change.
+
+| Region begins | Level | Restored before |
+|---|---|---|
+| `TLobby::reset_socket_table` | 3 | `TLobby__sub_80406B6C` |
+| `TLobby::is_slot_flag_0x40_set` | 2 | `TLobby__sub_8040A2BC` |
+| `TLobby__sub_8040C8A8` | 2, with CSE disabled | `TLobby__sub_8040C978` |
+| `NetIPv6EmitRouterSolicitation` | 3 | `TLobby__sub_804182DC` |
+
+The sole remaining inline-depth exception is depth one for
+`TLobby__sub_8040B4BC`, restored explicitly to four afterward. An
+`inline_depth reset` would restore the compiler's initial depth instead of the
+unit's chosen depth and changes later native instructions. Propagation, CSE,
+lifetime, and loop controls preserve the following native instruction choices.
+
+| Control | Functions or neighborhoods | Reason |
+|---|---|---|
+| Lifetime analysis | `80406BD8–80406F0C`, `8040BD40`, `8040DE4C` | Keeps checksum and packet cursors, compressed-name offsets, and the release path in their original registers. |
+| Propagation | PPP send, buffer copy, Ethernet socket lookup, DNS send and decode, IPv4 input and send, IPv6 redirect and neighbor options | Preserves distinct length, status and callback values across calls. |
+| Common subexpressions | PPP receive, Ethernet receive and socket lookup, IPv4 route processing, IPv6 interface, prefix, send and neighbor routines | Preserves field-address reuse and the order of table and cursor loads. |
+| Loop invariants and strength reduction | PPP receive at `80405700` and IPv6 input at `8040FFF8` | Reproduces cursor increments and the native placement of loop-invariant loads. Strength reduction resumes before `804105E0`. |
+
+`TLobby__sub_80411604` uses an ordinary ANSI C++ definition with an `s16`
+interface ID. Its shared declaration and callers use that same type; the
+old-style C definition and block-local event-dispatch declarations are removed.
+Neighbor/router advertisement and router solicitation now receive signed short
+interface IDs, matching their ICMP callers. The router-solicitation send chain
+also consumes and returns short status values. Its link-address and IPv6 send
+declarations agree with those providers, so obsolete word-ID casts and local
+send declarations are unnecessary. Ports can keep these typed interfaces.
+The scoped legacy network declarations must be reconciled with their providers
+and every caller before replacing them with a common portable interface.
+In particular, `8040CE58` consumes `8040E780` through a scoped word-return
+declaration and returns that word to `8040DE4C`; the provider definition remains
+short-returning. Both sides' native conversion instructions support retaining
+this bounded legacy interface until the portable ABI is reconciled.
+
+All three lobby groups link from source. Their layout preserves the alignment
+of compiler-generated switch tables. IPv4 forwarding and sending use scoped
+`opt_propagation off` so the compiler keeps distinct packet and fragment
+cursors and reproduces their register lifetimes. A port can drop these
+settings and retain the fragment traversal and accounting described in the
+[recovery evidence](evidence/lobby-network-recovery.md).
+
+The lobby receive entry at `80405700` delegates to an inline implementation
+with a referenced entry-local byte and a first-declared receive count. This
+source organization reproduces native register lifetimes and stack placement;
+no separate helper is emitted. Ports may combine the bodies and use ordinary
+locals. See [recovery evidence](evidence/lobby-network-recovery.md).
+
+The PPP output routine at `804066D8` uses C linkage and a whole-function
+`opt_propagation off` scope. Its definition remains ordinary C++, and a small
+inline adapter performs the existing time query. The separate
+`ppp_is_lcp_protocol` predicate uses a small `cplusplus off/on` scope. The
+pinned compiler emits `srwi` for its inlined integer result in C mode and
+`extrwi` in C++ mode. The optimizer scope restores after the complete
+writer definition. Ports can use an ordinary comparison and keep the
+unsigned 32-bit escape mask.
+
+The Ethernet socket opener at `804094B8` enables `opt_common_subs` for its
+matching-socket lookup and caller. A port may drop it. The IPv4 receiver at
+`8040DE4C` disables propagation within its function scope to preserve the
+lifetimes of the packet, length, and interface arguments.
+
+The IPv6 address update at `80412CA4` enables `opt_common_subs` within its
+existing pragma scope. The corresponding linked upstream unit enables this
+optimization throughout. A port may omit the pragma and keep the typed
+interface lookup and short prefix length.
+
+Only the PPP output routine at `804066D8` needs C linkage. The IPv6 input and
+event dispatcher use ordinary C++. All language and optimizer controls in the
+three units fall between function definitions; the C-mode predicate is a
+separate helper between function definitions.
+
+The packet checksum at `80406BD8` uses scoped `opt_lifetimes off` as in
+upstream PR #304. A port can remove it while preserving the segment traversal
+and the order of the checksum additions.
+
+The DNS reader at `8040BD40` uses scoped `opt_lifetimes off`, following the
+upstream `NetDns.c` implementation at `9925c2c503`. Together with its separate
+decoded-source cursor and short-limit phase reuse, this produces its exact
+native body. Ports may drop the pragma while preserving cumulative label
+counts and compressed-name decoding.
+
+IPv4 input at `8040DE4C` uses scoped `opt_lifetimes off` to keep the packet
+length and the later subscription index in one register. A port can use
+separate locals and keep the signed 16-bit loop comparison.
+
+### Seabed wall, wreck, and mine display virtual tables
+
+| Scope | Construct | Evidence and reason | Port action |
+|---|---|---|---|
+| `src/pso/misc/TOVS2Wreck01.cpp` through `TOVS2Wreck06.cpp`, and `TOVS2Wall01_8017C7A4.cpp` | `cw_align .data=4` in MWLD metadata | The seven compiler-generated wreck virtual tables follow the wall's 316-byte table at `0x804B513C`. They start four bytes past an eight-byte boundary. CodeWarrior reports eight-byte section alignment by default. The four-byte alignment keeps their original addresses with the existing compiler profile. | Use native destructors and virtual dispatch with the port's normal object alignment. |
+| `src/pso/misc/TOMineDisp.cpp` | `cw_align .data=4` in MWLD metadata | The compiler-generated mine display vtable follows the trap display vtable at `0x804B2F9C`, four bytes past an eight-byte boundary. This preserves the original vtable address with the existing compiler profile. | Use the port’s normal object alignment. |
+| `src/pso/misc/TOMine.cpp` | `cw_align .data=4` in MWLD metadata | The generated base mine vtable starts immediately after the trap vtable at `0x804B312C`, four bytes past an eight-byte boundary. | Use the port’s normal object alignment. |

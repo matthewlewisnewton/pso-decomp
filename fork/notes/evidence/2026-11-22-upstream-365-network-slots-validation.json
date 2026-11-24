@@ -1,0 +1,175 @@
+{
+  "source": "71531f4dfd54d86482371cabce50fa3b15fc671e",
+  "previous_source": "20d13be55e88f146733f10231e7473d0600eb63f",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "include/pso/network/NetworkRuntimeSlots.h",
+    "include/pso/network/TLobby_803F86BC.h",
+    "src/pso/network/NetworkRuntime.c"
+  ],
+  "combined_paths_from_upstream": 1296,
+  "validation": {
+    "source": {
+      "baseline": "20d13be55e88f146733f10231e7473d0600eb63f",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "b7ef59ce5f05d52a0b99f5c11907f7321b16c8c6c24753265640cf14dc5d402b",
+      "report_sha256": "5651baaad2c4967d332d56742930c0b22cf7931fa2ccc9dbbb0713f2360f124b"
+    },
+    "layer": {
+      "baseline": "71531f4dfd54d86482371cabce50fa3b15fc671e",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "0d0505ff2d6750e611c1caeddd6c815b7e23c1307e306f42ee8cc59bb78deb14",
+      "report_sha256": "5651baaad2c4967d332d56742930c0b22cf7931fa2ccc9dbbb0713f2360f124b"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "ce365a68b813c36ff12aa0e160e43da27e616252a136a648c00d2d9a6a18568b"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "8bc653d257e44adb07c7ac090fb34a3a7cf40d014253eff78a71196868189856"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "ad1227e7d6dde3aea88d51f241949b30f3d1fe42ec4c3abf078bd6309ee9bbdb"
+    }
+  },
+  "runtime": {
+    "cases_per_image": 7,
+    "images": [
+      "retail",
+      "source",
+      "materialized fork"
+    ],
+    "cases": {
+      "missing_pool": 2,
+      "initialized_slots": 2,
+      "pool_initialization_error": 3
+    },
+    "alarm_queue_initializations_per_valid_pool_case": 64,
+    "probe_sha256": "8924a82c94c2c4cbc11c45f957fc89693e859fbeb5a386d517d5702e9a68c083",
+    "log_sha256": "46fa15cbc3c74cba3890d7cd75e492e1cbd91a99ab5759afe08ac905dd836d72"
+  },
+  "matching_units": {
+    "src/pso/network/NetworkRuntime.c": {
+      "functions": 13,
+      "code": "2480",
+      "data": "7760"
+    },
+    "src/pso/network/NetworkThreadRuntime.c": {
+      "functions": 40,
+      "code": "5864",
+      "data": "232"
+    },
+    "src/pso/network/NetworkMessageTransport.c": {
+      "functions": 26,
+      "code": "4412",
+      "data": "2576"
+    },
+    "src/pso/network/NetArp.c": {
+      "functions": 21,
+      "code": "5108",
+      "data": "40"
+    },
+    "src/pso/network/TProtocol.cpp": {
+      "functions": 93,
+      "code": "15112",
+      "data": "2080"
+    }
+  },
+  "storage": {
+    "lobby_alarm_slot_table": {
+      "address": "0x805be070",
+      "bytes": 5632
+    },
+    "network_mutex_slot_table": {
+      "address": "0x805bf670",
+      "bytes": 256
+    },
+    "network_message_queue_slot_table": {
+      "address": "0x805bf770",
+      "bytes": 1872
+    },
+    "ppp_option_word_buf": {
+      "address": "0x805d7a70",
+      "bytes": 4
+    },
+    "ppp_option_byte_buf": {
+      "address": "0x805d7a74",
+      "bytes": 1
+    }
+  },
+  "historical": {
+    "closed": [
+      {
+        "row": 2976,
+        "fork_path": "src/pso/network/NetworkMessageTransport.cpp",
+        "comparison_path": "src/pso/network/NetworkMessageTransport.c",
+        "fork_blob": "02e0268851d3acc6cbcded991c72d9305350c224",
+        "historical_change_blocks": 42,
+        "detail": "The C transport has all three native OS queues, including their storage and SDK calls. Send, receive and flush use the shared packet descriptor and byte data. The original thread, timer, EXI send and channel callback paths retain their typed providers."
+      },
+      {
+        "row": 2980,
+        "fork_path": "src/pso/protocol/NetworkRuntime.cpp",
+        "comparison_path": "src/pso/network/NetworkThreadRuntime.c",
+        "fork_blob": "4124d3dc302aa78695bc87fe02761e5e34e6ea36",
+        "historical_change_blocks": 53,
+        "detail": "The startup owner initializes native thread, alarm, mutex, message queue and buffer slots. The thread callback and case-insensitive character helpers use their SDK and libc declarations. IPv6CP has native configure callbacks, frame I/O, local and peer options, and the same byte and word buffers. Both ARP callers load the signed 16-bit interface field into the existing word-sized dispatcher path."
+      }
+    ],
+    "scoped": {
+      "3004": "The latest source has exact C-callable copy stubs at both original assignment addresses. The native class operators previously recovered on 58ee62fc9a still need to be replayed over the current protocol owner."
+    },
+    "open_rows": 307
+  },
+  "fork_workspace": {
+    "trial": "e0a0a91ad53464cec62f24b31204a25343662e5d",
+    "overlay_paths": 130,
+    "archive_sha256": "8a11c6ff1dbfeda0779bd33cb8e9d55c708414d562815c877d548734a338e683",
+    "materialized_tree": "1db1957315d2e5cc41d444f529668137186a0df9",
+    "force_active": 27029
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "fork_source": "4fc1ed7afe9483df05b68f2dc6aec746edf05ec3",
+  "trial": "fbb2bc0a09f62ad7dda8c67792a64207c90a8e2d",
+  "previous_workspace": "fcbc58a6279a9289e4393cf2277eb311386ccdfd",
+  "overlay_paths": 130,
+  "force_active_count": 26963,
+  "adapted_patch_contexts": [
+    "src/pso/map/CsnQuery.cpp",
+    "src/pso/ui/charcreate/TObjCMName.cpp",
+    "src/pso/unk/text_803D96A8.cpp"
+  ],
+  "archive_sha256": "067aae9e1aca6646096158c1cbc4147fbce14bb5bcbe29bc2b48e8d0f9b65364",
+  "materialized_tree": "79e6d4da6ddd80aa1cb88372847090531283d5b8",
+  "validation": {
+    "layer": {
+      "head": "4fc1ed7afe9483df05b68f2dc6aec746edf05ec3",
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "linked_units": 2417,
+      "functions": 27572,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [],
+      "report_sha256": "42384ee54ec716043b0e9d476359d4e5b784061553bad4901e7711359928a46b",
+      "check_sha256": "3736861716902f640eba40abe737d0e9b32271a30a348403144a2566c25fb913"
+    },
+    "fade": {
+      "head": "5438eb321db26f2cc4f0bab9d41789d5a1b21d5f",
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "linked_units": 2417,
+      "functions": 27572,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x800F8090",
+          "before": "init_fadeout_state__6TLobbyFl",
+          "after": "init_fadeout_state__6TLobbyFPFv_v"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800F8144",
+          "before": "set_fade_params__6TLobbyFl",
+          "after": "set_fade_params__6TLobbyFPFv_v"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032BCBC",
+          "before": "dispatch_input_to_instance__18TAdEnterPasswordGCFi",
+          "after": "dispatch_input_to_instance__13TUnk_804EDAC0FP7TObject"
+        }
+      ],
+      "report_sha256": "60a9320afb2d0883bee5f601b2bef896161b4f037c898f92d01ef9b52124ce97",
+      "check_sha256": "645b0e8880a6581f8a68ec1dfca2d4e48deb0bdf3f7ddd201d826b7e0f76f2ef"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "d1ad0379d0d534372a2a15033514be642d1fa0224a1bdc8f4ed41f0eb0bc44a7"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "b725270ef4d662090fc2efd6cbb13ae08275d660203f914f4843b7817f43f4ab"
+    },
+    "host": {
+      "count": 5,
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "memory": {
+      "results": [
+        "PsoV3.dol: overlapping byte and word moves, raw allocation, and nullable releases passed.",
+        "psov3.dol: overlapping byte and word moves, raw allocation, and nullable releases passed.",
+        "psov3.dol: overlapping byte and word moves, raw allocation, and nullable releases passed."
+      ],
+      "log_sha256": "f8410c2cdd7490db74d7cabd02865b6019a5c95adc0724473b2cff83ae5ac3c5"
+    },
+    "footprint": {
+      "results": [
+        "PsoV3.dol: footprint GVM load, culling, texture binding and ordered release passed.",
+        "psov3.dol: footprint GVM load, culling, texture binding and ordered release passed.",
+        "psov3.dol: footprint GVM load, culling, texture binding and ordered release passed."
+      ],
+      "log_sha256": "8a31a4f4cfda091a8372aa9d78a6364ad3b588a72742cab67682eab6dedd30e5"
+    },
+    "scene": {
+      "results": [
+        "PsoV3.dol: screen fade transitions, logo callbacks, packed quad color and five defer queue outcomes passed.",
+        "psov3.dol: screen fade transitions, logo callbacks, packed quad color and five defer queue outcomes passed."
+      ],
+      "log_sha256": "2910759c75fa395332c330685b2cdd18403ff459097cfdbdfc11cd2bb10b0984"
+    }
+  },
+  "footstamp_probe_alias": "load_gvm_texture_file__FPCc = .text:0x801E4874; // type:function size:0x1D0"
+}

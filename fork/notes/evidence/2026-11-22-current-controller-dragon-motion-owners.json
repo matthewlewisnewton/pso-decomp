@@ -1,0 +1,594 @@
+{
+  "upstream_master": "e39eb9e13801cc5c2d298ca42c616731d3d06296",
+  "historical_fork": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "previous_cumulative": "98acbeca9791152639434d85b7bb50a509b53e3f",
+  "controller_source": "c8cfbd7c47d13c9cdc6d2e1aa29f81a38f79f5f9",
+  "cumulative": "5aef5f28b718de5d313b04758c01f1c909731a1f",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "source_report_sha256": "9aeb9925c6a11825f8627adc6d35603a2fa1045a2d0d5e4cc5b432645c568204",
+  "coverage": {
+    "source-check.json": "12117efc47b8ca97131cd05b3f400b410b8e6578c32c963dc43d59941b268f4b",
+    "private-check.json": "32b4051a8bc235b336030f70b7596e70985a7243fa45e98265a7cac8ce650132"
+  },
+  "historical_ledger_before": "2d5f98935cf1993d921fdfa9cab8097ee2f0d00cfbf73945190a3663f41f73df",
+  "historical_ledger_after": "5895bb4fab585fd0b34f97c8f939ae0fdb3ff1f296c3764285a43b86fce2f5e4",
+  "historical_comparisons_remaining": 192,
+  "owners": {
+    "src/pso/player/TObjPlayer_801A5AEC.cpp": {
+      "current_path": "src/pso/system/ControllerInput.cpp",
+      "historical_blob": "0b24c5092e03d3ee74eb2672b9086a6dc5e16898",
+      "current_blob": "5451c11708107061fcdfaa893eb6093192a2c55a",
+      "retained_functions": [
+        {
+          "address": "0x801a57c4",
+          "size": 12,
+          "old": "reset__16TKeyBoardControlFv",
+          "current": "reset__16TKeyBoardControlFv"
+        },
+        {
+          "address": "0x801a57d0",
+          "size": 124,
+          "old": "any_pad_input_active__16TKeyBoardControlFv",
+          "current": "any_pad_input_active__16TKeyBoardControlFv"
+        },
+        {
+          "address": "0x801a584c",
+          "size": 100,
+          "old": "check_reset_button__16TKeyBoardControlFv",
+          "current": "check_reset_button__16TKeyBoardControlFv"
+        },
+        {
+          "address": "0x801a58b0",
+          "size": 40,
+          "old": "TKeyBoardControl__sub_801A58B0",
+          "current": "TKeyBoardControl__sub_801A58B0"
+        },
+        {
+          "address": "0x801a58d8",
+          "size": 40,
+          "old": "TKeyBoardControl__sub_801A58D8",
+          "current": "TKeyBoardControl__sub_801A58D8"
+        },
+        {
+          "address": "0x801a5900",
+          "size": 76,
+          "old": "check_and_read__16TKeyBoardControlFl",
+          "current": "check_and_read__16TKeyBoardControlFl"
+        },
+        {
+          "address": "0x801a594c",
+          "size": 76,
+          "old": "read_input__16TKeyBoardControlFl",
+          "current": "read_input__16TKeyBoardControlFUc"
+        },
+        {
+          "address": "0x801a5998",
+          "size": 124,
+          "old": "is_key_down__16TKeyBoardControlFl",
+          "current": "is_key_down__16TKeyBoardControlFl"
+        },
+        {
+          "address": "0x801a5a14",
+          "size": 44,
+          "old": "update_state_from_input__16TKeyBoardControlFPv",
+          "current": "update_state_from_input__16TKeyBoardControlFPv"
+        },
+        {
+          "address": "0x801a5a40",
+          "size": 136,
+          "old": "check_input_angle__16TKeyBoardControlFv",
+          "current": "check_input_angle__19StickEscapeDetectorFv"
+        },
+        {
+          "address": "0x801a5ac8",
+          "size": 36,
+          "old": "init_stick_escape_detector__FPvPv",
+          "current": "init_stick_escape_detector__FP19StickEscapeDetectorPC22ControllerInputContext"
+        },
+        {
+          "address": "0x801a5aec",
+          "size": 20,
+          "old": "reset_fields__10TObjPlayerFv",
+          "current": "reset_fields__19StickEscapeDetectorFv"
+        },
+        {
+          "address": "0x801a5b00",
+          "size": 332,
+          "old": "get_ascii_key__16TKeyBoardControlFv",
+          "current": "get_ascii_key__16TKeyBoardControlFv"
+        },
+        {
+          "address": "0x801a5c4c",
+          "size": 520,
+          "old": "update_pad_recalibration",
+          "current": "update_pad_recalibration"
+        },
+        {
+          "address": "0x801a5e54",
+          "size": 76,
+          "old": "func_801A5E54__Fv",
+          "current": "func_801A5E54__Fv"
+        },
+        {
+          "address": "0x801a5ea0",
+          "size": 36,
+          "old": "read_key_checked__16TKeyBoardControlFUc",
+          "current": "read_key_checked__16TKeyBoardControlFUc"
+        },
+        {
+          "address": "0x801a5ec4",
+          "size": 88,
+          "old": "update_input_frame__16TKeyBoardControlFv",
+          "current": "update_input_frame__16TKeyBoardControlFv"
+        },
+        {
+          "address": "0x801a5f1c",
+          "size": 1524,
+          "old": "controller_stuff__Fv",
+          "current": "controller_stuff__Fv"
+        },
+        {
+          "address": "0x801a6510",
+          "size": 424,
+          "old": "bind_controller_devices",
+          "current": "bind_controller_devices"
+        },
+        {
+          "address": "0x801a66b8",
+          "size": 236,
+          "old": "reset_controller_input_state",
+          "current": "reset_controller_input_state"
+        },
+        {
+          "address": "0x801a67a4",
+          "size": 176,
+          "old": "copy_state__16TKeyBoardControlFPvPv",
+          "current": "copy_state__16TKeyBoardControlFPvPv"
+        },
+        {
+          "address": "0x801a6854",
+          "size": 188,
+          "old": "init_pad_state__16TKeyBoardControlFv",
+          "current": "init_pad_state__16TKeyBoardControlFv"
+        },
+        {
+          "address": "0x801a6910",
+          "size": 212,
+          "old": "poll_key_state__16TKeyBoardControlFv",
+          "current": "poll_key_state__22ControllerInputContextFv"
+        },
+        {
+          "address": "0x801a69e4",
+          "size": 68,
+          "old": "accumulate_key_bits__FlPl",
+          "current": "accumulate_key_bits__FlPUl"
+        },
+        {
+          "address": "0x801a6a28",
+          "size": 52,
+          "old": "fn_801A6A28",
+          "current": "fn_801A6A28"
+        },
+        {
+          "address": "0x801a6a5c",
+          "size": 152,
+          "old": "map_c_stick_to_buttons",
+          "current": "map_c_stick_to_buttons"
+        },
+        {
+          "address": "0x801a6af4",
+          "size": 152,
+          "old": "map_main_stick_to_buttons",
+          "current": "map_main_stick_to_buttons"
+        },
+        {
+          "address": "0x801a6b8c",
+          "size": 36,
+          "old": "update_button_hold_counter__FPvPvii",
+          "current": "update_button_hold_counter__FPvPvii"
+        },
+        {
+          "address": "0x801a6bb0",
+          "size": 316,
+          "old": "update_button_hold_counters",
+          "current": "update_button_hold_counters"
+        },
+        {
+          "address": "0x801a6cec",
+          "size": 20,
+          "old": "pack_color_bits__13TRaderMapCoreFll",
+          "current": "pack_color_bits__13TRaderMapCoreFll"
+        },
+        {
+          "address": "0x801a6d00",
+          "size": 16,
+          "old": "TRaderMapCore__sub_801A6D00",
+          "current": "TRaderMapCore__sub_801A6D00"
+        },
+        {
+          "address": "0x801a6d10",
+          "size": 16,
+          "old": "pack_flags__13TRaderMapCoreFii",
+          "current": "pack_flags__13TRaderMapCoreFii"
+        },
+        {
+          "address": "0x801a6d20",
+          "size": 64,
+          "old": "has_flag__13TRaderMapCoreFv",
+          "current": "test_flags_04_packed"
+        },
+        {
+          "address": "0x801a6d60",
+          "size": 64,
+          "old": "test_flag_4c__23TAdSinglePlyChrSelectGCFv",
+          "current": "test_controller_flag_4c_color"
+        },
+        {
+          "address": "0x801a6da0",
+          "size": 64,
+          "old": "TWindowShortListCtrl__check_controller_button",
+          "current": "test_pressed_buttons_packed"
+        },
+        {
+          "address": "0x801a6de0",
+          "size": 64,
+          "old": "is_flag_set__11TLoadingCurFv",
+          "current": "test_previous_buttons_color"
+        },
+        {
+          "address": "0x801a6e20",
+          "size": 64,
+          "old": "check_flag_0x48__14TAdSelectCurGCFv",
+          "current": "test_previous_buttons_remapped"
+        },
+        {
+          "address": "0x801a6e60",
+          "size": 64,
+          "old": "is_on_current_screen__11TCameraCtrlFv",
+          "current": "test_previous_buttons_packed"
+        },
+        {
+          "address": "0x801a6ea0",
+          "size": 76,
+          "old": "dispatch_draw_command__22TAdMultiPlyChrSelectGCFllll",
+          "current": "dispatch_draw_command__22TAdMultiPlyChrSelectGCFllll"
+        },
+        {
+          "address": "0x801a6eec",
+          "size": 76,
+          "old": "apply_packed_flags__13TRaderMapCoreFllll",
+          "current": "apply_packed_flags__13TRaderMapCoreFllll"
+        },
+        {
+          "address": "0x801a6f38",
+          "size": 76,
+          "old": "apply_choice__20TWindowChoiceSettingFllll",
+          "current": "test_buttons_press_or_repeat"
+        },
+        {
+          "address": "0x801a6f84",
+          "size": 116,
+          "old": "check_packed_flag_match",
+          "current": "check_packed_flag_match"
+        },
+        {
+          "address": "0x801a6ff8",
+          "size": 136,
+          "old": "input_press_or_repeat",
+          "current": "input_press_or_repeat"
+        },
+        {
+          "address": "0x801a7080",
+          "size": 72,
+          "old": "reset_state_block__10TObjPlayerFv",
+          "current": "reset_state_block__10TObjPlayerFv"
+        }
+      ],
+      "linked_data_bytes": 1336,
+      "source_review": "The former split\u2019s keyboard functions, pad banks and stick-escape detector live in the native controller layout. The 90-frame recalibration threshold and the four signed stick dead-zone thresholds use the existing compiler constant pool. The reset byte has one linked definition. The native declaration returns the retail register result, and the original callers test the signed low byte. Both byte-return trials changed retail code. Probe coverage includes reset gating, data byte extremes, pad routing, keyboard polling and stick escape."
+    },
+    "src/pso/boss/TBoss8Dragon_8002CC48.cpp": {
+      "current_path": "src/pso/boss/dragon/TObjBoss1MokoHill.cpp",
+      "historical_blob": "13d950bc235a4983b51f346d376799f808408bde",
+      "current_blob": "51533e0e932459d703e6e4c5fcf8667a71a7787b",
+      "retained_functions": [
+        {
+          "address": "0x8002cc48",
+          "size": 228,
+          "old": "run_task__22TObjBoss1MokoHill_SoloFv",
+          "current": "run_task__22TObjBoss1MokoHill_SoloFv"
+        },
+        {
+          "address": "0x8002cd2c",
+          "size": 8,
+          "old": "get_state__12TBoss8DragonFv",
+          "current": "get_source_position__22TObjBoss1MokoHill_SoloFv"
+        },
+        {
+          "address": "0x8002cd34",
+          "size": 88,
+          "old": "__dt__22TObjBoss1MokoHill_SoloFv",
+          "current": "__dt__22TObjBoss1MokoHill_SoloFv"
+        },
+        {
+          "address": "0x8002cd8c",
+          "size": 236,
+          "old": "TObjBoss1MokoHill_Solo__ct",
+          "current": "__ct__22TObjBoss1MokoHill_SoloFP7TObjectl"
+        },
+        {
+          "address": "0x8002ce78",
+          "size": 320,
+          "old": "render__23TObjBoss1MokoHill_SoloMFv",
+          "current": "render__23TObjBoss1MokoHill_SoloMFv"
+        },
+        {
+          "address": "0x8002cfb8",
+          "size": 848,
+          "old": "run_task__23TObjBoss1MokoHill_SoloMFv",
+          "current": "run_task__23TObjBoss1MokoHill_SoloMFv"
+        },
+        {
+          "address": "0x8002d308",
+          "size": 28,
+          "old": "is_dragon_trail_damaging__FPUc",
+          "current": "is_dragon_trail_damaging__23TObjBoss1MokoHill_SoloMFv"
+        },
+        {
+          "address": "0x8002d324",
+          "size": 52,
+          "old": "set_field_3c__23TObjBoss1MokoHill_SoloMFv",
+          "current": "start_without_hold__23TObjBoss1MokoHill_SoloMFv"
+        },
+        {
+          "address": "0x8002d358",
+          "size": 12,
+          "old": "set_field_1c__23TObjBoss1MokoHill_SoloMFv",
+          "current": "start__23TObjBoss1MokoHill_SoloMFv"
+        },
+        {
+          "address": "0x8002d364",
+          "size": 96,
+          "old": "spawn_child_object__23TObjBoss1MokoHill_SoloMFv",
+          "current": "stop__23TObjBoss1MokoHill_SoloMFv"
+        },
+        {
+          "address": "0x8002d3c4",
+          "size": 88,
+          "old": "__dt__23TObjBoss1MokoHill_SoloMFv",
+          "current": "__dt__23TObjBoss1MokoHill_SoloMFv"
+        },
+        {
+          "address": "0x8002d41c",
+          "size": 164,
+          "old": "TObjBoss1MokoHill_SoloM__ct",
+          "current": "__ct__23TObjBoss1MokoHill_SoloMFP7TObjectP3VecPl"
+        },
+        {
+          "address": "0x8002d4c0",
+          "size": 192,
+          "old": "update_dragon_trail_uvs",
+          "current": "update_dragon_trail_uvs__FP3Vec"
+        },
+        {
+          "address": "0x8002d580",
+          "size": 120,
+          "old": "free_resources__12TBoss8DragonFv",
+          "current": "free_resources__23TObjBoss1MokoHill_SoloMFv"
+        },
+        {
+          "address": "0x8002d5f8",
+          "size": 1268,
+          "old": "TBoss8Dragon__sub_8002D5F8",
+          "current": "load_resources__23TObjBoss1MokoHill_SoloMFv"
+        },
+        {
+          "address": "0x8002daec",
+          "size": 24,
+          "old": "TBoss8Dragon__sub_8002DAEC",
+          "current": "get_strips__12Unk_8002DB7CFv"
+        },
+        {
+          "address": "0x8002db04",
+          "size": 12,
+          "old": "TBoss8Dragon__sub_8002DB04",
+          "current": "get_vertices__12Unk_8002DB7CFv"
+        },
+        {
+          "address": "0x8002db10",
+          "size": 108,
+          "old": "destroy__12TBoss8DragonFPvs",
+          "current": "__dt__12Unk_8002DB7CFv"
+        },
+        {
+          "address": "0x8002db7c",
+          "size": 568,
+          "old": "init_grid_mesh__12TBoss8DragonFPviiiPv",
+          "current": "__ct__12Unk_8002DB7CFlllPs"
+        },
+        {
+          "address": "0x8002ddb4",
+          "size": 40,
+          "old": "apply_default_velocity_scale__FP3Vec",
+          "current": "apply_default_velocity_scale__FP3Vec"
+        },
+        {
+          "address": "0x8002dddc",
+          "size": 212,
+          "old": "apply_velocity_scale__FP3Vecff",
+          "current": "apply_velocity_scale__FP3Vecff"
+        },
+        {
+          "address": "0x8002deb0",
+          "size": 120,
+          "old": "lerp__9TDeadSpotFff",
+          "current": "lerp__9TDeadSpotFff"
+        },
+        {
+          "address": "0x8002df28",
+          "size": 84,
+          "old": "rand_signed_unit",
+          "current": "rand_signed_unit"
+        }
+      ],
+      "linked_data_bytes": 334,
+      "source_review": "The two Moko Hill classes keep their native constructors, task and render slots. The grid owns allocation, access and teardown, with the original vertex, raised-vertex and UV sizes checked. Grid and strip generation, borrowed pose pointers, lifetime, random interpolation and the two renderer passes are linked from the original slots. The arena texture list stays typed at both loads, the crater, floor, rock and Moko Hill draws, and teardown. The source uses the upstream trail names and shared BML and Ginja types."
+    },
+    "src/pso/misc/TCameraCtrl_803D749C.cpp": {
+      "current_path": "src/pso/animation/MotionContext.cpp",
+      "historical_blob": "8a116ca2e94465cf678cb593b733ba56023a95bb",
+      "current_blob": "83c9caceb22c20a1c7f05675238286ce50d59000",
+      "retained_functions": [
+        {
+          "address": "0x803d749c",
+          "size": 104,
+          "old": "bind_motion_blend_channels",
+          "current": "bind_motion_blend_channels__FP15NJS_MOTION_LINKf"
+        },
+        {
+          "address": "0x803d7504",
+          "size": 432,
+          "old": "blend_motion_poses__FPvPvPvPvPv",
+          "current": "blend_motion_poses__FP10NJS_OBJECTPfPlPfPf"
+        },
+        {
+          "address": "0x803d76b4",
+          "size": 140,
+          "old": "apply_motion_node_transform__10TObjPlayerFv",
+          "current": "apply_motion_node_transform__FP10NJS_OBJECT"
+        },
+        {
+          "address": "0x803d7740",
+          "size": 68,
+          "old": "set_motion_row_stride__Fl",
+          "current": "set_motion_row_stride__Fl"
+        },
+        {
+          "address": "0x803d7784",
+          "size": 60,
+          "old": "advance_motion_row__Fv",
+          "current": "advance_motion_row__Fv"
+        },
+        {
+          "address": "0x803d77c0",
+          "size": 232,
+          "old": "select_motion_sampler__FPlf",
+          "current": "select_motion_sampler__FPC10NJS_MOTIONf"
+        },
+        {
+          "address": "0x803d78a8",
+          "size": 24,
+          "old": "select_motion_context__Fl",
+          "current": "select_motion_context__Fl"
+        },
+        {
+          "address": "0x803d78c0",
+          "size": 64,
+          "old": "find_motion_key_partition_u32__FPUcUlUlUl",
+          "current": "find_motion_key_partition_u32__FPCvUlUlUl"
+        },
+        {
+          "address": "0x803d7900",
+          "size": 64,
+          "old": "find_motion_key_partition_u16__FPUcUlUlUl",
+          "current": "find_motion_key_partition_u16__FPCvUlUlUl"
+        },
+        {
+          "address": "0x803d7940",
+          "size": 276,
+          "old": "find_motion_key_interval_u16__FPUcUlUlfPPUsPPUsPf",
+          "current": "find_motion_key_interval_u16__FPCvUlUlfPvPvPf"
+        },
+        {
+          "address": "0x803d7a54",
+          "size": 276,
+          "old": "find_motion_key_interval__FPvllfPvPvPv",
+          "current": "find_motion_key_interval__FPCvUlUlfPvPvPf"
+        },
+        {
+          "address": "0x803d7b68",
+          "size": 72,
+          "old": "bind_motion_context",
+          "current": "bind_motion_context__FP10NJS_MOTIONf"
+        },
+        {
+          "address": "0x803d7bb0",
+          "size": 244,
+          "old": "bind_motion_channel_samplers__Fif",
+          "current": "bind_motion_channel_samplers__FPC10NJS_MOTIONf"
+        },
+        {
+          "address": "0x803d7ca4",
+          "size": 140,
+          "old": "compose_motion_node_matrix",
+          "current": "compose_motion_node_matrix__FPv"
+        },
+        {
+          "address": "0x803d7d30",
+          "size": 672,
+          "old": "sample_motion_node_transform__FPvPvPvPvPv",
+          "current": "sample_motion_node_transform__FP10NJS_OBJECTPfPlPfPf"
+        },
+        {
+          "address": "0x803d7fd0",
+          "size": 8,
+          "old": "TObjPlayer__sub_803D7FD0",
+          "current": "sample_absent_vector_channel__FPv"
+        },
+        {
+          "address": "0x803d7fd8",
+          "size": 8,
+          "old": "TObjPlayer__sub_803D7FD8",
+          "current": "sample_absent_angle_channel__FPv"
+        },
+        {
+          "address": "0x803d7fe0",
+          "size": 40,
+          "old": "convert_color_f32_to_u8",
+          "current": "convert_color_f32_to_u8"
+        },
+        {
+          "address": "0x803d8008",
+          "size": 40,
+          "old": "convert_color_u8_to_f32",
+          "current": "convert_color_u8_to_f32"
+        }
+      ],
+      "linked_data_bytes": 256,
+      "source_review": "The owner is upstream\u2019s MotionContext. It binds the native motion and channel samplers, keeps the blend complement at 1.0, and retains the two color conversion instruction bodies. The old extra camera and sampling declarations referred to neighboring owners, whose native interfaces are in MotionSampling, GinjaView, GinjaScreen and GinjaPerspective. The original sampler tables, alignment, context data and compiler-local constant remain exact."
+    }
+  },
+  "data_inventory": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0,
+    "ranges": 90
+  },
+  "source_quality": {
+    "total": {
+      "base": 153356,
+      "head": 153324,
+      "added": 28,
+      "removed": 60
+    },
+    "label_changes": [],
+    "retention": []
+  },
+  "probes": {
+    "reset_cases": 40,
+    "dragon_lifetimes": 2,
+    "images": 3,
+    "controller_and_keyboard_images": 3,
+    "sha256": "73c35ea499ceef9cb2b6873ff60f987fb7b1669f80157d15ae3db05d53d7ace6",
+    "keyboard_sha256": "667c6cc3cb1bf4f10533a7359b28e46515523468a5ef228e6a2159d8c90774ea"
+  },
+  "fork_workspace": {
+    "materialized_tree": "4de3dbd90f13355a11fc4e277d09893ca4271b42",
+    "paths": 130,
+    "tests": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    }
+  }
+}

@@ -1,0 +1,1078 @@
+{
+  "upstream_master": "0fa391a887c664abadc00cba75db1f039aceb647",
+  "historical_donor_base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical_weapon_batch": "d71a8453c9ab01ef718f596bc173f89abd4559e6",
+  "replay_base": "4da1fa300a0c135613846ea8ad45c3aa34c9a2ed",
+  "replay_head": "dca722cfd273f75c9cf14500373001ca079b64a5",
+  "replay_tree": "1c666b7769f78cddd489638fb21992ddd2fe6217",
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/effect/item/TItemEffArmor.h",
+    "include/pso/effect/item/TItemEffPG.h",
+    "include/pso/item/ItemCreateFunction.h",
+    "include/pso/item/TItemData.h",
+    "include/pso/item/TItemEquipBase.h",
+    "include/pso/item/TItemLoad.h",
+    "include/pso/item/TItemMoney.h",
+    "include/pso/item/TItemObject.h",
+    "include/pso/item/TItemTexLoad.h",
+    "include/pso/item/TUnk_8049F770.h",
+    "include/pso/item/TUnk_8049F828.h",
+    "include/pso/item/TUnk_8049FE00.h",
+    "include/pso/item/TUnk_8049FED0.h",
+    "include/pso/item/TUnk_804E355C.h",
+    "include/pso/item/TUnk_804EDD44.h",
+    "include/pso/item/TUnk_804F0BF0.h",
+    "include/pso/item/TUnk_804F0C48.h",
+    "include/pso/item/TUnk_804F0D34.h",
+    "include/pso/item/TUnk_804F0FF0.h",
+    "include/pso/item/TUnk_804F112C.h",
+    "include/pso/object/base/TObjMotion.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/player/TObjPlayer_80120FC4.h",
+    "include/pso/player/TObjPlayer_80121010.h",
+    "include/pso/player/TObjPlayer_80125780.h",
+    "include/pso/player/TObjPlayer_80307618.h",
+    "include/pso/player/TObjPlayer_80362E60.h",
+    "include/pso/render/GvmTextureArchive.h",
+    "include/pso/system/NinjaChunk.h",
+    "include/pso/unk/TLobby_801E2F94.h",
+    "include/pso/unk/TUnk_804CCB28.h",
+    "include/pso/unk/text_80125428.h",
+    "include/pso/unk/text_80126740.h",
+    "include/pso/unk/text_80126A34.h",
+    "include/pso/unk/text_80128308.h",
+    "include/pso/unk/text_80128440.h",
+    "include/pso/unk/text_80129AB0.h",
+    "include/pso/unk/text_80129D18.h",
+    "include/pso/unk/text_8012AE50.h",
+    "include/pso/unk/text_8012C268.h",
+    "include/pso/unk/text_80355C1C.h",
+    "include/pso/unk/text_8035D444.h",
+    "include/pso/weapon/SpecialProjectileWeapons.h",
+    "include/pso/weapon/TItemAttackCol.h",
+    "include/pso/weapon/TItemWeapon.h",
+    "include/pso/weapon/TItemWeaponMechgun.h",
+    "include/pso/weapon/TUnk_804A07C0.h",
+    "include/pso/weapon/TUnk_804A0CB8.h",
+    "include/pso/weapon/TUnk_804A0EA8.h",
+    "include/pso/weapon/TUnk_804A0FA0.h",
+    "include/pso/weapon/TUnk_804A1098.h",
+    "include/pso/weapon/TUnk_804A1190.h",
+    "include/pso/weapon/TUnk_804A1478.h",
+    "include/pso/weapon/TUnk_804A1A48.h",
+    "include/pso/weapon/TUnk_804A1B40.h",
+    "include/pso/weapon/TUnk_804A1C38.h",
+    "include/pso/weapon/TUnk_804A1E28.h",
+    "include/pso/weapon/TUnk_804A1F20.h",
+    "include/pso/weapon/TUnk_804A2868.h",
+    "include/pso/weapon/TUnk_804A2960.h",
+    "include/pso/weapon/TUnk_804A2C90.h",
+    "include/pso/weapon/TUnk_804A3070.h",
+    "include/pso/weapon/TUnk_804A3168.h",
+    "include/pso/weapon/TUnk_804A3260.h",
+    "include/pso/weapon/TUnk_804A3358.h",
+    "include/pso/weapon/TUnk_804A3738.h",
+    "include/pso/weapon/TUnk_804A3F20.h",
+    "include/pso/weapon/TUnk_804A4238.h",
+    "include/pso/weapon/TUnk_804A4338.h",
+    "include/pso/weapon/TUnk_804A4748.h",
+    "include/pso/weapon/TUnk_804A4A88.h",
+    "include/pso/weapon/TUnk_804A4B80.h",
+    "include/pso/weapon/TUnk_804A4D70.h",
+    "include/pso/weapon/TUnk_804A4F60.h",
+    "include/pso/weapon/TUnk_804A5248.h",
+    "include/pso/weapon/TUnk_804A5458.h",
+    "include/pso/weapon/TUnk_804A5550.h",
+    "include/pso/weapon/TUnk_804A5648.h",
+    "include/pso/weapon/TUnk_804A5740.h",
+    "include/pso/weapon/TUnk_804A5838.h",
+    "include/pso/weapon/TUnk_804A5930.h",
+    "include/pso/weapon/TUnk_804A5B20.h",
+    "include/pso/weapon/TUnk_804A5C18.h",
+    "include/pso/weapon/TUnk_804A5D28.h",
+    "include/pso/weapon/TUnk_804A6108.h",
+    "include/pso/weapon/TUnk_804A6200.h",
+    "include/pso/weapon/TUnk_804A62F8.h",
+    "include/pso/weapon/TUnk_804A66D8.h",
+    "include/pso/weapon/TUnk_804A68C8.h",
+    "include/pso/weapon/TUnk_804A69DC.h",
+    "include/pso/weapon/TUnk_804A6AD8.h",
+    "include/pso/weapon/TUnk_804A6BD0.h",
+    "include/pso/weapon/TUnk_804A6CC8.h",
+    "include/pso/weapon/TUnk_804A6DC0.h",
+    "include/pso/weapon/TUnk_804E1BB0.h",
+    "include/pso/weapon/TUnk_804E24F0.h",
+    "include/pso/weapon/TUnk_804ECDC0.h",
+    "include/pso/weapon/TUnk_804ECFB0.h",
+    "include/pso/weapon/TUnk_804ED1A0.h",
+    "include/pso/weapon/TUnk_804ED488.h",
+    "include/pso/weapon/TUnk_804EDC28.h",
+    "include/pso/weapon/TUnk_804F0AF8.h",
+    "include/pso/weapon/TUnk_804F1320.h",
+    "include/pso/weapon/TUnk_804F26E0.h",
+    "include/pso/weapon/TUnk_804F28E0.h",
+    "include/pso/weapon/WeaponEffectDescriptor.h",
+    "include/pso/weapon/shoot/TItemShootModel.h",
+    "src/pso/boss/olgaflow/TBoss6Thanks.cpp",
+    "src/pso/effect/item/TItemEffArmor.cpp",
+    "src/pso/effect/item/TItemEffPG.cpp",
+    "src/pso/effect/item/TItemEffPG_8034EFDC.cpp",
+    "src/pso/effect/item/TItemEffPG_8034F470.cpp",
+    "src/pso/effect/item/TItemWpnCardEffect.cpp",
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGueMissile.cpp",
+    "src/pso/item/TItem.cpp",
+    "src/pso/item/TItemLoad.cpp",
+    "src/pso/item/TItemMoney.cpp",
+    "src/pso/item/TItemObject.cpp",
+    "src/pso/item/TItemReverseTech.cpp",
+    "src/pso/item/TItemTexLoad.cpp",
+    "src/pso/item/TUnk_8049F770.cpp",
+    "src/pso/item/TUnk_8049F828.cpp",
+    "src/pso/item/TUnk_8049FE00.cpp",
+    "src/pso/item/TUnk_8049FED0.cpp",
+    "src/pso/item/TUnk_804F0C48.cpp",
+    "src/pso/item/TUnk_804F0D34.cpp",
+    "src/pso/item/TUnk_804F0FF0.cpp",
+    "src/pso/item/TUnk_804F112C.cpp",
+    "src/pso/player/TObjPlayer_8023E480.cpp",
+    "src/pso/player/TObjPlayer_802D5174.cpp",
+    "src/pso/player/TObjPlayer_80307618.cpp",
+    "src/pso/player/TObjPlayer_803083B0.cpp",
+    "src/pso/player/TObjPlayer_80355A58.cpp",
+    "src/pso/player/TObjPlayer_80357734.cpp",
+    "src/pso/player/TObjPlayer_80357B2C.cpp",
+    "src/pso/player/TObjPlayer_80362E60.cpp",
+    "src/pso/player/TObjPlayer_80363BE0.cpp",
+    "src/pso/player/TUnk_804A2548.cpp",
+    "src/pso/technique/TTecRaFoie.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C8E0.cpp",
+    "src/pso/unk/TLobby_8001EF5C.cpp",
+    "src/pso/unk/TLobby_800F8AA8.cpp",
+    "src/pso/unk/TLobby_80104374.cpp",
+    "src/pso/unk/TLobby_801E2F94.cpp",
+    "src/pso/unk/TLobby_801E43E4.cpp",
+    "src/pso/unk/TLobby_803382E4.cpp",
+    "src/pso/unk/text_800FA464.cpp",
+    "src/pso/unk/text_80308294.cpp",
+    "src/pso/unk/text_80308328.cpp",
+    "src/pso/unk/text_80355C1C.cpp",
+    "src/pso/unk/text_80357058.cpp",
+    "src/pso/unk/text_8035D444.cpp",
+    "src/pso/unk/text_803DD5E0.cpp",
+    "src/pso/weapon/SpecialProjectileWeapons.cpp",
+    "src/pso/weapon/SpecialProjectileWeapons_80124760.cpp",
+    "src/pso/weapon/TItemAttackCol.cpp",
+    "src/pso/weapon/TItemWeapon.cpp",
+    "src/pso/weapon/TItemWeaponFist.cpp",
+    "src/pso/weapon/TItemWeaponMechgun.cpp",
+    "src/pso/weapon/TUnk_804A07C0.cpp",
+    "src/pso/weapon/TUnk_804A08B8.cpp",
+    "src/pso/weapon/TUnk_804A09B0.cpp",
+    "src/pso/weapon/TUnk_804A0AC4.cpp",
+    "src/pso/weapon/TUnk_804A0BC0.cpp",
+    "src/pso/weapon/TUnk_804A0CB8.cpp",
+    "src/pso/weapon/TUnk_804A0DB0.cpp",
+    "src/pso/weapon/TUnk_804A0EA8.cpp",
+    "src/pso/weapon/TUnk_804A0FA0.cpp",
+    "src/pso/weapon/TUnk_804A1098.cpp",
+    "src/pso/weapon/TUnk_804A1190.cpp",
+    "src/pso/weapon/TUnk_804A1288.cpp",
+    "src/pso/weapon/TUnk_804A1380.cpp",
+    "src/pso/weapon/TUnk_804A1478.cpp",
+    "src/pso/weapon/TUnk_804A1570.cpp",
+    "src/pso/weapon/TUnk_804A1668.cpp",
+    "src/pso/weapon/TUnk_804A1760.cpp",
+    "src/pso/weapon/TUnk_804A1858.cpp",
+    "src/pso/weapon/TUnk_804A1950.cpp",
+    "src/pso/weapon/TUnk_804A1A48.cpp",
+    "src/pso/weapon/TUnk_804A1B40.cpp",
+    "src/pso/weapon/TUnk_804A1C38.cpp",
+    "src/pso/weapon/TUnk_804A1D30.cpp",
+    "src/pso/weapon/TUnk_804A1E28.cpp",
+    "src/pso/weapon/TUnk_804A1F20.cpp",
+    "src/pso/weapon/TUnk_804A2260.cpp",
+    "src/pso/weapon/TUnk_804A2358.cpp",
+    "src/pso/weapon/TUnk_804A2450.cpp",
+    "src/pso/weapon/TUnk_804A2678.cpp",
+    "src/pso/weapon/TUnk_804A2770.cpp",
+    "src/pso/weapon/TUnk_804A2868.cpp",
+    "src/pso/weapon/TUnk_804A2960.cpp",
+    "src/pso/weapon/TUnk_804A2A58.cpp",
+    "src/pso/weapon/TUnk_804A2C90.cpp",
+    "src/pso/weapon/TUnk_804A2E80.cpp",
+    "src/pso/weapon/TUnk_804A2F78.cpp",
+    "src/pso/weapon/TUnk_804A3070.cpp",
+    "src/pso/weapon/TUnk_804A3168.cpp",
+    "src/pso/weapon/TUnk_804A3358.cpp",
+    "src/pso/weapon/TUnk_804A3450.cpp",
+    "src/pso/weapon/TUnk_804A3548.cpp",
+    "src/pso/weapon/TUnk_804A3640.cpp",
+    "src/pso/weapon/TUnk_804A3738.cpp",
+    "src/pso/weapon/TUnk_804A3830.cpp",
+    "src/pso/weapon/TUnk_804A3928.cpp",
+    "src/pso/weapon/TUnk_804A3A20.cpp",
+    "src/pso/weapon/TUnk_804A3B20.cpp",
+    "src/pso/weapon/TUnk_804A3C20.cpp",
+    "src/pso/weapon/TUnk_804A3D20.cpp",
+    "src/pso/weapon/TUnk_804A3E20.cpp",
+    "src/pso/weapon/TUnk_804A3F20.cpp",
+    "src/pso/weapon/TUnk_804A403C.cpp",
+    "src/pso/weapon/TUnk_804A4138.cpp",
+    "src/pso/weapon/TUnk_804A4238.cpp",
+    "src/pso/weapon/TUnk_804A4338.cpp",
+    "src/pso/weapon/TUnk_804A444C.cpp",
+    "src/pso/weapon/TUnk_804A4548.cpp",
+    "src/pso/weapon/TUnk_804A4648.cpp",
+    "src/pso/weapon/TUnk_804A4748.cpp",
+    "src/pso/weapon/TUnk_804A4848.cpp",
+    "src/pso/weapon/TUnk_804A4948.cpp",
+    "src/pso/weapon/TUnk_804A4A88.cpp",
+    "src/pso/weapon/TUnk_804A4B80.cpp",
+    "src/pso/weapon/TUnk_804A4C78.cpp",
+    "src/pso/weapon/TUnk_804A4D70.cpp",
+    "src/pso/weapon/TUnk_804A4E68.cpp",
+    "src/pso/weapon/TUnk_804A4F60.cpp",
+    "src/pso/weapon/TUnk_804A5058.cpp",
+    "src/pso/weapon/TUnk_804A5150.cpp",
+    "src/pso/weapon/TUnk_804A5248.cpp",
+    "src/pso/weapon/TUnk_804A535C.cpp",
+    "src/pso/weapon/TUnk_804A5458.cpp",
+    "src/pso/weapon/TUnk_804A5550.cpp",
+    "src/pso/weapon/TUnk_804A5648.cpp",
+    "src/pso/weapon/TUnk_804A5740.cpp",
+    "src/pso/weapon/TUnk_804A5838.cpp",
+    "src/pso/weapon/TUnk_804A5930.cpp",
+    "src/pso/weapon/TUnk_804A5A28.cpp",
+    "src/pso/weapon/TUnk_804A5B20.cpp",
+    "src/pso/weapon/TUnk_804A5C18.cpp",
+    "src/pso/weapon/TUnk_804A5D28.cpp",
+    "src/pso/weapon/TUnk_804A5E20.cpp",
+    "src/pso/weapon/TUnk_804A5F18.cpp",
+    "src/pso/weapon/TUnk_804A6010.cpp",
+    "src/pso/weapon/TUnk_804A6108.cpp",
+    "src/pso/weapon/TUnk_804A6200.cpp",
+    "src/pso/weapon/TUnk_804A62F8.cpp",
+    "src/pso/weapon/TUnk_804A63F0.cpp",
+    "src/pso/weapon/TUnk_804A64E8.cpp",
+    "src/pso/weapon/TUnk_804A65E0.cpp",
+    "src/pso/weapon/TUnk_804A66D8.cpp",
+    "src/pso/weapon/TUnk_804A67D0.cpp",
+    "src/pso/weapon/TUnk_804A68C8.cpp",
+    "src/pso/weapon/TUnk_804A69DC.cpp",
+    "src/pso/weapon/TUnk_804A6AD8.cpp",
+    "src/pso/weapon/TUnk_804A6BD0.cpp",
+    "src/pso/weapon/TUnk_804A6CC8.cpp",
+    "src/pso/weapon/TUnk_804A6DC0.cpp",
+    "src/pso/weapon/TUnk_804E24F0.cpp",
+    "src/pso/weapon/TUnk_804ECDC0.cpp",
+    "src/pso/weapon/TUnk_804ECEB8.cpp",
+    "src/pso/weapon/TUnk_804ECFB0.cpp",
+    "src/pso/weapon/TUnk_804ED0A8.cpp",
+    "src/pso/weapon/TUnk_804ED1A0.cpp",
+    "src/pso/weapon/TUnk_804ED298.cpp",
+    "src/pso/weapon/TUnk_804ED390.cpp",
+    "src/pso/weapon/TUnk_804ED488.cpp",
+    "src/pso/weapon/TUnk_804F26E0.cpp",
+    "src/pso/weapon/TUnk_804F28E0.cpp",
+    "src/pso/weapon/WeaponAttackActions.cpp",
+    "src/pso/weapon/shoot/TItemShoot.cpp"
+  ],
+  "replay_coverage_losses": {
+    "regressions": 0,
+    "data_regressions": 0,
+    "data_coverage_lost": 0,
+    "padding_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0,
+    "missing_functions": 0,
+    "failures": 0
+  },
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "exact_linked_units": 2448,
+  "changed_linker_labels": [
+    {
+      "module": "psov3",
+      "address": "0x8010F8A4",
+      "before": "begin_load_if_pending__24ItemTextureArchiveLoaderFP11NJS_TEXLISTl",
+      "after": "begin_load_if_pending__24ItemTextureArchiveLoaderFP16GinjaTextureListl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8010FD80",
+      "before": "decompress_buffer__9TItemLoadFUl",
+      "after": "decompress_buffer__9TItemLoadFPv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80110154",
+      "before": "get_data_entry__9TItemLoadFlPl",
+      "after": "get_item_texture_list__9TItemLoadFlPP16GinjaTextureList"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80110190",
+      "before": "lookup_item_data__9TItemLoadFlPl",
+      "after": "get_item_model__9TItemLoadFlPP10NJS_OBJECT"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801101CC",
+      "before": "get_item_params__9TItemLoadFPlPlPl",
+      "after": "get_armor_effect_model__9TItemLoadFPP10NJS_OBJECTPP16GinjaTextureListPP15AnimationMotion"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80110240",
+      "before": "get_model_ids__9TItemLoadFUcPlPl",
+      "after": "get_drop_model__9TItemLoadFUcPP10NJS_OBJECTPP16GinjaTextureList"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80115D10",
+      "before": "create__10TItemMoneyFP9TItemData",
+      "after": "create__10TItemMoneyFPUc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8011EAB8",
+      "before": "spawn_pg_effect__13TUnk_804F1320FPvlf",
+      "after": "spawn_pg_effect__13TUnk_804F1320FPC3Veclf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8011ED74",
+      "before": "fill_status_info__11TItemWeaponFPv",
+      "after": "fill_status_info__11TItemWeaponFP10S_802E451C"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8011FBCC",
+      "before": "draw_status_icons__10TObjPlayerFPvPv",
+      "after": "sample_dual_muzzles__11TItemWeaponFP3VecP3Vec"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801208E0",
+      "before": "get_gun_point__11TItemWeaponFPv",
+      "after": "get_gun_point__11TItemWeaponFP3Vec"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801218D4",
+      "before": "create_state_34__10TObjPlayerFl",
+      "after": "create_state_34__10TObjPlayerFPUc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80122148",
+      "before": "create_state_vector_state__10TObjPlayerFl",
+      "after": "create_state_vector_state__10TObjPlayerFPUc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80122388",
+      "before": "create_guld_milla__Fl",
+      "after": "create_guld_milla__FPUc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80122FEC",
+      "before": "create_state_513__10TObjPlayerFl",
+      "after": "create_state_513__10TObjPlayerFPUc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80123C50",
+      "before": "create_state__10TObjPlayerFl",
+      "after": "create_state__10TObjPlayerFPUc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80125944",
+      "before": "create_panzer_faust__Fl",
+      "after": "create_panzer_faust__FPUc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80126E50",
+      "before": "create_shot_effect_state__10TObjPlayerFl",
+      "after": "create_shot_effect_state__10TObjPlayerFPUc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80126FE4",
+      "before": "create_effect_state__10TObjPlayerFl",
+      "after": "create_effect_state__10TObjPlayerFPUc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80128268",
+      "before": "create_shot_params_state__10TObjPlayerFl",
+      "after": "create_shot_params_state__10TObjPlayerFPUc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801289C0",
+      "before": "create_variant__10TObjPlayerFl",
+      "after": "create_variant__10TObjPlayerFPUc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80128FF0",
+      "before": "create_event_callbacks_state__10TObjPlayerFl",
+      "after": "create_event_callbacks_state__10TObjPlayerFPUc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80129118",
+      "before": "sub_80129118__15TItemShootModelFll",
+      "after": "set_render_model__15TItemShootModelFP10NJS_OBJECTP16GinjaTextureList"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80129AB0",
+      "before": "create_s_rank_shot__Fl",
+      "after": "create_s_rank_shot__FPUc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80129D18",
+      "before": "create_s_rank_bazooka__Fl",
+      "after": "create_s_rank_bazooka__FPUc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8012A1CC",
+      "before": "create_action__10TObjPlayerFl",
+      "after": "create_action__10TObjPlayerFPUc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8012A418",
+      "before": "create_state_8012a418__10TObjPlayerFl",
+      "after": "create_state_8012a418__10TObjPlayerFPUc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8012AE50",
+      "before": "create_heaven_punisher__Fl",
+      "after": "create_heaven_punisher__FPUc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8012C8F8",
+      "before": "create_trade_action_state__10TObjPlayerFl",
+      "after": "create_trade_action_state__10TObjPlayerFPUc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8012FAB0",
+      "before": "create_effect_object__10TObjPlayerFl",
+      "after": "create_effect_object__10TObjPlayerFPUc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8012FCF8",
+      "before": "create_twin_psychogun__Fl",
+      "after": "create_twin_psychogun__FPUc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8012FF8C",
+      "before": "create_fields_state__10TObjPlayerFl",
+      "after": "create_fields_state__10TObjPlayerFPUc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80130720",
+      "before": "create_state_35_alt__10TObjPlayerFl",
+      "after": "create_state_35_alt__10TObjPlayerFPUc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802E3C4C",
+      "before": "vfunc_6__14TItemAttackColFPl",
+      "after": "vfunc_6__14TItemAttackColFP12ActorBodyHit"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802E40AC",
+      "before": "__ct__14TItemAttackColFP7TObjectP10S_802E449C",
+      "after": "__ct__14TItemAttackColFP7TObjectP13Desc_8011E5C4"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802E4454",
+      "before": "create__14TItemAttackColFPvPv",
+      "after": "create__14TItemAttackColFP7TObjectP13Desc_8011E5C4"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802E456C",
+      "before": "resolve_attack_col_hit__13TUnk_804E355CFPUc",
+      "after": "resolve_attack_col_hit__13TUnk_804E355CFP12ActorBodyHit"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802E4778",
+      "before": "vfunc_6__13TUnk_804E355CFPl",
+      "after": "vfunc_6__13TUnk_804E355CFP12ActorBodyHit"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802E4798",
+      "before": "try_add_hit_target__13TUnk_804E355CFPv",
+      "after": "try_add_hit_target__13TUnk_804E355CFPC12ActorBodyHit"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802E4904",
+      "before": "copy_pos__14TItemAttackColFPv",
+      "after": "copy_actor_body_hit"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8034F7B8",
+      "before": "create_gi_gue_bazooka__10TObjPlayerFl",
+      "after": "create_gi_gue_bazooka__10TObjPlayerFPUc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8034FCF0",
+      "before": "TItemEffPG__visual_ct",
+      "after": "__ct__13TUnk_804F0BF0FP10TItemEffPGP10S_8035016C"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8034FE6C",
+      "before": "create__10TItemEffPGFPvPvPv",
+      "after": "create__10TItemEffPGFP7TObjectP10S_8035016Cl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80350124",
+      "before": "create__10TItemEffPGFPvPv",
+      "after": "create__10TItemEffPGFP7TObjectP10S_8035016C"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80355BA0",
+      "before": "photon_field_weapon_ct",
+      "after": "__ct__13TUnk_804F1320FP7TObjectPUc"
+    }
+  ],
+  "replay_report_sha256": "07c164e720f5152449337161eddfb37cab45fb62bf533dadb2db08776b8e5726",
+  "replay_check_sha256": "a1dc3634b399ebad7bca8f5c8b6cf28b83802ba44ad020670d2db6e0740000e1",
+  "original_data_inventory": {
+    "ranges": 90,
+    "bytes": 1147,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "upstream_review": {
+    "head": "297a9697815b0f66207b5515fd9743bdc04c82d9",
+    "tree": "9012fb415c340302c61dd58b58ee5bcd76e4e6fb",
+    "base": "0fa391a887c664abadc00cba75db1f039aceb647",
+    "changed_paths": 272,
+    "coverage_losses": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "missing_functions": 0,
+      "failures": 0
+    },
+    "overlap_paths": [
+      "include/pso/player/TObjPlayer.h",
+      "include/pso/render/GinjaMaterialState.h",
+      "include/pso/unk/TUnk_804CCB28.h",
+      "include/pso/weapon/TUnk_804A0CB8.h",
+      "src/pso/effect/item/TItemEffPG.cpp",
+      "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+      "src/pso/item/TItemTexLoad.cpp",
+      "src/pso/player/TObjPlayer_80357B2C.cpp",
+      "src/pso/technique/TTecRaFoie.cpp",
+      "src/pso/unk/TLobby_800F8AA8.cpp",
+      "src/pso/unk/TLobby_801E2F94.cpp",
+      "src/pso/weapon/SpecialProjectileWeapons_80124760.cpp",
+      "src/pso/weapon/TUnk_804A5248.cpp",
+      "src/pso/weapon/TUnk_804A535C.cpp",
+      "src/pso/weapon/TUnk_804A69DC.cpp",
+      "src/pso/weapon/shoot/TItemShoot.cpp"
+    ],
+    "report_sha256": "ef8483d620180d0d73943ab2cd6fbf6494eb0f73f6aa65826e35b2a1be9a1269",
+    "check_sha256": "2fae5631d50ee274a1e0b7bbea07aed5322794e45574994f835008a8bef24438"
+  },
+  "retained_upstream_names": [
+    "GinjaTextureEntry::value04",
+    "TItemEffOrgaFlowShot::approach_value",
+    "TObjPlayer::add_angle_clamped",
+    "TLobby__sub_801E38A0",
+    "TItemShootModel::is_owner_alive",
+    "set_ginja_model_texture_slot"
+  ],
+  "fork_layer": {
+    "workspace_patch_paths": 131,
+    "workspace_patch_sha256": "b7a3691572deb72703c5b64fbc7806dbf9b1c9cffcc0224c98b0cf0afde8a804",
+    "materialized_tree": "6fbd18beb5ca2f1b8987b98e88693fae06d940f1",
+    "round_trip_listing_sha256": "434a5b9e432cfbb73963163600661427825d113dff9bd50f50d16e289d0df38a",
+    "force_active_names": 27030,
+    "tool_tests_passed": 294,
+    "layer_tests_passed": 11,
+    "coverage_losses": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "missing_functions": 0,
+      "failures": 0
+    }
+  },
+  "historical_path_inventory": {
+    "pinned_base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+    "canonical_source": "83decd2d24dc6104040afd060e0cc2754b110409",
+    "earlier_review_queue": "47ade105c778197344c29e2d058cd9754a90893c",
+    "outside_replay_before": 1039,
+    "outside_replay_after": 842,
+    "outside_both_replay_and_queue": 82,
+    "remaining_by_owner": {
+      "ui": 238,
+      "unk": 141,
+      "boss": 107,
+      "enemy": 76,
+      "player": 53,
+      "system": 35,
+      "quest": 28,
+      "object": 27,
+      "item": 25,
+      "effect": 22,
+      "render": 18,
+      "camera": 17,
+      "audio": 14,
+      "math": 9,
+      "technique": 8,
+      "network": 6,
+      "map": 4,
+      "npc": 4,
+      "weapon": 3,
+      "libs/PowerPC_EABI_Support": 2,
+      "libs/dolphin": 2,
+      "src/musyx": 1,
+      "collision": 1,
+      "animation": 1
+    },
+    "method": "Path inventory without rename detection."
+  },
+  "next_replay_previews": {
+    "canonical_source": {
+      "changed_paths": 2225,
+      "conflicts": 1146
+    },
+    "earlier_review_queue": {
+      "changed_paths": 2053,
+      "conflicts": 1062
+    },
+    "standalone_subsystems": [
+      {
+        "group": "equipment-and-item-list-windows",
+        "tip": "fed9cf8b7186fe725e23b347d1e70314530fdc46",
+        "paths": 543,
+        "conflicts": 327,
+        "non_conflicting_paths": 216
+      },
+      {
+        "group": "native-city-and-window-menus",
+        "tip": "540e1a91ba6ec917aa50fc1feffb48ed686373dd",
+        "paths": 547,
+        "conflicts": 331,
+        "non_conflicting_paths": 216
+      },
+      {
+        "group": "native-window-draw-context",
+        "tip": "57a10b0f98d8a5e728f2344a843dfad0725a5e30",
+        "paths": 549,
+        "conflicts": 337,
+        "non_conflicting_paths": 212
+      },
+      {
+        "group": "enemy-registration-and-formations",
+        "tip": "4d38fbac428eac879a54e375460f5442ff8dbe5e",
+        "paths": 279,
+        "conflicts": 149,
+        "non_conflicting_paths": 130
+      },
+      {
+        "group": "native-title-scenes",
+        "tip": "86686aa676c3b7e0ad5f90d157c69cab1567af97",
+        "paths": 195,
+        "conflicts": 80,
+        "non_conflicting_paths": 115
+      },
+      {
+        "group": "native-array-runtime",
+        "tip": "7bdbdaf5ba01344982227ac6b25f5315e800d9f5",
+        "paths": 256,
+        "conflicts": 142,
+        "non_conflicting_paths": 114
+      },
+      {
+        "group": "player-slot-registry",
+        "tip": "9448059d81db540704b609616e96771e90827654",
+        "paths": 198,
+        "conflicts": 102,
+        "non_conflicting_paths": 96
+      },
+      {
+        "group": "online-quest-transfers",
+        "tip": "96e12501e15a4340f8516a312337ce3f26b98786",
+        "paths": 134,
+        "conflicts": 40,
+        "non_conflicting_paths": 94
+      },
+      {
+        "group": "main-menu-and-child-windows",
+        "tip": "7b1a1843fd091beeae2d0440f0ed9f5976b7faab",
+        "paths": 156,
+        "conflicts": 68,
+        "non_conflicting_paths": 88
+      },
+      {
+        "group": "adx-streaming",
+        "tip": "a4d7a8d2d908dc795ed2d7e929357d807e547955",
+        "paths": 122,
+        "conflicts": 41,
+        "non_conflicting_paths": 81
+      },
+      {
+        "group": "inventory-and-item-placement",
+        "tip": "d0cdc15fb69eff942395440b0ac3fd1c5ae2f4e2",
+        "paths": 192,
+        "conflicts": 117,
+        "non_conflicting_paths": 75
+      },
+      {
+        "group": "camera-and-radar",
+        "tip": "0394e28c275546fc002b9269980a9e1fe048ab92",
+        "paths": 158,
+        "conflicts": 93,
+        "non_conflicting_paths": 65
+      },
+      {
+        "group": "character-creation-actors",
+        "tip": "64ad571ed44a2c5e026c179e19b5a260295aa11b",
+        "paths": 88,
+        "conflicts": 30,
+        "non_conflicting_paths": 58
+      },
+      {
+        "group": "bml-model-and-texture-accessors",
+        "tip": "12bdb900e51d333a482062d8cd0d9edab5a09a80",
+        "paths": 359,
+        "conflicts": 305,
+        "non_conflicting_paths": 54
+      },
+      {
+        "group": "shared-material-texture-and-sprite-rendering",
+        "tip": "f3d6a88dd80ce304cb986e494d70ef63b386c985",
+        "paths": 77,
+        "conflicts": 25,
+        "non_conflicting_paths": 52
+      },
+      {
+        "group": "persistent-sound-requests",
+        "tip": "bbd95644256571c98ca6fb5d66e77d39013bbab5",
+        "paths": 86,
+        "conflicts": 35,
+        "non_conflicting_paths": 51
+      },
+      {
+        "group": "technique-effects-and-sounds",
+        "tip": "1b0d09f9e03c80521d1ef00e2bea567966edf697",
+        "paths": 115,
+        "conflicts": 65,
+        "non_conflicting_paths": 50
+      },
+      {
+        "group": "olga-flow-cinematics",
+        "tip": "bb0a2828e3a31ddc506164215d32f5cd834ff234",
+        "paths": 110,
+        "conflicts": 63,
+        "non_conflicting_paths": 47
+      },
+      {
+        "group": "memory-card-and-save-windows",
+        "tip": "1e7920fdc675df08303dca4499f49020df69774d",
+        "paths": 85,
+        "conflicts": 48,
+        "non_conflicting_paths": 37
+      },
+      {
+        "group": "action-palette-and-customization",
+        "tip": "d94b3d455e6e78f19bb5e7cf9cf8014ff6182417",
+        "paths": 83,
+        "conflicts": 47,
+        "non_conflicting_paths": 36
+      },
+      {
+        "group": "saved-inventory-and-equipment",
+        "tip": "93e344aaab7852228430b396e50d8175b0b69eee",
+        "paths": 90,
+        "conflicts": 56,
+        "non_conflicting_paths": 34
+      },
+      {
+        "group": "derolle-arena-lighting",
+        "tip": "f7a0122c73c00062937eac73bc56ea913630e522",
+        "paths": 53,
+        "conflicts": 20,
+        "non_conflicting_paths": 33
+      },
+      {
+        "group": "model-strip-and-trail-rendering",
+        "tip": "ede02613cc11ca81807ff370d7fad931c614a236",
+        "paths": 50,
+        "conflicts": 18,
+        "non_conflicting_paths": 32
+      },
+      {
+        "group": "gol-dragon-resources-and-formation",
+        "tip": "9a277f6b061ec44eecf9395be11f3112c378a33c",
+        "paths": 50,
+        "conflicts": 23,
+        "non_conflicting_paths": 27
+      },
+      {
+        "group": "npc-population-and-model-resources",
+        "tip": "5caa76608e8ba418a516e656b24770f0a0884003",
+        "paths": 75,
+        "conflicts": 49,
+        "non_conflicting_paths": 26
+      },
+      {
+        "group": "weapon-factory-registry",
+        "tip": "d71a8453c9ab01ef718f596bc173f89abd4559e6",
+        "paths": 52,
+        "conflicts": 27,
+        "non_conflicting_paths": 25
+      },
+      {
+        "group": "gal-gryphon-arena-actors",
+        "tip": "b75c6f38a72228b2c5dc79f3198981f324474018",
+        "paths": 32,
+        "conflicts": 9,
+        "non_conflicting_paths": 23
+      },
+      {
+        "group": "object-class-name",
+        "tip": "6155c67873447dc4c269277231732fca1a2193c2",
+        "paths": 26,
+        "conflicts": 4,
+        "non_conflicting_paths": 22
+      },
+      {
+        "group": "player-scale-and-state",
+        "tip": "c5493f319d431c46557faad569d5c3b443a7c273",
+        "paths": 30,
+        "conflicts": 8,
+        "non_conflicting_paths": 22
+      },
+      {
+        "group": "dark-falz-cinematic-actors",
+        "tip": "a5aed4817c6718d9ea584baaa3f5f29fdd72d1ee",
+        "paths": 51,
+        "conflicts": 29,
+        "non_conflicting_paths": 22
+      },
+      {
+        "group": "symbol-chat-and-shortcut-preview",
+        "tip": "ae3da5ccb25c52f727ab0f41adcc3a3afbf0c4ef",
+        "paths": 35,
+        "conflicts": 16,
+        "non_conflicting_paths": 19
+      },
+      {
+        "group": "boss-projectiles-geometry-and-splashes",
+        "tip": "03eb2c367e070700af46456703e5a656ade68310",
+        "paths": 42,
+        "conflicts": 25,
+        "non_conflicting_paths": 17
+      },
+      {
+        "group": "stage-traps-and-motion",
+        "tip": "1f23677cb3c8366b142119fd3204b5bfd83d58a8",
+        "paths": 51,
+        "conflicts": 34,
+        "non_conflicting_paths": 17
+      },
+      {
+        "group": "bml-and-ginja-loading-on-stage",
+        "tip": "69ee8013f8eb4ced49699e18e648614decdd11fc",
+        "paths": 304,
+        "conflicts": 287,
+        "non_conflicting_paths": 17
+      },
+      {
+        "group": "bml-and-ginja-loading",
+        "tip": "3dc510fe52b5319658798b68a56d011d53eae1fd",
+        "paths": 178,
+        "conflicts": 164,
+        "non_conflicting_paths": 14
+      },
+      {
+        "group": "olga-flow-arena-hazards",
+        "tip": "c2a4e24f9240885e1a99cd05fd63525993fb9a75",
+        "paths": 36,
+        "conflicts": 24,
+        "non_conflicting_paths": 12
+      },
+      {
+        "group": "gameplay-sound-and-item-drop-packets",
+        "tip": "d0530355706221482463e0da78d8bf0703a8777b",
+        "paths": 18,
+        "conflicts": 8,
+        "non_conflicting_paths": 10
+      },
+      {
+        "group": "ginja-texture-uploads",
+        "tip": "d41b1747d443d80e080cdd13eecbb2a379f8c315",
+        "paths": 18,
+        "conflicts": 8,
+        "non_conflicting_paths": 10
+      },
+      {
+        "group": "rope-bone-and-fin-attachments",
+        "tip": "c2936d95ef1525aa3cb3e0bc2f0b8a46809f18e9",
+        "paths": 16,
+        "conflicts": 7,
+        "non_conflicting_paths": 9
+      },
+      {
+        "group": "vol-opt-components",
+        "tip": "8f26a3c7a707d4076bf84134da09276bc62991f9",
+        "paths": 39,
+        "conflicts": 30,
+        "non_conflicting_paths": 9
+      },
+      {
+        "group": "online-setup-scenes",
+        "tip": "090a3d41d70c6601ad8720c95160e8f43c2b05d4",
+        "paths": 16,
+        "conflicts": 9,
+        "non_conflicting_paths": 7
+      },
+      {
+        "group": "stage-doors-fences-and-contacts",
+        "tip": "428b42e9251d39baf2e01e7d62959f742d2a6566",
+        "paths": 188,
+        "conflicts": 182,
+        "non_conflicting_paths": 6
+      },
+      {
+        "group": "gameplay-random",
+        "tip": "04e0a137422e25a50c7ea48df4c35c9bcc7b14fb",
+        "paths": 22,
+        "conflicts": 17,
+        "non_conflicting_paths": 5
+      },
+      {
+        "group": "mericarol-and-gibbles-effects",
+        "tip": "9bbc668b6121ceb6bc03f83427c98aaa931a0d31",
+        "paths": 14,
+        "conflicts": 10,
+        "non_conflicting_paths": 4
+      },
+      {
+        "group": "ground-effects-and-scenery",
+        "tip": "d90619b7c15b4300567435fdee477df7c1796a25",
+        "paths": 36,
+        "conflicts": 33,
+        "non_conflicting_paths": 3
+      },
+      {
+        "group": "stage-transfer-and-seasonal-assets",
+        "tip": "91eed3bfdcca772ee0ae616c5f972a6aefe2ba11",
+        "paths": 41,
+        "conflicts": 38,
+        "non_conflicting_paths": 3
+      },
+      {
+        "group": "bml-archive-accessors",
+        "tip": "fd2120f67cfad9f35ca2e374b2734e9d62970431",
+        "paths": 207,
+        "conflicts": 204,
+        "non_conflicting_paths": 3
+      },
+      {
+        "group": "native-card-save-images",
+        "tip": "3a7ed59b8ba5108112aef381e1b57b660e6c6cb5",
+        "paths": 2,
+        "conflicts": 2,
+        "non_conflicting_paths": 0
+      },
+      {
+        "group": "redundant-compiler-directives",
+        "tip": "9935ca4090ba264f42a12317c104ab4a568036b5",
+        "paths": 2,
+        "conflicts": 2,
+        "non_conflicting_paths": 0
+      },
+      {
+        "group": "network-datagrams-and-packet-pool",
+        "tip": "7301eadf78b49e8cbe96f1e92b5543c7719eb321",
+        "paths": 3,
+        "conflicts": 3,
+        "non_conflicting_paths": 0
+      },
+      {
+        "group": "network-thread-dispatch",
+        "tip": "cb7d37f5a25dfec5bac94452f5b8237a893b819b",
+        "paths": 5,
+        "conflicts": 5,
+        "non_conflicting_paths": 0
+      },
+      {
+        "group": "ambient-stage-archives-and-rendering",
+        "tip": "6cb53ca77adc702b81aa6b9c38699fc7d8a35a1c",
+        "paths": 10,
+        "conflicts": 10,
+        "non_conflicting_paths": 0
+      },
+      {
+        "group": "stage-containers-and-floor-events",
+        "tip": "bd20994aa3698ab8f8f0098410b4da11d0ba0d2c",
+        "paths": 12,
+        "conflicts": 12,
+        "non_conflicting_paths": 0
+      },
+      {
+        "group": "stage-particles-refraction-and-debris",
+        "tip": "affe274061f2761022d068dfdfa3387bea8d6673",
+        "paths": 22,
+        "conflicts": 22,
+        "non_conflicting_paths": 0
+      },
+      {
+        "group": "actor-motion-layout",
+        "tip": "015dd577a979c2b716c20951c19267957dec104b",
+        "paths": 113,
+        "conflicts": 113,
+        "non_conflicting_paths": 0
+      },
+      {
+        "group": "world-particle-factory-calls",
+        "tip": "1dfa045120b25b8b0bc323af80e9004479b65561",
+        "paths": 117,
+        "conflicts": 117,
+        "non_conflicting_paths": 0
+      }
+    ]
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "source_head": "3697255babead7aae7d4cedcad4bd6e9d54ae400",
+  "source_tree": "587a4c003bb86b977560803723a9b8f154894ca7",
+  "previous_cumulative": "ff80ef2056cc71cc4f256ac4237cf8bfffc1649a",
+  "upstream_master": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "effects_overlap_paths": [
+    "config/GPOE8P/psov3/symbols.txt"
+  ],
+  "effects_review": "The only shared path is the symbol table. None of the five corrected radar addresses were edited by #375.",
+  "source_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/ui/hud/TRaderMapCore.h",
+    "src/pso/object/collision/TObjRaderCol.cpp",
+    "src/pso/ui/hud/TRaderMapCore.cpp"
+  ],
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "matching_functions": 27572,
+  "linked_units": 2368,
+  "coverage_regressions": {
+    "regressions": 0,
+    "data_regressions": 0,
+    "data_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0,
+    "failures": 0
+  },
+  "source_benchmark": {
+    "total": {
+      "base": 142150,
+      "head": 141978,
+      "added": 3,
+      "removed": 175
+    },
+    "symbol_changes": [
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801F9228",
+        "type": "function",
+        "old": "set_view_scissor__13TRaderMapCoreFPviPv",
+        "new": "set_view_scissor__13TRaderMapCoreFiPC16RadarScissorRect",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801F9314",
+        "type": "function",
+        "old": "setup_overhead_projection__13TRaderMapCoreFv",
+        "new": "setup_overhead_projection__13TRaderMapCoreFP17RadarMapViewState",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801FA9D8",
+        "type": "function",
+        "old": "begin_map_view__13TRaderMapCoreFii",
+        "new": "begin_map_view__13TRaderMapCoreFi",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801FADF0",
+        "type": "function",
+        "old": "is_render_admitted__13TRaderMapCoreFPv",
+        "new": "is_render_admitted__13TRaderMapCoreFl",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801FB9A4",
+        "type": "function",
+        "old": "init_map_ptr__13TRaderMapCoreFPll",
+        "new": "init_map_ptr__13TRaderMapCoreFPCll",
+        "flags": []
+      }
+    ],
+    "flagged_labels": 0,
+    "newly_stale_retention_entries": 0,
+    "added_findings": "A direct field reference after removing an offset cast, the existing region model record with a typed Ginja mesh, and the file-local scissor layout."
+  },
+  "runtime": {
+    "images": [
+      "retail",
+      "Great Merge source"
+    ],
+    "cases_per_image": 12,
+    "covered": "Default scissor, three indexed viewport paths, three follow/free transform paths, four marker queue outcomes, and region visibility and render-state restoration.",
+    "intercepts": "The probe supplies GPU, matrix and light endpoints. Original view copies, clipping calculations, camera arguments, region selection, fade updates and marker gating execute from each DOL."
+  },
+  "historical_source_comparison": {
+    "closed": {
+      "src/pso/misc/TRaderMapCore.cpp": {
+        "historical_functions": 42,
+        "exact_data_bytes": 3080,
+        "source_evidence": "The live radar retains the three viewport records, clipping dimensions, view selection and scoped render passes. It consumes shared camera records for projection and follow/free transforms, and the player target and pan and zoom state use the native fields. The original compass and backdrop retain native Ninja records. Regions bind the typed texture list and use the Ginja mesh, the three icon callers use the shared marker interface with their native positions, and the archive uses a typed BML model handle. The radius gate, capacity, pan limits, light and render-state restoration preserve retail behavior."
+      }
+    },
+    "remaining": 131
+  },
+  "historical_fork_data": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "validation_sha256": {
+    "check.json": "f98414da2f8b2c74b8842c3331bd30e02e5152a8b963f671454258ca9cc35b6d",
+    "delta-03.json": "70eefad7b67fba7e43313a12b4102496fbd15240cf396e73afebdf088d205cc6",
+    "quality.json": "e93faf3cb9aa7af15aaa7dcc6a4e81c2c9b091b6ea7b9ec778dc547ed1149058",
+    "probe-radar.py": "3b302da61ab0dfe2b42fcc21648c4d570694942f3daecce8152c74da05b5583a",
+    "radar-probe.log": "43887e9af4068019c8c8f192f619751d933407e8301844781fc0a24efe0891dc",
+    "source-fork-data.json": "82d59f20ed1bd3def36813b6f8b3f63e5eb7604943397ad2c9b2176411b240d3"
+  },
+  "materialized_fork": {
+    "tree": "ed47755074bd820fa5af6f2ed73a2d8e62b920b5",
+    "retention_entries": 27007,
+    "retention_names_updated": {
+      "set_view_scissor__13TRaderMapCoreFPviPv": "set_view_scissor__13TRaderMapCoreFiPC16RadarScissorRect",
+      "setup_overhead_projection__13TRaderMapCoreFv": "setup_overhead_projection__13TRaderMapCoreFP17RadarMapViewState",
+      "begin_map_view__13TRaderMapCoreFii": "begin_map_view__13TRaderMapCoreFi",
+      "is_render_admitted__13TRaderMapCoreFPv": "is_render_admitted__13TRaderMapCoreFl",
+      "init_map_ptr__13TRaderMapCoreFPll": "init_map_ptr__13TRaderMapCoreFPCll"
+    },
+    "newly_stale_retention_entries": 0,
+    "checks": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    },
+    "validation_sha256": {
+      "validated-private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011",
+      "validated-retention.log": "b3325169ce9d5755b2340e455b52eb7ac52edcb6fa173dc4f2486f46f713350c",
+      "private-fork-data.json": "82d59f20ed1bd3def36813b6f8b3f63e5eb7604943397ad2c9b2176411b240d3",
+      "validated-fork-tests.log": "32fd2c95100c60a0e6f794220e035f3bb507000948b964c4395ff3e13a09ca90",
+      "validated-tool-tests.log": "83177262260bb43c1c5c75a91d856dd21ce8336b2f159d04a5cf272cd93ba8e2",
+      "validated-host-tests.log": "e7fd11d95c3000699625c65630886834c45b183245e253fc68f6fe2d592acda0"
+    }
+  }
+}

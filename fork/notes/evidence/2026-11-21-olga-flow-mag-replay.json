@@ -1,0 +1,471 @@
+{
+  "source": "3370bff81a4b79e4da35c13139445151d1771420",
+  "previous_source": "60d7b50453025e3ff784bb6e6aee3a8412adae5a",
+  "upstream": "5a4e7ced56fe7072359b6d279e94f4be3b8453c0",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "source_paths": 1179,
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/boss/olgaflow/TBoss6Mag.h",
+    "include/pso/boss/olgaflow/TBoss6Type2.h",
+    "include/pso/boss/olgaflow/TBoss6Type2_8032E708.h",
+    "include/pso/player/TObjPlayer.h",
+    "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2_803309D8.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2_80336E6C.cpp"
+  ],
+  "author": {
+    "name": "matthewlewisnewton",
+    "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+    "coauthor_trailers": 0
+  },
+  "layouts": {
+    "spawn_bytes": 96,
+    "spawn_owner": 64,
+    "mag_instance_bytes": 1116,
+    "instance_table": "0x804EDDE4",
+    "vtable": "0x804EDDEC",
+    "vtable_entries": 83,
+    "action_table": "0x804EF028",
+    "action_startup": "0x803371C0",
+    "action_rows": 6,
+    "action_row_bytes": 36,
+    "capture_offset": 1112,
+    "emitter_array_offset": 1084,
+    "motion_blend_bytes": 16
+  },
+  "objects": {
+    "mag-final-object": {
+      "matching_functions": 56,
+      "matching_sections": [
+        ".data",
+        ".rodata",
+        ".sdata",
+        ".sdata2",
+        ".text"
+      ],
+      "report_sha256": "d5152d7448fd587ee260e8000d59a4f543ff885b11fca661bb653b21e6f1da61"
+    },
+    "mag-actions-final-object": {
+      "matching_functions": 13,
+      "matching_sections": [
+        ".ctors",
+        ".data",
+        ".rodata",
+        ".sdata2",
+        ".text"
+      ],
+      "report_sha256": "dc8deb88651df234f2120289410e8060cf2d3a7dd879fd375e79d20b3a3bd8e9"
+    }
+  },
+  "historical_comparison": {
+    "prior_open_rows": 458,
+    "open_rows": 457,
+    "closed_rows": [
+      {
+        "row": 1164,
+        "description": "The Mag actor uses its native constructor and vtable, typed owner and peer, shared combat records, and actual motion and effect storage. The current source retains the historical sound, model, capture, state and battle parameter calls at their original addresses.",
+        "historical_path": "src/pso/boss/TBoss6Type2_8032E708.cpp",
+        "current_path": "src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp",
+        "fork_blob": "517c2dffe343a7542194479dca59f264936c8440",
+        "current_blob": "c83dbd3b8abfd63870f194e4fa86c0bd29e3bc0c",
+        "authored_diff_sha256": "87a7d90ef7142648fa777724e96c71395e5053ec809d07450c520ebf05af2bf7"
+      }
+    ],
+    "partial_rows": {
+      "1076": "Phase two passes the checked 0x60-byte Mag spawn record and stores both native Mag pointers. The shared action setters and peer-link call use the real receiver. Other phase-two changes remain open."
+    },
+    "same_address_names": {
+      "0x8001E1D8": [
+        "get_battle_movement_params",
+        "dispatch_shared_handler_a__6TLobbyFl"
+      ],
+      "0x8001E210": [
+        "get_battle_resistance_params",
+        "register_object__6TLobbyFl"
+      ],
+      "0x8001E248": [
+        "get_battle_attack_params",
+        "dispatch_shared_handler_b__6TLobbyFl"
+      ],
+      "0x8001E280": [
+        "get_battle_base_stats",
+        "register_boss__6TLobbyFl"
+      ],
+      "0x8003F0E8": [
+        "register_by_id__9TObjEnemyFv",
+        "reset_photon_effect__9TObjEnemyFv"
+      ],
+      "0x80080750": [
+        "check_demo_mode__Fv",
+        "check_demo_mode__10TObjPlayerFv"
+      ],
+      "0x803DA798": [
+        "set_current_texture_list",
+        "set_global_param"
+      ]
+    }
+  },
+  "validation": {
+    "stock": {
+      "baseline": "60d7b50453025e3ff784bb6e6aee3a8412adae5a",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8032E710",
+          "before": "set_action_field_0x408__11TBoss6Type2FUs",
+          "after": "set_action_field_0x408__9TBoss6MagFUs"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032E718",
+          "before": "set_target_nodes__11TBoss6Type2FPvPv",
+          "after": "set_target_nodes__9TBoss6MagFUlUl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032E740",
+          "before": "set_anim_frame__11TBoss6Type2Fl",
+          "after": "set_anim_frame__9TBoss6MagFP9TBoss6Mag"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032E770",
+          "before": "destroy_part_object__11TBoss6Type2Fl",
+          "after": "destroy_part_object__9TBoss6MagFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032E7B4",
+          "before": "ensure_particle_emitter__11TBoss6Type2Fl",
+          "after": "ensure_particle_emitter__9TBoss6MagFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032EA34",
+          "before": "step_angle_toward__11TBoss6Type2Flll",
+          "after": "step_angle_toward__9TBoss6MagFlll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032EAD0",
+          "before": "apply_direction_sign__11TBoss6Type2Ff",
+          "after": "apply_direction_sign__9TBoss6MagFf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032EAE4",
+          "before": "enforce_min_distance__11TBoss6Type2Fv",
+          "after": "enforce_min_distance__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032EBB4",
+          "before": "push_out_from_points__11TBoss6Type2Fv",
+          "after": "push_out_from_points__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032ECE0",
+          "before": "push_out_from_target__11TBoss6Type2Fv",
+          "after": "push_out_from_target__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032EEA8",
+          "before": "compute_random_dir_vec__11TBoss6Type2FlPUcll",
+          "after": "compute_random_dir_vec__9TBoss6MagFlPUcll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032F2C4",
+          "before": "init_with_global_table__11TBoss6Type2Fv",
+          "after": "init_with_global_table__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032F304",
+          "before": "spawn_mag_mines__11TBoss6Type2Fv",
+          "after": "spawn_mag_mines__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032F5FC",
+          "before": "apply_random_drift__11TBoss6Type2Fv",
+          "after": "apply_random_drift__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032F690",
+          "before": "turn_toward_target__11TBoss6Type2Fv",
+          "after": "turn_toward_target__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032F824",
+          "before": "fly_toward_target__11TBoss6Type2Fv",
+          "after": "fly_toward_target__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032FBF8",
+          "before": "update_segment_angles__11TBoss6Type2Fv",
+          "after": "update_segment_angles__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032FCA4",
+          "before": "init_segment_angle_range__11TBoss6Type2Fv",
+          "after": "init_segment_angle_range__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80330240",
+          "before": "fn_80330240",
+          "after": "receive_direct_attack__9TBoss6MagFPv19DirectAttackPayloadPvll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80330384",
+          "before": "spawn_ground_effect__10TObjPlayerFPv",
+          "after": "run_hit_reaction__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803303E0",
+          "before": "save_position__10TObjPlayerFv",
+          "after": "save_position__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8033068C",
+          "before": "fn_8033068C",
+          "after": "__dt__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80330724",
+          "before": "TBoss6Mag__ct",
+          "after": "__ct__9TBoss6MagFP7TObjectP13Boss6MagSpawn"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803309D8",
+          "before": "create_mag__11TBoss6Type2Fl",
+          "after": "create_mag__11TBoss6Type2FP13Boss6MagSpawn"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80336E6C",
+          "before": "update_recover_timer__11TBoss6Type2Fv",
+          "after": "update_recover_timer__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80336F00",
+          "before": "sub_80336F00__11TBoss6Type2Fv",
+          "after": "sub_80336F00__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80336F54",
+          "before": "update_ramp_timer__11TBoss6Type2Fv",
+          "after": "update_ramp_timer__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80336FB8",
+          "before": "sub_80336FB8__11TBoss6Type2Fv",
+          "after": "sub_80336FB8__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80336FE4",
+          "before": "tick_attack_timer__11TBoss6Type2Fv",
+          "after": "tick_attack_timer__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80337054",
+          "before": "start_mag_mines_state__11TBoss6Type2Fv",
+          "after": "start_mag_mines_state__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803370A4",
+          "before": "update_effect_subsystems__11TBoss6Type2Fv",
+          "after": "update_effect_subsystems__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80337108",
+          "before": "sub_80337108__11TBoss6Type2Fv",
+          "after": "sub_80337108__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8033710C",
+          "before": "update_attack_state__11TBoss6Type2Fv",
+          "after": "update_attack_state__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80337160",
+          "before": "sub_80337160__11TBoss6Type2Fv",
+          "after": "sub_80337160__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80337164",
+          "before": "advance_phase_counter__11TBoss6Type2Fv",
+          "after": "advance_phase_counter__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803371B4",
+          "before": "sub_803371B4__11TBoss6Type2Fv",
+          "after": "sub_803371B4__9TBoss6MagFv"
+        }
+      ],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "3aa9298f40f66036c03a979e483262ca14e646dfb37b8fe86b39438cfeebc2ad",
+      "report_sha256": "7cc61e2ecb3f85c0ae7232f10e309ca786a67bcb82da6f887b2637ff14e019a7"
+    },
+    "workspace": {
+      "baseline": "3370bff81a4b79e4da35c13139445151d1771420",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "7cc61e2ecb3f85c0ae7232f10e309ca786a67bcb82da6f887b2637ff14e019a7"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "6a5a2b358833c9d28db7c9cd696a0adab2fe48b813bf979ffca4e6a98e54a468"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "911e76fa170b1bd2efa9e7ec0223c64deb700e5d77d2fe5426a92d757a7a916a"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    },
+    "mag_runtime": {
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "checks": [
+        "All six action rows after the original startup initializer",
+        "Both spawn and peer slots",
+        "Battle parameter defaults and supplied values",
+        "Damage entry flags and looping motion",
+        "Single-motion and blend draw capture order",
+        "Emitter, capture, collision, and instance teardown"
+      ],
+      "emulation": "Resource, battle-state, and draw providers are supplied by the harness.",
+      "log_sha256": "c173ef7617e60689f575fb5d97efdf9ad2a4398ad17d0c55f56b5aa7aa51b264",
+      "probe_sha256": "99ec8dc3a6acd5c445a984903e4ae7af97fd8b4e41a2d4e727285cd4a3e0b583"
+    }
+  },
+  "fork_workspace": {
+    "overlay_paths": 130,
+    "overlay_patch_sha256": "20c09207796081de4f710d8b25aa7a6e406290e7011a90a5b35f758af8e9b1b1",
+    "updated_overlay_paths": [
+      "config/GPOE8P/psov3/config.yml"
+    ],
+    "force_active_names": 27033,
+    "force_active_symbol_changes": [
+      "+  - __dt__9TBoss6MagFv",
+      "+  - __vt__9TBoss6Mag",
+      "-  - advance_phase_counter__11TBoss6Type2Fv",
+      "+  - advance_phase_counter__9TBoss6MagFv",
+      "-  - apply_direction_sign__11TBoss6Type2Ff",
+      "+  - apply_direction_sign__9TBoss6MagFf",
+      "-  - compute_random_dir_vec__11TBoss6Type2FlPUcll",
+      "+  - compute_random_dir_vec__9TBoss6MagFlPUcll",
+      "-  - fn_80330240",
+      "-  - fn_8033068C",
+      "-  - init_segment_angle_range__11TBoss6Type2Fv",
+      "+  - init_segment_angle_range__9TBoss6MagFv",
+      "-  - init_with_global_table__11TBoss6Type2Fv",
+      "+  - init_with_global_table__9TBoss6MagFv",
+      "-  - lbl_804EDDEC",
+      "+  - receive_direct_attack__9TBoss6MagFPv19DirectAttackPayloadPvll",
+      "+  - run_hit_reaction__9TBoss6MagFv",
+      "-  - save_position__10TObjPlayerFv",
+      "+  - save_position__9TBoss6MagFv",
+      "-  - spawn_ground_effect__10TObjPlayerFPv",
+      "-  - start_mag_mines_state__11TBoss6Type2Fv",
+      "+  - start_mag_mines_state__9TBoss6MagFv",
+      "-  - step_angle_toward__11TBoss6Type2Flll",
+      "+  - step_angle_toward__9TBoss6MagFlll",
+      "-  - sub_80336F00__11TBoss6Type2Fv",
+      "-  - sub_80336FB8__11TBoss6Type2Fv",
+      "-  - sub_80337108__11TBoss6Type2Fv",
+      "-  - sub_80337160__11TBoss6Type2Fv",
+      "-  - sub_803371B4__11TBoss6Type2Fv",
+      "+  - sub_80336F00__9TBoss6MagFv",
+      "+  - sub_80336FB8__9TBoss6MagFv",
+      "+  - sub_80337108__9TBoss6MagFv",
+      "+  - sub_80337160__9TBoss6MagFv",
+      "+  - sub_803371B4__9TBoss6MagFv",
+      "-  - tick_attack_timer__11TBoss6Type2Fv",
+      "+  - tick_attack_timer__9TBoss6MagFv",
+      "-  - update_attack_state__11TBoss6Type2Fv",
+      "+  - update_attack_state__9TBoss6MagFv",
+      "-  - update_effect_subsystems__11TBoss6Type2Fv",
+      "+  - update_effect_subsystems__9TBoss6MagFv",
+      "-  - update_ramp_timer__11TBoss6Type2Fv",
+      "+  - update_ramp_timer__9TBoss6MagFv",
+      "-  - update_recover_timer__11TBoss6Type2Fv",
+      "+  - update_recover_timer__9TBoss6MagFv",
+      "-  - update_segment_angles__11TBoss6Type2Fv",
+      "+  - update_segment_angles__9TBoss6MagFv"
+    ],
+    "archive_test_head": "31b12b9d2342a5b201bc8ce1699129d4c0a8a5e9",
+    "tested_materialized_tree": "85e6dd06ea776182ffe8d83bd75700453a059491"
+  }
+}

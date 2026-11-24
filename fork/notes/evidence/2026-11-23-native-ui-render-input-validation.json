@@ -1,0 +1,321 @@
+{
+  "source": {
+    "head": "358486b4681e6f7794552268f987f7df893a8e20",
+    "tree": "af990685ddadb8c83c2d7627ad20ebeed8c81481",
+    "base": "c12c6c267f1805085d2fee4f17bb134b4e4bd7de",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "paths": [
+      "include/pso/ui/frontend/TAdFadeGC.h",
+      "include/pso/ui/window/TWindowKeyBoardBase.h",
+      "include/pso/ui/window/TWindowKeyBoardHard.h",
+      "src/pso/ui/charcreate/TObjCMName.cpp",
+      "src/pso/ui/city/TShopSequence.cpp",
+      "src/pso/ui/frontend/TAdChrMoveEffectGC.cpp",
+      "src/pso/ui/frontend/TAdFadeGC.cpp",
+      "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+      "src/pso/ui/keyboard/TKeyBoardControl_80131F5C.cpp",
+      "src/pso/ui/keyboard/TKeyBoardControl_8025CB70.cpp",
+      "src/pso/ui/window/TWindowCtrlMain.cpp",
+      "src/pso/ui/window/TWindowKeyBoardBase.cpp",
+      "src/pso/ui/window/TWindowKeyBoardBase_8025B85C.cpp",
+      "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+      "src/pso/ui/window/TWindowKeyBoardSoft.cpp",
+      "src/pso/ui/window/TWindowSimpleStatus.cpp",
+      "src/pso/unk/TLobby_800F8AA8.cpp",
+      "src/pso/unk/TLobby_801E2F94.cpp",
+      "src/pso/unk/text_8025CD10.cpp",
+      "src/pso/unk/text_8034960C.cpp",
+      "src/pso/unk/text_80349B8C.cpp"
+    ],
+    "source_quality": {
+      "base": 141926,
+      "head": 141655,
+      "added": 0,
+      "removed": 271
+    },
+    "changed_labels": 0,
+    "newly_stale_retention_entries": 0,
+    "validation_sha256": {
+      "source-check.json": "ec167389dbd490e17ac3a61384def77d8d58a7485e34e9bf913ffed6e489dc0a",
+      "source-report.json": "9a35c936c3b8af93995a0a66f0f89265f48f312767d383fc6e8899f6eb090da1",
+      "source-ranges.json": "de577edf277002f5867f7e346e2d35a70feb47043e7f5379cd312027357238eb",
+      "source-probes.log": "01f46f0fb3b3f47d52c319ef3370759fb8a4923c0ea1d64004dd719cdf810941",
+      "source-quality.json": "d4e0a3d72e17ff149e6cd8ab6d9a3bc5d6f0e7b8880e822c1f5a89fb764f9e74"
+    }
+  },
+  "independent_component": {
+    "head": "c49d3e16d0a714f4b13f49883265f6473ce24810",
+    "tree": "beadd1f9cf7c3e44dc942419e023c11e1da6da5c",
+    "base": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "paths": [
+      "include/pso/ui/frontend/TAdFadeGC.h",
+      "include/pso/ui/window/TWindowKeyBoardBase.h",
+      "include/pso/ui/window/TWindowKeyBoardHard.h",
+      "src/pso/ui/charcreate/TObjCMName.cpp",
+      "src/pso/ui/city/TShopSequence.cpp",
+      "src/pso/ui/frontend/TAdChrMoveEffectGC.cpp",
+      "src/pso/ui/frontend/TAdFadeGC.cpp",
+      "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+      "src/pso/ui/keyboard/TKeyBoardControl_80131F5C.cpp",
+      "src/pso/ui/keyboard/TKeyBoardControl_8025CB70.cpp",
+      "src/pso/ui/window/TWindowCtrlMain.cpp",
+      "src/pso/ui/window/TWindowKeyBoardBase.cpp",
+      "src/pso/ui/window/TWindowKeyBoardBase_8025B85C.cpp",
+      "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+      "src/pso/ui/window/TWindowKeyBoardSoft.cpp",
+      "src/pso/ui/window/TWindowSimpleStatus.cpp",
+      "src/pso/unk/TLobby_800F8AA8.cpp",
+      "src/pso/unk/TLobby_801E2F94.cpp",
+      "src/pso/unk/text_8025CD10.cpp",
+      "src/pso/unk/text_8034960C.cpp",
+      "src/pso/unk/text_80349B8C.cpp"
+    ],
+    "source_quality": {
+      "base": 147293,
+      "head": 147022,
+      "added": 0,
+      "removed": 271
+    },
+    "changed_labels": 0,
+    "newly_stale_retention_entries": 0,
+    "validation_sha256": {
+      "direct-check.json": "ec167389dbd490e17ac3a61384def77d8d58a7485e34e9bf913ffed6e489dc0a",
+      "direct-report.json": "8a9e60754e92b3fdd00e75c0d444c34a05086e93559fd69d6e4a87d7bd848fdb",
+      "direct-ranges.json": "de577edf277002f5867f7e346e2d35a70feb47043e7f5379cd312027357238eb",
+      "direct-probes.log": "1c2d76dabbe1ff921b836c86c01a3be8a9fbd4fe59b96b53ffbc7bc20b890443",
+      "direct-quality.json": "636e5fe93aeed2395b0665c5a36a2674db968f618e23ce263469a4f7eba675ed"
+    },
+    "branch": "great-merge/review/after-376/ui-render-and-input"
+  },
+  "materialized_fork": {
+    "head": "4cd7254412fc95fa422be26e0378da5edef0c88e",
+    "tree": "ebe53103a2ba8b8ab6592c6031cb50dcd4d3ec65",
+    "base": "358486b4681e6f7794552268f987f7df893a8e20",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "validation_sha256": {
+      "private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011",
+      "private-report.json": "9a35c936c3b8af93995a0a66f0f89265f48f312767d383fc6e8899f6eb090da1",
+      "private-ranges.json": "de577edf277002f5867f7e346e2d35a70feb47043e7f5379cd312027357238eb",
+      "private-probes.log": "66b4b404f2bcf4ba07b8efb10133796f8d326d6aa9b6af6a46f8370dd7740f9f",
+      "private-retention.log": "b3325169ce9d5755b2340e455b52eb7ac52edcb6fa173dc4f2486f46f713350c",
+      "private-fork-tests.log": "847a1a3a28f01215b378a4338f9a90d73756c169428a2e32157f87edd49087a2",
+      "private-tool-tests.log": "60ef5533e1825e505456c3012a2e5d2c5330ed54494e98590f6c79827a9e0ea9",
+      "private-host-tests.log": "56f699c9d8ff5a32cc196940d8bb95e7f6799e211464315f7d77688b6ab4fccc"
+    },
+    "tests": {
+      "fork": 11,
+      "tooling": 294,
+      "host": 5
+    },
+    "overlay_paths": 130,
+    "overlay_context_refresh": "Two hunks on TObjCMName.cpp were reanchored to the native hair-color array. The original CodeWarrior and host paths are byte-for-byte identical as patch edits.",
+    "overlay_hashes": {
+      "overlay-before.patch": "1dd80d513ccc6813622ccf656bf2e404b22ece0817b17e7e460d5d929584b61b",
+      "overlay-after.patch": "e21778cab51106a4432d577587a17fbe30d5516fc5570315ec7ab968e615f011",
+      "workspace.patch.gz": "cfd823612d47ef2e0f9d80a33edadb3530f311073b8a29cbcd4268c0f96ec5e6"
+    }
+  },
+  "historical_fork_base": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "upstream_effects": {
+    "merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+    "shared_paths": [
+      "src/pso/ui/charcreate/TObjCMName.cpp",
+      "src/pso/ui/frontend/TAdChrMoveEffectGC.cpp",
+      "src/pso/ui/frontend/TAdFadeGC.cpp",
+      "src/pso/ui/window/TWindowCtrlMain.cpp",
+      "src/pso/ui/window/TWindowKeyBoardBase.cpp",
+      "src/pso/ui/window/TWindowKeyBoardSoft.cpp",
+      "src/pso/ui/window/TWindowSimpleStatus.cpp",
+      "src/pso/unk/TLobby_801E2F94.cpp"
+    ],
+    "changed_original_lines": {
+      "src/pso/ui/charcreate/TObjCMName.cpp": [
+        {
+          "line": 1782,
+          "upstream": "list.tex = 0;"
+        }
+      ],
+      "src/pso/unk/TLobby_801E2F94.cpp": [
+        {
+          "line": 278,
+          "upstream": "tmp.tex = self->tex;"
+        }
+      ]
+    },
+    "reconciliation": "The hair polygon still has a null texture pointer. The contour still forwards the source texture pointer, now through NJS_POINT2COL::tex. The upstream build includes #375."
+  },
+  "runtime": {
+    "case_counts": {
+      "quest_polygon_geometry": 4,
+      "fade_modes": 4,
+      "rico_ring": 3,
+      "keyboard_translations": 12,
+      "shop_dispatch": 6
+    },
+    "images": [
+      "retail",
+      "cumulative source",
+      "standalone upstream component",
+      "materialized fork"
+    ],
+    "probe_sha256": "6f4deddc4484e1f424a714cb011663c582504af911e0e1eb0bdc0d3b638ad281"
+  },
+  "historical_fork_data": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "historical_source_comparisons": {
+    "closed": {
+      "src/pso/menu/TAdRicoRing.cpp": {
+        "exact_functions": 19,
+        "exact_data_bytes": 432,
+        "function_owners": {
+          "0x8001b424": "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+          "0x8001b4a0": "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+          "0x8001b534": "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+          "0x8001b5b8": "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+          "0x8001b7e8": "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+          "0x8001b824": "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+          "0x8001b8ac": "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+          "0x8001b984": "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+          "0x8001ba28": "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+          "0x8001bac8": "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+          "0x8001bb40": "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+          "0x8001bb54": "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+          "0x8001bb88": "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+          "0x8001bcb4": "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+          "0x8001bd0c": "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+          "0x8001be00": "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+          "0x8001be48": "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+          "0x8001be80": "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+          "0x8001bed0": "src/pso/ui/frontend/TAdRicoRingCtrl.cpp"
+        },
+        "data_ranges": {
+          ".rodata": {
+            "start": "0x804347D0",
+            "end": "0x80434848",
+            "exact_bytes": 120
+          },
+          ".data": {
+            "start": "0x804809B0",
+            "end": "0x80480A70",
+            "exact_bytes": 192
+          },
+          ".bss": {
+            "start": "0x804FE138",
+            "end": "0x804FE148",
+            "exact_bytes": 16
+          },
+          ".sdata": {
+            "start": "0x805D2618",
+            "end": "0x805D2620",
+            "exact_bytes": 8
+          },
+          ".sbss": {
+            "start": "0x805D4A00",
+            "end": "0x805D4A38",
+            "exact_bytes": 56
+          },
+          ".sdata2": {
+            "start": "0x805D7E48",
+            "end": "0x805D7E70",
+            "exact_bytes": 40
+          }
+        },
+        "source_comparison": "The ring and controller retain the native resource ownership, child construction, animation and fade limits. The current compiler literal pool and guard storage account for the full historical data at their original addresses. The 3D fan retains all four corners, and the 2D fade passes the native polygon, color, count and null texture fields to Ninja."
+      },
+      "src/pso/misc/TKeyBoardControl_8025EC04.cpp": {
+        "exact_functions": 30,
+        "exact_data_bytes": 800,
+        "function_owners": {
+          "0x8025ec04": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+          "0x8025ec1c": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+          "0x8025ec54": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+          "0x8025ed80": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+          "0x8025edb4": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+          "0x8025f21c": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+          "0x8025f27c": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+          "0x8025f2f8": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+          "0x8025f3d4": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+          "0x8025f4a0": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+          "0x8025faf0": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+          "0x8025fbe8": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+          "0x8025fc60": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+          "0x8025fe9c": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+          "0x8025feec": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+          "0x8025ff3c": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+          "0x8025ff8c": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+          "0x8025fff4": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+          "0x80260020": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+          "0x8026017c": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+          "0x802601d4": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+          "0x802602ac": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+          "0x80260304": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+          "0x8026038c": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+          "0x802603b4": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+          "0x802603dc": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+          "0x80260404": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+          "0x8026042c": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+          "0x80260438": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+          "0x80260444": "src/pso/ui/window/TWindowKeyBoardHard.cpp"
+        },
+        "data_ranges": {
+          ".data": {
+            "start": "0x804CFAD0",
+            "end": "0x804CFDDC",
+            "exact_bytes": 780
+          },
+          ".sdata": {
+            "start": "0x805D3928",
+            "end": "0x805D392C",
+            "exact_bytes": 4
+          },
+          ".sbss": {
+            "start": "0x805D6450",
+            "end": "0x805D6458",
+            "exact_bytes": 8
+          },
+          ".sdata2": {
+            "start": "0x805DD068",
+            "end": "0x805DD070",
+            "exact_bytes": 8
+          }
+        },
+        "source_comparison": "The hard keyboard constructor and destructor, reset, pending-state dispatch, translation, accent index, controller mode and save-option paths are retained. The existing base keyboard owns the 26 control handlers and composition flags. This replay removes the old layout overlays by using the actual client, input and composition fields."
+      },
+      "src/pso/misc/TShopSequence.cpp": {
+        "exact_functions": 12,
+        "exact_data_bytes": 0,
+        "function_owners": {
+          "0x8022356c": "src/pso/ui/city/TShopSequence.cpp",
+          "0x802235a0": "src/pso/ui/city/TShopSequence.cpp",
+          "0x80223600": "src/pso/ui/city/TShopSequence.cpp",
+          "0x80223674": "src/pso/ui/city/TShopSequence.cpp",
+          "0x802236a0": "src/pso/ui/city/TShopSequence.cpp",
+          "0x802236cc": "src/pso/ui/city/TShopSequence.cpp",
+          "0x802236f8": "src/pso/ui/city/TShopSequence.cpp",
+          "0x80223724": "src/pso/ui/city/TShopSequence.cpp",
+          "0x80223760": "src/pso/ui/city/TShopSequence.cpp",
+          "0x802237d8": "src/pso/ui/city/TShopSequence.cpp",
+          "0x80223850": "src/pso/ui/city/TShopSequence.cpp",
+          "0x802238d8": "src/pso/ui/city/TShopSequence.cpp"
+        },
+        "data_ranges": {},
+        "source_comparison": "The current constructor and destructor retain message allocation and deletion through the native shop owner. Creation and message dispatch keep the original selection. Counter entry and exit use the native player and original client ID for suppression, and toggle collision for the correct split-screen player slots."
+      }
+    },
+    "remaining": 119
+  }
+}

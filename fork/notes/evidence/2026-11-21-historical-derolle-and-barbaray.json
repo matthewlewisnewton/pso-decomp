@@ -1,0 +1,745 @@
+{
+  "upstream": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "previous_source": "e2d1a76e358fc0862e9f4d67e6f51e2348754443",
+  "source": "7b8b4a2d487847463fbc81581f1224fe1ebb1aeb",
+  "source_tree": "ecd617219dd9c1a597ab8f57fb01ce14e9a4c13b",
+  "source_review_files": 934,
+  "recovered_paths": [
+    {
+      "path": "config/GPOE8P/psov3/symbols.txt",
+      "previous_blob": "100644:75149629f637e1717fd1383ecaf2bb500cc112a0",
+      "review_blob": "100644:e7b8422c22d19de3ed1c98e53d5a44e5a8cd874f",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "include/pso/boss/TunnelParticle.h",
+      "previous_blob": "",
+      "review_blob": "100644:21a9f026df562f321ce4ec65a75349ed3938d826",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/boss/barbaray/TObjBoss7RaftSplash_802F18E8.h",
+      "previous_blob": "100644:b196beadbe9b8f731bfa66740899cd6c9c4e58a4",
+      "review_blob": "100644:c2ea82b6dccc14154ff2d3d3592042023ee63840",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/boss/derolle/Boss2Particles.h",
+      "previous_blob": "",
+      "review_blob": "100644:90c70a600b3aa28cdc9b7ded086f3ed355b04585",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/boss/derolle/Boss2Resources.h",
+      "previous_blob": "",
+      "review_blob": "100644:489e36854687797479a66c3a9cb1ddaef1eade2e",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/boss/derolle/TBoss2DeRolLe.h",
+      "previous_blob": "100644:f838776cd8d0c6d54513d5582abcd0ee8ca9c052",
+      "review_blob": "100644:930501bf9183c04b75c2e71d68e99219d67ed1d7",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "include/pso/boss/derolle/TBoss2Mine.h",
+      "previous_blob": "100644:fbdc7bf52700542a298c78a4764476468aecbf6a",
+      "review_blob": "100644:04b73c8641c679d3f476836345cb1ae06905fe07",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/boss/derolle/TBoss2Tentacle.h",
+      "previous_blob": "100644:439ccaca74513aaba1055d6bbaeacacbd500314b",
+      "review_blob": "100644:8415df6031022d021a2737e277dd32f48965147d",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/boss/derolle/TObjBoss2CeilJunk.h",
+      "previous_blob": "100644:65fe7e20fd9f6116c39e9f009f38e588a65a7b59",
+      "review_blob": "100644:c503b276a90b807c76a76bfc6dc113ebf4f15058",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/boss/derolle/TObjBoss2CeilJunk_8003A81C.h",
+      "previous_blob": "100644:4ee54e21bc6d5ce73213159a8a44f80408200797",
+      "review_blob": "100644:82701336486777b06f9591f43da2e138776ba5ca",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/boss/derolle/TObjBoss2RaftSplash.h",
+      "previous_blob": "100644:8cae26b917f6e3849ef530fc37385336305899a3",
+      "review_blob": "100644:88b8f377b152d8f28c8c6071c50cc2a3babfe6d2",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "include/pso/boss/derolle/TObjBoss2Tunnel.h",
+      "previous_blob": "100644:7994445f2cfa0c02789284ea44bdd0d6b7d4d848",
+      "review_blob": "100644:47f3d6a449c692f6862e9758fa8666ea67c91c8a",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "include/pso/boss/derolle/TObjBoss2Tunnel_8003B138.h",
+      "previous_blob": "100644:193f7d31b2d13aa4c9412224510c1602637c101a",
+      "review_blob": "100644:a692da062d188f23ab1ebabfc5e34aa25f79239a",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/object/ambient/TObjFish.h",
+      "previous_blob": "100644:c8b4d416951b85f80506c004bf0f517ef965fac2",
+      "review_blob": "100644:7ae524ac614e8bb28d882cb048d6d04adeedf7e8",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "include/pso/unk/text_802F190C.h",
+      "previous_blob": "100644:0359ebd27538a165bcaddc1ee423370f27c86483",
+      "review_blob": "100644:f38d2d6f946649ca7e0bab0a2e885cc17467e7a0",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+      "previous_blob": "100644:7173b6a03763bd29bb9292646e71c83ce7b9b989",
+      "review_blob": "100644:966d46239ae4f958af3bb31e15b59961fad8b738",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/boss/barbaray/TObjBoss7RaftSplash.cpp",
+      "previous_blob": "100644:053039815825331b538155b27d3932600aa2e05c",
+      "review_blob": "100644:c7dc977ae1318d5bc49c51b8520a901a2225181c",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+      "previous_blob": "100644:e364b02dc888e91645e1febaca6251774fe2025c",
+      "review_blob": "100644:e6daab52787c62b89d5ae16e7f711a1b8d6220ba",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/boss/derolle/TBoss2Fin.cpp",
+      "previous_blob": "100644:0afe320ad14dc6a6303038df92eada9545df5213",
+      "review_blob": "100644:04bd35fa346bf6f6073b87fafea1a68c14f2ca2e",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/boss/derolle/TBoss2Joint.cpp",
+      "previous_blob": "100644:161a98e139e222439230b9e246e27c1b22cad6d8",
+      "review_blob": "100644:af615b74d03a55d046d77035294fafa5b0acfa30",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/boss/derolle/TBoss2Mine.cpp",
+      "previous_blob": "100644:3dbbaf6cb519ebc8c0c5febcb48a963d7ff88b3f",
+      "review_blob": "100644:bd4cb439452461b7f82630b21ade01d2174e14f6",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/boss/derolle/TBoss2Tentacle.cpp",
+      "previous_blob": "100644:6c273a2613ff2bded5c24ed9d2e8759a9cadde3d",
+      "review_blob": "100644:5f7c428fc226e872da2e39efdf477481df9ba4ab",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/boss/derolle/TObjBoss2CeilJunk.cpp",
+      "previous_blob": "100644:2a304dce29860e98fd26f490d1ed8fa84b4a1202",
+      "review_blob": "100644:fbfce0d33ceaf83bfee61003c5fd18c2dab2586a",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/boss/derolle/TObjBoss2CeilJunk_8003A81C.cpp",
+      "previous_blob": "100644:9cac90ef777c890b4bdc40a211a7e57ceaeb5dd0",
+      "review_blob": "100644:9a8e21b46e5616eeb68d3d30901dc6b568bef314",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "src/pso/boss/derolle/TObjBoss2RaftSplash.cpp",
+      "previous_blob": "100644:ea63ee35f4d97ad7ad4f5025720528dc02b58555",
+      "review_blob": "100644:54317cc246ef34395deaddc4226c0e92774c0547",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+      "previous_blob": "100644:36deb9f64be2ec1ffcb387d7b32e7420ccfec064",
+      "review_blob": "100644:d903b08865fe85f431b299bca479e18ff73137d7",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp",
+      "previous_blob": "100644:a26e71713bbb560b57079e1a2b3f56e9abef03ed",
+      "review_blob": "100644:ef72f2fc3a2a1961744ec5f4fb697610be792929",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/boss/derolle/TObjBoss2Tunnel_8003B1FC.cpp",
+      "previous_blob": "100644:e85c406e3aeb91b9657cafe4130d9b51d39903ea",
+      "review_blob": "100644:35ea262d982a8971f9e7478c4a25b53e710eb498",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/boss/derolle/TObjBoss2Tunnel_802F1A58.cpp",
+      "previous_blob": "100644:1aa2ca86bd408e78cd1c230c33568e0dbca1bc6e",
+      "review_blob": "100644:2231549acc67133c1c5e2cb8f0bdf5109ee70354",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/player/TObjPlayer_8002E784.cpp",
+      "previous_blob": "100644:c9e0e266cab0bb69dd96b560f673d18f0ced52f4",
+      "review_blob": "100644:1365146b9bfc9f71c669d8da51df03195e0f6c65",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/unk/text_802F190C.cpp",
+      "previous_blob": "100644:b8abe5e540162746129532fd27c090088ab2f1ea",
+      "review_blob": "100644:aa63d1680d3044b3892271106611a54476533180",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    }
+  ],
+  "checks": {
+    "arena-assets": {
+      "head": "8a410337df752d78c9c948ec1c7b02fb207a4873",
+      "baseline": "e2d1a76e358fc0862e9f4d67e6f51e2348754443",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068"
+    },
+    "ceil-junk": {
+      "head": "6dc08d63598936041cb017091c697b0ee2f01373",
+      "baseline": "8a410337df752d78c9c948ec1c7b02fb207a4873",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068"
+    },
+    "boss-archive": {
+      "head": "b0a94c88d9f24c2265f3298bed0e08f72ad4b3e7",
+      "baseline": "6dc08d63598936041cb017091c697b0ee2f01373",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068"
+    },
+    "tunnel-particles": {
+      "head": "0f0e0ff22369870b70de86c4fd26503c4dc7407e",
+      "baseline": "b0a94c88d9f24c2265f3298bed0e08f72ad4b3e7",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 6,
+      "check_sha256": "58d1010948ccbc758697425ebad6d7c6769e95f521c665088d7cb8a052c32a3d"
+    },
+    "tentacle-and-mine": {
+      "head": "e24c6ee3f21f705cdaf2a8f98db3889ac8e6dd8c",
+      "baseline": "0f0e0ff22369870b70de86c4fd26503c4dc7407e",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 2,
+      "check_sha256": "658d04ebf3ce44ca8d679306145de716b7b01a0f585d9d8f279cf485c21b3581"
+    },
+    "barba-splash": {
+      "head": "4389085469c0b5c8278f1170b845954a90280689",
+      "baseline": "e24c6ee3f21f705cdaf2a8f98db3889ac8e6dd8c",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 3,
+      "check_sha256": "5c4bd4c0d1c6ada9c4495c3fe14cd251c9ff66b17bc15ecce0cf34977a135ac1"
+    },
+    "tentacle-constructor": {
+      "head": "94feeb37b98c69ddd8631c3f94067c11451f1e7f",
+      "baseline": "4389085469c0b5c8278f1170b845954a90280689",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 1,
+      "check_sha256": "daefefd44fb50d6dcf7098291c9b353b875fc2fbdb5ab47dfcc89a36d8ad9d60"
+    },
+    "tunnel-curves": {
+      "head": "7b8b4a2d487847463fbc81581f1224fe1ebb1aeb",
+      "baseline": "94feeb37b98c69ddd8631c3f94067c11451f1e7f",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 3,
+      "check_sha256": "ced6e7d330ef363f12d865eb3c2b934990dd78f774a2bf37ad786bf82345d495"
+    },
+    "full-review": {
+      "head": "7b8b4a2d487847463fbc81581f1224fe1ebb1aeb",
+      "baseline": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 326,
+      "check_sha256": "333ec2afe1d4e72c8b748b83d0c17df3cc8a5a27dca87cb67bd093e97652822c"
+    },
+    "layer": {
+      "head": "0d366e7dccdd61bbfcdda43304e6384d09d4f2d1",
+      "baseline": "7b8b4a2d487847463fbc81581f1224fe1ebb1aeb",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "294d5d4e65e3db3407ceff097811cede09728d2c21c1257d66d17135be0bdc4b"
+    }
+  },
+  "release_data": {
+    "tunnel-curves": {
+      "sha256": "e16defcd42f823ba413e0d090b153744713f2185d1c0993cd34375d6003ba7a4",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "layer": {
+      "sha256": "e16defcd42f823ba413e0d090b153744713f2185d1c0993cd34375d6003ba7a4",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    }
+  },
+  "typed_linker_labels": [
+    {
+      "module": "psov3",
+      "address": "0x8003A81C",
+      "before": "create__17TObjBoss2CeilJunkFPv",
+      "after": "create__17TObjBoss2CeilJunkFPC3Vec"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8003B07C",
+      "before": "create_particle__17TObjBoss2CeilJunkFPCvl",
+      "after": "create_particle__17TObjBoss2CeilJunkFPC3Vecl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8003B0A0",
+      "before": "spawn_splash__19TObjBoss2RaftSplashFlll",
+      "after": "spawn_splash__19TObjBoss2RaftSplashFPC3VeclPC3Vec"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8003B138",
+      "before": "create_particle_effect__15TObjBoss2TunnelFPCvlf",
+      "after": "create_particle_effect__15TObjBoss2TunnelFPC3Veclf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8003B1FC",
+      "before": "detach_children__15TObjBoss2TunnelFPv",
+      "after": "detach_children__15TObjBoss2TunnelFP13TParticleCtrlPC3Vec"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8003B250",
+      "before": "release_children__15TObjBoss2TunnelFPvf",
+      "after": "release_children__15TObjBoss2TunnelFP13TParticleCtrlf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800380B8",
+      "before": "set_launch_position_velocity__10TBoss2MineFPUcPUc",
+      "after": "set_launch_position_velocity__10TBoss2MineFPC3VecPC3Vec"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80039E88",
+      "before": "start_attack_at_target__14TBoss2TentacleFPUcl",
+      "after": "start_attack_at_target__14TBoss2TentacleFPC3Vecl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802F178C",
+      "before": "spawn_default_particle__8TObjFishFll",
+      "after": "spawn_default_particle__8TObjFishFPC3Vecl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802F17B0",
+      "before": "create_splash_particle__8TObjFishFlll",
+      "after": "create_splash_particle__8TObjFishFPC3VeclPC3Vec"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802F1848",
+      "before": "spawn_particle__8TObjFishFllf",
+      "after": "spawn_particle__8TObjFishFPC3Veclf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80039F50",
+      "before": "__ct__14TBoss2TentacleFP7TObjectll",
+      "after": "__ct__14TBoss2TentacleFP7TObjectPA3_A4_Cfl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8007DD70",
+      "before": "advance_phase__15TObjBoss2TunnelFPf",
+      "after": "advance_phase__14PiecewiseCurveFPf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8007DE5C",
+      "before": "update_position__15TObjBoss2TunnelFv",
+      "after": "update_position__14PiecewiseCurveFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8007DE80",
+      "before": "eval_piecewise_curve__15TObjBoss2TunnelFf",
+      "after": "eval_piecewise_curve__14PiecewiseCurveFf"
+    }
+  ],
+  "closed_historical_rows": [
+    {
+      "row": 928,
+      "fork_path": "src/pso/boss/TObjBoss2CeilJunk.cpp",
+      "fork_blob": "143df0bfa0f594b8dd9e85410dd90b1d11ec8de5",
+      "historical_delta_sha256": "4e81d063a96ebdd9c790ed0219c0cd936fca86eceb59a7664f280832129dc636",
+      "owner": "src/pso/boss/derolle/TObjBoss2CeilJunk.cpp",
+      "owner_blob": "fbfce0d33ceaf83bfee61003c5fd18c2dab2586a",
+      "final_comparison_sha256": "ebd0e2bfe17eb0a73902b597e110730e66267f4625ab2eebc1660dc67ca29b8f",
+      "status": "Typed historical integration validated",
+      "rationale": "The ceiling debris type supplies the native object name, motion, ground sample, normal, cast-free ARGB material, BML model selection and Ginja texture list. The height, radius and model-index arrays retain the same bytes and addresses. The fork ground and texture aliases resolve to 0x8007E44C and 0x803DA798 under the current names."
+    },
+    {
+      "row": 1070,
+      "fork_path": "src/pso/boss/TObjBoss2Tunnel_8003B138.cpp",
+      "fork_blob": "3e40cf0de112792356331816eed0fbdaa300a455",
+      "historical_delta_sha256": "499793bc9b08a12fa8434cb6511a63690d13bfa0dcb575f453b8e1da95694cbf",
+      "owner": "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp",
+      "owner_blob": "ef72f2fc3a2a1961744ec5f4fb697610be792929",
+      "final_comparison_sha256": "3ae81d31637e1e6383a49fe12e12315cbf30e62b1eb001ce02abceb399650425",
+      "status": "Typed historical integration validated",
+      "rationale": "The tunnel and splash constructors, segment queue, task and destructor are already covered by the native upstream units. This pass types the curve receiver and all of its motion calls, resource model and texture entry, node flags and both particle reparent paths. The original texture slot, curve field and BML model operands are retained."
+    },
+    {
+      "row": 1126,
+      "fork_path": "src/pso/boss/TBoss2Mine_800375C0.cpp",
+      "fork_blob": "c70d09c97b890b78ad6478a4e653e8003c72e6e1",
+      "historical_delta_sha256": "f3366f4b099cd5cb5944c823db5229df6897f20e1ca077635c385a280aaddb60",
+      "owner": "src/pso/boss/derolle/TBoss2Mine.cpp",
+      "owner_blob": "bd4cb439452461b7f82630b21ade01d2174e14f6",
+      "final_comparison_sha256": "c6befa6a3d4ba2c2d7ed2cb92da1b367c6280ff4e6024062c8021a6d4e838156",
+      "status": "Typed historical integration validated",
+      "rationale": "The mine uses the native class constructor and destructor, battle stat accessors, BML model and texture list, collision state and ARGB color. Both launch inputs and sound positions use native vectors. The current normalization and demo helpers resolve to the historical addresses 0x8007E9EC and 0x80080750."
+    },
+    {
+      "row": 1140,
+      "fork_path": "src/pso/boss/TBoss2Tentacle.cpp",
+      "fork_blob": "3a13b5b354b982b2ef182136111d95cb4de25892",
+      "historical_delta_sha256": "2c5486fac95e70397888d362c3691782a2a4588d5ead2bb9a3082a3b07ec383b",
+      "owner": "src/pso/boss/derolle/TBoss2Tentacle.cpp",
+      "owner_blob": "5f7c428fc226e872da2e39efdf477481df9ba4ab",
+      "final_comparison_sha256": "f8dfab4a696f521f76bcb5e5ab6d12729a2f704ac37c9b5538926aa1c3e39611",
+      "status": "Typed historical integration validated",
+      "rationale": "The base constructor, renderer, task, target, segment vectors, angles and BML pointers use the native tentacle class. The matrix storage has the game\u2019s Mtx34 type. The historical concat_matrix alias at 0x803D9730 is the current TObjPlayer::concat_matrix, which keeps the upstream name. The reciprocal random scale has the same retail encoding."
+    },
+    {
+      "row": 3838,
+      "fork_path": "src/pso/unk/data_805D8200.cpp",
+      "fork_blob": "dd8f1ae4a4e6a49ff5cb14aa96f9ea0e69c22d8f",
+      "historical_delta_sha256": "a06768b836195cdcec17a7690885068aa646d202905bbc2dd5a9eb443ed116fc",
+      "owner": "src/pso/player/TObjPlayer_8002E784.cpp",
+      "owner_blob": "1365146b9bfc9f71c669d8da51df03195e0f6c65",
+      "final_comparison_sha256": "b2365361f2998f6dd4d69782a48ac418d9de9b0a0a964bcd4f80125de44aca1a",
+      "status": "Current native owner verified",
+      "rationale": "All 30 historical float words match retail at their exact addresses. Current exact linked .sdata2 intervals in TObjBoss1Rock and TObjPlayer_8002E784 cover all 120 bytes. The discrete float owners remain distinct at repeated values, including the two reciprocal random scales and the 76.0 and -75.0 pairs."
+    }
+  ],
+  "historical_ledger_sha256_before": "9826ff367e50c2b3eded9ae1853b68987e044b294502f3379b441930ce082eb6",
+  "historical_ledger_sha256": "21b4af148f20b1378c50b87bfdf567753d0e274cd4b8ecfca01162f2ff758c86",
+  "historical_rows_open": 557,
+  "partially_reconciled_encounter_rows": [
+    {
+      "row": 424,
+      "path": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+      "current_blob": "d903b08865fe85f431b299bca479e18ff73137d7",
+      "scope": "The shared curve operations now take their actual PiecewiseCurve receiver and retain the original function spellings. The broader historical row is still open."
+    },
+    {
+      "row": 842,
+      "path": "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+      "current_blob": "d903b08865fe85f431b299bca479e18ff73137d7",
+      "scope": "The position, phase advance and speed evaluation use the typed float record and its clock. The broader historical row is still open."
+    },
+    {
+      "row": 917,
+      "path": "src/pso/boss/derolle/TBoss2Joint.cpp",
+      "current_blob": "af615b74d03a55d046d77035294fafa5b0acfa30",
+      "scope": "The joint takes its inherited Vec position through the shared typed offset particle interface. The broader historical row is still open."
+    },
+    {
+      "row": 951,
+      "path": "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+      "current_blob": "966d46239ae4f958af3bb31e15b59961fad8b738",
+      "scope": "The Barba Ray follow-up preserves the existing splash and impact functions while typing vector positions and particle controllers through the provider. The broader historical row is still open."
+    },
+    {
+      "row": 1125,
+      "path": "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+      "current_blob": "e6daab52787c62b89d5ae16e7f711a1b8d6220ba",
+      "scope": "The boss resource lifetime and part references now share the native BML archive. Both matrix arrays and the mine and tentacle attack inputs use their actual types. The broader historical row is still open."
+    }
+  ],
+  "historical_breakup_constants": [
+    {
+      "address": "0x805D8200",
+      "historical": "1.0f",
+      "retail": "3f800000",
+      "exact_linked_owner": "psov3/pso/boss/dragon/TObjBoss1Rock"
+    },
+    {
+      "address": "0x805D8204",
+      "historical": "0.08f",
+      "retail": "3da3d70a",
+      "exact_linked_owner": "psov3/pso/boss/dragon/TObjBoss1Rock"
+    },
+    {
+      "address": "0x805D8208",
+      "historical": "0.0f",
+      "retail": "00000000",
+      "exact_linked_owner": "psov3/pso/boss/dragon/TObjBoss1Rock"
+    },
+    {
+      "address": "0x805D820C",
+      "historical": "-1.0f",
+      "retail": "bf800000",
+      "exact_linked_owner": "psov3/pso/boss/dragon/TObjBoss1Rock"
+    },
+    {
+      "address": "0x805D8210",
+      "historical": "-0.4f",
+      "retail": "becccccd",
+      "exact_linked_owner": "psov3/pso/boss/dragon/TObjBoss1Rock"
+    },
+    {
+      "address": "0x805D8214",
+      "historical": "0.7f",
+      "retail": "3f333333",
+      "exact_linked_owner": "psov3/pso/boss/dragon/TObjBoss1Rock"
+    },
+    {
+      "address": "0x805D8218",
+      "historical": "-0.5f",
+      "retail": "bf000000",
+      "exact_linked_owner": "psov3/pso/boss/dragon/TObjBoss1Rock"
+    },
+    {
+      "address": "0x805D821C",
+      "historical": "65536.0f",
+      "retail": "47800000",
+      "exact_linked_owner": "psov3/pso/boss/dragon/TObjBoss1Rock"
+    },
+    {
+      "address": "0x805D8220",
+      "historical": "1.0f / 32768.0f",
+      "retail": "38000000",
+      "exact_linked_owner": "psov3/pso/boss/dragon/TObjBoss1Rock"
+    },
+    {
+      "address": "0x805D8224",
+      "historical": "0.8f",
+      "retail": "3f4ccccd",
+      "exact_linked_owner": "psov3/pso/boss/dragon/TObjBoss1Rock"
+    },
+    {
+      "address": "0x805D8228",
+      "historical": "1.0f",
+      "retail": "3f800000",
+      "exact_linked_owner": "psov3/pso/player/TObjPlayer_8002E784"
+    },
+    {
+      "address": "0x805D822C",
+      "historical": "0.0f",
+      "retail": "00000000",
+      "exact_linked_owner": "psov3/pso/player/TObjPlayer_8002E784"
+    },
+    {
+      "address": "0x805D8230",
+      "historical": "-0.8f",
+      "retail": "bf4ccccd",
+      "exact_linked_owner": "psov3/pso/player/TObjPlayer_8002E784"
+    },
+    {
+      "address": "0x805D8234",
+      "historical": "2.0f",
+      "retail": "40000000",
+      "exact_linked_owner": "psov3/pso/player/TObjPlayer_8002E784"
+    },
+    {
+      "address": "0x805D8238",
+      "historical": "6.0f",
+      "retail": "40c00000",
+      "exact_linked_owner": "psov3/pso/player/TObjPlayer_8002E784"
+    },
+    {
+      "address": "0x805D823C",
+      "historical": "5.0f",
+      "retail": "40a00000",
+      "exact_linked_owner": "psov3/pso/player/TObjPlayer_8002E784"
+    },
+    {
+      "address": "0x805D8240",
+      "historical": "3400.0f",
+      "retail": "45548000",
+      "exact_linked_owner": "psov3/pso/player/TObjPlayer_8002E784"
+    },
+    {
+      "address": "0x805D8244",
+      "historical": "1.0f / 32768.0f",
+      "retail": "38000000",
+      "exact_linked_owner": "psov3/pso/player/TObjPlayer_8002E784"
+    },
+    {
+      "address": "0x805D8248",
+      "historical": "65536.0f",
+      "retail": "47800000",
+      "exact_linked_owner": "psov3/pso/player/TObjPlayer_8002E784"
+    },
+    {
+      "address": "0x805D824C",
+      "historical": "1.1f",
+      "retail": "3f8ccccd",
+      "exact_linked_owner": "psov3/pso/player/TObjPlayer_8002E784"
+    },
+    {
+      "address": "0x805D8250",
+      "historical": "0.2f",
+      "retail": "3e4ccccd",
+      "exact_linked_owner": "psov3/pso/player/TObjPlayer_8002E784"
+    },
+    {
+      "address": "0x805D8254",
+      "historical": "0.05f",
+      "retail": "3d4ccccd",
+      "exact_linked_owner": "psov3/pso/player/TObjPlayer_8002E784"
+    },
+    {
+      "address": "0x805D8258",
+      "historical": "-10.0f",
+      "retail": "c1200000",
+      "exact_linked_owner": "psov3/pso/player/TObjPlayer_8002E784"
+    },
+    {
+      "address": "0x805D825C",
+      "historical": "-5.0f",
+      "retail": "c0a00000",
+      "exact_linked_owner": "psov3/pso/player/TObjPlayer_8002E784"
+    },
+    {
+      "address": "0x805D8260",
+      "historical": "2.0f",
+      "retail": "40000000",
+      "exact_linked_owner": "psov3/pso/player/TObjPlayer_8002E784"
+    },
+    {
+      "address": "0x805D8264",
+      "historical": "1.15f",
+      "retail": "3f933333",
+      "exact_linked_owner": "psov3/pso/player/TObjPlayer_8002E784"
+    },
+    {
+      "address": "0x805D8268",
+      "historical": "76.0f",
+      "retail": "42980000",
+      "exact_linked_owner": "psov3/pso/player/TObjPlayer_8002E784"
+    },
+    {
+      "address": "0x805D826C",
+      "historical": "-75.0f",
+      "retail": "c2960000",
+      "exact_linked_owner": "psov3/pso/player/TObjPlayer_8002E784"
+    },
+    {
+      "address": "0x805D8270",
+      "historical": "76.0f",
+      "retail": "42980000",
+      "exact_linked_owner": "psov3/pso/player/TObjPlayer_8002E784"
+    },
+    {
+      "address": "0x805D8274",
+      "historical": "-75.0f",
+      "retail": "c2960000",
+      "exact_linked_owner": "psov3/pso/player/TObjPlayer_8002E784"
+    }
+  ],
+  "retained_upstream_names": [
+    {
+      "before": "adjust_point_to_ground_with_normal",
+      "retained": "spawn_effect__15TObjBoss2TunnelFPC3VecP3VecP3Vec",
+      "address": "0x8007E44C",
+      "size": "0x94"
+    },
+    {
+      "before": "normalize_vector_checked",
+      "retained": "normalize_vector_safe__FP3Vec",
+      "address": "0x8007E9EC",
+      "size": "0x88"
+    },
+    {
+      "before": "check_demo_mode__Fv",
+      "retained": "check_demo_mode__10TObjPlayerFv",
+      "address": "0x80080750",
+      "size": "0x38"
+    },
+    {
+      "before": "concat_matrix",
+      "retained": "concat_matrix__10TObjPlayerFUlUl",
+      "address": "0x803D9730",
+      "size": "0x3C"
+    },
+    {
+      "before": "set_current_texture_list",
+      "retained": "set_global_param",
+      "address": "0x803DA798",
+      "size": "0x10"
+    }
+  ],
+  "compiler_sensitive_source": {
+    "tentacle_curve": "The point loop retains its original address calculation with class and Vec offsets. Direct member indexing changed the instruction sequence at 0x80039994.",
+    "boss_constructor": "The typed tentacle constructor uses the existing explicit allocation sequence. A direct new-expression changed the matching parent constructor at 0x8003563C."
+  },
+  "runtime_probe": {
+    "builds": [
+      "retail",
+      "stock",
+      "fork"
+    ],
+    "sha256": "d018b9d5dfda1df6aecc08256e652f9ed52492eeeab9d0c95bc61bfbb57e6635",
+    "source_sha256": "46f1195bd256ffdba340a5c0fdc1b0aff2ab7df911db1dedf6d4d8330bf5ea12",
+    "scope": "The probes exercise arena node selection and flags, reparenting in both variants, debris expiry, tentacle target timing, mine launch vectors and flags, and curve sampling and time advancement. Particle parent updates and vector addition are simulated. Paired-single register saves and restores are skipped."
+  },
+  "overlay_paths": 130,
+  "overlay_sha256": "e5e9e29317e1c513e5268a6ee172bd9dcb6664f031ec6cdc8bd45aff3a8f9457",
+  "retained_symbols": 27033,
+  "workspace_checks": {
+    "tool": {
+      "count": 294,
+      "sha256": "70d53b893b4875d8b61ad8bc657f8a21162194c39a04171fa56eb30e6c913abb"
+    },
+    "fork": {
+      "count": 11,
+      "sha256": "29db5571eb19b7726ffaa1117534755426730fbe743358c3bd1231d0eed68611"
+    },
+    "host": {
+      "checks": [
+        "./vector_math_fallbacks",
+        "./item_factory_callbacks",
+        "./loader_transfer",
+        "./ginja_parameter_callbacks",
+        "./exi_ethernet_fallbacks"
+      ],
+      "sha256": "ad1227e7d6dde3aea88d51f241949b30f3d1fe42ec4c3abf078bd6309ee9bbdb"
+    }
+  },
+  "review_commit_attribution": {
+    "commits": 64,
+    "codex_attribution": 0,
+    "coauthor_trailers": 0
+  },
+  "public_refs_changed": false
+}

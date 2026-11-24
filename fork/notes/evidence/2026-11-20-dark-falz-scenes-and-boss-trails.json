@@ -1,0 +1,1046 @@
+{
+  "upstream_master": "0fa391a887c664abadc00cba75db1f039aceb647",
+  "historical_donor_base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "scope_donor": "125ed8f5b0",
+  "replay_base": "fef0ba01803cc76136391e29bcd9c46fd79216f8",
+  "replay_head": "417985bccc2afd7ec4c4bcdf23cbc29f8c46aa74",
+  "replay_tree": "0a300aa8a964a6c40539507ceec1ef7298f4296f",
+  "scope": [
+    "Use real Dark Falz form actors in phase dispatch, handoff and defeat parameters.",
+    "Use typed C++ cinematic factories, archive records and shared fade state.",
+    "Carry Tenchu targeting and direct hits through their real source and player contracts.",
+    "Use shared Dark Falz Zako draw records and Olga Flow trail frames with the native triangle-fan API."
+  ],
+  "replay_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/boss/darkfalz/DarkFalzScenePart.h",
+    "include/pso/boss/darkfalz/TBoss4DarkFalz.h",
+    "include/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.h",
+    "include/pso/boss/darkfalz/TBoss4Fade.h",
+    "include/pso/boss/darkfalz/TBoss4Thanks.h",
+    "include/pso/boss/darkfalz/TBoss4Type1.h",
+    "include/pso/boss/darkfalz/TBoss4Type2.h",
+    "include/pso/boss/darkfalz/TBoss4Type3.h",
+    "include/pso/boss/darkfalz/TBoss4Uro.h",
+    "include/pso/boss/darkfalz/TBoss4Zako.h",
+    "include/pso/boss/darkfalz/TBoss4ZakoDraw.h",
+    "include/pso/boss/darkfalz/TBoss4ZakoDrawBuffer.h",
+    "include/pso/boss/darkfalz/TObjDFDemo0.h",
+    "include/pso/boss/darkfalz/TObjDFDemo1.h",
+    "include/pso/boss/darkfalz/TObjDFDemo2.h",
+    "include/pso/boss/darkfalz/TObjDFDemo3.h",
+    "include/pso/boss/darkfalz/TObjDFDemo4.h",
+    "include/pso/boss/darkfalz/TObjDFDemo5.h",
+    "include/pso/boss/darkfalz/TObjDFDemoF.h",
+    "include/pso/boss/darkfalz/TObjDFHorming.h",
+    "include/pso/boss/darkfalz/TObjDFTenchuFuru.h",
+    "include/pso/boss/darkfalz/TObjDFUsoTower.h",
+    "include/pso/boss/olgaflow/TBoss6Demo21_TYPE2_DEAD.h",
+    "include/pso/boss/olgaflow/TBoss6PlotFalz.h",
+    "include/pso/boss/olgaflow/TBoss6Type1.h",
+    "include/pso/boss/olgaflow/TBoss6Type2.h",
+    "include/pso/boss/olgaflow/TBoss6Zanzo.h",
+    "include/pso/enemy/TUnk_80486924.h",
+    "include/pso/object/base/TObjChara.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/render/TriangleFan3D.h",
+    "include/pso/system/NinjaTypes.h",
+    "include/pso/unk/text_8035966C.h",
+    "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp",
+    "src/pso/boss/darkfalz/TBoss4DarkFalz_8004D8C8.cpp",
+    "src/pso/boss/darkfalz/TBoss4Fade.cpp",
+    "src/pso/boss/darkfalz/TBoss4Thanks.cpp",
+    "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+    "src/pso/boss/darkfalz/TBoss4Type3.cpp",
+    "src/pso/boss/darkfalz/TBoss4Zako.cpp",
+    "src/pso/boss/darkfalz/TBoss4ZakoDraw.cpp",
+    "src/pso/boss/darkfalz/TBoss4ZakoDraw_8030AD58.cpp",
+    "src/pso/boss/darkfalz/TBoss4Zanzo.cpp",
+    "src/pso/boss/darkfalz/TObjDFDemo1.cpp",
+    "src/pso/boss/darkfalz/TObjDFDemo2.cpp",
+    "src/pso/boss/darkfalz/TObjDFDemo3.cpp",
+    "src/pso/boss/darkfalz/TObjDFDemo4.cpp",
+    "src/pso/boss/darkfalz/TObjDFDemo5.cpp",
+    "src/pso/boss/darkfalz/TObjDFDemoF.cpp",
+    "src/pso/boss/darkfalz/TObjDFDemoF_80050050.cpp",
+    "src/pso/boss/darkfalz/TObjDFDemoF_80050134.cpp",
+    "src/pso/boss/darkfalz/TObjDFHorming.cpp",
+    "src/pso/boss/darkfalz/TObjDFJisin.cpp",
+    "src/pso/boss/olgaflow/TBoss6Demo21_TYPE2_DEAD.cpp",
+    "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type1_80320AE0.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+    "src/pso/boss/olgaflow/TBoss6Zanzo.cpp",
+    "src/pso/npc/TObjNpcNgcBase.cpp",
+    "src/pso/object/TObjSinBoard.cpp",
+    "src/pso/ui/UISprite.cpp",
+    "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+    "src/pso/unk/TLobby_801E2F94.cpp",
+    "src/pso/unk/TLobby_8030A834.cpp",
+    "src/pso/unk/text_8004D9A8.cpp",
+    "src/pso/unk/text_8035966C.cpp"
+  ],
+  "replay_checks": {
+    "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "matched_functions": 27572,
+    "matched_code_bytes": 4353092,
+    "matched_data_bytes": 1758510,
+    "compiled_source_units": 2448,
+    "coverage_losses": {
+      "regressions": 0,
+      "linked_functions_lost": 0,
+      "data_regressions": 0,
+      "data_coverage_lost": 0,
+      "linked_data_lost": 0
+    },
+    "function_label_changes": [
+      {
+        "module": "psov3",
+        "address": "0x8004C1D4",
+        "before": "get_action_state__14TBoss4DarkFalzFv",
+        "after": "get_action_state__11TBoss4Type3Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8004C1DC",
+        "before": "get_phase__14TBoss4DarkFalzFv",
+        "after": "get_phase__13TUnk_80486924Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8004C1E4",
+        "before": "get_state__14TBoss4DarkFalzFv",
+        "after": "get_state__11TBoss4Type1Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8004D8C8",
+        "before": "get_defeat_params__14TBoss4DarkFalzFPUsPUsPUs",
+        "after": "get_defeat_params__11TBoss4Type3FPUsPUsPUs"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8004D92C",
+        "before": "get_demo2_params__14TBoss4DarkFalzFPUsPUsPUs",
+        "after": "get_demo2_params__13TUnk_80486924FPUsPUsPUs"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8004E020",
+        "before": "create__11TObjDFDemo0FPv",
+        "after": "create__11TObjDFDemo0FP7TObject"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8004E8C0",
+        "before": "create_demo1__14TBoss4DarkFalzFPvPvPv",
+        "after": "create__11TObjDFDemo1FP7TObjectPC3Vecl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8004EB78",
+        "before": "__ct__11TObjDFDemo2FP7TObjectPvPvPv",
+        "after": "__ct__11TObjDFDemo2FP7TObjectPC3Vecll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8004ECC8",
+        "before": "create_demo2__14TBoss4DarkFalzFPvPvPvPv",
+        "after": "create__11TObjDFDemo2FP7TObjectPC3Vecll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8004F030",
+        "before": "__ct__11TObjDFDemo3FP7TObjectPvPv",
+        "after": "__ct__11TObjDFDemo3FP7TObjectPC3Vecl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8004F1A4",
+        "before": "create__11TObjDFDemo3FPvPvPv",
+        "after": "create__11TObjDFDemo3FP7TObjectPC3Vecl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8004F8AC",
+        "before": "create__11TObjDFDemo4FPvPvPv",
+        "after": "create__11TObjDFDemo4FP7TObjectPC3Vecl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8004FFF8",
+        "before": "create__11TObjDFDemo5FPvPvPv",
+        "after": "create__11TObjDFDemo5FP7TObjectPC3Vecl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800502B4",
+        "before": "create__11TObjDFDemoFFPv",
+        "after": "create__11TObjDFDemoFFP7TObject"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800519C8",
+        "before": "create__16TObjDFTenchuFuruFPv",
+        "after": "create__16TObjDFTenchuFuruFP7TObjectPC3Vec"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80052200",
+        "before": "__ct__14TObjDFUsoTowerFl",
+        "after": "__ct__14TObjDFUsoTowerFP7TObject"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80052284",
+        "before": "create__14TObjDFUsoTowerFPv",
+        "after": "create__14TObjDFUsoTowerFP7TObject"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800525AC",
+        "before": "sub_800525AC__11TBoss4Type2Fv",
+        "after": "sub_800525AC__11TBoss4Type1Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800528B8",
+        "before": "sub_800528B8__11TBoss4Type2Fv",
+        "after": "sub_800528B8__11TBoss4Type1Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80052910",
+        "before": "init_timer__11TBoss4Type2Fv",
+        "after": "init_timer__11TBoss4Type1Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8005294C",
+        "before": "update_tech_charge__11TBoss4Type2Fv",
+        "after": "update_tech_charge__11TBoss4Type1Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80052AE0",
+        "before": "update_scale_state__11TBoss4Type2Fv",
+        "after": "update_scale_state__11TBoss4Type1Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80052B6C",
+        "before": "init_child_and_set_timer__11TBoss4Type2Fv",
+        "after": "init_child_and_set_timer__11TBoss4Type1Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80052BA4",
+        "before": "update_attack_countdown__11TBoss4Type2Fv",
+        "after": "update_attack_countdown__11TBoss4Type1Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80052C18",
+        "before": "update_state__11TBoss4Type2Fv",
+        "after": "update_state__11TBoss4Type1Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80052C58",
+        "before": "set_motion_for_state__11TBoss4Type2Fv",
+        "after": "set_motion_for_state__11TBoss4Type1Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80052CA0",
+        "before": "tick_countdown_set_state7__11TBoss4Type2Fv",
+        "after": "tick_countdown_set_state7__11TBoss4Type1Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80052CDC",
+        "before": "update_spawn_uro__11TBoss4Type2Fv",
+        "after": "update_spawn_uro__11TBoss4Type1Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80052E10",
+        "before": "start_motion_for_index__11TBoss4Type2Fv",
+        "after": "start_motion_for_index__11TBoss4Type1Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80052EB4",
+        "before": "tick_state_398_timer__11TBoss4Type2Fv",
+        "after": "tick_state_398_timer__11TBoss4Type1Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80052EE8",
+        "before": "sub_80052EE8__11TBoss4Type2Fv",
+        "after": "sub_80052EE8__11TBoss4Type1Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80052EEC",
+        "before": "sub_80052EEC__11TBoss4Type2Fv",
+        "after": "sub_80052EEC__11TBoss4Type1Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80052EF8",
+        "before": "sub_80052EF8__11TBoss4Type2Fv",
+        "after": "sub_80052EF8__11TBoss4Type1Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80053050",
+        "before": "update_state_transition__11TBoss4Type2Fv",
+        "after": "update_state_transition__11TBoss4Type1Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8005307C",
+        "before": "sub_8005307C__11TBoss4Type2Fv",
+        "after": "sub_8005307C__11TBoss4Type1Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80053088",
+        "before": "update_flag800_state__11TBoss4Type2Fv",
+        "after": "update_flag800_state__11TBoss4Type1Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800530C0",
+        "before": "sub_800530C0__11TBoss4Type2Fv",
+        "after": "sub_800530C0__11TBoss4Type1Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80053190",
+        "before": "check_state_if_idle__11TBoss4Type2Fv",
+        "after": "check_state_if_idle__11TBoss4Type1Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800531BC",
+        "before": "sub_800531BC__11TBoss4Type2Fv",
+        "after": "sub_800531BC__11TBoss4Type1Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8005354C",
+        "before": "check_state_transition__11TBoss4Type2Fv",
+        "after": "check_state_transition__11TBoss4Type1Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800535A8",
+        "before": "TBoss4Type2__sub_800535A8",
+        "after": "choose_next_attack__11TBoss4Type1Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80053914",
+        "before": "pick_target_position__13TRaderMapCoreFPvPv",
+        "after": "pick_target_position__11TBoss4Type1FP3Vec"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80053A88",
+        "before": "set_map_position__13TRaderMapCoreFPv",
+        "after": "set_map_position__11TBoss4Type1FPv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80053AD4",
+        "before": "calc_target_position__11TBoss4Type2Fv",
+        "after": "calc_target_position__11TBoss4Type1Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80053B48",
+        "before": "calc_scale_slot_indices__11TBoss4Type2FPlPl",
+        "after": "calc_scale_slot_indices__11TBoss4Type1FPlPl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80053BF4",
+        "before": "apply_packed_state__11TBoss4Type2FUl",
+        "after": "apply_packed_state__11TBoss4Type1FUl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80053C8C",
+        "before": "send_darkfalz_code__11TBoss4Type2Flll",
+        "after": "send_darkfalz_code__11TBoss4Type1Flll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80053CEC",
+        "before": "send_state_to_target__11TBoss4Type2Fl",
+        "after": "send_state_to_target__11TBoss4Type1Fl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8005416C",
+        "before": "calc_wave_offset__11TBoss4Type2Ff",
+        "after": "calc_wave_offset__11TBoss4Type1Ff"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800541B0",
+        "before": "calc_scaled_field__11TBoss4Type2Fll",
+        "after": "calc_scaled_field__11TBoss4Type1Fll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800542B0",
+        "before": "set_state__11TBoss4Type2Fl",
+        "after": "set_state__11TBoss4Type1Fl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80054530",
+        "before": "set_motion_index__11TBoss4Type2Fl",
+        "after": "set_motion_index__11TBoss4Type1Fl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80054DA8",
+        "before": "TBoss4Type2__sub_80054DA8",
+        "after": "apply_tenchu_hits"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80054F6C",
+        "before": "create_all_tenchu_furu__11TBoss4Type2Fi",
+        "after": "spawn_tenchu_furu"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801E3784",
+        "before": "draw_tri_fan_3d__10TObjPlayerFlUl",
+        "after": "draw_tri_fan_3d__FP13NJS_POINT3COLlUl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8030A96C",
+        "before": "__ct__14TBoss4ZakoDrawFv",
+        "after": "__ct__14TBoss4ZakoDrawFP7TObject"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803204B8",
+        "before": "set_effect_points__11TBoss6Type1FPfPUl",
+        "after": "set_effect_points__11TBoss6ZanzoFPC3VecPCUl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80320534",
+        "before": "copy_trail_buffer__11TBoss6ZanzoFPvPv",
+        "after": "copy_trail_buffer__11TBoss6ZanzoFP15Boss6TrailFrameP15Boss6TrailFrame"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80320AE0",
+        "before": "create_zanzo__11TBoss6Type1FPvPvPv",
+        "after": "create__11TBoss6ZanzoFP7TObjectll"
+      }
+    ],
+    "report_sha256": "d56d61bc72b23ee30b80605661998315e616ead927ef9f0ef04e1792941fc059",
+    "check_sha256": "f5393925d81fcb83b9ae18fc7c6481f879c29877d1de8472595d8167e94ea7a2"
+  },
+  "standalone_review": {
+    "branch": "great-merge/prepared/dark-falz-scenes-and-boss-trails",
+    "head": "117e4f7411c75761bda6dad27742016554597e40",
+    "parent": "0fa391a887c664abadc00cba75db1f039aceb647",
+    "tree": "e3697ce10aca23fb0f0bf8736d3035c720102224",
+    "paths": [
+      "config/GPOE8P/psov3/config.yml",
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/boss/darkfalz/DarkFalzScenePart.h",
+      "include/pso/boss/darkfalz/TBoss4DarkFalz.h",
+      "include/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.h",
+      "include/pso/boss/darkfalz/TBoss4Fade.h",
+      "include/pso/boss/darkfalz/TBoss4Thanks.h",
+      "include/pso/boss/darkfalz/TBoss4Type1.h",
+      "include/pso/boss/darkfalz/TBoss4Type2.h",
+      "include/pso/boss/darkfalz/TBoss4Type3.h",
+      "include/pso/boss/darkfalz/TBoss4Uro.h",
+      "include/pso/boss/darkfalz/TBoss4Zako.h",
+      "include/pso/boss/darkfalz/TBoss4ZakoDraw.h",
+      "include/pso/boss/darkfalz/TBoss4ZakoDrawBuffer.h",
+      "include/pso/boss/darkfalz/TBoss4ZakoTexture.h",
+      "include/pso/boss/darkfalz/TObjDFDemo0.h",
+      "include/pso/boss/darkfalz/TObjDFDemo1.h",
+      "include/pso/boss/darkfalz/TObjDFDemo2.h",
+      "include/pso/boss/darkfalz/TObjDFDemo3.h",
+      "include/pso/boss/darkfalz/TObjDFDemo4.h",
+      "include/pso/boss/darkfalz/TObjDFDemo5.h",
+      "include/pso/boss/darkfalz/TObjDFDemoF.h",
+      "include/pso/boss/darkfalz/TObjDFHorming.h",
+      "include/pso/boss/darkfalz/TObjDFTenchuFuru.h",
+      "include/pso/boss/darkfalz/TObjDFUsoTower.h",
+      "include/pso/boss/olgaflow/TBoss6Demo21_TYPE2_DEAD.h",
+      "include/pso/boss/olgaflow/TBoss6PlotFalz.h",
+      "include/pso/boss/olgaflow/TBoss6Type1.h",
+      "include/pso/boss/olgaflow/TBoss6Type2.h",
+      "include/pso/boss/olgaflow/TBoss6Zanzo.h",
+      "include/pso/enemy/TUnk_80486924.h",
+      "include/pso/object/base/TObjChara.h",
+      "include/pso/object/base/TObjMotion.h",
+      "include/pso/player/TObjPlayer.h",
+      "include/pso/render/TriangleFan3D.h",
+      "include/pso/system/NinjaTypes.h",
+      "include/pso/unk/text_8035966C.h",
+      "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp",
+      "src/pso/boss/darkfalz/TBoss4DarkFalz_8004D8C8.cpp",
+      "src/pso/boss/darkfalz/TBoss4Fade.cpp",
+      "src/pso/boss/darkfalz/TBoss4Thanks.cpp",
+      "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+      "src/pso/boss/darkfalz/TBoss4Type3.cpp",
+      "src/pso/boss/darkfalz/TBoss4Zako.cpp",
+      "src/pso/boss/darkfalz/TBoss4ZakoDraw.cpp",
+      "src/pso/boss/darkfalz/TBoss4ZakoDraw_8030AD58.cpp",
+      "src/pso/boss/darkfalz/TBoss4Zanzo.cpp",
+      "src/pso/boss/darkfalz/TObjDFDemo1.cpp",
+      "src/pso/boss/darkfalz/TObjDFDemo2.cpp",
+      "src/pso/boss/darkfalz/TObjDFDemo3.cpp",
+      "src/pso/boss/darkfalz/TObjDFDemo4.cpp",
+      "src/pso/boss/darkfalz/TObjDFDemo5.cpp",
+      "src/pso/boss/darkfalz/TObjDFDemoF.cpp",
+      "src/pso/boss/darkfalz/TObjDFDemoF_80050050.cpp",
+      "src/pso/boss/darkfalz/TObjDFDemoF_80050134.cpp",
+      "src/pso/boss/darkfalz/TObjDFHorming.cpp",
+      "src/pso/boss/darkfalz/TObjDFJisin.cpp",
+      "src/pso/boss/olgaflow/TBoss6Demo21_TYPE2_DEAD.cpp",
+      "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type1_80320AE0.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+      "src/pso/boss/olgaflow/TBoss6Zanzo.cpp",
+      "src/pso/npc/TObjNpcNgcBase.cpp",
+      "src/pso/object/TObjSinBoard.cpp",
+      "src/pso/player/TObjPlayer_801BC140.cpp",
+      "src/pso/player/TObjPlayer_801BC194.cpp",
+      "src/pso/player/TPlayerFootStamp.cpp",
+      "src/pso/ui/UISprite.cpp",
+      "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+      "src/pso/unk/TLobby_801E2F94.cpp",
+      "src/pso/unk/TLobby_80291D94.cpp",
+      "src/pso/unk/TLobby_8030A834.cpp",
+      "src/pso/unk/text_8004D9A8.cpp",
+      "src/pso/unk/text_80071B30.cpp",
+      "src/pso/unk/text_8035966C.cpp"
+    ],
+    "upstream_interfaces": [
+      "BML archive accessors",
+      "current texture setter",
+      "REL image accessor",
+      "camera rotation storage"
+    ],
+    "checks": {
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "matched_code_bytes": 4353092,
+      "matched_data_bytes": 1758510,
+      "compiled_source_units": 2448,
+      "coverage_losses": {
+        "regressions": 0,
+        "linked_functions_lost": 0,
+        "data_regressions": 0,
+        "data_coverage_lost": 0,
+        "linked_data_lost": 0
+      },
+      "function_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8004C1D4",
+          "before": "get_action_state__14TBoss4DarkFalzFv",
+          "after": "get_action_state__11TBoss4Type3Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8004C1DC",
+          "before": "get_phase__14TBoss4DarkFalzFv",
+          "after": "get_phase__13TUnk_80486924Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8004C1E4",
+          "before": "get_state__14TBoss4DarkFalzFv",
+          "after": "get_state__11TBoss4Type1Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8004C1EC",
+          "before": "get_hit_data__14TBoss4DarkFalzFv",
+          "after": "get_rotation__8TObjBaseFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8004C1F4",
+          "before": "save_position__14TBoss4DarkFalzFv",
+          "after": "save_previous_position__8TObjBaseFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8004D8C8",
+          "before": "get_defeat_params__14TBoss4DarkFalzFPUsPUsPUs",
+          "after": "get_defeat_params__11TBoss4Type3FPUsPUsPUs"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8004D92C",
+          "before": "get_demo2_params__14TBoss4DarkFalzFPUsPUsPUs",
+          "after": "get_demo2_params__13TUnk_80486924FPUsPUsPUs"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8004E020",
+          "before": "create__11TObjDFDemo0FPv",
+          "after": "create__11TObjDFDemo0FP7TObject"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8004E8C0",
+          "before": "create_demo1__14TBoss4DarkFalzFPvPvPv",
+          "after": "create__11TObjDFDemo1FP7TObjectPC3Vecl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8004EB78",
+          "before": "__ct__11TObjDFDemo2FP7TObjectPvPvPv",
+          "after": "__ct__11TObjDFDemo2FP7TObjectPC3Vecll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8004ECC8",
+          "before": "create_demo2__14TBoss4DarkFalzFPvPvPvPv",
+          "after": "create__11TObjDFDemo2FP7TObjectPC3Vecll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8004F030",
+          "before": "__ct__11TObjDFDemo3FP7TObjectPvPv",
+          "after": "__ct__11TObjDFDemo3FP7TObjectPC3Vecl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8004F1A4",
+          "before": "create__11TObjDFDemo3FPvPvPv",
+          "after": "create__11TObjDFDemo3FP7TObjectPC3Vecl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8004F8AC",
+          "before": "create__11TObjDFDemo4FPvPvPv",
+          "after": "create__11TObjDFDemo4FP7TObjectPC3Vecl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8004FFF8",
+          "before": "create__11TObjDFDemo5FPvPvPv",
+          "after": "create__11TObjDFDemo5FP7TObjectPC3Vecl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800502B4",
+          "before": "create__11TObjDFDemoFFPv",
+          "after": "create__11TObjDFDemoFFP7TObject"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800519C8",
+          "before": "create__16TObjDFTenchuFuruFPv",
+          "after": "create__16TObjDFTenchuFuruFP7TObjectPC3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80051A18",
+          "before": "capture_matrix_by_frame__16TObjDFTenchuFuruFv",
+          "after": "capture_matrix_by_frame__16TObjDFTenchuFuruFP10NJS_OBJECT"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80052200",
+          "before": "__ct__14TObjDFUsoTowerFl",
+          "after": "__ct__14TObjDFUsoTowerFP7TObject"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80052284",
+          "before": "create__14TObjDFUsoTowerFPv",
+          "after": "create__14TObjDFUsoTowerFP7TObject"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800525AC",
+          "before": "sub_800525AC__11TBoss4Type2Fv",
+          "after": "sub_800525AC__11TBoss4Type1Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800528B8",
+          "before": "sub_800528B8__11TBoss4Type2Fv",
+          "after": "sub_800528B8__11TBoss4Type1Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80052910",
+          "before": "init_timer__11TBoss4Type2Fv",
+          "after": "init_timer__11TBoss4Type1Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8005294C",
+          "before": "update_tech_charge__11TBoss4Type2Fv",
+          "after": "update_tech_charge__11TBoss4Type1Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80052AE0",
+          "before": "update_scale_state__11TBoss4Type2Fv",
+          "after": "update_scale_state__11TBoss4Type1Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80052B6C",
+          "before": "init_child_and_set_timer__11TBoss4Type2Fv",
+          "after": "init_child_and_set_timer__11TBoss4Type1Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80052BA4",
+          "before": "update_attack_countdown__11TBoss4Type2Fv",
+          "after": "update_attack_countdown__11TBoss4Type1Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80052C18",
+          "before": "update_state__11TBoss4Type2Fv",
+          "after": "update_state__11TBoss4Type1Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80052C58",
+          "before": "set_motion_for_state__11TBoss4Type2Fv",
+          "after": "set_motion_for_state__11TBoss4Type1Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80052CA0",
+          "before": "tick_countdown_set_state7__11TBoss4Type2Fv",
+          "after": "tick_countdown_set_state7__11TBoss4Type1Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80052CDC",
+          "before": "update_spawn_uro__11TBoss4Type2Fv",
+          "after": "update_spawn_uro__11TBoss4Type1Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80052E10",
+          "before": "start_motion_for_index__11TBoss4Type2Fv",
+          "after": "start_motion_for_index__11TBoss4Type1Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80052EB4",
+          "before": "tick_state_398_timer__11TBoss4Type2Fv",
+          "after": "tick_state_398_timer__11TBoss4Type1Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80052EE8",
+          "before": "sub_80052EE8__11TBoss4Type2Fv",
+          "after": "sub_80052EE8__11TBoss4Type1Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80052EEC",
+          "before": "sub_80052EEC__11TBoss4Type2Fv",
+          "after": "sub_80052EEC__11TBoss4Type1Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80052EF8",
+          "before": "sub_80052EF8__11TBoss4Type2Fv",
+          "after": "sub_80052EF8__11TBoss4Type1Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80053050",
+          "before": "update_state_transition__11TBoss4Type2Fv",
+          "after": "update_state_transition__11TBoss4Type1Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8005307C",
+          "before": "sub_8005307C__11TBoss4Type2Fv",
+          "after": "sub_8005307C__11TBoss4Type1Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80053088",
+          "before": "update_flag800_state__11TBoss4Type2Fv",
+          "after": "update_flag800_state__11TBoss4Type1Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800530C0",
+          "before": "sub_800530C0__11TBoss4Type2Fv",
+          "after": "sub_800530C0__11TBoss4Type1Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80053190",
+          "before": "check_state_if_idle__11TBoss4Type2Fv",
+          "after": "check_state_if_idle__11TBoss4Type1Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800531BC",
+          "before": "sub_800531BC__11TBoss4Type2Fv",
+          "after": "sub_800531BC__11TBoss4Type1Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8005354C",
+          "before": "check_state_transition__11TBoss4Type2Fv",
+          "after": "check_state_transition__11TBoss4Type1Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800535A8",
+          "before": "TBoss4Type2__sub_800535A8",
+          "after": "choose_next_attack__11TBoss4Type1Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80053914",
+          "before": "pick_target_position__13TRaderMapCoreFPvPv",
+          "after": "pick_target_position__11TBoss4Type1FP3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80053A88",
+          "before": "set_map_position__13TRaderMapCoreFPv",
+          "after": "set_map_position__11TBoss4Type1FPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80053AD4",
+          "before": "calc_target_position__11TBoss4Type2Fv",
+          "after": "calc_target_position__11TBoss4Type1Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80053B48",
+          "before": "calc_scale_slot_indices__11TBoss4Type2FPlPl",
+          "after": "calc_scale_slot_indices__11TBoss4Type1FPlPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80053BF4",
+          "before": "apply_packed_state__11TBoss4Type2FUl",
+          "after": "apply_packed_state__11TBoss4Type1FUl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80053C8C",
+          "before": "send_darkfalz_code__11TBoss4Type2Flll",
+          "after": "send_darkfalz_code__11TBoss4Type1Flll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80053CEC",
+          "before": "send_state_to_target__11TBoss4Type2Fl",
+          "after": "send_state_to_target__11TBoss4Type1Fl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8005416C",
+          "before": "calc_wave_offset__11TBoss4Type2Ff",
+          "after": "calc_wave_offset__11TBoss4Type1Ff"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800541B0",
+          "before": "calc_scaled_field__11TBoss4Type2Fll",
+          "after": "calc_scaled_field__11TBoss4Type1Fll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800542B0",
+          "before": "set_state__11TBoss4Type2Fl",
+          "after": "set_state__11TBoss4Type1Fl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80054530",
+          "before": "set_motion_index__11TBoss4Type2Fl",
+          "after": "set_motion_index__11TBoss4Type1Fl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80054DA8",
+          "before": "TBoss4Type2__sub_80054DA8",
+          "after": "apply_tenchu_hits"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80054F6C",
+          "before": "create_all_tenchu_furu__11TBoss4Type2Fi",
+          "after": "spawn_tenchu_furu"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801E3784",
+          "before": "draw_tri_fan_3d__10TObjPlayerFlUl",
+          "after": "draw_tri_fan_3d__FP13NJS_POINT3COLlUl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8030A96C",
+          "before": "__ct__14TBoss4ZakoDrawFv",
+          "after": "__ct__14TBoss4ZakoDrawFP7TObject"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803204B8",
+          "before": "set_effect_points__11TBoss6Type1FPfPUl",
+          "after": "set_effect_points__11TBoss6ZanzoFPC3VecPCUl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80320534",
+          "before": "copy_trail_buffer__11TBoss6ZanzoFPvPv",
+          "after": "copy_trail_buffer__11TBoss6ZanzoFP15Boss6TrailFrameP15Boss6TrailFrame"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80320AE0",
+          "before": "create_zanzo__11TBoss6Type1FPvPvPv",
+          "after": "create__11TBoss6ZanzoFP7TObjectll"
+        }
+      ],
+      "report_sha256": "4273836e2cd12ed9b55f18b594a325869ae4763348bc31351d9c803fb1703baf",
+      "check_sha256": "ea28bed4d40444b681f7174da17c39530c40862d56077f417a361b0f1d98b43c"
+    }
+  },
+  "preserved_labels": [
+    "set_story_flag_or_send_quest_flag",
+    "sub_8004D9A0__14TObjDFUsoTowerFl",
+    "draw_polygon_2d__FP13NJS_POINT2COLlUlf",
+    "sub_803205C4__11TBoss6ZanzoFv",
+    "copy_vec2__FPvPv"
+  ],
+  "historical_ranges": {
+    "upstream_master": {
+      "address_ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "great_merge_replay": {
+      "address_ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "standalone_review": {
+      "address_ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "fork_tooling": {
+      "address_ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    }
+  },
+  "fork_layer": {
+    "workspace_patch_paths": 131,
+    "workspace_patch_sha256": "f2509eefc4dba3cedfeeaa4e719a6eade27efe04425fe18b24bfd1dba25eaa53",
+    "materialized_tree": "ea174186edd079511a6447847acfc4cabdc89c28",
+    "round_trip_listing_sha256": "97692665ffec408108608554b1a87fd7621f9eae33de4dc22a50153697281fb6",
+    "force_active": "force_active: 27031 listed, +0 unreferenced symbol(s) in linked units, -0 stale",
+    "tool_tests_passed": 294,
+    "layer_tests_passed": 11,
+    "dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "olga_flow_trail_probe": {
+      "images": [
+        "retail",
+        "great_merge_replay",
+        "standalone_review",
+        "fork_tooling"
+      ],
+      "coverage": [
+        "allocation and release",
+        "demo pause",
+        "history of active frames",
+        "quad colors",
+        "triangle-fan flags and UV coordinates"
+      ]
+    }
+  },
+  "historical_path_inventory": {
+    "pinned_base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+    "canonical_source": "83decd2d24dc6104040afd060e0cc2754b110409",
+    "earlier_review_queue": "47ade105c778197344c29e2d058cd9754a90893c",
+    "outside_replay_before": 656,
+    "outside_replay_after": 633,
+    "outside_both_replay_and_queue": 82,
+    "remaining_by_owner": {
+      "ui": 161,
+      "unk": 95,
+      "boss": 88,
+      "enemy": 75,
+      "player": 51,
+      "item": 25,
+      "object": 24,
+      "effect": 22,
+      "system": 18,
+      "camera": 16,
+      "render": 15,
+      "math": 9,
+      "technique": 8,
+      "network": 6,
+      "map": 4,
+      "quest": 4,
+      "weapon": 3,
+      "audio": 2,
+      "npc": 2,
+      "libs/PowerPC_EABI_Support": 2,
+      "animation": 1,
+      "collision": 1,
+      "libs/dolphin": 1
+    },
+    "method": "Compare changed path sets with rename detection disabled. An intersecting path can still contain unreplayed hunks."
+  },
+  "later_replay_previews": {
+    "olga_flow_scene_and_hazard_phases": {
+      "donor": "bb0a2828e3",
+      "replay": {
+        "paths": 110,
+        "overlaps": 64
+      },
+      "standalone": {
+        "paths": 111,
+        "overlaps": 56
+      }
+    },
+    "boss_projectiles_geometry_and_splashes": {
+      "donor": "03eb2c367e",
+      "pending": "Replay shared hit and render prerequisites, then check by actor."
+    }
+  }
+}

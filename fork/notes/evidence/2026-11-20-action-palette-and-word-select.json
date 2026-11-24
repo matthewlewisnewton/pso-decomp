@@ -1,0 +1,495 @@
+{
+  "upstream_master": "0fa391a887c664abadc00cba75db1f039aceb647",
+  "historical_donors": [
+    {
+      "scope": "Word Select message and vertex records",
+      "base": "4a784b7ec917af9089387b5ba9bb00a56ef1a863",
+      "commit": "ae3da5ccb25c52f727ab0f41adcc3a3afbf0c4ef",
+      "paths": 17,
+      "overlaps": 5
+    },
+    {
+      "scope": "Action palette and customization windows",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "commit": "b4941d7c98f1c615aec3fa7ef1de6f7da5d30a94",
+      "paths": 24,
+      "overlaps": 10
+    }
+  ],
+  "scope": [
+    "Share the 12-byte Word Select payload, language formatter argument types, and 24-byte render vertex records.",
+    "Keep all current Word Select function labels and the language dispatch interface.",
+    "Use the same four-byte action palette tag for cursor, player and customization controls.",
+    "Recover the native Custom Select constructor and Custom Equip render method while keeping the current shared window owners."
+  ],
+  "word_select_checkpoint": {
+    "head": "159ddb7648bc223e0f17aa459748906169621635",
+    "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "coverage_losses": {
+      "regressions": 0,
+      "linked_functions_lost": 0,
+      "data_regressions": 0,
+      "data_coverage_lost": 0,
+      "linked_data_lost": 0
+    },
+    "function_label_changes": [],
+    "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068"
+  },
+  "replay_base": "7eb2bdf853b77f385ae057b6f2c32c65f5c4ea4a",
+  "replay_head": "d8d3d927b73b20e46e1eea2776c26701773bf9f9",
+  "replay_tree": "450e217a2299ce05c3737c86e8c35b5fba2c134e",
+  "replay_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/player/PlayerActionPaletteState.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/player/TObjPlayer_801BF6B0.h",
+    "include/pso/ui/hud/TMainCursor.h",
+    "include/pso/ui/hud/TMainCursor_8013E624.h",
+    "include/pso/ui/window/ActionPaletteTag.h",
+    "include/pso/ui/window/TWindowActionPalette.h",
+    "include/pso/ui/window/TWindowDD_8034435C.h",
+    "include/pso/ui/window/TWindowDD_803488A8.h",
+    "include/pso/ui/window/TWindowSubCustomEquip.h",
+    "include/pso/ui/window/TWindowSubCustomSelect.h",
+    "include/pso/ui/window/WindowVertexBufferAbi.h",
+    "include/pso/ui/window/WordSelectMessage.h",
+    "src/pso/player/TObjPlayer.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TObjPlayer_801C7430.cpp",
+    "src/pso/player/TObjPlayer_801D2E20.cpp",
+    "src/pso/ui/hud/TMainCursor.cpp",
+    "src/pso/ui/hud/TMainCursor_801D7AC8.cpp",
+    "src/pso/ui/window/TWindowActionPalette.cpp",
+    "src/pso/ui/window/TWindowActionPalette_801C1890.cpp",
+    "src/pso/ui/window/TWindowCtrlMain.cpp",
+    "src/pso/ui/window/TWindowDD_8034055C.cpp",
+    "src/pso/ui/window/TWindowDD_80340A78.cpp",
+    "src/pso/ui/window/TWindowDD_80341A08.cpp",
+    "src/pso/ui/window/TWindowDD_803430BC.cpp",
+    "src/pso/ui/window/TWindowDD_8034435C.cpp",
+    "src/pso/ui/window/TWindowDD_80346A84.cpp",
+    "src/pso/ui/window/TWindowDD_8034725C.cpp",
+    "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp",
+    "src/pso/ui/window/TWindowSubCustomEquip.cpp",
+    "src/pso/ui/window/TWindowSubCustomSelect.cpp",
+    "src/pso/unk/TUnk_804D1160.cpp",
+    "src/pso/unk/text_801D7BF4.cpp"
+  ],
+  "replay_checks": {
+    "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "matched_functions": 27572,
+    "matched_code_bytes": 4353092,
+    "matched_data_bytes": 1758510,
+    "compiled_source_units": 2448,
+    "coverage_losses": {
+      "regressions": 0,
+      "linked_functions_lost": 0,
+      "data_regressions": 0,
+      "data_coverage_lost": 0,
+      "linked_data_lost": 0
+    },
+    "function_label_changes": [
+      {
+        "module": "psov3",
+        "address": "0x8013DF3C",
+        "before": "get_enabled__11TMainCursorFv",
+        "after": "get_action_palette_tag_slot"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8013DF44",
+        "before": "get_type__11TMainCursorFv",
+        "after": "get_action_palette_tag_mode"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8013DF4C",
+        "before": "set_slot__20TWindowActionPaletteFUc",
+        "after": "set_action_palette_tag_slot"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8013DF54",
+        "before": "set_mode__20TWindowActionPaletteFUc",
+        "after": "set_action_palette_tag_mode"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8013E6C0",
+        "before": "get_action_palette__11TMainCursorFUc",
+        "after": "set_cursor_palette_slot"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8013E6E0",
+        "before": "TMainCursor__sub_8013E6E0",
+        "after": "set_cursor_action_palette_mode"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8013E704",
+        "before": "update_action_palette__11TMainCursorFUc",
+        "after": "set_cursor_palette_mode"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801BF4B8",
+        "before": "update_action_palette__10TObjPlayerFv",
+        "after": "set_player_action_palette_slot"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801BF4DC",
+        "before": "set_action_palette_mode__10TObjPlayerFv",
+        "after": "set_player_action_palette_mode"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801BF6E4",
+        "before": "TObjPlayer__sub_801BF6E4",
+        "after": "get_player_action_palette_slot"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801BF708",
+        "before": "update_main_cursor__10TObjPlayerFv",
+        "after": "get_player_action_palette_mode"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D0FF4",
+        "before": "query_field_340__10TObjPlayerFPv",
+        "after": "update_player_action_palette"
+      },
+      {
+        "module": "psov3",
+        "address": "0x801D3484",
+        "before": "get_field_340__10TObjPlayerFi",
+        "after": "set_action_palette_state_mode__10TObjPlayerFUc"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80244108",
+        "before": "__ct__20TWindowActionPaletteFs",
+        "after": "__ct__20TWindowActionPaletteFl"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80277290",
+        "before": "calc_equip_index__21TWindowSubCustomEquipFv",
+        "after": "get_selected_action__22TWindowSubCustomSelectFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80277AEC",
+        "before": "TWindowSubCustomSelect__ct",
+        "after": "__ct__22TWindowSubCustomSelectFl"
+      }
+    ],
+    "report_sha256": "c897075b2390f8611494ffda4476e9c03f0f2c6d181ada3bd76e359002cd5d86",
+    "check_sha256": "15d69327981e99b7f9a5deed9d1b533d61f5a4e1915c8fd9b3f11d3c0fe53ce3"
+  },
+  "standalone_review": {
+    "branch": "great-merge/prepared/action-palette-and-word-select",
+    "head": "9081bb020ce98ca2fb4e48c9eacaa609b3db6ae6",
+    "base": "0fa391a887c664abadc00cba75db1f039aceb647",
+    "tree": "1a7ab8108c094535e3c0349edb0ea72a93de4d7d",
+    "paths": [
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/player/PlayerActionPaletteState.h",
+      "include/pso/player/TObjPlayer.h",
+      "include/pso/player/TObjPlayer_801BF6B0.h",
+      "include/pso/ui/hud/TMainCursor.h",
+      "include/pso/ui/hud/TMainCursor_8013E624.h",
+      "include/pso/ui/window/ActionPaletteTag.h",
+      "include/pso/ui/window/TWindowActionPalette.h",
+      "include/pso/ui/window/TWindowDD_8034435C.h",
+      "include/pso/ui/window/TWindowDD_803488A8.h",
+      "include/pso/ui/window/TWindowSubCustomEquip.h",
+      "include/pso/ui/window/TWindowSubCustomSelect.h",
+      "include/pso/ui/window/WindowVertexBufferAbi.h",
+      "include/pso/ui/window/WordSelectMessage.h",
+      "src/pso/player/TObjPlayer.cpp",
+      "src/pso/player/TObjPlayer_801AF2F0.cpp",
+      "src/pso/player/TObjPlayer_801C7430.cpp",
+      "src/pso/player/TObjPlayer_801D2E20.cpp",
+      "src/pso/ui/hud/TMainCursor.cpp",
+      "src/pso/ui/hud/TMainCursor_801D7AC8.cpp",
+      "src/pso/ui/window/TWindowActionPalette.cpp",
+      "src/pso/ui/window/TWindowActionPalette_801C1890.cpp",
+      "src/pso/ui/window/TWindowCtrlMain.cpp",
+      "src/pso/ui/window/TWindowDD_8034055C.cpp",
+      "src/pso/ui/window/TWindowDD_80340A78.cpp",
+      "src/pso/ui/window/TWindowDD_80341A08.cpp",
+      "src/pso/ui/window/TWindowDD_803430BC.cpp",
+      "src/pso/ui/window/TWindowDD_8034435C.cpp",
+      "src/pso/ui/window/TWindowDD_80346A84.cpp",
+      "src/pso/ui/window/TWindowDD_8034725C.cpp",
+      "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp",
+      "src/pso/ui/window/TWindowSubCustomEquip.cpp",
+      "src/pso/ui/window/TWindowSubCustomSelect.cpp",
+      "src/pso/unk/TUnk_804D1160.cpp",
+      "src/pso/unk/text_801D7BF4.cpp"
+    ],
+    "existing_upstream_interfaces": [
+      "window draw context",
+      "controller and player slots",
+      "scrollbar construction"
+    ],
+    "checks": {
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "matched_code_bytes": 4353092,
+      "matched_data_bytes": 1758510,
+      "compiled_source_units": 2448,
+      "coverage_losses": {
+        "regressions": 0,
+        "linked_functions_lost": 0,
+        "data_regressions": 0,
+        "data_coverage_lost": 0,
+        "linked_data_lost": 0
+      },
+      "function_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8013DF3C",
+          "before": "get_enabled__11TMainCursorFv",
+          "after": "get_action_palette_tag_slot"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8013DF44",
+          "before": "get_type__11TMainCursorFv",
+          "after": "get_action_palette_tag_mode"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8013DF4C",
+          "before": "set_slot__20TWindowActionPaletteFUc",
+          "after": "set_action_palette_tag_slot"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8013DF54",
+          "before": "set_mode__20TWindowActionPaletteFUc",
+          "after": "set_action_palette_tag_mode"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8013E6C0",
+          "before": "get_action_palette__11TMainCursorFUc",
+          "after": "set_cursor_palette_slot"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8013E6E0",
+          "before": "TMainCursor__sub_8013E6E0",
+          "after": "set_cursor_action_palette_mode"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8013E704",
+          "before": "update_action_palette__11TMainCursorFUc",
+          "after": "set_cursor_palette_mode"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801BF4B8",
+          "before": "update_action_palette__10TObjPlayerFv",
+          "after": "set_player_action_palette_slot"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801BF4DC",
+          "before": "set_action_palette_mode__10TObjPlayerFv",
+          "after": "set_player_action_palette_mode"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801BF6E4",
+          "before": "TObjPlayer__sub_801BF6E4",
+          "after": "get_player_action_palette_slot"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801BF708",
+          "before": "update_main_cursor__10TObjPlayerFv",
+          "after": "get_player_action_palette_mode"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D0FF4",
+          "before": "query_field_340__10TObjPlayerFPv",
+          "after": "update_player_action_palette"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D3484",
+          "before": "get_field_340__10TObjPlayerFi",
+          "after": "set_action_palette_state_mode__10TObjPlayerFUc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80244108",
+          "before": "__ct__20TWindowActionPaletteFs",
+          "after": "__ct__20TWindowActionPaletteFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80277290",
+          "before": "calc_equip_index__21TWindowSubCustomEquipFv",
+          "after": "get_selected_action__22TWindowSubCustomSelectFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80277AEC",
+          "before": "TWindowSubCustomSelect__ct",
+          "after": "__ct__22TWindowSubCustomSelectFl"
+        }
+      ],
+      "report_sha256": "cf45e5395cf3ad17d07e85cab3558cb828852259d0cf4f701c07e7a17050cb09",
+      "check_sha256": "15d69327981e99b7f9a5deed9d1b533d61f5a4e1915c8fd9b3f11d3c0fe53ce3"
+    },
+    "author_and_committer": "matthewlewisnewton <19641807+matthewlewisnewton@users.noreply.github.com>",
+    "codex_attribution_entries": 0,
+    "published": false
+  },
+  "published_pr_merge_previews": [
+    {
+      "pr": 336,
+      "head": "ec81bd9ce7a2194860e8a0034f31727dfd4ad56f",
+      "conflicting_paths": []
+    },
+    {
+      "pr": 337,
+      "head": "297a9697815b0f66207b5515fd9743bdc04c82d9",
+      "conflicting_paths": []
+    },
+    {
+      "pr": 338,
+      "head": "2572238636c01c0f1defac4338a4df6836c18276",
+      "conflicting_paths": []
+    },
+    {
+      "pr": 339,
+      "head": "5e0a443edde59d3af778d496b8503e0b1358f5e2",
+      "conflicting_paths": []
+    },
+    {
+      "pr": 340,
+      "head": "d6e66ef2a8f874ab9791efc1628ebd7fc48bdbf5",
+      "conflicting_paths": []
+    },
+    {
+      "pr": 341,
+      "head": "0266af6bf4c860315be75d4785c45abf6da0a6ff",
+      "conflicting_paths": []
+    },
+    {
+      "pr": 342,
+      "head": "17d35ad696f409a696c7f94105170619d18e5106",
+      "conflicting_paths": [
+        "include/pso/ui/window/TWindowActionPalette.h",
+        "src/pso/ui/window/TWindowDD_8034055C.cpp",
+        "src/pso/ui/window/TWindowSubCustomEquip.cpp",
+        "src/pso/ui/window/TWindowSubCustomSelect.cpp"
+      ]
+    },
+    {
+      "pr": null,
+      "head": "98b8dc9b749921f22ae2256890e22dca8be9e01f",
+      "scope": "Boss projectiles and raft effects",
+      "conflicting_paths": []
+    }
+  ],
+  "historical_ranges": {
+    "upstream_master": {
+      "address_ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "great_merge_replay": {
+      "address_ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "standalone_review": {
+      "address_ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "fork_tooling": {
+      "address_ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    }
+  },
+  "fork_layer": {
+    "workspace_patch_paths": 131,
+    "workspace_patch_sha256": "ac80dbd66ca6c2c330a3628734793032308af76e7973e47da470ad3505d92403",
+    "materialized_tree": "53e944c29f504902754c836af404406d739d9cef",
+    "round_trip_listing_sha256": "e5d019c69720898d4b2ad5d6340f0a892ba9b85b0797c7464ef8ae9ae24dbeeb",
+    "force_active": "force_active: 27031 listed, +0 unreferenced symbol(s) in linked units, -0 stale",
+    "tool_tests_passed": 294,
+    "layer_tests_passed": 11,
+    "dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "coverage_losses": {
+      "regressions": 0,
+      "linked_functions_lost": 0,
+      "data_regressions": 0,
+      "data_coverage_lost": 0,
+      "linked_data_lost": 0
+    }
+  },
+  "historical_path_inventory": {
+    "pinned_base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+    "canonical_source": "83decd2d24dc6104040afd060e0cc2754b110409",
+    "earlier_review_queue": "47ade105c778197344c29e2d058cd9754a90893c",
+    "outside_replay_before": 591,
+    "outside_replay_after": 580,
+    "outside_both_replay_and_queue": 82,
+    "paths_newly_in_replay_diff": [
+      "include/pso/player/TObjPlayer_801BF6B0.h",
+      "include/pso/ui/hud/TMainCursor_8013E624.h",
+      "include/pso/ui/window/ActionPaletteTag.h",
+      "include/pso/ui/window/TWindowDD_8034435C.h",
+      "include/pso/ui/window/TWindowDD_803488A8.h",
+      "include/pso/ui/window/WindowVertexBufferAbi.h",
+      "include/pso/ui/window/WordSelectMessage.h",
+      "src/pso/player/TObjPlayer.cpp",
+      "src/pso/ui/hud/TMainCursor_801D7AC8.cpp",
+      "src/pso/ui/window/TWindowDD_80346A84.cpp",
+      "src/pso/unk/text_801D7BF4.cpp"
+    ],
+    "remaining_by_owner": {
+      "ui": 153,
+      "unk": 92,
+      "enemy": 73,
+      "boss": 57,
+      "player": 49,
+      "item": 25,
+      "effect": 21,
+      "object": 21,
+      "camera": 16,
+      "system": 15,
+      "render": 15,
+      "math": 9,
+      "technique": 8,
+      "network": 6,
+      "quest": 4,
+      "map": 4,
+      "weapon": 3,
+      "audio": 2,
+      "npc": 2,
+      "libs/PowerPC_EABI_Support": 2,
+      "collision": 1,
+      "libs/dolphin": 1,
+      "animation": 1
+    },
+    "method": "Compare changed path sets with rename detection disabled. An intersecting path can still contain unreplayed hunks."
+  }
+}

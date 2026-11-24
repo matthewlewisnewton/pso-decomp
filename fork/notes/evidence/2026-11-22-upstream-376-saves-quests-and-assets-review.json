@@ -1,0 +1,168 @@
+{
+  "previous_independent_review": "e2d6876245a93069ccad49036a3affb2bb3a5aba",
+  "upstream_master": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "inventory_review_head": "39848c3108c370a24eff842e241a1ea0d70a2da8",
+  "inventory_preview_parent": "97711798d9db2f80908909f5eea7f55da3747ce5",
+  "independent_review": {
+    "head": "119ba158117b3ca965ee4a95ebcf15f1b42c0fc7",
+    "tree": "46ed4a5a0f41a443a35d134e172c8ab44f7d5a0d",
+    "changed_paths": 179,
+    "pre_rebase_conflicts": 23,
+    "replay_resolution": "Preserve upstream BmlModelEntry::texlist, preserve the native C++ and compiler settings in the effects files, and put the GVM loader call in the new ParticleResources owner.",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_sha256": "0844910487e4d57efd41d27f8a1d72a9b1d625c6307ab3f05186d11e927234b3",
+    "probes": {
+      "aram": {
+        "images": [
+          "retail",
+          "built"
+        ],
+        "report_sha256": "1b69962875c8a06abc17b7f8925d966fae38eb1ce2bc3c755670a9f40c595892"
+      },
+      "bml": {
+        "images": [
+          "retail",
+          "built"
+        ],
+        "report_sha256": "413468fee061dba939767d88602fdf41da816327e5a5baa3c23a8cad6f9cfd97"
+      },
+      "cache": {
+        "images": [
+          "retail",
+          "built"
+        ],
+        "report_sha256": "cae4312287fd68d2dda61954b310de6d641a3ebbb04db7bf2c07a118bb260107"
+      },
+      "card": {
+        "images": [
+          "retail",
+          "built"
+        ],
+        "report_sha256": "9465ab550e36a5e4ac0cf9c314375789dac6ba664ecfcb0e418efa25858c2625"
+      },
+      "footstamp": {
+        "images": [
+          "retail",
+          "built"
+        ],
+        "report_sha256": "baf56c191c207c5648803656a9854761b233004c957f88f2231360b784e12ee8"
+      },
+      "lookups": {
+        "images": [
+          "retail",
+          "built"
+        ],
+        "report_sha256": "0ad799d0e38fbd1d30006029c1c95182bebf2be5efab3388d7d9b7d635d54fd7"
+      },
+      "quest": {
+        "images": [
+          "retail",
+          "built"
+        ],
+        "report_sha256": "7110b73f6b79e5ec97e532b5db64b378f896a84a76e0f8aa57c10599a6399612"
+      },
+      "resources": {
+        "images": [
+          "retail",
+          "built"
+        ],
+        "report_sha256": "c9223bf156f3e72d1f73b59d59d8dafa53d54d76a25ad93615d9e4b02a374e06"
+      },
+      "text": {
+        "images": [
+          "retail",
+          "built"
+        ],
+        "report_sha256": "52e75e354c9ed23478564d16610bea7362b7900ad035d904654f67bc5b328ccd"
+      }
+    },
+    "quality": {
+      "totals": {
+        "base": 147293,
+        "head": 146586,
+        "added": 19,
+        "removed": 726
+      },
+      "label_changes": 35,
+      "label_advisories": 0,
+      "stale_retention_entries": 0,
+      "report_sha256": "d152f8ae1ab75e45b1b21ace55bd44983022e4543dbf1a7c1611bb14026e1de1",
+      "remaining_debt": [
+        "The three unnamed card record fields have fixed offsets and zero stores. The retail uses examined do not name their contents.",
+        "BML archive headers, ARAM records and quest request storage are private layouts. Layout assertions describe verified sizes and offsets.",
+        "Retain the existing sequence virtual slot name and the existing BML flag word name. The typed recovery uses their existing layout and meanings.",
+        "The ARAM DMA buffer retains C linkage for its existing symbol."
+      ]
+    }
+  },
+  "inventory_preview": {
+    "head": "d82b56c8c8e512fde33a69be8c633c579d7b7943",
+    "tree": "b178c56796117d1814e1e9b7c0b9230d8dbbe25b",
+    "reconciled_paths": [
+      "src/pso/npc/TNpcPlayer.cpp",
+      "src/pso/player/TObjPlayer_801AF2F0.cpp",
+      "src/pso/player/TPlyItem.cpp"
+    ],
+    "resolution": "Keep the typed visual record in the NPC loader. Include typed save and inventory declarations in the two player paths.",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_sha256": "e95ebb129378f385128b7b513acecb52dd98f359a11edf93de33fd42c2f779ee"
+  },
+  "cumulative_comparison": {
+    "head": "ae66e1167dd98eff818c9a2430c79d371aab7f4d",
+    "changed_paths_compared": 179,
+    "identical_blobs": 65,
+    "clean_new_changes": 0,
+    "reviewed_overlap_paths": [
+      "src/pso/boss/dragon/TObjBoss1Crater.cpp",
+      "src/pso/boss/galgryphon/TBoss5GryphonLightningEff.cpp",
+      "src/pso/boss/goldragon/TBoss8DragonEffTail.cpp",
+      "src/pso/boss/olgaflow/TBoss6Tube.cpp",
+      "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+      "src/pso/enemy/lappy/TObjEneLappy.cpp",
+      "src/pso/npc/TNpcPlayer.cpp",
+      "src/pso/npc/TObjNpcAHM01.cpp",
+      "src/pso/npc/TObjNpcARM00.cpp",
+      "src/pso/npc/TObjNpcARW00.cpp",
+      "src/pso/npc/TObjNpcHFW00.cpp",
+      "src/pso/npc/TObjNpcHFW01.cpp",
+      "src/pso/npc/TObjNpcHHM00.cpp",
+      "src/pso/npc/TObjNpcHRM00.cpp",
+      "src/pso/npc/TObjNpcHRM01.cpp",
+      "src/pso/npc/TObjNpcNFM00.cpp",
+      "src/pso/npc/TObjNpcNFM01.cpp",
+      "src/pso/npc/TObjNpcNFW00.cpp",
+      "src/pso/npc/TObjNpcNFW01.cpp",
+      "src/pso/npc/TObjNpcNHW00.cpp",
+      "src/pso/npc/TObjNpcNHW01.cpp",
+      "src/pso/object/TObjComputer.cpp",
+      "src/pso/object/city/CityDoors.cpp",
+      "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp",
+      "src/pso/object/door/TODoorJungleMain.cpp",
+      "src/pso/object/door/TODoorLabo.cpp",
+      "src/pso/object/door/TObjDoor_8018E358.cpp",
+      "src/pso/object/fence/TObjLazerFenceNorm.cpp",
+      "src/pso/object/lobby/LobbyPigeonPath.cpp",
+      "src/pso/object/trap/TOTrapSeabed01.cpp",
+      "src/pso/player/TObjPlayer_801AF2F0.cpp",
+      "src/pso/player/TPlayerFootStamp.cpp",
+      "src/pso/player/TPlyItem.cpp",
+      "src/pso/quest/QuestOpcodeHandlers.cpp",
+      "src/pso/system/TLanguage_80132A5C.cpp",
+      "src/pso/ui/city/TCheckRoomSequence.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp",
+      "src/pso/unk/TLobby_8001EF5C.cpp",
+      "src/pso/unk/TLobby_800FA73C.cpp",
+      "src/pso/unk/TLobby_801A3C48.cpp",
+      "src/pso/unk/TLobby_801E43E4.cpp",
+      "src/pso/unk/TLobby_803382E4.cpp",
+      "src/pso/unk/text_800FA464.cpp"
+    ],
+    "disposition": "Resolve the 44 overlapping paths with their existing cumulative hunks. These retain the typed load calls with pointer storage and the inventory visual record, keep shared memory and sound declarations, and use the controller and file-queue declarations currently shared by their callers. The resolved tree equals the cumulative tree."
+  }
+}

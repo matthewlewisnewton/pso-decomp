@@ -1,0 +1,464 @@
+{
+  "upstream": "5cf9da024a0d526227c07273f045ebe71e146496",
+  "published_pr_371": "084cec228c06a73ea36333f383419b4ed4f7bfc2",
+  "published_pr_371_mergeable_before_local_resolution": false,
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "standalone_window": {
+    "branch": "great-merge/rehearsal/after-372/window-character-chat",
+    "head": "995098935b99007f5937c849e8a3563e89b60ef6",
+    "parents": [
+      "5cf9da024a0d526227c07273f045ebe71e146496",
+      "084cec228c06a73ea36333f383419b4ed4f7bfc2"
+    ],
+    "paths": 374,
+    "review_commits": 5,
+    "exact_functions": 27572,
+    "linked_units": 2394,
+    "coverage": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0
+    },
+    "report_function_label_changes": 236,
+    "data_inventory": {
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "source_quality": {
+      "total": {
+        "base": 161684,
+        "head": 159219,
+        "added": 519,
+        "removed": 2984
+      },
+      "owner_findings": {
+        "base": 2537,
+        "head": 2436,
+        "added": 55,
+        "removed": 156
+      },
+      "symbol_label_changes": 247,
+      "flagged_labels": 0,
+      "new_stale_retention_entries": 0,
+      "report_sha256": "cd4716fc8babbe6929155aabe8ef2aa2b3aaea9efde6577929ec153c9b51c1df"
+    },
+    "coverage_report_sha256": "1477edbb654abe7a377240c9c0595b672f9406270dca7d4f3ef6e0ded4b06de0",
+    "build_report_sha256": "24493a041520310a0927901e919c6f7324f569c7044fd0dcd3399c7d8ced8f2f",
+    "runtime_probes": {
+      "probe-status-windows": {
+        "result": "status flags, numeric glyphs, icon clipping and status detail rows passed.",
+        "log_sha256": "e29d93761bfee0bd12f3c4dd431f1cff8754d8dc6ed474e00b4b8409ea6315c3"
+      },
+      "probe-title-lifetimes": {
+        "result": "overlay destruction, global construction, and both area dispatch paths passed.",
+        "log_sha256": "52b8e2081ca9e41d9411d24d40a2baea0279131badd704ee567d8c2a56c97290"
+      },
+      "verify-controller-and-keyboard": {
+        "result": "Pad routing, keyboard polling, stick escape and text export passed",
+        "log_sha256": "dddf8a2406a979ff3f797f0f1f73295c3aee19d81459a273d574a19e5353d859"
+      },
+      "verify-title-sprites": {
+        "result": "46 title records, texture binding, cursor and camera routing, and sprite geometry passed.",
+        "log_sha256": "f12583c3bd6497d532d2e6c7c3dbcc8dd561424b49bf35e3a23cd9de25df2d5d"
+      }
+    }
+  },
+  "local_combined_stack": {
+    "branch": "great-merge/rehearsal/after-372/window-network-stage",
+    "head": "ebfa476bf688a4c4bf5356da3373dcb0074d6154",
+    "parents": [
+      "995098935b99007f5937c849e8a3563e89b60ef6",
+      "2ead0126f1cbe3752404928b2a69e1697daf1d9d"
+    ],
+    "paths": 459,
+    "review_commits": 8,
+    "exact_functions": 27572,
+    "linked_units": 2394,
+    "coverage": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0
+    },
+    "report_function_label_changes": 5,
+    "data_inventory": {
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "source_quality": {
+      "total": {
+        "base": 161684,
+        "head": 158673,
+        "added": 566,
+        "removed": 3577
+      },
+      "owner_findings": {
+        "base": 2537,
+        "head": 2436,
+        "added": 55,
+        "removed": 156
+      },
+      "symbol_label_changes": 252,
+      "flagged_labels": 0,
+      "new_stale_retention_entries": 0,
+      "report_sha256": "0d1d3787e60dfeff3a0d1a3689f14738d4e68fdfea9f9d11b6dbff976077369f"
+    },
+    "coverage_report_sha256": "0073f2d6792872f20888d3f57eee03af3a3c5075db53faa4480242bfe72e653e",
+    "build_report_sha256": "cc0c3ebbe467f1c7aeba200e1fe8fd7f2e762b1c7c0542be658483d2f059d900",
+    "runtime_probes": {
+      "probe-status-windows": {
+        "result": "status flags, numeric glyphs, icon clipping and status detail rows passed.",
+        "log_sha256": "e29d93761bfee0bd12f3c4dd431f1cff8754d8dc6ed474e00b4b8409ea6315c3"
+      },
+      "probe-title-lifetimes": {
+        "result": "overlay destruction, global construction, and both area dispatch paths passed.",
+        "log_sha256": "52b8e2081ca9e41d9411d24d40a2baea0279131badd704ee567d8c2a56c97290"
+      },
+      "verify-controller-and-keyboard": {
+        "result": "Pad routing, keyboard polling, stick escape and text export passed",
+        "log_sha256": "dddf8a2406a979ff3f797f0f1f73295c3aee19d81459a273d574a19e5353d859"
+      },
+      "verify-title-sprites": {
+        "result": "46 title records, texture binding, cursor and camera routing, and sprite geometry passed.",
+        "log_sha256": "f12583c3bd6497d532d2e6c7c3dbcc8dd561424b49bf35e3a23cd9de25df2d5d"
+      },
+      "stage-probe": {
+        "result": "debris copy guards, three stage fragments, and Mine and Tombstone resource lifetimes passed",
+        "log_sha256": "8f6fa0b20d2dd877d8dd1847ffa2bed57015c855c052989dcd4fd040d71e5b63"
+      },
+      "sdk-queues": {
+        "probe_sha256": "ed90ded6d9abadd5f381b21fcc344029dd93c919ad14f0442e7b8246c12393a7",
+        "log_sha256": "071c5f597d5d0471f933596f6d0307cefbd0f52ba86a15041d97b7272b0352ee",
+        "results": [
+          "{\"completion_cases\": 4, \"post_cases\": 8, \"receive_cases\": 8, \"shutdown_cases\": 8, \"startup_cases\": 12, \"update_cases\": 12}"
+        ]
+      },
+      "stack-lifecycle": {
+        "probe_sha256": "046900bbac560e7970f02d2748cfc6c469368d137199425a4dfcb63ed8fd6f3e",
+        "log_sha256": "5f5daee5776ec374acda2e0b8b636dd205a2884ec83d3ff5bda0c88cbbee3050",
+        "results": [
+          "{\"branches\": {\"compare_sockaddr\": 7, \"init_buffer_descriptor_a\": 1, \"init_buffer_descriptor_b\": 1, \"init_ipv6_interface_config\": 1, \"init_net_buffer_config\": 1, \"init_net_config\": 1, \"init_net_func_table\": 1, \"init_net_recv_desc\": 1, \"init_udp_socket_config\": 1, \"is_multicast_address\": 3, \"release_entry\": 41, \"request_network_info_load__FlPv\": 1}, \"headers\": 5, \"initializers\": 8, \"poll_cases\": 36, \"pool_cases\": 140, \"request_cases\": 42}"
+        ]
+      },
+      "modem-transport": {
+        "probe_sha256": "657831b542faf37b6a8ecabe573bade97f4c85ddb3a64f9a505a1be86fdef85e",
+        "log_sha256": "8f589e1b9c7c9a56ebb93d97008f8af82570d153727e7ea141d62607702e8705",
+        "results": [
+          "PsoV3.dol: modem send, status, command filters, dialing and four ring cases passed.",
+          "network.dol: modem send, status, command filters, dialing and four ring cases passed."
+        ]
+      },
+      "modem-dial-script": {
+        "probe_sha256": "1fd32ba7c01a06a0125c768f99ef4215063467696bb56cf6e32e681d3c575221",
+        "log_sha256": "04d1b3c9391f7826a63a3e7ffc7d1010c9569692ddedd4cd7a016447dac18cec",
+        "results": [
+          "PsoV3.dol: 13 modem script cases passed.",
+          "network.dol: 13 modem script cases passed."
+        ]
+      },
+      "network-startup": {
+        "probe_sha256": "2f20cfc10be3c4a71291ce2c130e6f49ef6ff7f52bf4586a8dbd901fe0e4d805",
+        "log_sha256": "1cbb4cc4c1e6d57226eb268bed08707f1d032ece54dda121c16ec0684192ff17",
+        "results": [
+          "PsoV3.dol: 20 network startup and PPP cases passed.",
+          "network.dol: 20 network startup and PPP cases passed."
+        ]
+      },
+      "ppp-frames": {
+        "probe_sha256": "9660b2b4490e1623008049b8afb52517686e1dad6bd7447cac4ab8ff4858a983",
+        "log_sha256": "1055052946c8b013f3010646aeaa6022d423868a42185b53640e67723efc7433",
+        "results": [
+          "PsoV3.dol: 28 PPP frame, dispatch, and compression cases passed.",
+          "network.dol: 28 PPP frame, dispatch, and compression cases passed."
+        ]
+      },
+      "ppp-callbacks": {
+        "probe_sha256": "89b11ef200288902d2b2c1b9f5085a02ee2fd63d0bc9008d2dc4f61dc52a5349",
+        "log_sha256": "ac344fd789c173415cd46f0f8e6c24ee6c2fd5aa79c84697e65dff39130dbe09",
+        "results": [
+          "PsoV3.dol: 13 PPP callback-table and IPv6CP option cases passed.",
+          "network.dol: 13 PPP callback-table and IPv6CP option cases passed."
+        ]
+      },
+      "runtime-slots": {
+        "probe_sha256": "8924a82c94c2c4cbc11c45f957fc89693e859fbeb5a386d517d5702e9a68c083",
+        "log_sha256": "b4fccd09650143e9b72e96cdfb28d19587b53f23b24f35d931317b72f2f8c513",
+        "results": [
+          "PsoV3.dol: seven network slot initialization cases passed.",
+          "network.dol: seven network slot initialization cases passed."
+        ]
+      },
+      "packet-receive-and-dhcp": {
+        "probe_sha256": "5587c776da77526c1746783b6e1abffe4d1c1816087e3bff12034d958e88578d",
+        "log_sha256": "448051f4b689b3056beeccd47ede6336dfd7fe7afa0b290b628518ce402d215c",
+        "results": [
+          "PsoV3.dol: 15 receive and DHCP record cases passed.",
+          "network.dol: 15 receive and DHCP record cases passed."
+        ]
+      },
+      "socket-and-dhcp-handoffs": {
+        "probe_sha256": "e4c444684b3e527d1ab4baee37a321b795e15df7ed23e8b6eceabd623a3ead57",
+        "log_sha256": "70ab6be85d41570008e69b80385dc3677c361a7e84309d516cec5f460a618fef",
+        "results": [
+          "PsoV3.dol: 10 socket timer, send handoff and DHCP option cases passed.",
+          "network.dol: 10 socket timer, send handoff and DHCP option cases passed."
+        ]
+      },
+      "socket-queues": {
+        "probe_sha256": "0de4e9dbf95a835be9ea646541e5abda11115c6f0008d3c1ea5d859a7fc3b12f",
+        "log_sha256": "701852d4f7fe7a41d7ee822cef1724c0c0378c07d2f3b6e0d1022465ffb69cd6",
+        "results": [
+          "786 reassembly comparisons and 12 out-of-order receive cases passed.",
+          "2,528 gathers and 1,600 ACKs passed, including 1766 completion events."
+        ]
+      },
+      "dispatcher": {
+        "result": "dispatcher initialization, all unwind paths, and message layout passed.",
+        "log_sha256": "ce6d2688bc0470684b6fc9b5b72715e62e0dcd70db23b8b263bd98d70570aff3"
+      },
+      "udp-callbacks": {
+        "result": "typed UDP connect, independent event and receive slots, duplicate rejection and close passed.",
+        "log_sha256": "3de69068ce09fae9d5bb6de2d3a5978dbef7fc27d641636e92520cfe6bdb5c92"
+      },
+      "frame-layouts": {
+        "result": "PPP frame length and headroom, IPv4 options, and TCP header fields passed",
+        "log_sha256": "200a6684c2a0f5d9e36491246fb540ae5d3aba3eac6a4c897dff10994458d04c"
+      }
+    }
+  },
+  "source_conflicts_resolved": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/system/ControllerInputState.h",
+    "include/pso/ui/keyboard/TKeyBoardControl_801A57C4.h",
+    "include/pso/ui/window/TWindowChoiceSetting.h",
+    "include/pso/unk/TLobby_801E2F94.h",
+    "include/pso/unk/text_801A6A5C.h",
+    "src/pso/ui/charcreate/TChCrEffWall.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChatHelp.cpp",
+    "src/pso/ui/frontend/TAdMcSelectCursorGC.cpp",
+    "src/pso/ui/frontend/TAdMultiPlyChrSelectGC.cpp",
+    "src/pso/ui/hud/TLoadingCur.cpp",
+    "src/pso/ui/hud/TNowLoading.cpp",
+    "src/pso/ui/hud/TRaderMapCore.cpp",
+    "src/pso/ui/keyboard/TKeyBoardControl_801A57C4.cpp",
+    "src/pso/ui/window/TWindowChoiceSetting.cpp",
+    "src/pso/ui/window/TWindowChoiceSetting_80249078.cpp",
+    "src/pso/ui/window/TWindowComCard.cpp",
+    "src/pso/ui/window/TWindowCtrl_8024A1A8.cpp",
+    "src/pso/ui/window/TWindowCtrl_8024B1A0.cpp",
+    "src/pso/ui/window/TWindowCtrl_8024B558.cpp",
+    "src/pso/ui/window/TWindowFukidasi.cpp",
+    "src/pso/ui/window/TWindowGetComCard.cpp",
+    "src/pso/ui/window/TWindowInputNumber.cpp",
+    "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_80248BE8.cpp",
+    "src/pso/ui/window/TWindowSubTrade.cpp",
+    "src/pso/ui/window/TWindowSubTradeMessage.cpp",
+    "src/pso/ui/window/WindowDrawContext.cpp",
+    "src/pso/unk/TLobby_801E2F94.cpp",
+    "src/pso/unk/text_801A6A28.cpp"
+  ],
+  "reconciliation": {
+    "input": "Keep upstream controller fields and move typed key polling, the stick escape detector, and matching native input and copy calls to ControllerInput.cpp.",
+    "map_view": "Keep upstream NJS_CAMERA fields in the live camera, use the same native camera record in each distinct radar view, and retain the matching radar view copy.",
+    "hooks": {
+      "restore_saved_view": "0x80068EF0",
+      "get_pad_slot": "0x803DEB74"
+    }
+  },
+  "cumulative_conflict_transfer": {
+    "previous_upstream": "d8c0a969d273c9e2cdb1c6c34a1e6aa2be4cc571",
+    "upstream": "5cf9da024a0d526227c07273f045ebe71e146496",
+    "queue": "04dcce065b5b748ee382035bf25d310a492f5837",
+    "published": "084cec228c06a73ea36333f383419b4ed4f7bfc2",
+    "resolved_window": "995098935b99007f5937c849e8a3563e89b60ef6",
+    "validated_stack": "ebfa476bf688a4c4bf5356da3373dcb0074d6154",
+    "initial_queue_conflicts": 116,
+    "usable_source_resolutions": 26,
+    "remaining_queue_conflicts": 90,
+    "results": [
+      {
+        "path": "config/GPOE8P/psov3/config.yml",
+        "choice": "clean three-way source replay",
+        "output": "ac66886b42d413272949",
+        "sha256": "2f089db7e996740c5b4916661d487294f45f54921b262119c6debc23192ba43c"
+      },
+      {
+        "path": "config/GPOE8P/psov3/symbols.txt",
+        "choice": "different source requires queue audit"
+      },
+      {
+        "path": "include/pso/system/ControllerInputState.h",
+        "choice": "same previous source",
+        "output": "169d646c5ecdce32b9db",
+        "sha256": "5793ada28982e7ad9438a44d0b5c0c6e43848f1b6ce4ee5b9e3f6db3f38f2947"
+      },
+      {
+        "path": "include/pso/ui/keyboard/TKeyBoardControl_801A57C4.h",
+        "choice": "same source already relocated into the combined tree",
+        "remove": true
+      },
+      {
+        "path": "include/pso/ui/window/TWindowChoiceSetting.h",
+        "choice": "different source requires queue audit"
+      },
+      {
+        "path": "include/pso/unk/TLobby_801E2F94.h",
+        "choice": "same previous source",
+        "output": "8cba1b66e8d352fe709a",
+        "sha256": "3e6a5127ad27184bb3bb0cb45d4f615ac23004aa7087fbebf61396d8dd081c0f"
+      },
+      {
+        "path": "include/pso/unk/text_801A6A5C.h",
+        "choice": "same source already relocated into the combined tree",
+        "remove": true
+      },
+      {
+        "path": "src/pso/ui/charcreate/TChCrEffWall.cpp",
+        "choice": "same previous source",
+        "output": "8aecd5ee510d271ba268",
+        "sha256": "a2c9c84645f375a15f06e091dfe212f93ac576f79d9d41a1565b157ab07d20be"
+      },
+      {
+        "path": "src/pso/ui/chat/TWindowSubSymbolChatHelp.cpp",
+        "choice": "same previous source",
+        "output": "a34843deff8da3f0437f",
+        "sha256": "3154ec14b829382521f6e9b09b1f76915281e3bed282f315284ee8554792b691"
+      },
+      {
+        "path": "src/pso/ui/frontend/TAdMcSelectCursorGC.cpp",
+        "choice": "same previous source",
+        "output": "a0a831bfa31bb1b9c300",
+        "sha256": "8b51a1ebf69cc23ca28fda0d4c9eec75332a1087e511cbdec853eb35fcd1b0e1"
+      },
+      {
+        "path": "src/pso/ui/frontend/TAdMultiPlyChrSelectGC.cpp",
+        "choice": "clean three-way source replay",
+        "output": "cd052e0f96f4a7268431",
+        "sha256": "85debba4ea3a6f0e829aa48690f87ae19d4e7c9062b19da921054580581eaecc"
+      },
+      {
+        "path": "src/pso/ui/hud/TLoadingCur.cpp",
+        "choice": "different source requires queue audit"
+      },
+      {
+        "path": "src/pso/ui/hud/TNowLoading.cpp",
+        "choice": "same previous source",
+        "output": "11baef9313803c69a7d3",
+        "sha256": "c84a449c55aa80938d07a62860a8cf81e16c0a1a0bc963243cf9cf6cf4261f90"
+      },
+      {
+        "path": "src/pso/ui/hud/TRaderMapCore.cpp",
+        "choice": "clean three-way source replay",
+        "output": "947ea7539555b926d263",
+        "sha256": "2c95be9c4374195b240c7af132be84a66b959995fcdb1cfbc0b89081db61f078"
+      },
+      {
+        "path": "src/pso/ui/keyboard/TKeyBoardControl_801A57C4.cpp",
+        "choice": "same source already relocated into the combined tree",
+        "remove": true
+      },
+      {
+        "path": "src/pso/ui/window/TWindowChoiceSetting.cpp",
+        "choice": "different source requires queue audit"
+      },
+      {
+        "path": "src/pso/ui/window/TWindowChoiceSetting_80249078.cpp",
+        "choice": "different source requires queue audit"
+      },
+      {
+        "path": "src/pso/ui/window/TWindowComCard.cpp",
+        "choice": "same previous source",
+        "output": "33ed0b9d73645e199754",
+        "sha256": "a7fa9aa8e11b6ec6cc64bc128ae3c5751563174144a89a96cbede8f72edf60ed"
+      },
+      {
+        "path": "src/pso/ui/window/TWindowCtrl_8024A1A8.cpp",
+        "choice": "clean three-way source replay",
+        "output": "7abc96066704f058b21b",
+        "sha256": "31a3620a54625afe774fd2c54b2bc33a2245b928b5d023f0cc9d3fa3bd4a408f"
+      },
+      {
+        "path": "src/pso/ui/window/TWindowCtrl_8024B1A0.cpp",
+        "choice": "same previous source",
+        "output": "f4f0582dd00aca67aaba",
+        "sha256": "631d2d041035ed42aedb4569d5f4257df11c42906be9f14f5dbc19be17000346"
+      },
+      {
+        "path": "src/pso/ui/window/TWindowCtrl_8024B558.cpp",
+        "choice": "same previous source",
+        "output": "d6d68f796a6d48d7e2e1",
+        "sha256": "9e8a40c8f1a5f82754e3a5d8af734a2725b6c6f210cfa3a761bb0335fc15eb72"
+      },
+      {
+        "path": "src/pso/ui/window/TWindowFukidasi.cpp",
+        "choice": "clean three-way source replay",
+        "output": "1501042ce2f79fa36199",
+        "sha256": "8805c8aa6b70bba9af0811f6c1952bd673985182f339ddf10defc7a0d068dec7"
+      },
+      {
+        "path": "src/pso/ui/window/TWindowGetComCard.cpp",
+        "choice": "clean three-way source replay",
+        "output": "0959421a0674d8d8e5fe",
+        "sha256": "7f7679226aa5c6d53c915f2dc7d1dea3eee4baf3d6d633786ffea91b4e09d2f7"
+      },
+      {
+        "path": "src/pso/ui/window/TWindowInputNumber.cpp",
+        "choice": "clean three-way source replay",
+        "output": "b344d498aafa20ba7a12",
+        "sha256": "823d8b7bb587ad3c8604743e9a9a837e967e3d5ba748f60a411d9d95c5944b46"
+      },
+      {
+        "path": "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp",
+        "choice": "clean three-way source replay",
+        "output": "d35edf450afd05887cf6",
+        "sha256": "7fb9591e94b77ce12cc7bf763f68a5f2367ee848f645c03b0a25b037a8dbbcf7"
+      },
+      {
+        "path": "src/pso/ui/window/TWindowSubStatusDisp_80248BE8.cpp",
+        "choice": "clean three-way source replay",
+        "output": "8014a51b406749e9d94e",
+        "sha256": "cdf4975db3ee2fc938ee75b07913bfc046322a2a4a8bdf586f1c3c325fc26261"
+      },
+      {
+        "path": "src/pso/ui/window/TWindowSubTrade.cpp",
+        "choice": "same previous source",
+        "output": "a6bc483d5acc49df6f10",
+        "sha256": "e836c0f5d0bb6230a79cadd0bbad9bd40df82953b427a5657bf574a190bf5713"
+      },
+      {
+        "path": "src/pso/ui/window/TWindowSubTradeMessage.cpp",
+        "choice": "same previous source",
+        "output": "9338142c04d403dd60d0",
+        "sha256": "6d3bf046da63fe88b8ebfa581a0b3cfcafa09a6d61df2e6c8b9b09d55268d032"
+      },
+      {
+        "path": "src/pso/ui/window/WindowDrawContext.cpp",
+        "choice": "same previous source",
+        "output": "5856b21561c500892bd2",
+        "sha256": "2201811e44558b26ac8d945e67dc8788f0d21457d60fd14904fc87334ffa9641"
+      },
+      {
+        "path": "src/pso/unk/TLobby_801E2F94.cpp",
+        "choice": "clean three-way source replay",
+        "output": "a795d77acf59f3e58a1e",
+        "sha256": "550a011bf798a4acf880235ddc1bd41730dabf2a50facbaf0343ea15911a4245"
+      },
+      {
+        "path": "src/pso/unk/text_801A6A28.cpp",
+        "choice": "same source already relocated into the combined tree",
+        "remove": true
+      }
+    ]
+  }
+}

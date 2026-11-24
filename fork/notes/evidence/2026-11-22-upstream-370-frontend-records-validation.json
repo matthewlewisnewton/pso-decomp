@@ -1,0 +1,221 @@
+{
+  "upstream": "d8c0a969d273c9e2cdb1c6c34a1e6aa2be4cc571",
+  "source": "ffd0d98e4cc725fd4f46ae3df29334c853fb6c10",
+  "source_base": "1044ba9c90144d5247d783044dde556d80c8f7a7",
+  "source_commits": 50,
+  "paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/ui/frontend/TAdPlyStatusGC.h",
+    "include/pso/ui/window/TWindowDD.h",
+    "src/pso/ui/city/TJudgmentSequence.cpp",
+    "src/pso/ui/frontend/TAdEndText.cpp",
+    "src/pso/ui/frontend/TAdEnterBaseGC.cpp",
+    "src/pso/ui/frontend/TAdMultiConfirmGC_802E03D0.cpp",
+    "src/pso/ui/frontend/TAdMultiPlyChrSelectGC.cpp",
+    "src/pso/ui/frontend/TAdMultiPlyChrSelectGCTables.cpp",
+    "src/pso/ui/frontend/TAdPlyStatusGC.cpp",
+    "src/pso/ui/frontend/TAdPlyStatusGC_802E1128.cpp",
+    "src/pso/ui/window/TWindowDD_803430BC.cpp",
+    "src/pso/ui/window/TWindowDD_803471C0.cpp",
+    "src/pso/ui/window/TWindowDD_8034725C.cpp",
+    "src/pso/ui/window/TWindowShortCut.cpp",
+    "src/pso/ui/window/TWindowSubShortCutList.cpp"
+  ],
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "coverage_losses": {
+    "regressions": 0,
+    "data_coverage_lost": 0,
+    "padding_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0
+  },
+  "linked_labels": [
+    {
+      "module": "psov3",
+      "address": "0x8034861C",
+      "before": "format_message__9TWindowDDFPvPvUs",
+      "after": "format_message__9TWindowDDFP17WordSelectMessagePcUs"
+    }
+  ],
+  "original_data_bytes": 1147,
+  "original_data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "runtime": {
+    "source": {
+      "sha256": "34492e0aa1bd94ff3b82fdb1925fcbe3faba3c5fa804fc69956b53710a261068",
+      "observations": [
+        "All 1,024 ending-text character classification cases passed",
+        "Seven serial parsing, width and buffer reset cases passed",
+        "Seven Word Select language dispatch cases passed with the original payload and speaker ID",
+        "Judgment window construction, installed callbacks and status texture address passed"
+      ]
+    },
+    "workspace": {
+      "sha256": "34492e0aa1bd94ff3b82fdb1925fcbe3faba3c5fa804fc69956b53710a261068",
+      "observations": [
+        "All 1,024 ending-text character classification cases passed",
+        "Seven serial parsing, width and buffer reset cases passed",
+        "Seven Word Select language dispatch cases passed with the original payload and speaker ID",
+        "Judgment window construction, installed callbacks and status texture address passed"
+      ]
+    }
+  },
+  "historical_audit": {
+    "open_before": 244,
+    "open_after": 235,
+    "resolved": [
+      "src/pso/ui/TAdEnterSerialAccessGC_8032AD30.cpp",
+      "src/pso/misc/TJudgmentSequence.cpp",
+      "src/pso/menu/TAdEndText.cpp",
+      "src/pso/misc/TShopItemTecSequence.cpp",
+      "src/pso/ui/TAdPlyStatusGC.cpp",
+      "src/pso/misc/TMedicalCenterSequence.cpp",
+      "src/pso/ui/TAdMultiPlyChrSelectGC_802DEF54.cpp",
+      "src/pso/misc/TWindowDD_8034725C.cpp",
+      "include/pso/misc/TKeyBoardControl.h"
+    ],
+    "keyboard_entry_points": {
+      "0x80131998": {
+        "historical": "set_flag1c_bit4__16TKeyBoardControlFv",
+        "current": "hide__16TKeyBoardControlFv"
+      },
+      "0x801319f4": {
+        "historical": "clear_flag1c_bit4__16TKeyBoardControlFv",
+        "current": "show__16TKeyBoardControlFv"
+      },
+      "0x80131a5c": {
+        "historical": "set_keyboard_flag62_bit2__16TKeyBoardControlFv",
+        "current": "set_flag62_bit2__16TKeyBoardControlFv"
+      },
+      "0x80131a80": {
+        "historical": "set_keyboard_depth__16TKeyBoardControlFf",
+        "current": "set_depth__16TKeyBoardControlFf"
+      },
+      "0x80131aa4": {
+        "historical": "set_position__16TKeyBoardControlFPv",
+        "current": "set_position__16TKeyBoardControlFPv"
+      },
+      "0x80131adc": {
+        "historical": "set_soft_keyboard_position__16TKeyBoardControlFPUc",
+        "current": "set_soft_position__16TKeyBoardControlFPUc"
+      },
+      "0x80131b18": {
+        "historical": "set_hard_keyboard_position__16TKeyBoardControlFPUc",
+        "current": "set_hard_position__16TKeyBoardControlFPUc"
+      },
+      "0x80131b54": {
+        "historical": "set_composer_position__16TKeyBoardControlFPUc",
+        "current": "set_sub_position__16TKeyBoardControlFPUc"
+      },
+      "0x80131ba0": {
+        "historical": "set_text__16TKeyBoardControlFPc",
+        "current": "set_text__16TKeyBoardControlFPc"
+      },
+      "0x80131bc4": {
+        "historical": "allocate_text_copy__16TKeyBoardControlFv",
+        "current": "realloc_buffer__16TKeyBoardControlFv"
+      },
+      "0x80131c10": {
+        "historical": "is_keyboard_active__16TKeyBoardControlFv",
+        "current": "is_cancelled__16TKeyBoardControlFv"
+      },
+      "0x80131c34": {
+        "historical": "is_key_active__16TKeyBoardControlFv",
+        "current": "is_confirmed__16TKeyBoardControlFv"
+      },
+      "0x801f64f4": {
+        "historical": "clear_keyboard_flag60_bit1__16TKeyBoardControlFv",
+        "current": "clear_keyboard_flag60_bit1__16TKeyBoardControlFv"
+      },
+      "0x8025ec1c": {
+        "historical": "is_printable_key__16TKeyBoardControlFPvUc",
+        "current": "is_printable_key__19TWindowKeyBoardHardFUc"
+      },
+      "0x8025ec54": {
+        "historical": "has_non_modifier_key__16TKeyBoardControlFv",
+        "current": "has_non_modifier_key__19TWindowKeyBoardHardFv"
+      },
+      "0x80265410": {
+        "historical": "set_keyboard_flag62_bit4__16TKeyBoardControlFv",
+        "current": "set_composer_flag62_bit4__16TKeyBoardControlFv"
+      },
+      "0x80131f64": {
+        "historical": "set_flag60_bit200__16TKeyBoardControlFv",
+        "current": "set_flag60_bit200__19TWindowKeyBoardHardFv"
+      },
+      "0x80131f74": {
+        "historical": "clear_flag60_bit200__16TKeyBoardControlFv",
+        "current": "clear_flag60_bit200__19TWindowKeyBoardHardFv"
+      },
+      "0x80131f84": {
+        "historical": "is_key_held__16TKeyBoardControlFv",
+        "current": "is_key_held__19TWindowKeyBoardHardFv"
+      },
+      "0x80131f90": {
+        "historical": "set_flag62_bit2__16TKeyBoardControlFv",
+        "current": "set_flag62_bit2__19TWindowKeyBoardBaseFv"
+      },
+      "0x80131fa0": {
+        "historical": "is_active__16TKeyBoardControlFv",
+        "current": "is_cancelled__19TWindowKeyBoardBaseFv"
+      },
+      "0x80131fac": {
+        "historical": "is_key_active__16TKeyBoardControlFv",
+        "current": "is_confirmed__19TWindowKeyBoardBaseFv"
+      },
+      "0x80131fb8": {
+        "historical": "set_flag62_bit8__16TKeyBoardControlFv",
+        "current": "set_flag62_bit8__19TWindowKeyBoardBaseFv"
+      },
+      "0x8025edb4": {
+        "historical": "translate_key_char__16TKeyBoardControlFPvUcPUs",
+        "current": "translate_key_char__19TWindowKeyBoardHardFUcPUs"
+      },
+      "0x8025f21c": {
+        "historical": "get_input_mode__16TKeyBoardControlFv",
+        "current": "get_input_mode__19TWindowKeyBoardHardFv"
+      },
+      "0x8025fe9c": {
+        "historical": "enable_keyboard_led__16TKeyBoardControlFv",
+        "current": "set_mode3__19TWindowKeyBoardHardFv"
+      },
+      "0x8025feec": {
+        "historical": "enable_kana_led__16TKeyBoardControlFv",
+        "current": "set_mode2__19TWindowKeyBoardHardFv"
+      },
+      "0x8025ff3c": {
+        "historical": "enable_caps_led__16TKeyBoardControlFv",
+        "current": "set_mode1__19TWindowKeyBoardHardFv"
+      }
+    }
+  },
+  "fork_workspace": {
+    "parent": "ffd0d98e4cc725fd4f46ae3df29334c853fb6c10",
+    "previous_workspace": "2f6aa7052a6184112a37080ce2f83ee23ae2c79e",
+    "overlay_paths": 130,
+    "updated_linker_labels": 0,
+    "updated_patch_blob_ids": [
+      "src/pso/ui/window/TWindowShortCut.cpp"
+    ],
+    "materialized_tree_before_notes_update": "c5365060c08c5be769b1f15657d07a5850c3cfb6",
+    "archive_sha256": "e0a9c775a2aeb2e73c8bcc8272427061f9666e9780d33ceb241adeb98c43d39b",
+    "tests": {
+      "tool": 294,
+      "fork": 11,
+      "host": 5
+    },
+    "host_executables": [
+      "vector_math_fallbacks",
+      "item_factory_callbacks",
+      "loader_transfer",
+      "ginja_parameter_callbacks",
+      "exi_ethernet_fallbacks"
+    ]
+  }
+}

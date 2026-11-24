@@ -1,0 +1,398 @@
+{
+  "source": "41095fa09ef1468c91dc94659c2585bdfe5f39ed",
+  "initial_source": "4b76884761647c2933a40f5ffd4425765ef6542d",
+  "previous_source": "5dd3a4a299f0fb6078f9c03961a37a67fba1e23d",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "include/pso/network/PppIpcp.h",
+    "include/pso/network/TLobby_803FAEA0.h",
+    "include/pso/network/TLobby_803FC178.h",
+    "include/pso/network/TLobby_803FCF44.h",
+    "include/pso/network/TLobby_804048E8.h",
+    "include/pso/network/TLobby_804050DC.h",
+    "src/pso/network/NetPppLink.c",
+    "src/pso/network/PppControl.c",
+    "src/pso/network/PppFsm.c",
+    "src/pso/network/PppIpcp.c",
+    "src/pso/network/PppLcp.c",
+    "src/pso/network/PppPap.c",
+    "src/pso/network/PppVj.c",
+    "src/pso/network/TLobby_803FC178.c",
+    "src/pso/network/TLobby_803FCF44.c",
+    "src/pso/network/TLobby_804048E8.c",
+    "src/pso/network/TLobby_804050DC.c"
+  ],
+  "combined_paths_from_upstream": 1292,
+  "validation": {
+    "source": {
+      "baseline": "4b76884761647c2933a40f5ffd4425765ef6542d",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "b7ef59ce5f05d52a0b99f5c11907f7321b16c8c6c24753265640cf14dc5d402b",
+      "report_sha256": "5651baaad2c4967d332d56742930c0b22cf7931fa2ccc9dbbb0713f2360f124b"
+    },
+    "layer": {
+      "baseline": "41095fa09ef1468c91dc94659c2585bdfe5f39ed",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "0d0505ff2d6750e611c1caeddd6c815b7e23c1307e306f42ee8cc59bb78deb14",
+      "report_sha256": "5651baaad2c4967d332d56742930c0b22cf7931fa2ccc9dbbb0713f2360f124b"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "cda479c715ae0c441b2aeaa3f253cc03a6258a511b2b78030863acb340a627d9"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "67f8127be956aae71a639e2534e85f925c30c7e6a5eeeab91e2121dd27565d43"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "initial_source_check_sha256": "b7ef59ce5f05d52a0b99f5c11907f7321b16c8c6c24753265640cf14dc5d402b",
+  "runtime": {
+    "cases_per_image": 28,
+    "images": [
+      "retail",
+      "source",
+      "materialized fork"
+    ],
+    "cases": {
+      "header_reads": 4,
+      "frame_sends": 14,
+      "protocol_dispatch": 5,
+      "compression_setup_and_release": 5
+    },
+    "probe_sha256": "9660b2b4490e1623008049b8afb52517686e1dad6bd7447cac4ab8ff4858a983",
+    "log_sha256": "5fc1f4a29265c14a50bf18d4395b12f955d369db78cdaf2c783795b24fec973a"
+  },
+  "matching_units": {
+    "src/pso/network/NetPppLink.c": {
+      "functions": 13,
+      "code": "1492",
+      "data": "24"
+    },
+    "src/pso/network/PppControl.c": {
+      "functions": 12,
+      "code": "2128",
+      "data": "160"
+    },
+    "src/pso/network/PppFsm.c": {
+      "functions": 18,
+      "code": "5860",
+      "data": "648"
+    },
+    "src/pso/network/PppIpcp.c": {
+      "functions": 24,
+      "code": "5988",
+      "data": "288"
+    },
+    "src/pso/network/PppLcp.c": {
+      "functions": 18,
+      "code": "5516",
+      "data": "264"
+    },
+    "src/pso/network/PppMd5.c": {
+      "functions": 4,
+      "code": "3504",
+      "data": "64"
+    },
+    "src/pso/network/PppPap.c": {
+      "functions": 12,
+      "code": "2972",
+      "data": "456"
+    },
+    "src/pso/network/PppVj.c": {
+      "functions": 2,
+      "code": "2460",
+      "data": "8"
+    },
+    "src/pso/network/TLobby_803FC178.c": {
+      "functions": 11,
+      "code": "3532",
+      "data": "464"
+    },
+    "src/pso/network/TLobby_803FCF44.c": {
+      "functions": 2,
+      "code": "380",
+      "data": "24"
+    },
+    "src/pso/network/TLobby_804048E8.c": {
+      "functions": 3,
+      "code": "2036",
+      "data": "4632"
+    },
+    "src/pso/network/TLobby_804050DC.c": {
+      "functions": 31,
+      "code": "8828",
+      "data": "560"
+    }
+  },
+  "historical_provider_addresses": [
+    {
+      "fork_name": "TLobby__sub_803FE658",
+      "current_name": "TLobby__sub_803FE658",
+      "address": "0x803fe658",
+      "size": 116,
+      "owner": "src/pso/network/PppFsm.c"
+    },
+    {
+      "fork_name": "TLobby__sub_803FE6CC",
+      "current_name": "ppp_fsm_send_packet",
+      "address": "0x803fe6cc",
+      "size": 340,
+      "owner": "src/pso/network/PppFsm.c"
+    },
+    {
+      "fork_name": "TLobby__sub_803FE8BC",
+      "current_name": "TLobby__sub_803FE8BC",
+      "address": "0x803fe8bc",
+      "size": 120,
+      "owner": "src/pso/network/PppFsm.c"
+    },
+    {
+      "fork_name": "TLobby__sub_80406624",
+      "current_name": "TLobby__sub_80406624",
+      "address": "0x80406624",
+      "size": 180,
+      "owner": "src/pso/network/TLobby_804050DC.c"
+    },
+    {
+      "fork_name": "TLobby__sub_803FDBF8",
+      "current_name": "TLobby__sub_803FDBF8",
+      "address": "0x803fdbf8",
+      "size": 2568,
+      "owner": "src/pso/network/PppFsm.c"
+    },
+    {
+      "fork_name": "TLobby__sub_803FEF4C",
+      "current_name": "TLobby__sub_803FEF4C",
+      "address": "0x803fef4c",
+      "size": 492,
+      "owner": "src/pso/network/PppIpcp.c"
+    },
+    {
+      "fork_name": "TLobby__sub_8040059C",
+      "current_name": "init_lcp_protocol",
+      "address": "0x8040059c",
+      "size": 424,
+      "owner": "src/pso/network/PppLcp.c"
+    },
+    {
+      "fork_name": "TLobby__sub_80400744",
+      "current_name": "apply_lcp_config_to_sides",
+      "address": "0x80400744",
+      "size": 580,
+      "owner": "src/pso/network/PppLcp.c"
+    },
+    {
+      "fork_name": "TLobby__sub_80403308",
+      "current_name": "pap_recv_auth_request",
+      "address": "0x80403308",
+      "size": 812,
+      "owner": "src/pso/network/PppPap.c"
+    },
+    {
+      "fork_name": "TLobby__sub_803FF374",
+      "current_name": "TLobby__sub_803FF374",
+      "address": "0x803ff374",
+      "size": 16,
+      "owner": "src/pso/network/PppIpcp.c"
+    },
+    {
+      "fork_name": "TLobby__sub_803FF384",
+      "current_name": "TLobby__sub_803FF384",
+      "address": "0x803ff384",
+      "size": 172,
+      "owner": "src/pso/network/PppIpcp.c"
+    },
+    {
+      "fork_name": "TLobby__sub_803FF468",
+      "current_name": "TLobby__sub_803FF468",
+      "address": "0x803ff468",
+      "size": 36,
+      "owner": "src/pso/network/PppIpcp.c"
+    },
+    {
+      "fork_name": "TLobby__sub_803FF48C",
+      "current_name": "TLobby__sub_803FF48C",
+      "address": "0x803ff48c",
+      "size": 128,
+      "owner": "src/pso/network/PppIpcp.c"
+    },
+    {
+      "fork_name": "TLobby__sub_80400988",
+      "current_name": "lcp_noop_callback",
+      "address": "0x80400988",
+      "size": 4,
+      "owner": "src/pso/network/PppLcp.c"
+    },
+    {
+      "fork_name": "TLobby__sub_8040098C",
+      "current_name": "setup_auth_after_lcp_negotiation",
+      "address": "0x8040098c",
+      "size": 320,
+      "owner": "src/pso/network/PppLcp.c"
+    },
+    {
+      "fork_name": "TLobby__sub_80400B98",
+      "current_name": "mark_lcp_starting",
+      "address": "0x80400b98",
+      "size": 16,
+      "owner": "src/pso/network/PppLcp.c"
+    },
+    {
+      "fork_name": "free_field_98",
+      "current_name": "free_field_98",
+      "address": "0x803ff34c",
+      "size": 40,
+      "owner": "src/pso/network/PppIpcp.c"
+    },
+    {
+      "fork_name": "free_field_98_and_clear",
+      "current_name": "free_field_98_and_clear",
+      "address": "0x803ff430",
+      "size": 56,
+      "owner": "src/pso/network/PppIpcp.c"
+    },
+    {
+      "fork_name": "reset_connection_slot",
+      "current_name": "reset_connection_slot",
+      "address": "0x80400b34",
+      "size": 64,
+      "owner": "src/pso/network/PppLcp.c"
+    },
+    {
+      "fork_name": "queue_command_81",
+      "current_name": "queue_command_81",
+      "address": "0x80400b74",
+      "size": 36,
+      "owner": "src/pso/network/PppLcp.c"
+    },
+    {
+      "fork_name": "save_timer_state",
+      "current_name": "reset_lcp_options",
+      "address": "0x80400ba8",
+      "size": 164,
+      "owner": "src/pso/network/PppLcp.c"
+    },
+    {
+      "fork_name": "init_md5_state",
+      "current_name": "init_md5_state",
+      "address": "0x80401fa8",
+      "size": 64,
+      "owner": "src/pso/network/PppMd5.c"
+    },
+    {
+      "fork_name": "NetChapDispatch",
+      "current_name": "chap_input",
+      "address": "0x803fc4b4",
+      "size": 464,
+      "owner": "src/pso/network/TLobby_803FC178.c"
+    },
+    {
+      "fork_name": "NetPapDispatch",
+      "current_name": "pap_input",
+      "address": "0x80402e68",
+      "size": 768,
+      "owner": "src/pso/network/PppPap.c"
+    },
+    {
+      "fork_name": "NetIPv4WriteHeader",
+      "current_name": "NetIPv4WriteHeader",
+      "address": "0x803febfc",
+      "size": 380,
+      "owner": "src/pso/network/PppFsm.c"
+    },
+    {
+      "fork_name": "init_net_list__6TLobbyFss",
+      "current_name": "init_net_list",
+      "address": "0x80405008",
+      "size": 212,
+      "owner": "src/pso/network/TLobby_804048E8.c"
+    }
+  ],
+  "compression_storage": [
+    {
+      "symbol": "lbl_805C06D8",
+      "address": "0x805c06d8",
+      "bytes": 56
+    },
+    {
+      "symbol": "lbl_805C0710",
+      "address": "0x805c0710",
+      "bytes": 2240
+    },
+    {
+      "symbol": "lbl_805C0FD0",
+      "address": "0x805c0fd0",
+      "bytes": 2240
+    }
+  ],
+  "historical": {
+    "closed": [
+      {
+        "row": 2960,
+        "fork_path": "include/pso/protocol/PppControlRuntime.h",
+        "owner": "include/pso/network/PppFsm.h",
+        "fork_blob": "73840b15d607bbb7ecdfa94c82145e0e442da593",
+        "owner_blob": "d6e6091354019f7e7d51d5c451a02d848acd58c0",
+        "historical_entry_points": 25,
+        "detail": "The full historical header maps to the native PPP frame, four-byte header, state machine, and IPv4, LCP and IPCP record declarations. All 25 historical entry points have exact, source-linked providers at the same original addresses and sizes. The frame sender, authentication dispatch and compression configuration use their shared types."
+      }
+    ],
+    "scoped": {
+      "2964": "PPP frame, LCP config, CHAP response and IPCP compression ownership are verified at their native providers. The earlier authored IPCP callback and timer changes remain under review."
+    },
+    "open_rows": 309
+  },
+  "fork_workspace": {
+    "trial": "82636ea5cfaf2bea11244ef438b79a3d6ff34ec9",
+    "overlay_paths": 130,
+    "archive_sha256": "8a11c6ff1dbfeda0779bd33cb8e9d55c708414d562815c877d548734a338e683",
+    "materialized_tree": "d5a71fbb8ce4fac8f798f4a85d3a14335fb6a0de",
+    "force_active": 27029
+  }
+}

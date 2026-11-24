@@ -1,0 +1,1876 @@
+{
+  "source": "496f0e0e02dae1a8da39830283a1e6e8ca4f4763",
+  "landing": "5483048ad046253169287a4541e39574d659bda6",
+  "working_fork_build": "496f69480642b08c3dd1e4ba06a17b2a3ce9e778",
+  "previous_source": "1d38f7e39621ecbdd6ec0c5a00fa8c07b4bd2506",
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "source_files": 47,
+  "batches": {
+    "inventory": {
+      "head": "0b3f4b17de53709059de5e352996b1e4d95555d1",
+      "files": 8,
+      "report_sha256": "cd3d9ad8c8858ded318d492914a79435dd3f21511660c5f3eed3ce30e8f80a17"
+    },
+    "boss": {
+      "head": "9826648d1be15f17d052ccd48830298cb844fdcb",
+      "files": 21,
+      "report_sha256": "aa0dd087f62e001794d699e41d00f7f4c7abf5117ec001cd21e8c65e36113ebf"
+    },
+    "ambient": {
+      "head": "34104e05339e14a55f4486c147337021bb265054",
+      "files": 8,
+      "report_sha256": "b404d9bb2f5b63f87a63779cfaab08cb5ca28265edd72e316a9b20195811a4f4"
+    },
+    "frontend": {
+      "head": "edd422606f5c7e3549cb7fae92b80414c326aeb9",
+      "files": 13,
+      "report_sha256": "6b87988119b2b125e4f932b7b1de5496d06ccb57978fed8bde1daa2729e071ec"
+    }
+  },
+  "source_coverage": {
+    "fuzzy_match_percent": 99.99999,
+    "total_code": "4353092",
+    "matched_code": "4353092",
+    "matched_code_percent": 100.0,
+    "total_data": "1758510",
+    "matched_data": "1758510",
+    "matched_data_percent": 100.0,
+    "total_functions": 27572,
+    "matched_functions": 27572,
+    "matched_functions_percent": 100.0,
+    "complete_code": "4353092",
+    "complete_code_percent": 100.0,
+    "complete_data": "1758510",
+    "complete_data_percent": 100.0,
+    "total_units": 2449,
+    "complete_units": 2449
+  },
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "fork_only_paths": 133,
+  "layer_tests": 11,
+  "local_tool_tests": 294,
+  "source_audit": {
+    "source": "496f0e0e02dae1a8da39830283a1e6e8ca4f4763",
+    "previous": "1d38f7e39621ecbdd6ec0c5a00fa8c07b4bd2506",
+    "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "entries": [
+      {
+        "row": 3191,
+        "historical_path": "include/pso/TPlyItem.h",
+        "historical_blob": "206867a398fa153d5b4a842fb812f92bb037b25e",
+        "owners": {
+          "include/pso/player/TPlyItem.h": "ed9b7e057d93057404e726baf3f2d2a22b1e83f3",
+          "src/pso/player/TPlyItem.cpp": "4f0d93f8cceededa558a43b1b33c45fff870ffff",
+          "include/pso/item/TItemList.h": "eab36b0aa50220d35c0230935f5856475ba811fe",
+          "src/pso/player/TObjPlayer_801AF2F0.cpp": "e7c4a20b76dedebf494b917e79c2a879e2b67306"
+        },
+        "proofs": [
+          {
+            "group": "inventory",
+            "evidence": "The native inventory header retains the constructor and destructor, the original public inventory methods, the count at 0x1C, item list at 0x1C4 and actual TObject child at 0x1C8. The separately typed placement pool replaces the old byte storage. The folded inventory and list owners retain the walk state.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 3634,
+        "historical_path": "src/pso/misc/TLobby_801D4AEC.cpp",
+        "historical_blob": "de14f19fb1d30370d3ac52ffa616f1c89e29965e",
+        "owners": {
+          "src/pso/player/TPlyItem.cpp": "4f0d93f8cceededa558a43b1b33c45fff870ffff",
+          "include/pso/player/TPlyItem.h": "ed9b7e057d93057404e726baf3f2d2a22b1e83f3"
+        },
+        "proofs": [
+          {
+            "group": "inventory",
+            "evidence": "The entire inventory reduction and use unit is represented. Item lookup and decrement, unequip, destroy and queue order, the meseta case, and the shared owner-update, owner-matched and record collection paths use the same native objects and callbacks.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 3824,
+        "historical_path": "src/pso/player/TObjPlayer_801D4890.cpp",
+        "historical_blob": "f2b561af7a11acbe63d4d7f38f3f015a74a86712",
+        "owners": {
+          "src/pso/player/TPlyItem.cpp": "4f0d93f8cceededa558a43b1b33c45fff870ffff",
+          "include/pso/player/TPlyItem.h": "ed9b7e057d93057404e726baf3f2d2a22b1e83f3"
+        },
+        "proofs": [
+          {
+            "group": "inventory",
+            "evidence": "The two query entry points use their real output records and the inventory update uses the actual item count and player. The multiplayer matching-item and related remove-equipment subpaths remain separately scoped.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 3825,
+        "historical_path": "src/pso/player/TObjPlayer_801D4CB8.cpp",
+        "historical_blob": "87518f791ee4b4d51adc7102d04dfc2278b1dce0",
+        "owners": {
+          "src/pso/player/TPlyItem.cpp": "4f0d93f8cceededa558a43b1b33c45fff870ffff",
+          "include/pso/player/TPlyItem.h": "ed9b7e057d93057404e726baf3f2d2a22b1e83f3",
+          "include/pso/item/TItemList.h": "eab36b0aa50220d35c0230935f5856475ba811fe"
+        },
+        "proofs": [
+          {
+            "group": "inventory",
+            "evidence": "The pinned inventory owner methods are retained, including both shop projections, the invalid item walk, the item count and search paths, the recursive item-list destruction, and the inventory search key. Destruction now uses the actual inventory child at its original offset for both task runs and queueing.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4039,
+        "historical_path": "include/pso/unk/text_801D40D4.h",
+        "historical_blob": "959a000589a1171ae5f8ee7d76da25dd5afceab0",
+        "owners": {
+          "include/pso/unk/text_801D40D4.h": "be2f131bf9c31265401f983c09fb81e74d7fe64c",
+          "src/pso/player/TPlyItem.cpp": "4f0d93f8cceededa558a43b1b33c45fff870ffff"
+        },
+        "proofs": [
+          {
+            "group": "inventory",
+            "evidence": "The whole original shared declaration change is retained. The reduction-list collector, typed item key and item exchange, check, record scan and removal, and typed reset are declared once for their native implementations.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4121,
+        "historical_path": "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "historical_blob": "673f422b9e97567877c0834304638f6ba8d023de",
+        "owners": {
+          "src/pso/player/TObjPlayer_801AF2F0.cpp": "e7c4a20b76dedebf494b917e79c2a879e2b67306",
+          "include/pso/player/TObjPlayer.h": "9c23839e015e41d90a463334d50f2ee1dd365118",
+          "include/pso/player/TPlyItem.h": "ed9b7e057d93057404e726baf3f2d2a22b1e83f3"
+        },
+        "proofs": [
+          {
+            "group": "inventory",
+            "evidence": "Replayed the pinned constructor match for the native inventory, real item list, actual TObject child and equipped slots. The actual player query member and the native rebuild lifecycle use the original saved inventory records and cleanup order. The larger movement and packet changes remain scoped.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4183,
+        "historical_path": "src/pso/player/TPlyItem.cpp",
+        "historical_blob": "b891d94b0c2bb6a74691c9ad6ea96bd75c0230e3",
+        "owners": {
+          "src/pso/player/TPlyItem.cpp": "4f0d93f8cceededa558a43b1b33c45fff870ffff",
+          "include/pso/player/TPlyItem.h": "ed9b7e057d93057404e726baf3f2d2a22b1e83f3",
+          "include/pso/item/TItemList.h": "eab36b0aa50220d35c0230935f5856475ba811fe"
+        },
+        "proofs": [
+          {
+            "group": "inventory",
+            "evidence": "Inventory allocation, record and list owners, shop results, true child storage and release are retained in the linked folded owner. Remaining historical hunks in this large older file retain the prior scoped comparison.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6984,
+        "historical_path": "src/pso/misc/TNpcPlayer_802C3CD0.cpp",
+        "historical_blob": "bf29ad3400c33f0508d8d17cbd2941bc38b1b578",
+        "owners": {
+          "src/pso/npc/TNpcPlayer_802C3CD0.cpp": "ca44b6163a2ff2880b43ea0d2f2782dffd598600",
+          "include/pso/player/TObjPlayer.h": "9c23839e015e41d90a463334d50f2ee1dd365118",
+          "include/pso/item/InventoryEntryCopy.h": "9cc73987581bfd09f31ca5a3134421220b9aed0e"
+        },
+        "proofs": [
+          {
+            "group": "inventory",
+            "evidence": "The actual player handles both inventory exports and the original NPC count is passed as a full signed word. The byte-sized stored count and existing entry-copy provider retain their exact retail form. Other NPC record contents remain scoped.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 486,
+        "historical_path": "include/pso/object/TObjDFDemo1.h",
+        "historical_blob": "f748fd0b113c7091f8f2ea2b2853cbe300c1a55f",
+        "owners": {
+          "include/pso/boss/darkfalz/TObjDFDemo1.h": "0f5f2233566d56eaa8995e921f2b4988cc09a054",
+          "include/pso/boss/darkfalz/DarkFalzScenePart.h": "0123b708381fb2382099c3040fd6bcf0f806f0db"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "All header storage and declarations remain owned by the real Demo1 actor. It now shares actual model, texture, and motion handles; its camera Vec, yaw, timer, frame, scroll, four emitters, and 0x14 strip record preserve the checked 0x130 layout.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "include/pso/boss/darkfalz/TObjDFDemo1.h",
+                  "blob": "0f5f2233566d56eaa8995e921f2b4988cc09a054",
+                  "anchors": [
+                    "TObjDFDemo1(TObject *parent, const Vec *pos, s32 angle);",
+                    "void draw_fading_model();",
+                    "TParticleCtrl *particle_emitters[4];",
+                    "DarkFalzScenePart body_parts[6];",
+                    "DarkFalzScenePart zanzo_parts[2];",
+                    "Vec pos;",
+                    "s32 angle;",
+                    "s32 timer;",
+                    "f32 frame;",
+                    "f32 scroll;",
+                    "ModelNodeTables strips;",
+                    "sizeof(TObjDFDemo1) == 0x130"
+                  ]
+                },
+                {
+                  "path": "include/pso/boss/darkfalz/DarkFalzScenePart.h",
+                  "blob": "0123b708381fb2382099c3040fd6bcf0f806f0db",
+                  "anchors": [
+                    "NJS_OBJECT *model;",
+                    "GinjaTextureList *texlist;",
+                    "AnimationMotion *motion;",
+                    "sizeof(DarkFalzScenePart) == 0xC"
+                  ]
+                }
+              ],
+              "original_patch": "row-486-historical.patch"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 500,
+        "historical_path": "src/pso/boss/DarkFalzDemoConstants.cpp",
+        "historical_blob": "7ca6321d7c19028dfb799093abbff820a2c395a2",
+        "owners": {
+          "src/pso/boss/darkfalz/TObjDFDemoF_80050050.cpp": "1537f018580b01cde7bb4e67c810da4bb316226f",
+          "src/pso/boss/darkfalz/TObjDFDemoF_80050134.cpp": "dc4b7e0430db3fd2437f5320cb833f3147ed78ce",
+          "config/GPOE8P/psov3/symbols.txt": "edeee89ac49e8d66a1dbed639415399d21e8baa6"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "The five runtime constants are in the retail-exact compiled run and constructor owners. The original source explicitly grouped an adjacent padding word into lbl_805D8A28[2]; current source and config still account for 20 of 24 linked bytes.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/boss/darkfalz/TObjDFDemoF_80050050.cpp",
+                  "blob": "1537f018580b01cde7bb4e67c810da4bb316226f",
+                  "anchors": [
+                    "(frame += 1.0f) >= 120.0f"
+                  ]
+                },
+                {
+                  "path": "src/pso/boss/darkfalz/TObjDFDemoF_80050134.cpp",
+                  "blob": "dc4b7e0430db3fd2437f5320cb833f3147ed78ce",
+                  "anchors": [
+                    "self->frame = -1.0f;"
+                  ]
+                },
+                {
+                  "path": "config/GPOE8P/psov3/symbols.txt",
+                  "blob": "070d4125c142c843416ca4c47685e26574cd52c2",
+                  "anchors": [
+                    "lbl_805D8A28 = .sdata2:0x805D8A28; // type:object size:0x4"
+                  ]
+                }
+              ],
+              "original_patch": "row-500-historical.patch"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 642,
+        "historical_path": "src/pso/object/TObjDFDemo1.cpp",
+        "historical_blob": "13b1dd91baf0e6c106a1068e58ca55f2b1ce769c",
+        "owners": {
+          "src/pso/boss/darkfalz/TObjDFDemo1.cpp": "16947b726479c0ad1c40640636a129e174ca739c"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "The whole Demo1 body and data are present at its typed owner across constructor, destruction, particle/audio timing, strips, both fades and node-alpha updates. The shared render, resource and camera APIs express the old raw offsets with native members. Five moved methods in row 6509 independently resolve to this same body.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/boss/darkfalz/TObjDFDemo1.cpp",
+                  "blob": "16947b726479c0ad1c40640636a129e174ca739c",
+                  "anchors": [
+                    "TObjDFDemo1 *TObjDFDemo1::create(TObject *parent, const Vec *pos, s32 angle)",
+                    "{0x14F, 0x90, 0xAA, {0.0f, 40.0f, 0.0f}}",
+                    "{0x50, 0x4E, 0x1B, 0x1B, 0x1B, 0x1A}",
+                    "{0x1D, 0x1C}",
+                    "CameraPlayback lbl_80485610 = {0, 2, 0, 0.0f, 0.5f}",
+                    "{1, 0x69, 3}",
+                    "lbl_80485610.cache_target_and_forward(0x4000)",
+                    "strips.init(lbl_80437328, 6)",
+                    "strips.destroy()",
+                    "strips.scroll_strips()",
+                    "0x4003A324",
+                    "0x4003AA26",
+                    "spawn_particle_effect(&pos, 0x14E)",
+                    "if (++timer >= 300)",
+                    "draw_fading_model()",
+                    "timer > 0x7C",
+                    "case 0:",
+                    "case 1:",
+                    "col[3] = (col[3] & 0xFF)",
+                    "timer >= 0x104",
+                    "model_render_flags |= 0x20000",
+                    "model_render_flags &= ~0x20000"
+                  ]
+                }
+              ],
+              "original_patch": "row-642-historical.patch"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 643,
+        "historical_path": "src/pso/object/TObjDFDemo4.cpp",
+        "historical_blob": "85f8dcf032bcc6fa5b0d6563303f256756f890c5",
+        "owners": {
+          "src/pso/boss/darkfalz/TObjDFDemo4.cpp": "5b054e382d2567b02a9534ba1643c63060ac3450",
+          "include/pso/boss/darkfalz/TObjDFDemo4.h": "30748ffa81340f22e9fa9980a15543b4beffab25"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "The full canonical Demo4 constructor, destructor, render and run owners already represented the original separate bodies and all relocated parameters. The shared scene record now supplies the same true BML fields as Demo1/2/3/5. Camera preset 3, two capture entries, strip state, release order, effect timing and body/afterimage gates are retained. The direct review keeps upstream names at shared providers; this closure is for canonical source.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/boss/darkfalz/TObjDFDemo4.cpp",
+                  "blob": "5b054e382d2567b02a9534ba1643c63060ac3450",
+                  "anchors": [
+                    "TObjDFDemo4 *TObjDFDemo4::create",
+                    "node_tables.init(strip_nodes(), 2)",
+                    "playback.cache_target_and_forward(0x416C)",
+                    "{0x34}, {0x35}, {-1}",
+                    "{0, 3, 0, 0.0f, 0.5f}",
+                    "ModelNodePositionCapture::create(emitter_nodes, node_positions)",
+                    "node_tables.destroy()",
+                    "ModelNodePositionCapture::destroy(node_list)",
+                    "restore_player_cameras()",
+                    "0x14E",
+                    "0x17B",
+                    "0x17C",
+                    "0x17A",
+                    "0x147",
+                    "node_tables.scroll_strips()",
+                    "draw_afterimages()",
+                    "draw_body()",
+                    "node_list->install()",
+                    "node_list->clear()"
+                  ]
+                },
+                {
+                  "path": "include/pso/boss/darkfalz/TObjDFDemo4.h",
+                  "blob": "30748ffa81340f22e9fa9980a15543b4beffab25",
+                  "anchors": [
+                    "DarkFalzScenePart zanzo_parts[2];",
+                    "DarkFalzScenePart body_parts[3];",
+                    "sizeof(TObjDFDemo4) == 0x11C"
+                  ]
+                }
+              ],
+              "original_patch": "row-643-historical.patch"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 751,
+        "historical_path": "include/pso/object/TObjDFDemo2.h",
+        "historical_blob": "d6349f12467cea34188de7bb11584416dafe3d7b",
+        "owners": {
+          "include/pso/boss/darkfalz/TObjDFDemo2.h": "6f6e14a25a0713dacc0bb8f9ff1e47802b146cbc"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "The complete original type change is now explicit: the camera position is a Vec at 0xAC, with 0xC4 size and an offset assertion.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "include/pso/boss/darkfalz/TObjDFDemo2.h",
+                  "blob": "6f6e14a25a0713dacc0bb8f9ff1e47802b146cbc",
+                  "anchors": [
+                    "Vec camera_position;",
+                    "sizeof(TObjDFDemo2) == 0xC4",
+                    "offsetof(TObjDFDemo2, camera_position) == 0xAC"
+                  ]
+                }
+              ],
+              "original_patch": "row-751-historical.patch"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 770,
+        "historical_path": "include/pso/object/TObjDFDemo5.h",
+        "historical_blob": "fc18f62b3cc51ee743c7fd6d7fb2bd9e1fb2417b",
+        "owners": {
+          "include/pso/boss/darkfalz/TObjDFDemo5.h": "0b6147c1e700432f73bd7ec236548b5309b3b2de"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "All newly declared actor methods, fields, and 0x118 size are present, including both capture owners and their associated world-space output. A shared record provides genuine model/texture/motion pointer types.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "include/pso/boss/darkfalz/TObjDFDemo5.h",
+                  "blob": "0b6147c1e700432f73bd7ec236548b5309b3b2de",
+                  "anchors": [
+                    "TObjDFDemo5(TObject *parent, const Vec *pos, s32 angle);",
+                    "virtual void render();",
+                    "void release_subobjects();",
+                    "void draw_fading_motion();",
+                    "TParticleCtrl *particle_emitters[5];",
+                    "DarkFalzScenePart parts[4];",
+                    "Vec pos;",
+                    "s32 angle;",
+                    "s32 timer;",
+                    "f32 frame;",
+                    "ModelNodePositionCapture *node_list0;",
+                    "Vec emitter_positions[2];",
+                    "ModelNodePositionCapture *node_list1;",
+                    "Vec tail_position;",
+                    "sizeof(TObjDFDemo5) == 0x118"
+                  ]
+                }
+              ],
+              "original_patch": "row-770-historical.patch"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 794,
+        "historical_path": "src/pso/boss/TBoss4DarkFalz_8004C93C.cpp",
+        "historical_blob": "d255f4c5ec41a270b9e3de174390866707db668a",
+        "owners": {
+          "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp": "a233156101c5582352bcb39dddd960bc528f91a5",
+          "include/pso/boss/darkfalz/TBoss4DarkFalz.h": "c134f0114eeea68687fa0e7a87e574f1be72d72f",
+          "src/pso/boss/darkfalz/TObjDFHorming.cpp": "77cb787f3944648b42026f6a259c6dbbed4040ee"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "All actual cinematic phase callers now invoke typed factories and pass position, yaw and the original difficulty variant explicitly. The full 40KB historical controller patch has other battle-state, packet and spawn hunks and remains pending.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp",
+                  "blob": "a233156101c5582352bcb39dddd960bc528f91a5",
+                  "anchors": [
+                    "TObjDFDemo1::create(this, &form->position, form->rotation.yaw);",
+                    "TObjDFDemo2::create(this, &cinematic_position, cinematic_angle, flag);",
+                    "TObjDFDemo3::create(this, &cinematic_position, cinematic_angle);",
+                    "TObjDFDemo4::create(this, &cinematic_position, cinematic_angle);",
+                    "TObjDFDemo5::create(this, &form->position, form->rotation.yaw);",
+                    "TObjDFDemoF::create(this);",
+                    "TObjDFDemo1::create(this, &lbl_80485448, 0);",
+                    "TObjDFDemo5::create(this, &lbl_80485454, 0);"
+                  ]
+                },
+                {
+                  "path": "include/pso/boss/darkfalz/TBoss4DarkFalz.h",
+                  "blob": "c134f0114eeea68687fa0e7a87e574f1be72d72f",
+                  "anchors": [
+                    "sizeof(TBoss4DarkFalz) == 0x3AC",
+                    "offsetof(TBoss4DarkFalz, cinematic_position) == 0x39C",
+                    "offsetof(TBoss4DarkFalz, cinematic_angle) == 0x3A8"
+                  ]
+                },
+                {
+                  "path": "src/pso/boss/darkfalz/TObjDFHorming.cpp",
+                  "blob": "77cb787f3944648b42026f6a259c6dbbed4040ee",
+                  "anchors": [
+                    "__nw__7TObjectFUl(sizeof(TBoss4DarkFalz));"
+                  ]
+                }
+              ],
+              "original_patch": "row-794-historical.patch"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 861,
+        "historical_path": "src/pso/object/TObjDFDemo5.cpp",
+        "historical_blob": "eb86455eebfbff33edf31eb3c8c5e0a11e1e8728",
+        "owners": {
+          "src/pso/boss/darkfalz/TObjDFDemo5.cpp": "27bbad4db4ee1039666aabb79c5cb93a1460e1bd"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "Canonical Demo5 carries the complete native scene body and data. The typed allocation, two node tables and their install/clear/destruction, resource indices, model-fade phases and five-emitter timing all correspond to the original and exact linked functions. This is independent of the earlier texture-only receipt.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/boss/darkfalz/TObjDFDemo5.cpp",
+                  "blob": "27bbad4db4ee1039666aabb79c5cb93a1460e1bd",
+                  "anchors": [
+                    "TObjDFDemo5 *TObjDFDemo5::create",
+                    "{0x38}, {0x39}, {-1}",
+                    "{{0}, {-1}}",
+                    "{0x24, 0x54, 0x55}",
+                    "ModelNodePositionCapture::create(lbl_80485798, emitter_positions)",
+                    "ModelNodePositionCapture::create(lbl_804857C8, &tail_position)",
+                    "ModelNodePositionCapture::destroy(node_list0)",
+                    "ModelNodePositionCapture::destroy(node_list1)",
+                    "playback.cache_target_and_forward(0x416C)",
+                    "0x4003A835",
+                    "\"dfdeath.adx\"",
+                    "draw_fading_motion()",
+                    "release_subobjects()",
+                    "node_list0->install()",
+                    "node_list0->clear()",
+                    "node_list1->install()",
+                    "node_list1->clear()",
+                    "update_particle_emitters()",
+                    "0x178",
+                    "0x179",
+                    "0x146",
+                    "0x147"
+                  ]
+                }
+              ],
+              "original_patch": "row-861-historical.patch"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 891,
+        "historical_path": "src/pso/unk/text_80050134.cpp",
+        "historical_blob": "ba5627dc307772154da76147e65579747587afdd",
+        "owners": {
+          "include/pso/boss/darkfalz/TObjDFDemoF.h": "b2c8a927d494235ef32ab870076dfa5e71157970",
+          "src/pso/boss/darkfalz/TObjDFDemoF_80050134.cpp": "dc4b7e0430db3fd2437f5320cb833f3147ed78ce"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "All camera, archive, real handle-array and sound contracts from the original constructor hunk are represented. Its explicit dependency on the named eight-byte padded initializer is still a compiler-local scalar, so the row remains scoped with the same concrete data exception as row 500.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "include/pso/boss/darkfalz/TObjDFDemoF.h",
+                  "blob": "b2c8a927d494235ef32ab870076dfa5e71157970",
+                  "anchors": [
+                    "s32 timer;",
+                    "NJS_OBJECT *models[3];",
+                    "GinjaTextureList *textures[3];",
+                    "AnimationMotion *motions[3];",
+                    "offsetof(TObjDFDemoF, models) == 0x94",
+                    "sizeof(TObjDFDemoF) == 0xBC"
+                  ]
+                },
+                {
+                  "path": "src/pso/boss/darkfalz/TObjDFDemoF_80050134.cpp",
+                  "blob": "dc4b7e0430db3fd2437f5320cb833f3147ed78ce",
+                  "anchors": [
+                    "AnimationMotion *get_bml_motion(BmlResource *archive, s32 index);",
+                    "Vec lbl_80485840 = {-20000.0f, 0.0f, 0.0f};",
+                    "CameraAngles lbl_8048584C = {0, 0, 0};",
+                    "CameraPlayback lbl_80485858 = {0, 5, 0, 0.0f, 0.5f};",
+                    "self->frame = -1.0f;",
+                    "set_scripted_camera_pose(&lbl_80485840, &lbl_80485840, &lbl_8048584C);",
+                    "lbl_80485858.cache_target_and_forward(0x392D);",
+                    "play_sound_effect(0x3A802, 0, 0, 0);"
+                  ]
+                }
+              ],
+              "original_patch": "row-891-historical.patch"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 914,
+        "historical_path": "src/pso/object/TObjDFDemo2.cpp",
+        "historical_blob": "efcbcf83d64d417a45dae7b0e21689bdd5311d5f",
+        "owners": {
+          "src/pso/boss/darkfalz/TObjDFDemo2.cpp": "7f78a11f1ecffa1782c1325609317ab19577a60e"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "Each linked Demo2 source hunk now uses the real actor: the render texture and BML motion owner, both particle effects and one-shot sound, camera angle and pose setup, framed camera playback, and the constructor sound. Retained all live original values and addresses.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/boss/darkfalz/TObjDFDemo2.cpp",
+                  "blob": "7f78a11f1ecffa1782c1325609317ab19577a60e",
+                  "anchors": [
+                    "CameraPlayback lbl_80485680 = {0, 0, 0, 0.0f, 0.5f};",
+                    "set_current_texture_list(parts[i].texlist);",
+                    "spawn_particle_effect(&camera_position, 0xC3)",
+                    "spawn_particle_effect(&camera_position, 0x14E)",
+                    "play_sound_effect(0x4003AD15, &camera_position, 0, 1)",
+                    "get_bml_model(archive, t)",
+                    "get_bml_texlist(archive, k)",
+                    "get_bml_motion(archive, TObjDFDemo2__motion_index_table[i])",
+                    "p.yaw = demo->angle;",
+                    "set_scripted_camera_pose(&demo->camera_position, &demo->camera_position, &p);",
+                    "lbl_80485680.cache_target_and_forward(0x4444);",
+                    "play_sound_effect(0x4003A325, &demo->camera_position, 0, 1);"
+                  ]
+                }
+              ],
+              "original_patch": "row-914-historical.patch"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 915,
+        "historical_path": "src/pso/object/TObjDFDemo3.cpp",
+        "historical_blob": "6a3152cfebea21505f032cf63c8e759b77bc1051",
+        "owners": {
+          "include/pso/boss/darkfalz/TObjDFDemo3.h": "332a879dfbebd0839614a45d74c30e8a2e5fa243",
+          "src/pso/boss/darkfalz/TObjDFDemo3.cpp": "72d97d1e2571d917b0183e9efeb6dad29f4bf8ab"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "The full Demo3 camera, resource, texture handoff, particle/sound and capture-ownership patch is present. The native layout now takes the actual Vecs at 0xA0 and 0xBC, and the correct descriptor table. Its original one-element cleanup loop, emitter/camera dispatch, and position nudge compile exactly.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "include/pso/boss/darkfalz/TObjDFDemo3.h",
+                  "blob": "332a879dfbebd0839614a45d74c30e8a2e5fa243",
+                  "anchors": [
+                    "TParticleCtrl *emitters[1];",
+                    "ModelNodePositionCapture *node_list;",
+                    "offsetof(TObjDFDemo3, camera_position) == 0xA0",
+                    "offsetof(TObjDFDemo3, emitter_position) == 0xBC"
+                  ]
+                },
+                {
+                  "path": "src/pso/boss/darkfalz/TObjDFDemo3.cpp",
+                  "blob": "72d97d1e2571d917b0183e9efeb6dad29f4bf8ab",
+                  "anchors": [
+                    "ModelNodePositionEntry lbl_804856C0[2] = {{0}, {-1}};",
+                    "CameraPlayback lbl_804856E0 = {0, 6, 0, 0.0f, 1.0f};",
+                    "set_current_texture_list(part.texlist);",
+                    "node_list->install();",
+                    "node_list->clear();",
+                    "spawn_particle_effect(&camera_position, 0x9B)",
+                    "play_sound_effect(0x4003D03A, &camera_position, 0, 1)",
+                    "ModelNodePositionCapture::destroy(o->node_list);",
+                    "get_bml_motion(cnt, 0x45)",
+                    "set_scripted_camera_pose(camera_position, camera_position, &c);",
+                    "lbl_804856E0.cache_target_and_forward(0x1555);",
+                    "ModelNodePositionCapture::create(lbl_804856C0, &demo->emitter_position);"
+                  ]
+                }
+              ],
+              "original_patch": "row-915-historical.patch"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6509,
+        "historical_path": "src/pso/object/TObjDFDemo0.cpp",
+        "historical_blob": "f5e08f0d82f4bc2d443d7c87802e7da9dcc9d1a5",
+        "owners": {
+          "src/pso/unk/text_8004D9A8.cpp": "855e5c9e94e3f615ab1c3e9c2992a74710380dc0",
+          "src/pso/boss/darkfalz/TObjDFDemo1.cpp": "16947b726479c0ad1c40640636a129e174ca739c"
+        },
+        "proofs": [
+          {
+            "group": "boss",
+            "evidence": "The historical diff removes all split Demo1 definitions from the Demo0 unit, preserving Demo0 lifecycle. Each of the five named Demo1 functions now resolves through the consolidated independently compiled owner and Demo0 is constructed in its surviving owner.",
+            "details": {
+              "anchors": [
+                {
+                  "path": "src/pso/unk/text_8004D9A8.cpp",
+                  "blob": "855e5c9e94e3f615ab1c3e9c2992a74710380dc0",
+                  "anchors": [
+                    "TObjDFDemo0 *TObjDFDemo0::create(TObject *parent)",
+                    "TObjDFDemo0__ct(o, parent);"
+                  ]
+                },
+                {
+                  "path": "src/pso/boss/darkfalz/TObjDFDemo1.cpp",
+                  "blob": "16947b726479c0ad1c40640636a129e174ca739c",
+                  "anchors": [
+                    "void TObjDFDemo1::sub_8004E068()",
+                    "void TObjDFDemo1::draw_fading_model()",
+                    "void TObjDFDemo1::render()",
+                    "void TObjDFDemo1::run_task()",
+                    "TObjDFDemo1::~TObjDFDemo1()"
+                  ]
+                }
+              ],
+              "original_patch": "row-6509-historical.patch"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6412,
+        "historical_path": "src/pso/misc/TButterfly_8017F364.cpp",
+        "historical_blob": "52ad86f11c5fbe07fe9ed9a8ce6266895b5125d5",
+        "owners": {
+          "src/pso/object/ambient/TButterfly.cpp": "a55a010a860c632ead6d89b242289c582806b7d1"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "BML construction and deletion are retained with the typed butterfly archive.",
+            "details": {
+              "assessment": "whole_before",
+              "hunks": 3
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6422,
+        "historical_path": "src/pso/misc/TOGrassJungle.cpp",
+        "historical_blob": "c1590c717ec7a2adc638fb47c15bb3b71c3acba4",
+        "owners": {
+          "src/pso/object/jungle/TOGrassJungle.cpp": "94e0d4c825d905088a04fdbc9d8794317c36e032"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "Typed GVM global, archive construction and release, and motorcycle registration use the same inputs including the 12 and -10 float constants.",
+            "details": {
+              "assessment": "whole_before",
+              "hunks": 3
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6423,
+        "historical_path": "src/pso/misc/TOGrassJungle_8029CD90.cpp",
+        "historical_blob": "63507c14a71774f39c9004d9883a8e871e9466f6",
+        "owners": {
+          "src/pso/object/jungle/TOGrassJungle.cpp": "94e0d4c825d905088a04fdbc9d8794317c36e032",
+          "src/pso/object/key/TOKeyJungleMain.cpp": "d2c39f4895a1cf45d545abde55b22b7427bf134a",
+          "config/GPOE8P/psov3/symbols.txt": "edeee89ac49e8d66a1dbed639415399d21e8baa6"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "The surviving model draw uses the actual Ginja model argument, typed yaw and texture pointer. The adjacent original key sound is already in its own key owner. The visibility constants still emit at 0x805DDD30 and 0x805DDD34.",
+            "details": {
+              "assessment": "whole_after",
+              "hunks": 4
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6429,
+        "historical_path": "src/pso/misc/TORockCave.cpp",
+        "historical_blob": "f9db94f979dc319bedb262cbf1a4e392ba9e8b4a",
+        "owners": {
+          "src/pso/object/cave/TORockCave.cpp": "412a16a7cda391cda45bcec2e2a1ade57ce03708"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "The six complete descriptor/model-name records and base-relative loader now share one checked 0xF0 source object. Original native construction/destruction, renderer, class names and chip constants are present as native types; the chip presets stay local in their source-owned consumer.",
+            "details": {
+              "assessment": "whole_after",
+              "hunks": 9
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6433,
+        "historical_path": "src/pso/misc/TORockCaveBrakable.cpp",
+        "historical_blob": "ac5bd05ee3c9d845a8aa27cf372b81467b339134",
+        "owners": {
+          "src/pso/object/cave/TORockCave.cpp": "412a16a7cda391cda45bcec2e2a1ade57ce03708"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "Original typed BML child-model/texture lookup, break particle/sound and demo condition are confirmed. The consolidated native class expresses other slots and dispatch independently, so this check records the relevant edit scope only.",
+            "details": {
+              "assessment": "scoped",
+              "hunks": 5
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6446,
+        "historical_path": "src/pso/misc/TORockCaveSimple.cpp",
+        "historical_blob": "fd6618b6bdd6971d2d753fb8ee5381dd4ae1ee43",
+        "owners": {
+          "src/pso/object/cave/TORockCave.cpp": "412a16a7cda391cda45bcec2e2a1ade57ce03708"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "Cave simple rock render uses the typed yaw accessor and sets the current texture list.",
+            "details": {
+              "assessment": "whole_before",
+              "hunks": 2
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6447,
+        "historical_path": "src/pso/misc/TOSignCave01.cpp",
+        "historical_blob": "674645dd5f1cf179205f3a36796448cc1437c934",
+        "owners": {
+          "src/pso/object/cave/TOSignCave01.cpp": "27e6dff0d8ff8b86d40a363e632bf973d1a7ad68"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "Cave sign 01 uses the original shared draw routine, native archive lifetime and borrowed model texture.",
+            "details": {
+              "assessment": "whole_before",
+              "hunks": 4
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6448,
+        "historical_path": "src/pso/misc/TOSignCave02.cpp",
+        "historical_blob": "ba3ebc61376d0b5867be50a4611f19c05480173b",
+        "owners": {
+          "src/pso/object/cave/TOSignCave02.cpp": "c286a6804733c2252a4969e031bc5e04b426c976"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "Cave sign 02 uses the original shared draw routine, native archive lifetime and borrowed model texture.",
+            "details": {
+              "assessment": "whole_before",
+              "hunks": 4
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6512,
+        "historical_path": "src/pso/object/TObjFish.cpp",
+        "historical_blob": "9a9272cd2d11a5be10b775df4c44e95fa7cd541e",
+        "owners": {
+          "src/pso/object/ambient/TObjFish.cpp": "2493a911e8dfc3a2072bc4d8e24145c6eac11b40"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "Native school fields, rendering, frame updates, destructor and five typed block records were recovered in preceding exact 5d585c5540/df959f6a2f. Large whole-file donor retained its own function and compiler directive layout. Keep scoped.",
+            "details": {
+              "assessment": "scoped",
+              "hunks": 6
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6518,
+        "historical_path": "src/pso/object/TObjGrassWeb.cpp",
+        "historical_blob": "81a7483f06888d96348d692d3b9c3354385fbc8f",
+        "owners": {
+          "src/pso/object/ambient/TObjGrass.cpp": "cd3f4ade7abc0ef5532a7c36cdab9a81ec703526"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "Grass-web target and the four same-owner grass lookups now use the actual TObjPlayer* and signed lookup contract. Original three typed sound call paths and the local-player, destruction-chain and flag guard remain.",
+            "details": {
+              "assessment": "whole_after",
+              "hunks": 4
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6538,
+        "historical_path": "src/pso/ui/TAdMultiSaveGC_802FF0A0.cpp",
+        "historical_blob": "fad251c5610ee00f30a9eaff674a0956bddcd924",
+        "owners": {
+          "src/pso/object/jungle/TOJungleDesign.cpp": "1ea80f20f459bcddac0b44a4b1d81fa9c93d535c"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "The legacy save-window name now maps to jungle design. Its load/free operations already use the 1-archive constructor and native destructor on the same jungle descriptor.",
+            "details": {
+              "assessment": "whole_before",
+              "hunks": 3
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6779,
+        "historical_path": "include/pso/object/TObjFish.h",
+        "historical_blob": "c264155c650357c61090f6cea2f2e7d509164a63",
+        "owners": {
+          "include/pso/object/ambient/TObjFish.h": "2455e8170f949351543ac24c1229a0b6c36ab7da"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "Typed school record checks and native constructor are present. Canonical retains u32 for update_phase_rising and update_tail_anim_state after independent effect-caller recovery. Original changes these signatures to s32. No claim for that difference.",
+            "details": {
+              "assessment": "scoped",
+              "hunks": 2
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6784,
+        "historical_path": "src/pso/misc/TOJungleDesign_802FEEB4.cpp",
+        "historical_blob": "7fbdcf9e4356d8c824c9f8fb9bf8a19df3982738",
+        "owners": {
+          "src/pso/object/jungle/TOJungleDesign.cpp": "1ea80f20f459bcddac0b44a4b1d81fa9c93d535c"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "The original visibility constants, texture binding, yaw/pitch/roll reads and native scene draw are retained in the combined jungle source.",
+            "details": {
+              "assessment": "whole_before",
+              "hunks": 2
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6814,
+        "historical_path": "src/pso/unk/text_8017E900.cpp",
+        "historical_blob": "abfc6c2703d02a70b39652e5de56068ef84dff28",
+        "owners": {
+          "src/pso/object/ambient/TButterfly.cpp": "a55a010a860c632ead6d89b242289c582806b7d1"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "Original butterfly model and motion lookup use the same typed archive and actor yaw; the typed render call uses the same frame.",
+            "details": {
+              "assessment": "whole_before",
+              "hunks": 2
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6865,
+        "historical_path": "src/pso/misc/TORevlightCave01.cpp",
+        "historical_blob": "c8cf5338225ff66688cd20a3fbe3145b4780de48",
+        "owners": {
+          "src/pso/object/cave/TORevlightCave01.cpp": "d3c3ccb81a2bb2f31c4acca91b569d6d1626f892"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "The three typed model draws, current texture bind, and native load/free are retained at the rotating lamp owner.",
+            "details": {
+              "assessment": "whole_before",
+              "hunks": 5
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6883,
+        "historical_path": "src/pso/misc/TOAirconCave01.cpp",
+        "historical_blob": "5f08c6752b065d6ed069d1186e42c3aea4c1de4e",
+        "owners": {
+          "src/pso/object/cave/TOAirconCave01.cpp": "49e0e00d6aa6b7db9b235a5a4d1ba657449d5a1c"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "Native archive load/free and borrowed render texture and model owner retained.",
+            "details": {
+              "assessment": "whole_before",
+              "hunks": 4
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6899,
+        "historical_path": "include/pso/misc/TORockJungleM01.h",
+        "historical_blob": "0eebf49d6f0ae736eb0bf579663431640fde8e95",
+        "owners": {
+          "include/pso/object/jungle/TORockJungleM01.h": "a0032bc43da5acf94dd4d9186f03e8c80bee4ca3"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "The original typed jungle rock medium collision pointer is retained with the field name map_csn.",
+            "details": {
+              "assessment": "whole_before",
+              "hunks": 2
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6904,
+        "historical_path": "src/pso/misc/TOAirconCave02.cpp",
+        "historical_blob": "fffaf4825bd88c0c85ea6430526429e80d1dcab4",
+        "owners": {
+          "src/pso/object/cave/TOAirconCave02.cpp": "a0aabeb860269591229981e7c26932c170c0c5f8"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "Native archive load/free and current render texture binding retained.",
+            "details": {
+              "assessment": "whole_before",
+              "hunks": 4
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6929,
+        "historical_path": "include/pso/object/TObjGrass.h",
+        "historical_blob": "abe82021485a0cd161dd11517c3a40bfd64fc828",
+        "owners": {
+          "src/pso/object/ambient/TObjGrass.cpp": "cd3f4ade7abc0ef5532a7c36cdab9a81ec703526"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "Grass fade type and callback are present and this wave replays the typed motion/action/archive owners. The rest of the authored Grass header is outside this archive-and-target pass.",
+            "details": {
+              "assessment": "scoped",
+              "hunks": 3
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6946,
+        "historical_path": "include/pso/misc/TORockJungleL01.h",
+        "historical_blob": "88cdc1331eabfb951700d21e4760156b2e35ea3e",
+        "owners": {
+          "include/pso/object/jungle/TORockJungleL01.h": "e8f4b9faa5995ac91439ee4ccd6015c57ca229c8"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "The original typed jungle rock large collision pointer is retained with the field name map_csn.",
+            "details": {
+              "assessment": "whole_before",
+              "hunks": 2
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6950,
+        "historical_path": "src/pso/object/TObjGrass.cpp",
+        "historical_blob": "f1642978006be983cef15930adf0e2773e78261a",
+        "owners": {
+          "src/pso/object/ambient/TObjGrass.cpp": "cd3f4ade7abc0ef5532a7c36cdab9a81ec703526"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "Native archive descriptor, eight motion rows, animation binding, and named target contract now use checked source types. Fork 3342 kept the same archive/action storage as integers; side donor 185c943622 has the typed rows. Combat/state implementation and unrelated source conditions retain the current exact owners.",
+            "details": {
+              "assessment": "scoped",
+              "hunks": 57
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6965,
+        "historical_path": "src/pso/object/TObjCGrass.cpp",
+        "historical_blob": "0a8292c7353b01d4ac03c80e54e0a79ef006e89f",
+        "owners": {
+          "src/pso/object/ambient/TObjCGrass.cpp": "8225e09e295e8014d1137b0bf9168f962bf5ad06"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "Typed normal/alternate archive and model-animation binding now use the real model/motion fields. Fork side 8e37275226 expresses random constants through a separately linked shared grass/enemy value array. Current equivalent CGrass literal use and existing data owners are kept; shared compiler/pool ownership is outside this review.",
+            "details": {
+              "assessment": "scoped",
+              "hunks": 11
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6966,
+        "historical_path": "src/pso/misc/TOSignCave03.cpp",
+        "historical_blob": "841bb3e96a36fd2b744afc4de7d975f42cfe3949",
+        "owners": {
+          "src/pso/object/cave/TOSignCave03.cpp": "9fbf14501eadf917b17a3a1a30b377221d7321c0"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "Cave sign 03 retains the original distinct render topology, typed model draws and its owned native archive.",
+            "details": {
+              "assessment": "whole_before",
+              "hunks": 6
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7005,
+        "historical_path": "include/pso/misc/TORockJungleS01.h",
+        "historical_blob": "d04c3c4a44b9586cadaaad1003d83631296e6ae3",
+        "owners": {
+          "include/pso/object/jungle/TORockJungleS01.h": "3a2f246859fdcfa4b89ecc03f3a077d17f9fd1ba"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "The original typed jungle rock small collision pointer is retained with the field name map_csn.",
+            "details": {
+              "assessment": "whole_before",
+              "hunks": 1
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7008,
+        "historical_path": "src/pso/misc/TButterfly.cpp",
+        "historical_blob": "011bf84f1576cbd31e431e000876c45d3aa1d812",
+        "owners": {
+          "src/pso/object/ambient/TButterfly.cpp": "a55a010a860c632ead6d89b242289c582806b7d1"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "Butterfly borrows texture 0 from the same native archive and binds it via shared renderer API.",
+            "details": {
+              "assessment": "whole_before",
+              "hunks": 3
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7025,
+        "historical_path": "src/pso/misc/TOBiwaMushi.cpp",
+        "historical_blob": "4b6b144904b4e643632cd60047a03ce4d2331e3c",
+        "owners": {
+          "src/pso/object/ambient/TOBiwaMushi.cpp": "777b57a4a4e8a82eee162b9d3c131411263a1e3d"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "All three mechanical fish/biwa constructors borrow model-zero textures from the same per-type native archive, which each deletes and nulls.",
+            "details": {
+              "assessment": "whole_before",
+              "hunks": 7
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7045,
+        "historical_path": "src/pso/misc/TORainbowCave01.cpp",
+        "historical_blob": "f2b520fada4eacea9bb31135fc4eefc105d7e1a1",
+        "owners": {
+          "src/pso/object/cave/TORainbowCave01.cpp": "ccf467855025fc65e3589a646057c0b57e90f4b6"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "The cave rainbow already has native archive lifetime, matching yaw, demo gate and borrowed render texture.",
+            "details": {
+              "assessment": "whole_before",
+              "hunks": 5
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7065,
+        "historical_path": "src/pso/misc/TODragonflyCave01.cpp",
+        "historical_blob": "4f5b74a2e287e422fe40c73fa51334d665f9369e",
+        "owners": {
+          "src/pso/object/cave/TODragonflyCave01.cpp": "01391c0cedb4b42f386150e26460b41f0b419cea"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "The cave dragonfly already uses the original typed shared scratch vector, render yaw/demo gate, both descriptor choices and destruction.",
+            "details": {
+              "assessment": "whole_before",
+              "hunks": 7
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7083,
+        "historical_path": "src/pso/misc/TOKurage.cpp",
+        "historical_blob": "8db021ec95bbd2db4e1a5fa23a17ee6528b1fc33",
+        "owners": {
+          "src/pso/object/ambient/TOKurage.cpp": "f266b16dbca8875b1debadbacc3f9dfa3f58f000"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "The cave jellyfish uses the original typed pitch/yaw/roll and archive render/borrow/release flow.",
+            "details": {
+              "assessment": "whole_before",
+              "hunks": 10
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7086,
+        "historical_path": "src/pso/misc/TOCakeshopCave01.cpp",
+        "historical_blob": "abd4f071b80aa1fe09b7341624f6d8a96df5bcb0",
+        "owners": {
+          "src/pso/object/cave/TOCakeshopCave01.cpp": "72ee368b8295f651dd05a038698c882abf25ea03"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "Cave cake shop already uses the typed model tree, current texture bind, native archive and typed yaw.",
+            "details": {
+              "assessment": "whole_before",
+              "hunks": 5
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7103,
+        "historical_path": "src/pso/object/TObjMistCtrl.cpp",
+        "historical_blob": "1823ab40e847f257de4aca0791f812667c057afd",
+        "owners": {
+          "src/pso/player/TPlayerFootStamp.cpp": "827379453e7a4b8cf825f4128c1f351ee6d458a1"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "The historical removal of player footstamp render/update methods from MistCtrl is already represented by their actual player source owner.",
+            "details": {
+              "assessment": "whole_before",
+              "hunks": 5
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7104,
+        "historical_path": "src/pso/misc/TOHangceilingCave01.cpp",
+        "historical_blob": "29aac91b0a2cd36bf949db5957a7a8a638a0ade0",
+        "owners": {
+          "src/pso/object/cave/TOHangceilingCave01.cpp": "b08e869dabd0c9012f34c9262b46d340a26ea3bf"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "Owned texture slots 0/1 and borrowed BML slot 2 use a checked pointer table. Source already uses native model trees, battle demo, body-contact and sound/particles. Broader exact call and literal ownership remains with the current source.",
+            "details": {
+              "assessment": "scoped",
+              "hunks": 14
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7135,
+        "historical_path": "src/pso/object/TObjLight_803DF220.cpp",
+        "historical_blob": "6da5165bf7879240dd0c83a4c652c9b29d8809d2",
+        "owners": {
+          "src/pso/object/ambient/TObjLight_803DF220.cpp": "49da4e36bd633bf60de692a9a1c1bb9cd7964974"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "Native trail-strip dispatch preserves the old mode application and separate untextured strip helper.",
+            "details": {
+              "assessment": "whole_before",
+              "hunks": 7
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7175,
+        "historical_path": "src/pso/misc/TORockJungleL01.cpp",
+        "historical_blob": "1eced2b38dead4a2cf4ebf65ae40abfbadb5b5f2",
+        "owners": {
+          "src/pso/object/jungle/TORockJungleL01.cpp": "e98f9919311a9f4883b1c241babe8608a530a74a"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "Jungle rock source retains typed TObjMapCsn placement, typed model/GVM archive lifetime and direct one-shot sound.",
+            "details": {
+              "assessment": "whole_before",
+              "hunks": 12
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7279,
+        "historical_path": "src/pso/object/TObjLight_80235C44.cpp",
+        "historical_blob": "6c66086157117a68f0e46480dbb05bb45f0e1476",
+        "owners": {
+          "src/pso/object/ambient/TObjLight_80235C44.cpp": "54989318a6f461a0253dca8ed0281dbd2fb2fadc"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "Typed actor orientation and same-floor predicate already audited. Historical technique contact query label remains owned elsewhere.",
+            "details": {
+              "assessment": "scoped",
+              "hunks": 3
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7282,
+        "historical_path": "src/pso/object/TObjLight_80133568.cpp",
+        "historical_blob": "0d412eea6474b731944dc61df7b6d4f5b521e28e",
+        "owners": {
+          "src/pso/object/ambient/TObjLight_80133568.cpp": "4f418d27d59e5232954b0ac9dfd165cd1bfd32fe"
+        },
+        "proofs": [
+          {
+            "group": "ambient",
+            "evidence": "The same disc-file size, allocate/read/free calls are present with current shared providers. Other lighting edits remain outside this archive cohort.",
+            "details": {
+              "assessment": "scoped",
+              "hunks": 3
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2280,
+        "historical_path": "src/pso/ui/TAdDialingGC.cpp",
+        "historical_blob": "2c31147641dddd82baf75fa84d52c6978e905b8a",
+        "owners": {
+          "src/pso/ui/frontend/TAdDialingGC.cpp": "685543993184eb5c40bb6ba7a1f01e1e23a7ec6e",
+          "include/pso/ui/frontend/TAdDialingGC.h": "52cf959529052a6bfeb4932e8611c44b1a3bff21"
+        },
+        "proofs": [
+          {
+            "group": "frontend",
+            "evidence": "The original render calls the hook with its controller, then render_if_flag_set, draw_if_flag_set and update at 0x80328C94. The task path at 0x80328CD8 dispatches the three dial states in the same order, updates selection and increments the frame. Native destructor at 0x80328D50 clears the shared instance and invokes TObject teardown at the same slots.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2281,
+        "historical_path": "src/pso/ui/TAdDialingGC_80328B20.cpp",
+        "historical_blob": "e2fa524e2474dd9a2190f14f16d1b2da3e58a100",
+        "owners": {
+          "src/pso/ui/frontend/TAdDialingGC.cpp": "685543993184eb5c40bb6ba7a1f01e1e23a7ec6e",
+          "src/pso/ui/frontend/TAdDialingMessageWindow.cpp": "6ea1d3448ef043ce92d678d975590b6bef9703d7",
+          "include/pso/ui/frontend/TAdDialingGC_80328B20.h": "15662498c6a4b1ce654820aa00a0b04448bbda32"
+        },
+        "proofs": [
+          {
+            "group": "frontend",
+            "evidence": "Restored shared draw_dialing_rectangle at 0x80328B24 and its original render hook. The rectangle uses original 0x8F vertex colors, count four, flags seven, depth -120.0f and x/y plus w/h vertices. The conditional calls use exact original positions and flags at 0x80328C10/0x80328C4C. The current source unit keeps the already carried native vtable, read-only tables and other typed rendering owners.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2574,
+        "historical_path": "src/pso/ui/TAdEnterSerialAccessGC_8032AD30.cpp",
+        "historical_blob": "e9a3a05ef04f96d46cf4c8e531e0207d6f78bf88",
+        "owners": {
+          "src/pso/ui/frontend/TAdEnterBaseGC.cpp": "98fbc0d6dfd91800b32038571e679e5b1d8b4e79",
+          "include/pso/ui/frontend/TAdEnterSerialAccessGC_8032AD30.h": "f9387eaa3b934db18d4f08d8090cf2d157124e10"
+        },
+        "proofs": [
+          {
+            "group": "frontend",
+            "evidence": "Historical 0x40-byte buffer is already backed by C++ at 0x80543468; the declaration now carries its true extent. The serial formatter takes its actual input string, and both original presence and validation wrappers forward explicit retail arguments. The callback factory is already carried separately. No whole claim for the remainder. The 0x8032B12C formatter reads hexadecimal through an unsigned int destination and passes the converted unsigned long to the original decimal display formatter.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2598,
+        "historical_path": "src/pso/ui/TAdEnterPasswordGC.cpp",
+        "historical_blob": "f9a42997bce9a1d0d32ebf6a29857c0234207673",
+        "owners": {
+          "src/pso/ui/frontend/TAdEnterPasswordGC.cpp": "4cbac5ab6230b9828eeecf00139fd2298241c767",
+          "include/pso/ui/frontend/TAdEnterSerialAccessGC.h": "713bb8997a6f98c3535e075e129185f5a810018f"
+        },
+        "proofs": [
+          {
+            "group": "frontend",
+            "evidence": "Password handler now preserves its actual screen receiver, field 2 and text pointer in one typed validator call. Other scene behaviors remain outside this proof.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2623,
+        "historical_path": "src/pso/ui/TAdEnterSerialAccessGC.cpp",
+        "historical_blob": "88660c23ff499517ad3f73723a9469361b84818c",
+        "owners": {
+          "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp": "45d11b83463a788b2beba1eea14ac8db6a301654",
+          "include/pso/ui/keyboard/TKeyBoardControl.h": "567b9c2b689755207307c33f14d977f4f3fac02b"
+        },
+        "proofs": [
+          {
+            "group": "frontend",
+            "evidence": "Constructor at 0x80322278 retains both proper serial-init string sources at 0x803222F4 and 0x80322348, and 0x803218E8 forwards the formatter return unchanged. Both renderers now invoke the literal keyboard owner of the helper at 0x803223E4. The serial handler sends screen pointer, original field and string to every validation call. Earlier plate/borrowed-window work has separate proof.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2658,
+        "historical_path": "src/pso/ui/TAdEnterPPPPassGC.cpp",
+        "historical_blob": "ef6ede73e464b1351aef3600d04d1dcb000a07c9",
+        "owners": {
+          "src/pso/ui/frontend/TAdEnterPPPPassGC.cpp": "0573e0aed6c10a6b329079ce505a859242e8e4ba",
+          "include/pso/ui/frontend/TAdEnterSerialAccessGC.h": "713bb8997a6f98c3535e075e129185f5a810018f"
+        },
+        "proofs": [
+          {
+            "group": "frontend",
+            "evidence": "PPP password validation forwards field 3 and the original text using exactly the same real prototype as serial/password. Other operations in the original source remain outside this proof.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2666,
+        "historical_path": "include/pso/ui/TAdEnterSerialAccessGC.h",
+        "historical_blob": "181d570691487b44caad2420a27c88454e5c427e",
+        "owners": {
+          "include/pso/ui/frontend/TAdEnterSerialAccessGC.h": "713bb8997a6f98c3535e075e129185f5a810018f",
+          "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp": "45d11b83463a788b2beba1eea14ac8db6a301654"
+        },
+        "proofs": [
+          {
+            "group": "frontend",
+            "evidence": "Serial initialization and the forward-input edge have matching declarations and non-owning input text. Earlier borrowed-window callback proof still applies on the integration candidate. No whole claim for the other declarations.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2709,
+        "historical_path": "src/pso/ui/TAdDialingGC_80328210.cpp",
+        "historical_blob": "fb1166c66fdc8dd107db2f0aa077b9d17790d2cf",
+        "owners": {
+          "src/pso/ui/frontend/TAdDialingGC.cpp": "685543993184eb5c40bb6ba7a1f01e1e23a7ec6e",
+          "include/pso/ui/frontend/TAdDialingGC.h": "52cf959529052a6bfeb4932e8611c44b1a3bff21"
+        },
+        "proofs": [
+          {
+            "group": "frontend",
+            "evidence": "The review reconciles 0x80328360 to the real controller-only idle member and calls the other native dial members with matching prototypes. 0x80328A4C and the neighboring display helpers receive actual controller objects at their original call edges, return void and use their original rendering text. The rest of the historic state unit remains outside this proof.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5750,
+        "historical_path": "src/pso/ui/TAdDialingMessageWindow.cpp",
+        "historical_blob": "e22c2ad95029671e1754f8c817bfaf661da3ac2f",
+        "owners": {
+          "src/pso/ui/frontend/TAdDialingMessageWindow.cpp": "6ea1d3448ef043ce92d678d975590b6bef9703d7",
+          "include/pso/ui/frontend/TAdDialingGC_80328B20.h": "15662498c6a4b1ce654820aa00a0b04448bbda32"
+        },
+        "proofs": [
+          {
+            "group": "frontend",
+            "evidence": "The message window invokes the same named rectangle as the dialing view at 0x8036A208, passing original (0,28) origin and (640,84) extent. The historical ColorLineVertex positions and NJS_POINT2 share the same two-float contract. The countdown and other window lifetime fields were not changed here.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      }
+    ],
+    "closed_rows": [
+      486,
+      642,
+      643,
+      751,
+      770,
+      861,
+      914,
+      915,
+      2280,
+      2281,
+      3191,
+      3634,
+      3825,
+      4039,
+      6412,
+      6422,
+      6423,
+      6429,
+      6446,
+      6447,
+      6448,
+      6509,
+      6518,
+      6538,
+      6784,
+      6814,
+      6865,
+      6883,
+      6899,
+      6904,
+      6946,
+      6966,
+      7005,
+      7008,
+      7025,
+      7045,
+      7065,
+      7083,
+      7086,
+      7103,
+      7135,
+      7175
+    ],
+    "remaining": {
+      "Owner comparison required": 653,
+      "Some anchored text changes found": 972
+    }
+  },
+  "upstream_review_candidates": {
+    "standalone-saved-inventory-and-equipment": {
+      "head": "878bd6f07fcc2022b361e3ee293ed993c3db0cd2",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Native item lists, storage and placement, saved inventory and equipment, and the inventory rebuild lifecycle",
+      "files": 59,
+      "source_paths": [
+        "config/GPOE8P/psov3/config.yml",
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/item/InventoryEntryCopy.h",
+        "include/pso/item/TItem.h",
+        "include/pso/item/TItemData.h",
+        "include/pso/item/TItemList.h",
+        "include/pso/npc/TNpcPlayer.h",
+        "include/pso/object/base/TObjChara.h",
+        "include/pso/player/TObjPlayer.h",
+        "include/pso/player/TObjPlayer_80011014.h",
+        "include/pso/player/TObjPlayer_801AF2F0.h",
+        "include/pso/player/TObjPlayer_801D3554.h",
+        "include/pso/player/TObjPlayer_801D4CB8.h",
+        "include/pso/player/TPlyInventory.h",
+        "include/pso/player/TPlyItem.h",
+        "include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h",
+        "include/pso/unk/TLobby.h",
+        "include/pso/unk/text_801D40D4.h",
+        "src/pso/network/TradeSession.cpp",
+        "src/pso/npc/TNpcPlayer.cpp",
+        "src/pso/npc/TNpcPlayer_802C3CD0.cpp",
+        "src/pso/player/PlayerTaskEffects.cpp",
+        "src/pso/player/TObjPlayer_80011014.cpp",
+        "src/pso/player/TObjPlayer_801AEE10.cpp",
+        "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "src/pso/player/TObjPlayer_801BC194.cpp",
+        "src/pso/player/TObjPlayer_801BCDC4.cpp",
+        "src/pso/player/TObjPlayer_801BCF04.cpp",
+        "src/pso/player/TObjPlayer_801BDF5C.cpp",
+        "src/pso/player/TObjPlayer_801C1FF8.cpp",
+        "src/pso/player/TObjPlayer_801C7430.cpp",
+        "src/pso/player/TObjPlayer_801D3554.cpp",
+        "src/pso/player/TObjPlayer_801D84A8.cpp",
+        "src/pso/player/TObjPlayer_801D84CC.cpp",
+        "src/pso/player/TObjPlayer_80278AB4.cpp",
+        "src/pso/player/TObjPlayer_802C3B14.cpp",
+        "src/pso/player/TObjPlayer_802C422C.cpp",
+        "src/pso/player/TPlyItem.cpp",
+        "src/pso/quest/QuestOpcodeHandlers.cpp",
+        "src/pso/ui/city/TCheckRoomSequence.cpp",
+        "src/pso/ui/city/TMedicalCenterSequence.cpp",
+        "src/pso/ui/city/TShopEquipmentSellWindow.cpp",
+        "src/pso/ui/city/TShopItemListWindow.cpp",
+        "src/pso/ui/city/TShopJudgmentItemWindow.cpp",
+        "src/pso/ui/city/TShopKeepItemWindow.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801D5DAC.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+        "src/pso/ui/window/TWindowActionPalette_801C1890.cpp",
+        "src/pso/ui/window/TWindowSubItem.cpp",
+        "src/pso/unk/TLobby_80291D94.cpp",
+        "src/pso/unk/TLobby_802D1EFC.cpp",
+        "src/pso/unk/text_80071B30.cpp",
+        "src/pso/unk/text_801A3014.cpp",
+        "src/pso/unk/text_802787F0.cpp",
+        "src/pso/unk/text_802789E0.cpp",
+        "src/pso/unk/text_80278BD8.cpp",
+        "src/pso/unk/text_802C39F8.cpp",
+        "src/pso/unk/text_802C3AC0.cpp",
+        "src/pso/weapon/TUnk_804A4D70.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "bf19fe78dd3158211a0b0e2781fffe1456478e73c81fdf5dd818e1d7bad30d75",
+      "check_sha256": "dda7026d5c3e36f89397e89bc3e68b34e2b56b2dbeb9fe92673c9931739f6c52",
+      "previous": "78ef3d205dc039ba1f66e49d5023a72f2fe07061"
+    },
+    "standalone-dark-falz-cinematic-actors": {
+      "head": "b76b861cfaa84d9a7c8d2be09973a8d20b0912fc",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Dark Falz cinematic factories, camera and part layouts, emitter state and controller positions",
+      "files": 22,
+      "source_paths": [
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/boss/darkfalz/DarkFalzScenePart.h",
+        "include/pso/boss/darkfalz/TBoss4DarkFalz.h",
+        "include/pso/boss/darkfalz/TObjDFDemo0.h",
+        "include/pso/boss/darkfalz/TObjDFDemo1.h",
+        "include/pso/boss/darkfalz/TObjDFDemo2.h",
+        "include/pso/boss/darkfalz/TObjDFDemo3.h",
+        "include/pso/boss/darkfalz/TObjDFDemo4.h",
+        "include/pso/boss/darkfalz/TObjDFDemo5.h",
+        "include/pso/boss/darkfalz/TObjDFDemoF.h",
+        "include/pso/boss/darkfalz/TObjDFDemoF_80050134.h",
+        "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp",
+        "src/pso/boss/darkfalz/TObjDFDemo1.cpp",
+        "src/pso/boss/darkfalz/TObjDFDemo2.cpp",
+        "src/pso/boss/darkfalz/TObjDFDemo3.cpp",
+        "src/pso/boss/darkfalz/TObjDFDemo4.cpp",
+        "src/pso/boss/darkfalz/TObjDFDemo5.cpp",
+        "src/pso/boss/darkfalz/TObjDFDemoF.cpp",
+        "src/pso/boss/darkfalz/TObjDFDemoF_80050050.cpp",
+        "src/pso/boss/darkfalz/TObjDFDemoF_80050134.cpp",
+        "src/pso/boss/darkfalz/TObjDFHorming.cpp",
+        "src/pso/unk/text_8004D9A8.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "d72a08ad53d89991be1f07fd24428b6dd679403078d30ad03dd273a8c17a44d5",
+      "check_sha256": "dd00d9b1e0958ac9402fd43da25df1bb7f3d204112b3a2c49c952b4ad6bd9dad",
+      "previous": null
+    },
+    "standalone-ambient-stage-archives-and-rendering": {
+      "head": "f058080dc305615251958cc6e241a8e7d1fa4654",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Cave and jungle archives and sign rendering, ambient fish and grass resource lifetimes",
+      "files": 14,
+      "source_paths": [
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/npc/NpcAnimationBinding.h",
+        "include/pso/object/ambient/TObjFish.h",
+        "include/pso/object/cave/CaveSignRender.h",
+        "include/pso/object/jungle/TOJungleDesign.h",
+        "src/pso/object/ambient/TObjCGrass.cpp",
+        "src/pso/object/ambient/TObjFish.cpp",
+        "src/pso/object/ambient/TObjGrass.cpp",
+        "src/pso/object/cave/TOHangceilingCave01.cpp",
+        "src/pso/object/cave/TORockCave.cpp",
+        "src/pso/object/cave/TOSignCave01.cpp",
+        "src/pso/object/cave/TOSignCave02.cpp",
+        "src/pso/object/jungle/TOGrassJungle.cpp",
+        "src/pso/object/jungle/TOJungleDesign.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "3be01c6fcf4bfeab5b2606641184f787f1f15e0e5b8f6a5608822b09be68af14",
+      "check_sha256": "9c615f959fa1a7bf9bb3f5f91339497318f3273f801c2308e9946f3f6ba960a9",
+      "previous": null
+    },
+    "standalone-online-setup-scenes": {
+      "head": "b2ab86c9b1286645a008eaa5eefdb95eb190a0a7",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Serial, password, PPP and dialing callbacks and native input/display records",
+      "files": 13,
+      "source_paths": [
+        "config/GPOE8P/psov3/config.yml",
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/ui/frontend/TAdDialingGC.h",
+        "include/pso/ui/frontend/TAdDialingGC_80328B20.h",
+        "include/pso/ui/frontend/TAdEnterSerialAccessGC.h",
+        "include/pso/ui/frontend/TAdEnterSerialAccessGC_8032AD30.h",
+        "include/pso/ui/keyboard/TKeyBoardControl.h",
+        "src/pso/ui/frontend/TAdDialingGC.cpp",
+        "src/pso/ui/frontend/TAdDialingMessageWindow.cpp",
+        "src/pso/ui/frontend/TAdEnterBaseGC.cpp",
+        "src/pso/ui/frontend/TAdEnterPPPPassGC.cpp",
+        "src/pso/ui/frontend/TAdEnterPasswordGC.cpp",
+        "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "73c33f86b62a27fb4574604815eb3d47ab2e2c046ecf4548ff2a0127c5a3f728",
+      "check_sha256": "5871eb302642ee45e5c44306fd796874971a43bfe127e9fa6e658c6c8025085f",
+      "previous": null
+    }
+  },
+  "independent_source_reviews": {
+    "standalone-saved-inventory-and-equipment": {
+      "head": "878bd6f07fcc2022b361e3ee293ed993c3db0cd2",
+      "finding": "Verified the original allocation sizes, child offsets and parents, the 30-entry rebuild buffer and unchanged cleanup, ID and equipment order, the native upstream array allocation and release contract, and the original full signed NPC count. The actual inventory copy helper and its caller now use a shared signature. The adjacent 0x802C3A50 implementation retains the pinned fork's existing entry layout and instruction order."
+    },
+    "standalone-dark-falz-cinematic-actors": {
+      "head": "b76b861cfaa84d9a7c8d2be09973a8d20b0912fc",
+      "finding": "Verified seven scene constructors, model, motion and emitter records, actual Vecs and original cleanup. Confirmed the only controller owns position at 0x39C and angle at 0x3A8 within the original 0x3AC allocation. The standalone scene uses the real existing upstream Demo3 capture provider."
+    },
+    "standalone-ambient-stage-archives-and-rendering": {
+      "head": "f058080dc305615251958cc6e241a8e7d1fa4654",
+      "finding": "Reviewed the six cave archive descriptors and member offsets, their unchanged name lists, the borrowed and allocated cave texture slots, grass model, motion and target types, and the fish school's actual record and borrowed rendering resources. The direct variant retains upstream's allocation and archive providers."
+    },
+    "standalone-online-setup-scenes": {
+      "head": "b2ab86c9b1286645a008eaa5eefdb95eb190a0a7",
+      "finding": "Verified all three validation arguments, the actual dialing controller and keyboard receivers and null path, and unchanged rectangle corners, flags and scale. The exact follow-up passes the correct unsigned int output to the hexadecimal scan and unsigned long value to decimal formatting."
+    }
+  },
+  "combined_upstream_review": {
+    "head": "9b15122135f382ea539f0ffe72ed5aa3a4965a61",
+    "files": 104,
+    "inputs": [
+      "878bd6f07fcc2022b361e3ee293ed993c3db0cd2",
+      "b76b861cfaa84d9a7c8d2be09973a8d20b0912fc",
+      "f058080dc305615251958cc6e241a8e7d1fa4654",
+      "b2ab86c9b1286645a008eaa5eefdb95eb190a0a7"
+    ],
+    "coverage": {
+      "upstream": {
+        "functions_lost": 0,
+        "data_lost": 0,
+        "verified_padding": 0
+      },
+      "historical": {
+        "functions_lost": 0,
+        "data_lost": 0,
+        "verified_padding": 30
+      }
+    }
+  }
+}

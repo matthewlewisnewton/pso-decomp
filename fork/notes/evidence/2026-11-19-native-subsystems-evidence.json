@@ -1,0 +1,2742 @@
+{
+  "source": "9f5ed767688d58f3785a9c8f8cad729786a86456",
+  "landing": "e418f8a73cbb6be04da63ae11cf8f5b1c22bfb90",
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "source_files": 102,
+  "batches": {
+    "slime-one": {
+      "head": "ec44753d6796cea3a9d3ea3497d1986ed50271e5",
+      "files": 6
+    },
+    "camera-position": {
+      "head": "e517922d43181a33112954c5421cbf8d028a7536",
+      "files": 33
+    },
+    "color-line-lists": {
+      "head": "b632ab3814bc099c493c4241a3b746869396d9f2",
+      "files": 25
+    },
+    "object-class-name": {
+      "head": "aafa7a04ce11fc71059e697d3768a0bd8e06d708",
+      "files": 26
+    },
+    "player-class": {
+      "head": "0dea89705422876170d37e6db8fefe3aa2bd2581",
+      "files": 18
+    }
+  },
+  "symbol_retention": 27065,
+  "source_coverage": {
+    "fuzzy_match_percent": 99.99999,
+    "total_code": "4353092",
+    "matched_code": "4353092",
+    "matched_code_percent": 100.0,
+    "total_data": "1758510",
+    "matched_data": "1758510",
+    "matched_data_percent": 100.0,
+    "total_functions": 27572,
+    "matched_functions": 27572,
+    "matched_functions_percent": 100.0,
+    "complete_code": "4353092",
+    "complete_code_percent": 100.0,
+    "complete_data": "1758510",
+    "complete_data_percent": 100.0,
+    "total_units": 2447,
+    "complete_units": 2447
+  },
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "fork_only_paths": 133,
+  "layer_tests": 11,
+  "coverage_comparisons": 29,
+  "delivery": {
+    "delivery-network-render-window": {
+      "old": "f8fee4e3c979d3fa8d4e8526d757578625a4fc77",
+      "head": "3b8fd12a2f8c2db95688b844042da4e2e2fbaa0a",
+      "files": 25,
+      "upstream_diff_paths": 934
+    },
+    "delivery-network-world": {
+      "old": "df959f6a2f8f8e923caab9f8552b2052fed8b005",
+      "head": "4f1237edb0907565f3dd491e15329205e05f2003",
+      "files": 39,
+      "upstream_diff_paths": 894
+    },
+    "delivery-network-player-spatial": {
+      "old": "94581b29e7d1ff919d02f37119a2950b92e5f0e5",
+      "head": "80437bd0a15f2e39b61d5be61ddfae3839777109",
+      "files": 18,
+      "upstream_diff_paths": 802
+    }
+  },
+  "standalone": {
+    "branch": "standalone-object-class-name",
+    "head": "6155c67873447dc4c269277231732fca1a2193c2",
+    "files": 26
+  },
+  "source_audit": {
+    "source": "9f5ed767688d58f3785a9c8f8cad729786a86456",
+    "audit_entries": [
+      {
+        "row": 39,
+        "historical_path": "src/pso/misc/TLobby_802409AC.cpp",
+        "validated_owners": {
+          "src/pso/unk/TLobby_802409AC.cpp": "70da1d3e7189253979a3055cfac9b39caacb02f6"
+        },
+        "proofs": [
+          {
+            "group": "Camera",
+            "evidence": "The original camera position is stored as Vec and this owner uses the typed position or component at the original offset."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 208,
+        "historical_path": "include/pso/misc/TWindowFukidasi.h",
+        "validated_owners": {
+          "src/pso/ui/window/TWindowFukidasi.cpp": "7b5a8cb640ad49ef385f90e188f42a9447ddc931"
+        },
+        "proofs": [
+          {
+            "group": "Color lines",
+            "evidence": "Replace local descriptor or prototype with the shared primitive for the previously source-linked draw sites."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 230,
+        "historical_path": "src/pso/misc/TWindowKeyBoardBase.cpp",
+        "validated_owners": {
+          "src/pso/ui/window/TWindowKeyBoardBase.cpp": "2bb5296c05988413291950b0ad0438b899dc3db0"
+        },
+        "proofs": [
+          {
+            "group": "Color lines",
+            "evidence": "Use typed vertex and color storage for the caret and both glyph fill loops."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 262,
+        "historical_path": "src/pso/misc/TWindowFukidasi.cpp",
+        "validated_owners": {
+          "src/pso/ui/window/TWindowFukidasi.cpp": "7b5a8cb640ad49ef385f90e188f42a9447ddc931"
+        },
+        "proofs": [
+          {
+            "group": "Color lines",
+            "evidence": "Replace local descriptor or prototype with the shared primitive for the previously source-linked draw sites."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 283,
+        "historical_path": "src/pso/misc/TWindowKeyBoardSoft.cpp",
+        "validated_owners": {
+          "src/pso/ui/window/TWindowKeyBoardBase.cpp": "2bb5296c05988413291950b0ad0438b899dc3db0"
+        },
+        "proofs": [
+          {
+            "group": "Color lines",
+            "evidence": "Use typed vertex and color storage for the caret and both glyph fill loops."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 444,
+        "historical_path": "include/pso/enemy/SlimeAnimationState.h",
+        "validated_owners": {
+          "include/pso/enemy/slime/SlimeAnimationState.h": "2e75fd691ecf534235ad1d9ac361e26fa4b9039e"
+        },
+        "proofs": [
+          {
+            "group": "Slime",
+            "evidence": "SlimeAnimationState, SlimeShapeMotion and SlimePairedMotion are present under enemy/slime. The animation object is 0x34 bytes with unchanged owner and motion fields and stronger typed texture pointers."
+          }
+        ],
+        "status": "Complete fork Slime source or declarations retained at native owner"
+      },
+      {
+        "row": 477,
+        "historical_path": "include/pso/enemy/TObjEneSlimeOne.h",
+        "validated_owners": {
+          "include/pso/enemy/slime/TObjEneSlimeOne.h": "0d1f0bb2e61e75f53a5483e5b2d900fb46b6e306"
+        },
+        "proofs": [
+          {
+            "group": "Slime",
+            "evidence": "Both constructors and matching factories accompany the 0x3F8 class. Variant at 0x3F4, attack position at 0x3D0, effect timer at 0x394, animation at 0x388 and both movement vectors are actual members. Named equivalents retain the proven existing field offsets."
+          }
+        ],
+        "status": "Complete fork Slime source or declarations retained at native owner"
+      },
+      {
+        "row": 512,
+        "historical_path": "src/pso/boss/TBoss4ZakoDraw.cpp",
+        "validated_owners": {
+          "src/pso/boss/darkfalz/TBoss4ZakoDraw.cpp": "8c341d434ae9c36f7b0386d331b247323f370e60"
+        },
+        "proofs": [
+          {
+            "group": "Camera",
+            "evidence": "The original camera position is stored as Vec and this owner uses the typed position or component at the original offset."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 636,
+        "historical_path": "src/pso/enemy/TObjEneSlimeOne_800EC394.cpp",
+        "validated_owners": {
+          "src/pso/enemy/slime/TObjEneSlimeOne_800EC394.cpp": "ff5abf03ced6a57d1e1dcadea9e29bd6b18226ba"
+        },
+        "proofs": [
+          {
+            "group": "Slime",
+            "evidence": "All six animation-helper member functions match the fork's name, size and address. The relocated animation unit uses the current typed BML and texture providers. SlimeOne's 0x800EC394 variant accessor now reads the trailing member. The adjacent Sorcerer slot at 0x800ECA3C stays under the reviewed canonical vfunc_105 name, which this batch does not change."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 637,
+        "historical_path": "src/pso/enemy/TObjEneSlimeTailAttack.cpp",
+        "validated_owners": {
+          "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp": "f9da1a6170cfd20d0311a24858e3233ce112ca06"
+        },
+        "proofs": [
+          {
+            "group": "Slime",
+            "evidence": "Native constructors/factories, initialization, member render, effect timers and collision display modes, typed attack selection/position, typed trail pose and movement. This records the SlimeOne owner changes in the shared source unit. Existing tail/water effect recovery is recorded independently. Remaining textual differences in unrelated state/owner code are not certified by this row."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 741,
+        "historical_path": "src/pso/enemy/TObjEneBm9Mericarol_EffCurse3.cpp",
+        "validated_owners": {
+          "src/pso/enemy/mericarol/TObjEneBm9Mericarol_EffCurse3.cpp": "381e71d06d2b60db8864ff1f4bfb7731e0d71387"
+        },
+        "proofs": [
+          {
+            "group": "Camera",
+            "evidence": "The original camera position is stored as Vec and this owner uses the typed position or component at the original offset."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 763,
+        "historical_path": "src/pso/boss/TBoss6EmptyWarp_802B0E2C.cpp",
+        "validated_owners": {
+          "src/pso/boss/olgaflow/TBoss6EmptyWarp_802B0E2C.cpp": "dc036c94f7d0e7deb25cd2470cbe83ad0e6152e0"
+        },
+        "proofs": [
+          {
+            "group": "Color lines",
+            "evidence": "Mutable packed colors and typed vertices restore the historical exact overlay. Four zero color words remain at 0x804709D0 and four vertex pairs at 0x804DE840."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 777,
+        "historical_path": "include/pso/enemy/TObjEneSlime.h",
+        "validated_owners": {
+          "include/pso/enemy/slime/TObjEneSlime.h": "81ad35dd88f3108936a5c4a6ca1260d2b5617e58"
+        },
+        "proofs": [
+          {
+            "group": "Slime",
+            "evidence": "Canonical SlimeChildSlot matches the fork's state and typed child pointer. Canonical SlimeSpawnTemplate and child_limit type the fork's m_374/pad and m_3b4, while preserving the 0x3D8 outer layout and its child-slot methods."
+          }
+        ],
+        "status": "Complete fork Slime source or declarations retained at native owner"
+      },
+      {
+        "row": 798,
+        "historical_path": "src/pso/unk/text_803594EC.cpp",
+        "validated_owners": {
+          "src/pso/boss/darkfalz/TBoss4Fade.cpp": "5f1f74bc0bfe7d9fcc3a82ef01d02928c575a3a1"
+        },
+        "proofs": [
+          {
+            "group": "Color lines",
+            "evidence": "Use the shared descriptor over the four packed fullscreen fade colors, preserving allocation as one local record."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1054,
+        "historical_path": "src/pso/unk/text_800A0994.cpp",
+        "validated_owners": {
+          "src/pso/enemy/darkgunner/TObjEneDarkGunCenter.cpp": "6edd96797f4ca80b0ae77662602477a0e8227c71"
+        },
+        "proofs": [
+          {
+            "group": "TObject",
+            "evidence": "The entire historical edit names the native pointer identity check at 0x8003F3C8. The active source uses TObject with 1 original call."
+          }
+        ],
+        "status": "Complete native TObject caller recovered"
+      },
+      {
+        "row": 2280,
+        "historical_path": "src/pso/ui/TAdDialingGC.cpp",
+        "validated_owners": {
+          "src/pso/ui/frontend/TAdDialingGC.cpp": "ca0ed8bc3321789e548c8ee22aeeb6b206bdef67"
+        },
+        "proofs": [
+          {
+            "group": "Color lines",
+            "evidence": "Replace local descriptor or prototype with the shared primitive for the previously source-linked draw sites."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2281,
+        "historical_path": "src/pso/ui/TAdDialingGC_80328B20.cpp",
+        "validated_owners": {
+          "src/pso/ui/frontend/TAdDialingGC.cpp": "ca0ed8bc3321789e548c8ee22aeeb6b206bdef67"
+        },
+        "proofs": [
+          {
+            "group": "Color lines",
+            "evidence": "Replace local descriptor or prototype with the shared primitive for the previously source-linked draw sites."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2317,
+        "historical_path": "src/pso/unk/text_8029A6EC.cpp",
+        "validated_owners": {
+          "src/pso/ui/frontend/TAdBackGC_8029A6EC.cpp": "0105b45a36fea4a809e05f65f30f0b40d7a710c0"
+        },
+        "proofs": [
+          {
+            "group": "Color lines",
+            "evidence": "Replace local descriptor or prototype with the shared primitive for the previously source-linked draw sites."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2397,
+        "historical_path": "src/pso/object/TObjCMName.cpp",
+        "validated_owners": {
+          "src/pso/ui/charcreate/TObjCMName.cpp": "8fa6e7b14c9b5f075852f9fc926d3ff6bf46c027"
+        },
+        "proofs": [
+          {
+            "group": "Color lines",
+            "evidence": "Use the same descriptor for the generated footer gradient and both proportion guides; the two static guide records keep their layout and original addresses."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2510,
+        "historical_path": "include/pso/ui/TAdChrMoveEffectGC.h",
+        "validated_owners": {
+          "src/pso/ui/frontend/TAdChrMoveEffectGC.cpp": "ccdbc11afda27931bc01f9f2aa1fddb2b5e8ed8b"
+        },
+        "proofs": [
+          {
+            "group": "Color lines",
+            "evidence": "Keep the four packed colors in the window primitive and write the original alpha byte of each vertex color before drawing."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2515,
+        "historical_path": "include/pso/misc/TRaderMapCore.h",
+        "validated_owners": {
+          "src/pso/ui/hud/TRaderMapCore.cpp": "c203b8ff11b517e029abc24d44c3a73032f1c950"
+        },
+        "proofs": [
+          {
+            "group": "Color lines",
+            "evidence": "Replace local descriptor or prototype with the shared primitive for the previously source-linked draw sites."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2526,
+        "historical_path": "src/pso/ui/TAdChrMoveEffectGC.cpp",
+        "validated_owners": {
+          "src/pso/ui/frontend/TAdChrMoveEffectGC.cpp": "ccdbc11afda27931bc01f9f2aa1fddb2b5e8ed8b"
+        },
+        "proofs": [
+          {
+            "group": "Color lines",
+            "evidence": "Keep the four packed colors in the window primitive and write the original alpha byte of each vertex color before drawing."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2602,
+        "historical_path": "src/pso/misc/TRaderMapCore.cpp",
+        "validated_owners": {
+          "src/pso/ui/hud/TRaderMapCore.cpp": "c203b8ff11b517e029abc24d44c3a73032f1c950"
+        },
+        "proofs": [
+          {
+            "group": "Color lines",
+            "evidence": "Replace local descriptor or prototype with the shared primitive for the previously source-linked draw sites."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2714,
+        "historical_path": "src/pso/ui/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+        "validated_owners": {
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp": "0a8451ba86da2b37b9c5102c6347546297c2ac7c"
+        },
+        "proofs": [
+          {
+            "group": "Player and NPC class",
+            "evidence": "Character-selection reset sends the original class byte to the native stat initializer."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2742,
+        "historical_path": "src/pso/unk/text_8034960C.cpp",
+        "validated_owners": {
+          "src/pso/unk/text_8034960C.cpp": "8a62654b80ba1718105dd7760e082178d391eba1"
+        },
+        "proofs": [
+          {
+            "group": "Color lines",
+            "evidence": "Replace three synthetic descriptor layouts for quest-load panels, letterboxing and the sweep."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2743,
+        "historical_path": "src/pso/unk/text_80349B8C.cpp",
+        "validated_owners": {
+          "src/pso/unk/text_80349B8C.cpp": "3aa5cbffe4552a9ce82e3c3207a3d6e0c48748e7"
+        },
+        "proofs": [
+          {
+            "group": "Color lines",
+            "evidence": "Use typed vertex and color arrays for both filled-quad routines, preserving the signedness of unrelated fields."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 3360,
+        "historical_path": "include/pso/player/PlayerLevelTable.h",
+        "validated_owners": {
+          "include/pso/player/PlayerLevelTable.h": "2f087d46e387b3803d1d662c828990ca846ac9a1"
+        },
+        "proofs": [
+          {
+            "group": "Player and NPC class",
+            "evidence": "The typed level-table providers take the original signed class byte. The row keeps its 12-byte size and experience offset."
+          }
+        ],
+        "status": "Complete fork level-row layout and growth declarations retained"
+      },
+      {
+        "row": 3510,
+        "historical_path": "src/pso/enemy/TObjEneSlimeTailAttack_search.cpp",
+        "validated_owners": {
+          "src/pso/player/TObjPlayer_800EBE2C.cpp": "b5527ca2371d9a4e9d13208d0b98f7eea76367c0"
+        },
+        "proofs": [
+          {
+            "group": "Slime",
+            "evidence": "Current TObjEneSlimeTailAttack::find_nearest_enemy_with_flag remains in the split TObjPlayer_800EBE2C.cpp source at 0x800EC348. It sets the visible-enemy flag, calls the same nearest-enemy helper, clears the same flag, and returns the same u16 target. No sibling player change is needed."
+          }
+        ],
+        "status": "Complete fork Slime source or declarations retained at native owner"
+      },
+      {
+        "row": 3512,
+        "historical_path": "src/pso/item/SRankSlicerWeapons.cpp",
+        "validated_owners": {
+          "src/pso/weapon/TUnk_804A4238.cpp": "c3daee9daf297002739e4ce597dedcb4b7bc59c0"
+        },
+        "proofs": [
+          {
+            "group": "Retained native declarations",
+            "evidence": "The native TItemWeapon declaration retains the historical virtual function name and descriptor type at 0x8011E5C4. The compiler-emitted S-rank weapon table preserves the linked slot at 0x804A4324 and 0x804A4424."
+          }
+        ],
+        "status": "Complete fork weapon effect declaration or virtual slot retained"
+      },
+      {
+        "row": 3916,
+        "historical_path": "src/pso/unk/text_8012A884.cpp",
+        "validated_owners": {
+          "src/pso/weapon/TUnk_804A4948.cpp": "8d8381de081295bc1a38138cf847a772cf7cc12f"
+        },
+        "proofs": [
+          {
+            "group": "Retained native declarations",
+            "evidence": "The native TItemWeapon declaration retains the historical virtual function name and descriptor type at 0x8011E5C4. The compiler-emitted S-rank weapon table preserves the linked slot at 0x804A4A34."
+          }
+        ],
+        "status": "Complete fork weapon effect declaration or virtual slot retained"
+      },
+      {
+        "row": 3958,
+        "historical_path": "src/pso/unk/text_801BDBB4.cpp",
+        "validated_owners": {
+          "src/pso/player/TObjPlayer_801BD928.cpp": "2c3feeb106e64c613c7842c10372bfcae5b624c0"
+        },
+        "proofs": [
+          {
+            "group": "TObject",
+            "evidence": "The entire historical edit names the native pointer identity check at 0x8003F3C8. The active source uses TObject with 1 original call."
+          }
+        ],
+        "status": "Complete native TObject caller recovered"
+      },
+      {
+        "row": 3998,
+        "historical_path": "include/pso/player/TObjPlayer.h",
+        "validated_owners": {
+          "include/pso/player/TObjPlayer.h": "07c713e732210fdda47b348345f720c500d11d8c"
+        },
+        "proofs": [
+          {
+            "group": "Player and NPC class",
+            "evidence": "Native class getter, class experience-table reader and instance class action classifier use the recovered signatures."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4016,
+        "historical_path": "include/pso/player/TObjPlayer_802C367C.h",
+        "validated_owners": {
+          "include/pso/player/TObjPlayer_802C367C.h": "5551cc1dec6adccac6085537e7d6ac423eb24cee"
+        },
+        "proofs": [
+          {
+            "group": "Player and NPC class",
+            "evidence": "The initializer now takes the original signed class byte and the existing typed character record."
+          }
+        ],
+        "status": "Complete fork character-stat initializer declaration retained"
+      },
+      {
+        "row": 4121,
+        "historical_path": "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "validated_owners": {
+          "src/pso/player/TObjPlayer_801AF2F0.cpp": "8844d5dea2323e8641ff5e45c1d2b6385bdd7113"
+        },
+        "proofs": [
+          {
+            "group": "Player and NPC class",
+            "evidence": "Level growth, class-stat caps and class action selection share the signed class getter and table providers."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4138,
+        "historical_path": "src/pso/player/TObjPlayer_801C7430.cpp",
+        "validated_owners": {
+          "src/pso/player/TObjPlayer_801C7430.cpp": "35206a65cae461eeae3dd8b65333f85b2d33cd75"
+        },
+        "proofs": [
+          {
+            "group": "Player and NPC class",
+            "evidence": "Fall reaction uses the native class action classifier and death handling uses TObject class identity."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4142,
+        "historical_path": "src/pso/player/TObjPlayer_801D84CC.cpp",
+        "validated_owners": {
+          "src/pso/player/TObjPlayer_801D8ADC.cpp": "9c5e5ecd447b84714ad8ee2da30341b88b85706d"
+        },
+        "proofs": [
+          {
+            "group": "Player and NPC class",
+            "evidence": "The native class lookup validates the index and feeds starting inventory, stats and the level table at their original addresses."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4155,
+        "historical_path": "src/pso/player/TObjPlayer_802C367C.cpp",
+        "validated_owners": {
+          "src/pso/player/TObjPlayer_802C367C.cpp": "25050ee97bacfa7a4d4df402a802eefb71bdeab5"
+        },
+        "proofs": [
+          {
+            "group": "Player and NPC class",
+            "evidence": "Stat initialization and its caller preserve the original class byte and exact retail instructions."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4156,
+        "historical_path": "src/pso/player/TObjPlayer_802C3B14.cpp",
+        "validated_owners": {
+          "src/pso/player/TObjPlayer_802C3B14.cpp": "64171c9b05d4332f78c508eadc963a1f0832c9bc"
+        },
+        "proofs": [
+          {
+            "group": "Player and NPC class",
+            "evidence": "Starting inventory carries the original byte through the typed character record."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4238,
+        "historical_path": "include/pso/item/WeaponAttackActions.h",
+        "validated_owners": {
+          "src/pso/weapon/WeaponAttackActions.cpp": "a9eaebfdf9fea639bfacd8a4869a17b4dd84b8b4"
+        },
+        "proofs": [
+          {
+            "group": "Retained native declarations",
+            "evidence": "The native TItemWeapon declaration retains the historical virtual function name and descriptor type at 0x8011E5C4."
+          }
+        ],
+        "status": "Complete fork weapon effect declaration or virtual slot retained"
+      },
+      {
+        "row": 4251,
+        "historical_path": "src/pso/misc/TPlayerFootStamp_802B01D8.cpp",
+        "validated_owners": {
+          "src/pso/player/TPlayerFootStamp.cpp": "827379453e7a4b8cf825f4128c1f351ee6d458a1"
+        },
+        "proofs": [
+          {
+            "group": "Camera",
+            "evidence": "The original camera position is stored as Vec and this owner uses the typed position or component at the original offset."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4409,
+        "historical_path": "src/pso/misc/TPlayerFootStamp.cpp",
+        "validated_owners": {
+          "src/pso/player/TPlayerFootStamp.cpp": "827379453e7a4b8cf825f4128c1f351ee6d458a1"
+        },
+        "proofs": [
+          {
+            "group": "Camera",
+            "evidence": "The original camera position is stored as Vec and this owner uses the typed position or component at the original offset."
+          },
+          {
+            "group": "Player and NPC class",
+            "evidence": "Footstep action selection uses the original player class byte."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4476,
+        "historical_path": "src/pso/unk/text_80071B30.cpp",
+        "validated_owners": {
+          "src/pso/unk/text_80071B30.cpp": "d93105e139c804cbd744c6161c9c2a36be9f20a9"
+        },
+        "proofs": [
+          {
+            "group": "Player and NPC class",
+            "evidence": "NPC template setup sends its original signed class byte to the typed NPC method."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4493,
+        "historical_path": "src/pso/unk/text_802C3AC0.cpp",
+        "validated_owners": {
+          "src/pso/unk/text_802C3AC0.cpp": "e8c411fad7ef72e7bc3fe320ad6844e60da0ce3a"
+        },
+        "proofs": [
+          {
+            "group": "Player and NPC class",
+            "evidence": "The inventory initializer passes the original class byte and retains the typed character record."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4516,
+        "historical_path": "src/pso/unk/text_8035AF18.cpp",
+        "validated_owners": {
+          "src/pso/unk/text_8035AF18.cpp": "8d0e5292099910f13da53a59fb726bb59991a808"
+        },
+        "proofs": [
+          {
+            "group": "TObject",
+            "evidence": "The entire historical edit names the native pointer identity check at 0x8003F3C8. The active source uses TObject with 1 original call."
+          }
+        ],
+        "status": "Complete native TObject caller recovered"
+      },
+      {
+        "row": 4896,
+        "historical_path": "src/pso/misc/TCameraCtrl.cpp",
+        "validated_owners": {
+          "src/pso/camera/TCameraCtrl.cpp": "bd6ec96d9513f3f45da8185b0b8630e6fb4e706e"
+        },
+        "proofs": [
+          {
+            "group": "Camera",
+            "evidence": "The original camera position is stored as Vec and this owner uses the typed position or component at the original offset."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4901,
+        "historical_path": "src/pso/misc/TDLGraph.cpp",
+        "validated_owners": {
+          "src/pso/render/TDLGraph.cpp": "a2a976bf24646e47630e631acaa7bd46994531b0"
+        },
+        "proofs": [
+          {
+            "group": "Color lines",
+            "evidence": "Replace local descriptor or prototype with the shared primitive for the previously source-linked draw sites."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4932,
+        "historical_path": "src/pso/effect/TEF_LensFlare.cpp",
+        "validated_owners": {
+          "src/pso/effect/TEF_LensFlare.cpp": "f7279749b583d251dc5f86c465cc315c0d88a6e6"
+        },
+        "proofs": [
+          {
+            "group": "Camera",
+            "evidence": "The original camera position is stored as Vec and this owner uses the typed position or component at the original offset."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4943,
+        "historical_path": "src/pso/unk/text_8007ECF0.cpp",
+        "validated_owners": {
+          "src/pso/render/TDLGraph.cpp": "a2a976bf24646e47630e631acaa7bd46994531b0"
+        },
+        "proofs": [
+          {
+            "group": "Color lines",
+            "evidence": "Replace local descriptor or prototype with the shared primitive for the previously source-linked draw sites."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4959,
+        "historical_path": "src/pso/misc/TParticleCtrl_801D6B3C.cpp",
+        "validated_owners": {
+          "src/pso/effect/particle/TParticleCtrl_801D6B3C.cpp": "7d8478c0a41750c7572a6916a9bf21838a8d3d2c"
+        },
+        "proofs": [
+          {
+            "group": "TObject",
+            "evidence": "The entire historical edit names the native pointer identity check at 0x8003F3C8. The active source uses TObject with 1 original call."
+          }
+        ],
+        "status": "Complete native TObject caller recovered"
+      },
+      {
+        "row": 4962,
+        "historical_path": "src/pso/misc/TCameraCtrl_8006BCD8.cpp",
+        "validated_owners": {
+          "src/pso/camera/TCameraCtrl_8006BCD8.cpp": "e4ecafe405c64f8a257b79cc61e7ffdb138cc2de"
+        },
+        "proofs": [
+          {
+            "group": "Camera",
+            "evidence": "The original camera position is stored as Vec and this owner uses the typed position or component at the original offset."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4971,
+        "historical_path": "include/pso/misc/TDLGraph.h",
+        "validated_owners": {
+          "src/pso/render/TDLGraph.cpp": "a2a976bf24646e47630e631acaa7bd46994531b0"
+        },
+        "proofs": [
+          {
+            "group": "Color lines",
+            "evidence": "Replace local descriptor or prototype with the shared primitive for the previously source-linked draw sites."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4987,
+        "historical_path": "src/pso/misc/TKomorebi.cpp",
+        "validated_owners": {
+          "src/pso/effect/TKomorebi.cpp": "0dcf07d1bef98542cfb4e472488b542c6d9fa67d"
+        },
+        "proofs": [
+          {
+            "group": "Camera",
+            "evidence": "The original camera position is stored as Vec and this owner uses the typed position or component at the original offset."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5533,
+        "historical_path": "src/pso/misc/TWindowCtrlMain.cpp",
+        "validated_owners": {
+          "src/pso/ui/window/TWindowCtrlMain.cpp": "4641645412f2a505f8536db4068fcd2f95a89232"
+        },
+        "proofs": [
+          {
+            "group": "Color lines",
+            "evidence": "One descriptor for gradient panes, fullscreen color and guide lines, all retaining native viewport state."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5534,
+        "historical_path": "src/pso/misc/TWindowCtrlMain_8024C820.cpp",
+        "validated_owners": {
+          "src/pso/ui/window/TWindowCtrlMain.cpp": "4641645412f2a505f8536db4068fcd2f95a89232"
+        },
+        "proofs": [
+          {
+            "group": "Color lines",
+            "evidence": "One descriptor for gradient panes, fullscreen color and guide lines, all retaining native viewport state."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5569,
+        "historical_path": "src/pso/misc/TWindowSimpleStatus.cpp",
+        "validated_owners": {
+          "src/pso/ui/window/TWindowSimpleStatus.cpp": "4625e2a17cf5548dc17b0317fe70b6b76ee80b8d"
+        },
+        "proofs": [
+          {
+            "group": "Color lines",
+            "evidence": "Replace local descriptor or prototype with the shared primitive for the previously source-linked draw sites."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5675,
+        "historical_path": "src/pso/misc/TWindowSubStatusDisp_8026F6DC.cpp",
+        "validated_owners": {
+          "src/pso/ui/window/TWindowSimpleStatus.cpp": "4625e2a17cf5548dc17b0317fe70b6b76ee80b8d"
+        },
+        "proofs": [
+          {
+            "group": "Color lines",
+            "evidence": "Replace local descriptor or prototype with the shared primitive for the previously source-linked draw sites."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5680,
+        "historical_path": "src/pso/misc/TWindowSubQuestBoardSelect.cpp",
+        "validated_owners": {
+          "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp": "28d7a6684adb4473ca2b54112f9d45444dd3ff51"
+        },
+        "proofs": [
+          {
+            "group": "Color lines",
+            "evidence": "Replace local descriptor or prototype with the shared primitive for the previously source-linked draw sites."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5757,
+        "historical_path": "include/pso/misc/TWindowSubComCard_80244774.h",
+        "validated_owners": {
+          "src/pso/ui/window/TWindowSubComCard_80244774.cpp": "5509c964f065e31223f572afba88c2ccf2d40cf7"
+        },
+        "proofs": [
+          {
+            "group": "Color lines",
+            "evidence": "Replace local descriptor or prototype with the shared primitive for the previously source-linked draw sites."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5776,
+        "historical_path": "include/pso/misc/TWindowSubStatusDisp_802671F0.h",
+        "validated_owners": {
+          "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp": "1093ad1ebdfe63275b36f14e482a0fa76b1b94a4"
+        },
+        "proofs": [
+          {
+            "group": "Retained native declarations",
+            "evidence": "The window header changes only rename two functions. The native class owns its setup method at 0x80267E88 and task entry at 0x80268048."
+          }
+        ],
+        "status": "Complete fork menu icon declarations retained at native owner"
+      },
+      {
+        "row": 5829,
+        "historical_path": "src/pso/misc/TWindowSubComCard_80244774.cpp",
+        "validated_owners": {
+          "src/pso/ui/window/TWindowSubComCard_80244774.cpp": "5509c964f065e31223f572afba88c2ccf2d40cf7"
+        },
+        "proofs": [
+          {
+            "group": "Color lines",
+            "evidence": "Replace local descriptor or prototype with the shared primitive for the previously source-linked draw sites."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5846,
+        "historical_path": "include/pso/misc/TWindowCtrlMain.h",
+        "validated_owners": {
+          "src/pso/ui/window/TWindowCtrlMain.cpp": "4641645412f2a505f8536db4068fcd2f95a89232"
+        },
+        "proofs": [
+          {
+            "group": "Color lines",
+            "evidence": "One descriptor for gradient panes, fullscreen color and guide lines, all retaining native viewport state."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6012,
+        "historical_path": "src/pso/unk/text_800F7DAC.cpp",
+        "validated_owners": {
+          "src/pso/unk/text_800F7DAC.cpp": "ef25def9210b3438abb7c7d4205690c83699d309"
+        },
+        "proofs": [
+          {
+            "group": "Color lines",
+            "evidence": "Replace local descriptor or prototype with the shared primitive for the previously source-linked draw sites."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6060,
+        "historical_path": "src/pso/misc/TLobby_80291D94.cpp",
+        "validated_owners": {
+          "src/pso/unk/TLobby_80291D94.cpp": "ad8b81fac3ef0d0c291ef1173ad30507076d7ee9"
+        },
+        "proofs": [
+          {
+            "group": "Player and NPC class",
+            "evidence": "Lobby NPC character setup uses the original signed class field."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6512,
+        "historical_path": "src/pso/object/TObjFish.cpp",
+        "validated_owners": {
+          "src/pso/object/ambient/TObjFish.cpp": "2493a911e8dfc3a2072bc4d8e24145c6eac11b40"
+        },
+        "proofs": [
+          {
+            "group": "Camera",
+            "evidence": "The original camera position is stored as Vec and this owner uses the typed position or component at the original offset."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6574,
+        "historical_path": "src/pso/unk/text_8018FA6C.cpp",
+        "validated_owners": {
+          "src/pso/object/door/TObjDoorKey.cpp": "381abae5a2db9d623f2c37a6934a60ae282c4585"
+        },
+        "proofs": [
+          {
+            "group": "TObject",
+            "evidence": "The entire historical edit names the native pointer identity check at 0x8003F3C8. The active source uses TObject with 1 original call."
+          }
+        ],
+        "status": "Complete native TObject caller recovered"
+      },
+      {
+        "row": 6726,
+        "historical_path": "src/pso/object/TObjHashi.cpp",
+        "validated_owners": {
+          "src/pso/object/TObjHashi.cpp": "33fc73db2e7607541a798226da38f6af4298b802"
+        },
+        "proofs": [
+          {
+            "group": "Camera",
+            "evidence": "The original camera position is stored as Vec and this owner uses the typed position or component at the original offset."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6736,
+        "historical_path": "src/pso/object/TObjTombstone.cpp",
+        "validated_owners": {
+          "src/pso/object/TObjTombstone.cpp": "c89ec0d03c2075a89614761ecfdb684476688d13"
+        },
+        "proofs": [
+          {
+            "group": "Camera",
+            "evidence": "The original camera position is stored as Vec and this owner uses the typed position or component at the original offset."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6759,
+        "historical_path": "src/pso/unk/text_80365348.cpp",
+        "validated_owners": {
+          "src/pso/object/lab/TObjLaboDesignBase.cpp": "2af49eb235c460f8909921ae56254f40676fa317"
+        },
+        "proofs": [
+          {
+            "group": "Camera",
+            "evidence": "The original camera position is stored as Vec and this owner uses the typed position or component at the original offset."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6798,
+        "historical_path": "src/pso/misc/TQuestColCtrl_80195CF0.cpp",
+        "validated_owners": {
+          "src/pso/object/quest/TObjQuestCol.cpp": "a5307b12ef6b78a0faddfc03b7615bc991294473"
+        },
+        "proofs": [
+          {
+            "group": "TObject",
+            "evidence": "The entire historical edit names the native pointer identity check at 0x8003F3C8. The active source uses TObject with 12 original calls."
+          }
+        ],
+        "status": "Complete native TObject caller recovered"
+      },
+      {
+        "row": 6848,
+        "historical_path": "src/pso/object/TObjCityMainWarpChallenge.cpp",
+        "validated_owners": {
+          "src/pso/object/warp/TObjCityMainWarpChallenge.cpp": "8956f559887c7d72b6d8b552c126e7e3899e9c24"
+        },
+        "proofs": [
+          {
+            "group": "Camera",
+            "evidence": "The original camera position is stored as Vec and this owner uses the typed position or component at the original offset."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6894,
+        "historical_path": "src/pso/misc/TMotorcycle.cpp",
+        "validated_owners": {
+          "src/pso/object/TMotorcycle.cpp": "05ba117c49c2b9c345faba927ed7c4193c70c406"
+        },
+        "proofs": [
+          {
+            "group": "Camera",
+            "evidence": "The original camera position is stored as Vec and this owner uses the typed position or component at the original offset."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6906,
+        "historical_path": "src/pso/object/TObjLazerFence4.cpp",
+        "validated_owners": {
+          "src/pso/object/fence/TObjLazerFence4.cpp": "99b8ae8ae4a6b8fd5f38d052b0c887dbb4338a64"
+        },
+        "proofs": [
+          {
+            "group": "Camera",
+            "evidence": "The original camera position is stored as Vec and this owner uses the typed position or component at the original offset."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6924,
+        "historical_path": "src/pso/misc/TODoorJungleMain.cpp",
+        "validated_owners": {
+          "src/pso/object/door/TODoorJungleMain.cpp": "d6f9efe2bbd5781db9f198fe97afdfc5e44ec21e"
+        },
+        "proofs": [
+          {
+            "group": "Camera",
+            "evidence": "The original camera position is stored as Vec and this owner uses the typed position or component at the original offset."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6984,
+        "historical_path": "src/pso/misc/TNpcPlayer_802C3CD0.cpp",
+        "validated_owners": {
+          "src/pso/npc/TNpcPlayer_802C3CD0.cpp": "7993b6030cba930ebec3a6d317f6a2a565ba0176"
+        },
+        "proofs": [
+          {
+            "group": "Player and NPC class",
+            "evidence": "The native NPC method passes the signed class byte through to stat setup."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6992,
+        "historical_path": "src/pso/object/TObjDoor_8018E358.cpp",
+        "validated_owners": {
+          "src/pso/object/door/TObjDoor_8018E358.cpp": "869d5b0cc795e13ebe4c659ef2a8eaf81a3e5b73"
+        },
+        "proofs": [
+          {
+            "group": "Camera",
+            "evidence": "The original camera position is stored as Vec and this owner uses the typed position or component at the original offset."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6998,
+        "historical_path": "src/pso/misc/TOComputerMachine01.cpp",
+        "validated_owners": {
+          "src/pso/object/mine/TOComputerMachine01.cpp": "7cb3a0128cfa2be5d09d4b12e0a4183aac3fcad9"
+        },
+        "proofs": [
+          {
+            "group": "Camera",
+            "evidence": "The original camera position is stored as Vec and this owner uses the typed position or component at the original offset."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7010,
+        "historical_path": "src/pso/item/TObjContainerIdo_8018BEE4.cpp",
+        "validated_owners": {
+          "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp": "04ac1991f0a93637055043c25a76fa80af6c1804"
+        },
+        "proofs": [
+          {
+            "group": "Camera",
+            "evidence": "The original camera position is stored as Vec and this owner uses the typed position or component at the original offset."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7103,
+        "historical_path": "src/pso/object/TObjMistCtrl.cpp",
+        "validated_owners": {
+          "src/pso/object/ambient/TObjMistCtrl.cpp": "411ea57df24590ac8123c39771f060f640840c33"
+        },
+        "proofs": [
+          {
+            "group": "Camera",
+            "evidence": "The original camera position is stored as Vec and this owner uses the typed position or component at the original offset."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7104,
+        "historical_path": "src/pso/misc/TOHangceilingCave01.cpp",
+        "validated_owners": {
+          "src/pso/object/cave/TOHangceilingCave01.cpp": "625f3b037e1a6e9056be088e85222596a3f5f5e0"
+        },
+        "proofs": [
+          {
+            "group": "Camera",
+            "evidence": "The original camera position is stored as Vec and this owner uses the typed position or component at the original offset."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7137,
+        "historical_path": "src/pso/object/TObjLaboDesignBase.cpp",
+        "validated_owners": {
+          "src/pso/object/lab/TObjLaboDesignBase.cpp": "2af49eb235c460f8909921ae56254f40676fa317"
+        },
+        "proofs": [
+          {
+            "group": "Camera",
+            "evidence": "The original camera position is stored as Vec and this owner uses the typed position or component at the original offset."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7157,
+        "historical_path": "src/pso/object/TObjOnlineEndingHexLine.cpp",
+        "validated_owners": {
+          "src/pso/object/ending/TObjOnlineEndingHexLine.cpp": "adc76463154bbbf74076ba264e6af61bfe4193f7"
+        },
+        "proofs": [
+          {
+            "group": "Color lines",
+            "evidence": "Use the shared line list and typed x/y output for each rotated path point."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7213,
+        "historical_path": "src/pso/object/TObjWarpBossMulti.cpp",
+        "validated_owners": {
+          "src/pso/object/warp/TObjWarpBossMulti.cpp": "1c5693428578d6050d1a09e312769fdd9034bd45"
+        },
+        "proofs": [
+          {
+            "group": "Camera",
+            "evidence": "The original camera position is stored as Vec and this owner uses the typed position or component at the original offset."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7240,
+        "historical_path": "include/pso/misc/TNpcPlayer.h",
+        "validated_owners": {
+          "include/pso/npc/TNpcPlayer.h": "8c9669d3427f5f8830b209decaf18f798f1bf171"
+        },
+        "proofs": [
+          {
+            "group": "Player and NPC class",
+            "evidence": "NPC registration retains the typed inventory and character pointers and gains the original signed class argument."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7253,
+        "historical_path": "src/pso/misc/TDeadSpot.cpp",
+        "validated_owners": {
+          "src/pso/object/TDeadSpot.cpp": "e185ea0408fbd6e8cf7dc2c7a35d57909c5dcbf6"
+        },
+        "proofs": [
+          {
+            "group": "Camera",
+            "evidence": "The original camera position is stored as Vec and this owner uses the typed position or component at the original offset."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7263,
+        "historical_path": "src/pso/system/TSetEvtDestroy.cpp",
+        "validated_owners": {
+          "src/pso/map/TSetEvtDestroy.cpp": "ce402c40903de8529c69da8bff9b4d6cd2dd0634"
+        },
+        "proofs": [
+          {
+            "group": "TObject",
+            "evidence": "The entire historical edit names the native pointer identity check at 0x8003F3C8. The active source uses TObject with 1 original call."
+          }
+        ],
+        "status": "Complete native TObject caller recovered"
+      },
+      {
+        "row": 7265,
+        "historical_path": "src/pso/object/CitySeason.cpp",
+        "validated_owners": {
+          "src/pso/object/city/CitySeason.cpp": "72d44843cf015b446170d67b48e81fd12735fa0b"
+        },
+        "proofs": [
+          {
+            "group": "Camera",
+            "evidence": "The original camera position is stored as Vec and this owner uses the typed position or component at the original offset."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7277,
+        "historical_path": "src/pso/misc/TNpcPlayer.cpp",
+        "validated_owners": {
+          "src/pso/npc/TNpcPlayer.cpp": "fee40eec047b965320fa333afc17d436b0045ff2"
+        },
+        "proofs": [
+          {
+            "group": "Player and NPC class",
+            "evidence": "Both NPC template switches pass the original class byte directly."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7279,
+        "historical_path": "src/pso/object/TObjLight_80235C44.cpp",
+        "validated_owners": {
+          "src/pso/object/ambient/TObjLight_80235C44.cpp": "54989318a6f461a0253dca8ed0281dbd2fb2fadc"
+        },
+        "proofs": [
+          {
+            "group": "Camera",
+            "evidence": "The original camera position is stored as Vec and this owner uses the typed position or component at the original offset."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      }
+    ],
+    "closed_rows": [
+      444,
+      477,
+      777,
+      1054,
+      3510,
+      3512,
+      3916,
+      3958,
+      4238,
+      4516,
+      4959,
+      5776,
+      6574,
+      6798,
+      7263
+    ],
+    "pending_counts": {
+      "Owner comparison required": 889,
+      "Some anchored text changes found": 1006
+    },
+    "camera": {
+      "commit": "e517922d43181a33112954c5421cbf8d028a7536",
+      "parent": "5d585c5540df0edf2fa65657f08fe875a7a2e5a0",
+      "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+      "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "primary_donor": "6394074936df7d8c7898e87afe09a7342d14c2ba",
+      "source_paths": 33,
+      "historical_typed_paths": 13,
+      "source_subscope": "TCameraCtrl position Vec at 0x178, subsequent look-at field at 0x184, existing object size 0x1D4. Environment, object visibility and projection callers share the typed position. Player footprint/font/enemy and fish draw edits implement only the same required camera field binding.",
+      "preexisting_equivalences": [
+        {
+          "donor": "f5a6c4936c",
+          "path": "include/pso/unk/TUnk_80488B68.h",
+          "evidence": "Native scripted camera owns position, target, angles, motion and playback fields with precise offsets."
+        },
+        {
+          "donor": "8e89370852",
+          "path": "src/pso/object/container/TObjContainerJung.cpp",
+          "evidence": "Native BML descriptors and resource/model owner data already exist."
+        },
+        {
+          "donor": "690e4f79ae",
+          "path": "include/pso/object/cave/CaveSignRender.h",
+          "evidence": "Cave sign classes already use the shared model renderer."
+        }
+      ],
+      "validation": {
+        "dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+        "strict_parent": "PASS",
+        "strict_upstream": "PASS",
+        "historical_delta": "identical to exact parent against original fork report with same comparison tool"
+      },
+      "recovery": [
+        {
+          "path": "include/pso/camera/TCameraCtrl.h",
+          "evidence": "historic Vec position storage or direct typed caller",
+          "historical_path": "include/pso/misc/TCameraCtrl.h",
+          "indexed_rows": [
+            {
+              "row": 5005,
+              "historic_path": "include/pso/misc/TCameraCtrl.h",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/boss/darkfalz/TBoss4ZakoDraw.cpp",
+          "evidence": "historic Vec position storage or direct typed caller",
+          "historical_path": "src/pso/boss/TBoss4ZakoDraw.cpp",
+          "indexed_rows": [
+            {
+              "row": 388,
+              "historic_path": "include/pso/boss/TBoss4ZakoDraw_8030AD38.h",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 512,
+              "historic_path": "src/pso/boss/TBoss4ZakoDraw.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 513,
+              "historic_path": "src/pso/boss/TBoss4ZakoDraw_8030AD38.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 719,
+              "historic_path": "include/pso/TBoss4ZakoDraw.h",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/camera/CameraDistanceFade.cpp",
+          "evidence": "shared camera Vec caller closure at existing retail position offset",
+          "historical_path": null,
+          "indexed_rows": [
+            {
+              "row": 5051,
+              "historic_path": "include/pso/misc/CameraDistanceFade.h",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 5142,
+              "historic_path": "src/pso/misc/CameraDistanceFade.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/camera/TCameraCtrl.cpp",
+          "evidence": "historic Vec position storage or direct typed caller",
+          "historical_path": "src/pso/misc/TCameraCtrl.cpp",
+          "indexed_rows": [
+            {
+              "row": 4896,
+              "historic_path": "src/pso/misc/TCameraCtrl.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 5005,
+              "historic_path": "include/pso/misc/TCameraCtrl.h",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/camera/TCameraCtrl_8006BCD8.cpp",
+          "evidence": "shared camera Vec caller closure at existing retail position offset",
+          "historical_path": null,
+          "indexed_rows": [
+            {
+              "row": 4962,
+              "historic_path": "src/pso/misc/TCameraCtrl_8006BCD8.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/effect/TEF_LensFlare.cpp",
+          "evidence": "historic Vec position storage or direct typed caller",
+          "historical_path": "src/pso/effect/TEF_LensFlare.cpp",
+          "indexed_rows": [
+            {
+              "row": 4922,
+              "historic_path": "include/pso/effect/TEF_LensFlare.h",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 4932,
+              "historic_path": "src/pso/effect/TEF_LensFlare.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/effect/TKomorebi.cpp",
+          "evidence": "shared camera Vec caller closure at existing retail position offset",
+          "historical_path": null,
+          "indexed_rows": [
+            {
+              "row": 4987,
+              "historic_path": "src/pso/misc/TKomorebi.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 5008,
+              "historic_path": "include/pso/misc/TKomorebi.h",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/enemy/mericarol/TObjEneBm9Mericarol_EffCurse3.cpp",
+          "evidence": "shared camera Vec caller closure at existing retail position offset",
+          "historical_path": null,
+          "indexed_rows": [
+            {
+              "row": 741,
+              "historic_path": "src/pso/enemy/TObjEneBm9Mericarol_EffCurse3.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 766,
+              "historic_path": "include/pso/enemy/TObjEneBm9Mericarol_EffCurse3.h",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/object/TDeadSpot.cpp",
+          "evidence": "shared camera Vec caller closure at existing retail position offset",
+          "historical_path": null,
+          "indexed_rows": [
+            {
+              "row": 7181,
+              "historic_path": "include/pso/misc/TDeadSpot.h",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 7253,
+              "historic_path": "src/pso/misc/TDeadSpot.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/object/TMotorcycle.cpp",
+          "evidence": "shared camera Vec caller closure at existing retail position offset",
+          "historical_path": null,
+          "indexed_rows": [
+            {
+              "row": 6894,
+              "historic_path": "src/pso/misc/TMotorcycle.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 7214,
+              "historic_path": "include/pso/misc/TMotorcycle.h",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/object/TObjHashi.cpp",
+          "evidence": "historic Vec position storage or direct typed caller",
+          "historical_path": "src/pso/object/TObjHashi.cpp",
+          "indexed_rows": [
+            {
+              "row": 6726,
+              "historic_path": "src/pso/object/TObjHashi.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/object/TObjParticle.cpp",
+          "evidence": "historic Vec position storage or direct typed caller",
+          "historical_path": "src/pso/object/TObjParticle.cpp",
+          "indexed_rows": [
+            {
+              "row": 6640,
+              "historic_path": "include/pso/object/TObjParticle.h",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 6731,
+              "historic_path": "src/pso/object/TObjParticle.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/object/TObjTombstone.cpp",
+          "evidence": "historic Vec position storage or direct typed caller",
+          "historical_path": "src/pso/object/TObjTombstone.cpp",
+          "indexed_rows": [
+            {
+              "row": 6644,
+              "historic_path": "include/pso/object/TObjTombstone.h",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 6736,
+              "historic_path": "src/pso/object/TObjTombstone.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/object/ambient/TObjEnvSoundGlobal.cpp",
+          "evidence": "shared camera Vec caller closure at existing retail position offset",
+          "historical_path": null,
+          "indexed_rows": [
+            {
+              "row": 7009,
+              "historic_path": "src/pso/object/TObjEnvSoundGlobal.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 7094,
+              "historic_path": "include/pso/object/TObjEnvSoundGlobal.h",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/object/ambient/TObjFish.cpp",
+          "evidence": "historic Vec position storage or direct typed caller",
+          "historical_path": "src/pso/object/TObjFish.cpp",
+          "indexed_rows": [
+            {
+              "row": 6512,
+              "historic_path": "src/pso/object/TObjFish.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/object/ambient/TObjLight.cpp",
+          "evidence": "shared camera Vec caller closure at existing retail position offset",
+          "historical_path": null,
+          "indexed_rows": [
+            {
+              "row": 7242,
+              "historic_path": "include/pso/object/TObjLight.h",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 7271,
+              "historic_path": "src/pso/object/TObjLight.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/object/ambient/TObjLight_80235C44.cpp",
+          "evidence": "shared camera Vec caller closure at existing retail position offset",
+          "historical_path": null,
+          "indexed_rows": [
+            {
+              "row": 7279,
+              "historic_path": "src/pso/object/TObjLight_80235C44.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/object/ambient/TObjMistCtrl.cpp",
+          "evidence": "shared camera Vec caller closure at existing retail position offset",
+          "historical_path": null,
+          "indexed_rows": [
+            {
+              "row": 6941,
+              "historic_path": "include/pso/object/TObjMistCtrl.h",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 7103,
+              "historic_path": "src/pso/object/TObjMistCtrl.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 7118,
+              "historic_path": "src/pso/unk/text_802AF64C.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/object/ambient/TObjRain.cpp",
+          "evidence": "historic Vec position storage or direct typed caller",
+          "historical_path": "src/pso/object/TObjRain.cpp",
+          "indexed_rows": [
+            {
+              "row": 6526,
+              "historic_path": "src/pso/object/TObjRain.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/object/cave/TOHangceilingCave01.cpp",
+          "evidence": "shared camera Vec caller closure at existing retail position offset",
+          "historical_path": null,
+          "indexed_rows": [
+            {
+              "row": 7104,
+              "historic_path": "src/pso/misc/TOHangceilingCave01.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 7182,
+              "historic_path": "include/pso/misc/TOHangceilingCave01.h",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/object/city/CitySeason.cpp",
+          "evidence": "shared camera Vec caller closure at existing retail position offset",
+          "historical_path": null,
+          "indexed_rows": [
+            {
+              "row": 7261,
+              "historic_path": "include/pso/object/CitySeason.h",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 7265,
+              "historic_path": "src/pso/object/CitySeason.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp",
+          "evidence": "shared camera Vec caller closure at existing retail position offset",
+          "historical_path": null,
+          "indexed_rows": [
+            {
+              "row": 7010,
+              "historic_path": "src/pso/item/TObjContainerIdo_8018BEE4.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/object/door/TODoorJungleMain.cpp",
+          "evidence": "shared camera Vec caller closure at existing retail position offset",
+          "historical_path": null,
+          "indexed_rows": [
+            {
+              "row": 6853,
+              "historic_path": "include/pso/misc/TODoorJungleMain.h",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 6924,
+              "historic_path": "src/pso/misc/TODoorJungleMain.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/object/door/TObjDoor_8018E358.cpp",
+          "evidence": "shared camera Vec caller closure at existing retail position offset",
+          "historical_path": null,
+          "indexed_rows": [
+            {
+              "row": 6992,
+              "historic_path": "src/pso/object/TObjDoor_8018E358.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/object/fence/TObjLazerFence4.cpp",
+          "evidence": "shared camera Vec caller closure at existing retail position offset",
+          "historical_path": null,
+          "indexed_rows": [
+            {
+              "row": 6906,
+              "historic_path": "src/pso/object/TObjLazerFence4.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 7061,
+              "historic_path": "include/pso/object/TObjLazerFence4.h",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/object/lab/TObjLaboDesignBase.cpp",
+          "evidence": "shared camera Vec caller closure at existing retail position offset",
+          "historical_path": null,
+          "indexed_rows": [
+            {
+              "row": 6667,
+              "historic_path": "include/pso/unk/text_80365348.h",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 6759,
+              "historic_path": "src/pso/unk/text_80365348.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 6911,
+              "historic_path": "include/pso/object/TObjLaboDesignBase.h",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 7137,
+              "historic_path": "src/pso/object/TObjLaboDesignBase.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/object/mine/TOComputerMachine01.cpp",
+          "evidence": "historic Vec position storage or direct typed caller",
+          "historical_path": "src/pso/misc/TOComputerMachine01.cpp",
+          "indexed_rows": [
+            {
+              "row": 6998,
+              "historic_path": "src/pso/misc/TOComputerMachine01.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 7189,
+              "historic_path": "include/pso/misc/TOComputerMachine01.h",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/object/switch/TOSwitchAttackSub.cpp",
+          "evidence": "shared camera Vec caller closure at existing retail position offset",
+          "historical_path": null,
+          "indexed_rows": [
+            {
+              "row": 7099,
+              "historic_path": "include/pso/TOSwitchAttackSub.h",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 7224,
+              "historic_path": "src/pso/system/TOSwitchAttackSub.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/object/warp/TObjCityMainWarpChallenge.cpp",
+          "evidence": "shared camera Vec caller closure at existing retail position offset",
+          "historical_path": null,
+          "indexed_rows": [
+            {
+              "row": 6848,
+              "historic_path": "src/pso/object/TObjCityMainWarpChallenge.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 7044,
+              "historic_path": "include/pso/object/TObjCityMainWarpChallenge.h",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/object/warp/TObjWarpBossMulti.cpp",
+          "evidence": "shared camera Vec caller closure at existing retail position offset",
+          "historical_path": null,
+          "indexed_rows": [
+            {
+              "row": 7115,
+              "historic_path": "include/pso/object/TObjWarpBossMulti.h",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 7213,
+              "historic_path": "src/pso/object/TObjWarpBossMulti.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/player/TPlayerFootStamp.cpp",
+          "evidence": "historic Vec position storage or direct typed caller",
+          "historical_path": "src/pso/misc/TPlayerFootStamp.cpp",
+          "indexed_rows": [
+            {
+              "row": 3347,
+              "historic_path": "include/pso/misc/TPlayerFootStamp_802B01D8.h",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 4220,
+              "historic_path": "include/pso/TPlayerFootStamp.h",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 4251,
+              "historic_path": "src/pso/misc/TPlayerFootStamp_802B01D8.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 4409,
+              "historic_path": "src/pso/misc/TPlayerFootStamp.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/ui/font/TFontSmallHelp.cpp",
+          "evidence": "historic Vec position storage or direct typed caller",
+          "historical_path": "src/pso/misc/TWindowSubStatusDisp_800FC3E0.cpp",
+          "indexed_rows": [
+            {
+              "row": 2665,
+              "historic_path": "include/pso/TFontSmallHelp.h",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 2669,
+              "historic_path": "src/pso/misc/TFontSmallHelp.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/unk/TLobby_802409AC.cpp",
+          "evidence": "historic Vec position storage or direct typed caller",
+          "historical_path": "src/pso/misc/TLobby_802409AC.cpp",
+          "indexed_rows": [
+            {
+              "row": 39,
+              "historic_path": "src/pso/misc/TLobby_802409AC.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 1485,
+              "historic_path": "include/pso/misc/TLobby_80242910.h",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 1554,
+              "historic_path": "src/pso/misc/TLobby_80242910.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            },
+            {
+              "row": 5647,
+              "historic_path": "src/pso/misc/TWindowSubStatusDisp_80242908.cpp",
+              "affected_subscope": "camera position ABI or a receiver of its coordinates",
+              "other_historical_edits_in_row": "unassessed here"
+            }
+          ]
+        }
+      ]
+    },
+    "color_lines": {
+      "parent": "5d585c5540df0edf2fa65657f08fe875a7a2e5a0",
+      "head": "b632ab3814bc099c493c4241a3b746869396d9f2",
+      "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+      "donor_commits": [
+        "40c5126b1d",
+        "4921e20b64"
+      ],
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "linked_units": 2447,
+      "matched_functions": 27572,
+      "shared_symbol_locations": {
+        "draw_color_lines": "draw_color_lines = .text:0x801E3330; // type:function size:0xEC",
+        "draw_tri_fan_2d__13ColorLineListFllf": "draw_tri_fan_2d__13ColorLineListFllf = .text:0x801E35C4; // type:function size:0x1C0",
+        "draw_strip_swap_color__13ColorLineListFllf": "draw_strip_swap_color__13ColorLineListFllf = .text:0x801E352C; // type:function size:0x98",
+        "empty_warp_overlay_zero_vec": "empty_warp_overlay_zero_vec = .rodata:0x804709D0; // type:object size:0x10",
+        "empty_warp_overlay_vertices": "empty_warp_overlay_vertices = .data:0x804DE840; // type:object size:0x20",
+        "lbl_804DBD08": "lbl_804DBD08 = .data:0x804DBD08; // type:object size:0x10",
+        "lbl_804DBD18": "lbl_804DBD18 = .data:0x804DBD18; // type:object size:0x10"
+      },
+      "entries": [
+        {
+          "current_owner": "include/pso/render/ColorLineList.h",
+          "drawer_calls": {
+            "draw_color_lines": 1,
+            "draw_tri_fan_2d": 1,
+            "draw_strip_swap_color": 1
+          },
+          "fork_row_candidates": [
+            {
+              "row": 4882,
+              "path": "include/pso/render/ColorLineList.h"
+            }
+          ],
+          "historical_commit_paths": {
+            "40c5126b1d": [
+              "include/pso/render/ColorLineList.h"
+            ]
+          },
+          "settled_scope": "Shared 0x10 descriptor and draw_color_lines signature. Compile-time checks identify the vertex, color and count offsets.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "include/pso/unk/TLobby_801E2F94.h",
+          "drawer_calls": {
+            "draw_color_lines": 0,
+            "draw_tri_fan_2d": 0,
+            "draw_strip_swap_color": 0
+          },
+          "fork_row_candidates": [
+            {
+              "row": 2744,
+              "path": "include/pso/misc/TLobby_801E2F94.h"
+            }
+          ],
+          "historical_commit_paths": {
+            "40c5126b1d": [
+              "include/pso/misc/TLobby_801E2F94.h"
+            ],
+            "4921e20b64": [
+              "include/pso/misc/TLobby_801E2F94.h"
+            ]
+          },
+          "settled_scope": "The original drawing unit still sees the same C declaration through the primitive header.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/boss/darkfalz/TBoss4Fade.cpp",
+          "drawer_calls": {
+            "draw_color_lines": 0,
+            "draw_tri_fan_2d": 0,
+            "draw_strip_swap_color": 1
+          },
+          "fork_row_candidates": [
+            {
+              "row": 350,
+              "path": "include/pso/TBoss4Fade.h"
+            },
+            {
+              "row": 383,
+              "path": "include/pso/boss/TBoss4Fade.h"
+            },
+            {
+              "row": 798,
+              "path": "src/pso/unk/text_803594EC.cpp"
+            }
+          ],
+          "historical_commit_paths": {
+            "4921e20b64": [
+              "src/pso/unk/text_803594EC.cpp"
+            ]
+          },
+          "settled_scope": "Use the shared descriptor over the four packed fullscreen fade colors, preserving allocation as one local record.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/boss/olgaflow/TBoss6EmptyWarp_802B0E2C.cpp",
+          "drawer_calls": {
+            "draw_color_lines": 0,
+            "draw_tri_fan_2d": 0,
+            "draw_strip_swap_color": 1
+          },
+          "fork_row_candidates": [
+            {
+              "row": 763,
+              "path": "src/pso/boss/TBoss6EmptyWarp_802B0E2C.cpp"
+            }
+          ],
+          "historical_commit_paths": {
+            "4921e20b64": [
+              "src/pso/boss/TBoss6EmptyWarp_802B0E2C.cpp"
+            ]
+          },
+          "settled_scope": "Mutable packed colors and typed vertices restore the historical exact overlay. Four zero color words remain at 0x804709D0 and four vertex pairs at 0x804DE840.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/object/ending/TObjOnlineEndingHexLine.cpp",
+          "drawer_calls": {
+            "draw_color_lines": 1,
+            "draw_tri_fan_2d": 0,
+            "draw_strip_swap_color": 0
+          },
+          "fork_row_candidates": [
+            {
+              "row": 6823,
+              "path": "include/pso/TObjOnlineEndingHexLine.h"
+            },
+            {
+              "row": 7157,
+              "path": "src/pso/object/TObjOnlineEndingHexLine.cpp"
+            }
+          ],
+          "historical_commit_paths": {},
+          "settled_scope": "Use the shared line list and typed x/y output for each rotated path point.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/render/TDLGraph.cpp",
+          "drawer_calls": {
+            "draw_color_lines": 0,
+            "draw_tri_fan_2d": 3,
+            "draw_strip_swap_color": 0
+          },
+          "fork_row_candidates": [
+            {
+              "row": 4901,
+              "path": "src/pso/misc/TDLGraph.cpp"
+            },
+            {
+              "row": 4943,
+              "path": "src/pso/unk/text_8007ECF0.cpp"
+            },
+            {
+              "row": 4971,
+              "path": "include/pso/misc/TDLGraph.h"
+            }
+          ],
+          "historical_commit_paths": {
+            "40c5126b1d": [
+              "src/pso/unk/text_8007ECF0.cpp"
+            ]
+          },
+          "settled_scope": "Replace local descriptor or prototype with the shared primitive for the previously source-linked draw sites.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/charcreate/TObjCMName.cpp",
+          "drawer_calls": {
+            "draw_color_lines": 0,
+            "draw_tri_fan_2d": 2,
+            "draw_strip_swap_color": 4
+          },
+          "fork_row_candidates": [
+            {
+              "row": 2397,
+              "path": "src/pso/object/TObjCMName.cpp"
+            },
+            {
+              "row": 2469,
+              "path": "include/pso/TObjCMName.h"
+            }
+          ],
+          "historical_commit_paths": {
+            "40c5126b1d": [
+              "src/pso/object/TObjCMName.cpp"
+            ],
+            "4921e20b64": [
+              "src/pso/object/TObjCMName.cpp"
+            ]
+          },
+          "settled_scope": "Use the same descriptor for the generated footer gradient and both proportion guides; the two static guide records keep their layout and original addresses.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/frontend/TAdBackGC_8029A6EC.cpp",
+          "drawer_calls": {
+            "draw_color_lines": 0,
+            "draw_tri_fan_2d": 1,
+            "draw_strip_swap_color": 0
+          },
+          "fork_row_candidates": [
+            {
+              "row": 2317,
+              "path": "src/pso/unk/text_8029A6EC.cpp"
+            }
+          ],
+          "historical_commit_paths": {
+            "40c5126b1d": [
+              "src/pso/unk/text_8029A6EC.cpp"
+            ]
+          },
+          "settled_scope": "Replace local descriptor or prototype with the shared primitive for the previously source-linked draw sites.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/frontend/TAdChrMoveEffectGC.cpp",
+          "drawer_calls": {
+            "draw_color_lines": 0,
+            "draw_tri_fan_2d": 1,
+            "draw_strip_swap_color": 0
+          },
+          "fork_row_candidates": [
+            {
+              "row": 2510,
+              "path": "include/pso/ui/TAdChrMoveEffectGC.h"
+            },
+            {
+              "row": 2526,
+              "path": "src/pso/ui/TAdChrMoveEffectGC.cpp"
+            }
+          ],
+          "historical_commit_paths": {
+            "40c5126b1d": [
+              "src/pso/ui/TAdChrMoveEffectGC.cpp"
+            ]
+          },
+          "settled_scope": "Keep the four packed colors in the window primitive and write the original alpha byte of each vertex color before drawing.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/frontend/TAdDialingGC.cpp",
+          "drawer_calls": {
+            "draw_color_lines": 0,
+            "draw_tri_fan_2d": 1,
+            "draw_strip_swap_color": 0
+          },
+          "fork_row_candidates": [
+            {
+              "row": 2280,
+              "path": "src/pso/ui/TAdDialingGC.cpp"
+            },
+            {
+              "row": 2281,
+              "path": "src/pso/ui/TAdDialingGC_80328B20.cpp"
+            },
+            {
+              "row": 2563,
+              "path": "include/pso/ui/TAdDialingGC.h"
+            }
+          ],
+          "historical_commit_paths": {
+            "40c5126b1d": [
+              "src/pso/ui/TAdDialingGC_80328B20.cpp"
+            ]
+          },
+          "settled_scope": "Replace local descriptor or prototype with the shared primitive for the previously source-linked draw sites.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/frontend/TAdFadeGC.cpp",
+          "drawer_calls": {
+            "draw_color_lines": 1,
+            "draw_tri_fan_2d": 1,
+            "draw_strip_swap_color": 0
+          },
+          "fork_row_candidates": [
+            {
+              "row": 2659,
+              "path": "src/pso/ui/TAdFadeGC.cpp"
+            }
+          ],
+          "historical_commit_paths": {
+            "40c5126b1d": [
+              "src/pso/ui/TAdFadeGC.cpp"
+            ]
+          },
+          "settled_scope": "Replace local descriptor or prototype with the shared primitive for the previously source-linked draw sites.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/frontend/TAdPlyChrSelPlateGC.cpp",
+          "drawer_calls": {
+            "draw_color_lines": 0,
+            "draw_tri_fan_2d": 1,
+            "draw_strip_swap_color": 0
+          },
+          "fork_row_candidates": [
+            {
+              "row": 2109,
+              "path": "include/pso/TAdPlyChrSelPlateGC.h"
+            },
+            {
+              "row": 2561,
+              "path": "src/pso/menu/TAdPlyChrSelPlateGC.cpp"
+            }
+          ],
+          "historical_commit_paths": {},
+          "settled_scope": "Replace local descriptor or prototype with the shared primitive for the previously source-linked draw sites.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+          "drawer_calls": {
+            "draw_color_lines": 0,
+            "draw_tri_fan_2d": 1,
+            "draw_strip_swap_color": 0
+          },
+          "fork_row_candidates": [],
+          "historical_commit_paths": {},
+          "settled_scope": "Replace local descriptor or prototype with the shared primitive for the previously source-linked draw sites.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/hud/TRaderMapCore.cpp",
+          "drawer_calls": {
+            "draw_color_lines": 0,
+            "draw_tri_fan_2d": 1,
+            "draw_strip_swap_color": 0
+          },
+          "fork_row_candidates": [
+            {
+              "row": 2515,
+              "path": "include/pso/misc/TRaderMapCore.h"
+            },
+            {
+              "row": 2602,
+              "path": "src/pso/misc/TRaderMapCore.cpp"
+            }
+          ],
+          "historical_commit_paths": {
+            "40c5126b1d": [
+              "src/pso/misc/TRaderMapCore.cpp"
+            ]
+          },
+          "settled_scope": "Replace local descriptor or prototype with the shared primitive for the previously source-linked draw sites.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowCtrlMain.cpp",
+          "drawer_calls": {
+            "draw_color_lines": 2,
+            "draw_tri_fan_2d": 1,
+            "draw_strip_swap_color": 4
+          },
+          "fork_row_candidates": [
+            {
+              "row": 5533,
+              "path": "src/pso/misc/TWindowCtrlMain.cpp"
+            },
+            {
+              "row": 5534,
+              "path": "src/pso/misc/TWindowCtrlMain_8024C820.cpp"
+            },
+            {
+              "row": 5846,
+              "path": "include/pso/misc/TWindowCtrlMain.h"
+            }
+          ],
+          "historical_commit_paths": {
+            "40c5126b1d": [
+              "src/pso/misc/TWindowCtrlMain_8024C820.cpp"
+            ],
+            "4921e20b64": [
+              "include/pso/misc/TWindowCtrlMain.h",
+              "src/pso/misc/TWindowCtrlMain_8024C820.cpp"
+            ]
+          },
+          "settled_scope": "One descriptor for gradient panes, fullscreen color and guide lines, all retaining native viewport state.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowFukidasi.cpp",
+          "drawer_calls": {
+            "draw_color_lines": 0,
+            "draw_tri_fan_2d": 1,
+            "draw_strip_swap_color": 0
+          },
+          "fork_row_candidates": [
+            {
+              "row": 208,
+              "path": "include/pso/misc/TWindowFukidasi.h"
+            },
+            {
+              "row": 262,
+              "path": "src/pso/misc/TWindowFukidasi.cpp"
+            }
+          ],
+          "historical_commit_paths": {
+            "40c5126b1d": [
+              "src/pso/misc/TWindowFukidasi.cpp"
+            ]
+          },
+          "settled_scope": "Replace local descriptor or prototype with the shared primitive for the previously source-linked draw sites.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowKeyBoardBase.cpp",
+          "drawer_calls": {
+            "draw_color_lines": 0,
+            "draw_tri_fan_2d": 3,
+            "draw_strip_swap_color": 0
+          },
+          "fork_row_candidates": [
+            {
+              "row": 230,
+              "path": "src/pso/misc/TWindowKeyBoardBase.cpp"
+            },
+            {
+              "row": 283,
+              "path": "src/pso/misc/TWindowKeyBoardSoft.cpp"
+            }
+          ],
+          "historical_commit_paths": {
+            "40c5126b1d": [
+              "src/pso/misc/TWindowKeyBoardSoft.cpp"
+            ]
+          },
+          "settled_scope": "Use typed vertex and color storage for the caret and both glyph fill loops.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowKeyBoardSoft.cpp",
+          "drawer_calls": {
+            "draw_color_lines": 2,
+            "draw_tri_fan_2d": 0,
+            "draw_strip_swap_color": 0
+          },
+          "fork_row_candidates": [],
+          "historical_commit_paths": {},
+          "settled_scope": "Replace local descriptor or prototype with the shared primitive for the previously source-linked draw sites.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowSimpleStatus.cpp",
+          "drawer_calls": {
+            "draw_color_lines": 0,
+            "draw_tri_fan_2d": 1,
+            "draw_strip_swap_color": 0
+          },
+          "fork_row_candidates": [
+            {
+              "row": 5569,
+              "path": "src/pso/misc/TWindowSimpleStatus.cpp"
+            },
+            {
+              "row": 5675,
+              "path": "src/pso/misc/TWindowSubStatusDisp_8026F6DC.cpp"
+            }
+          ],
+          "historical_commit_paths": {
+            "40c5126b1d": [
+              "src/pso/misc/TWindowSubStatusDisp_8026F6DC.cpp"
+            ]
+          },
+          "settled_scope": "Replace local descriptor or prototype with the shared primitive for the previously source-linked draw sites.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+          "drawer_calls": {
+            "draw_color_lines": 1,
+            "draw_tri_fan_2d": 0,
+            "draw_strip_swap_color": 0
+          },
+          "fork_row_candidates": [
+            {
+              "row": 5757,
+              "path": "include/pso/misc/TWindowSubComCard_80244774.h"
+            },
+            {
+              "row": 5829,
+              "path": "src/pso/misc/TWindowSubComCard_80244774.cpp"
+            }
+          ],
+          "historical_commit_paths": {},
+          "settled_scope": "Replace local descriptor or prototype with the shared primitive for the previously source-linked draw sites.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp",
+          "drawer_calls": {
+            "draw_color_lines": 1,
+            "draw_tri_fan_2d": 0,
+            "draw_strip_swap_color": 0
+          },
+          "fork_row_candidates": [
+            {
+              "row": 5680,
+              "path": "src/pso/misc/TWindowSubQuestBoardSelect.cpp"
+            }
+          ],
+          "historical_commit_paths": {},
+          "settled_scope": "Replace local descriptor or prototype with the shared primitive for the previously source-linked draw sites.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/unk/TLobby_800F8AA8.cpp",
+          "drawer_calls": {
+            "draw_color_lines": 0,
+            "draw_tri_fan_2d": 1,
+            "draw_strip_swap_color": 0
+          },
+          "fork_row_candidates": [],
+          "historical_commit_paths": {},
+          "settled_scope": "Replace local descriptor or prototype with the shared primitive for the previously source-linked draw sites.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/unk/text_800F7DAC.cpp",
+          "drawer_calls": {
+            "draw_color_lines": 0,
+            "draw_tri_fan_2d": 2,
+            "draw_strip_swap_color": 0
+          },
+          "fork_row_candidates": [
+            {
+              "row": 6012,
+              "path": "src/pso/unk/text_800F7DAC.cpp"
+            }
+          ],
+          "historical_commit_paths": {
+            "40c5126b1d": [
+              "src/pso/unk/text_800F7DAC.cpp"
+            ]
+          },
+          "settled_scope": "Replace local descriptor or prototype with the shared primitive for the previously source-linked draw sites.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/unk/text_8034960C.cpp",
+          "drawer_calls": {
+            "draw_color_lines": 1,
+            "draw_tri_fan_2d": 2,
+            "draw_strip_swap_color": 0
+          },
+          "fork_row_candidates": [
+            {
+              "row": 2742,
+              "path": "src/pso/unk/text_8034960C.cpp"
+            }
+          ],
+          "historical_commit_paths": {
+            "40c5126b1d": [
+              "src/pso/unk/text_8034960C.cpp"
+            ]
+          },
+          "settled_scope": "Replace three synthetic descriptor layouts for quest-load panels, letterboxing and the sweep.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/unk/text_80349B8C.cpp",
+          "drawer_calls": {
+            "draw_color_lines": 0,
+            "draw_tri_fan_2d": 2,
+            "draw_strip_swap_color": 0
+          },
+          "fork_row_candidates": [
+            {
+              "row": 2743,
+              "path": "src/pso/unk/text_80349B8C.cpp"
+            }
+          ],
+          "historical_commit_paths": {
+            "40c5126b1d": [
+              "src/pso/unk/text_80349B8C.cpp"
+            ]
+          },
+          "settled_scope": "Use typed vertex and color arrays for both filled-quad routines, preserving the signedness of unrelated fields.",
+          "whole_row_reconciled": false
+        }
+      ]
+    },
+    "slime": {
+      "audit": "/dev/shm/gm-source-retention.IZcYKe/historical-source-audit.json",
+      "fork": "3342e42983535b393148deb5b719202b9bf4b7d8",
+      "parent": "5d585c5540df0edf2fa65657f08fe875a7a2e5a0",
+      "candidate": "ec44753d6796cea3a9d3ea3497d1986ed50271e5",
+      "recovered_native_names": [
+        {
+          "address": "0x800EACFC",
+          "old_name": "set_display_mode__15TObjEneSlimeOneFPvi",
+          "native_name": "set_display_mode__15TObjEneSlimeOneFl",
+          "size": 136
+        },
+        {
+          "address": "0x800EAE0C",
+          "old_name": "set_random_timer__15TObjEneSlimeOneFPvii",
+          "native_name": "set_random_timer__15TObjEneSlimeOneFll",
+          "size": 108
+        },
+        {
+          "address": "0x800EB3D4",
+          "old_name": "TObjEneSlimeOne__ct",
+          "native_name": "__ct__15TObjEneSlimeOneFP7TObjectP12TObjEneSlimePvPC3Vec",
+          "size": 204
+        },
+        {
+          "address": "0x800EB4A0",
+          "old_name": "init__15TObjEneSlimeOneFPviii",
+          "native_name": "__ct__15TObjEneSlimeOneFP7TObjectP12TObjEneSlimePv",
+          "size": 204
+        }
+      ],
+      "retained_native_names": [
+        {
+          "address": "0x800EC348",
+          "native_name": "find_nearest_enemy_with_flag__22TObjEneSlimeTailAttackFf",
+          "size": 76
+        },
+        {
+          "address": "0x800EC394",
+          "native_name": "get_attack_target__15TObjEneSlimeOneFv",
+          "size": 8
+        },
+        {
+          "address": "0x800EC4A0",
+          "native_name": "draw__19SlimeAnimationStateFl",
+          "size": 560
+        },
+        {
+          "address": "0x800EC6D0",
+          "native_name": "advance__19SlimeAnimationStateFv",
+          "size": 188
+        },
+        {
+          "address": "0x800EC78C",
+          "native_name": "is_finished__19SlimeAnimationStateFv",
+          "size": 104
+        },
+        {
+          "address": "0x800EC7F4",
+          "native_name": "set_state__19SlimeAnimationStateFl",
+          "size": 504
+        },
+        {
+          "address": "0x800EC9EC",
+          "native_name": "__dt__19SlimeAnimationStateFv",
+          "size": 60
+        },
+        {
+          "address": "0x800ECA28",
+          "native_name": "__ct__19SlimeAnimationStateFP15TObjEneSlimeOne",
+          "size": 16
+        }
+      ],
+      "rows": [
+        {
+          "row": 444,
+          "fork_path": "include/pso/enemy/SlimeAnimationState.h",
+          "current_owner": "include/pso/enemy/slime/SlimeAnimationState.h",
+          "original_blob": null,
+          "fork_blob": "b7deff29449c1e0a84a3074cf1fe3c1a347b42a6",
+          "current_blob": "2e75fd691ecf534235ad1d9ac361e26fa4b9039e",
+          "status": "historical addition needs owner context",
+          "status_after": "already retained at owner level",
+          "scope": "SlimeAnimationState, SlimeShapeMotion and SlimePairedMotion are present under enemy/slime. The animation object is 0x34 bytes with unchanged owner and motion fields and stronger typed texture pointers."
+        },
+        {
+          "row": 477,
+          "fork_path": "include/pso/enemy/TObjEneSlimeOne.h",
+          "current_owner": "include/pso/enemy/slime/TObjEneSlimeOne.h",
+          "original_blob": "777984ff8be733d07226df365b83dc118356acf8",
+          "fork_blob": "3f05537ea4d190c77d9a3a6abd6c9d63363e1bf3",
+          "current_blob": "e90c1b2495fdc411afdee555648c115c89c3eb08",
+          "status": "source comparison remains",
+          "status_after": "native lifecycle and layout recovered",
+          "scope": "Both constructors and matching factories accompany the 0x3F8 class. Variant at 0x3F4, attack position at 0x3D0, effect timer at 0x394, animation at 0x388 and both movement vectors are actual members. Named equivalents retain the proven existing field offsets."
+        },
+        {
+          "row": 636,
+          "fork_path": "src/pso/enemy/TObjEneSlimeOne_800EC394.cpp",
+          "current_owner": "src/pso/enemy/slime/TObjEneSlimeOne_800EC394.cpp",
+          "original_blob": "9dca8b1ee75361fb2a821dc529efa3b9b37734bf",
+          "fork_blob": "757ff44b6a172bf787c9d36b9c9906873d75e4d6",
+          "current_blob": "99fbb405eb8208c1854d808506bbd1337d845fdd",
+          "status": "source comparison remains",
+          "status_after": "already retained with typed variant access recovered",
+          "scope": "All six animation-helper member functions match the fork's name, size and address. The relocated animation unit uses the current typed BML and texture providers. SlimeOne's 0x800EC394 variant accessor now reads the trailing member. The adjacent Sorcerer slot at 0x800ECA3C stays under the reviewed canonical vfunc_105 name, which this batch does not change."
+        },
+        {
+          "row": 637,
+          "fork_path": "src/pso/enemy/TObjEneSlimeTailAttack.cpp",
+          "current_owner": "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+          "original_blob": "362f78e7cb7e886fe9ed008d038c3cdb411b471d",
+          "fork_blob": "45c095b94a6e7972835dc637acfa60a75423df0d",
+          "current_blob": "f5d0d236f0a80c23cf282fc02225124ccabe41e4",
+          "status": "source comparison remains",
+          "status_after": "scoped SlimeOne implementation recovery",
+          "scope": "Native constructors/factories, initialization, member render, effect timers and collision display modes, typed attack selection/position, typed trail pose and movement. This records the SlimeOne owner changes in the shared source unit. Existing tail/water effect recovery is recorded independently. Remaining textual differences in unrelated state/owner code are not certified by this row."
+        },
+        {
+          "row": 777,
+          "fork_path": "include/pso/enemy/TObjEneSlime.h",
+          "current_owner": "include/pso/enemy/slime/TObjEneSlime.h",
+          "original_blob": "d4988238ad1cdd6121104467824be6e03414e23d",
+          "fork_blob": "1395d5a39709dacffcf8890e75162740dfe06fad",
+          "current_blob": "81ad35dd88f3108936a5c4a6ca1260d2b5617e58",
+          "status": "source comparison remains",
+          "status_after": "already retained at owner level",
+          "scope": "Canonical SlimeChildSlot matches the fork's state and typed child pointer. Canonical SlimeSpawnTemplate and child_limit type the fork's m_374/pad and m_3b4, while preserving the 0x3D8 outer layout and its child-slot methods."
+        },
+        {
+          "row": 3510,
+          "fork_path": "src/pso/enemy/TObjEneSlimeTailAttack_search.cpp",
+          "current_owner": "src/pso/player/TObjPlayer_800EBE2C.cpp",
+          "original_blob": null,
+          "fork_blob": "9f05215f78ced7a0fff5f9fe00ea981c3a289fe1",
+          "current_blob": "b5527ca2371d9a4e9d13208d0b98f7eea76367c0",
+          "status": "historical addition needs owner context",
+          "status_after": "already retained at relocated owner",
+          "scope": "Current TObjEneSlimeTailAttack::find_nearest_enemy_with_flag remains in the split TObjPlayer_800EBE2C.cpp source at 0x800EC348. It sets the visible-enemy flag, calls the same nearest-enemy helper, clears the same flag, and returns the same u16 target. No sibling player change is needed."
+        }
+      ]
+    },
+    "retained_native_weapon_slots": {
+      "0x804A4324": "0x8011E5C4",
+      "0x804A4424": "0x8011E5C4",
+      "0x804A4A34": "0x8011E5C4"
+    }
+  }
+}

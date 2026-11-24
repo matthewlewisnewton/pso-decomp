@@ -1,0 +1,87 @@
+{
+  "upstream": "1698caaa1941302ed6dfc60d886d041bae272e0e",
+  "source": "12c4541958ba809ce5f3a6268ce86108b8857a30",
+  "source_base": "e4f26f2957b0b31d392445510b423b441f6d5027",
+  "audited_source_commits": 33,
+  "paths": [
+    "include/pso/player/TObjPlayer_802D5174.h",
+    "src/pso/player/TObjPlayer_802D5174.cpp"
+  ],
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "coverage_losses": {
+    "regressions": 0,
+    "data_coverage_lost": 0,
+    "padding_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0
+  },
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "original_data_bytes": 1147,
+  "original_data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "linker_labels_changed": 0,
+  "callback": {
+    "name": "TObjPlayer__sub_802D5B78",
+    "address": "0x802D5B78",
+    "size": 148,
+    "verified_direct_calls": {
+      "spawn_hit_particles_at__10TObjPlayerFlll": "TObjPlayer__sub_802D5B78",
+      "do_action_447_from_packet__10TObjPlayerFPvPvPv": "TObjPlayer__sub_802D5B78",
+      "TObjPlayer__sub_802D5B78": "normalize_vector"
+    }
+  },
+  "matching_note": "The original integer word copy and non-const Vec direction declaration preserve retail scheduling. The input is read before writes even if output aliases it.",
+  "retail_and_source_probe": {
+    "log_sha256": "80cf6f70f00565cd927df958a4dab7b1e46f7348b0da831409ae5cdd224e21a6",
+    "observations": [
+      "PsoV3.dol: distance threshold, box and sphere bounds, and impact body selection and output aliasing passed",
+      "psov3.dol: distance threshold, box and sphere bounds, and impact body selection and output aliasing passed"
+    ]
+  },
+  "retail_and_fork_probe": {
+    "log_sha256": "80cf6f70f00565cd927df958a4dab7b1e46f7348b0da831409ae5cdd224e21a6",
+    "observations": [
+      "PsoV3.dol: distance threshold, box and sphere bounds, and impact body selection and output aliasing passed",
+      "psov3.dol: distance threshold, box and sphere bounds, and impact body selection and output aliasing passed"
+    ]
+  },
+  "historical_audit": {
+    "open_before": 259,
+    "open_after": 257,
+    "resolved": {
+      "src/pso/player/TObjPlayer_802D5B78.cpp": "src/pso/player/TObjPlayer_802D5174.cpp",
+      "include/pso/player/TObjPlayer_802D5B78.h": "include/pso/player/TObjPlayer_802D5174.h"
+    }
+  },
+  "fork_workspace": {
+    "previous_workspace": "5a3422e345635af53955705480121712bb1b6622",
+    "parent": "12c4541958ba809ce5f3a6268ce86108b8857a30",
+    "materialized_tree_before_notes_update": "25b435f6ba29c5a1d6e2d24ec7a9aad37166530c",
+    "overlay_paths": 130,
+    "updated_linker_labels": 0,
+    "archive_sha256": "1c95f6e50e72e31b28b0c7af49d8e6dff4b3358e78b6b8b99a69e412350d52f2",
+    "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "tests": {
+      "tool": 294,
+      "fork": 11,
+      "host": 5
+    },
+    "host_executables": [
+      "vector_math_fallbacks",
+      "item_factory_callbacks",
+      "loader_transfer",
+      "ginja_parameter_callbacks",
+      "exi_ethernet_fallbacks"
+    ],
+    "test_log_sha256": {
+      "tool": "4848d732ebcd8d118df8cc90507064edf494bb660734e729d19b6dab628b22a2",
+      "fork": "48083c3b02b02f9c06cceffd995b2f901ade8e284fe46c08df6d68a85de7134c",
+      "host": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  }
+}

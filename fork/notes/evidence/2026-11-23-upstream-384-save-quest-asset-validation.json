@@ -1,0 +1,1511 @@
+{
+  "artifacts_sha256": {
+    "final-check.json": "9a833b37ec3408ff4174c43f5d5c8e7a90377900adfa6a1eed8d1de12f003aa6",
+    "final-probes.log": "e3e1cd4af89c21248790d55c3bb4b4940c9a969ff0935eb7e2dcc41dda8b9f2f",
+    "final-quality.json": "446c8a89fce68227c46ce6abf32ca04874d0a2124414f94b39aa5c57bcea2a5d",
+    "final-report.json": "507cc614e5cc44f0a17b7afbec8681e0724a89fb6727e20e629e9dbcf29e4e9a",
+    "final-vs-fork.json": "b4b94a6dd57f9566bcd6662edb39ba65227bea00b969c27d7819703427dca870"
+  },
+  "attribution": [
+    [
+      "82438956d378b29592df789350eb4b4267371aac",
+      "matthewlewisnewton <19641807+matthewlewisnewton@users.noreply.github.com>",
+      "matthewlewisnewton <19641807+matthewlewisnewton@users.noreply.github.com>",
+      "Recover typed BML archive and asynchronous file requests"
+    ],
+    [
+      "cffb7633c67e357cea3f37ee8753d1b278a069bd",
+      "matthewlewisnewton <19641807+matthewlewisnewton@users.noreply.github.com>",
+      "matthewlewisnewton <19641807+matthewlewisnewton@users.noreply.github.com>",
+      "Recover native card metadata and quest download records"
+    ],
+    [
+      "eda3762284e6b74251245fa040fb8366d1592615",
+      "matthewlewisnewton <19641807+matthewlewisnewton@users.noreply.github.com>",
+      "matthewlewisnewton <19641807+matthewlewisnewton@users.noreply.github.com>",
+      "Read character and inventory records through their native owners"
+    ],
+    [
+      "851bf2cba7e871b19bd0ac14f52f0fe947043187",
+      "matthewlewisnewton <19641807+matthewlewisnewton@users.noreply.github.com>",
+      "matthewlewisnewton <19641807+matthewlewisnewton@users.noreply.github.com>",
+      "Use the owning types for online quest windows and footprint textures"
+    ],
+    [
+      "93230626dd25d745c2caca42f5c1d5a5797fb375",
+      "matthewlewisnewton <19641807+matthewlewisnewton@users.noreply.github.com>",
+      "matthewlewisnewton <19641807+matthewlewisnewton@users.noreply.github.com>",
+      "Use typed GVM, GBA and secondary-card read buffers"
+    ]
+  ],
+  "base": "435fe611ce7da26174186621a089e5299d4e6199",
+  "branch": "great-merge/review/after-384/saves-quests-and-assets",
+  "compatibility_with_pr385": {
+    "both_landing_orders_produce_same_tree": true,
+    "check": "pass",
+    "check_sha256": "d5c0f004f2b291a59da817c64f77d8fc53ac35ec9464b2479242dc893a708131",
+    "combined_tree": "ba7cb08ce62b9493d8677c80ffea96bc76032b44",
+    "combined_validation_head": "c85e700dd41601daa83601f7173ef41272b110f9",
+    "head": "aef90f781954e95c6dfe35d77725a386441c06b9",
+    "linked_units": 2297,
+    "matched_functions": 27572,
+    "merge_ref": "fc6555907ae9ce766c42af0109e1e8cfb073dd1f",
+    "overlapping_paths": [
+      "config/GPOE8P/psov3/config.yml",
+      "config/GPOE8P/psov3/symbols.txt"
+    ],
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3"
+  },
+  "fork_main": {
+    "data_coverage_gained": 159,
+    "head": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "lost_functions_or_non_padding_data": 0,
+    "padding_omitted": 2585,
+    "total_data_delta": -2426
+  },
+  "head": "93230626dd25d745c2caca42f5c1d5a5797fb375",
+  "historical_fork_data": {
+    "ranges": {
+      "0x80434090": {
+        "linked": 48,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x80439568": {
+        "linked": 8,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x8044BAC8": {
+        "linked": 32,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x80479C3C": {
+        "linked": 12,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804CC800": {
+        "linked": 24,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804CE000": {
+        "linked": 24,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804CE7E8": {
+        "linked": 28,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804CE808": {
+        "linked": 24,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804CF0B8": {
+        "linked": 24,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804CF8B0": {
+        "linked": 24,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804CF900": {
+        "linked": 24,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804CF918": {
+        "linked": 48,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804D0004": {
+        "linked": 24,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804D0618": {
+        "linked": 28,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804D0658": {
+        "linked": 24,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804D08F0": {
+        "linked": 24,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804D0948": {
+        "linked": 28,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804D1148": {
+        "linked": 24,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804D15B8": {
+        "linked": 28,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804D15D8": {
+        "linked": 28,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804D1688": {
+        "linked": 28,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804D1A20": {
+        "linked": 28,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804D2B20": {
+        "linked": 40,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x804E079C": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x804EF4E0": {
+        "linked": 28,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D2608": {
+        "linked": 8,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D35AC": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D3718": {
+        "linked": 4,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D416C": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D4454": {
+        "linked": 4,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D4B4C": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D4BA8": {
+        "linked": 12,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D4C00": {
+        "linked": 8,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D4DE0": {
+        "linked": 4,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D4EDC": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D4F10": {
+        "linked": 8,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D5324": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D5FA8": {
+        "linked": 4,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D6C3D": {
+        "linked": 0,
+        "padding": 3,
+        "remaining": 0
+      },
+      "0x805D7940": {
+        "linked": 20,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D7A70": {
+        "linked": 8,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D7D00": {
+        "linked": 20,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D7DDC": {
+        "linked": 12,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D815C": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D8564": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D85B0": {
+        "linked": 4,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D85B8": {
+        "linked": 20,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D8A2C": {
+        "linked": 8,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D8ADC": {
+        "linked": 4,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D8AE0": {
+        "linked": 8,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D8EF4": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D8F1C": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D8F64": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D8FA4": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D93B4": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D9524": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D9554": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D99F0": {
+        "linked": 28,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805D9E5C": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805D9E7C": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DAFEC": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DBACC": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DBB9C": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DBECC": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DBF9C": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DC1DC": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DC278": {
+        "linked": 56,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805DC374": {
+        "linked": 12,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805DC46C": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DC73C": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DCB74": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DCDC4": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DCE00": {
+        "linked": 16,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805DCF18": {
+        "linked": 24,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805DD9FC": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DDDC4": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DDDFC": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DE134": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DE7BC": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DEBA4": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DEC70": {
+        "linked": 20,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805DF6FC": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DFCD0": {
+        "linked": 4,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805DFCFC": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DFECC": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805DFF2C": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805E043C": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805E0E0C": {
+        "linked": 0,
+        "padding": 4,
+        "remaining": 0
+      },
+      "0x805E0E14": {
+        "linked": 4,
+        "padding": 0,
+        "remaining": 0
+      },
+      "0x805E0F38": {
+        "linked": 8,
+        "padding": 0,
+        "remaining": 0
+      }
+    },
+    "totals": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    }
+  },
+  "remaining_queue_replay_preflight": {
+    "base": "c85e700dd41601daa83601f7173ef41272b110f9",
+    "results": {
+      "actor-model-and-battle-parameters": {
+        "clean": false,
+        "conflict_buckets": {
+          "boss": 10,
+          "camera": 1,
+          "config/GPOE8P": 1,
+          "effect": 7,
+          "enemy": 32,
+          "npc": 4,
+          "object": 4,
+          "player": 9,
+          "quest": 1,
+          "ui": 2,
+          "unk": 10,
+          "weapon": 1
+        },
+        "conflict_paths": 82,
+        "head": "558251bd9023ac69829cfc063e651397e881642e",
+        "old_parent": "06f05041eba0f87c018fd20e2e4d947b96d4f6ba",
+        "paths": 195,
+        "paths_changed_in_preview": 195
+      },
+      "combat-techniques-and-player-state": {
+        "clean": false,
+        "conflict_buckets": {
+          "boss": 23,
+          "config/GPOE8P": 2,
+          "effect": 3,
+          "enemy": 42,
+          "item": 7,
+          "map": 2,
+          "npc": 5,
+          "object": 36,
+          "player": 42,
+          "quest": 1,
+          "render": 2,
+          "system": 2,
+          "technique": 15,
+          "ui": 1,
+          "unk": 13,
+          "weapon": 4
+        },
+        "conflict_paths": 200,
+        "head": "c68a75607e3452c1436fd76fca3b0d371d7dd763",
+        "old_parent": "c5ef6c12967bea7d5bc8aa8c02303f0ed41da260",
+        "paths": 463,
+        "paths_changed_in_preview": 455
+      },
+      "cumulative": {
+        "clean": false,
+        "conflict_buckets": {
+          "boss": 37,
+          "camera": 1,
+          "config/GPOE8P": 2,
+          "effect": 13,
+          "enemy": 51,
+          "item": 11,
+          "map": 4,
+          "math": 1,
+          "network": 6,
+          "npc": 27,
+          "object": 84,
+          "player": 50,
+          "quest": 9,
+          "render": 3,
+          "src/musyx": 1,
+          "system": 11,
+          "technique": 22,
+          "ui": 133,
+          "unk": 64,
+          "weapon": 7
+        },
+        "conflict_paths": 537,
+        "head": "332630f2e69a454e94718e8627c606bf83643ce7",
+        "old_parent": "31bb8ea5f01b0e02b609fb59411f4805308106bf",
+        "paths": 1202,
+        "paths_changed_in_preview": 1157
+      },
+      "gameplay-sound-and-requests": {
+        "clean": false,
+        "conflict_buckets": {
+          "boss": 5,
+          "config/GPOE8P": 1,
+          "enemy": 2,
+          "npc": 1,
+          "object": 14,
+          "player": 1,
+          "technique": 10,
+          "ui": 3,
+          "unk": 9,
+          "weapon": 1
+        },
+        "conflict_paths": 47,
+        "head": "0d4cc1a00b14893f655ecb7f33214a27cd2eb0e0",
+        "old_parent": "3c3421d7b8c3ce551db539cc98c6020b861fac83",
+        "paths": 216,
+        "paths_changed_in_preview": 216
+      },
+      "native-client-and-actor-interfaces": {
+        "clean": false,
+        "conflict_buckets": {
+          "boss": 17,
+          "config/GPOE8P": 2,
+          "effect": 2,
+          "enemy": 16,
+          "item": 4,
+          "map": 1,
+          "math": 1,
+          "network": 6,
+          "npc": 2,
+          "object": 7,
+          "player": 11,
+          "quest": 1,
+          "src/musyx": 1,
+          "system": 2,
+          "technique": 7,
+          "ui": 17,
+          "unk": 17,
+          "weapon": 1
+        },
+        "conflict_paths": 115,
+        "head": "332630f2e69a454e94718e8627c606bf83643ce7",
+        "old_parent": "c68a75607e3452c1436fd76fca3b0d371d7dd763",
+        "paths": 216,
+        "paths_changed_in_preview": 206
+      },
+      "window-chat-and-frontend": {
+        "clean": false,
+        "conflict_buckets": {
+          "boss": 1,
+          "config/GPOE8P": 2,
+          "enemy": 1,
+          "npc": 1,
+          "ui": 108,
+          "unk": 3
+        },
+        "conflict_paths": 116,
+        "head": "3c3421d7b8c3ce551db539cc98c6020b861fac83",
+        "old_parent": "558251bd9023ac69829cfc063e651397e881642e",
+        "paths": 229,
+        "paths_changed_in_preview": 227
+      },
+      "world-objects-and-resources": {
+        "clean": false,
+        "conflict_buckets": {
+          "boss": 10,
+          "config/GPOE8P": 1,
+          "effect": 2,
+          "enemy": 1,
+          "item": 3,
+          "map": 2,
+          "npc": 15,
+          "object": 30,
+          "player": 3,
+          "quest": 3,
+          "render": 1,
+          "system": 2,
+          "technique": 1,
+          "ui": 17,
+          "unk": 12,
+          "weapon": 2
+        },
+        "conflict_paths": 105,
+        "head": "c5ef6c12967bea7d5bc8aa8c02303f0ed41da260",
+        "old_parent": "0d4cc1a00b14893f655ecb7f33214a27cd2eb0e0",
+        "paths": 235,
+        "paths_changed_in_preview": 232
+      }
+    }
+  },
+  "retail": {
+    "check": "pass",
+    "exact_functions": 27572,
+    "linked_units": 2297,
+    "sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3"
+  },
+  "review_paths": 103,
+  "review_state": "published",
+  "runtime_probes": [
+    "File queue lifecycle, sector tails and both GVM buffer paths passed.",
+    "GBA filename and destination dispatch at the original size limit passed.",
+    "BML initialization, named requests, archive reads, completion and cancellation passed.",
+    "Texture input layout and both entry flag paths passed.",
+    "final.dol: footprint GVM load, culling, texture binding and ordered release passed.",
+    "final.dol: load status, slot geometry, warnings, card polling and file metadata passed.",
+    "final.dol: Challenge and online titles, complete entry traversal, callbacks and release passed.",
+    "final.dol: 128 slots, ten linked pages, 80 buckets, 512 free-list nodes, file reads and page eviction passed",
+    "final.dol: signed handles, ARAM callback ownership, rounded reads, EOF clamping and timeout cleanup passed",
+    "final.dol: name lookup boundaries, mixed-width request counts, four number formats and closed-handle gating passed"
+  ],
+  "source_quality": {
+    "categories": [
+      {
+        "added": 1,
+        "base": 5263,
+        "category": "Linkage",
+        "example": "extern \"C\" void TEnemy__update(void *);",
+        "group": "linkage",
+        "head": 5207,
+        "key": "extern_c",
+        "name": "extern \"C\" declarations",
+        "removed": 57
+      },
+      {
+        "added": 0,
+        "base": 1291,
+        "category": "Linkage",
+        "example": "void heap_free(void *);",
+        "group": "linkage",
+        "head": 1274,
+        "key": "local_decl",
+        "name": "Prototypes and externs in source files",
+        "removed": 17
+      },
+      {
+        "added": 0,
+        "base": 3936,
+        "category": "Linkage",
+        "example": "update__6TEnemyFv",
+        "group": "linkage",
+        "head": 3894,
+        "key": "mangled_member",
+        "name": "Hand-mangled member names",
+        "removed": 42
+      },
+      {
+        "added": 0,
+        "base": 304,
+        "category": "Linkage",
+        "example": "helper__Fv",
+        "group": "linkage",
+        "head": 304,
+        "key": "mangled_free",
+        "name": "Hand-mangled free functions",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 0,
+        "category": "Linkage",
+        "example": "_ZN6TEnemy6updateEv",
+        "group": "linkage",
+        "head": 0,
+        "key": "mangled_itanium",
+        "name": "Itanium-mangled names",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 6935,
+        "category": "Linkage",
+        "example": "TEnemy__update",
+        "group": "linkage",
+        "head": 6935,
+        "key": "flat_name",
+        "name": "Members spelled as C names",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 6392,
+        "category": "Layout",
+        "example": "(u8 *)p + 0x30",
+        "group": "layout",
+        "head": 6352,
+        "key": "raw_offset",
+        "name": "Byte-pointer offsets",
+        "removed": 40
+      },
+      {
+        "added": 0,
+        "base": 625,
+        "category": "Layout",
+        "example": "(Vec *)(p + 0x178)",
+        "group": "layout",
+        "head": 623,
+        "key": "offset_cast",
+        "name": "Casts of pointer plus offset",
+        "removed": 2
+      },
+      {
+        "added": 0,
+        "base": 1598,
+        "category": "Layout",
+        "example": "*(f32 *)&x, *(s32 *)(p + 0x18)",
+        "group": "layout",
+        "head": 1581,
+        "key": "punned_deref",
+        "name": "Type-punned dereferences",
+        "removed": 17
+      },
+      {
+        "added": 0,
+        "base": 9563,
+        "category": "Layout",
+        "example": "unk_30, m_c, field_96, set_field_378",
+        "group": "layout",
+        "head": 9555,
+        "key": "offset_member",
+        "name": "Offset-named fields",
+        "removed": 8
+      },
+      {
+        "added": 0,
+        "base": 1340,
+        "category": "Types",
+        "example": "((void (*)(T *))p)(x)",
+        "group": "types",
+        "head": 1338,
+        "key": "fp_cast",
+        "name": "Function-pointer casts",
+        "removed": 2
+      },
+      {
+        "added": 0,
+        "base": 14,
+        "category": "Types",
+        "example": "(saddr)\"file.gvm\"",
+        "group": "types",
+        "head": 14,
+        "key": "string_cast",
+        "name": "Strings cast to integers",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 0,
+        "category": "Types",
+        "example": "undefined4",
+        "group": "types",
+        "head": 0,
+        "key": "ghidra_type",
+        "name": "Ghidra types",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 12227,
+        "category": "Types",
+        "example": "TUnk_804806E8",
+        "group": "types",
+        "head": 12118,
+        "key": "address_type",
+        "name": "Address-named types",
+        "removed": 109
+      },
+      {
+        "added": 0,
+        "base": 15,
+        "category": "Types",
+        "example": "#define g (*(T *)&g)",
+        "group": "types",
+        "head": 15,
+        "key": "retype_macro",
+        "name": "Re-typing macros",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 7502,
+        "category": "Decompiler output",
+        "example": "temp_r3, var_f31",
+        "group": "decompiler",
+        "head": 7437,
+        "key": "decomp_temp",
+        "name": "m2c temporaries",
+        "removed": 65
+      },
+      {
+        "added": 0,
+        "base": 1449,
+        "category": "Decompiler output",
+        "example": "sp1C",
+        "group": "decompiler",
+        "head": 1449,
+        "key": "stack_local",
+        "name": "Stack-slot locals",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 15910,
+        "category": "Decompiler output",
+        "example": "arg0, farg1",
+        "group": "decompiler",
+        "head": 15807,
+        "key": "arg_name",
+        "name": "Numbered parameters",
+        "removed": 103
+      },
+      {
+        "added": 0,
+        "base": 20,
+        "category": "Decompiler output",
+        "example": "iVar1, param_1",
+        "group": "decompiler",
+        "head": 20,
+        "key": "ghidra_temp",
+        "name": "Ghidra temporaries",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 0,
+        "category": "Decompiler output",
+        "example": "M2C_FIELD",
+        "group": "decompiler",
+        "head": 0,
+        "key": "m2c_macro",
+        "name": "m2c macros",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 247,
+        "category": "Decompiler output",
+        "example": "// moved from 0x8043E828",
+        "group": "decompiler",
+        "head": 246,
+        "key": "address_comment",
+        "name": "Address comments",
+        "removed": 1
+      },
+      {
+        "added": 0,
+        "base": 8929,
+        "category": "Names",
+        "example": "lbl_8045A010",
+        "group": "names",
+        "head": 8921,
+        "key": "data_label",
+        "name": "Address-named data",
+        "removed": 8
+      },
+      {
+        "added": 0,
+        "base": 10693,
+        "category": "Names",
+        "example": "fn_80123456, TEnemy__sub_80123456",
+        "group": "names",
+        "head": 10693,
+        "key": "function_placeholder",
+        "name": "Address-named functions",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 19,
+        "category": "Names",
+        "example": "call_36A90_with_1",
+        "group": "names",
+        "head": 19,
+        "key": "address_in_name",
+        "name": "Names built on an address",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 50,
+        "category": "Vtables",
+        "example": "__vt__6TEnemy",
+        "group": "vtables",
+        "head": 50,
+        "key": "vtable_symbol",
+        "name": "Vtable symbols in source",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 7,
+        "category": "Vtables",
+        "example": "void *TEnemy_vtable[] = {",
+        "group": "vtables",
+        "head": 7,
+        "key": "hand_vtable",
+        "name": "Hand-written vtables",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 61,
+        "category": "Vtables",
+        "example": "virtual void reserved_3();",
+        "group": "vtables",
+        "head": 61,
+        "key": "filler_virtual",
+        "name": "Filler virtuals",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 1240,
+        "category": "Vtables",
+        "example": "vfunc_67, TEnemy__vt82",
+        "group": "vtables",
+        "head": 1240,
+        "key": "slot_name",
+        "name": "Slot-numbered names",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 3546,
+        "category": "Vtables",
+        "example": "virtual void draw();",
+        "group": "vtables",
+        "head": 3520,
+        "key": "local_virtual",
+        "name": "Virtuals in source files",
+        "removed": 26
+      },
+      {
+        "added": 0,
+        "base": 1064,
+        "category": "Units and classes",
+        "example": "TEnemy_80123456.cpp",
+        "group": "placement",
+        "head": 1064,
+        "key": "address_unit",
+        "name": "Units named after an address",
+        "removed": 0
+      },
+      {
+        "added": 6,
+        "base": 3170,
+        "category": "Units and classes",
+        "example": "struct EnemyView : TObject {",
+        "group": "placement",
+        "head": 3147,
+        "key": "local_class",
+        "name": "Classes declared in source files",
+        "removed": 29
+      },
+      {
+        "added": 0,
+        "base": 120,
+        "category": "Units and classes",
+        "example": "class TEnemy {",
+        "group": "placement",
+        "head": 120,
+        "key": "duplicate_class",
+        "name": "Classes declared in more than one file",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 22,
+        "category": "Assembly",
+        "example": "asm { ... }",
+        "group": "asm",
+        "head": 22,
+        "key": "inline_asm",
+        "name": "Inline assembly",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 1496,
+        "category": "Members in the wrong class (not in the total)",
+        "example": "((TObjPlayer *)this)->f()",
+        "group": "ownership",
+        "head": 1486,
+        "key": "this_cast",
+        "name": "Casts of this to an unrelated class",
+        "removed": 10
+      },
+      {
+        "added": 0,
+        "base": 68,
+        "category": "Members in the wrong class (not in the total)",
+        "example": "TEnemy__f((char *)this + 0x3C)",
+        "group": "ownership",
+        "head": 68,
+        "key": "subobject_call",
+        "name": "Own member called on a sub-object",
+        "removed": 0
+      }
+    ],
+    "changed_labels": [
+      {
+        "address": "0x8001F018",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "load_texture_sub__11BmlResourceFPCcl",
+        "old": "load_texture_sub__11BmlResourceFPvl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8001F128",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "load_bml_exec__6TLobbyFP11BmlResourcePCc",
+        "old": "load_bml_exec__6TLobbyFP11BmlResourcePUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8001FCC4",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "load_bin_motion__11BmlResourceFPCcl",
+        "old": "load_bin_motion__11BmlResourceFPvl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8001FD98",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "load_bin_model__11BmlResourceFPCcl",
+        "old": "load_bin_model__11BmlResourceFPvl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80020004",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "__ct__11BmlResourceFlP21BmlResourceDescriptorPFPv_vPvPv",
+        "old": "__ct__11BmlResourceFlP21BmlResourceDescriptorllPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800FA044",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "add_named_entry__6TLobbyFP11BmlResourcePCc",
+        "old": "add_named_entry__6TLobbyFll",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800FA164",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "create_file_load_entry__6TLobbyFPCcP11NJS_TEXLISTPFPv_vPCvPPv",
+        "old": "create_file_load_entry__6TLobbyFllUllPPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800FA2A0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "create_named_entry__6TLobbyFPCcPvPFPv_vPCvPPv",
+        "old": "create_named_entry__6TLobbyFiiUiiPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800FA388",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "request_file_read__6TLobbyFPCcPvPlPPv",
+        "old": "request_file_read__6TLobbyFPCclPlPPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800FA7E0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "pop_stack_entry__6TLobbyFP20AsyncFileReadRequests",
+        "old": "pop_stack_entry__6TLobbyFs",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800FA848",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "link_into_list__FP20AsyncFileReadRequest",
+        "old": "link_into_list__FPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801BCF04",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "load_character_state__10TObjPlayerFP12TPlyCharData",
+        "old": "load_character_state__10TObjPlayerFPUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801BD928",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "__ct__10TObjPlayerFP7TObjectllP12TPlyCharData",
+        "old": "__ct__10TObjPlayerFP7TObjectllPUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801BDEF8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "create_player_object__FllP12TPlyCharData",
+        "old": "create_player_object__FllPUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801C2214",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "get_items__13TPlyInventoryFv",
+        "old": "get_ptr_4__10TObjPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801E21A8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "get_card_file_info__15TAdPlayerLoadGCFlPCcP12CardFileInfo",
+        "old": "get_card_file_info__15TAdPlayerLoadGCFiPvPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801E4A44",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "read_file_header__9TLanguageFPUcP13GvmFileHeader",
+        "old": "read_file_header__9TLanguageFiPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801E4AB0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "read_into_buffer__9TLanguageFPvl",
+        "old": "read_into_buffer__9TLanguageFll",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8032A0A4",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "create__13TAdMcSelectGCFP7TObject",
+        "old": "create__13TAdMcSelectGCFPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8032C854",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "send_data__6TLobbyFPCc",
+        "old": "send_data__6TLobbyFl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803E7E3C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "has_name_mismatch__22TQuestVmDownLoadServerFlPUc",
+        "old": "has_name_mismatch__22TQuestVmDownLoadServerFPUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803E7EE4",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "find_name_index__22TQuestVmDownLoadServerFPCc",
+        "old": "find_name_index__22TQuestVmDownLoadServerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803E8004",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "is_char_allowed__22TQuestVmDownLoadServerFPCUcs",
+        "old": "is_char_allowed__22TQuestVmDownLoadServerFs",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803E875C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "set_file_info_name__22TQuestVmDownLoadServerFPCc",
+        "old": "set_file_info_name__22TQuestVmDownLoadServerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803E8790",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "aram_read_thunk__22TQuestVmDownLoadServerFlPvl",
+        "old": "aram_read_thunk__22TQuestVmDownLoadServerFUli",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803E8B1C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "lookup_name_entry__22TQuestVmDownLoadServerFPcsP21QuestNameLookupResult",
+        "old": "lookup_name_entry__22TQuestVmDownLoadServerFsP12Out_803E8C2C",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803E90A8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "append_message_text__22TQuestVmDownLoadServerFPUclP20QuestDownloadRequestUc",
+        "old": "append_message_text__22TQuestVmDownLoadServerFlP12Req_803EEF2CUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803E9190",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "build_message_packet__22TQuestVmDownLoadServerFPUclP20QuestDownloadRequestUc",
+        "old": "build_message_packet__22TQuestVmDownLoadServerFPviPvUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803E92C0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "calc_text_length__20QuestDownloadRequestCFv",
+        "old": "calc_text_length__22TQuestVmDownLoadServerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803E9348",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "calc_message_length__20QuestDownloadRequestCFv",
+        "old": "calc_message_length__22TQuestVmDownLoadServerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803E9DE0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "find_longest_match_entry__22TQuestVmDownLoadServerFPUclPl",
+        "old": "find_longest_match_entry__22TQuestVmDownLoadServerFPviPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803EBD38",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "build_text_node_chain__22TQuestVmDownLoadServerFP23QuestDownloadTextRecordPC21QuestDownloadItemNodelPP21QuestDownloadTextNodePP21QuestDownloadTextNode",
+        "old": "build_text_node_chain__22TQuestVmDownLoadServerFPvPC21QuestDownloadItemNodelPP21QuestDownloadTextNodePP21QuestDownloadTextNode",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803EEB10",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "format_number_text__22TQuestVmDownLoadServerFPCUclP23QuestDownloadTextRecordl",
+        "old": "format_number_text__22TQuestVmDownLoadServerFiiPvi",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803EFBDC",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "find_insert_position__22TQuestVmDownLoadServerFPUclll",
+        "old": "find_insert_position__22TQuestVmDownLoadServerFlll",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803F0138",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "find_symbol_entry__22TQuestVmDownLoadServerFPCcsP23QuestSymbolLookupResult",
+        "old": "find_symbol_entry__22TQuestVmDownLoadServerFsP13Info_803F0138",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803F0AB8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "aram_dma_read__22TQuestVmDownLoadServerFlPvl",
+        "old": "aram_dma_read__22TQuestVmDownLoadServerFPvPvi",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x805D4AE0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "bml_archive_header",
+        "old": "lbl_805D4AE0",
+        "section": ".sbss",
+        "type": "object"
+      }
+    ],
+    "ci_script": "tools/source_quality.py",
+    "counts": {
+      "added": 7,
+      "base": 103552,
+      "head": 103033,
+      "removed": 526
+    },
+    "new_findings": [
+      {
+        "key": "local_class",
+        "line": 10,
+        "path": "src/pso/quest/QuestDownloadAramFile.cpp",
+        "text": "struct QuestDownloadAramFile"
+      },
+      {
+        "key": "local_class",
+        "line": 28,
+        "path": "src/pso/quest/QuestDownloadAramFile.cpp",
+        "text": "struct QuestDownloadAramDmaBuffer"
+      },
+      {
+        "key": "extern_c",
+        "line": 39,
+        "path": "src/pso/quest/QuestDownloadAramFile.cpp",
+        "text": "extern \"C\" quest_download_aram_dma_buffer"
+      },
+      {
+        "key": "local_class",
+        "line": 57,
+        "path": "src/pso/quest/TQuestVmDownLoadServer_803EB0D8.cpp",
+        "text": "struct QuestDownloadRequestStorage"
+      },
+      {
+        "key": "local_class",
+        "line": 2681,
+        "path": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+        "text": "struct CardSaveMetadataBlock"
+      },
+      {
+        "key": "local_class",
+        "line": 49,
+        "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+        "text": "struct BmlArchiveEntry"
+      },
+      {
+        "key": "local_class",
+        "line": 58,
+        "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+        "text": "struct BmlArchiveHeader"
+      }
+    ],
+    "newly_stale_retention_entries": [],
+    "script_sha256": "89c36fae42c17026801b040e3f88d956c6c7e767000f72c60182834494da878d"
+  },
+  "supersedes": {
+    "conflicting_paths": 111,
+    "head": "06f05041eba0f87c018fd20e2e4d947b96d4f6ba"
+  },
+  "tree": "8d8979df50a9232c40e4277466d47673a4c930e4",
+  "upstream_pr_375": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "upstream_review": {
+    "draft": false,
+    "head": "93230626dd25d745c2caca42f5c1d5a5797fb375",
+    "match_gate": "https://github.com/zeroz41/pso-decomp/actions/runs/45264791772/job/138008737204",
+    "match_gate_status": "success",
+    "mergeable": true,
+    "number": 386,
+    "url": "https://github.com/zeroz41/pso-decomp/pull/386"
+  }
+}

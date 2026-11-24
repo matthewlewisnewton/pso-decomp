@@ -1,0 +1,2438 @@
+{
+  "source": "fc413ad485abc01c54a5f4d5769b9eaba4f443c8",
+  "landing": "4d9227e2a700b3c98747cf7f9d66097335a19887",
+  "working_fork_build": "b843951d15e1ecd9c0f950dbd3f4fcc97aef9914",
+  "previous_source": "96b757bd02766e92d0273301adc09a06c588567b",
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "source_files": 66,
+  "batches": {
+    "stock": {
+      "head": "116ba9ffd813479f60fa791a39c8f2bce44c74cb",
+      "files": 17,
+      "report_sha256": "ffb662d73fbd29fef3a995fce70fc5d678e73c1c2a9a13ca87eaa851b94bb8c3"
+    },
+    "mericarol": {
+      "head": "ba17a69e0df120c4e34747daaeb348103775a7d0",
+      "files": 19,
+      "report_sha256": "c841b841d963fadd17d9168518c7d27e043c04a409b1d7afda15f404a9b8e560"
+    },
+    "quest": {
+      "head": "c4bf96f63a0b0f228b992c7045a643a774463213",
+      "files": 19,
+      "report_sha256": "6eaa39bda247b163de8e84c6db14fb4e0a62a3cc5fc31d24fb94107e72812361"
+    },
+    "selection": {
+      "head": "4919f53e84c54e47865a4d77bd6d7c86887732a0",
+      "files": 16,
+      "report_sha256": "c229bfa97da75c73f3914c3edcb95ce45b0b7f1a78160c5d69a9312486f9c3c9"
+    }
+  },
+  "source_coverage": {
+    "fuzzy_match_percent": 99.99999,
+    "total_code": "4353092",
+    "matched_code": "4353092",
+    "matched_code_percent": 100.0,
+    "total_data": "1758510",
+    "matched_data": "1758510",
+    "matched_data_percent": 100.0,
+    "total_functions": 27572,
+    "matched_functions": 27572,
+    "matched_functions_percent": 100.0,
+    "complete_code": "4353092",
+    "complete_code_percent": 100.0,
+    "complete_data": "1758510",
+    "complete_data_percent": 100.0,
+    "total_units": 2449,
+    "complete_units": 2449
+  },
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "fork_only_paths": 133,
+  "layer_tests": 11,
+  "local_tool_tests": 294,
+  "source_audit": {
+    "source": "fc413ad485abc01c54a5f4d5769b9eaba4f443c8",
+    "previous": "96b757bd02766e92d0273301adc09a06c588567b",
+    "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "entries": [
+      {
+        "row": 3630,
+        "historical_path": "src/pso/misc/ShopToolStock.cpp",
+        "historical_blob": "6b39d6cafa72b8f7e0ccf6c0940a74690e67a9c6",
+        "owners": {
+          "src/pso/item/shop/ShopToolStock.cpp": "1817796afa72bdb5ebb2bd1d26b7a466e12b5329",
+          "include/pso/item/shop/ShopStock.h": "2ecf454e9d83f57957c91a09ed4016a73a9077b7",
+          "include/pso/item/shop/ShopPool.h": "fbbdcd24efa60b0e548bd16803e6d94e713a853d",
+          "src/pso/ui/city/TShopItemListWindow.cpp": "d066b09d03fe233b5f5337ab11056d5dc3377242"
+        },
+        "proofs": [
+          {
+            "group": "stock",
+            "evidence": "The historical common, rare and technique tool pools, sorting and per-client generation flags have native owners. Retail still allocates 18 actual 0x14 records per slot, releases all four possible arrays before freeing ToolRandom.rel, clears its live handle and resets the original stock level. The list caller uses the typed stock copy.",
+            "details": {
+              "historical_blob": "6b39d6cafa72b8f7e0ccf6c0940a74690e67a9c6",
+              "authored_hunks": 1,
+              "owner_blobs": {
+                "src/pso/item/shop/ShopToolStock.cpp": "1817796afa72bdb5ebb2bd1d26b7a466e12b5329",
+                "include/pso/item/shop/ShopStock.h": "2ecf454e9d83f57957c91a09ed4016a73a9077b7",
+                "include/pso/item/shop/ShopPool.h": "fbbdcd24efa60b0e548bd16803e6d94e713a853d",
+                "src/pso/ui/city/TShopItemListWindow.cpp": "d066b09d03fe233b5f5337ab11056d5dc3377242"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4203,
+        "historical_path": "include/pso/misc/ShopWeaponStock.h",
+        "historical_blob": "5e43de7fdea54d9d51ead286b3dec6dfaa9521c2",
+        "owners": {
+          "include/pso/item/shop/ShopWeaponStock.h": "bf4868010a1ad91b0a1278459e308731f0b1a41f",
+          "src/pso/item/shop/ShopWeaponTables.cpp": "375ba2ef0ae505d03e451825dfb1601dcde63ae1",
+          "src/pso/item/shop/ShopWeaponStock.cpp": "b3328a3abfa1e2e47dfa953aa6942b2dfa468efa"
+        },
+        "proofs": [
+          {
+            "group": "stock",
+            "evidence": "The complete historical header is represented by the actual ShopWeaponCode group/subtype entries, the 72-entry group table, both ten-entry section tables and the 20-entry bonus table. All original stock helpers remain declared and linked.",
+            "details": {
+              "historical_blob": "5e43de7fdea54d9d51ead286b3dec6dfaa9521c2",
+              "authored_hunks": 2,
+              "owner_blobs": {
+                "include/pso/item/shop/ShopWeaponStock.h": "bf4868010a1ad91b0a1278459e308731f0b1a41f",
+                "src/pso/item/shop/ShopWeaponTables.cpp": "375ba2ef0ae505d03e451825dfb1601dcde63ae1",
+                "src/pso/item/shop/ShopWeaponStock.cpp": "b3328a3abfa1e2e47dfa953aa6942b2dfa468efa"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4426,
+        "historical_path": "src/pso/misc/ShopWeaponStock.cpp",
+        "historical_blob": "48ba350896401b07023839fedb8f85e2e04537a5",
+        "owners": {
+          "src/pso/item/shop/ShopWeaponStock.cpp": "b3328a3abfa1e2e47dfa953aa6942b2dfa468efa",
+          "src/pso/item/shop/ShopWeaponTables.cpp": "375ba2ef0ae505d03e451825dfb1601dcde63ae1",
+          "include/pso/item/shop/ShopStock.h": "2ecf454e9d83f57957c91a09ed4016a73a9077b7",
+          "include/pso/item/shop/ShopPool.h": "fbbdcd24efa60b0e548bd16803e6d94e713a853d",
+          "src/pso/ui/city/TShopEquipmentListWindow.cpp": "859ae4705c59d9e18f0a9a844e62be0732e7b66f"
+        },
+        "proofs": [
+          {
+            "group": "stock",
+            "evidence": "The exact weapon stock preserves the named item code tables, historical subgroup selection and bonus rolls, special-channel argument values, 16 records per slot, native stock array allocation and teardown, and separate REL release. Typed draw tables keep their original field offsets and item copies retain the original 0x14 bytes.",
+            "details": {
+              "historical_blob": "48ba350896401b07023839fedb8f85e2e04537a5",
+              "authored_hunks": 13,
+              "owner_blobs": {
+                "src/pso/item/shop/ShopWeaponStock.cpp": "b3328a3abfa1e2e47dfa953aa6942b2dfa468efa",
+                "src/pso/item/shop/ShopWeaponTables.cpp": "375ba2ef0ae505d03e451825dfb1601dcde63ae1",
+                "include/pso/item/shop/ShopStock.h": "2ecf454e9d83f57957c91a09ed4016a73a9077b7",
+                "include/pso/item/shop/ShopPool.h": "fbbdcd24efa60b0e548bd16803e6d94e713a853d",
+                "src/pso/ui/city/TShopEquipmentListWindow.cpp": "859ae4705c59d9e18f0a9a844e62be0732e7b66f"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4387,
+        "historical_path": "src/pso/misc/TShopGenerator.cpp",
+        "historical_blob": "643d4b657631ebaa155c530f2065d457f20de191",
+        "owners": {
+          "src/pso/item/shop/TShopGenerator.cpp": "6476f799318ec97a97823889c60318674ff379b9",
+          "include/pso/item/shop/TShopGenerator.h": "de9ede6703d01a03b21971f4f57341a855392e41",
+          "src/pso/item/shop/ShopWeaponStock.cpp": "b3328a3abfa1e2e47dfa953aa6942b2dfa468efa",
+          "src/pso/item/shop/ShopToolStock.cpp": "1817796afa72bdb5ebb2bd1d26b7a466e12b5329"
+        },
+        "proofs": [
+          {
+            "group": "stock",
+            "evidence": "Verified the existing seven-entry service table, active flags, class construction and frame-delay lifecycle at the active generator. Typed stock owners preserve the original shop service flows. Other historical service proximity and dispatch source remains scoped.",
+            "details": {
+              "historical_blob": "643d4b657631ebaa155c530f2065d457f20de191",
+              "authored_hunks": 13,
+              "owner_blobs": {
+                "src/pso/item/shop/TShopGenerator.cpp": "6476f799318ec97a97823889c60318674ff379b9",
+                "include/pso/item/shop/TShopGenerator.h": "de9ede6703d01a03b21971f4f57341a855392e41",
+                "src/pso/item/shop/ShopWeaponStock.cpp": "b3328a3abfa1e2e47dfa953aa6942b2dfa468efa",
+                "src/pso/item/shop/ShopToolStock.cpp": "1817796afa72bdb5ebb2bd1d26b7a466e12b5329"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 441,
+        "historical_path": "include/pso/enemy/MericarolResources.h",
+        "historical_blob": "8d8fc51ab55ba72c845e9fa4753a120fbf629eaf",
+        "owners": {
+          "config/GPOE8P/psov3/symbols.txt": "e0a2cc1c23038adace79779c6f71c1ad449e6fec",
+          "include/pso/enemy/mericarol/MericarolResources.h": "79ea20c46e2c3eac88af443a2e725bf8177f86ed",
+          "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp": "6095203e442e1440e21c312c86e1d98ed8cda224"
+        },
+        "proofs": [
+          {
+            "group": "mericarol",
+            "evidence": "All phase IDs, both descriptors, motion and resource string addresses, exact palette, action list and sampled motion consumers survive at their live native owners. The original external declarations for the whole named appearance-label pool are not reinstated, so this row remains open.",
+            "details": {
+              "disposition": "scoped_already_retained",
+              "anchors": [
+                {
+                  "lane": "source",
+                  "path": "include/pso/enemy/mericarol/MericarolResources.h",
+                  "blob": "79ea20c46e2c3eac88af443a2e725bf8177f86ed",
+                  "anchors": [
+                    "mericarol_phase_base_stat_ids[3]",
+                    "mericarol_phase_movement_param_ids[3]"
+                  ],
+                  "absent": []
+                },
+                {
+                  "lane": "source",
+                  "path": "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+                  "blob": "6095203e442e1440e21c312c86e1d98ed8cda224",
+                  "anchors": [
+                    "mericarol_phase_effect_colors[3]",
+                    "mericarol_motion_actions[9]",
+                    "mericarol_sampled_motion_points",
+                    "NpcAnimationBinding params = { mericarol_resource->motions, mericarol_motion_actions, 3, 1, 9 }"
+                  ],
+                  "absent": []
+                },
+                {
+                  "lane": "source",
+                  "path": "config/GPOE8P/psov3/symbols.txt",
+                  "blob": "311530f3b2b4c022f647f97fd2b5d197baef435c",
+                  "anchors": [
+                    "mericarol_phase_effect_colors = .rodata:0x80472318",
+                    "mericarol_animation_binding = .rodata:0x80472480",
+                    "mericarol_body_model_name = .rodata:0x80472324",
+                    "mericarol_low_detail_archive_name = .rodata:0x8047244C"
+                  ],
+                  "absent": []
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 450,
+        "historical_path": "include/pso/enemy/TObjEneBm9Mericarol_Bomb.h",
+        "historical_blob": "9a891f55c3cb66c1d58cd20ccb266e0405dc55af",
+        "owners": {
+          "include/pso/enemy/mericarol/TObjEneBm9Mericarol_Bomb.h": "91ce0adc21d981393561dd9da90c4a03e095f2cc"
+        },
+        "proofs": [
+          {
+            "group": "mericarol",
+            "evidence": "Both historical field rewrites are represented: a Vec at +0xD8 and separate s32 visibility flag at +0x10C. The target compiler confirms +0xD8 and total class size 0x118 in both lanes.",
+            "details": {
+              "disposition": "whole_replayed",
+              "anchors": [
+                {
+                  "lane": "source",
+                  "path": "include/pso/enemy/mericarol/TObjEneBm9Mericarol_Bomb.h",
+                  "blob": "91ce0adc21d981393561dd9da90c4a03e095f2cc",
+                  "anchors": [
+                    "Vec ground_normal;",
+                    "s32 shadow_visible;",
+                    "ground_normal) == 0xD8",
+                    "== 0x118"
+                  ],
+                  "absent": []
+                },
+                {
+                  "lane": "direct",
+                  "path": "include/pso/enemy/mericarol/TObjEneBm9Mericarol_Bomb.h",
+                  "blob": "91ce0adc21d981393561dd9da90c4a03e095f2cc",
+                  "anchors": [
+                    "Vec ground_normal;",
+                    "s32 shadow_visible;",
+                    "ground_normal) == 0xD8"
+                  ],
+                  "absent": []
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 453,
+        "historical_path": "include/pso/enemy/TObjEneGibbles.h",
+        "historical_blob": "cf91058a3d5ef34d0b6a2b85c09bb9615ff63bbe",
+        "owners": {
+          "include/pso/enemy/gibbles/TObjEneGibbles.h": "df9c569853250885b37f1bfcfbefc26adfd95215"
+        },
+        "proofs": [
+          {
+            "group": "mericarol",
+            "evidence": "Live Gibbles owns the typed ground effect and ground-sound methods on both lanes. The larger historical class layout with action state, probability and timing fields remains an independent source audit.",
+            "details": {
+              "disposition": "scoped_replayed",
+              "anchors": [
+                {
+                  "lane": "source",
+                  "path": "include/pso/enemy/gibbles/TObjEneGibbles.h",
+                  "blob": "df9c569853250885b37f1bfcfbefc26adfd95215",
+                  "anchors": [
+                    "s32 spawn_ground_impact_effects(const Vec *pos",
+                    "s32 spawn_ground_contact_effect()",
+                    "void play_ground_contact_sound()"
+                  ],
+                  "absent": []
+                },
+                {
+                  "lane": "direct",
+                  "path": "include/pso/enemy/gibbles/TObjEneGibbles.h",
+                  "blob": "9ac61f76f9a989738b86c283892d1f574938e097",
+                  "anchors": [
+                    "s32 spawn_ground_impact_effects(const Vec *pos",
+                    "s32 spawn_ground_contact_effect()",
+                    "void play_ground_contact_sound()"
+                  ],
+                  "absent": []
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 566,
+        "historical_path": "src/pso/enemy/TObjEneBm9Mericarol_Bomb.cpp",
+        "historical_blob": "565f45302e0aa166fd92444aad2809e10c68e551",
+        "owners": {
+          "config/GPOE8P/psov3/symbols.txt": "e0a2cc1c23038adace79779c6f71c1ad449e6fec",
+          "src/pso/enemy/mericarol/TObjEneBm9Mericarol_Bomb.cpp": "7ef42709a5608db46536fb251c2d9f007dec2f65"
+        },
+        "proofs": [
+          {
+            "group": "mericarol",
+            "evidence": "Every original edit is mapped: the real ground-query contract, position and normal reads, visible/no-hit branches, typed shadow call with no scale, and three axis initializers. Original constructor and task linked addresses are retained.",
+            "details": {
+              "disposition": "whole_replayed",
+              "anchors": [
+                {
+                  "lane": "source",
+                  "path": "src/pso/enemy/mericarol/TObjEneBm9Mericarol_Bomb.cpp",
+                  "blob": "7ef42709a5608db46536fb251c2d9f007dec2f65",
+                  "anchors": [
+                    "CsnHit *hit;",
+                    "hit = csnVecterUnder(&pos, 0x16EF);",
+                    "position.y = hit->contact->point.y;",
+                    "VecCopy(&ground_normal, &hit->contact->normal);",
+                    "shadow_visible = 0;",
+                    "TObjEneDD::draw_oriented_shadow(&position, &ground_normal, 0, NULL);",
+                    "ground_normal.x = 0.0f;",
+                    "ground_normal.y = 0.0f;",
+                    "ground_normal.z = 0.0f;"
+                  ],
+                  "absent": []
+                },
+                {
+                  "lane": "direct",
+                  "path": "src/pso/enemy/mericarol/TObjEneBm9Mericarol_Bomb.cpp",
+                  "blob": "4db845d6c9e0ad26e7b49340861ea5573a6676bd",
+                  "anchors": [
+                    "CsnHit *hit;",
+                    "hit = (CsnHit *)csnVecterUnder((s32)&pos, 0x16EF);",
+                    "VecCopy(&ground_normal, &hit->contact->normal);"
+                  ],
+                  "absent": []
+                },
+                {
+                  "lane": "source",
+                  "path": "config/GPOE8P/psov3/symbols.txt",
+                  "blob": "311530f3b2b4c022f647f97fd2b5d197baef435c",
+                  "anchors": [
+                    "run_task__24TObjEneBm9Mericarol_BombFv = .text:0x802D14F4",
+                    "P19TObjEneBm9MericarolP3VecP3Vecffl = .text:0x802D1880"
+                  ],
+                  "absent": []
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 573,
+        "historical_path": "src/pso/enemy/TObjEneDD_800B9D20.cpp",
+        "historical_blob": "b62b4c6e7a0f527d8bc6809ae33cbd0f633e6cd2",
+        "owners": {
+          "config/GPOE8P/psov3/symbols.txt": "e0a2cc1c23038adace79779c6f71c1ad449e6fec",
+          "src/pso/enemy/dd/TObjEneDD.cpp": "38f99fad3d45a4cb8ea8844bb3cbd6d02e14d891"
+        },
+        "proofs": [
+          {
+            "group": "mericarol",
+            "evidence": "Restored one complete original public-position-provider edit and all seven callers at 0x800B9D94. Actor part transforms now use actual offset/center vectors. The other original changes to typed reset stats, ground projection and camera providers do not follow from this scope.",
+            "details": {
+              "disposition": "scoped_replayed",
+              "anchors": [
+                {
+                  "lane": "source",
+                  "path": "src/pso/enemy/dd/TObjEneDD.cpp",
+                  "blob": "38f99fad3d45a4cb8ea8844bb3cbd6d02e14d891",
+                  "anchors": [
+                    "TObjEneDD::draw_oriented_shadow(const Vec *position, const Vec *normal, s32 angle, const Vec *scale)",
+                    "post_translate_matrix(&position->x);",
+                    "rotate_matrix_y(NULL, angle);",
+                    "scale_current_matrix(&scale->x);",
+                    "matrix_mult_vec(0, &bodies[i].offset, &bodies[i].center);"
+                  ],
+                  "absent": [
+                    "Obj_800BA934"
+                  ]
+                },
+                {
+                  "lane": "direct",
+                  "path": "src/pso/enemy/dd/TObjEneDD.cpp",
+                  "blob": "60783365acba7d16d82e64c27037a796d3ae4b26",
+                  "anchors": [
+                    "rotate_matrix_y(NULL, rotation_y);",
+                    "matrix_mult_vec(0, &bodies[i].offset, &bodies[i].center);"
+                  ],
+                  "absent": [
+                    "Obj_800BA934"
+                  ]
+                },
+                {
+                  "lane": "source",
+                  "path": "config/GPOE8P/psov3/symbols.txt",
+                  "blob": "311530f3b2b4c022f647f97fd2b5d197baef435c",
+                  "anchors": [
+                    "draw_oriented_shadow__9TObjEneDDFPC3VecPC3VeclPC3Vec = .text:0x800B9D94"
+                  ],
+                  "absent": []
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 587,
+        "historical_path": "src/pso/enemy/TObjEneGibbles.cpp",
+        "historical_blob": "8ecc03c535278f7145e7287561c0843630c081e1",
+        "owners": {
+          "src/pso/enemy/gibbles/TObjEneGibbles.cpp": "01c46c7a5874f8f7f752dc6d4d1493c6655cca94"
+        },
+        "proofs": [
+          {
+            "group": "mericarol",
+            "evidence": "The four contiguous Mountain terrain functions at 0x802D7ACC, 0x802D7BE0, 0x802D7C78 and 0x802D7DAC use actual Vecs, the true three-argument ground query, mask-4 contact slot 2 and floor sound declaration. The original 137 changed blocks include additional combat and class state unrelated to this ground-effects batch.",
+            "details": {
+              "disposition": "scoped_replayed",
+              "anchors": [
+                {
+                  "lane": "source",
+                  "path": "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+                  "blob": "01c46c7a5874f8f7f752dc6d4d1493c6655cca94",
+                  "anchors": [
+                    "CsnHit *hit = reinterpret_cast<CsnHit *>(csnVectorUnder(&point",
+                    "hit->contact[2].point, 0x49",
+                    "hit->contact[2].point, 0xA4",
+                    "spawn_particle_effect(&position, 0x20E)",
+                    "play_floor_area_ground_sound(&position)",
+                    "resolve_sound_id(0x3A83D)",
+                    "resolve_sound_id(0x3A82B)"
+                  ],
+                  "absent": [
+                    "Stack_802D7BE0",
+                    "TObjEneGibbles__sub_800D8988"
+                  ]
+                },
+                {
+                  "lane": "direct",
+                  "path": "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+                  "blob": "55d9179e605f17a66d9e3673ac97d43fe233b7a8",
+                  "anchors": [
+                    "hit->contact[2].point, 0x49",
+                    "TObjEneGibbles::spawn_ground_contact_effect()"
+                  ],
+                  "absent": []
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 703,
+        "historical_path": "src/pso/unk/text_802CE510.cpp",
+        "historical_blob": "51c5932068ed7a50ba99d8d6bf0b9ee16cda6130",
+        "owners": {
+          "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp": "6095203e442e1440e21c312c86e1d98ed8cda224",
+          "src/pso/map/CsnQuery.cpp": "5e1d6d765efee428dfa4d608f1f93da5cbb21088"
+        },
+        "proofs": [
+          {
+            "group": "mericarol",
+            "evidence": "Both original persistent-sound argument edits and all three typed particle positions are represented at 0x802CE510. The actor receiver and source position are native, the hit-mask-4 record is actual contact slot 2, and the original particle IDs/scale and frame values remain. Direct explicitly preserves the named upstream audio ABI at this shared boundary.",
+            "details": {
+              "disposition": "whole_replayed",
+              "anchors": [
+                {
+                  "lane": "source",
+                  "path": "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+                  "blob": "6095203e442e1440e21c312c86e1d98ed8cda224",
+                  "anchors": [
+                    "void fn_802CE510(TObjEneBm9Mericarol *owner)",
+                    "play_floor_area_persistent_sound(owner, &owner->position)",
+                    "play_persistent_sound(owner->remap_sound_for_area(0x3B211), owner, &owner->position",
+                    "hit->contact[2].point, 0x49",
+                    "hit->contact[2].point, 0xA4",
+                    "spawn_particle_effect(&owner->position, 0xF3)",
+                    "is_passing_frame(5.0f)",
+                    "is_passing_frame(15.0f)",
+                    "is_passing_frame(25.0f)"
+                  ],
+                  "absent": [
+                    "Stack_802CE510",
+                    "RecoveredFields_802CE510_temp_r3"
+                  ]
+                },
+                {
+                  "lane": "source",
+                  "path": "src/pso/map/CsnQuery.cpp",
+                  "blob": "5e1d6d765efee428dfa4d608f1f93da5cbb21088",
+                  "anchors": [
+                    "hdr->hit_mask |= 0x4;",
+                    "hit = &hits[2];"
+                  ],
+                  "absent": []
+                },
+                {
+                  "lane": "direct",
+                  "path": "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+                  "blob": "b76dedaadba12530bf6b9578482bfcd500c1523d",
+                  "anchors": [
+                    "void fn_802CE510(TObjEneBm9Mericarol *owner)",
+                    "fn_800D8830(owner, &owner->position)",
+                    "hit->contact[2].point, 0x49"
+                  ],
+                  "absent": []
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 741,
+        "historical_path": "src/pso/enemy/TObjEneBm9Mericarol_EffCurse3.cpp",
+        "historical_blob": "70791a96ef3e478d5aa582dbec77d21f9a4915fb",
+        "owners": {
+          "config/GPOE8P/psov3/symbols.txt": "e0a2cc1c23038adace79779c6f71c1ad449e6fec",
+          "src/pso/enemy/mericarol/TObjEneBm9Mericarol_EffCurse3.cpp": "381e71d06d2b60db8864ff1f4bfb7731e0d71387"
+        },
+        "proofs": [
+          {
+            "group": "mericarol",
+            "evidence": "The complete original two-hunk change already uses the true vector normalization provider at 0x8007E9EC in canonical source. The standalone keeps its upstream version of the wider vector helper boundary.",
+            "details": {
+              "disposition": "whole_already_retained",
+              "anchors": [
+                {
+                  "lane": "source",
+                  "path": "src/pso/enemy/mericarol/TObjEneBm9Mericarol_EffCurse3.cpp",
+                  "blob": "381e71d06d2b60db8864ff1f4bfb7731e0d71387",
+                  "anchors": [
+                    "#include \"pso/math/VectorNormalize.h\"",
+                    "normalize_vector_checked(&b)"
+                  ],
+                  "absent": [
+                    "->update_scale()"
+                  ]
+                },
+                {
+                  "lane": "source",
+                  "path": "config/GPOE8P/psov3/symbols.txt",
+                  "blob": "311530f3b2b4c022f647f97fd2b5d197baef435c",
+                  "anchors": [
+                    "normalize_vector_checked = .text:0x8007E9EC"
+                  ],
+                  "absent": []
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 887,
+        "historical_path": "include/pso/enemy/TObjEneBm9Mericarol.h",
+        "historical_blob": "f67bab674ecbeaf8c220207a8dfa725039a8fb64",
+        "owners": {
+          "include/pso/enemy/mericarol/TObjEneBm9Mericarol.h": "136ea77d6b7de591808dc116265825d90adfa23f"
+        },
+        "proofs": [
+          {
+            "group": "mericarol",
+            "evidence": "The removed obsolete fields are inherited from the current base or represented by real render/particle state. The opacity member and Ninja callback were already native. This wave restores the original +0x46C compile assertion while retaining class size 0x4B0.",
+            "details": {
+              "disposition": "whole_replayed",
+              "anchors": [
+                {
+                  "lane": "source",
+                  "path": "include/pso/enemy/mericarol/TObjEneBm9Mericarol.h",
+                  "blob": "136ea77d6b7de591808dc116265825d90adfa23f",
+                  "anchors": [
+                    "struct NJS_OBJECT;",
+                    "MaterialOpacityFade m_46c;",
+                    "TUnk_80494968 *m_3c0[2];",
+                    "RenderFadeState m_3c8[4];",
+                    "static void update_particle_effect(NJS_OBJECT *);",
+                    "offsetof(TObjEneBm9Mericarol, m_46c) == 0x46C",
+                    "== 0x4B0"
+                  ],
+                  "absent": []
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 908,
+        "historical_path": "src/pso/enemy/TObjEneBm9Mericarol_802D05BC.cpp",
+        "historical_blob": "0f53effdbccc7f18aa0387310a6b977e7f1c0e47",
+        "owners": {
+          "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp": "6095203e442e1440e21c312c86e1d98ed8cda224"
+        },
+        "proofs": [
+          {
+            "group": "mericarol",
+            "evidence": "The obsolete SubObj overlay is absent. All three authored operations already use the actual opacity object and true position sound-and-particle provider in the canonical native method.",
+            "details": {
+              "disposition": "whole_already_retained",
+              "anchors": [
+                {
+                  "lane": "source",
+                  "path": "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+                  "blob": "6095203e442e1440e21c312c86e1d98ed8cda224",
+                  "anchors": [
+                    "void TObjEneBm9Mericarol::sub_802D05BC(s32 arg1)",
+                    "m_46c.start_fade_in();",
+                    "play_area_sound_and_particles_b(&position);",
+                    "m_46c.advance_toward_max()"
+                  ],
+                  "absent": [
+                    "SubObj_802d05bc"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 934,
+        "historical_path": "src/pso/enemy/TObjEneBm9Mericarol.cpp",
+        "historical_blob": "4e1f60595200e1c8508abe7e9265eeb101a87887",
+        "owners": {
+          "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp": "6095203e442e1440e21c312c86e1d98ed8cda224"
+        },
+        "proofs": [
+          {
+            "group": "mericarol",
+            "evidence": "Native archive, model, collision bodies and action lists, phase IDs, both sampled node pairs, collision flags and all constructors already link at the current owners. Restoring named numeric-external source and exact model/lobby interface hunk equivalence requires additional evidence.",
+            "details": {
+              "disposition": "scoped_already_retained",
+              "anchors": [
+                {
+                  "lane": "source",
+                  "path": "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+                  "blob": "6095203e442e1440e21c312c86e1d98ed8cda224",
+                  "anchors": [
+                    "mericarol_collision_bodies[2]",
+                    "mericarol_motion_actions[9]",
+                    "get_battle_base_stats(mericarol_phase_base_stat_ids",
+                    "mericarol_low_detail_resource_descriptor",
+                    "TBoss4Type3_shared_instance = new SampledMotionPoints",
+                    "0x20, 0x21",
+                    "0x2A, 0x2B",
+                    "NpcModelRegistry::register_animated_chunk(0x42"
+                  ],
+                  "absent": []
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 940,
+        "historical_path": "include/pso/enemy/TObjEneDD.h",
+        "historical_blob": "f254b4468a4ba48d7e50700cd90b6485b665e096",
+        "owners": {
+          "include/pso/enemy/dd/TObjEneDD.h": "06db1b9dde1962532085cd4b10aedb6f303ed30e"
+        },
+        "proofs": [
+          {
+            "group": "mericarol",
+            "evidence": "The original four-argument oriented-shadow declaration is restored. Other fork base-class layout and battle-stat declarations are deliberately not marked whole.",
+            "details": {
+              "disposition": "scoped_replayed",
+              "anchors": [
+                {
+                  "lane": "source",
+                  "path": "include/pso/enemy/dd/TObjEneDD.h",
+                  "blob": "06db1b9dde1962532085cd4b10aedb6f303ed30e",
+                  "anchors": [
+                    "static void draw_oriented_shadow(const Vec *position, const Vec *normal, s32 angle, const Vec *scale);"
+                  ],
+                  "absent": []
+                },
+                {
+                  "lane": "direct",
+                  "path": "include/pso/enemy/dd/TObjEneDD.h",
+                  "blob": "5c9911082fee6d37d424dfce44b494c64b9fbfb3",
+                  "anchors": [
+                    "static void draw_oriented_shadow(const Vec *position, const Vec *normal, s32 angle, const Vec *scale);"
+                  ],
+                  "absent": []
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 987,
+        "historical_path": "src/pso/unk/text_802CE68C.cpp",
+        "historical_blob": "cf301483a2ace46627e4027cdcebbc886c474f7a",
+        "owners": {
+          "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp": "6095203e442e1440e21c312c86e1d98ed8cda224"
+        },
+        "proofs": [
+          {
+            "group": "mericarol",
+            "evidence": "The original joint position, yaw, demo predicate and native opacity/color-fade operations are already represented. Some render model and texture entry locals remain inherited boundary views.",
+            "details": {
+              "disposition": "scoped_already_retained",
+              "anchors": [
+                {
+                  "lane": "source",
+                  "path": "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+                  "blob": "6095203e442e1440e21c312c86e1d98ed8cda224",
+                  "anchors": [
+                    "void TObjEneBm9Mericarol::sub_802CE68C(Vec *out, s32 node)",
+                    "rotate_matrix_y(0, this->rotation.yaw)",
+                    "check_demo_mode()",
+                    "set_chunk_model_node_callback(TObjEneBm9Mericarol::update_particle_effect)",
+                    "has_visible_opacity()",
+                    "set_flags_and_apply_damage_color()"
+                  ],
+                  "absent": []
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1058,
+        "historical_path": "src/pso/enemy/TObjEneBm9Mericarol_802CECE0.cpp",
+        "historical_blob": "26fdccf8e9563ebf979a3ad112ca8325a8cf9154",
+        "owners": {
+          "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp": "6095203e442e1440e21c312c86e1d98ed8cda224"
+        },
+        "proofs": [
+          {
+            "group": "mericarol",
+            "evidence": "The two-contact motion lookup, typed vector transforms, genuine bomb constructor and current target, and original shot sound are present. The wider authored dispatch/effect literal remapping remains a scoped audit.",
+            "details": {
+              "disposition": "scoped_already_retained",
+              "anchors": [
+                {
+                  "lane": "source",
+                  "path": "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+                  "blob": "6095203e442e1440e21c312c86e1d98ed8cda224",
+                  "anchors": [
+                    "TBoss4Type3_shared_instance->lookup(frame)",
+                    "mericarol_sampled_motion_points->lookup(frame)",
+                    "matrix_mult_vec_array(NULL, points0, trail0, 2)",
+                    "new TObjEneBm9Mericarol_Bomb(this, &m_460, &current_target->position",
+                    "play_sound_effect(remap_sound_for_area(0x3A307)"
+                  ],
+                  "absent": []
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5520,
+        "historical_path": "include/pso/unk/text_8026B260.h",
+        "historical_blob": "33abcbb5255e3be2345cc4639b604771f51bab36",
+        "owners": {
+          "src/pso/ui/window/TWindowMessageQuest.cpp": "d4015b7b77d1bbcf8aa018d8dca43798c876e79e",
+          "include/pso/ui/window/TWindowMessageQuest.h": "b45e23746afbf5119162c98192bc34148dca4226"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "The moved legacy header only forwards to the real quest message class. The native owner already declares the replacement C++ constructor, without retaining the duplicate old C initializer declaration.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "path": "include/pso/ui/window/TWindowMessageQuest.h",
+                  "contains": "TWindowMessageQuest(s32 layout);",
+                  "lines": [
+                    9
+                  ]
+                },
+                {
+                  "path": "src/pso/ui/window/TWindowMessageQuest.cpp",
+                  "contains": "TWindowMessageQuest::TWindowMessageQuest(s32 layout)",
+                  "lines": [
+                    49
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5621,
+        "historical_path": "include/pso/misc/TWindowMessageQuest.h",
+        "historical_blob": "4b1a5522894a32d530f3781cd4b6dd51e3e0e603",
+        "owners": {
+          "include/pso/ui/window/TWindowMessageQuest.h": "b45e23746afbf5119162c98192bc34148dca4226"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "The authored native quest constructor and 0x90 field declaration and assertion are already present. This wave exposes the typed setter and gives the default factory its genuine return type.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "path": "include/pso/ui/window/TWindowMessageQuest.h",
+                  "contains": "TWindowMessageQuest(s32 layout);",
+                  "lines": [
+                    9
+                  ]
+                },
+                {
+                  "path": "include/pso/ui/window/TWindowMessageQuest.h",
+                  "contains": "s32 frame_mode;",
+                  "lines": [
+                    12
+                  ]
+                },
+                {
+                  "path": "include/pso/ui/window/TWindowMessageQuest.h",
+                  "contains": "offsetof(TWindowMessageQuest, frame_mode) == 0x90",
+                  "lines": [
+                    15
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5637,
+        "historical_path": "src/pso/misc/TWindowMessageScroll.cpp",
+        "historical_blob": "ab05bae710b0eebada21b896b9844f4ec161e890",
+        "owners": {
+          "src/pso/ui/window/TWindowMessageScroll.cpp": "127987a9165e8f4e0fca0efc5be2617675e7c3e9"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "The native scroll constructor initializes the class name, speed and completion register. The original fade, entry updates and completion condition are represented under the folded owner. The actual speed member replaces the old fake lobby receiver in this wave.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "path": "src/pso/ui/window/TWindowMessageScroll.cpp",
+                  "contains": "TWindowMessageScroll::TWindowMessageScroll(s32 layout, s32 *completion)",
+                  "lines": [
+                    35
+                  ]
+                },
+                {
+                  "path": "src/pso/ui/window/TWindowMessageScroll.cpp",
+                  "contains": "m_name = TWindowMessageScroll__class_name;",
+                  "lines": [
+                    37
+                  ]
+                },
+                {
+                  "path": "src/pso/ui/window/TWindowMessageScroll.cpp",
+                  "contains": "m_94 = 0.0f;",
+                  "lines": [
+                    38
+                  ]
+                },
+                {
+                  "path": "src/pso/ui/window/TWindowMessageScroll.cpp",
+                  "contains": "*m_98 = 0;",
+                  "lines": [
+                    40
+                  ]
+                },
+                {
+                  "path": "src/pso/ui/window/TWindowMessageScroll.cpp",
+                  "contains": "->update_fade()",
+                  "lines": [
+                    23
+                  ]
+                },
+                {
+                  "path": "src/pso/ui/window/TWindowMessageScroll.cpp",
+                  "contains": "update_window_entry_list((u8 *)&this->entry_list)",
+                  "lines": [
+                    24
+                  ]
+                },
+                {
+                  "path": "src/pso/ui/window/TWindowMessageScroll.cpp",
+                  "contains": "this->unk_80 <= this->scroll_offset[1]",
+                  "lines": [
+                    25
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5649,
+        "historical_path": "include/pso/misc/TWindowMessageScroll.h",
+        "historical_blob": "c872766abd34c6bab93a8025435df3c8cc24c00e",
+        "owners": {
+          "include/pso/ui/window/TWindowMessageScroll.h": "2c66a73ccf417226ed2f41bd918c6221f688113b"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "The native scroll constructor, actual float, and 0x94 size/offset assertions are already represented with the absorbed C initializer declaration removed.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "path": "include/pso/ui/window/TWindowMessageScroll.h",
+                  "contains": "TWindowMessageScroll(s32 layout, s32 *completion);",
+                  "lines": [
+                    9
+                  ]
+                },
+                {
+                  "path": "include/pso/ui/window/TWindowMessageScroll.h",
+                  "contains": "f32 m_94;",
+                  "lines": [
+                    12
+                  ]
+                },
+                {
+                  "path": "include/pso/ui/window/TWindowMessageScroll.h",
+                  "contains": "offsetof(TWindowMessageScroll, m_94) == 0x94",
+                  "lines": [
+                    16
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5772,
+        "historical_path": "src/pso/misc/TWindowMessageQuest_8026B118.cpp",
+        "historical_blob": "b1aa4ea58ade2af74bd28223939cd76e6c83498c",
+        "owners": {
+          "src/pso/ui/window/TWindowMessageQuest.cpp": "d4015b7b77d1bbcf8aa018d8dca43798c876e79e"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "The original draw-context provider and window-base dependency already map to the concrete WindowDrawContext member call. The constructor wrapper and original 384 by 80 default extent are exact.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "path": "src/pso/ui/window/TWindowMessageQuest.cpp",
+                  "contains": "WindowDrawContext *c = setup_content_draw_context();",
+                  "lines": [
+                    24
+                  ]
+                },
+                {
+                  "path": "src/pso/ui/window/TWindowMessageQuest.cpp",
+                  "contains": "draw_visible_window_entries(this, &entry_list, c);",
+                  "lines": [
+                    39
+                  ]
+                },
+                {
+                  "path": "src/pso/ui/window/TWindowMessageQuest.cpp",
+                  "contains": "384.0f, 80.0f, 0.0f",
+                  "lines": [
+                    14
+                  ]
+                },
+                {
+                  "path": "src/pso/ui/window/TWindowMessageQuest.cpp",
+                  "contains": "create_quest_message_window_at((get_window_layout_position(0xAD))",
+                  "lines": [
+                    21
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6041,
+        "historical_path": "src/pso/misc/TLobby_8026B06C.cpp",
+        "historical_blob": "e69547eacdf97f88453bb0b37263865b4dbfc83f",
+        "owners": {
+          "src/pso/unk/TLobby_8026B06C.cpp": "0a2a949f43bd18848baab40c14d5ecaef6244a4a"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "The original typed settings call, construction and TWindowMessage append of cases 1/2 already exist on canonical. The wave matches the true common derived owner for frame mode and both factories.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "path": "src/pso/unk/TLobby_8026B06C.cpp",
+                  "contains": "#include \"pso/ui/window/MessageWindowSettingsAbi.h\"",
+                  "lines": [
+                    1
+                  ]
+                },
+                {
+                  "path": "src/pso/unk/TLobby_8026B06C.cpp",
+                  "contains": "TLobby__sub_80269DA4((const void *)size, 1);",
+                  "lines": [
+                    26
+                  ]
+                },
+                {
+                  "path": "src/pso/unk/TLobby_8026B06C.cpp",
+                  "contains": "new TWindowMessageQuest(layout)",
+                  "lines": [
+                    27
+                  ]
+                },
+                {
+                  "path": "src/pso/unk/TLobby_8026B06C.cpp",
+                  "contains": "((TWindowMessage *)w)->append_line(text, flags)",
+                  "lines": [
+                    19
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6043,
+        "historical_path": "src/pso/misc/TLobby_801F2D2C.cpp",
+        "historical_blob": "8ba2b807c0ffe012bd87804c4a00a249f8e403dc",
+        "owners": {
+          "src/pso/unk/TLobby_801F2D2C.cpp": "134d232b1fbca7e2804d9f531742fe430e9178ed",
+          "src/pso/quest/QuestOpcodeHandlers.cpp": "6471246b43bff8ba4fab8b685c4d3fc814a058e9"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "The three original close calls survive on each inherited window and the four original typed state globals have moved to the compiled opcode owner. Window save/load behavior and the distinction between per-thread and secondary global window are preserved.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "path": "src/pso/unk/TLobby_801F2D2C.cpp",
+                  "contains": "((TWindowBase *)qst_message_window)->close()",
+                  "lines": [
+                    63
+                  ]
+                },
+                {
+                  "path": "src/pso/unk/TLobby_801F2D2C.cpp",
+                  "contains": "((TWindowBase *)qst_message_window_qb)->close()",
+                  "lines": [
+                    67
+                  ]
+                },
+                {
+                  "path": "src/pso/unk/TLobby_801F2D2C.cpp",
+                  "contains": "((TWindowBase *)qst_list_window)->close()",
+                  "lines": [
+                    71
+                  ]
+                },
+                {
+                  "path": "src/pso/quest/QuestOpcodeHandlers.cpp",
+                  "contains": "u8 TLobby__data_805D5EA8;",
+                  "lines": [
+                    93
+                  ]
+                },
+                {
+                  "path": "src/pso/quest/QuestOpcodeHandlers.cpp",
+                  "contains": "u8 TLobby__data_805D5EA9;",
+                  "lines": [
+                    94
+                  ]
+                },
+                {
+                  "path": "src/pso/quest/QuestOpcodeHandlers.cpp",
+                  "contains": "u16 TLobby__data_805D5EAA;",
+                  "lines": [
+                    95
+                  ]
+                },
+                {
+                  "path": "src/pso/quest/QuestOpcodeHandlers.cpp",
+                  "contains": "u16 TLobby__data_805D5EAC;",
+                  "lines": [
+                    96
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6054,
+        "historical_path": "src/pso/misc/TLobby_8035D540.cpp",
+        "historical_blob": "3871d5e99c53dc30ce271f2be45ff56d0931f9d3",
+        "owners": {
+          "src/pso/unk/TLobby_8035D540.cpp": "70a3060de536ff9711e02c4b64b93f3d2245f74f"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "The typed settings declaration and native allocating scroll construction already exist at their exact source address. The wave replaces the false lobby factory and float setter with genuine window contracts.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "path": "src/pso/unk/TLobby_8035D540.cpp",
+                  "contains": "#include \"pso/ui/window/MessageWindowSettingsAbi.h\"",
+                  "lines": [
+                    1
+                  ]
+                },
+                {
+                  "path": "src/pso/unk/TLobby_8035D540.cpp",
+                  "contains": "TLobby__sub_80269DA4((const void *)size, 1);",
+                  "lines": [
+                    14
+                  ]
+                },
+                {
+                  "path": "src/pso/unk/TLobby_8035D540.cpp",
+                  "contains": "new TWindowMessageScroll(layout, (s32 *)completion)",
+                  "lines": [
+                    15
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6532,
+        "historical_path": "src/pso/player/TObjPlayer_80148DCC.cpp",
+        "historical_blob": "548544c936251980bf3a4ab77761259d34688d66",
+        "owners": {
+          "src/pso/npc/TObjNpcBase.cpp": "c767ef095b4ea3d821cd60c3d10acfbbbf465bf3"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "The original NPC draw yaw and typed texture binding and update-body-to-center call already survive at their owner.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "path": "src/pso/npc/TObjNpcBase.cpp",
+                  "contains": "void TObjNpcBase::render()",
+                  "lines": [
+                    581
+                  ]
+                },
+                {
+                  "path": "src/pso/npc/TObjNpcBase.cpp",
+                  "contains": "set_current_texture_list((GinjaTextureList *)this->texlist)",
+                  "lines": [
+                    585
+                  ]
+                },
+                {
+                  "path": "src/pso/npc/TObjNpcBase.cpp",
+                  "contains": "rotate_matrix_y(0, this->rotation.yaw)",
+                  "lines": [
+                    588
+                  ]
+                },
+                {
+                  "path": "src/pso/npc/TObjNpcBase.cpp",
+                  "contains": "((TObjChara *)new_var)->copy_body_to_center()",
+                  "lines": [
+                    663
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6533,
+        "historical_path": "src/pso/player/TObjPlayer_8014C610.cpp",
+        "historical_blob": "84d4d44691af9e30bbdfdf879704ddf4dc5f76fb",
+        "owners": {
+          "src/pso/npc/TObjNpcMoja.cpp": "ee7dc2400f6052955cd9ec375aaca69e2016400a"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "The original Moja draw yaw and typed texture bindings already survive.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "path": "src/pso/npc/TObjNpcMoja.cpp",
+                  "contains": "set_current_texture_list((GinjaTextureList *)this->texlist)",
+                  "lines": [
+                    272
+                  ]
+                },
+                {
+                  "path": "src/pso/npc/TObjNpcMoja.cpp",
+                  "contains": "rotate_matrix_y(0, this->rotation.yaw)",
+                  "lines": [
+                    275
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6541,
+        "historical_path": "src/pso/unk/text_801482F8.cpp",
+        "historical_blob": "8cec144024d6e46b27f190f78549f4ffe9bee297",
+        "owners": {
+          "src/pso/npc/TObjNpcBase.cpp": "c767ef095b4ea3d821cd60c3d10acfbbbf465bf3"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "Original conversation player notice, initial yaw, movement heading and velocity, body center distance, collision updates and bounded standing rotation already survive.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "path": "src/pso/npc/TObjNpcBase.cpp",
+                  "contains": "TObjPlayer::play_effect_default(player, -1)",
+                  "lines": [
+                    168
+                  ]
+                },
+                {
+                  "path": "src/pso/npc/TObjNpcBase.cpp",
+                  "contains": "this->m_384 = (s32) this->rotation.yaw",
+                  "lines": [
+                    211
+                  ]
+                },
+                {
+                  "path": "src/pso/npc/TObjNpcBase.cpp",
+                  "contains": "check_player_flag1()",
+                  "lines": [
+                    330
+                  ]
+                },
+                {
+                  "path": "src/pso/npc/TObjNpcBase.cpp",
+                  "contains": "TObjPlayer::send_code_45_1((TObjPlayer *)p)",
+                  "lines": [
+                    331
+                  ]
+                },
+                {
+                  "path": "src/pso/npc/TObjNpcBase.cpp",
+                  "contains": "((TObjCollidable *)arg0)->update_collisions()",
+                  "lines": [
+                    345,
+                    404
+                  ]
+                },
+                {
+                  "path": "src/pso/npc/TObjNpcBase.cpp",
+                  "contains": "this->movement_velocity.z = 0.0f",
+                  "lines": [
+                    369
+                  ]
+                },
+                {
+                  "path": "src/pso/npc/TObjNpcBase.cpp",
+                  "contains": "enemy_set_heading_velocity",
+                  "lines": [
+                    131,
+                    379
+                  ]
+                },
+                {
+                  "path": "src/pso/npc/TObjNpcBase.cpp",
+                  "contains": "horizontal_distance_squared((u8 *)&this->m_29c, (u8 *)&this->body_center_position.x)",
+                  "lines": [
+                    385
+                  ]
+                },
+                {
+                  "path": "src/pso/npc/TObjNpcBase.cpp",
+                  "contains": "approach_angle_limited(this->rotation.yaw, this->m_384",
+                  "lines": [
+                    422
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6589,
+        "historical_path": "src/pso/unk/text_80359420.cpp",
+        "historical_blob": "57e81c346b11d31a5756c05c6706c0e3b7532dce",
+        "owners": {
+          "src/pso/npc/TObjNpcNgcBase.cpp": "6df901d593a700779d8c118199fd7f4f2f202f61"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "All original native model and texture accessor routes and position copies are present. The residual scalar receiver/archive representations are outside this quest window wave.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "path": "src/pso/npc/TObjNpcNgcBase.cpp",
+                  "contains": "((TObjChara *)player)->initialize_position_copies()",
+                  "lines": [
+                    26
+                  ]
+                },
+                {
+                  "path": "src/pso/npc/TObjNpcNgcBase.cpp",
+                  "contains": "get_bml_model((BmlResource *)arg3, 0)",
+                  "lines": [
+                    27
+                  ]
+                },
+                {
+                  "path": "src/pso/npc/TObjNpcNgcBase.cpp",
+                  "contains": "get_bml_texlist((BmlResource *)arg3, 0)",
+                  "lines": [
+                    28
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6656,
+        "historical_path": "include/pso/quest/QuestOpcodeTables.h",
+        "historical_blob": "c4f90b66f37fffc8b76ca1705f2b9bf4fe17523f",
+        "owners": {
+          "src/pso/quest/QuestOpcodeTables.cpp": "9940c9de9d653519eb454eee8096ac5dc71d9c3b",
+          "include/pso/quest/QuestOpcodeTables.h": "40dec48ab22f7d566b929ab4e65a2223588c7d06"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "The full original table declarations already exist at the native header and have definitions in the linked source owner.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "path": "include/pso/quest/QuestOpcodeTables.h",
+                  "contains": "extern const s32 quest_sound_effect_ids[29];",
+                  "lines": [
+                    20
+                  ]
+                },
+                {
+                  "path": "include/pso/quest/QuestOpcodeTables.h",
+                  "contains": "extern const char quest_bgm_clear_filename[];",
+                  "lines": [
+                    22
+                  ]
+                },
+                {
+                  "path": "include/pso/quest/QuestOpcodeTables.h",
+                  "contains": "extern const char quest_bgm_miniclear_filename[];",
+                  "lines": [
+                    23
+                  ]
+                },
+                {
+                  "path": "src/pso/quest/QuestOpcodeTables.cpp",
+                  "contains": "const s32 quest_sound_effect_ids[29] =",
+                  "lines": [
+                    4
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6677,
+        "historical_path": "src/pso/npc/TObjNpcEnemy.cpp",
+        "historical_blob": "c78f63f72754844b2105d16b77f3817434522797",
+        "owners": {
+          "src/pso/npc/TObjNpcEnemy.cpp": "31cbb19df082cc0def3d7b95414c3835ac085706"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "Original model entry lifetime and table storage, pitch/roll-driven action, render binds, and constructor position routines are already native.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "path": "src/pso/npc/TObjNpcEnemy.cpp",
+                  "contains": "e->reset();",
+                  "lines": [
+                    175
+                  ]
+                },
+                {
+                  "path": "src/pso/npc/TObjNpcEnemy.cpp",
+                  "contains": "TObjNpcEnemy__entry_table[i].reset()",
+                  "lines": [
+                    182
+                  ]
+                },
+                {
+                  "path": "src/pso/npc/TObjNpcEnemy.cpp",
+                  "contains": "NpcModelEntry TObjNpcEnemy__entry_table[16]",
+                  "lines": [
+                    357
+                  ]
+                },
+                {
+                  "path": "src/pso/npc/TObjNpcEnemy.cpp",
+                  "contains": "TObjNpcEnemy::get_entry_by_index((s16) this->rotation.pitch)",
+                  "lines": [
+                    236
+                  ]
+                },
+                {
+                  "path": "src/pso/npc/TObjNpcEnemy.cpp",
+                  "contains": "this->requested_action = this->rotation.roll",
+                  "lines": [
+                    260
+                  ]
+                },
+                {
+                  "path": "src/pso/npc/TObjNpcEnemy.cpp",
+                  "contains": "set_current_texture_list((GinjaTextureList *)this->texlist)",
+                  "lines": [
+                    304
+                  ]
+                },
+                {
+                  "path": "src/pso/npc/TObjNpcEnemy.cpp",
+                  "contains": "rotate_matrix_y(0, this->rotation.yaw)",
+                  "lines": [
+                    309
+                  ]
+                },
+                {
+                  "path": "src/pso/npc/TObjNpcEnemy.cpp",
+                  "contains": "((TObjChara *)arg0)->initialize_position_copies()",
+                  "lines": [
+                    330
+                  ]
+                },
+                {
+                  "path": "src/pso/npc/TObjNpcEnemy.cpp",
+                  "contains": "((TObjChara *)arg0)->copy_body_to_center()",
+                  "lines": [
+                    337
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6742,
+        "historical_path": "src/pso/quest/QuestOpcodeHandlers.cpp",
+        "historical_blob": "b95d80ecbc55b798587960ae438fbc39ee3ae447",
+        "owners": {
+          "src/pso/quest/QuestOpcodeHandlers.cpp": "6471246b43bff8ba4fab8b685c4d3fc814a058e9"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "Audited original NPC dialogue and quest message opcode hunks. The linked replacement supplies native unique message owners, normal and secondary message types, original wait/close state, and a real no-argument reset. Unrelated item, file/cache, companion factory and general menu/list changes are outside this row decision.",
+            "details": {
+              "disposition": "scoped",
+              "anchors": [
+                {
+                  "path": "src/pso/quest/QuestOpcodeHandlers.cpp",
+                  "contains": "win = open_message_scroll_window(&pos, &size, &qst_registers[msg]);",
+                  "lines": [
+                    1387
+                  ]
+                },
+                {
+                  "path": "src/pso/quest/QuestOpcodeHandlers.cpp",
+                  "contains": "win->set_frame_mode(field90);",
+                  "lines": [
+                    1388
+                  ]
+                },
+                {
+                  "path": "src/pso/quest/QuestOpcodeHandlers.cpp",
+                  "contains": "win->set_scroll_speed(timer);",
+                  "lines": [
+                    1390
+                  ]
+                },
+                {
+                  "path": "src/pso/quest/QuestOpcodeHandlers.cpp",
+                  "contains": "qst_message_window->set_frame_mode(field90);",
+                  "lines": [
+                    1481
+                  ]
+                },
+                {
+                  "path": "src/pso/quest/QuestOpcodeHandlers.cpp",
+                  "contains": "qst_message_window->close();",
+                  "lines": [
+                    1381,
+                    1474,
+                    5287,
+                    5373
+                  ]
+                },
+                {
+                  "path": "src/pso/quest/QuestOpcodeHandlers.cpp",
+                  "contains": "qst_message_window_qb->append_line",
+                  "lines": [
+                    5339,
+                    5363
+                  ]
+                },
+                {
+                  "path": "src/pso/quest/QuestOpcodeHandlers.cpp",
+                  "contains": "qst_message_window_qb->set_depth(50030.0f);",
+                  "lines": [
+                    5364
+                  ]
+                },
+                {
+                  "path": "src/pso/quest/QuestOpcodeHandlers.cpp",
+                  "contains": "void qst_op_npc_text_clear_all() { clear_partner_dialogue_flags(); }",
+                  "lines": [
+                    4577
+                  ]
+                },
+                {
+                  "path": "src/pso/quest/QuestOpcodeHandlers.cpp",
+                  "contains": "set_partner_common_remark(qst_args[0].integer, qst_args[1].string);",
+                  "lines": [
+                    4584
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6743,
+        "historical_path": "src/pso/quest/QuestOpcodeTables.cpp",
+        "historical_blob": "41aab42384ab21068c7e5315527be7d35d82adec",
+        "owners": {
+          "src/pso/quest/QuestOpcodeTables.cpp": "9940c9de9d653519eb454eee8096ac5dc71d9c3b",
+          "include/pso/quest/QuestOpcodeTables.h": "40dec48ab22f7d566b929ab4e65a2223588c7d06"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "The complete original 29 sound IDs and the two exact ADX filenames are already at the linked owner. The string opcode declaration remains the actual const-char contract in the native header.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "path": "include/pso/quest/QuestOpcodeTables.h",
+                  "contains": "void qst_op_arg_pushs(const char *a0);",
+                  "lines": [
+                    377
+                  ]
+                },
+                {
+                  "path": "src/pso/quest/QuestOpcodeTables.cpp",
+                  "contains": "const s32 quest_sound_effect_ids[29] =",
+                  "lines": [
+                    4
+                  ]
+                },
+                {
+                  "path": "src/pso/quest/QuestOpcodeTables.cpp",
+                  "contains": "0x54100, 0x52D01, 0x52802",
+                  "lines": [
+                    5
+                  ]
+                },
+                {
+                  "path": "src/pso/quest/QuestOpcodeTables.cpp",
+                  "contains": "0x5251B, 0x52B1C, 0x4005191D",
+                  "lines": [
+                    9
+                  ]
+                },
+                {
+                  "path": "src/pso/quest/QuestOpcodeTables.cpp",
+                  "contains": "\"clear.adx\"",
+                  "lines": [
+                    11
+                  ]
+                },
+                {
+                  "path": "src/pso/quest/QuestOpcodeTables.cpp",
+                  "contains": "\"miniclear.adx\"",
+                  "lines": [
+                    12
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6840,
+        "historical_path": "src/pso/misc/TNpcPlayer_8034DFBC.cpp",
+        "historical_blob": "227a4986b8a6648dded8bd895fc70d085a475d41",
+        "owners": {
+          "src/pso/npc/TNpcPlayer_8034DAA0.cpp": "d3a43f1d6a4addcba72f597be2e16b0480d7f888"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "All original companion dialogue speaker IDs, fixed message type, effect/notification callbacks and both arrival overrides already survive. Shared declarations now describe the dialogue providers in their header.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "path": "src/pso/npc/TNpcPlayer_8034DAA0.cpp",
+                  "contains": "TObjPlayer::play_effect_default((TObjPlayer *)player, -1)",
+                  "lines": [
+                    705
+                  ]
+                },
+                {
+                  "path": "src/pso/npc/TNpcPlayer_8034DAA0.cpp",
+                  "contains": "TObjPlayer::send_code_45_1((TObjPlayer *)player)",
+                  "lines": [
+                    714
+                  ]
+                },
+                {
+                  "path": "src/pso/npc/TNpcPlayer_8034DAA0.cpp",
+                  "contains": "TWindowCtrl::open(get_entity_id(player)",
+                  "lines": [
+                    562
+                  ]
+                },
+                {
+                  "path": "src/pso/npc/TNpcPlayer_8034DAA0.cpp",
+                  "contains": "TWindowCtrl::open(get_entity_id(p)",
+                  "lines": [
+                    575
+                  ]
+                },
+                {
+                  "path": "src/pso/npc/TNpcPlayer_8034DAA0.cpp",
+                  "contains": "set_arrival_override_coords(pkt.slot, heading, p[0], p[1], p[2]);",
+                  "lines": [
+                    384
+                  ]
+                },
+                {
+                  "path": "src/pso/npc/TNpcPlayer_8034DAA0.cpp",
+                  "contains": "set_arrival_override_coords(stack.spE, arg4",
+                  "lines": [
+                    408
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 7202,
+        "historical_path": "src/pso/misc/TOQuestTalkBase.cpp",
+        "historical_blob": "473d3876c3a043a423bb6bf56a15e79bba54881e",
+        "owners": {
+          "src/pso/quest/TOQuestTalkBase.cpp": "ce5c58ccbd75c90d02939cc70a57a78c2e23361c"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "The original QuestTalk effect callback, demo flag, player notification, yaw and texture binding already survive.",
+            "details": {
+              "disposition": "whole_before",
+              "anchors": [
+                {
+                  "path": "src/pso/quest/TOQuestTalkBase.cpp",
+                  "contains": "TObjPlayer::play_effect_default(player, -1)",
+                  "lines": [
+                    44
+                  ]
+                },
+                {
+                  "path": "src/pso/quest/TOQuestTalkBase.cpp",
+                  "contains": "check_demo_mode() == 1",
+                  "lines": [
+                    105
+                  ]
+                },
+                {
+                  "path": "src/pso/quest/TOQuestTalkBase.cpp",
+                  "contains": "check_player_flag1()",
+                  "lines": [
+                    147
+                  ]
+                },
+                {
+                  "path": "src/pso/quest/TOQuestTalkBase.cpp",
+                  "contains": "TObjPlayer::send_code_45_1(player)",
+                  "lines": [
+                    148
+                  ]
+                },
+                {
+                  "path": "src/pso/quest/TOQuestTalkBase.cpp",
+                  "contains": "rotate_matrix_y(NULL, this->rotation.yaw)",
+                  "lines": [
+                    170
+                  ]
+                },
+                {
+                  "path": "src/pso/quest/TOQuestTalkBase.cpp",
+                  "contains": "set_current_texture_list((GinjaTextureList *)texlist)",
+                  "lines": [
+                    171
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2302,
+        "historical_path": "src/pso/ui/TAdSinglePlyChrSelectGC.cpp",
+        "historical_blob": "afc922d914593433540830df9b6ad47bc1526593",
+        "owners": {
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp": "2feff5c504290be473a478ac8bc5aa814c8b5145"
+        },
+        "proofs": [
+          {
+            "group": "selection",
+            "evidence": "Typed slot factory in selector; original 0x802D4F2C scene constructor takes actual TAdSinglePlyChrSelectGC and TObject parent at the existing ABI entry. Original da3ed28954 identifies the historical selector constructor split.",
+            "details": {
+              "disposition": "scoped preview actor and scene constructor",
+              "historical_blob": "afc922d914593433540830df9b6ad47bc1526593",
+              "canonical_blob": "2feff5c504290be473a478ac8bc5aa814c8b5145"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2307,
+        "historical_path": "src/pso/ui/TAdSinglePlyChrSelectGC_8028D5D4.cpp",
+        "historical_blob": "fbb835c1595f53127a1ae75761bfbdfe65967d27",
+        "owners": {
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028D5D4.cpp": "09ae3055539292a565a2a662ead8ce3507db999a"
+        },
+        "proofs": [
+          {
+            "group": "selection",
+            "evidence": "Original four standard and eight extended slots, +0x28 completion word, AFS completion and numeric archive lookup. Later frontend-state functions in the same modern TU remain separate.",
+            "details": {
+              "disposition": "scoped archive completion and buffer slots",
+              "historical_blob": "fbb835c1595f53127a1ae75761bfbdfe65967d27",
+              "canonical_blob": "09ae3055539292a565a2a662ead8ce3507db999a"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2393,
+        "historical_path": "src/pso/ui/TAdSinglePlyChrSelectGC_802D3AB8.cpp",
+        "historical_blob": "987b6a319c34b9f37962aefc4562f13ea406925b",
+        "owners": {
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp": "2feff5c504290be473a478ac8bc5aa814c8b5145"
+        },
+        "proofs": [
+          {
+            "group": "selection",
+            "evidence": "0x802D4F2C scene constructor and the historical single-player preview actor use actual native receivers; no claim about the rest of the original 0x802D3AB8 file.",
+            "details": {
+              "disposition": "scoped scene/actor selection contract",
+              "historical_blob": "987b6a319c34b9f37962aefc4562f13ea406925b",
+              "canonical_blob": "2feff5c504290be473a478ac8bc5aa814c8b5145"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2436,
+        "historical_path": "src/pso/misc/TChCrLoadAfs.cpp",
+        "historical_blob": "8f724e0c7d5390418d0b7814936b47c14789442d",
+        "owners": {
+          "src/pso/ui/charcreate/TChCrLoadAfs.cpp": "6596c35e190811d9defd02c4e2e6d7cdc3900e5e"
+        },
+        "proofs": [
+          {
+            "group": "selection",
+            "evidence": "TChCrLoadAfs factory uses the true parent, archive and entry; completion and destruction maintain prior direct ADXF and free boundaries.",
+            "details": {
+              "disposition": "scoped preview AFS loader",
+              "historical_blob": "8f724e0c7d5390418d0b7814936b47c14789442d",
+              "canonical_blob": "6596c35e190811d9defd02c4e2e6d7cdc3900e5e"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2450,
+        "historical_path": "include/pso/TChCrLoadAfs.h",
+        "historical_blob": "b7263d9b528e6bea3a2d04b1c59423558a380a9b",
+        "owners": {
+          "include/pso/ui/charcreate/TChCrLoadAfs.h": "f9bce1b7b123142e2e24a49bad844c837b56b542"
+        },
+        "proofs": [
+          {
+            "group": "selection",
+            "evidence": "Numeric buffer base, request completion and archive lookup are declared at TChCrLoadAfs. Direct retains its original ADXF adapter.",
+            "details": {
+              "disposition": "scoped preview AFS declarations",
+              "historical_blob": "b7263d9b528e6bea3a2d04b1c59423558a380a9b",
+              "canonical_blob": "f9bce1b7b123142e2e24a49bad844c837b56b542"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2474,
+        "historical_path": "src/pso/misc/TChCrLoadAfsTextureReq.cpp",
+        "historical_blob": "e46b6e65a4632d110193ebc62b012d38652f9b95",
+        "owners": {
+          "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp": "5fe89ae7c3a948b86f504732f5c954c6d736e4bc"
+        },
+        "proofs": [
+          {
+            "group": "selection",
+            "evidence": "Carries original texture retry, completion and referenced archive buffer/flags. Direct retains original GVM/loading/free boundaries while linking the same instruction sequence.",
+            "details": {
+              "disposition": "scoped preview AFS texture requests",
+              "historical_blob": "e46b6e65a4632d110193ebc62b012d38652f9b95",
+              "canonical_blob": "5fe89ae7c3a948b86f504732f5c954c6d736e4bc"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2501,
+        "historical_path": "include/pso/misc/TChCrLoadAfsTextureReq.h",
+        "historical_blob": "ed12538637e5bcd985d36ad2743a6a428ca8215b",
+        "owners": {
+          "include/pso/ui/charcreate/TChCrLoadAfsTextureReq.h": "4a6d6fe864ea7701da2fba6725756a5923dac2eb"
+        },
+        "proofs": [
+          {
+            "group": "selection",
+            "evidence": "Original four texture creation inputs and request state use the same fields; both parent and returned request use native types.",
+            "details": {
+              "disposition": "scoped preview AFS texture declarations",
+              "historical_blob": "ed12538637e5bcd985d36ad2743a6a428ca8215b",
+              "canonical_blob": "4a6d6fe864ea7701da2fba6725756a5923dac2eb"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2553,
+        "historical_path": "src/pso/ui/TAdMultiPlyChrSelectGC.cpp",
+        "historical_blob": "299ad58dcc61508818e51d55de2735dbec40ccb0",
+        "owners": {
+          "src/pso/ui/frontend/TAdMultiPlyChrSelectGC.cpp": "c48cf956705eeeb0562d9b01483589e967f6b19c"
+        },
+        "proofs": [
+          {
+            "group": "selection",
+            "evidence": "Multiplayer start and preview update use the native TUnk_804E3008 actor result and the actual static slot retrieval/creation provider. Other selector work is outside this finding.",
+            "details": {
+              "disposition": "scoped preview actor callers",
+              "historical_blob": "299ad58dcc61508818e51d55de2735dbec40ccb0",
+              "canonical_blob": "c48cf956705eeeb0562d9b01483589e967f6b19c"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2554,
+        "historical_path": "src/pso/ui/TAdMultiPlyChrSelectGC_802E0FC8.cpp",
+        "historical_blob": "ab961baa823cda605ea0e4c5d317559ffff1dcf3",
+        "owners": {
+          "src/pso/ui/frontend/TAdMultiPlyChrSelectGC_802E0FC8.cpp": "9f11514ce803722b0e3b48c21951a9989b5dec8f"
+        },
+        "proofs": [
+          {
+            "group": "selection",
+            "evidence": "0x802E1024 owns the original four cached actor slots, receives the actual TObject parent and returns the native actor. BML destruction and resource handling reconcile separately.",
+            "details": {
+              "disposition": "scoped actor slot ownership",
+              "historical_blob": "ab961baa823cda605ea0e4c5d317559ffff1dcf3",
+              "canonical_blob": "9f11514ce803722b0e3b48c21951a9989b5dec8f"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2557,
+        "historical_path": "include/pso/ui/TAdSinglePlyChrSelectGC.h",
+        "historical_blob": "d1d588bc31ed5a07dccea564b3b74f529c4a4f04",
+        "owners": {
+          "include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h": "dd3b540becaac09e445bb5d6b340e48fc8184390"
+        },
+        "proofs": [
+          {
+            "group": "selection",
+            "evidence": "Class declares the true TObject parent and obsolete selector-level request owner declarations are removed on direct; their providers belong to TChCrLoadReq.",
+            "details": {
+              "disposition": "scoped selector constructor and request declarations",
+              "historical_blob": "d1d588bc31ed5a07dccea564b3b74f529c4a4f04",
+              "canonical_blob": "dd3b540becaac09e445bb5d6b340e48fc8184390"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2577,
+        "historical_path": "src/pso/ui/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+        "historical_blob": "9e6b9d7ff9d977b83c689298e98dd683a6d55fe1",
+        "owners": {
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp": "360ec82ce074beb34df06bb5cb05751feeeca329"
+        },
+        "proofs": [
+          {
+            "group": "selection",
+            "evidence": "0x802902CC and 0x8028FAEC consume the real 0x30 record of head/body objects, sample nodes and arm/head indexes. Other character-creation resource work remains separately tracked.",
+            "details": {
+              "disposition": "scoped original preview shape implementation",
+              "historical_blob": "9e6b9d7ff9d977b83c689298e98dd683a6d55fe1",
+              "canonical_blob": "360ec82ce074beb34df06bb5cb05751feeeca329"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2637,
+        "historical_path": "src/pso/ui/TAdSinglePlyChrSelectGC_8028C8E0.cpp",
+        "historical_blob": "3546f0efd7657475ce25c03f4a51106af064a74b",
+        "owners": {
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C8E0.cpp": "8aaf4b0547f22659993949c4475b7b48968596eb"
+        },
+        "proofs": [
+          {
+            "group": "selection",
+            "evidence": "Preview loads retain six archive slots and masks. Original actor output is read through the preview record before calling actual shape provider. Canonical has additional shared Ninja parser; direct keeps its prior parser boundary.",
+            "details": {
+              "disposition": "scoped original preview load/remove/texture handlers",
+              "historical_blob": "3546f0efd7657475ce25c03f4a51106af064a74b",
+              "canonical_blob": "8aaf4b0547f22659993949c4475b7b48968596eb"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2644,
+        "historical_path": "src/pso/misc/TChCrLoadReq.cpp",
+        "historical_blob": "9b795a2093ee5eea5df8f3333525a6507ddf2ed8",
+        "owners": {
+          "src/pso/ui/charcreate/TChCrLoadReq.cpp": "afef1003c9304fbf661766ddb2a3753b1d490d44"
+        },
+        "proofs": [
+          {
+            "group": "selection",
+            "evidence": "0x8028D2C0 store/construct, 0x8028D31C word copy and 0x8028D3F8 NPC factory share the 0x20 inputs at request +0x38. The original eight ordered word load/store pairs match exactly. Existing request claim/dispatch semantics also replayed direct.",
+            "details": {
+              "disposition": "scoped original load dispatcher and typed inputs",
+              "historical_blob": "9b795a2093ee5eea5df8f3333525a6507ddf2ed8",
+              "canonical_blob": "afef1003c9304fbf661766ddb2a3753b1d490d44"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2662,
+        "historical_path": "src/pso/ui/TAdMultiConfirmGC.cpp",
+        "historical_blob": "4877b38660161fb21cc1eae83132f73aa808e5a9",
+        "owners": {
+          "src/pso/ui/frontend/TAdMultiConfirmGC.cpp": "a1e9a44b0164269b67435a3e1a2cdee3e2b9d4fd"
+        },
+        "proofs": [
+          {
+            "group": "selection",
+            "evidence": "Confirmation now uses the same actual typed 0x802E1024 factory as the selectors.",
+            "details": {
+              "disposition": "scoped preview actor caller",
+              "historical_blob": "4877b38660161fb21cc1eae83132f73aa808e5a9",
+              "canonical_blob": "a1e9a44b0164269b67435a3e1a2cdee3e2b9d4fd"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      }
+    ],
+    "closed_rows": [
+      450,
+      566,
+      703,
+      741,
+      887,
+      908,
+      3630,
+      4203,
+      4426,
+      5520,
+      5621,
+      5637,
+      5649,
+      5772,
+      6041,
+      6043,
+      6054,
+      6532,
+      6533,
+      6541,
+      6589,
+      6656,
+      6677,
+      6743,
+      6840,
+      7202
+    ],
+    "remaining": {
+      "Owner comparison required": 547,
+      "Some anchored text changes found": 883
+    }
+  },
+  "upstream_review_candidates": {
+    "standalone-equipment-and-item-list-windows": {
+      "head": "45d7c79e0bd9868bba5074be01bc701900844988",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Shop tool and weapon stock, draw pools and sort operations, and related equipment and item list windows",
+      "files": 76,
+      "source_paths": [
+        "config/GPOE8P/psov3/config.yml",
+        "config/GPOE8P/psov3/linked_units.txt",
+        "config/GPOE8P/psov3/splits.txt",
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/item/shop/ShopPool.h",
+        "include/pso/item/shop/ShopStock.h",
+        "include/pso/item/shop/ShopWeaponStock.h",
+        "include/pso/ui/city/TCheckRoomSequence.h",
+        "include/pso/ui/city/TShopDeleteItemWindow.h",
+        "include/pso/ui/city/TShopEquipmentSellWindow.h",
+        "include/pso/ui/city/TShopGetItemWindow.h",
+        "include/pso/ui/city/TShopKeepItemWindow.h",
+        "include/pso/ui/frontend/TAdVIConfigGC.h",
+        "include/pso/ui/window/TWindowInputNumber.h",
+        "include/pso/ui/window/TWindowMenu.h",
+        "include/pso/ui/window/TWindowMenuIconLine.h",
+        "include/pso/ui/window/TWindowSubEquipKind.h",
+        "include/pso/ui/window/TWindowSubEquipList.h",
+        "include/pso/ui/window/TWindowSubItem.h",
+        "include/pso/ui/window/TWindowSubItemList.h",
+        "include/pso/ui/window/TWindowSubStatusDisp.h",
+        "include/pso/ui/window/TWindowSubStatusDisp_80248BE8.h",
+        "include/pso/ui/window/TWindowSubStatusDisp_802671F0.h",
+        "include/pso/unk/TLobby.h",
+        "include/pso/unk/TLobby_802230F8.h",
+        "include/pso/unk/text_8020EEFC.h",
+        "src/pso/item/shop/ShopToolStock.cpp",
+        "src/pso/item/shop/ShopWeaponStock.cpp",
+        "src/pso/network/TPlyJoinLobbyEntry.cpp",
+        "src/pso/object/warp/TObjCityMainWarpChallenge.cpp",
+        "src/pso/object/warp/TObjWarpBossMulti.cpp",
+        "src/pso/player/TPlayerBattleCtrl4P.cpp",
+        "src/pso/quest/QuestOpcodeHandlers.cpp",
+        "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChat.cpp",
+        "src/pso/ui/city/TCheckRoomSequence.cpp",
+        "src/pso/ui/city/TCheckRoomSequence_8013AD28.cpp",
+        "src/pso/ui/city/TCheckRoomSequence_80211614.cpp",
+        "src/pso/ui/city/TCheckRoomSequence_80222FC0.cpp",
+        "src/pso/ui/city/THunterGuildSeqOffline_80211FEC.cpp",
+        "src/pso/ui/city/THunterGuildSeqOnlineTask_802156A0.cpp",
+        "src/pso/ui/city/TShopArmorListWindow.cpp",
+        "src/pso/ui/city/TShopDeleteItemWindow.cpp",
+        "src/pso/ui/city/TShopEquipmentGearSequence.cpp",
+        "src/pso/ui/city/TShopEquipmentListWindow.cpp",
+        "src/pso/ui/city/TShopEquipmentSellWindow.cpp",
+        "src/pso/ui/city/TShopEquipmentSellWindow_802115F4.cpp",
+        "src/pso/ui/city/TShopEquipmentSequence.cpp",
+        "src/pso/ui/city/TShopGetItemWindow.cpp",
+        "src/pso/ui/city/TShopItemListWindow.cpp",
+        "src/pso/ui/city/TShopItemTecSequence.cpp",
+        "src/pso/ui/city/TShopKeepItemWindow.cpp",
+        "src/pso/ui/frontend/TAdVIConfigGC.cpp",
+        "src/pso/ui/frontend/TAdVIConfigGC_80248B8C.cpp",
+        "src/pso/ui/window/TWindowDD_80342E40.cpp",
+        "src/pso/ui/window/TWindowInputNumber_802115F4.cpp",
+        "src/pso/ui/window/TWindowMenuIconLine.cpp",
+        "src/pso/ui/window/TWindowMenu_8013AD28.cpp",
+        "src/pso/ui/window/TWindowOptionCtrl.cpp",
+        "src/pso/ui/window/TWindowShop.cpp",
+        "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp",
+        "src/pso/ui/window/TWindowSubComCard_80265410.cpp",
+        "src/pso/ui/window/TWindowSubEquipKind.cpp",
+        "src/pso/ui/window/TWindowSubEquipList.cpp",
+        "src/pso/ui/window/TWindowSubEquip_80277DF8.cpp",
+        "src/pso/ui/window/TWindowSubItem.cpp",
+        "src/pso/ui/window/TWindowSubItemList.cpp",
+        "src/pso/ui/window/TWindowSubMag.cpp",
+        "src/pso/ui/window/TWindowSubQuestBoard.cpp",
+        "src/pso/ui/window/TWindowSubShortCutList.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_80248BE8.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp",
+        "src/pso/ui/window/TWindowSubTradeMain_80330A84.cpp",
+        "src/pso/unk/TLobby_801C25B4.cpp",
+        "src/pso/unk/TLobby_802230F8.cpp",
+        "src/pso/unk/text_8020E700.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "673da5646ed6f91b247d3c80d719464693bd5055ae3f83a7a0292825f33e6877",
+      "check_sha256": "e03012dd3dbc9031338e6276d94db6397db1c7f49510293dfeb73039e11a723e",
+      "previous": "c2afe41931"
+    },
+    "standalone-mericarol-and-gibbles-effects": {
+      "head": "42522c11c6fe1baef292425dc9f0f3bbce7fd426",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Mericarol variants, Gibbles ground effects, oriented projectile shadows and shared terrain sounds",
+      "files": 20,
+      "source_paths": [
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/effect/GroundContactSound.h",
+        "include/pso/enemy/dd/TObjEneDD.h",
+        "include/pso/enemy/gibbles/TObjEneGibbles.h",
+        "include/pso/enemy/mericarol/TObjEneBm9Mericarol.h",
+        "include/pso/enemy/mericarol/TObjEneBm9Mericarol_Bomb.h",
+        "src/pso/boss/barbaray/TBoss7PhotonBullet_802EF26C.cpp",
+        "src/pso/boss/derolle/TBoss2PhotonBullet_80038DCC.cpp",
+        "src/pso/boss/derolle/TObjBoss2CeilJunk.cpp",
+        "src/pso/enemy/berura/TObjEneRe7BeruraPunch.cpp",
+        "src/pso/enemy/dd/TObjEneDD.cpp",
+        "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+        "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+        "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+        "src/pso/enemy/mericarol/TObjEneBm9Mericarol_Bomb.cpp",
+        "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+        "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+        "src/pso/object/city/CitySeason.cpp",
+        "src/pso/player/TObjPlayer_800C4714.cpp",
+        "src/pso/unk/text_800D8988.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "07279cf96539ed3f83b262f4e0b5c9204953cb31ae9b7ccb941a9975e38fe740",
+      "check_sha256": "cf65ba3769b8dacee880e3cdfcd49b8e31c7f9c40ed89847c65ec7021481302a",
+      "previous": null
+    },
+    "standalone-online-quest-transfers": {
+      "head": "2af23d775cb10082e49c585a83aed97cc48eae98",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Online quest transfers, quest messages and scroll windows, and NPC dialogue dispatch",
+      "files": 44,
+      "source_paths": [
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/npc/TNpcPlayer_8034DAA0.h",
+        "include/pso/quest/OnlineQuestDownloadState.h",
+        "include/pso/quest/QuestOpcodeTables.h",
+        "include/pso/quest/QuestVm.h",
+        "include/pso/quest/TQuestListOnline.h",
+        "include/pso/ui/window/MessageWindowSettingsAbi.h",
+        "include/pso/ui/window/TWindowMessageQuest.h",
+        "include/pso/ui/window/TWindowMessageScroll.h",
+        "include/pso/ui/window/TWindowShortCut.h",
+        "include/pso/unk/TLobby.h",
+        "include/pso/unk/TLobby_8026B06C.h",
+        "src/pso/item/TItemLoad.cpp",
+        "src/pso/item/TItemTexLoad.cpp",
+        "src/pso/npc/TNpcPlayer_8034DAA0.cpp",
+        "src/pso/quest/QuestOpcodeHandlers.cpp",
+        "src/pso/quest/QuestOpcodeTables.cpp",
+        "src/pso/quest/TQuestListOnline.cpp",
+        "src/pso/quest/TQuestListVM.cpp",
+        "src/pso/quest/TQuestListVM_801F4398.cpp",
+        "src/pso/quest/TQuestThread.cpp",
+        "src/pso/system/TGStream.cpp",
+        "src/pso/system/TLanguage_80132A5C.cpp",
+        "src/pso/ui/city/THunterGuildSeqOffline_80213788.cpp",
+        "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp",
+        "src/pso/ui/window/TWindowMessage.cpp",
+        "src/pso/ui/window/TWindowMessageLog.cpp",
+        "src/pso/ui/window/TWindowMessagePage.cpp",
+        "src/pso/ui/window/TWindowMessageQuest.cpp",
+        "src/pso/ui/window/TWindowMessageScroll.cpp",
+        "src/pso/ui/window/TWindowShortCut.cpp",
+        "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp",
+        "src/pso/unk/TLobby_8001EF5C.cpp",
+        "src/pso/unk/TLobby_800F8AA8.cpp",
+        "src/pso/unk/TLobby_801E43E4.cpp",
+        "src/pso/unk/TLobby_801F2D2C.cpp",
+        "src/pso/unk/TLobby_801F3A24.cpp",
+        "src/pso/unk/TLobby_8026B06C.cpp",
+        "src/pso/unk/TLobby_8035D540.cpp",
+        "src/pso/unk/text_800FA464.cpp",
+        "src/pso/unk/text_80269FE8.cpp",
+        "src/pso/unk/text_8034D3D0.cpp",
+        "src/pso/weapon/TItemAttacker.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "e247b77df64047e37aedcd2ad544c27a0d8bccdeaac9c68c1e5c9016b662d9cb",
+      "check_sha256": "a98ca7e357f53b5fd6818c022fa539095031cf7195fabc7ab6a7b7cc08de5ee2",
+      "previous": "b28b618cca"
+    },
+    "character-selection-plates": {
+      "head": "8cff4d00eebd48e03773d8c0c53eb503ab82eaf9",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Character selection plates, scene and preview player ownership, AFS and model preview requests",
+      "files": 49,
+      "source_paths": [
+        "config/GPOE8P/psov3/config.yml",
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/ui/charcreate/CharacterLoadBuffer.h",
+        "include/pso/ui/charcreate/CharacterPreviewModels.h",
+        "include/pso/ui/charcreate/TChCrLoadAfs.h",
+        "include/pso/ui/charcreate/TChCrLoadAfsTextureReq.h",
+        "include/pso/ui/charcreate/TChCrLoadGmNjReq.h",
+        "include/pso/ui/charcreate/TChCrLoadReq.h",
+        "include/pso/ui/frontend/TAdChrSelASlotGC.h",
+        "include/pso/ui/frontend/TAdChrSelBSlotGC.h",
+        "include/pso/ui/frontend/TAdChrSelMovePlateGC.h",
+        "include/pso/ui/frontend/TAdChrSelPlyPlateGC.h",
+        "include/pso/ui/frontend/TAdMultiPlyChrSelectGC.h",
+        "include/pso/ui/frontend/TAdMultiPlyChrSelectGC_802E0FC8.h",
+        "include/pso/ui/frontend/TAdPlyChrSelPlateGC.h",
+        "include/pso/ui/frontend/TAdSelectCurGC.h",
+        "include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h",
+        "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028D5D4.h",
+        "include/pso/unk/TLobby.h",
+        "include/pso/unk/TLobby_8028D714.h",
+        "src/pso/npc/TNpcPlayer_8028B810.cpp",
+        "src/pso/ui/TLevelSelect.cpp",
+        "src/pso/ui/charcreate/TChCrLoadAfs.cpp",
+        "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp",
+        "src/pso/ui/charcreate/TChCrLoadGmNjReq.cpp",
+        "src/pso/ui/charcreate/TChCrLoadReq.cpp",
+        "src/pso/ui/frontend/TAdAgreementBaseGC.cpp",
+        "src/pso/ui/frontend/TAdChrSelASlotGC.cpp",
+        "src/pso/ui/frontend/TAdChrSelBSlotGC.cpp",
+        "src/pso/ui/frontend/TAdChrSelMovePlateGC.cpp",
+        "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp",
+        "src/pso/ui/frontend/TAdEnterBaseGC.cpp",
+        "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+        "src/pso/ui/frontend/TAdEp3Exist.cpp",
+        "src/pso/ui/frontend/TAdMultiChgGameModeGC.cpp",
+        "src/pso/ui/frontend/TAdMultiChgGameModeGC_8023E7A8.cpp",
+        "src/pso/ui/frontend/TAdMultiConfirmGC.cpp",
+        "src/pso/ui/frontend/TAdMultiPlyChrSelectGC.cpp",
+        "src/pso/ui/frontend/TAdMultiPlyChrSelectGC_802E0FC8.cpp",
+        "src/pso/ui/frontend/TAdMultiSelGameModeGC.cpp",
+        "src/pso/ui/frontend/TAdPlyChrSelPlateGC.cpp",
+        "src/pso/ui/frontend/TAdSelectCurGC_802AED98.cpp",
+        "src/pso/ui/frontend/TAdSelectGameModeGC_802C4748.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C650.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C8E0.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028D5D4.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+        "src/pso/ui/frontend/TAdStorySelectGC_802C3284.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "0a4c9e68292eef0f6887d508c631bef638f85733d90caf7f7a4c11cb873011c1",
+      "check_sha256": "55a243367c3f85e189e65170e3ad2e0c17e8c80cf8513247e605081c204a181d",
+      "previous": "cb6e84d41b"
+    }
+  },
+  "independent_source_reviews": {
+    "standalone-equipment-and-item-list-windows": {
+      "head": "45d7c79e0bd9868bba5074be01bc701900844988",
+      "finding": "Independent display review checked the original weighted rows and indexes, signed sold-out +0x10 field, and pool limit of 100 entries with count at +0x64. The follow-up copies the full 0x14 typed record through the existing compiler byte-copy intrinsic. Both copies retain the exact original instruction sequence and only operate on real typed source and destination entries."
+    },
+    "standalone-mericarol-and-gibbles-effects": {
+      "head": "42522c11c6fe1baef292425dc9f0f3bbce7fd426",
+      "finding": "Independent world review checked all shadow receivers, the native bomb ground normal, Gibbles terrain query and sound order, and complete floor-sound caller closure. The final transform uses CollisionBody offset +0x00, center +0x1C and 0x2C stride. The original fade field at +0x46C and exact actor position and yaw data were checked."
+    },
+    "standalone-online-quest-transfers": {
+      "head": "2af23d775cb10082e49c585a83aed97cc48eae98",
+      "finding": "Independent coordinator review verified message and scroll window ownership, quest completion register lifetime, deallocation paths and the original no-argument NPC override reset. The final extent provider stores the original two floats and unsigned row count. All six callers use one matching declaration. Direct retains the existing raw constructor entry points under typed wrappers."
+    },
+    "character-selection-plates": {
+      "head": "8cff4d00eebd48e03773d8c0c53eb503ab82eaf9",
+      "finding": "Independent enemy review checked the four preview creation callers, NPC record shape and eight words, masks, AFS request order and buffer releases. The new request constructors are native C++. The scene constructor retains the original ABI body to match vtable register scheduling. The existing character appearance getter bridge and integer model output adapters remain tracked."
+    }
+  },
+  "combined_upstream_review": {
+    "head": "74766ec7bce133007e10d4266be84888444b3f64",
+    "files": 182,
+    "inputs": [
+      "45d7c79e0bd9868bba5074be01bc701900844988",
+      "42522c11c6fe1baef292425dc9f0f3bbce7fd426",
+      "2af23d775cb10082e49c585a83aed97cc48eae98",
+      "8cff4d00eebd48e03773d8c0c53eb503ab82eaf9"
+    ],
+    "coverage": {
+      "upstream": {
+        "functions_lost": 0,
+        "data_lost": 0,
+        "verified_padding": 0
+      },
+      "historical": {
+        "functions_lost": 0,
+        "data_lost": 0,
+        "verified_padding": 30
+      }
+    }
+  }
+}

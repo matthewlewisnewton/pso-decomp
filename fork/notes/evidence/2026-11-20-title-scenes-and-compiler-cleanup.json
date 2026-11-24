@@ -1,0 +1,554 @@
+{
+  "upstream_master": "0fa391a887c664abadc00cba75db1f039aceb647",
+  "replay_base": "4d72d5f097a702fd12c4d41cc0f51e7b1cc1627f",
+  "validated_source": "67daa1efc4dd7da6c09ea4877f262208acc38535",
+  "source_tree": "62cec6e16369b50c90cdd3a3cb1a559b6956c373",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "strict_check_sha256": "21b44e6cf9c3bb398e5722996b7532773471544d7a9345081bade8c27b54c7d9",
+  "exact_linked_units": 2448,
+  "exact_functions": 27572,
+  "source_coverage_losses": {
+    "regressions": 0,
+    "data_regressions": 0,
+    "data_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0,
+    "missing_functions": 0,
+    "failures": 0
+  },
+  "title_scenes": {
+    "replay": "39e8ea07de44aaa579f11a67711eda7cb849605c",
+    "donor": "86686aa676c3b7e0ad5f90d157c69cab1567af97",
+    "paths": [
+      "config/GPOE8P/psov3/config.yml",
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/render/SpriteDescriptor.h",
+      "include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h",
+      "include/pso/ui/frontend/TAdSinglePlyChrSelectGC_80336054.h",
+      "include/pso/ui/frontend/TAdTrialAgreementGC_80335958.h",
+      "include/pso/ui/frontend/TitleSceneTables.h",
+      "include/pso/unk/TLobby.h",
+      "include/pso/unk/TLobby_80335E08.h",
+      "include/pso/unk/TLobby_80335E7C.h",
+      "include/pso/unk/TLobby_803360CC.h",
+      "include/pso/unk/TUnk_804EEF64.h",
+      "src/pso/ui/TUnk_804EE458.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80336054.cpp",
+      "src/pso/unk/TLobby_80335E7C.cpp"
+    ],
+    "owner_label_changes": [
+      {
+        "module": "psov3",
+        "address": "0x80336064",
+        "before": "start_offline_seq__23TAdSinglePlyChrSelectGCFv",
+        "after": "start_offline_seq__13TUnk_804EEF64Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x803361C4",
+        "before": "set_flag_and_clear_download__6TLobbyFv",
+        "after": "set_flag_and_clear_download__13TUnk_804EEF64Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80336200",
+        "before": "open_keyboard__6TLobbyFv",
+        "after": "open_keyboard__13TUnk_804EEF64Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8033622C",
+        "before": "request_change_game_mode__6TLobbyFv",
+        "after": "request_change_game_mode__13TUnk_804EEF64Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x80336254",
+        "before": "enter_game_mode_change__6TLobbyFv",
+        "after": "enter_game_mode_change__13TUnk_804EEF64Fv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x8033627C",
+        "before": "enter_chg_game_mode__6TLobbyFv",
+        "after": "enter_chg_game_mode__13TUnk_804EEF64Fv"
+      }
+    ]
+  },
+  "compiler_directives": {
+    "replay": "67daa1efc4dd7da6c09ea4877f262208acc38535",
+    "independent_checkpoint": "100930902ebc54bceda96b465694852fdd2498ca",
+    "donor": "9935ca4090ba264f42a12317c104ab4a568036b5",
+    "fork_pr": 622,
+    "paths": [
+      "src/musyx/runtime/Chorus/chorus_fx.c",
+      "src/musyx/runtime/StdReverb/reverb.c",
+      "src/pso/camera/TCameraCtrl_803D6960.cpp",
+      "src/pso/effect/TEffStarLight2D_Base.cpp",
+      "src/pso/effect/particle/ParticleBallistic.cpp",
+      "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+      "src/pso/network/TPlyMeetUserExtension_801DAC6C.cpp",
+      "src/pso/npc/TNpcPlayer.cpp",
+      "src/pso/object/TObjChip.cpp",
+      "src/pso/player/TObjPlayer_803E21B8.cpp",
+      "src/pso/render/GinjaMaterial.cpp",
+      "src/pso/unk/TLobby_800F8AA8.cpp"
+    ],
+    "removed_directives": 108,
+    "removed_blank_lines": 4,
+    "coverage_losses": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "data_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "missing_functions": 0,
+      "failures": 0
+    }
+  },
+  "layer": {
+    "workspace_paths": 131,
+    "workspace_sha256": "460f0dba2b8b5b7fd3d1d3ccd1af326c5266fdfc80b545fff3c58e3115f773ab",
+    "round_trip_tree": "b6a8b5e6ff7756c31cbc0f4ea268e696a4a1160a",
+    "round_trip_listing_sha256": "350fc77e8d988fe58ec4ff67f2e07679c23ec6462816e283c455212c9c3604de",
+    "force_active_names": 27029,
+    "tool_tests_passed": 294,
+    "layer_tests_passed": 11,
+    "coverage_losses": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "data_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "missing_functions": 0,
+      "failures": 0
+    }
+  },
+  "remaining_source": {
+    "historical_inventory_base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+    "canonical": "83decd2d24dc6104040afd060e0cc2754b110409",
+    "earlier_queue": "47ade105c778197344c29e2d058cd9754a90893c",
+    "outside_replay": 1058,
+    "outside_queue_and_replay": 86,
+    "method": "Path inventory without rename detection."
+  },
+  "review_previews": {
+    "base": "4d72d5f097a702fd12c4d41cc0f51e7b1cc1627f",
+    "method": "Replay each review tip relative to its first parent.",
+    "review_tips": [
+      {
+        "branch": "standalone-world-particle-factory-calls",
+        "head": "1dfa045120b25b8b0bc323af80e9004479b65561",
+        "changed_paths": 0,
+        "donor_paths": 1,
+        "conflicting_paths": 0
+      },
+      {
+        "branch": "standalone-network-datagrams-and-packet-pool",
+        "head": "7301eadf78b49e8cbe96f1e92b5543c7719eb321",
+        "changed_paths": 0,
+        "donor_paths": 4,
+        "conflicting_paths": 0
+      },
+      {
+        "branch": "standalone-network-ppp-frames",
+        "head": "0895f1cbb38bc55767e2428439e698a94b5bccf4",
+        "changed_paths": 0,
+        "donor_paths": 12,
+        "conflicting_paths": 0
+      },
+      {
+        "branch": "challenge-and-duel-results",
+        "head": "182fb702e6a21c01f05a822fa77a49c1e484d0bd",
+        "changed_paths": 1,
+        "donor_paths": 1,
+        "conflicting_paths": 0
+      },
+      {
+        "branch": "standalone-mericarol-and-gibbles-effects",
+        "head": "9bbc668b6121ceb6bc03f83427c98aaa931a0d31",
+        "changed_paths": 1,
+        "donor_paths": 1,
+        "conflicting_paths": 0
+      },
+      {
+        "branch": "standalone-ground-effects-and-scenery",
+        "head": "d90619b7c15b4300567435fdee477df7c1796a25",
+        "changed_paths": 2,
+        "donor_paths": 9,
+        "conflicting_paths": 0
+      },
+      {
+        "branch": "standalone-online-setup-scenes",
+        "head": "090a3d41d70c6601ad8720c95160e8f43c2b05d4",
+        "changed_paths": 3,
+        "donor_paths": 3,
+        "conflicting_paths": 0
+      },
+      {
+        "branch": "standalone-olga-flow-cinematics",
+        "head": "bb0a2828e3a31ddc506164215d32f5cd834ff234",
+        "changed_paths": 3,
+        "donor_paths": 3,
+        "conflicting_paths": 0
+      },
+      {
+        "branch": "standalone-vol-opt-components",
+        "head": "8f26a3c7a707d4076bf84134da09276bc62991f9",
+        "changed_paths": 4,
+        "donor_paths": 4,
+        "conflicting_paths": 0
+      },
+      {
+        "branch": "standalone-gol-dragon-resources-and-formation",
+        "head": "9a277f6b061ec44eecf9395be11f3112c378a33c",
+        "changed_paths": 1,
+        "donor_paths": 1,
+        "conflicting_paths": 1
+      },
+      {
+        "branch": "standalone-native-title-scenes",
+        "head": "86686aa676c3b7e0ad5f90d157c69cab1567af97",
+        "changed_paths": 14,
+        "donor_paths": 14,
+        "conflicting_paths": 1
+      },
+      {
+        "branch": "standalone-olga-flow-arena-hazards",
+        "head": "c2a4e24f9240885e1a99cd05fd63525993fb9a75",
+        "changed_paths": 2,
+        "donor_paths": 2,
+        "conflicting_paths": 2
+      },
+      {
+        "branch": "standalone-bml-archive-accessors",
+        "head": "fd2120f67cfad9f35ca2e374b2734e9d62970431",
+        "changed_paths": 2,
+        "donor_paths": 4,
+        "conflicting_paths": 2
+      },
+      {
+        "branch": "standalone-native-card-save-images",
+        "head": "3a7ed59b8ba5108112aef381e1b57b660e6c6cb5",
+        "changed_paths": 2,
+        "donor_paths": 10,
+        "conflicting_paths": 2
+      },
+      {
+        "branch": "standalone-adx-streaming",
+        "head": "a4d7a8d2d908dc795ed2d7e929357d807e547955",
+        "changed_paths": 3,
+        "donor_paths": 3,
+        "conflicting_paths": 2
+      },
+      {
+        "branch": "standalone-stage-transfer-and-seasonal-assets",
+        "head": "91eed3bfdcca772ee0ae616c5f972a6aefe2ba11",
+        "changed_paths": 8,
+        "donor_paths": 8,
+        "conflicting_paths": 2
+      },
+      {
+        "branch": "standalone-ambient-stage-archives-and-rendering",
+        "head": "6cb53ca77adc702b81aa6b9c38699fc7d8a35a1c",
+        "changed_paths": 8,
+        "donor_paths": 15,
+        "conflicting_paths": 2
+      },
+      {
+        "branch": "standalone-stage-traps-and-motion",
+        "head": "1f23677cb3c8366b142119fd3204b5bfd83d58a8",
+        "changed_paths": 10,
+        "donor_paths": 10,
+        "conflicting_paths": 2
+      },
+      {
+        "branch": "standalone-gal-gryphon-arena-actors",
+        "head": "b75c6f38a72228b2c5dc79f3198981f324474018",
+        "changed_paths": 10,
+        "donor_paths": 10,
+        "conflicting_paths": 2
+      },
+      {
+        "branch": "standalone-redundant-compiler-directives",
+        "head": "9935ca4090ba264f42a12317c104ab4a568036b5",
+        "changed_paths": 12,
+        "donor_paths": 12,
+        "conflicting_paths": 2
+      },
+      {
+        "branch": "standalone-equipment-and-item-list-windows",
+        "head": "fed9cf8b7186fe725e23b347d1e70314530fdc46",
+        "changed_paths": 3,
+        "donor_paths": 11,
+        "conflicting_paths": 3
+      },
+      {
+        "branch": "standalone-stage-doors-fences-and-contacts",
+        "head": "428b42e9251d39baf2e01e7d62959f742d2a6566",
+        "changed_paths": 3,
+        "donor_paths": 32,
+        "conflicting_paths": 3
+      },
+      {
+        "branch": "standalone-stage-containers-and-floor-events",
+        "head": "bd20994aa3698ab8f8f0098410b4da11d0ba0d2c",
+        "changed_paths": 5,
+        "donor_paths": 5,
+        "conflicting_paths": 3
+      },
+      {
+        "branch": "standalone-main-menu-and-child-windows",
+        "head": "7b1a1843fd091beeae2d0440f0ed9f5976b7faab",
+        "changed_paths": 7,
+        "donor_paths": 7,
+        "conflicting_paths": 3
+      },
+      {
+        "branch": "standalone-symbol-chat-and-shortcut-preview",
+        "head": "ae3da5ccb25c52f727ab0f41adcc3a3afbf0c4ef",
+        "changed_paths": 7,
+        "donor_paths": 7,
+        "conflicting_paths": 3
+      },
+      {
+        "branch": "standalone-derolle-arena-lighting",
+        "head": "f7a0122c73c00062937eac73bc56ea913630e522",
+        "changed_paths": 4,
+        "donor_paths": 5,
+        "conflicting_paths": 4
+      },
+      {
+        "branch": "standalone-stage-particles-refraction-and-debris",
+        "head": "affe274061f2761022d068dfdfa3387bea8d6673",
+        "changed_paths": 4,
+        "donor_paths": 7,
+        "conflicting_paths": 4
+      },
+      {
+        "branch": "standalone-object-class-name",
+        "head": "6155c67873447dc4c269277231732fca1a2193c2",
+        "changed_paths": 26,
+        "donor_paths": 26,
+        "conflicting_paths": 4
+      },
+      {
+        "branch": "standalone-network-thread-dispatch",
+        "head": "cb7d37f5a25dfec5bac94452f5b8237a893b819b",
+        "changed_paths": 5,
+        "donor_paths": 11,
+        "conflicting_paths": 5
+      },
+      {
+        "branch": "standalone-bml-model-and-texture-accessors",
+        "head": "12bdb900e51d333a482062d8cd0d9edab5a09a80",
+        "changed_paths": 17,
+        "donor_paths": 17,
+        "conflicting_paths": 5
+      },
+      {
+        "branch": "standalone-inventory-and-item-placement",
+        "head": "d0cdc15fb69eff942395440b0ac3fd1c5ae2f4e2",
+        "changed_paths": 6,
+        "donor_paths": 6,
+        "conflicting_paths": 6
+      },
+      {
+        "branch": "standalone-memory-card-and-save-windows",
+        "head": "1e7920fdc675df08303dca4499f49020df69774d",
+        "changed_paths": 17,
+        "donor_paths": 18,
+        "conflicting_paths": 6
+      },
+      {
+        "branch": "standalone-enemy-registration-and-formations",
+        "head": "4d38fbac428eac879a54e375460f5442ff8dbe5e",
+        "changed_paths": 10,
+        "donor_paths": 10,
+        "conflicting_paths": 7
+      },
+      {
+        "branch": "standalone-rope-bone-and-fin-attachments",
+        "head": "c2936d95ef1525aa3cb3e0bc2f0b8a46809f18e9",
+        "changed_paths": 16,
+        "donor_paths": 17,
+        "conflicting_paths": 7
+      },
+      {
+        "branch": "standalone-ginja-texture-uploads",
+        "head": "d41b1747d443d80e080cdd13eecbb2a379f8c315",
+        "changed_paths": 18,
+        "donor_paths": 18,
+        "conflicting_paths": 7
+      },
+      {
+        "branch": "standalone-shared-material-texture-and-sprite-rendering",
+        "head": "f3d6a88dd80ce304cb986e494d70ef63b386c985",
+        "changed_paths": 20,
+        "donor_paths": 20,
+        "conflicting_paths": 7
+      },
+      {
+        "branch": "standalone-online-quest-transfers",
+        "head": "96e12501e15a4340f8516a312337ce3f26b98786",
+        "changed_paths": 12,
+        "donor_paths": 12,
+        "conflicting_paths": 8
+      },
+      {
+        "branch": "standalone-gameplay-sound-and-item-drop-packets",
+        "head": "d0530355706221482463e0da78d8bf0703a8777b",
+        "changed_paths": 18,
+        "donor_paths": 19,
+        "conflicting_paths": 8
+      },
+      {
+        "branch": "standalone-player-scale-and-state",
+        "head": "c5493f319d431c46557faad569d5c3b443a7c273",
+        "changed_paths": 30,
+        "donor_paths": 30,
+        "conflicting_paths": 8
+      },
+      {
+        "branch": "standalone-action-palette-and-customization",
+        "head": "d94b3d455e6e78f19bb5e7cf9cf8014ff6182417",
+        "changed_paths": 19,
+        "donor_paths": 20,
+        "conflicting_paths": 9
+      },
+      {
+        "branch": "item-help-status",
+        "head": "372fd8684708041a86e98d34aeb2b7655796636d",
+        "changed_paths": 10,
+        "donor_paths": 10,
+        "conflicting_paths": 10
+      },
+      {
+        "branch": "standalone-native-city-and-window-menus",
+        "head": "540e1a91ba6ec917aa50fc1feffb48ed686373dd",
+        "changed_paths": 10,
+        "donor_paths": 18,
+        "conflicting_paths": 10
+      },
+      {
+        "branch": "standalone-saved-inventory-and-equipment",
+        "head": "93e344aaab7852228430b396e50d8175b0b69eee",
+        "changed_paths": 19,
+        "donor_paths": 19,
+        "conflicting_paths": 10
+      },
+      {
+        "branch": "standalone-player-slot-registry",
+        "head": "9448059d81db540704b609616e96771e90827654",
+        "changed_paths": 32,
+        "donor_paths": 32,
+        "conflicting_paths": 11
+      },
+      {
+        "branch": "standalone-camera-and-radar",
+        "head": "0394e28c275546fc002b9269980a9e1fe048ab92",
+        "changed_paths": 13,
+        "donor_paths": 13,
+        "conflicting_paths": 13
+      },
+      {
+        "branch": "standalone-technique-effects-and-sounds",
+        "head": "1b0d09f9e03c80521d1ef00e2bea567966edf697",
+        "changed_paths": 22,
+        "donor_paths": 22,
+        "conflicting_paths": 13
+      },
+      {
+        "branch": "standalone-dark-falz-cinematic-actors",
+        "head": "a5aed4817c6718d9ea584baaa3f5f29fdd72d1ee",
+        "changed_paths": 25,
+        "donor_paths": 28,
+        "conflicting_paths": 16
+      },
+      {
+        "branch": "standalone-gameplay-random",
+        "head": "04e0a137422e25a50c7ea48df4c35c9bcc7b14fb",
+        "changed_paths": 22,
+        "donor_paths": 29,
+        "conflicting_paths": 17
+      },
+      {
+        "branch": "standalone-model-strip-and-trail-rendering",
+        "head": "ede02613cc11ca81807ff370d7fad931c614a236",
+        "changed_paths": 50,
+        "donor_paths": 50,
+        "conflicting_paths": 18
+      },
+      {
+        "branch": "standalone-weapon-factory-registry",
+        "head": "d71a8453c9ab01ef718f596bc173f89abd4559e6",
+        "changed_paths": 71,
+        "donor_paths": 71,
+        "conflicting_paths": 20
+      },
+      {
+        "branch": "standalone-native-window-draw-context",
+        "head": "57a10b0f98d8a5e728f2344a843dfad0725a5e30",
+        "changed_paths": 22,
+        "donor_paths": 23,
+        "conflicting_paths": 22
+      },
+      {
+        "branch": "standalone-boss-projectiles-geometry-and-splashes",
+        "head": "03eb2c367e070700af46456703e5a656ade68310",
+        "changed_paths": 42,
+        "donor_paths": 43,
+        "conflicting_paths": 25
+      },
+      {
+        "branch": "standalone-character-creation-actors",
+        "head": "64ad571ed44a2c5e026c179e19b5a260295aa11b",
+        "changed_paths": 48,
+        "donor_paths": 50,
+        "conflicting_paths": 27
+      },
+      {
+        "branch": "standalone-persistent-sound-requests",
+        "head": "bbd95644256571c98ca6fb5d66e77d39013bbab5",
+        "changed_paths": 86,
+        "donor_paths": 86,
+        "conflicting_paths": 34
+      },
+      {
+        "branch": "standalone-npc-population-and-model-resources",
+        "head": "5caa76608e8ba418a516e656b24770f0a0884003",
+        "changed_paths": 75,
+        "donor_paths": 75,
+        "conflicting_paths": 49
+      },
+      {
+        "branch": "standalone-native-array-runtime",
+        "head": "7bdbdaf5ba01344982227ac6b25f5315e800d9f5",
+        "changed_paths": 115,
+        "donor_paths": 116,
+        "conflicting_paths": 53
+      },
+      {
+        "branch": "standalone-actor-motion-layout",
+        "head": "015dd577a979c2b716c20951c19267957dec104b",
+        "changed_paths": 101,
+        "donor_paths": 250,
+        "conflicting_paths": 101
+      },
+      {
+        "branch": "standalone-bml-and-ginja-loading-on-stage",
+        "head": "69ee8013f8eb4ced49699e18e648614decdd11fc",
+        "changed_paths": 175,
+        "donor_paths": 178,
+        "conflicting_paths": 156
+      },
+      {
+        "branch": "standalone-bml-and-ginja-loading",
+        "head": "3dc510fe52b5319658798b68a56d011d53eae1fd",
+        "changed_paths": 178,
+        "donor_paths": 179,
+        "conflicting_paths": 162
+      }
+    ]
+  }
+}

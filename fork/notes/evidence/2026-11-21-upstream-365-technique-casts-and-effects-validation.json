@@ -1,0 +1,412 @@
+{
+  "source": "a4a87cf1832bec395c0dfa9de44196716c7a546f",
+  "previous_source": "57992f7139c623e24466d6ed05cc559bf7c6841e",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/network/protocol/subcmd_6x.h",
+    "include/pso/network/protocol/subcommand_validation.h",
+    "include/pso/npc/TNpcPlayer.h",
+    "include/pso/object/ambient/TObjFish_8001ED90.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/player/TechniqueCastState.h",
+    "include/pso/system/BmlAccessors.h",
+    "include/pso/technique/TTecGiBarta.h",
+    "include/pso/technique/TTecZonde.h",
+    "include/pso/technique/TTecZondeEff.h",
+    "include/pso/technique/TechniqueBandSound.h",
+    "include/pso/technique/TechniqueResources.h",
+    "include/pso/unk/TLobby_8001EF5C.h",
+    "include/pso/unk/text_8036BDA0.h",
+    "src/pso/effect/TEffClitical.cpp",
+    "src/pso/effect/enemy/TeneFakeTecThunderEff.cpp",
+    "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+    "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+    "src/pso/enemy/moja/TObjEneMoja.cpp",
+    "src/pso/enemy/saver/SaverLifecycle.cpp",
+    "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+    "src/pso/item/TItem.cpp",
+    "src/pso/item/armor/TItemProUnit.cpp",
+    "src/pso/npc/TNpcPlayer.cpp",
+    "src/pso/object/TObjDoaEx01.cpp",
+    "src/pso/object/lobby/LobbyPigeonPath.cpp",
+    "src/pso/object/trap/TOTrapAncient02.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TObjPlayer_801C00C4.cpp",
+    "src/pso/player/TObjPlayer_801C7430.cpp",
+    "src/pso/player/TObjPlayer_801D95B8.cpp",
+    "src/pso/player/TObjPlayer_801D9A04.cpp",
+    "src/pso/player/TObjPlayer_801D9B18.cpp",
+    "src/pso/player/TObjPlayer_801D9CE0.cpp",
+    "src/pso/player/TObjPlayer_80357B2C.cpp",
+    "src/pso/player/TPlyPhotonChair.cpp",
+    "src/pso/technique/TTecBarta.cpp",
+    "src/pso/technique/TTecCtrl.cpp",
+    "src/pso/technique/TTecGiBarta.cpp",
+    "src/pso/technique/TTecGiZonde.cpp",
+    "src/pso/technique/TTecMegid.cpp",
+    "src/pso/technique/TTecRaBarta.cpp",
+    "src/pso/technique/TTecRaZonde_80238C6C.cpp",
+    "src/pso/technique/TTecZonde.cpp",
+    "src/pso/technique/TTecZondeEff.cpp",
+    "src/pso/technique/TechniqueRingwaveList.cpp",
+    "src/pso/technique/TechniqueRingwaveNames.cpp",
+    "src/pso/unk/TUnk_8048E1A4.cpp",
+    "src/pso/unk/TUnk_804CC870.cpp",
+    "src/pso/unk/text_801D9870.cpp",
+    "src/pso/unk/text_8036BDA0.cpp",
+    "src/pso/weapon/TUnk_804A1098.cpp"
+  ],
+  "combined_paths_from_upstream": 939,
+  "historical_basis": {
+    "cast_checkpoint": "e4cc1d406c856a7d15fccb8e1f4bc25010643d77",
+    "previous_matching_cast_replay": "da7c2eaa97",
+    "previous_matching_effect_replay": "491cc9fed0"
+  },
+  "source_scope": [
+    "player technique level tables, cast targets, NPC sender, and typed 6x47 packet validation",
+    "typed aimed and facing Gi-Barta factories and original lightning effect object",
+    "Barta, Gi-Barta and Megid band sound, BML and ring-wave texture records, and charge-light inputs"
+  ],
+  "validation": {
+    "source": {
+      "baseline": "57992f7139c623e24466d6ed05cc559bf7c6841e",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x80152C48",
+          "before": "finalize_and_send_packet__10TNpcPlayerFv",
+          "after": "finalize_and_send_packet__20G_CastTechnique_6x47Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80152C8C",
+          "before": "byteswap_positions__10TNpcPlayerFv",
+          "after": "byteswap_positions__20G_CastTechnique_6x47Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80152CE8",
+          "before": "get_6x47_cast_packet_size__FPUc",
+          "after": "get_6x47_cast_packet_size__FP20G_CastTechnique_6x47"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80152D04",
+          "before": "init_cast_technique_cmd__10TNpcPlayerFv",
+          "after": "init_cast_technique_cmd__20G_CastTechnique_6x47Fv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80152EB4",
+          "before": "byteswap_pos__10TNpcPlayerFv",
+          "after": "byteswap_pos__15TechniqueTargetFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801C011C",
+          "before": "set_technique_id__10TObjPlayerFs",
+          "after": "set_technique_id__18TechniqueCastStateFs"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801CC7E4",
+          "before": "copy_tech_params__10TObjPlayerFPvPv",
+          "after": "copy_tech_params__FP15TechniqueTargetP15TechniqueTarget"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D2C7C",
+          "before": "set_technique_id__10TObjPlayerFUc",
+          "after": "set_technique_id__18TechniqueCastStateFUc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D2CCC",
+          "before": "get_technique_data__10TObjPlayerFPv",
+          "after": "get_technique_data__18TechniqueCastStateFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D95B8",
+          "before": "get_section_clamped__10TObjPlayerFv",
+          "after": "get_section_clamped__18TechniqueCastStateFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D95DC",
+          "before": "get_or_init_field_4__10TObjPlayerFv",
+          "after": "get_or_init_field_4__18TechniqueCastStateFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D968C",
+          "before": "get_valid_technique__10TObjPlayerFv",
+          "after": "get_valid_technique__18TechniqueCastStateFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D96CC",
+          "before": "get_castable_technique_level__10TObjPlayerFv",
+          "after": "get_castable_technique_level__18TechniqueCastStateFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D9A44",
+          "before": "check_technique_level__10TObjPlayerFllUc",
+          "after": "check_technique_level__18TechniqueCastStateFlUc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x801D9B18",
+          "before": "set_tech_level__10TObjPlayerFs",
+          "after": "set_tech_level__18TechniqueCastStateFs"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80230A98",
+          "before": "create__11TTecGiBartaFPvPvPvl",
+          "after": "create__11TTecGiBartaFPvP3VecP3Vecl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80230AF0",
+          "before": "create_ex__11TTecGiBartaFPvPvll",
+          "after": "create_ex__11TTecGiBartaFPvP3Vecll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8023DA10",
+          "before": "construct_bolt_effect__9TTecZondeFPUcPUcPUcllff",
+          "after": "construct_bolt_effect__12TTecZondeEffFP7TObjectPC3VecPC3Vecllff"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8036BDA0",
+          "before": "validate_6x47_cast_technique__FPUc",
+          "after": "validate_6x47_cast_technique__FP20G_CastTechnique_6x47"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "31aead19620784e28c7bd209632660cfe464afb19764cb6c45c4a3b7818e53fc",
+      "report_sha256": "25f137ff4f2a0f1bdf8afbd938696f3dce8ef1f81760b6743ac8554712d92360"
+    },
+    "layer": {
+      "baseline": "a4a87cf1832bec395c0dfa9de44196716c7a546f",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "52e7b7c44c895ea98e91fe1a9ea21805885753879d1966b15b6b684ebe565d0b",
+      "report_sha256": "25f137ff4f2a0f1bdf8afbd938696f3dce8ef1f81760b6743ac8554712d92360"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "81f7849cffe15fbca3c52e2b21c7b58e7f7e1d217035a0c0d838d494e3bc9dbc"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "863dc07561a05e6d529008ad6293bf560617f3a61759fd74470496250e87b7ba"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "targets": {
+      "probe_sha256": "9f83e0d202df436e328b9ce821f648fc1569ce0dcd0349d9be2cd457bb8cbccf",
+      "log_sha256": "a32da797d5a9b6f44131f30ed70206f029ae6223f0393799c5d4041d8fd0827f",
+      "coverage": "state setters, target records, packet size, send bytes and validation passed."
+    },
+    "effects": {
+      "probe_sha256": "7f3ad58ea1703a7811b390a4b0105effc57e1d04ce4396f79d285ce9c16a2425",
+      "log_sha256": "0d48133e26237044b6ce842510aab2a9db3e0b1c641b37d0baafea85bc63b65f",
+      "coverage": "resource records, lightning and Gi-Barta construction, and band sound passed."
+    },
+    "images": [
+      "retail",
+      "source",
+      "materialized fork workspace"
+    ]
+  },
+  "historical": {
+    "open_rows": 415,
+    "scoped_rows": [
+      [
+        157,
+        "config/GPOE8P/psov3/symbols.txt",
+        "config/GPOE8P/psov3/symbols.txt"
+      ],
+      [
+        588,
+        "src/pso/enemy/TObjEneGyaranzo.cpp",
+        "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp"
+      ],
+      [
+        813,
+        "src/pso/enemy/TObjEneMoja.cpp",
+        "src/pso/enemy/moja/TObjEneMoja.cpp"
+      ],
+      [
+        814,
+        "src/pso/enemy/TObjEneMe3SinowZoa.cpp",
+        "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp"
+      ],
+      [
+        1116,
+        "src/pso/enemy/SaverLifecycle.cpp",
+        "src/pso/enemy/saver/SaverLifecycle.cpp"
+      ],
+      [
+        1167,
+        "src/pso/enemy/TObjEneBm5GibonU.cpp",
+        "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp"
+      ],
+      [
+        3071,
+        "include/pso/protocol/subcmd_6x.h",
+        "include/pso/network/protocol/subcmd_6x.h"
+      ],
+      [
+        3998,
+        "include/pso/player/TObjPlayer.h",
+        "include/pso/player/TObjPlayer.h"
+      ],
+      [
+        4042,
+        "src/pso/item/TItem.cpp",
+        "src/pso/item/TItem.cpp"
+      ],
+      [
+        4121,
+        "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "src/pso/player/TObjPlayer_801AF2F0.cpp"
+      ],
+      [
+        4138,
+        "src/pso/player/TObjPlayer_801C7430.cpp",
+        "src/pso/player/TObjPlayer_801C7430.cpp"
+      ],
+      [
+        4172,
+        "src/pso/player/TObjPlayer_80357734.cpp",
+        "src/pso/player/TObjPlayer_80357B2C.cpp"
+      ],
+      [
+        4286,
+        "src/pso/misc/TTecGiBarta.cpp",
+        "src/pso/technique/TTecGiBarta.cpp"
+      ],
+      [
+        4302,
+        "src/pso/misc/TTecGiZonde.cpp",
+        "src/pso/technique/TTecGiZonde.cpp"
+      ],
+      [
+        4325,
+        "src/pso/misc/TPlyPhotonChair.cpp",
+        "src/pso/player/TPlyPhotonChair.cpp"
+      ],
+      [
+        4327,
+        "src/pso/misc/TTecZonde.cpp",
+        "src/pso/technique/TTecZonde.cpp"
+      ],
+      [
+        4366,
+        "src/pso/misc/TTecRaBarta.cpp",
+        "src/pso/technique/TTecRaBarta.cpp"
+      ],
+      [
+        4378,
+        "src/pso/misc/TTecRaZonde_80238C6C.cpp",
+        "src/pso/technique/TTecRaZonde_80238C6C.cpp"
+      ],
+      [
+        4398,
+        "src/pso/misc/TTecCtrl.cpp",
+        "src/pso/technique/TTecCtrl.cpp"
+      ],
+      [
+        4512,
+        "src/pso/unk/TUnk_804CC870.cpp",
+        "src/pso/unk/TUnk_804CC870.cpp"
+      ],
+      [
+        4933,
+        "src/pso/effect/TEffClitical.cpp",
+        "src/pso/effect/TEffClitical.cpp"
+      ],
+      [
+        6451,
+        "src/pso/misc/TOTrapAncient02.cpp",
+        "src/pso/object/trap/TOTrapAncient02.cpp"
+      ],
+      [
+        7030,
+        "src/pso/object/LobbyPigeonPath.cpp",
+        "src/pso/object/lobby/LobbyPigeonPath.cpp"
+      ],
+      [
+        7277,
+        "src/pso/misc/TNpcPlayer.cpp",
+        "src/pso/npc/TNpcPlayer.cpp"
+      ],
+      [
+        7310,
+        "src/pso/unk/text_80081BB0.cpp",
+        "src/pso/unk/TUnk_8048E1A4.cpp"
+      ]
+    ]
+  },
+  "fork_workspace": {
+    "trial": "5b4a6b190cf122e4aa4ada7fb3f3d9d3e2eb3aad",
+    "overlay_paths": 130,
+    "updated_overlay_paths": [
+      "config/GPOE8P/psov3/config.yml"
+    ],
+    "archive_sha256": "6dcecad442c52763bca1cb2b1587c43f8d98f2bf8f1b554af6cc30be61a11447",
+    "materialized_tree": "5a9625a40041e136cef1b814ef75c977a9ce060f",
+    "force_active": 27027
+  }
+}

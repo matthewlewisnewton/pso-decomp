@@ -1,0 +1,591 @@
+{
+  "source": "82ef099ef2c33679d5cbb9f7b50058a87e0c21e3",
+  "previous_source": "488d22e136890cedeff24b6774f261b804dfa2bd",
+  "review": {
+    "ref": "great-merge/consolidated/single-review-with-selector-owners",
+    "head": "165784f35fce5c7c8457bf6875d846c226a49e00",
+    "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+    "tree": "77fb7ed3eff873f2ee2ec6ecade61c8f5843681a",
+    "tree_equivalent_to": "4af8f908826ad44ca58d3fb5a70a7c0ab06503db",
+    "commits": [
+      {
+        "head": "2e33ab4cdde76248b1f7df05b7c4f436b362e8a3",
+        "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+        "tree": "fe39682610e91a6a5869bb6c9d9b567aece07cb5",
+        "checked_tree": "2e33ab4cdde76248b1f7df05b7c4f436b362e8a3",
+        "files_changed": 654,
+        "insertions": 10749,
+        "deletions": 12282
+      },
+      {
+        "head": "1cc9300b6775dabe89b368ed969daa9ba29da98d",
+        "base": "2e33ab4cdde76248b1f7df05b7c4f436b362e8a3",
+        "tree": "f46ca862dc64ee3d1a1b03ff8abba3d80a393ae8",
+        "checked_tree": "1cc9300b6775dabe89b368ed969daa9ba29da98d",
+        "files_changed": 679,
+        "insertions": 5760,
+        "deletions": 6296
+      },
+      {
+        "head": "a2b4e66a560d53d69d13ad12ff63d3aa713666eb",
+        "base": "1cc9300b6775dabe89b368ed969daa9ba29da98d",
+        "tree": "cda887a5d1594fc4b1cd88e7d0fac24e44512077",
+        "checked_tree": "a2b4e66a560d53d69d13ad12ff63d3aa713666eb",
+        "files_changed": 21,
+        "insertions": 372,
+        "deletions": 480
+      },
+      {
+        "head": "351a101687ff50b5832af3aad322bf0a4e151418",
+        "base": "a2b4e66a560d53d69d13ad12ff63d3aa713666eb",
+        "tree": "d49cf53e9c97ca59d1f44be73291cedf68c5398c",
+        "checked_tree": "351a101687ff50b5832af3aad322bf0a4e151418",
+        "files_changed": 968,
+        "insertions": 12597,
+        "deletions": 13408
+      },
+      {
+        "head": "5bf970f9ccfdfc2624052ef200039a06b6a8543e",
+        "base": "351a101687ff50b5832af3aad322bf0a4e151418",
+        "tree": "72d4f38d9a80fb43b3956ce73993e40c9601f25c",
+        "checked_tree": "5bf970f9ccfdfc2624052ef200039a06b6a8543e",
+        "files_changed": 24,
+        "insertions": 331,
+        "deletions": 396
+      },
+      {
+        "head": "2cd01e82147e0ad3ac02d70cabdb57538a02c6d4",
+        "base": "5bf970f9ccfdfc2624052ef200039a06b6a8543e",
+        "tree": "3b69faa170d4f4a38fe53e839557768ed7f8564f",
+        "checked_tree": "2cd01e82147e0ad3ac02d70cabdb57538a02c6d4",
+        "files_changed": 38,
+        "insertions": 646,
+        "deletions": 735
+      },
+      {
+        "head": "176bfd42251f7438d8f77a813b74e676430cdfe6",
+        "base": "2cd01e82147e0ad3ac02d70cabdb57538a02c6d4",
+        "tree": "00cf9b80b0e7a0cc7837b55717bf314ab98ad79f",
+        "checked_tree": "176bfd42251f7438d8f77a813b74e676430cdfe6",
+        "files_changed": 17,
+        "insertions": 256,
+        "deletions": 341
+      },
+      {
+        "head": "ce6336208b3c35a7acef029893bec424a17d3498",
+        "base": "176bfd42251f7438d8f77a813b74e676430cdfe6",
+        "tree": "f24560ce3c35902ce35af35ea229e7e1c817f3a4",
+        "checked_tree": "ce6336208b3c35a7acef029893bec424a17d3498",
+        "files_changed": 31,
+        "insertions": 475,
+        "deletions": 502
+      },
+      {
+        "head": "be4ac3f8f422c217d576331fa45a7bd7bd364b08",
+        "base": "ce6336208b3c35a7acef029893bec424a17d3498",
+        "tree": "40b91d2c9ea210f0d8aa5a0a4d587db8cccb1a25",
+        "checked_tree": "be4ac3f8f422c217d576331fa45a7bd7bd364b08",
+        "files_changed": 18,
+        "insertions": 341,
+        "deletions": 416
+      },
+      {
+        "head": "75396834cdfa4fc14d991dd37aefe500037e71a8",
+        "base": "be4ac3f8f422c217d576331fa45a7bd7bd364b08",
+        "tree": "de5d4633e8997367ca383c419883baae8a69be7b",
+        "checked_tree": "20a4bdc054f562084d67832e4c2ee2157d8129b4",
+        "files_changed": 18,
+        "insertions": 448,
+        "deletions": 448
+      },
+      {
+        "head": "ecae8df53cd5f570252fff8e0c10a65b517f1c95",
+        "base": "75396834cdfa4fc14d991dd37aefe500037e71a8",
+        "tree": "cba6fc1eb860a10cd0e81264e1a3994ba723f0d3",
+        "checked_tree": "5170c577c9ddd200b1558955af9437e4dc5216c6",
+        "files_changed": 11,
+        "insertions": 318,
+        "deletions": 625
+      },
+      {
+        "head": "10708892f5c6d4b1548df6d55e9c664c444b3231",
+        "base": "ecae8df53cd5f570252fff8e0c10a65b517f1c95",
+        "tree": "941e046ad88cc148c2cc6baaf061eb6a584e4756",
+        "checked_tree": "46ad4c3f09c07623550c12f043fcca2994853cbd",
+        "files_changed": 14,
+        "insertions": 258,
+        "deletions": 255
+      },
+      {
+        "head": "b5448eb0bd6748b9b38f3b03aab409dbb77ed281",
+        "base": "10708892f5c6d4b1548df6d55e9c664c444b3231",
+        "tree": "0221d12c79686fe75aa75a54b8d28567542d45c7",
+        "checked_tree": "e22f99703c7d168dfc509cf6b02a66ae32481956",
+        "files_changed": 19,
+        "insertions": 161,
+        "deletions": 128
+      },
+      {
+        "head": "be1d9b228473ad65248d3e4d9dee3c262dc27f08",
+        "base": "b5448eb0bd6748b9b38f3b03aab409dbb77ed281",
+        "tree": "424ead57e2e709837d9f0abac905a4b4c97a92bd",
+        "checked_tree": "510df145dedd057291f46c6f7a35caae16e3c086",
+        "files_changed": 10,
+        "insertions": 308,
+        "deletions": 429
+      },
+      {
+        "head": "b64574a02d144582a5e360ed6bec9fc9c33b2bd4",
+        "base": "be1d9b228473ad65248d3e4d9dee3c262dc27f08",
+        "tree": "dc52d84f578e1585ef491d103f483b4435d3d0cf",
+        "checked_tree": "b2764f762bccf0bef58c46a6df49de0e8a9ecb0c",
+        "files_changed": 22,
+        "insertions": 229,
+        "deletions": 209
+      },
+      {
+        "head": "87322be0f82dad0b8c91d9d1080fbb1fd83facb3",
+        "base": "b64574a02d144582a5e360ed6bec9fc9c33b2bd4",
+        "tree": "2e71cb052855ffb466e56b7b085331f2c764e046",
+        "checked_tree": "b5b0fd6068646bde1072f99b5b0cf8c022897e7a",
+        "files_changed": 32,
+        "insertions": 262,
+        "deletions": 275
+      },
+      {
+        "head": "716c3c34e8a3a3cf2f35a8c375303310acff2765",
+        "base": "87322be0f82dad0b8c91d9d1080fbb1fd83facb3",
+        "tree": "49703e6dda6a9f5e4d59345009626736e1932afe",
+        "checked_tree": "d8d506abfb855a5ce6487e2ae08f2fb9f7a0ed2e",
+        "files_changed": 25,
+        "insertions": 388,
+        "deletions": 395
+      },
+      {
+        "head": "165784f35fce5c7c8457bf6875d846c226a49e00",
+        "base": "716c3c34e8a3a3cf2f35a8c375303310acff2765",
+        "tree": "77fb7ed3eff873f2ee2ec6ecade61c8f5843681a",
+        "checked_tree": "4af8f908826ad44ca58d3fb5a70a7c0ab06503db",
+        "files_changed": 12,
+        "insertions": 136,
+        "deletions": 139
+      }
+    ],
+    "commit_attribution": {
+      "audited_commits": 18,
+      "codex_attribution": 0,
+      "coauthor_trailers": 0
+    },
+    "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+    "files_changed": 1840,
+    "insertions": 33147,
+    "deletions": 36871
+  },
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/ui/TUnk_804E3008.h",
+    "include/pso/ui/frontend/TAdChrSelASlotGC.h",
+    "include/pso/ui/frontend/TAdChrSelBSlotGC.h",
+    "include/pso/ui/frontend/TAdMultiPlyChrSelectGC.h",
+    "include/pso/ui/frontend/TAdMultiPlyChrSelectGC_802D50A0.h",
+    "include/pso/ui/frontend/TAdMultiSelGameModeGC.h",
+    "include/pso/ui/frontend/TAdSelectCurGC.h",
+    "include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h",
+    "include/pso/ui/frontend/TAdTitleTexGC.h",
+    "src/pso/ui/TLevelSelect.cpp",
+    "src/pso/ui/frontend/TAdChrSelBSlotGC.cpp",
+    "src/pso/ui/frontend/TAdChrSelPlayerGC.cpp",
+    "src/pso/ui/frontend/TAdMultiChgGameModeGC.cpp",
+    "src/pso/ui/frontend/TAdMultiConfirmGC.cpp",
+    "src/pso/ui/frontend/TAdMultiConfirmGC_802E03D0.cpp",
+    "src/pso/ui/frontend/TAdMultiPlyChrSelectGC.cpp",
+    "src/pso/ui/frontend/TAdMultiPlyChrSelectGC_802D50A0.cpp",
+    "src/pso/ui/frontend/TAdMultiPlyChrSelectGC_802E0064.cpp",
+    "src/pso/ui/frontend/TAdMultiSelGameModeGC.cpp",
+    "src/pso/ui/frontend/TAdMultiSelGameModeGC_802D5098.cpp",
+    "src/pso/ui/frontend/TAdSelectGameModeGC_802C4748.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp",
+    "src/pso/ui/frontend/TAdStorySelectGC_802C3284.cpp",
+    "src/pso/ui/frontend/TAdTitleTexGC.cpp"
+  ],
+  "patch_sha256": "cead478cd339ec6151cb1d107cf655fac55d6b4aa5eebb8bdb88c61e6f21762c",
+  "source_changes": [
+    "Restore the native TAdTitleTexGC constructor and its TObject parent in all eight creating scenes",
+    "Use the real title quad and position layouts for initialization, animation and drawing",
+    "Give the A-slot, B-slot, selection cursor and displayed-player actor their original calls through typed receivers",
+    "Carry the original preview-index argument and both B-slot predicate arguments through native declarations"
+  ],
+  "typed_storage": {
+    "TAdTitleTexGC": {
+      "size": 156,
+      "quads": 28,
+      "alpha": 124,
+      "frame": 128,
+      "positions": 132
+    },
+    "TAdSinglePlyChrSelectGC": {
+      "a_slot": 40,
+      "cursor": 44,
+      "player_preview": 48,
+      "guide_text": 52
+    },
+    "TAdMultiPlyChrSelectGC": {
+      "player_preview": 96,
+      "a_slot": 104,
+      "b_slot": 108
+    },
+    "TUnk_804E3008": {
+      "pending_state": 256,
+      "preview_index": 260,
+      "status_value": 272
+    },
+    "TAdSelectCurGC": {
+      "pending_command": 1792
+    }
+  },
+  "naming_policy": "Preserve existing upstream names. Every changed linker label reflects a native owner or corrected signature.",
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "validation": {
+    "combat": {
+      "check_sha256": "9536e35d1605fbb616a5e1ead3f6896a79690a30a97ded84b573dc3858480e04",
+      "source_report_sha256": "36cefd44324b2ad53a232df00944a8711e41cb38c697a660fb48467c2db297d6",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x802A506C",
+          "__ct__13TAdTitleTexGCFv",
+          "__ct__13TAdTitleTexGCFP7TObject"
+        ],
+        [
+          "0x802D5098",
+          "set_selection_state__21TAdMultiSelGameModeGCFl",
+          "set_selection_state__14TAdSelectCurGCFl"
+        ],
+        [
+          "0x802D50A0",
+          "get_player_index__22TAdMultiPlyChrSelectGCFv",
+          "get_player_index__16TAdChrSelASlotGCFv"
+        ],
+        [
+          "0x802D50A8",
+          "set_cursor_index__22TAdMultiPlyChrSelectGCFl",
+          "set_cursor_index__16TAdChrSelASlotGCFl"
+        ],
+        [
+          "0x802D50B0",
+          "set_field_100__22TAdMultiPlyChrSelectGCFl",
+          "set_field_100__13TUnk_804E3008Fl"
+        ],
+        [
+          "0x802E00BC",
+          "set_field_1c__22TAdMultiPlyChrSelectGCFl",
+          "set_field_1c__16TAdChrSelBSlotGCFl"
+        ],
+        [
+          "0x802E00C4",
+          "get_mode__22TAdMultiPlyChrSelectGCFv",
+          "get_mode__16TAdChrSelBSlotGCFv"
+        ],
+        [
+          "0x802E00CC",
+          "is_state_closing__22TAdMultiPlyChrSelectGCFv",
+          "is_state_closing__16TAdChrSelBSlotGCFv"
+        ],
+        [
+          "0x802E0C28",
+          "set_status_value__22TAdMultiPlyChrSelectGCFl",
+          "set_status_value__13TUnk_804E3008Fl"
+        ],
+        [
+          "0x802E0C68",
+          "set_index_and_close_status__22TAdMultiPlyChrSelectGCFl",
+          "set_index_and_close_status__13TUnk_804E3008Fl"
+        ],
+        [
+          "0x802E0CB0",
+          "sub_802E0CB0__13TUnk_804E3008Fv",
+          "sub_802E0CB0__13TUnk_804E3008Fl"
+        ],
+        [
+          "0x8030E378",
+          "is_slot_state_one__16TAdChrSelBSlotGCFlUl",
+          "is_slot_state_one__16TAdChrSelBSlotGCFUl"
+        ],
+        [
+          "0x803100A4",
+          "create__16TAdChrSelBSlotGCFPv",
+          "create__16TAdChrSelBSlotGCFP7TObject"
+        ]
+      ]
+    },
+    "full": {
+      "check_sha256": "9536e35d1605fbb616a5e1ead3f6896a79690a30a97ded84b573dc3858480e04",
+      "source_report_sha256": "36cefd44324b2ad53a232df00944a8711e41cb38c697a660fb48467c2db297d6",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x802A506C",
+          "__ct__13TAdTitleTexGCFv",
+          "__ct__13TAdTitleTexGCFP7TObject"
+        ],
+        [
+          "0x802D5098",
+          "set_selection_state__21TAdMultiSelGameModeGCFl",
+          "set_selection_state__14TAdSelectCurGCFl"
+        ],
+        [
+          "0x802D50A0",
+          "get_player_index__22TAdMultiPlyChrSelectGCFv",
+          "get_player_index__16TAdChrSelASlotGCFv"
+        ],
+        [
+          "0x802D50A8",
+          "set_cursor_index__22TAdMultiPlyChrSelectGCFl",
+          "set_cursor_index__16TAdChrSelASlotGCFl"
+        ],
+        [
+          "0x802D50B0",
+          "set_field_100__22TAdMultiPlyChrSelectGCFl",
+          "set_field_100__13TUnk_804E3008Fl"
+        ],
+        [
+          "0x802E00BC",
+          "set_field_1c__22TAdMultiPlyChrSelectGCFl",
+          "set_field_1c__16TAdChrSelBSlotGCFl"
+        ],
+        [
+          "0x802E00C4",
+          "get_mode__22TAdMultiPlyChrSelectGCFv",
+          "get_mode__16TAdChrSelBSlotGCFv"
+        ],
+        [
+          "0x802E00CC",
+          "is_state_closing__22TAdMultiPlyChrSelectGCFv",
+          "is_state_closing__16TAdChrSelBSlotGCFv"
+        ],
+        [
+          "0x802E0C28",
+          "set_status_value__22TAdMultiPlyChrSelectGCFl",
+          "set_status_value__13TUnk_804E3008Fl"
+        ],
+        [
+          "0x802E0C68",
+          "set_index_and_close_status__22TAdMultiPlyChrSelectGCFl",
+          "set_index_and_close_status__13TUnk_804E3008Fl"
+        ],
+        [
+          "0x802E0CB0",
+          "sub_802E0CB0__13TUnk_804E3008Fv",
+          "sub_802E0CB0__13TUnk_804E3008Fl"
+        ],
+        [
+          "0x8030E378",
+          "is_slot_state_one__16TAdChrSelBSlotGCFlUl",
+          "is_slot_state_one__16TAdChrSelBSlotGCFUl"
+        ],
+        [
+          "0x803100A4",
+          "create__16TAdChrSelBSlotGCFPv",
+          "create__16TAdChrSelBSlotGCFP7TObject"
+        ]
+      ]
+    },
+    "linear-full": {
+      "check_sha256": "9536e35d1605fbb616a5e1ead3f6896a79690a30a97ded84b573dc3858480e04",
+      "source_report_sha256": "36cefd44324b2ad53a232df00944a8711e41cb38c697a660fb48467c2db297d6",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x802A506C",
+          "__ct__13TAdTitleTexGCFv",
+          "__ct__13TAdTitleTexGCFP7TObject"
+        ],
+        [
+          "0x802D5098",
+          "set_selection_state__21TAdMultiSelGameModeGCFl",
+          "set_selection_state__14TAdSelectCurGCFl"
+        ],
+        [
+          "0x802D50A0",
+          "get_player_index__22TAdMultiPlyChrSelectGCFv",
+          "get_player_index__16TAdChrSelASlotGCFv"
+        ],
+        [
+          "0x802D50A8",
+          "set_cursor_index__22TAdMultiPlyChrSelectGCFl",
+          "set_cursor_index__16TAdChrSelASlotGCFl"
+        ],
+        [
+          "0x802D50B0",
+          "set_field_100__22TAdMultiPlyChrSelectGCFl",
+          "set_field_100__13TUnk_804E3008Fl"
+        ],
+        [
+          "0x802E00BC",
+          "set_field_1c__22TAdMultiPlyChrSelectGCFl",
+          "set_field_1c__16TAdChrSelBSlotGCFl"
+        ],
+        [
+          "0x802E00C4",
+          "get_mode__22TAdMultiPlyChrSelectGCFv",
+          "get_mode__16TAdChrSelBSlotGCFv"
+        ],
+        [
+          "0x802E00CC",
+          "is_state_closing__22TAdMultiPlyChrSelectGCFv",
+          "is_state_closing__16TAdChrSelBSlotGCFv"
+        ],
+        [
+          "0x802E0C28",
+          "set_status_value__22TAdMultiPlyChrSelectGCFl",
+          "set_status_value__13TUnk_804E3008Fl"
+        ],
+        [
+          "0x802E0C68",
+          "set_index_and_close_status__22TAdMultiPlyChrSelectGCFl",
+          "set_index_and_close_status__13TUnk_804E3008Fl"
+        ],
+        [
+          "0x802E0CB0",
+          "sub_802E0CB0__13TUnk_804E3008Fv",
+          "sub_802E0CB0__13TUnk_804E3008Fl"
+        ],
+        [
+          "0x8030E378",
+          "is_slot_state_one__16TAdChrSelBSlotGCFlUl",
+          "is_slot_state_one__16TAdChrSelBSlotGCFUl"
+        ],
+        [
+          "0x803100A4",
+          "create__16TAdChrSelBSlotGCFPv",
+          "create__16TAdChrSelBSlotGCFP7TObject"
+        ]
+      ]
+    },
+    "layer": {
+      "check_sha256": "5d3ad9690e70c7dd8fdabeaa9a1e617b80596473a662df940ebe7c36390c08d0",
+      "source_report_sha256": "36cefd44324b2ad53a232df00944a8711e41cb38c697a660fb48467c2db297d6",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x802A506C",
+          "__ct__13TAdTitleTexGCFv",
+          "__ct__13TAdTitleTexGCFP7TObject"
+        ],
+        [
+          "0x802D5098",
+          "set_selection_state__21TAdMultiSelGameModeGCFl",
+          "set_selection_state__14TAdSelectCurGCFl"
+        ],
+        [
+          "0x802D50A0",
+          "get_player_index__22TAdMultiPlyChrSelectGCFv",
+          "get_player_index__16TAdChrSelASlotGCFv"
+        ],
+        [
+          "0x802D50A8",
+          "set_cursor_index__22TAdMultiPlyChrSelectGCFl",
+          "set_cursor_index__16TAdChrSelASlotGCFl"
+        ],
+        [
+          "0x802D50B0",
+          "set_field_100__22TAdMultiPlyChrSelectGCFl",
+          "set_field_100__13TUnk_804E3008Fl"
+        ],
+        [
+          "0x802E00BC",
+          "set_field_1c__22TAdMultiPlyChrSelectGCFl",
+          "set_field_1c__16TAdChrSelBSlotGCFl"
+        ],
+        [
+          "0x802E00C4",
+          "get_mode__22TAdMultiPlyChrSelectGCFv",
+          "get_mode__16TAdChrSelBSlotGCFv"
+        ],
+        [
+          "0x802E00CC",
+          "is_state_closing__22TAdMultiPlyChrSelectGCFv",
+          "is_state_closing__16TAdChrSelBSlotGCFv"
+        ],
+        [
+          "0x802E0C28",
+          "set_status_value__22TAdMultiPlyChrSelectGCFl",
+          "set_status_value__13TUnk_804E3008Fl"
+        ],
+        [
+          "0x802E0C68",
+          "set_index_and_close_status__22TAdMultiPlyChrSelectGCFl",
+          "set_index_and_close_status__13TUnk_804E3008Fl"
+        ],
+        [
+          "0x802E0CB0",
+          "sub_802E0CB0__13TUnk_804E3008Fv",
+          "sub_802E0CB0__13TUnk_804E3008Fl"
+        ],
+        [
+          "0x8030E378",
+          "is_slot_state_one__16TAdChrSelBSlotGCFlUl",
+          "is_slot_state_one__16TAdChrSelBSlotGCFUl"
+        ],
+        [
+          "0x803100A4",
+          "create__16TAdChrSelBSlotGCFPv",
+          "create__16TAdChrSelBSlotGCFP7TObject"
+        ]
+      ]
+    }
+  },
+  "runtime_probes": {
+    "retail": "56c4fcf29fd9e99d863dae03c7896f323110b4cff0affa369fea45f309c0b943",
+    "review": "56c4fcf29fd9e99d863dae03c7896f323110b4cff0affa369fea45f309c0b943",
+    "layer": "56c4fcf29fd9e99d863dae03c7896f323110b4cff0affa369fea45f309c0b943"
+  },
+  "overlay_sha256": "a3f3b26b7e93cc634e69eb9a55ac6ea75a222e47cf3eb5a3b5a480d39c5d079c",
+  "fork_overlay_paths": 130,
+  "retained_symbols": 27033,
+  "workspace_checks": {
+    "tool": 294,
+    "fork": 11,
+    "host": [
+      "./vector_math_fallbacks",
+      "./item_factory_callbacks",
+      "./loader_transfer",
+      "./ginja_parameter_callbacks",
+      "./exi_ethernet_fallbacks"
+    ]
+  },
+  "historical_rows_closed": {
+    "2662": "The only fork edit was to take a signed slot index. The current confirmation caller and native provider use s32, and the typed preview actors now make the confirmation call directly"
+  },
+  "historical_rows_with_added_evidence": {
+    "2275": "The slot predicate is on the B-slot receiver and returns the full-width value used by both retail callers",
+    "2372": "The B-slot owner now exposes its original mode setters, query and closing-state check to the multiplayer scene",
+    "2557": "The first four selector children now have typed A-slot, cursor, preview actor and guide-text fields at their original offsets",
+    "2671": "The preview actor owns the original status setters and matrix placement call. Existing motion and texture interfaces keep their current names. The historical array deallocation spelling remains under review"
+  },
+  "existing_upstream_interfaces_kept": {
+    "2449": "The typed TChCrTagPlBack owner defines the eight original NJS_POINT2 frame positions and scale at 0x80466720 through 0x80466758. Its constructor uses the historical tag name, and draw_frame uses all seven original floating-point parameters. The title texture resource release stays in TAdTitleTexGC.cpp at its original address"
+  },
+  "historical_rows_open": 590,
+  "public_refs_changed": false
+}

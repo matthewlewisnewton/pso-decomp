@@ -1,0 +1,500 @@
+{
+  "source": "65829c84195481960d626dc00a6b2c1be96a5a7c",
+  "previous_source": "ed739d9a017f451cff130b340263be672889e170",
+  "review": {
+    "ref": "great-merge/consolidated/single-review-with-sinow-and-canadin",
+    "head": "e8af99b02a09051248afb632c87a3557388ba29a",
+    "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+    "tree": "91a47029caeded0ba0103e3c6601248b043fb124",
+    "tree_equivalent_to": "189db05619a05418c31ab94b830047acb08ab64d",
+    "commits": [
+      {
+        "head": "2e33ab4cdde76248b1f7df05b7c4f436b362e8a3",
+        "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+        "tree": "fe39682610e91a6a5869bb6c9d9b567aece07cb5",
+        "checked_tree": "2e33ab4cdde76248b1f7df05b7c4f436b362e8a3",
+        "files_changed": 654,
+        "insertions": 10749,
+        "deletions": 12282
+      },
+      {
+        "head": "1cc9300b6775dabe89b368ed969daa9ba29da98d",
+        "base": "2e33ab4cdde76248b1f7df05b7c4f436b362e8a3",
+        "tree": "f46ca862dc64ee3d1a1b03ff8abba3d80a393ae8",
+        "checked_tree": "1cc9300b6775dabe89b368ed969daa9ba29da98d",
+        "files_changed": 679,
+        "insertions": 5760,
+        "deletions": 6296
+      },
+      {
+        "head": "a2b4e66a560d53d69d13ad12ff63d3aa713666eb",
+        "base": "1cc9300b6775dabe89b368ed969daa9ba29da98d",
+        "tree": "cda887a5d1594fc4b1cd88e7d0fac24e44512077",
+        "checked_tree": "a2b4e66a560d53d69d13ad12ff63d3aa713666eb",
+        "files_changed": 21,
+        "insertions": 372,
+        "deletions": 480
+      },
+      {
+        "head": "351a101687ff50b5832af3aad322bf0a4e151418",
+        "base": "a2b4e66a560d53d69d13ad12ff63d3aa713666eb",
+        "tree": "d49cf53e9c97ca59d1f44be73291cedf68c5398c",
+        "checked_tree": "351a101687ff50b5832af3aad322bf0a4e151418",
+        "files_changed": 968,
+        "insertions": 12597,
+        "deletions": 13408
+      },
+      {
+        "head": "5bf970f9ccfdfc2624052ef200039a06b6a8543e",
+        "base": "351a101687ff50b5832af3aad322bf0a4e151418",
+        "tree": "72d4f38d9a80fb43b3956ce73993e40c9601f25c",
+        "checked_tree": "5bf970f9ccfdfc2624052ef200039a06b6a8543e",
+        "files_changed": 24,
+        "insertions": 331,
+        "deletions": 396
+      },
+      {
+        "head": "2cd01e82147e0ad3ac02d70cabdb57538a02c6d4",
+        "base": "5bf970f9ccfdfc2624052ef200039a06b6a8543e",
+        "tree": "3b69faa170d4f4a38fe53e839557768ed7f8564f",
+        "checked_tree": "2cd01e82147e0ad3ac02d70cabdb57538a02c6d4",
+        "files_changed": 38,
+        "insertions": 646,
+        "deletions": 735
+      },
+      {
+        "head": "176bfd42251f7438d8f77a813b74e676430cdfe6",
+        "base": "2cd01e82147e0ad3ac02d70cabdb57538a02c6d4",
+        "tree": "00cf9b80b0e7a0cc7837b55717bf314ab98ad79f",
+        "checked_tree": "176bfd42251f7438d8f77a813b74e676430cdfe6",
+        "files_changed": 17,
+        "insertions": 256,
+        "deletions": 341
+      },
+      {
+        "head": "ce6336208b3c35a7acef029893bec424a17d3498",
+        "base": "176bfd42251f7438d8f77a813b74e676430cdfe6",
+        "tree": "f24560ce3c35902ce35af35ea229e7e1c817f3a4",
+        "checked_tree": "ce6336208b3c35a7acef029893bec424a17d3498",
+        "files_changed": 31,
+        "insertions": 475,
+        "deletions": 502
+      },
+      {
+        "head": "be4ac3f8f422c217d576331fa45a7bd7bd364b08",
+        "base": "ce6336208b3c35a7acef029893bec424a17d3498",
+        "tree": "40b91d2c9ea210f0d8aa5a0a4d587db8cccb1a25",
+        "checked_tree": "be4ac3f8f422c217d576331fa45a7bd7bd364b08",
+        "files_changed": 18,
+        "insertions": 341,
+        "deletions": 416
+      },
+      {
+        "head": "75396834cdfa4fc14d991dd37aefe500037e71a8",
+        "base": "be4ac3f8f422c217d576331fa45a7bd7bd364b08",
+        "tree": "de5d4633e8997367ca383c419883baae8a69be7b",
+        "checked_tree": "20a4bdc054f562084d67832e4c2ee2157d8129b4",
+        "files_changed": 18,
+        "insertions": 448,
+        "deletions": 448
+      },
+      {
+        "head": "ecae8df53cd5f570252fff8e0c10a65b517f1c95",
+        "base": "75396834cdfa4fc14d991dd37aefe500037e71a8",
+        "tree": "cba6fc1eb860a10cd0e81264e1a3994ba723f0d3",
+        "checked_tree": "5170c577c9ddd200b1558955af9437e4dc5216c6",
+        "files_changed": 11,
+        "insertions": 318,
+        "deletions": 625
+      },
+      {
+        "head": "10708892f5c6d4b1548df6d55e9c664c444b3231",
+        "base": "ecae8df53cd5f570252fff8e0c10a65b517f1c95",
+        "tree": "941e046ad88cc148c2cc6baaf061eb6a584e4756",
+        "checked_tree": "46ad4c3f09c07623550c12f043fcca2994853cbd",
+        "files_changed": 14,
+        "insertions": 258,
+        "deletions": 255
+      },
+      {
+        "head": "b5448eb0bd6748b9b38f3b03aab409dbb77ed281",
+        "base": "10708892f5c6d4b1548df6d55e9c664c444b3231",
+        "tree": "0221d12c79686fe75aa75a54b8d28567542d45c7",
+        "checked_tree": "e22f99703c7d168dfc509cf6b02a66ae32481956",
+        "files_changed": 19,
+        "insertions": 161,
+        "deletions": 128
+      },
+      {
+        "head": "e8af99b02a09051248afb632c87a3557388ba29a",
+        "base": "b5448eb0bd6748b9b38f3b03aab409dbb77ed281",
+        "tree": "91a47029caeded0ba0103e3c6601248b043fb124",
+        "checked_tree": "189db05619a05418c31ab94b830047acb08ab64d",
+        "files_changed": 12,
+        "insertions": 136,
+        "deletions": 139
+      }
+    ],
+    "commit_attribution": {
+      "audited_commits": 14,
+      "codex_attribution": 0,
+      "coauthor_trailers": 0
+    },
+    "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+    "files_changed": 1814,
+    "insertions": 32040,
+    "deletions": 35643
+  },
+  "changed_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/linked_units.txt",
+    "config/GPOE8P/psov3/splits.txt",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/canadin/TObjEneMe1Canadin.h",
+    "include/pso/enemy/canadin/TObjEneMe1CanadinLeader.h",
+    "include/pso/enemy/shinowa/TObjEneMe3ShinowaMirage.h",
+    "include/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.h",
+    "include/pso/enemy/sinowzoa/TObjEneMe3SinowZoaReal.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/render/GinjaTextureEntryCopy.h",
+    "src/pso/enemy/EnemyFactoryTables.cpp",
+    "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+    "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+    "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+    "src/pso/player/TObjPlayer_800E80A4.cpp",
+    "src/pso/render/GinjaTextureEntryCopy.cpp",
+    "src/pso/unk/TLobby_800F795C.cpp"
+  ],
+  "patch_sha256": "78a523c3fe854dd9f4858fda023b1c8bbced2dcb5877e676624c2dc66a4d7a40",
+  "checked_original_functions": [
+    "copy_ginja_texture_entry",
+    "TObjEneMe1CanadinLeader::vfunc_117",
+    "TObjEneMe1Canadin::sub_8009EB98",
+    "TObjEneMe3SinowZoaReal::create"
+  ],
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "validation": {
+    "combat": {
+      "check_sha256": "b0d5c648f05bee58385c4945a79c07caae57f8538adea3497ab99d8e0f380763",
+      "source_report_sha256": "605e9f25ab80935be23ff5b9eea95d12623650afe430387449fdcd552bceeca3",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x8009B274",
+          "vfunc_117__23TObjEneMe1CanadinLeaderFUl",
+          "vfunc_117__23TObjEneMe1CanadinLeaderFP17TObjEneMe1Canadin"
+        ],
+        [
+          "0x8009E2FC",
+          "vfunc_117__17TObjEneMe1CanadinFUl",
+          "vfunc_117__17TObjEneMe1CanadinFP17TObjEneMe1Canadin"
+        ],
+        [
+          "0x8009E474",
+          "reset_map_core__17TObjEneMe1CanadinFPv",
+          "reset_map_core__17TObjEneMe1CanadinFPC8NJS_ARGB"
+        ],
+        [
+          "0x8009EB14",
+          "TObjEneMe1Canadin__sub_8009EB14",
+          "sub_8009EB14__17TObjEneMe1CanadinFf"
+        ],
+        [
+          "0x8009EB98",
+          "TObjEneMe1Canadin__sub_8009EB98",
+          "sub_8009EB98__17TObjEneMe1CanadinFf"
+        ],
+        [
+          "0x800E7B94",
+          "load_shinowa_mirage_resources",
+          "load_shinowa_mirage_resources__23TObjEneMe3ShinowaMirageFv"
+        ],
+        [
+          "0x800E80A4",
+          "copy_vec3__10TObjPlayerFPv",
+          "copy_ginja_texture_entry"
+        ],
+        [
+          "0x80316B20",
+          "check_move_collision__18TObjEneMe3SinowZoaFPvPv",
+          "check_move_collision__18TObjEneMe3SinowZoaFPC3Vec"
+        ],
+        [
+          "0x80316C3C",
+          "TObjEneMe3SinowZoa__sub_80316C3C",
+          "sub_80316C3C__18TObjEneMe3SinowZoaFl"
+        ],
+        [
+          "0x803170F0",
+          "TObjEneMe3SinowZoa__sub_803170F0",
+          "sub_803170F0__18TObjEneMe3SinowZoaFl"
+        ],
+        [
+          "0x80317254",
+          "TObjEneMe3SinowZoa__sub_80317254",
+          "sub_80317254__18TObjEneMe3SinowZoaFl"
+        ],
+        [
+          "0x8031B220",
+          "TObjEneMe3SinowZoaReal__create",
+          "create__22TObjEneMe3SinowZoaRealFPv"
+        ]
+      ]
+    },
+    "full": {
+      "check_sha256": "b0d5c648f05bee58385c4945a79c07caae57f8538adea3497ab99d8e0f380763",
+      "source_report_sha256": "605e9f25ab80935be23ff5b9eea95d12623650afe430387449fdcd552bceeca3",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x8009B274",
+          "vfunc_117__23TObjEneMe1CanadinLeaderFUl",
+          "vfunc_117__23TObjEneMe1CanadinLeaderFP17TObjEneMe1Canadin"
+        ],
+        [
+          "0x8009E2FC",
+          "vfunc_117__17TObjEneMe1CanadinFUl",
+          "vfunc_117__17TObjEneMe1CanadinFP17TObjEneMe1Canadin"
+        ],
+        [
+          "0x8009E474",
+          "reset_map_core__17TObjEneMe1CanadinFPv",
+          "reset_map_core__17TObjEneMe1CanadinFPC8NJS_ARGB"
+        ],
+        [
+          "0x8009EB14",
+          "TObjEneMe1Canadin__sub_8009EB14",
+          "sub_8009EB14__17TObjEneMe1CanadinFf"
+        ],
+        [
+          "0x8009EB98",
+          "TObjEneMe1Canadin__sub_8009EB98",
+          "sub_8009EB98__17TObjEneMe1CanadinFf"
+        ],
+        [
+          "0x800E7B94",
+          "load_shinowa_mirage_resources",
+          "load_shinowa_mirage_resources__23TObjEneMe3ShinowaMirageFv"
+        ],
+        [
+          "0x800E80A4",
+          "copy_vec3__10TObjPlayerFPv",
+          "copy_ginja_texture_entry"
+        ],
+        [
+          "0x80316B20",
+          "check_move_collision__18TObjEneMe3SinowZoaFPvPv",
+          "check_move_collision__18TObjEneMe3SinowZoaFPC3Vec"
+        ],
+        [
+          "0x80316C3C",
+          "TObjEneMe3SinowZoa__sub_80316C3C",
+          "sub_80316C3C__18TObjEneMe3SinowZoaFl"
+        ],
+        [
+          "0x803170F0",
+          "TObjEneMe3SinowZoa__sub_803170F0",
+          "sub_803170F0__18TObjEneMe3SinowZoaFl"
+        ],
+        [
+          "0x80317254",
+          "TObjEneMe3SinowZoa__sub_80317254",
+          "sub_80317254__18TObjEneMe3SinowZoaFl"
+        ],
+        [
+          "0x8031B220",
+          "TObjEneMe3SinowZoaReal__create",
+          "create__22TObjEneMe3SinowZoaRealFPv"
+        ]
+      ]
+    },
+    "linear-full": {
+      "check_sha256": "b0d5c648f05bee58385c4945a79c07caae57f8538adea3497ab99d8e0f380763",
+      "source_report_sha256": "605e9f25ab80935be23ff5b9eea95d12623650afe430387449fdcd552bceeca3",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x8009B274",
+          "vfunc_117__23TObjEneMe1CanadinLeaderFUl",
+          "vfunc_117__23TObjEneMe1CanadinLeaderFP17TObjEneMe1Canadin"
+        ],
+        [
+          "0x8009E2FC",
+          "vfunc_117__17TObjEneMe1CanadinFUl",
+          "vfunc_117__17TObjEneMe1CanadinFP17TObjEneMe1Canadin"
+        ],
+        [
+          "0x8009E474",
+          "reset_map_core__17TObjEneMe1CanadinFPv",
+          "reset_map_core__17TObjEneMe1CanadinFPC8NJS_ARGB"
+        ],
+        [
+          "0x8009EB14",
+          "TObjEneMe1Canadin__sub_8009EB14",
+          "sub_8009EB14__17TObjEneMe1CanadinFf"
+        ],
+        [
+          "0x8009EB98",
+          "TObjEneMe1Canadin__sub_8009EB98",
+          "sub_8009EB98__17TObjEneMe1CanadinFf"
+        ],
+        [
+          "0x800E7B94",
+          "load_shinowa_mirage_resources",
+          "load_shinowa_mirage_resources__23TObjEneMe3ShinowaMirageFv"
+        ],
+        [
+          "0x800E80A4",
+          "copy_vec3__10TObjPlayerFPv",
+          "copy_ginja_texture_entry"
+        ],
+        [
+          "0x80316B20",
+          "check_move_collision__18TObjEneMe3SinowZoaFPvPv",
+          "check_move_collision__18TObjEneMe3SinowZoaFPC3Vec"
+        ],
+        [
+          "0x80316C3C",
+          "TObjEneMe3SinowZoa__sub_80316C3C",
+          "sub_80316C3C__18TObjEneMe3SinowZoaFl"
+        ],
+        [
+          "0x803170F0",
+          "TObjEneMe3SinowZoa__sub_803170F0",
+          "sub_803170F0__18TObjEneMe3SinowZoaFl"
+        ],
+        [
+          "0x80317254",
+          "TObjEneMe3SinowZoa__sub_80317254",
+          "sub_80317254__18TObjEneMe3SinowZoaFl"
+        ],
+        [
+          "0x8031B220",
+          "TObjEneMe3SinowZoaReal__create",
+          "create__22TObjEneMe3SinowZoaRealFPv"
+        ]
+      ]
+    },
+    "layer": {
+      "check_sha256": "b92a22ca98f3044074bb29f2372358b75f2ce9deccc560804200c0b14680e36c",
+      "source_report_sha256": "605e9f25ab80935be23ff5b9eea95d12623650afe430387449fdcd552bceeca3",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x8009B274",
+          "vfunc_117__23TObjEneMe1CanadinLeaderFUl",
+          "vfunc_117__23TObjEneMe1CanadinLeaderFP17TObjEneMe1Canadin"
+        ],
+        [
+          "0x8009E2FC",
+          "vfunc_117__17TObjEneMe1CanadinFUl",
+          "vfunc_117__17TObjEneMe1CanadinFP17TObjEneMe1Canadin"
+        ],
+        [
+          "0x8009E474",
+          "reset_map_core__17TObjEneMe1CanadinFPv",
+          "reset_map_core__17TObjEneMe1CanadinFPC8NJS_ARGB"
+        ],
+        [
+          "0x8009EB14",
+          "TObjEneMe1Canadin__sub_8009EB14",
+          "sub_8009EB14__17TObjEneMe1CanadinFf"
+        ],
+        [
+          "0x8009EB98",
+          "TObjEneMe1Canadin__sub_8009EB98",
+          "sub_8009EB98__17TObjEneMe1CanadinFf"
+        ],
+        [
+          "0x800E7B94",
+          "load_shinowa_mirage_resources",
+          "load_shinowa_mirage_resources__23TObjEneMe3ShinowaMirageFv"
+        ],
+        [
+          "0x800E80A4",
+          "copy_vec3__10TObjPlayerFPv",
+          "copy_ginja_texture_entry"
+        ],
+        [
+          "0x80316B20",
+          "check_move_collision__18TObjEneMe3SinowZoaFPvPv",
+          "check_move_collision__18TObjEneMe3SinowZoaFPC3Vec"
+        ],
+        [
+          "0x80316C3C",
+          "TObjEneMe3SinowZoa__sub_80316C3C",
+          "sub_80316C3C__18TObjEneMe3SinowZoaFl"
+        ],
+        [
+          "0x803170F0",
+          "TObjEneMe3SinowZoa__sub_803170F0",
+          "sub_803170F0__18TObjEneMe3SinowZoaFl"
+        ],
+        [
+          "0x80317254",
+          "TObjEneMe3SinowZoa__sub_80317254",
+          "sub_80317254__18TObjEneMe3SinowZoaFl"
+        ],
+        [
+          "0x8031B220",
+          "TObjEneMe3SinowZoaReal__create",
+          "create__22TObjEneMe3SinowZoaRealFPv"
+        ]
+      ]
+    }
+  },
+  "runtime_probes": {
+    "retail": "2b35b7e52ccf3b862474c2251195ec9030e47352c0cf45c9266522414117f553",
+    "review": "2b35b7e52ccf3b862474c2251195ec9030e47352c0cf45c9266522414117f553",
+    "layer": "2b35b7e52ccf3b862474c2251195ec9030e47352c0cf45c9266522414117f553"
+  },
+  "overlay_sha256": "0c4a30c3f1ee73751d1085977a9ab8a34bf972645d6307b7152ab4f86599ccbf",
+  "fork_overlay_paths": 130,
+  "retained_symbols": 27031,
+  "workspace_checks": {
+    "tool": 294,
+    "fork": 11,
+    "host": [
+      "./vector_math_fallbacks",
+      "./item_factory_callbacks",
+      "./loader_transfer",
+      "./ginja_parameter_callbacks",
+      "./exi_ethernet_fallbacks"
+    ]
+  },
+  "historical_rows_closed": {
+    "838": "Compared the complete Mirage class. Its resource callback is a static member paired with the existing teardown. The native constructor and factory use the concrete actor types. The material accumulator at 0x430 is NJS_ARGB and covers all four historical floats. The existing can_hit_same_target virtual slot and return type keep the upstream interface"
+  },
+  "historical_rows_with_added_evidence": {
+    "456": "Formation removal takes the actual Canadin pointer in the existing virtual slot. The hover helpers are native members and the map-core reset takes the shared color record. The remaining historical actor declarations need source comparison",
+    "589": "The native hover calls keep the original 0x8009EB14 and 0x8009EB98 methods. The leader removes the concrete member pointer, reorders the live member array and sets the thresholds as in retail. The color-reset callers pass their NJS_ARGB directly. Other historical source changes remain open",
+    "727": "The move collision check takes a const destination vector and the three movement states are native nonvirtual methods. The existing action virtual and equal field names are retained. The remaining historical parameter and state structure changes need source comparison",
+    "778": "The Mirage resource callback owns a copied Ginja texture list and keeps the original alternate-slot copy direction and NPC registration. Render saves and restores borrowed entry pointers using their real type. Other attack and movement changes remain open",
+    "814": "The native factory, movement collision method and three movement-state methods keep the original addresses. The loader and renderer use typed Ginja texture entries, including the distinct alternate copy direction. Other historical changes remain open",
+    "958": "The alternate texture-list allocation, copy, material swap and restoration use native Ginja types and the real copy provider. The remaining historical behavior needs source comparison"
+  },
+  "existing_upstream_interfaces_kept": {},
+  "historical_rows_open": 592,
+  "public_refs_changed": false
+}

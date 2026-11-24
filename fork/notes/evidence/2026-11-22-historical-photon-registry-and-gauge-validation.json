@@ -1,0 +1,406 @@
+{
+  "source_head": "eafbd5d8b29255ce3802d8a4f829a5ba13e33610",
+  "source_tree": "0705ba9fcaa26de31e57f2038a6a3567f08847a5",
+  "previous_cumulative": "291e11d3419b7d0fc61b2308f1c4ed59e77ed4c6",
+  "upstream_master": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "new_source_paths": 17,
+  "source_quality": {
+    "totals": {
+      "base": 142965,
+      "head": 142908,
+      "added": 0,
+      "removed": 57
+    },
+    "label_changes": [
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80010EC0",
+        "type": "function",
+        "old": "gain_photon_blast_chain_charge__9TObjCharaFv",
+        "new": "gain_photon_blast_chain_charge__9TObjCharaFf",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801BE268",
+        "type": "function",
+        "old": "gain_photon_blast_chain_charge__10TObjPlayerFv",
+        "new": "gain_photon_blast_chain_charge__10TObjPlayerFf",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801C2308",
+        "type": "function",
+        "old": "fn_801C2308",
+        "new": "__dt__19PhotonBlastRegistryFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801C2360",
+        "type": "function",
+        "old": "fn_801C2360",
+        "new": "__ct__19PhotonBlastRegistryFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D29D0",
+        "type": "function",
+        "old": "trigger_photon_blast__10TObjPlayerFv",
+        "new": "trigger_photon_blast__16PhotonBlastGaugeFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x801D29F8",
+        "type": "function",
+        "old": "check_photon_blast_flag__10TObjPlayerFv",
+        "new": "check_photon_blast_flag__16PhotonBlastGaugeFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x803130BC",
+        "type": "function",
+        "old": "update_children__15PhotonBlastSlotFv",
+        "new": "update_children__18PhotonBlastRequestFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80313184",
+        "type": "function",
+        "old": "query_field40__10TObjPlayerFv",
+        "new": "query_field40__16PhotonBlastGaugeFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x803131F0",
+        "type": "function",
+        "old": "check_flag_at_4__15PhotonBlastSlotFv",
+        "new": "check_flag_at_4__18PhotonBlastRequestFv",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80313248",
+        "type": "function",
+        "old": "set_field_0__10TObjPlayerFs",
+        "new": "set_client_id__22PhotonBlastRequestSlotFUl",
+        "flags": []
+      },
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80313260",
+        "type": "function",
+        "old": "get_max_children__15PhotonBlastSlotFPC15PhotonBlastSlot",
+        "new": "get_max_children__18PhotonBlastRequestFPC18PhotonBlastRequest",
+        "flags": []
+      }
+    ],
+    "flagged_labels": 0,
+    "stale_retention_entries": 0,
+    "report_sha256": "2bc9713ea8057e94aad5c53a9463fae3f2cc4ed26fbe30c5669481100c49a7ac"
+  },
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2368,
+  "original_request_layout": {
+    "registry_size": "0x60",
+    "request_size": "0x18",
+    "slot_size": "0x4",
+    "request_flag_offset": "0x4",
+    "request_donors_offset": "0x8"
+  },
+  "charge_dispatch": {
+    "vtable_offset": "0x134",
+    "target": "0x801BE268",
+    "passes_f32": true,
+    "retail_party_argument": 10.0,
+    "gauge_offset_in_player": "0x4AC",
+    "flag_offset_in_gauge": "0x40"
+  },
+  "matching_constraints": [
+    "The gauge initializer constructs the flag word in place. Keep scalar storage in the containing gauge to avoid a second constructor call in the native player constructors.",
+    "The packet handler keeps its byte-addressed gauge lookup with the checked member offset and calls the gauge methods directly. A field-based access changed the linked packet routine.",
+    "The two register-level request wrappers retain the original unsigned word handling at their callers."
+  ],
+  "probes": {
+    "probe-photon-requests.log": "3cd3ec80e96c8abb0484ed06a79efd5e6e27976ce8b57a4b7c56099c3013e847",
+    "probe-photon-party.log": "753aabfc29fa9f4305f39d2ef41bf7b3d06a7885515d60f41f067e67a0b94f61",
+    "probe-gauge.log": "b1d32971e481814afa7a84993b94c5b360c534df9f1cec01e97be9d7317a7b7e",
+    "probe-effects.log": "4dc242856430140e49e27cf64c057ed0f41523f7ab3127f1472cae84e06e759c"
+  },
+  "isolated_coverage_sha256": "28807dc7d4e67da90c8dc4823f9188bbc9095243567fb0b0c0570e5ea31bdb6e",
+  "materialized_fork": {
+    "coverage_sha256": "8a2b3bcfd73a6591ad70660582c46e0f42b06d1d376171fbb069403c2b961413",
+    "overlay_sha256": "3939c857d56c8855712d9c86dd4c3db609284db853f097c9c06a3672c04f4c47",
+    "retention_entries": 27007,
+    "new_stale_retention_entries": 0,
+    "checks": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    }
+  },
+  "historical_index": {
+    "previous_sha256": "6a7ccb90e6eb75188ad7a87afb210042fa5c5c14eb27c151b729052e78bf48e7",
+    "current_sha256": "f3e98baa578fed1d3a8a0f9644c5fef58dc55d450c505eef2571df1822d91495",
+    "remaining": 173,
+    "remaining_by_subsystem": {
+      "Audio and disc streaming": 2,
+      "Build, verification and automation": 1,
+      "Chat and text entry": 9,
+      "Enemy and boss behavior": 55,
+      "Front-end scenes and UI": 21,
+      "Network and protocol": 9,
+      "Player combat, techniques and items": 25,
+      "Rendering, camera and effects": 7,
+      "Shared ABI declarations by owning caller": 1,
+      "Window layout, menus and results": 20,
+      "World objects, NPCs and quests": 23
+    },
+    "closed": {
+      "path": "src/pso/unk/text_801A9CB8.cpp",
+      "owner": "src/pso/player/PhotonBlastResults.cpp",
+      "reason": "The native sequence owns animation setup and release, held-player cleanup, request and donor filtering, chain copying, and the native magic-square dispatch. Resource load and release use the same ordered callback pairs and exact BML records. All eight functions and 236 data bytes from the historical split remain exact.",
+      "functions": [
+        {
+          "address": "0x801a9cb8",
+          "size": 344,
+          "historical": "__dt__13TUnk_804C349CFv",
+          "current": "__dt__13TUnk_804C349CFv"
+        },
+        {
+          "address": "0x801a9e10",
+          "size": 876,
+          "historical": "__ct__13TUnk_804C349CFlP15PhotonBlastSlotPClll",
+          "current": "__ct__13TUnk_804C349CFlP18PhotonBlastRequestPlll"
+        },
+        {
+          "address": "0x801aa17c",
+          "size": 164,
+          "historical": "get_photon_blast_chain",
+          "current": "get_photon_blast_chain"
+        },
+        {
+          "address": "0x801aa220",
+          "size": 384,
+          "historical": "start_photon_blast__10TObjPlayerFll",
+          "current": "start_photon_blast__10TObjPlayerFll"
+        },
+        {
+          "address": "0x801aa3a0",
+          "size": 20,
+          "historical": "get_photon_blast_entry__10TObjPlayerFi",
+          "current": "get_photon_blast_entry__Fi"
+        },
+        {
+          "address": "0x801aa3b4",
+          "size": 112,
+          "historical": "TObjPlayer__sub_801AA3B4",
+          "current": "release_photon_blast_resources__Fv"
+        },
+        {
+          "address": "0x801aa424",
+          "size": 92,
+          "historical": "clear_photon_blast_slots__10TObjPlayerFv",
+          "current": "clear_photon_blast_slots__10TObjPlayerFv"
+        },
+        {
+          "address": "0x801aa480",
+          "size": 136,
+          "historical": "load_photon_blast_resources__Fv",
+          "current": "load_photon_blast_resources__Fv"
+        }
+      ]
+    },
+    "partially_reconciled": {
+      "path": "src/pso/player/PhotonBlastResults.cpp",
+      "reason": "The four pending requests and their four donor slots use the same native types in the shared registry, sequence, allocation and release. The charge virtual forwards the float to the typed gauge. Other result-unit edits stay open."
+    }
+  },
+  "source_overlap_equivalence": {
+    "historical_replay": "3eecd531ce49ddd056509904c7c895e0b03e7d87",
+    "matching_replay": "eafbd5d8b29255ce3802d8a4f829a5ba13e33610",
+    "original_overlap_count": 332,
+    "proved_without_source_changes": {
+      "native_name_equivalence": 7,
+      "identical_blob": 13
+    },
+    "paths": {
+      "include/pso/object/base/TObjMotion.h": {
+        "result": "native_name_equivalence",
+        "previous": "945daa4625ef7c1fa3ca01d39e2069a13ab9d4bd",
+        "current": "59fd30d57b96152cd1ce479b40078df05758e45d",
+        "aliases": {
+          "set_field_d8": 1,
+          "set_field_dc": 1,
+          "set_field_b8": 1
+        }
+      },
+      "src/pso/item/TItemMenuCtrl.cpp": {
+        "result": "identical_blob",
+        "previous": "22c7ad441e887ddb3c26e1a98af8120a7f2c88b1",
+        "current": "22c7ad441e887ddb3c26e1a98af8120a7f2c88b1"
+      },
+      "src/pso/item/shop/ShopToolStock.cpp": {
+        "result": "identical_blob",
+        "previous": "4bef070c6ff4198b61e2372ae8167b763b743d37",
+        "current": "4bef070c6ff4198b61e2372ae8167b763b743d37"
+      },
+      "src/pso/item/shop/ShopWeaponStock.cpp": {
+        "result": "identical_blob",
+        "previous": "a7240dbd7d06a2e8c172ab0016d787a3c9fa9bd1",
+        "current": "a7240dbd7d06a2e8c172ab0016d787a3c9fa9bd1"
+      },
+      "src/pso/object/TObjControl.cpp": {
+        "result": "identical_blob",
+        "previous": "ffd0bd61d8738407ade43da37b3161e117e9827b",
+        "current": "ffd0bd61d8738407ade43da37b3161e117e9827b"
+      },
+      "src/pso/object/TObjLuker.cpp": {
+        "result": "identical_blob",
+        "previous": "37ea12c0dc0da28511ab45ffc16759611e96836d",
+        "current": "37ea12c0dc0da28511ab45ffc16759611e96836d"
+      },
+      "src/pso/object/base/TObjMotion.cpp": {
+        "result": "native_name_equivalence",
+        "previous": "5121305fd0f43c03b3f2be2c782b2e582b2f1d08",
+        "current": "f5a7d56d9b432867b2c4d7bda4b29bb56fa2aa5f",
+        "aliases": {
+          "set_field_d8": 1,
+          "set_field_dc": 1
+        }
+      },
+      "src/pso/object/container/TContainerAncient01.cpp": {
+        "result": "native_name_equivalence",
+        "previous": "fb2da031656e11b3c4717c857d41d3130f89aa36",
+        "current": "fb7368f4a7e9259536df1f3894269aebef262404",
+        "aliases": {
+          "set_field_d8": 2,
+          "set_field_b8": 2
+        }
+      },
+      "src/pso/player/TObjPlayer_801BC81C.cpp": {
+        "result": "identical_blob",
+        "previous": "6eb87446d4d8580f21b95ef6af01cd5405658157",
+        "current": "6eb87446d4d8580f21b95ef6af01cd5405658157"
+      },
+      "src/pso/player/TObjPlayer_801BCFBC.cpp": {
+        "result": "native_name_equivalence",
+        "previous": "9a0e27ebc3b09bad5d953becd27e0c175773dabd",
+        "current": "7a636d6fd6e40e42d4d6ed33707a22208cf60572",
+        "aliases": {
+          "set_field_d8": 1
+        }
+      },
+      "src/pso/player/TObjPlayer_802C3B14.cpp": {
+        "result": "identical_blob",
+        "previous": "d34fa8eef30cc8843a92b31a9e26094664b06504",
+        "current": "d34fa8eef30cc8843a92b31a9e26094664b06504"
+      },
+      "src/pso/player/TObjPlayer_802E6CA8.cpp": {
+        "result": "native_name_equivalence",
+        "previous": "4eafb084d2b291f6d45615da285fc1b8ac875957",
+        "current": "20c03929cf6d92ea0b64e39d17bd188503e9517a",
+        "aliases": {
+          "TUnk_8048FA00": 1
+        }
+      },
+      "src/pso/ui/city/TShopEquipmentSellWindow.cpp": {
+        "result": "identical_blob",
+        "previous": "22764f2ee95ef11abba1750ad9a3344149ed935f",
+        "current": "22764f2ee95ef11abba1750ad9a3344149ed935f"
+      },
+      "src/pso/ui/frontend/TAdBackGC_8029A6EC.cpp": {
+        "result": "identical_blob",
+        "previous": "37ff2c024f777c8d31c3967ba3603debc7bcf69e",
+        "current": "37ff2c024f777c8d31c3967ba3603debc7bcf69e"
+      },
+      "src/pso/ui/frontend/TAdMultiConfirmGC_802E03D0.cpp": {
+        "result": "native_name_equivalence",
+        "previous": "af7aeeb523e8253a0363f190c50a3a55ee4fc2da",
+        "current": "1966c7311aec247f553fb4b8fef74bf530f70a73",
+        "aliases": {
+          "set_field_d8": 1,
+          "set_field_dc": 1
+        }
+      },
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp": {
+        "result": "native_name_equivalence",
+        "previous": "2756aeb6772ba30b1e923bcbfb81f4237199ff9f",
+        "current": "cfa67c6798d2e8d33a96b22c0b60a3bae7891015",
+        "aliases": {
+          "set_field_d8": 1,
+          "set_field_dc": 1,
+          "set_field_b8": 1
+        }
+      },
+      "src/pso/unk/TLobby_8002C140.cpp": {
+        "result": "identical_blob",
+        "previous": "6ff6145106f5c6c5f48c58cf6e90e7cf6f348161",
+        "current": "6ff6145106f5c6c5f48c58cf6e90e7cf6f348161"
+      },
+      "src/pso/unk/TLobby_801A3C48.cpp": {
+        "result": "identical_blob",
+        "previous": "ec60afc32561f3cf12e1009ae2543271bcd1f64e",
+        "current": "ec60afc32561f3cf12e1009ae2543271bcd1f64e"
+      },
+      "src/pso/unk/TLobby_80291D94.cpp": {
+        "result": "identical_blob",
+        "previous": "383f1b2e1338d4290ed75a875a2976716965176d",
+        "current": "383f1b2e1338d4290ed75a875a2976716965176d"
+      },
+      "src/pso/unk/text_802A1020.cpp": {
+        "result": "identical_blob",
+        "previous": "451b7f45484fff199490fa43019f369c3956ddef",
+        "current": "451b7f45484fff199490fa43019f369c3956ddef"
+      }
+    },
+    "matching_names": {
+      "set_field_b8__10TObjMotionFs": {
+        "current": "set_requested_action__10TObjMotionFs",
+        "address": "0x8002AE74"
+      },
+      "set_field_dc__10TObjMotionFP14BmlMotionEntry": {
+        "current": "set_motion_list__10TObjMotionFP14BmlMotionEntry",
+        "address": "0x8002AE7C"
+      },
+      "set_field_d8__10TObjMotionFP16TObjMotionAction": {
+        "current": "set_action_table__10TObjMotionFP16TObjMotionAction",
+        "address": "0x8002AE84"
+      },
+      "__ct__13TUnk_8048FA00Fl": {
+        "current": "__ct__15TBreakUpMdlDataFl",
+        "address": "0x8009705C"
+      }
+    }
+  },
+  "historical_fork_data": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "moved_sequence_data": {
+    "start": "0x804c33c8",
+    "end_exclusive": "0x804c34b4",
+    "exact_linked_bytes": 236
+  }
+}

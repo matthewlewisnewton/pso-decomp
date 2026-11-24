@@ -1,0 +1,296 @@
+{
+  "source": "34231780b60f65894da8775dcd033705b30a9b4a",
+  "previous_source": "c68aa1945fe041a0da5456919741ca5ab3c41f98",
+  "single_review_candidate": "091564ea3a408c5c853a6cac0fbc1554bf5b8288",
+  "compiled_source_units": 2448,
+  "matched_functions": 27572,
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/BattleParameters.h",
+    "include/pso/npc/TObjNpcBase.h",
+    "include/pso/object/base/TObjChara.h",
+    "include/pso/object/collision/TOSymbolchatColli.h",
+    "include/pso/player/PlayerRequirementStats.h",
+    "include/pso/player/PlayerStats.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/player/TPlyDispData.h",
+    "src/pso/boss/dragon/TBoss1Dragon.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptCore.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptHiraisin.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptMonitor.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptP01.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+    "src/pso/boss/volopt/TObjVoloptCage.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+    "src/pso/enemy/beast/TObjEneBeast.cpp",
+    "src/pso/enemy/beast/TObjEneBeast_800C4E08.cpp",
+    "src/pso/enemy/dd/TObjEneDD.cpp",
+    "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+    "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+    "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+    "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+    "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+    "src/pso/enemy/moja/TObjEneMoja.cpp",
+    "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+    "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+    "src/pso/item/TItemData.cpp",
+    "src/pso/item/TItemEquipBase.cpp",
+    "src/pso/network/TradeSession.cpp",
+    "src/pso/npc/TObjNpcBase.cpp",
+    "src/pso/object/TObjControl.cpp",
+    "src/pso/object/ambient/TObjGrass.cpp",
+    "src/pso/object/collision/TOSymbolchatColli.cpp",
+    "src/pso/player/PlayerTaskEffects.cpp",
+    "src/pso/player/TObjPlayer.cpp",
+    "src/pso/player/TObjPlayer_80011014.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TObjPlayer_801BC81C.cpp",
+    "src/pso/player/TObjPlayer_801BDF5C.cpp",
+    "src/pso/player/TObjPlayer_801D8ADC.cpp",
+    "src/pso/player/TPlayerFootStamp.cpp",
+    "src/pso/quest/TQuestListVM_8007EAF8.cpp",
+    "src/pso/ui/window/TWindowCtrl_8024A1A8.cpp",
+    "src/pso/ui/window/TWindowMeseta.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_8027FD88.cpp",
+    "src/pso/unk/TLobby_802D1EFC.cpp",
+    "src/pso/unk/TUnk_8048E1A4.cpp"
+  ],
+  "source_fixes": [
+    "TObjChara stores typed base and attack pointers, and its get_stats method returns the native stat record under the original linked name.",
+    "The player embeds base, attack and resistance records at the verified 0xD38, 0xD5C and 0xD8C offsets. Save, trade, item and status consumers use the corresponding fields.",
+    "Actor and NPC stat initialization and recalculation read typed records and write their owning actor fields. The equipment and class previews share the native parameter contracts."
+  ],
+  "code_generation_decisions": [
+    "The capped meseta increment keeps its existing memory view to preserve its exact instruction sequence. The shared spend path uses the native player_stats field.",
+    "The existing attack-query return declarations and their compiler-sensitive equip callers were preserved after checking the attempted consolidation."
+  ],
+  "historical_rows_closed": {
+    "2437": {
+      "historical_path": "src/pso/unk/text_80248A14.cpp",
+      "owner": "src/pso/ui/city/THunterGuildSeqOffline_80248A14.cpp",
+      "owner_blob": "090d651051a308ffee7e175c79b361986032a2ea",
+      "validation_unit": "src/pso/ui/city/THunterGuildSeqOffline_80248A14.cpp",
+      "historical_delta_sha256": "ffa74a5c8c58198ccf159a5772c80f6ca776fd2bc9170c603451a2c09b774c87",
+      "decision": "The current quest-list loop already converts the returned window entry to the original pointer-width address type."
+    },
+    "2465": {
+      "historical_path": "src/pso/unk/text_80290DEC.cpp",
+      "owner": "src/pso/ui/UISprite.cpp",
+      "owner_blob": "ee16404acba375c527ad2b6f80cb3ead37b86331",
+      "validation_unit": "src/pso/ui/UISprite.cpp",
+      "historical_delta_sha256": "f9f0f49f014eb339364d127ad21b45e7f082ff9bcd1468e78e8c53e3846f48be",
+      "decision": "The native sprite getter and declared callers already use the full s32 return. The rest of the historical patch moves the header."
+    },
+    "2501": {
+      "historical_path": "include/pso/misc/TChCrLoadAfsTextureReq.h",
+      "owner": "include/pso/ui/charcreate/TChCrLoadAfsTextureReq.h",
+      "owner_blob": "eabf833b4367b68169528994137b814080242121",
+      "validation_unit": "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp",
+      "historical_delta_sha256": "fdbc2a117e51ad11ba5fd88291cb543eebfde3c5e7f6242e7e80b8d242173323",
+      "decision": "The active loader owns the request method and dispatches through its member-function table. Its receiver is supplied by call dispatch."
+    },
+    "2611": {
+      "historical_path": "src/pso/misc/TJudgmentSequence_8021E4C4.cpp",
+      "owner": "src/pso/ui/city/TShopGetItemWindow.cpp",
+      "owner_blob": "6265332adffcd4420debe31e02237aa66d4e10a8",
+      "validation_unit": "src/pso/ui/city/TShopGetItemWindow.cpp",
+      "historical_delta_sha256": "7e2d21f44de42f24e96ff35692ae04dcad9d47bffc6e128995120ab2af57c6dd",
+      "decision": "The live shop implementation and header both accept and forward the two historical arguments."
+    },
+    "2652": {
+      "historical_path": "src/pso/ui/TAdTrialAgreementGC_8033573C.cpp",
+      "owner": "src/pso/ui/frontend/TAdTrialAgreementGC.cpp",
+      "owner_blob": "b87da9e4c5de23349bcecd20f7588030288bd027",
+      "validation_unit": "src/pso/ui/frontend/TAdTrialAgreementGC.cpp",
+      "historical_delta_sha256": "3838789bf8cd541bcc654e1dcdc3168524c377c30813512a477bef773d6d7bbf",
+      "decision": "The live unit already includes each of the five dependencies through its current provider. The unused four-integer sound declaration is gone."
+    },
+    "3026": {
+      "historical_path": "include/pso/misc/TUdpSocket.h",
+      "owner": "include/pso/network/TUdpSocket.h",
+      "owner_blob": "34b0fcc0a59508d01e10fada66629df6899f00f8",
+      "validation_unit": "src/pso/network/TUdpSocket.cpp",
+      "historical_delta_sha256": "02b9f6cdab3282ac775ec0df203efa862700fff5fc18880d783642fad4510ded",
+      "decision": "The unused socket member declaration is already removed. The live packet-release operation uses its separate NetPacket C declaration."
+    },
+    "4251": {
+      "historical_path": "src/pso/misc/TPlayerFootStamp_802B01D8.cpp",
+      "owner": "src/pso/player/TPlayerFootStamp.cpp",
+      "owner_blob": "37fcca59b341b63ac39cdb3058bb5adcd635978b",
+      "validation_unit": "src/pso/player/TPlayerFootStamp.cpp",
+      "historical_delta_sha256": "faf798a3f1bbe21e809ecd32a8ad00b92ccb0ab7c04d726f87a322fb1d6d215e",
+      "decision": "The consolidated foot stamp uses the same signed halfword texture index at +0xBE, with the current parameter name."
+    },
+    "5091": {
+      "historical_path": "src/pso/unk/text_8022F258.cpp",
+      "owner": "src/pso/unk/text_8022F258.cpp",
+      "owner_blob": "2c0fe397984efd5683e713f5dc458ae1eb2e1df4",
+      "validation_unit": "src/pso/unk/text_8022F258.cpp",
+      "historical_delta_sha256": "9d8d39fdfb88fc9543e2cd752e5f6bc3e27e0cf18f416d9a2824fe1b53ea8df1",
+      "decision": "The live table has six native TechniqueBoost members. The emitter sends the actual Vec position to the shared particle factory for all three historical IDs."
+    },
+    "5691": {
+      "historical_path": "include/pso/misc/TUnk_804EF4E0.h",
+      "owner": "include/pso/ui/window/TUnk_804EF4E0.h",
+      "owner_blob": "34509a5329b40ea2c4316a1f85c2e982cd96c362",
+      "validation_unit": "src/pso/unk/TLobby_80338E9C.cpp",
+      "historical_delta_sha256": "b7b4cf7edbb4172b297ba09af356c64a9db45465406175b9b347c2f04836c3c5",
+      "decision": "The existing native TWindowMenuTeamStatus constructor accepts the original s32 and links in the live provider."
+    },
+    "5906": {
+      "historical_path": "src/pso/misc/TWindowShortListCtrl_801A4FC0.cpp",
+      "owner": "src/pso/unk/TUnk_804C2298.cpp",
+      "owner_blob": "116aa28c80ec081e3425ee780b96dcdbe4388dd2",
+      "validation_unit": "src/pso/unk/TUnk_804C2298.cpp",
+      "historical_delta_sha256": "8779a207e58a690f47b2e3f543a81c983af75a302f0ea3063b04903b9f36b621",
+      "decision": "The historical patch relocates existing include paths and documents an unused client argument. The current implementation retains the linked class member and reads the shared save state."
+    }
+  },
+  "historical_rows_with_added_evidence": {
+    "157": "The two actor stat initializer labels reflect their real stat record types while keeping their original function names and linked addresses.",
+    "6723": "The enemy binder reads the actor's native base and attack pointers and writes the stat counters through the shared halfword fields.",
+    "6955": "The actor layout describes the base and attack pointers at +0x2B0 and +0x318. The target-pointer ownership in the broader historical branch still needs review."
+  },
+  "historical_rows_open": 634,
+  "validation": {
+    "combat": {
+      "check_sha256": "e4f0356611734040747ac0f9ff8dd42bde0b2afd959f28db4a69bb47be3f55ee",
+      "source_report_sha256": "f2ca31fa6d01d4d2259c1bb620c48aacaf8950f796669f6c4c2a56e0ff0d08e2",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "changed_function_labels_from_previous_tree": [
+        {
+          "module": "psov3",
+          "address": "0x8001882C",
+          "before": "set_motion_params__9TObjCharaFPv",
+          "after": "set_motion_params__9TObjCharaFP12player_stats"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80018990",
+          "before": "recalc_combat_stats__9TObjCharaFPvPvPvff",
+          "after": "recalc_combat_stats__9TObjCharaFP12player_statsP12AttackParamsP15ActorParamBlockff"
+        }
+      ]
+    },
+    "full": {
+      "check_sha256": "e4f0356611734040747ac0f9ff8dd42bde0b2afd959f28db4a69bb47be3f55ee",
+      "source_report_sha256": "f2ca31fa6d01d4d2259c1bb620c48aacaf8950f796669f6c4c2a56e0ff0d08e2",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "changed_function_labels_from_previous_tree": [
+        {
+          "module": "psov3",
+          "address": "0x8001882C",
+          "before": "set_motion_params__9TObjCharaFPv",
+          "after": "set_motion_params__9TObjCharaFP12player_stats"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80018990",
+          "before": "recalc_combat_stats__9TObjCharaFPvPvPvff",
+          "after": "recalc_combat_stats__9TObjCharaFP12player_statsP12AttackParamsP15ActorParamBlockff"
+        }
+      ]
+    },
+    "layer": {
+      "check_sha256": "74bbcb36fcbb4506da160f5e9fa5aa0d80066e834ba8b2e84eef2788db38b534",
+      "source_report_sha256": "f2ca31fa6d01d4d2259c1bb620c48aacaf8950f796669f6c4c2a56e0ff0d08e2",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "changed_function_labels_from_previous_tree": [
+        {
+          "module": "psov3",
+          "address": "0x8001882C",
+          "before": "set_motion_params__9TObjCharaFPv",
+          "after": "set_motion_params__9TObjCharaFP12player_stats"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80018990",
+          "before": "recalc_combat_stats__9TObjCharaFPvPvPvff",
+          "after": "recalc_combat_stats__9TObjCharaFP12player_statsP12AttackParamsP15ActorParamBlockff"
+        }
+      ]
+    }
+  },
+  "runtime_battle_probe": {
+    "combat": {
+      "lookups": 384,
+      "file_loads": 32,
+      "release": "pass",
+      "log_sha256": "036145a49bc264f21d95ad391552f9d1b9148302543abbe22b5acee94c6a4ac7"
+    },
+    "full": {
+      "lookups": 384,
+      "file_loads": 32,
+      "release": "pass",
+      "log_sha256": "036145a49bc264f21d95ad391552f9d1b9148302543abbe22b5acee94c6a4ac7"
+    },
+    "layer": {
+      "lookups": 384,
+      "file_loads": 32,
+      "release": "pass",
+      "log_sha256": "036145a49bc264f21d95ad391552f9d1b9148302543abbe22b5acee94c6a4ac7"
+    }
+  },
+  "runtime_actor_stat_probe": {
+    "retail": {
+      "initialization": "pass",
+      "preserved_hp_and_tp": "pass",
+      "meseta_cases": 4,
+      "equipment_stats": 11,
+      "log_sha256": "7670a03c37a7e47df751f706cbd3d6416744687ab76a07215b34052778f639d7"
+    },
+    "full": {
+      "initialization": "pass",
+      "preserved_hp_and_tp": "pass",
+      "meseta_cases": 4,
+      "equipment_stats": 11,
+      "log_sha256": "754cc4b0c896c0247e4e3d4f080c57213b5aa45d4623ed3e06d22b350e411a43"
+    },
+    "layer": {
+      "initialization": "pass",
+      "preserved_hp_and_tp": "pass",
+      "meseta_cases": 4,
+      "equipment_stats": 11,
+      "log_sha256": "f84c2f0d6d726d824ba195347e1792e14ad0d978c3b419dd91dd1b63c8248c5d"
+    }
+  },
+  "runtime_actor_stat_probe_sha256": "6e6dc5e8a5760817fe889a77cddcdda0968aebd9164d0734666854fe44f264d0",
+  "fork_overlay_paths": 130,
+  "fork_overlay_sha256": "af9fe8946a391b9c5b74dbdc87b60a61c9f08239c4af98ad8f26e60cac2a4d37",
+  "retained_symbols": 27031,
+  "tool_tests": 294,
+  "fork_layer_tests": 11,
+  "host_checks": [
+    "./vector_math_fallbacks",
+    "./item_factory_callbacks",
+    "./loader_transfer",
+    "./ginja_parameter_callbacks",
+    "./exi_ethernet_fallbacks"
+  ],
+  "commit_attribution": {
+    "audited_commits": 88,
+    "codex_attribution": 0,
+    "coauthor_trailers": 0
+  }
+}

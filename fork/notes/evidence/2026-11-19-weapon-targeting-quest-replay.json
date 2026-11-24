@@ -1,0 +1,4247 @@
+{
+  "source": "d1cccf4e5e14cc25754ea2c79640da41b433ce3b",
+  "landing": "698faaffcee117d6c6e1fa3f5747c3989cb5da69",
+  "working_fork_build": "ae7b6708b78f401c507cc69f943e1dbd2ee12207",
+  "previous_source": "65c060f3e88928c0f8597680d442639684461131",
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "source_files": 86,
+  "batches": {
+    "weapon": {
+      "head": "6d0b58aa9254d9cce1befce6e288c64520612bed",
+      "files": 35,
+      "report_sha256": "7c9abc43ac3910009902d535ca57a7270eee4b03796b106c87246030b6f36c1d"
+    },
+    "targeting": {
+      "head": "c1f987f8dc1a423e5e4555bfb2b69738c4b9adf7",
+      "files": 27,
+      "report_sha256": "79f2dac67e6be51fafb01a47ab63fab4ab1c9e0a3593e198dbec4a39c9d1c8d0"
+    },
+    "quest": {
+      "head": "ba65cf94e83d812a3db37d01508a157e3899618f",
+      "files": 22,
+      "report_sha256": "770e04cc2a3353555604aa6c3827577fd494f8b5403709e6bf81fef91e53946d"
+    },
+    "symbol-chat": {
+      "head": "9043e6d7ba58b04743ce14e1763af396d7739047",
+      "files": 5,
+      "report_sha256": "24c6691cee73ebc04d93bef05a52c95a91e3c7a7aefd8d537cfd8fef9ed80954"
+    }
+  },
+  "source_coverage": {
+    "fuzzy_match_percent": 99.99999,
+    "total_code": "4353092",
+    "matched_code": "4353092",
+    "matched_code_percent": 100.0,
+    "total_data": "1758510",
+    "matched_data": "1758510",
+    "matched_data_percent": 100.0,
+    "total_functions": 27572,
+    "matched_functions": 27572,
+    "matched_functions_percent": 100.0,
+    "complete_code": "4353092",
+    "complete_code_percent": 100.0,
+    "complete_data": "1758510",
+    "complete_data_percent": 100.0,
+    "total_units": 2447,
+    "complete_units": 2447
+  },
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "fork_only_paths": 133,
+  "layer_tests": 11,
+  "local_tool_tests": 294,
+  "source_audit": {
+    "source": "d1cccf4e5e14cc25754ea2c79640da41b433ce3b",
+    "previous": "65c060f3e88928c0f8597680d442639684461131",
+    "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "entries": [
+      {
+        "row": 3094,
+        "historical_path": "src/pso/misc/TLobby_80103F5C.cpp",
+        "historical_blob": "df19a9df1c8d9048052b6a38940dd830fc21df71",
+        "owners": {
+          "src/pso/unk/TLobby_80104374.cpp": "3c1251ce4b882f781e4064105895bacb9aaf3ee2",
+          "include/pso/item/ItemCreateFunction.h": "c087e0945eb5c0a62ddfb3f68154178843884e14"
+        },
+        "proofs": [
+          {
+            "group": "weapon",
+            "evidence": "Weapon lookup uses the fork callback type all the way through the live 170-slot registry. Every compiled non-null slot points to the same retail function. Other lobby changes are evaluated separately.",
+            "details": {
+              "historical": {
+                "path": "src/pso/misc/TLobby_80103F5C.cpp",
+                "blob": "df19a9df1c8d9048052b6a38940dd830fc21df71"
+              },
+              "original": {
+                "path": "src/pso/misc/TLobby_80103F5C.cpp",
+                "blob": "b5cddbcbf2537ff88ed6f539dba84d06c4dee300"
+              },
+              "active": {
+                "src/pso/unk/TLobby_80104374.cpp": "3c1251ce4b882f781e4064105895bacb9aaf3ee2",
+                "include/pso/item/ItemCreateFunction.h": "c087e0945eb5c0a62ddfb3f68154178843884e14"
+              },
+              "native_anchors": {
+                "0x80104438": {
+                  "symbol": "get_weapon_factory_for_item",
+                  "size": "44",
+                  "owner": "src/pso/unk/TLobby_80104374.cpp"
+                }
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 3374,
+        "historical_path": "include/pso/player/TObjPlayer_80125550.h",
+        "historical_blob": "dfed8b43c0dbb6fd79279cd6b769932e4270324f",
+        "owners": {
+          "include/pso/player/TUnk_804A2548.h": "edda8d281c5f1f55cabc23ef7f1c6115bf9a68ad",
+          "src/pso/player/TUnk_804A2548.cpp": "b3acab7c54501cfed42a634a7d6c80d9f2b8aec5"
+        },
+        "proofs": [
+          {
+            "group": "weapon",
+            "evidence": "The whole historical header exposes only the explosion class. The active class header is directly included and carries the same native destructor, preserving the wrapper contract.",
+            "details": {
+              "historical": {
+                "path": "include/pso/player/TObjPlayer_80125550.h",
+                "blob": "dfed8b43c0dbb6fd79279cd6b769932e4270324f"
+              },
+              "original": {
+                "path": "include/pso/player/TObjPlayer_80125550.h",
+                "blob": "82ce4d9c4dc07877d3efb88897e14fb7d8c18222"
+              },
+              "active": {
+                "include/pso/player/TUnk_804A2548.h": "edda8d281c5f1f55cabc23ef7f1c6115bf9a68ad",
+                "src/pso/player/TUnk_804A2548.cpp": "b3acab7c54501cfed42a634a7d6c80d9f2b8aec5"
+              },
+              "native_anchors": {
+                "0x80125550": {
+                  "symbol": "__dt__13TUnk_804A2548Fv",
+                  "size": "88",
+                  "owner": "src/pso/player/TUnk_804A2548.cpp"
+                }
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 3627,
+        "historical_path": "src/pso/item/TUnk_804F0C08.cpp",
+        "historical_blob": "10006aa08c9ae0f0e4d3367829856ba3ccf56e46",
+        "owners": {
+          "src/pso/effect/item/TItemEffPG.cpp": "a6f7b00688430daade654cf70f671062871ab6f4",
+          "include/pso/effect/item/TUnk_804F0C08.h": "a47a566dd4ee98ae350660eaa83ae66e3fbd01f7"
+        },
+        "proofs": [
+          {
+            "group": "weapon",
+            "evidence": "Both functions from the added fragment are native in TItemEffPG.cpp. The duration at +0xD4 decrements only when positive, and the original class destructor is emitted.",
+            "details": {
+              "historical": {
+                "path": "src/pso/item/TUnk_804F0C08.cpp",
+                "blob": "10006aa08c9ae0f0e4d3367829856ba3ccf56e46"
+              },
+              "original": null,
+              "active": {
+                "src/pso/effect/item/TItemEffPG.cpp": "a6f7b00688430daade654cf70f671062871ab6f4",
+                "include/pso/effect/item/TUnk_804F0C08.h": "a47a566dd4ee98ae350660eaa83ae66e3fbd01f7"
+              },
+              "native_anchors": {
+                "0x8034FDAC": {
+                  "symbol": "vfunc_7__13TUnk_804F0C08Fv",
+                  "size": "36",
+                  "owner": "src/pso/effect/item/TItemEffPG.cpp"
+                },
+                "0x8034FDD0": {
+                  "symbol": "__dt__13TUnk_804F0C08Fv",
+                  "size": "88",
+                  "owner": "src/pso/effect/item/TItemEffPG.cpp"
+                }
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 3708,
+        "historical_path": "src/pso/player/TObjPlayer_801255A8.cpp",
+        "historical_blob": "0aa4d10f19e85004d983f6c587b6d8c986747b8a",
+        "owners": {
+          "src/pso/player/TUnk_804A2548.cpp": "b3acab7c54501cfed42a634a7d6c80d9f2b8aec5",
+          "include/pso/player/TUnk_804A2548.h": "edda8d281c5f1f55cabc23ef7f1c6115bf9a68ad"
+        },
+        "proofs": [
+          {
+            "group": "weapon",
+            "evidence": "The entire historical constructor lives in the native collider owner. It calls the same base constructor with the spawn parameters and stores the original 50.0 radius at +0xC4.",
+            "details": {
+              "historical": {
+                "path": "src/pso/player/TObjPlayer_801255A8.cpp",
+                "blob": "0aa4d10f19e85004d983f6c587b6d8c986747b8a"
+              },
+              "original": {
+                "path": "src/pso/player/TObjPlayer_801255A8.cpp",
+                "blob": "b809895ef90b31bdb4df9947c518628ed5f5f8ce"
+              },
+              "active": {
+                "src/pso/player/TUnk_804A2548.cpp": "b3acab7c54501cfed42a634a7d6c80d9f2b8aec5",
+                "include/pso/player/TUnk_804A2548.h": "edda8d281c5f1f55cabc23ef7f1c6115bf9a68ad"
+              },
+              "native_anchors": {
+                "0x801255A8": {
+                  "symbol": "__ct__13TUnk_804A2548FP7TObjectP10S_802E451C",
+                  "size": "68",
+                  "owner": "src/pso/player/TUnk_804A2548.cpp"
+                }
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 3746,
+        "historical_path": "src/pso/player/TObjPlayer_801299DC.cpp",
+        "historical_blob": "ccff5e690d065ad294a95daaec5e0bd85d9ac1d3",
+        "owners": {
+          "src/pso/weapon/TUnk_804A444C.cpp": "d08cd3e6a7323d834e9891c8b4b43127de827cad"
+        },
+        "proofs": [
+          {
+            "group": "weapon",
+            "evidence": "The complete added fragment is carried by the two clamped barrel updates and the native constructor, including the original initial angle, weapon flags, shot callback and speed.",
+            "details": {
+              "historical": {
+                "path": "src/pso/player/TObjPlayer_801299DC.cpp",
+                "blob": "ccff5e690d065ad294a95daaec5e0bd85d9ac1d3"
+              },
+              "original": {
+                "path": "src/pso/player/TObjPlayer_801299DC.cpp",
+                "blob": "6484d4478324e3a578199a1716878182817c5b22"
+              },
+              "active": {
+                "src/pso/weapon/TUnk_804A444C.cpp": "d08cd3e6a7323d834e9891c8b4b43127de827cad"
+              },
+              "native_anchors": {
+                "0x801299DC": {
+                  "symbol": "update_idle__13TUnk_804A444CFv",
+                  "size": "56",
+                  "owner": "src/pso/weapon/TUnk_804A444C.cpp"
+                },
+                "0x80129A14": {
+                  "symbol": "update_attack__13TUnk_804A444CFv",
+                  "size": "56",
+                  "owner": "src/pso/weapon/TUnk_804A444C.cpp"
+                }
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 3747,
+        "historical_path": "src/pso/player/TObjPlayer_80129B60.cpp",
+        "historical_blob": "146aa67c5a979768e6d012bc17cf0fa1a7f8f48d",
+        "owners": {
+          "src/pso/weapon/TUnk_804A4548.cpp": "e4aa298da31e5e75b643a6614ac57df516d012d4"
+        },
+        "proofs": [
+          {
+            "group": "weapon",
+            "evidence": "The complete added fragment is carried by the barrel translation, recoil and casing sequence, and native constructor. The original offsets, states, callback order and speed are preserved.",
+            "details": {
+              "historical": {
+                "path": "src/pso/player/TObjPlayer_80129B60.cpp",
+                "blob": "146aa67c5a979768e6d012bc17cf0fa1a7f8f48d"
+              },
+              "original": {
+                "path": "src/pso/player/TObjPlayer_80129B60.cpp",
+                "blob": "9481e3ac831192f20a70203ae532d1aac36389ed"
+              },
+              "active": {
+                "src/pso/weapon/TUnk_804A4548.cpp": "e4aa298da31e5e75b643a6614ac57df516d012d4"
+              },
+              "native_anchors": {
+                "0x80129B60": {
+                  "symbol": "vfunc_60__13TUnk_804A4548Fv",
+                  "size": "80",
+                  "owner": "src/pso/weapon/TUnk_804A4548.cpp"
+                },
+                "0x80129BB0": {
+                  "symbol": "update_weapon__13TUnk_804A4548Fv",
+                  "size": "240",
+                  "owner": "src/pso/weapon/TUnk_804A4548.cpp"
+                }
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 3881,
+        "historical_path": "src/pso/unk/text_801255EC.cpp",
+        "historical_blob": "cdfeed464c7826937d5fc0a077890c1a85120a7f",
+        "owners": {
+          "src/pso/player/TUnk_804A2548.cpp": "b3acab7c54501cfed42a634a7d6c80d9f2b8aec5",
+          "include/pso/player/TUnk_804A2548.h": "edda8d281c5f1f55cabc23ef7f1c6115bf9a68ad"
+        },
+        "proofs": [
+          {
+            "group": "weapon",
+            "evidence": "The four functions from the added fragment stay in one native owner. Wall and hit dispatch, two explosion branches and the weapon effect descriptor retain their original callable contracts and addresses.",
+            "details": {
+              "historical": {
+                "path": "src/pso/unk/text_801255EC.cpp",
+                "blob": "cdfeed464c7826937d5fc0a077890c1a85120a7f"
+              },
+              "original": {
+                "path": "src/pso/unk/text_801255EC.cpp",
+                "blob": "54666fa217bd2bca458888ffbdcfe6cb46c8e527"
+              },
+              "active": {
+                "src/pso/player/TUnk_804A2548.cpp": "b3acab7c54501cfed42a634a7d6c80d9f2b8aec5",
+                "include/pso/player/TUnk_804A2548.h": "edda8d281c5f1f55cabc23ef7f1c6115bf9a68ad"
+              },
+              "native_anchors": {
+                "0x801255EC": {
+                  "symbol": "spawn_faust_wall_explosion__10TObjPlayerFll",
+                  "size": "60",
+                  "owner": "src/pso/player/TUnk_804A2548.cpp"
+                },
+                "0x80125628": {
+                  "symbol": "spawn_faust_hit_explosion__Fll",
+                  "size": "80",
+                  "owner": "src/pso/player/TUnk_804A2548.cpp"
+                },
+                "0x80125678": {
+                  "symbol": "spawn_faust_explosion__FUlRC3Vec",
+                  "size": "196",
+                  "owner": "src/pso/player/TUnk_804A2548.cpp"
+                },
+                "0x8012573C": {
+                  "symbol": "init_weapon_effect_descriptor__13TUnk_804A2564FP13Desc_8011E5C4",
+                  "size": "68",
+                  "owner": "src/pso/player/TUnk_804A2548.cpp"
+                }
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4028,
+        "historical_path": "include/pso/player/TUnk_804A2548.h",
+        "historical_blob": "bc82d95817454187e464cdc1826c17527910f9f9",
+        "owners": {
+          "include/pso/player/TUnk_804A2548.h": "edda8d281c5f1f55cabc23ef7f1c6115bf9a68ad",
+          "src/pso/player/TUnk_804A2548.cpp": "b3acab7c54501cfed42a634a7d6c80d9f2b8aec5"
+        },
+        "proofs": [
+          {
+            "group": "weapon",
+            "evidence": "The historical replacement of the false constructor with the real class lifetime is complete. The +0xC4 maximum radius is a named float and the 0xC8 collider layout remains checked.",
+            "details": {
+              "historical": {
+                "path": "include/pso/player/TUnk_804A2548.h",
+                "blob": "bc82d95817454187e464cdc1826c17527910f9f9"
+              },
+              "original": {
+                "path": "include/pso/player/TUnk_804A2548.h",
+                "blob": "cb0e5810509cadd608fd9838dbfeb24b0cb50751"
+              },
+              "active": {
+                "include/pso/player/TUnk_804A2548.h": "edda8d281c5f1f55cabc23ef7f1c6115bf9a68ad",
+                "src/pso/player/TUnk_804A2548.cpp": "b3acab7c54501cfed42a634a7d6c80d9f2b8aec5"
+              },
+              "native_anchors": {
+                "0x801255A8": {
+                  "symbol": "__ct__13TUnk_804A2548FP7TObjectP10S_802E451C",
+                  "size": "68",
+                  "owner": "src/pso/player/TUnk_804A2548.cpp"
+                }
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4216,
+        "historical_path": "include/pso/item/TUnk_804F0C08.h",
+        "historical_blob": "2995328ff3ff4ba0173e64dd79ac9ab1e82d8a1c",
+        "owners": {
+          "include/pso/effect/item/TUnk_804F0C08.h": "a47a566dd4ee98ae350660eaa83ae66e3fbd01f7",
+          "src/pso/effect/item/TItemEffPG.cpp": "a6f7b00688430daade654cf70f671062871ab6f4"
+        },
+        "proofs": [
+          {
+            "group": "weapon",
+            "evidence": "Both legacy initialize and destroy declarations are absent. The live class has the native destructor and constructor, with the parent, spawn record and original count arguments.",
+            "details": {
+              "historical": {
+                "path": "include/pso/item/TUnk_804F0C08.h",
+                "blob": "2995328ff3ff4ba0173e64dd79ac9ab1e82d8a1c"
+              },
+              "original": {
+                "path": "include/pso/item/TUnk_804F0C08.h",
+                "blob": "daaf594a2f0f5663cd163c8437a0bbbeed4975a3"
+              },
+              "active": {
+                "include/pso/effect/item/TUnk_804F0C08.h": "a47a566dd4ee98ae350660eaa83ae66e3fbd01f7",
+                "src/pso/effect/item/TItemEffPG.cpp": "a6f7b00688430daade654cf70f671062871ab6f4"
+              },
+              "native_anchors": {
+                "0x8034FDD0": {
+                  "symbol": "__dt__13TUnk_804F0C08Fv",
+                  "size": "88",
+                  "owner": "src/pso/effect/item/TItemEffPG.cpp"
+                },
+                "0x8034FE28": {
+                  "symbol": "__ct__13TUnk_804F0C08FP7TObjectP10S_8035016Cl",
+                  "size": "68",
+                  "owner": "src/pso/effect/item/TItemEffPG.cpp"
+                }
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4379,
+        "historical_path": "include/pso/item/TItemEffOrgaFlowShot.h",
+        "historical_blob": "a24b5e4db71c64d21968356ffbdaefff24f71cc2",
+        "owners": {
+          "include/pso/effect/item/TItemEffOrgaFlowShot.h": "e83de855a85ac4b18cd1ccf2f1fdf6fcda7ae3df",
+          "src/pso/unk/text_80357058.cpp": "0f7d891a9e18c1969d9704840730e863fb952e1c"
+        },
+        "proofs": [
+          {
+            "group": "weapon",
+            "evidence": "The full header change is carried by the native parameter-record constructor and the removal of the unused approach_value class declaration. The original destructor and run-task vtable slots are retained.",
+            "details": {
+              "historical": {
+                "path": "include/pso/item/TItemEffOrgaFlowShot.h",
+                "blob": "a24b5e4db71c64d21968356ffbdaefff24f71cc2"
+              },
+              "original": {
+                "path": "include/pso/item/TItemEffOrgaFlowShot.h",
+                "blob": "a2de02aa649874460b4ca23274dc01d9a7511a8f"
+              },
+              "active": {
+                "include/pso/effect/item/TItemEffOrgaFlowShot.h": "e83de855a85ac4b18cd1ccf2f1fdf6fcda7ae3df",
+                "src/pso/unk/text_80357058.cpp": "0f7d891a9e18c1969d9704840730e863fb952e1c"
+              },
+              "native_anchors": {
+                "0x803574F0": {
+                  "symbol": "__dt__20TItemEffOrgaFlowShotFv",
+                  "size": "88",
+                  "owner": "src/pso/unk/text_80357058.cpp"
+                },
+                "0x80357548": {
+                  "symbol": "__ct__20TItemEffOrgaFlowShotFP7TObjectP10S_80357734",
+                  "size": "420",
+                  "owner": "src/pso/unk/text_80357058.cpp"
+                }
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5400,
+        "historical_path": "libs/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/locale.c",
+        "historical_blob": "3b7968a1ee294ce07fa5f2460d5fdfaf79e493f3",
+        "owners": {
+          "libs/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/locale.c": "95fb76af60bd30f2c0105e2a9a03479efe209bf1"
+        },
+        "proofs": [
+          {
+            "group": "weapon",
+            "evidence": "The whole added locale initializer is expressed through the SDK locale definition. Its punctuation, shared empty string, numeric byte fields and C-locale pool retain the same linked data.",
+            "details": {
+              "historical": {
+                "path": "libs/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/locale.c",
+                "blob": "3b7968a1ee294ce07fa5f2460d5fdfaf79e493f3"
+              },
+              "original": null,
+              "active": {
+                "libs/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/locale.c": "95fb76af60bd30f2c0105e2a9a03479efe209bf1"
+              },
+              "native_anchors": {},
+              "original_object": "__lconv",
+              "retail_data_owner": "0x804F5B00",
+              "previously_verified_bytes": 64
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5404,
+        "historical_path": "libs/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/strtoul.c",
+        "historical_blob": "5fdd99c75e25dbb0a3e2d4718873203704b89b69",
+        "owners": {
+          "libs/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/strtoul.c": "843dd4405bf6f06bb5369b09f7cd887e4e7176cd",
+          "libs/PowerPC_EABI_Support/include/MSL_C/MSL_Common_Embedded/Math/fdlibm.h": "5529289a7a565646b433efc8432679dc19283ce7",
+          "libs/PowerPC_EABI_Support/include/MSL_C/locale.h": "11838cd6e4f88bad3a2ff0924ad0268af3675363"
+        },
+        "proofs": [
+          {
+            "group": "weapon",
+            "evidence": "Both authored hunks are carried. Character and locale references use the real SDK symbols, and scope-correct float, double and extended constants come from the linked SDK declarations or fdlibm.",
+            "details": {
+              "historical": {
+                "path": "libs/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/strtoul.c",
+                "blob": "5fdd99c75e25dbb0a3e2d4718873203704b89b69"
+              },
+              "original": {
+                "path": "libs/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/strtoul.c",
+                "blob": "c809cb406e1e9fef6273d898b6b05afa286b87c9"
+              },
+              "active": {
+                "libs/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/strtoul.c": "843dd4405bf6f06bb5369b09f7cd887e4e7176cd",
+                "libs/PowerPC_EABI_Support/include/MSL_C/MSL_Common_Embedded/Math/fdlibm.h": "5529289a7a565646b433efc8432679dc19283ce7",
+                "libs/PowerPC_EABI_Support/include/MSL_C/locale.h": "11838cd6e4f88bad3a2ff0924ad0268af3675363"
+              },
+              "native_anchors": {}
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5407,
+        "historical_path": "libs/PowerPC_EABI_Support/include/MSL_C/ctype.h",
+        "historical_blob": "3d310c46d3d2b0b840ebf67d45f992088dd7dd99",
+        "owners": {
+          "libs/PowerPC_EABI_Support/include/MSL_C/ctype.h": "34332c4b6ab3fcb0d6119a78f8fe5b28a1e94f93"
+        },
+        "proofs": [
+          {
+            "group": "weapon",
+            "evidence": "The complete authored change adds islower to the SDK header. The live declaration uses the same signature and follows the upstream weak SDK declaration convention.",
+            "details": {
+              "historical": {
+                "path": "libs/PowerPC_EABI_Support/include/MSL_C/ctype.h",
+                "blob": "3d310c46d3d2b0b840ebf67d45f992088dd7dd99"
+              },
+              "original": {
+                "path": "libs/PowerPC_EABI_Support/include/MSL_C/ctype.h",
+                "blob": "1ad5eba9fda941711b20ea11042e6b534bf224dd"
+              },
+              "active": {
+                "libs/PowerPC_EABI_Support/include/MSL_C/ctype.h": "34332c4b6ab3fcb0d6119a78f8fe5b28a1e94f93"
+              },
+              "native_anchors": {}
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5416,
+        "historical_path": "src/pso/unk/text_8042E8C4.cpp",
+        "historical_blob": "92f04279934cbf3287ee2719ae6dcc745b7e27ce",
+        "owners": {
+          "src/pso/unk/text_8042E8C4.cpp": "c439408b15c31f8c63be5bdf74d41a7ced3d3dfe"
+        },
+        "proofs": [
+          {
+            "group": "weapon",
+            "evidence": "The native retail LaunchDol is source-linked. The historical host handoff implementation is byte-for-byte present in the fork-only working overlay, beside the separately recovered restore path.",
+            "details": {
+              "historical": {
+                "path": "src/pso/unk/text_8042E8C4.cpp",
+                "blob": "92f04279934cbf3287ee2719ae6dcc745b7e27ce"
+              },
+              "original": {
+                "path": "src/pso/unk/text_8042E8C4.cpp",
+                "blob": "8b137891791fe96927ad78e64b0aad7bded08bdc"
+              },
+              "active": {
+                "src/pso/unk/text_8042E8C4.cpp": "c439408b15c31f8c63be5bdf74d41a7ced3d3dfe"
+              },
+              "native_anchors": {
+                "0x8042E8C4": {
+                  "symbol": "LaunchDol",
+                  "size": "312",
+                  "owner": "src/pso/unk/text_8042E8C4.cpp"
+                }
+              },
+              "working_blob": "6fbea5d251a6c6133b4537ca11b067894c6d418c",
+              "host_function": "step_loader_handoff"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 157,
+        "historical_path": "config/GPOE8P/psov3/symbols.txt",
+        "historical_blob": "481b6e6cf8fed359e6de9efa5468ac9fa8fc81b4",
+        "owners": {
+          "config/GPOE8P/psov3/symbols.txt": "08a023a8071f84d8c2aa9da831193b58330755cc"
+        },
+        "proofs": [
+          {
+            "group": "targeting",
+            "evidence": "Targeting recovery applies to this folded provider or caller. Full historical hunks extend beyond it or the targeting correction is inherited. The complete a447175624 hook-specific source hunk is replayed at the live owner. Other historical edits in the same row remain separately auditable.",
+            "details": {
+              "row": 157,
+              "original_path": "config/GPOE8P/psov3/symbols.txt",
+              "ancestor_blob": "09d46e0c7a5103191ecfe6b6cb09a2f549584807",
+              "fork_path": "config/GPOE8P/psov3/symbols.txt",
+              "fork_blob": "481b6e6cf8fed359e6de9efa5468ac9fa8fc81b4",
+              "native_owner": "config/GPOE8P/psov3/symbols.txt",
+              "prior_status": "Some anchored text changes found",
+              "target_anchors_in_full_delta": [],
+              "a447175624_replayed_here": true,
+              "historical_full_delta_line_count": 13433,
+              "close_whole_row": false,
+              "notes": [
+                "Targeting recovery applies to this folded provider or caller. Full historical hunks extend beyond it or the targeting correction is inherited.",
+                "The complete a447175624 hook-specific source hunk is replayed at the live owner. Other historical edits in the same row remain separately auditable."
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 440,
+        "historical_path": "include/pso/enemy/EnemyUnknownHooks.h",
+        "historical_blob": "20ba8681adf3ccb393bb91d24be885c1fbe1a9ac",
+        "owners": {
+          "include/pso/enemy/EnemyUnknownHooks.h": "20ba8681adf3ccb393bb91d24be885c1fbe1a9ac"
+        },
+        "proofs": [
+          {
+            "group": "targeting",
+            "evidence": "The entire original fork addition is identical, including guard, include, comment, linkage and exact two declarations.",
+            "details": {
+              "row": 440,
+              "original_path": "",
+              "ancestor_blob": "",
+              "fork_path": "include/pso/enemy/EnemyUnknownHooks.h",
+              "fork_blob": "20ba8681adf3ccb393bb91d24be885c1fbe1a9ac",
+              "native_owner": "include/pso/enemy/EnemyUnknownHooks.h",
+              "prior_status": "Owner comparison required",
+              "target_anchors_in_full_delta": [],
+              "a447175624_replayed_here": true,
+              "historical_full_delta_line_count": 12,
+              "close_whole_row": true,
+              "notes": [
+                "The entire original fork addition is identical, including guard, include, comment, linkage and exact two declarations."
+              ],
+              "native_full_hunk_anchors": [
+                {
+                  "owner": "include/pso/enemy/EnemyUnknownHooks.h",
+                  "anchors": [
+                    "fn_800BB7D0(void *context);",
+                    "fn_800BB7D4(void *context, s32 value);"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 534,
+        "historical_path": "src/pso/boss/TBoss8Dragon_800BB650.cpp",
+        "historical_blob": "4ebae553cd76b022bc4ac13b5b74ddd3fee6aba8",
+        "owners": {
+          "src/pso/enemy/dd/TObjEneDD.cpp": "43b81a45994388eaebeb8484ff67792e925f770a"
+        },
+        "proofs": [
+          {
+            "group": "targeting",
+            "evidence": "All original hunks carry: shared enemy and hook includes, removal of raw player-state alias, native experience/drop and entity flag sends, and the distinct free transition hooks. The neighboring unused 7D8 and 7DC hooks retain their existing bodies and addresses.",
+            "details": {
+              "row": 534,
+              "original_path": "src/pso/boss/TBoss8Dragon_800BB650.cpp",
+              "ancestor_blob": "3d2c29eee641a86e86f31cb9e6383c0ca01a945a",
+              "fork_path": "src/pso/boss/TBoss8Dragon_800BB650.cpp",
+              "fork_blob": "4ebae553cd76b022bc4ac13b5b74ddd3fee6aba8",
+              "native_owner": "src/pso/enemy/dd/TObjEneDD.cpp",
+              "prior_status": "Some anchored text changes found",
+              "target_anchors_in_full_delta": [],
+              "a447175624_replayed_here": true,
+              "historical_full_delta_line_count": 9,
+              "close_whole_row": true,
+              "notes": [
+                "All original hunks carry: shared enemy and hook includes, removal of raw player-state alias, native experience/drop and entity flag sends, and the distinct free transition hooks. The neighboring unused 7D8 and 7DC hooks retain their existing bodies and addresses."
+              ],
+              "native_full_hunk_anchors": [
+                {
+                  "owner": "src/pso/enemy/dd/TObjEneDD.cpp",
+                  "anchors": [
+                    "#include \"pso/enemy/TObjEnemy.h\"",
+                    "#include \"pso/enemy/EnemyUnknownHooks.h\"",
+                    "distribute_experience_and_request_drop(); send_entity_set_flags();",
+                    "void fn_800BB7D0(void *) { }",
+                    "void fn_800BB7D4(void *, s32) { }"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 565,
+        "historical_path": "src/pso/enemy/TObjEneBm3FlyNest.cpp",
+        "historical_blob": "c382ce1e7b7b40fc5ec8944ad476bd58503f88fa",
+        "owners": {
+          "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp": "c16ce37316fd61f7d42dd41bb2a0a31202b93f65"
+        },
+        "proofs": [
+          {
+            "group": "targeting",
+            "evidence": "Targeting recovery applies to this folded provider or caller. Full historical hunks extend beyond it or the targeting correction is inherited. The complete a447175624 hook-specific source hunk is replayed at the live owner. Other historical edits in the same row remain separately auditable.",
+            "details": {
+              "row": 565,
+              "original_path": "src/pso/enemy/TObjEneBm3FlyNest.cpp",
+              "ancestor_blob": "59dabf201c59154a6203222fe5e256d8ba4c9ad7",
+              "fork_path": "src/pso/enemy/TObjEneBm3FlyNest.cpp",
+              "fork_blob": "c382ce1e7b7b40fc5ec8944ad476bd58503f88fa",
+              "native_owner": "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+              "prior_status": "Some anchored text changes found",
+              "target_anchors_in_full_delta": [],
+              "a447175624_replayed_here": true,
+              "historical_full_delta_line_count": 2891,
+              "close_whole_row": false,
+              "notes": [
+                "Targeting recovery applies to this folded provider or caller. Full historical hunks extend beyond it or the targeting correction is inherited.",
+                "The complete a447175624 hook-specific source hunk is replayed at the live owner. Other historical edits in the same row remain separately auditable."
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 567,
+        "historical_path": "src/pso/enemy/TObjEneDD.cpp",
+        "historical_blob": "a97a8279a45472610073f36b2e153b4d7c4a238a",
+        "owners": {
+          "src/pso/enemy/dd/TObjEneDD.cpp": "43b81a45994388eaebeb8484ff67792e925f770a"
+        },
+        "proofs": [
+          {
+            "group": "targeting",
+            "evidence": "Historical full-file delta contains targeting anchors. Only verified scoped contracts are recorded.",
+            "details": {
+              "row": 567,
+              "original_path": "src/pso/enemy/TObjEneDD.cpp",
+              "ancestor_blob": "7d522e1a9eefdb8288c185c221a3b3bcc1dbf444",
+              "fork_path": "src/pso/enemy/TObjEneDD.cpp",
+              "fork_blob": "a97a8279a45472610073f36b2e153b4d7c4a238a",
+              "native_owner": "src/pso/enemy/dd/TObjEneDD.cpp",
+              "prior_status": "Some anchored text changes found",
+              "target_anchors_in_full_delta": [
+                "-#include \"pso/enemy/TObjEneDD_800BA754.h\"",
+                "+#include \"pso/enemy/TObjEneDD_800BA754.h\""
+              ],
+              "a447175624_replayed_here": false,
+              "historical_full_delta_line_count": 45,
+              "close_whole_row": false,
+              "notes": [
+                "Historical full-file delta contains targeting anchors. Only verified scoped contracts are recorded."
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 576,
+        "historical_path": "src/pso/enemy/TObjEneDD_800BA138.cpp",
+        "historical_blob": "9ab8859f89738d9a6f880bbf6d121190168f50da",
+        "owners": {
+          "src/pso/enemy/dd/TObjEneDD.cpp": "43b81a45994388eaebeb8484ff67792e925f770a"
+        },
+        "proofs": [
+          {
+            "group": "targeting",
+            "evidence": "Only original fork edit is changing the raw 805D9EA0 constant declaration to 100.0f. The linked native owner already embeds the same 100.0f in the only affected emit_enemy_effect branch.",
+            "details": {
+              "row": 576,
+              "original_path": "src/pso/enemy/TObjEneDD_800BA138.cpp",
+              "ancestor_blob": "724dcdc74c0b93f91d75e9043d0b2255933dc971",
+              "fork_path": "src/pso/enemy/TObjEneDD_800BA138.cpp",
+              "fork_blob": "9ab8859f89738d9a6f880bbf6d121190168f50da",
+              "native_owner": "src/pso/enemy/dd/TObjEneDD.cpp",
+              "prior_status": "Owner comparison required",
+              "target_anchors_in_full_delta": [],
+              "a447175624_replayed_here": false,
+              "historical_full_delta_line_count": 2,
+              "close_whole_row": true,
+              "notes": [
+                "Only original fork edit is changing the raw 805D9EA0 constant declaration to 100.0f. The linked native owner already embeds the same 100.0f in the only affected emit_enemy_effect branch."
+              ],
+              "native_full_hunk_anchors": [
+                {
+                  "owner": "src/pso/enemy/dd/TObjEneDD.cpp",
+                  "anchors": [
+                    "void TObjEneDD::emit_enemy_effect(",
+                    "*(f32 *)((s8 *)arg2 + 8) > 100.0f"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 586,
+        "historical_path": "src/pso/enemy/TObjEneEpsilon_800B92AC.cpp",
+        "historical_blob": "821cef564d0f9fa8e44b7e09ae822515a9e32b91",
+        "owners": {
+          "src/pso/enemy/dd/TObjEneDD.cpp": "43b81a45994388eaebeb8484ff67792e925f770a"
+        },
+        "proofs": [
+          {
+            "group": "targeting",
+            "evidence": "Targeting recovery applies to this folded provider or caller. Full historical hunks extend beyond it or the targeting correction is inherited.",
+            "details": {
+              "row": 586,
+              "original_path": "src/pso/enemy/TObjEneEpsilon_800B92AC.cpp",
+              "ancestor_blob": "35f9eceb3dad7a3f98fc97d19bda0176285363d8",
+              "fork_path": "src/pso/enemy/TObjEneEpsilon_800B92AC.cpp",
+              "fork_blob": "821cef564d0f9fa8e44b7e09ae822515a9e32b91",
+              "native_owner": "src/pso/enemy/dd/TObjEneDD.cpp",
+              "prior_status": "Some anchored text changes found",
+              "target_anchors_in_full_delta": [],
+              "a447175624_replayed_here": false,
+              "historical_full_delta_line_count": 43,
+              "close_whole_row": false,
+              "notes": [
+                "Targeting recovery applies to this folded provider or caller. Full historical hunks extend beyond it or the targeting correction is inherited."
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 621,
+        "historical_path": "src/pso/enemy/TObjEneRecon_8031C250.cpp",
+        "historical_blob": "7d38c5df45683dd460878ad403b8640d1d3960e9",
+        "owners": {
+          "src/pso/enemy/recon/TObjEneRecon.cpp": "4e4ac630ac225d816a15f483cf9b262808d6d59e"
+        },
+        "proofs": [
+          {
+            "group": "targeting",
+            "evidence": "Targeting recovery applies to this folded provider or caller. Full historical hunks extend beyond it or the targeting correction is inherited. The complete a447175624 hook-specific source hunk is replayed at the live owner. Other historical edits in the same row remain separately auditable.",
+            "details": {
+              "row": 621,
+              "original_path": "src/pso/enemy/TObjEneRecon_8031C250.cpp",
+              "ancestor_blob": "3b5b43b7191685a1ec2f541f54c45c56c052dcce",
+              "fork_path": "src/pso/enemy/TObjEneRecon_8031C250.cpp",
+              "fork_blob": "7d38c5df45683dd460878ad403b8640d1d3960e9",
+              "native_owner": "src/pso/enemy/recon/TObjEneRecon.cpp",
+              "prior_status": "Some anchored text changes found",
+              "target_anchors_in_full_delta": [],
+              "a447175624_replayed_here": true,
+              "historical_full_delta_line_count": 72,
+              "close_whole_row": false,
+              "notes": [
+                "Targeting recovery applies to this folded provider or caller. Full historical hunks extend beyond it or the targeting correction is inherited.",
+                "The complete a447175624 hook-specific source hunk is replayed at the live owner. Other historical edits in the same row remain separately auditable."
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 725,
+        "historical_path": "include/pso/boss/TBoss8Dragon_800BB650.h",
+        "historical_blob": "f967a4fc10c104bf161cba4509dee82b952dc78d",
+        "owners": {
+          "src/pso/enemy/dd/TObjEneDD.cpp": "43b81a45994388eaebeb8484ff67792e925f770a",
+          "include/pso/boss/goldragon/TBoss8Dragon_800BB650.h": "b03b98b13d56f26b4e3c63baa792beb22afc59bc",
+          "include/pso/enemy/EnemyUnknownHooks.h": "20ba8681adf3ccb393bb91d24be885c1fbe1a9ac"
+        },
+        "proofs": [
+          {
+            "group": "targeting",
+            "evidence": "The two deletions are the complete original delta. Both false no-argument prototypes are removed; the shared header provides the actual actor and state arguments.",
+            "details": {
+              "row": 725,
+              "original_path": "include/pso/boss/TBoss8Dragon_800BB650.h",
+              "ancestor_blob": "8f99ae7d533ea8c7dd308475a44da50c25cf1c1b",
+              "fork_path": "include/pso/boss/TBoss8Dragon_800BB650.h",
+              "fork_blob": "f967a4fc10c104bf161cba4509dee82b952dc78d",
+              "native_owner": "src/pso/enemy/dd/TObjEneDD.cpp",
+              "prior_status": "Owner comparison required",
+              "target_anchors_in_full_delta": [],
+              "a447175624_replayed_here": true,
+              "historical_full_delta_line_count": 2,
+              "close_whole_row": true,
+              "notes": [
+                "The two deletions are the complete original delta. Both false no-argument prototypes are removed; the shared header provides the actual actor and state arguments."
+              ],
+              "native_full_hunk_anchors": [
+                {
+                  "owner": "include/pso/boss/goldragon/TBoss8Dragon_800BB650.h",
+                  "anchors": [
+                    "TBoss8Dragon__sub_800BB7D8(void);",
+                    "TBoss8Dragon__sub_800BB7DC(void);"
+                  ]
+                },
+                {
+                  "owner": "include/pso/enemy/EnemyUnknownHooks.h",
+                  "anchors": [
+                    "fn_800BB7D4(void *context, s32 value);"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 743,
+        "historical_path": "include/pso/boss/TBoss8Dragon.h",
+        "historical_blob": "11c11480a361683d3ed37b1ff37d00d165155121",
+        "owners": {
+          "include/pso/boss/goldragon/TBoss8Dragon.h": "9fadb1301d76543c54eccb31e384ecbbbd781354"
+        },
+        "proofs": [
+          {
+            "group": "targeting",
+            "evidence": "Targeting recovery applies to this folded provider or caller. Full historical hunks extend beyond it or the targeting correction is inherited. The complete a447175624 hook-specific source hunk is replayed at the live owner. Other historical edits in the same row remain separately auditable.",
+            "details": {
+              "row": 743,
+              "original_path": "include/pso/boss/TBoss8Dragon.h",
+              "ancestor_blob": "b24dc853463392bbae291650ae6bbebaa23135c2",
+              "fork_path": "include/pso/boss/TBoss8Dragon.h",
+              "fork_blob": "11c11480a361683d3ed37b1ff37d00d165155121",
+              "native_owner": "include/pso/boss/goldragon/TBoss8Dragon.h",
+              "prior_status": "Some anchored text changes found",
+              "target_anchors_in_full_delta": [],
+              "a447175624_replayed_here": true,
+              "historical_full_delta_line_count": 216,
+              "close_whole_row": false,
+              "notes": [
+                "Targeting recovery applies to this folded provider or caller. Full historical hunks extend beyond it or the targeting correction is inherited.",
+                "The complete a447175624 hook-specific source hunk is replayed at the live owner. Other historical edits in the same row remain separately auditable."
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 778,
+        "historical_path": "src/pso/enemy/TObjEneMe3Shinowa.cpp",
+        "historical_blob": "8697ef118f28d96e1d89e81ce84938ab05cb452b",
+        "owners": {
+          "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp": "6fa738adcfe3d5204cfae0d8130bc114de19e1f6"
+        },
+        "proofs": [
+          {
+            "group": "targeting",
+            "evidence": "Historical full-file delta contains targeting anchors. Only verified scoped contracts are recorded.",
+            "details": {
+              "row": 778,
+              "original_path": "src/pso/enemy/TObjEneMe3Shinowa.cpp",
+              "ancestor_blob": "b24008c1bfb120809584051072b4b6a3f4f17a22",
+              "fork_path": "src/pso/enemy/TObjEneMe3Shinowa.cpp",
+              "fork_blob": "8697ef118f28d96e1d89e81ce84938ab05cb452b",
+              "native_owner": "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+              "prior_status": "Some anchored text changes found",
+              "target_anchors_in_full_delta": [
+                "+s32 enemy_clear_target__12TObjEneDD_STFUs(void *);",
+                "+s32 transform_relative_position__9TObjEneDDFPv(void *, void *);",
+                "+                if (transform_relative_position__9TObjEneDDFPv(this, P(0x390)) != 0) {",
+                "+                enemy_clear_target__12TObjEneDD_STFUs(this);"
+              ],
+              "a447175624_replayed_here": false,
+              "historical_full_delta_line_count": 4204,
+              "close_whole_row": false,
+              "notes": [
+                "Historical full-file delta contains targeting anchors. Only verified scoped contracts are recorded."
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 823,
+        "historical_path": "src/pso/enemy/TObjEneRe2Flower.cpp",
+        "historical_blob": "be7b684478176650d33521865179433c102dc3b5",
+        "owners": {
+          "src/pso/enemy/flower/TObjEneRe2Flower.cpp": "4a1ceea4623468bff251b997c1aa4657413b4c47",
+          "include/pso/enemy/flower/TObjEneRe2Flower.h": "9bb7462cb7dc7eefd850359d44d10124f179efa7"
+        },
+        "proofs": [
+          {
+            "group": "targeting",
+            "evidence": "Every full historical hunk is retained. Hook declaration/call are replaced by the shared header and native event 242. The position and center paths use the original vector members. The render anchor array is at 0x3DC in both layouts and the body-offset write remains 0x30. The current owner keeps the original call site and writes.",
+            "details": {
+              "row": 823,
+              "original_path": "src/pso/enemy/TObjEneRe2Flower.cpp",
+              "ancestor_blob": "e33c92ab1a0f563bcf6676afd41418f5f1b09a45",
+              "fork_path": "src/pso/enemy/TObjEneRe2Flower.cpp",
+              "fork_blob": "be7b684478176650d33521865179433c102dc3b5",
+              "native_owner": "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+              "prior_status": "Owner comparison required",
+              "target_anchors_in_full_delta": [],
+              "a447175624_replayed_here": true,
+              "historical_full_delta_line_count": 14,
+              "close_whole_row": true,
+              "notes": [
+                "Every full historical hunk is retained. Hook declaration/call are replaced by the shared header and native event 242. The position and center paths use the original vector members. The render anchor array is at 0x3DC in both layouts and the body-offset write remains 0x30. The current owner keeps the original call site and writes."
+              ],
+              "native_full_hunk_anchors": [
+                {
+                  "owner": "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+                  "anchors": [
+                    "fn_800BB7D4(this, 242);",
+                    "bodies[1].offset.y = body_center_position.y - position.y;",
+                    "set_part_local_pos(m_3dc, 0);",
+                    "VecCopy(&this->body_center_position, &this->position);",
+                    "this->body_center_position.y = this->body_center_position.y + lbl_805D9FF8;",
+                    "VecCopy(&this->center, &this->body_center_position);"
+                  ]
+                },
+                {
+                  "owner": "include/pso/enemy/flower/TObjEneRe2Flower.h",
+                  "anchors": [
+                    "Vec m_3dc[2];",
+                    "MaterialOpacityFade m_3f4;"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 874,
+        "historical_path": "src/pso/boss/TBoss8Dragon.cpp",
+        "historical_blob": "1a22ff52dad4938c6a831064e588e4b4d562b7d8",
+        "owners": {
+          "src/pso/boss/goldragon/TBoss8Dragon.cpp": "033f08f449e462147913f49c7589b1cf104863e8"
+        },
+        "proofs": [
+          {
+            "group": "targeting",
+            "evidence": "Historical full-file delta contains targeting anchors. Only verified scoped contracts are recorded.",
+            "details": {
+              "row": 874,
+              "original_path": "src/pso/boss/TBoss8Dragon.cpp",
+              "ancestor_blob": "b256d32ff52f14471f2808f2b858cb052e844083",
+              "fork_path": "src/pso/boss/TBoss8Dragon.cpp",
+              "fork_blob": "1a22ff52dad4938c6a831064e588e4b4d562b7d8",
+              "native_owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+              "prior_status": "Some anchored text changes found",
+              "target_anchors_in_full_delta": [
+                "+        if (is_valid_target__9TObjEneDDFv() != 0 &&",
+                "+        enemy_clear_target__12TObjEneDD_STFUs(ene_dd_st);",
+                "-        enemy_clear_target__12TObjEneDD_STFUs(ene_dd_st);",
+                "-        if (is_valid_target__9TObjEneDDFv() != 0 &&"
+              ],
+              "a447175624_replayed_here": false,
+              "historical_full_delta_line_count": 9495,
+              "close_whole_row": false,
+              "notes": [
+                "Historical full-file delta contains targeting anchors. Only verified scoped contracts are recorded."
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 943,
+        "historical_path": "include/pso/enemy/TObjEneEpsilon_800B92AC.h",
+        "historical_blob": "f0693477aa9a4576179afb6fae28b95c62a7470b",
+        "owners": {
+          "src/pso/enemy/dd/TObjEneDD.cpp": "43b81a45994388eaebeb8484ff67792e925f770a",
+          "include/pso/enemy/epsilon/TObjEneEpsilon_800B92AC.h": "edaa37f6b010b7e2f4e5b7b30f04b55cc8768172",
+          "include/pso/enemy/EnemyMovement.h": "786365a21b0c6283fc03c9552c7a256ba24df4d9"
+        },
+        "proofs": [
+          {
+            "group": "targeting",
+            "evidence": "Complete prior movement reconciliation. The shared header include replaces both duplicate raw Epsilon movement declarations. The current shared declaration returns the verified collision pointer and takes the real base actor.",
+            "details": {
+              "row": 943,
+              "original_path": "include/pso/enemy/TObjEneEpsilon_800B92AC.h",
+              "ancestor_blob": "dcb74a1973349e84abe16e00e11ba4ed512a31a7",
+              "fork_path": "include/pso/enemy/TObjEneEpsilon_800B92AC.h",
+              "fork_blob": "f0693477aa9a4576179afb6fae28b95c62a7470b",
+              "native_owner": "src/pso/enemy/dd/TObjEneDD.cpp",
+              "prior_status": "Some anchored text changes found",
+              "target_anchors_in_full_delta": [],
+              "a447175624_replayed_here": false,
+              "historical_full_delta_line_count": 3,
+              "close_whole_row": true,
+              "notes": [
+                "Complete prior movement reconciliation. The shared header include replaces both duplicate raw Epsilon movement declarations. The current shared declaration returns the verified collision pointer and takes the real base actor."
+              ],
+              "native_full_hunk_anchors": [
+                {
+                  "owner": "include/pso/enemy/epsilon/TObjEneEpsilon_800B92AC.h",
+                  "anchors": [
+                    "#include \"pso/enemy/EnemyMovement.h\""
+                  ]
+                },
+                {
+                  "owner": "include/pso/enemy/EnemyMovement.h",
+                  "anchors": [
+                    "u8 *TObjEneEpsilon__sub_800B92F8(TObjEneDD *actor, s32 max_step, f32 distance);"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 951,
+        "historical_path": "src/pso/boss/Boss7DeRolLeCBehavior.cpp",
+        "historical_blob": "101ce307c7730b02596b27649a0873dd5cfb920e",
+        "owners": {
+          "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp": "c2bec6ecc67fe515d146f2582cf5e6ecb4553c43"
+        },
+        "proofs": [
+          {
+            "group": "targeting",
+            "evidence": "Historical full-file delta contains targeting anchors. Only verified scoped contracts are recorded.",
+            "details": {
+              "row": 951,
+              "original_path": "src/pso/boss/Boss7DeRolLeCBehavior.cpp",
+              "ancestor_blob": "3ba446a1f25f73445e167a38b443cdafea6cf588",
+              "fork_path": "src/pso/boss/Boss7DeRolLeCBehavior.cpp",
+              "fork_blob": "101ce307c7730b02596b27649a0873dd5cfb920e",
+              "native_owner": "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+              "prior_status": "Some anchored text changes found",
+              "target_anchors_in_full_delta": [
+                "+        enemy_clear_target__12TObjEneDD_STFUs(this);",
+                "+    enemy_clear_target__12TObjEneDD_STFUs(this);",
+                "-        enemy_clear_target__12TObjEneDD_STFUs(this);",
+                "-    enemy_clear_target__12TObjEneDD_STFUs(this);"
+              ],
+              "a447175624_replayed_here": false,
+              "historical_full_delta_line_count": 6553,
+              "close_whole_row": false,
+              "notes": [
+                "Historical full-file delta contains targeting anchors. Only verified scoped contracts are recorded."
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1058,
+        "historical_path": "src/pso/enemy/TObjEneBm9Mericarol_802CECE0.cpp",
+        "historical_blob": "26fdccf8e9563ebf979a3ad112ca8325a8cf9154",
+        "owners": {
+          "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp": "c8eb31e27ac2fe201e902b8a02718a71fa555033"
+        },
+        "proofs": [
+          {
+            "group": "targeting",
+            "evidence": "Targeting recovery applies to this folded provider or caller. Full historical hunks extend beyond it or the targeting correction is inherited. The complete a447175624 hook-specific source hunk is replayed at the live owner. Other historical edits in the same row remain separately auditable.",
+            "details": {
+              "row": 1058,
+              "original_path": "src/pso/enemy/TObjEneBm9Mericarol_802CECE0.cpp",
+              "ancestor_blob": "0fa7dcaffa9e69b730658837470a9b9bedcaf54c",
+              "fork_path": "src/pso/enemy/TObjEneBm9Mericarol_802CECE0.cpp",
+              "fork_blob": "26fdccf8e9563ebf979a3ad112ca8325a8cf9154",
+              "native_owner": "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+              "prior_status": "Owner comparison required",
+              "target_anchors_in_full_delta": [],
+              "a447175624_replayed_here": true,
+              "historical_full_delta_line_count": 91,
+              "close_whole_row": false,
+              "notes": [
+                "Targeting recovery applies to this folded provider or caller. Full historical hunks extend beyond it or the targeting correction is inherited.",
+                "The complete a447175624 hook-specific source hunk is replayed at the live owner. Other historical edits in the same row remain separately auditable."
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1114,
+        "historical_path": "src/pso/enemy/TObjEneBm3Fly.cpp",
+        "historical_blob": "e3935c2f0347368fb245b0e5c2d8c510a8475574",
+        "owners": {
+          "src/pso/enemy/fly/TObjEneBm3Fly.cpp": "5607a1e91148213d0063d06e35e9e368b57296df"
+        },
+        "proofs": [
+          {
+            "group": "targeting",
+            "evidence": "Targeting recovery applies to this folded provider or caller. Full historical hunks extend beyond it or the targeting correction is inherited. The complete a447175624 hook-specific source hunk is replayed at the live owner. Other historical edits in the same row remain separately auditable.",
+            "details": {
+              "row": 1114,
+              "original_path": "src/pso/enemy/TObjEneBm3Fly.cpp",
+              "ancestor_blob": "f02c8e1bf7c45f545ebb79bc4fea62f2e20a6a99",
+              "fork_path": "src/pso/enemy/TObjEneBm3Fly.cpp",
+              "fork_blob": "e3935c2f0347368fb245b0e5c2d8c510a8475574",
+              "native_owner": "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+              "prior_status": "Some anchored text changes found",
+              "target_anchors_in_full_delta": [],
+              "a447175624_replayed_here": true,
+              "historical_full_delta_line_count": 201,
+              "close_whole_row": false,
+              "notes": [
+                "Targeting recovery applies to this folded provider or caller. Full historical hunks extend beyond it or the targeting correction is inherited.",
+                "The complete a447175624 hook-specific source hunk is replayed at the live owner. Other historical edits in the same row remain separately auditable."
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1167,
+        "historical_path": "src/pso/enemy/TObjEneBm5GibonU.cpp",
+        "historical_blob": "4d5d56979e94408e4295f269d67f027493758b30",
+        "owners": {
+          "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp": "5ee5f60232af87373a9090d042bb900e405b35df"
+        },
+        "proofs": [
+          {
+            "group": "targeting",
+            "evidence": "Historical full-file delta contains targeting anchors. Only verified scoped contracts are recorded. The complete a447175624 hook-specific source hunk is replayed at the live owner. Other historical edits in the same row remain separately auditable.",
+            "details": {
+              "row": 1167,
+              "original_path": "src/pso/enemy/TObjEneBm5GibonU.cpp",
+              "ancestor_blob": "7b061792e35abb5eb18cb361d65e5528bbfbc89c",
+              "fork_path": "src/pso/enemy/TObjEneBm5GibonU.cpp",
+              "fork_blob": "4d5d56979e94408e4295f269d67f027493758b30",
+              "native_owner": "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+              "prior_status": "Some anchored text changes found",
+              "target_anchors_in_full_delta": [
+                "-    if (transform_relative_position__9TObjEneDDFPv(arg0, (int) (((TObjEneBm5GibonU *)arg0)->m_390)) != 0) {",
+                "+    if (transform_relative_position__9TObjEneDDFPv(arg0, (int) (((TObjEneBm5GibonU *)arg0)->target)) != 0) {"
+              ],
+              "a447175624_replayed_here": true,
+              "historical_full_delta_line_count": 262,
+              "close_whole_row": false,
+              "notes": [
+                "Historical full-file delta contains targeting anchors. Only verified scoped contracts are recorded.",
+                "The complete a447175624 hook-specific source hunk is replayed at the live owner. Other historical edits in the same row remain separately auditable."
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1168,
+        "historical_path": "src/pso/enemy/TObjEneRe4Sorcerer_800EDB98.cpp",
+        "historical_blob": "4f07f4646222e4b4861a3b593136463172561c37",
+        "owners": {
+          "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp": "3dc5c2fdd053f4a94bd24eb4b6f89bcbfa76fd42"
+        },
+        "proofs": [
+          {
+            "group": "targeting",
+            "evidence": "Targeting recovery applies to this folded provider or caller. Full historical hunks extend beyond it or the targeting correction is inherited.",
+            "details": {
+              "row": 1168,
+              "original_path": "src/pso/enemy/TObjEneRe4Sorcerer_800EDB98.cpp",
+              "ancestor_blob": "065e9ad65ce30e67d2fd5cb07d15520fd757031e",
+              "fork_path": "src/pso/enemy/TObjEneRe4Sorcerer_800EDB98.cpp",
+              "fork_blob": "4f07f4646222e4b4861a3b593136463172561c37",
+              "native_owner": "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+              "prior_status": "Some anchored text changes found",
+              "target_anchors_in_full_delta": [],
+              "a447175624_replayed_here": false,
+              "historical_full_delta_line_count": 164,
+              "close_whole_row": false,
+              "notes": [
+                "Targeting recovery applies to this folded provider or caller. Full historical hunks extend beyond it or the targeting correction is inherited."
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1169,
+        "historical_path": "src/pso/enemy/TObjEneBm5Wolf.cpp",
+        "historical_blob": "cbba29e84410f4173b28c0342d2ed9e6990355cf",
+        "owners": {
+          "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp": "d71e72d3c497b9200ab91ddc6d829ede8cb3c087"
+        },
+        "proofs": [
+          {
+            "group": "targeting",
+            "evidence": "Targeting recovery applies to this folded provider or caller. Full historical hunks extend beyond it or the targeting correction is inherited. The complete a447175624 hook-specific source hunk is replayed at the live owner. Other historical edits in the same row remain separately auditable.",
+            "details": {
+              "row": 1169,
+              "original_path": "src/pso/enemy/TObjEneBm5Wolf.cpp",
+              "ancestor_blob": "739a4a10e9288491b26d1c652fba25fa223a5705",
+              "fork_path": "src/pso/enemy/TObjEneBm5Wolf.cpp",
+              "fork_blob": "cbba29e84410f4173b28c0342d2ed9e6990355cf",
+              "native_owner": "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp",
+              "prior_status": "Some anchored text changes found",
+              "target_anchors_in_full_delta": [],
+              "a447175624_replayed_here": true,
+              "historical_full_delta_line_count": 200,
+              "close_whole_row": false,
+              "notes": [
+                "Targeting recovery applies to this folded provider or caller. Full historical hunks extend beyond it or the targeting correction is inherited.",
+                "The complete a447175624 hook-specific source hunk is replayed at the live owner. Other historical edits in the same row remain separately auditable."
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1182,
+        "historical_path": "src/pso/unk/text_800C2CE0.cpp",
+        "historical_blob": "0189875afdd2a910b1a7409238a8b102655dc794",
+        "owners": {
+          "src/pso/unk/text_800C2CE0.cpp": "f88755e3b3836be83e0c61144e315027db062619"
+        },
+        "proofs": [
+          {
+            "group": "targeting",
+            "evidence": "Every hunk carried. Shared hook and sound headers replace both raw declarations. The one-shot sound sites keep IDs 0x4003AB13 and 0x4003A50F, typed Vec positions, and both zero option arguments. The same random threshold appears as the immediate 0.3f at its only use.",
+            "details": {
+              "row": 1182,
+              "original_path": "src/pso/unk/text_800C2CE0.cpp",
+              "ancestor_blob": "bcef544ff0ff70fc8f7deb5f424910b1bd9e6090",
+              "fork_path": "src/pso/unk/text_800C2CE0.cpp",
+              "fork_blob": "0189875afdd2a910b1a7409238a8b102655dc794",
+              "native_owner": "src/pso/unk/text_800C2CE0.cpp",
+              "prior_status": "Owner comparison required",
+              "target_anchors_in_full_delta": [],
+              "a447175624_replayed_here": true,
+              "historical_full_delta_line_count": 13,
+              "close_whole_row": true,
+              "notes": [
+                "Every hunk carried. Shared hook and sound headers replace both raw declarations. The one-shot sound sites keep IDs 0x4003AB13 and 0x4003A50F, typed Vec positions, and both zero option arguments. The same random threshold appears as the immediate 0.3f at its only use."
+              ],
+              "native_full_hunk_anchors": [
+                {
+                  "owner": "src/pso/unk/text_800C2CE0.cpp",
+                  "anchors": [
+                    "#include \"pso/enemy/EnemyUnknownHooks.h\"",
+                    "#include \"pso/system/SoundEffect.h\"",
+                    "fn_800BB7D4(arg0, 0xF2);",
+                    "play_sound_effect(fn_800C3A60(arg0, 0x4003AB13), &this->position, 0, 0);",
+                    "random_ratio() < 0.3f",
+                    "play_sound_effect(fn_800C3A60(self, 0x4003A50F), (const Vec *)((u8 *)self + 0x38), 0, 0);"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 1200,
+        "historical_path": "src/pso/unk/text_800C2A88.cpp",
+        "historical_blob": "73eb61f82bc5a769ca0b451249e2eca438889d93",
+        "owners": {
+          "src/pso/unk/text_800C2A88.cpp": "557b35890038a2555f629b4234d34157e774488a"
+        },
+        "proofs": [
+          {
+            "group": "targeting",
+            "evidence": "Targeting recovery applies to this folded provider or caller. Full historical hunks extend beyond it or the targeting correction is inherited. The complete a447175624 hook-specific source hunk is replayed at the live owner. Other historical edits in the same row remain separately auditable. Scoped only: the historical MaterialColorFade native decay call is still an indirect provisional VObj_14_00f1d1 call in fn_800C2AC4.",
+            "details": {
+              "row": 1200,
+              "original_path": "src/pso/unk/text_800C2A88.cpp",
+              "ancestor_blob": "b744dde9f5ec328189dde225019d90e2aaa16767",
+              "fork_path": "src/pso/unk/text_800C2A88.cpp",
+              "fork_blob": "73eb61f82bc5a769ca0b451249e2eca438889d93",
+              "native_owner": "src/pso/unk/text_800C2A88.cpp",
+              "prior_status": "Some anchored text changes found",
+              "target_anchors_in_full_delta": [],
+              "a447175624_replayed_here": true,
+              "historical_full_delta_line_count": 28,
+              "close_whole_row": false,
+              "notes": [
+                "Targeting recovery applies to this folded provider or caller. Full historical hunks extend beyond it or the targeting correction is inherited.",
+                "The complete a447175624 hook-specific source hunk is replayed at the live owner. Other historical edits in the same row remain separately auditable.",
+                "Scoped only: the historical MaterialColorFade native decay call is still an indirect provisional VObj_14_00f1d1 call in fn_800C2AC4."
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7219,
+        "historical_path": "src/pso/object/TObjFogCollisionPoison.cpp",
+        "historical_blob": "6e98a214feb50c995dd267752e8908da3e39d780",
+        "owners": {
+          "src/pso/object/collision/TObjFogCollision.cpp": "eb01a2495626a8f19e499a06f6e064eb8c32fd46"
+        },
+        "proofs": [
+          {
+            "group": "targeting",
+            "evidence": "Targeting recovery applies to this folded provider or caller. Full historical hunks extend beyond it or the targeting correction is inherited.",
+            "details": {
+              "row": 7219,
+              "original_path": "src/pso/object/TObjFogCollisionPoison.cpp",
+              "ancestor_blob": "d25639e8e73211b07a698583ea0f87d9bb57d0b6",
+              "fork_path": "src/pso/object/TObjFogCollisionPoison.cpp",
+              "fork_blob": "6e98a214feb50c995dd267752e8908da3e39d780",
+              "native_owner": "src/pso/object/collision/TObjFogCollision.cpp",
+              "prior_status": "Owner comparison required",
+              "target_anchors_in_full_delta": [],
+              "a447175624_replayed_here": false,
+              "historical_full_delta_line_count": 18,
+              "close_whole_row": false,
+              "notes": [
+                "Targeting recovery applies to this folded provider or caller. Full historical hunks extend beyond it or the targeting correction is inherited."
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2259,
+        "historical_path": "src/pso/misc/TQuestListOnline_802150E8.cpp",
+        "historical_blob": "1b66c01a8b92a4f21e2e252952fff182ac68277d",
+        "owners": {
+          "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp": "8a4da53f69fd645dfc05d2daefe1f8eaec56dde5"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "The BIN and DAT download records at 0x80513E24 and 0x80513DE8 have one native type across allocation, chunk lookup and release. The typed transfer keeps the original 0x34 size field, 0x38 buffer pointer, block size, release order and window transitions.",
+            "details": {
+              "scoped_outcome": "Recovered scoped online transfer change",
+              "full_path_comparison": {
+                "ledger_line": 2259,
+                "historical_path": "src/pso/misc/TQuestListOnline_802150E8.cpp",
+                "audited_owner": "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp",
+                "authored_unified_hunks": 11,
+                "authored_patch": "row-2259-authored.patch",
+                "assessment": "scoped evidence only",
+                "evidence": "Full authored source equivalence was not established. Retain the scoped evidence in source-ledger.json."
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2269,
+        "historical_path": "src/pso/player/THunterGuildSeqOnlineTask.cpp",
+        "historical_blob": "3c13027d2ed37f2675b55eabed32b4bfb47684f3",
+        "owners": {
+          "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp": "8a4da53f69fd645dfc05d2daefe1f8eaec56dde5"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "handle_quest_ready and close_windows_and_reset use the live BIN/DAT records and preserve explicit size arguments and branch ordering. Other online guild task and front-end changes remain outside this cohort.",
+            "details": {
+              "scoped_outcome": "Recovered scoped online transfer change",
+              "full_path_comparison": {
+                "ledger_line": 2269,
+                "historical_path": "src/pso/player/THunterGuildSeqOnlineTask.cpp",
+                "audited_owner": "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp",
+                "authored_unified_hunks": 10,
+                "authored_patch": "row-2269-authored.patch",
+                "assessment": "scoped evidence only",
+                "evidence": "Full authored source equivalence was not established. Retain the scoped evidence in source-ledger.json."
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4073,
+        "historical_path": "src/pso/item/TItemTexLoad.cpp",
+        "historical_blob": "e209bd96e744fbd45509ebffa01c1f15a1ed3d3a",
+        "owners": {
+          "src/pso/item/TItemTexLoad.cpp": "60eeac63661419c72c06c52eadf1f0f665cd0dd4"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "The item texture loader preserves its existing numeric request record and consumes the pointer at that boundary. Other texture paths were outside this pass.",
+            "details": {
+              "scoped_outcome": "Recovered scoped scratch consumer adaptation",
+              "full_path_comparison": {
+                "ledger_line": 4073,
+                "historical_path": "src/pso/item/TItemTexLoad.cpp",
+                "audited_owner": "src/pso/item/TItemTexLoad.cpp",
+                "authored_unified_hunks": 9,
+                "authored_patch": "row-4073-authored.patch",
+                "assessment": "scoped evidence only",
+                "evidence": "Full authored source equivalence was not established. Retain the scoped evidence in source-ledger.json."
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4399,
+        "historical_path": "src/pso/item/TItemAttacker.cpp",
+        "historical_blob": "707c6ae051830694d96fe11758312fdec3b6d696",
+        "owners": {
+          "src/pso/weapon/TItemAttacker.cpp": "1de5adf9c27dab1ebcd10380c86fbbe0de2ef7c5"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "Native TItemAttacker keeps its original item buff and numeric state while using the restored scratch owner.",
+            "details": {
+              "scoped_outcome": "Recovered scoped scratch consumer adaptation",
+              "full_path_comparison": {
+                "ledger_line": 4399,
+                "historical_path": "src/pso/item/TItemAttacker.cpp",
+                "audited_owner": "src/pso/weapon/TItemAttacker.cpp",
+                "authored_unified_hunks": 5,
+                "authored_patch": "row-4399-authored.patch",
+                "assessment": "scoped evidence only",
+                "evidence": "The historic hunk removed the RecoveredGlobal_8010355C_lbl_8043E038 string wrapper and casts completely. This wrapper still exists despite matched native scratch and array calls."
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5181,
+        "historical_path": "include/pso/misc/TGStream.h",
+        "historical_blob": "3ca510b80881483ce50d5b3cc2760fb23d28c3d7",
+        "owners": {
+          "src/pso/system/TGStream.cpp": "09bd05d2ad19be47b91433f9c526d2cd1d28d31a"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "The native TGStream header owns all three changed declarations. read_whole_file and load_sct_file take a const char filename, load_sct_file and read_data take a u8 destination, and read_data keeps its byte count.",
+            "details": {
+              "scoped_outcome": "Already represented where scoped",
+              "full_path_comparison": {
+                "ledger_line": 5181,
+                "historical_path": "include/pso/misc/TGStream.h",
+                "audited_owner": "src/pso/system/TGStream.cpp",
+                "authored_unified_hunks": 1,
+                "authored_patch": "row-5181-authored.patch",
+                "assessment": "fully represented before replay",
+                "evidence": "The native TGStream header owns all three changed declarations. read_whole_file and load_sct_file take a const char filename, load_sct_file and read_data take a u8 destination, and read_data keeps its byte count."
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5226,
+        "historical_path": "include/pso/system/TGStream.h",
+        "historical_blob": "fcd5ae379338b6e86acc98c1ec523d024cb028ed",
+        "owners": {
+          "src/pso/system/TGStream.cpp": "09bd05d2ad19be47b91433f9c526d2cd1d28d31a"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "The native TGStream class keeps AdxfHandle * at +0x20, read_data takes u8 *, and refill_gstream_buffer takes AdxfHandle *. GslArchive.h declares the char filename and second s32 argument for the consolidated find_gsl_entry at 0x800FDD70.",
+            "details": {
+              "scoped_outcome": "Already represented where scoped",
+              "full_path_comparison": {
+                "ledger_line": 5226,
+                "historical_path": "include/pso/system/TGStream.h",
+                "audited_owner": "src/pso/system/TGStream.cpp",
+                "authored_unified_hunks": 4,
+                "authored_patch": "row-5226-authored.patch",
+                "assessment": "fully represented before replay",
+                "evidence": "The native TGStream class keeps AdxfHandle * at +0x20, read_data takes u8 *, and refill_gstream_buffer takes AdxfHandle *. GslArchive.h declares the char filename and second s32 argument for the consolidated find_gsl_entry at 0x800FDD70."
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5229,
+        "historical_path": "src/pso/system/TGStream.cpp",
+        "historical_blob": "610d7c1ba8596c5d7866ff38dda2f04e31d2120e",
+        "owners": {
+          "src/pso/system/TGStream.cpp": "09bd05d2ad19be47b91433f9c526d2cd1d28d31a"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "TGStream acquisition consumes the provider pointer and retains its current chunk/read behavior. Upstream still stores an integer in this owner and the direct branch adapts the boundary.",
+            "details": {
+              "scoped_outcome": "Recovered scratch consumer adaptation",
+              "full_path_comparison": {
+                "ledger_line": 5229,
+                "historical_path": "src/pso/system/TGStream.cpp",
+                "audited_owner": "src/pso/system/TGStream.cpp",
+                "authored_unified_hunks": 18,
+                "authored_patch": "row-5229-authored.patch",
+                "assessment": "scoped evidence only",
+                "evidence": "Full authored source equivalence was not established. Retain the scoped evidence in source-ledger.json."
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5296,
+        "historical_path": "src/pso/ui/TLanguage_80132A5C.cpp",
+        "historical_blob": "60e3e94fc6eac8106215a51f9ecdd7eda503a453",
+        "owners": {
+          "src/pso/system/TLanguage_80132A5C.cpp": "436b817cd0e7d0738a6dbd34c86fa3900d76056b"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "Language setup uses the native pointer provider at its existing scratch address record without altering upstream texture types.",
+            "details": {
+              "scoped_outcome": "Recovered scratch consumer adaptation",
+              "full_path_comparison": {
+                "ledger_line": 5296,
+                "historical_path": "src/pso/ui/TLanguage_80132A5C.cpp",
+                "audited_owner": "src/pso/system/TLanguage_80132A5C.cpp",
+                "authored_unified_hunks": 4,
+                "authored_patch": "row-5296-authored.patch",
+                "assessment": "scoped evidence only",
+                "evidence": "The native provider calls are restored, but the live font-load scratch local remains integer-typed where the historic local was u8 *."
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5305,
+        "historical_path": "include/pso/misc/TLobby_8001EF5C.h",
+        "historical_blob": "7514cabe02ac1b9742182c9c9a11b824dc1ff679",
+        "owners": {
+          "src/pso/unk/TLobby_8001EF5C.cpp": "be432b2b0b80282f3807618cde80e77825da56e0"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "The scratch buffer acquire declaration and native definition return u8* at 0x8001EEFC. Existing BML/GVM provider APIs remain selected per target.",
+            "details": {
+              "scoped_outcome": "Recovered scoped scratch owner contract",
+              "full_path_comparison": {
+                "ledger_line": 5305,
+                "historical_path": "include/pso/misc/TLobby_8001EF5C.h",
+                "audited_owner": "src/pso/unk/TLobby_8001EF5C.cpp",
+                "authored_unified_hunks": 1,
+                "authored_patch": "row-5305-authored.patch",
+                "assessment": "scoped evidence only",
+                "evidence": "The authored alloc_load_data base is u8 * historically and remains s32 in the current owner."
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5328,
+        "historical_path": "src/pso/misc/TLobby_8001EF5C.cpp",
+        "historical_blob": "1a190efb09543834a02b379bec0449dc9ccbc625",
+        "owners": {
+          "src/pso/unk/TLobby_8001EF5C.cpp": "be432b2b0b80282f3807618cde80e77825da56e0"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "Buffer allocation, return, BML reads and release use the same pointer object. The historical window merge and different BML/ADXF interfaces are outside this cohort.",
+            "details": {
+              "scoped_outcome": "Recovered scoped scratch owner contract",
+              "full_path_comparison": {
+                "ledger_line": 5328,
+                "historical_path": "src/pso/misc/TLobby_8001EF5C.cpp",
+                "audited_owner": "src/pso/unk/TLobby_8001EF5C.cpp",
+                "authored_unified_hunks": 26,
+                "authored_patch": "row-5328-authored.patch",
+                "assessment": "scoped evidence only",
+                "evidence": "Full authored source equivalence was not established. Retain the scoped evidence in source-ledger.json."
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5330,
+        "historical_path": "src/pso/misc/TLobby_801E43E4.cpp",
+        "historical_blob": "d53c95190dee1e746c44690d9694539f2ea8a485",
+        "owners": {
+          "src/pso/unk/TLobby_801E43E4.cpp": "00a6ba26a66d096e8ee377fef9ee0aa725fb679d"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "Both lobby texture paths keep their exact ownership and use the scratch pointer where read or explicitly store the old integer boundary representation.",
+            "details": {
+              "scoped_outcome": "Recovered scoped scratch consumer adaptation",
+              "full_path_comparison": {
+                "ledger_line": 5330,
+                "historical_path": "src/pso/misc/TLobby_801E43E4.cpp",
+                "audited_owner": "src/pso/unk/TLobby_801E43E4.cpp",
+                "authored_unified_hunks": 5,
+                "authored_patch": "row-5330-authored.patch",
+                "assessment": "scoped evidence only",
+                "evidence": "The authored PVM-loading scratch local is u8 * historically, whereas the current caller keeps an s32 local with the pointer conversion at the provider."
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5332,
+        "historical_path": "src/pso/unk/text_800FA464.cpp",
+        "historical_blob": "e1a51dd7225aef368535e9cffabf0d5e53da6666",
+        "owners": {
+          "src/pso/unk/text_800FA464.cpp": "203e611242b3a3acf81c5164a5a278e2b1df9da8"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "Async texture loading continues to use its existing scalar slot, with an explicit pointer-to-address boundary.",
+            "details": {
+              "scoped_outcome": "Recovered scoped scratch consumer adaptation",
+              "full_path_comparison": {
+                "ledger_line": 5332,
+                "historical_path": "src/pso/unk/text_800FA464.cpp",
+                "audited_owner": "src/pso/unk/text_800FA464.cpp",
+                "authored_unified_hunks": 6,
+                "authored_patch": "row-5332-authored.patch",
+                "assessment": "scoped evidence only",
+                "evidence": "The authored asynchronous texture buffer is still stored with an integer representation in the current loader."
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5339,
+        "historical_path": "src/pso/misc/TLobby_800F8AA8.cpp",
+        "historical_blob": "81cf78d392976d0913f8ea6cb5c524dfa911f0be",
+        "owners": {
+          "src/pso/unk/TLobby_800F8AA8.cpp": "b446c4b977f5114173dc4be771fd4ab56c782436"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "Font loading now uses the actual provider declaration instead of its duplicate void* ABI. PRC loading retains the same ownership and texture behavior.",
+            "details": {
+              "scoped_outcome": "Recovered scoped scratch consumer adaptation",
+              "full_path_comparison": {
+                "ledger_line": 5339,
+                "historical_path": "src/pso/misc/TLobby_800F8AA8.cpp",
+                "audited_owner": "src/pso/unk/TLobby_800F8AA8.cpp",
+                "authored_unified_hunks": 16,
+                "authored_patch": "row-5339-authored.patch",
+                "assessment": "scoped evidence only",
+                "evidence": "Full authored source equivalence was not established. Retain the scoped evidence in source-ledger.json."
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5521,
+        "historical_path": "src/pso/misc/TLobby_8036DBC4.cpp",
+        "historical_blob": "2485c6667eaf10eda798d189ed3bae74712f46cf",
+        "owners": {
+          "src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp": "4b3b564eb45145d6794957e6170e3c7293d12f6b"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "The TBGMulti scratch request uses the typed provider at the existing window buffer word.",
+            "details": {
+              "scoped_outcome": "Recovered scoped scratch consumer adaptation",
+              "full_path_comparison": {
+                "ledger_line": 5521,
+                "historical_path": "src/pso/misc/TLobby_8036DBC4.cpp",
+                "audited_owner": "src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp",
+                "authored_unified_hunks": 3,
+                "authored_patch": "row-5521-authored.patch",
+                "assessment": "scoped evidence only",
+                "evidence": "The historical TBGMulti constructor used u8 * elements for its scratch buffer slots. The current caller still adapts the typed acquisition to an integer buffer representation."
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5829,
+        "historical_path": "src/pso/misc/TWindowSubComCard_80244774.cpp",
+        "historical_blob": "9eb07b0b38d68ed03fa2323258d803d9d4df08c4",
+        "owners": {
+          "src/pso/ui/window/TWindowSubComCard_80244774.cpp": "a20caad8746d52fe9dd7bada05b9fde470700135"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "The card-window scratch acquisition uses the shared pointer contract. Existing window layout and input owners are kept.",
+            "details": {
+              "scoped_outcome": "Recovered scoped scratch consumer adaptation",
+              "full_path_comparison": {
+                "ledger_line": 5829,
+                "historical_path": "src/pso/misc/TWindowSubComCard_80244774.cpp",
+                "audited_owner": "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+                "authored_unified_hunks": 25,
+                "authored_patch": "row-5829-authored.patch",
+                "assessment": "scoped evidence only",
+                "evidence": "Full authored source equivalence was not established. Retain the scoped evidence in source-ledger.json."
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6475,
+        "historical_path": "src/pso/misc/TQuestListOnline_80217464.cpp",
+        "historical_blob": "98e1419b302d6b9b29e476958d8ee2380ec41251",
+        "owners": {
+          "src/pso/quest/TQuestListOnline.cpp": "aa1fd836079ad35efc9bab0c99007cde69657e91"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "All seven authored hunks are present in TQuestListOnline.cpp. TWindowBase owns the four cleanup sites. TWindowMenuIconLine owns cursor selection, which uses the original 0x98 stride and +0xC. The string at 0x8044BEB0 is the native scratch owner. Both free/acquire and occupied/conditional-release paths are present. Most of these changes predate the replay. The replay replaces the acquired cursor's integer representation with the actual pointer.",
+            "details": {
+              "scoped_outcome": "Recovered scoped online buffer logic",
+              "full_path_comparison": {
+                "ledger_line": 6475,
+                "historical_path": "src/pso/misc/TQuestListOnline_80217464.cpp",
+                "audited_owner": "src/pso/quest/TQuestListOnline.cpp",
+                "authored_unified_hunks": 7,
+                "authored_patch": "row-6475-authored.patch",
+                "assessment": "fully represented after replay",
+                "evidence": "All seven authored hunks are present in TQuestListOnline.cpp. TWindowBase owns the four cleanup sites. TWindowMenuIconLine owns cursor selection, which uses the original 0x98 stride and +0xC. The string at 0x8044BEB0 is the native scratch owner. Both free/acquire and occupied/conditional-release paths are present. Most of these changes predate the replay. The replay replaces the acquired cursor's integer representation with the actual pointer."
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6513,
+        "historical_path": "src/pso/object/TObjFish_8001ED90.cpp",
+        "historical_blob": "c6ac6786be0b1dc13ab5df03bd3569feab35edba",
+        "owners": {
+          "src/pso/unk/TLobby_8001EF5C.cpp": "be432b2b0b80282f3807618cde80e77825da56e0"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "Original d2b6c752f8 type at 0x8001EEFC is replayed on the consolidated native owner.",
+            "details": {
+              "scoped_outcome": "Recovered scratch provider",
+              "full_path_comparison": {
+                "ledger_line": 6513,
+                "historical_path": "src/pso/object/TObjFish_8001ED90.cpp",
+                "audited_owner": "src/pso/unk/TLobby_8001EF5C.cpp",
+                "authored_unified_hunks": 3,
+                "authored_patch": "row-6513-authored.patch",
+                "assessment": "scoped evidence only",
+                "evidence": "The modeled BML fields, storage, and scratch ownership functions are all present. The changed historical strcmp declaration and call argument constness retain the independent current raw declaration and casts, so this full file-level source closure is deferred."
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6747,
+        "historical_path": "src/pso/quest/TQuestListVM.cpp",
+        "historical_blob": "38a5d3d7dc2b995910a572af3fa4da6d94e9c976",
+        "owners": {
+          "src/pso/quest/TQuestListVM.cpp": "556949503991588d8107c83a35c6d3ff37d6dd32"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "Both VM request paths use the borrowed byte pointer directly. Existing native CardSaveDescriptor, card poll, localized strings and VM storage definitions remain exact.",
+            "details": {
+              "scoped_outcome": "Recovered scoped scratch consumer adaptation",
+              "full_path_comparison": {
+                "ledger_line": 6747,
+                "historical_path": "src/pso/quest/TQuestListVM.cpp",
+                "audited_owner": "src/pso/quest/TQuestListVM.cpp",
+                "authored_unified_hunks": 1,
+                "authored_patch": "row-6747-authored.patch",
+                "assessment": "scoped evidence only",
+                "evidence": "The authored diff is a single 970-to-796-line rewrite and includes native card, window, state, and virtual task ownership beyond the scratch provider. The current replay covers the scratch adaptations only."
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6751,
+        "historical_path": "src/pso/quest/TQuestThread.cpp",
+        "historical_blob": "0168725a90d6ef874018987ba48712a8b804563d",
+        "owners": {
+          "src/pso/quest/TQuestThread.cpp": "e52cdaf68819354ea2e67715f3fad3540cb477af"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "The online quest script accessors and their two thread creation branches use native BIN bytes while preserving the current task lifetime and joined paths.",
+            "details": {
+              "scoped_outcome": "Recovered scoped script consumer",
+              "full_path_comparison": {
+                "ledger_line": 6751,
+                "historical_path": "src/pso/quest/TQuestThread.cpp",
+                "audited_owner": "src/pso/quest/TQuestThread.cpp",
+                "authored_unified_hunks": 27,
+                "authored_patch": "row-6751-authored.patch",
+                "assessment": "scoped evidence only",
+                "evidence": "Full authored source equivalence was not established. Retain the scoped evidence in source-ledger.json."
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6786,
+        "historical_path": "src/pso/misc/TQuestListOnline.cpp",
+        "historical_blob": "0dcf621753b4d8c7e0440a81774812149d6fadc9",
+        "owners": {
+          "src/pso/quest/TQuestListOnline.cpp": "aa1fd836079ad35efc9bab0c99007cde69657e91"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "The original online quest records now have a typed loader, and acquisition, request reset and decompression use the actual pointer representation. Existing browse/selection/window code remains under its consolidated upstream owner.",
+            "details": {
+              "scoped_outcome": "Recovered scoped online buffer logic",
+              "full_path_comparison": {
+                "ledger_line": 6786,
+                "historical_path": "src/pso/misc/TQuestListOnline.cpp",
+                "audited_owner": "src/pso/quest/TQuestListOnline.cpp",
+                "authored_unified_hunks": 14,
+                "authored_patch": "row-6786-authored.patch",
+                "assessment": "scoped evidence only",
+                "evidence": "Full authored source equivalence was not established. Retain the scoped evidence in source-ledger.json."
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7343,
+        "historical_path": "src/pso/misc/TLobby_801F3A24.cpp",
+        "historical_blob": "66be452222e98d6fef95d678c33eb5aaf88fd58d",
+        "owners": {
+          "src/pso/unk/TLobby_801F3A24.cpp": "2d69310c74bc12c4a3441a80901e29856ff46ac4"
+        },
+        "proofs": [
+          {
+            "group": "quest",
+            "evidence": "At 0x801F41D4 all online and VM DAT paths explicitly pass the pointer formerly forwarded only through PPC r3. Existing mode ordering and map-count/reset behavior remain exact.",
+            "details": {
+              "scoped_outcome": "Recovered explicit stage routing",
+              "full_path_comparison": {
+                "ledger_line": 7343,
+                "historical_path": "src/pso/misc/TLobby_801F3A24.cpp",
+                "audited_owner": "src/pso/unk/TLobby_801F3A24.cpp",
+                "authored_unified_hunks": 6,
+                "authored_patch": "row-7343-authored.patch",
+                "assessment": "scoped evidence only",
+                "evidence": "Full authored source equivalence was not established. Retain the scoped evidence in source-ledger.json."
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 206,
+        "historical_path": "include/pso/misc/TWindowChatSymbol.h",
+        "historical_blob": "82a897358a8a301114a2a85e9bc881292885cd91",
+        "owners": {
+          "include/pso/ui/chat/TWindowChatSymbol.h": "a70889d29124048c0500a649f1b850406f5c21cf"
+        },
+        "proofs": [
+          {
+            "group": "symbol-chat",
+            "evidence": "All original constructors, virtual methods, preset selection/visibility declarations and the 0x68 size contract match the native base.",
+            "details": {
+              "row": 206,
+              "historical_path": "include/pso/misc/TWindowChatSymbol.h",
+              "historical_blob": "82a897358a8a301114a2a85e9bc881292885cd91",
+              "outcome": "complete already carried",
+              "active": {
+                "include/pso/ui/chat/TWindowChatSymbol.h": "a70889d29124048c0500a649f1b850406f5c21cf"
+              },
+              "proof": "All original constructors, virtual methods, preset selection/visibility declarations and the 0x68 size contract match the native base."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 207,
+        "historical_path": "include/pso/misc/TWindowChatSymbol_802486A8.h",
+        "historical_blob": "671c0d999c6dc296b6cd061499636e8c54798ded",
+        "owners": {
+          "include/pso/ui/chat/TWindowChatSymbol_802486A8.h": "8db56539699d9948da9236305ba54a343187e203"
+        },
+        "proofs": [
+          {
+            "group": "symbol-chat",
+            "evidence": "The historical compatibility header contains only the include of the native TWindowChatSymbol declaration. The active compatibility header preserves that include.",
+            "details": {
+              "row": 207,
+              "historical_path": "include/pso/misc/TWindowChatSymbol_802486A8.h",
+              "historical_blob": "671c0d999c6dc296b6cd061499636e8c54798ded",
+              "outcome": "complete already carried",
+              "active": {
+                "include/pso/ui/chat/TWindowChatSymbol_802486A8.h": "8db56539699d9948da9236305ba54a343187e203"
+              },
+              "proof": "The historical compatibility header contains only the include of the native TWindowChatSymbol declaration. The active compatibility header preserves that include."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 217,
+        "historical_path": "include/pso/misc/TWindowSubSymbolChatParts.h",
+        "historical_blob": "c4c5cc55affe04fbbd24be39d525ad1cb50e392a",
+        "owners": {
+          "include/pso/ui/chat/TWindowSubSymbolChatParts.h": "1e59bab0bc4c92d94ba06f1569b413325ea327dd",
+          "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp": "cdb8df51d717c7f92fdeb3cf7179b65b887e7516",
+          "src/pso/ui/chat/TWindowSubSymbolChat.cpp": "a0f07fd62743969473779b1b2449772d66ea7c70"
+        },
+        "proofs": [
+          {
+            "group": "symbol-chat",
+            "evidence": "Native constructor, slots, scroll storage, renderer, run loop and named layout agree. The three explicitly Parts-typed historical helpers were still attached to the surrounding editor. The new native members replace those declarations and all five callers. The original free fn_80284FB8 is the already-present exact sub_80284FB8 member at its retail address.",
+            "details": {
+              "row": 217,
+              "historical_path": "include/pso/misc/TWindowSubSymbolChatParts.h",
+              "historical_blob": "c4c5cc55affe04fbbd24be39d525ad1cb50e392a",
+              "outcome": "complete with new typed closure",
+              "active": {
+                "include/pso/ui/chat/TWindowSubSymbolChatParts.h": "1e59bab0bc4c92d94ba06f1569b413325ea327dd",
+                "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp": "cdb8df51d717c7f92fdeb3cf7179b65b887e7516",
+                "src/pso/ui/chat/TWindowSubSymbolChat.cpp": "a0f07fd62743969473779b1b2449772d66ea7c70"
+              },
+              "proof": "Native constructor, slots, scroll storage, renderer, run loop and named layout agree. The three explicitly Parts-typed historical helpers were still attached to the surrounding editor. The new native members replace those declarations and all five callers. The original free fn_80284FB8 is the already-present exact sub_80284FB8 member at its retail address."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 220,
+        "historical_path": "include/pso/unk/text_802841FC.h",
+        "historical_blob": "200fb807e18a419da26ec23d5b1f43c06cc265c4",
+        "owners": {
+          "include/pso/ui/chat/TWindowSubSymbolChatFaceType.h": "c2a9d3108a6cffd6342dabe286cec8081d9b1f98"
+        },
+        "proofs": [
+          {
+            "group": "symbol-chat",
+            "evidence": "The original text_802841FC header merely included the native face-type declaration. The current owner contains its constructor and typed borrowed selection.",
+            "details": {
+              "row": 220,
+              "historical_path": "include/pso/unk/text_802841FC.h",
+              "historical_blob": "200fb807e18a419da26ec23d5b1f43c06cc265c4",
+              "outcome": "complete already carried",
+              "active": {
+                "include/pso/ui/chat/TWindowSubSymbolChatFaceType.h": "c2a9d3108a6cffd6342dabe286cec8081d9b1f98"
+              },
+              "proof": "The original text_802841FC header merely included the native face-type declaration. The current owner contains its constructor and typed borrowed selection."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 226,
+        "historical_path": "src/pso/misc/TWindowChatSymbol_802486A8.cpp",
+        "historical_blob": "a448159633d6c1abfffd844527da2eaee55e27b0",
+        "owners": {
+          "src/pso/ui/chat/TWindowChatSymbol.cpp": "ea468532824c6f8254585fbdd342de76395eaa78",
+          "src/pso/ui/chat/TUnk_804CE7D0.cpp": "58cc522b7cdbad138c67b7fab0972e36643c6b5a"
+        },
+        "proofs": [
+          {
+            "group": "symbol-chat",
+            "evidence": "The native 0x58-byte symbol-window destructor and 0x74-byte constructor are exact. The same descriptor and storage updates remain, and the original separate controller render, run and destructor bodies live on TUnk_804CE7D0.",
+            "details": {
+              "row": 226,
+              "historical_path": "src/pso/misc/TWindowChatSymbol_802486A8.cpp",
+              "historical_blob": "a448159633d6c1abfffd844527da2eaee55e27b0",
+              "outcome": "complete already carried",
+              "active": {
+                "src/pso/ui/chat/TWindowChatSymbol.cpp": "ea468532824c6f8254585fbdd342de76395eaa78",
+                "src/pso/ui/chat/TUnk_804CE7D0.cpp": "58cc522b7cdbad138c67b7fab0972e36643c6b5a"
+              },
+              "proof": "The native 0x58-byte symbol-window destructor and 0x74-byte constructor are exact. The same descriptor and storage updates remain, and the original separate controller render, run and destructor bodies live on TUnk_804CE7D0."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 235,
+        "historical_path": "src/pso/misc/TWindowSubSymbolChatFaceType.cpp",
+        "historical_blob": "39952e84324a983d17fdc6ebe302149b1b5daf5c",
+        "owners": {
+          "src/pso/ui/chat/TWindowSubSymbolChatFaceType.cpp": "afd14c7294eb0739c9b32da641780acaf8dd7644"
+        },
+        "proofs": [
+          {
+            "group": "symbol-chat",
+            "evidence": "The native destructor and constructor retain ownership of the heading, the 20-byte descriptor, mode bytes and borrowed face selection across the folded face-type translation unit.",
+            "details": {
+              "row": 235,
+              "historical_path": "src/pso/misc/TWindowSubSymbolChatFaceType.cpp",
+              "historical_blob": "39952e84324a983d17fdc6ebe302149b1b5daf5c",
+              "outcome": "complete already carried",
+              "active": {
+                "src/pso/ui/chat/TWindowSubSymbolChatFaceType.cpp": "afd14c7294eb0739c9b32da641780acaf8dd7644"
+              },
+              "proof": "The native destructor and constructor retain ownership of the heading, the 20-byte descriptor, mode bytes and borrowed face selection across the folded face-type translation unit."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 238,
+        "historical_path": "src/pso/unk/text_80248840.cpp",
+        "historical_blob": "a2a44af0233f668dc873aaa63beb1dde7f174d93",
+        "owners": {
+          "src/pso/ui/chat/TUnk_804CE7D0.cpp": "58cc522b7cdbad138c67b7fab0972e36643c6b5a"
+        },
+        "proofs": [
+          {
+            "group": "symbol-chat",
+            "evidence": "The original 12-preset selection controller constructor is a native TObject constructor at 0x80248840. It creates the preset list, preserves both render paths and heading/scroll setup, and constructs the native symbol preview at the original geometry.",
+            "details": {
+              "row": 238,
+              "historical_path": "src/pso/unk/text_80248840.cpp",
+              "historical_blob": "a2a44af0233f668dc873aaa63beb1dde7f174d93",
+              "outcome": "complete already carried",
+              "active": {
+                "src/pso/ui/chat/TUnk_804CE7D0.cpp": "58cc522b7cdbad138c67b7fab0972e36643c6b5a"
+              },
+              "proof": "The original 12-preset selection controller constructor is a native TObject constructor at 0x80248840. It creates the preset list, preserves both render paths and heading/scroll setup, and constructs the native symbol preview at the original geometry."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 254,
+        "historical_path": "src/pso/misc/TWindowSubSymbolChatParts.cpp",
+        "historical_blob": "c90f4ddcf0f12af227fadf4553217ea9afe438fd",
+        "owners": {
+          "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp": "cdb8df51d717c7f92fdeb3cf7179b65b887e7516"
+        },
+        "proofs": [
+          {
+            "group": "symbol-chat",
+            "evidence": "Constructor 0x80285D38, native scrollbar setup and the three native Parts receivers are proved by the linked build. Other historical code and declaration differences within this larger implementation were not used to close its full ledger row.",
+            "details": {
+              "row": 254,
+              "historical_path": "src/pso/misc/TWindowSubSymbolChatParts.cpp",
+              "historical_blob": "c90f4ddcf0f12af227fadf4553217ea9afe438fd",
+              "outcome": "scoped",
+              "active": {
+                "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp": "cdb8df51d717c7f92fdeb3cf7179b65b887e7516"
+              },
+              "proof": "Constructor 0x80285D38, native scrollbar setup and the three native Parts receivers are proved by the linked build. Other historical code and declaration differences within this larger implementation were not used to close its full ledger row."
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 255,
+        "historical_path": "src/pso/misc/TWindowSubSymbolChatHelp.cpp",
+        "historical_blob": "a294c652737f388dbaa962204c5f356e3efa40b7",
+        "owners": {
+          "src/pso/ui/chat/TWindowSubSymbolChatHelp.cpp": "bb2b93bb8db930d1011cb67b66548f590cfb12df",
+          "include/pso/ui/chat/TWindowSubSymbolChatHelp.h": "7fc53953a87de520fed2199b98bfa97f8b685439"
+        },
+        "proofs": [
+          {
+            "group": "symbol-chat",
+            "evidence": "The typed help constructor, flag and borrowed target operations, palette and help input are in the native window. This note only proves those portions of the longer historical source row.",
+            "details": {
+              "row": 255,
+              "historical_path": "src/pso/misc/TWindowSubSymbolChatHelp.cpp",
+              "historical_blob": "a294c652737f388dbaa962204c5f356e3efa40b7",
+              "outcome": "scoped",
+              "active": {
+                "src/pso/ui/chat/TWindowSubSymbolChatHelp.cpp": "bb2b93bb8db930d1011cb67b66548f590cfb12df",
+                "include/pso/ui/chat/TWindowSubSymbolChatHelp.h": "7fc53953a87de520fed2199b98bfa97f8b685439"
+              },
+              "proof": "The typed help constructor, flag and borrowed target operations, palette and help input are in the native window. This note only proves those portions of the longer historical source row."
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 285,
+        "historical_path": "src/pso/misc/TWindowSubSymbolChatFaceType_80283A70.cpp",
+        "historical_blob": "d0dcd1b6c2ece26d5319972608ac6a8d52f3559d",
+        "owners": {
+          "src/pso/ui/chat/TWindowSubSymbolChatFaceType.cpp": "afd14c7294eb0739c9b32da641780acaf8dd7644"
+        },
+        "proofs": [
+          {
+            "group": "symbol-chat",
+            "evidence": "The former input, textured quad, layout, render and task functions are owned by the current native face-type source. This note records the folded owner and does not classify every declaration in the older slice.",
+            "details": {
+              "row": 285,
+              "historical_path": "src/pso/misc/TWindowSubSymbolChatFaceType_80283A70.cpp",
+              "historical_blob": "d0dcd1b6c2ece26d5319972608ac6a8d52f3559d",
+              "outcome": "scoped",
+              "active": {
+                "src/pso/ui/chat/TWindowSubSymbolChatFaceType.cpp": "afd14c7294eb0739c9b32da641780acaf8dd7644"
+              },
+              "proof": "The former input, textured quad, layout, render and task functions are owned by the current native face-type source. This note records the folded owner and does not classify every declaration in the older slice."
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 289,
+        "historical_path": "include/pso/misc/TWindowSubSymbolChat.h",
+        "historical_blob": "113d49977d7bcb34e99b97b800a870d680e04ba5",
+        "owners": {
+          "include/pso/ui/chat/TWindowSubSymbolChat.h": "24913eee0b1ff40c640cf53853fdf347d3273789",
+          "include/pso/ui/chat/TWindowSubSymbolChatHelp.h": "7fc53953a87de520fed2199b98bfa97f8b685439",
+          "include/pso/ui/chat/TWindowSubSymbolChatParts.h": "1e59bab0bc4c92d94ba06f1569b413325ea327dd"
+        },
+        "proofs": [
+          {
+            "group": "symbol-chat",
+            "evidence": "The help flags and Parts controls are on their native objects, including the new five corrected callers. This is a scoped proof for the wider editor header.",
+            "details": {
+              "row": 289,
+              "historical_path": "include/pso/misc/TWindowSubSymbolChat.h",
+              "historical_blob": "113d49977d7bcb34e99b97b800a870d680e04ba5",
+              "outcome": "scoped",
+              "active": {
+                "include/pso/ui/chat/TWindowSubSymbolChat.h": "24913eee0b1ff40c640cf53853fdf347d3273789",
+                "include/pso/ui/chat/TWindowSubSymbolChatHelp.h": "7fc53953a87de520fed2199b98bfa97f8b685439",
+                "include/pso/ui/chat/TWindowSubSymbolChatParts.h": "1e59bab0bc4c92d94ba06f1569b413325ea327dd"
+              },
+              "proof": "The help flags and Parts controls are on their native objects, including the new five corrected callers. This is a scoped proof for the wider editor header."
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 293,
+        "historical_path": "src/pso/misc/TWindowSubSymbolChat_80281814.cpp",
+        "historical_blob": "e3e69f1db6fdcaa218015ddfb51033c44efd7b0f",
+        "owners": {
+          "src/pso/ui/chat/TWindowSubSymbolChat.cpp": "a0f07fd62743969473779b1b2449772d66ea7c70"
+        },
+        "proofs": [
+          {
+            "group": "symbol-chat",
+            "evidence": "The original Parts receiver is preserved at all five historical start, resize and select/scroll sites. Native callback, texture and keyboard provider evidence is outside this exact-call note.",
+            "details": {
+              "row": 293,
+              "historical_path": "src/pso/misc/TWindowSubSymbolChat_80281814.cpp",
+              "historical_blob": "e3e69f1db6fdcaa218015ddfb51033c44efd7b0f",
+              "outcome": "scoped",
+              "active": {
+                "src/pso/ui/chat/TWindowSubSymbolChat.cpp": "a0f07fd62743969473779b1b2449772d66ea7c70"
+              },
+              "proof": "The original Parts receiver is preserved at all five historical start, resize and select/scroll sites. Native callback, texture and keyboard provider evidence is outside this exact-call note."
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 300,
+        "historical_path": "src/pso/misc/TWindowSubSymbolChat_80285E10.cpp",
+        "historical_blob": "fc72286f6bd567772585dccc00e423eaa425a448",
+        "owners": {
+          "src/pso/ui/chat/TWindowSubSymbolChatPartsSet.cpp": "71ee5558d4f3162efe1848c0145bb5e176ee57cf",
+          "src/pso/ui/chat/TWindowChatSymbol.cpp": "ea468532824c6f8254585fbdd342de76395eaa78"
+        },
+        "proofs": [
+          {
+            "group": "symbol-chat",
+            "evidence": "The old split defines three routines, all present in the active PartsSet source. The only substantive source delta is that both affected routines call get_entry_offset_1/5/9 through the real PartsSet receiver. The original 2.0 scale is still emitted at 0x805DD810.",
+            "details": {
+              "row": 300,
+              "historical_path": "src/pso/misc/TWindowSubSymbolChat_80285E10.cpp",
+              "historical_blob": "fc72286f6bd567772585dccc00e423eaa425a448",
+              "outcome": "complete already carried",
+              "active": {
+                "src/pso/ui/chat/TWindowSubSymbolChatPartsSet.cpp": "71ee5558d4f3162efe1848c0145bb5e176ee57cf",
+                "src/pso/ui/chat/TWindowChatSymbol.cpp": "ea468532824c6f8254585fbdd342de76395eaa78"
+              },
+              "proof": "The old split defines three routines, all present in the active PartsSet source. The only substantive source delta is that both affected routines call get_entry_offset_1/5/9 through the real PartsSet receiver. The original 2.0 scale is still emitted at 0x805DD810."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5484,
+        "historical_path": "include/pso/misc/TWindowShortCut.h",
+        "historical_blob": "e364c2fff37474abe5abb6413d9833cde12e29e7",
+        "owners": {
+          "include/pso/ui/window/TWindowShortCut.h": "3e546d71a63d04b051540a0c0a089c5fc9138f20"
+        },
+        "proofs": [
+          {
+            "group": "symbol-chat",
+            "evidence": "Native constructor/destructor and render/task declarations preserve the 0x74 size and heading, message, symbol, index and borrowed shortcut record fields. initialize_preview is the same linked show_shortcut method at 0x8026E1D4.",
+            "details": {
+              "row": 5484,
+              "historical_path": "include/pso/misc/TWindowShortCut.h",
+              "historical_blob": "e364c2fff37474abe5abb6413d9833cde12e29e7",
+              "outcome": "complete already carried",
+              "active": {
+                "include/pso/ui/window/TWindowShortCut.h": "3e546d71a63d04b051540a0c0a089c5fc9138f20"
+              },
+              "proof": "Native constructor/destructor and render/task declarations preserve the 0x74 size and heading, message, symbol, index and borrowed shortcut record fields. initialize_preview is the same linked show_shortcut method at 0x8026E1D4."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5567,
+        "historical_path": "src/pso/misc/TWindowShortCut.cpp",
+        "historical_blob": "6a49777b8dfa28e6ff612b8c9342b1aa06749173",
+        "owners": {
+          "src/pso/ui/window/TWindowShortCut.cpp": "316d8d7735181e85b9d94a82012271b0950ba44d"
+        },
+        "proofs": [
+          {
+            "group": "symbol-chat",
+            "evidence": "The constructor, destructor, render and task preserve the original layout and all child release paths. The current native methods call the same code targets and use the native typed window context.",
+            "details": {
+              "row": 5567,
+              "historical_path": "src/pso/misc/TWindowShortCut.cpp",
+              "historical_blob": "6a49777b8dfa28e6ff612b8c9342b1aa06749173",
+              "outcome": "complete already carried",
+              "active": {
+                "src/pso/ui/window/TWindowShortCut.cpp": "316d8d7735181e85b9d94a82012271b0950ba44d"
+              },
+              "proof": "The constructor, destructor, render and task preserve the original layout and all child release paths. The current native methods call the same code targets and use the native typed window context."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5590,
+        "historical_path": "src/pso/misc/TWindowSubStatusDisp_8026DFE8.cpp",
+        "historical_blob": "6bd1e6be6d1d161fa46c99ee94263f7a67eacfd1",
+        "owners": {
+          "src/pso/ui/window/TWindowShortCut.cpp": "316d8d7735181e85b9d94a82012271b0950ba44d"
+        },
+        "proofs": [
+          {
+            "group": "symbol-chat",
+            "evidence": "The shortcut text, word-select and symbol preview paths at 0x8026E1D4 include the original named literal pool at 0x805DD348\u20130x805DD37C. The old source also contains the separate TUnk_804D0948 window and this note does not claim that unrelated portion.",
+            "details": {
+              "row": 5590,
+              "historical_path": "src/pso/misc/TWindowSubStatusDisp_8026DFE8.cpp",
+              "historical_blob": "6bd1e6be6d1d161fa46c99ee94263f7a67eacfd1",
+              "outcome": "scoped",
+              "active": {
+                "src/pso/ui/window/TWindowShortCut.cpp": "316d8d7735181e85b9d94a82012271b0950ba44d"
+              },
+              "proof": "The shortcut text, word-select and symbol preview paths at 0x8026E1D4 include the original named literal pool at 0x805DD348\u20130x805DD37C. The old source also contains the separate TUnk_804D0948 window and this note does not claim that unrelated portion."
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      }
+    ],
+    "closed_rows": [
+      206,
+      207,
+      217,
+      220,
+      226,
+      235,
+      238,
+      300,
+      440,
+      534,
+      576,
+      725,
+      823,
+      943,
+      1182,
+      3374,
+      3627,
+      3708,
+      3746,
+      3747,
+      3881,
+      4028,
+      4216,
+      4379,
+      5181,
+      5226,
+      5400,
+      5404,
+      5407,
+      5416,
+      5484,
+      5567,
+      6475
+    ],
+    "remaining": {
+      "Owner comparison required": 719,
+      "Some anchored text changes found": 1045
+    }
+  },
+  "upstream_review_candidates": {
+    "standalone-weapon-factory-registry": {
+      "head": "71b80f8ba00d44170da5d1997df6414702a845c9",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Weapon factory table, original slot targets and typed item records",
+      "files": 38,
+      "source_paths": [
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/item/ItemCreateFunction.h",
+        "include/pso/player/TObjPlayer.h",
+        "include/pso/player/TObjPlayer_80121010.h",
+        "include/pso/player/TObjPlayer_80125780.h",
+        "include/pso/unk/text_80129AB0.h",
+        "include/pso/unk/text_80129D18.h",
+        "include/pso/unk/text_8012AE50.h",
+        "include/pso/weapon/TUnk_804A0EA8.h",
+        "include/pso/weapon/TUnk_804A5648.h",
+        "include/pso/weapon/TUnk_804A6200.h",
+        "include/pso/weapon/TUnk_804A66D8.h",
+        "src/pso/effect/item/TItemEffPG_8034F470.cpp",
+        "src/pso/player/TUnk_804A2548.cpp",
+        "src/pso/unk/TLobby_80104374.cpp",
+        "src/pso/weapon/TItemWeapon.cpp",
+        "src/pso/weapon/TUnk_804A0AC4.cpp",
+        "src/pso/weapon/TUnk_804A0DB0.cpp",
+        "src/pso/weapon/TUnk_804A0EA8.cpp",
+        "src/pso/weapon/TUnk_804A1570.cpp",
+        "src/pso/weapon/TUnk_804A1D30.cpp",
+        "src/pso/weapon/TUnk_804A2E80.cpp",
+        "src/pso/weapon/TUnk_804A2F78.cpp",
+        "src/pso/weapon/TUnk_804A3928.cpp",
+        "src/pso/weapon/TUnk_804A3F20.cpp",
+        "src/pso/weapon/TUnk_804A403C.cpp",
+        "src/pso/weapon/TUnk_804A444C.cpp",
+        "src/pso/weapon/TUnk_804A4548.cpp",
+        "src/pso/weapon/TUnk_804A4748.cpp",
+        "src/pso/weapon/TUnk_804A4848.cpp",
+        "src/pso/weapon/TUnk_804A4B80.cpp",
+        "src/pso/weapon/TUnk_804A535C.cpp",
+        "src/pso/weapon/TUnk_804A5648.cpp",
+        "src/pso/weapon/TUnk_804A6200.cpp",
+        "src/pso/weapon/TUnk_804A65E0.cpp",
+        "src/pso/weapon/TUnk_804A66D8.cpp",
+        "src/pso/weapon/TUnk_804A67D0.cpp",
+        "src/pso/weapon/TUnk_804A69DC.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "11066cd8903fda0460807f0ccbebfe4bdbee58622b83c1946fb9fd8105241a13",
+      "check_sha256": "2a31418529c5656ae2ea1b04cc3dcf0b25823756e74df26e4b0174cc1cb8b911",
+      "previous": null
+    },
+    "standalone-enemy-registration-and-formations": {
+      "head": "5f3420ae256c8ef4cfdde60e8fcd3fbc35372e26",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Enemy registration, formations, Recon and Recobox, targeting and transition hooks",
+      "files": 83,
+      "source_paths": [
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/boss/goldragon/TBoss8Dragon.h",
+        "include/pso/boss/goldragon/TBoss8Dragon_800BB650.h",
+        "include/pso/boss/volopt/TBoss3Volopt.h",
+        "include/pso/enemy/EnemyMovement.h",
+        "include/pso/enemy/EnemyTargeting.h",
+        "include/pso/enemy/EnemyUnknownHooks.h",
+        "include/pso/enemy/TObjEnemy.h",
+        "include/pso/enemy/darkgunner/DarkGunner.h",
+        "include/pso/enemy/darkgunner/TObjEneDarkGunCenter.h",
+        "include/pso/enemy/dd/TObjEneDD.h",
+        "include/pso/enemy/dd/TObjEneDD_ST.h",
+        "include/pso/enemy/epsilon/TObjEneEpsilon_800B92AC.h",
+        "include/pso/enemy/recon/TObjEneRecobox.h",
+        "include/pso/enemy/recon/TObjEneRecobox_8031FCB0.h",
+        "include/pso/enemy/recon/TObjEneRecon.h",
+        "include/pso/enemy/recon/TObjEneRecon_8031D780.h",
+        "include/pso/enemy/recon/TObjEneRecon_8031E574.h",
+        "include/pso/enemy/recon/TObjEneRecon_8031F408.h",
+        "include/pso/enemy/recon/TObjEneRecon_8031F600.h",
+        "include/pso/enemy/recon/TObjEneRecon_8031FACC.h",
+        "include/pso/player/TObjPlayer.h",
+        "src/pso/boss/barbaray/TBoss7Crawfish.cpp",
+        "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+        "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+        "src/pso/boss/darkfalz/TBoss4Type3.cpp",
+        "src/pso/boss/darkfalz/TBoss4Zako.cpp",
+        "src/pso/boss/darkfalz/TBoss4Zanzo.cpp",
+        "src/pso/boss/darkfalz/TObjDFHorming.cpp",
+        "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+        "src/pso/boss/derolle/TObjBoss2CeilJunk.cpp",
+        "src/pso/boss/dragon/TBoss1Dragon.cpp",
+        "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+        "src/pso/boss/olgaflow/TBoss6MagMine.cpp",
+        "src/pso/boss/olgaflow/TBoss6Mine.cpp",
+        "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+        "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+        "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+        "src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp",
+        "src/pso/boss/volopt/TBoss3Volopt.cpp",
+        "src/pso/boss/volopt/TBoss3VoloptCore.cpp",
+        "src/pso/boss/volopt/TBoss3VoloptHiraisin.cpp",
+        "src/pso/boss/volopt/TBoss3VoloptMonitor.cpp",
+        "src/pso/boss/volopt/TBoss3VoloptP01.cpp",
+        "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+        "src/pso/boss/volopt/TObjVoloptCage.cpp",
+        "src/pso/enemy/EnemyFactoryTables.cpp",
+        "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+        "src/pso/enemy/beast/TObjEneBeast_800C4E08.cpp",
+        "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp",
+        "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+        "src/pso/enemy/darkgunner/DarkGunner.cpp",
+        "src/pso/enemy/darkgunner/TObjEneDarkGunCenter.cpp",
+        "src/pso/enemy/dd/TObjEneDD.cpp",
+        "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+        "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+        "src/pso/enemy/dubchik/TOCtrlDubchik_8015CA74.cpp",
+        "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp",
+        "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+        "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+        "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+        "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+        "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+        "src/pso/enemy/lappy/TObjEneLappy_800F5DE0.cpp",
+        "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+        "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+        "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+        "src/pso/enemy/recon/TObjEneRecobox_8031E800.cpp",
+        "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+        "src/pso/enemy/recon/TObjEneRecon.cpp",
+        "src/pso/enemy/recon/TObjEneReconBomb.cpp",
+        "src/pso/enemy/recon/TObjEneRecon_80320350.cpp",
+        "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+        "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+        "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+        "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp",
+        "src/pso/object/TObjControl.cpp",
+        "src/pso/object/collision/TObjFogCollision.cpp",
+        "src/pso/render/TUnk_80490470.cpp",
+        "src/pso/unk/TLobby_800F5CF0.cpp",
+        "src/pso/unk/text_800C2A88.cpp",
+        "src/pso/unk/text_800C2CE0.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "db359c9e117024cee5c3fa0e7cdfa0f8b1dca8651e6356b8e9d3b6e50ddfedb4",
+      "check_sha256": "fb4a17ab8b7e45232759d7927871e7d025787cd2b829e16a7994de6ff5d1f7e7",
+      "previous": "d7da1263d68eb132800e39774a5cb8fbf0b7c2e3"
+    },
+    "standalone-online-quest-transfers": {
+      "head": "b28b618cca53d9768e1e14ec0f134860567f9496",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Online BIN and DAT quest transfers and shared scratch-buffer callers",
+      "files": 22,
+      "source_paths": [
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/quest/OnlineQuestDownloadState.h",
+        "include/pso/quest/TQuestListOnline.h",
+        "include/pso/unk/TLobby.h",
+        "src/pso/item/TItemLoad.cpp",
+        "src/pso/item/TItemTexLoad.cpp",
+        "src/pso/quest/TQuestListOnline.cpp",
+        "src/pso/quest/TQuestListVM.cpp",
+        "src/pso/quest/TQuestListVM_801F4398.cpp",
+        "src/pso/quest/TQuestThread.cpp",
+        "src/pso/system/TGStream.cpp",
+        "src/pso/system/TLanguage_80132A5C.cpp",
+        "src/pso/ui/city/THunterGuildSeqOffline_80213788.cpp",
+        "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp",
+        "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp",
+        "src/pso/unk/TLobby_8001EF5C.cpp",
+        "src/pso/unk/TLobby_800F8AA8.cpp",
+        "src/pso/unk/TLobby_801E43E4.cpp",
+        "src/pso/unk/TLobby_801F3A24.cpp",
+        "src/pso/unk/text_800FA464.cpp",
+        "src/pso/weapon/TItemAttacker.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "83c1ab27dcd8940a1379fc048da8fa61b2c7f70b7c2e51000be07f4681928cc7",
+      "check_sha256": "fdfe31cc03d818a709d82be5d8b8745e462fa4041109d2c465de0548a91f90f0",
+      "previous": null
+    },
+    "standalone-symbol-chat-and-shortcut-preview": {
+      "head": "4a784b7ec917af9089387b5ba9bb00a56ef1a863",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "scope": "Symbol Chat Parts and shortcut preview, selection and activation",
+      "files": 20,
+      "source_paths": [
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/ui/chat/TWindowChatSymbol.h",
+        "include/pso/ui/chat/TWindowChatSymbol_802486A8.h",
+        "include/pso/ui/chat/TWindowSubSymbolChat.h",
+        "include/pso/ui/chat/TWindowSubSymbolChatFaceType.h",
+        "include/pso/ui/chat/TWindowSubSymbolChatHelp.h",
+        "include/pso/ui/chat/TWindowSubSymbolChatParts.h",
+        "include/pso/ui/chat/TWindowSubSymbolChatPartsSet.h",
+        "include/pso/ui/window/TWindowShortCut.h",
+        "src/pso/ui/chat/TUnk_804CE7D0.cpp",
+        "src/pso/ui/chat/TWindowChatSymbol.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChat.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChatFaceType.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChatHelp.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChatPartsSet.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChat_802838C4.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChat_80283954.cpp",
+        "src/pso/ui/window/TWindowShortCut.cpp",
+        "src/pso/ui/window/TWindowSubShortCut.cpp"
+      ],
+      "validation": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_padding": 30
+        }
+      },
+      "report_sha256": "48763e140160c12aa7f027c584446d26ee8c9346a2ba8912a4ba71c710d35902",
+      "check_sha256": "8ab8e3c64c46e813021bae0e0a6e0d50036bc293e6547e2900f4ecace9f1f837",
+      "previous": null
+    }
+  },
+  "weapon_independent_review": {
+    "independently_reviewed": "71b80f8ba00d44170da5d1997df6414702a845c9",
+    "evidence": "All table pointer targets and the 24 true item-pointer callers are retained. The GameCube branch keeps direct call addresses through the recovered pointer-return ABI. Hosted callers use exact-type adapters."
+  },
+  "weapon_factory_table": {
+    "table_address": "0x8049EB58",
+    "width": 170,
+    "null_slot": 0,
+    "slots": [
+      {
+        "slot": 1,
+        "address": "0x8012CC74",
+        "source": "create_saber_weapon",
+        "previous": "create_saber_weapon__FPUc",
+        "canonical": "create_saber_weapon__FPUc",
+        "upstream": "create_saber_weapon__FPUc"
+      },
+      {
+        "slot": 2,
+        "address": "0x8012F478",
+        "source": "create_sword_weapon",
+        "previous": "create_sword_weapon__FPUc",
+        "canonical": "create_sword_weapon__FPUc",
+        "upstream": "create_sword_weapon__FPUc"
+      },
+      {
+        "slot": 3,
+        "address": "0x80122548",
+        "source": "create_dagger_weapon",
+        "previous": "create_dagger_weapon__FPUc",
+        "canonical": "create_dagger_weapon__FPUc",
+        "upstream": "create_dagger_weapon__FPUc"
+      },
+      {
+        "slot": 4,
+        "address": "0x8012B5C0",
+        "source": "create_partisan_weapon",
+        "previous": "create_partisan_weapon__FPUc",
+        "canonical": "create_partisan_weapon__FPUc",
+        "upstream": "create_partisan_weapon__FPUc"
+      },
+      {
+        "slot": 5,
+        "address": "0x8012DC94",
+        "source": "create_slicer_weapon",
+        "previous": "create_slicer_weapon__FPUc",
+        "canonical": "create_slicer_weapon__FPUc",
+        "upstream": "create_slicer_weapon__FPUc"
+      },
+      {
+        "slot": 6,
+        "address": "0x80126C28",
+        "source": "create_handgun_weapon",
+        "previous": "create_handgun_weapon__FPUc",
+        "canonical": "create_handgun_weapon__FPUc",
+        "upstream": "create_handgun_weapon__FPUc"
+      },
+      {
+        "slot": 7,
+        "address": "0x8012C2D4",
+        "source": "create_rifle_weapon",
+        "previous": "create_rifle_weapon__FPUc",
+        "canonical": "create_rifle_weapon__FPUc",
+        "upstream": "create_rifle_weapon__FPUc"
+      },
+      {
+        "slot": 8,
+        "address": "0x801275E4",
+        "source": "create_mechgun_weapon",
+        "previous": "create_mechgun_weapon__FPUc",
+        "canonical": "create_mechgun_weapon__FPUc",
+        "upstream": "create_mechgun_weapon__FPUc"
+      },
+      {
+        "slot": 9,
+        "address": "0x8012E138",
+        "source": "create_shot_weapon",
+        "previous": "create_shot_weapon__FPUc",
+        "canonical": "create_shot_weapon__FPUc",
+        "upstream": "create_shot_weapon__FPUc"
+      },
+      {
+        "slot": 10,
+        "address": "0x80130238",
+        "source": "create_cane_weapon",
+        "previous": "create_cane_weapon__FPUc",
+        "canonical": "create_cane_weapon__FPUc",
+        "upstream": "create_cane_weapon__FPUc"
+      },
+      {
+        "slot": 11,
+        "address": "0x8012CB2C",
+        "source": "create_rod_weapon",
+        "previous": "create_rod_weapon__FPUc",
+        "canonical": "create_rod_weapon__FPUc",
+        "upstream": "create_rod_weapon__FPUc"
+      },
+      {
+        "slot": 12,
+        "address": "0x80122D74",
+        "source": "create_wand_weapon",
+        "previous": "create_wand_weapon__FPUc",
+        "canonical": "create_wand_weapon__FPUc",
+        "upstream": "create_wand_weapon__FPUc"
+      },
+      {
+        "slot": 13,
+        "address": "0x80123A38",
+        "source": "create_claw_weapon",
+        "previous": "create_claw_weapon__FPUc",
+        "canonical": "create_claw_weapon__FPUc",
+        "upstream": "create_claw_weapon__FPUc"
+      },
+      {
+        "slot": 14,
+        "address": "0x80120FC4",
+        "source": "create_common_weapon",
+        "previous": "create_common_weapon__FPUc",
+        "canonical": "create_common_weapon__FPUc",
+        "upstream": "create_common_weapon__FPUc"
+      },
+      {
+        "slot": 15,
+        "address": "0x80126A34",
+        "source": "create_knuckle_weapon",
+        "previous": "create_knuckle_weapon__FPUc",
+        "canonical": "create_knuckle_weapon__FPUc",
+        "upstream": "create_knuckle_weapon__FPUc"
+      },
+      {
+        "slot": 16,
+        "address": "0x801271A4",
+        "source": "create_agito_weapon",
+        "previous": "create_agito_weapon__FPUc",
+        "canonical": "create_agito_weapon__FPUc",
+        "upstream": "create_agito_weapon__FPUc"
+      },
+      {
+        "slot": 17,
+        "address": "0x8012D3B8",
+        "source": "create_soul_eater_weapon",
+        "previous": "create_soul_eater_weapon__FPUc",
+        "canonical": "create_soul_eater_weapon__FPUc",
+        "upstream": "create_soul_eater_weapon__FPUc"
+      },
+      {
+        "slot": 18,
+        "address": "0x8012E9F8",
+        "source": "TObjPlayer::create_init_state_2",
+        "previous": "create_init_state_2__10TObjPlayerFPUc",
+        "canonical": "create_init_state_2__10TObjPlayerFPUc",
+        "upstream": "create_init_state_2__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 19,
+        "address": "0x8012C0D0",
+        "source": "TObjPlayer::create_handlers_state",
+        "previous": "create_handlers_state__10TObjPlayerFPUc",
+        "canonical": "create_handlers_state__10TObjPlayerFPUc",
+        "upstream": "create_handlers_state__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 20,
+        "address": "0x8012E708",
+        "source": "TObjPlayer::create_inferno_bazooka",
+        "previous": "create_inferno_bazooka__10TObjPlayerFPUc",
+        "canonical": "create_inferno_bazooka__10TObjPlayerFPUc",
+        "upstream": "create_inferno_bazooka__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 21,
+        "address": "0x80126054",
+        "source": "TObjPlayer__sub_80126054",
+        "previous": "TObjPlayer__sub_80126054",
+        "canonical": "TObjPlayer__sub_80126054",
+        "upstream": "TObjPlayer__sub_80126054"
+      },
+      {
+        "slot": 22,
+        "address": "0x80120FC4",
+        "source": "create_common_weapon",
+        "previous": "create_common_weapon__FPUc",
+        "canonical": "create_common_weapon__FPUc",
+        "upstream": "create_common_weapon__FPUc"
+      },
+      {
+        "slot": 23,
+        "address": "0x80123F18",
+        "source": "create_sorcerers_cane",
+        "previous": "create_sorcerers_cane__FPUc",
+        "canonical": "create_sorcerers_cane__FPUc",
+        "upstream": "create_sorcerers_cane__FPUc"
+      },
+      {
+        "slot": 24,
+        "address": "0x8012CF84",
+        "source": "TObjPlayer__sub_8012CF84",
+        "previous": "TObjPlayer__sub_8012CF84",
+        "canonical": "TObjPlayer__sub_8012CF84",
+        "upstream": "TObjPlayer__sub_8012CF84"
+      },
+      {
+        "slot": 25,
+        "address": "0x8012B140",
+        "source": "TObjPlayer::create_obj_8012B140",
+        "previous": "create_obj_8012B140__10TObjPlayerFPUc",
+        "canonical": "create_obj_8012B140__10TObjPlayerFPUc",
+        "upstream": "create_obj_8012B140__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 26,
+        "address": "0x80124068",
+        "source": "create_delsabers_buster_weapon",
+        "previous": "create_delsabers_buster_weapon__FPUc",
+        "canonical": "create_delsabers_buster_weapon__FPUc",
+        "upstream": "create_delsabers_buster_weapon__FPUc"
+      },
+      {
+        "slot": 27,
+        "address": "0x801230D4",
+        "source": "TObjPlayer::create_bringer_effect",
+        "previous": "create_bringer_effect__10TObjPlayerFPUc",
+        "canonical": "create_bringer_effect__10TObjPlayerFPUc",
+        "upstream": "create_bringer_effect__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 28,
+        "address": "0x80125428",
+        "source": "TObjPlayer__sub_80125428",
+        "previous": "TObjPlayer__sub_80125428",
+        "canonical": "TObjPlayer__sub_80125428",
+        "upstream": "TObjPlayer__sub_80125428"
+      },
+      {
+        "slot": 29,
+        "address": "0x8012BD50",
+        "source": "create_psycho_wand",
+        "previous": "create_psycho_wand__FPUc",
+        "canonical": "create_psycho_wand__FPUc",
+        "upstream": "create_psycho_wand__FPUc"
+      },
+      {
+        "slot": 30,
+        "address": "0x8012AE50",
+        "source": "create_heaven_punisher",
+        "previous": "create_heaven_punisher__Fl",
+        "canonical": "create_heaven_punisher__FPUc",
+        "upstream": "create_heaven_punisher__FPUc"
+      },
+      {
+        "slot": 31,
+        "address": "0x8012AB1C",
+        "source": "TObjPlayer__sub_8012AB1C",
+        "previous": "TObjPlayer__sub_8012AB1C",
+        "canonical": "TObjPlayer__sub_8012AB1C",
+        "upstream": "TObjPlayer__sub_8012AB1C"
+      },
+      {
+        "slot": 32,
+        "address": "0x80120FC4",
+        "source": "create_common_weapon",
+        "previous": "create_common_weapon__FPUc",
+        "canonical": "create_common_weapon__FPUc",
+        "upstream": "create_common_weapon__FPUc"
+      },
+      {
+        "slot": 33,
+        "address": "0x80123344",
+        "source": "TObjPlayer::create_state_35",
+        "previous": "create_state_35__10TObjPlayerFPUc",
+        "canonical": "create_state_35__10TObjPlayerFPUc",
+        "upstream": "create_state_35__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 34,
+        "address": "0x80122C2C",
+        "source": "TObjPlayer::create_obj_80122C2C",
+        "previous": "create_obj_80122C2C__10TObjPlayerFPUc",
+        "canonical": "create_obj_80122C2C__10TObjPlayerFPUc",
+        "upstream": "create_obj_80122C2C__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 35,
+        "address": "0x8012EFAC",
+        "source": "TObjPlayer__sub_8012EFAC",
+        "previous": "TObjPlayer__sub_8012EFAC",
+        "canonical": "TObjPlayer__sub_8012EFAC",
+        "upstream": "TObjPlayer__sub_8012EFAC"
+      },
+      {
+        "slot": 36,
+        "address": "0x801277EC",
+        "source": "TObjPlayer__sub_801277EC",
+        "previous": "TObjPlayer__sub_801277EC",
+        "canonical": "TObjPlayer__sub_801277EC",
+        "upstream": "TObjPlayer__sub_801277EC"
+      },
+      {
+        "slot": 37,
+        "address": "0x8012F5A0",
+        "source": "TObjPlayer::create_vtable_804A63F0",
+        "previous": "create_vtable_804A63F0__10TObjPlayerFPUc",
+        "canonical": "create_vtable_804A63F0__10TObjPlayerFPUc",
+        "upstream": "create_vtable_804A63F0__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 38,
+        "address": "0x80126B6C",
+        "source": "create_suppressed_gun_weapon",
+        "previous": "create_suppressed_gun_weapon__FPUc",
+        "canonical": "create_suppressed_gun_weapon__FPUc",
+        "upstream": "create_suppressed_gun_weapon__FPUc"
+      },
+      {
+        "slot": 39,
+        "address": "0x80120FC4",
+        "source": "create_common_weapon",
+        "previous": "create_common_weapon__FPUc",
+        "canonical": "create_common_weapon__FPUc",
+        "upstream": "create_common_weapon__FPUc"
+      },
+      {
+        "slot": 40,
+        "address": "0x80126E50",
+        "source": "TObjPlayer::create_shot_effect_state",
+        "previous": "create_shot_effect_state__10TObjPlayerFl",
+        "canonical": "create_shot_effect_state__10TObjPlayerFPUc",
+        "upstream": "create_shot_effect_state__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 41,
+        "address": "0x80127EE8",
+        "source": "yamigarasu_create",
+        "previous": "yamigarasu_create__FPUc",
+        "canonical": "yamigarasu_create__FPUc",
+        "upstream": "yamigarasu_create__FPUc"
+      },
+      {
+        "slot": 42,
+        "address": "0x80120FC4",
+        "source": "create_common_weapon",
+        "previous": "create_common_weapon__FPUc",
+        "canonical": "create_common_weapon__FPUc",
+        "upstream": "create_common_weapon__FPUc"
+      },
+      {
+        "slot": 43,
+        "address": "0x80120FC4",
+        "source": "create_common_weapon",
+        "previous": "create_common_weapon__FPUc",
+        "canonical": "create_common_weapon__FPUc",
+        "upstream": "create_common_weapon__FPUc"
+      },
+      {
+        "slot": 44,
+        "address": "0x80127B88",
+        "source": "TObjPlayer::create_vtable_804A3548",
+        "previous": "create_vtable_804A3548__10TObjPlayerFPUc",
+        "canonical": "create_vtable_804A3548__10TObjPlayerFPUc",
+        "upstream": "create_vtable_804A3548__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 45,
+        "address": "0x80120FC4",
+        "source": "create_common_weapon",
+        "previous": "create_common_weapon__FPUc",
+        "canonical": "create_common_weapon__FPUc",
+        "upstream": "create_common_weapon__FPUc"
+      },
+      {
+        "slot": 46,
+        "address": "0x80123C50",
+        "source": "TObjPlayer::create_state",
+        "previous": "create_state__10TObjPlayerFl",
+        "canonical": "create_state__10TObjPlayerFPUc",
+        "upstream": "create_state__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 47,
+        "address": "0x80128268",
+        "source": "TObjPlayer::create_shot_params_state",
+        "previous": "create_shot_params_state__10TObjPlayerFl",
+        "canonical": "create_shot_params_state__10TObjPlayerFPUc",
+        "upstream": "create_shot_params_state__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 48,
+        "address": "0x80125154",
+        "source": "TObjPlayer::create_state_80125154",
+        "previous": "create_state_80125154__10TObjPlayerFPUc",
+        "canonical": "create_state_80125154__10TObjPlayerFPUc",
+        "upstream": "create_state_80125154__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 49,
+        "address": "0x80122148",
+        "source": "TObjPlayer::create_state_vector_state",
+        "previous": "create_state_vector_state__10TObjPlayerFl",
+        "canonical": "create_state_vector_state__10TObjPlayerFPUc",
+        "upstream": "create_state_vector_state__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 50,
+        "address": "0x80355C1C",
+        "source": "create_photon_field_weapon",
+        "previous": "create_photon_field_weapon__FPUc",
+        "canonical": "create_photon_field_weapon__FPUc",
+        "upstream": "create_photon_field_weapon__FPUc"
+      },
+      {
+        "slot": 51,
+        "address": "0x8012D65C",
+        "source": "sealed_j_sword_create",
+        "previous": "sealed_j_sword_create__FPUc",
+        "canonical": "sealed_j_sword_create__FPUc",
+        "upstream": "sealed_j_sword_create__FPUc"
+      },
+      {
+        "slot": 52,
+        "address": "0x80120FC4",
+        "source": "create_common_weapon",
+        "previous": "create_common_weapon__FPUc",
+        "canonical": "create_common_weapon__FPUc",
+        "upstream": "create_common_weapon__FPUc"
+      },
+      {
+        "slot": 53,
+        "address": "0x80120FC4",
+        "source": "create_common_weapon",
+        "previous": "create_common_weapon__FPUc",
+        "canonical": "create_common_weapon__FPUc",
+        "upstream": "create_common_weapon__FPUc"
+      },
+      {
+        "slot": 54,
+        "address": "0x80123224",
+        "source": "TObjPlayer::create_twin_chakram",
+        "previous": "create_twin_chakram__10TObjPlayerFPUc",
+        "canonical": "create_twin_chakram__10TObjPlayerFPUc",
+        "upstream": "create_twin_chakram__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 55,
+        "address": "0x80123950",
+        "source": "TObjPlayer__sub_80123950",
+        "previous": "TObjPlayer__sub_80123950",
+        "canonical": "TObjPlayer__sub_80123950",
+        "upstream": "TObjPlayer__sub_80123950"
+      },
+      {
+        "slot": 56,
+        "address": "0x80127314",
+        "source": "TObjPlayer__sub_80127314",
+        "previous": "TObjPlayer__sub_80127314",
+        "canonical": "TObjPlayer__sub_80127314",
+        "upstream": "TObjPlayer__sub_80127314"
+      },
+      {
+        "slot": 57,
+        "address": "0x80122548",
+        "source": "create_dagger_weapon",
+        "previous": "create_dagger_weapon__FPUc",
+        "canonical": "create_dagger_weapon__FPUc",
+        "upstream": "create_dagger_weapon__FPUc"
+      },
+      {
+        "slot": 58,
+        "address": "0x8012F298",
+        "source": "TObjPlayer__sub_8012F298",
+        "previous": "TObjPlayer__sub_8012F298",
+        "canonical": "TObjPlayer__sub_8012F298",
+        "upstream": "TObjPlayer__sub_8012F298"
+      },
+      {
+        "slot": 59,
+        "address": "0x8012FF8C",
+        "source": "TObjPlayer::create_fields_state",
+        "previous": "create_fields_state__10TObjPlayerFl",
+        "canonical": "create_fields_state__10TObjPlayerFPUc",
+        "upstream": "create_fields_state__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 60,
+        "address": "0x8012B898",
+        "source": "TObjPlayer::create_vtable_clear_field1f8",
+        "previous": "create_vtable_clear_field1f8__10TObjPlayerFPUc",
+        "canonical": "create_vtable_clear_field1f8__10TObjPlayerFPUc",
+        "upstream": "create_vtable_clear_field1f8__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 61,
+        "address": "0x80355C1C",
+        "source": "create_photon_field_weapon",
+        "previous": "create_photon_field_weapon__FPUc",
+        "canonical": "create_photon_field_weapon__FPUc",
+        "upstream": "create_photon_field_weapon__FPUc"
+      },
+      {
+        "slot": 62,
+        "address": "0x8012B5C0",
+        "source": "create_partisan_weapon",
+        "previous": "create_partisan_weapon__FPUc",
+        "canonical": "create_partisan_weapon__FPUc",
+        "upstream": "create_partisan_weapon__FPUc"
+      },
+      {
+        "slot": 63,
+        "address": "0x8012D88C",
+        "source": "TObjPlayer::create_variant_2_5a28",
+        "previous": "create_variant_2_5a28__10TObjPlayerFPUc",
+        "canonical": "create_variant_2_5a28__10TObjPlayerFPUc",
+        "upstream": "create_variant_2_5a28__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 64,
+        "address": "0x8012F890",
+        "source": "TObjPlayer::create_position_state",
+        "previous": "create_position_state__10TObjPlayerFPUc",
+        "canonical": "create_position_state__10TObjPlayerFPUc",
+        "upstream": "create_position_state__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 65,
+        "address": "0x8012DC94",
+        "source": "create_slicer_weapon",
+        "previous": "create_slicer_weapon__FPUc",
+        "canonical": "create_slicer_weapon__FPUc",
+        "upstream": "create_slicer_weapon__FPUc"
+      },
+      {
+        "slot": 66,
+        "address": "0x80121318",
+        "source": "TObjPlayer__sub_80121318",
+        "previous": "TObjPlayer__sub_80121318",
+        "canonical": "TObjPlayer__sub_80121318",
+        "upstream": "TObjPlayer__sub_80121318"
+      },
+      {
+        "slot": 67,
+        "address": "0x80121318",
+        "source": "TObjPlayer__sub_80121318",
+        "previous": "TObjPlayer__sub_80121318",
+        "canonical": "TObjPlayer__sub_80121318",
+        "upstream": "TObjPlayer__sub_80121318"
+      },
+      {
+        "slot": 68,
+        "address": "0x80126C28",
+        "source": "create_handgun_weapon",
+        "previous": "create_handgun_weapon__FPUc",
+        "canonical": "create_handgun_weapon__FPUc",
+        "upstream": "create_handgun_weapon__FPUc"
+      },
+      {
+        "slot": 69,
+        "address": "0x801263BC",
+        "source": "frozen_shooter_create",
+        "previous": "frozen_shooter_create__FPUc",
+        "canonical": "frozen_shooter_create__FPUc",
+        "upstream": "frozen_shooter_create__FPUc"
+      },
+      {
+        "slot": 70,
+        "address": "0x80121318",
+        "source": "TObjPlayer__sub_80121318",
+        "previous": "TObjPlayer__sub_80121318",
+        "canonical": "TObjPlayer__sub_80121318",
+        "upstream": "TObjPlayer__sub_80121318"
+      },
+      {
+        "slot": 71,
+        "address": "0x8012C8F8",
+        "source": "TObjPlayer::create_trade_action_state",
+        "previous": "create_trade_action_state__10TObjPlayerFl",
+        "canonical": "create_trade_action_state__10TObjPlayerFPUc",
+        "upstream": "create_trade_action_state__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 72,
+        "address": "0x8012CE44",
+        "source": "TObjPlayer__sub_8012CE44",
+        "previous": "TObjPlayer__sub_8012CE44",
+        "canonical": "TObjPlayer__sub_8012CE44",
+        "upstream": "TObjPlayer__sub_8012CE44"
+      },
+      {
+        "slot": 73,
+        "address": "0x8012FCF8",
+        "source": "create_twin_psychogun",
+        "previous": "create_twin_psychogun__Fl",
+        "canonical": "create_twin_psychogun__FPUc",
+        "upstream": "create_twin_psychogun__FPUc"
+      },
+      {
+        "slot": 74,
+        "address": "0x80124BB4",
+        "source": "create_drill_launcher",
+        "previous": "create_drill_launcher__FPUc",
+        "canonical": "create_drill_launcher__FPUc",
+        "upstream": "create_drill_launcher__FPUc"
+      },
+      {
+        "slot": 75,
+        "address": "0x80122388",
+        "source": "create_guld_milla",
+        "previous": "create_guld_milla__Fl",
+        "canonical": "create_guld_milla__FPUc",
+        "upstream": "create_guld_milla__FPUc"
+      },
+      {
+        "slot": 76,
+        "address": "0x801275E4",
+        "source": "create_mechgun_weapon",
+        "previous": "create_mechgun_weapon__FPUc",
+        "canonical": "create_mechgun_weapon__FPUc",
+        "upstream": "create_mechgun_weapon__FPUc"
+      },
+      {
+        "slot": 77,
+        "address": "0x80121FBC",
+        "source": "create_belra_cannon",
+        "previous": "create_belra_cannon__FPUc",
+        "canonical": "create_belra_cannon__FPUc",
+        "upstream": "create_belra_cannon__FPUc"
+      },
+      {
+        "slot": 78,
+        "address": "0x80125944",
+        "source": "create_panzer_faust",
+        "previous": "create_panzer_faust__Fl",
+        "canonical": "create_panzer_faust__FPUc",
+        "upstream": "create_panzer_faust__FPUc"
+      },
+      {
+        "slot": 79,
+        "address": "0x80120FC4",
+        "source": "create_common_weapon",
+        "previous": "create_common_weapon__FPUc",
+        "canonical": "create_common_weapon__FPUc",
+        "upstream": "create_common_weapon__FPUc"
+      },
+      {
+        "slot": 80,
+        "address": "0x80130720",
+        "source": "TObjPlayer::create_state_35_alt",
+        "previous": "create_state_35_alt__10TObjPlayerFl",
+        "canonical": "create_state_35_alt__10TObjPlayerFPUc",
+        "upstream": "create_state_35_alt__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 81,
+        "address": "0x80124708",
+        "source": "TObjPlayer__sub_80124708",
+        "previous": "TObjPlayer__sub_80124708",
+        "canonical": "TObjPlayer__sub_80124708",
+        "upstream": "TObjPlayer__sub_80124708"
+      },
+      {
+        "slot": 82,
+        "address": "0x80125F60",
+        "source": "TObjPlayer::create_obj_80125F60",
+        "previous": "create_obj_80125F60__10TObjPlayerFPUc",
+        "canonical": "create_obj_80125F60__10TObjPlayerFPUc",
+        "upstream": "create_obj_80125F60__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 83,
+        "address": "0x80121C50",
+        "source": "TObjPlayer::create_enter_state_804A0BC0",
+        "previous": "create_enter_state_804A0BC0__10TObjPlayerFPUc",
+        "canonical": "create_enter_state_804A0BC0__10TObjPlayerFPUc",
+        "upstream": "create_enter_state_804A0BC0__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 84,
+        "address": "0x801228CC",
+        "source": "TObjPlayer__sub_801228CC",
+        "previous": "TObjPlayer__sub_801228CC",
+        "canonical": "TObjPlayer__sub_801228CC",
+        "upstream": "TObjPlayer__sub_801228CC"
+      },
+      {
+        "slot": 85,
+        "address": "0x8012BEFC",
+        "source": "TObjPlayer::create_variant_ct",
+        "previous": "create_variant_ct__10TObjPlayerFPUc",
+        "canonical": "create_variant_ct__10TObjPlayerFPUc",
+        "upstream": "create_variant_ct__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 86,
+        "address": "0x80120FC4",
+        "source": "create_common_weapon",
+        "previous": "create_common_weapon__FPUc",
+        "canonical": "create_common_weapon__FPUc",
+        "upstream": "create_common_weapon__FPUc"
+      },
+      {
+        "slot": 87,
+        "address": "0x80120FC4",
+        "source": "create_common_weapon",
+        "previous": "create_common_weapon__FPUc",
+        "canonical": "create_common_weapon__FPUc",
+        "upstream": "create_common_weapon__FPUc"
+      },
+      {
+        "slot": 88,
+        "address": "0x8012380C",
+        "source": "TObjPlayer__sub_8012380C",
+        "previous": "TObjPlayer__sub_8012380C",
+        "canonical": "TObjPlayer__sub_8012380C",
+        "upstream": "TObjPlayer__sub_8012380C"
+      },
+      {
+        "slot": 89,
+        "address": "0x80122B1C",
+        "source": "TObjPlayer::create_vtable_804a1288",
+        "previous": "create_vtable_804a1288__10TObjPlayerFPUc",
+        "canonical": "create_vtable_804a1288__10TObjPlayerFPUc",
+        "upstream": "create_vtable_804a1288__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 90,
+        "address": "0x80127A24",
+        "source": "TObjPlayer::create_substate_b",
+        "previous": "create_substate_b__10TObjPlayerFPUc",
+        "canonical": "create_substate_b__10TObjPlayerFPUc",
+        "upstream": "create_substate_b__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 91,
+        "address": "0x8012FAB0",
+        "source": "TObjPlayer::create_effect_object",
+        "previous": "create_effect_object__10TObjPlayerFl",
+        "canonical": "create_effect_object__10TObjPlayerFPUc",
+        "upstream": "create_effect_object__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 92,
+        "address": "0x8012EE68",
+        "source": "TObjPlayer::create_state_0",
+        "previous": "create_state_0__10TObjPlayerFPUc",
+        "canonical": "create_state_0__10TObjPlayerFPUc",
+        "upstream": "create_state_0__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 93,
+        "address": "0x80121630",
+        "source": "TObjPlayer::create_substate",
+        "previous": "create_substate__10TObjPlayerFPUc",
+        "canonical": "create_substate__10TObjPlayerFPUc",
+        "upstream": "create_substate__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 94,
+        "address": "0x80125E30",
+        "source": "TObjPlayer::create_state_vt2678",
+        "previous": "create_state_vt2678__10TObjPlayerFPUc",
+        "canonical": "create_state_vt2678__10TObjPlayerFPUc",
+        "upstream": "create_state_vt2678__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 95,
+        "address": "0x801214B4",
+        "source": "TObjPlayer::create_vtable_804A08B8",
+        "previous": "create_vtable_804A08B8__10TObjPlayerFPUc",
+        "canonical": "create_vtable_804A08B8__10TObjPlayerFPUc",
+        "upstream": "create_vtable_804A08B8__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 96,
+        "address": "0x80125380",
+        "source": "TObjPlayer::create_configured_state",
+        "previous": "create_configured_state__10TObjPlayerFPUc",
+        "canonical": "create_configured_state__10TObjPlayerFPUc",
+        "upstream": "create_configured_state__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 97,
+        "address": "0x80122FEC",
+        "source": "TObjPlayer::create_state_513",
+        "previous": "create_state_513__10TObjPlayerFl",
+        "canonical": "create_state_513__10TObjPlayerFPUc",
+        "upstream": "create_state_513__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 98,
+        "address": "0x8012EC4C",
+        "source": "TObjPlayer::create_state_variant_a",
+        "previous": "create_state_variant_a__10TObjPlayerFPUc",
+        "canonical": "create_state_variant_a__10TObjPlayerFPUc",
+        "upstream": "create_state_variant_a__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 99,
+        "address": "0x801218D4",
+        "source": "TObjPlayer::create_state_34",
+        "previous": "create_state_34__10TObjPlayerFl",
+        "canonical": "create_state_34__10TObjPlayerFPUc",
+        "upstream": "create_state_34__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 100,
+        "address": "0x80126FE4",
+        "source": "TObjPlayer::create_effect_state",
+        "previous": "create_effect_state__10TObjPlayerFl",
+        "canonical": "create_effect_state__10TObjPlayerFPUc",
+        "upstream": "create_effect_state__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 101,
+        "address": "0x80130E48",
+        "source": "create_yasminkov_3000r",
+        "previous": "create_yasminkov_3000r__FPUc",
+        "canonical": "create_yasminkov_3000r__FPUc",
+        "upstream": "create_yasminkov_3000r__FPUc"
+      },
+      {
+        "slot": 102,
+        "address": "0x80121318",
+        "source": "TObjPlayer__sub_80121318",
+        "previous": "TObjPlayer__sub_80121318",
+        "canonical": "TObjPlayer__sub_80121318",
+        "upstream": "TObjPlayer__sub_80121318"
+      },
+      {
+        "slot": 103,
+        "address": "0x80126740",
+        "source": "create_baranz_launcher",
+        "previous": "create_baranz_launcher__FPUc",
+        "canonical": "create_baranz_launcher__FPUc",
+        "upstream": "create_baranz_launcher__FPUc"
+      },
+      {
+        "slot": 104,
+        "address": "0x801234CC",
+        "source": "TObjPlayer::create_set_vtable_state",
+        "previous": "create_set_vtable_state__10TObjPlayerFPUc",
+        "canonical": "create_set_vtable_state__10TObjPlayerFPUc",
+        "upstream": "create_set_vtable_state__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 105,
+        "address": "0x801280D0",
+        "source": "TObjPlayer::create_state_variant",
+        "previous": "create_state_variant__10TObjPlayerFPUc",
+        "canonical": "create_state_variant__10TObjPlayerFPUc",
+        "upstream": "create_state_variant__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 106,
+        "address": "0x80131180",
+        "source": "create_yasminkov_2000h",
+        "previous": "create_yasminkov_2000h__FPUc",
+        "canonical": "create_yasminkov_2000h__FPUc",
+        "upstream": "create_yasminkov_2000h__FPUc"
+      },
+      {
+        "slot": 107,
+        "address": "0x80131430",
+        "source": "create_yasminkov_7000v",
+        "previous": "create_yasminkov_7000v__FPUc",
+        "canonical": "create_yasminkov_7000v__FPUc",
+        "upstream": "create_yasminkov_7000v__FPUc"
+      },
+      {
+        "slot": 108,
+        "address": "0x80130B98",
+        "source": "create_yasminkov_9000m",
+        "previous": "create_yasminkov_9000m__FPUc",
+        "canonical": "create_yasminkov_9000m__FPUc",
+        "upstream": "create_yasminkov_9000m__FPUc"
+      },
+      {
+        "slot": 109,
+        "address": "0x80127D6C",
+        "source": "TObjPlayer::create_with_id_2",
+        "previous": "create_with_id_2__10TObjPlayerFPUc",
+        "canonical": "create_with_id_2__10TObjPlayerFPUc",
+        "upstream": "create_with_id_2__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 110,
+        "address": "0x80120FC4",
+        "source": "create_common_weapon",
+        "previous": "create_common_weapon__FPUc",
+        "canonical": "create_common_weapon__FPUc",
+        "upstream": "create_common_weapon__FPUc"
+      },
+      {
+        "slot": 111,
+        "address": "0x801229EC",
+        "source": "TObjPlayer__sub_801229EC",
+        "previous": "TObjPlayer__sub_801229EC",
+        "canonical": "TObjPlayer__sub_801229EC",
+        "upstream": "TObjPlayer__sub_801229EC"
+      },
+      {
+        "slot": 112,
+        "address": "0x8012A9B4",
+        "source": "TObjPlayer::create_srank_common_weapon",
+        "previous": "create_srank_common_weapon__10TObjPlayerFPUc",
+        "canonical": "create_srank_common_weapon__10TObjPlayerFPUc",
+        "upstream": "create_srank_common_weapon__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 113,
+        "address": "0x8012A9B4",
+        "source": "TObjPlayer::create_srank_common_weapon",
+        "previous": "create_srank_common_weapon__10TObjPlayerFPUc",
+        "canonical": "create_srank_common_weapon__10TObjPlayerFPUc",
+        "upstream": "create_srank_common_weapon__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 114,
+        "address": "0x80128308",
+        "source": "TObjPlayer__sub_80128308",
+        "previous": "TObjPlayer__sub_80128308",
+        "canonical": "TObjPlayer__sub_80128308",
+        "upstream": "TObjPlayer__sub_80128308"
+      },
+      {
+        "slot": 115,
+        "address": "0x8012A9B4",
+        "source": "TObjPlayer::create_srank_common_weapon",
+        "previous": "create_srank_common_weapon__10TObjPlayerFPUc",
+        "canonical": "create_srank_common_weapon__10TObjPlayerFPUc",
+        "upstream": "create_srank_common_weapon__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 116,
+        "address": "0x8012976C",
+        "source": "create_s_rank_slicer_weapon",
+        "previous": "create_s_rank_slicer_weapon__FPUc",
+        "canonical": "create_s_rank_slicer_weapon__FPUc",
+        "upstream": "create_s_rank_slicer_weapon__FPUc"
+      },
+      {
+        "slot": 117,
+        "address": "0x80128678",
+        "source": "TObjPlayer::create_shoot_model_callback",
+        "previous": "create_shoot_model_callback__10TObjPlayerFPUc",
+        "canonical": "create_shoot_model_callback__10TObjPlayerFPUc",
+        "upstream": "create_shoot_model_callback__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 118,
+        "address": "0x80128678",
+        "source": "TObjPlayer::create_shoot_model_callback",
+        "previous": "create_shoot_model_callback__10TObjPlayerFPUc",
+        "canonical": "create_shoot_model_callback__10TObjPlayerFPUc",
+        "upstream": "create_shoot_model_callback__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 119,
+        "address": "0x801289C0",
+        "source": "TObjPlayer::create_variant",
+        "previous": "create_variant__10TObjPlayerFl",
+        "canonical": "create_variant__10TObjPlayerFPUc",
+        "upstream": "create_variant__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 120,
+        "address": "0x80129AB0",
+        "source": "create_s_rank_shot",
+        "previous": "create_s_rank_shot__Fl",
+        "canonical": "create_s_rank_shot__FPUc",
+        "upstream": "create_s_rank_shot__FPUc"
+      },
+      {
+        "slot": 121,
+        "address": "0x8012A9B4",
+        "source": "TObjPlayer::create_srank_common_weapon",
+        "previous": "create_srank_common_weapon__10TObjPlayerFPUc",
+        "canonical": "create_srank_common_weapon__10TObjPlayerFPUc",
+        "upstream": "create_srank_common_weapon__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 122,
+        "address": "0x8012A9B4",
+        "source": "TObjPlayer::create_srank_common_weapon",
+        "previous": "create_srank_common_weapon__10TObjPlayerFPUc",
+        "canonical": "create_srank_common_weapon__10TObjPlayerFPUc",
+        "upstream": "create_srank_common_weapon__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 123,
+        "address": "0x80128440",
+        "source": "TObjPlayer__sub_80128440",
+        "previous": "TObjPlayer__sub_80128440",
+        "canonical": "TObjPlayer__sub_80128440",
+        "upstream": "TObjPlayer__sub_80128440"
+      },
+      {
+        "slot": 124,
+        "address": "0x8012A9B4",
+        "source": "TObjPlayer::create_srank_common_weapon",
+        "previous": "create_srank_common_weapon__10TObjPlayerFPUc",
+        "canonical": "create_srank_common_weapon__10TObjPlayerFPUc",
+        "upstream": "create_srank_common_weapon__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 125,
+        "address": "0x80128580",
+        "source": "TObjPlayer::create_obj_80128580",
+        "previous": "create_obj_80128580__10TObjPlayerFPUc",
+        "canonical": "create_obj_80128580__10TObjPlayerFPUc",
+        "upstream": "create_obj_80128580__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 126,
+        "address": "0x80129D18",
+        "source": "create_s_rank_bazooka",
+        "previous": "create_s_rank_bazooka__Fl",
+        "canonical": "create_s_rank_bazooka__FPUc",
+        "upstream": "create_s_rank_bazooka__FPUc"
+      },
+      {
+        "slot": 127,
+        "address": "0x80129F98",
+        "source": "TObjPlayer::create_state_2",
+        "previous": "create_state_2__10TObjPlayerFPUc",
+        "canonical": "create_state_2__10TObjPlayerFPUc",
+        "upstream": "create_state_2__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 128,
+        "address": "0x8012934C",
+        "source": "TObjPlayer::create_state_8012934c",
+        "previous": "create_state_8012934c__10TObjPlayerFPUc",
+        "canonical": "create_state_8012934c__10TObjPlayerFPUc",
+        "upstream": "create_state_8012934c__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 129,
+        "address": "0x8012A9B4",
+        "source": "TObjPlayer::create_srank_common_weapon",
+        "previous": "create_srank_common_weapon__10TObjPlayerFPUc",
+        "canonical": "create_srank_common_weapon__10TObjPlayerFPUc",
+        "upstream": "create_srank_common_weapon__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 130,
+        "address": "0x8012A9B4",
+        "source": "TObjPlayer::create_srank_common_weapon",
+        "previous": "create_srank_common_weapon__10TObjPlayerFPUc",
+        "canonical": "create_srank_common_weapon__10TObjPlayerFPUc",
+        "upstream": "create_srank_common_weapon__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 131,
+        "address": "0x8012A1CC",
+        "source": "TObjPlayer::create_action",
+        "previous": "create_action__10TObjPlayerFl",
+        "canonical": "create_action__10TObjPlayerFPUc",
+        "upstream": "create_action__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 132,
+        "address": "0x80128FF0",
+        "source": "TObjPlayer::create_event_callbacks_state",
+        "previous": "create_event_callbacks_state__10TObjPlayerFl",
+        "canonical": "create_event_callbacks_state__10TObjPlayerFPUc",
+        "upstream": "create_event_callbacks_state__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 133,
+        "address": "0x8012A418",
+        "source": "TObjPlayer::create_state_8012a418",
+        "previous": "create_state_8012a418__10TObjPlayerFl",
+        "canonical": "create_state_8012a418__10TObjPlayerFPUc",
+        "upstream": "create_state_8012a418__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 134,
+        "address": "0x80128848",
+        "source": "TObjPlayer::create_shot_state",
+        "previous": "create_shot_state__10TObjPlayerFPUc",
+        "canonical": "create_shot_state__10TObjPlayerFPUc",
+        "upstream": "create_shot_state__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 135,
+        "address": "0x8012A9B4",
+        "source": "TObjPlayer::create_srank_common_weapon",
+        "previous": "create_srank_common_weapon__10TObjPlayerFPUc",
+        "canonical": "create_srank_common_weapon__10TObjPlayerFPUc",
+        "upstream": "create_srank_common_weapon__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 136,
+        "address": "0x80129588",
+        "source": "create_s_rank_j_cutter_weapon",
+        "previous": "create_s_rank_j_cutter_weapon__FPUc",
+        "canonical": "create_s_rank_j_cutter_weapon__FPUc",
+        "upstream": "create_s_rank_j_cutter_weapon__FPUc"
+      },
+      {
+        "slot": 137,
+        "address": "0x802D51BC",
+        "source": "TUnk_804E1BB0::create",
+        "previous": "create__13TUnk_804E1BB0FPUc",
+        "canonical": "create__13TUnk_804E1BB0FPUc",
+        "upstream": "create__13TUnk_804E1BB0FPUc"
+      },
+      {
+        "slot": 138,
+        "address": "0x80120FC4",
+        "source": "create_common_weapon",
+        "previous": "create_common_weapon__FPUc",
+        "canonical": "create_common_weapon__FPUc",
+        "upstream": "create_common_weapon__FPUc"
+      },
+      {
+        "slot": 139,
+        "address": "0x802D6504",
+        "source": "TUnk_804E24F0::create",
+        "previous": "create__13TUnk_804E24F0FPUc",
+        "canonical": "create__13TUnk_804E24F0FPUc",
+        "upstream": "create__13TUnk_804E24F0FPUc"
+      },
+      {
+        "slot": 140,
+        "address": "0x802D5F44",
+        "source": "TObjPlayer::create_object_by_type",
+        "previous": "create_object_by_type__10TObjPlayerFPUc",
+        "canonical": "create_object_by_type__10TObjPlayerFPUc",
+        "upstream": "create_object_by_type__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 141,
+        "address": "0x803083F8",
+        "source": "TObjPlayer::create_nug2000_bazooka",
+        "previous": "create_nug2000_bazooka__10TObjPlayerFPUc",
+        "canonical": "create_nug2000_bazooka__10TObjPlayerFPUc",
+        "upstream": "create_nug2000_bazooka__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 142,
+        "address": "0x80307800",
+        "source": "TObjPlayer__sub_80307800",
+        "previous": "TObjPlayer__sub_80307800",
+        "canonical": "TObjPlayer__sub_80307800",
+        "upstream": "TObjPlayer__sub_80307800"
+      },
+      {
+        "slot": 143,
+        "address": "0x8012F478",
+        "source": "create_sword_weapon",
+        "previous": "create_sword_weapon__FPUc",
+        "canonical": "create_sword_weapon__FPUc",
+        "upstream": "create_sword_weapon__FPUc"
+      },
+      {
+        "slot": 144,
+        "address": "0x8012CC74",
+        "source": "create_saber_weapon",
+        "previous": "create_saber_weapon__FPUc",
+        "canonical": "create_saber_weapon__FPUc",
+        "upstream": "create_saber_weapon__FPUc"
+      },
+      {
+        "slot": 145,
+        "address": "0x8034F7B8",
+        "source": "TObjPlayer::create_gi_gue_bazooka",
+        "previous": "create_gi_gue_bazooka__10TObjPlayerFl",
+        "canonical": "create_gi_gue_bazooka__10TObjPlayerFPUc",
+        "upstream": "create_gi_gue_bazooka__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 146,
+        "address": "0x8032DB8C",
+        "source": "create_guardianna",
+        "previous": "create_guardianna__FPUc",
+        "canonical": "create_guardianna__FPUc",
+        "upstream": "create_guardianna__FPUc"
+      },
+      {
+        "slot": 147,
+        "address": "0x802D5F44",
+        "source": "TObjPlayer::create_object_by_type",
+        "previous": "create_object_by_type__10TObjPlayerFPUc",
+        "canonical": "create_object_by_type__10TObjPlayerFPUc",
+        "upstream": "create_object_by_type__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 148,
+        "address": "0x80326CA4",
+        "source": "create_morning_glory",
+        "previous": "create_morning_glory__FPUc",
+        "canonical": "create_morning_glory__FPUc",
+        "upstream": "create_morning_glory__FPUc"
+      },
+      {
+        "slot": 149,
+        "address": "0x803270E8",
+        "source": "TObjPlayer::create_vtable_1f8_state",
+        "previous": "create_vtable_1f8_state__10TObjPlayerFPUc",
+        "canonical": "create_vtable_1f8_state__10TObjPlayerFPUc",
+        "upstream": "create_vtable_1f8_state__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 150,
+        "address": "0x802D5F44",
+        "source": "TObjPlayer::create_object_by_type",
+        "previous": "create_object_by_type__10TObjPlayerFPUc",
+        "canonical": "create_object_by_type__10TObjPlayerFPUc",
+        "upstream": "create_object_by_type__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 151,
+        "address": "0x80120FC4",
+        "source": "create_common_weapon",
+        "previous": "create_common_weapon__FPUc",
+        "canonical": "create_common_weapon__FPUc",
+        "upstream": "create_common_weapon__FPUc"
+      },
+      {
+        "slot": 152,
+        "address": "0x8034F1AC",
+        "source": "TObjPlayer__sub_8034F1AC",
+        "previous": "TObjPlayer__sub_8034F1AC",
+        "canonical": "TObjPlayer__sub_8034F1AC",
+        "upstream": "TObjPlayer__sub_8034F1AC"
+      },
+      {
+        "slot": 153,
+        "address": "0x803266B8",
+        "source": "TObjPlayer::create_vtable_variant",
+        "previous": "create_vtable_variant__10TObjPlayerFPUc",
+        "canonical": "create_vtable_variant__10TObjPlayerFPUc",
+        "upstream": "create_vtable_variant__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 154,
+        "address": "0x80326F44",
+        "source": "TObjPlayer::create_mode_floats_state",
+        "previous": "create_mode_floats_state__10TObjPlayerFPUc",
+        "canonical": "create_mode_floats_state__10TObjPlayerFPUc",
+        "upstream": "create_mode_floats_state__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 155,
+        "address": "0x8034F9F8",
+        "source": "TUnk_804F0AF8::create",
+        "previous": "create__13TUnk_804F0AF8FPUc",
+        "canonical": "create__13TUnk_804F0AF8FPUc",
+        "upstream": "create__13TUnk_804F0AF8FPUc"
+      },
+      {
+        "slot": 156,
+        "address": "0x803265C0",
+        "source": "TObjPlayer__sub_803265C0",
+        "previous": "TObjPlayer__sub_803265C0",
+        "canonical": "TObjPlayer__sub_803265C0",
+        "upstream": "TObjPlayer__sub_803265C0"
+      },
+      {
+        "slot": 157,
+        "address": "0x80327338",
+        "source": "create_dark_flow",
+        "previous": "create_dark_flow__FPUc",
+        "canonical": "create_dark_flow__FPUc",
+        "upstream": "create_dark_flow__FPUc"
+      },
+      {
+        "slot": 158,
+        "address": "0x80357AD4",
+        "source": "TObjPlayer::create_state_34_alt",
+        "previous": "create_state_34_alt__10TObjPlayerFPUc",
+        "canonical": "create_state_34_alt__10TObjPlayerFPUc",
+        "upstream": "create_state_34_alt__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 159,
+        "address": "0x80326924",
+        "source": "dark_bridge_create",
+        "previous": "dark_bridge_create__FPUc",
+        "canonical": "dark_bridge_create__FPUc",
+        "upstream": "dark_bridge_create__FPUc"
+      },
+      {
+        "slot": 160,
+        "address": "0x80326B7C",
+        "source": "TObjPlayer::create_state_1536",
+        "previous": "create_state_1536__10TObjPlayerFPUc",
+        "canonical": "create_state_1536__10TObjPlayerFPUc",
+        "upstream": "create_state_1536__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 161,
+        "address": "0x8034F418",
+        "source": "TObjPlayer::create_rappys_fan",
+        "previous": "create_rappys_fan__10TObjPlayerFPUc",
+        "canonical": "create_rappys_fan__10TObjPlayerFPUc",
+        "upstream": "create_rappys_fan__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 162,
+        "address": "0x80120FC4",
+        "source": "create_common_weapon",
+        "previous": "create_common_weapon__FPUc",
+        "canonical": "create_common_weapon__FPUc",
+        "upstream": "create_common_weapon__FPUc"
+      },
+      {
+        "slot": 163,
+        "address": "0x8035D4E8",
+        "source": "alloc_and_init_obj_effect",
+        "previous": "alloc_and_init_obj_effect__FPUc",
+        "canonical": "alloc_and_init_obj_effect__FPUc",
+        "upstream": "alloc_and_init_obj_effect__FPUc"
+      },
+      {
+        "slot": 164,
+        "address": "0x802D5F44",
+        "source": "TObjPlayer::create_object_by_type",
+        "previous": "create_object_by_type__10TObjPlayerFPUc",
+        "canonical": "create_object_by_type__10TObjPlayerFPUc",
+        "upstream": "create_object_by_type__10TObjPlayerFPUc"
+      },
+      {
+        "slot": 165,
+        "address": "0x80128308",
+        "source": "TObjPlayer__sub_80128308",
+        "previous": "TObjPlayer__sub_80128308",
+        "canonical": "TObjPlayer__sub_80128308",
+        "upstream": "TObjPlayer__sub_80128308"
+      },
+      {
+        "slot": 166,
+        "address": "0x8036335C",
+        "source": "TUnk_804F28E0::create",
+        "previous": "create__13TUnk_804F28E0FPUc",
+        "canonical": "create__13TUnk_804F28E0FPUc",
+        "upstream": "create__13TUnk_804F28E0FPUc"
+      },
+      {
+        "slot": 167,
+        "address": "0x803630F0",
+        "source": "TObjPlayer__sub_803630F0",
+        "previous": "TObjPlayer__sub_803630F0",
+        "canonical": "TObjPlayer__sub_803630F0",
+        "upstream": "TObjPlayer__sub_803630F0"
+      },
+      {
+        "slot": 168,
+        "address": "0x80362D38",
+        "source": "create_s_rank_knuckle",
+        "previous": "create_s_rank_knuckle__FPUc",
+        "canonical": "create_s_rank_knuckle__FPUc",
+        "upstream": "create_s_rank_knuckle__FPUc"
+      },
+      {
+        "slot": 169,
+        "address": "0x8012A9B4",
+        "source": "TObjPlayer::create_srank_common_weapon",
+        "previous": "create_srank_common_weapon__10TObjPlayerFPUc",
+        "canonical": "create_srank_common_weapon__10TObjPlayerFPUc",
+        "upstream": "create_srank_common_weapon__10TObjPlayerFPUc"
+      }
+    ],
+    "native_pointer_factories": [
+      {
+        "name": "TObjPlayer::create_action",
+        "owner": "src/pso/weapon/TUnk_804A4748.cpp",
+        "symbol": "create_action__10TObjPlayerFl",
+        "renamed": "create_action__10TObjPlayerFPUc"
+      },
+      {
+        "name": "TObjPlayer::create_effect_object",
+        "owner": "src/pso/weapon/TUnk_804A65E0.cpp",
+        "symbol": "create_effect_object__10TObjPlayerFl",
+        "renamed": "create_effect_object__10TObjPlayerFPUc"
+      },
+      {
+        "name": "TObjPlayer::create_effect_state",
+        "owner": "src/pso/weapon/TUnk_804A2F78.cpp",
+        "symbol": "create_effect_state__10TObjPlayerFl",
+        "renamed": "create_effect_state__10TObjPlayerFPUc"
+      },
+      {
+        "name": "TObjPlayer::create_event_callbacks_state",
+        "owner": "src/pso/weapon/TUnk_804A403C.cpp",
+        "symbol": "create_event_callbacks_state__10TObjPlayerFl",
+        "renamed": "create_event_callbacks_state__10TObjPlayerFPUc"
+      },
+      {
+        "name": "TObjPlayer::create_fields_state",
+        "owner": "src/pso/weapon/TUnk_804A67D0.cpp",
+        "symbol": "create_fields_state__10TObjPlayerFl",
+        "renamed": "create_fields_state__10TObjPlayerFPUc"
+      },
+      {
+        "name": "TObjPlayer::create_gi_gue_bazooka",
+        "owner": "src/pso/effect/item/TItemEffPG_8034F470.cpp",
+        "symbol": "create_gi_gue_bazooka__10TObjPlayerFl",
+        "renamed": "create_gi_gue_bazooka__10TObjPlayerFPUc"
+      },
+      {
+        "name": "TObjPlayer::create_shot_effect_state",
+        "owner": "src/pso/weapon/TUnk_804A2E80.cpp",
+        "symbol": "create_shot_effect_state__10TObjPlayerFl",
+        "renamed": "create_shot_effect_state__10TObjPlayerFPUc"
+      },
+      {
+        "name": "TObjPlayer::create_shot_params_state",
+        "owner": "src/pso/weapon/TUnk_804A3928.cpp",
+        "symbol": "create_shot_params_state__10TObjPlayerFl",
+        "renamed": "create_shot_params_state__10TObjPlayerFPUc"
+      },
+      {
+        "name": "TObjPlayer::create_state",
+        "owner": "src/pso/weapon/TUnk_804A1D30.cpp",
+        "symbol": "create_state__10TObjPlayerFl",
+        "renamed": "create_state__10TObjPlayerFPUc"
+      },
+      {
+        "name": "TObjPlayer::create_state_34",
+        "owner": "src/pso/weapon/TUnk_804A0AC4.cpp",
+        "symbol": "create_state_34__10TObjPlayerFl",
+        "renamed": "create_state_34__10TObjPlayerFPUc"
+      },
+      {
+        "name": "TObjPlayer::create_state_35_alt",
+        "owner": "src/pso/weapon/TUnk_804A69DC.cpp",
+        "symbol": "create_state_35_alt__10TObjPlayerFl",
+        "renamed": "create_state_35_alt__10TObjPlayerFPUc"
+      },
+      {
+        "name": "TObjPlayer::create_state_513",
+        "owner": "src/pso/weapon/TUnk_804A1570.cpp",
+        "symbol": "create_state_513__10TObjPlayerFl",
+        "renamed": "create_state_513__10TObjPlayerFPUc"
+      },
+      {
+        "name": "TObjPlayer::create_state_8012a418",
+        "owner": "src/pso/weapon/TUnk_804A4848.cpp",
+        "symbol": "create_state_8012a418__10TObjPlayerFl",
+        "renamed": "create_state_8012a418__10TObjPlayerFPUc"
+      },
+      {
+        "name": "TObjPlayer::create_state_vector_state",
+        "owner": "src/pso/weapon/TUnk_804A0DB0.cpp",
+        "symbol": "create_state_vector_state__10TObjPlayerFl",
+        "renamed": "create_state_vector_state__10TObjPlayerFPUc"
+      },
+      {
+        "name": "TObjPlayer::create_trade_action_state",
+        "owner": "src/pso/weapon/TUnk_804A535C.cpp",
+        "symbol": "create_trade_action_state__10TObjPlayerFl",
+        "renamed": "create_trade_action_state__10TObjPlayerFPUc"
+      },
+      {
+        "name": "TObjPlayer::create_variant",
+        "owner": "src/pso/weapon/TUnk_804A3F20.cpp",
+        "symbol": "create_variant__10TObjPlayerFl",
+        "renamed": "create_variant__10TObjPlayerFPUc"
+      },
+      {
+        "name": "TObjPlayer__sub_8012CE44",
+        "owner": "src/pso/weapon/TUnk_804A5648.cpp",
+        "symbol": "TObjPlayer__sub_8012CE44",
+        "renamed": "TObjPlayer__sub_8012CE44"
+      },
+      {
+        "name": "TObjPlayer__sub_8012F298",
+        "owner": "src/pso/weapon/TUnk_804A6200.cpp",
+        "symbol": "TObjPlayer__sub_8012F298",
+        "renamed": "TObjPlayer__sub_8012F298"
+      },
+      {
+        "name": "create_guld_milla",
+        "owner": "src/pso/weapon/TUnk_804A0EA8.cpp",
+        "symbol": "create_guld_milla__Fl",
+        "renamed": "create_guld_milla__FPUc"
+      },
+      {
+        "name": "create_heaven_punisher",
+        "owner": "src/pso/weapon/TUnk_804A4B80.cpp",
+        "symbol": "create_heaven_punisher__Fl",
+        "renamed": "create_heaven_punisher__FPUc"
+      },
+      {
+        "name": "create_panzer_faust",
+        "owner": "src/pso/player/TUnk_804A2548.cpp",
+        "symbol": "create_panzer_faust__Fl",
+        "renamed": "create_panzer_faust__FPUc"
+      },
+      {
+        "name": "create_s_rank_bazooka",
+        "owner": "src/pso/weapon/TUnk_804A4548.cpp",
+        "symbol": "create_s_rank_bazooka__Fl",
+        "renamed": "create_s_rank_bazooka__FPUc"
+      },
+      {
+        "name": "create_s_rank_shot",
+        "owner": "src/pso/weapon/TUnk_804A444C.cpp",
+        "symbol": "create_s_rank_shot__Fl",
+        "renamed": "create_s_rank_shot__FPUc"
+      },
+      {
+        "name": "create_twin_psychogun",
+        "owner": "src/pso/weapon/TUnk_804A66D8.cpp",
+        "symbol": "create_twin_psychogun__Fl",
+        "renamed": "create_twin_psychogun__FPUc"
+      }
+    ],
+    "canonical_head": "6d0b58aa9254d9cce1befce6e288c64520612bed",
+    "review_head": "71b80f8ba00d44170da5d1997df6414702a845c9"
+  },
+  "combined_upstream_review": {
+    "head": "ef9ae88473b1740950a67cbc4b502a963f6dbce0",
+    "files": 159,
+    "inputs": [
+      "71b80f8ba00d44170da5d1997df6414702a845c9",
+      "5f3420ae256c8ef4cfdde60e8fcd3fbc35372e26",
+      "b28b618cca53d9768e1e14ec0f134860567f9496",
+      "4a784b7ec917af9089387b5ba9bb00a56ef1a863"
+    ],
+    "coverage": {
+      "upstream": {
+        "functions_lost": 0,
+        "data_lost": 0,
+        "verified_padding": 0
+      },
+      "historical": {
+        "functions_lost": 0,
+        "data_lost": 0,
+        "verified_padding": 30
+      }
+    }
+  }
+}

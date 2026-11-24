@@ -1,0 +1,802 @@
+{
+  "artifacts_sha256": {
+    "actor-check.json": "766dd085b491bb340b60c7e9b65b2baec7e705a9bb2888a686c7e5a4454a46b2",
+    "actor-probes.log": "f1ad7f1c683da54f5f75cbcbeb679dd7ab8c0532161d05360af7ca999fc72788",
+    "actor-quality.json": "65c3d08dd6ca25e09435f3daa55835d6bc0eaeb72c92ac2871720bf90c36a2e2",
+    "actor-report.json": "5ff8a11f487119f0bcf558100165134081f9fb5c626efa425937b42f76b7f4d5",
+    "actor-vs-fork.json": "cf5992bd8f1b177acd0b7d5460a835109f5d5e1fc09f25dc5186e712f3cfa6f6"
+  },
+  "base": "c85e700dd41601daa83601f7173ef41272b110f9",
+  "branch": "great-merge/review/after-384/actor-model-and-battle-parameters",
+  "head": "156e367c7fff299f7bf2db161fdcb0a24df18eb4",
+  "paths": 194,
+  "review_state": "local_validated_on_pr385_and_pr386_preview",
+  "source_quality": {
+    "categories": [
+      {
+        "added": 0,
+        "base": 5100,
+        "category": "Linkage",
+        "example": "extern \"C\" void TEnemy__update(void *);",
+        "group": "linkage",
+        "head": 5078,
+        "key": "extern_c",
+        "name": "extern \"C\" declarations",
+        "removed": 22
+      },
+      {
+        "added": 0,
+        "base": 1268,
+        "category": "Linkage",
+        "example": "void heap_free(void *);",
+        "group": "linkage",
+        "head": 1251,
+        "key": "local_decl",
+        "name": "Prototypes and externs in source files",
+        "removed": 17
+      },
+      {
+        "added": 0,
+        "base": 3880,
+        "category": "Linkage",
+        "example": "update__6TEnemyFv",
+        "group": "linkage",
+        "head": 3874,
+        "key": "mangled_member",
+        "name": "Hand-mangled member names",
+        "removed": 6
+      },
+      {
+        "added": 0,
+        "base": 304,
+        "category": "Linkage",
+        "example": "helper__Fv",
+        "group": "linkage",
+        "head": 304,
+        "key": "mangled_free",
+        "name": "Hand-mangled free functions",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 0,
+        "category": "Linkage",
+        "example": "_ZN6TEnemy6updateEv",
+        "group": "linkage",
+        "head": 0,
+        "key": "mangled_itanium",
+        "name": "Itanium-mangled names",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 6933,
+        "category": "Linkage",
+        "example": "TEnemy__update",
+        "group": "linkage",
+        "head": 6932,
+        "key": "flat_name",
+        "name": "Members spelled as C names",
+        "removed": 1
+      },
+      {
+        "added": 0,
+        "base": 6258,
+        "category": "Layout",
+        "example": "(u8 *)p + 0x30",
+        "group": "layout",
+        "head": 6195,
+        "key": "raw_offset",
+        "name": "Byte-pointer offsets",
+        "removed": 63
+      },
+      {
+        "added": 0,
+        "base": 620,
+        "category": "Layout",
+        "example": "(Vec *)(p + 0x178)",
+        "group": "layout",
+        "head": 618,
+        "key": "offset_cast",
+        "name": "Casts of pointer plus offset",
+        "removed": 2
+      },
+      {
+        "added": 0,
+        "base": 1500,
+        "category": "Layout",
+        "example": "*(f32 *)&x, *(s32 *)(p + 0x18)",
+        "group": "layout",
+        "head": 1484,
+        "key": "punned_deref",
+        "name": "Type-punned dereferences",
+        "removed": 16
+      },
+      {
+        "added": 0,
+        "base": 9345,
+        "category": "Layout",
+        "example": "unk_30, m_c, field_96, set_field_378",
+        "group": "layout",
+        "head": 9299,
+        "key": "offset_member",
+        "name": "Offset-named fields",
+        "removed": 46
+      },
+      {
+        "added": 0,
+        "base": 1324,
+        "category": "Types",
+        "example": "((void (*)(T *))p)(x)",
+        "group": "types",
+        "head": 1324,
+        "key": "fp_cast",
+        "name": "Function-pointer casts",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 14,
+        "category": "Types",
+        "example": "(saddr)\"file.gvm\"",
+        "group": "types",
+        "head": 14,
+        "key": "string_cast",
+        "name": "Strings cast to integers",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 0,
+        "category": "Types",
+        "example": "undefined4",
+        "group": "types",
+        "head": 0,
+        "key": "ghidra_type",
+        "name": "Ghidra types",
+        "removed": 0
+      },
+      {
+        "added": 1,
+        "base": 11206,
+        "category": "Types",
+        "example": "TUnk_804806E8",
+        "group": "types",
+        "head": 11108,
+        "key": "address_type",
+        "name": "Address-named types",
+        "removed": 99
+      },
+      {
+        "added": 0,
+        "base": 11,
+        "category": "Types",
+        "example": "#define g (*(T *)&g)",
+        "group": "types",
+        "head": 11,
+        "key": "retype_macro",
+        "name": "Re-typing macros",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 7240,
+        "category": "Decompiler output",
+        "example": "temp_r3, var_f31",
+        "group": "decompiler",
+        "head": 7194,
+        "key": "decomp_temp",
+        "name": "m2c temporaries",
+        "removed": 46
+      },
+      {
+        "added": 0,
+        "base": 1435,
+        "category": "Decompiler output",
+        "example": "sp1C",
+        "group": "decompiler",
+        "head": 1435,
+        "key": "stack_local",
+        "name": "Stack-slot locals",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 15081,
+        "category": "Decompiler output",
+        "example": "arg0, farg1",
+        "group": "decompiler",
+        "head": 15037,
+        "key": "arg_name",
+        "name": "Numbered parameters",
+        "removed": 44
+      },
+      {
+        "added": 0,
+        "base": 20,
+        "category": "Decompiler output",
+        "example": "iVar1, param_1",
+        "group": "decompiler",
+        "head": 20,
+        "key": "ghidra_temp",
+        "name": "Ghidra temporaries",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 0,
+        "category": "Decompiler output",
+        "example": "M2C_FIELD",
+        "group": "decompiler",
+        "head": 0,
+        "key": "m2c_macro",
+        "name": "m2c macros",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 203,
+        "category": "Decompiler output",
+        "example": "// moved from 0x8043E828",
+        "group": "decompiler",
+        "head": 203,
+        "key": "address_comment",
+        "name": "Address comments",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 8818,
+        "category": "Names",
+        "example": "lbl_8045A010",
+        "group": "names",
+        "head": 8810,
+        "key": "data_label",
+        "name": "Address-named data",
+        "removed": 8
+      },
+      {
+        "added": 0,
+        "base": 10605,
+        "category": "Names",
+        "example": "fn_80123456, TEnemy__sub_80123456",
+        "group": "names",
+        "head": 10602,
+        "key": "function_placeholder",
+        "name": "Address-named functions",
+        "removed": 3
+      },
+      {
+        "added": 0,
+        "base": 18,
+        "category": "Names",
+        "example": "call_36A90_with_1",
+        "group": "names",
+        "head": 18,
+        "key": "address_in_name",
+        "name": "Names built on an address",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 50,
+        "category": "Vtables",
+        "example": "__vt__6TEnemy",
+        "group": "vtables",
+        "head": 50,
+        "key": "vtable_symbol",
+        "name": "Vtable symbols in source",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 7,
+        "category": "Vtables",
+        "example": "void *TEnemy_vtable[] = {",
+        "group": "vtables",
+        "head": 7,
+        "key": "hand_vtable",
+        "name": "Hand-written vtables",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 37,
+        "category": "Vtables",
+        "example": "virtual void reserved_3();",
+        "group": "vtables",
+        "head": 37,
+        "key": "filler_virtual",
+        "name": "Filler virtuals",
+        "removed": 0
+      },
+      {
+        "added": 1,
+        "base": 1240,
+        "category": "Vtables",
+        "example": "vfunc_67, TEnemy__vt82",
+        "group": "vtables",
+        "head": 1241,
+        "key": "slot_name",
+        "name": "Slot-numbered names",
+        "removed": 0
+      },
+      {
+        "added": 2,
+        "base": 3468,
+        "category": "Vtables",
+        "example": "virtual void draw();",
+        "group": "vtables",
+        "head": 3451,
+        "key": "local_virtual",
+        "name": "Virtuals in source files",
+        "removed": 19
+      },
+      {
+        "added": 0,
+        "base": 1025,
+        "category": "Units and classes",
+        "example": "TEnemy_80123456.cpp",
+        "group": "placement",
+        "head": 1024,
+        "key": "address_unit",
+        "name": "Units named after an address",
+        "removed": 1
+      },
+      {
+        "added": 0,
+        "base": 3096,
+        "category": "Units and classes",
+        "example": "struct EnemyView : TObject {",
+        "group": "placement",
+        "head": 3062,
+        "key": "local_class",
+        "name": "Classes declared in source files",
+        "removed": 34
+      },
+      {
+        "added": 0,
+        "base": 110,
+        "category": "Units and classes",
+        "example": "class TEnemy {",
+        "group": "placement",
+        "head": 106,
+        "key": "duplicate_class",
+        "name": "Classes declared in more than one file",
+        "removed": 4
+      },
+      {
+        "added": 0,
+        "base": 22,
+        "category": "Assembly",
+        "example": "asm { ... }",
+        "group": "asm",
+        "head": 22,
+        "key": "inline_asm",
+        "name": "Inline assembly",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 1463,
+        "category": "Members in the wrong class (not in the total)",
+        "example": "((TObjPlayer *)this)->f()",
+        "group": "ownership",
+        "head": 1462,
+        "key": "this_cast",
+        "name": "Casts of this to an unrelated class",
+        "removed": 1
+      },
+      {
+        "added": 0,
+        "base": 68,
+        "category": "Members in the wrong class (not in the total)",
+        "example": "TEnemy__f((char *)this + 0x3C)",
+        "group": "ownership",
+        "head": 68,
+        "key": "subobject_call",
+        "name": "Own member called on a sub-object",
+        "removed": 0
+      }
+    ],
+    "new_findings": [
+      {
+        "key": "slot_name",
+        "line": 121,
+        "path": "src/pso/enemy/mericarol/TObjEneBm9Mericarol_Bomb.cpp",
+        "text": "vfunc_16"
+      },
+      {
+        "key": "address_type",
+        "line": 206,
+        "path": "src/pso/player/TObjPlayer_800C4714.cpp",
+        "text": "Hit_800C4A5C"
+      },
+      {
+        "key": "local_virtual",
+        "line": 155,
+        "path": "src/pso/player/TObjPlayer_801C7430.cpp",
+        "text": "    virtual BmlMotionEntry *m74();"
+      },
+      {
+        "key": "local_virtual",
+        "line": 331,
+        "path": "src/pso/player/TObjPlayer_801C7430.cpp",
+        "text": "    virtual BmlMotionEntry *v76();"
+      }
+    ],
+    "newly_stale_retention_entries": [],
+    "renamed_symbols": [
+      {
+        "address": "0x8001E41C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "swap_endian__15ActorParamBlockFv",
+        "old": "swap_endian__6TLobbyFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8001E498",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "byteswap_packet__12AttackParamsFv",
+        "old": "byteswap_packet__6TLobbyFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80027514",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "setup_v2_instance__12TBoss1DragonFPC3VecP18DragonAttackParamsP17AreaAttackHistory",
+        "old": "setup_v2_instance__12TBoss1DragonFP3VecPUcl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80027590",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "emit_v2_effect_at_position__12TBoss1DragonFPC18DragonAttackParams",
+        "old": "emit_v2_effect_at_position__12TBoss1DragonFPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800275BC",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "emit_v2_enemy_effect__12TBoss1DragonFPC3VecPC18DragonAttackParamsP17AreaAttackHistory",
+        "old": "emit_v2_enemy_effect__12TBoss1DragonFP3VecPUcP17AreaAttackHistory",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8002AE7C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "set_motion_list__10TObjMotionFP14BmlMotionEntry",
+        "old": "set_motion_list__10TObjMotionFl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8002AE84",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "set_action_table__10TObjMotionFP16TObjMotionAction",
+        "old": "set_action_table__10TObjMotionFl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80063C1C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "spawn_switch_attack__12TBoss8DragonFPC3Vec",
+        "old": "spawn_switch_attack__12TBoss8DragonFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80063C7C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "spawn_attack_effect__12TBoss8DragonFPC3Vec",
+        "old": "spawn_attack_effect__12TBoss8DragonFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80067034",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "is_within_xz_distance__12TBoss8DragonFPC3VecPC10NJS_OBJECTf",
+        "old": "is_within_xz_distance__12TBoss8DragonFPUcf",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80067064",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "calc_sq_offset__12TBoss8DragonFPC18DragonAttackParamsf",
+        "old": "calc_sq_offset__12TBoss8DragonFf",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8006A410",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "reset_cameras_to_actor__FP10TObjPlayerl",
+        "old": "reset_cameras_to_actor__FPvl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8006AF9C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "setup_default_view__11TCameraCtrlFP3Vec",
+        "old": "setup_default_view__11TCameraCtrlFPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80094F40",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "draw_saved_node_tree__16TObjEneRe7BeruraFP10NJS_OBJECTPA3_A4_f",
+        "old": "draw_saved_node_tree__16TObjEneRe7BeruraFP10NJS_OBJECTPUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800B9E84",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "reload_stats_keep_hp_tp__9TObjEneDDFP12player_statsP12AttackParamsP15ActorParamBlock",
+        "old": "reload_stats_keep_hp_tp__9TObjEneDDFPUcPUcPUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800B9ED0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "reset_hp__9TObjEneDDFP12player_statsP12AttackParamsP15ActorParamBlock",
+        "old": "reset_hp__9TObjEneDDFPUcPUcPUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800BA498",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "emit_effect_at_position__9TObjEneDDFPC18DragonAttackParams",
+        "old": "emit_effect_at_position__9TObjEneDDFPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800BA4C4",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "emit_effect__9TObjEneDDFP8TObjBasePC3VecPC18DragonAttackParams",
+        "old": "emit_effect__9TObjEneDDFPvll",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800BA4E8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "emit_enemy_effect__9TObjEneDDFP8TObjBasePC3VecPC18DragonAttackParamsP17AreaAttackHistory",
+        "old": "emit_enemy_effect__9TObjEneDDFPvPvPUcPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800E80A4",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "copy_ginja_texture_entry",
+        "old": "copy_vec3__10TObjPlayerFPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800F7478",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "bind_enemy_combat_stats__9TObjEnemyFP12player_statsP12AttackParamsP15ActorParamBlock",
+        "old": "bind_enemy_combat_stats__9TObjEnemyFPUcPUcPUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80101894",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "draw_model_nodes__5TItemFPA3_A4_f",
+        "old": "draw_model_nodes__5TItemFPUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801018E4",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "apply_sign_effect__5TItemFPA3_A4_f",
+        "old": "apply_sign_effect__5TItemFPUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80101934",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "visit_model_nodes__5TItemFPA3_A4_f",
+        "old": "visit_model_nodes__5TItemFPUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80121160",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "get_model_joint_matrix__FP10TObjPlayeri",
+        "old": "get_model_joint_matrix__FPvi",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80131700",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "find_model_node__FP10NJS_OBJECTl",
+        "old": "find_model_node__FUll",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80289710",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "trigger_switches_in_range__12TBoss8DragonFP7TObjectPC3VecPC18DragonAttackParams",
+        "old": "trigger_switches_in_range__12TBoss8DragonFPvPvPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802D71E0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "register_animated_chunk__16NpcModelRegistryFsP10NJS_OBJECTP11NJS_TEXLISTPC19NpcAnimationBindingff",
+        "old": "register_animated_chunk__16NpcModelRegistryFsPvP11NJS_TEXLISTPC19NpcAnimationBindingff",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802D7260",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "register_chunk__16NpcModelRegistryFsP10NJS_OBJECTP11NJS_TEXLISTff",
+        "old": "spawn_child__12TObjEneSlimeFsPvP11NJS_TEXLISTff",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802FB170",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "get_state_flags__12TBoss8DragonFPC18DragonAttackParams",
+        "old": "get_state_flags__12TBoss8DragonFPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802FB190",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "emit_effect__12TBoss8DragonFPC3VecPC18DragonAttackParamsP17AreaAttackHistory",
+        "old": "emit_effect__12TBoss8DragonFPvPvP17AreaAttackHistory",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8032537C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "__ct__25TBoss5GryphonLightningEffFP7TObjectP14CurvePathPointifff",
+        "old": "__ct__25TBoss5GryphonLightningEffFP7TObjectP29TBoss5GryphonLightningSegmentifff",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8034D500",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "eval_bezier_curve__12TBoss8DragonFP14CurvePathPointiiP3Vecf",
+        "old": "eval_bezier_curve__12TBoss8DragonFPviiPvf",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803D898C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "get_current_matrix__FPA3_A4_f",
+        "old": "get_current_matrix__FPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803D89E8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "invert_matrix_in_place__10TObjPlayerFPA4_f",
+        "old": "invert_matrix_in_place__10TObjPlayerFUl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803D8A6C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "rotate_matrix_zyx__FPA4_flll",
+        "old": "rotate_matrix_zyx__FPvlll",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803D8AE4",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "rotate_matrix_yxz__FPA4_flll",
+        "old": "rotate_matrix_yxz__Fllll",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803E2F28",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "copy_matrix3x3_for_chunk_tree__10TObjPlayerFPA3_A4_Cf",
+        "old": "copy_matrix3x3_for_chunk_tree__10TObjPlayerFv",
+        "section": ".text",
+        "type": "function"
+      }
+    ],
+    "total": {
+      "added": 4,
+      "base": 100238,
+      "head": 99811,
+      "removed": 431
+    }
+  },
+  "tree": "c80f9ccd07f10f390bc44a650a30e504ac2a44d4",
+  "validation": {
+    "check_pr": "pass",
+    "exact_functions": 27572,
+    "fork_actual_coverage_regressions": 0,
+    "fork_data_coverage_gained": 159,
+    "fork_data_delta": -2426,
+    "fork_padding_omitted": 2585,
+    "historical_fork_bytes": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "linked_units": 2297,
+    "probes": [
+      "actor.dol 384 table lookups, 32 full-file loads and release passed",
+      "actor.dol typed HP/TP reload and reset passed",
+      "actor.dol quest attack and resistance record swaps and missing labels passed",
+      "actor.dol: eight model-node searches and five archive cases passed"
+    ],
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3"
+  }
+}

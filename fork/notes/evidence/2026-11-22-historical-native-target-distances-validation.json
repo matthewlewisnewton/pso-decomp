@@ -1,0 +1,403 @@
+{
+  "source_head": "ac3933dfd258bf28ff24e39a427806a8ba439e32",
+  "source_tree": "ae4e55de2b91152b1af7fb50d042430e0ca70def",
+  "previous_cumulative": "5a168c6e3f07086e601d144e345393cb090893a5",
+  "upstream_master": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "effects_overlap_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/player/TObjPlayer.h",
+    "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+    "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/enemy/saver/SaverLifecycle.cpp",
+    "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+    "src/pso/object/ambient/TObjGrass.cpp",
+    "src/pso/object/container/TContainerAncient01.cpp",
+    "src/pso/player/TObjPlayer_80011014.cpp",
+    "src/pso/quest/QuestOpcodeHandlers.cpp"
+  ],
+  "source_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/EnemyTargeting.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/player/TObjPlayer_80011014.h",
+    "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+    "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/enemy/saver/SaverLifecycle.cpp",
+    "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+    "src/pso/item/shop/TShopGenerator.cpp",
+    "src/pso/object/ambient/TObjEnvSoundGlobal.cpp",
+    "src/pso/object/ambient/TObjGrass.cpp",
+    "src/pso/object/ambient/TObjLight.cpp",
+    "src/pso/object/container/TContainerAncient01.cpp",
+    "src/pso/object/door/TObjDoor_8018E358.cpp",
+    "src/pso/player/TObjPlayer_80011014.cpp",
+    "src/pso/quest/QuestOpcodeHandlers.cpp",
+    "src/pso/unk/text_8020D2B4.cpp"
+  ],
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "matching_functions": 27572,
+  "linked_units": 2368,
+  "coverage_regressions": {
+    "regressions": 0,
+    "data_regressions": 0,
+    "data_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0,
+    "failures": 0
+  },
+  "source_benchmark": {
+    "total": {
+      "base": 142710,
+      "head": 142642,
+      "added": 0,
+      "removed": 68
+    },
+    "symbol_changes": [
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80018780",
+        "type": "function",
+        "old": "calc_distance_to_client__10TObjPlayerFlUsP3Vec",
+        "new": "calc_distance_to_client__10TObjPlayerFPC8TObjBaseUsP3Vec",
+        "flags": []
+      }
+    ],
+    "stale_retention_entries": 0
+  },
+  "matching_constraint": "Del Depth passes its existing receiver expression through a typed conversion. A direct this expression made CodeWarrior insert a register move in the original look-around routine at 0x803142DC.",
+  "runtime": {
+    "images": [
+      "retail",
+      "Great Merge source"
+    ],
+    "actor_distance_cases": 14,
+    "vector_distance_cases": 12,
+    "client_gate_cases": 8,
+    "total_per_image": 34,
+    "emulation_limit": "The harness skips the unused second-lane save and restore of f31 and models the shared Gekko paired-single subtraction. It checks the real call arguments, distance math, output, client lookup and same-floor gates."
+  },
+  "historical_source_comparison": {
+    "closed": {
+      "src/pso/enemy/TObjEneDelDepth.cpp": "The current normal and low archives carry the same model and motion strings, typed model/texture pairs, body and attack state, battle parameters and spawn registration. The two tracking paths use the native actor distance interface. The original yaw, collision, particle and sound calls, projectile choices and synchronized object-state exchange remain at their original entries.",
+      "src/pso/enemy/TObjEneBeast.cpp": "The current native class retains the six sound calls, the view and demo routes, the two sampled attack trails, the authored archive and motion filenames, the exact battle-table indexes and three original render registrations. The typed class constructor initializes position and animation. The established allocator and battle lookup names link to the same addresses.",
+      "src/pso/enemy/TObjEneDimedian.cpp": "The live class retains the remapped sounds, advancement and entrance fade state, the three chunk draw rows and update ticks, both motion trail samples, and the typed battle allocation and resource lifetimes. The action table and spawn initialization are on the native class. The historical motion flags setter and actor status reads remain at their original addresses.",
+      "src/pso/enemy/TObjEneNanoDrago.cpp": "The current native body center, yaw and target fields feed the movement and collision paths. The original archive, model and motion strings, battle tables, typed model registration and destruction are retained. Single and multiple beams retain their actual target positions, the same loop and one-shot sounds, and the original appearance fade, reaction and item-drop paths."
+    },
+    "remaining": 159,
+    "historical_enemy_splits_mapped": 52,
+    "linked_original_functions": 3081,
+    "exact_original_data_bytes": 87708,
+    "alignment_padding": {
+      "pso/boss/Boss7DeRolLeCBehavior.cpp": {
+        "start": "0x805deba4",
+        "end": "0x805deba8",
+        "size": 4,
+        "padding": true
+      },
+      "pso/enemy/TObjEneBm5Wolf.cpp": {
+        "start": "0x805d9e5c",
+        "end": "0x805d9e60",
+        "size": 4,
+        "padding": true
+      }
+    },
+    "per_file_coverage": {
+      "src/pso/boss/TBoss6Type1.cpp": {
+        "linked_functions": 115,
+        "covered_data_bytes": 1480,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneBm3FlyNest.cpp": {
+        "linked_functions": 43,
+        "covered_data_bytes": 1688,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneGyaranzo.cpp": {
+        "linked_functions": 29,
+        "covered_data_bytes": 1452,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneMe1Canadin.cpp": {
+        "linked_functions": 101,
+        "covered_data_bytes": 1492,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneMe1Gee.cpp": {
+        "linked_functions": 102,
+        "covered_data_bytes": 1440,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneMe1GiGue.cpp": {
+        "linked_functions": 55,
+        "covered_data_bytes": 920,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneMe3Stelth_800F0EC4.cpp": {
+        "linked_functions": 4,
+        "covered_data_bytes": 0,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneMerillLia.cpp": {
+        "linked_functions": 37,
+        "covered_data_bytes": 1200,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneMorfos.cpp": {
+        "linked_functions": 47,
+        "covered_data_bytes": 1244,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEnePanarms.cpp": {
+        "linked_functions": 72,
+        "covered_data_bytes": 1904,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEnePanarms_800DCEB8.cpp": {
+        "linked_functions": 53,
+        "covered_data_bytes": 1660,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneRe2Flower_800C3E14.cpp": {
+        "linked_functions": 12,
+        "covered_data_bytes": 864,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneRe7Berura.cpp": {
+        "linked_functions": 37,
+        "covered_data_bytes": 1056,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneRecon_8031C250.cpp": {
+        "linked_functions": 14,
+        "covered_data_bytes": 32,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneSlimeTailAttack.cpp": {
+        "linked_functions": 90,
+        "covered_data_bytes": 2380,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp": {
+        "linked_functions": 54,
+        "covered_data_bytes": 784,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneMe3Shinowa.cpp": {
+        "linked_functions": 88,
+        "covered_data_bytes": 2048,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/boss/TBoss4DarkFalz_8004C93C.cpp": {
+        "linked_functions": 56,
+        "covered_data_bytes": 1524,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneDolmOlm.cpp": {
+        "linked_functions": 32,
+        "covered_data_bytes": 1424,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneMoja.cpp": {
+        "linked_functions": 29,
+        "covered_data_bytes": 952,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneMe3SinowZoa.cpp": {
+        "linked_functions": 70,
+        "covered_data_bytes": 1580,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneRe4Bit.cpp": {
+        "linked_functions": 50,
+        "covered_data_bytes": 560,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/boss/TObjBoss2Tunnel.cpp": {
+        "linked_functions": 49,
+        "covered_data_bytes": 216,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/boss/TBoss8Dragon.cpp": {
+        "linked_functions": 141,
+        "covered_data_bytes": 5272,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneDellBiter.cpp": {
+        "linked_functions": 51,
+        "covered_data_bytes": 1120,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/boss/TBoss4Type1.cpp": {
+        "linked_functions": 60,
+        "covered_data_bytes": 2984,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneBm9Mericarol.cpp": {
+        "linked_functions": 20,
+        "covered_data_bytes": 988,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/object/TObjDFHorming.cpp": {
+        "linked_functions": 38,
+        "covered_data_bytes": 3268,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneLappy.cpp": {
+        "linked_functions": 35,
+        "covered_data_bytes": 1376,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/boss/Boss7DeRolLeCBehavior.cpp": {
+        "linked_functions": 90,
+        "covered_data_bytes": 7792,
+        "alignment_padding_bytes": 4
+      },
+      "src/pso/enemy/TObjEneIllGill.cpp": {
+        "linked_functions": 31,
+        "covered_data_bytes": 920,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneMe3Stelth.cpp": {
+        "linked_functions": 61,
+        "covered_data_bytes": 1092,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneDf2Bringer_800972B0.cpp": {
+        "linked_functions": 41,
+        "covered_data_bytes": 1028,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/boss/Boss5GryphonBehavior.cpp": {
+        "linked_functions": 168,
+        "covered_data_bytes": 3948,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneNanoDrago.cpp": {
+        "linked_functions": 37,
+        "covered_data_bytes": 1248,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneBeast.cpp": {
+        "linked_functions": 16,
+        "covered_data_bytes": 1404,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneDelDepth.cpp": {
+        "linked_functions": 62,
+        "covered_data_bytes": 1712,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/DarkGunner.cpp": {
+        "linked_functions": 43,
+        "covered_data_bytes": 1060,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneDimedian.cpp": {
+        "linked_functions": 22,
+        "covered_data_bytes": 1424,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneBm9Mericarol_802CECE0.cpp": {
+        "linked_functions": 15,
+        "covered_data_bytes": 432,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/ui/TObjDFJisin.cpp": {
+        "linked_functions": 31,
+        "covered_data_bytes": 596,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/boss/TBoss6Type2.cpp": {
+        "linked_functions": 135,
+        "covered_data_bytes": 308,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/boss/TBoss1Dragon.cpp": {
+        "linked_functions": 180,
+        "covered_data_bytes": 5540,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneBm3Fly.cpp": {
+        "linked_functions": 45,
+        "covered_data_bytes": 764,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/SaverLifecycle.cpp": {
+        "linked_functions": 42,
+        "covered_data_bytes": 900,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/boss/TBoss2DeRolLe.cpp": {
+        "linked_functions": 110,
+        "covered_data_bytes": 3724,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/boss/TBoss4Zanzo.cpp": {
+        "linked_functions": 64,
+        "covered_data_bytes": 1904,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/boss/TBoss4Type3.cpp": {
+        "linked_functions": 82,
+        "covered_data_bytes": 2644,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneBm5GibonU.cpp": {
+        "linked_functions": 83,
+        "covered_data_bytes": 1488,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneRe4Sorcerer_800EDB98.cpp": {
+        "linked_functions": 50,
+        "covered_data_bytes": 860,
+        "alignment_padding_bytes": 0
+      },
+      "src/pso/enemy/TObjEneBm5Wolf.cpp": {
+        "linked_functions": 76,
+        "covered_data_bytes": 1404,
+        "alignment_padding_bytes": 4
+      },
+      "src/pso/misc/TLobby_800F795C.cpp": {
+        "linked_functions": 13,
+        "covered_data_bytes": 2608,
+        "alignment_padding_bytes": 0
+      }
+    }
+  },
+  "historical_fork_data": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "validation_sha256": {
+    "address-ownership.json": "8037d1347ecf1a387aabd9946e6e367efec302d8d2fa3194c3e764734e06d4df",
+    "coverage-gaps.json": "87f43ffa3f83b75405528c6b5755fe041b5ca414f1863fe4020ac503e7a1d69a",
+    "check.json": "f3ba9ceafce33acd8efd0524d18aab90dc0e38211138ae83cb3c12e2eb6aa617",
+    "delta-03.json": "ecd4b35202b5d4bc3f6b5e2c45570f0d8d3cbd9231d4a1ecedc560efd7af93e9",
+    "quality.json": "4b7738a34b074fb340c4192ceee79a518f797357416dd974614ea612616e3abe",
+    "probe-target-distances.py": "372b1229cf780b5e269ea26e71e59a5817c123dc6e5144c5efff9d946d84745e",
+    "probe-distances.log": "fba37ea0aebf4b2cdbb90a56d2650064f59b9d70d42657569b7d23e5225e0ae0"
+  },
+  "materialized_fork": {
+    "tree": "e8f6f3e9a01c253817e4522ef0688b5000975ede",
+    "retention_entries": 27007,
+    "new_stale_retention_entries": 0,
+    "checks": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    },
+    "validation_sha256": {
+      "private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011",
+      "retention.log": "b3325169ce9d5755b2340e455b52eb7ac52edcb6fa173dc4f2486f46f713350c",
+      "fork-tests.log": "2ac4e075284a13af3596fced9166e00aaca80d55261b9c396a6d08e9cc499952",
+      "tool-tests.log": "228d72e761788e7a76a99c8c74ce93b0827723594b8b2cf4a5a1efe8bc9b8465",
+      "host-tests.log": "c8c5328c22555bff15d0797b625199fdc56e9b4f10612ac001ac22a09d7f9284"
+    }
+  }
+}

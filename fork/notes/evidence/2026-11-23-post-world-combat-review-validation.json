@@ -1,0 +1,2216 @@
+{
+  "combat_review": {
+    "base": "c3b0000bea8218676b3e1667eeb19bbda8174f19",
+    "benchmark": {
+      "added": 65,
+      "base": 142461,
+      "head": 140724,
+      "removed": 1802
+    },
+    "categories": [
+      {
+        "added": 2,
+        "base": 7359,
+        "category": "Linkage",
+        "example": "extern \"C\" void TEnemy__update(void *);",
+        "group": "linkage",
+        "head": 7171,
+        "key": "extern_c",
+        "name": "extern \"C\" declarations",
+        "removed": 190
+      },
+      {
+        "added": 12,
+        "base": 1515,
+        "category": "Linkage",
+        "example": "void heap_free(void *);",
+        "group": "linkage",
+        "head": 1505,
+        "key": "local_decl",
+        "name": "Prototypes and externs in source files",
+        "removed": 22
+      },
+      {
+        "added": 2,
+        "base": 6829,
+        "category": "Linkage",
+        "example": "update__6TEnemyFv",
+        "group": "linkage",
+        "head": 6689,
+        "key": "mangled_member",
+        "name": "Hand-mangled member names",
+        "removed": 142
+      },
+      {
+        "added": 0,
+        "base": 304,
+        "category": "Linkage",
+        "example": "helper__Fv",
+        "group": "linkage",
+        "head": 285,
+        "key": "mangled_free",
+        "name": "Hand-mangled free functions",
+        "removed": 19
+      },
+      {
+        "added": 0,
+        "base": 0,
+        "category": "Linkage",
+        "example": "_ZN6TEnemy6updateEv",
+        "group": "linkage",
+        "head": 0,
+        "key": "mangled_itanium",
+        "name": "Itanium-mangled names",
+        "removed": 0
+      },
+      {
+        "added": 4,
+        "base": 10688,
+        "category": "Linkage",
+        "example": "TEnemy__update",
+        "group": "linkage",
+        "head": 10689,
+        "key": "flat_name",
+        "name": "Members spelled as C names",
+        "removed": 3
+      },
+      {
+        "added": 0,
+        "base": 9154,
+        "category": "Layout",
+        "example": "(u8 *)p + 0x30",
+        "group": "layout",
+        "head": 8936,
+        "key": "raw_offset",
+        "name": "Byte-pointer offsets",
+        "removed": 218
+      },
+      {
+        "added": 0,
+        "base": 890,
+        "category": "Layout",
+        "example": "(Vec *)(p + 0x178)",
+        "group": "layout",
+        "head": 844,
+        "key": "offset_cast",
+        "name": "Casts of pointer plus offset",
+        "removed": 46
+      },
+      {
+        "added": 0,
+        "base": 2045,
+        "category": "Layout",
+        "example": "*(f32 *)&x, *(s32 *)(p + 0x18)",
+        "group": "layout",
+        "head": 1960,
+        "key": "punned_deref",
+        "name": "Type-punned dereferences",
+        "removed": 85
+      },
+      {
+        "added": 11,
+        "base": 14152,
+        "category": "Layout",
+        "example": "unk_30, m_c, field_96, set_field_378",
+        "group": "layout",
+        "head": 14102,
+        "key": "offset_member",
+        "name": "Offset-named fields",
+        "removed": 61
+      },
+      {
+        "added": 3,
+        "base": 2105,
+        "category": "Types",
+        "example": "((void (*)(T *))p)(x)",
+        "group": "types",
+        "head": 2061,
+        "key": "fp_cast",
+        "name": "Function-pointer casts",
+        "removed": 47
+      },
+      {
+        "added": 0,
+        "base": 25,
+        "category": "Types",
+        "example": "(saddr)\"file.gvm\"",
+        "group": "types",
+        "head": 24,
+        "key": "string_cast",
+        "name": "Strings cast to integers",
+        "removed": 1
+      },
+      {
+        "added": 0,
+        "base": 0,
+        "category": "Types",
+        "example": "undefined4",
+        "group": "types",
+        "head": 0,
+        "key": "ghidra_type",
+        "name": "Ghidra types",
+        "removed": 0
+      },
+      {
+        "added": 12,
+        "base": 14470,
+        "category": "Types",
+        "example": "TUnk_804806E8",
+        "group": "types",
+        "head": 14259,
+        "key": "address_type",
+        "name": "Address-named types",
+        "removed": 223
+      },
+      {
+        "added": 0,
+        "base": 39,
+        "category": "Types",
+        "example": "#define g (*(T *)&g)",
+        "group": "types",
+        "head": 39,
+        "key": "retype_macro",
+        "name": "Re-typing macros",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 11076,
+        "category": "Decompiler output",
+        "example": "temp_r3, var_f31",
+        "group": "decompiler",
+        "head": 10964,
+        "key": "decomp_temp",
+        "name": "m2c temporaries",
+        "removed": 112
+      },
+      {
+        "added": 0,
+        "base": 2211,
+        "category": "Decompiler output",
+        "example": "sp1C",
+        "group": "decompiler",
+        "head": 2205,
+        "key": "stack_local",
+        "name": "Stack-slot locals",
+        "removed": 6
+      },
+      {
+        "added": 0,
+        "base": 24857,
+        "category": "Decompiler output",
+        "example": "arg0, farg1",
+        "group": "decompiler",
+        "head": 24424,
+        "key": "arg_name",
+        "name": "Numbered parameters",
+        "removed": 433
+      },
+      {
+        "added": 0,
+        "base": 26,
+        "category": "Decompiler output",
+        "example": "iVar1, param_1",
+        "group": "decompiler",
+        "head": 26,
+        "key": "ghidra_temp",
+        "name": "Ghidra temporaries",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 0,
+        "category": "Decompiler output",
+        "example": "M2C_FIELD",
+        "group": "decompiler",
+        "head": 0,
+        "key": "m2c_macro",
+        "name": "m2c macros",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 258,
+        "category": "Decompiler output",
+        "example": "// moved from 0x8043E828",
+        "group": "decompiler",
+        "head": 255,
+        "key": "address_comment",
+        "name": "Address comments",
+        "removed": 3
+      },
+      {
+        "added": 1,
+        "base": 10334,
+        "category": "Names",
+        "example": "lbl_8045A010",
+        "group": "names",
+        "head": 10334,
+        "key": "data_label",
+        "name": "Address-named data",
+        "removed": 1
+      },
+      {
+        "added": 11,
+        "base": 12901,
+        "category": "Names",
+        "example": "fn_80123456, TEnemy__sub_80123456",
+        "group": "names",
+        "head": 12809,
+        "key": "function_placeholder",
+        "name": "Address-named functions",
+        "removed": 103
+      },
+      {
+        "added": 0,
+        "base": 23,
+        "category": "Names",
+        "example": "call_36A90_with_1",
+        "group": "names",
+        "head": 23,
+        "key": "address_in_name",
+        "name": "Names built on an address",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 295,
+        "category": "Vtables",
+        "example": "__vt__6TEnemy",
+        "group": "vtables",
+        "head": 294,
+        "key": "vtable_symbol",
+        "name": "Vtable symbols in source",
+        "removed": 1
+      },
+      {
+        "added": 0,
+        "base": 23,
+        "category": "Vtables",
+        "example": "void *TEnemy_vtable[] = {",
+        "group": "vtables",
+        "head": 22,
+        "key": "hand_vtable",
+        "name": "Hand-written vtables",
+        "removed": 1
+      },
+      {
+        "added": 0,
+        "base": 66,
+        "category": "Vtables",
+        "example": "virtual void reserved_3();",
+        "group": "vtables",
+        "head": 66,
+        "key": "filler_virtual",
+        "name": "Filler virtuals",
+        "removed": 0
+      },
+      {
+        "added": 0,
+        "base": 1485,
+        "category": "Vtables",
+        "example": "vfunc_67, TEnemy__vt82",
+        "group": "vtables",
+        "head": 1483,
+        "key": "slot_name",
+        "name": "Slot-numbered names",
+        "removed": 2
+      },
+      {
+        "added": 1,
+        "base": 4192,
+        "category": "Vtables",
+        "example": "virtual void draw();",
+        "group": "vtables",
+        "head": 4182,
+        "key": "local_virtual",
+        "name": "Virtuals in source files",
+        "removed": 11
+      },
+      {
+        "added": 0,
+        "base": 1145,
+        "category": "Units and classes",
+        "example": "TEnemy_80123456.cpp",
+        "group": "placement",
+        "head": 1145,
+        "key": "address_unit",
+        "name": "Units named after an address",
+        "removed": 0
+      },
+      {
+        "added": 5,
+        "base": 3818,
+        "category": "Units and classes",
+        "example": "struct EnemyView : TObject {",
+        "group": "placement",
+        "head": 3755,
+        "key": "local_class",
+        "name": "Classes declared in source files",
+        "removed": 68
+      },
+      {
+        "added": 0,
+        "base": 154,
+        "category": "Units and classes",
+        "example": "class TEnemy {",
+        "group": "placement",
+        "head": 151,
+        "key": "duplicate_class",
+        "name": "Classes declared in more than one file",
+        "removed": 3
+      },
+      {
+        "added": 1,
+        "base": 22,
+        "category": "Assembly",
+        "example": "asm { ... }",
+        "group": "asm",
+        "head": 22,
+        "key": "inline_asm",
+        "name": "Inline assembly",
+        "removed": 1
+      },
+      {
+        "added": 0,
+        "base": 1928,
+        "category": "Members in the wrong class (not in the total)",
+        "example": "((TObjPlayer *)this)->f()",
+        "group": "ownership",
+        "head": 1850,
+        "key": "this_cast",
+        "name": "Casts of this to an unrelated class",
+        "removed": 78
+      },
+      {
+        "added": 0,
+        "base": 105,
+        "category": "Members in the wrong class (not in the total)",
+        "example": "TEnemy__f((char *)this + 0x3C)",
+        "group": "ownership",
+        "head": 99,
+        "key": "subobject_call",
+        "name": "Own member called on a sub-object",
+        "removed": 6
+      }
+    ],
+    "compiler_directive_lines_added": 37,
+    "flagged_labels": 7,
+    "head": "3101817acc4c8b0e430a78822de084988283c924",
+    "newly_stale_retention_entries": 0,
+    "paths": 463,
+    "symbol_changes": [
+      {
+        "address": "0x80010EC0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "gain_photon_blast_chain_charge__9TObjCharaFf",
+        "old": "gain_photon_blast_chain_charge__9TObjCharaFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80018780",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "calc_distance_to_client__10TObjPlayerFPC8TObjBaseUsP3Vec",
+        "old": "calc_distance_to_client__10TObjPlayerFlUsP3Vec",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80019324",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "obj_clearArrS16_FC__FP9TObjCharal",
+        "old": "obj_clearArrS16_FC__FP8ObjArrFCi",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8002AC4C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "cloneModelHierarchy__12TBoss1DragonFP10NJS_OBJECTP10NJS_OBJECTPv",
+        "old": "cloneModelHierarchy__12TBoss1DragonFP15DragonModelNodeP15DragonModelNodePv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8002AD54",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "countModelNodes__12TBoss1DragonFP10NJS_OBJECT",
+        "old": "countModelNodes__12TBoss1DragonFP15DragonModelNode",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8002B058",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "copy_header__16EnemyStateRecordFPC16EnemyStateRecord",
+        "old": "copy_header__6TLobbyFPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8002E62C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [
+          "member of TUnk_80482090, a class named after an address"
+        ],
+        "new": "__ct__13TUnk_80482090FP7TObjectPA4_Cf",
+        "old": "__ct__13TUnk_80482090FP7TObjectUl",
+        "rationale": "The breakup piece takes a read-only 3-by-4 matrix in its existing constructor.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80039E88",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "start_attack_at_target__14TBoss2TentacleFPC3Vecl",
+        "old": "start_attack_at_target__14TBoss2TentacleFPUcl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80039F50",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "__ct__14TBoss2TentacleFP7TObjectPA4_Cfl",
+        "old": "__ct__14TBoss2TentacleFP7TObjectll",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8003A81C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "create__17TObjBoss2CeilJunkFPC3Vec",
+        "old": "create__17TObjBoss2CeilJunkFPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8003B07C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "create_particle__17TObjBoss2CeilJunkFPC3Vecl",
+        "old": "create_particle__17TObjBoss2CeilJunkFPCvl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8003B138",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "create_particle_effect__15TObjBoss2TunnelFPC3Veclf",
+        "old": "create_particle_effect__15TObjBoss2TunnelFPCvlf",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8003F0E8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "register_by_id__9TObjEnemyFv",
+        "old": "reset_photon_effect__12TBoss3VoloptFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8003F3C8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "check_value_equals__7TObjectCFPCc",
+        "old": "check_value_equals__13TUnk_804B6C24CFl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80041B08",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "copy_position__9TObjCharaFv",
+        "old": "copy_position__20TBoss3VoloptHiraisinFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80079F58",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "prepare_wall_query_polygons__FPC3VecfUl",
+        "old": "prepare_wall_query_polygons__FPvfl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8007A0E4",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "copy_wall_polygon__11WallPolygonFPC7CsnFace",
+        "old": "copy_wall_polygon__10TObjPlayerFPUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8007A2D0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "query_prepared_wall_polygons__FP12WallRayQuery",
+        "old": "query_prepared_wall_polygons__FPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8007A730",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "init__13WallRayResultFv",
+        "old": "init__10TObjMapCsnFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8007A770",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "init_and_return__6CsnHitFv",
+        "old": "init_and_return__10TObjMapCsnFl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8007A7E8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "reset__10CsnContactFv",
+        "old": "clear_velocity_vectors__10TObjPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80090264",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "__ct__18TObjEneBalClawBodyFP7TObjectP14EnemyPlacement",
+        "old": "__ct__18TObjEneBalClawBodyFP7TObjectPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80091C58",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "__ct__18TObjEneBalClawClawFP7TObjectP14EnemyPlacement",
+        "old": "__ct__18TObjEneBalClawClawFP7TObjectPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8009EC00",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "move_xz_on_ground__17TObjEneMe1CanadinFPC3Vec",
+        "old": "move_xz_on_ground__17TObjEneMe1CanadinFPUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800B3EB8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "__ct__17TObjEneBm3FlyNestFP7TObjectP14EnemyPlacement",
+        "old": "__ct__17TObjEneBm3FlyNestFP7TObjectP17Bm3FlyNestSetData",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800B93C4",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "fire_attack_a__12TObjEneDD_STFP3Veclf",
+        "old": "fire_attack_a__12TObjEneDD_STFllf",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800B9434",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "fire_attack_b__12TObjEneDD_STFP3Veclf",
+        "old": "fire_attack_b__12TObjEneDD_STFllf",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800B94A4",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "fire_attack_c__12TObjEneDD_STFP3Veclf",
+        "old": "fire_attack_c__12TObjEneDD_STFllf",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800BA838",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "update_collider_contact_by_height__FP13CollisionBodyf",
+        "old": "update_collider_contact_by_height__FPUcf",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800BA870",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "set_collider_contact_low__FP13CollisionBody",
+        "old": "set_collider_contact_low__FPUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800BA88C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "set_collider_contact_high__FP13CollisionBody",
+        "old": "set_collider_contact_high__FPUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800BADDC",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "move_xz_on_ground__9TObjEneDDFPC3Vec",
+        "old": "move_xz_on_ground__9TObjEneDDFPUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800BAE74",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "try_move_actor_xz_on_ground__9TObjEneDDFPC3Vec",
+        "old": "try_move_actor_xz_on_ground__9TObjEneDDFPUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800BB158",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "calc_shot_position__9TObjEneDDFP3Vecfff",
+        "old": "calc_shot_position__9TObjEneDDFPUcfff",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800CBFC0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "move_xz_on_ground__13TObjEneMe1GeeFPC3Vec",
+        "old": "move_xz_on_ground__13TObjEneMe1GeeFPUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800D3ED8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "__ct__15TObjEneGyaranzoFP7TObjectP14EnemyPlacement",
+        "old": "__ct__15TObjEneGyaranzoFP7TObjectPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800D80E4",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [
+          "member of TUnk_80494A10, a class named after an address"
+        ],
+        "new": "__ct__13TUnk_80494A10FP7TObjectPC3VecP16GinjaTextureListllf",
+        "old": "__ct__13TUnk_80494A10FP7TObjectP3VecPvllf",
+        "rationale": "The ground spot constructor takes a read-only position and the native Ginja texture list.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800D8314",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "__ct__9TDeadSpotFP7TObjectPC3VecP16GinjaTextureListllf",
+        "old": "__ct__9TDeadSpotFP7TObjectP3VecPvllf",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800D8ACC",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "create_breakup_mdl__12TBoss3VoloptFP15TBreakUpMdlDataPC15BreakUpParamRowP16GinjaTextureListPC3Vecl",
+        "old": "create_breakup_mdl__12TBoss3VoloptFlllll",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800D9238",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "apply_effect_variant_a__10TObjPlayerFPC3Vecl",
+        "old": "apply_effect_variant_a__10TObjPlayerFll",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800D9264",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "apply_effect_variant_b__10TObjPlayerFPC3Vecl",
+        "old": "apply_effect_variant_b__10TObjPlayerFll",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800D92E8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "spawn_dead_spot_default__10TObjPlayerFPC3Vecl",
+        "old": "spawn_dead_spot_default__10TObjPlayerFll",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800D9314",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "spawn_dead_spot_here__10TObjPlayerFPC3Vecl",
+        "old": "spawn_dead_spot_here__10TObjPlayerFll",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800D9340",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "spawn_landing_dead_spot__FPC3Vecl",
+        "old": "spawn_landing_dead_spot__Fll",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800D936C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "spawn_dead_spot_type2__10TObjPlayerFPC3Vecl",
+        "old": "spawn_dead_spot_type2__10TObjPlayerFll",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800D9460",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "spawn_dead_spot__10TObjPlayerFPC3Vecllf",
+        "old": "spawn_dead_spot__10TObjPlayerFlllf",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800DF2B8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "__ct__14TObjEnePanarmsFP7TObjectP14EnemyPlacement",
+        "old": "__ct__14TObjEnePanarmsFP7TObjectPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800E252C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "__ct__14TObjEnePanBARAFP7TObjectP14EnemyPlacementl",
+        "old": "__ct__14TObjEnePanBARAFP7TObjectPvl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800E28F4",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "create_bara__14TObjEnePanarmsFP14EnemyPlacementl",
+        "old": "create_bara__14TObjEnePanarmsFPvl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800E7B94",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "load_shinowa_mirage_resources__23TObjEneMe3ShinowaMirageFv",
+        "old": "load_shinowa_mirage_resources",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800EFDE0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "move_xz_on_ground__18TObjEneRe4SorcererFPC3Vec",
+        "old": "move_xz_on_ground__18TObjEneRe4SorcererFPUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800F5DE8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "initialize_enemy_photon_effect__FP9TObjEnemy",
+        "old": "initialize_enemy_photon_effect__FPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800F6E2C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "link_chain_nodes__9TObjEnemyFP9TObjEnemyP9TObjEnemy",
+        "old": "link_chain_nodes__10TObjPlayerFPvPvPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800F7428",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "has_group__9TObjEnemyFv",
+        "old": "is_action_available__10TObjPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x800F78C8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "apply_by_index__9TObjEnemyFsPC16EnemyStateRecord",
+        "old": "apply_by_index__9TObjEnemyFs",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80100A40",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "is_point_on_screen__FPC3Vecff",
+        "old": "is_point_on_screen__FPCfff",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80105B28",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "send__35G_SpecializableItemDropRequest_6xA2Fv",
+        "old": "process_and_dispatch_packet__6TLobbyFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80105B5C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "bswap__35G_SpecializableItemDropRequest_6xA2Fv",
+        "old": "bswap_6xa2_fields__6TLobbyFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80105BA8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "init__35G_SpecializableItemDropRequest_6xA2Fv",
+        "old": "build_6x06_guild_card_packet__6TLobbyFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80115AF0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "set_menu_flags__13TItemMenuCtrlFUl",
+        "old": "set_menu_flags__13TItemMenuCtrlFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80115B14",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "spawn_star_light_2d__FPC3VecPC19StarLightParametersP7TObject",
+        "old": "spawn_star_light_2d__Flll",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80115B80",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "approach_value",
+        "old": "approach_value__20TItemEffOrgaFlowShotFPfff",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80115BC0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "add_angle_clamped",
+        "old": "add_angle_clamped__10TObjPlayerFPlll",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8011A868",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "handle_box_drop_directive__FP35G_SpecializableItemDropRequest_6xA2",
+        "old": "handle_box_drop_directive__FPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80152C48",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "finalize_and_send_packet__20G_CastTechnique_6x47Fv",
+        "old": "finalize_and_send_packet__10TNpcPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80152C8C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "byteswap_positions__20G_CastTechnique_6x47Fv",
+        "old": "byteswap_positions__10TNpcPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80152CE8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "get_6x47_cast_packet_size__FP20G_CastTechnique_6x47",
+        "old": "get_6x47_cast_packet_size__FPUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80152D04",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "init_cast_technique_cmd__20G_CastTechnique_6x47Fv",
+        "old": "init_cast_technique_cmd__10TNpcPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80152EB4",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "byteswap_pos__15TechniqueTargetFv",
+        "old": "byteswap_pos__10TNpcPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80155FBC",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "find_actor_body_contact__14TObjCollidableFP14TObjCollidablef",
+        "old": "find_actor_body_contact__14TObjCollidableFPUcf",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80180B38",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "copy_debris_params__8TObjChipFP14TObjChipParamsPC14TObjChipParams",
+        "old": "copy_debris_params__8TObjChipFPvPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801A86E0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "apply_photon_blast_action_hold__FP13TUnk_804C349Cll",
+        "old": "apply_photon_blast_action_hold__Flll",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801B5200",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "send_code_45_1__10TObjPlayerFP10TObjPlayer",
+        "old": "send_code_45_1__10TObjPlayerFl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801B53BC",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "play_effect__10TObjPlayerFP10TObjPlayerll",
+        "old": "play_effect__10TObjPlayerFlll",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801B5408",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "play_effect_default__10TObjPlayerFP10TObjPlayerl",
+        "old": "play_effect_default__10TObjPlayerFli",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801B786C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "calc_move__FPC3VecPC3VecP3Vec",
+        "old": "calc_move__10TObjPlayerFPvPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801B78A8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "calc_move_velocity",
+        "old": "calc_move_velocity__10TObjPlayerFPvPvf",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801B7930",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "calc_wall_slide_point__FPC3VecPC3VecP3Vec",
+        "old": "calc_wall_slide_point__10TObjPlayerFPvPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801B9D50",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "unequip_item__10TObjPlayerFP5TItem",
+        "old": "unequip_item__10TObjPlayerFiPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801B9EDC",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "send_6x26_unequip_item__10TObjPlayerFP10TObjPlayerUl",
+        "old": "send_6x26_unequip_item__10TObjPlayerFPvUl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801BE268",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "gain_photon_blast_chain_charge__10TObjPlayerFf",
+        "old": "gain_photon_blast_chain_charge__10TObjPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801BFD90",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "initialize__16PlayerScaleStateFv",
+        "old": "init_subobjects__10TObjPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801BFDD4",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "reset__16PlayerScaleStateFv",
+        "old": "init_player_scale_state__FP10TObjPlayer",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801BFE1C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "set_scalar__16PlayerScaleStateFf",
+        "old": "set_speed__10TObjPlayerFf",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801BFE40",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "set_model_scale__16PlayerScaleStateFf",
+        "old": "set_scale_xyz__10TObjPlayerFf",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801BFE50",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "clear__24PlayerScaleCameraOffsetsFv",
+        "old": "init_pair__10TObjPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801C011C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "set_technique_id__18TechniqueCastStateFs",
+        "old": "set_technique_id__10TObjPlayerFs",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801C2308",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "__dt__19PhotonBlastRegistryFv",
+        "old": "fn_801C2308",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801C2360",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "__ct__19PhotonBlastRegistryFv",
+        "old": "fn_801C2360",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801C6A14",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "clear_shrink_flag__16PlayerScaleStateFv",
+        "old": "clear_shrink_flag__10TObjPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801C6B1C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "apply_shrink__16PlayerScaleStateFf",
+        "old": "handle_6x87_shrink__10TObjPlayerFf",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801C6FF0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "get_actor_id__16PlayerScaleStateFv",
+        "old": "get_obj_type__10TObjPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801C72B4",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "copy_from__23PlayerRestoreSizePacketFRC23PlayerRestoreSizePacket",
+        "old": "restore_shrunken_font__10TObjPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801C72E4",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "initialize__23PlayerRestoreSizePacketFv",
+        "old": "init_6x88_packet__10TObjPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801C72F8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "send__23PlayerRestoreSizePacketFv",
+        "old": "send_font_update_60__10TObjPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801C732C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "byte_swap__18PlayerShrinkPacketFv",
+        "old": "bswap_shrink__10TObjPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801C7360",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "copy_from__18PlayerShrinkPacketFRC18PlayerShrinkPacket",
+        "old": "TObjPlayer__sub_801C7360",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801C739C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "initialize__18PlayerShrinkPacketFv",
+        "old": "init_shrink_effect__10TObjPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801C73B8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "send__18PlayerShrinkPacketFv",
+        "old": "update_and_send_60__10TObjPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801CBDD4",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "apply_photon_blast__10TObjPlayerFUls",
+        "old": "apply_photon_blast__10TObjPlayerFll",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801CC7E4",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "copy_tech_params__FP15TechniqueTargetP15TechniqueTarget",
+        "old": "copy_tech_params__10TObjPlayerFPvPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801D29D0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "trigger_photon_blast__16PhotonBlastGaugeFv",
+        "old": "trigger_photon_blast__10TObjPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801D29F8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "check_photon_blast_flag__16PhotonBlastGaugeFv",
+        "old": "check_photon_blast_flag__10TObjPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801D2AFC",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "get_element__19PhotonBlastRegistryFl",
+        "old": "get_element__10TObjPlayerFPvi",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801D2C7C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "set_technique_id__18TechniqueCastStateFUc",
+        "old": "set_technique_id__10TObjPlayerFUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801D2CCC",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "get_technique_data__18TechniqueCastStateFv",
+        "old": "get_technique_data__10TObjPlayerFPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801D95B8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "get_section_clamped__18TechniqueCastStateFv",
+        "old": "get_section_clamped__10TObjPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801D95DC",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "get_or_init_field_4__18TechniqueCastStateFv",
+        "old": "get_or_init_field_4__10TObjPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801D968C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "get_valid_technique__18TechniqueCastStateFv",
+        "old": "get_valid_technique__10TObjPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801D96CC",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "get_castable_technique_level__18TechniqueCastStateFv",
+        "old": "get_castable_technique_level__10TObjPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801D9A44",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "check_technique_level__18TechniqueCastStateFlUc",
+        "old": "check_technique_level__10TObjPlayerFllUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x801D9B18",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "set_tech_level__18TechniqueCastStateFs",
+        "old": "set_tech_level__10TObjPlayerFs",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80230A98",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "create__11TTecGiBartaFPvP3VecP3Vecl",
+        "old": "create__11TTecGiBartaFPvPvPvl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80230AF0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "create_ex__11TTecGiBartaFPvP3Vecll",
+        "old": "create_ex__11TTecGiBartaFPvPvll",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802389E0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "create__10TTecRaFoieFP7TObjectP3VecP3Vecl",
+        "old": "create__10TTecRaFoieFPvPvl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8023DA10",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "construct_bolt_effect__12TTecZondeEffFP7TObjectPC3VecPC3Vecllff",
+        "old": "construct_bolt_effect__9TTecZondeFPUcPUcPUcllff",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8029E170",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "init_fish_school__8TObjFishFP3Vecll",
+        "old": "init_fish_school__8TObjFishFPvll",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8029F5F8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "copy_efb_to_texture__17GinjaRenderTargetFv",
+        "old": "copy_efb_to_texture__10TObjPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8029F694",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "release_texture__17GinjaRenderTargetFv",
+        "old": "reset_lobby_subobject__10TObjPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8029F6C0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "init_render_target__17GinjaRenderTargetFv",
+        "old": "init_render_target__10TObjPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802A3D68",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "clear_technique_contacts__12TNeedleShootFv",
+        "old": "clear_technique_contacts__10TObjPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802A3DAC",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "is_hit_receivable_target__12TNeedleShootFP14TObjCollidable",
+        "old": "is_hit_receivable_target__10TObjPlayerFlUl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802A3DE8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "collect_technique_contacts_default__12TNeedleShootFP8TObjBase",
+        "old": "TObjPlayer__sub_802A3DE8",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802A3FDC",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "collect_technique_contacts_mode_two__12TNeedleShootFP8TObjBase",
+        "old": "TObjPlayer__sub_802A3FDC",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802A41CC",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "collect_technique_contacts__12TNeedleShootFP8TObjBase",
+        "old": "collect_technique_contacts__10TObjPlayerFPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802A47C8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "__ct__12TNeedleShootFP8TObjBaseP3VecP3Vec",
+        "old": "__ct__12TNeedleShootFlP3VecP3Vec",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802A4A40",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "on_target_hit__12TNeedleShootFP14TObjCollidable",
+        "old": "on_target_hit__12TNeedleShootFPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802A4AEC",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "on_target_hit__20TObjEneMe1Gee_NEEDLEFP14TObjCollidable",
+        "old": "on_target_hit__20TObjEneMe1Gee_NEEDLEFPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802A4CC4",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "__ct__20TObjEneMe1Gee_NEEDLEFP8TObjBaseP3VecP3Vecff",
+        "old": "__ct__20TObjEneMe1Gee_NEEDLEFP7TObjectP3VecP3Vecff",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802B8624",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "copy_block__11TBoss6Type1FP21Boss6Type1MotionStatePC21Boss6Type1MotionState",
+        "old": "copy_block__11TBoss6Type1FP12Blk_802B8624PC12Blk_802B8624",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802B93C4",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "__ct__11TBoss6Type1FP7TObjectP20Boss6BodySpawnParams",
+        "old": "__ct__11TBoss6Type1FP7TObjectPl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802B96DC",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "create__11TBoss6Type1FP20Boss6BodySpawnParams",
+        "old": "create__11TBoss6Type1Fl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802BE0D4",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "__ct__11TBoss6Type2FP7TObjectP20Boss6BodySpawnParams",
+        "old": "__ct__11TBoss6Type2FP7TObjectPl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802BE504",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "create__11TBoss6Type2FP20Boss6BodySpawnParams",
+        "old": "create__11TBoss6Type2Fl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802CE1E8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "on_target_hit__22TObjEneMe1GiGueMissileFP14TObjCollidable",
+        "old": "on_target_hit__22TObjEneMe1GiGueMissileFPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802CE220",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "create__22TObjEneMe1GiGueMissileFP8TObjBaseP3VecP3Vecff",
+        "old": "create__22TObjEneMe1GiGueMissileFlllff",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802CE428",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "__ct__22TObjEneMe1GiGueMissileFP8TObjBaseP3VecP3Vecff",
+        "old": "__ct__22TObjEneMe1GiGueMissileFlP3VecP3Vecff",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802D9644",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "attack_from_joint_31__14TObjEneGibblesFlf",
+        "old": "TObjEneGibbles__sub_802D9644",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802D9824",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "attack_from_joint_53__14TObjEneGibblesFlf",
+        "old": "TObjEneGibbles__sub_802D9824",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802DBA18",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "__ct__14TObjEneGibblesFP7TObjectP14EnemyPlacement",
+        "old": "__ct__14TObjEneGibblesFP7TObjectPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802F0B08",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "start_attack_at_position__14TBoss7TentacleFPC3Vecl",
+        "old": "start_attack_at_position__14TBoss7TentacleFPUcl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802F0BE8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "__ct__14TBoss7TentacleFP7TObjectPA4_Cfl",
+        "old": "__ct__14TBoss7TentacleFP7TObjectll",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802F178C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "create_particle__15TObjBoss7TunnelFPC3Vecl",
+        "old": "create_particle__15TObjBoss7TunnelFPCvl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x802F1848",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "create_particle_effect__15TObjBoss7TunnelFPC3Veclf",
+        "old": "create_particle_effect__15TObjBoss7TunnelFPCvlf",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80312C50",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "release_photon_blast_requests__FP19PhotonBlastRegistry",
+        "old": "release_photon_blast_requests__FPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80312CCC",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "find_by_section_id__19PhotonBlastRegistryFUs",
+        "old": "find_by_section_id__10TObjPlayerFUs",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80312D4C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "create_party_effects__19PhotonBlastRegistryFl",
+        "old": "create_party_effects__10TObjPlayerFl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80312E0C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "find_first_valid_target_id__19PhotonBlastRegistryFv",
+        "old": "find_first_valid_target_id__10TObjPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80312F0C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "process_all_elements__19PhotonBlastRegistryFv",
+        "old": "process_all_elements__10TObjPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803130BC",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "update_children__18PhotonBlastRequestFv",
+        "old": "update_children__10TObjPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80313184",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "query_field40__16PhotonBlastGaugeFv",
+        "old": "query_field40__10TObjPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803131C8",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "process_indexed_element__19PhotonBlastRegistryFl",
+        "old": "process_indexed_element__10TObjPlayerFl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803131F0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "check_flag_at_4__18PhotonBlastRequestFv",
+        "old": "check_flag_at_4__10TObjPlayerFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80313248",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "set_client_id__22PhotonBlastRequestSlotFUl",
+        "old": "set_field_0__10TObjPlayerFs",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80313260",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "get_max_children__18PhotonBlastRequestFPC18PhotonBlastRequest",
+        "old": "get_max_children__10TObjPlayerFPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80334F88",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "__ct__13TObjEneMorfosFP7TObjectP14EnemyPlacement",
+        "old": "__ct__13TObjEneMorfosFP7TObjectPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80335060",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "create__13TObjEneMorfosFPv",
+        "old": "create__13TObjEneMorfosFv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80335354",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "__ct__16TObjEneMorfosArmFP7TObjectP13TObjEneMorfos",
+        "old": "__ct__16TObjEneMorfosArmFP7TObjectPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80335430",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "create__16TObjEneMorfosArmFP7TObjectP13TObjEneMorfos",
+        "old": "create__16TObjEneMorfosArmFPvPv",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803375F0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [
+          "member of TUnk_804EF130, a class named after an address"
+        ],
+        "new": "snap_to_ground__13TUnk_804EF130FP3Vec",
+        "old": "snap_to_ground__13TObjEneMorfosFll",
+        "rationale": "Ground snapping belongs to the Morfos appendage object and accepts its Vec.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80337824",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [
+          "member of TUnk_804EF130, a class named after an address"
+        ],
+        "new": "__ct__13TUnk_804EF130FPC3VeclP9TObjChara",
+        "old": "__ct__13TUnk_804EF130FP3VeclP13TObjEneMorfos",
+        "rationale": "The appendage constructor takes a read-only Vec and its base character owner.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80356B18",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "__ct__15TBoss6SwordWaveFP11TBoss6Type2PC3Vecllf",
+        "old": "__ct__15TBoss6SwordWaveFP7TObjectPC3Vecllf",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80356C10",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "create__15TBoss6SwordWaveFP11TBoss6Type2PC3Vecllf",
+        "old": "create__15TBoss6SwordWaveFP7TObjectPC3Vecllf",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8035A69C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [
+          "member of TUnk_804F1C58, a class named after an address"
+        ],
+        "new": "draw_node_tree__13TUnk_804F1C58FP10NJS_OBJECT",
+        "old": "draw_node_tree__10TObjPlayerFPv",
+        "rationale": "The node recording task owns the draw callback and receives a native Ninja object.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8035A740",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [
+          "member of TUnk_804F1C58, a class named after an address"
+        ],
+        "new": "draw_node_tree_if_visible__13TUnk_804F1C58Fv",
+        "old": "draw_node_tree_if_visible__10TObjPlayerFv",
+        "rationale": "The node task owns the visibility-checked draw callback.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8035A860",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [
+          "member of TUnk_804F1C58, a class named after an address"
+        ],
+        "new": "__ct__13TUnk_804F1C58FP7TObjectP10NJS_OBJECT",
+        "old": "__ct__13TUnk_804F1C58FP7TObjectPv",
+        "rationale": "The node task constructor receives a native Ninja object.",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8035DB70",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "__ct__9TBoss6DPBFP7TObjectPC3Vecf",
+        "old": "__ct__9TBoss6DPBFP7TObjectlf",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8035DC60",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "create_dpb__11TBoss6Type2FP7TObjectPC3Vecf",
+        "old": "create_dpb__11TBoss6Type2Fllf",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x8036BDA0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "validate_6x47_cast_technique__FP20G_CastTechnique_6x47",
+        "old": "validate_6x47_cast_technique__FPUc",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803D7BB0",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "bind_motion_channel_samplers__FPC10NJS_MOTIONf",
+        "old": "bind_motion_channel_samplers__FP10NJS_MOTIONf",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803D9324",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "copy_matrix",
+        "old": "copy_matrix__10TObjPlayerFUlUl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803D9730",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "concat_matrix",
+        "old": "concat_matrix__10TObjPlayerFUlUl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x803D976C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "premultiply_matrix__FPA4_fPA4_Cf",
+        "old": "premultiply_matrix__FUlUl",
+        "section": ".text",
+        "type": "function"
+      },
+      {
+        "address": "0x80472490",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "mericarol_render_shadow_scale",
+        "old": "lbl_80472490",
+        "section": ".rodata",
+        "type": "object"
+      },
+      {
+        "address": "0x8047249C",
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "flags": [],
+        "new": "mericarol_variant_shadow_scale",
+        "old": "lbl_8047249C",
+        "section": ".rodata",
+        "type": "object"
+      }
+    ],
+    "tuning": [
+      "Dragon hierarchy cloning, CSN wall query preparation, debris construction and player ground adjustment retain scoped scheduling settings.",
+      "The Gibbles attack loops retain their loop-invariant settings.",
+      "Photon Blast registration retains floating-point contraction.",
+      "Barta, Gi-Barta and Megid dispatch, and two weapon idle callbacks retain the scoped inline settings."
+    ]
+  },
+  "cumulative": {
+    "head": "155814e23f4104e478a971141fa6b3509c65bdd8",
+    "overlaps": {
+      "include/pso/object/base/TObjChara.h": {
+        "hunks": 1,
+        "input_sha256": "76b22ba539303d63cc21be713b34bb096f4ba6f593a12fe7223222f41cd53594",
+        "resolved_blob": "d79ac9334c593a34a285da5c9f8a1e83203f1331"
+      },
+      "src/pso/boss/barbaray/TBoss7TentacleNeedle.cpp": {
+        "hunks": 4,
+        "input_sha256": "dac5b967cef75e7aaeed78d1bff5631fcfbccfd96e059b03aca5aa3399e89806",
+        "resolved_blob": "7a7c40b2cdc12005433ccf7d6493ed45d65a905d"
+      },
+      "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp": {
+        "hunks": 1,
+        "input_sha256": "1e56f2255ba4d9057e508207a30b7eb2309f15a487b23624d2a29610280ec78e",
+        "resolved_blob": "4e42f7bed77b8688c62650844b091f8a6661e341"
+      },
+      "src/pso/boss/derolle/TBoss2Tentacle.cpp": {
+        "hunks": 4,
+        "input_sha256": "0075091b671e59e715aa7106657ae32ceb8782740d51a5c4697c78f1e6bcbca2",
+        "resolved_blob": "895fad7fee2da8a31ce003cc6cc12ea5cd9d6788"
+      },
+      "src/pso/boss/derolle/TObjBoss2Tunnel.cpp": {
+        "hunks": 1,
+        "input_sha256": "42916d3c8385362200807920ef9c80fd552b4fa5dde25e8ac6301dc365c21cc3",
+        "resolved_blob": "66c6a480287b443c026452c17cc76012a680cc88"
+      },
+      "src/pso/boss/dragon/TBoss1Dragon.cpp": {
+        "hunks": 1,
+        "input_sha256": "1e0e7fc761490d5a0183d85ce9c8babc1256a2e12fe64aa29d605dcfb51166e1",
+        "resolved_blob": "b568dbb3fd0ae43cf710ec5a8a29bff775a8bbbc"
+      },
+      "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp": {
+        "hunks": 1,
+        "input_sha256": "e781f6173ac39d3d1209af94f1cc100f956122a5dea58c5dd24cd33db7536354",
+        "resolved_blob": "178d67c665e3bfd06100b63c2c8e554bda1f8609"
+      },
+      "src/pso/boss/goldragon/TBoss8Dragon.cpp": {
+        "hunks": 1,
+        "input_sha256": "8d25d7ec5370ea9f6fed76736061a3c5c6129b82ebbb6df385967cd794b28254",
+        "resolved_blob": "f41424447e632d36e6d89e915c4c4ca031a412c0"
+      },
+      "src/pso/boss/olgaflow/TBoss6Type2.cpp": {
+        "hunks": 1,
+        "input_sha256": "06f4eef222c46e852ce8c7e5431c22c95280e230406dd575afdb566da79a97aa",
+        "resolved_blob": "e33f38695a0079a9fdbb9cbe39fbcf83067edfff"
+      },
+      "src/pso/boss/volopt/TObjVoloptCage.cpp": {
+        "hunks": 1,
+        "input_sha256": "9d579a7087249bafd31ececb2c0b557991eb994bdf5f887eb2b77bec3f3ea8cc",
+        "resolved_blob": "bce9ca56bbf4c577704d9369eeffd408c8bfe875"
+      },
+      "src/pso/enemy/dubchik/TObjEneDubchik.cpp": {
+        "hunks": 1,
+        "input_sha256": "ecfc3ddb90624803985ab85ebd53099238e09ab2c48c39187c1440753cf59f02",
+        "resolved_blob": "677dd30e37f2e95da3f38992b31fbea62cff60f3"
+      },
+      "src/pso/enemy/epsilon/TObjEneEpsilon.cpp": {
+        "hunks": 1,
+        "input_sha256": "5d5aa26ea67245f33021c5a76ae618758f6065974f1c1ec7621f90a2d64bdbf5",
+        "resolved_blob": "d452e9c9fe30eadeb67aca3197b7d9b5528f91ef"
+      },
+      "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp": {
+        "hunks": 1,
+        "input_sha256": "56733fed84e987d776a322cb97efbb12c497faee5da02e02bfdefc32a9d3cff0",
+        "resolved_blob": "33904ec827527bd448b5d89f900bc3ce7b426b7c"
+      },
+      "src/pso/enemy/illgill/TObjEneIllGill.cpp": {
+        "hunks": 1,
+        "input_sha256": "363ea31a4be8906afd880bf99d2129071d909855f1229890382dbe6c79add8f3",
+        "resolved_blob": "842a59056e41ae70b1980f0ad0c7b19866ba1d34"
+      },
+      "src/pso/enemy/saver/SaverLifecycle.cpp": {
+        "hunks": 1,
+        "input_sha256": "1bc06d3f0bd9d87feed477922a57812733d575d3155360623ae068620dd1e2a0",
+        "resolved_blob": "1c0504795b566116e121016fb062812534d2f889"
+      },
+      "src/pso/object/ambient/TObjGrass.cpp": {
+        "hunks": 1,
+        "input_sha256": "fff079d648fd29edb9d1684026a57cc14f0103dac14446a231ef22270a414d21",
+        "resolved_blob": "64d634705dc2e1b8fbb63c578092690e1b481143"
+      },
+      "src/pso/player/TObjPlayer_80011014.cpp": {
+        "hunks": 3,
+        "input_sha256": "48449df3fe21a05edc807522455717a7923f61ce842b6ebd9cf0322fbb9be4f4",
+        "resolved_blob": "f4404420fa483dd4f1352dae7f440ab8ec85117b"
+      },
+      "src/pso/player/TObjPlayer_801AF2F0.cpp": {
+        "hunks": 3,
+        "input_sha256": "e12361553a0010d1dbb774ddc00060c8e143b320f05092715f482380eb038c27",
+        "resolved_blob": "1c70115c72d41b02a0226ec8931a0f81d243ab86"
+      },
+      "src/pso/player/TObjPlayer_802E6CA8.cpp": {
+        "hunks": 4,
+        "input_sha256": "9f0d1915747635b6d1399fed283dc7fe5c7c793e7f1a9502847f26f4e4848172",
+        "resolved_blob": "1be359fe2aecbda44450e199daaca8393cce8f05"
+      },
+      "src/pso/player/TPlayerBattleCtrl4P.cpp": {
+        "hunks": 2,
+        "input_sha256": "158d25a6f6ec7602224932ec649140dd69ed62dc23b91dcdfbf7ea9adc176336",
+        "resolved_blob": "b85424dd58f4ca6e17b203bf139170cf2fae4b3d"
+      },
+      "src/pso/technique/TTecCtrl.cpp": {
+        "hunks": 1,
+        "input_sha256": "7617f7038489f54fd16d75e53381eeb1de871c8d21a143b03b329a06510ca14c",
+        "resolved_blob": "23d8745e205ce0f6b62d745261922fb9732b8cda"
+      },
+      "src/pso/technique/TTecGiBarta.cpp": {
+        "hunks": 1,
+        "input_sha256": "a954ff056456855bfeb401964f7a13fd89fd8d1c18de5d488da1f514798a10fa",
+        "resolved_blob": "6bfe305bf21283cade03521ca7927c6c28bf408d"
+      },
+      "src/pso/technique/TTecMegid.cpp": {
+        "hunks": 1,
+        "input_sha256": "f68040ab2edd7278ce17dd16c5cf44a2c38f958e151131072bd121a2412968a1",
+        "resolved_blob": "6d437253164238f79429f60fcf9158878a48ee04"
+      },
+      "src/pso/unk/TLobby_801C25B4.cpp": {
+        "hunks": 2,
+        "input_sha256": "2c736ad70787dca4c66e8edaa89f7047305368dffcdd7d64bad17707f1304036",
+        "resolved_blob": "dc2bb962f6a999d05c7177f1f25061d59e0e5aee"
+      },
+      "src/pso/weapon/WeaponAttackActions.cpp": {
+        "hunks": 1,
+        "input_sha256": "13e5513420bd7e70e06eb64aa1d196256a4de45feb8e59e717af1341f52d9b5f",
+        "resolved_blob": "9748bab658e4e6cc594d38ff376b6ead9e9a37b0"
+      }
+    },
+    "private_head": "b892cdfec85aca785922598c1fafa05b90b1c120",
+    "redundant_includes_skipped": [
+      "include/pso/boss/darkfalz/TOBoss4Rock.h",
+      "src/pso/camera/TCameraScripted.cpp",
+      "src/pso/object/ambient/TObjFish.cpp",
+      "src/pso/object/container/TObjContainerItem.cpp",
+      "src/pso/object/door/TODoorJungleMain.cpp",
+      "src/pso/object/jungle/TORockJungleL01.cpp",
+      "src/pso/object/trap/TOTrapSeabed01.cpp"
+    ],
+    "source_changes_beyond_previous_tree": [
+      "include/pso/player/PlayerScaleState.h",
+      "src/pso/player/PlayerTaskEffects.cpp"
+    ],
+    "source_paths_remaining_after_assumed_upstream_merge": 201,
+    "workspace_patch_sha256": "31f3e363c624bd930d23e302fc04f682df73a7a9835f10e5e8fec10af6b6839a"
+  },
+  "first_unpublished_review": "740c6fbfb076baadbe20e5f07bf71ea636f6f039",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "pr375": {
+    "ancestor": true,
+    "commit": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+    "shared_paths": 190
+  },
+  "private_tests": {
+    "fork_tools": 11,
+    "host_suites": 5,
+    "tools": 294
+  },
+  "retail_and_coverage": {
+    "combat": {
+      "check_sha256": "8e41f5bde87e11f471827f5ac3ea9217b1b1d0ab6b034350afd66995eabc4af6",
+      "coverage_regressions": 0,
+      "dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "head": "3101817acc4c8b0e430a78822de084988283c924",
+      "linked_units": 2368,
+      "matched_functions": 27572,
+      "report_sha256": "25dca53cbe8a6afec8e4a10da25608fe16ad514c4406250850d670036a463767",
+      "tree": "2e7332538adc3037fedfb121b7ed96c5d7f21cb3"
+    },
+    "private": {
+      "check_sha256": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011",
+      "coverage_regressions": 0,
+      "dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "head": "b892cdfec85aca785922598c1fafa05b90b1c120",
+      "linked_units": 2368,
+      "matched_functions": 27572,
+      "report_sha256": "b220a2c5263829c4cb318b65dd1c37679e7e2f73b0979e452aa2a2525575a0c8",
+      "tree": "bb0725c494684a020f942cf2d49de514565a3de3"
+    },
+    "source": {
+      "check_sha256": "bf7780081fdb2ac93052c6ddc036a823a371afa6683f0ae0e1fa4d812e2d2c8a",
+      "coverage_regressions": 0,
+      "dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "head": "155814e23f4104e478a971141fa6b3509c65bdd8",
+      "linked_units": 2368,
+      "matched_functions": 27572,
+      "report_sha256": "b220a2c5263829c4cb318b65dd1c37679e7e2f73b0979e452aa2a2525575a0c8",
+      "tree": "40bcd7a2ca073df80b435ad4fafd5dd40d5e4b26"
+    }
+  },
+  "runtime_probes": {
+    "combat": [
+      "combat.dol: 10 distance inputs and 36 Gifoie cleanup cases passed",
+      "combat.dol: startup, 32 contacts, three constructors, six radial selection cases passed",
+      "combat.dol: 39 ground query and effect cases passed",
+      "combat.dol: 18 clamp cases, 96 animation frames, eight draw modes, 16 lifetime cases and five trail writes passed",
+      "Photon Blast hit queues, camera pose, effect records and available strip-buffer probes passed",
+      "combat.dol: shrink and restore packet layout and byte order passed"
+    ],
+    "source": [
+      "source.dol: 10 distance inputs and 36 Gifoie cleanup cases passed",
+      "source.dol: startup, 32 contacts, three constructors, six radial selection cases passed",
+      "source.dol: 39 ground query and effect cases passed",
+      "source.dol: 18 clamp cases, 96 animation frames, eight draw modes, 16 lifetime cases and five trail writes passed",
+      "Photon Blast hit queues, camera pose, effect records and available strip-buffer probes passed",
+      "source.dol: shrink and restore packet layout and byte order passed"
+    ]
+  },
+  "upstream_master": "412b3b3cf562c5cb4b4655b747ff328777b32969"
+}

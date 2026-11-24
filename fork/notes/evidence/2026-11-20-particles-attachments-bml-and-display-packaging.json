@@ -1,0 +1,2439 @@
+{
+  "source": "a0ab810dd1684b53eac5578277c4defdb158350b",
+  "landing": "7434799df2bc552ed4923448b710147193dc7370",
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "review_queue": {
+    "head": "3f8e3a05c0cefe55593422a07f5928b5c069b09d",
+    "tree": "16540c7741fae7dfd4ed850ecaedb40dfe655f64",
+    "previous": "23b1198d5ae962139fd363c58df7e35cbc1722b8",
+    "inputs": [
+      "b75c6f38a72228b2c5dc79f3198981f324474018",
+      "a4d7a8d2d908dc795ed2d7e929357d807e547955",
+      "0394e28c275546fc002b9269980a9e1fe048ab92",
+      "d71a8453c9ab01ef718f596bc173f89abd4559e6",
+      "1b0d09f9e03c80521d1ef00e2bea567966edf697",
+      "96e12501e15a4340f8516a312337ce3f26b98786",
+      "bb0a2828e3a31ddc506164215d32f5cd834ff234",
+      "93e344aaab7852228430b396e50d8175b0b69eee",
+      "428b42e9251d39baf2e01e7d62959f742d2a6566",
+      "fed9cf8b7186fe725e23b347d1e70314530fdc46",
+      "a9c6341c405fc7b7bfb197a3d963d7be6b8befb0",
+      "9bbc668b6121ceb6bc03f83427c98aaa931a0d31",
+      "a5aed4817c6718d9ea584baaa3f5f29fdd72d1ee",
+      "ac5aa002909d739722e26f4c3c9aef7f681b4425",
+      "12bdb900e51d333a482062d8cd0d9edab5a09a80",
+      "7bdbdaf5ba01344982227ac6b25f5315e800d9f5",
+      "f7a0122c73c00062937eac73bc56ea913630e522",
+      "9a277f6b061ec44eecf9395be11f3112c378a33c",
+      "f43e9408f5bb61c25d8a7ea2eae8140c6a4cab73",
+      "04e0a137422e25a50c7ea48df4c35c9bcc7b14fb",
+      "182fb702e6a21c01f05a822fa77a49c1e484d0bd",
+      "0895f1cbb38bc55767e2428439e698a94b5bccf4",
+      "9448059d81db540704b609616e96771e90827654",
+      "8f26a3c7a707d4076bf84134da09276bc62991f9",
+      "1e7920fdc675df08303dca4499f49020df69774d",
+      "ae3da5ccb25c52f727ab0f41adcc3a3afbf0c4ef",
+      "7b1a1843fd091beeae2d0440f0ed9f5976b7faab",
+      "d90619b7c15b4300567435fdee477df7c1796a25",
+      "bd20994aa3698ab8f8f0098410b4da11d0ba0d2c",
+      "9935ca4090ba264f42a12317c104ab4a568036b5",
+      "1f23677cb3c8366b142119fd3204b5bfd83d58a8",
+      "090a3d41d70c6601ad8720c95160e8f43c2b05d4",
+      "e03302a7034b338e6cfdaf448a1beddd27f97128",
+      "5caa76608e8ba418a516e656b24770f0a0884003",
+      "91eed3bfdcca772ee0ae616c5f972a6aefe2ba11",
+      "c5493f319d431c46557faad569d5c3b443a7c273",
+      "f3d6a88dd80ce304cb986e494d70ef63b386c985",
+      "6cb53ca77adc702b81aa6b9c38699fc7d8a35a1c",
+      "ede02613cc11ca81807ff370d7fad931c614a236",
+      "bbd95644256571c98ca6fb5d66e77d39013bbab5",
+      "86686aa676c3b7e0ad5f90d157c69cab1567af97",
+      "d0530355706221482463e0da78d8bf0703a8777b",
+      "540e1a91ba6ec917aa50fc1feffb48ed686373dd",
+      "03eb2c367e070700af46456703e5a656ade68310",
+      "1dfa045120b25b8b0bc323af80e9004479b65561",
+      "c2936d95ef1525aa3cb3e0bc2f0b8a46809f18e9",
+      "57a10b0f98d8a5e728f2344a843dfad0725a5e30",
+      "fd2120f67cfad9f35ca2e374b2734e9d62970431"
+    ],
+    "files": 2585,
+    "incremental_paths": [
+      "config/GPOE8P/psov3/config.yml",
+      "config/GPOE8P/psov3/symbols.txt",
+      "configure.py",
+      "include/pso/boss/derolle/TBoss2Fin.h",
+      "include/pso/camera/CameraHelpers.h",
+      "include/pso/camera/CameraPlayback.h",
+      "include/pso/camera/TCameraCtrl_8006C254.h",
+      "include/pso/effect/particle/ParticleFactory.h",
+      "include/pso/enemy/dd/TObjEneDD.h",
+      "include/pso/enemy/dd/TObjEneDD_800BB804.h",
+      "include/pso/object/TObjEZBoneRotBase.h",
+      "include/pso/object/TObjEZBoneRotPlayer.h",
+      "include/pso/object/TObjEZBoneRotPlayer_800FE834.h",
+      "include/pso/object/TObjEZRopeBase.h",
+      "include/pso/object/TObjHMS_EZRope_Player.h",
+      "include/pso/object/TObjHMS_EZRope_Player_800FEFCC.h",
+      "include/pso/object/base/TObjChara.h",
+      "include/pso/system/AngleTypes.h",
+      "include/pso/system/BmlResource.h",
+      "include/pso/system/BmlResourceDescriptor.h",
+      "include/pso/system/BmlResourceLoad.h",
+      "include/pso/system/BmlResourceLoader.h",
+      "include/pso/system/EnemyBmlResource.h",
+      "include/pso/ui/window/TWindowAddition.h",
+      "include/pso/ui/window/TWindowBase.h",
+      "include/pso/ui/window/TWindowDD.h",
+      "include/pso/ui/window/TWindowSubComCard_80244774.h",
+      "include/pso/ui/window/TWindowSubStatusDisp_8024FBA8.h",
+      "include/pso/ui/window/WindowDrawContext.h",
+      "include/pso/unk/TLobby.h",
+      "include/pso/unk/TLobby_8001EF5C.h",
+      "include/pso/unk/TUnk_80488B68.h",
+      "include/pso/unk/text_80087278.h",
+      "src/pso/boss/barbaray/TBoss7Crawfish.cpp",
+      "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+      "src/pso/boss/barbaray/TBoss7LaserPtcl_8035AE54.cpp",
+      "src/pso/boss/barbaray/TBoss7TentacleNeedle.cpp",
+      "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+      "src/pso/boss/darkfalz/TBoss4Type3.cpp",
+      "src/pso/boss/darkfalz/TBoss4Zako.cpp",
+      "src/pso/boss/darkfalz/TBoss4Zanzo.cpp",
+      "src/pso/boss/darkfalz/TOBoss4.cpp",
+      "src/pso/boss/darkfalz/TObjDFHorming.cpp",
+      "src/pso/boss/darkfalz/TObjDFJisin.cpp",
+      "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+      "src/pso/boss/derolle/TBoss2Fin.cpp",
+      "src/pso/boss/derolle/TBoss2Mine.cpp",
+      "src/pso/boss/derolle/TObjBoss2CeilJunk_8003A81C.cpp",
+      "src/pso/boss/dragon/TBoss1Dragon.cpp",
+      "src/pso/boss/dragon/TBoss1DragonDemo.cpp",
+      "src/pso/boss/dragon/TObjBoss1Crater.cpp",
+      "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+      "src/pso/boss/galgryphon/TBoss5GryphonDemo.cpp",
+      "src/pso/boss/galgryphon/TBoss5GryphonLightningEff.cpp",
+      "src/pso/boss/galgryphon/TBoss5GryphonShockWave.cpp",
+      "src/pso/boss/galgryphon/TBoss5GryphonSnarl.cpp",
+      "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+      "src/pso/boss/goldragon/TBoss8DragonDemo.cpp",
+      "src/pso/boss/goldragon/TBoss8DragonEffTail.cpp",
+      "src/pso/boss/goldragon/TObjBoss8DemoRoom.cpp",
+      "src/pso/boss/goldragon/TObjBoss8Piller.cpp",
+      "src/pso/boss/olgaflow/TBoss6DPB.cpp",
+      "src/pso/boss/olgaflow/TBoss6Demo20_TYPE2_APPEAR.cpp",
+      "src/pso/boss/olgaflow/TBoss6GravBall.cpp",
+      "src/pso/boss/olgaflow/TBoss6MagMine.cpp",
+      "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+      "src/pso/boss/olgaflow/TBoss6Rock.cpp",
+      "src/pso/boss/olgaflow/TBoss6RockChase.cpp",
+      "src/pso/boss/olgaflow/TBoss6SwordShot.cpp",
+      "src/pso/boss/olgaflow/TBoss6Tube.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type2_802BE588.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp",
+      "src/pso/boss/volopt/TBoss3Volopt.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptMonitor.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+      "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp",
+      "src/pso/camera/TCameraCtrl_8006BCD8.cpp",
+      "src/pso/camera/TCameraCtrl_8006C254.cpp",
+      "src/pso/camera/TObjCamera.cpp",
+      "src/pso/effect/TDuelEffectCtrl.cpp",
+      "src/pso/effect/TEffClitical.cpp",
+      "src/pso/effect/TEffGuard.cpp",
+      "src/pso/effect/TEffHit.cpp",
+      "src/pso/effect/TKomorebi.cpp",
+      "src/pso/effect/item/TItemEffArmor.cpp",
+      "src/pso/effect/item/TItemEffBringer.cpp",
+      "src/pso/effect/item/TItemEffFlame.cpp",
+      "src/pso/effect/item/TItemEffPG_8034EFDC.cpp",
+      "src/pso/effect/item/TItemEffShield.cpp",
+      "src/pso/effect/item/TItemWpnCardEffect.cpp",
+      "src/pso/effect/particle/TParticleCtrl_800874F4.cpp",
+      "src/pso/effect/particle/TPlyFollowParticleCtrl.cpp",
+      "src/pso/effect/photon/PhotonBlastSummon.cpp",
+      "src/pso/effect/photon/TPhotonConcentrate.cpp",
+      "src/pso/effect/photon/TPhotonFarlla.cpp",
+      "src/pso/effect/photon/TPhotonGolla.cpp",
+      "src/pso/effect/photon/TPhotonLaser.cpp",
+      "src/pso/effect/photon/TPhotonMylla.cpp",
+      "src/pso/enemy/balclaw/TObjEneBalClaw.cpp",
+      "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+      "src/pso/enemy/beast/TObjEneBeast.cpp",
+      "src/pso/enemy/beast/TObjEneBeast_800C4E08.cpp",
+      "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+      "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp",
+      "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+      "src/pso/enemy/darkgunner/DarkGunner.cpp",
+      "src/pso/enemy/dd/TObjEneDD.cpp",
+      "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+      "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+      "src/pso/enemy/dimedian/TObjEneDimedian.cpp",
+      "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+      "src/pso/enemy/dubchik/TOCtrlDubchik_8015CA74.cpp",
+      "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+      "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+      "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+      "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+      "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+      "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+      "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+      "src/pso/enemy/gigue/TObjEneMe1GiGue_802CDB1C.cpp",
+      "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+      "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+      "src/pso/enemy/lappy/TObjEneLappy.cpp",
+      "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+      "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+      "src/pso/enemy/moja/TObjEneMoja.cpp",
+      "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+      "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+      "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+      "src/pso/enemy/recon/TObjEneRecon.cpp",
+      "src/pso/enemy/saver/SaverLifecycle.cpp",
+      "src/pso/enemy/shark/TObjEneShark.cpp",
+      "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+      "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+      "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+      "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+      "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+      "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp",
+      "src/pso/item/TItem.cpp",
+      "src/pso/item/TItemEquipBase.cpp",
+      "src/pso/item/TItemLoad.cpp",
+      "src/pso/item/TItemObject.cpp",
+      "src/pso/item/TItemTimerEvent.cpp",
+      "src/pso/item/mag/TItemMag.cpp",
+      "src/pso/npc/TObjNpcCloakroomBase.cpp",
+      "src/pso/npc/TObjNpcConnoisseur.cpp",
+      "src/pso/npc/TObjNpcExpertBase.cpp",
+      "src/pso/npc/TObjNpcFemaleBase.cpp",
+      "src/pso/npc/TObjNpcFemaleChild.cpp",
+      "src/pso/npc/TObjNpcFemaleDwarf.cpp",
+      "src/pso/npc/TObjNpcFemaleFat.cpp",
+      "src/pso/npc/TObjNpcFemaleMacho.cpp",
+      "src/pso/npc/TObjNpcFemaleOld.cpp",
+      "src/pso/npc/TObjNpcFemaleTall.cpp",
+      "src/pso/npc/TObjNpcGovernorBase.cpp",
+      "src/pso/npc/TObjNpcHosa.cpp",
+      "src/pso/npc/TObjNpcHosa2.cpp",
+      "src/pso/npc/TObjNpcKenkyu.cpp",
+      "src/pso/npc/TObjNpcKenkyu2.cpp",
+      "src/pso/npc/TObjNpcKenkyuW.cpp",
+      "src/pso/npc/TObjNpcMaleBase.cpp",
+      "src/pso/npc/TObjNpcMaleChild.cpp",
+      "src/pso/npc/TObjNpcMaleDwarf.cpp",
+      "src/pso/npc/TObjNpcMaleFat.cpp",
+      "src/pso/npc/TObjNpcMaleMacho.cpp",
+      "src/pso/npc/TObjNpcMaleOld.cpp",
+      "src/pso/npc/TObjNpcMaleTall.cpp",
+      "src/pso/npc/TObjNpcNgcBase_80358AE8.cpp",
+      "src/pso/npc/TObjNpcNurseBase.cpp",
+      "src/pso/npc/TObjNpcSecretaryBase.cpp",
+      "src/pso/npc/TObjNpcSoldierBase.cpp",
+      "src/pso/npc/TObjNpcSoldierMacho.cpp",
+      "src/pso/npc/TObjNpcSoutokufu.cpp",
+      "src/pso/object/TMotorcycle.cpp",
+      "src/pso/object/TOBind_801586B8.cpp",
+      "src/pso/object/TOHealGeneral.cpp",
+      "src/pso/object/TObjBigTuitate.cpp",
+      "src/pso/object/TObjComputer.cpp",
+      "src/pso/object/TObjDoaEx01.cpp",
+      "src/pso/object/TObjEZBoneRotBase.cpp",
+      "src/pso/object/TObjHMS_EZRope_Player.cpp",
+      "src/pso/object/TObjHashi.cpp",
+      "src/pso/object/TObjLiveMonitor.cpp",
+      "src/pso/object/TObjLuker.cpp",
+      "src/pso/object/TObjTank.cpp",
+      "src/pso/object/TObjTombstone.cpp",
+      "src/pso/object/TObjWaitEntryHairMoveSim.cpp",
+      "src/pso/object/ambient/TButterfly.cpp",
+      "src/pso/object/ambient/TOBiwaMushi.cpp",
+      "src/pso/object/ambient/TOKurage.cpp",
+      "src/pso/object/ambient/TObjCGrass.cpp",
+      "src/pso/object/ambient/TObjFish.cpp",
+      "src/pso/object/ambient/TObjGrass.cpp",
+      "src/pso/object/ambient/TObjLight_8022F9E8.cpp",
+      "src/pso/object/ambient/TObjLight_80236D60.cpp",
+      "src/pso/object/cave/TOAirconCave01.cpp",
+      "src/pso/object/cave/TOAirconCave02.cpp",
+      "src/pso/object/cave/TOCakeshopCave01.cpp",
+      "src/pso/object/cave/TODragonflyCave01.cpp",
+      "src/pso/object/cave/TOHangceilingCave01.cpp",
+      "src/pso/object/cave/TORainbowCave01.cpp",
+      "src/pso/object/cave/TORevlightCave01.cpp",
+      "src/pso/object/cave/TORockCave.cpp",
+      "src/pso/object/cave/TOSignCave01.cpp",
+      "src/pso/object/cave/TOSignCave02.cpp",
+      "src/pso/object/cave/TOSignCave03.cpp",
+      "src/pso/object/city/CityDoors.cpp",
+      "src/pso/object/city/CitySeason.cpp",
+      "src/pso/object/collision/TOAttackableCol.cpp",
+      "src/pso/object/container/TContainerAncient01.cpp",
+      "src/pso/object/container/TOContainerAncientEnemy.cpp",
+      "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp",
+      "src/pso/object/container/TObjContainerItem.cpp",
+      "src/pso/object/container/TObjContainerJung.cpp",
+      "src/pso/object/door/TODoorAncient01.cpp",
+      "src/pso/object/door/TODoorAncient03.cpp",
+      "src/pso/object/door/TODoorAncient04.cpp",
+      "src/pso/object/door/TODoorAncient05.cpp",
+      "src/pso/object/door/TODoorAncient06.cpp",
+      "src/pso/object/door/TODoorAncient07.cpp",
+      "src/pso/object/door/TODoorAncient08.cpp",
+      "src/pso/object/door/TODoorAncient09.cpp",
+      "src/pso/object/door/TODoorCave01.cpp",
+      "src/pso/object/door/TODoorCave02.cpp",
+      "src/pso/object/door/TODoorCave03.cpp",
+      "src/pso/object/door/TODoorJungleMain.cpp",
+      "src/pso/object/door/TODoorLabo.cpp",
+      "src/pso/object/door/TODoorMachine01.cpp",
+      "src/pso/object/door/TODoorMachine02.cpp",
+      "src/pso/object/door/TODoorVS2Door01.cpp",
+      "src/pso/object/door/TODoorVoShip.cpp",
+      "src/pso/object/door/TObjDoorJung.cpp",
+      "src/pso/object/door/TObjDoorKey.cpp",
+      "src/pso/object/door/TObjDoor_8018E358.cpp",
+      "src/pso/object/ending/TObjOnlineEnding_802E4B80.cpp",
+      "src/pso/object/fence/TLazerFenceSw.cpp",
+      "src/pso/object/fence/TOBarrierEnergy01.cpp",
+      "src/pso/object/fence/TOFenceAncient01.cpp",
+      "src/pso/object/fence/TOFenceAncient02.cpp",
+      "src/pso/object/fence/TOFenceAncient03.cpp",
+      "src/pso/object/fence/TOFenceAncient04.cpp",
+      "src/pso/object/fence/TOVS2Wall01.cpp",
+      "src/pso/object/fence/TObjLazerFenceNorm.cpp",
+      "src/pso/object/jungle/TOGrassJungle.cpp",
+      "src/pso/object/jungle/TOJungleDesign.cpp",
+      "src/pso/object/jungle/TORockJungleL01.cpp",
+      "src/pso/object/key/TOKeyAncient01.cpp",
+      "src/pso/object/key/TOKeyAncient02.cpp",
+      "src/pso/object/key/TOKeyAncient03.cpp",
+      "src/pso/object/key/TOKeyCave01.cpp",
+      "src/pso/object/key/TOKeyGenericSw.cpp",
+      "src/pso/object/key/TOKeyJungleMain.cpp",
+      "src/pso/object/key/TOKeyMachine01.cpp",
+      "src/pso/object/lab/TOCapsuleLabo.cpp",
+      "src/pso/object/lab/TObjLaboDesignBase.cpp",
+      "src/pso/object/lobby/LobbyGoGoBall.cpp",
+      "src/pso/object/lobby/LobbyPigeonPath.cpp",
+      "src/pso/object/lobby/TObjButterflyLobby_80350958.cpp",
+      "src/pso/object/lobby/TObjCurtainLobby.cpp",
+      "src/pso/object/lobby/TObjKabochaLobby.cpp",
+      "src/pso/object/lobby/TObjLobbyMain.cpp",
+      "src/pso/object/lobby/TObjRainbowLobby.cpp",
+      "src/pso/object/lobby/TObjStendGlassLobby.cpp",
+      "src/pso/object/lobby/TObjSuisouLobby.cpp",
+      "src/pso/object/lobby/TObjTreeLobby.cpp",
+      "src/pso/object/lobby/TObjWeddingLobby.cpp",
+      "src/pso/object/mine/TOCapsuleMachine01.cpp",
+      "src/pso/object/mine/TOComputerMachine01.cpp",
+      "src/pso/object/mine/TODragonflyMachine01.cpp",
+      "src/pso/object/mine/TOHangerMachine01.cpp",
+      "src/pso/object/mine/TOLightMachine01.cpp",
+      "src/pso/object/mine/TOMonitorMachine01.cpp",
+      "src/pso/object/mine/TOSparkMachine01.cpp",
+      "src/pso/object/ruins/TOCapsuleAncient01.cpp",
+      "src/pso/object/ruins/TOMonumentAncient01.cpp",
+      "src/pso/object/ruins/TOMonumentAncient02.cpp",
+      "src/pso/object/seabed/TObjSeabedSuisoBrakable.cpp",
+      "src/pso/object/seabed/TObjSuisoChip.cpp",
+      "src/pso/object/switch/TOSensorAncient01.cpp",
+      "src/pso/object/switch/TOSensorGeneral01.cpp",
+      "src/pso/object/switch/TOSwitchAttack_801778A4.cpp",
+      "src/pso/object/trap/TOExplosiveMachine.cpp",
+      "src/pso/object/trap/TOMine.cpp",
+      "src/pso/object/trap/TOMineIcon02.cpp",
+      "src/pso/object/trap/TOMineIcon03.cpp",
+      "src/pso/object/trap/TOMineIcon04.cpp",
+      "src/pso/object/trap/TOTrap.cpp",
+      "src/pso/object/trap/TOTrapAncient01.cpp",
+      "src/pso/object/trap/TOTrapAncient02.cpp",
+      "src/pso/object/trap/TOTrapChainSawEdge.cpp",
+      "src/pso/object/trap/TOTrapSeabed01.cpp",
+      "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+      "src/pso/object/warp/TObjLaboMapWarp.cpp",
+      "src/pso/object/warp/TObjMapWarpAncient.cpp",
+      "src/pso/object/warp/TObjWarpBossMulti.cpp",
+      "src/pso/object/warp/TObjWarpJungMain.cpp",
+      "src/pso/object/warp/TObjWarpLobby.cpp",
+      "src/pso/object/wreck/TOWreckAncient.cpp",
+      "src/pso/player/PhotonBlastResults.cpp",
+      "src/pso/player/PlayerTaskEffects.cpp",
+      "src/pso/player/TObjPlayer_80011014.cpp",
+      "src/pso/player/TObjPlayer_800DCC90.cpp",
+      "src/pso/player/TObjPlayer_80109344.cpp",
+      "src/pso/player/TObjPlayer_802D5174.cpp",
+      "src/pso/player/TObjPlayer_802E6CA8.cpp",
+      "src/pso/player/TObjPlayer_80357B2C.cpp",
+      "src/pso/player/TPlyPhotonChair.cpp",
+      "src/pso/player/TUnk_80491460.cpp",
+      "src/pso/system/scene/TSceneSora.cpp",
+      "src/pso/technique/TTecAnti.cpp",
+      "src/pso/technique/TTecCtrl.cpp",
+      "src/pso/technique/TTecFoie.cpp",
+      "src/pso/technique/TTecGiBarta.cpp",
+      "src/pso/technique/TTecGiZonde_8023CDC4.cpp",
+      "src/pso/technique/TTecKafun.cpp",
+      "src/pso/technique/TTecLuker.cpp",
+      "src/pso/technique/TTecPlayerInfluence.cpp",
+      "src/pso/technique/TTecRaFoie.cpp",
+      "src/pso/technique/TTecRaZonde_80238C6C.cpp",
+      "src/pso/technique/TTecResta.cpp",
+      "src/pso/technique/TTecReverser.cpp",
+      "src/pso/technique/TTecSlicer.cpp",
+      "src/pso/technique/TTecZondeEff.cpp",
+      "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp",
+      "src/pso/ui/charcreate/TChCrLoadGmNjReq.cpp",
+      "src/pso/ui/charcreate/TObjCMMainMenu_8028EA88.cpp",
+      "src/pso/ui/chat/TWindowChatSymbol.cpp",
+      "src/pso/ui/chat/TWindowSubSymbolChatFaceType.cpp",
+      "src/pso/ui/chat/TWindowSubSymbolChatHelp.cpp",
+      "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp",
+      "src/pso/ui/chat/TWindowSubSymbolChatPartsSet.cpp",
+      "src/pso/ui/frontend/TAdMultiPlyChrSelectGC_802E0FC8.cpp",
+      "src/pso/ui/frontend/TAdPlyStatusGC.cpp",
+      "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+      "src/pso/ui/hud/TMainCursor.cpp",
+      "src/pso/ui/hud/TRaderMapCore.cpp",
+      "src/pso/ui/window/TWindowActionPalette.cpp",
+      "src/pso/ui/window/TWindowAddition_80244238.cpp",
+      "src/pso/ui/window/TWindowBreakIn.cpp",
+      "src/pso/ui/window/TWindowCallBack.cpp",
+      "src/pso/ui/window/TWindowChallengeResult.cpp",
+      "src/pso/ui/window/TWindowChoiceSetting.cpp",
+      "src/pso/ui/window/TWindowChoiceSetting_80249078.cpp",
+      "src/pso/ui/window/TWindowComCard.cpp",
+      "src/pso/ui/window/TWindowDD_8034055C.cpp",
+      "src/pso/ui/window/TWindowDD_80340A78.cpp",
+      "src/pso/ui/window/TWindowDD_80341334.cpp",
+      "src/pso/ui/window/TWindowDD_80341A08.cpp",
+      "src/pso/ui/window/TWindowDeposit.cpp",
+      "src/pso/ui/window/TWindowDuelResult.cpp",
+      "src/pso/ui/window/TWindowFukidasi.cpp",
+      "src/pso/ui/window/TWindowHelpItem_80255AB4.cpp",
+      "src/pso/ui/window/TWindowHelpItem_8025A12C.cpp",
+      "src/pso/ui/window/TWindowInputNumber.cpp",
+      "src/pso/ui/window/TWindowKeyBoardBase.cpp",
+      "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+      "src/pso/ui/window/TWindowKeyBoardSoft.cpp",
+      "src/pso/ui/window/TWindowLoadItemTexture.cpp",
+      "src/pso/ui/window/TWindowLockOn_80262C3C.cpp",
+      "src/pso/ui/window/TWindowMeseta.cpp",
+      "src/pso/ui/window/TWindowMessage.cpp",
+      "src/pso/ui/window/TWindowMessageInfomation.cpp",
+      "src/pso/ui/window/TWindowMessageLog.cpp",
+      "src/pso/ui/window/TWindowMessageQuest.cpp",
+      "src/pso/ui/window/TWindowPartyStatus.cpp",
+      "src/pso/ui/window/TWindowQuantity.cpp",
+      "src/pso/ui/window/TWindowRoom.cpp",
+      "src/pso/ui/window/TWindowShop.cpp",
+      "src/pso/ui/window/TWindowShortCut.cpp",
+      "src/pso/ui/window/TWindowSimpleStatus.cpp",
+      "src/pso/ui/window/TWindowSnapShot.cpp",
+      "src/pso/ui/window/TWindowSoundBalance.cpp",
+      "src/pso/ui/window/TWindowStatus.cpp",
+      "src/pso/ui/window/TWindowSubAreaMapDisp.cpp",
+      "src/pso/ui/window/TWindowSubComCardList.cpp",
+      "src/pso/ui/window/TWindowSubComCardList_802752D8.cpp",
+      "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+      "src/pso/ui/window/TWindowSubComCard_80265410.cpp",
+      "src/pso/ui/window/TWindowSubCustomEquip.cpp",
+      "src/pso/ui/window/TWindowSubCustomSelect.cpp",
+      "src/pso/ui/window/TWindowSubEquipKind.cpp",
+      "src/pso/ui/window/TWindowSubEquipKind_80278300.cpp",
+      "src/pso/ui/window/TWindowSubEquipList.cpp",
+      "src/pso/ui/window/TWindowSubItemList.cpp",
+      "src/pso/ui/window/TWindowSubMagPhoton.cpp",
+      "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp",
+      "src/pso/ui/window/TWindowSubShortCutList.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_80248BE8.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_8024FBA8.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_80258164.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_8025A9B4.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_8025B4A0.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_8027FD88.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_80287570.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_80338740.cpp",
+      "src/pso/ui/window/TWindowTimer.cpp",
+      "src/pso/ui/window/TWindowUserSort.cpp",
+      "src/pso/unk/TLobby_8001EF5C.cpp",
+      "src/pso/unk/TLobby_8002C140.cpp",
+      "src/pso/unk/TLobby_8028A7C8.cpp",
+      "src/pso/unk/TLobby_8028EA28.cpp",
+      "src/pso/unk/TUnk_8048E1A4.cpp",
+      "src/pso/unk/TUnk_804CC870.cpp",
+      "src/pso/unk/TUnk_804CC948.cpp",
+      "src/pso/unk/TUnk_804CC990.cpp",
+      "src/pso/unk/text_8004D9A8.cpp",
+      "src/pso/unk/text_80066F10.cpp",
+      "src/pso/unk/text_80087278.cpp",
+      "src/pso/unk/text_800DC420.cpp",
+      "src/pso/unk/text_80184C2C.cpp",
+      "src/pso/unk/text_8022F258.cpp",
+      "src/pso/unk/text_8026C664.cpp",
+      "src/pso/unk/text_8028A820.cpp",
+      "src/pso/unk/text_802E10D8.cpp",
+      "src/pso/unk/text_802F0E24.cpp",
+      "src/pso/unk/text_8035B6B0.cpp",
+      "src/pso/unk/text_8035B750.cpp",
+      "src/pso/unk/text_803626A8.cpp",
+      "src/pso/weapon/TItemWeaponFist.cpp",
+      "src/pso/weapon/TUnk_804A08B8.cpp",
+      "src/pso/weapon/TUnk_804A1190.cpp",
+      "src/pso/weapon/TUnk_804A1380.cpp",
+      "src/pso/weapon/TUnk_804A1858.cpp",
+      "src/pso/weapon/TUnk_804A3358.cpp",
+      "src/pso/weapon/TUnk_804A403C.cpp",
+      "src/pso/weapon/TUnk_804A444C.cpp",
+      "src/pso/weapon/TUnk_804A4D70.cpp",
+      "src/pso/weapon/TUnk_804A535C.cpp",
+      "src/pso/weapon/TUnk_804A6AD8.cpp",
+      "src/pso/weapon/TUnk_804A6BD0.cpp",
+      "src/pso/weapon/TUnk_804F26E0.cpp",
+      "src/pso/weapon/shoot/TItemShoot.cpp"
+    ],
+    "canonical_paths_absent_from_diff": [
+      "include/pso/boss/barbaray/Boss7TentacleBanks.h",
+      "include/pso/boss/darkfalz/TBoss4ZakoDraw.h",
+      "include/pso/boss/darkfalz/TBoss4ZakoDrawBuffer.h",
+      "include/pso/boss/darkfalz/TBoss4ZakoDraw_8030AD38.h",
+      "include/pso/boss/darkfalz/TBoss4ZakoTexture.h",
+      "include/pso/boss/goldragon/TBoss8Dragon_80067034.h",
+      "include/pso/boss/olgaflow/TBoss6EmptyWarp.h",
+      "include/pso/boss/olgaflow/TBoss6EmptyWarp_802B0E2C.h",
+      "include/pso/boss/olgaflow/TBoss6PlotFalz_802AABEC.h",
+      "include/pso/boss/olgaflow/TBoss6Tube.h",
+      "include/pso/boss/volopt/TBoss3VoloptHiraisin.h",
+      "include/pso/boss/volopt/TBoss3Volopt_800D8ACC.h",
+      "include/pso/camera/TObjLiveCameraCtrl.h",
+      "include/pso/effect/GroundEffects.h",
+      "include/pso/effect/TEF_LensFlare.h",
+      "include/pso/effect/TEffClitical.h",
+      "include/pso/effect/TEffStarLight2D.h",
+      "include/pso/effect/TEffStarLightChild.h",
+      "include/pso/effect/item/TItemEffBringer.h",
+      "include/pso/effect/item/TItemEffEquip.h",
+      "include/pso/effect/item/TItemEffEquip_801088D0.h",
+      "include/pso/effect/item/TItemEffEquip_801088F8.h",
+      "include/pso/effect/photon/TDPBShower.h",
+      "include/pso/enemy/PlayerTargetCandidate.h",
+      "include/pso/enemy/TNeedleShoot.h",
+      "include/pso/enemy/TUnk_80493450.h",
+      "include/pso/enemy/TUnk_804E14E8.h",
+      "include/pso/enemy/berura/TObjEneRe7Berura_803E4CE0.h",
+      "include/pso/enemy/canadin/TObjEneMe1CanadinLeader.h",
+      "include/pso/enemy/dellbiter/TObjEneDellBiter.h",
+      "include/pso/enemy/gee/TUnk_8049387C.h",
+      "include/pso/enemy/gyaranzo/TObjEneGyaranzo.h",
+      "include/pso/enemy/merilllia/TObjEneMerillLia.h",
+      "include/pso/enemy/panarms/TObjEnePanarms_800DCEB8.h",
+      "include/pso/enemy/panarms/TObjEnePanarms_800DFB74.h",
+      "include/pso/enemy/shinowa/TObjEneMe3ShinowaMirage.h",
+      "include/pso/enemy/sinowzoa/TObjEneMe3SinowZoaReal.h",
+      "include/pso/enemy/slime/SlimeAnimationState.h",
+      "include/pso/enemy/slime/TObjEneSlime.h",
+      "include/pso/enemy/slime/TObjEneSlimeOne_800EC394.h",
+      "include/pso/enemy/slime/TObjEneSlimeTailAttack.h",
+      "include/pso/enemy/slime/TObjEneSlimeWaterBomb.h",
+      "include/pso/enemy/sorcerer/TObjEneRe4Bit.h",
+      "include/pso/enemy/sorcerer/TObjEneRe4Sorcerer.h",
+      "include/pso/enemy/wolf/TObjEneBm5Wolf.h",
+      "include/pso/item/TItemMenuCtrl.h",
+      "include/pso/item/TItemMenuCtrl_80115AF0.h",
+      "include/pso/item/TItemSpecialEvent.h",
+      "include/pso/item/TUnk_8049F038.h",
+      "include/pso/item/mag/TItemMagSub.h",
+      "include/pso/math/MatrixCopy.h",
+      "include/pso/math/ScratchVectorStorage.h",
+      "include/pso/math/ScratchVectors.h",
+      "include/pso/math/VectorNormalize.h",
+      "include/pso/npc/NpcModelEntry.h",
+      "include/pso/npc/TObjNpcKenkyuW.h",
+      "include/pso/object/TObjChallenge4PRetry.h",
+      "include/pso/object/TObjChallengeRetry.h",
+      "include/pso/object/TObjLiveMonitor.h",
+      "include/pso/object/city/TObjCity_Season_FireWork.h",
+      "include/pso/object/door/TODoorJungleMain.h",
+      "include/pso/player/PlayerCombatConstants.h",
+      "include/pso/player/TObjPlayer_8012105C.h",
+      "include/pso/player/demo_mode.h",
+      "include/pso/render/ColorCopy.h",
+      "include/pso/render/GinjaMaterial.h",
+      "include/pso/render/GinjaModel.h",
+      "include/pso/render/TriangleFan3D.h",
+      "include/pso/system/CvFsDeviceCallbacks.h",
+      "include/pso/system/GinjaParameterHandler.h",
+      "include/pso/system/NinjaTypes.h",
+      "include/pso/system/TLanguage.h",
+      "include/pso/system/TLanguage_801E4874.h",
+      "include/pso/system/save/CardSaveFile.h",
+      "include/pso/technique/TTecGiFoie.h",
+      "include/pso/ui/UISprite.h",
+      "include/pso/ui/charcreate/TChCrEffFade.h",
+      "include/pso/ui/charcreate/TChCrEffTagStr.h",
+      "include/pso/ui/charcreate/TObjCMIcon.h",
+      "include/pso/ui/charcreate/TObjCMIcon_80299488.h",
+      "include/pso/ui/font/TFontSmallLobby.h",
+      "include/pso/ui/frontend/TAdChrMoveEffectGC.h",
+      "include/pso/ui/frontend/TAdEnterPasswordGC.h",
+      "include/pso/ui/frontend/TAdTimeSetGC.h",
+      "include/pso/ui/window/TWindowHelpItem_80255AB4.h",
+      "include/pso/ui/window/TWindowLockOn_80262C3C.h",
+      "include/pso/unk/GuildCardRecord.h",
+      "include/pso/unk/TLobby_80131794.h",
+      "include/pso/unk/TLobby_8013AD38.h",
+      "include/pso/unk/text_8007A7A0.h",
+      "include/pso/unk/text_8007A7B8.h",
+      "include/pso/unk/text_800D8830.h",
+      "include/pso/unk/text_80120150.h",
+      "include/pso/unk/text_8024AB98.h",
+      "include/pso/unk/text_8026934C.h",
+      "include/pso/unk/text_80293D84.h",
+      "include/pso/weapon/TUnk_804A67D0.h",
+      "include/pso/weapon/TUnk_804E23F0.h",
+      "include/pso/weapon/WeaponCanopyScale.h",
+      "libs/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/strtoul.c",
+      "libs/dolphin/src/mtx/mtxvec.c",
+      "src/pso/boss/barbaray/TObjBoss7DustSdata2.cpp",
+      "src/pso/boss/darkfalz/TBoss4Type2_800522CC.cpp",
+      "src/pso/boss/goldragon/TBoss8Dragon_80359A7C.cpp",
+      "src/pso/boss/olgaflow/TBoss6PlotFalz_802AABEC.cpp",
+      "src/pso/camera/TCameraCtrl_803D6538.cpp",
+      "src/pso/effect/enemy/TEneParticleCtrl.cpp",
+      "src/pso/effect/enemy/TeneFakeTecThunderEffSdata2.cpp",
+      "src/pso/effect/enemy/TeneFakeTecThunderEffSdata2B.cpp",
+      "src/pso/effect/item/TItemEffEquip_80108860.cpp",
+      "src/pso/effect/item/TItemEffEquip_801088D0.cpp",
+      "src/pso/effect/item/TItemEffEquip_801088F8.cpp",
+      "src/pso/effect/particle/TParticleCtrl_801D6B3C.cpp",
+      "src/pso/enemy/berura/TObjEneRe7Berura_803E4CE0.cpp",
+      "src/pso/enemy/canadin/CanadinData.cpp",
+      "src/pso/enemy/dellbiter/TObjEneDellBiterEffects.cpp",
+      "src/pso/enemy/morfos/MorfosData.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarms_800DFB00.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarms_800DFB74.cpp",
+      "src/pso/item/TItemMenuCtrl_80115A78.cpp",
+      "src/pso/item/TItemSpecialEvent.cpp",
+      "src/pso/item/armor/TItemProArmorParticle.cpp",
+      "src/pso/map/CsnResult.cpp",
+      "src/pso/math/MatrixTransforms.cpp",
+      "src/pso/math/MatrixVector.cpp",
+      "src/pso/object/base/TObjBase.cpp",
+      "src/pso/object/base/TObjMotion.cpp",
+      "src/pso/object/lobby/TObjParticleLobby.cpp",
+      "src/pso/object/switch/TOSwitchAttackSub.cpp",
+      "src/pso/object/switch/TOSwitchItem.cpp",
+      "src/pso/player/PlayerSdata2Block1.cpp",
+      "src/pso/player/TObjPlayer_80011014Data.cpp",
+      "src/pso/player/TObjPlayer_80052374.cpp",
+      "src/pso/player/TObjPlayer_80055678.cpp",
+      "src/pso/player/TObjPlayer_80080750.cpp",
+      "src/pso/player/TObjPlayer_801BC140.cpp",
+      "src/pso/player/TObjPlayer_8035A630.cpp",
+      "src/pso/player/TObjPlayer_8035A740.cpp",
+      "src/pso/player/TObjPlayer_8035A778.cpp",
+      "src/pso/player/TObjPlayer_803E112C.cpp",
+      "src/pso/quest/StoryQuestProgress.cpp",
+      "src/pso/system/GbaDownloadRuntime.cpp",
+      "src/pso/system/PadRumble.cpp",
+      "src/pso/system/scene/TEndingPicStage.cpp",
+      "src/pso/technique/TTecMegid_80235B24.cpp",
+      "src/pso/ui/keyboard/TKeyBoardControl_80131F5C.cpp",
+      "src/pso/ui/window/WindowSubStatusDispSdata2.cpp",
+      "src/pso/unk/TLobby_80131794.cpp",
+      "src/pso/unk/TLobby_8013AD38.cpp",
+      "src/pso/unk/TLobby_8030A834.cpp",
+      "src/pso/unk/TUnk_804CF998.cpp",
+      "src/pso/unk/TUnk_804EDAC0.cpp",
+      "src/pso/unk/TUnk_804F1C58_8035A628.cpp",
+      "src/pso/unk/text_801F3774.cpp",
+      "src/pso/unk/text_8024AB18.cpp",
+      "src/pso/unk/text_8026934C.cpp",
+      "src/pso/unk/text_8029A97C.cpp",
+      "src/pso/unk/text_8035AF18.cpp",
+      "src/pso/unk/text_803E2F28.cpp"
+    ],
+    "reviews": {
+      "standalone-world-particle-factory-calls": {
+        "label": "particle",
+        "branch": "standalone-world-particle-factory-calls",
+        "title": "World-position particle factories and callers",
+        "previous": null,
+        "direct": "1dfa045120b25b8b0bc323af80e9004479b65561",
+        "queue": "5399d967fa9fe5831889b86bc77ce9bb06e76745",
+        "details": "Types all 556 live calls in 180 source files to the two world-position particle factories. Keeps the branch-native allocator and continuous emitter contracts.",
+        "standalone_files": 182,
+        "standalone_increment": 182,
+        "queue_increment": 135,
+        "shared_paths": [],
+        "validation": {
+          "report_sha256": "3be01c6fcf4bfeab5b2606641184f787f1f15e0e5b8f6a5608822b09be68af14",
+          "strict_sha256": "9c615f959fa1a7bf9bb3f5f91339497318f3273f801c2308e9946f3f6ba960a9",
+          "exact_functions": 27572,
+          "exact_linked_units": 2449
+        },
+        "review_base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "review_files": 182
+      },
+      "standalone-rope-bone-and-fin-attachments": {
+        "label": "attachments",
+        "branch": "standalone-rope-bone-and-fin-attachments",
+        "title": "Rope, bone rotation and fin attachments",
+        "previous": null,
+        "direct": "c2936d95ef1525aa3cb3e0bc2f0b8a46809f18e9",
+        "queue": "355c934bffd491a6adcca7f7a4d39abebf2b2be1",
+        "details": "Recovers native rope and bone constructors, vector storage, collision simulation, actor action mask, player hair attachment and boss fin ownership. Keeps upstream base-angle method names.",
+        "standalone_files": 17,
+        "standalone_increment": 17,
+        "queue_increment": 17,
+        "shared_paths": [
+          "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+          "src/pso/unk/TUnk_8048E1A4.cpp"
+        ],
+        "validation": {
+          "report_sha256": "12711b89579b9c4d7674aceb192f8d9f7f011dd51ea2de6a356b25d57d51e847",
+          "strict_sha256": "b0520dedac0768b869dc891425bb727dd0b492d37cb132613546e90217f0cf4e",
+          "exact_functions": 27572,
+          "exact_linked_units": 2449
+        },
+        "review_base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "review_files": 17
+      },
+      "standalone-camera-and-radar": {
+        "label": "camera",
+        "branch": "standalone-camera-and-radar",
+        "title": "Scripted camera playback and scene callers",
+        "previous": "a0ae8422d0940e24c0e5ce3298747d5991d40472",
+        "review_base": "a0ae8422d0940e24c0e5ce3298747d5991d40472",
+        "direct": "0394e28c275546fc002b9269980a9e1fe048ab92",
+        "queue": "214266c4f823d2ff296b672a21f5ebf95f44962d",
+        "details": "Recovers native camera motion directory, playback and origin fields. Uses one shared pose and playback declaration for the scene and encounter callers.",
+        "standalone_files": 162,
+        "standalone_increment": 26,
+        "queue_increment": 20,
+        "shared_paths": [
+          "config/GPOE8P/psov3/config.yml",
+          "config/GPOE8P/psov3/symbols.txt",
+          "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+          "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+          "src/pso/boss/dragon/TBoss1Dragon.cpp",
+          "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+          "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+        ],
+        "validation": {
+          "report_sha256": "a9151debb4d53ec41aeb59e0728500858eebf0f00e64be39462fd35f01db0e15",
+          "strict_sha256": "ac1f5c1be4bd10459f154ba2840d75fde48b9928873b5f5b6c79d58916dd12c9",
+          "exact_functions": 27572,
+          "exact_linked_units": 2449
+        },
+        "review_files": 26
+      },
+      "standalone-native-window-draw-context": {
+        "label": "display",
+        "branch": "standalone-native-window-draw-context",
+        "title": "Window draw contexts, selection bars and clipped text",
+        "previous": null,
+        "review_base": "540e1a91ba6ec917aa50fc1feffb48ed686373dd",
+        "direct": "57a10b0f98d8a5e728f2344a843dfad0725a5e30",
+        "queue": "91b6b77815c9b1cba13ed86fd64e1db875277a69",
+        "details": "Recovers typed drawing-context allocation and use across menus, status, keyboard, chat and native clipped text and selection draws.",
+        "standalone_files": 590,
+        "standalone_increment": 590,
+        "queue_increment": 76,
+        "shared_paths": [
+          "config/GPOE8P/psov3/symbols.txt"
+        ],
+        "validation": {
+          "report_sha256": "74be73c449145d698941afaec8aa4660a0ba219f61580ef5362d39f9ccf53c5b",
+          "strict_sha256": "01632a0d6620fc57f17a9aa6aa0fae4fa01d5950eb9dfd60639f838d661de714",
+          "exact_functions": 27572,
+          "exact_linked_units": 2450
+        },
+        "review_files": 76
+      },
+      "standalone-bml-archive-accessors": {
+        "label": "bml",
+        "branch": "standalone-bml-archive-accessors",
+        "title": "Native BML lifetimes, resource descriptors and load callbacks",
+        "previous": "8b4edc76ebd9aec24da9f3043fe791d1acdd9def",
+        "review_base": "8b4edc76ebd9aec24da9f3043fe791d1acdd9def",
+        "direct": "fd2120f67cfad9f35ca2e374b2734e9d62970431",
+        "queue": "72fcf922c84669533f35562fd633cfd9aec4c24b",
+        "details": "Recovers archive object lifetimes, resource slots, typed descriptors and the async model, motion and texture completion callback contracts.",
+        "standalone_files": 302,
+        "standalone_increment": 237,
+        "queue_increment": 237,
+        "shared_paths": [
+          "config/GPOE8P/psov3/config.yml",
+          "config/GPOE8P/psov3/symbols.txt",
+          "src/pso/boss/barbaray/TBoss7Crawfish.cpp",
+          "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+          "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+          "src/pso/boss/dragon/TBoss1Dragon.cpp",
+          "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+          "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+          "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+          "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp",
+          "src/pso/enemy/darkgunner/DarkGunner.cpp",
+          "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+          "src/pso/enemy/dubchik/TOCtrlDubchik_8015CA74.cpp",
+          "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+          "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+          "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+          "src/pso/enemy/lappy/TObjEneLappy.cpp",
+          "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+          "src/pso/enemy/moja/TObjEneMoja.cpp",
+          "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+          "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+          "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+          "src/pso/enemy/saver/SaverLifecycle.cpp",
+          "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+          "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp",
+          "src/pso/object/TOHealGeneral.cpp",
+          "src/pso/object/ambient/TObjGrass.cpp",
+          "src/pso/object/cave/TORockCave.cpp",
+          "src/pso/object/container/TOContainerAncientEnemy.cpp",
+          "src/pso/object/container/TObjContainerItem.cpp",
+          "src/pso/object/container/TObjContainerJung.cpp",
+          "src/pso/object/door/TODoorJungleMain.cpp",
+          "src/pso/object/fence/TOVS2Wall01.cpp",
+          "src/pso/object/trap/TOMine.cpp",
+          "src/pso/object/trap/TOTrapSeabed01.cpp",
+          "src/pso/player/PhotonBlastResults.cpp",
+          "src/pso/unk/TUnk_8048E1A4.cpp"
+        ],
+        "validation": {
+          "report_sha256": "d9fe131993c40ffaf1a65789550e16f05d087203d48532ebc0f0aa588efa6119",
+          "strict_sha256": "5966313f337b833a70660df6de07e0df591086a4ad2643d3744e052ac2af5dc0",
+          "exact_functions": 27572,
+          "exact_linked_units": 2449
+        },
+        "review_files": 237
+      }
+    }
+  },
+  "queue_validation": {
+    "report_sha256": "dbafea36556d4ab0abc613c598c43162a7e6d9f711ec63377194cf67c1640dea",
+    "strict_sha256": "bde20026771d4db5716bc5e47531240ae7ed628035261c0df9b2280e9af2aa3f",
+    "exact_functions": 27572,
+    "exact_linked_units": 2451,
+    "comparisons": {
+      "upstream": {
+        "baseline_report_sha256": "3be01c6fcf4bfeab5b2606641184f787f1f15e0e5b8f6a5608822b09be68af14",
+        "lost_function_ranges": 0,
+        "lost_linked_data_ranges": 0,
+        "omitted_alignment_ranges": 0
+      },
+      "historical": {
+        "baseline_report_sha256": "3e8a49928b15de9e88fa50ad9d678a440a4b3743e0bd7b53b2871d88bf17c519",
+        "lost_function_ranges": 0,
+        "lost_linked_data_ranges": 0,
+        "omitted_alignment_ranges": 30
+      },
+      "previous_queue": {
+        "baseline_report_sha256": "c337d714e18b54a3c23dd33f9557e9b9a6b3c9edfd3cad5d9b5e3920cfab4ba4",
+        "lost_function_ranges": 0,
+        "lost_linked_data_ranges": 0,
+        "omitted_alignment_ranges": 0
+      }
+    }
+  },
+  "historical_rows": [
+    {
+      "row": 507,
+      "historical_path": "src/pso/boss/TBoss2Fin.cpp",
+      "historical_blob": "7b5199ff6b301e30b64dee4796966245bf620e71",
+      "owners": {
+        "src/pso/boss/derolle/TBoss2Fin.cpp": "a91edfeee2a970ea2c778921b88e62d7ab266787"
+      },
+      "full": true,
+      "evidence": "The fin uses its native constructor, live segment and anchor arrays, typed collision positions, and the existing scene texture provider on the queue."
+    },
+    {
+      "row": 557,
+      "historical_path": "src/pso/boss/TObjBoss8DemoRoom_8036B654.cpp",
+      "historical_blob": "f842b576ffae12bc78d36f89bc5a7920ebee6377",
+      "owners": {
+        "src/pso/boss/goldragon/TObjBoss8DemoRoom.cpp": "bb43df4d31ba6c9702d0830753ce7a81fd01ce99"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 565,
+      "historical_path": "src/pso/enemy/TObjEneBm3FlyNest.cpp",
+      "historical_blob": "c382ce1e7b7b40fc5ec8944ad476bd58503f88fa",
+      "owners": {
+        "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp": "ffbbb29c4334554f999df0f9ba851c041b7a2798"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration. The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 587,
+      "historical_path": "src/pso/enemy/TObjEneGibbles.cpp",
+      "historical_blob": "8ecc03c535278f7145e7287561c0843630c081e1",
+      "owners": {
+        "src/pso/enemy/gibbles/TObjEneGibbles.cpp": "a3b6b09732d15163d7b53b8378c3adee966a3713"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration. The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 588,
+      "historical_path": "src/pso/enemy/TObjEneGyaranzo.cpp",
+      "historical_blob": "6ea3736dde15a461c23095d0cf5173be88cf7b4f",
+      "owners": {
+        "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp": "6c6578d0811b661a96428d0f93c37e7248a0ce8b"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration. The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 589,
+      "historical_path": "src/pso/enemy/TObjEneMe1Canadin.cpp",
+      "historical_blob": "0c982ac6d9c5730b1b51fbac6f3f85392ad3f623",
+      "owners": {
+        "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp": "73557bbd17c31b3671efa4ebcd74a86d52d7348b"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 590,
+      "historical_path": "src/pso/enemy/TObjEneMe1Gee.cpp",
+      "historical_blob": "9196707382ae02c44b15f0ff7145d25daadb779c",
+      "owners": {
+        "src/pso/enemy/gee/TObjEneMe1Gee.cpp": "80b8cc8f749187c315afbcceb2fcccb140092943"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 591,
+      "historical_path": "src/pso/enemy/TObjEneMe1GiGue.cpp",
+      "historical_blob": "7dd40a4be413aebf2c1586cc0ea3d5d8a76924c7",
+      "owners": {
+        "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp": "db7eb93cdec393fd5e0c45b6d46a7d19be439b17"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration. The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 598,
+      "historical_path": "src/pso/enemy/TObjEneMerillLia.cpp",
+      "historical_blob": "fa20f8e7140153e46010214c05a5c69d119c932b",
+      "owners": {
+        "src/pso/enemy/merilllia/TObjEneMerillLia.cpp": "da9fb28399ae825e28d5f93f06f87644eb06c4d2"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration. The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 599,
+      "historical_path": "src/pso/enemy/TObjEneMorfos.cpp",
+      "historical_blob": "768319f3b722b583e6a4016b4278ddb12d08c931",
+      "owners": {
+        "src/pso/enemy/morfos/TObjEneMorfos.cpp": "b0c4e6d04c0dbf2b6ce8d4a9c32a942feebd4392"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration. The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 603,
+      "historical_path": "src/pso/enemy/TObjEnePanarms.cpp",
+      "historical_blob": "6bcff19609be0996994ea806e6deb15d3f9b2abe",
+      "owners": {
+        "src/pso/enemy/panarms/TObjEnePanarms.cpp": "eda9c2016f41aad0cdaf35b31e1175c87862fae7"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 604,
+      "historical_path": "src/pso/enemy/TObjEnePanarms_800DCEB8.cpp",
+      "historical_blob": "8144757b5ddecc5d9ffa25bca48d4808e347fab9",
+      "owners": {
+        "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp": "04a4b6d0305c7a58295b85daaa54881d27157d9a"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration. The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 607,
+      "historical_path": "src/pso/enemy/TObjEneRe2Flower_800C3E14.cpp",
+      "historical_blob": "c307dc03f29a223a8c5b49f9046ee578754cf3d1",
+      "owners": {
+        "src/pso/enemy/flower/TObjEneRe2Flower.cpp": "a9637ce8e7cca5a7141920c1e7e200f11945d37d"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 608,
+      "historical_path": "src/pso/enemy/TObjEneRe7Berura.cpp",
+      "historical_blob": "ae876a8fb38bf255b59257ae781da1bb29459297",
+      "owners": {
+        "src/pso/enemy/berura/TObjEneRe7Berura.cpp": "8d171edd7458cd490def6211b48bc137679830f6"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 621,
+      "historical_path": "src/pso/enemy/TObjEneRecon_8031C250.cpp",
+      "historical_blob": "7d38c5df45683dd460878ad403b8640d1d3960e9",
+      "owners": {
+        "src/pso/enemy/recon/TObjEneRecon.cpp": "c9ac76b431998a082aa492a905b5ef9e3a6528af"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 635,
+      "historical_path": "src/pso/enemy/TObjEneShark.cpp",
+      "historical_blob": "64f23b7403dfc72eb1e2d85522bac1ec3509e2a0",
+      "owners": {
+        "src/pso/enemy/shark/TObjEneShark.cpp": "3cf3f6b0c0f794bab7d93bb38c3b731fd4e231fd"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 637,
+      "historical_path": "src/pso/enemy/TObjEneSlimeTailAttack.cpp",
+      "historical_blob": "45c095b94a6e7972835dc637acfa60a75423df0d",
+      "owners": {
+        "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp": "681f0488912abdd3728ecc2414be9ff46882f355"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 689,
+      "historical_path": "src/pso/boss/TUnk_80484AFC.cpp",
+      "historical_blob": "ec1c016c7312dcb0a79543045f2390547e9f0fe5",
+      "owners": {
+        "src/pso/boss/TUnk_80484AFC.cpp": "49b23ca25b79d3df6bb7a030ed19c411181c8554"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 698,
+      "historical_path": "src/pso/player/TObjPlayer_800D8FDC.cpp",
+      "historical_blob": "9b641ea59daae6c2f85754922810c4808295af8f",
+      "owners": {
+        "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp": "90a85f7bca923000ad48a3cd78e94f9f0e5d1a1f"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration. The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 767,
+      "historical_path": "src/pso/misc/TOCtrlDubchik_8015CA74.cpp",
+      "historical_blob": "308e6a5a34a04fe11c8ca9d4e0963863e16d8f05",
+      "owners": {
+        "src/pso/enemy/dubchik/TOCtrlDubchik_8015CA74.cpp": "69077afc2a244bc1ea5c884a8f845e5654c2b62b"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration. The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 778,
+      "historical_path": "src/pso/enemy/TObjEneMe3Shinowa.cpp",
+      "historical_blob": "8697ef118f28d96e1d89e81ce84938ab05cb452b",
+      "owners": {
+        "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp": "9212de8676332604464a065326e1e07e393ef1b7"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration. The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 789,
+      "historical_path": "src/pso/boss/TBoss6Type2_802BE588.cpp",
+      "historical_blob": "038b84e8deae210401d32ba03d6ea06bfb3ed865",
+      "owners": {
+        "src/pso/boss/olgaflow/TBoss6Type2_802BE588.cpp": "5e2d6870ba0804f2e2e7d5c49c0c6ff252b43260"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 802,
+      "historical_path": "src/pso/enemy/TObjEneDolmOlm.cpp",
+      "historical_blob": "b9249b8add1b43bc791eb0364945d96687db8a58",
+      "owners": {
+        "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp": "273b6808561183bcfa4ca9d4e3b0ddd630e1618a"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration. The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 813,
+      "historical_path": "src/pso/enemy/TObjEneMoja.cpp",
+      "historical_blob": "f997b12f82f3d9ceb40f1c3eb5346285dee7f87b",
+      "owners": {
+        "src/pso/enemy/moja/TObjEneMoja.cpp": "0c710129e5b6366b1ff8d245b459e333d06f2fd1"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 814,
+      "historical_path": "src/pso/enemy/TObjEneMe3SinowZoa.cpp",
+      "historical_blob": "0a55041069ef21a8bf06622fa2696c59f98f24f2",
+      "owners": {
+        "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp": "e91d5ed8e71471101445dfa963e35577034f03cd"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration. The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 843,
+      "historical_path": "src/pso/boss/TBoss8DragonEffTail.cpp",
+      "historical_blob": "3a8399460a8aa65c9256f159b1ad8373ad8f8126",
+      "owners": {
+        "src/pso/boss/goldragon/TBoss8DragonEffTail.cpp": "6d9c00e9ec53b3fdfc71bc60e4f02092effee8d4"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 874,
+      "historical_path": "src/pso/boss/TBoss8Dragon.cpp",
+      "historical_blob": "1a22ff52dad4938c6a831064e588e4b4d562b7d8",
+      "owners": {
+        "src/pso/boss/goldragon/TBoss8Dragon.cpp": "c53cdd21c993b9e20653fdae6867d89f3a12bde7"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 895,
+      "historical_path": "src/pso/enemy/TObjEneDellBiter.cpp",
+      "historical_blob": "70b5246189af3644d537175fee37370e88288a08",
+      "owners": {
+        "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp": "51a84035b5661335fca0f07ac10b961997aa0ff0"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration. The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 906,
+      "historical_path": "src/pso/boss/TBoss6PlotFalz.cpp",
+      "historical_blob": "b77e54ffbf137bc5d8a2c0af2de03da0e47b0c25",
+      "owners": {
+        "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp": "9225dcb3fa5467a980ae1b01f59ccb14b51a56ee"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration. The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 907,
+      "historical_path": "src/pso/boss/TBoss6Rock.cpp",
+      "historical_blob": "ed8a07e411f83b9eb4b57ce750845c1090ed0d6b",
+      "owners": {
+        "src/pso/boss/olgaflow/TBoss6Rock.cpp": "c1621d2f90fb11f813bccfe864591df63f60d4ab"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration. The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 913,
+      "historical_path": "src/pso/boss/TBoss4Type1.cpp",
+      "historical_blob": "20bf52c847ff8a08b2e488cd3006a900e316f0a0",
+      "owners": {
+        "src/pso/boss/darkfalz/TBoss4Type1.cpp": "2b51f184d612caa957ce8c16f62471a5dc7ed21c"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 918,
+      "historical_path": "src/pso/boss/TObjBoss8Piller.cpp",
+      "historical_blob": "0846e217727bca7b2849184ee4517044139e741e",
+      "owners": {
+        "src/pso/boss/goldragon/TObjBoss8Piller.cpp": "a93c97bb2bd8c024ee021d0c7717d30aceeceb0f"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 932,
+      "historical_path": "src/pso/object/TObjVoloptCage.cpp",
+      "historical_blob": "5a4c32d39dc14909d25e885680c1df926d96eef6",
+      "owners": {
+        "src/pso/boss/volopt/TObjVoloptCage.cpp": "0cfce32917e147efdfdd179f516216092bcbff4b"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 933,
+      "historical_path": "src/pso/enemy/TObjEneBeast_800C4E08.cpp",
+      "historical_blob": "27f971a5219896da9baf7c191d1eea3f3a78f80a",
+      "owners": {
+        "src/pso/enemy/beast/TObjEneBeast_800C4E08.cpp": "afebc5988dd3f7f09939c2bd7472d9797365e25d"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 934,
+      "historical_path": "src/pso/enemy/TObjEneBm9Mericarol.cpp",
+      "historical_blob": "4e1f60595200e1c8508abe7e9265eeb101a87887",
+      "owners": {
+        "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp": "207ce840ab4013569fadf462b3c4d7f5b58326f1"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 944,
+      "historical_path": "src/pso/object/TObjDFHorming.cpp",
+      "historical_blob": "d85122d26042e7f00fa6bc2172dc5d922c9d607c",
+      "owners": {
+        "src/pso/boss/darkfalz/TObjDFHorming.cpp": "feb64ee126e66305c1daa2f70960e0a4a4fe8a31"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration. The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 948,
+      "historical_path": "src/pso/enemy/TObjEneLappy.cpp",
+      "historical_blob": "9e1eda396ee1c70e8ea5d0cd08b3d4b2513c0655",
+      "owners": {
+        "src/pso/enemy/lappy/TObjEneLappy.cpp": "431c92b08cbc4ff29eb743000a93102d8ecc6df4"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration. The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 956,
+      "historical_path": "src/pso/enemy/TObjEneIllGill.cpp",
+      "historical_blob": "1a8dd20059a86c4193c758cd520f6d36f5b1c4bb",
+      "owners": {
+        "src/pso/enemy/illgill/TObjEneIllGill.cpp": "5ecff9481e767c3e2759325a6b0898dee34d7467"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration. The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 958,
+      "historical_path": "src/pso/enemy/TObjEneMe3Stelth.cpp",
+      "historical_blob": "ab4dd2ee99897a7552865162aa5b20c1cbdc35d9",
+      "owners": {
+        "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp": "93fa70cb3dff323314f367e903771135f622addb"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration. The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 970,
+      "historical_path": "src/pso/object/TObjGyaranzoMissile.cpp",
+      "historical_blob": "0cd62f48359277a2f84c4ee5a55c4ff5d01dcb69",
+      "owners": {
+        "src/pso/enemy/gyaranzo/TObjGyaranzoMissile.cpp": "0c3af3de99a793098e3196ef8b419a8a11ea2c0f"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 986,
+      "historical_path": "src/pso/enemy/TObjEneDf2Bringer_800972B0.cpp",
+      "historical_blob": "cf5aa0bccdb09dda9e5e33834fac1393438c7079",
+      "owners": {
+        "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp": "e7a93eeba50b7906cd2d9dd9501c1d8907e66d59"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration. The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 992,
+      "historical_path": "src/pso/boss/Boss5GryphonBehavior.cpp",
+      "historical_blob": "b719d83b9fad043a50c574b38b53c31c387fe858",
+      "owners": {
+        "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp": "7facfad31f6e57a562304d3d0c478a3ced833249"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 995,
+      "historical_path": "src/pso/boss/TBoss6SwordShot.cpp",
+      "historical_blob": "a7b1a55cacadc16b677a73a24b55e14f405545c2",
+      "owners": {
+        "src/pso/boss/olgaflow/TBoss6SwordShot.cpp": "b70c078b9145550ee611b7d68b5bf672dfb5e572"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 1015,
+      "historical_path": "src/pso/enemy/TObjEneNanoDrago.cpp",
+      "historical_blob": "3ba453e699bded654706ace7b9bf222202fe8e5b",
+      "owners": {
+        "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp": "47c7756329e73f4ae62547230977076494644fd9"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration. The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 1025,
+      "historical_path": "src/pso/boss/TBoss3VoloptP02.cpp",
+      "historical_blob": "4c850697eae08e1f20a18d497dd34edace844e78",
+      "owners": {
+        "src/pso/boss/volopt/TBoss3VoloptP02.cpp": "b3ff76d957c2e9b89750eff016a584f9d76123b5"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 1026,
+      "historical_path": "src/pso/enemy/TObjEneBeast.cpp",
+      "historical_blob": "24ab3132c879b3a97efe943c387b83213191decf",
+      "owners": {
+        "src/pso/enemy/beast/TObjEneBeast.cpp": "bc442d1abc02ff9cc8f24f9c0ef46945bbe17bfd"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 1027,
+      "historical_path": "src/pso/enemy/TObjEneDelDepth.cpp",
+      "historical_blob": "38e2a47ff4dd6b433197b7a36d5635d6d05f936e",
+      "owners": {
+        "src/pso/enemy/deldepth/TObjEneDelDepth.cpp": "79f832b8a1afe826a550272472e89b193406c1da"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 1053,
+      "historical_path": "src/pso/enemy/DarkGunner.cpp",
+      "historical_blob": "4cec24062553c780dd8e544c433ab406cb6a11c6",
+      "owners": {
+        "src/pso/enemy/darkgunner/DarkGunner.cpp": "13dc63c94935b03a76f4a958bae8d509205847f7"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration. The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 1055,
+      "historical_path": "src/pso/enemy/TObjEneDimedian.cpp",
+      "historical_blob": "64a00550db8820c2ed1edcfb530dd6461946b433",
+      "owners": {
+        "src/pso/enemy/dimedian/TObjEneDimedian.cpp": "8598c3d1908bbb68fe098cb763cbc14f0502cf12"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 1069,
+      "historical_path": "src/pso/ui/TObjDFJisin.cpp",
+      "historical_blob": "fc01b1d18149bb230443949b469a832b8e0fe3a3",
+      "owners": {
+        "src/pso/boss/darkfalz/TObjDFJisin.cpp": "8293b803d37ea3148a121fe9831dcd3481b0d793"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 1076,
+      "historical_path": "src/pso/boss/TBoss6Type2.cpp",
+      "historical_blob": "af06166ae4643325ade2517569b67c4b636a4d42",
+      "owners": {
+        "src/pso/boss/olgaflow/TBoss6Type2.cpp": "c1d0124067f9e9eb916bef6271561ecc8ab2522f"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 1084,
+      "historical_path": "src/pso/boss/TBoss1Dragon.cpp",
+      "historical_blob": "c5ac33f0c8bc0acc80c24571faba9ee1211434a6",
+      "owners": {
+        "src/pso/boss/dragon/TBoss1Dragon.cpp": "9a66488ed094c2a570aa65281e1f9a016c2989a8"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 1115,
+      "historical_path": "src/pso/enemy/TObjEneRecon_8031FCB0.cpp",
+      "historical_blob": "bdccdd0477e14290aea4be999b8a9c83df4ec7ba",
+      "owners": {
+        "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp": "79c326f22a3268c43cef8dafcfe5dea04075bbce"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 1116,
+      "historical_path": "src/pso/enemy/SaverLifecycle.cpp",
+      "historical_blob": "9b93715c06d40111f6e840a5990c2cca6223a41c",
+      "owners": {
+        "src/pso/enemy/saver/SaverLifecycle.cpp": "9f781147829b70380734860941cd32bb7749370f"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration. The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 1125,
+      "historical_path": "src/pso/boss/TBoss2DeRolLe.cpp",
+      "historical_blob": "fb49c878e64df0ff527025e88fd0aa7b832d2d99",
+      "owners": {
+        "src/pso/boss/derolle/TBoss2DeRolLe.cpp": "48d2883a0b6eaf5f2be863ed052cbd986bc0e4db"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 1129,
+      "historical_path": "src/pso/boss/TBoss3Volopt.cpp",
+      "historical_blob": "4cd2a25feaa5d69405638c20abe6a12bc2b29310",
+      "owners": {
+        "src/pso/boss/volopt/TBoss3Volopt.cpp": "474f38b0ebdc5d5c872a5eca69bcf8f9f0f61208"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration. The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 1131,
+      "historical_path": "src/pso/object/TObjGyaranzoMissile_800D40D8.cpp",
+      "historical_blob": "8b33ec676ed2d706ca4662647ed9f5673bb48702",
+      "owners": {
+        "src/pso/enemy/gyaranzo/TObjGyaranzoMissile_800D40D8.cpp": "cdd013904a9642fe0626ac56640d0c75812fa343"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 1139,
+      "historical_path": "src/pso/boss/TBoss4Zanzo.cpp",
+      "historical_blob": "fd511daf20f97080605aa30193864dec5526d394",
+      "owners": {
+        "src/pso/boss/darkfalz/TBoss4Zanzo.cpp": "948fffed3a79cfdd5a0f1cc1d0726bd0d8abe5c2"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 1149,
+      "historical_path": "src/pso/boss/TBoss4Type3.cpp",
+      "historical_blob": "ce7ee49a559ebc1d6e0e35f5b43ce0de27ffd5d4",
+      "owners": {
+        "src/pso/boss/darkfalz/TBoss4Type3.cpp": "1ec84b95da89a9fc7a99910962d4d77c478bd455"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 1167,
+      "historical_path": "src/pso/enemy/TObjEneBm5GibonU.cpp",
+      "historical_blob": "4d5d56979e94408e4295f269d67f027493758b30",
+      "owners": {
+        "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp": "515cb4eb5ae59605fb400e1592737389e1f1e7be"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration. The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 1168,
+      "historical_path": "src/pso/enemy/TObjEneRe4Sorcerer_800EDB98.cpp",
+      "historical_blob": "4f07f4646222e4b4861a3b593136463172561c37",
+      "owners": {
+        "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp": "70651518a5c979b5b7bf44a1dc7f1ac1d9369dd5"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 1169,
+      "historical_path": "src/pso/enemy/TObjEneBm5Wolf.cpp",
+      "historical_blob": "cbba29e84410f4173b28c0342d2ed9e6990355cf",
+      "owners": {
+        "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp": "ef9c51da8d33366b222beabcbf9ac4ca7b30cab6"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration. The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 1171,
+      "historical_path": "src/pso/boss/TBoss4Zako.cpp",
+      "historical_blob": "164b95fba2effd645705b70d6d752d92c9c6551f",
+      "owners": {
+        "src/pso/boss/darkfalz/TBoss4Zako.cpp": "89dcd0baae03cda7a32107c7a7657906de4cdc7f"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 2208,
+      "historical_path": "src/pso/menu/TAdRicoRing.cpp",
+      "historical_blob": "e765f696655a5f254ac41ac805980e0277d8b0aa",
+      "owners": {
+        "src/pso/ui/frontend/TAdRicoRingCtrl.cpp": "5b42c3a9d517affab5feb907bbf9de230127042a"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 2229,
+      "historical_path": "src/pso/misc/TLockOnCursor_8013D91C.cpp",
+      "historical_blob": "6864c0e71c970c2f32cd74c055e2a7fd33e8934b",
+      "owners": {
+        "src/pso/ui/hud/TMainCursor.cpp": "857fbafbab81729c300e26f93b895612553cff26"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 2260,
+      "historical_path": "src/pso/misc/TRaderMapCore_801FB8AC.cpp",
+      "historical_blob": "bf731ecaddf74fdb458b20ed73eacfa3950f3f21",
+      "owners": {
+        "src/pso/ui/hud/TRaderMapCore.cpp": "d0a4ce0d0d7fb063f8fe26be2c87fceef4e1d0f2"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 2577,
+      "historical_path": "src/pso/ui/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+      "historical_blob": "9e6b9d7ff9d977b83c689298e98dd683a6d55fe1",
+      "owners": {
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp": "b027ca75307070b42ea2d966d41ad5df2ee9fd54"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 3018,
+      "historical_path": "src/pso/player/TObjPlayer_80309D80.cpp",
+      "historical_blob": "039aa8084e9cf70acbd9e83829f194d0b3d2eebe",
+      "owners": {
+        "src/pso/effect/particle/TPlyFollowParticleCtrl.cpp": "12dd65f4d722c5c6c3675b5dad39bebe315fe819"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 3648,
+      "historical_path": "src/pso/player/TItemWeaponFist.cpp",
+      "historical_blob": "c3c79aedaf69eb4be99a815d4ceb7c6491d54bf1",
+      "owners": {
+        "src/pso/weapon/TItemWeaponFist.cpp": "31b981ce5dc79ca9ac861e76a3d1dce28be6eec5"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 4042,
+      "historical_path": "src/pso/item/TItem.cpp",
+      "historical_blob": "d1735437a9b3e04255056dcaf96f68574480e5ce",
+      "owners": {
+        "src/pso/item/TItem.cpp": "552dc10fa0f5b38c73fb3512ce1085b8f5e3e20a"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 4106,
+      "historical_path": "src/pso/player/TObjPlayer_800DCC90.cpp",
+      "historical_blob": "e762f265703e3943d594f0a115e6fdc6079a96a1",
+      "owners": {
+        "src/pso/player/TObjPlayer_800DCC90.cpp": "c2840790720068a89282d834bf461e2f8bb4e67a"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 4110,
+      "historical_path": "src/pso/player/TObjPlayer_8010A050.cpp",
+      "historical_blob": "e19de198d952dc81d0609eac18e13d86de15f914",
+      "owners": {
+        "src/pso/effect/item/TItemEffShield.cpp": "39b3432637fb7cb12000dfc996c71db1ef7817af"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 4158,
+      "historical_path": "src/pso/player/TObjPlayer_802D5174.cpp",
+      "historical_blob": "6dfa07d5f33b679216e69dc278a23c7a822cbd85",
+      "owners": {
+        "src/pso/player/TObjPlayer_802D5174.cpp": "8fef58893a64630bc192813823c71e16aa36c757"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 4161,
+      "historical_path": "src/pso/player/TObjPlayer_802E6CA8.cpp",
+      "historical_blob": "f6abff50062df2d3465b2efb367f691a83c9539a",
+      "owners": {
+        "src/pso/player/TObjPlayer_802E6CA8.cpp": "949f11778dbefae01c1c13231ff83124ae691dc9"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 4172,
+      "historical_path": "src/pso/player/TObjPlayer_80357734.cpp",
+      "historical_blob": "a7764ef6e3cddf0813d6d015ccfbc68150500c42",
+      "owners": {
+        "src/pso/player/TObjPlayer_80357B2C.cpp": "4ddab2edd9b35c8dd5aebe7489371923240f35d4"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 4184,
+      "historical_path": "src/pso/unk/text_801A9CB8.cpp",
+      "historical_blob": "fe5a28453359b06503463770caf65cb44e1eaca4",
+      "owners": {
+        "src/pso/player/PhotonBlastResults.cpp": "de69a7f8bdd6deb3f3c4631b0b50db45a74e050b"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 4286,
+      "historical_path": "src/pso/misc/TTecGiBarta.cpp",
+      "historical_blob": "a1084122bb00057f71cab50f897d9dea4b1b00ba",
+      "owners": {
+        "src/pso/technique/TTecGiBarta.cpp": "83acc5ca3115544de132d613b4b142338e2b6265"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 4325,
+      "historical_path": "src/pso/misc/TPlyPhotonChair.cpp",
+      "historical_blob": "b8a8e2583b281558f85335e73d6d8e454d18c5e9",
+      "owners": {
+        "src/pso/player/TPlyPhotonChair.cpp": "e2726234fd8e918d3ffb5e788940f5b91e6685b9"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 4366,
+      "historical_path": "src/pso/misc/TTecRaBarta.cpp",
+      "historical_blob": "2cca6549a59d8b189d17192fe6b27a987a05a35b",
+      "owners": {
+        "src/pso/technique/TTecRaBarta.cpp": "a484a10cf0072348275cfb574f62f740c0f34007"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 4378,
+      "historical_path": "src/pso/misc/TTecRaZonde_80238C6C.cpp",
+      "historical_blob": "f9cfa3aed6f38e6a43b27054291fe63932a9da40",
+      "owners": {
+        "src/pso/technique/TTecRaZonde_80238C6C.cpp": "d3a107e136d9c7385ad02156d9d5832cd68be95f"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 4381,
+      "historical_path": "src/pso/item/TItemEffArmor.cpp",
+      "historical_blob": "8794a4fe3f5cf1680d2ae1303d99008151649bd7",
+      "owners": {
+        "src/pso/effect/item/TItemEffArmor.cpp": "54a3aaa3ce71258264241b75a69163ca32ddaec5"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 4382,
+      "historical_path": "src/pso/misc/TTecRaFoie.cpp",
+      "historical_blob": "96f4878defecdbf739d4f2e86b639d6ebb133c67",
+      "owners": {
+        "src/pso/technique/TTecRaFoie.cpp": "0cae51881acb5ba746d7b16b5431733f7de97b00"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 4398,
+      "historical_path": "src/pso/misc/TTecCtrl.cpp",
+      "historical_blob": "10a6018bc267e519d17112a904823a278c211c6f",
+      "owners": {
+        "src/pso/technique/TTecCtrl.cpp": "3222acf25bccfa5d419c090c448d5c068c404f4e"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 4417,
+      "historical_path": "src/pso/misc/TTecLuker.cpp",
+      "historical_blob": "e2a939247e89ff8100f52530109415e14d95a0ea",
+      "owners": {
+        "src/pso/technique/TTecLuker.cpp": "21e69795e90bdf78b1a0a634792e79491fc52524"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 4430,
+      "historical_path": "src/pso/misc/TTecZondeEff.cpp",
+      "historical_blob": "bd89e4872dd22e0584fee2fa4dc368e7c8a5a5d8",
+      "owners": {
+        "src/pso/technique/TTecZondeEff.cpp": "2be61286e16de987afd37017c696f09d97fa2723"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 4489,
+      "historical_path": "src/pso/unk/text_80236EE8.cpp",
+      "historical_blob": "341321700ca2e635867df2544afb8446460addea",
+      "owners": {
+        "src/pso/technique/TTecPlayerInfluence.cpp": "30f39ca5117c97dacd844ae7a75a86d7fa17b0e7"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 4512,
+      "historical_path": "src/pso/unk/TUnk_804CC870.cpp",
+      "historical_blob": "c6f9071cb7fc0493222aaeca9dad926a56f76138",
+      "owners": {
+        "src/pso/unk/TUnk_804CC870.cpp": "43cc7b58b3b488590acbace024cf12b0441aa1e4"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 4933,
+      "historical_path": "src/pso/effect/TEffClitical.cpp",
+      "historical_blob": "19b187087bea1f92b77ad68489fbdb1be2f0d858",
+      "owners": {
+        "src/pso/effect/TEffClitical.cpp": "ae9ff14a398fce765c0dca82937d11b48dcad58d"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 4945,
+      "historical_path": "src/pso/misc/TCameraCtrl_8006C254.cpp",
+      "historical_blob": "095ff672ac710f4e31ab1736cf268974bbe0749d",
+      "owners": {
+        "src/pso/camera/TCameraCtrl_8006C254.cpp": "080241315f4a4d82468eb4b91251ca56657a3d2a"
+      },
+      "full": false,
+      "evidence": "Typed camera playback fields, motion directory and shared callback route match at the original addresses. Adjacent camera code remains under the historical owner review."
+    },
+    {
+      "row": 4962,
+      "historical_path": "src/pso/misc/TCameraCtrl_8006BCD8.cpp",
+      "historical_blob": "6acea509d4f2fc22b153ced292ecf0796697cbea",
+      "owners": {
+        "src/pso/camera/TCameraCtrl_8006BCD8.cpp": "12bc1cdb9bf83e2dff55094b013ab6984238016b"
+      },
+      "full": false,
+      "evidence": "Typed camera playback fields, motion directory and shared callback route match at the original addresses. Adjacent camera code remains under the historical owner review."
+    },
+    {
+      "row": 4987,
+      "historical_path": "src/pso/misc/TKomorebi.cpp",
+      "historical_blob": "0cbb5d37d0b81a96303472c3babbe71aa2c1fb23",
+      "owners": {
+        "src/pso/effect/TKomorebi.cpp": "a4b26570217dfeebe41876b8eea7d3a87d86a380"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 5027,
+      "historical_path": "src/pso/misc/TPhotonFarlla.cpp",
+      "historical_blob": "9b16f391e100c6c92650c0a8dd8747a9a119b5d2",
+      "owners": {
+        "src/pso/effect/photon/TPhotonFarlla.cpp": "2919b73f7cf91a2cd56b67d657667d6648ad399f"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 5032,
+      "historical_path": "src/pso/misc/TPhotonGolla.cpp",
+      "historical_blob": "fdf024fd4f5228f63e5ec2180c36ef493e1ea2e4",
+      "owners": {
+        "src/pso/effect/photon/TPhotonGolla.cpp": "1afd915c88a8cf9287349573e4cd8547c57032fb"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 5033,
+      "historical_path": "src/pso/misc/TPhotonMylla.cpp",
+      "historical_blob": "61ca6a926668e2e5193b1a2be4de6b7fc080de52",
+      "owners": {
+        "src/pso/effect/photon/TPhotonMylla.cpp": "402bb8b28124e6b17e030f1322f21780bf3cec37"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 5088,
+      "historical_path": "include/pso/misc/ParticleFactory.h",
+      "historical_blob": "7ca9753a5da01816553ac9b9367e1c865f126cdc",
+      "owners": {
+        "include/pso/effect/particle/ParticleFactory.h": "08c3f7a97295f170368635f593bcedee9f135828"
+      },
+      "full": true,
+      "evidence": "Complete original C declaration of the plain factory at 0x80087350. Both exact lanes use const Vec input and signed ID, and return TParticleCtrl *. The flagged companion shares that header."
+    },
+    {
+      "row": 5089,
+      "historical_path": "include/pso/unk/text_80087278.h",
+      "historical_blob": "9d351aaf73437b89d7b6d89925d3b38507070b3e",
+      "owners": {
+        "include/pso/unk/text_80087278.h": "47ea491e2a142c3ec1f3045c871e05ddd8b48196"
+      },
+      "full": true,
+      "evidence": "The complete authored header diff imports the true plain factory and restores the flagged controller return. Modern declarations forward to the shared header, with the original attached continuous factory declaration unchanged."
+    },
+    {
+      "row": 5090,
+      "historical_path": "src/pso/unk/text_80087278.cpp",
+      "historical_blob": "ac09c430459fb05b66aa6c4215da2937eeabc9fe",
+      "owners": {
+        "src/pso/unk/text_80087278.cpp": "0096a23d8e73db729058e2880b90e4cb8c1b354c"
+      },
+      "full": true,
+      "evidence": "Complete historical public provider changes are represented. The plain and flagged wrappers allocate original 0x78 controller bytes and return a typed pointer in all four branches. Signed comparisons, 0x200 area subtraction, 0x98 entry stride, distinct resident allocator/initializer contracts and null behavior are preserved. Historical lower setup calls are represented via their existing lane-native signatures."
+    },
+    {
+      "row": 5091,
+      "historical_path": "src/pso/unk/text_8022F258.cpp",
+      "historical_blob": "481122b7aa3fed4aab586a516d5a0ed5eb75b64f",
+      "owners": {
+        "src/pso/unk/text_8022F258.cpp": "d48e3ba4fa966b65e35200d0dfde06d8e854bb56"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 5106,
+      "historical_path": "src/pso/unk/text_8004D9A8.cpp",
+      "historical_blob": "70654e781a31eb6167eb268f4917f464d794956f",
+      "owners": {
+        "src/pso/unk/text_8004D9A8.cpp": "d92f6d3e604b492e2170668670d84be2d330e74c"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 5116,
+      "historical_path": "src/pso/unk/text_800DC420.cpp",
+      "historical_blob": "a1b563c2e6e151c7ff98023f1d95d9f6b2f91b72",
+      "owners": {
+        "src/pso/unk/text_800DC420.cpp": "95b34294f1377ac462cc1a4984b08adaf42ce138"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 5248,
+      "historical_path": "src/pso/misc/TSceneSora.cpp",
+      "historical_blob": "e836f18f8848952e019b2fb698f74ebd4cb2e12c",
+      "owners": {
+        "src/pso/system/scene/TSceneSora.cpp": "8088c517acbf77e5dbebe4e2b2dad58e449a08bf"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 5310,
+      "historical_path": "src/pso/unk/text_802E10D8.cpp",
+      "historical_blob": "c7da45a1fe95f5214a7e579803ec39b16c812ea7",
+      "owners": {
+        "src/pso/unk/text_802E10D8.cpp": "2202a5b8c2cbacde47e481591600818d1d2e43d1"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 5311,
+      "historical_path": "src/pso/unk/text_802F0E24.cpp",
+      "historical_blob": "7bedcd865eaab3c19b89098bafdc77c097a111f8",
+      "owners": {
+        "src/pso/unk/text_802F0E24.cpp": "bda8ce3a1ba70199d9ad0c901f011ecb3c7d9583"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 5450,
+      "historical_path": "include/pso/misc/TWindowAddition.h",
+      "historical_blob": "ea8a9237c64151b145f2ba199efc08482e4e2733",
+      "owners": {
+        "include/pso/ui/window/TWindowAddition.h": "5b8f24744021b9e88454370c6937f2b97e5a979e",
+        "src/pso/ui/window/TWindowAddition_80244238.cpp": "12ec68493ca09ee18e81ac989ef79eb3ff2880ba",
+        "src/pso/ui/window/TWindowArea.cpp": "258c7928aed0a22480d366770f7c61ac35621b49"
+      },
+      "full": true,
+      "evidence": "The complete native 0x70-byte layout retains the scale pair at +0x60 and scroll pair at +0x68, constructor, destructor, tween, scale setter and descriptor initializer. The live content context subtracts both actual scroll coordinates."
+    },
+    {
+      "row": 5452,
+      "historical_path": "include/pso/misc/TWindowBase.h",
+      "historical_blob": "8958dffcdeeef393842b4d024f13f128532ce1c1",
+      "owners": {
+        "include/pso/ui/window/TWindowBase.h": "b7f97f549bd49712f1ee0f012892e6b07c317ef6",
+        "src/pso/ui/window/TWindowSubComCard_80244774.cpp": "5a37128ea277df11eeeb6e009ec6fb2faf6f573b"
+      },
+      "full": true,
+      "evidence": "The live 0x60-byte base retains the original stored layout and pointer-return entry lookup. Native frame position +0x40, frame size +0x48, draw depth +0x54, open tick +0x5C and close tick +0x22 feed the exact context setup."
+    },
+    {
+      "row": 5473,
+      "historical_path": "include/pso/misc/TWindowDrawContext.h",
+      "historical_blob": "0eb002bac23a6584cc057b3f5fd48324a0a94460",
+      "owners": {
+        "include/pso/ui/window/WindowDrawContext.h": "4b9c65e3bc7de081a558c6bcccdf99a66352f591",
+        "src/pso/ui/window/WindowDrawContext.cpp": "449b0dffeb5acd759f0be28a0e545d80739111a7",
+        "src/pso/ui/window/TWindowAddition_80244238.cpp": "12ec68493ca09ee18e81ac989ef79eb3ff2880ba"
+      },
+      "full": true,
+      "evidence": "The complete geometry layout maps to the live 0x4C-byte context with inner height +0x1C, color +0x34, depth +0x38 and clip bounds through +0x48. Original drawing operations remain live. Historical raw free and init declarations map to the native destructor and constructor at 0x8024EE44 and 0x8024EE98. The content alias maps to its actual addition owner at 0x80244364."
+    },
+    {
+      "row": 5580,
+      "historical_path": "src/pso/misc/TWindowSubItemList.cpp",
+      "historical_blob": "1636e3795f14f570520efeef8f63e60defbb5b17",
+      "owners": {
+        "src/pso/ui/window/TWindowSubItemList.cpp": "cd3a496f530c3f9d2df08c049deb055c9636ab96",
+        "include/pso/ui/window/TWindowSubItemList.h": "2dc2c3f2f91224c04cd037dc19dd868a735d7d07",
+        "src/pso/ui/window/TWindowAddition_80244238.cpp": "12ec68493ca09ee18e81ac989ef79eb3ff2880ba"
+      },
+      "full": true,
+      "evidence": "The complete added unit has native item-list construction, rendering, tick and destruction. Rendering acquires the scrolled context, draws the frame and stock entries and highlight, retains capacity 0x1E and optional status and scroll bar, and uses the inherited +0x68 scroll coordinate."
+    },
+    {
+      "row": 5672,
+      "historical_path": "src/pso/misc/TWindowChoiceSetting.cpp",
+      "historical_blob": "b288f6f8e1bbae5a0a80cd1a409a473b91b9051e",
+      "owners": {
+        "src/pso/ui/window/TWindowChoiceSetting.cpp": "023c6c97d88f6758c461834da585ca8029fcfb2c",
+        "src/pso/ui/window/TWindowAddition_80244238.cpp": "12ec68493ca09ee18e81ac989ef79eb3ff2880ba",
+        "include/pso/ui/window/TWindowSubComCard_80244774.h": "47b4c0d749a4c55d9a9a290601954376bf9f1161"
+      },
+      "full": false,
+      "evidence": "The choice renderer at 0x80268C80 acquires the real scrolled context and passes it to the typed selection bar, keeping status and scroll draw order. Other historical entry setup and input changes remain scoped."
+    },
+    {
+      "row": 5680,
+      "historical_path": "src/pso/misc/TWindowSubQuestBoardSelect.cpp",
+      "historical_blob": "3a133a7516b340ae660ace711e99cb0aa6b28d24",
+      "owners": {
+        "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp": "9d859bfa2e47651636dc1d4b3f818c5b9d30952d",
+        "include/pso/ui/window/TWindowBase.h": "b7f97f549bd49712f1ee0f012892e6b07c317ef6"
+      },
+      "full": false,
+      "evidence": "Quest Board render uses its real raw-entry receiver with typed default context setup. Historical page and lifetime edits remain outside this audit."
+    },
+    {
+      "row": 5740,
+      "historical_path": "include/pso/misc/TWindowSubStatusDisp_8024FBA8.h",
+      "historical_blob": "4d934e6eef88b213ab5e746065b489671a70ed8a",
+      "owners": {
+        "include/pso/ui/window/TWindowSubStatusDisp_8024FBA8.h": "b509aad245d019d57216c2b70345785e4ed11c3b",
+        "src/pso/ui/window/TWindowSubStatusDisp_8024FBA8.cpp": "6ae9d036bf6e4f8e3e4c121e2e4f23d958dffd83"
+      },
+      "full": true,
+      "evidence": "The single historical hunk changes a path-derived guard. The live header retains both text functions and the C setter, now accurately typed to the shared context."
+    },
+    {
+      "row": 5757,
+      "historical_path": "include/pso/misc/TWindowSubComCard_80244774.h",
+      "historical_blob": "a6c3e1fe4366eb39a6b6be677ec4ccdc99612f3f",
+      "owners": {
+        "include/pso/ui/window/TWindowSubComCard_80244774.h": "47b4c0d749a4c55d9a9a290601954376bf9f1161",
+        "src/pso/ui/window/TWindowSubComCard_80244774.cpp": "5a37128ea277df11eeeb6e009ec6fb2faf6f573b"
+      },
+      "full": true,
+      "evidence": "The only substantive historical declaration edit types the first selection bar argument. The active header forwards this actual native type and preserves the existing card and trade interfaces."
+    },
+    {
+      "row": 5818,
+      "historical_path": "src/pso/misc/TWindowMessage.cpp",
+      "historical_blob": "cc4d0847bafe017f9ccfb1a218f55099758bbdda",
+      "owners": {
+        "src/pso/ui/window/TWindowMessage.cpp": "cb6ecf2577842f0854282470cb1d554cdbebca2c",
+        "include/pso/ui/window/TWindowBase.h": "b7f97f549bd49712f1ee0f012892e6b07c317ef6"
+      },
+      "full": false,
+      "evidence": "Message rendering uses the typed default context. The authored buffer and lifetime portions remain outside this audit."
+    },
+    {
+      "row": 5819,
+      "historical_path": "src/pso/misc/TWindowSubStatusDisp_8024FBA8.cpp",
+      "historical_blob": "cbaf83132fd94b09ffe5ecd3f96fc18e0b95cbb6",
+      "owners": {
+        "src/pso/ui/window/TWindowSubStatusDisp_8024FBA8.cpp": "6ae9d036bf6e4f8e3e4c121e2e4f23d958dffd83",
+        "include/pso/ui/window/WindowDrawContext.h": "4b9c65e3bc7de081a558c6bcccdf99a66352f591",
+        "include/pso/ui/window/TWindowSubStatusDisp_8024FBA8.h": "b509aad245d019d57216c2b70345785e4ed11c3b"
+      },
+      "full": false,
+      "evidence": "Shared context storage and the C setter use the native pointer. Both glyph renderers use the real 0x20-byte quad and native clipping and transformation. The existing canonical signed glyph working value and gauge entry linkage differ from the historical unit, so the whole row is left scoped."
+    },
+    {
+      "row": 5829,
+      "historical_path": "src/pso/misc/TWindowSubComCard_80244774.cpp",
+      "historical_blob": "9eb07b0b38d68ed03fa2323258d803d9d4df08c4",
+      "owners": {
+        "src/pso/ui/window/TWindowSubComCard_80244774.cpp": "5a37128ea277df11eeeb6e009ec6fb2faf6f573b",
+        "include/pso/ui/window/TWindowBase.h": "b7f97f549bd49712f1ee0f012892e6b07c317ef6",
+        "src/pso/ui/window/WindowDrawContext.cpp": "449b0dffeb5acd759f0be28a0e545d80739111a7"
+      },
+      "full": false,
+      "evidence": "Explicit setup uses the original geometry, independent animation and clipping flags, full-screen bounds override, opening-tick subtraction of 7.5 and closing stretch. The default uses the original scale pair. Selection retains three textured quads and the active texture choice. Remaining card initializer and drawer changes stay scoped."
+    },
+    {
+      "row": 5854,
+      "historical_path": "src/pso/misc/TWindowSubComCard_80265410.cpp",
+      "historical_blob": "7f28b6c73aaa8cfbb044ac0788331406e2723f9a",
+      "owners": {
+        "src/pso/ui/window/TWindowSubComCard_80265410.cpp": "5e8f3ffb5edd55b5a57fae5df08000193fd58750",
+        "include/pso/ui/window/TWindowBase.h": "b7f97f549bd49712f1ee0f012892e6b07c317ef6",
+        "include/pso/ui/window/TWindowSubComCard_80244774.h": "47b4c0d749a4c55d9a9a290601954376bf9f1161"
+      },
+      "full": false,
+      "evidence": "Menu rendering uses the actual context and selection provider. Earlier menu initialization remains in the prerequisite. This mixed historical row stays scoped."
+    },
+    {
+      "row": 6421,
+      "historical_path": "src/pso/misc/TOContainerAncientEnemy.cpp",
+      "historical_blob": "14de2f178144064ed2349b7b41fc535396eab872",
+      "owners": {
+        "src/pso/object/container/TOContainerAncientEnemy.cpp": "478d7a4f94caa2be0de597f459dceda0f0083c37"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration. The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 6451,
+      "historical_path": "src/pso/misc/TOTrapAncient02.cpp",
+      "historical_blob": "afdf046415827444fa01078d0cc95d5ab28f0b93",
+      "owners": {
+        "src/pso/object/trap/TOTrapAncient02.cpp": "7015f0b56848d87bc691c0d6cf9cf37842781dd2"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration. The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 6452,
+      "historical_path": "src/pso/misc/TOTrapSeabed01.cpp",
+      "historical_blob": "e73f6eda3d027b50cf73359e7e52ab7d20a96689",
+      "owners": {
+        "src/pso/object/trap/TOTrapSeabed01.cpp": "8ac38ae3c27a770af6a3c91ef935b03e388b2af9"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration. The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 6499,
+      "historical_path": "src/pso/object/TOKeyJungleMain.cpp",
+      "historical_blob": "9737019a743248fdf1e5faf764a34a6a8faf0e42",
+      "owners": {
+        "src/pso/object/key/TOKeyJungleMain.cpp": "d2c39f4895a1cf45d545abde55b22b7427bf134a"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 6510,
+      "historical_path": "src/pso/object/TObjEZBoneRotPlayer.cpp",
+      "historical_blob": "f329f0dc0fb5f54b3f81e0073972db9d46beb95e",
+      "owners": {
+        "src/pso/object/TObjEZBoneRotBase.cpp": "8d56cf81ee9494bf5856f7c95a3a6a159b80fd73"
+      },
+      "full": true,
+      "evidence": "The complete historical rope player update is reconciled in the active bone unit. It uses the original Vec chain gravity and two 0x803D9730 matrix-concatenation calls before applying the typed rope constraint."
+    },
+    {
+      "row": 6511,
+      "historical_path": "src/pso/object/TObjEZRopeSimulation.cpp",
+      "historical_blob": "fc60daf6018f9459713ba9ce24a9fc1e12fc5961",
+      "owners": {
+        "src/pso/object/TObjHMS_EZRope_Player.cpp": "4d6d6cbe8520f55e732aa6f34ce306e0352b3f2f"
+      },
+      "full": true,
+      "evidence": "Both bases carry the native rope solver, constrained length, collision spheres and ownership of the allocated player storage."
+    },
+    {
+      "row": 6512,
+      "historical_path": "src/pso/object/TObjFish.cpp",
+      "historical_blob": "9a9272cd2d11a5be10b775df4c44e95fa7cd541e",
+      "owners": {
+        "src/pso/object/ambient/TObjFish.cpp": "2493a911e8dfc3a2072bc4d8e24145c6eac11b40"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 6697,
+      "historical_path": "src/pso/npc/TObjNpcKenkyuW.cpp",
+      "historical_blob": "360eea38855d8f9f94d775b22dd5f1b36068a53f",
+      "owners": {
+        "src/pso/npc/TObjNpcKenkyuW.cpp": "346885b9b13f8d0f2db39d2b8c9b3407a8a1ff45"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 6722,
+      "historical_path": "src/pso/object/TObjComputer.cpp",
+      "historical_blob": "bb33834d5795bac179cc4d555628169ce7fa9151",
+      "owners": {
+        "src/pso/object/TObjComputer.cpp": "e1e0b5709ccfb4663653b2ac5a11eb7b27e2c985"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 6724,
+      "historical_path": "src/pso/object/TObjDoaEx01.cpp",
+      "historical_blob": "11ffe67a929abd1435e12fadeee3fc24d6683a2f",
+      "owners": {
+        "src/pso/object/container/TObjContainerJung.cpp": "22c1d87685d4bc0fe3b82c6d2a946b0a5f2c01bf",
+        "src/pso/object/TObjDoaEx01.cpp": "47672d73156793a7bf0a836f8816454b52de83ab"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 6725,
+      "historical_path": "src/pso/object/TObjEZBoneRotBase.cpp",
+      "historical_blob": "5deb8f1fcfbc00c7a6e86e220a80dedace8c8493",
+      "owners": {
+        "src/pso/object/TObjEZBoneRotBase.cpp": "8d56cf81ee9494bf5856f7c95a3a6a159b80fd73"
+      },
+      "full": true,
+      "evidence": "Native motion and descriptor records replace the raw offset view. The two existing base-angle names remain in their original owner."
+    },
+    {
+      "row": 6726,
+      "historical_path": "src/pso/object/TObjHashi.cpp",
+      "historical_blob": "4dd2d6b672fbfecf888be768a7ce6c6bf4eef937",
+      "owners": {
+        "src/pso/object/TObjHashi.cpp": "33fc73db2e7607541a798226da38f6af4298b802"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 6728,
+      "historical_path": "src/pso/object/TObjLuker.cpp",
+      "historical_blob": "8e74baed09b47410bf7bdcb21dcf65a45d92022b",
+      "owners": {
+        "src/pso/object/TObjLuker.cpp": "9c732c227cb89f3f638f348764c02dc899493eaf"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 6736,
+      "historical_path": "src/pso/object/TObjTombstone.cpp",
+      "historical_blob": "8fa62694708bc6839e1f9801dc321dbbd78a5a92",
+      "owners": {
+        "src/pso/object/TObjTombstone.cpp": "a571fad0db644ebf4c2743fdac1d8be5aca53767"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 6778,
+      "historical_path": "src/pso/misc/TOMineTrap_8016F6F8.cpp",
+      "historical_blob": "db170ea10ef5e694cef694018c3121761eb54234",
+      "owners": {
+        "src/pso/object/trap/TOMine.cpp": "36ac324f896c898a6edd5a547b6ac366c1242e11"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    },
+    {
+      "row": 6794,
+      "historical_path": "src/pso/ui/TObjLiveMonitor.cpp",
+      "historical_blob": "22b5689298d991b9caf8966bd9af0b00b860d2d4",
+      "owners": {
+        "src/pso/object/TObjLiveMonitor.cpp": "8cad436b45374df92bb49250be11826b8646b3c4"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 6841,
+      "historical_path": "src/pso/item/TObjContainerItem.cpp",
+      "historical_blob": "b6a54681ce629a629932b93164b736b3322195a1",
+      "owners": {
+        "src/pso/object/container/TObjContainerItem.cpp": "805df4ff3c5a38878417282f57dafa5027ac1b82"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 6842,
+      "historical_path": "src/pso/item/TObjContainerJung.cpp",
+      "historical_blob": "5eabba31a56853231285a468e4d2ceef27cce6d1",
+      "owners": {
+        "src/pso/object/container/TObjContainerJung.cpp": "22c1d87685d4bc0fe3b82c6d2a946b0a5f2c01bf"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 6950,
+      "historical_path": "src/pso/object/TObjGrass.cpp",
+      "historical_blob": "f1642978006be983cef15930adf0e2773e78261a",
+      "owners": {
+        "src/pso/object/ambient/TObjGrass.cpp": "3bad303dbfca728fe6515896cf28884b4330bc15"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration. The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 7030,
+      "historical_path": "src/pso/object/LobbyPigeonPath.cpp",
+      "historical_blob": "ba14a76274bcbd9f82ccdfb0ba074330bf2078dc",
+      "owners": {
+        "src/pso/object/lobby/LobbyPigeonPath.cpp": "c75fcdb63f4a2393130093658d73e3798b5ca444"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 7208,
+      "historical_path": "src/pso/misc/TContainerAncient01.cpp",
+      "historical_blob": "1e629b7adfd8fe35e5d39a5dcd0f17e9dc4ec307",
+      "owners": {
+        "src/pso/object/container/TContainerAncient01.cpp": "6e457490d58c88de7e982a1039ca286b082328ea"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration. The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 7213,
+      "historical_path": "src/pso/object/TObjWarpBossMulti.cpp",
+      "historical_blob": "913975de8fe94b1cffd880800dd837990cca7b9d",
+      "owners": {
+        "src/pso/object/warp/TObjWarpBossMulti.cpp": "a3d558be9914254dd0db2978bf4bffe1bac44851"
+      },
+      "full": false,
+      "evidence": "The linked BML constructor and destructor calls were traced through the original addresses to the active typed resource owners. This records the archive lifetime subset."
+    },
+    {
+      "row": 7310,
+      "historical_path": "src/pso/unk/text_80081BB0.cpp",
+      "historical_blob": "0e2d1a636a78836be0c8f1b6ab456d7a5f83895a",
+      "owners": {
+        "src/pso/unk/TUnk_8048E1A4.cpp": "d035de3cdd3137619953f1d6aedf301a26cfbb13"
+      },
+      "full": false,
+      "evidence": "The linked world-position particle factory call subset uses the shared Vec declaration."
+    }
+  ],
+  "closed_historical_rows": [
+    5757,
+    6510
+  ],
+  "historical_comparisons_open": 713,
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "published_stage_head": "aa70392a3768f9ba7aedfd7b134c963c3267b607",
+  "prior_validation": "fork/notes/evidence/2026-11-20-quest-packets-encounter-and-menu-packaging.json",
+  "source_receipts": {
+    "particle": {
+      "full_audit_sha256": "c38fd2aaffb994d8f3365a5c65d4b722f09a78a5232d0b9c05ac32bb003bd0c1",
+      "calls": 556,
+      "plain_calls": 369,
+      "flagged_calls": 187,
+      "affected_call_site_units": 180,
+      "prior_native_donor": "a70dd5edd0f335cd09aed5a110316fd6f177f8be",
+      "historical_donor": "7ab83e6a68d3311a4c97ccb9fe41c030903e74c6",
+      "catalogued_partial_rows": 124,
+      "newly_represented_paths": [
+        "include/pso/effect/particle/ParticleFactory.h",
+        "include/pso/unk/text_80087278.h",
+        "src/pso/boss/barbaray/TBoss7LaserPtcl_8035AE54.cpp",
+        "src/pso/effect/TDuelEffectCtrl.cpp",
+        "src/pso/effect/TEffGuard.cpp",
+        "src/pso/effect/TEffHit.cpp",
+        "src/pso/effect/item/TItemEffBringer.cpp",
+        "src/pso/effect/item/TItemEffFlame.cpp",
+        "src/pso/effect/particle/TPlyFollowParticleCtrl.cpp",
+        "src/pso/effect/photon/TPhotonConcentrate.cpp",
+        "src/pso/effect/photon/TPhotonLaser.cpp",
+        "src/pso/enemy/gigue/TObjEneMe1GiGue_802CDB1C.cpp",
+        "src/pso/item/TItemEquipBase.cpp",
+        "src/pso/object/ambient/TObjLight_8022F9E8.cpp",
+        "src/pso/object/ambient/TObjLight_80236D60.cpp",
+        "src/pso/object/switch/TOSwitchAttack_801778A4.cpp",
+        "src/pso/player/TObjPlayer_800DCC90.cpp",
+        "src/pso/player/TObjPlayer_80109344.cpp",
+        "src/pso/technique/TTecGiZonde_8023CDC4.cpp",
+        "src/pso/technique/TTecKafun.cpp",
+        "src/pso/technique/TTecSlicer.cpp",
+        "src/pso/unk/TUnk_804CC948.cpp",
+        "src/pso/unk/TUnk_804CC990.cpp",
+        "src/pso/unk/text_800DC420.cpp"
+      ]
+    },
+    "attachments": {
+      "donors": [
+        "9911945066",
+        "bacd99ed76"
+      ],
+      "variants": {
+        "direct": {
+          "pin": "c2936d95ef1525aa3cb3e0bc2f0b8a46809f18e9",
+          "report_sha256": "12711b89579b9c4d7674aceb192f8d9f7f011dd51ea2de6a356b25d57d51e847",
+          "check_sha256": "b0520dedac0768b869dc891425bb727dd0b492d37cb132613546e90217f0cf4e",
+          "units": {
+            "psov3/pso/boss/derolle/TBoss2Fin": {
+              "functions": 7,
+              "data_bytes": 160,
+              "first": "0x800363B4"
+            },
+            "psov3/pso/object/TObjEZBoneRotBase": {
+              "functions": 13,
+              "data_bytes": 124,
+              "first": "0x800FE834"
+            },
+            "psov3/pso/object/TObjHMS_EZRope_Player": {
+              "functions": 12,
+              "data_bytes": 184,
+              "first": "0x800FEFCC"
+            }
+          }
+        },
+        "queue": {
+          "pin": "355c934bffd491a6adcca7f7a4d39abebf2b2be1",
+          "report_sha256": "334d604ac7d645b4960fe0f9e27f879632e1b2bd3d7cefdcea191a9fce50ffd9",
+          "check_sha256": "9ce2700e4afc4dcbd61d5bc7fbff8d94dffa61477f664b0b746beeceba066108",
+          "units": {
+            "psov3/pso/boss/derolle/TBoss2Fin": {
+              "functions": 7,
+              "data_bytes": 160,
+              "first": "0x800363B4"
+            },
+            "psov3/pso/object/TObjEZBoneRotBase": {
+              "functions": 13,
+              "data_bytes": 124,
+              "first": "0x800FE834"
+            },
+            "psov3/pso/object/TObjHMS_EZRope_Player": {
+              "functions": 12,
+              "data_bytes": 184,
+              "first": "0x800FEFCC"
+            }
+          }
+        }
+      }
+    },
+    "camera": {
+      "donor": "90543935ed",
+      "variants": {
+        "direct": {
+          "pin": "0394e28c275546fc002b9269980a9e1fe048ab92",
+          "report_sha256": "a9151debb4d53ec41aeb59e0728500858eebf0f00e64be39462fd35f01db0e15",
+          "check_sha256": "ac1f5c1be4bd10459f154ba2840d75fde48b9928873b5f5b6c79d58916dd12c9",
+          "units": {
+            "psov3/pso/camera/TCameraCtrl_8006BCD8": {
+              "functions": 10,
+              "data_bytes": 40,
+              "first": "0x8006BCD8"
+            },
+            "psov3/pso/camera/TCameraCtrl_8006C254": {
+              "functions": 6,
+              "data_bytes": 140,
+              "first": "0x8006C254"
+            }
+          }
+        },
+        "queue": {
+          "pin": "214266c4f823d2ff296b672a21f5ebf95f44962d",
+          "report_sha256": "cc57b26022ecf5179f0ee717018127223c609e88f680dbb221c4aa6e7a2e4ea2",
+          "check_sha256": "45a131c8702048b124fa8a8599775741399529afdd71037a69612c23fdd9ef0d",
+          "units": {
+            "psov3/pso/camera/TCameraCtrl_8006BCD8": {
+              "functions": 10,
+              "data_bytes": 40,
+              "first": "0x8006BCD8"
+            },
+            "psov3/pso/camera/TCameraCtrl_8006C254": {
+              "functions": 6,
+              "data_bytes": 140,
+              "first": "0x8006C254"
+            }
+          }
+        }
+      }
+    },
+    "bml": {
+      "manifest_sha256": "308a181750bf6640761975d51f50ac951ff05914ddd614cd6fc8859b3674d7f8",
+      "address_audit_sha256": "dffe12ff7d39da91667f97dcc7196643bd71837a43eb11f3269096b8b4011864",
+      "historical_functions_traced": 441,
+      "callback_addresses": [
+        "0x8001EDD8",
+        "0x8001F8D8",
+        "0x8001F948",
+        "0x8001F998",
+        "0x8001FA1C"
+      ],
+      "descriptor_addresses": [
+        "0x800BB940",
+        "0x800BB980",
+        "0x800BB9AC"
+      ],
+      "donors": [
+        "daa3a3af77b47062fdec36cf51a2f800892a0029",
+        "eed8b53030b91b2965a442efa7bf3dcafd3863a1",
+        "ae880a661a463c3580652eff4efa60f9aee938f0"
+      ],
+      "exact_original_call_sites": 506,
+      "source_and_binary_sites": 483,
+      "binary_only_sites": 23,
+      "historical_call_site_files": 233,
+      "historical_typed_call_site_files": 222,
+      "exact_linkage_bases": [
+        "8b4edc76ebd9aec24da9f3043fe791d1acdd9def",
+        "3d9635abc5a88371a0560007cfc80cfb892deb46"
+      ]
+    },
+    "display": {
+      "sha256": "36db621fbb8678d23a56e5e82b242774b5582dae233c02fb17483118cc06c037",
+      "historical_rows": 12,
+      "scope": {
+        "review_prerequisite": "The equipment, menu and list base provides the inherited native window layout and list callers.",
+        "native_api": "Preserve established set_position_xy and draw_selection_bar names, C text setter linkage, and existing low-level context/clipping providers.",
+        "compiler_shape": "Keep the canonical extended adapter for the unused float registers at the special 80287570 C text setup call."
+      }
+    }
+  },
+  "fork_layer_validation": {
+    "base_source": "a0ab810dd1684b53eac5578277c4defdb158350b",
+    "active_tooling_patch_git_blob": "927ec38592d9ccb389c3431632d9f10d56ef2626",
+    "patch_matches_working_fork_diff": true,
+    "working_fork_overlay_paths": 131,
+    "outside_fork_layer_differences": 0,
+    "passing_layer_unit_tests": 11
+  }
+}

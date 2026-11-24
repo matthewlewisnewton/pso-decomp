@@ -1,0 +1,491 @@
+{
+  "source": "648050122c3b75ab0cd5dd22e9adf3a539283e1e",
+  "previous_source": "fb452dd84280eb4ba6056464cee03889fb1f2577",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/audio/SoundRequestVoice.h",
+    "include/pso/unk/TLobby_8023F734.h",
+    "include/pso/unk/text_800D8830.h",
+    "src/pso/boss/volopt/TBoss3VoloptCore.cpp",
+    "src/pso/effect/item/TItemEffArmor.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+    "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+    "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+    "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+    "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+    "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+    "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+    "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+    "src/pso/player/TObjPlayer_800DCC90.cpp",
+    "src/pso/unk/TLobby_80227AA0.cpp",
+    "src/pso/unk/TLobby_8023F734.cpp",
+    "src/pso/unk/TLobby_802409AC.cpp",
+    "src/pso/unk/text_800D8830.cpp",
+    "src/pso/weapon/TUnk_804A69DC.cpp"
+  ],
+  "combined_paths_from_upstream": 1130,
+  "replay_preview": {
+    "base": "d77e4b8e07",
+    "donor": "7133dc1ac5",
+    "live": "fb452dd84280eb4ba6056464cee03889fb1f2577",
+    "paths": {
+      "config/GPOE8P/psov3/symbols.txt": "conflict",
+      "include/pso/audio/SoundRequestVoice.h": "conflict",
+      "include/pso/object/trap/TOTrapAncient01.h": "same blob",
+      "include/pso/object/trap/TOTrapAncient01_80226534.h": "conflict",
+      "include/pso/system/PersistentSound.h": "same blob",
+      "include/pso/unk/TLobby_80227A2C.h": "conflict",
+      "include/pso/unk/TLobby_80227AA0.h": "conflict",
+      "include/pso/unk/TLobby_8023F734.h": "conflict",
+      "include/pso/unk/text_800D8830.h": "clean",
+      "src/pso/boss/TUnk_80484A94.cpp": "already mapped",
+      "src/pso/boss/TUnk_80484AFC.cpp": "conflict",
+      "src/pso/boss/barbaray/TBoss7Crawfish.cpp": "already mapped",
+      "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp": "already mapped",
+      "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp": "conflict",
+      "src/pso/boss/darkfalz/TBoss4Type1.cpp": "conflict",
+      "src/pso/boss/darkfalz/TBoss4Zanzo.cpp": "conflict",
+      "src/pso/boss/derolle/TBoss2DeRolLe.cpp": "conflict",
+      "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp": "already mapped",
+      "src/pso/boss/dragon/TBoss1Dragon.cpp": "conflict",
+      "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp": "conflict",
+      "src/pso/boss/galgryphon/TBoss5GryphonTornado.cpp": "conflict",
+      "src/pso/boss/goldragon/TBoss8Dragon.cpp": "conflict",
+      "src/pso/boss/olgaflow/TBoss6Demo11_TYPE1_DEAD.cpp": "already mapped",
+      "src/pso/boss/olgaflow/TBoss6Demo20_TYPE2_APPEAR.cpp": "conflict",
+      "src/pso/boss/olgaflow/TBoss6Demo21_TYPE2_DEAD.cpp": "conflict",
+      "src/pso/boss/olgaflow/TBoss6GravBall.cpp": "already mapped",
+      "src/pso/boss/olgaflow/TBoss6Mine.cpp": "conflict",
+      "src/pso/boss/olgaflow/TBoss6Tube.cpp": "conflict",
+      "src/pso/boss/olgaflow/TBoss6Type1_802B20C0.cpp": "conflict",
+      "src/pso/boss/olgaflow/TBoss6Type2.cpp": "conflict",
+      "src/pso/boss/olgaflow/TBoss6Type2_802BE588.cpp": "conflict",
+      "src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp": "conflict",
+      "src/pso/boss/volopt/TBoss3Volopt.cpp": "conflict",
+      "src/pso/boss/volopt/TBoss3VoloptCore.cpp": "conflict",
+      "src/pso/boss/volopt/TBoss3VoloptP01.cpp": "already mapped",
+      "src/pso/boss/volopt/TBoss3VoloptP02.cpp": "conflict",
+      "src/pso/effect/item/TItemEffPG.cpp": "already mapped",
+      "src/pso/effect/photon/TPhotonEstlla.cpp": "conflict",
+      "src/pso/effect/photon/TPhotonFarlla.cpp": "conflict",
+      "src/pso/effect/photon/TPhotonGolla.cpp": "conflict",
+      "src/pso/effect/photon/TPhotonLeilla.cpp": "conflict",
+      "src/pso/effect/photon/TPhotonMylla.cpp": "conflict",
+      "src/pso/effect/photon/TPhotonPilla.cpp": "conflict",
+      "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp": "conflict",
+      "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp": "conflict",
+      "src/pso/enemy/berura/TObjEneRe7Berura.cpp": "conflict",
+      "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp": "conflict",
+      "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp": "conflict",
+      "src/pso/enemy/darkgunner/DarkGunner.cpp": "conflict",
+      "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp": "conflict",
+      "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp": "conflict",
+      "src/pso/enemy/dubchik/TObjEneDubchik.cpp": "conflict",
+      "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp": "conflict",
+      "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp": "conflict",
+      "src/pso/enemy/fly/TObjEneBm3Fly.cpp": "conflict",
+      "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp": "conflict",
+      "src/pso/enemy/gee/TObjEneMe1Gee.cpp": "conflict",
+      "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp": "conflict",
+      "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp": "conflict",
+      "src/pso/enemy/illgill/TObjEneIllGill.cpp": "conflict",
+      "src/pso/enemy/illgill/TObjIllGillKage.cpp": "already mapped",
+      "src/pso/enemy/lappy/TObjEneLappy.cpp": "conflict",
+      "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp": "conflict",
+      "src/pso/enemy/merilllia/TObjEneMerillLia.cpp": "conflict",
+      "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp": "conflict",
+      "src/pso/enemy/panarms/TObjEnePanarmsAtkColli.cpp": "conflict",
+      "src/pso/enemy/recon/TObjEneRecon.cpp": "already mapped",
+      "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp": "conflict",
+      "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp": "conflict",
+      "src/pso/object/TObjLuker.cpp": "conflict",
+      "src/pso/object/ambient/TObjEnvSoundGlobal.cpp": "conflict",
+      "src/pso/object/ambient/TObjGrass.cpp": "conflict",
+      "src/pso/object/cave/TOHangceilingCave01.cpp": "already mapped",
+      "src/pso/object/city/CityTraffic.cpp": "conflict",
+      "src/pso/object/collision/TObjFogCollision.cpp": "already mapped",
+      "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp": "conflict",
+      "src/pso/object/door/TODoorBase.cpp": "already mapped",
+      "src/pso/object/door/TODoorCave03.cpp": "already mapped",
+      "src/pso/object/door/TODoorJungleMain.cpp": "conflict",
+      "src/pso/object/door/TObjDoor_8018E358.cpp": "conflict",
+      "src/pso/object/fence/TOBarrierEnergy01.cpp": "already mapped",
+      "src/pso/object/fence/TOFenceBase.cpp": "already mapped",
+      "src/pso/object/ruins/TOMonumentAncient02.cpp": "already mapped",
+      "src/pso/object/switch/TOSensor.cpp": "already mapped",
+      "src/pso/object/switch/TOSwitchTimer.cpp": "already mapped",
+      "src/pso/object/trap/TOTrapAncient01.cpp": "already mapped",
+      "src/pso/object/trap/TOTrapAncient02.cpp": "already mapped",
+      "src/pso/object/trap/TOTrapChainSawEdge.cpp": "conflict",
+      "src/pso/player/TObjPlayer_801C7430.cpp": "conflict",
+      "src/pso/technique/TTecLuker.cpp": "conflict",
+      "src/pso/ui/frontend/TAdPlyStatusGC_8033FD48.cpp": "conflict",
+      "src/pso/ui/hud/TLoadingCur.cpp": "conflict",
+      "src/pso/ui/window/TWindowSubStatusDisp_80259DB0.cpp": "conflict",
+      "src/pso/unk/TLobby_80226070.cpp": "clean",
+      "src/pso/unk/TLobby_80227AA0.cpp": "conflict",
+      "src/pso/unk/TLobby_8023F734.cpp": "conflict",
+      "src/pso/unk/text_800D8830.cpp": "conflict"
+    }
+  },
+  "native_position_callers": [
+    "src/pso/boss/volopt/TBoss3VoloptCore.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+    "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+    "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+    "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp"
+  ],
+  "validation": {
+    "source": {
+      "baseline": "fb452dd84280eb4ba6056464cee03889fb1f2577",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8023F944",
+          "before": "alloc_looping_sound_slot__FUllPCvll",
+          "after": "alloc_looping_sound_slot__FUlPCvPC3Vecll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8023FA8C",
+          "before": "alloc_one_shot_sound_slot__FUlPCvll",
+          "after": "alloc_one_shot_sound_slot__FUlPC3Vecll"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "f83278bc3edfdac88cdd04532016aa22a19499c0c0d1a671f307280db035fd80",
+      "report_sha256": "b6a5b2a42e0462ceb2f3ac654be882aa8aa1ec12d01af490517c93316a82e29b"
+    },
+    "layer": {
+      "baseline": "648050122c3b75ab0cd5dd22e9adf3a539283e1e",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "52e7b7c44c895ea98e91fe1a9ea21805885753879d1966b15b6b684ebe565d0b",
+      "report_sha256": "b6a5b2a42e0462ceb2f3ac654be882aa8aa1ec12d01af490517c93316a82e29b"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "1d609d4c66d189a5872aa32d78ae53b2357f0f61017945d0acda46f43b070a9b"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "069df91d234bda9502bd74957f0083cc321e38481ac866dbd80ce6e963be9f04"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "images": [
+      "retail",
+      "source",
+      "materialized fork workspace"
+    ],
+    "probes": {
+      "floor_and_requests": {
+        "result": "persistent slot checks and four dispatch routines on all 36 floors passed",
+        "program_sha256": "c5aaa5748577ca8d56ee8e7fcbefd91bd0cb9ebfa8bd5dd79e5fbf8285e9819d",
+        "logs_sha256": {
+          "source": "5de1c3dc3a2a9c195a936a0f875d635a803c65a4af27442b7d1a051fb643d8b8",
+          "workspace": "bd18465ee47b58ee2a5f2ea44e0d9732d6a693873d5812750e8760146ba5e96c"
+        }
+      },
+      "looping_voices": {
+        "result": "voice reuse, distinct identity and full-pool rejection passed",
+        "program_sha256": "c61e40bdc87d9d91cb9a5c6d5dafa2ce6ad08daa56d3318092e538e819ebae92",
+        "logs_sha256": {
+          "source": "e8416626dab42b4b4644c06e950f76e01518f327b3b2594eb6de9112eb7e591b",
+          "workspace": "aa59b3451644085912885b7ee148600e43913c6ad8a170f2621bf0d9a9f98abf"
+        }
+      },
+      "one_shot_voices": {
+        "result": "recent one-shot reuse, new position, and full-pool rejection passed.",
+        "program_sha256": "1f88d8bc5ad8cde93b78a7cc064a23d8fe6ddfa85c4dd22a3ceef9e6817fd58b",
+        "logs_sha256": {
+          "source": "02ebc3c606a32fe1e5fb89a2987d85b00b33abd1e059289159d65ee02eb71fc2",
+          "workspace": "0c5cad964032f5046e413916baa84def8f628d8ce512680eb3c634c5a0750687"
+        }
+      }
+    },
+    "original_branches": 195,
+    "branch_report_sha256": "91c351ba42de6ec5175dc38229ac074265e91a643900714392bab4b9773f928e",
+    "source_callers": [
+      "src/pso/boss/TUnk_80484A94.cpp",
+      "src/pso/boss/TUnk_80484AFC.cpp",
+      "src/pso/boss/barbaray/TBoss7Crawfish.cpp",
+      "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+      "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp",
+      "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+      "src/pso/boss/darkfalz/TBoss4Zanzo.cpp",
+      "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+      "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp",
+      "src/pso/boss/dragon/TBoss1Dragon.cpp",
+      "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+      "src/pso/boss/galgryphon/TBoss5GryphonTornado.cpp",
+      "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+      "src/pso/boss/olgaflow/TBoss6Demo11_TYPE1_DEAD.cpp",
+      "src/pso/boss/olgaflow/TBoss6Demo20_TYPE2_APPEAR.cpp",
+      "src/pso/boss/olgaflow/TBoss6Demo21_TYPE2_DEAD.cpp",
+      "src/pso/boss/olgaflow/TBoss6GravBall.cpp",
+      "src/pso/boss/olgaflow/TBoss6Mine.cpp",
+      "src/pso/boss/olgaflow/TBoss6Tube.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type1_802B20C0.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type2_802BE588.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp",
+      "src/pso/boss/volopt/TBoss3Volopt.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptCore.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptP01.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+      "src/pso/effect/item/TItemEffPG.cpp",
+      "src/pso/effect/photon/TPhotonEstlla.cpp",
+      "src/pso/effect/photon/TPhotonFarlla.cpp",
+      "src/pso/effect/photon/TPhotonGolla.cpp",
+      "src/pso/effect/photon/TPhotonLeilla.cpp",
+      "src/pso/effect/photon/TPhotonMylla.cpp",
+      "src/pso/effect/photon/TPhotonPilla.cpp",
+      "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+      "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+      "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+      "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp",
+      "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+      "src/pso/enemy/darkgunner/DarkGunner.cpp",
+      "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+      "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+      "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp",
+      "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+      "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+      "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+      "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+      "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+      "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+      "src/pso/enemy/illgill/TObjIllGillKage.cpp",
+      "src/pso/enemy/lappy/TObjEneLappy.cpp",
+      "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+      "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarmsAtkColli.cpp",
+      "src/pso/enemy/recon/TObjEneRecon.cpp",
+      "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+      "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+      "src/pso/object/TObjLuker.cpp",
+      "src/pso/object/ambient/TObjEnvSoundGlobal.cpp",
+      "src/pso/object/ambient/TObjGrass.cpp",
+      "src/pso/object/cave/TOHangceilingCave01.cpp",
+      "src/pso/object/city/CityTraffic.cpp",
+      "src/pso/object/collision/TObjFogCollision.cpp",
+      "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp",
+      "src/pso/object/door/TODoorBase.cpp",
+      "src/pso/object/door/TODoorCave03.cpp",
+      "src/pso/object/door/TODoorJungleMain.cpp",
+      "src/pso/object/door/TObjDoor_8018E358.cpp",
+      "src/pso/object/fence/TOBarrierEnergy01.cpp",
+      "src/pso/object/fence/TOFenceBase.cpp",
+      "src/pso/object/ruins/TOMonumentAncient02.cpp",
+      "src/pso/object/switch/TOSensor.cpp",
+      "src/pso/object/switch/TOSwitchTimer.cpp",
+      "src/pso/object/trap/TOTrapAncient01.cpp",
+      "src/pso/object/trap/TOTrapAncient02.cpp",
+      "src/pso/object/trap/TOTrapChainSawEdge.cpp",
+      "src/pso/player/TObjPlayer_801C7430.cpp",
+      "src/pso/technique/TTecLuker.cpp",
+      "src/pso/ui/frontend/TAdPlyStatusGC_8033FD48.cpp",
+      "src/pso/ui/hud/TLoadingCur.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_80259DB0.cpp",
+      "src/pso/unk/text_800D8830.cpp"
+    ],
+    "verified_probe_alias": [
+      "init_sound_voice__17SoundRequestVoiceFllll",
+      "init_sound_voice__6TLobbyFllll",
+      ".text:0x80242058"
+    ]
+  },
+  "historical": {
+    "closed_rows": [
+      {
+        "row": 689,
+        "fork_path": "src/pso/boss/TUnk_80484AFC.cpp",
+        "owner": "src/pso/boss/TUnk_80484AFC.cpp",
+        "detail": "Vol Opt's effect uses the current one-shot, persistent, emitter and texture-list entry points. It steers from the player's native body center and passes the original pitch and yaw fields. The archive model and texture entries remain in the original slots.",
+        "fork_delta_sha256": "79812501de1187e514ef1aa9c85acbbeafbe145f48ea52e96d6d70be6bb1b7ab",
+        "owner_blob": "6db842a677c6a64a7e8b61ac485120c0909ddbbd"
+      },
+      {
+        "row": 2523,
+        "fork_path": "src/pso/boss/TBoss4Type2_80340160.cpp",
+        "owner": "src/pso/ui/frontend/TAdPlyStatusGC_8033FD48.cpp",
+        "detail": "The status scene uses the shared persistent sound declaration. The borrowed model and texture list are read through the shared BML accessors and saved in their native pointer fields.",
+        "fork_delta_sha256": "8950b5e3bcfbac3cde68974aaefb8148138adcd2b7853efbffe74a11af987f29",
+        "owner_blob": "94f02a486cdd772ba6464743178811893d4a6ee7"
+      },
+      {
+        "row": 3951,
+        "fork_path": "src/pso/unk/text_80130368.cpp",
+        "owner": "src/pso/weapon/TUnk_804A69DC.cpp",
+        "detail": "The weapon owner uses the native floor accessor and passes its live position through the shared one-shot declaration. The returned handle reaches the shared pitch-request entry point with adjustment 0x300.",
+        "fork_delta_sha256": "e242e8dc38456bb2de578bfc2a2d09e30e3a17e8332573c125994d4c5b7707f9",
+        "owner_blob": "c4b88cb9a9a19924805edf2dc0e50b98778c17cb"
+      },
+      {
+        "row": 4106,
+        "fork_path": "src/pso/player/TObjPlayer_800DCC90.cpp",
+        "owner": "src/pso/player/TObjPlayer_800DCC90.cpp",
+        "detail": "The player effect uses shared one-shot and particle declarations. The three calls pass the original position pointers and IDs. The 0.0f and 22500.0f words remain local in the matching source unit.",
+        "fork_delta_sha256": "e11664e6cf48fd2bdbf55853ddd47e7e42f055848380114131e5d0bb13f776fb",
+        "owner_blob": "d3ac33e47537374aeeab74b2b9b361f37ec6fe3a"
+      },
+      {
+        "row": 4113,
+        "fork_path": "src/pso/player/TObjPlayer_8011C000.cpp",
+        "owner": "src/pso/item/item_pmt.cpp",
+        "detail": "The item table uses the shared one-shot and pitch declarations at all three call sites and forwards the retained position pointer. The original random scale and zero constant are local to the exact unit.",
+        "fork_delta_sha256": "fadc56a60e36d37be0cef2d8fe71483e32337a472bc7aaf8e3464b4febabc742",
+        "owner_blob": "a0db8542f0f8cb1e8e1d3a83ebf625d35ed60947"
+      },
+      {
+        "row": 4381,
+        "fork_path": "src/pso/item/TItemEffArmor.cpp",
+        "owner": "src/pso/effect/item/TItemEffArmor.cpp",
+        "detail": "The armor effect passes its native player's position to the shared one-shot API. The area guard uses the current get_area accessor and the particle uses the original position and effect ID 0x1BE.",
+        "fork_delta_sha256": "92e4c9260a8ee9efcd10944960c06017bf9e361a5b49e976d8a6be951259d721",
+        "owner_blob": "f51745cb8f27ccb200ebefd66c1f1572e7b51eb3"
+      }
+    ],
+    "scoped_rows": [
+      [
+        39,
+        "src/pso/misc/TLobby_802409AC.cpp",
+        "src/pso/unk/TLobby_802409AC.cpp"
+      ],
+      [
+        591,
+        "src/pso/enemy/TObjEneMe1GiGue.cpp",
+        "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp"
+      ],
+      [
+        598,
+        "src/pso/enemy/TObjEneMerillLia.cpp",
+        "src/pso/enemy/merilllia/TObjEneMerillLia.cpp"
+      ],
+      [
+        608,
+        "src/pso/enemy/TObjEneRe7Berura.cpp",
+        "src/pso/enemy/berura/TObjEneRe7Berura.cpp"
+      ],
+      [
+        718,
+        "src/pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp",
+        "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp"
+      ],
+      [
+        802,
+        "src/pso/enemy/TObjEneDolmOlm.cpp",
+        "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp"
+      ],
+      [
+        895,
+        "src/pso/enemy/TObjEneDellBiter.cpp",
+        "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp"
+      ],
+      [
+        934,
+        "src/pso/enemy/TObjEneBm9Mericarol.cpp",
+        "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp"
+      ],
+      [
+        956,
+        "src/pso/enemy/TObjEneIllGill.cpp",
+        "src/pso/enemy/illgill/TObjEneIllGill.cpp"
+      ],
+      [
+        987,
+        "src/pso/unk/text_802CE68C.cpp",
+        "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp"
+      ],
+      [
+        1058,
+        "src/pso/enemy/TObjEneBm9Mericarol_802CECE0.cpp",
+        "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp"
+      ],
+      [
+        1114,
+        "src/pso/enemy/TObjEneBm3Fly.cpp",
+        "src/pso/enemy/fly/TObjEneBm3Fly.cpp"
+      ],
+      [
+        1167,
+        "src/pso/enemy/TObjEneBm5GibonU.cpp",
+        "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp"
+      ],
+      [
+        1168,
+        "src/pso/enemy/TObjEneRe4Sorcerer_800EDB98.cpp",
+        "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp"
+      ]
+    ],
+    "open_rows": 346,
+    "verified_retail_data": {
+      "0x805da480": "0000000046afc800",
+      "0x805dac70": "3800000000000000"
+    }
+  },
+  "fork_workspace": {
+    "trial": "24f9f5b13e77bd39c1b09cc686393f2830a0ae12",
+    "overlay_paths": 130,
+    "updated_overlay_paths": [],
+    "archive_sha256": "01929041ff7fd42153be631b4397bbd8bdbdae03deb03610ea20e57ec2a7a63b",
+    "materialized_tree": "9077b8bab8935b9bd6558e21aa798a362660c325",
+    "force_active": 27027
+  }
+}

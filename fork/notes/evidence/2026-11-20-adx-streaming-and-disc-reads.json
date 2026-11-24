@@ -1,0 +1,537 @@
+{
+  "upstream_master": "0fa391a887c664abadc00cba75db1f039aceb647",
+  "historical_donor_base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical_adx_tip": "a4d7a8d2d908dc795ed2d7e929357d807e547955",
+  "replay_base": "dca722cfd273f75c9cf14500373001ca079b64a5",
+  "replay_head": "bb96c1926870ca5ce4a68ca598307b4370c618bc",
+  "replay_tree": "5d77a70615be950c9b774ba4a54917bc7385fb41",
+  "changed_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/splits.txt",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/audio/AdxCallbacks.h",
+    "include/pso/audio/AdxEncoder.h",
+    "include/pso/audio/AdxManager.h",
+    "include/pso/audio/AdxStream.h",
+    "include/pso/audio/AdxStreamFile.h",
+    "include/pso/audio/AdxStreamRuntime.h",
+    "include/pso/audio/AdxTalk.h",
+    "include/pso/audio/AdxbDecoder.h",
+    "include/pso/audio/AdxfInternal.h",
+    "include/pso/audio/AdxmThreadStorage.h",
+    "include/pso/audio/LscStream.h",
+    "include/pso/boss/olgaflow/TBoss6Zanzo.h",
+    "include/pso/item/TItemLoad.h",
+    "include/pso/item/TItemTexLoad.h",
+    "include/pso/system/Adxf.h",
+    "include/pso/system/CvFsStreamHandle.h",
+    "include/pso/system/GcciRequests.h",
+    "include/pso/system/RelModuleBuffer.h",
+    "include/pso/system/TGStream.h",
+    "include/pso/system/movie/Mfci.h",
+    "include/pso/system/movie/TMovie.h",
+    "include/pso/ui/charcreate/TChCrLoadAfs.h",
+    "include/pso/ui/charcreate/TChCrLoadAfsTextureReq.h",
+    "include/pso/unk/TLobby.h",
+    "include/pso/unk/TLobby_80227A2C.h",
+    "include/pso/unk/TLobby_8023F734.h",
+    "include/pso/unk/TLobby_803C1A58.h",
+    "include/pso/unk/TLobby_803CE478.h",
+    "include/pso/unk/TLobby_803CFE68.h",
+    "include/pso/unk/TLobby_803D0C28.h",
+    "include/pso/unk/TLobby_803D60A8.h",
+    "include/pso/unk/text_80320358.h",
+    "include/pso/unk/text_803C1780.h",
+    "include/pso/unk/text_803CC294.h",
+    "include/pso/unk/text_803CE568.h",
+    "include/pso/unk/text_803D0C34.h",
+    "include/pso/unk/text_803D2F1C.h",
+    "include/pso/unk/text_803D31A4.h",
+    "src/musyx/runtime/musyx_runtime_b.h",
+    "src/pso/audio/AdxBsc.cpp",
+    "src/pso/audio/AdxEncoder.cpp",
+    "src/pso/audio/AdxError.cpp",
+    "src/pso/audio/AdxManager.cpp",
+    "src/pso/audio/AdxStream.cpp",
+    "src/pso/audio/AdxTalk.cpp",
+    "src/pso/audio/AdxtInit.cpp",
+    "src/pso/audio/AdxtServer.cpp",
+    "src/pso/audio/AdxtStart.cpp",
+    "src/pso/audio/LscServer.cpp",
+    "src/pso/audio/LscStream.cpp",
+    "src/pso/boss/olgaflow/TBoss6Zanzo.cpp",
+    "src/pso/item/TItemLoad.cpp",
+    "src/pso/item/TItemTexLoad.cpp",
+    "src/pso/player/TObjPlayer_8023E480.cpp",
+    "src/pso/system/TGStream.cpp",
+    "src/pso/system/movie/Mfci.cpp",
+    "src/pso/system/movie/TMovie.cpp",
+    "src/pso/system/scene/TSceneSora.cpp",
+    "src/pso/ui/charcreate/TChCrLoadAfs.cpp",
+    "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp",
+    "src/pso/unk/TLobby_8001EF5C.cpp",
+    "src/pso/unk/TLobby_800F8AA8.cpp",
+    "src/pso/unk/TLobby_800FA100.cpp",
+    "src/pso/unk/TLobby_800FA164.cpp",
+    "src/pso/unk/TLobby_800FA2A0.cpp",
+    "src/pso/unk/TLobby_800FA388.cpp",
+    "src/pso/unk/TLobby_800FA774.cpp",
+    "src/pso/unk/TLobby_80226C3C.cpp",
+    "src/pso/unk/TLobby_8023F734.cpp",
+    "src/pso/unk/TLobby_803BFE50.cpp",
+    "src/pso/unk/TLobby_803CC0B4.cpp",
+    "src/pso/unk/TLobby_803CC274.cpp",
+    "src/pso/unk/TLobby_803CE478.cpp",
+    "src/pso/unk/TLobby_803CFE68.cpp",
+    "src/pso/unk/text_800FA464.cpp",
+    "src/pso/unk/text_80320358.cpp",
+    "src/pso/unk/text_803C5B50.cpp",
+    "src/pso/unk/text_803CC134.cpp",
+    "src/pso/unk/text_803CC294.cpp",
+    "src/pso/unk/text_803CD99C.cpp",
+    "src/pso/unk/text_803CE240.cpp",
+    "src/pso/unk/text_803CE568.cpp",
+    "src/pso/unk/text_803CFEA0.cpp",
+    "src/pso/unk/text_803D2F1C.cpp",
+    "src/pso/unk/text_803D31A4.cpp",
+    "src/pso/unk/text_803D4714.cpp"
+  ],
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "exact_linked_units": 2448,
+  "replay_coverage_losses": {
+    "regressions": 0,
+    "data_regressions": 0,
+    "data_coverage_lost": 0,
+    "padding_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0,
+    "missing_functions": 0,
+    "failures": 0
+  },
+  "changed_linker_labels": [
+    {
+      "module": "psov3",
+      "address": "0x8010FF38",
+      "before": "read__12AfsPartitionFl",
+      "after": "read__12AfsPartitionFPv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80320358",
+      "before": "fn_80320358",
+      "after": "destroy_rel_module"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803204B0",
+      "before": "fn_803204B0",
+      "after": "get_rel_module_image"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803C1668",
+      "before": "DVDReadPrio",
+      "after": "initialize_wave_stream_decoder"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803C5828",
+      "before": "set_params__6TLobbyFll",
+      "after": "set_params__6TLobbyFPFlPCc_vl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803C5AA0",
+      "before": "ar_alloc__6TLobbyFv",
+      "after": "ar_alloc__6TLobbyFl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803C5AC4",
+      "before": "get_state_zero__6TLobbyFv",
+      "after": "get_state_zero__6TLobbyFl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803C5AE8",
+      "before": "process_connection_state__6TLobbyFv",
+      "after": "process_connection_state__6TLobbyFl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803C5B2C",
+      "before": "forward_notify_error__6TLobbyFll",
+      "after": "forward_notify_error__6TLobbyFPvPCc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803C6860",
+      "before": "write_adx_header__6TLobbyFP13Strm_803C5B50",
+      "after": "write_adx_header"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803C8584",
+      "before": "set_range__6TLobbyFPvii",
+      "after": "set_range__6TLobbyFP13AdxStreamFilell"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803C8678",
+      "before": "update_stream_read__6TLobbyFv",
+      "after": "update_adx_stream_read"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803C89B8",
+      "before": "set_coords__6TLobbyFll",
+      "after": "set_adx_stream_completion"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CBBD8",
+      "before": "adxm_goto_mwidle_border__6TLobbyFv",
+      "after": "adxm_goto_mwidle_border__6TLobbyFl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CC0B4",
+      "before": "run_step_5210__6TLobbyFv",
+      "after": "run_step_5210__6TLobbyFPP12SjRingBufferl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CC0D4",
+      "before": "flush_update__6TLobbyFv",
+      "after": "flush_update__6TLobbyFPFPvPCc_vPv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CC4C0",
+      "before": "adxf_get_stat",
+      "after": "ADXF_GetStat"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CC500",
+      "before": "adxf_get_fsize_byte__6TLobbyFv",
+      "after": "ADXF_GetFsizeByte"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CC53C",
+      "before": "adxf_get_fsize_sct",
+      "after": "ADXF_GetFsizeSct"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CC578",
+      "before": "adxf_seek__6TLobbyFPvii",
+      "after": "ADXF_Seek"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CC980",
+      "before": "adxf_stop__6TLobbyFv",
+      "after": "ADXF_Stop"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CCB5C",
+      "before": "read_checked_align__6TLobbyFlll",
+      "after": "ADXF_ReadNw"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CCB98",
+      "before": "adxf_read_nw32__6TLobbyFPviPv",
+      "after": "ADXF_ReadNw32"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CCE9C",
+      "before": "close_adxf_handle__6TLobbyFv",
+      "after": "ADXF_Close"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CD16C",
+      "before": "adxf_open_afs__6TLobbyFii",
+      "after": "ADXF_OpenAfs"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CD3A8",
+      "before": "adxf_open__6TLobbyFUii",
+      "after": "ADXF_Open"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CE478",
+      "before": "update_scroll__6TLobbyFv",
+      "after": "update_file_stream_range"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CE544",
+      "before": "TLobby__sub_803CE544",
+      "after": "cvFsEntryErrFunc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CEEB8",
+      "before": "cv_fs_get_stat__6TLobbyFv",
+      "after": "cvFsGetStat"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CEFC8",
+      "before": "cvfs_stop_tr__6TLobbyFv",
+      "after": "cvFsStopTr"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CF058",
+      "before": "cv_fs_req_rd__6TLobbyFll",
+      "after": "cvFsReqRd"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CF100",
+      "before": "cv_fs_seek__6TLobbyFll",
+      "after": "cvFsSeek"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CF1A8",
+      "before": "cv_fs_tell__6TLobbyFv",
+      "after": "cvFsTell"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CF250",
+      "before": "cv_fs_close__6TLobbyFv",
+      "after": "cvFsClose"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CF958",
+      "before": "cvFsSetDefDev__6TLobbyFv",
+      "after": "cvFsSetDefDev"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803CFE68",
+      "before": "call_callback__6TLobbyFv",
+      "after": "cvfs_forward_error"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803D33F4",
+      "before": "set_callback_params__6TLobbyFll",
+      "after": "set_callback_params__6TLobbyFPFlPCc_vl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803D3540",
+      "before": "SVM_SetCbSvrId__6TLobbyFllll",
+      "after": "SVM_SetCbSvrId__6TLobbyFllPFl_ll"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803D3750",
+      "before": "svm_set_cb_svr__6TLobbyFlll",
+      "after": "svm_set_cb_svr__6TLobbyFlPFl_ll"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803D39F8",
+      "before": "mfci_get_num_transferred__FP13MfciFileEntry",
+      "after": "mfci_get_num_transferred__FPv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803D3A4C",
+      "before": "mfci_set_sector_length__FP13MfciFileEntryl",
+      "after": "mfci_set_sector_length__FPvl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803D3AD8",
+      "before": "mfci_get_sector_length__FP13MfciFileEntry",
+      "after": "mfci_get_sector_length__FPv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803D3B2C",
+      "before": "mfci_get_status__FP13MfciFileEntry",
+      "after": "mfci_get_status__FPv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803D3B84",
+      "before": "mfci_stop_transfer__FP13MfciFileEntry",
+      "after": "mfci_stop_transfer__FPv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803D3E90",
+      "before": "mfci_get_position__FP13MfciFileEntry",
+      "after": "mfci_get_position__FPv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803D3EE4",
+      "before": "mfci_seek__FP13MfciFileEntryll",
+      "after": "mfci_seek__FPvll"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803D3FCC",
+      "before": "mfci_close__FP13MfciFileEntry",
+      "after": "mfci_close__FPv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803D439C",
+      "before": "mfci_set_error_callback__Fll",
+      "after": "mfci_set_error_callback__FPFlPCcPv_vl"
+    }
+  ],
+  "replay_report_sha256": "c0de40281b43b8fde86f92650f3e4cf7002582a5fd3c75dfb8ef833a3a0bdf8b",
+  "replay_check_sha256": "0e663dc9dc975a410a6b8652ec98623db5f5c24e556633a3f7709fbdaf708fb5",
+  "original_data_inventory": {
+    "ranges": 90,
+    "bytes": 1147,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "upstream_review": {
+    "base": "0fa391a887c664abadc00cba75db1f039aceb647",
+    "head": "2572238636c01c0f1defac4338a4df6836c18276",
+    "tree": "97da7597805e9c2ffafc8fd3b71d45687a8784c6",
+    "coverage_losses": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "missing_functions": 0,
+      "failures": 0
+    },
+    "report_sha256": "12de5aecbd3a12d4fd88f91975169b76ca3f98e68e6573c3e1b72758c5f048d2",
+    "check_sha256": "b42a55b5f4493734195da66d4cbcf965447c4692f0dfd9d83bad93e63af9313e"
+  },
+  "scope": {
+    "included": "ADX playback, ADXF disc reads and command history, typed CVFS and movie callback table, relocated-module ownership",
+    "separate_sound_changes": "Persistent sound request and readiness changes remain outside this review. Existing sound-pitch functions and callers are preserved.",
+    "kept_names": [
+      "TLobby::set_range",
+      "TLobby::query_available_size",
+      "TLobby::dispatch_packet",
+      "TLobby::invalidate_cache"
+    ]
+  },
+  "fork_layer": {
+    "workspace_patch_paths": 131,
+    "workspace_patch_sha256": "a1e18c09a4db5df1b9665467d1a76b3971258a289e9686e7a6a3772e1d22e137",
+    "materialized_tree": "4e0449e3517dce58a68e2e5e14b614ca07e2476b",
+    "round_trip_listing_sha256": "16f09385985c5573d613502dd50265ae51c857566710b71727d35cd77e2daa0d",
+    "force_active_names": 27031,
+    "tool_tests_passed": 294,
+    "layer_tests_passed": 11,
+    "coverage_losses": {
+      "regressions": 0,
+      "data_regressions": 0,
+      "data_coverage_lost": 0,
+      "padding_coverage_lost": 0,
+      "linked_functions_lost": 0,
+      "linked_data_lost": 0,
+      "missing_functions": 0,
+      "failures": 0
+    }
+  },
+  "historical_path_inventory": {
+    "pinned_base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+    "canonical_source": "83decd2d24dc6104040afd060e0cc2754b110409",
+    "earlier_review_queue": "47ade105c778197344c29e2d058cd9754a90893c",
+    "outside_replay_before": 842,
+    "outside_replay_after": 790,
+    "outside_both_replay_and_queue": 82,
+    "remaining_by_owner": {
+      "ui": 236,
+      "unk": 114,
+      "boss": 105,
+      "enemy": 76,
+      "player": 53,
+      "quest": 28,
+      "system": 27,
+      "object": 27,
+      "item": 25,
+      "effect": 22,
+      "render": 18,
+      "camera": 17,
+      "math": 9,
+      "technique": 8,
+      "network": 6,
+      "npc": 4,
+      "map": 4,
+      "weapon": 3,
+      "libs/PowerPC_EABI_Support": 2,
+      "audio": 2,
+      "libs/dolphin": 2,
+      "collision": 1,
+      "animation": 1
+    },
+    "method": "Path inventory without rename detection."
+  },
+  "quest_followup": {
+    "donor": "96e12501e15a4340f8516a312337ce3f26b98786",
+    "preview_paths": 134,
+    "overlap_paths": [
+      "config/GPOE8P/psov3/config.yml",
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/object/base/TObjMotion.h",
+      "include/pso/ui/window/TWindowCost.h",
+      "include/pso/ui/window/TWindowMessageQuest.h",
+      "include/pso/unk/TLobby.h",
+      "src/pso/item/TItemLoad.cpp",
+      "src/pso/npc/TObjNpcBase.cpp",
+      "src/pso/object/base/ObjectFactoryTables.cpp",
+      "src/pso/object/collision/TOAttackableCol.cpp",
+      "src/pso/object/collision/TObjBgmColCtrl.cpp",
+      "src/pso/object/switch/TOChatSensor.cpp",
+      "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+      "src/pso/player/TPlayerBattleCtrl4P.cpp",
+      "src/pso/quest/QuestOpcodeHandlers.cpp",
+      "src/pso/quest/TQuestListChallenge.cpp",
+      "src/pso/quest/TQuestListOnline.cpp",
+      "src/pso/quest/TQuestListVM.cpp",
+      "src/pso/quest/TQuestVmDownLoadServer_803EB0D8.cpp",
+      "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp",
+      "src/pso/ui/city/TShopArmorListWindow.cpp",
+      "src/pso/ui/city/TShopEquipmentListWindow.cpp",
+      "src/pso/ui/city/TShopEquipmentSellWindow.cpp",
+      "src/pso/ui/city/TShopEquipmentSellWindow_803094E8.cpp",
+      "src/pso/ui/city/TShopItemListWindow.cpp",
+      "src/pso/ui/frontend/TAdLoadQuestGC.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80336054.cpp",
+      "src/pso/ui/window/TMessageWindowController.cpp",
+      "src/pso/ui/window/TWindowCost.cpp",
+      "src/pso/ui/window/TWindowMessage.cpp",
+      "src/pso/ui/window/TWindowMessageLog.cpp",
+      "src/pso/ui/window/TWindowMessagePage.cpp",
+      "src/pso/ui/window/TWindowMessageQuest.cpp",
+      "src/pso/ui/window/TWindowMessageScroll.cpp",
+      "src/pso/unk/TLobby_8001EF5C.cpp",
+      "src/pso/unk/TLobby_800F8AA8.cpp",
+      "src/pso/unk/TLobby_801F2D2C.cpp",
+      "src/pso/unk/TLobby_8026B06C.cpp",
+      "src/pso/unk/TLobby_8035D540.cpp",
+      "src/pso/unk/text_80269FE8.cpp"
+    ]
+  }
+}

@@ -1,0 +1,1256 @@
+{
+  "builds": {
+    "world": {
+      "head": "e54879686e7d1ddff26569b6ee2a0373690d01ac",
+      "tree": "0de56f34651bb7e3b4d03e39b544123df91f4d0e",
+      "coverage_baseline": "ac527c58211903ee21810aac6b0a97f839554b1b",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "world-report.json": "c22774a146a180ddb1b16b7acf79fb2c5a91dc50e3d0822a0a960aff27bd274c",
+        "world-check.json": "6e2dbf63529d18f571823cbdef814f90df88eaebbec94548dd32db9965c0479b"
+      },
+      "source_quality": {
+        "path_count": 227,
+        "removed": 364,
+        "added": 69,
+        "changed_labels": 20,
+        "flagged_labels": [
+          {
+            "file": "config/GPOE8P/psov3/symbols.txt",
+            "section": ".text",
+            "address": "0x802C09A8",
+            "type": "function",
+            "old": "free_static_instance__10TObjPlayerFv",
+            "new": "release_resources__13TUnk_804E0898Fv",
+            "flags": [
+              "member of TUnk_804E0898, a class named after an address"
+            ],
+            "reason": "The lobby pigeon factory or resource lifecycle is owned by TUnk_804E0898 and is used by the object or floor table."
+          },
+          {
+            "file": "config/GPOE8P/psov3/symbols.txt",
+            "section": ".text",
+            "address": "0x802C09E0",
+            "type": "function",
+            "old": "load_lobby_pigeon_resource__10TObjPlayerFv",
+            "new": "load_lobby_pigeon_resource__13TUnk_804E0898Fv",
+            "flags": [
+              "member of TUnk_804E0898, a class named after an address"
+            ],
+            "reason": "The lobby pigeon factory or resource lifecycle is owned by TUnk_804E0898 and is used by the object or floor table."
+          },
+          {
+            "file": "config/GPOE8P/psov3/symbols.txt",
+            "section": ".text",
+            "address": "0x802C1324",
+            "type": "function",
+            "old": "create_child_object__10TObjPlayerFPv",
+            "new": "create__13TUnk_804E08D4FPv",
+            "flags": [
+              "member of TUnk_804E08D4, a class named after an address"
+            ],
+            "reason": "The seaside bird factory or resource lifecycle is owned by TUnk_804E08D4 and is used by the object or floor table."
+          },
+          {
+            "file": "config/GPOE8P/psov3/symbols.txt",
+            "section": ".text",
+            "address": "0x802C1370",
+            "type": "function",
+            "old": "destroy_instance__10TObjPlayerFv",
+            "new": "release_resources__13TUnk_804E08D4Fv",
+            "flags": [
+              "member of TUnk_804E08D4, a class named after an address"
+            ],
+            "reason": "The seaside bird factory or resource lifecycle is owned by TUnk_804E08D4 and is used by the object or floor table."
+          },
+          {
+            "file": "config/GPOE8P/psov3/symbols.txt",
+            "section": ".text",
+            "address": "0x802C13C8",
+            "type": "function",
+            "old": "load_kamome_resources__10TObjPlayerFv",
+            "new": "load_kamome_resources__13TUnk_804E08D4Fv",
+            "flags": [
+              "member of TUnk_804E08D4, a class named after an address"
+            ],
+            "reason": "The seaside bird factory or resource lifecycle is owned by TUnk_804E08D4 and is used by the object or floor table."
+          },
+          {
+            "file": "config/GPOE8P/psov3/symbols.txt",
+            "section": ".text",
+            "address": "0x802C1AF8",
+            "type": "function",
+            "old": "create__10TObjPlayerFPv",
+            "new": "create__13TUnk_804E0910FPv",
+            "flags": [
+              "member of TUnk_804E0910, a class named after an address"
+            ],
+            "reason": "The Jungle bird factory or resource lifecycle is owned by TUnk_804E0910 and is used by the object or floor table."
+          },
+          {
+            "file": "config/GPOE8P/psov3/symbols.txt",
+            "section": ".text",
+            "address": "0x802C1B44",
+            "type": "function",
+            "old": "free_statics__10TObjPlayerFv",
+            "new": "release_resources__13TUnk_804E0910Fv",
+            "flags": [
+              "member of TUnk_804E0910, a class named after an address"
+            ],
+            "reason": "The Jungle bird factory or resource lifecycle is owned by TUnk_804E0910 and is used by the object or floor table."
+          },
+          {
+            "file": "config/GPOE8P/psov3/symbols.txt",
+            "section": ".text",
+            "address": "0x802C1B9C",
+            "type": "function",
+            "old": "load_jungle_bird_resources__10TObjPlayerFv",
+            "new": "load_jungle_bird_resources__13TUnk_804E0910Fv",
+            "flags": [
+              "member of TUnk_804E0910, a class named after an address"
+            ],
+            "reason": "The Jungle bird factory or resource lifecycle is owned by TUnk_804E0910 and is used by the object or floor table."
+          },
+          {
+            "file": "config/GPOE8P/psov3/symbols.txt",
+            "section": ".text",
+            "address": "0x802C21A0",
+            "type": "function",
+            "old": "create_path_obj__10TObjPlayerFPv",
+            "new": "create__13TUnk_804E094CFPv",
+            "flags": [
+              "member of TUnk_804E094C, a class named after an address"
+            ],
+            "reason": "The Jungle shrimp factory or resource lifecycle is owned by TUnk_804E094C and is used by the object or floor table."
+          },
+          {
+            "file": "config/GPOE8P/psov3/symbols.txt",
+            "section": ".text",
+            "address": "0x802C21EC",
+            "type": "function",
+            "old": "free_chr_select__10TObjPlayerFv",
+            "new": "release_resources__13TUnk_804E094CFv",
+            "flags": [
+              "member of TUnk_804E094C, a class named after an address"
+            ],
+            "reason": "The Jungle shrimp factory or resource lifecycle is owned by TUnk_804E094C and is used by the object or floor table."
+          },
+          {
+            "file": "config/GPOE8P/psov3/symbols.txt",
+            "section": ".text",
+            "address": "0x802C2244",
+            "type": "function",
+            "old": "load_jungle_ebi_resources__10TObjPlayerFv",
+            "new": "load_jungle_ebi_resources__13TUnk_804E094CFv",
+            "flags": [
+              "member of TUnk_804E094C, a class named after an address"
+            ],
+            "reason": "The Jungle shrimp factory or resource lifecycle is owned by TUnk_804E094C and is used by the object or floor table."
+          },
+          {
+            "file": "config/GPOE8P/psov3/symbols.txt",
+            "section": ".text",
+            "address": "0x802C28B4",
+            "type": "function",
+            "old": "TObjPlayer__sub_802C28B4",
+            "new": "create__13TUnk_804E0988FPv",
+            "flags": [
+              "member of TUnk_804E0988, a class named after an address"
+            ],
+            "reason": "The Seabed dolphin factory or resource lifecycle is owned by TUnk_804E0988 and is used by the object or floor table."
+          },
+          {
+            "file": "config/GPOE8P/psov3/symbols.txt",
+            "section": ".text",
+            "address": "0x802C2900",
+            "type": "function",
+            "old": "TObjPlayer__sub_802C2900",
+            "new": "release_resources__13TUnk_804E0988Fv",
+            "flags": [
+              "member of TUnk_804E0988, a class named after an address"
+            ],
+            "reason": "The Seabed dolphin factory or resource lifecycle is owned by TUnk_804E0988 and is used by the object or floor table."
+          },
+          {
+            "file": "config/GPOE8P/psov3/symbols.txt",
+            "section": ".text",
+            "address": "0x802C2958",
+            "type": "function",
+            "old": "load_seabed_dolphin__10TObjPlayerFv",
+            "new": "load_seabed_dolphin__13TUnk_804E0988Fv",
+            "flags": [
+              "member of TUnk_804E0988, a class named after an address"
+            ],
+            "reason": "The Seabed dolphin factory or resource lifecycle is owned by TUnk_804E0988 and is used by the object or floor table."
+          }
+        ],
+        "newly_stale_retention": 0,
+        "findings_by_kind": {
+          "address_type": 67,
+          "local_decl": 2
+        },
+        "findings": [
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 573,
+            "text": "TUnk_804E0898"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 573,
+            "text": "TUnk_804E0898"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 744,
+            "text": "TUnk_804E08D4"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 744,
+            "text": "TUnk_804E08D4"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 769,
+            "text": "TUnk_804E094C"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 769,
+            "text": "TUnk_804E094C"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 770,
+            "text": "TUnk_804E0910"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 770,
+            "text": "TUnk_804E0910"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 777,
+            "text": "TUnk_804E08D4"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 777,
+            "text": "TUnk_804E08D4"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 802,
+            "text": "TUnk_804E094C"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 802,
+            "text": "TUnk_804E094C"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 803,
+            "text": "TUnk_804E0910"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 803,
+            "text": "TUnk_804E0910"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 810,
+            "text": "TUnk_804E08D4"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 810,
+            "text": "TUnk_804E08D4"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 840,
+            "text": "TUnk_804E08D4"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 840,
+            "text": "TUnk_804E08D4"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 865,
+            "text": "TUnk_804E094C"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 865,
+            "text": "TUnk_804E094C"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 866,
+            "text": "TUnk_804E0910"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 866,
+            "text": "TUnk_804E0910"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 873,
+            "text": "TUnk_804E08D4"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 873,
+            "text": "TUnk_804E08D4"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 897,
+            "text": "TUnk_804E094C"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 897,
+            "text": "TUnk_804E094C"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 925,
+            "text": "TUnk_804E094C"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 925,
+            "text": "TUnk_804E094C"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 926,
+            "text": "TUnk_804E0910"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 926,
+            "text": "TUnk_804E0910"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 932,
+            "text": "TUnk_804E08D4"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 932,
+            "text": "TUnk_804E08D4"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 959,
+            "text": "TUnk_804E0988"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 959,
+            "text": "TUnk_804E0988"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 988,
+            "text": "TUnk_804E0988"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/map/FloorLifecycleTables.cpp",
+            "line": 988,
+            "text": "TUnk_804E0988"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/base/ObjectFactoryTables.cpp",
+            "line": 1466,
+            "text": "TUnk_804E08D4"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/base/ObjectFactoryTables.cpp",
+            "line": 1523,
+            "text": "TUnk_804E094C"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/base/ObjectFactoryTables.cpp",
+            "line": 1524,
+            "text": "TUnk_804E0910"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/base/ObjectFactoryTables.cpp",
+            "line": 1535,
+            "text": "TUnk_804E08D4"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/base/ObjectFactoryTables.cpp",
+            "line": 1592,
+            "text": "TUnk_804E094C"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/base/ObjectFactoryTables.cpp",
+            "line": 1593,
+            "text": "TUnk_804E0910"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/base/ObjectFactoryTables.cpp",
+            "line": 1604,
+            "text": "TUnk_804E08D4"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/base/ObjectFactoryTables.cpp",
+            "line": 1670,
+            "text": "TUnk_804E08D4"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/base/ObjectFactoryTables.cpp",
+            "line": 1728,
+            "text": "TUnk_804E094C"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/base/ObjectFactoryTables.cpp",
+            "line": 1729,
+            "text": "TUnk_804E0910"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/base/ObjectFactoryTables.cpp",
+            "line": 1739,
+            "text": "TUnk_804E08D4"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/base/ObjectFactoryTables.cpp",
+            "line": 1793,
+            "text": "TUnk_804E094C"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/base/ObjectFactoryTables.cpp",
+            "line": 1852,
+            "text": "TUnk_804E094C"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/base/ObjectFactoryTables.cpp",
+            "line": 1853,
+            "text": "TUnk_804E0910"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/base/ObjectFactoryTables.cpp",
+            "line": 1863,
+            "text": "TUnk_804E08D4"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/base/ObjectFactoryTables.cpp",
+            "line": 1921,
+            "text": "TUnk_804E0988"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/base/ObjectFactoryTables.cpp",
+            "line": 1986,
+            "text": "TUnk_804E0988"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/lobby/LobbyPigeonPath.cpp",
+            "line": 551,
+            "text": "TUnk_804E0988"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/lobby/LobbyPigeonPath.cpp",
+            "line": 565,
+            "text": "TUnk_804E0988"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/lobby/LobbyPigeonPath.cpp",
+            "line": 577,
+            "text": "TUnk_804E0988"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/lobby/LobbyPigeonPath.cpp",
+            "line": 745,
+            "text": "TUnk_804E094C"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/lobby/LobbyPigeonPath.cpp",
+            "line": 750,
+            "text": "TUnk_804E094C"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/lobby/LobbyPigeonPath.cpp",
+            "line": 762,
+            "text": "TUnk_804E094C"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/lobby/LobbyPigeonPath.cpp",
+            "line": 905,
+            "text": "TUnk_804E0910"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/lobby/LobbyPigeonPath.cpp",
+            "line": 910,
+            "text": "TUnk_804E0910"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/lobby/LobbyPigeonPath.cpp",
+            "line": 926,
+            "text": "TUnk_804E0910"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/lobby/LobbyPigeonPath.cpp",
+            "line": 1075,
+            "text": "TUnk_804E08D4"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/lobby/LobbyPigeonPath.cpp",
+            "line": 1080,
+            "text": "TUnk_804E08D4"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/lobby/LobbyPigeonPath.cpp",
+            "line": 1092,
+            "text": "TUnk_804E08D4"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/lobby/LobbyPigeonPath.cpp",
+            "line": 1323,
+            "text": "TUnk_804E0898"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/object/lobby/LobbyPigeonPath.cpp",
+            "line": 1329,
+            "text": "TUnk_804E0898"
+          },
+          {
+            "key": "local_decl",
+            "path": "src/pso/render/render_util.cpp",
+            "line": 482,
+            "text": "extern unsigned int __float_nan[]"
+          },
+          {
+            "key": "local_decl",
+            "path": "src/pso/render/render_util.cpp",
+            "line": 483,
+            "text": "extern unsigned int __float_huge[]"
+          }
+        ],
+        "report_sha256": "7cefa197138d0a0eb7b1a3e448fee174f5e2fa6dce854da645995c91bad16761"
+      }
+    },
+    "audio": {
+      "head": "f14ede1d8ccf16f7e239dd65ca25b13075a90d45",
+      "tree": "2bbed9847160317b20ee6ed68e80115c7da6161f",
+      "coverage_baseline": "e54879686e7d1ddff26569b6ee2a0373690d01ac",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "audio-report.json": "c22774a146a180ddb1b16b7acf79fb2c5a91dc50e3d0822a0a960aff27bd274c",
+        "audio-check.json": "ec167389dbd490e17ac3a61384def77d8d58a7485e34e9bf913ffed6e489dc0a"
+      },
+      "source_quality": {
+        "path_count": 50,
+        "removed": 28,
+        "added": 0,
+        "changed_labels": 0,
+        "flagged_labels": [],
+        "newly_stale_retention": 0,
+        "findings_by_kind": {},
+        "findings": [],
+        "report_sha256": "a3925bb5d5fbbe8508f895a1fc79349d373dde6665e744513a00e9c4651a2377"
+      }
+    },
+    "display": {
+      "head": "5080cc6f704f51da7f631944d26fe266f456d21f",
+      "tree": "2683f0dba52e2e30b648f056cdaa2016cebc6ade",
+      "coverage_baseline": "f14ede1d8ccf16f7e239dd65ca25b13075a90d45",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "display-report.json": "3bf3e15429177294d20b658e95ddad93ba7cd62bd720384855002e49671729d0",
+        "display-check.json": "a7ea85420983cf100ff928153d619467c0126ca9285f97659084314ead2e4ff9"
+      },
+      "source_quality": {
+        "path_count": 18,
+        "removed": 136,
+        "added": 11,
+        "changed_labels": 2,
+        "flagged_labels": [],
+        "newly_stale_retention": 0,
+        "findings_by_kind": {
+          "address_type": 5,
+          "this_cast": 2,
+          "offset_member": 6
+        },
+        "findings": [
+          {
+            "key": "address_type",
+            "path": "src/pso/unk/text_800F7DAC.cpp",
+            "line": 35,
+            "text": "TUnk_80499970"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/unk/text_800F7DAC.cpp",
+            "line": 76,
+            "text": "TUnk_804999D0"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/unk/text_800F7DAC.cpp",
+            "line": 76,
+            "text": "TUnk_804999D0"
+          },
+          {
+            "key": "this_cast",
+            "path": "src/pso/unk/text_800F7DAC.cpp",
+            "line": 76,
+            "text": "THunterGuildSeqOffline: (TUnk_804999D0 *)this"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/unk/text_800F7DAC.cpp",
+            "line": 106,
+            "text": "TUnk_804999B8"
+          },
+          {
+            "key": "address_type",
+            "path": "src/pso/unk/text_800F7DAC.cpp",
+            "line": 106,
+            "text": "TUnk_804999B8"
+          },
+          {
+            "key": "this_cast",
+            "path": "src/pso/unk/text_800F7DAC.cpp",
+            "line": 106,
+            "text": "TLobby: (TUnk_804999B8 *)this"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/unk/text_800F7DAC.cpp",
+            "line": 217,
+            "text": "m_24"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/unk/text_800F7DAC.cpp",
+            "line": 229,
+            "text": "m_24"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/unk/text_800F7DAC.cpp",
+            "line": 256,
+            "text": "m_24"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/unk/text_800F7DAC.cpp",
+            "line": 271,
+            "text": "m_24"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/unk/text_800F7DAC.cpp",
+            "line": 287,
+            "text": "m_24"
+          },
+          {
+            "key": "offset_member",
+            "path": "src/pso/unk/text_800F7DAC.cpp",
+            "line": 293,
+            "text": "m_24"
+          }
+        ],
+        "report_sha256": "76a9e4843f7ea310a318a2fe86e6eca259cd52ee128fb1e01b1e16be78bccc60"
+      }
+    },
+    "handoff": {
+      "head": "5b39366275e4a475dc0298d316f97baa965daf23",
+      "tree": "2b447e2f8577f8c669b13de2d8a610b48ed328b2",
+      "coverage_baseline": "5080cc6f704f51da7f631944d26fe266f456d21f",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "handoff-report.json": "3bf3e15429177294d20b658e95ddad93ba7cd62bd720384855002e49671729d0",
+        "handoff-check.json": "ec167389dbd490e17ac3a61384def77d8d58a7485e34e9bf913ffed6e489dc0a"
+      },
+      "source_quality": {
+        "path_count": 18,
+        "removed": 70,
+        "added": 11,
+        "changed_labels": 0,
+        "flagged_labels": [],
+        "newly_stale_retention": 0,
+        "findings_by_kind": {
+          "function_placeholder": 8,
+          "offset_member": 3
+        },
+        "findings": [
+          {
+            "key": "function_placeholder",
+            "path": "include/pso/system/ControllerInput.h",
+            "line": 41,
+            "text": "func_801A5E54"
+          },
+          {
+            "key": "offset_member",
+            "path": "include/pso/unk/SharedMemory.h",
+            "line": 66,
+            "text": "unk_13C"
+          },
+          {
+            "key": "offset_member",
+            "path": "include/pso/unk/SharedMemory.h",
+            "line": 67,
+            "text": "unk_13D"
+          },
+          {
+            "key": "offset_member",
+            "path": "include/pso/unk/SharedMemory.h",
+            "line": 69,
+            "text": "unk_1C2"
+          },
+          {
+            "key": "function_placeholder",
+            "path": "src/pso/network/TTcpSocket.cpp",
+            "line": 280,
+            "text": "func_801A5E54"
+          },
+          {
+            "key": "function_placeholder",
+            "path": "src/pso/network/TTcpSocket.cpp",
+            "line": 368,
+            "text": "func_801A5E54"
+          },
+          {
+            "key": "function_placeholder",
+            "path": "src/pso/system/ControllerInput.cpp",
+            "line": 261,
+            "text": "func_801A5E54"
+          },
+          {
+            "key": "function_placeholder",
+            "path": "src/pso/system/movie/TMovie.cpp",
+            "line": 320,
+            "text": "func_801A5E54"
+          },
+          {
+            "key": "function_placeholder",
+            "path": "src/pso/system/movie/TMovie.cpp",
+            "line": 321,
+            "text": "func_801A5E54"
+          },
+          {
+            "key": "function_placeholder",
+            "path": "src/pso/system/movie/TMovie.cpp",
+            "line": 366,
+            "text": "func_801A5E54"
+          },
+          {
+            "key": "function_placeholder",
+            "path": "src/pso/unk/TLobby_801461EC.cpp",
+            "line": 179,
+            "text": "func_801A5E54"
+          }
+        ],
+        "report_sha256": "1c9e1b72cc84b3d8ec8a1cf37c998acc013f987a7788afdff42c8121d91b8932"
+      }
+    },
+    "final": {
+      "head": "878ffa6ca98b6e48618fcf755c3b54a56d6635eb",
+      "tree": "c5199646b62891790d07ef7c69c7811b65488170",
+      "coverage_baseline": "5b39366275e4a475dc0298d316f97baa965daf23",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "final-report.json": "3bf3e15429177294d20b658e95ddad93ba7cd62bd720384855002e49671729d0",
+        "final-check.json": "ec167389dbd490e17ac3a61384def77d8d58a7485e34e9bf913ffed6e489dc0a"
+      },
+      "upstream_comparison": {
+        "matched_functions": {
+          "before": 27572,
+          "after": 27572,
+          "delta": 0
+        },
+        "lost_exact_or_linked_ranges": 0,
+        "alignment_bytes_outside_coverage": 0,
+        "newly_covered_bytes": 0,
+        "reported_data_delta": 0,
+        "diagnostics": [],
+        "report_sha256": "d782b300f0d7d769bf79326977414499bfe169ffb885844483c6876e119e8f84"
+      },
+      "fork_main_comparison": {
+        "matched_functions": {
+          "before": 27565,
+          "after": 27572,
+          "delta": 7
+        },
+        "lost_exact_or_linked_ranges": 0,
+        "alignment_bytes_outside_coverage": 2565,
+        "newly_covered_bytes": 159,
+        "reported_data_delta": -2406,
+        "diagnostics": [
+          "total_data changed by -2406; reconcile coverage explicitly"
+        ],
+        "report_sha256": "4cc5459988abd780242927b0ab030e0f42f237b6a8c697152e07282907997014",
+        "baseline": "3342e42983535b393148deb5b719202b9bf4b7d8",
+        "measured_report_head": "34120b34d9fae0160ad2ae5aef325ac20e2255b4",
+        "verified_effective_build_inputs": "Only README.md differs from the current fork main."
+      },
+      "source_quality": {
+        "path_count": 14,
+        "removed": 1,
+        "added": 0,
+        "changed_labels": 0,
+        "flagged_labels": [],
+        "newly_stale_retention": 0,
+        "findings_by_kind": {},
+        "findings": [],
+        "report_sha256": "beb96626da68afe152ce0e790e4cf911628dd751c265cf5f70d3e47b7aae3139"
+      }
+    },
+    "ave": {
+      "head": "87a680da3ae10458237e0a55a0cfbdd074f55db1",
+      "tree": "731b80e4ca6d263e770363a74dcb67c97561f1bc",
+      "coverage_baseline": "878ffa6ca98b6e48618fcf755c3b54a56d6635eb",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "ave-report.json": "3bf3e15429177294d20b658e95ddad93ba7cd62bd720384855002e49671729d0",
+        "ave-check.json": "ec167389dbd490e17ac3a61384def77d8d58a7485e34e9bf913ffed6e489dc0a"
+      }
+    },
+    "plain": {
+      "head": "6aff393c9d5ac3fa4369268d8d273812c4e499aa",
+      "tree": "4aefd15ae181e744869fb9c07b94baf6664294c7",
+      "coverage_baseline": "a7ab85081fd5b56e8d4b615068bab9c9e5ec7be9",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "plain-report.json": "ba9b31ad68ddaf1cbe91575ca1df36f72a87e134feddd9d268405e2e76f31c5e",
+        "plain-check.json": "ec167389dbd490e17ac3a61384def77d8d58a7485e34e9bf913ffed6e489dc0a"
+      },
+      "upstream_comparison": {
+        "matched_functions": {
+          "before": 27572,
+          "after": 27572,
+          "delta": 0
+        },
+        "lost_exact_or_linked_ranges": 0,
+        "alignment_bytes_outside_coverage": 0,
+        "newly_covered_bytes": 0,
+        "reported_data_delta": 0,
+        "diagnostics": [],
+        "report_sha256": "70b87390e9371661f7ebe48bf2eb9c7029d51ab468f5d44c2bed44c5292f004d"
+      },
+      "fork_main_comparison": {
+        "matched_functions": {
+          "before": 27565,
+          "after": 27572,
+          "delta": 7
+        },
+        "lost_exact_or_linked_ranges": 0,
+        "alignment_bytes_outside_coverage": 2565,
+        "newly_covered_bytes": 159,
+        "reported_data_delta": -2406,
+        "diagnostics": [
+          "total_data changed by -2406; reconcile coverage explicitly"
+        ],
+        "report_sha256": "17869d026307808953efa2b5f8444060ebbc3c60f3c41230bb55427c966221b8",
+        "baseline": "3342e42983535b393148deb5b719202b9bf4b7d8",
+        "measured_report_head": "34120b34d9fae0160ad2ae5aef325ac20e2255b4",
+        "verified_effective_build_inputs": "Only README.md differs from the current fork main."
+      }
+    },
+    "plain-private": {
+      "head": "6e63cae6d9f5d9f26df3ab9bf6318e8ffe493fb3",
+      "tree": "e931ec06a2b0034696a2452561ab4c5db795d50b",
+      "coverage_baseline": "6aff393c9d5ac3fa4369268d8d273812c4e499aa",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "plain-private-report.json": "ba9b31ad68ddaf1cbe91575ca1df36f72a87e134feddd9d268405e2e76f31c5e",
+        "plain-private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011"
+      }
+    },
+    "ave-private": {
+      "head": "1dd913ad3cb1f507f9191b9266fa5e6cebf23092",
+      "tree": "429291b80f38d3f8804e667ee94dd53116fa8dd3",
+      "coverage_baseline": "87a680da3ae10458237e0a55a0cfbdd074f55db1",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "ave-private-report.json": "3bf3e15429177294d20b658e95ddad93ba7cd62bd720384855002e49671729d0",
+        "ave-private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011"
+      }
+    }
+  },
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "effects_shared_paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/network/protocol/subcommand_validation.h",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/unk/TLobby.h",
+    "src/pso/boss/barbaray/TBoss7TentacleNeedle.cpp",
+    "src/pso/boss/derolle/TBoss2Tentacle.cpp",
+    "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+    "src/pso/boss/dragon/TBoss1Dragon.cpp",
+    "src/pso/boss/dragon/TObjBoss1Crater.cpp",
+    "src/pso/boss/dragon/TObjBoss1Floor.cpp",
+    "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+    "src/pso/boss/galgryphon/TBoss5GryphonSnarl.cpp",
+    "src/pso/boss/galgryphon/TBoss5GryphonTornado.cpp",
+    "src/pso/boss/galgryphon/TObjBoss5PillarSmoke.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon_8036AEF8.cpp",
+    "src/pso/boss/olgaflow/TBoss6Rock.cpp",
+    "src/pso/boss/olgaflow/TBoss6RockChase.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptCore.cpp",
+    "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp",
+    "src/pso/effect/TBGLightningCtrl.cpp",
+    "src/pso/effect/TDuelEffectNumber.cpp",
+    "src/pso/effect/TDuelEffectString.cpp",
+    "src/pso/effect/TEF_LensFlare.cpp",
+    "src/pso/effect/TEffIndirectCtrl.cpp",
+    "src/pso/effect/TEffect.cpp",
+    "src/pso/effect/particle/ParticleResources.cpp",
+    "src/pso/effect/sprite/TQuadSprite.cpp",
+    "src/pso/effect/sprite/TQuadSpriteCol.cpp",
+    "src/pso/effect/sprite/TQuadSpriteNormal.cpp",
+    "src/pso/effect/sprite/TQuadSpriteScl.cpp",
+    "src/pso/effect/sprite/TQuadSpriteSclCol.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+    "src/pso/enemy/darkgunner/DarkGunner.cpp",
+    "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+    "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+    "src/pso/enemy/flower/TObjEneRe2Flower_800C4B78.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGueBarrier.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/enemy/lappy/TObjEneLappy.cpp",
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+    "src/pso/item/mag/TItemMag.cpp",
+    "src/pso/object/TObjComputer.cpp",
+    "src/pso/object/ambient/TObjCGrass.cpp",
+    "src/pso/object/ambient/TObjGrass.cpp",
+    "src/pso/object/ambient/TObjLight_803DF220.cpp",
+    "src/pso/object/base/ObjectFactoryTables.cpp",
+    "src/pso/object/city/CityDoors.cpp",
+    "src/pso/object/container/TContainerAncient01.cpp",
+    "src/pso/object/door/TODoorAncient01.cpp",
+    "src/pso/object/door/TODoorAncient03.cpp",
+    "src/pso/object/door/TODoorAncient04.cpp",
+    "src/pso/object/door/TODoorAncient08.cpp",
+    "src/pso/object/door/TODoorAncient09.cpp",
+    "src/pso/object/door/TODoorCave01.cpp",
+    "src/pso/object/door/TODoorCave02.cpp",
+    "src/pso/object/door/TODoorMachine01.cpp",
+    "src/pso/object/door/TODoorMachine02.cpp",
+    "src/pso/object/door/TODoorVS2Door01.cpp",
+    "src/pso/object/door/TObjDoorKey.cpp",
+    "src/pso/object/fence/TOFenceAncient01.cpp",
+    "src/pso/object/fence/TOFenceAncient02.cpp",
+    "src/pso/object/fence/TOFenceAncient03.cpp",
+    "src/pso/object/fence/TOFenceAncient04.cpp",
+    "src/pso/object/fence/TObjLazerFenceNorm.cpp",
+    "src/pso/object/key/TOKeyAncient01.cpp",
+    "src/pso/object/key/TOKeyAncient03.cpp",
+    "src/pso/object/key/TOKeyCave01.cpp",
+    "src/pso/object/key/TOKeyGenericSw.cpp",
+    "src/pso/object/key/TOKeyMachine01.cpp",
+    "src/pso/object/lobby/LobbyGoGoBall.cpp",
+    "src/pso/object/lobby/TObjLobbyMain.cpp",
+    "src/pso/object/seabed/TObjSeabedSuisoBrakable.cpp",
+    "src/pso/object/switch/TOSensorAncient01.cpp",
+    "src/pso/object/switch/TOSensorGeneral01.cpp",
+    "src/pso/object/trap/TOMineIcon01.cpp",
+    "src/pso/player/TObjPlayer_80011014.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TPlayerBattleCtrl4P.cpp",
+    "src/pso/player/TPlayerFootStamp.cpp",
+    "src/pso/quest/TQuestThread.cpp",
+    "src/pso/render/GinjaMaterial.cpp",
+    "src/pso/system/scene/TScene.cpp",
+    "src/pso/technique/TTecAnti.cpp",
+    "src/pso/technique/TTecCtrl.cpp",
+    "src/pso/technique/TTecFoie.cpp",
+    "src/pso/technique/TTecLuker.cpp",
+    "src/pso/technique/TTecRaBarta.cpp",
+    "src/pso/technique/TTecRaZonde_80238C6C.cpp",
+    "src/pso/technique/TTecReverser.cpp",
+    "src/pso/technique/TTecSifta.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80145778.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801E4CF0.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8033A8EC.cpp",
+    "src/pso/ui/hud/TMainCursor.cpp",
+    "src/pso/ui/window/TWindowKeyBoardBase.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp",
+    "src/pso/unk/TLobby_8001D6A0.cpp",
+    "src/pso/unk/TLobby_8001EF5C.cpp",
+    "src/pso/unk/TLobby_800F5CF0.cpp",
+    "src/pso/unk/TLobby_801C25B4.cpp",
+    "src/pso/unk/TLobby_801E2F94.cpp",
+    "src/pso/unk/TLobby_801E43E4.cpp",
+    "src/pso/unk/TLobby_80226C3C.cpp",
+    "src/pso/unk/TLobby_803382E4.cpp",
+    "src/pso/unk/TUnk_8048E1A4.cpp",
+    "src/pso/unk/TUnk_804CC870.cpp",
+    "src/pso/unk/text_8004AA04.cpp",
+    "src/pso/unk/text_8004D9A8.cpp",
+    "src/pso/unk/text_800F5BC0.cpp",
+    "src/pso/unk/text_80184C2C.cpp",
+    "src/pso/unk/text_801A5778.cpp",
+    "src/pso/unk/text_8022F258.cpp",
+    "src/pso/unk/text_8026C664.cpp",
+    "src/pso/unk/text_803DA798.cpp",
+    "src/pso/unk/text_803DAFA8.cpp",
+    "src/pso/unk/text_803DD5E0.cpp",
+    "src/pso/unk/text_803E2F28.cpp",
+    "src/pso/weapon/WeaponAttackActions.cpp"
+  ],
+  "comparison_to_prior_full_source": {
+    "initial_difference_paths": 350,
+    "accepted_paths": 309,
+    "review_vs_rehearsal_only_blank_lines": [
+      "src/pso/item/TItemBuff.cpp",
+      "src/pso/item/TItemLockCountCtrl.cpp",
+      "src/pso/item/drop/TItemDropSub.cpp",
+      "src/pso/item/drop/TItemDropSub_80107C40.cpp",
+      "src/pso/npc/TObjNpcNgcBase.cpp",
+      "src/pso/npc/TObjNpcNgcBase_80358AE8.cpp",
+      "src/pso/object/ambient/TButterfly.cpp",
+      "src/pso/object/door/TObjDoorJung_8023DBEC.cpp",
+      "src/pso/object/ending/TObjOnlineEnding.cpp",
+      "src/pso/object/jungle/TOJungleDesign.cpp",
+      "src/pso/object/key/TODummyKeyCave01.cpp",
+      "src/pso/object/lobby/TObjButterflyLobby_80350958.cpp",
+      "src/pso/object/switch/TOSwitchAttackSub.cpp",
+      "src/pso/unk/SampledMotionPoints.cpp",
+      "src/pso/unk/TLobby_800FA044.cpp",
+      "src/pso/unk/TLobby_80131794.cpp",
+      "src/pso/unk/TLobby_8013ADF0.cpp",
+      "src/pso/unk/TLobby_801DEFC4.cpp",
+      "src/pso/unk/TLobby_8020C8A4.cpp",
+      "src/pso/unk/TLobby_8020CD44.cpp",
+      "src/pso/unk/TLobby_8028A7C8.cpp",
+      "src/pso/unk/TLobby_8028EA28.cpp",
+      "src/pso/unk/TLobby_802AF5FC.cpp",
+      "src/pso/unk/TLobby_802D79EC.cpp",
+      "src/pso/unk/TLobby_8030A834.cpp",
+      "src/pso/unk/TLobby_8034C23C.cpp",
+      "src/pso/unk/TLobby_8035D540.cpp",
+      "src/pso/unk/TLobby_803CC0B4.cpp",
+      "src/pso/unk/TLobby_803DE778.cpp",
+      "src/pso/unk/text_8010F210.cpp",
+      "src/pso/unk/text_801A2B38.cpp",
+      "src/pso/unk/text_8020BFE4.cpp",
+      "src/pso/unk/text_8020C354.cpp",
+      "src/pso/unk/text_80222C28.cpp",
+      "src/pso/unk/text_8022F258.cpp",
+      "src/pso/unk/text_8023DCB8.cpp",
+      "src/pso/unk/text_802693B4.cpp",
+      "src/pso/unk/text_8026A14C.cpp",
+      "src/pso/unk/text_8026AC50.cpp",
+      "src/pso/unk/text_802754EC.cpp",
+      "src/pso/unk/text_8028A714.cpp",
+      "src/pso/unk/text_802AE978.cpp",
+      "src/pso/unk/text_80309890.cpp",
+      "src/pso/unk/text_803CC134.cpp",
+      "src/pso/unk/text_803F3BF8.cpp",
+      "src/pso/unk/text_803F4D84.cpp"
+    ],
+    "source_review": {
+      "unused_header_omitted": "include/pso/camera/CameraViewVectors.h",
+      "typed_call_kept_and_duplicate_includes_removed": [
+        "src/pso/effect/TDuelEffectString.cpp",
+        "src/pso/unk/TUnk_804CC870.cpp"
+      ]
+    }
+  },
+  "directives": {
+    "removed": 86,
+    "affected_units": 12
+  },
+  "runtime": {
+    "strip": {
+      "images": 2,
+      "result": "strip selection, both winding signs, scrolling and release passed",
+      "sha256": "cebade57ee59ef65b58195a6a54e15901dc370332b2062ba4bd875fb409c1e3c"
+    },
+    "resources": {
+      "images": 2,
+      "result": "70 resource loading cases passed",
+      "sha256": "92f88f4ca273e02b7dedeaebdc71272ee296b3842f08f23ae8778b08009c1c5e"
+    },
+    "heap": {
+      "images": 2,
+      "result": "Heap release, data-file cleanup and scalar allocation passed.",
+      "sha256": "64f0a3aecf49d594d0e211c3473f78914220b74221847b04d228f6a34531721b"
+    },
+    "one_shot": {
+      "images": 2,
+      "result": "8 one-shot sound cases passed",
+      "sha256": "9dacec99553912a32fd28db5dbe415f4709373925c608b5eef1d7dcae9e87baa"
+    },
+    "modem": {
+      "images": 2,
+      "result": "modem send, status, command filters, dialing and four ring cases passed.",
+      "sha256": "672b0a356b060cafc91b45056debf3e0b6ae4d96bc7ed7b3220bace12678719c"
+    }
+  },
+  "fork_tooling": {
+    "patch_paths": 130,
+    "retention_entries": 27007,
+    "tests": 310,
+    "evidence_sha256": {
+      "plain-private-tool-tests.log": "b02431c16abfa3d63e562816883d8d4069370337a66e5df3cd99e51ad2b6b268",
+      "plain-private-fork-tests.log": "61c68f659e87ffde0eb09d8b8f5ec25e2a20eca3da62558e07680462f5ec8cfa",
+      "plain-private-host-tests.log": "56f699c9d8ff5a32cc196940d8bb95e7f6799e211464315f7d77688b6ab4fccc",
+      "plain-overlay.patch": "d883a1572cd41c5496fda78efa2439a1675f249155783be1c7b1ba13d990e8a1",
+      "ave-overlay.patch": "0bd3996a436b55eef52ab396b181747d1fe07caf074365db292fb8374ed867a8"
+    }
+  },
+  "upstream_queue": {
+    "upstream_master": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+    "inventory_pr": 377,
+    "optional_ave_tcp_pr": 378,
+    "next_independent_review": "saves, quests and assets"
+  }
+}

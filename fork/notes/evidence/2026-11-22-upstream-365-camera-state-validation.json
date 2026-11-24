@@ -1,0 +1,291 @@
+{
+  "source": "8c249664a99a923bf79fc0cea186f2b9b64007bb",
+  "previous_source": "470bf2bf24e083fcf4b5c7862379eb8489235e21",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/camera/CameraHelpers.h",
+    "include/pso/camera/TCameraCtrl_8006C254.h",
+    "include/pso/camera/TCameraCtrl_803D6538.h",
+    "include/pso/camera/TObjLiveCameraCtrl.h",
+    "include/pso/item/drop/TItemDrop_800F93F0.h",
+    "include/pso/object/TObjLiveMonitor.h",
+    "include/pso/system/ResourceFile.h",
+    "include/pso/unk/TUnk_80488B68.h",
+    "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+    "src/pso/boss/dragon/TBoss1Dragon.cpp",
+    "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+    "src/pso/boss/galgryphon/TBoss5GryphonDemo.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+    "src/pso/camera/TCameraCtrl_8006BCD8.cpp",
+    "src/pso/camera/TCameraCtrl_8006C254.cpp",
+    "src/pso/camera/TCameraCtrl_803D6960.cpp",
+    "src/pso/camera/TCameraCtrl_803D749C.cpp",
+    "src/pso/item/drop/TItemDrop_80105D0C.cpp",
+    "src/pso/object/TObjLiveMonitor.cpp",
+    "src/pso/system/scene/TScene.cpp",
+    "src/pso/unk/TLobby_800F8AA8.cpp",
+    "src/pso/unk/TLobby_80207DA8.cpp",
+    "src/pso/unk/text_8004D9A8.cpp"
+  ],
+  "combined_paths_from_upstream": 1094,
+  "scripted_camera_replay": {
+    "base": "7133dc1ac5",
+    "donor": "3fb65f36aa",
+    "live": "470bf2bf24e083fcf4b5c7862379eb8489235e21",
+    "paths": {
+      "config/GPOE8P/psov3/symbols.txt": "conflict",
+      "include/pso/camera/CameraHelpers.h": "clean",
+      "include/pso/camera/TCameraCtrl_8006C254.h": "clean",
+      "include/pso/camera/TCameraCtrl_803D6538.h": "conflict",
+      "include/pso/item/drop/TItemDrop_800F93F0.h": "clean",
+      "include/pso/system/ResourceFile.h": "clean",
+      "include/pso/unk/TUnk_80488B68.h": "clean",
+      "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp": "clean",
+      "src/pso/boss/dragon/TBoss1Dragon.cpp": "conflict",
+      "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp": "conflict",
+      "src/pso/boss/galgryphon/TBoss5GryphonDemo.cpp": "conflict",
+      "src/pso/boss/goldragon/TBoss8Dragon.cpp": "conflict",
+      "src/pso/boss/goldragon/TBoss8DragonDemo.cpp": "already mapped",
+      "src/pso/boss/volopt/TBoss3VoloptP02.cpp": "clean",
+      "src/pso/camera/TCameraCtrl_8006BCD8.cpp": "clean",
+      "src/pso/camera/TCameraCtrl_8006C254.cpp": "conflict",
+      "src/pso/camera/TCameraCtrl_803D6960.cpp": "clean",
+      "src/pso/camera/TCameraCtrl_803D749C.cpp": "conflict",
+      "src/pso/effect/photon/PhotonBlastSummon.cpp": "already mapped",
+      "src/pso/item/drop/TItemDrop_80105D0C.cpp": "conflict",
+      "src/pso/system/scene/TScene.cpp": "clean",
+      "src/pso/unk/TLobby_800F8AA8.cpp": "clean",
+      "src/pso/unk/TLobby_80207DA8.cpp": "clean",
+      "src/pso/unk/text_8004D9A8.cpp": "clean"
+    }
+  },
+  "validation": {
+    "source": {
+      "baseline": "470bf2bf24e083fcf4b5c7862379eb8489235e21",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8006C140",
+          "before": "configure_scripted_camera_playback__FPUcl",
+          "after": "configure_scripted_camera_playback__FP14CameraPlaybackl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8030B7BC",
+          "before": "update_camera__15TObjLiveMonitorFv",
+          "after": "update_camera__18TObjLiveCameraCtrlFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803D6960",
+          "before": "sample_camera_motion__FPUclPUcf",
+          "after": "sample_camera_motion__FPCUcPC10NJS_MOTIONPC20CameraMotionChannelsf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803D77C0",
+          "before": "select_motion_sampler__FPlf",
+          "after": "select_motion_sampler__FPC10NJS_MOTIONf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803D7BB0",
+          "before": "bind_motion_channel_samplers__FP10NJS_MOTIONf",
+          "after": "bind_motion_channel_samplers__FPC10NJS_MOTIONf"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "2b289f0a1a3d09aaa40d51ad766c9d7934576f59a74740f186bf3c127b016e29",
+      "report_sha256": "3d0f73e67d04b4c86fca39e3d7f74db74c6d90abd20512ed088b17c3d829be3e"
+    },
+    "layer": {
+      "baseline": "8c249664a99a923bf79fc0cea186f2b9b64007bb",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "52e7b7c44c895ea98e91fe1a9ea21805885753879d1966b15b6b684ebe565d0b",
+      "report_sha256": "3d0f73e67d04b4c86fca39e3d7f74db74c6d90abd20512ed088b17c3d829be3e"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "fd95d35a45dd7a89d2cfdffe32bbf1e1a846a1e69636403726f5449d44982abd"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "79dd0e88056f4411d8f7562d608c4dcc290eeba5cb9dce00056a4b73746d3d96"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "camera": {
+      "result": "Actor orientation, position copies and scripted camera playback passed.",
+      "probe_sha256": "ce43c4eead2e091ecc156f12b4fbe330c4d38825047cd254ddb4f6968c57a32f",
+      "image_logs_sha256": {
+        "retail": "5678d69567f4295c0d69aeaa79ade8c6ac97decdd160f9ed6fbb20f7d7117bb0",
+        "source": "5678d69567f4295c0d69aeaa79ade8c6ac97decdd160f9ed6fbb20f7d7117bb0",
+        "workspace": "5678d69567f4295c0d69aeaa79ade8c6ac97decdd160f9ed6fbb20f7d7117bb0"
+      }
+    },
+    "rel": {
+      "result": "REL filename, caller buffer, relocated root and failed reads passed.",
+      "probe_sha256": "584f0185a993fd8d78cda4978e6575b1b9cfa254615b829be4b4efdfaddf1d85",
+      "image_logs_sha256": {
+        "retail": "32a57a0d3157caa055bb02512246fcf66a77a857b214e9cfb8962ccf294e135a",
+        "source": "32a57a0d3157caa055bb02512246fcf66a77a857b214e9cfb8962ccf294e135a",
+        "workspace": "32a57a0d3157caa055bb02512246fcf66a77a857b214e9cfb8962ccf294e135a"
+      }
+    },
+    "live_camera": {
+      "cases": {
+        "table_lookups": 3,
+        "effect_state": 2,
+        "update_dispatch": 2,
+        "countdown_and_hold": 2,
+        "shot_selections": 4,
+        "live_orbit": 1
+      },
+      "probe_sha256": "8e60e12641d2dabd3ad8bbc2a6dc4023c8ad6bc4d2de1ee0ba4054fd677b1250",
+      "image_logs_sha256": {
+        "retail": "a5b82bfbaa55c62b9dadcf07ba03a1f58ca2c22a21620ba24fdd5602ae14e625",
+        "source": "a5b82bfbaa55c62b9dadcf07ba03a1f58ca2c22a21620ba24fdd5602ae14e625",
+        "workspace": "a5b82bfbaa55c62b9dadcf07ba03a1f58ca2c22a21620ba24fdd5602ae14e625"
+      }
+    }
+  },
+  "historical": {
+    "closed_rows": [
+      {
+        "row": 4861,
+        "fork_path": "include/pso/TObjLiveCameraCtrl.h",
+        "current_owner": "include/pso/camera/TObjLiveCameraCtrl.h",
+        "compiled_owner": "src/pso/object/TObjLiveMonitor.cpp",
+        "fork_delta_sha256": "13200815cac5dd2a2c6465b8680934130a4464762a90b39dd634a8ced11f907f",
+        "current_owner_blob": "cf32d9a1d4476dd4ebe69bd7c8a3842d98a4cb8c",
+        "evidence": "The native shot, signed countdown, effect flag, target, orbit and RNG fields occupy the original offsets. The matching layout remains 0x13C. The three task steps are native members. The two target helpers preserve their current labels and receive the native camera controller."
+      },
+      {
+        "row": 6794,
+        "fork_path": "src/pso/ui/TObjLiveMonitor.cpp",
+        "current_owner": "src/pso/object/TObjLiveMonitor.cpp",
+        "compiled_owner": "src/pso/object/TObjLiveMonitor.cpp",
+        "fork_delta_sha256": "ed82ed2a442b6fc04cee0475493ce9bf1223f605ce786eeb8422454856f95926",
+        "current_owner_blob": "e283eb5a33020ace0919a01582a7898c3067d8ed",
+        "evidence": "The monitor uses the shared BML constructor, destructor, model and texture getters. The three camera task steps run on the live-camera controller and use its own shot, target and orbit fields. Player lookup and yaw use the native records. The camera selects the same target IDs through its typed helpers at 0x8030B7E8 and 0x8030B80C. Screen dispatch uses the camera object at offset 0x50."
+      }
+    ],
+    "scoped_rows": [
+      [
+        874,
+        "src/pso/boss/TBoss8Dragon.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+      ],
+      [
+        951,
+        "src/pso/boss/Boss7DeRolLeCBehavior.cpp",
+        "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp"
+      ],
+      [
+        992,
+        "src/pso/boss/Boss5GryphonBehavior.cpp",
+        "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+      ],
+      [
+        1084,
+        "src/pso/boss/TBoss1Dragon.cpp",
+        "src/pso/boss/dragon/TBoss1Dragon.cpp"
+      ],
+      [
+        4424,
+        "src/pso/item/TItemDrop_80105D0C.cpp",
+        "src/pso/item/drop/TItemDrop_80105D0C.cpp"
+      ],
+      [
+        5011,
+        "src/pso/misc/TCameraCtrl_803D6960.cpp",
+        "src/pso/camera/TCameraCtrl_803D6960.cpp"
+      ],
+      [
+        5014,
+        "src/pso/misc/TCameraCtrl_803D749C.cpp",
+        "src/pso/camera/TCameraCtrl_803D749C.cpp"
+      ],
+      [
+        6027,
+        "src/pso/misc/TLobby_80207DA8.cpp",
+        "src/pso/unk/TLobby_80207DA8.cpp"
+      ]
+    ],
+    "open_rows": 361,
+    "retained_symbol_names": [
+      [
+        "0x8030B7E8",
+        "get_first_dragon_part_id__18TObjLiveCameraCtrlFv",
+        "call_null__12TBoss8DragonFv"
+      ],
+      [
+        "0x8030B80C",
+        "get_local_client_id__18TObjLiveCameraCtrlFv",
+        "TBoss8Dragon__sub_8030B80C"
+      ],
+      [
+        "0x8001EDB0",
+        "TObjFish__sub_8001EDB0",
+        "get_bml_texlist"
+      ]
+    ]
+  },
+  "fork_workspace": {
+    "trial": "00761b9efc973a536891d4cf644c6606e8475d0d",
+    "overlay_paths": 130,
+    "updated_overlay_paths": [
+      "config/GPOE8P/psov3/config.yml"
+    ],
+    "archive_sha256": "826dbabdf9d8c6d719e408b8b7f5d8068749d269cda39b033d663f42c689c3a8",
+    "materialized_tree": "4445576c44b69987d5d2c88d04a93e519547702b",
+    "force_active": 27027
+  }
+}

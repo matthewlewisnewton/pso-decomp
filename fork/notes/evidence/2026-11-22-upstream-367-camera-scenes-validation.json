@@ -1,0 +1,203 @@
+{
+  "upstream": "6aee940ecaf4775ef71659a74534127a49cf9412",
+  "base": "4fc1ed7afe9483df05b68f2dc6aec746edf05ec3",
+  "head": "dd8bbb24297db27d06b85264d3d0ba40824ef0a8",
+  "commits": [
+    "5438eb321db26f2cc4f0bab9d41789d5a1b21d5f",
+    "cff7e3c35c40fb45ec943c20e415e8932f8ba19a",
+    "45ab56c73905f87d45e3765d9ba4d0299446857b",
+    "acc863b16da43a4e7a05e1082ff8a4aa1a6075ea",
+    "dd8bbb24297db27d06b85264d3d0ba40824ef0a8"
+  ],
+  "paths": 102,
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "coverage_losses": {
+    "regressions": [],
+    "data_regressions": [],
+    "linked_functions_lost": [],
+    "linked_data_lost": [],
+    "data_coverage_lost": [],
+    "padding_coverage_lost": []
+  },
+  "linker_label_changes": [
+    {
+      "module": "psov3",
+      "address": "0x8002E62C",
+      "before": "__ct__13TUnk_80482090FP7TObjectUl",
+      "after": "__ct__13TUnk_80482090FP7TObjectPA4_Cf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80069148",
+      "before": "transform_to_view__11TCameraCtrlFii",
+      "after": "transform_to_view__11TCameraCtrlFPC3VecP3Vec"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8006C140",
+      "before": "configure_scripted_camera_playback__FPUcl",
+      "after": "configure_scripted_camera_playback__FP14CameraPlaybackl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800F591C",
+      "before": "collect_plist_strips_by_texture__FPvPsl",
+      "after": "collect_plist_strips_by_texture__FP15StripBufferPairPsl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800F5AC8",
+      "before": "count_plist_strips_by_texture__FPvPvPv",
+      "after": "count_plist_strips_by_texture__FP15StripBufferPairPsl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800F5CF0",
+      "before": "alloc_tables__6TLobbyFll",
+      "after": "alloc_tables__15StripBufferPairFP10NJS_OBJECTl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800F8090",
+      "before": "init_fadeout_state__6TLobbyFl",
+      "after": "init_fadeout_state__6TLobbyFPFv_v"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800F8144",
+      "before": "set_fade_params__6TLobbyFl",
+      "after": "set_fade_params__6TLobbyFPFv_v"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801B53BC",
+      "before": "play_effect__10TObjPlayerFlll",
+      "after": "play_effect__10TObjPlayerFP10TObjPlayerll"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801B5408",
+      "before": "play_effect_default__10TObjPlayerFli",
+      "after": "play_effect_default__10TObjPlayerFP10TObjPlayerl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8030B7BC",
+      "before": "update_camera__15TObjLiveMonitorFv",
+      "after": "update_camera__18TObjLiveCameraCtrlFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8032BCBC",
+      "before": "dispatch_input_to_instance__18TAdEnterPasswordGCFi",
+      "after": "dispatch_input_to_instance__13TUnk_804EDAC0FP7TObject"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803D6960",
+      "before": "sample_camera_motion__FPUclPUcf",
+      "after": "sample_camera_motion__FPCUcPC10NJS_MOTIONPC20CameraMotionChannelsf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803D77C0",
+      "before": "select_motion_sampler__FPlf",
+      "after": "select_motion_sampler__FPC10NJS_MOTIONf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803D7BB0",
+      "before": "bind_motion_channel_samplers__FP10NJS_MOTIONf",
+      "after": "bind_motion_channel_samplers__FPC10NJS_MOTIONf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803D9324",
+      "before": "copy_matrix__10TObjPlayerFUlUl",
+      "after": "copy_matrix__10TObjPlayerFPA4_fPA4_Cf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803D9730",
+      "before": "concat_matrix__10TObjPlayerFUlUl",
+      "after": "concat_matrix__10TObjPlayerFPA4_fPA4_Cf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x803D976C",
+      "before": "concat_matrix__11TCameraCtrlFUlUl",
+      "after": "concat_matrix__11TCameraCtrlFPA4_fPA4_Cf"
+    }
+  ],
+  "data_inventory": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "runtime": {
+    "live": {
+      "cases": {
+        "table_lookups": 3,
+        "effect_state": 2,
+        "update_dispatch": 2,
+        "countdown_and_hold": 2,
+        "shot_selections": 4,
+        "live_orbit": 1
+      },
+      "logs": {
+        "retail": "a5b82bfbaa55c62b9dadcf07ba03a1f58ca2c22a21620ba24fdd5602ae14e625",
+        "source": "a5b82bfbaa55c62b9dadcf07ba03a1f58ca2c22a21620ba24fdd5602ae14e625"
+      }
+    },
+    "matrix": {
+      "cases": {
+        "matrix_cases": 27,
+        "view_cases": 16
+      },
+      "logs": {
+        "retail": "fd96296d833e998e23ef4b2c04bfd94318895afe2a604712b8d6fe7a5adb149c",
+        "source": "fd96296d833e998e23ef4b2c04bfd94318895afe2a604712b8d6fe7a5adb149c"
+      }
+    },
+    "scene": {
+      "cases": {
+        "fog_rows": 128,
+        "light_loads": 8,
+        "light_rows": 8,
+        "player_effect_cases": 20,
+        "resource_reload": 1,
+        "sqrt_cases": 4
+      },
+      "logs": {
+        "retail": "9351f8aed0b1de67960d5fbe1737b6f287c0fc56e5a4bf873d4fa3b45c303ecc",
+        "source": "9351f8aed0b1de67960d5fbe1737b6f287c0fc56e5a4bf873d4fa3b45c303ecc"
+      }
+    },
+    "scripted": {
+      "cases": "Actor orientation, position copies and scripted camera playback passed.",
+      "logs": {
+        "retail": "5678d69567f4295c0d69aeaa79ade8c6ac97decdd160f9ed6fbb20f7d7117bb0",
+        "source": "5678d69567f4295c0d69aeaa79ade8c6ac97decdd160f9ed6fbb20f7d7117bb0"
+      }
+    },
+    "strips": {
+      "cases": "strip selection, both winding signs, scrolling and release passed",
+      "log_sha256": "c91cc9e70562965122c9420dfab2e2fe3d6420b19d6faa542d47b740d340edcb"
+    },
+    "fades": {
+      "cases": "screen fade transitions, logo callbacks, packed quad color and five defer queue outcomes passed.",
+      "log_sha256": "2910759c75fa395332c330685b2cdd18403ff459097cfdbdfc11cd2bb10b0984"
+    }
+  },
+  "probe_only_aliases": [
+    "safe_free__23TAdSinglePlyChrSelectGCFPv = .text:0x8007EBB4; // type:function size:0x28",
+    "player_effect_bml_resource = .sbss:0x805D500C; // type:object size:0x4"
+  ],
+  "retail_report_sha256": "2a618952981facae1b5c234afceda53a7540dc522c6bee7b8b98f910c696bba1",
+  "check_sha256": "11bf4261623dbe969d0112f48b1024f6c4c89661d6c924bb64ece4bb756c7aa7",
+  "workspace_checkpoint": "25837dac4e3b4f2e2ce1ae5470476a11334d7810",
+  "historical_comparisons_open": 261
+}

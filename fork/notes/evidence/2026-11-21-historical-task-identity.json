@@ -1,0 +1,400 @@
+{
+  "upstream": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "previous_source": "0a6ad394941d2f3101b601df36eccd1403326608",
+  "source": "9aab8ef9dbe3e5c850258224e6d04cea6f62e560",
+  "source_tree": "ee170f6f6cd6705545c5413bc583804956acfba8",
+  "source_review_files": 1038,
+  "recovered_paths": [
+    {
+      "path": "config/GPOE8P/psov3/symbols.txt",
+      "previous_blob": "100644:4142b58f681cf10ff2e7c6dc84d6669f9577d967",
+      "review_blob": "100644:760993191945f8b483523669d937ad51bdc09107",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "include/pso/player/TUnk_804B6C24.h",
+      "previous_blob": "100644:ae43017c91e6a790c35323bedca6afa727eefe11",
+      "review_blob": "100644:608b87ad35fd4596920d0de0cf12200cd9a04711",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/system/task/TObject.h",
+      "previous_blob": "100644:5b5db23647160dbb2a0606c9c32b6be2dc664eed",
+      "review_blob": "100644:48908bc24d4a307ad171d5c1402b77a7c3a40126",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "include/pso/system/task/TObject_80019A50.h",
+      "previous_blob": "100644:46f7b3af8d47a0073ccd5427b5ca873f0a392c8c",
+      "review_blob": "100644:a9a8fc4d5ff7174d621212c6ff39b4104170a7ea",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/ui/TLogo.h",
+      "previous_blob": "100644:65eb2623d120b5fe1f9a699e08915664d74bded3",
+      "review_blob": "100644:72c554989f2c77d44c4d57b4d867acb71ac83ec0",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/ui/TLogo_8001C134.h",
+      "previous_blob": "100644:43d7a3107b8aeff9d124337146cacd5ba91896c1",
+      "review_blob": "100644:8cb19e393782a42aa03c7781b1a8344fd62235c8",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/unk/TUnk_804C3E60.h",
+      "previous_blob": "100644:4ebed2aedfaa45a71fd89d0d991ad4f52fc73fb1",
+      "review_blob": "100644:250c67c697b88c5021bd6690a1504fd91c206c1b",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/boss/volopt/TBoss3Volopt.cpp",
+      "previous_blob": "100644:3be840e19b385b5dfbdcd453c04d51c250070b99",
+      "review_blob": "100644:e81d7802a443a0cfd8067b79e915dbe000953aac",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/effect/particle/TParticleCtrl_801D6B3C.cpp",
+      "previous_blob": "100644:990682f74c0a9dcedfee13e636ee85ff67ce26db",
+      "review_blob": "100644:00da5055d153149177f376871ac78eed2b4b265c",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/enemy/darkgunner/TObjEneDarkGunCenter.cpp",
+      "previous_blob": "100644:c12d0b221a4ba164fb8c1734670efcec4ffecdc0",
+      "review_blob": "100644:d815abe12f0ce0ab55ff1c6cf1477caaca237b55",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/enemy/dubchik/TOCtrlDubchik_8015CA74.cpp",
+      "previous_blob": "100644:cd899e9b04ad69ed9ac09c09d944f5057f8beb19",
+      "review_blob": "100644:52d937f4948896afcfc5f8cbc207c38c4ea06fed",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/map/TSetEvtDestroy.cpp",
+      "previous_blob": "100644:68753d454adb84ba4f58b7da4b55654327361304",
+      "review_blob": "100644:30738bb6e9e0aa3895f54848ca6065f79970cf73",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/object/TDeadSpot.cpp",
+      "previous_blob": "100644:3769055e1ea4741d5431767a17c9eb6f92a684e3",
+      "review_blob": "100644:d25fbd01e91794a65e7b128b66378d6d3f9ef8ff",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/object/collision/TOAttackableCol.cpp",
+      "previous_blob": "100644:1dc8bf155b4f41307ce8fa88204846a121fc7143",
+      "review_blob": "100644:3429b5d37386e3cb2d8ba69499fb68920557f660",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "src/pso/object/container/TOContainerAncientEnemy.cpp",
+      "previous_blob": "100644:1f6889a23c33a316a8d47c73ecf8684fb4c9b6a3",
+      "review_blob": "100644:39e7aa04881a70da8a7407696c390d638d8ef594",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/object/door/TObjDoorKey.cpp",
+      "previous_blob": "100644:60d26fb4d334169c47dc6c38dcece55e2346a679",
+      "review_blob": "100644:1a185df8cc5155c64638694bc1f4751756a003ce",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "native archive source with existing style"
+    },
+    {
+      "path": "src/pso/object/fence/TOVS2Wall01.cpp",
+      "previous_blob": "100644:84bf78db6bef93bc2cbfebb0fff8c9634d3210e5",
+      "review_blob": "100644:6fd79ea7192d736abc6aab1f807d25af1ef5d30c",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "native archive source with existing style"
+    },
+    {
+      "path": "src/pso/object/quest/TObjQuestCol.cpp",
+      "previous_blob": "100644:e12653e9a8ab27c78b7ddf7451371ebfe0af9259",
+      "review_blob": "100644:5da1cfe5aafd7f6e1cbb8e7fc07e7d12316934db",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "src/pso/object/trap/TOMine.cpp",
+      "previous_blob": "100644:7bdaef5cfa4635d09e0c3ccf0a2c87e696a3f808",
+      "review_blob": "100644:940bd962a9972f43a3533f87bc8b279f2df5a465",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "native archive source with existing style"
+    },
+    {
+      "path": "src/pso/object/trap/TOTrapAncient01.cpp",
+      "previous_blob": "100644:a18a4d59fe8a97e279855bd177bac004222babd9",
+      "review_blob": "100644:1d0401d14a359b8fb831cbd169b69de6c3ef3927",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/object/trap/TOTrapSeabed01.cpp",
+      "previous_blob": "100644:8a693b8f8224fce3ed11a0bb06be120922c128fb",
+      "review_blob": "100644:150d2a82a74e80408957c50babab1f62667d85f2",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/player/PlayerTaskEffects.cpp",
+      "previous_blob": "100644:4be6b3b8cd56781f39c19b25c6e3e1448fe50262",
+      "review_blob": "100644:72fe127f9b42fbec7f9626491ab975bedd9f2f61",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/player/TObjPlayer_801AF2F0.cpp",
+      "previous_blob": "100644:bc4b49133386a1275c28b6b23c355e86c841e706",
+      "review_blob": "100644:72512bd0aac5a5a304bf1f01727974ad4c42ac40",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/player/TObjPlayer_801BD928.cpp",
+      "previous_blob": "100644:9dac1478c8556080bc159d00623023f38d208420",
+      "review_blob": "100644:ab39c0f9626021db5ac08e51a4e7136d9a5d7276",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/player/TObjPlayer_801C7430.cpp",
+      "previous_blob": "100644:f8ac0b8de78e811045b8a503e5f5a8ae26066582",
+      "review_blob": "100644:9497fe03736c0a99881d9bd75ea6121483c8724e",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/player/TPlayerBattleCtrl4P.cpp",
+      "previous_blob": "100644:54424c0b6a9a31e25ccf38d7c8dc251ae3949525",
+      "review_blob": "100644:a1361de7787a1df4b2b7a890f9e5c0c5751605eb",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/player/TPlyItem.cpp",
+      "previous_blob": "100644:97707cd7b80cc0816603a09a9b8f2ae0e217b620",
+      "review_blob": "100644:cd24b96f553faf9766ad58d943f4791b8e2542a3",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/quest/TQuestThread.cpp",
+      "previous_blob": "100644:98be2b511666d6bd5b3f9794924917b459278b5e",
+      "review_blob": "100644:f2802e5866331d323b7fa13ed7ab775385d093cf",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "src/pso/system/task/TObject_80019A50.cpp",
+      "previous_blob": "100644:62af18d6e1ee128191e60d7cbfa70ee8a58d33c2",
+      "review_blob": "100644:836c98cdc427577c5e154e02a0fe14e959252310",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/ui/TLogo_8001C134.cpp",
+      "previous_blob": "100644:1aca89c50c72ed1683ef518e12ea1fba03bc751e",
+      "review_blob": "100644:17e1024b6167ba73a6c0282ab1e0701572d48645",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/ui/frontend/TAdADXlogo.cpp",
+      "previous_blob": "100644:d696660345537e51d3e41199c57ab08d560c0f47",
+      "review_blob": "100644:88a665dedd059aad69ad48748124b35b82a17c30",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/ui/frontend/TAdSEGAlogo.cpp",
+      "previous_blob": "100644:4bd77859ca860acd90fb90a4b934800dbc4fdb54",
+      "review_blob": "100644:66b07cf0fdcb3912cd4d8fa5f3ae7c5e83c55b82",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801C50A8.cpp",
+      "previous_blob": "100644:50377126d5f2c823df6bd3269d3ed9b777cf3608",
+      "review_blob": "100644:d2d3e8b7635b8f70a54150479d4b42fd4996a3b9",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/ui/frontend/TAdSoniclogo.cpp",
+      "previous_blob": "100644:25c683c02568d32b5612cf20dcfc7c83c4fef456",
+      "review_blob": "100644:88322eeff0364fbbdb268c7831d9507cc5cf8aef",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/unk/TLobby_801C25B4.cpp",
+      "previous_blob": "100644:e25a7245cf1e26a650e5899b2432a78606ca9152",
+      "review_blob": "100644:8e206ec129e76903e86364ea893f5b97f1a67046",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/unk/text_8035AF18.cpp",
+      "previous_blob": "100644:b6c9fc74c354f78aa05502d15a7bccd86b770297",
+      "review_blob": "100644:2bcbebe54d08778ccab49000904b271b2eaaa5c1",
+      "in_previous_replay_ledger": false
+    }
+  ],
+  "checks": {
+    "identity": {
+      "head": "17cc7540c5bfc08f96a8f962cc12f8d06d774571",
+      "baseline": "0a6ad394941d2f3101b601df36eccd1403326608",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 1,
+      "check_sha256": "c67da305d178b170359a875d140cf49703d86a63879c30d034ef38d005d61304"
+    },
+    "frontend": {
+      "head": "9aab8ef9dbe3e5c850258224e6d04cea6f62e560",
+      "baseline": "17cc7540c5bfc08f96a8f962cc12f8d06d774571",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 1,
+      "check_sha256": "35cc046bae7931a9b5e006219268c4c3b144c9f5f41412a4064c81a9dea4c375"
+    },
+    "full-review": {
+      "head": "9aab8ef9dbe3e5c850258224e6d04cea6f62e560",
+      "baseline": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 432,
+      "check_sha256": "4bd2315197487d9902b18ce5da70f8633e760b62b8a1287fb761a7a16e386e84"
+    },
+    "layer": {
+      "head": "359f2a848af16ee18978423ee4d675c7e38d9c6c",
+      "baseline": "9aab8ef9dbe3e5c850258224e6d04cea6f62e560",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "294d5d4e65e3db3407ceff097811cede09728d2c21c1257d66d17135be0bdc4b"
+    }
+  },
+  "release_data": {
+    "frontend": {
+      "sha256": "6b882771a95afd301176d9f436ce9f5af7e1c2e7d907bcb493d5c6dcc5a73ea7",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "layer": {
+      "sha256": "6b882771a95afd301176d9f436ce9f5af7e1c2e7d907bcb493d5c6dcc5a73ea7",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    }
+  },
+  "typed_linker_labels": [
+    {
+      "module": "psov3",
+      "address": "0x8003F3C8",
+      "before": "check_value_equals__13TUnk_804B6C24CFl",
+      "after": "check_value_equals__7TObjectCFPCc"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8001C19C",
+      "before": "request_exit__5TLogoFv",
+      "after": "request_exit__5TLogoFP7TObject"
+    }
+  ],
+  "closed_historical_rows": [
+    {
+      "row": 2238,
+      "fork_path": "src/pso/misc/TLogo_8001C134.cpp",
+      "fork_blob": "97bb9e7abe2063b65fe7d184c996726b36475ad7",
+      "historical_delta_sha256": "8b4a24cea4789502c711c3064e6152e359b666fda2fe2cb2274c6f38594aae8c",
+      "owner": "src/pso/ui/TLogo_8001C134.cpp",
+      "owner_blob": "17e1024b6167ba73a6c0282ab1e0701572d48645",
+      "final_comparison_sha256": "cb6c01144491d2449c05f4674597a69fed8faad6797b2803a2e252b94179434b",
+      "status": "Typed historical integration validated",
+      "rationale": "The logo shares the typed Ninja descriptor and handle, loads the same resource at 0x8023E4B4, and releases that descriptor once. The exit callback receives the actual fade task, queues it directly, and sets the original flag."
+    },
+    {
+      "row": 5297,
+      "fork_path": "include/pso/TObject.h",
+      "fork_blob": "634379dc4ad92ca9b9da59432c7f1800cd6a261c",
+      "historical_delta_sha256": "6b603b6247ae6eddef300c17093ddf3f257692518befdabf8583a5ac6439da83",
+      "owner": "include/pso/system/task/TObject.h",
+      "owner_blob": "48908bc24d4a307ad171d5c1402b77a7c3a40126",
+      "final_comparison_sha256": "3839c251497f3bac81f2ab241d71f5d4985acd2c72c230225fed840c96da1de3",
+      "status": "Typed historical integration validated",
+      "rationale": "The common task base owns the class-name pointer identity predicate. Enemy, player, trap, collision, quest and UI callers use the actual base layout. The retail death-state routine uses the matching legacy call register form with the corrected owner and string type."
+    },
+    {
+      "row": 6056,
+      "fork_path": "include/pso/unk/TUnk_804C3E60.h",
+      "fork_blob": "6ea1a9c44fcf95939c667d104b2b83ba963a28d6",
+      "historical_delta_sha256": "8e602365697babc0778db01316c01a9706ffdbba49ee2dde2c527e0ee10a07e8",
+      "owner": "include/pso/unk/TUnk_804C3E60.h",
+      "owner_blob": "250c67c697b88c5021bd6690a1504fd91c206c1b",
+      "final_comparison_sha256": "daf4674af4a10fbfcba0359a00576912185eea8beeaab2c95426ee3856182899",
+      "status": "Typed historical integration validated",
+      "rationale": "The duel task keeps its native constructor and both state words with layout assertions. The reset and active owner share the typed pointer at 0x805D5D90 under its upstream name."
+    }
+  ],
+  "historical_ledger_sha256_before": "535648ab76d97793f30a13d7c5e24b44a9bc6075e856f42b72220a975eb5eb05",
+  "historical_ledger_sha256": "06dc54da7e9914165655119b293b6a0c7586558b819ecf40955fbb15d8c5175c",
+  "historical_rows_open": 511,
+  "symbol_aliases": {
+    "0x8001C19C": {
+      "historical": "request_exit__5TLogoFv",
+      "current": "request_exit__5TLogoFP7TObject",
+      "size": "0x28"
+    },
+    "0x8003F3C8": {
+      "historical": "check_value_equals__7TObjectFPCc",
+      "current": "check_value_equals__7TObjectCFPCc",
+      "size": "0x14"
+    }
+  },
+  "compiler_sensitive_forms": {
+    "player_death": "Two class-name checks in enter_death_state keep the original address-sized first argument to reproduce register allocation. The function target now belongs to TObject, and the second argument is the name pointer."
+  },
+  "runtime_probe": {
+    "builds": [
+      "retail",
+      "stock",
+      "fork"
+    ],
+    "sha256": "32e2afea5d59725a908b2b5f501466f337ba4a05bb74ec1d8f251586fb640001",
+    "source_sha256": "15180bb66407ffc837418cfabd5c4e3becbc4fab4da369beaced65281eaa7a96",
+    "scope": "The emulator verifies pointer identity with equal strings at distinct addresses, logo load and release, queuing the supplied fade, gain updates and countdown boundaries, and clearing the typed duel task. Archive IO and audio gain notification use controlled fixtures."
+  },
+  "overlay_paths": 130,
+  "overlay_sha256": "84ff89c1412a5f1a7d8856306a5f63c642607964d92732e7d408eeec2edab880",
+  "retained_symbols": 27033,
+  "workspace_checks": {
+    "tool": {
+      "count": 294,
+      "sha256": "8ab3a125a7daddb2129ed21f89a5109c7cd081d341a60ec4b1e5fc3362b73a57"
+    },
+    "fork": {
+      "count": 11,
+      "sha256": "f14c706872b4044366a355487440911f63804aa5e11b16256810359e66553ec5"
+    },
+    "host": {
+      "checks": [
+        "./vector_math_fallbacks",
+        "./item_factory_callbacks",
+        "./loader_transfer",
+        "./ginja_parameter_callbacks",
+        "./exi_ethernet_fallbacks"
+      ],
+      "sha256": "ad1227e7d6dde3aea88d51f241949b30f3d1fe42ec4c3abf078bd6309ee9bbdb"
+    }
+  },
+  "review_commit_attribution": {
+    "commits": 101,
+    "codex_attribution": 0,
+    "coauthor_trailers": 0
+  },
+  "public_refs_changed": false
+}

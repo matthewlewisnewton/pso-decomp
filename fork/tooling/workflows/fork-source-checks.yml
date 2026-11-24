@@ -1,0 +1,66 @@
+# Checks that run on GitHub-hosted Linux without a copy of the game.
+name: Fork source checks
+
+on:
+  # No base-branch filter: dependency stacks need checks too.
+  pull_request:
+  push:
+    branches: [main, master]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: fork-source-checks-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  source-checks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Prepare the fork tooling workspace
+        run: python3 fork/tools/materialize.py "$RUNNER_TEMP/pso-fork"
+
+      - name: Fork layer tests
+        run: python3 -m unittest discover -s fork/tools/tests -q
+
+      - name: Verify runner-provided Ninja
+        run: ninja --version
+
+      - name: Python syntax
+        run: |
+          cd "$RUNNER_TEMP/pso-fork"
+          python3 -m compileall -q configure.py tools
+
+      - name: Synthetic tool tests
+        run: |
+          cd "$RUNNER_TEMP/pso-fork"
+          python3 -m unittest discover -s tools/tests -p 'test_*.py' -v
+
+      - name: Portable behavior
+        run: |
+          cd "$RUNNER_TEMP/pso-fork"
+          python3 tools/probes/test_chunk_polygon_dispatch.py
+          python3 tools/probes/test_sphere_contact.py
+          make -C ports/tests run
+          make -C ports/tests sanitize
+
+      - name: Changed-line whitespace
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          # A branch's first push has no previous commit.
+          if [[ "$BASE_SHA" == 0000000000000000000000000000000000000000 ]]; then
+            BASE_SHA=$(git hash-object -t tree /dev/null)
+          fi
+          git diff --check "$BASE_SHA" HEAD

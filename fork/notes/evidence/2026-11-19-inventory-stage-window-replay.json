@@ -1,0 +1,1486 @@
+{
+  "source": "afcee17ce63813d33568d7a5ea968514c046b4b2",
+  "landing": "6cac429aab60845a3b3a899ac6d5cb89c33ae95b",
+  "working_fork_build": "55f7a526b607370a7ac84a290ac28b3d70fad565",
+  "previous_source": "f89d3c063a6af502d8becfc34758635b2c739ea0",
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "source_files": 59,
+  "batches": {
+    "inventory": {
+      "head": "3f8327b27382b5d5f5869980d1bc79e385fbf092",
+      "files": 17
+    },
+    "floor-population": {
+      "head": "a33f92c94399717fa12f771381dbc35d57ca2cc6",
+      "files": 9
+    },
+    "gol-dragon": {
+      "head": "66b59c9ceecae3f17de0605a7e01c3edc60afe37",
+      "files": 10
+    },
+    "guild-warning": {
+      "head": "99bb2c0de16ce7cfdd6aab9e15fa2ddd546e9278",
+      "files": 25
+    }
+  },
+  "symbol_retention": 27061,
+  "source_coverage": {
+    "fuzzy_match_percent": 99.99999,
+    "total_code": "4353092",
+    "matched_code": "4353092",
+    "matched_code_percent": 100.0,
+    "total_data": "1758510",
+    "matched_data": "1758510",
+    "matched_data_percent": 100.0,
+    "total_functions": 27572,
+    "matched_functions": 27572,
+    "matched_functions_percent": 100.0,
+    "complete_code": "4353092",
+    "complete_code_percent": 100.0,
+    "complete_data": "1758510",
+    "complete_data_percent": 100.0,
+    "total_units": 2447,
+    "complete_units": 2447
+  },
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "fork_only_paths": 133,
+  "layer_tests": 11,
+  "local_tool_tests": 294,
+  "coverage_comparisons": 11,
+  "source_audit": {
+    "source": "afcee17ce63813d33568d7a5ea968514c046b4b2",
+    "base": "f89d3c063a6af502d8becfc34758635b2c739ea0",
+    "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "closed_rows": [
+      417,
+      504,
+      2127,
+      2219,
+      2221,
+      2225,
+      3003,
+      3066,
+      3346,
+      3422,
+      4013,
+      4180,
+      5836,
+      5950
+    ],
+    "remaining": {
+      "Owner comparison required": 762,
+      "Some anchored text changes found": 1050
+    },
+    "entries": [
+      {
+        "row": 417,
+        "historical_path": "include/pso/boss/TBoss8Dragon_802FDDD4.h",
+        "historical_blob": "eab64af371f74cbd26bf3e4191322a471b80247b",
+        "owners": {
+          "src/pso/boss/goldragon/TBoss8Dragon.cpp": "55fc3b56da7baa3097e655b787540fe2399a1fbb"
+        },
+        "proofs": [
+          {
+            "group": "Gol Dragon resource and clone formation",
+            "evidence": "Folded source already uses NJS_OBJECT child/sibling/model with the actual replacement model. Original split initializer/export is represented by exact generated __sinit_TBoss8Dragon_cpp at 0x802FDF10.",
+            "proof": {
+              "commit": "66b59c9ceecae3f17de0605a7e01c3edc60afe37",
+              "blob": "55fc3b56da7baa3097e655b787540fe2399a1fbb",
+              "evidence": "12d80dda7e and 772f02da67"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 504,
+        "historical_path": "src/pso/boss/GolDragonResources.cpp",
+        "historical_blob": "89fc4e8044933fc994bcd1ac575df2063cbc2361",
+        "owners": {
+          "src/pso/boss/goldragon/TBoss8Dragon.cpp": "55fc3b56da7baa3097e655b787540fe2399a1fbb"
+        },
+        "proofs": [
+          {
+            "group": "Gol Dragon resource and clone formation",
+            "evidence": "Mode/action/camera tables, model and motion names, class-name string/pointer, position vectors and effect records, and small globals are native definitions in the folded TBoss8Dragon.cpp. The strings are literals in the typed archive descriptor tables. Original .rodata span is 0x804744A8\u20130x80474B18.",
+            "proof": {
+              "commit": "66b59c9ceecae3f17de0605a7e01c3edc60afe37",
+              "blob": "55fc3b56da7baa3097e655b787540fe2399a1fbb",
+              "evidence": "5cc5d7d5ed"
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 535,
+        "historical_path": "src/pso/boss/TBoss8Dragon_802F3348.cpp",
+        "historical_blob": "e3cb005c6d0ffad3247c8d1d87ab466cbd7ab68b",
+        "owners": {
+          "src/pso/boss/goldragon/TBoss8Dragon_802F3348.cpp": "e67265fd11f86f4d6cb0a0e03df1ec69d801d73c"
+        },
+        "proofs": [
+          {
+            "group": "Gol Dragon resource and clone formation",
+            "evidence": "Three-integer static clone formation uses the count in r3, initial HP in r4 and seed in r5. The sole caller loads an integer from +0x28, not an object. Typed part and position/yaw ownership applies to the actual leader and two camera consumers. Existing constants, count bound, RNG order, turn wrap, virtual follow-ups and phase query are exact.",
+            "proof": {
+              "commit": "66b59c9ceecae3f17de0605a7e01c3edc60afe37",
+              "blob": "e67265fd11f86f4d6cb0a0e03df1ec69d801d73c",
+              "evidence": "3342e42983 row 535 and retail 0x802F3348\u20130x802F3504"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 537,
+        "historical_path": "src/pso/boss/TBoss8Dragon_802F42A0.cpp",
+        "historical_blob": "e40670bee2fefb58a4964e7ed022e783fdeb3d97",
+        "owners": {
+          "src/pso/boss/goldragon/TBoss8Dragon.cpp": "55fc3b56da7baa3097e655b787540fe2399a1fbb"
+        },
+        "proofs": [
+          {
+            "group": "Gol Dragon resource and clone formation",
+            "evidence": "The folded shadow draw uses the third real BML model entry and TObjMotion::draw() with its actual receiver.",
+            "proof": {
+              "commit": "66b59c9ceecae3f17de0605a7e01c3edc60afe37",
+              "blob": "55fc3b56da7baa3097e655b787540fe2399a1fbb",
+              "evidence": "3342e42983 row 537 and retail 0x802F42A0"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 540,
+        "historical_path": "src/pso/boss/TBoss8Dragon_802FDDD4.cpp",
+        "historical_blob": "ca803328680ea985982c5016975c0799d3626164",
+        "owners": {
+          "src/pso/boss/goldragon/TBoss8Dragon.cpp": "55fc3b56da7baa3097e655b787540fe2399a1fbb"
+        },
+        "proofs": [
+          {
+            "group": "Gol Dragon resource and clone formation",
+            "evidence": "The recursive native node walk was already present. The real NJS_CNK_MODEL pointer now types the clone boundary, and the caller uses native BmlResource and clone-buffer storage. Existing packet and generated data can remain in their exact folded owner.",
+            "proof": {
+              "commit": "66b59c9ceecae3f17de0605a7e01c3edc60afe37",
+              "blob": "55fc3b56da7baa3097e655b787540fe2399a1fbb",
+              "evidence": "12d80dda7e, 5cc5d7d5ed, 772f02da67"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 557,
+        "historical_path": "src/pso/boss/TObjBoss8DemoRoom_8036B654.cpp",
+        "historical_blob": "f842b576ffae12bc78d36f89bc5a7920ebee6377",
+        "owners": {
+          "src/pso/boss/goldragon/TObjBoss8DemoRoom.cpp": "bb43df4d31ba6c9702d0830753ce7a81fd01ce99"
+        },
+        "proofs": [
+          {
+            "group": "Gol Dragon resource and clone formation",
+            "evidence": "Demo-room resource construction/free and native model/texture lookup share one BmlResource pointer. The two polygon-animation targets come from root.child and root.child.sibling. The part lookup result is passed explicitly to its native mode check.",
+            "proof": {
+              "commit": "66b59c9ceecae3f17de0605a7e01c3edc60afe37",
+              "blob": "bb43df4d31ba6c9702d0830753ce7a81fd01ce99",
+              "evidence": "3342e42983 row 557 and retail 0x8036B514\u20130x8036B720"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 743,
+        "historical_path": "include/pso/boss/TBoss8Dragon.h",
+        "historical_blob": "11c11480a361683d3ed37b1ff37d00d165155121",
+        "owners": {
+          "include/pso/boss/goldragon/TBoss8Dragon.h": "c5dbdbb4932593a45b7e215e8f569e4d23120ac2"
+        },
+        "proofs": [
+          {
+            "group": "Gol Dragon resource and clone formation",
+            "evidence": "Owner header now declares floor load, part lookup, three-integer static formation and the camera mode query. Historical member-action dispatcher and typed fields 0x690/0x75C/0x864 were already carried; other layout rows remain out of scope.",
+            "proof": {
+              "commit": "66b59c9ceecae3f17de0605a7e01c3edc60afe37",
+              "blob": "c5dbdbb4932593a45b7e215e8f569e4d23120ac2",
+              "evidence": "12d80dda7e and retail address/receiver evidence"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 843,
+        "historical_path": "src/pso/boss/TBoss8DragonEffTail.cpp",
+        "historical_blob": "3a8399460a8aa65c9256f159b1ad8373ad8f8126",
+        "owners": {
+          "src/pso/boss/goldragon/TBoss8DragonEffTail.cpp": "08efedfc0d8473a66fa59da74b8a5f503e42cf16"
+        },
+        "proofs": [
+          {
+            "group": "Gol Dragon resource and clone formation",
+            "evidence": "Tail uses one native BmlResource pointer for teardown and the shared common-dragon descriptor for loading. Existing tail data, attack history and collision logic are independent of this replay.",
+            "proof": {
+              "commit": "66b59c9ceecae3f17de0605a7e01c3edc60afe37",
+              "blob": "08efedfc0d8473a66fa59da74b8a5f503e42cf16",
+              "evidence": "3342e42983 row 843 and retail 0x802FE87C/0x802FE8CC"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 874,
+        "historical_path": "src/pso/boss/TBoss8Dragon.cpp",
+        "historical_blob": "1a22ff52dad4938c6a831064e588e4b4d562b7d8",
+        "owners": {
+          "src/pso/boss/goldragon/TBoss8Dragon.cpp": "55fc3b56da7baa3097e655b787540fe2399a1fbb"
+        },
+        "proofs": [
+          {
+            "group": "Gol Dragon resource and clone formation",
+            "evidence": "Use the historical real BML loader/model table with typed storage and all current consumers. The camera reads the owning dragon mode at +0x326; retail comparison showed +0x328 is a distinct phase field. Exact three-scalar clone spawn and native floor activation close the directly affected callers.",
+            "proof": {
+              "commit": "66b59c9ceecae3f17de0605a7e01c3edc60afe37",
+              "blob": "55fc3b56da7baa3097e655b787540fe2399a1fbb",
+              "evidence": "12d80dda7e, 5cc5d7d5ed and retail 0x802FDA78/0x802FDC1C/0x802F4B90"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 918,
+        "historical_path": "src/pso/boss/TObjBoss8Piller.cpp",
+        "historical_blob": "0846e217727bca7b2849184ee4517044139e741e",
+        "owners": {
+          "src/pso/boss/goldragon/TObjBoss8Piller.cpp": "82e12a3b36af14d755f5a7dff19dee568bb1b895"
+        },
+        "proofs": [
+          {
+            "group": "Gol Dragon resource and clone formation",
+            "evidence": "Restores historical placeholder-free BmlResource pointer, native motion binding and loader/teardown. Folded source already owns the pillar strings and typed archive descriptor.",
+            "proof": {
+              "commit": "66b59c9ceecae3f17de0605a7e01c3edc60afe37",
+              "blob": "82e12a3b36af14d755f5a7dff19dee568bb1b895",
+              "evidence": "49bb4557f7 and retail 0x8030AF60/0x8030B048"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 930,
+        "historical_path": "src/pso/boss/TObjBoss8Piller_8030ADBC.cpp",
+        "historical_blob": "3f685a17e9f52660a119e4f198031866796c9165",
+        "owners": {
+          "src/pso/boss/goldragon/TObjBoss8Piller.cpp": "82e12a3b36af14d755f5a7dff19dee568bb1b895"
+        },
+        "proofs": [
+          {
+            "group": "Gol Dragon resource and clone formation",
+            "evidence": "Pillar render now reads typed model entries 0 and 2 plus model zero texture from the same historical BML resource. Encounter rendering order stays exact.",
+            "proof": {
+              "commit": "66b59c9ceecae3f17de0605a7e01c3edc60afe37",
+              "blob": "82e12a3b36af14d755f5a7dff19dee568bb1b895",
+              "evidence": "3342e42983 row 930 and retail 0x8030ADBC"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6485,
+        "historical_path": "src/pso/misc/TSetManager_8020D918.cpp",
+        "historical_blob": "9708f925686ca4368f42dfe41ce78f45635878a8",
+        "owners": {
+          "src/pso/map/TSetManager.cpp": "2e422ef938beb4274b0d9e5456cf8d2a469a4c34"
+        },
+        "proofs": [
+          {
+            "group": "Stage floor population",
+            "evidence": "The exact population reset at 0x8020DC78 uses shared typed live lists, 18 archived pool slots and 18 saved floor records. Retains the current separately linked symbols for the historically described aggregate. Existing 0x44/0x48 row increments, both empty-row sentinels and reverse release/update order remain exact.",
+            "proof": {
+              "commit": "a33f92c94399717fa12f771381dbc35d57ca2cc6",
+              "blob": "2e422ef938beb4274b0d9e5456cf8d2a469a4c34"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7335,
+        "historical_path": "src/pso/unk/text_8020B5CC.cpp",
+        "historical_blob": "9f5811a2c9a4a63a80fc358de8d09860a97f3f10",
+        "owners": {
+          "src/pso/unk/text_8020B5CC.cpp": "03c97a4278c5af322bf11dbf1d17e1d82c63efc2"
+        },
+        "proofs": [
+          {
+            "group": "Stage floor population",
+            "evidence": "The paired object and enemy set archive loaders and flag export all share the active and saved object/enemy row layouts. The constructor source distinguishes object room/wave offsets from enemy offsets.",
+            "proof": {
+              "commit": "a33f92c94399717fa12f771381dbc35d57ca2cc6",
+              "blob": "03c97a4278c5af322bf11dbf1d17e1d82c63efc2"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7334,
+        "historical_path": "src/pso/unk/text_8020B47C.cpp",
+        "historical_blob": "139caf24445b1ed776dc087c1361ca966f9fee9f",
+        "owners": {
+          "src/pso/unk/TLobby_80209524.cpp": "e94d822869f2d0acc20d078704740c250bb77671"
+        },
+        "proofs": [
+          {
+            "group": "Stage floor population",
+            "evidence": "The received set flags still use the same layout and endian operations, with the real saved object/enemy records at 0x8020B47C.",
+            "proof": {
+              "commit": "a33f92c94399717fa12f771381dbc35d57ca2cc6",
+              "blob": "e94d822869f2d0acc20d078704740c250bb77671"
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2127,
+        "historical_path": "include/pso/THunterGuildWarning.h",
+        "historical_blob": "4eb81011c608c61a8883a4fbe7b17b097b5219c9",
+        "owners": {
+          "include/pso/ui/city/THunterGuildWarning.h": "cb942d6de6c86647a60dadd9a41b4de75c463513",
+          "src/pso/ui/city/THunterGuildWarning.cpp": "871a7fa90d3400ebe4f2108ac58300370dd290b8"
+        },
+        "proofs": [
+          {
+            "group": "Guild Warning and native message windows",
+            "evidence": "All historical declarations resolve to the real warning owner. The constructor and open step accept signed mode, reset is a native member, and the existing virtuals and lifecycle functions preserve their declarations. Size 0x34 and mode, timer, and window-array offsets are asserted.",
+            "proof": {
+              "include/pso/ui/city/THunterGuildWarning.h": {
+                "commit": "99bb2c0de16ce7cfdd6aab9e15fa2ddd546e9278",
+                "blob": "cb942d6de6c86647a60dadd9a41b4de75c463513"
+              },
+              "src/pso/ui/city/THunterGuildWarning.cpp": {
+                "commit": "99bb2c0de16ce7cfdd6aab9e15fa2ddd546e9278",
+                "blob": "871a7fa90d3400ebe4f2108ac58300370dd290b8"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2219,
+        "historical_path": "src/pso/misc/THunterGuildWarning.cpp",
+        "historical_blob": "7c467f9fa526408336bf8f2dd4a34532d76f6fce",
+        "owners": {
+          "src/pso/ui/city/THunterGuildWarning.cpp": "871a7fa90d3400ebe4f2108ac58300370dd290b8",
+          "include/pso/ui/city/THunterGuildWarning.h": "cb942d6de6c86647a60dadd9a41b4de75c463513"
+        },
+        "proofs": [
+          {
+            "group": "Guild Warning and native message windows",
+            "evidence": "The singleton constructor initializes mode and the 90-frame lifetime, clears all four windows, opens the selected warning, and only then registers the task.",
+            "proof": {
+              "src/pso/ui/city/THunterGuildWarning.cpp": {
+                "commit": "99bb2c0de16ce7cfdd6aab9e15fa2ddd546e9278",
+                "blob": "871a7fa90d3400ebe4f2108ac58300370dd290b8"
+              },
+              "include/pso/ui/city/THunterGuildWarning.h": {
+                "commit": "99bb2c0de16ce7cfdd6aab9e15fa2ddd546e9278",
+                "blob": "cb942d6de6c86647a60dadd9a41b4de75c463513"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2221,
+        "historical_path": "src/pso/misc/THunterGuildWarning_80211690.cpp",
+        "historical_blob": "88bf453ef622e40f2d6e7ce309819069380399b9",
+        "owners": {
+          "src/pso/ui/city/THunterGuildWarning.cpp": "871a7fa90d3400ebe4f2108ac58300370dd290b8",
+          "include/pso/ui/city/THunterGuildWarning.h": "cb942d6de6c86647a60dadd9a41b4de75c463513"
+        },
+        "proofs": [
+          {
+            "group": "Guild Warning and native message windows",
+            "evidence": "The singleton creator uses the native signed constructor when not split-screen and when no warning is active.",
+            "proof": {
+              "src/pso/ui/city/THunterGuildWarning.cpp": {
+                "commit": "99bb2c0de16ce7cfdd6aab9e15fa2ddd546e9278",
+                "blob": "871a7fa90d3400ebe4f2108ac58300370dd290b8"
+              },
+              "include/pso/ui/city/THunterGuildWarning.h": {
+                "commit": "99bb2c0de16ce7cfdd6aab9e15fa2ddd546e9278",
+                "blob": "cb942d6de6c86647a60dadd9a41b4de75c463513"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2225,
+        "historical_path": "src/pso/misc/THunterGuildWarning_80211718.cpp",
+        "historical_blob": "6acc883d000e2a956f72129ee0bc8eb0f0f3c74b",
+        "owners": {
+          "src/pso/ui/city/THunterGuildWarning.cpp": "871a7fa90d3400ebe4f2108ac58300370dd290b8",
+          "include/pso/ui/city/THunterGuildWarning.h": "cb942d6de6c86647a60dadd9a41b4de75c463513",
+          "src/pso/ui/window/TWindowMessage.cpp": "e9d393fe68583280944fba8892d656defadefffd"
+        },
+        "proofs": [
+          {
+            "group": "Guild Warning and native message windows",
+            "evidence": "The original three linked functions close and clear each message slot, choose local/remote warning text and scale through the native layout lookup, and reset all message slots.",
+            "proof": {
+              "src/pso/ui/city/THunterGuildWarning.cpp": {
+                "commit": "99bb2c0de16ce7cfdd6aab9e15fa2ddd546e9278",
+                "blob": "871a7fa90d3400ebe4f2108ac58300370dd290b8"
+              },
+              "include/pso/ui/city/THunterGuildWarning.h": {
+                "commit": "99bb2c0de16ce7cfdd6aab9e15fa2ddd546e9278",
+                "blob": "cb942d6de6c86647a60dadd9a41b4de75c463513"
+              },
+              "src/pso/ui/window/TWindowMessage.cpp": {
+                "commit": "99bb2c0de16ce7cfdd6aab9e15fa2ddd546e9278",
+                "blob": "e9d393fe68583280944fba8892d656defadefffd"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5659,
+        "historical_path": "include/pso/misc/TWindowMessage.h",
+        "historical_blob": "db8cee922ef283961fa39807e85e58a6cdb66f38",
+        "owners": {
+          "include/pso/ui/window/TWindowMessage.h": "afdbd9a0d65530346f8613732ec98f17b1ded75e"
+        },
+        "proofs": [
+          {
+            "group": "Guild Warning and native message windows",
+            "evidence": "The four-argument factory and message constructor declare the actual layout origin pointer and return the native message receiver. Other historical header declarations were outside this comparison.",
+            "proof": {
+              "include/pso/ui/window/TWindowMessage.h": {
+                "commit": "99bb2c0de16ce7cfdd6aab9e15fa2ddd546e9278",
+                "blob": "afdbd9a0d65530346f8613732ec98f17b1ded75e"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5818,
+        "historical_path": "src/pso/misc/TWindowMessage.cpp",
+        "historical_blob": "cc4d0847bafe017f9ccfb1a218f55099758bbdda",
+        "owners": {
+          "src/pso/ui/window/TWindowMessage.cpp": "e9d393fe68583280944fba8892d656defadefffd",
+          "include/pso/ui/window/TWindowMessage.h": "afdbd9a0d65530346f8613732ec98f17b1ded75e"
+        },
+        "proofs": [
+          {
+            "group": "Guild Warning and native message windows",
+            "evidence": "The four-argument factory passes its two-float extent through the existing settings provider, allocates the native message, and passes the placed origin and row count to its constructor. It replaces conflicting per-caller declarations. The old three-argument forwarding entry and unrelated message implementation stay in the existing owner.",
+            "proof": {
+              "src/pso/ui/window/TWindowMessage.cpp": {
+                "commit": "99bb2c0de16ce7cfdd6aab9e15fa2ddd546e9278",
+                "blob": "e9d393fe68583280944fba8892d656defadefffd"
+              },
+              "include/pso/ui/window/TWindowMessage.h": {
+                "commit": "99bb2c0de16ce7cfdd6aab9e15fa2ddd546e9278",
+                "blob": "afdbd9a0d65530346f8613732ec98f17b1ded75e"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5593,
+        "historical_path": "src/pso/object/TObjBagWarnWin4P.cpp",
+        "historical_blob": "9e29dfa9206c58ccb5c9132e617228df996e5180",
+        "owners": {
+          "src/pso/ui/window/TObjBagWarnWin.cpp": "2af251c18eead7687e81838d0244ba6a7f8e2f4f"
+        },
+        "proofs": [
+          {
+            "group": "Guild Warning and native message windows",
+            "evidence": "The local four-player message slot uses the actual typed message factory. Other warning behavior remains at its existing owners.",
+            "proof": {
+              "src/pso/ui/window/TObjBagWarnWin.cpp": {
+                "commit": "99bb2c0de16ce7cfdd6aab9e15fa2ddd546e9278",
+                "blob": "2af251c18eead7687e81838d0244ba6a7f8e2f4f"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5857,
+        "historical_path": "src/pso/ui/TWindowSubTradeMessage.cpp",
+        "historical_blob": "5476c1bfcd383f06af92a30e675229216f05a668",
+        "owners": {
+          "src/pso/ui/window/TWindowSubTradeMessage.cpp": "e1c7ad97d0631065a7f4012ceeba10b9d13ff47b"
+        },
+        "proofs": [
+          {
+            "group": "Guild Warning and native message windows",
+            "evidence": "The modal trade message calls the native window factory using its original placement, two-float extent, and player index.",
+            "proof": {
+              "src/pso/ui/window/TWindowSubTradeMessage.cpp": {
+                "commit": "99bb2c0de16ce7cfdd6aab9e15fa2ddd546e9278",
+                "blob": "e1c7ad97d0631065a7f4012ceeba10b9d13ff47b"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 3181,
+        "historical_path": "include/pso/TItemList.h",
+        "historical_blob": "2766e24e22d032b3ff98a002c47bbf877c5052d9",
+        "owners": {
+          "include/pso/item/TItemList.h": "6a14629e5baf5a25423ee77e269ff85d212540c8",
+          "src/pso/player/TPlyItem.cpp": "109795bf176ad5812d64400abc0ea563f07f6e29"
+        },
+        "proofs": [
+          {
+            "group": "Inventory traversal, meseta and item placement",
+            "evidence": "Native inventory slots and their inherited child/sibling links are used by the complete set of active tree walks. Other historical inline interface details remain open.",
+            "proof": {
+              "include/pso/item/TItemList.h": {
+                "commit": "3f8327b27382b5d5f5869980d1bc79e385fbf092",
+                "blob": "6a14629e5baf5a25423ee77e269ff85d212540c8"
+              },
+              "src/pso/player/TPlyItem.cpp": {
+                "commit": "3f8327b27382b5d5f5869980d1bc79e385fbf092",
+                "blob": "109795bf176ad5812d64400abc0ea563f07f6e29"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 3191,
+        "historical_path": "include/pso/TPlyItem.h",
+        "historical_blob": "206867a398fa153d5b4a842fb812f92bb037b25e",
+        "owners": {
+          "include/pso/player/TPlyItem.h": "0cabebf9319b828be352a14e55342c7983de5e67",
+          "src/pso/player/TPlyItem.cpp": "109795bf176ad5812d64400abc0ea563f07f6e29"
+        },
+        "proofs": [
+          {
+            "group": "Inventory traversal, meseta and item placement",
+            "evidence": "The inventory object\u2019s real placement pool now supplies all three record arrays and the pending count at their original offsets. The existing native item-list and death-drop layouts are preserved.",
+            "proof": {
+              "include/pso/player/TPlyItem.h": {
+                "commit": "3f8327b27382b5d5f5869980d1bc79e385fbf092",
+                "blob": "0cabebf9319b828be352a14e55342c7983de5e67"
+              },
+              "src/pso/player/TPlyItem.cpp": {
+                "commit": "3f8327b27382b5d5f5869980d1bc79e385fbf092",
+                "blob": "109795bf176ad5812d64400abc0ea563f07f6e29"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 3346,
+        "historical_path": "include/pso/misc/TLobby_801D4AEC.h",
+        "historical_blob": "501e0052e222fcb9988b18082185f4c8f786a92b",
+        "owners": {
+          "include/pso/player/TPlyItem.h": "0cabebf9319b828be352a14e55342c7983de5e67",
+          "src/pso/player/TPlyItem.cpp": "109795bf176ad5812d64400abc0ea563f07f6e29"
+        },
+        "proofs": [
+          {
+            "group": "Inventory traversal, meseta and item placement",
+            "evidence": "The only historical C entry point is shared at the native inventory owner. Its first argument is the inventory, its second is the live player, and the last two are the original type and group words.",
+            "proof": {
+              "include/pso/player/TPlyItem.h": {
+                "commit": "3f8327b27382b5d5f5869980d1bc79e385fbf092",
+                "blob": "0cabebf9319b828be352a14e55342c7983de5e67"
+              },
+              "src/pso/player/TPlyItem.cpp": {
+                "commit": "3f8327b27382b5d5f5869980d1bc79e385fbf092",
+                "blob": "109795bf176ad5812d64400abc0ea563f07f6e29"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 3422,
+        "historical_path": "include/pso/player/TObjPlayer_801D5220.h",
+        "historical_blob": "008e04d847d370dc720e1c6dd1f7b5e2f7816d11",
+        "owners": {
+          "include/pso/item/TItemList.h": "6a14629e5baf5a25423ee77e269ff85d212540c8",
+          "src/pso/player/TPlyItem.cpp": "109795bf176ad5812d64400abc0ea563f07f6e29"
+        },
+        "proofs": [
+          {
+            "group": "Inventory traversal, meseta and item placement",
+            "evidence": "Both original C declarations and exact providers take a native TItemList root and preserve their return and linkage contracts.",
+            "proof": {
+              "include/pso/item/TItemList.h": {
+                "commit": "3f8327b27382b5d5f5869980d1bc79e385fbf092",
+                "blob": "6a14629e5baf5a25423ee77e269ff85d212540c8"
+              },
+              "src/pso/player/TPlyItem.cpp": {
+                "commit": "3f8327b27382b5d5f5869980d1bc79e385fbf092",
+                "blob": "109795bf176ad5812d64400abc0ea563f07f6e29"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 3634,
+        "historical_path": "src/pso/misc/TLobby_801D4AEC.cpp",
+        "historical_blob": "de14f19fb1d30370d3ac52ffa616f1c89e29965e",
+        "owners": {
+          "src/pso/player/TPlyItem.cpp": "109795bf176ad5812d64400abc0ea563f07f6e29",
+          "include/pso/player/TPlyItem.h": "0cabebf9319b828be352a14e55342c7983de5e67"
+        },
+        "proofs": [
+          {
+            "group": "Inventory traversal, meseta and item placement",
+            "evidence": "Owner-matched item reduction and meseta spending use the native inventory and player types at their original addresses.",
+            "proof": {
+              "src/pso/player/TPlyItem.cpp": {
+                "commit": "3f8327b27382b5d5f5869980d1bc79e385fbf092",
+                "blob": "109795bf176ad5812d64400abc0ea563f07f6e29"
+              },
+              "include/pso/player/TPlyItem.h": {
+                "commit": "3f8327b27382b5d5f5869980d1bc79e385fbf092",
+                "blob": "0cabebf9319b828be352a14e55342c7983de5e67"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 3826,
+        "historical_path": "src/pso/player/TObjPlayer_801D5220.cpp",
+        "historical_blob": "39eb35a5ec371b7fcb42e7f5d9c9e89d41055bb1",
+        "owners": {
+          "src/pso/player/TPlyItem.cpp": "109795bf176ad5812d64400abc0ea563f07f6e29",
+          "include/pso/item/TItemList.h": "6a14629e5baf5a25423ee77e269ff85d212540c8"
+        },
+        "proofs": [
+          {
+            "group": "Inventory traversal, meseta and item placement",
+            "evidence": "Matching, equipped-item collection and the other inventory walks recurse directly over native list nodes. The collection retains its exact DeathDropRecord output layout.",
+            "proof": {
+              "src/pso/player/TPlyItem.cpp": {
+                "commit": "3f8327b27382b5d5f5869980d1bc79e385fbf092",
+                "blob": "109795bf176ad5812d64400abc0ea563f07f6e29"
+              },
+              "include/pso/item/TItemList.h": {
+                "commit": "3f8327b27382b5d5f5869980d1bc79e385fbf092",
+                "blob": "6a14629e5baf5a25423ee77e269ff85d212540c8"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4013,
+        "historical_path": "include/pso/player/TObjPlayer_801D3554.h",
+        "historical_blob": "b5c44b8277144f5f8157a4085affd201a9f47d1f",
+        "owners": {
+          "include/pso/player/TObjPlayer_801D3554.h": "c14fb0118ea87196fca995030956063d86e8043d",
+          "src/pso/player/TObjPlayer_801D3554.cpp": "ab2a5dac395941dd1cb2af7f9d279149d68baaf9"
+        },
+        "proofs": [
+          {
+            "group": "Inventory traversal, meseta and item placement",
+            "evidence": "All three original declarations and live providers are retained, with the new native insertion method declared at its player owner.",
+            "proof": {
+              "include/pso/player/TObjPlayer_801D3554.h": {
+                "commit": "3f8327b27382b5d5f5869980d1bc79e385fbf092",
+                "blob": "c14fb0118ea87196fca995030956063d86e8043d"
+              },
+              "src/pso/player/TObjPlayer_801D3554.cpp": {
+                "commit": "3f8327b27382b5d5f5869980d1bc79e385fbf092",
+                "blob": "ab2a5dac395941dd1cb2af7f9d279149d68baaf9"
+              }
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4139,
+        "historical_path": "src/pso/player/TObjPlayer_801D3554.cpp",
+        "historical_blob": "e3805ee2bea5928dcb24abefe0b6ccb63b7cde2e",
+        "owners": {
+          "src/pso/player/TObjPlayer_801D3554.cpp": "ab2a5dac395941dd1cb2af7f9d279149d68baaf9",
+          "src/pso/player/TPlyItem.cpp": "109795bf176ad5812d64400abc0ea563f07f6e29",
+          "include/pso/player/TPlyItem.h": "0cabebf9319b828be352a14e55342c7983de5e67"
+        },
+        "proofs": [
+          {
+            "group": "Inventory traversal, meseta and item placement",
+            "evidence": "Item insertion is a native static player method with explicit pool, position, owner and source data. The copy helper owns the existing placement record and its exact source-data argument.",
+            "proof": {
+              "src/pso/player/TObjPlayer_801D3554.cpp": {
+                "commit": "3f8327b27382b5d5f5869980d1bc79e385fbf092",
+                "blob": "ab2a5dac395941dd1cb2af7f9d279149d68baaf9"
+              },
+              "src/pso/player/TPlyItem.cpp": {
+                "commit": "3f8327b27382b5d5f5869980d1bc79e385fbf092",
+                "blob": "109795bf176ad5812d64400abc0ea563f07f6e29"
+              },
+              "include/pso/player/TPlyItem.h": {
+                "commit": "3f8327b27382b5d5f5869980d1bc79e385fbf092",
+                "blob": "0cabebf9319b828be352a14e55342c7983de5e67"
+              }
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 3003,
+        "historical_path": "src/pso/network/TGameProtocol.cpp",
+        "historical_blob": "792b9c4b654cd9ba32341cdae35e1e279775a332",
+        "owners": {
+          "src/pso/network/TGameProtocol.cpp": "ceb67881911282bea12da3a6eb3e1a160c723527"
+        },
+        "proofs": [
+          {
+            "group": "Complete authored historical source",
+            "evidence": "A three-way comparison of the original fork changes leaves the complete live source token stream and resolved includes unchanged.",
+            "proof": {
+              "row": 3003,
+              "fork_path": "src/pso/network/TGameProtocol.cpp",
+              "owner": "src/pso/network/TGameProtocol.cpp",
+              "original_path": "src/pso/network/TGameProtocol.cpp",
+              "original_blob": "b543df86968f90d29eec5066553fd7989aca33ef",
+              "historical_blob": "792b9c4b654cd9ba32341cdae35e1e279775a332",
+              "active_blob": "ceb67881911282bea12da3a6eb3e1a160c723527",
+              "include_mappings": {
+                "pso/TGameProtocol.h": "pso/network/TGameProtocol.h",
+                "pso/boss/Boss5GryphonBehavior.h": "pso/boss/galgryphon/Boss5GryphonBehavior.h",
+                "pso/boss/TBoss3Volopt.h": "pso/boss/volopt/TBoss3Volopt.h",
+                "pso/misc/TPacket.h": "pso/network/TPacket.h"
+              },
+              "method": "Three-way merge of the complete historical code changes into the live native owner leaves its token stream identical."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 3066,
+        "historical_path": "src/pso/misc/TPlyMeetUserExtension_801DAC6C.cpp",
+        "historical_blob": "42d5cb9f0a5c495e1f0840e380aea539ba5da120",
+        "owners": {
+          "src/pso/network/TPlyMeetUserExtension_801DAC6C.cpp": "3ced9571c24553564ec8261d269e714b721de7d9"
+        },
+        "proofs": [
+          {
+            "group": "Complete authored historical source",
+            "evidence": "A three-way comparison of the original fork changes leaves the complete live source token stream and resolved includes unchanged.",
+            "proof": {
+              "row": 3066,
+              "fork_path": "src/pso/misc/TPlyMeetUserExtension_801DAC6C.cpp",
+              "owner": "src/pso/network/TPlyMeetUserExtension_801DAC6C.cpp",
+              "original_path": "src/pso/misc/TPlyMeetUserExtension_801DAC6C.cpp",
+              "original_blob": "30e07433df34f0c3d8b7d20ebf9f4940dcf9378c",
+              "historical_blob": "42d5cb9f0a5c495e1f0840e380aea539ba5da120",
+              "active_blob": "3ced9571c24553564ec8261d269e714b721de7d9",
+              "include_mappings": {
+                "pso/misc/TPlyMeetUserExtension_801DAC6C.h": "pso/network/TPlyMeetUserExtension_801DAC6C.h",
+                "pso/misc/TPlySmth.h": "pso/player/TPlySmth.h",
+                "pso/misc/TRecvPsoRegistConnect.h": "pso/network/TRecvPsoRegistConnect.h",
+                "pso/protocol.h": "pso/network/protocol/protocol.h"
+              },
+              "method": "Three-way merge of the complete historical code changes into the live native owner leaves its token stream identical."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4180,
+        "historical_path": "src/pso/player/TObjPlayer_803E21B8.cpp",
+        "historical_blob": "1b1e1b6dac2d09e1e3bac62667f129373a98e515",
+        "owners": {
+          "src/pso/player/TObjPlayer_803E21B8.cpp": "a57f20a0b369e4f9a4b6b113e40322f0542f9f16"
+        },
+        "proofs": [
+          {
+            "group": "Complete authored historical source",
+            "evidence": "A three-way comparison of the original fork changes leaves the complete live source token stream and resolved includes unchanged.",
+            "proof": {
+              "row": 4180,
+              "fork_path": "src/pso/player/TObjPlayer_803E21B8.cpp",
+              "owner": "src/pso/player/TObjPlayer_803E21B8.cpp",
+              "original_path": "src/pso/player/TObjPlayer_803E21B8.cpp",
+              "original_blob": "343868d0c9cc0436d0655e9d51dccb79b22e887f",
+              "historical_blob": "1b1e1b6dac2d09e1e3bac62667f129373a98e515",
+              "active_blob": "a57f20a0b369e4f9a4b6b113e40322f0542f9f16",
+              "include_mappings": {},
+              "method": "Three-way merge of the complete historical code changes into the live native owner leaves its token stream identical."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5836,
+        "historical_path": "include/pso/misc/TShopEquipmentListWindow.h",
+        "historical_blob": "4035763863df7fd7c3d3b19c7466a5a58b40191e",
+        "owners": {
+          "include/pso/ui/city/TShopEquipmentListWindow.h": "7d2d83b59973dc092d36532d45be2eed65f5e3b7"
+        },
+        "proofs": [
+          {
+            "group": "Complete authored historical source",
+            "evidence": "A three-way comparison of the original fork changes leaves the complete live source token stream and resolved includes unchanged.",
+            "proof": {
+              "row": 5836,
+              "fork_path": "include/pso/misc/TShopEquipmentListWindow.h",
+              "owner": "include/pso/ui/city/TShopEquipmentListWindow.h",
+              "original_path": "include/pso/misc/TShopEquipmentListWindow.h",
+              "original_blob": "ae7e3ccaf80d16c68ee12f349a03e236d4d528ce",
+              "historical_blob": "4035763863df7fd7c3d3b19c7466a5a58b40191e",
+              "active_blob": "7d2d83b59973dc092d36532d45be2eed65f5e3b7",
+              "include_mappings": {
+                "pso/TShopWindowBase.h": "pso/ui/city/TShopWindowBase.h"
+              },
+              "method": "Three-way merge of the complete historical code changes into the live native owner leaves its token stream identical."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5950,
+        "historical_path": "src/pso/misc/TWindowCtrl_8024C160.cpp",
+        "historical_blob": "dde5a8cfbc2a878cd08233a42ec7e2c77450cb33",
+        "owners": {
+          "src/pso/ui/window/TWindowCtrl_8024C160.cpp": "0142d26e4ccac8627d1efb3d4638d03e161418a6"
+        },
+        "proofs": [
+          {
+            "group": "Complete authored historical source",
+            "evidence": "A three-way comparison of the original fork changes leaves the complete live source token stream and resolved includes unchanged.",
+            "proof": {
+              "row": 5950,
+              "fork_path": "src/pso/misc/TWindowCtrl_8024C160.cpp",
+              "owner": "src/pso/ui/window/TWindowCtrl_8024C160.cpp",
+              "original_path": "src/pso/misc/TWindowCtrl_8024C160.cpp",
+              "original_blob": "ac81b85af24ac9d504d76420455cade24b6312b7",
+              "historical_blob": "dde5a8cfbc2a878cd08233a42ec7e2c77450cb33",
+              "active_blob": "0142d26e4ccac8627d1efb3d4638d03e161418a6",
+              "include_mappings": {
+                "pso/TObject.h": "pso/system/task/TObject.h",
+                "pso/misc/TWindowBase.h": "pso/ui/window/TWindowBase.h",
+                "pso/misc/TWindowBreakIn.h": "pso/ui/window/TWindowBreakIn.h",
+                "pso/misc/TWindowCtrl.h": "pso/ui/window/TWindowCtrl.h",
+                "pso/misc/TWindowSubComCard_80244774.h": "pso/ui/window/TWindowSubComCard_80244774.h",
+                "pso/object/TObject_80019A50.h": "pso/system/task/TObject_80019A50.h"
+              },
+              "method": "Three-way merge of the complete historical code changes into the live native owner leaves its token stream identical."
+            }
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      }
+    ],
+    "whole_hunk_queries": 949,
+    "gol_dragon_donor_rows": [
+      {
+        "row": 417,
+        "fork_path": "include/pso/boss/TBoss8Dragon_802FDDD4.h",
+        "current_owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+        "original_blob": "087a62371adb1c9cbfb6fef69c3d0fdea8bebaa0",
+        "fork_blob": "eab64af371f74cbd26bf3e4191322a471b80247b",
+        "current_blob": "9900f3fce29b7f2f38aa218cf52daca24c235be9",
+        "status": "source comparison remains",
+        "disposition": "complete, retained before this patch",
+        "evidence": "12d80dda7e and 772f02da67",
+        "detail": "Folded source already uses NJS_OBJECT child/sibling/model with the actual replacement model. Original split initializer/export is represented by exact generated __sinit_TBoss8Dragon_cpp at 0x802FDF10."
+      },
+      {
+        "row": 504,
+        "fork_path": "src/pso/boss/GolDragonResources.cpp",
+        "current_owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+        "original_blob": null,
+        "fork_blob": "89fc4e8044933fc994bcd1ac575df2063cbc2361",
+        "current_blob": "9900f3fce29b7f2f38aa218cf52daca24c235be9",
+        "status": "historical addition needs owner context",
+        "disposition": "complete, retained before this patch",
+        "evidence": "5cc5d7d5ed",
+        "detail": "Mode/action/camera tables, model and motion names, class-name string/pointer, position vectors and effect records, and small globals are native definitions in the folded TBoss8Dragon.cpp. The strings are literals in the typed archive descriptor tables. Original .rodata span is 0x804744A8\u20130x80474B18."
+      },
+      {
+        "row": 535,
+        "fork_path": "src/pso/boss/TBoss8Dragon_802F3348.cpp",
+        "current_owner": "src/pso/boss/goldragon/TBoss8Dragon_802F3348.cpp",
+        "original_blob": "66ef42913a6ed919a67520d0fcdaebea77ea9dd4",
+        "fork_blob": "e3cb005c6d0ffad3247c8d1d87ab466cbd7ab68b",
+        "current_blob": "801c196d80ce5efa33acdf197db22d5298a79442",
+        "status": "source comparison remains",
+        "disposition": "scoped native replay",
+        "evidence": "3342e42983 row 535 and retail 0x802F3348\u20130x802F3504",
+        "detail": "Three-integer static clone formation uses the count in r3, initial HP in r4 and seed in r5. The sole caller loads an integer from +0x28, not an object. Typed part and position/yaw ownership applies to the actual leader and two camera consumers. Existing constants, count bound, RNG order, turn wrap, virtual follow-ups and phase query are exact."
+      },
+      {
+        "row": 537,
+        "fork_path": "src/pso/boss/TBoss8Dragon_802F42A0.cpp",
+        "current_owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+        "original_blob": "b97b32bec17af0a8aa24bdd583aa15da838c9037",
+        "fork_blob": "e40670bee2fefb58a4964e7ed022e783fdeb3d97",
+        "current_blob": "9900f3fce29b7f2f38aa218cf52daca24c235be9",
+        "status": "source comparison remains",
+        "disposition": "scoped native replay",
+        "evidence": "3342e42983 row 537 and retail 0x802F42A0",
+        "detail": "The folded shadow draw uses the third real BML model entry and TObjMotion::draw() with its actual receiver."
+      },
+      {
+        "row": 540,
+        "fork_path": "src/pso/boss/TBoss8Dragon_802FDDD4.cpp",
+        "current_owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+        "original_blob": "38413740f883cf36d6259dad54ae6bcd7c5547fb",
+        "fork_blob": "ca803328680ea985982c5016975c0799d3626164",
+        "current_blob": "9900f3fce29b7f2f38aa218cf52daca24c235be9",
+        "status": "source comparison remains",
+        "disposition": "scoped native replay",
+        "evidence": "12d80dda7e, 5cc5d7d5ed, 772f02da67",
+        "detail": "The recursive native node walk was already present. The real NJS_CNK_MODEL pointer now types the clone boundary, and the caller uses native BmlResource and clone-buffer storage. Existing packet and generated data can remain in their exact folded owner."
+      },
+      {
+        "row": 557,
+        "fork_path": "src/pso/boss/TObjBoss8DemoRoom_8036B654.cpp",
+        "current_owner": "src/pso/boss/goldragon/TObjBoss8DemoRoom.cpp",
+        "original_blob": "ff0d928fc25690409914870577b573d77c10cb5c",
+        "fork_blob": "f842b576ffae12bc78d36f89bc5a7920ebee6377",
+        "current_blob": "f2b3ffab47d0a37ab1f46c20b3d2a0e5cb3002f8",
+        "status": "source comparison remains",
+        "disposition": "scoped native replay",
+        "evidence": "3342e42983 row 557 and retail 0x8036B514\u20130x8036B720",
+        "detail": "Demo-room resource construction/free and native model/texture lookup share one BmlResource pointer. The two polygon-animation targets come from root.child and root.child.sibling. The part lookup result is passed explicitly to its native mode check."
+      },
+      {
+        "row": 743,
+        "fork_path": "include/pso/boss/TBoss8Dragon.h",
+        "current_owner": "include/pso/boss/goldragon/TBoss8Dragon.h",
+        "original_blob": "b24dc853463392bbae291650ae6bbebaa23135c2",
+        "fork_blob": "11c11480a361683d3ed37b1ff37d00d165155121",
+        "current_blob": "0c187d0922a9a9a2e8fe9246545c6fe053ee18b9",
+        "status": "source comparison remains",
+        "disposition": "scoped native replay",
+        "evidence": "12d80dda7e and retail address/receiver evidence",
+        "detail": "Owner header now declares floor load, part lookup, three-integer static formation and the camera mode query. Historical member-action dispatcher and typed fields 0x690/0x75C/0x864 were already carried; other layout rows remain out of scope."
+      },
+      {
+        "row": 843,
+        "fork_path": "src/pso/boss/TBoss8DragonEffTail.cpp",
+        "current_owner": "src/pso/boss/goldragon/TBoss8DragonEffTail.cpp",
+        "original_blob": "ef3f0961075f42c105d0d804c43fefc9dc38e565",
+        "fork_blob": "3a8399460a8aa65c9256f159b1ad8373ad8f8126",
+        "current_blob": "515fc538bc614fbf4c19fa9cf5bd384539da26ff",
+        "status": "source comparison remains",
+        "disposition": "scoped native replay",
+        "evidence": "3342e42983 row 843 and retail 0x802FE87C/0x802FE8CC",
+        "detail": "Tail uses one native BmlResource pointer for teardown and the shared common-dragon descriptor for loading. Existing tail data, attack history and collision logic are independent of this replay."
+      },
+      {
+        "row": 874,
+        "fork_path": "src/pso/boss/TBoss8Dragon.cpp",
+        "current_owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+        "original_blob": "b256d32ff52f14471f2808f2b858cb052e844083",
+        "fork_blob": "1a22ff52dad4938c6a831064e588e4b4d562b7d8",
+        "current_blob": "9900f3fce29b7f2f38aa218cf52daca24c235be9",
+        "status": "source comparison remains",
+        "disposition": "scoped native replay",
+        "evidence": "12d80dda7e, 5cc5d7d5ed and retail 0x802FDA78/0x802FDC1C/0x802F4B90",
+        "detail": "Use the historical real BML loader/model table with typed storage and all current consumers. The camera reads the owning dragon mode at +0x326; retail comparison showed +0x328 is a distinct phase field. Exact three-scalar clone spawn and native floor activation close the directly affected callers."
+      },
+      {
+        "row": 918,
+        "fork_path": "src/pso/boss/TObjBoss8Piller.cpp",
+        "current_owner": "src/pso/boss/goldragon/TObjBoss8Piller.cpp",
+        "original_blob": "622b31e17500c442f853dc34c2f766fa571f4cbe",
+        "fork_blob": "0846e217727bca7b2849184ee4517044139e741e",
+        "current_blob": "f111de95fc23c90eb4c988ab9d790751cc55570d",
+        "status": "source comparison remains",
+        "disposition": "scoped native replay",
+        "evidence": "49bb4557f7 and retail 0x8030AF60/0x8030B048",
+        "detail": "Restores historical placeholder-free BmlResource pointer, native motion binding and loader/teardown. Folded source already owns the pillar strings and typed archive descriptor."
+      },
+      {
+        "row": 930,
+        "fork_path": "src/pso/boss/TObjBoss8Piller_8030ADBC.cpp",
+        "current_owner": "src/pso/boss/goldragon/TObjBoss8Piller.cpp",
+        "original_blob": "653907eedf7732f6040405c50e1cbce97cb732ff",
+        "fork_blob": "3f685a17e9f52660a119e4f198031866796c9165",
+        "current_blob": "f111de95fc23c90eb4c988ab9d790751cc55570d",
+        "status": "source comparison remains",
+        "disposition": "scoped native replay",
+        "evidence": "3342e42983 row 930 and retail 0x8030ADBC",
+        "detail": "Pillar render now reads typed model entries 0 and 2 plus model zero texture from the same historical BML resource. Encounter rendering order stays exact."
+      }
+    ],
+    "floor_population_functions": [
+      {
+        "address": "0x8020B1E4",
+        "symbol": "set_flags_on_matching_entries__6TLobbyFlssl",
+        "bytes": 124,
+        "owner": "src/pso/unk/TLobby_80209524.cpp"
+      },
+      {
+        "address": "0x8020B260",
+        "symbol": "set_room_group_flags__6TLobbyFlssl",
+        "bytes": 124,
+        "owner": "src/pso/unk/TLobby_80209524.cpp"
+      },
+      {
+        "address": "0x8020B47C",
+        "symbol": "TLobby__sub_8020B47C",
+        "bytes": 268,
+        "owner": "src/pso/unk/TLobby_80209524.cpp"
+      },
+      {
+        "address": "0x8020B5CC",
+        "symbol": "TLobby__sub_8020B5CC",
+        "bytes": 504,
+        "owner": "src/pso/unk/text_8020B5CC.cpp"
+      },
+      {
+        "address": "0x8020B7C4",
+        "symbol": "init_quest_floor_enemies",
+        "bytes": 428,
+        "owner": "src/pso/unk/text_8020B5CC.cpp"
+      },
+      {
+        "address": "0x8020B970",
+        "symbol": "load_floor_enemy_group_entries__6TLobbyFiPvUi",
+        "bytes": 424,
+        "owner": "src/pso/unk/text_8020B5CC.cpp"
+      },
+      {
+        "address": "0x8020BD50",
+        "symbol": "handle_6x76_set_entity_set_flags",
+        "bytes": 452,
+        "owner": "src/pso/unk/text_8020BC50.cpp"
+      },
+      {
+        "address": "0x8020C118",
+        "symbol": "count_quest_enemies_flag8__6TLobbyFv",
+        "bytes": 216,
+        "owner": "src/pso/unk/text_8020BFE4.cpp"
+      },
+      {
+        "address": "0x8020C1F0",
+        "symbol": "is_room_enemy_set_cleared",
+        "bytes": 236,
+        "owner": "src/pso/unk/text_8020BFE4.cpp"
+      },
+      {
+        "address": "0x8020C458",
+        "symbol": "clear_record_flags_a__6TLobbyFv",
+        "bytes": 168,
+        "owner": "src/pso/enemy/TObjEnemy_8020C3E0.cpp"
+      },
+      {
+        "address": "0x8020C500",
+        "symbol": "clear_record_flags_b__6TLobbyFv",
+        "bytes": 164,
+        "owner": "src/pso/enemy/TObjEnemy_8020C3E0.cpp"
+      },
+      {
+        "address": "0x8020D6F0",
+        "symbol": "apply_floor_set_rows__11TSetManagerFv",
+        "bytes": 228,
+        "owner": "src/pso/unk/text_8020D2B4.cpp"
+      },
+      {
+        "address": "0x8020DC78",
+        "symbol": "clear_floor_population__Fv",
+        "bytes": 620,
+        "owner": "src/pso/map/TSetManager.cpp"
+      },
+      {
+        "address": "0x8020DEE4",
+        "symbol": "depart_floor_population",
+        "bytes": 244,
+        "owner": "src/pso/map/TSetManager.cpp"
+      },
+      {
+        "address": "0x8020E08C",
+        "symbol": "arrive_floor_population__Fv",
+        "bytes": 412,
+        "owner": "src/pso/map/TSetManager.cpp"
+      }
+    ],
+    "floor_population_data": [
+      {
+        "address": "0x80513A40",
+        "size": "0x90",
+        "role": "archived object/enemy entries"
+      },
+      {
+        "address": "0x80513AD0",
+        "size": "0x1B0",
+        "role": "processed floor records"
+      },
+      {
+        "address": "0x80513C80",
+        "size": "0x48",
+        "role": "object row counts"
+      },
+      {
+        "address": "0x80513CC8",
+        "size": "0x48",
+        "role": "enemy row counts"
+      },
+      {
+        "address": "0x80513D10",
+        "size": "0x24",
+        "role": "adjacent existing block"
+      }
+    ],
+    "warning_functions": [
+      {
+        "address": "0x80211774",
+        "parent": "sub_80211774__19THunterGuildWarningFPv",
+        "historical": "sub_80211774__19THunterGuildWarningFl",
+        "symbol": "open_windows__19THunterGuildWarningFl",
+        "size": 600
+      },
+      {
+        "address": "0x802119CC",
+        "parent": "THunterGuildWarning__sub_802119CC",
+        "historical": "sub_802119CC__19THunterGuildWarningFv",
+        "symbol": "reset_windows__19THunterGuildWarningFv",
+        "size": 36
+      },
+      {
+        "address": "0x80211AA4",
+        "parent": "__ct__19THunterGuildWarningFP7TObjectPv",
+        "historical": "__ct__19THunterGuildWarningFP7TObjectl",
+        "symbol": "__ct__19THunterGuildWarningFP7TObjectl",
+        "size": 108
+      },
+      {
+        "address": "0x80269CC0",
+        "parent": "create__14TWindowMessageFlPCfUll",
+        "historical": "create__14TWindowMessageFlPCvUll",
+        "symbol": "create__14TWindowMessageFPC10NJS_POINT2PCfUll",
+        "size": 100
+      },
+      {
+        "address": "0x80269EFC",
+        "parent": "__ct__14TWindowMessageFlUll",
+        "historical": "__ct__14TWindowMessageFlUll",
+        "symbol": "__ct__14TWindowMessageFPC10NJS_POINT2Ull",
+        "size": 180
+      }
+    ],
+    "inventory_functions": {
+      "0x80011138": {
+        "symbol": "try_spend_actor_meseta",
+        "size": 40,
+        "owner": "src/pso/player/TObjPlayer_80011014.cpp"
+      },
+      "0x801d3554": {
+        "symbol": "insert_item_node__10TObjPlayerFP13TUnk_804C445CP3VecP10TObjPlayerP9TItemDatal",
+        "size": 168,
+        "owner": "src/pso/player/TObjPlayer_801D3554.cpp"
+      },
+      "0x801d36b4": {
+        "symbol": "copy_drop_node__FPUcPUc",
+        "size": 104,
+        "owner": "src/pso/player/TObjPlayer_801D3554.cpp"
+      },
+      "0x801d371c": {
+        "symbol": "fn_801D371C",
+        "size": 12,
+        "owner": "src/pso/player/TObjPlayer_801D3554.cpp"
+      },
+      "0x801d3728": {
+        "symbol": "start_placement_search__Flll",
+        "size": 88,
+        "owner": "src/pso/player/TObjPlayer_801D3554.cpp"
+      },
+      "0x801d4c28": {
+        "symbol": "TLobby__sub_801D4C28",
+        "size": 48,
+        "owner": "src/pso/player/TPlyItem.cpp"
+      },
+      "0x801d52a8": {
+        "symbol": "TObjPlayer__sub_801D52A8",
+        "size": 180,
+        "owner": "src/pso/player/TPlyItem.cpp"
+      },
+      "0x801d563c": {
+        "symbol": "find_matching_inventory_item_node",
+        "size": 148,
+        "owner": "src/pso/player/TPlyItem.cpp"
+      },
+      "0x801d5814": {
+        "symbol": "copy_item_data__12Unk_801C2068FP9TItemData",
+        "size": 36,
+        "owner": "src/pso/player/TPlyItem.cpp"
+      }
+    }
+  },
+  "upstream_review_candidates": {
+    "standalone-action-palette-and-customization": {
+      "head": "631d5853657378741a45f381395e020c452e4ba2",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 61,
+      "source_paths": [
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/player/PlayerActionPaletteState.h",
+        "include/pso/player/TObjPlayer.h",
+        "include/pso/player/TObjPlayer_801BF6B0.h",
+        "include/pso/ui/city/THunterGuildWarning.h",
+        "include/pso/ui/font/SmallFontDrawing.h",
+        "include/pso/ui/hud/TMainCursor.h",
+        "include/pso/ui/hud/TMainCursor_8013E624.h",
+        "include/pso/ui/window/ActionPaletteTag.h",
+        "include/pso/ui/window/TUnk_804CF0B8.h",
+        "include/pso/ui/window/TWindowActionPalette.h",
+        "include/pso/ui/window/TWindowMessage.h",
+        "include/pso/ui/window/TWindowSubCustomEquip.h",
+        "include/pso/ui/window/TWindowSubCustomSelect.h",
+        "include/pso/ui/window/TWindowSubStatusDisp.h",
+        "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+        "src/pso/player/TObjPlayer.cpp",
+        "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "src/pso/player/TObjPlayer_801C7430.cpp",
+        "src/pso/player/TObjPlayer_801D2E20.cpp",
+        "src/pso/quest/TQuestListChallenge.cpp",
+        "src/pso/quest/TQuestListOffline.cpp",
+        "src/pso/quest/TQuestListOnline.cpp",
+        "src/pso/quest/TQuestListVM.cpp",
+        "src/pso/system/TLanguage_80132A5C.cpp",
+        "src/pso/system/save/TCheckMemoryCard.cpp",
+        "src/pso/ui/chat/TWindowSubSymbolChatHelp.cpp",
+        "src/pso/ui/city/THunterGuildSeqOffline.cpp",
+        "src/pso/ui/city/THunterGuildSeqOnlineTask.cpp",
+        "src/pso/ui/city/THunterGuildWarning.cpp",
+        "src/pso/ui/font/TFontSmallHelp.cpp",
+        "src/pso/ui/font/TFontSmallTask.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+        "src/pso/ui/hud/TMainCursor.cpp",
+        "src/pso/ui/hud/TMainCursor_801D7AC8.cpp",
+        "src/pso/ui/window/TObjBagWarnWin.cpp",
+        "src/pso/ui/window/TWindowActionPalette.cpp",
+        "src/pso/ui/window/TWindowActionPalette_801C1890.cpp",
+        "src/pso/ui/window/TWindowCtrlMain.cpp",
+        "src/pso/ui/window/TWindowDD_8034055C.cpp",
+        "src/pso/ui/window/TWindowFukidasi.cpp",
+        "src/pso/ui/window/TWindowKeyBoardSoft.cpp",
+        "src/pso/ui/window/TWindowMainMenu.cpp",
+        "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+        "src/pso/ui/window/TWindowMessage.cpp",
+        "src/pso/ui/window/TWindowMessageInfomation.cpp",
+        "src/pso/ui/window/TWindowMessageLog.cpp",
+        "src/pso/ui/window/TWindowMessagePage.cpp",
+        "src/pso/ui/window/TWindowMessageQuest.cpp",
+        "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp",
+        "src/pso/ui/window/TWindowSubCustomEquip.cpp",
+        "src/pso/ui/window/TWindowSubCustomSelect.cpp",
+        "src/pso/ui/window/TWindowSubMag.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_800FBD74.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_8024FBA8.cpp",
+        "src/pso/ui/window/TWindowSubStatusDisp_8025995C.cpp",
+        "src/pso/ui/window/TWindowSubTechnique.cpp",
+        "src/pso/ui/window/TWindowSubTrade.cpp",
+        "src/pso/ui/window/TWindowSubTradeMessage.cpp",
+        "src/pso/unk/TUnk_804D1160.cpp",
+        "src/pso/unk/text_801D7BF4.cpp"
+      ],
+      "replaces": "5506a1e30f88c62ff2904912c8de9992d695677e",
+      "scope": "Guild Warning, native modal messages, palette and small-font drawing",
+      "adaptation": "Preserves upstream-specific modal factories, window layout and the original halfword client argument.",
+      "linked_units": 2449,
+      "validated_against": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_historical_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_historical_padding": 30
+        }
+      }
+    },
+    "standalone-stage-traps-and-motion": {
+      "head": "ae786de791370e3e7b8776a6c6ea7edf725f5f91",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 47,
+      "source_paths": [
+        "config/GPOE8P/psov3/config.yml",
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/enemy/TEnemyTaskList.h",
+        "include/pso/enemy/TObjEnemy.h",
+        "include/pso/map/FloorPopulation.h",
+        "include/pso/object/TObjChip.h",
+        "include/pso/object/TObjChipParams.h",
+        "include/pso/object/base/TObjMotion.h",
+        "include/pso/object/trap/TOMineTrap.h",
+        "include/pso/player/TObjPlayer.h",
+        "include/pso/player/TObjPlayer_80011014.h",
+        "include/pso/unk/TLobby.h",
+        "src/pso/boss/dragon/TBoss1Dragon.cpp",
+        "src/pso/boss/volopt/TObjVoloptCage.cpp",
+        "src/pso/enemy/TObjEnemy_8020C3E0.cpp",
+        "src/pso/enemy/dimedian/TObjEneDimedian.cpp",
+        "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+        "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+        "src/pso/enemy/moja/TObjEneMoja.cpp",
+        "src/pso/enemy/saver/SaverLifecycle.cpp",
+        "src/pso/map/TSetManager.cpp",
+        "src/pso/npc/TObjNpcBase.cpp",
+        "src/pso/object/TObjChip.cpp",
+        "src/pso/object/ambient/TObjGrass.cpp",
+        "src/pso/object/trap/TOMine.cpp",
+        "src/pso/object/trap/TOTrap.cpp",
+        "src/pso/object/trap/TOTrapAncient01.cpp",
+        "src/pso/object/trap/TOTrapAncient02.cpp",
+        "src/pso/object/trap/TOTrapSeabed01.cpp",
+        "src/pso/object/warp/TObjCityMainWarpChallenge.cpp",
+        "src/pso/object/warp/TObjWarpBossMulti.cpp",
+        "src/pso/player/TObjPlayer_80011014.cpp",
+        "src/pso/player/TObjPlayer_801AF2F0.cpp",
+        "src/pso/player/TObjPlayer_801C7430.cpp",
+        "src/pso/player/TPlayerBattleCtrl4P.cpp",
+        "src/pso/quest/TOQuestTalkBase.cpp",
+        "src/pso/quest/challenge/TChallenge4PItemSelect.cpp",
+        "src/pso/ui/window/TObjDeadListWin.cpp",
+        "src/pso/unk/TLobby_800726F0.cpp",
+        "src/pso/unk/TLobby_801C25B4.cpp",
+        "src/pso/unk/TLobby_80209524.cpp",
+        "src/pso/unk/TLobby_80299C4C.cpp",
+        "src/pso/unk/text_8020B5CC.cpp",
+        "src/pso/unk/text_8020BC50.cpp",
+        "src/pso/unk/text_8020BFE4.cpp",
+        "src/pso/unk/text_8020D2B4.cpp",
+        "src/pso/unk/text_802233F8.cpp"
+      ],
+      "replaces": "de7fa0f4c2aaef1594301f7beb8b492146053116",
+      "scope": "Stage population, trap targeting, motion and resource ownership",
+      "adaptation": "Keeps the upstream allocator and separately linked original stage buffers.",
+      "linked_units": 2449,
+      "validated_against": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_historical_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_historical_padding": 30
+        }
+      }
+    },
+    "standalone-gol-dragon-resources-and-formation": {
+      "head": "8f001467cfeaf6acd4dd77be1d0fe11f70f4c3ad",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 22,
+      "source_paths": [
+        "config/GPOE8P/psov3/symbols.txt",
+        "include/pso/boss/TUnk_804E4BF0.h",
+        "include/pso/boss/derolle/TObjBoss2Tunnel.h",
+        "include/pso/boss/goldragon/TBoss8Dragon.h",
+        "include/pso/boss/goldragon/TBoss8Dragon_802F3348.h",
+        "include/pso/boss/goldragon/TBoss8Dragon_802F3AB4.h",
+        "include/pso/system/NinjaHierarchy.h",
+        "include/pso/unk/TUnk_804F1C58.h",
+        "src/pso/boss/darkfalz/TOBoss4Rock_8035A7FC.cpp",
+        "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+        "src/pso/boss/goldragon/TBoss8DragonEffTail.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon_802F3348.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon_802F3504.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon_802F3638.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon_802F36DC.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon_802F376C.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon_802F3AB4.cpp",
+        "src/pso/boss/goldragon/TObjBoss8DemoRoom.cpp",
+        "src/pso/boss/goldragon/TObjBoss8Piller.cpp",
+        "src/pso/object/TObjLiveMonitor.cpp",
+        "src/pso/unk/TLobby_800F795C.cpp"
+      ],
+      "replaces": null,
+      "scope": "Gol Dragon archive resources, model cloning and clone formation",
+      "adaptation": "Preserves the upstream BML loaders and texture interfaces. Includes the shared model traversal and its Dark Falz caller.",
+      "linked_units": 2449,
+      "validated_against": {
+        "upstream": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_historical_padding": 0
+        },
+        "historical": {
+          "functions_lost": 0,
+          "data_lost": 0,
+          "verified_historical_padding": 30
+        }
+      }
+    }
+  },
+  "joint_upstream_review_validation": {
+    "head": "c5af0a426c3f2aad01955e23881a13482df50d2b",
+    "files": 124,
+    "linked_units": 2449,
+    "resolution": "All three review trees combine without source conflicts."
+  },
+  "inventory_upstream_preview": {
+    "prerequisites": [
+      "8c2a1ed45d",
+      "18189e9459"
+    ],
+    "overlaps": [
+      "include/pso/item/TItemList.h",
+      "include/pso/player/TObjPlayer.h",
+      "src/pso/network/TradeSession.cpp",
+      "src/pso/player/TObjPlayer_801AF2F0.cpp",
+      "src/pso/player/TPlyItem.cpp",
+      "src/pso/ui/city/TMedicalCenterSequence.cpp",
+      "src/pso/weapon/TUnk_804A4D70.cpp"
+    ],
+    "disposition": "Canonical inventory exact. Direct review requires the earlier typed owner methods."
+  },
+  "independent_inventory_review": {
+    "reviewed_head": "046676b8c7",
+    "correction": "3f8327b27382b5d5f5869980d1bc79e385fbf092",
+    "evidence": "The known generic combat call can use the character stats directly, including non-player receivers."
+  }
+}

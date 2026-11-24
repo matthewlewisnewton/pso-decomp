@@ -1,0 +1,314 @@
+{
+  "source": "156e375c1cfbd47c7a2f1c15f4115a01d87f43a0",
+  "previous_source": "4380b86c891257a6c4eb88f6bc7aa0019dbfe0a4",
+  "upstream": "2ea1c02d4c0b7fa917ede02beac56fcaf3f4b87e",
+  "paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/ui/ItemListRow.h",
+    "include/pso/ui/window/TWindowSubStatusDisp.h",
+    "include/pso/unk/TUnk_804CF918.h",
+    "src/pso/ui/city/THunterGuildSeqOffline_80248A14.cpp",
+    "src/pso/ui/window/TWindowSubItem.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_80249060.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_80258164.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_8025995C.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_80338740.cpp",
+    "src/pso/unk/text_80248994.cpp",
+    "src/pso/unk/text_80278460.cpp"
+  ],
+  "window_entry_flag_call_sites": [
+    "0x802489cc",
+    "0x80248a4c",
+    "0x80259328",
+    "0x80259530",
+    "0x80259820",
+    "0x80266d50",
+    "0x80267900",
+    "0x802784a0",
+    "0x80278548",
+    "0x8027aaac",
+    "0x8027ab3c"
+  ],
+  "combined_paths_from_upstream": 1209,
+  "validation": {
+    "source": {
+      "baseline": "4380b86c891257a6c4eb88f6bc7aa0019dbfe0a4",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x80249060",
+          "before": "is_flag_4_set__20TWindowSubStatusDispFv",
+          "after": "is_flag_4_set__13TUnk_804CF918CFv"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "258e2e30f98c671b714a8081da0ddeb370c0ce1dc713d76b2a5c7ad159ae8db7",
+      "report_sha256": "65d9652dff3563fc64caf1dc9460df430ccb40bb86b64c2919c54ab639ebea4c"
+    },
+    "layer": {
+      "baseline": "156e375c1cfbd47c7a2f1c15f4115a01d87f43a0",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "65d9652dff3563fc64caf1dc9460df430ccb40bb86b64c2919c54ab639ebea4c"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "efa4c0ff95e75eb14d8c9a0a1ee551fda15cb80fb96b5e5d28e4587f50e4fe13"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "6ccbf830b393ebd4fdba2b124123ad41856b361778f87e7f07dfd019c32f11bd"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "exact_units": {
+    "pso/unk/text_80248994": {
+      "functions": 1,
+      "data_bytes": 0
+    },
+    "pso/ui/city/THunterGuildSeqOffline_80248A14": {
+      "functions": 1,
+      "data_bytes": 0
+    },
+    "pso/ui/window/TWindowSubStatusDisp_80249060": {
+      "functions": 2,
+      "data_bytes": 0
+    },
+    "pso/ui/window/TWindowSubStatusDisp_80258164": {
+      "functions": 31,
+      "data_bytes": 440
+    },
+    "pso/ui/window/TWindowSubStatusDisp_8025995C": {
+      "functions": 5,
+      "data_bytes": 76
+    },
+    "pso/ui/window/TWindowSubStatusDisp_802671F0": {
+      "functions": 48,
+      "data_bytes": 236
+    },
+    "pso/unk/text_80278460": {
+      "functions": 2,
+      "data_bytes": 0
+    },
+    "pso/ui/window/TWindowSubItem": {
+      "functions": 27,
+      "data_bytes": 156
+    },
+    "pso/ui/window/TWindowSubStatusDisp_80338740": {
+      "functions": 9,
+      "data_bytes": 68
+    }
+  },
+  "matched_historical_symbol_ranges": {
+    "__nwa__FUl": {
+      "current": "mem_alloc",
+      "section": ".text",
+      "address": "0x80147AA8",
+      "size": 32
+    },
+    "__dla__FPv": {
+      "current": "mem_free",
+      "section": ".text",
+      "address": "0x80147A80",
+      "size": 40
+    },
+    "init_state__20TWindowSubStatusDispFii": {
+      "current": "__ct__13TUnk_804EF440FPUcl",
+      "section": ".text",
+      "address": "0x80338B14",
+      "size": 116
+    },
+    "destroy_with_free__20TWindowSubStatusDispFs": {
+      "current": "__dt__13TUnk_804EF440Fv",
+      "section": ".text",
+      "address": "0x80338AA0",
+      "size": 116
+    },
+    "draw_item_row__20TWindowSubStatusDispFPvPv": {
+      "current": "render__13TUnk_804EF440FP17WindowDrawContext",
+      "section": ".text",
+      "address": "0x80338890",
+      "size": 524
+    },
+    "lbl_804EF440": {
+      "current": "__vt__13TUnk_804EF440",
+      "section": ".data",
+      "address": "0x804EF440",
+      "size": 24
+    },
+    "lbl_805DF9C0": {
+      "current": "lbl_805DF9C0",
+      "section": ".sdata2",
+      "address": "0x805DF9C0",
+      "size": 2
+    },
+    "lbl_805D6D68": {
+      "current": "lbl_805D6D68",
+      "section": ".sbss",
+      "address": "0x805D6D68",
+      "size": 4
+    },
+    "lbl_805D6D6C": {
+      "current": "lbl_805D6D6C",
+      "section": ".sbss",
+      "address": "0x805D6D6C",
+      "size": 1
+    },
+    "lbl_805DF9D0": {
+      "current": "lbl_805DF9D0",
+      "section": ".sdata2",
+      "address": "0x805DF9D0",
+      "size": 4
+    },
+    "lbl_805DF9D4": {
+      "current": "lbl_805DF9D4",
+      "section": ".sdata2",
+      "address": "0x805DF9D4",
+      "size": 4
+    },
+    "lbl_805DF9D8": {
+      "current": "lbl_805DF9D8",
+      "section": ".sdata2",
+      "address": "0x805DF9D8",
+      "size": 4
+    },
+    "lbl_805DF9DC": {
+      "current": "lbl_805DF9DC",
+      "section": ".sdata2",
+      "address": "0x805DF9DC",
+      "size": 4
+    },
+    "render_numeric_digit_entries__FPUcP18TWindowDrawContext": {
+      "current": "render__13TUnk_804CF9C8FP17WindowDrawContext",
+      "section": ".text",
+      "address": "0x80259A84",
+      "size": 604
+    },
+    "TWindowSubStatusDisp__sub_80259D3C": {
+      "current": "__ct__13TUnk_804CF9C8FPUcl",
+      "section": ".text",
+      "address": "0x80259D3C",
+      "size": 116
+    },
+    "TWindowSubStatusDisp__sub_80259CE4": {
+      "current": "__dt__13TUnk_804CF9C8Fv",
+      "section": ".text",
+      "address": "0x80259CE4",
+      "size": 88
+    },
+    "lbl_804CF9C8": {
+      "current": "__vt__13TUnk_804CF9C8",
+      "section": ".data",
+      "address": "0x804CF9C8",
+      "size": 24
+    },
+    "calc_gauge_scale__20TWindowSubStatusDispFPvPvi": {
+      "current": "calc_gauge_scale__20TWindowSubStatusDispFUsPvl",
+      "section": ".text",
+      "address": "0x8014544C",
+      "size": 148
+    },
+    "try_open__19TWindowKeyBoardSoftFP18TWindowDrawContextPf": {
+      "current": "clip_and_transform_quad__17WindowDrawContextFP12TexturedQuad",
+      "section": ".text",
+      "address": "0x8024EA00",
+      "size": 80
+    },
+    "begin_small_font_draw": {
+      "current": "render_forward__20TWindowSubStatusDispFv",
+      "section": ".text",
+      "address": "0x800FC3E0",
+      "size": 32
+    },
+    "end_render_forward__20TWindowSubStatusDispFPv": {
+      "current": "end_render_forward__20TWindowSubStatusDispFv",
+      "section": ".text",
+      "address": "0x80145508",
+      "size": 32
+    }
+  },
+  "runtime": {
+    "images": [
+      "retail",
+      "source",
+      "materialized fork"
+    ],
+    "checks": {
+      "status-windows": {
+        "probe_sha256": "964ef4f032c1344aaca8b9df8690b12107f8cedaf48b70bb6814b3e787e1c5cf",
+        "log_sha256": "bec3bde309a5c5bce3ce79aff0698766afa1bef6b9cc7bedf0b665854c3ad6e9"
+      }
+    }
+  },
+  "historical": {
+    "closed": {
+      "5844": {
+        "path": "src/pso/ui/window/TWindowSubStatusDisp_80338740.cpp",
+        "reason": "The native detail row retains its matching C++ construction, deletion, separator storage, and four original draw constants. Its text allocation and release keep the addresses used by the fork's array operators. Rendering shares the typed context, icon position and clip fields."
+      },
+      "5877": {
+        "path": "src/pso/ui/window/TWindowSubStatusDisp_8025995C.cpp",
+        "reason": "The native number part retains the original constructor, destructor, fixed and proportional widths and both render modes. Its glyph advance and clip calls use the actual glyph and window interfaces at the original addresses."
+      }
+    },
+    "scoped": {
+      "5830": "The bit-4 check now belongs to the shared entry base and its eleven exact linked calls still reach 0x80249060. The other historical header edits remain open.",
+      "5956": "Both item slot searches now pass the real entry base to the bit-4 check. The broader historical item actions remain open."
+    },
+    "open_rows": 267,
+    "comparison_sha256": "622196a09510139fba1af9ce4564667aa5d5d63ceea8c78287e3805708d62f1d"
+  },
+  "fork_workspace": {
+    "trial": "fb9f9ab8d555cb4b2a484213c41f298736d8a31a",
+    "overlay_paths": 130,
+    "force_active_count": 27033,
+    "keep_list_updates": [],
+    "materialized_tree": "e1b20cb36903f2de493770b3415ca86461aae507",
+    "archive_sha256": "08b5af6ebfe5e014b0c84065f7c2c7202df268e07aa3acde84862bafb3feb076"
+  }
+}

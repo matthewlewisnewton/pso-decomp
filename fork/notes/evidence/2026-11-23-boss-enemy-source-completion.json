@@ -1,0 +1,1093 @@
+{
+  "upstream_master": "412b3b3cf562c5cb4b4655b747ff328777b32969",
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "previous_source": "56fea00e798f78fab8c88c3bff00167d4de665de",
+  "updated_paths": [
+    "include/pso/boss/goldragon/TBoss8Dragon_80065C90.h",
+    "include/pso/network/protocol/subcmd_6x.h",
+    "src/pso/boss/barbaray/TBoss7TentacleNeedle.cpp",
+    "src/pso/boss/dragon/TBoss1Dragon.cpp",
+    "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+    "src/pso/boss/galgryphon/TBoss5GryphonSnarl.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+    "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp",
+    "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+    "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+    "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+    "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+    "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+    "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+    "src/pso/player/TObjPlayer_802D5174.cpp",
+    "src/pso/player/TObjPlayer_80357B2C.cpp",
+    "src/pso/technique/TTecBarta.cpp",
+    "src/pso/technique/TTecFoie.cpp",
+    "src/pso/technique/TTecGiBarta.cpp",
+    "src/pso/technique/TTecMegid.cpp",
+    "src/pso/technique/TTecRaBarta.cpp",
+    "src/pso/technique/TTecRaFoie.cpp",
+    "src/pso/unk/TUnk_8048E1A4.cpp"
+  ],
+  "paths_also_in_pr_375": [
+    "include/pso/network/protocol/subcmd_6x.h",
+    "src/pso/boss/barbaray/TBoss7TentacleNeedle.cpp",
+    "src/pso/boss/dragon/TBoss1Dragon.cpp",
+    "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+    "src/pso/boss/galgryphon/TBoss5GryphonSnarl.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+    "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp",
+    "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+    "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+    "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+    "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+    "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+    "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+    "src/pso/player/TObjPlayer_802D5174.cpp",
+    "src/pso/player/TObjPlayer_80357B2C.cpp",
+    "src/pso/technique/TTecBarta.cpp",
+    "src/pso/technique/TTecFoie.cpp",
+    "src/pso/technique/TTecGiBarta.cpp",
+    "src/pso/technique/TTecMegid.cpp",
+    "src/pso/technique/TTecRaBarta.cpp",
+    "src/pso/technique/TTecRaFoie.cpp",
+    "src/pso/unk/TUnk_8048E1A4.cpp"
+  ],
+  "builds": {
+    "source": {
+      "head": "824906c09f7e26f084f074fff04a1dbdac1610ce",
+      "tree": "e6978d2aa14e3dc55a869eb4e8c5dbce05eabe5c",
+      "coverage_baseline": "56fea00e798f78fab8c88c3bff00167d4de665de",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "historical_fork_data": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "source-report.json": "21b83d4830a9e5c2b309f6fc092ac60571d340a1cc7c40ceae29cb7fe850269e",
+        "source-check.json": "ec167389dbd490e17ac3a61384def77d8d58a7485e34e9bf913ffed6e489dc0a"
+      }
+    },
+    "queue": {
+      "head": "c753ae7fe07532ab2192de7a045366b4852b7985",
+      "tree": "3e8da151637e759504be09629a9b684f3ba09406",
+      "coverage_baseline": "412b3b3cf562c5cb4b4655b747ff328777b32969",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "historical_fork_data": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "queue-report.json": "21b83d4830a9e5c2b309f6fc092ac60571d340a1cc7c40ceae29cb7fe850269e",
+        "queue-check.json": "70df1f97f1477075ecad076c58d30d563c10fbd98e6d69ba1ce01cd29f03a9bb"
+      }
+    },
+    "private": {
+      "head": "af16fab4cfc1dc05b20761e72b013601b7c90895",
+      "tree": "767b6627ba99d50f0226dbd2db22ccdad0f9a7c5",
+      "coverage_baseline": "824906c09f7e26f084f074fff04a1dbdac1610ce",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "historical_fork_data": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "private-report.json": "21b83d4830a9e5c2b309f6fc092ac60571d340a1cc7c40ceae29cb7fe850269e",
+        "private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011"
+      }
+    }
+  },
+  "source_build_tree_was_tested_at": "7d48879b006e2a57c276dae6513e5eba8ae75507",
+  "whole_historical_comparisons_closed": {
+    "src/pso/boss/TBoss6Type1.cpp": {
+      "historical_row": 521,
+      "fork_blob": "03e7d76a5de112a47beb2df7f5dd1ce14823f9c2",
+      "historical_source_sha256": "8c091b6ed754b54758d2585d3289fe52341b1610bd9c4b34d33401388b9e5044",
+      "source_resolution": "The canonical phase-one owner keeps the phase latch, beam attack, particle placements, trail samples and part-node capture. The laser and part renderers pass textures directly from the BML archive. The visible beam and both part motion paths keep their model selection, callback and motion frames.",
+      "exact_linked_functions": 115,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 24,
+          "exact_bytes": 24,
+          "owners": [
+            "src/pso/boss/olgaflow/TBoss6Type1.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 1136,
+          "exact_bytes": 1136,
+          "owners": [
+            "src/pso/boss/olgaflow/TBoss6Type1.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 24,
+          "exact_bytes": 24,
+          "owners": [
+            "src/pso/boss/olgaflow/TBoss6Type1.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 296,
+          "exact_bytes": 296,
+          "owners": [
+            "src/pso/boss/olgaflow/TBoss6Type1.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "alignment_padding": [],
+      "canonical_blobs": {
+        "src/pso/boss/olgaflow/TBoss6Type1.cpp": "eb01b86d40766a2ea83ac4648bb6539f3a209c92"
+      },
+      "matched_examples": {
+        "0x802b60e8": {
+          "old": "update_trail_points__11TBoss6Type1Fv",
+          "current": "update_trail_points__11TBoss6Type1Fv",
+          "owner": "src/pso/boss/olgaflow/TBoss6Type1.cpp"
+        },
+        "0x802b621c": {
+          "old": "init_parts__11TBoss6Type1Fv",
+          "current": "init_parts__11TBoss6Type1Fv",
+          "owner": "src/pso/boss/olgaflow/TBoss6Type1.cpp"
+        },
+        "0x802b626c": {
+          "old": "TBoss6Type1__sub_802B626C",
+          "current": "render_laser__11TBoss6Type1Fv",
+          "owner": "src/pso/boss/olgaflow/TBoss6Type1.cpp"
+        },
+        "0x802b7530": {
+          "old": "update_beam_attack__11TBoss6Type1Fv",
+          "current": "update_beam_attack__11TBoss6Type1Fv",
+          "owner": "src/pso/boss/olgaflow/TBoss6Type1.cpp"
+        },
+        "0x802b7e7c": {
+          "old": "latch_phase_counter__11TBoss6Type1Fv",
+          "current": "latch_phase_counter__11TBoss6Type1Fv",
+          "owner": "src/pso/boss/olgaflow/TBoss6Type1.cpp"
+        },
+        "0x802b81a4": {
+          "old": "draw_part_motions__11TBoss6Type1Fv",
+          "current": "draw_part_motions__11TBoss6Type1Fv",
+          "owner": "src/pso/boss/olgaflow/TBoss6Type1.cpp"
+        }
+      }
+    },
+    "src/pso/enemy/TObjEneSlimeTailAttack.cpp": {
+      "historical_row": 637,
+      "fork_blob": "45c095b94a6e7972835dc637acfa60a75423df0d",
+      "historical_source_sha256": "98a3692d040825e077cfdfb18326331ca116d31cb9d0d6b2e9841cffe52022ca",
+      "source_resolution": "The parent owns the child slots and spawn checks, and the native child owns its state table, split, hit and display phases. Both archive model routes keep the original variant entries and the native Ninja node. The trail uses the typed texture and model returned by the archive, and child damage uses the shared payload.",
+      "exact_linked_functions": 90,
+      "exact_non_text_sections": {
+        ".ctors": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp"
+          ],
+          "uncovered": []
+        },
+        ".rodata": {
+          "source_bytes": 16,
+          "exact_bytes": 16,
+          "owners": [
+            "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 2056,
+          "exact_bytes": 2056,
+          "owners": [
+            "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp"
+          ],
+          "uncovered": []
+        },
+        ".bss": {
+          "source_bytes": 60,
+          "exact_bytes": 60,
+          "owners": [
+            "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 244,
+          "exact_bytes": 244,
+          "owners": [
+            "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "alignment_padding": [],
+      "canonical_blobs": {
+        "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp": "fab3236fb08d6a2f37bda620358680ddc6a862ea"
+      },
+      "matched_examples": {
+        "0x800e96cc": {
+          "old": "init_split_effect__15TObjEneSlimeOneFv",
+          "current": "init_split_effect__15TObjEneSlimeOneFv",
+          "owner": "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp"
+        },
+        "0x800e9e88": {
+          "old": "init_slime_state__15TObjEneSlimeOneFv",
+          "current": "init_slime_state__15TObjEneSlimeOneFv",
+          "owner": "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp"
+        },
+        "0x800ea7d4": {
+          "old": "init_slime_display__15TObjEneSlimeOneFv",
+          "current": "init_slime_display__15TObjEneSlimeOneFv",
+          "owner": "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp"
+        },
+        "0x800eaa88": {
+          "old": "init_state__15TObjEneSlimeOneFv",
+          "current": "init_state__15TObjEneSlimeOneFv",
+          "owner": "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp"
+        },
+        "0x800eac34": {
+          "old": "receive_direct_attack__15TObjEneSlimeOneFPv19DirectAttackPayloadPvll",
+          "current": "receive_direct_attack__15TObjEneSlimeOneFPv19DirectAttackPayloadPvll",
+          "owner": "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp"
+        },
+        "0x800eb1b4": {
+          "old": "initialize_slime_instance_state__15TObjEneSlimeOneFv",
+          "current": "initialize_slime_instance_state__15TObjEneSlimeOneFv",
+          "owner": "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp"
+        },
+        "0x800eb654": {
+          "old": "try_spawn_child__12TObjEneSlimeFPv",
+          "current": "try_spawn_child__12TObjEneSlimeFPv",
+          "owner": "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp"
+        },
+        "0x800eb984": {
+          "old": "init_slots__12TObjEneSlimeFv",
+          "current": "init_slots__12TObjEneSlimeFv",
+          "owner": "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp"
+        }
+      }
+    },
+    "src/pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp": {
+      "historical_row": 718,
+      "fork_blob": "b8da800fc6fefa240eddde457858232087fbfbe8",
+      "historical_source_sha256": "79acb8f42adb671803181bb2f64d1271c7e707811f3d21b285a72abad8ae1fb2",
+      "source_resolution": "The Epsilon body owns the collider and motion initialization and the guard-slot state and target ordering. The native guard lookup, player checks, fire, pre-warp and warp states retain original slots and timer behavior. The effect and sound calls pass the existing body and target vectors.",
+      "exact_linked_functions": 54,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 696,
+          "exact_bytes": 696,
+          "owners": [
+            "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 16,
+          "exact_bytes": 16,
+          "owners": [
+            "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 64,
+          "exact_bytes": 64,
+          "owners": [
+            "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "alignment_padding": [],
+      "canonical_blobs": {
+        "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp": "12d06fd06604a4e145f46276c0ac52719a349485"
+      },
+      "matched_examples": {
+        "0x8035f768": {
+          "old": "receive_direct_attack__18TObjEneEpsilonBodyFPv19DirectAttackPayloadPvll",
+          "current": "receive_direct_attack__18TObjEneEpsilonBodyFPv19DirectAttackPayloadPvll",
+          "owner": "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp"
+        },
+        "0x8035f970": {
+          "old": "assign_guard_targets__19TObjEneEpsilonGuardFv",
+          "current": "assign_guard_targets__18TObjEneEpsilonBodyFv",
+          "owner": "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp"
+        },
+        "0x8035fd50": {
+          "old": "select_attack_target__18TObjEneEpsilonBodyFl",
+          "current": "select_slot_target__18TObjEneEpsilonBodyFl",
+          "owner": "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp"
+        },
+        "0x80360d9c": {
+          "old": "handle_warp_state__19TObjEneEpsilonGuardFl",
+          "current": "handle_warp_state__18TObjEneEpsilonBodyFl",
+          "owner": "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp"
+        },
+        "0x803610d0": {
+          "old": "TObjEneEpsilonGuard__sub_803610D0",
+          "current": "handle_pre_warp_state__18TObjEneEpsilonBodyFl",
+          "owner": "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp"
+        },
+        "0x803616e4": {
+          "old": "TObjEneEpsilonGuard__sub_803616E4",
+          "current": "handle_fire_state__18TObjEneEpsilonBodyFl",
+          "owner": "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp"
+        },
+        "0x80361fec": {
+          "old": "update_position__18TObjEneEpsilonBodyFv",
+          "current": "update_position__18TObjEneEpsilonBodyFv",
+          "owner": "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp"
+        },
+        "0x80362264": {
+          "old": "create_TObjEneEpsilonBody__FPv",
+          "current": "create_TObjEneEpsilonBody__FPv",
+          "owner": "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp"
+        }
+      },
+      "historical_diff_sha256": "c4ae55b309cda44299e830a388e99c1059a0049a29db07519ffd1fd531ae83a5"
+    },
+    "src/pso/enemy/TObjEneDolmOlm.cpp": {
+      "historical_row": 802,
+      "fork_blob": "b9249b8add1b43bc791eb0364945d96687db8a58",
+      "historical_source_sha256": "bb9df38090ef192f6fe19f7c0c6ad056835dc1333f281442a812c087f3033e22",
+      "source_resolution": "The Dolm and Olm variants share a native BML load path with separate standard and low-detail descriptors and variant-specific model, action and collision rows. The actor owns animation, placement and targeting. The original water contact branches use entries two and three and pass a typed emitter to the particle model interface.",
+      "exact_linked_functions": 32,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 472,
+          "exact_bytes": 472,
+          "owners": [
+            "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 948,
+          "exact_bytes": 948,
+          "owners": [
+            "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "alignment_padding": [],
+      "canonical_blobs": {
+        "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp": "eef50c76338cd3e0954245ccbc00542b254fd117"
+      },
+      "matched_examples": {
+        "0x80300d00": {
+          "old": "spawn_ground_effects__14TObjEneDolmOlmFPvPv",
+          "current": "spawn_ground_effects__14TObjEneDolmOlmFP3Vec",
+          "owner": "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp"
+        },
+        "0x80301304": {
+          "old": "advance_position__14TObjEneDolmOlmFv",
+          "current": "advance_position__14TObjEneDolmOlmFv",
+          "owner": "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp"
+        },
+        "0x8030264c": {
+          "old": "TObjEneDolmOlm__create",
+          "current": "create__14TObjEneDolmOlmFPv",
+          "owner": "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp"
+        }
+      },
+      "historical_diff_sha256": "1d92905d05af18f64b909943598a96b91eb75ce285070bb15a6ab7de450105d4"
+    },
+    "src/pso/enemy/TObjEneMoja.cpp": {
+      "historical_row": 813,
+      "fork_blob": "f997b12f82f3d9ceb40f1c3eb5346285dee7f87b",
+      "historical_source_sha256": "b47e39dcbb49d6e9709852b1001cd36d9483eee835284b9ec605ac6e1dc3a2d4",
+      "source_resolution": "The native actor preserves both archive variants and their motion resources, body collision flags, placement and ground effects, and target validity and attack dispatch. Its body and target coordinates stay on their real owners and its ground effect placement and remapped sounds use the shared typed calls.",
+      "exact_linked_functions": 29,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/enemy/moja/TObjEneMoja.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 776,
+          "exact_bytes": 776,
+          "owners": [
+            "src/pso/enemy/moja/TObjEneMoja.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 24,
+          "exact_bytes": 24,
+          "owners": [
+            "src/pso/enemy/moja/TObjEneMoja.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 144,
+          "exact_bytes": 144,
+          "owners": [
+            "src/pso/enemy/moja/TObjEneMoja.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "alignment_padding": [],
+      "canonical_blobs": {
+        "src/pso/enemy/moja/TObjEneMoja.cpp": "838bf8992154c21750b37a1d00d50b4d801b9180"
+      },
+      "matched_examples": {
+        "0x800acd80": {
+          "old": "update_ground_effect__10TObjPlayerFv",
+          "current": "update_ground_effect__11TObjEneMojaFv",
+          "owner": "src/pso/enemy/moja/TObjEneMoja.cpp"
+        },
+        "0x800adedc": {
+          "old": "is_target_in_attack_range__11TObjEneMojaFv",
+          "current": "is_target_in_attack_range__11TObjEneMojaFv",
+          "owner": "src/pso/enemy/moja/TObjEneMoja.cpp"
+        },
+        "0x800aee54": {
+          "old": "vfunc_28__11TObjEneMojaFv",
+          "current": "refresh_target__11TObjEneMojaFv",
+          "owner": "src/pso/enemy/moja/TObjEneMoja.cpp"
+        },
+        "0x800af450": {
+          "old": "create__11TObjEneMojaFPv",
+          "current": "create__11TObjEneMojaFPv",
+          "owner": "src/pso/enemy/moja/TObjEneMoja.cpp"
+        },
+        "0x800af56c": {
+          "old": "load_resources__11TObjEneMojaFv",
+          "current": "load_resources__11TObjEneMojaFv",
+          "owner": "src/pso/enemy/moja/TObjEneMoja.cpp"
+        }
+      },
+      "historical_diff_sha256": "1edf26b52b4ae84a9407275874b6bbdda15a4d04bc86c4144234c99a4fd9d005"
+    },
+    "src/pso/boss/TBoss8Dragon.cpp": {
+      "historical_row": 874,
+      "fork_blob": "1a22ff52dad4938c6a831064e588e4b4d562b7d8",
+      "historical_source_sha256": "a56ff045a193291d375b4928cf44a5f75bfba10adf99bd62f02581b9b2d06ca6",
+      "source_resolution": "Gol Dragon keeps its typed setup, seven collision bodies and base-stat proportions member. The ground and arena queries, breath and landing hit states, target and model positions, and battle state packets keep the original callbacks and fields. The native resource loader retains its archive, part HP and motion selection.",
+      "exact_linked_functions": 141,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 4720,
+          "exact_bytes": 4720,
+          "owners": [
+            "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          ],
+          "uncovered": []
+        },
+        ".bss": {
+          "source_bytes": 128,
+          "exact_bytes": 128,
+          "owners": [
+            "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 64,
+          "exact_bytes": 64,
+          "owners": [
+            "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 352,
+          "exact_bytes": 352,
+          "owners": [
+            "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "alignment_padding": [],
+      "canonical_blobs": {
+        "src/pso/boss/goldragon/TBoss8Dragon.cpp": "f41424447e632d36e6d89e915c4c4ca031a412c0"
+      },
+      "matched_examples": {
+        "0x802f9d08": {
+          "old": "state_breath_attack__12TBoss8DragonFUl",
+          "current": "state_breath_attack__12TBoss8DragonFl",
+          "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+        },
+        "0x802fb290": {
+          "old": "setup_breath_instance__12TBoss8DragonFPviUli",
+          "current": "setup_breath_instance__12TBoss8DragonFP3VecUlP17AreaAttackHistory",
+          "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+        },
+        "0x802fb778": {
+          "old": "TBoss8Dragon__sub_802FB778",
+          "current": "apply_landing_attack__12TBoss8DragonFv",
+          "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+        },
+        "0x802fbbfc": {
+          "old": "send_action_packet__12TBoss8DragonFPvi",
+          "current": "send_action_packet__12TBoss8DragonFi",
+          "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+        },
+        "0x802fbcbc": {
+          "old": "send_6xA8_action__12TBoss8DragonFv",
+          "current": "send_6xA8_action__12TBoss8DragonFv",
+          "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+        },
+        "0x802fbd68": {
+          "old": "apply_6xA8_action__12TBoss8DragonFPvPv",
+          "current": "apply_6xA8_action__12TBoss8DragonFP27G_GolDragonBossActions_6xA8",
+          "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+        },
+        "0x802fc8cc": {
+          "old": "set_damage_phase_value__12TBoss8DragonFl",
+          "current": "select_sequence__12TBoss8DragonFl",
+          "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+        },
+        "0x802fca58": {
+          "old": "vfunc_88__12TBoss8DragonFv",
+          "current": "update_body_colliders__12TBoss8DragonFv",
+          "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+        },
+        "0x802fd47c": {
+          "old": "__ct__12TBoss8DragonFP7TObjectPv",
+          "current": "__ct__12TBoss8DragonFP7TObjectPv",
+          "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+        },
+        "0x802fda78": {
+          "old": "TBoss8Dragon__sub_802FDA78",
+          "current": "load_resources__12TBoss8DragonFv",
+          "owner": "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+        }
+      },
+      "historical_diff_sha256": "9a69cacca4074b4649d46e6c0db9049d6abf43886f6d789da17cbecdd9e92c47"
+    },
+    "src/pso/boss/Boss7DeRolLeCBehavior.cpp": {
+      "historical_row": 951,
+      "fork_blob": "101ce307c7730b02596b27649a0873dd5cfb920e",
+      "historical_source_sha256": "d5f9902a8020f2dfc7df6f7c81e4f30b301b9d39aa06d4aebdc6c82c08c10f06",
+      "source_resolution": "The consolidated Barba Ray owner keeps the native resource lifecycle, plate and tunnel coordinates, tentacle extension and needle volley, laser and spawn states, and the typed crawfish placement. Position and attack state tables continue to use the corresponding native bodies, model nodes and motion fields.",
+      "exact_linked_functions": 90,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 4872,
+          "exact_bytes": 4872,
+          "owners": [
+            "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 2516,
+          "exact_bytes": 2516,
+          "owners": [
+            "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 408,
+          "exact_bytes": 404,
+          "owners": [
+            "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp"
+          ],
+          "uncovered": [
+            [
+              "0x805deba4",
+              "0x805deba8"
+            ]
+          ]
+        }
+      },
+      "alignment_padding": [
+        {
+          "module": "psov3",
+          "section": ".sdata2",
+          "address": "0x805deba4",
+          "size": 4
+        }
+      ],
+      "canonical_blobs": {
+        "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp": "3dffdeb567124198a170be413e041f0e05d72b4f"
+      },
+      "matched_examples": {
+        "0x802e7b40": {
+          "old": "TObjFish__sub_802E7B40",
+          "current": "extend_all_tentacles__14TBoss7DeRolLeCFv",
+          "owner": "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp"
+        },
+        "0x802e7b94": {
+          "old": "TObjFish__sub_802E7B94",
+          "current": "retract_all_tentacles__14TBoss7DeRolLeCFv",
+          "owner": "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp"
+        },
+        "0x802e7be8": {
+          "old": "try_spawn_pattern_crawfish__14TBoss7DeRolLeCFll",
+          "current": "try_spawn_pattern_crawfish__14TBoss7DeRolLeCFll",
+          "owner": "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp"
+        },
+        "0x802e7d70": {
+          "old": "spawn_pattern_crawfish__14TBoss7DeRolLeCFsPC3VecP12CameraAnglesUl",
+          "current": "spawn_crawfish_child__14TBoss7DeRolLeCFsPC3VecP11Boss7Anglesl",
+          "owner": "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp"
+        },
+        "0x802e80f4": {
+          "old": "render__14TBoss7DeRolLeCFv",
+          "current": "render__14TBoss7DeRolLeCFv",
+          "owner": "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp"
+        },
+        "0x802e83e8": {
+          "old": "TObjFish__sub_802E83E8",
+          "current": "handle_tentacle_needle_barrage_state__14TBoss7DeRolLeCFUl",
+          "owner": "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp"
+        },
+        "0x802e85e0": {
+          "old": "TObjFish__sub_802E85E0",
+          "current": "handle_tentacle_volley_state__14TBoss7DeRolLeCFUll",
+          "owner": "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp"
+        },
+        "0x802e8a14": {
+          "old": "TBoss7DeRolLeC__handle_crawfish_spawn_state",
+          "current": "handle_crawfish_spawn_state__14TBoss7DeRolLeCFUll",
+          "owner": "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp"
+        },
+        "0x802e8fcc": {
+          "old": "TBoss7LaserPtcl__sub_802E8FCC",
+          "current": "handle_laser_attack_state__14TBoss7DeRolLeCFUl",
+          "owner": "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp"
+        },
+        "0x802e9458": {
+          "old": "TObjFish__sub_802E9458",
+          "current": "handle_ceiling_attack_state__14TBoss7DeRolLeCFUl",
+          "owner": "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp"
+        }
+      },
+      "historical_diff_sha256": "e065ad077362c27640f19817135566296fa9221ab6d709ca69b1ebd3559a53e3"
+    },
+    "src/pso/enemy/TObjEneDf2Bringer_800972B0.cpp": {
+      "historical_row": 986,
+      "fork_blob": "cf5aa0bccdb09dda9e5e33834fac1393438c7079",
+      "historical_source_sha256": "ab3ee1aa117b09f837fb52a7e2550363f63c68972642d56b7626cb1044530d41",
+      "source_resolution": "Bringer retains the model and sample-point ownership, state and attack dispatch, native target and recoil records, and the original fade and UV paths. Face substitution now updates the actual Ginja texture entry and restores the original pointer after rendering.",
+      "exact_linked_functions": 41,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 1016,
+          "exact_bytes": 1016,
+          "owners": [
+            "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "alignment_padding": [],
+      "canonical_blobs": {
+        "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp": "4d2aa8fd8370c06122adb8de685e0321f454ad3a"
+      },
+      "matched_examples": {
+        "0x800972b0": {
+          "old": "render__17TObjEneDf2BringerFv",
+          "current": "render__17TObjEneDf2BringerFv",
+          "owner": "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp"
+        },
+        "0x80097620": {
+          "old": "TObjEneDf2Bringer__sub_80097620",
+          "current": "update_death_state__17TObjEneDf2BringerFl",
+          "owner": "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp"
+        },
+        "0x80097820": {
+          "old": "TObjEneDf2Bringer__sub_80097820",
+          "current": "update_shot_state__17TObjEneDf2BringerFl",
+          "owner": "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp"
+        },
+        "0x80097e9c": {
+          "old": "TObjEneDf2Bringer__sub_80097E9C",
+          "current": "update_slash_state__17TObjEneDf2BringerFl",
+          "owner": "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp"
+        },
+        "0x8009813c": {
+          "old": "TObjEneDf2Bringer__sub_8009813C",
+          "current": "update_rush_state__17TObjEneDf2BringerFl",
+          "owner": "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp"
+        },
+        "0x80098c7c": {
+          "old": "handle_state__17TObjEneDf2BringerFl",
+          "current": "handle_state__17TObjEneDf2BringerFl",
+          "owner": "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp"
+        },
+        "0x80098efc": {
+          "old": "attack_visible_players__17TObjEneDf2BringerFPv",
+          "current": "attack_visible_players__17TObjEneDf2BringerFv",
+          "owner": "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp"
+        },
+        "0x800993e8": {
+          "old": "update_attack_child__17TObjEneDf2BringerFPv",
+          "current": "update_attack_child__17TObjEneDf2BringerFv",
+          "owner": "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp"
+        }
+      },
+      "historical_diff_sha256": "2df9ce74a5b6f7435f9a5892c85def15d57a9e9f2591fec6872e479770018859"
+    },
+    "src/pso/boss/Boss5GryphonBehavior.cpp": {
+      "historical_row": 992,
+      "fork_blob": "b719d83b9fad043a50c574b38b53c31c387fe858",
+      "historical_source_sha256": "c209a8b4bd7ea3db5418101fdcca79a7e3ba27d599694074168c3f994b774100",
+      "source_resolution": "Gryphon retains typed body and effects archives, arena positions, dive and wing motion, and tornado attack parameters. It writes proportions through the native stats block and attaches the model, texture, motion and flags to the real particle controller. The effect, enemy and technique callers share that declaration.",
+      "exact_linked_functions": 168,
+      "exact_non_text_sections": {
+        ".ctors": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          ],
+          "uncovered": []
+        },
+        ".rodata": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 3616,
+          "exact_bytes": 3616,
+          "owners": [
+            "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          ],
+          "uncovered": []
+        },
+        ".bss": {
+          "source_bytes": 72,
+          "exact_bytes": 72,
+          "owners": [
+            "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 56,
+          "exact_bytes": 56,
+          "owners": [
+            "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 184,
+          "exact_bytes": 184,
+          "owners": [
+            "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+            "src/pso/boss/galgryphon/Boss5GryphonBehaviorSdata2.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "alignment_padding": [],
+      "canonical_blobs": {
+        "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp": "178d67c665e3bfd06100b63c2c8e554bda1f8609"
+      },
+      "matched_examples": {
+        "0x80060020": {
+          "old": "fn_80060020__13TBoss5GryphonFUl",
+          "current": "update_offscreen_dive__13TBoss5GryphonFUl",
+          "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+        },
+        "0x800618cc": {
+          "old": "update_dive_motion__13TBoss5GryphonFl",
+          "current": "update_dive_motion__13TBoss5GryphonFl",
+          "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+        },
+        "0x80062550": {
+          "old": "circle_arena__13TBoss5GryphonFl",
+          "current": "circle_arena__13TBoss5GryphonFl",
+          "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+        },
+        "0x800640a4": {
+          "old": "TBoss8Dragon__sub_800640A4",
+          "current": "apply_tornado_hit__13TBoss5GryphonFP13TBoss5GryphonP3Vec",
+          "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+        },
+        "0x8006442c": {
+          "old": "TBoss8Dragon__sub_8006442C",
+          "current": "emit_wing_attacks__13TBoss5GryphonFv",
+          "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+        },
+        "0x8006576c": {
+          "old": "TBoss5Gryphon__ct",
+          "current": "__ct__13TBoss5GryphonFP7TObjectPv",
+          "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+        },
+        "0x80065c90": {
+          "old": "load_boss5_gryphon_resources",
+          "current": "load_boss5_gryphon_resources",
+          "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+        },
+        "0x80065f08": {
+          "old": "TBoss8Dragon__sub_80065F08",
+          "current": "get_arena_center",
+          "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+        },
+        "0x800660d4": {
+          "old": "attach_particle_model",
+          "current": "attach_particle_model",
+          "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+        }
+      },
+      "historical_diff_sha256": "da84639cc672a35a53e681b0d6ef09cf6e95f142660d27ef9cb5701a61e75a95"
+    },
+    "src/pso/boss/TBoss1Dragon.cpp": {
+      "historical_row": 1084,
+      "fork_blob": "c5ac33f0c8bc0acc80c24571faba9ee1211434a6",
+      "historical_source_sha256": "ff9db2f94d1a199528508b402990387cdb38fcef089369a0a80b5556a495a0db",
+      "source_resolution": "The native Dragon owner keeps model-node motion, flight, ground and burrow states, attack contact and camera updates. The 6x10 and 6x11 handlers read named protocol fields, and both 6x12 senders and the receive path use the same extended packet. Sign, byte order, entity lookup and transition gates match the retail routines.",
+      "exact_linked_functions": 180,
+      "exact_non_text_sections": {
+        ".ctors": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/boss/dragon/TBoss1Dragon.cpp"
+          ],
+          "uncovered": []
+        },
+        ".rodata": {
+          "source_bytes": 1288,
+          "exact_bytes": 1288,
+          "owners": [
+            "src/pso/boss/dragon/TBoss1Dragon.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 3668,
+          "exact_bytes": 3668,
+          "owners": [
+            "src/pso/boss/dragon/TBoss1Dragon.cpp"
+          ],
+          "uncovered": []
+        },
+        ".bss": {
+          "source_bytes": 128,
+          "exact_bytes": 128,
+          "owners": [
+            "src/pso/boss/dragon/TBoss1Dragon.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 84,
+          "exact_bytes": 84,
+          "owners": [
+            "src/pso/boss/dragon/TBoss1Dragon.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 368,
+          "exact_bytes": 368,
+          "owners": [
+            "src/pso/boss/dragon/TBoss1Dragon.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "alignment_padding": [],
+      "canonical_blobs": {
+        "src/pso/boss/dragon/TBoss1Dragon.cpp": "b568dbb3fd0ae43cf710ec5a8a29bff775a8bbbc"
+      },
+      "matched_examples": {
+        "0x800208dc": {
+          "old": "render_low_detail__12TBoss1DragonFv",
+          "current": "render_low_detail__12TBoss1DragonFv",
+          "owner": "src/pso/boss/dragon/TBoss1Dragon.cpp"
+        },
+        "0x80020b54": {
+          "old": "render__12TBoss1DragonFv",
+          "current": "render__12TBoss1DragonFv",
+          "owner": "src/pso/boss/dragon/TBoss1Dragon.cpp"
+        },
+        "0x80023d60": {
+          "old": "update_burrow_outward_run__12TBoss1DragonFUl",
+          "current": "update_burrow_outward_run__12TBoss1DragonFUl",
+          "owner": "src/pso/boss/dragon/TBoss1Dragon.cpp"
+        },
+        "0x80023fe8": {
+          "old": "update_burrow_inward_run__12TBoss1DragonFUll",
+          "current": "update_burrow_inward_run__12TBoss1DragonFUll",
+          "owner": "src/pso/boss/dragon/TBoss1Dragon.cpp"
+        },
+        "0x800263c8": {
+          "old": "update_breath_attack_state__12TBoss1DragonFUl",
+          "current": "update_breath_attack_state__12TBoss1DragonFUl",
+          "owner": "src/pso/boss/dragon/TBoss1Dragon.cpp"
+        },
+        "0x80027710": {
+          "old": "deliver_breath_attack__12TBoss1DragonFll",
+          "current": "deliver_breath_attack__12TBoss1DragonFP3VecP17AreaAttackHistory",
+          "owner": "src/pso/boss/dragon/TBoss1Dragon.cpp"
+        },
+        "0x80027e78": {
+          "old": "apply_landing_attack__12TBoss1DragonFi",
+          "current": "apply_landing_attack__12TBoss1DragonFv",
+          "owner": "src/pso/boss/dragon/TBoss1Dragon.cpp"
+        },
+        "0x800284b4": {
+          "old": "request_state_change__12TBoss1DragonFUl",
+          "current": "request_state_change__12TBoss1DragonFUl",
+          "owner": "src/pso/boss/dragon/TBoss1Dragon.cpp"
+        },
+        "0x80028530": {
+          "old": "send_state_sync__12TBoss1DragonFPv",
+          "current": "send_state_sync__12TBoss1DragonFv",
+          "owner": "src/pso/boss/dragon/TBoss1Dragon.cpp"
+        },
+        "0x80028598": {
+          "old": "receive_state_request__12TBoss1DragonFPUc",
+          "current": "receive_state_request__12TBoss1DragonFPUc",
+          "owner": "src/pso/boss/dragon/TBoss1Dragon.cpp"
+        },
+        "0x80028660": {
+          "old": "set_params__12TBoss1DragonFPv",
+          "current": "set_params__12TBoss1DragonFPv",
+          "owner": "src/pso/boss/dragon/TBoss1Dragon.cpp"
+        },
+        "0x800286fc": {
+          "old": "copy_params__12TBoss1DragonFPv",
+          "current": "copy_params__12TBoss1DragonFPv",
+          "owner": "src/pso/boss/dragon/TBoss1Dragon.cpp"
+        }
+      },
+      "historical_diff_sha256": "47f222e57a5b9172205d40e4e5d817104f8a030a20c4d6ed14f4ed124b8e75af"
+    }
+  },
+  "whole_historical_comparisons_remaining": 63,
+  "enemy_and_boss_comparisons_remaining": 0,
+  "runtime": {
+    "images": [
+      "retail",
+      "Great Merge source",
+      "materialized fork"
+    ],
+    "cases_per_image": {
+      "dragon_state_packets": 8,
+      "particle_model_attachment": 3
+    },
+    "probe_scope": "The Dragon harness runs the existing swaps and packet routines with controlled entity lookup, transition, virtual dispatch and send. The particle cases run the unmodified image routine and verify writes to model, texture, motion, frame and flags."
+  },
+  "source_quality": {
+    "removed": 42,
+    "added": 0,
+    "symbol_label_changes": 0,
+    "newly_stale_retention": 0
+  },
+  "compiler_constraints": {
+    "dragon_state": "Promote the incoming signed state to s32 at the comparison. Storing in s16 adds an extsh at the transition call.",
+    "bringer_texture": "Read the typed texture entries from the object again before restoring the saved entry. Reusing the texture list local changes the register allocation and removes the original handle load.",
+    "olga_part_model": "Keep the existing address temporary in draw_part_motions. Separate index and model locals change the register allocation. The texture list and the laser model are passed as native pointers.",
+    "particle_animation": "AnimationMotion is the BML interface. The emitter stores its motion as NJS_MOTION, so the conversion belongs where the record is assigned to TParticleCtrl."
+  },
+  "fork_tooling": {
+    "overlay_paths": 130,
+    "retention_entries": 27007,
+    "checks": {
+      "tool": 294,
+      "fork": 11,
+      "host": [
+        "./vector_math_fallbacks",
+        "./item_factory_callbacks",
+        "./loader_transfer",
+        "./ginja_parameter_callbacks",
+        "./exi_ethernet_fallbacks"
+      ]
+    }
+  },
+  "fork_main_comparison": {
+    "non_padding_data_or_linkage_loss": 0,
+    "matched_function_loss": 0,
+    "omitted_alignment_bytes": 2565,
+    "added_covered_bytes": 159
+  },
+  "evidence_sha256": {
+    "source.patch": "095db10bc95c9fb40ef7ea9cc51faa07958adca3c802b9e11f0866608207850b",
+    "address-ownership.json": "7f80298be6a7cc1d815530fb6dfb5da775a963203b0c30bab1b80bdc37fd92ae",
+    "final-quality.json": "cd53717061c30e307694eb5ef02672823029cadcc874c8a9abb6241daea19fca",
+    "fork-main-coverage.json": "1a226ee42b9acb87613c1dfd23a35d3de31ca004bb9b089ea436caca3284ef33",
+    "probe-boss-records.py": "7a719e16ae4ffea4850aebfa4204e866e66c9b257c94455ece14a0939c0f3ef9",
+    "probe-boss-records.log": "49a34ddc93cae19b0f35c87eff2cabf3fa9431c5e7bf8921619803f20e2e1e99",
+    "third-delta.json": "8de3b972ccbe5b0db1cabe3a0acb74f7c23ae79e30468d9cdffa6ceeb62e8341",
+    "tool-overlay.patch": "d93d879f1cd3c199a515f8c3518b452d719a7113f7f7556fc7f06c7aa1ce45c3"
+  }
+}

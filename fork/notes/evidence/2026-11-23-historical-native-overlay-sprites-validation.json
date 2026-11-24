@@ -1,0 +1,113 @@
+{
+  "source_head": "ff80ef2056cc71cc4f256ac4237cf8bfffc1649a",
+  "source_tree": "9d7e78b0f190b962948eec11ab0afa309e1ad68f",
+  "previous_cumulative": "59fcc39290b8efab3a1b4cc9470ce5b379cd7a23",
+  "upstream_master": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "effects_overlap_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/player/TObjPlayer.h",
+    "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+    "src/pso/unk/TLobby_803382E4.cpp"
+  ],
+  "effects_review": "The new cross-reference is limited to the sprite API and the projected-strip layout. The source delta retains #375's hud_texlist changes and ComCard's native texture field.",
+  "source_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/ui/UISprite.h",
+    "include/pso/unk/text_803E2D70.h",
+    "src/pso/object/mine/TOComputerMachine01_8023DD0C.cpp",
+    "src/pso/ui/hud/TRaderMapCore.cpp",
+    "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+    "src/pso/unk/TLobby_803382E4.cpp",
+    "src/pso/unk/text_803E2D70.cpp"
+  ],
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "matching_functions": 27572,
+  "linked_units": 2368,
+  "coverage_regressions": {
+    "regressions": 0,
+    "data_regressions": 0,
+    "data_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0,
+    "failures": 0
+  },
+  "source_benchmark": {
+    "total": {
+      "base": 142192,
+      "head": 142150,
+      "added": 2,
+      "removed": 44
+    },
+    "symbol_changes": [
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x8023E0FC",
+        "type": "function",
+        "old": "draw_compass_sprite__10TObjPlayerFlllf",
+        "new": "draw_compass_sprite",
+        "flags": []
+      }
+    ],
+    "flagged_labels": 0,
+    "newly_stale_retention_entries": 0,
+    "added_findings": "One reference to the existing texture-entry label and the file-local layout that keeps the retail data anchor."
+  },
+  "matching_constraint": "The info overlay loads the texture-table base once and walks the projected vertices at offsets 0x2C, 0x6C and 0xCC. The layout checks retain these displacements.",
+  "runtime": {
+    "images": [
+      "retail",
+      "Great Merge source"
+    ],
+    "cases_per_image": 11,
+    "covered": "Loading inactive, first load, repeated load, rendering, release, two pulse modes, two info-overlay paths, radar backdrop and compass.",
+    "intercepts": "The probe supplies media, allocation, release and rendering endpoints. Original call sequences, flags, colors, table addresses and sprite records execute from the DOL."
+  },
+  "historical_source_comparison": {
+    "closed": {
+      "src/pso/misc/TLobby_803382E4.cpp": {
+        "historical_functions": 8,
+        "exact_data_bytes": 648,
+        "source_evidence": "The live loading overlay holds its three texture entries in a Ginja list and uses the existing Ninja sprite and frame records. The shared projection record retains each caller's depth divisor and color, and the info overlay uses the original data offsets. The archive request and media read, decompression, native texture-list bind, two frees, frame selection and request flags all keep the original paths."
+      }
+    },
+    "partial": {
+      "src/pso/misc/TRaderMapCore.cpp": "The original compass, marker and backdrop now use native Ninja color and polygon records, Ginja texture lifetime, and the shared sprite owner. Review the remaining scissor argument, begin-map-view receiver and overhead projection view-state interfaces against the historical changes before closing this entry."
+    },
+    "remaining": 132
+  },
+  "historical_fork_data": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "validation_sha256": {
+    "check.json": "a4c099533bd937c4fe3f43dc6009102a3e575ce16da8554b6027ae27cb250ddd",
+    "delta-03.json": "2a0bd78408c79ecf6ecac56e80e2835b38833784248e5827b49b611fe68af2d4",
+    "quality.json": "f9d11886112ad3239087dd5fcda02858fc6159a956f60301edda70b310a83a5c",
+    "probe-overlays.py": "446c80dc184d208997b891a8258a78a12e05604a647812016f32184a15c07a53",
+    "overlay-probe.log": "13fced2b64bd87fc06cc1cde936d8cc18e761bda217fc3337a0f188cc5d58b75",
+    "source-fork-data.json": "82d59f20ed1bd3def36813b6f8b3f63e5eb7604943397ad2c9b2176411b240d3"
+  },
+  "materialized_fork": {
+    "tree": "f83d82e2dcfb0b268b30e8c4e6b64cd2fb08bd7e",
+    "retention_entries": 27007,
+    "newly_stale_retention_entries": 0,
+    "checks": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    },
+    "validation_sha256": {
+      "private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011",
+      "retention.log": "b3325169ce9d5755b2340e455b52eb7ac52edcb6fa173dc4f2486f46f713350c",
+      "private-fork-data.json": "82d59f20ed1bd3def36813b6f8b3f63e5eb7604943397ad2c9b2176411b240d3",
+      "fork-tests.log": "cc9d948a29b4da8c00ec6a058217cb838e2d2967feca569ed64b3cd87476f350",
+      "tool-tests.log": "4b8c9614232ee061d8bef6027625153915609ec138ec46c7edaac3e76cd92da1",
+      "host-tests.log": "49e22285de440c1d0a0b4488c843c5961f4216fe971cdf5cea28c1f6bfcb0ff6"
+    }
+  }
+}

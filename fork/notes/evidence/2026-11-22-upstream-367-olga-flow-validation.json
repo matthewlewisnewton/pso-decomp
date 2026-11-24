@@ -1,0 +1,208 @@
+{
+  "upstream": "6aee940ecaf4775ef71659a74534127a49cf9412",
+  "source": "6713e1f36fa999e7606677ff5874c496f2b590c9",
+  "source_base": "98865a1351252050ca41f19ccfc3bd1d247f812b",
+  "review": "c4f687452c70a63311e699ea5e773c9e7cdf6ca5",
+  "review_base": "a27e2abd333929138af541047de7983200e679ac",
+  "tree": "81ee29980f54c978c5882df362898c03633ed3a7",
+  "paths": 23,
+  "donor_base": "8869e09f474183720104301bd6820cfbd95bcc15",
+  "donor_head": "730b1add256f1b8ff6f06fcbe3a2953bcb53a7a3",
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "original_data_ranges": 90,
+  "original_data_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "coverage_losses": {
+    "regressions": 0,
+    "data_regressions": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0,
+    "data_coverage_lost": 0,
+    "padding_coverage_lost": 0
+  },
+  "linker_labels": [
+    {
+      "module": "psov3",
+      "address": "0x80019324",
+      "before": "obj_clearArrS16_FC__FP8ObjArrFCi",
+      "after": "obj_clearArrS16_FC__FP9TObjCharal"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802B8624",
+      "before": "copy_block__11TBoss6Type1FP12Blk_802B8624PC12Blk_802B8624",
+      "after": "copy_block__11TBoss6Type1FP21Boss6Type1MotionStatePC21Boss6Type1MotionState"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802B93C4",
+      "before": "__ct__11TBoss6Type1FP7TObjectPl",
+      "after": "__ct__11TBoss6Type1FP7TObjectP20Boss6BodySpawnParams"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802B96DC",
+      "before": "create__11TBoss6Type1Fl",
+      "after": "create__11TBoss6Type1FP20Boss6BodySpawnParams"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802BE0D4",
+      "before": "__ct__11TBoss6Type2FP7TObjectPl",
+      "after": "__ct__11TBoss6Type2FP7TObjectP20Boss6BodySpawnParams"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802BE504",
+      "before": "create__11TBoss6Type2Fl",
+      "after": "create__11TBoss6Type2FP20Boss6BodySpawnParams"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80356B18",
+      "before": "__ct__15TBoss6SwordWaveFP7TObjectPC3Vecllf",
+      "after": "__ct__15TBoss6SwordWaveFP11TBoss6Type2PC3Vecllf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80356C10",
+      "before": "create__15TBoss6SwordWaveFP7TObjectPC3Vecllf",
+      "after": "create__15TBoss6SwordWaveFP11TBoss6Type2PC3Vecllf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8035DB70",
+      "before": "__ct__9TBoss6DPBFP7TObjectlf",
+      "after": "__ct__9TBoss6DPBFP7TObjectPC3Vecf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8035DC60",
+      "before": "create_dpb__11TBoss6Type2Fllf",
+      "after": "create_dpb__11TBoss6Type2FP7TObjectPC3Vecf"
+    }
+  ],
+  "runtime": {
+    "mag": {
+      "retail_and_replay": [
+        "PsoV3.dol: Mag creation, peer slots, action entry, animation, draw, and teardown passed.",
+        "psov3.dol: Mag creation, peer slots, action entry, animation, draw, and teardown passed."
+      ],
+      "probe_sha256": "99ec8dc3a6acd5c445a984903e4ae7af97fd8b4e41a2d4e727285cd4a3e0b583",
+      "log_sha256": "72a05bb224ddb85b4b3d9ba6df70382fb7c6406f55820f346a5905bf1c68be5f"
+    },
+    "phases": {
+      "retail_and_replay": [
+        "PsoV3.dol: phase-one dispatch, motion and packets, phase-result transfer, credit slots, and rock collision passed.",
+        "psov3.dol: phase-one dispatch, motion and packets, phase-result transfer, credit slots, and rock collision passed."
+      ],
+      "probe_sha256": "d5d8df99906ad3e128ea1b2c75ee63222625b43126b261a49cce8b645d40764c",
+      "log_sha256": "1d0ec60d984f9af3c150082e782a988b927ce33875f1a34ad882f5255055086d"
+    },
+    "contacts": {
+      "retail_and_replay": [
+        "PsoV3.dol: player relocation, seven part flags, both collision layouts, lower contact, and both emitter lifecycles passed.",
+        "psov3.dol: player relocation, seven part flags, both collision layouts, lower contact, and both emitter lifecycles passed."
+      ],
+      "probe_sha256": "0b1e14c0cfce30eec951636691046faad9071ec5c1a0fd111e70a3a89e2b8157",
+      "log_sha256": "2043168047666ab393566436499dd5f3f7b634cb2ac082532fd35362091e0863"
+    },
+    "plot": {
+      "retail_and_replay": [
+        "PsoV3.dol: damage and charge, experience branches, strip ownership, sway, and 24 particle slots passed.",
+        "psov3.dol: damage and charge, experience branches, strip ownership, sway, and 24 particle slots passed."
+      ],
+      "probe_sha256": "4f9abef7b88ac5f222a670ecd78e19dc9e43b06fab634903765a8fb086e250ae",
+      "log_sha256": "dc0e8c43d107da367c27b258fd9c1647088d8e6d939f6e07620b559d60e8235e"
+    },
+    "actions": {
+      "retail_and_replay": [
+        "PsoV3.dol: grid, arena radius, camera forwarding, direct damage, and possession save and restore passed.",
+        "psov3.dol: grid, arena radius, camera forwarding, direct damage, and possession save and restore passed."
+      ],
+      "probe_sha256": "29075370d88a717ca3f51442e756e84cbae72b8d9951a00b4feefbf280787caf",
+      "log_sha256": "cf01c08710c2e7f0dae15bc1b9f400aec64425b6d10e37c54b3621770d6e6502"
+    },
+    "motion-state": {
+      "retail_and_replay": [
+        "PsoV3.dol: exact 64-byte motion copy and archive-backed two-track reset passed.",
+        "psov3.dol: exact 64-byte motion copy and archive-backed two-track reset passed."
+      ],
+      "probe_sha256": "45b3a0078d4a235a8ab208cda1da3b480696f0c14f186f33e1f8b74f0282ca76",
+      "log_sha256": "8561b2c78297b5647a7aea1876fd1afedb0ebf282f44128ff9f760318be9b76d"
+    },
+    "attacks": {
+      "retail_and_replay": [
+        "PsoV3.dol: wave angle wraparound, damage dispatch, mine release and rock resources passed.",
+        "psov3.dol: wave angle wraparound, damage dispatch, mine release and rock resources passed."
+      ],
+      "probe_sha256": "0f5b1e48cff5cfc748e4b08a2646e08ef6d7c5fe05cd4d2749379dbb27d1fcc7",
+      "log_sha256": "a565f7ce5a019ebf40fa409725c1024ef2076b102341ba26abea7dc23deaab0d"
+    },
+    "factories": {
+      "retail_and_replay": [
+        "PsoV3.dol: phase-two spawn, effect construction, and active Mag shower positions passed.",
+        "psov3.dol: phase-two spawn, effect construction, and active Mag shower positions passed."
+      ],
+      "probe_sha256": "75e3ff6d3d00de083e98b13c6671457f551a6d4f32248b1b68a67626ca061f94",
+      "log_sha256": "4826792e55bfa53b2eac22a6a4452c57b8ae1d1aef6af988ee35c7e94bb3b16b"
+    }
+  },
+  "probe_symbol_aliases": [
+    "reset_photon_effect__9TObjEnemyFv = .text:0x8003F0E8; // type:function size:0x20",
+    "fire_at_all_players__11TBoss6Type1FPvf = .text:0x802B5AD4; // type:function size:0x1E0",
+    "TBoss6Type1__sub_802B854C = .text:0x802B854C; // type:function size:0x9C",
+    "copy_block__11TBoss6Type1FPvPv = .text:0x802B8624; // type:function size:0x38",
+    "TBoss6Type1__sub_802B8E1C = .text:0x802B8E1C; // type:function size:0x64",
+    "TBoss6Type2__sub_802BAD04 = .text:0x802BAD04; // type:function size:0x8C",
+    "__ct__11TBoss6Type2FP7TObjectP15Boss6PhaseSpawn = .text:0x802BE0D4; // type:function size:0x40C",
+    "create__11TBoss6Type2FP15Boss6PhaseSpawn = .text:0x802BE504; // type:function size:0x68",
+    "spawn_flow_soul__11TBoss6Type2Fiii = .text:0x8036A92C; // type:function size:0x60",
+    "lbl_80470F0C = .rodata:0x80470F0C; // type:object size:0x1C scope:local",
+    "lbl_805DE2D4 = .sdata2:0x805DE2D4; // type:object size:0x4 scope:local data:4byte",
+    "lbl_805DE3A8 = .sdata2:0x805DE3A8; // type:object size:0x4 scope:local data:4byte",
+    "lbl_805DE3B0 = .sdata2:0x805DE3B0; // type:object size:0x4 scope:local data:4byte",
+    "set_global_param = .text:0x803DA798; // type:function size:0x10",
+    "find_model_node__FP10NJS_OBJECTl = .text:0x80131700; // type:function size:0x44"
+  ],
+  "review_attribution": "matthewlewisnewton <19641807+matthewlewisnewton@users.noreply.github.com>",
+  "replay_decisions": [
+    "Reuse the plot set entry in the shared 0x44-offset variant and phase-owner spawn record.",
+    "Keep the current Mag class, phase and packet handlers, and native mine and sword-wave action owners.",
+    "Use the 64-byte motion record with the existing copy helper and named fields.",
+    "Use the existing battle parameter bank layout and StripBufferPair ownership.",
+    "Keep the typed rock table pointer lookup in two statements to preserve the original register assignment.",
+    "Share the four attack-credit halfwords and retain access to the overlapping last byte."
+  ],
+  "remaining_replay_previews": {
+    "boss-and-enemy-actors": {
+      "paths": 255,
+      "conflicting_paths": 193
+    },
+    "enemy-lifecycle": {
+      "paths": 64,
+      "conflicting_paths": 54
+    },
+    "population": {
+      "paths": 108,
+      "conflicting_paths": 87
+    },
+    "population-rel": {
+      "paths": 80,
+      "conflicting_paths": 68
+    },
+    "flight": {
+      "paths": 8,
+      "conflicting_paths": 8
+    },
+    "flower-recon": {
+      "paths": 8,
+      "conflicting_paths": 7
+    }
+  }
+}

@@ -1,0 +1,861 @@
+{
+  "upstream": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+  "previous_review": "0e202610a693f30f95c7643d0522523556582ab1",
+  "review": "7f63315ddb4541fe88a0f2320264cc7639d1f405",
+  "review_tree": "244c008688cc861b482bde62805c00b8c28f2fe7",
+  "prior_great_merge": "82ef099ef2c33679d5cbb9f7b50058a87e0c21e3",
+  "source_review_files": 881,
+  "paths_changed_this_pass": [
+    "include/pso/player/PlayerStats.h",
+    "include/pso/player/TPlyInventory.h",
+    "src/pso/boss/darkfalz/TBoss4ZakoDraw_8030AD58.cpp",
+    "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptHiraisin.cpp",
+    "src/pso/boss/volopt/TObjVoloptCage.cpp",
+    "src/pso/boss/volopt/TObjVoloptPillar.cpp",
+    "src/pso/effect/TBreakUpMdl.cpp",
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+    "src/pso/item/TItemLoad.cpp",
+    "src/pso/player/TPlayerBattleCtrl4P.cpp",
+    "src/pso/ui/city/TShopItemListWindow.cpp",
+    "src/pso/ui/frontend/TAdRicoRingCtrl.cpp",
+    "src/pso/ui/frontend/TAdSubPlyItemGC_802D6BEC.cpp",
+    "src/pso/ui/window/TWindowMessageScroll.cpp",
+    "src/pso/ui/window/TWindowSubCustomEquip.cpp",
+    "src/pso/unk/TLobby_8001EF5C.cpp",
+    "src/pso/unk/TLobby_800F8AA8.cpp"
+  ],
+  "commits": {
+    "archives": {
+      "head": "cd0ee9e430f02b9524ae694d928bff4ab9253c2b",
+      "baseline": "0e202610a693f30f95c7643d0522523556582ab1",
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+      "function_labels_changed": 0
+    },
+    "interfaces": {
+      "head": "99885e28a55fc6d497f6cfbaf363d68636143525",
+      "baseline": "cd0ee9e430f02b9524ae694d928bff4ab9253c2b",
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+      "function_labels_changed": 0
+    },
+    "cage": {
+      "head": "7f63315ddb4541fe88a0f2320264cc7639d1f405",
+      "baseline": "99885e28a55fc6d497f6cfbaf363d68636143525",
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+      "function_labels_changed": 0
+    }
+  },
+  "upstream_comparison": {
+    "head": "7f63315ddb4541fe88a0f2320264cc7639d1f405",
+    "baseline": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+    "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "check_sha256": "5a79be690ff320e0bc624ad27f5a4f0b187236222049259b1542b93217523be4",
+    "function_labels_changed": 299
+  },
+  "replay_path_closeout": {
+    "include/pso/boss/TUnk_804E4AD4.h": {
+      "review_blob": "07edcb991e6fb35483741dc7c7d1a8c014963d3b",
+      "previous_review_blob": "07edcb991e6fb35483741dc7c7d1a8c014963d3b",
+      "previous_great_merge_blob": "f8a638372cf6823ad3bd2e45f5b1d59a6618b89d",
+      "status": "equivalent source retained",
+      "rationale": "The header adds an archive accessor include. The current accessor callers own their required dependencies.",
+      "diff_to_previous_great_merge_sha256": "db309b120295a43a0e55b07aca9779c9300fe86b71ebc4c55e24a758d94cd438"
+    },
+    "include/pso/boss/darkfalz/TBoss4Zanzo.h": {
+      "review_blob": "f23aaf893ca6c95394cd91ed61e20106682a7812",
+      "previous_review_blob": "f23aaf893ca6c95394cd91ed61e20106682a7812",
+      "previous_great_merge_blob": "2a220797c6fcc75363e3e4094b30d34cc01ed105",
+      "status": "equivalent source retained",
+      "rationale": "The header adds an archive accessor include. The current accessor callers own their required dependencies.",
+      "diff_to_previous_great_merge_sha256": "d7afb94ccf1344587cdb97c2cf828f624155f698b4a748cec6bef1cbb030c661"
+    },
+    "include/pso/boss/darkfalz/TObjDFTenchuFuru.h": {
+      "review_blob": "936c4fa1913bb795ffd5a6fdef11ea135b5a968d",
+      "previous_review_blob": "936c4fa1913bb795ffd5a6fdef11ea135b5a968d",
+      "previous_great_merge_blob": "7947439b9987ea461f6f7e47b414bab3376a2e43",
+      "status": "equivalent source retained",
+      "rationale": "The header already carries the shared declarations. The historical variant repeats them.",
+      "diff_to_previous_great_merge_sha256": "b4335b3a096c3bc9e4295d5aa351d418102ab71c944c02fee874bf12ad36b968"
+    },
+    "include/pso/boss/derolle/TObjBoss2Tunnel.h": {
+      "review_blob": "7994445f2cfa0c02789284ea44bdd0d6b7d4d848",
+      "previous_review_blob": "7994445f2cfa0c02789284ea44bdd0d6b7d4d848",
+      "previous_great_merge_blob": "21832f45e5d56922ad290c1387ae01a9906e4632",
+      "status": "equivalent source retained",
+      "rationale": "Vec is used by pointer in the header. The current forward declaration and typed implementation suffice.",
+      "diff_to_previous_great_merge_sha256": "b72e4d5e50d08d664a2b945672a6e5aae7a7e493875283bdefc697f1b193ad21"
+    },
+    "include/pso/boss/olgaflow/TBoss6Type1.h": {
+      "review_blob": "5b491c7e2c1325e9fed8ce5dba464b18d55c5a20",
+      "previous_review_blob": "5b491c7e2c1325e9fed8ce5dba464b18d55c5a20",
+      "previous_great_merge_blob": "75d768fe752f3076649517576c6f9ff40a73595e",
+      "status": "equivalent source retained",
+      "rationale": "The current header includes the native archive type and the shared scroll-strip declaration. Consumers use the archive accessor header as needed.",
+      "diff_to_previous_great_merge_sha256": "e7de3f961f56eb64a31ea8cb439b893acc4fcee75847ffab53c8f6ec5368ea65"
+    },
+    "include/pso/enemy/canadin/TObjEneMe1Canadin.h": {
+      "review_blob": "b9ab63b897eae64d38dde9d44eeb5767faa2e0e9",
+      "previous_review_blob": "b9ab63b897eae64d38dde9d44eeb5767faa2e0e9",
+      "previous_great_merge_blob": "e0f20136f7ef6287833a3f8bbe4e93063e2cc167",
+      "status": "equivalent source retained",
+      "rationale": "The historical variant repeats an available forward declaration.",
+      "diff_to_previous_great_merge_sha256": "018785d5041a11d919a939b2c3b8de6ed901c237f72880ca55bab310e1a8cdfc"
+    },
+    "include/pso/object/base/ObjectSetData.h": {
+      "review_blob": "aaee9d533781680ecb03a177651ccaf2d4a748a8",
+      "previous_review_blob": "aaee9d533781680ecb03a177651ccaf2d4a748a8",
+      "previous_great_merge_blob": "8f0404515c0e3158014733cff1c9392269536f84",
+      "status": "equivalent source retained",
+      "rationale": "The header already carries the shared declarations. The historical variant repeats them.",
+      "diff_to_previous_great_merge_sha256": "7b8360b892bac337a2d0dda3db9021e5b149b81be35a470257d6162a3166d460"
+    },
+    "include/pso/object/base/TObjMotion.h": {
+      "review_blob": "53aba3db5a9f448711b008ddc481f65b0fc91808",
+      "previous_review_blob": "53aba3db5a9f448711b008ddc481f65b0fc91808",
+      "previous_great_merge_blob": "4424a4c8a4a04fa3f1ec5199ef6ec361be0dca56",
+      "status": "equivalent source retained",
+      "rationale": "The historical variant repeats an available forward declaration.",
+      "diff_to_previous_great_merge_sha256": "b6b59b840935bd4755d3a4c0fa4f28c0526712294622e5bd11ac4e0c578b3805"
+    },
+    "include/pso/object/warp/ForestWarpResources.h": {
+      "review_blob": "de779aa1b9bfcebf904aff32ebb961a90941f064",
+      "previous_review_blob": "de779aa1b9bfcebf904aff32ebb961a90941f064",
+      "previous_great_merge_blob": "90b5575386f957bcc3b0678cf9de067506c9a810",
+      "status": "equivalent source retained",
+      "rationale": "The header adds an archive accessor include. The current accessor callers own their required dependencies.",
+      "diff_to_previous_great_merge_sha256": "174c6c1acb4dadb05f38515fb4d6d7a801e7616136b7fa229c8e0e214b5c833d"
+    },
+    "include/pso/player/PlayerStats.h": {
+      "review_blob": "8a49b5bb96dea6131a8579e387419bdf75ac5979",
+      "previous_review_blob": "a4bd4ca102804183caddb582016fa4628ce55a92",
+      "previous_great_merge_blob": "8a49b5bb96dea6131a8579e387419bdf75ac5979",
+      "status": "exact prior source",
+      "rationale": "The replay now has the same source blob as the preceding Great Merge tree.",
+      "diff_to_previous_great_merge_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "include/pso/player/TPlyInventory.h": {
+      "review_blob": "b000fbc22d349540ccd8a28075158ff2173023a9",
+      "previous_review_blob": "8161f890056760ef7bffc3ae72433a1d52997d70",
+      "previous_great_merge_blob": "b000fbc22d349540ccd8a28075158ff2173023a9",
+      "status": "exact prior source",
+      "rationale": "The replay now has the same source blob as the preceding Great Merge tree.",
+      "diff_to_previous_great_merge_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "include/pso/unk/TUnk_804C3E60.h": {
+      "review_blob": "4ebed2aedfaa45a71fd89d0d991ad4f52fc73fb1",
+      "previous_review_blob": "4ebed2aedfaa45a71fd89d0d991ad4f52fc73fb1",
+      "previous_great_merge_blob": "bc16fe39fd83df7491f08bb3e66f2678bee4059f",
+      "status": "equivalent source retained",
+      "rationale": "The header already carries the shared declarations. The historical variant repeats them.",
+      "diff_to_previous_great_merge_sha256": "b7d1d5f15d608a70af33c784077505c93fe0ef6c1b69d7b09f735ad16c9d0987"
+    },
+    "include/pso/unk/TUnk_804C8678.h": {
+      "review_blob": "aae1d51dc2b03acdc54fbb39c2fcbffe048154fa",
+      "previous_review_blob": "aae1d51dc2b03acdc54fbb39c2fcbffe048154fa",
+      "previous_great_merge_blob": "c4eaebcb12822e771160c9d7cfdd11ba1eee4814",
+      "status": "equivalent source retained",
+      "rationale": "The header already carries the shared declarations. The historical variant repeats them.",
+      "diff_to_previous_great_merge_sha256": "340e69d062ce1c515792bb503b27e34ceef2e022eafc345901d8bd0e277e1f59"
+    },
+    "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp": {
+      "review_blob": "5a5c96ebec6ec5c87aa14d0348b791bc92af25dd",
+      "previous_review_blob": "5a5c96ebec6ec5c87aa14d0348b791bc92af25dd",
+      "previous_great_merge_blob": "9ca133ee40b271af562429079fb3021dfa4ac8c8",
+      "status": "equivalent source retained",
+      "rationale": "The existing typed camera and vector declarations resolve through the active headers. The remaining differences are include placement and a conversion to the same Vec pointer.",
+      "diff_to_previous_great_merge_sha256": "ec2635edb2b9912ca2619f173e85479cb1883d764324ae86b071648575f37ff6"
+    },
+    "src/pso/boss/darkfalz/TBoss4ZakoDraw_8030AD58.cpp": {
+      "review_blob": "08cef86a6071118a7196cbf16f2a83b9a6de508c",
+      "previous_review_blob": "f5cb7f34b709919b160d169ff79a225f9c050342",
+      "previous_great_merge_blob": "bcefdae54fcca3b09804d05150d7dc4926af863d",
+      "status": "equivalent source retained",
+      "rationale": "Typed archive and geometry calls are present. The remaining differences consist of include placement, equivalent conversions, and existing labels.",
+      "diff_to_previous_great_merge_sha256": "f788e2a03bc3c6246cefd2cce08f5a55c567876ae46f22a8628e3820b488e774"
+    },
+    "src/pso/boss/darkfalz/TObjDFDemo3.cpp": {
+      "review_blob": "2f4c712a916ab09f62cbca906ebb90544f455640",
+      "previous_review_blob": "2f4c712a916ab09f62cbca906ebb90544f455640",
+      "previous_great_merge_blob": "1850f3aa1925c80264f7ea2bdce8d961525d4fe1",
+      "status": "equivalent source retained",
+      "rationale": "The existing typed camera and vector declarations resolve through the active headers. The remaining differences are include placement and a conversion to the same Vec pointer.",
+      "diff_to_previous_great_merge_sha256": "98cd835cbf3143d449ab3207191ee9114f2804a88ce88f6bf66530a0b3322b37"
+    },
+    "src/pso/boss/darkfalz/TObjDFHorming.cpp": {
+      "review_blob": "16fbada39e8948872264acf52157d1f62c1c5184",
+      "previous_review_blob": "16fbada39e8948872264acf52157d1f62c1c5184",
+      "previous_great_merge_blob": "d8724da80269267dca7250f2e743962f9faf2488",
+      "status": "equivalent source retained",
+      "rationale": "The current object layout supplies the rotation fields. The alternative adds unused temporary layout names and chooses a different spelling for the same receiver conversion.",
+      "diff_to_previous_great_merge_sha256": "c5efa45d4c46ecbc5a49bf932cfcee9e48970c49f9e988cde0cd88232e000ca5"
+    },
+    "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp": {
+      "review_blob": "de0c754e8c1c6ad8280cbfe4fcbf43e538c1fe02",
+      "previous_review_blob": "191fc89085b569f2ccdc82f152b584388367fcfe",
+      "previous_great_merge_blob": "bbe492889c5149fd5e000d68166f74d5e939080c",
+      "status": "equivalent source retained",
+      "rationale": "The current implementation supplies the native yaw field and preserves the archive pointer type through allocation and the null test.",
+      "diff_to_previous_great_merge_sha256": "9db617150fe6bad16e99dcd034ede26148ebe8b4c992e46dec9f035028f33d0b"
+    },
+    "src/pso/boss/olgaflow/TBoss6Tube.cpp": {
+      "review_blob": "e5fe84b3b9621552e1601e64c9dc3da5a5934f27",
+      "previous_review_blob": "e5fe84b3b9621552e1601e64c9dc3da5a5934f27",
+      "previous_great_merge_blob": "ed8556872cb3a037eef3580095187f0f8656564d",
+      "status": "equivalent source retained",
+      "rationale": "Typed archive and geometry calls are present. The remaining differences consist of include placement, equivalent conversions, and existing labels.",
+      "diff_to_previous_great_merge_sha256": "34ec14135ce938449b743ca32af4146426ea5ffeb5803608d8dcaabe2f11d2b9"
+    },
+    "src/pso/boss/olgaflow/TBoss6Type1.cpp": {
+      "review_blob": "47a8bd59fa27b7bc384153a5845a6180d57f3427",
+      "previous_review_blob": "47a8bd59fa27b7bc384153a5845a6180d57f3427",
+      "previous_great_merge_blob": "0a3823f1ea167706d83860e9570e5e18d4f407e4",
+      "status": "equivalent source retained",
+      "rationale": "The current source and its include graph already supply the resource and actor declarations. The alternative adds an include and uses a different spelling for the same actor registration entry point where applicable.",
+      "diff_to_previous_great_merge_sha256": "7ebc3c32819a8d45e07f42e191993fea3824c3e9afa0f0626d72656f6ed0a080"
+    },
+    "src/pso/boss/olgaflow/TBoss6Zanzo.cpp": {
+      "review_blob": "21ef7e87d9c536f1f4066ffbee81b7e675bca0f1",
+      "previous_review_blob": "21ef7e87d9c536f1f4066ffbee81b7e675bca0f1",
+      "previous_great_merge_blob": "1c73509b47b734dbd551a259451eb7078f7dc3d6",
+      "status": "equivalent source retained",
+      "rationale": "The current source and its include graph already supply the resource and actor declarations. The alternative adds an include and uses a different spelling for the same actor registration entry point where applicable.",
+      "diff_to_previous_great_merge_sha256": "0f1a3a4cee98eb7b64d6752bfb130d373cd0564568734cc829ee31c106e1c199"
+    },
+    "src/pso/boss/volopt/TBoss3Volopt.cpp": {
+      "review_blob": "3be840e19b385b5dfbdcd453c04d51c250070b99",
+      "previous_review_blob": "3be840e19b385b5dfbdcd453c04d51c250070b99",
+      "previous_great_merge_blob": "d8ac5bce4fe4b93a461528333c009f8a2b6298d8",
+      "status": "equivalent source retained",
+      "rationale": "This call-site group uses the same actor and effect addresses, Vec fields, constants and owning implementations. Differences are label variants, receiver and first-member pointer casts, or equivalent includes.",
+      "diff_to_previous_great_merge_sha256": "9545c0ca100f063a055f7240d0c53508fc79d0dbe33ae241803d1c116c9ba870"
+    },
+    "src/pso/boss/volopt/TBoss3VoloptHiraisin.cpp": {
+      "review_blob": "7e3ed53c23d30a1e726d482c5121509ad10d5c0b",
+      "previous_review_blob": "4876862717e8ce6e57a8ac0ccd148da70cc27190",
+      "previous_great_merge_blob": "52ca1f5a97d674fdce2a393f3402af01fecc0183",
+      "status": "equivalent source retained",
+      "rationale": "This call-site group uses the same actor and effect addresses, Vec fields, constants and owning implementations. Differences are label variants, receiver and first-member pointer casts, or equivalent includes.",
+      "diff_to_previous_great_merge_sha256": "8af5883b4a7a286d70e2777c2b5b981f79db32567d5ece2674cdd4a5aec4d8ec"
+    },
+    "src/pso/boss/volopt/TBoss3VoloptMonitor.cpp": {
+      "review_blob": "0c63a4262fc8e0f742887e4dccec40c05171655f",
+      "previous_review_blob": "0c63a4262fc8e0f742887e4dccec40c05171655f",
+      "previous_great_merge_blob": "046827e51ee2f53a57d2bfc995a5e318df72767f",
+      "status": "equivalent source retained",
+      "rationale": "This call-site group uses the same actor and effect addresses, Vec fields, constants and owning implementations. Differences are label variants, receiver and first-member pointer casts, or equivalent includes.",
+      "diff_to_previous_great_merge_sha256": "973f3ef737a50a2017eab059333c9997c41488f3b60ea3fa67090eec048262e1"
+    },
+    "src/pso/boss/volopt/TBoss3VoloptP01.cpp": {
+      "review_blob": "965d3b6579f49fc84eb01fcad95e94e2651089f3",
+      "previous_review_blob": "965d3b6579f49fc84eb01fcad95e94e2651089f3",
+      "previous_great_merge_blob": "ca8b1b61c6be6974aafd85a57a9d6bc5ac41d54b",
+      "status": "equivalent source retained",
+      "rationale": "This call-site group uses the same actor and effect addresses, Vec fields, constants and owning implementations. Differences are label variants, receiver and first-member pointer casts, or equivalent includes.",
+      "diff_to_previous_great_merge_sha256": "032fc10cebf7c8f5392e15e4171dc79728a14802d090ff863c892bbb5710bd18"
+    },
+    "src/pso/boss/volopt/TBoss3VoloptP02.cpp": {
+      "review_blob": "ab33a206684ca6343c2dc1fa334b89e58161a496",
+      "previous_review_blob": "ab33a206684ca6343c2dc1fa334b89e58161a496",
+      "previous_great_merge_blob": "86fda49a670c7942817b9faa3e1696b84509561e",
+      "status": "equivalent source retained",
+      "rationale": "This call-site group uses the same actor and effect addresses, Vec fields, constants and owning implementations. Differences are label variants, receiver and first-member pointer casts, or equivalent includes.",
+      "diff_to_previous_great_merge_sha256": "44644f7600d65a18ab46f89ebe04bc6dba528cd339b8e31d5a087393f4acd391"
+    },
+    "src/pso/boss/volopt/TObjVoloptCage.cpp": {
+      "review_blob": "7b4f4cef93ed46b5e63e16f5121940857cefe985",
+      "previous_review_blob": "b667f66f049cbd605b205c1f271c37039d756466",
+      "previous_great_merge_blob": "6c783c3884da1c4594e8745c09f6f6b0a7fea1d7",
+      "status": "equivalent source retained",
+      "rationale": "Cage breakup uses the same code path, arguments and actor addresses. The exact matching build establishes the current compiler settings.",
+      "diff_to_previous_great_merge_sha256": "e0ab4d7985e54b1cd8ea6a282618ceaf3bb44de4b0f7cdba4b785a0a0acae81a"
+    },
+    "src/pso/boss/volopt/TObjVoloptPillar.cpp": {
+      "review_blob": "42e9c57581e7dc1b7fb18e0e59dbbce3dbdeb12c",
+      "previous_review_blob": "df4a507112e72147ef3c4eab711852899538075a",
+      "previous_great_merge_blob": "50c32598ecaa10fc378c62010c210480be8db5a8",
+      "status": "equivalent source retained",
+      "rationale": "Typed archive and geometry calls are present. The remaining differences consist of include placement, equivalent conversions, and existing labels.",
+      "diff_to_previous_great_merge_sha256": "2e11d1ceb5f5ed0bf24f9e1294dd7adead7de065c239f59c7ec62569f8dee886"
+    },
+    "src/pso/effect/TBreakUpMdl.cpp": {
+      "review_blob": "080b9a916aec1c1aac60149d304014cf9274cf14",
+      "previous_review_blob": "709006d7b49975175dd6ff65d313849c7a0ba06a",
+      "previous_great_merge_blob": "b1f1240092e79806a69f7356e29229f5166ddd69",
+      "status": "equivalent source retained",
+      "rationale": "Typed archive and geometry calls are present. The remaining differences consist of include placement, equivalent conversions, and existing labels.",
+      "diff_to_previous_great_merge_sha256": "6144997c5666d616a8f12c6b525d17fc0334a681f4846417ceb9d1e8de63d025"
+    },
+    "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp": {
+      "review_blob": "3adf758070d2dcbc29dd4b18232ca87338613f5b",
+      "previous_review_blob": "3adf758070d2dcbc29dd4b18232ca87338613f5b",
+      "previous_great_merge_blob": "f2a6ffe0222a6e7e8c3943b80058925c5ccdf20f",
+      "status": "equivalent source retained",
+      "rationale": "This call-site group uses the same actor and effect addresses, Vec fields, constants and owning implementations. Differences are label variants, receiver and first-member pointer casts, or equivalent includes.",
+      "diff_to_previous_great_merge_sha256": "d78c17f35aee30211cf2483430358dd75efae08289d3184c9f391298c43d50ea"
+    },
+    "src/pso/enemy/darkgunner/DarkGunner.cpp": {
+      "review_blob": "16e24a5babb8f0c7eba16a04c72c516c975927dd",
+      "previous_review_blob": "16e24a5babb8f0c7eba16a04c72c516c975927dd",
+      "previous_great_merge_blob": "d79d5293918a4208f9c6571c6db05b3b9334cde1",
+      "status": "equivalent source retained",
+      "rationale": "This call-site group uses the same actor and effect addresses, Vec fields, constants and owning implementations. Differences are label variants, receiver and first-member pointer casts, or equivalent includes.",
+      "diff_to_previous_great_merge_sha256": "29a71a4cd425b7db605e8b3b01ee8c9822474fee62ea59d9f205d76510a372df"
+    },
+    "src/pso/enemy/darkgunner/TObjEneDarkGunCenter.cpp": {
+      "review_blob": "3c7399cd6bbc9a250c57be673f110c54a91fc007",
+      "previous_review_blob": "3c7399cd6bbc9a250c57be673f110c54a91fc007",
+      "previous_great_merge_blob": "4eb064d7144e02d4d77332e08d9041d2b9cbf259",
+      "status": "equivalent source retained",
+      "rationale": "This call-site group uses the same actor and effect addresses, Vec fields, constants and owning implementations. Differences are label variants, receiver and first-member pointer casts, or equivalent includes.",
+      "diff_to_previous_great_merge_sha256": "cdecd93d56755b10e29d52a741b191840e49e68431920277241e5389c9ed9c3c"
+    },
+    "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp": {
+      "review_blob": "0de2fef75fd15ac8a5fd3f922df14f48ec662197",
+      "previous_review_blob": "0de2fef75fd15ac8a5fd3f922df14f48ec662197",
+      "previous_great_merge_blob": "4450e8c38dc0f47c70d8c511a7551cf2f7a1c666",
+      "status": "equivalent source retained",
+      "rationale": "This call-site group uses the same actor and effect addresses, Vec fields, constants and owning implementations. Differences are label variants, receiver and first-member pointer casts, or equivalent includes.",
+      "diff_to_previous_great_merge_sha256": "44eb3e217b7dcbf9b04ff68ec47bfb1045f783c957ac38e25e3d4d297bb425fa"
+    },
+    "src/pso/enemy/dubchik/TObjEneDubchik.cpp": {
+      "review_blob": "f56d92607d511f1257444afeaa54d63b51165c2b",
+      "previous_review_blob": "f56d92607d511f1257444afeaa54d63b51165c2b",
+      "previous_great_merge_blob": "5c514c6c4f899c8b596162d5d7555aa79939b4fa",
+      "status": "equivalent source retained",
+      "rationale": "This call-site group uses the same actor and effect addresses, Vec fields, constants and owning implementations. Differences are label variants, receiver and first-member pointer casts, or equivalent includes.",
+      "diff_to_previous_great_merge_sha256": "36e4808b06eaf7a2b6280824c5065c0db1c65b7cf76bfdce8b3dd250a6177d9a"
+    },
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp": {
+      "review_blob": "253e5844ca0a6e054d4fbe288f739b399d7b17bc",
+      "previous_review_blob": "6577b79de4d136ee14617e049b443949af1a693c",
+      "previous_great_merge_blob": "79d25c8c4c45f3c993227cfec8b5ea538980fb9c",
+      "status": "equivalent source retained",
+      "rationale": "This call-site group uses the same actor and effect addresses, Vec fields, constants and owning implementations. Differences are label variants, receiver and first-member pointer casts, or equivalent includes.",
+      "diff_to_previous_great_merge_sha256": "585e869f8cc0947a3d9f9d7b030c9255e00f57c434f91abad5832d6f9caa6919"
+    },
+    "src/pso/enemy/gee/TObjEneMe1Gee.cpp": {
+      "review_blob": "4b809abf8acf3e8511b62fd493197f761329da55",
+      "previous_review_blob": "4b809abf8acf3e8511b62fd493197f761329da55",
+      "previous_great_merge_blob": "934cf2964b678e705a26b622698569da6b19f495",
+      "status": "equivalent source retained",
+      "rationale": "This call-site group uses the same actor and effect addresses, Vec fields, constants and owning implementations. Differences are label variants, receiver and first-member pointer casts, or equivalent includes.",
+      "diff_to_previous_great_merge_sha256": "337244513e5c4fd9bd9e79029dbbe7c07bef7708f19b947a5d24963267e0f767"
+    },
+    "src/pso/enemy/gibbles/TObjEneGibbles.cpp": {
+      "review_blob": "4e9802d7d211cef17800299b8bf0015bd4f70d0e",
+      "previous_review_blob": "4e9802d7d211cef17800299b8bf0015bd4f70d0e",
+      "previous_great_merge_blob": "df5308b5b26afa96ba1fde8540e0957b8dbe0f25",
+      "status": "equivalent source retained",
+      "rationale": "This call-site group uses the same actor and effect addresses, Vec fields, constants and owning implementations. Differences are label variants, receiver and first-member pointer casts, or equivalent includes.",
+      "diff_to_previous_great_merge_sha256": "d7413f8c566c3f53d5a5231e9d8999b3c254884de3da01a89f0761517128e7ed"
+    },
+    "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp": {
+      "review_blob": "e3064f44ac9fe0196a32c8436c8d2a4490504fda",
+      "previous_review_blob": "e3064f44ac9fe0196a32c8436c8d2a4490504fda",
+      "previous_great_merge_blob": "1fdf8a5b6c28f5eec81a76212532544342e39b07",
+      "status": "equivalent source retained",
+      "rationale": "This call-site group uses the same actor and effect addresses, Vec fields, constants and owning implementations. Differences are label variants, receiver and first-member pointer casts, or equivalent includes.",
+      "diff_to_previous_great_merge_sha256": "ac8bb9e43825cd33894e6c255421d0df71674459efc035049f1f95ef74077c1f"
+    },
+    "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp": {
+      "review_blob": "8055c3c3b875ae54d48c7dd658ab53f31d5b8b95",
+      "previous_review_blob": "8055c3c3b875ae54d48c7dd658ab53f31d5b8b95",
+      "previous_great_merge_blob": "dab9f086277ac2f9cdd85164fdf69bab6b914872",
+      "status": "equivalent source retained",
+      "rationale": "This call-site group uses the same actor and effect addresses, Vec fields, constants and owning implementations. Differences are label variants, receiver and first-member pointer casts, or equivalent includes.",
+      "diff_to_previous_great_merge_sha256": "b386fbdff5574dd60e712b22c5ace07ac31a09d3e4d3c8343a717106e5e22d72"
+    },
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp": {
+      "review_blob": "910019e91735ea7a2b5b4b827e327db170ff36d2",
+      "previous_review_blob": "87af2013cf0515aab5d138bef5d13cc00900da1a",
+      "previous_great_merge_blob": "33ac1614935471f7cccdb285ed4e40460b9e8777",
+      "status": "equivalent source retained",
+      "rationale": "This call-site group uses the same actor and effect addresses, Vec fields, constants and owning implementations. Differences are label variants, receiver and first-member pointer casts, or equivalent includes.",
+      "diff_to_previous_great_merge_sha256": "a2fbabc22af0ee41b0d04c0ec9920b79ffaf9748cb51fd855edac15457c7f80e"
+    },
+    "src/pso/enemy/merilllia/TObjEneMerillLia.cpp": {
+      "review_blob": "0a9dfd5129b61956b7560b5f685383c6fef599e5",
+      "previous_review_blob": "0a9dfd5129b61956b7560b5f685383c6fef599e5",
+      "previous_great_merge_blob": "afe91fd17f651da7481db2a13f09a66f33cd825c",
+      "status": "equivalent source retained",
+      "rationale": "This call-site group uses the same actor and effect addresses, Vec fields, constants and owning implementations. Differences are label variants, receiver and first-member pointer casts, or equivalent includes.",
+      "diff_to_previous_great_merge_sha256": "bac4b11bacc73e5589cec4b6865082520b543e07487a65f5e97595fe49879da2"
+    },
+    "src/pso/enemy/moja/TObjEneMoja.cpp": {
+      "review_blob": "8a975982ee44238206d494c596a50479106332d3",
+      "previous_review_blob": "8a975982ee44238206d494c596a50479106332d3",
+      "previous_great_merge_blob": "e10d0ac55df20539543002941015517b3f508430",
+      "status": "equivalent source retained",
+      "rationale": "This call-site group uses the same actor and effect addresses, Vec fields, constants and owning implementations. Differences are label variants, receiver and first-member pointer casts, or equivalent includes.",
+      "diff_to_previous_great_merge_sha256": "1b72d9f9b1043113294dd04b1a46f3d773791a60280ba7db5d0bc301ae8c3a29"
+    },
+    "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp": {
+      "review_blob": "e6fc5dfd85ee205c08e21a4d23c4b0ecbe11dc65",
+      "previous_review_blob": "e6fc5dfd85ee205c08e21a4d23c4b0ecbe11dc65",
+      "previous_great_merge_blob": "ae48cd012a57b87fcf76b11369a096d8b807e842",
+      "status": "equivalent source retained",
+      "rationale": "This call-site group uses the same actor and effect addresses, Vec fields, constants and owning implementations. Differences are label variants, receiver and first-member pointer casts, or equivalent includes.",
+      "diff_to_previous_great_merge_sha256": "c1abe074e7c48f8cfb49e82d7e0729a08b138bbc0abf68f079648d6910ac2bf0"
+    },
+    "src/pso/enemy/panarms/TObjEnePanarms.cpp": {
+      "review_blob": "e9312419faac9b540e57979bdf09eb2a6dabd634",
+      "previous_review_blob": "463777ee09a6b2f756f9fd489d0974d02aa1ba73",
+      "previous_great_merge_blob": "d095f5db743ecc567157b23796da7e06744b1342",
+      "status": "equivalent source retained",
+      "rationale": "This call-site group uses the same actor and effect addresses, Vec fields, constants and owning implementations. Differences are label variants, receiver and first-member pointer casts, or equivalent includes.",
+      "diff_to_previous_great_merge_sha256": "ef26a3a55bf8136645e0c92217b36aff938beca1008ff02886bd5a7e823b33c6"
+    },
+    "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp": {
+      "review_blob": "6e228e25fefcc230d47ce18a3621e7ccc348629d",
+      "previous_review_blob": "1e03e752bcbc3f18650a8b8acbd0ebaaefdf78ad",
+      "previous_great_merge_blob": "90568c15374ddc208a39b0cef57d3037e73ccdd6",
+      "status": "equivalent source retained",
+      "rationale": "This call-site group uses the same actor and effect addresses, Vec fields, constants and owning implementations. Differences are label variants, receiver and first-member pointer casts, or equivalent includes.",
+      "diff_to_previous_great_merge_sha256": "47f107b9d147c0eb59387c1794097da669f3b0f077c5a118ced6009cb94f2a38"
+    },
+    "src/pso/enemy/recon/TObjEneRecon.cpp": {
+      "review_blob": "7ad3975de6b207bbbfc60d61f7f9f940ad432616",
+      "previous_review_blob": "7ad3975de6b207bbbfc60d61f7f9f940ad432616",
+      "previous_great_merge_blob": "ff6faddeed8d271afe176ab260944d1b13773f6a",
+      "status": "equivalent source retained",
+      "rationale": "This call-site group uses the same actor and effect addresses, Vec fields, constants and owning implementations. Differences are label variants, receiver and first-member pointer casts, or equivalent includes.",
+      "diff_to_previous_great_merge_sha256": "50976b2b53193f2b3b9879f8d05bc42422fb4cc531d5e8bb569deb64d2792705"
+    },
+    "src/pso/enemy/saver/SaverLifecycle.cpp": {
+      "review_blob": "3a422efbbefc237bf61eea0d81f612e927358086",
+      "previous_review_blob": "3a422efbbefc237bf61eea0d81f612e927358086",
+      "previous_great_merge_blob": "490e1595c422bd387b9b91e5eb94a6461841f96d",
+      "status": "equivalent source retained",
+      "rationale": "This call-site group uses the same actor and effect addresses, Vec fields, constants and owning implementations. Differences are label variants, receiver and first-member pointer casts, or equivalent includes.",
+      "diff_to_previous_great_merge_sha256": "52582da383c6fb31c9bd16172af649c7f0e76300370ddf486f940a2a95242704"
+    },
+    "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp": {
+      "review_blob": "4980348160518c265622912ff5cb188132c66638",
+      "previous_review_blob": "4980348160518c265622912ff5cb188132c66638",
+      "previous_great_merge_blob": "98e42b4268ca3853cfd18228d4dce39d509d9f9c",
+      "status": "equivalent source retained",
+      "rationale": "This call-site group uses the same actor and effect addresses, Vec fields, constants and owning implementations. Differences are label variants, receiver and first-member pointer casts, or equivalent includes.",
+      "diff_to_previous_great_merge_sha256": "c3c42416801f7df8b742ceef8f2f21f5104ce1fc85ab517d8e3cf0c4628d7b33"
+    },
+    "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp": {
+      "review_blob": "eea7b3d423ca81097cd9c4d86883c8cc57d517e9",
+      "previous_review_blob": "eea7b3d423ca81097cd9c4d86883c8cc57d517e9",
+      "previous_great_merge_blob": "d2514bcafc0ba9bd2ff6f248d57221a380f40817",
+      "status": "equivalent source retained",
+      "rationale": "This call-site group uses the same actor and effect addresses, Vec fields, constants and owning implementations. Differences are label variants, receiver and first-member pointer casts, or equivalent includes.",
+      "diff_to_previous_great_merge_sha256": "3d38cc45d4becf76d2bad273202d0faeebcfbf861cacc0a0f4da04c76d516ca0"
+    },
+    "src/pso/enemy/slime/TObjEneSlimeOne_800EC394.cpp": {
+      "review_blob": "f8beb8cd0ec058e36ac8079d0ba9af6538cbfb8b",
+      "previous_review_blob": "f8beb8cd0ec058e36ac8079d0ba9af6538cbfb8b",
+      "previous_great_merge_blob": "ebfe2fe681b17adfa54ce682c3f011fbabdf83ce",
+      "status": "equivalent source retained",
+      "rationale": "Typed archive and geometry calls are present. The remaining differences consist of include placement, equivalent conversions, and existing labels.",
+      "diff_to_previous_great_merge_sha256": "8d9f5b2a1d53298647cc18a5f6f7ebc6e051c9d2d3308a08aa81fe36eba0274f"
+    },
+    "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp": {
+      "review_blob": "111d86a62e16b45b3b1dab5ecb307b4047ee3081",
+      "previous_review_blob": "111d86a62e16b45b3b1dab5ecb307b4047ee3081",
+      "previous_great_merge_blob": "2caee916ca83ca5e0f6a459e0e945e4c9561efb4",
+      "status": "equivalent source retained",
+      "rationale": "Typed archive and geometry calls are present. The remaining differences consist of include placement, equivalent conversions, and existing labels.",
+      "diff_to_previous_great_merge_sha256": "e9c77eeb58621a23f92699ff7ca5020c9b997962465304feb2a9ecae970cb989"
+    },
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp": {
+      "review_blob": "b4c86459ac9dceeda9553ecce5a1c3b5c1a9ac21",
+      "previous_review_blob": "b4c86459ac9dceeda9553ecce5a1c3b5c1a9ac21",
+      "previous_great_merge_blob": "aa0a79694f89cad9326714f75e660dbf50bc64bc",
+      "status": "equivalent source retained",
+      "rationale": "This call-site group uses the same actor and effect addresses, Vec fields, constants and owning implementations. Differences are label variants, receiver and first-member pointer casts, or equivalent includes.",
+      "diff_to_previous_great_merge_sha256": "0647ed0ddafd461ecad30ed2d362c500b7cef37ab5dbc8f5730b9e1a41d8db3d"
+    },
+    "src/pso/item/TItem.cpp": {
+      "review_blob": "bc25a4eaf273e4a1be8979b2e398ee4b0ead643f",
+      "previous_review_blob": "bc25a4eaf273e4a1be8979b2e398ee4b0ead643f",
+      "previous_great_merge_blob": "877a136f9b9a4a89059e23b0115b84c741676108",
+      "status": "equivalent source retained",
+      "rationale": "The same Vec storage reaches the particle, collision, or ground-effect routine. The alternative changes a first-member address, cast, or parentheses.",
+      "diff_to_previous_great_merge_sha256": "b8289ed22d0a16253fe7102255f183907b4fa73a967a69ed5a858edbd51e3dd2"
+    },
+    "src/pso/item/TItemLoad.cpp": {
+      "review_blob": "c939ef1dc7457a09afed57db84283c76670adae2",
+      "previous_review_blob": "2c9e99d5d23770decf27cdb87f12f1090e8c7be7",
+      "previous_great_merge_blob": "13f0cb09ff2d9ee263ae707ffff7fcf55f6ad253",
+      "status": "equivalent source retained",
+      "rationale": "Typed archive and geometry calls are present. The remaining differences consist of include placement, equivalent conversions, and existing labels.",
+      "diff_to_previous_great_merge_sha256": "aafa9a7d936eabea64be671d3aac6ab5b9473b721401e6e89db0dfd0109bdb5a"
+    },
+    "src/pso/network/TradeSession.cpp": {
+      "review_blob": "e03ec69e878d4078d309ea28d7a4d4690782fe20",
+      "previous_review_blob": "e03ec69e878d4078d309ea28d7a4d4690782fe20",
+      "previous_great_merge_blob": "e0421f5b56c0fc668118c4deba2e2ba68cf7cceb",
+      "status": "equivalent source retained",
+      "rationale": "The same shared meseta or inventory entry point takes the same argument and item layout. Remaining differences are redundant includes, casts, or existing actor method names.",
+      "diff_to_previous_great_merge_sha256": "df5d958fcf22940af2fb35f0b65130df6187a95971b20efc8252e954b8ae9109"
+    },
+    "src/pso/npc/TNpcPlayer.cpp": {
+      "review_blob": "f2daa1c9c93a62212db9b877fe5eb1e609c2ac81",
+      "previous_review_blob": "f2daa1c9c93a62212db9b877fe5eb1e609c2ac81",
+      "previous_great_merge_blob": "d58bc66184cad46e2df144088e0d5e3e3df4be65",
+      "status": "equivalent source retained",
+      "rationale": "The same Vec storage reaches the particle, collision, or ground-effect routine. The alternative changes a first-member address, cast, or parentheses.",
+      "diff_to_previous_great_merge_sha256": "c1e46dc4526def9178513b88e6b4cec696983650bba6434a95a8753e2538aa21"
+    },
+    "src/pso/npc/TNpcPlayer_802C3CD0.cpp": {
+      "review_blob": "6fd7889f08d9ac98614d72ff41391c2db516e209",
+      "previous_review_blob": "6fd7889f08d9ac98614d72ff41391c2db516e209",
+      "previous_great_merge_blob": "1a895f2555a32e2a19ea45a1dfe3dd5531aeb024",
+      "status": "equivalent source retained",
+      "rationale": "The current NPC owner includes the inventory declaration it uses directly. The alternative reaches it through the broader lobby header.",
+      "diff_to_previous_great_merge_sha256": "1875fed639ece7e0521e37d0216c39c8796b571f93401973d12ddda6b1879423"
+    },
+    "src/pso/npc/TObjNpcBase.cpp": {
+      "review_blob": "fab565092f4360ca5941f9dbb5cb9db45f72241d",
+      "previous_review_blob": "fab565092f4360ca5941f9dbb5cb9db45f72241d",
+      "previous_great_merge_blob": "88d2edc51475bfcc1ce49052edff3cf798ec6f39",
+      "status": "equivalent source retained",
+      "rationale": "The same inherited actor methods handle position initialization and copying. The remaining deltas use a different function name or an explicit conversion to the same base subobject.",
+      "diff_to_previous_great_merge_sha256": "f63d4cdcd3f93fd84766f80136f96bdb8a3a780e4815eda99ba491212632785f"
+    },
+    "src/pso/npc/TObjNpcBringer.cpp": {
+      "review_blob": "4b1bf5647f76a12e60d9b2dae2572caa6c32601d",
+      "previous_review_blob": "4b1bf5647f76a12e60d9b2dae2572caa6c32601d",
+      "previous_great_merge_blob": "ebffb1227eb634a0cdd0e109b906ba5fd87ed9fa",
+      "status": "equivalent source retained",
+      "rationale": "The same inherited actor methods handle position initialization and copying. The remaining deltas use a different function name or an explicit conversion to the same base subobject.",
+      "diff_to_previous_great_merge_sha256": "f8a3fdf50a322364ab90f74d5816673b368e7f86f6036decdff0f77ba29b9881"
+    },
+    "src/pso/npc/TObjNpcEnemy.cpp": {
+      "review_blob": "a17c82257cc2b973040d4a67262ec94459110de8",
+      "previous_review_blob": "a17c82257cc2b973040d4a67262ec94459110de8",
+      "previous_great_merge_blob": "ec7763ef14972ee525d0e3632116d9f813b5d5e1",
+      "status": "equivalent source retained",
+      "rationale": "The same inherited actor methods handle position initialization and copying. The remaining deltas use a different function name or an explicit conversion to the same base subobject.",
+      "diff_to_previous_great_merge_sha256": "179ca5645f9bd79bd2015d5f6bebe55a41599af009d556e30ccaf12c5169880b"
+    },
+    "src/pso/npc/TObjNpcLappy.cpp": {
+      "review_blob": "84c0a3de95a9422f8c4da106f903f98f49a83433",
+      "previous_review_blob": "84c0a3de95a9422f8c4da106f903f98f49a83433",
+      "previous_great_merge_blob": "cecd7812ccaa130a0583f7eb443ce76f29f26bff",
+      "status": "equivalent source retained",
+      "rationale": "The same inherited actor methods handle position initialization and copying. The remaining deltas use a different function name or an explicit conversion to the same base subobject.",
+      "diff_to_previous_great_merge_sha256": "975d8c191a1457864cff73ccfe95d2a3485eb258963c017db852b335802f71f2"
+    },
+    "src/pso/npc/TObjNpcMoja.cpp": {
+      "review_blob": "bb794861c403779317e9a9d971453319425ed64f",
+      "previous_review_blob": "bb794861c403779317e9a9d971453319425ed64f",
+      "previous_great_merge_blob": "0ac1bc0b0d0945870532228ac187cb8b6c95fca2",
+      "status": "equivalent source retained",
+      "rationale": "The same inherited actor methods handle position initialization and copying. The remaining deltas use a different function name or an explicit conversion to the same base subobject.",
+      "diff_to_previous_great_merge_sha256": "7b231f240075eaff2ce047cfa5adaf21548692c63d8a12508e5fe2f7b8eb41f3"
+    },
+    "src/pso/object/ambient/TObjGrass.cpp": {
+      "review_blob": "ee056df27cb1aaa1f4cba521f56977d72d60e65a",
+      "previous_review_blob": "ee056df27cb1aaa1f4cba521f56977d72d60e65a",
+      "previous_great_merge_blob": "a2160dcc4937b572238b31502f753e5623440052",
+      "status": "equivalent source retained",
+      "rationale": "This call-site group uses the same actor and effect addresses, Vec fields, constants and owning implementations. Differences are label variants, receiver and first-member pointer casts, or equivalent includes.",
+      "diff_to_previous_great_merge_sha256": "b19d8a41a99e4e309d52e92d72f31869b9e7988ab26752d107d2cc80b7884fd3"
+    },
+    "src/pso/player/TObjPlayer_80011014.cpp": {
+      "review_blob": "7869e5ff8f90e3314b1ead4fdc995926b2597336",
+      "previous_review_blob": "7869e5ff8f90e3314b1ead4fdc995926b2597336",
+      "previous_great_merge_blob": "bbef51e44c495c88c42b926b3eb7f4942561ba0c",
+      "status": "equivalent source retained",
+      "rationale": "The same shared meseta or inventory entry point takes the same argument and item layout. Remaining differences are redundant includes, casts, or existing actor method names.",
+      "diff_to_previous_great_merge_sha256": "1f31129c89cfb56cb1142af68adca9e61461886bb83789deff49e11b7b1350b9"
+    },
+    "src/pso/player/TObjPlayer_801AF2F0.cpp": {
+      "review_blob": "a6c2fe70e6ad6310ad2201c7a43d0d033632a65c",
+      "previous_review_blob": "a6c2fe70e6ad6310ad2201c7a43d0d033632a65c",
+      "previous_great_merge_blob": "137cc14e3d571e44a75613dffbd34d0e9f28f43d",
+      "status": "equivalent source retained",
+      "rationale": "The same shared meseta or inventory entry point takes the same argument and item layout. Remaining differences are redundant includes, casts, or existing actor method names.",
+      "diff_to_previous_great_merge_sha256": "f889f0b01458c71affe1ffd63a7a4bad1ef9340f128522a1b671bb8ca41f4f32"
+    },
+    "src/pso/player/TObjPlayer_801BC140.cpp": {
+      "review_blob": "59ba612c880fde2f7fafc127dde7a58d12fe2d6a",
+      "previous_review_blob": "59ba612c880fde2f7fafc127dde7a58d12fe2d6a",
+      "previous_great_merge_blob": "579f1cffab20329a71c4e8d7549c2bcdc05aded1",
+      "status": "equivalent source retained",
+      "rationale": "The same inherited actor methods handle position initialization and copying. The remaining deltas use a different function name or an explicit conversion to the same base subobject.",
+      "diff_to_previous_great_merge_sha256": "070b9cc155be41b9b836572d3bc6c5e31dd8223cb409b33c922594f61031a3f1"
+    },
+    "src/pso/player/TPlayerBattleCtrl4P.cpp": {
+      "review_blob": "54424c0b6a9a31e25ccf38d7c8dc251ae3949525",
+      "previous_review_blob": "1d73e647139afee58aaf86e2877012f3291c401b",
+      "previous_great_merge_blob": "05be1871bc80527863371f782f2cb4ed73e11e82",
+      "status": "equivalent source retained",
+      "rationale": "The current source names the direct duel result and quest manager dependencies. The remaining difference is include placement.",
+      "diff_to_previous_great_merge_sha256": "f26b7c6ba390752096e494080070adff06278ecdfe7571e4b94f478d724d0884"
+    },
+    "src/pso/player/TPlyItem.cpp": {
+      "review_blob": "440fb1de7d2776aabe2952080ac23a62f804f11f",
+      "previous_review_blob": "440fb1de7d2776aabe2952080ac23a62f804f11f",
+      "previous_great_merge_blob": "f66add05469aac72c0784fb83efe1c3aeba88c80",
+      "status": "equivalent source retained",
+      "rationale": "The same shared meseta or inventory entry point takes the same argument and item layout. Remaining differences are redundant includes, casts, or existing actor method names.",
+      "diff_to_previous_great_merge_sha256": "63f1dfe6236e46162ca089c85b7af33e45084564751cf6c647acdfd5aeaccd27"
+    },
+    "src/pso/quest/QuestOpcodeHandlers.cpp": {
+      "review_blob": "1b41af888a329dfdabd87fc0d3ad1b3e42fc48f4",
+      "previous_review_blob": "1b41af888a329dfdabd87fc0d3ad1b3e42fc48f4",
+      "previous_great_merge_blob": "96e774dcd3288e796809fe7fb9f7d684bb387ca9",
+      "status": "equivalent source retained",
+      "rationale": "The same shared meseta or inventory entry point takes the same argument and item layout. Remaining differences are redundant includes, casts, or existing actor method names.",
+      "diff_to_previous_great_merge_sha256": "d3ec8f30b850d230e77f2d4c243b906237a7dd251e0cb27ac8540f6ebb732e6c"
+    },
+    "src/pso/quest/TQuestListVM.cpp": {
+      "review_blob": "4fa41ec66cb7659ace7f2c8bd291d27d8c9f52fb",
+      "previous_review_blob": "4fa41ec66cb7659ace7f2c8bd291d27d8c9f52fb",
+      "previous_great_merge_blob": "8fd8d42b3e0892b607c48d433af47efd7118e87f",
+      "status": "equivalent source retained",
+      "rationale": "The current s32 parameter and historical saddr parameter name the same integer type.",
+      "diff_to_previous_great_merge_sha256": "c657fdff56bc9618f60fb6c1103029370fa7953040748c8a1e36f21f978e80cb"
+    },
+    "src/pso/technique/TTecRaFoie.cpp": {
+      "review_blob": "d03dfca3a62bfee6fceeccffe1d65cc68b95fabc",
+      "previous_review_blob": "d03dfca3a62bfee6fceeccffe1d65cc68b95fabc",
+      "previous_great_merge_blob": "18db8f81366564b82f9f67d3d8d4e6d226b1eab2",
+      "status": "equivalent source retained",
+      "rationale": "The same Vec storage reaches the particle, collision, or ground-effect routine. The alternative changes a first-member address, cast, or parentheses.",
+      "diff_to_previous_great_merge_sha256": "ffbccdf061f1b70827572afbf753860ca930112b4707106204ec58900f18869d"
+    },
+    "src/pso/ui/city/TCheckRoomSequence.cpp": {
+      "review_blob": "999632609608e8c7461bde36c01668120100fbc3",
+      "previous_review_blob": "999632609608e8c7461bde36c01668120100fbc3",
+      "previous_great_merge_blob": "f1a331cff10d8fb5056d3353935ad92d8a89ce46",
+      "status": "equivalent source retained",
+      "rationale": "The same shared meseta or inventory entry point takes the same argument and item layout. Remaining differences are redundant includes, casts, or existing actor method names.",
+      "diff_to_previous_great_merge_sha256": "526ec99f2a7b18cbfbd7c6bced1f2f98605160c0afca9aa7ab2a8d15e47cea6d"
+    },
+    "src/pso/ui/city/TShopArmorListWindow.cpp": {
+      "review_blob": "a3f178def7ffabf00867732f624b960cf9c5d377",
+      "previous_review_blob": "a3f178def7ffabf00867732f624b960cf9c5d377",
+      "previous_great_merge_blob": "42560658028f2948095ed4ad0462d7aae934f280",
+      "status": "equivalent source retained",
+      "rationale": "The current menu pointer already has the callee type.",
+      "diff_to_previous_great_merge_sha256": "5ad5d461e546a03becc2015eba145523d6b52d8dfec9448dec6ba389a40fe9c1"
+    },
+    "src/pso/ui/city/TShopItemListWindow.cpp": {
+      "review_blob": "2ca2775ad30280af66dd3c92b1aa0ec4245f5d79",
+      "previous_review_blob": "713ddf00f52ecef10644c79b69ca3326ffa1d425",
+      "previous_great_merge_blob": "f2c3c2b205c1e597847f78c742b2106dc4ee7872",
+      "status": "equivalent source retained",
+      "rationale": "Both versions use the shared quantity-window declaration and perform the same u16 conversion.",
+      "diff_to_previous_great_merge_sha256": "5c846b92546179144c0963bc0ef66680b73466411ee79cd4f1f370d94968d8a7"
+    },
+    "src/pso/ui/city/TShopJudgmentItemWindow.cpp": {
+      "review_blob": "3f0dbd05b90604a578d05f0e3aced1b84df7df15",
+      "previous_review_blob": "3f0dbd05b90604a578d05f0e3aced1b84df7df15",
+      "previous_great_merge_blob": "6ffef7cbb976af2fe2c38c41db6960170608f338",
+      "status": "equivalent source retained",
+      "rationale": "The same shared meseta or inventory entry point takes the same argument and item layout. Remaining differences are redundant includes, casts, or existing actor method names.",
+      "diff_to_previous_great_merge_sha256": "b62e319ae10ec4257427c052f586145df2bda3dcf5034b957c06766dca76d477"
+    },
+    "src/pso/ui/frontend/TAdChrSelBSlotGC.cpp": {
+      "review_blob": "644ad31cfc6abf9d8d5c35686b9c4c357466e171",
+      "previous_review_blob": "644ad31cfc6abf9d8d5c35686b9c4c357466e171",
+      "previous_great_merge_blob": "278b92cb1263fab8437acb3309db486eaaa1301f",
+      "status": "equivalent source retained",
+      "rationale": "The slot uses the same null initialization.",
+      "diff_to_previous_great_merge_sha256": "52e5326463b6cc7d22469e6520d4a09a59b26ad3d6c9813d84b57cfeb741b534"
+    },
+    "src/pso/ui/frontend/TAdRicoRingCtrl.cpp": {
+      "review_blob": "fc757a4af3e4039225b2a90dbee6ecdd093c5795",
+      "previous_review_blob": "5e06ab02bec3e16ee9afa8d9bd0fecaf81572aaf",
+      "previous_great_merge_blob": "e8f49773b221c04368ff2004ad0b34c0a8cec5bb",
+      "status": "equivalent source retained",
+      "rationale": "Typed archive and geometry calls are present. The remaining differences consist of include placement, equivalent conversions, and existing labels.",
+      "diff_to_previous_great_merge_sha256": "045a627a603fc706dfd4b48b441e7942d43c8632d6fb4b6cb8a802848730f430"
+    },
+    "src/pso/ui/frontend/TAdSubPlyItemGC_802D6BEC.cpp": {
+      "review_blob": "1ac25818bcefef606bcfd31e09b06aace49b8f38",
+      "previous_review_blob": "e0c4420340f952d8043a69a2a979f6220da806d5",
+      "previous_great_merge_blob": "7c4c1df3b209c54ad44541e980f64d6245d81f12",
+      "status": "upstream names retained",
+      "rationale": "The typed player slot label publishes the same slot, name, level, and position. The remaining variation is the local parameter name.",
+      "diff_to_previous_great_merge_sha256": "eb64626abf51aa106d5e6abb6d9505c2f843172607847ef962485f13a585b5c6"
+    },
+    "src/pso/ui/window/TWindowCtrl.cpp": {
+      "review_blob": "f482cc78b63272df0ca2ab115256dc3bd11b7518",
+      "previous_review_blob": "f482cc78b63272df0ca2ab115256dc3bd11b7518",
+      "previous_great_merge_blob": "7f5ffb0d20af38a4d7edf414bf34e53f26387cc4",
+      "status": "equivalent source retained",
+      "rationale": "The chat receiver conversion and condition are equivalent. The remaining differences are the intermediary cast and whitespace.",
+      "diff_to_previous_great_merge_sha256": "b4159b3d6e1b8f52c8dcdbed64c3c0da0007bb10f95baefc6ecd90e4117928b4"
+    },
+    "src/pso/ui/window/TWindowMessageScroll.cpp": {
+      "review_blob": "f83c556f5cf4a15975211dd0ea02c015dee95333",
+      "previous_review_blob": "598473c9f83604d10ba5ac527f41150b30a0b9f5",
+      "previous_great_merge_blob": "f83c556f5cf4a15975211dd0ea02c015dee95333",
+      "status": "exact prior source",
+      "rationale": "The replay now has the same source blob as the preceding Great Merge tree.",
+      "diff_to_previous_great_merge_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "src/pso/ui/window/TWindowSubCustomEquip.cpp": {
+      "review_blob": "e5b408af17d0526ed73627ccd2b0949529a1aaac",
+      "previous_review_blob": "8c5627837302f098c17a7de226db69abf1c681eb",
+      "previous_great_merge_blob": "44dde2f5a599bb121d4cd3a3e0b16da440fd3a20",
+      "status": "equivalent source retained",
+      "rationale": "The shared window layout is present. The historical variant uses alternate names for client_index and open_tick at the same offsets and casts the typed tick.",
+      "diff_to_previous_great_merge_sha256": "ac9c71bfc41683ceecb690960fb6453a43ffc2ee8f7e848a63ba49dfdc15754f"
+    },
+    "src/pso/unk/TLobby_8001EF5C.cpp": {
+      "review_blob": "55c5667371a23c4838d7375184aee6213c971db4",
+      "previous_review_blob": "15ddb253491a0a127f8b6e7c7bbfe7ae7fe3d468",
+      "previous_great_merge_blob": "35b3b266e9ba4a558c023304abed309ca9962912",
+      "status": "equivalent source retained",
+      "rationale": "The same archive allocation, read-state transitions, and free paths are present. The historical variant uses alternative names and extra casts or declarations.",
+      "diff_to_previous_great_merge_sha256": "05c5217169dda29a75e84f2b9748ee201d817c7326768565e28adbeb091dc174"
+    },
+    "src/pso/unk/TLobby_800F8AA8.cpp": {
+      "review_blob": "e865a5ed23a38df05bd0f79a90000ea4280e692f",
+      "previous_review_blob": "f551b5d6f758474786d3352d24571a2b33ea694e",
+      "previous_great_merge_blob": "71a8318211a8c8613f431bdd9671f456644090bb",
+      "status": "equivalent source retained",
+      "rationale": "The current shared lobby interface supplies the temporary-buffer declaration.",
+      "diff_to_previous_great_merge_sha256": "5792554470da8759fac2df92c331ca94773b5a7b0638cb90333b42889888657d"
+    },
+    "src/pso/unk/TLobby_801C25B4.cpp": {
+      "review_blob": "e25a7245cf1e26a650e5899b2432a78606ca9152",
+      "previous_review_blob": "e25a7245cf1e26a650e5899b2432a78606ca9152",
+      "previous_great_merge_blob": "d4e541100dae1fc9390c177cd28efc9d4606b8d6",
+      "status": "equivalent source retained",
+      "rationale": "The duplicate preprocessor definition is already present before its consumer.",
+      "diff_to_previous_great_merge_sha256": "1acb2bddc6eb98b9f1be63ea131ce63ac574f0b1102de27ecd0f26e43d7d29ed"
+    },
+    "src/pso/unk/TLobby_801E2F94.cpp": {
+      "review_blob": "2c14b3f638b87fe2cc32c758128cc6c165caa036",
+      "previous_review_blob": "2c14b3f638b87fe2cc32c758128cc6c165caa036",
+      "previous_great_merge_blob": "dfe923f6745b3b2c5f8d40f79d25fbebcc81df84",
+      "status": "equivalent source retained",
+      "rationale": "The current source and its include graph already supply the resource and actor declarations. The alternative adds an include and uses a different spelling for the same actor registration entry point where applicable.",
+      "diff_to_previous_great_merge_sha256": "13b19bda96a2cffb8c6840f5633aa9f402d69d94f6dd321bd07e4d7c6c8cc75e"
+    },
+    "src/pso/unk/text_800C2A88.cpp": {
+      "review_blob": "7088e79334e138b1ba33d16bc2924b239b75446e",
+      "previous_review_blob": "7088e79334e138b1ba33d16bc2924b239b75446e",
+      "previous_great_merge_blob": "4ce931d93e61df8b930e446ed2b10d2c56c4e353",
+      "status": "equivalent source retained",
+      "rationale": "The same Vec storage reaches the particle, collision, or ground-effect routine. The alternative changes a first-member address, cast, or parentheses.",
+      "diff_to_previous_great_merge_sha256": "a6e3294b74938cddaa74605cff995d9cc63359b47b519015480d98045f02dc61"
+    },
+    "src/pso/unk/text_803CC294.cpp": {
+      "review_blob": "3ef2c977e063662f86a0d9ce3d360cba5402c826",
+      "previous_review_blob": "3ef2c977e063662f86a0d9ce3d360cba5402c826",
+      "previous_great_merge_blob": "afa0f57d4c0a560a0f1199b96d5e5b457ea8866f",
+      "status": "upstream names retained",
+      "rationale": "The original ADXF_GetStat and ADXF_GetFsizeSct names remain at their existing entry points.",
+      "diff_to_previous_great_merge_sha256": "818590fa4ad1c4ce4253e3732584b679ec163563c5ad8828d6476910da74fbb1"
+    },
+    "src/pso/weapon/TUnk_804A4D70.cpp": {
+      "review_blob": "c294c3b09f48f84da5d842ee7486a7adfe803ac0",
+      "previous_review_blob": "c294c3b09f48f84da5d842ee7486a7adfe803ac0",
+      "previous_great_merge_blob": "34bcb544f37e87558b2d73b9840fa273590d29ae",
+      "status": "equivalent source retained",
+      "rationale": "The same shared meseta or inventory entry point takes the same argument and item layout. Remaining differences are redundant includes, casts, or existing actor method names.",
+      "diff_to_previous_great_merge_sha256": "ffd2b36366e13ec809f435a8c836e70b8d350c5c8f226ad6f47534339985cf63"
+    },
+    "src/pso/weapon/TUnk_804E24F0.cpp": {
+      "review_blob": "97b600c3e06c2e3e89317ea6ec6517e4abd5e7fb",
+      "previous_review_blob": "97b600c3e06c2e3e89317ea6ec6517e4abd5e7fb",
+      "previous_great_merge_blob": "06e769f6235ad515235e33e3c66f2f78de90c4a8",
+      "status": "equivalent source retained",
+      "rationale": "The existing muzzle_offset fields retain the same offsets, defaults and arithmetic. The position reaches the same particle call through the typed Vec pointer.",
+      "diff_to_previous_great_merge_sha256": "e9155839882ec709fc6ca1b2f4b4407385833676bedc2867339b28a1669798dc"
+    },
+    "src/pso/weapon/TUnk_804F28E0.cpp": {
+      "review_blob": "7c47eee7d799bef9f4efbfd62d88fa4c3b3e0eba",
+      "previous_review_blob": "7c47eee7d799bef9f4efbfd62d88fa4c3b3e0eba",
+      "previous_great_merge_blob": "07a917bdb7da7748dc86f8733c74727bc112627d",
+      "status": "equivalent source retained",
+      "rationale": "The existing muzzle_offset fields retain the same offsets, defaults and arithmetic. The position reaches the same particle call through the typed Vec pointer.",
+      "diff_to_previous_great_merge_sha256": "5f57509e6bda8dd6949bd200dc48d0e9926c34d84b7950fdc0230866e56e80e0"
+    }
+  },
+  "remaining_replay_path_comparisons": 0,
+  "fork_workspace_check": {
+    "head": "d5de8be4ee5ba3186911750b7082ce91344814c8",
+    "baseline": "7f63315ddb4541fe88a0f2320264cc7639d1f405",
+    "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "check_sha256": "294d5d4e65e3db3407ceff097811cede09728d2c21c1257d66d17135be0bdc4b",
+    "function_labels_changed": 0
+  },
+  "tool_overlay_paths": 130,
+  "retained_symbols": 27033,
+  "tool_overlay_sha256": "d9ea5c6f60a8a1c752d9050b1549cb61c68c67da3cd7bedcb567167d69209014",
+  "fork_workspace_tests": {
+    "tool": {
+      "count": 294,
+      "sha256": "6b62b5fe517f016e0be872bef1de96a362834a658afefc46f064d8105300dfa5"
+    },
+    "fork": {
+      "count": 11,
+      "sha256": "c41703ca53f4cc0c481b91ae0291719a3b3b7f6b327b16413b20e40483f0f857"
+    },
+    "host": {
+      "checks": [
+        "./vector_math_fallbacks",
+        "./item_factory_callbacks",
+        "./loader_transfer",
+        "./ginja_parameter_callbacks",
+        "./exi_ethernet_fallbacks"
+      ],
+      "sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "title_and_character_slot_probe_sha256": "aa5f166944d381e1de95508e9bded98f101172c847f8e52ff652b8ca3bf51db0",
+  "original_fork_data_coverage": {
+    "cage": {
+      "report_sha256": "c73f97f68fd0cf0472bee51df533c49d3fd17c198b007e62f32048dabbd8acf9",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "layer": {
+      "report_sha256": "c73f97f68fd0cf0472bee51df533c49d3fd17c198b007e62f32048dabbd8acf9",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    }
+  },
+  "historical_fork_ledger": {
+    "path": "2026-11-18-fork-review-index.tsv",
+    "open": 590,
+    "open_by_family": {
+      "Audio and disc streaming": 6,
+      "Build, verification and automation": 1,
+      "Chat and text entry": 24,
+      "Enemy and boss behavior": 126,
+      "Front-end scenes and UI": 70,
+      "Network and protocol": 38,
+      "Player combat, techniques and items": 93,
+      "Rendering, camera and effects": 53,
+      "Resource loading and game systems": 32,
+      "Shared ABI declarations by owning caller": 1,
+      "Window layout, menus and results": 93,
+      "World objects, NPCs and quests": 53
+    },
+    "anchor_scan_head": "99885e28a55fc6d497f6cfbaf363d68636143525",
+    "rows_with_partial_token_evidence": 198,
+    "rows_fully_established_by_anchor_scan": 0
+  },
+  "review_commit_attribution": {
+    "commits": 38,
+    "codex_attribution": 0,
+    "coauthor_trailers": 0
+  },
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "previous_cutover_preview": "e4135b0c555e633bcd53f555eca1df6059afaf53",
+  "candidate_ref": "great-merge/cutover-candidate",
+  "public_refs_changed": false
+}

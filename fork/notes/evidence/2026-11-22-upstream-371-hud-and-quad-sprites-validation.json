@@ -1,0 +1,443 @@
+{
+  "upstream_master": "e39eb9e13801cc5c2d298ca42c616731d3d06296",
+  "previous_cumulative": "a49e3322fd8941df0e70b7a1700aa365141d1b98",
+  "cumulative": "60f088a4168206749f53e1a58fa0d915f77c0102",
+  "review_parent": "505569de5eb0f3ae147121af9a6941cfa91ffce9",
+  "review": "2e1003e7876e1df6c6563ee5df238ac77c03e166",
+  "review_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/ui/window/TWindowCtrlMain_8024674C.h",
+    "include/pso/ui/window/TWindowDD.h",
+    "include/pso/ui/window/WindowSpritePart.h",
+    "include/pso/unk/TUnk_804C57F0.h",
+    "include/pso/unk/WindowLayoutRecord.h",
+    "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon_8036AEF8.cpp",
+    "src/pso/effect/TDuelEffectNumber.cpp",
+    "src/pso/effect/TDuelEffectString.cpp",
+    "src/pso/effect/sprite/TQuadSpriteCol.cpp",
+    "src/pso/effect/sprite/TQuadSpriteNormal.cpp",
+    "src/pso/effect/sprite/TQuadSpriteScl.cpp",
+    "src/pso/effect/sprite/TQuadSpriteSclCol.cpp",
+    "src/pso/effect/sprite/TQuadSpriteSclColRot.cpp",
+    "src/pso/player/TObjPlayer_80083594.cpp",
+    "src/pso/ui/chat/TWindowChatSymbol.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChat.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChatFaceType.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChatHelp.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp",
+    "src/pso/ui/window/TWindowActionPalette.cpp",
+    "src/pso/ui/window/TWindowBreakIn.cpp",
+    "src/pso/ui/window/TWindowComCard.cpp",
+    "src/pso/ui/window/TWindowCtrlMain.cpp",
+    "src/pso/ui/window/TWindowDD_8034055C.cpp",
+    "src/pso/ui/window/TWindowDD_80340A78.cpp",
+    "src/pso/ui/window/TWindowDD_80341A08.cpp",
+    "src/pso/ui/window/TWindowDD_8034725C.cpp",
+    "src/pso/ui/window/TWindowDuelResult.cpp",
+    "src/pso/ui/window/TWindowEffectLight.cpp",
+    "src/pso/ui/window/TWindowFukidasi.cpp",
+    "src/pso/ui/window/TWindowHelpItem_802540AC.cpp",
+    "src/pso/ui/window/TWindowHelpItem_8025A60C.cpp",
+    "src/pso/ui/window/TWindowInputNumber.cpp",
+    "src/pso/ui/window/TWindowKeyBoardSoft.cpp",
+    "src/pso/ui/window/TWindowLockOn_80262C3C.cpp",
+    "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+    "src/pso/ui/window/TWindowPartyStatus.cpp",
+    "src/pso/ui/window/TWindowShortCut.cpp",
+    "src/pso/ui/window/TWindowSimpleStatus.cpp",
+    "src/pso/ui/window/TWindowSnapShot.cpp",
+    "src/pso/ui/window/TWindowStatus.cpp",
+    "src/pso/ui/window/TWindowSubAreaMapDisp.cpp",
+    "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+    "src/pso/ui/window/TWindowSubCustomEquip.cpp",
+    "src/pso/ui/window/TWindowSubCustomSelect.cpp",
+    "src/pso/ui/window/TWindowSubMagPhoton.cpp",
+    "src/pso/ui/window/TWindowSubMag_802627D8.cpp",
+    "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_80256B94.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_8025737C.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_80258164.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_8025B050.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_8026D740.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_80287570.cpp",
+    "src/pso/unk/TLobby_803382E4.cpp",
+    "src/pso/unk/text_801E4EB0.cpp",
+    "src/pso/unk/text_801E4F04.cpp",
+    "src/pso/unk/text_8026C664.cpp"
+  ],
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2394,
+  "coverage_sha256": {
+    "cumulative-check.json": "c9c9651fd8b85498a3dd00694a2d81135696432f48b23041cca028c6939a54da",
+    "review-check.json": "c9c9651fd8b85498a3dd00694a2d81135696432f48b23041cca028c6939a54da",
+    "private-check.json": "9fa967cce8f3aee29a1b328188dc2d229dd24501349c1148ef9c34b238e62a5e",
+    "373-check.json": "12117efc47b8ca97131cd05b3f400b410b8e6578c32c963dc43d59941b268f4b"
+  },
+  "data_inventory": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0,
+    "ranges": 90
+  },
+  "historical_ledger_previous": "5895bb4fab585fd0b34f97c8f939ae0fdb3ff1f296c3764285a43b86fce2f5e4",
+  "historical_ledger": "9d826597394f1d232ea10f8501ce0f46921af318a47b6523bfdba8961e39f00b",
+  "historical_comparisons_remaining": 187,
+  "source_owners": {
+    "src/pso/unk/text_801036CC.cpp": {
+      "path": "src/pso/unk/TLobby_80103F5C.cpp",
+      "historical_blob": "35c26b76373a2d82cec86a1f1714f3f605f2be32",
+      "current_blob": "581b54279ff6d18f3d127fa95f3be08b6343f77d",
+      "source_review": "The deliberately retained item byteswap entry takes the same two saved item records. The item condition lookups and removals log the original shared string through the native TLobby debug caller. The compiler owns the literal pool and the original string remains linked at 0x8043E048.",
+      "original_exact_functions": [
+        {
+          "address": "0x801036cc",
+          "size": 124,
+          "historical": "TLobby__sub_801036CC",
+          "current": "TLobby__sub_801036CC"
+        },
+        {
+          "address": "0x80103748",
+          "size": 88,
+          "historical": "handle_6x63_destroy_floor_item__FPv",
+          "current": "handle_6x63_destroy_floor_item__FPv"
+        },
+        {
+          "address": "0x801037a0",
+          "size": 188,
+          "historical": "evict_lowest_key_floor_item__Fl",
+          "current": "evict_lowest_key_floor_item__Fl"
+        },
+        {
+          "address": "0x8010385c",
+          "size": 52,
+          "historical": "is_stat_over_limit__6TLobbyFl",
+          "current": "is_stat_over_limit__6TLobbyFl"
+        },
+        {
+          "address": "0x80103890",
+          "size": 300,
+          "historical": "apply_sync_item_state__6TLobbyFv",
+          "current": "apply_sync_item_state__6TLobbyFv"
+        },
+        {
+          "address": "0x801039bc",
+          "size": 280,
+          "historical": "write_sync_item_state__6TLobbyFv",
+          "current": "write_sync_item_state__6TLobbyFv"
+        },
+        {
+          "address": "0x80103ad4",
+          "size": 48,
+          "historical": "pop_free_entity_id__Fv",
+          "current": "pop_free_entity_id__Fv"
+        },
+        {
+          "address": "0x80103b04",
+          "size": 64,
+          "historical": "push_free_entity_id__FUs",
+          "current": "push_free_entity_id__FUs"
+        },
+        {
+          "address": "0x80103b44",
+          "size": 44,
+          "historical": "is_entry_valid__6TLobbyFl",
+          "current": "is_entry_valid__6TLobbyFl"
+        },
+        {
+          "address": "0x80103b70",
+          "size": 140,
+          "historical": "respawn_missing_floor_items__6TLobbyFl",
+          "current": "respawn_missing_floor_items__6TLobbyFl"
+        },
+        {
+          "address": "0x80103bfc",
+          "size": 276,
+          "historical": "remove_item_condition__Fll",
+          "current": "remove_item_condition__Fll"
+        },
+        {
+          "address": "0x80103d10",
+          "size": 200,
+          "historical": "find_item_condition__Fll",
+          "current": "find_item_condition__Fll"
+        },
+        {
+          "address": "0x80103dd8",
+          "size": 388,
+          "historical": "insert_item_condition__FP9FloorItem",
+          "current": "insert_item_condition__FP9FloorItem"
+        }
+      ]
+    },
+    "src/pso/misc/TQuadSpriteNormal.cpp": {
+      "path": "src/pso/effect/sprite/TQuadSpriteNormal.cpp",
+      "historical_blob": "58394422948b57f969aefa3dfc1a198f57391dda",
+      "current_blob": "510678b0a09449f034d9e757e46b5dff9287ec22",
+      "source_review": "The native constructor, destructor and render slot keep the original quad lifecycle. Each UV row and sprite node keeps its original stride, the renderer reads the actual particle definition and projection fields, and the shared renderers use the real Ginja texture list and the same reset route.",
+      "original_exact_functions": [
+        {
+          "address": "0x801e5598",
+          "size": 676,
+          "historical": "render__17TQuadSpriteNormalFv",
+          "current": "render__17TQuadSpriteNormalFv"
+        },
+        {
+          "address": "0x801e583c",
+          "size": 88,
+          "historical": "__dt__17TQuadSpriteNormalFv",
+          "current": "__dt__17TQuadSpriteNormalFv"
+        },
+        {
+          "address": "0x801e5894",
+          "size": 68,
+          "historical": "TQuadSpriteNormal__ct",
+          "current": "__ct__17TQuadSpriteNormalFP7TObjectP18ParticleDefinition"
+        }
+      ]
+    },
+    "src/pso/misc/TDuelEffectNumber_80080460.cpp": {
+      "path": "src/pso/effect/TDuelEffectString.cpp",
+      "historical_blob": "a9d519161ba1356c79fff11aad368b339c87e2b2",
+      "current_blob": "797c33f13b2fe5e1fd909a038d72b634f30d566b",
+      "source_review": "The live string owns its constructor, destructor, render and 30-frame lifetime. The two piecewise transforms, texture selection and glyph routines use the native owners. The 30.0f pool value and its zero tail still occupy their original bytes.",
+      "original_exact_functions": [
+        {
+          "address": "0x80080460",
+          "size": 252,
+          "historical": "calc_digit_transform__17TDuelEffectNumberFlPfPfl",
+          "current": "calc_digit_transform__17TDuelEffectNumberFlPfPfl"
+        },
+        {
+          "address": "0x8008055c",
+          "size": 176,
+          "historical": "render__17TDuelEffectStringFv",
+          "current": "render__17TDuelEffectStringFv"
+        },
+        {
+          "address": "0x8008060c",
+          "size": 96,
+          "historical": "run_task__17TDuelEffectStringFv",
+          "current": "run_task__17TDuelEffectStringFv"
+        },
+        {
+          "address": "0x8008066c",
+          "size": 88,
+          "historical": "__dt__17TDuelEffectStringFv",
+          "current": "__dt__17TDuelEffectStringFv"
+        },
+        {
+          "address": "0x800806c4",
+          "size": 104,
+          "historical": "__ct__17TDuelEffectStringFP7TObjectPvPv",
+          "current": "__ct__17TDuelEffectStringFP7TObjectPvPv"
+        },
+        {
+          "address": "0x8008072c",
+          "size": 36,
+          "historical": "TBoss8Dragon__sub_8008072C",
+          "current": "TBoss8Dragon__sub_8008072C"
+        }
+      ]
+    },
+    "src/pso/system/ChunkMaterialState.cpp": {
+      "path": "src/pso/render/ChunkMaterialState.cpp",
+      "historical_blob": "1793e06210642e3f972a26f617734d365a3985a5",
+      "current_blob": "218765edb608f4d2862d06cfaf243ecadce253fa",
+      "source_review": "The native matrix pointer preserves the 0x30-byte stride, the fast memory base and the identity copy. Pad reads and connection slots reach the original provider. Both status buffers and the four native PadSlot rows retain the fixed storage. The original material clamps and flag writes have matching typed owners.",
+      "original_exact_functions": [
+        {
+          "address": "0x803de9c4",
+          "size": 84,
+          "historical": "init_pad_slots_and_read__16TKeyBoardControlFv",
+          "current": "init_pad_slots_and_read__16TKeyBoardControlFv"
+        },
+        {
+          "address": "0x803dea18",
+          "size": 348,
+          "historical": "read_pads__16TKeyBoardControlFv",
+          "current": "read_pads__16TKeyBoardControlFv"
+        },
+        {
+          "address": "0x803deb74",
+          "size": 84,
+          "historical": "TKeyBoardControl__sub_803DEB74",
+          "current": "get_pad_slot"
+        },
+        {
+          "address": "0x803debc8",
+          "size": 72,
+          "historical": "map_pad_buttons__16TKeyBoardControlFUs",
+          "current": "map_pad_buttons__16TKeyBoardControlFUs"
+        },
+        {
+          "address": "0x803dec10",
+          "size": 44,
+          "historical": "scale_axis_value__16TKeyBoardControlFs",
+          "current": "scale_axis_value__16TKeyBoardControlFs"
+        },
+        {
+          "address": "0x803dec3c",
+          "size": 92,
+          "historical": "clamp_axes__16TKeyBoardControlFv",
+          "current": "clamp_axes__16TKeyBoardControlFv"
+        },
+        {
+          "address": "0x803dec98",
+          "size": 100,
+          "historical": "init_matrix_stack__10TObjPlayerFll",
+          "current": "init_matrix_stack__10TObjPlayerFll"
+        },
+        {
+          "address": "0x803decfc",
+          "size": 116,
+          "historical": "init_light_globals",
+          "current": "init_light_globals__Fll"
+        },
+        {
+          "address": "0x803ded70",
+          "size": 8,
+          "historical": "set_model_render_flags__FUl",
+          "current": "set_model_render_flags__FUl"
+        },
+        {
+          "address": "0x803ded78",
+          "size": 12,
+          "historical": "set_chunk_material_override_pair",
+          "current": "set_chunk_material_override_pair"
+        },
+        {
+          "address": "0x803ded84",
+          "size": 196,
+          "historical": "set_constant_material__FPC8NJS_ARGB",
+          "current": "set_constant_material__FPC8NJS_ARGB"
+        }
+      ]
+    },
+    "src/pso/misc/TWindowEffectLight.cpp": {
+      "path": "src/pso/ui/window/TWindowEffectLight.cpp",
+      "historical_blob": "3367459f88b91fa7873ba32f0952e5248ec4b8dc",
+      "current_blob": "211b94cb6029541da0f03c4fd2566f6e9460bf02",
+      "source_review": "The native effect retains its screen coordinates, viewport adjustment, age and frame tests, color and UV switch, factory and vtable. The render routines use the actual position members and the shared quad layout, and bind the HUD texture through its typed slot. The compiler emits the original float pool and both outline paths.",
+      "original_exact_functions": [
+        {
+          "address": "0x802acf9c",
+          "size": 68,
+          "historical": "calc_scale__18TWindowEffectLightFv",
+          "current": "calc_scale__18TWindowEffectLightFv"
+        },
+        {
+          "address": "0x802acfe0",
+          "size": 96,
+          "historical": "calc_alpha__18TWindowEffectLightFv",
+          "current": "calc_alpha__18TWindowEffectLightFv"
+        },
+        {
+          "address": "0x802ad040",
+          "size": 396,
+          "historical": "TWindowEffectLight__sub_802AD040",
+          "current": "sub_802AD040__18TWindowEffectLightFf"
+        },
+        {
+          "address": "0x802ad1cc",
+          "size": 224,
+          "historical": "draw_outline_quad__18TWindowEffectLightFl",
+          "current": "draw_outline_quad__18TWindowEffectLightFl"
+        },
+        {
+          "address": "0x802ad2ac",
+          "size": 288,
+          "historical": "render__18TWindowEffectLightFv",
+          "current": "render__18TWindowEffectLightFv"
+        },
+        {
+          "address": "0x802ad3cc",
+          "size": 56,
+          "historical": "run_task__18TWindowEffectLightFv",
+          "current": "run_task__18TWindowEffectLightFv"
+        },
+        {
+          "address": "0x802ad404",
+          "size": 88,
+          "historical": "__dt__18TWindowEffectLightFv",
+          "current": "__dt__18TWindowEffectLightFv"
+        },
+        {
+          "address": "0x802ad45c",
+          "size": 132,
+          "historical": "__ct__18TWindowEffectLightFPvsUl",
+          "current": "__ct__18TWindowEffectLightFPvsUl"
+        },
+        {
+          "address": "0x802ad4e0",
+          "size": 88,
+          "historical": "create__18TWindowEffectLightFPvsUl",
+          "current": "create__18TWindowEffectLightFPvsUl"
+        }
+      ]
+    }
+  },
+  "benchmark": {
+    "total": {
+      "base": 156639,
+      "head": 156405,
+      "added": 1,
+      "removed": 235
+    },
+    "renames": [
+      {
+        "file": "config/GPOE8P/psov3/symbols.txt",
+        "section": ".text",
+        "address": "0x80348AE8",
+        "type": "function",
+        "old": "get_draw_count__9TWindowDDFPPv",
+        "new": "get_draw_count__9TWindowDDFP16GinjaTextureList",
+        "flags": []
+      }
+    ],
+    "additions": [
+      {
+        "key": "local_decl",
+        "path": "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+        "line": 999,
+        "text": "extern NJS_TEXLIST f256_hyouji_texlist"
+      }
+    ],
+    "stale_force_active": [],
+    "sha256": "598a2ce80271c9fbfc796ee585f3462df17cb3436aca4b16c7e3cfdf5eef31e2"
+  },
+  "probes": {
+    "images": 4,
+    "surface_ids": 4,
+    "hud_lifetimes": 1,
+    "quad_renderers": 5,
+    "sha256": "ab99af0dfc5f7b1ca9343ab9de73d560afc8152eb3d1191376352d64c07278fb"
+  },
+  "source_boundary": "The HUD source object keeps its existing NJS_TEXLIST definition and data section. The loader creates the Ginja view once. Window sprite entries and the item icon loader then share typed texture pointer slots.",
+  "benchmark_advisory": "The palette loader declares its external Ninja texture table in the original data section. That concrete declaration accounts for the one new benchmark finding.",
+  "fork_workspace": {
+    "paths": 130,
+    "tests": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    },
+    "materialized_tree": "3527d19aa6ea71b0f3516bec46d98111790751f4",
+    "overlay_sha256": "aa5be924255ea42a43d3175b720d653a567f1a0466b154831a349a84b6f7d096"
+  },
+  "upstream_373_preview": {
+    "upstream_review_head": "6d8e64a1eb7ab032b514ffa0c33a86fc6456bc0f",
+    "cumulative_parent": "a49e3322fd8941df0e70b7a1700aa365141d1b98",
+    "combined": "e52f483feaa7572c11e04aadadc1415d07227bea",
+    "overlap": [
+      "src/pso/unk/text_803DA798.cpp",
+      "src/pso/unk/text_803DAFA8.cpp",
+      "src/pso/unk/text_803DD5E0.cpp"
+    ],
+    "conflicts": [
+      "src/pso/unk/text_803DAFA8.cpp"
+    ],
+    "resolution": "Take the peer review\u2019s described heap-holder fields and keep the prior include removal."
+  }
+}

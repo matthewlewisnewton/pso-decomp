@@ -1,0 +1,933 @@
+{
+  "upstream_master": "412b3b3cf562c5cb4b4655b747ff328777b32969",
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "previous_source": "58493957c756d5c97d221d02cfdaf78e2380e2c3",
+  "updated_paths": [
+    "include/pso/enemy/sorcerer/Re4BitData.h",
+    "src/pso/enemy/darkgunner/DarkGunner.cpp",
+    "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/enemy/lappy/TObjEneLappy.cpp",
+    "src/pso/enemy/saver/SaverLifecycle.cpp",
+    "src/pso/enemy/sorcerer/Re4BitData.cpp",
+    "src/pso/enemy/sorcerer/TObjEneRe4Bit.cpp"
+  ],
+  "paths_also_in_pr_375": [
+    "src/pso/enemy/darkgunner/DarkGunner.cpp",
+    "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/enemy/lappy/TObjEneLappy.cpp",
+    "src/pso/enemy/saver/SaverLifecycle.cpp",
+    "src/pso/enemy/sorcerer/TObjEneRe4Bit.cpp"
+  ],
+  "builds": {
+    "source": {
+      "head": "56fea00e798f78fab8c88c3bff00167d4de665de",
+      "tree": "02753f0b1473f86cc155d0b5f5ccce805ee16c08",
+      "coverage_baseline": "58493957c756d5c97d221d02cfdaf78e2380e2c3",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "historical_fork_data": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "source-report.json": "21b83d4830a9e5c2b309f6fc092ac60571d340a1cc7c40ceae29cb7fe850269e",
+        "source-check.json": "ec167389dbd490e17ac3a61384def77d8d58a7485e34e9bf913ffed6e489dc0a"
+      }
+    },
+    "queue": {
+      "head": "cd373fcce1a6d20cbdf3b3e09b62cbf61ae3726f",
+      "tree": "5aaf591f142b2de353346d7e8494e02ef36e59de",
+      "coverage_baseline": "412b3b3cf562c5cb4b4655b747ff328777b32969",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "historical_fork_data": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "queue-report.json": "21b83d4830a9e5c2b309f6fc092ac60571d340a1cc7c40ceae29cb7fe850269e",
+        "queue-check.json": "70df1f97f1477075ecad076c58d30d563c10fbd98e6d69ba1ce01cd29f03a9bb"
+      }
+    },
+    "private": {
+      "head": "8912a452f8fb6e5fee20880c397b5ad98a6e5b61",
+      "tree": "951c8fa9860f56e9a26f10dd0bd0e6ec77f667ce",
+      "coverage_baseline": "56fea00e798f78fab8c88c3bff00167d4de665de",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "historical_fork_data": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "private-report.json": "21b83d4830a9e5c2b309f6fc092ac60571d340a1cc7c40ceae29cb7fe850269e",
+        "private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011"
+      }
+    }
+  },
+  "source_build_tree_was_tested_at": "51a9d3268282485112730bd05e02acf8f6826e3c",
+  "whole_historical_comparisons_closed": {
+    "src/pso/enemy/TObjEneRe4Bit.cpp": {
+      "historical_row": 833,
+      "fork_blob": "f5dec85c6e1694d058ca7e07dadf5aa20791bb71",
+      "historical_source_sha256": "6b331ca007e172959ac30f36b5a64a748e9aa3025e005ccaef875431d3fa283d",
+      "source_resolution": "The Sorcerer creates enabled and disabled Bits with their typed owner and anchor. The Bit selects model one and texture zero from the shared archive and keeps the two native stat variants. Its renderer takes the Vec from the paired 16-byte shadow record declared in Re4BitData.h, and the collision and render branches keep their original owners.",
+      "exact_linked_functions": 50,
+      "exact_non_text_sections": {
+        ".data": {
+          "source_bytes": 528,
+          "exact_bytes": 528,
+          "owners": [
+            "src/pso/enemy/sorcerer/TObjEneRe4Bit.cpp"
+          ],
+          "uncovered": []
+        },
+        ".bss": {
+          "source_bytes": 32,
+          "exact_bytes": 32,
+          "owners": [
+            "src/pso/enemy/sorcerer/TObjEneRe4Bit.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "alignment_padding": [],
+      "canonical_blobs": {
+        "src/pso/enemy/sorcerer/TObjEneRe4Bit.cpp": "884225c3758e50514618b01bdf753532045d903d"
+      },
+      "matched_examples": {
+        "0x800eca40": {
+          "old": "render__13TObjEneRe4BitFv",
+          "current": "render__13TObjEneRe4BitFv",
+          "owner": "src/pso/enemy/sorcerer/TObjEneRe4Bit.cpp"
+        },
+        "0x800ed7fc": {
+          "old": "init__13TObjEneRe4BitFPv",
+          "current": "init__13TObjEneRe4BitFv",
+          "owner": "src/pso/enemy/sorcerer/TObjEneRe4Bit.cpp"
+        },
+        "0x800ed9ec": {
+          "old": "create_enabled__13TObjEneRe4BitFlll",
+          "current": "create_enabled__18TObjEneRe4SorcererFP3VecUsl",
+          "owner": "src/pso/enemy/sorcerer/TObjEneRe4Bit.cpp"
+        },
+        "0x800eda18": {
+          "old": "create_disabled__13TObjEneRe4BitFlll",
+          "current": "create_disabled__18TObjEneRe4SorcererFP3VecUsl",
+          "owner": "src/pso/enemy/sorcerer/TObjEneRe4Bit.cpp"
+        },
+        "0x800edab4": {
+          "old": "TObjEneRe4Bit__sub_800EDAB4",
+          "current": "load_resources__13TObjEneRe4BitFv",
+          "owner": "src/pso/enemy/sorcerer/TObjEneRe4Bit.cpp"
+        }
+      },
+      "historical_diff_sha256": "c483d34f2e69ef51a21f627f2f7ab367df57909405efece51b6e4089dd382a71"
+    },
+    "src/pso/enemy/TObjEneDellBiter.cpp": {
+      "historical_row": 895,
+      "fork_blob": "70b5246189af3644d537175fee37370e88288a08",
+      "historical_source_sha256": "aef033108d1564c273cf48998a36d577d31123ceccdd593d5a9cb9c831d0ed61",
+      "source_resolution": "The archive keeps the normal and split-screen selection, native NPC motion binding, and child polygon stream for UV scrolling. Motion speed clamps, contact, rush and laser effects use the real actor, effect and collision records. The emerge states pass the body-center Vec directly and the demo renderer keeps the original callback.",
+      "exact_linked_functions": 51,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 16,
+          "exact_bytes": 16,
+          "owners": [
+            "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 1080,
+          "exact_bytes": 1080,
+          "owners": [
+            "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp"
+          ],
+          "uncovered": []
+        },
+        ".bss": {
+          "source_bytes": 12,
+          "exact_bytes": 12,
+          "owners": [
+            "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "alignment_padding": [],
+      "canonical_blobs": {
+        "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp": "23593fc7aca9b2970d5166fd7875810e386418ae"
+      },
+      "matched_examples": {
+        "0x8030338c": {
+          "old": "vfunc_106__16TObjEneDellBiterFv",
+          "current": "render_demo__16TObjEneDellBiterFv",
+          "owner": "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp"
+        },
+        "0x80303bc0": {
+          "old": "fn_80303BC0__16TObjEneDellBiterFl",
+          "current": "update_laser_state__16TObjEneDellBiterFl",
+          "owner": "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp"
+        },
+        "0x803044ac": {
+          "old": "fn_803044AC__16TObjEneDellBiterFl",
+          "current": "update_rush_state__16TObjEneDellBiterFl",
+          "owner": "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp"
+        },
+        "0x80305b60": {
+          "old": "spawn_front_particle__16TObjEneDellBiterFv",
+          "current": "spawn_front_particle__16TObjEneDellBiterFv",
+          "owner": "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp"
+        },
+        "0x80305fdc": {
+          "old": "update_particle_emitters__16TObjEneDellBiterFv",
+          "current": "update_particle_emitters__16TObjEneDellBiterFv",
+          "owner": "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp"
+        },
+        "0x80306468": {
+          "old": "init_params__16TObjEneDellBiterFv",
+          "current": "init_params__16TObjEneDellBiterFv",
+          "owner": "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp"
+        },
+        "0x80306858": {
+          "old": "load_resources__16TObjEneDellBiterFv",
+          "current": "load_resources__16TObjEneDellBiterFv",
+          "owner": "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp"
+        }
+      },
+      "historical_diff_sha256": "992ef07006300a91085ba6c9d16af4afa6fb4348a8d18efed6ac5831042e9507"
+    },
+    "src/pso/enemy/TObjEneLappy.cpp": {
+      "historical_row": 948,
+      "fork_blob": "9e1eda396ee1c70e8ea5d0cd08b3d4b2513c0655",
+      "historical_source_sha256": "d2807662352dce70194f4ff31012a2230ba22b8e5d55fe259a81046dfd4df4e6",
+      "source_resolution": "The standard, variant and seasonal archive paths all construct native BML descriptors. The alternate texture is either archive-owned or GVM-owned and freed only through the separate GVM path. Color and movement variants, NPC slots, collision, attack, target and dropped-item state are retained at their native owners.",
+      "exact_linked_functions": 35,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 16,
+          "exact_bytes": 16,
+          "owners": [
+            "src/pso/enemy/lappy/TObjEneLappy.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 1184,
+          "exact_bytes": 1184,
+          "owners": [
+            "src/pso/enemy/lappy/TObjEneLappy.cpp"
+          ],
+          "uncovered": []
+        },
+        ".bss": {
+          "source_bytes": 32,
+          "exact_bytes": 32,
+          "owners": [
+            "src/pso/enemy/lappy/TObjEneLappy.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/enemy/lappy/TObjEneLappy.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 140,
+          "exact_bytes": 140,
+          "owners": [
+            "src/pso/enemy/flower/TObjEneRe2Flower_800C20D0.cpp",
+            "src/pso/enemy/lappy/TObjEneLappy.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "alignment_padding": [],
+      "canonical_blobs": {
+        "src/pso/enemy/flower/TObjEneRe2Flower_800C20D0.cpp": "0b32db869746984d2ce0db8fa7839b03b945a3cc",
+        "src/pso/enemy/lappy/TObjEneLappy.cpp": "7967937209310d4fb39b6c3244c7b30e53c58fd0"
+      },
+      "matched_examples": {
+        "0x800bff58": {
+          "old": "render__12TObjEneLappyFv",
+          "current": "render__12TObjEneLappyFv",
+          "owner": "src/pso/enemy/lappy/TObjEneLappy.cpp"
+        },
+        "0x800c0588": {
+          "old": "update_attacking__12TObjEneLappyFv",
+          "current": "update_attacking__12TObjEneLappyFv",
+          "owner": "src/pso/enemy/lappy/TObjEneLappy.cpp"
+        },
+        "0x800c08a0": {
+          "old": "update_moving__12TObjEneLappyFv",
+          "current": "update_moving__12TObjEneLappyFv",
+          "owner": "src/pso/enemy/lappy/TObjEneLappy.cpp"
+        },
+        "0x800c0e30": {
+          "old": "update_idle_state__12TObjEneLappyFPv",
+          "current": "update_idle_state__12TObjEneLappyFv",
+          "owner": "src/pso/enemy/lappy/TObjEneLappy.cpp"
+        },
+        "0x800c1748": {
+          "old": "cleanup_handles__6TLobbyFv",
+          "current": "free_resources__12TObjEneLappyFv",
+          "owner": "src/pso/enemy/lappy/TObjEneLappy.cpp"
+        },
+        "0x800c17b8": {
+          "old": "load_resources__12TObjEneLappyFv",
+          "current": "load_resources__12TObjEneLappyFv",
+          "owner": "src/pso/enemy/lappy/TObjEneLappy.cpp"
+        }
+      },
+      "historical_diff_sha256": "3959f416ffe578fb013c4975a2821b741504157154f0d5b72d2987dbd08875a5"
+    },
+    "src/pso/enemy/TObjEneIllGill.cpp": {
+      "historical_row": 956,
+      "fork_blob": "1a8dd20059a86c4193c758cd520f6d36f5b1c4bb",
+      "historical_source_sha256": "7f79d36ad5a70e2401c938429a25b1e480dcc84edfcafdb533ee82b7147d86b6",
+      "source_resolution": "The native archive and stat rows feed the NPC model and typed node capture. Shadow, charge and weapon transitions preserve the effect positions, target and collider records, and original sound arguments. The death animation calls the one-shot interface with the native position at both frame gates.",
+      "exact_linked_functions": 31,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 16,
+          "exact_bytes": 16,
+          "owners": [
+            "src/pso/enemy/illgill/TObjEneIllGill.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 836,
+          "exact_bytes": 836,
+          "owners": [
+            "src/pso/enemy/illgill/TObjEneIllGill.cpp"
+          ],
+          "uncovered": []
+        },
+        ".bss": {
+          "source_bytes": 64,
+          "exact_bytes": 64,
+          "owners": [
+            "src/pso/enemy/illgill/TObjEneIllGill.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/enemy/illgill/TObjEneIllGill.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "alignment_padding": [],
+      "canonical_blobs": {
+        "src/pso/enemy/illgill/TObjEneIllGill.cpp": "842a59056e41ae70b1980f0ad0c7b19866ba1d34"
+      },
+      "matched_examples": {
+        "0x80365688": {
+          "old": "update_charge_attack__14TObjEneIllGillFv",
+          "current": "update_charge_attack__14TObjEneIllGillFv",
+          "owner": "src/pso/enemy/illgill/TObjEneIllGill.cpp"
+        },
+        "0x803660a4": {
+          "old": "update_shadow_attack__14TObjEneIllGillFv",
+          "current": "update_shadow_attack__14TObjEneIllGillFv",
+          "owner": "src/pso/enemy/illgill/TObjEneIllGill.cpp"
+        },
+        "0x803664c0": {
+          "old": "capture_effect_positions__14TObjEneIllGillFP10NJS_OBJECT",
+          "current": "capture_effect_positions__14TObjEneIllGillFP10NJS_OBJECT",
+          "owner": "src/pso/enemy/illgill/TObjEneIllGill.cpp"
+        },
+        "0x803665b4": {
+          "old": "update_death_fall__14TObjEneIllGillFv",
+          "current": "update_death_fall__14TObjEneIllGillFv",
+          "owner": "src/pso/enemy/illgill/TObjEneIllGill.cpp"
+        },
+        "0x80366ae4": {
+          "old": "update_weapon_attack__14TObjEneIllGillFv",
+          "current": "update_weapon_attack__14TObjEneIllGillFv",
+          "owner": "src/pso/enemy/illgill/TObjEneIllGill.cpp"
+        },
+        "0x80368208": {
+          "old": "render__14TObjEneIllGillFv",
+          "current": "render__14TObjEneIllGillFv",
+          "owner": "src/pso/enemy/illgill/TObjEneIllGill.cpp"
+        },
+        "0x80368818": {
+          "old": "load_shared_resources__14TObjEneIllGillFv",
+          "current": "load_shared_resources__14TObjEneIllGillFv",
+          "owner": "src/pso/enemy/illgill/TObjEneIllGill.cpp"
+        }
+      },
+      "historical_diff_sha256": "700d1496de776f103c3fc8bb8bc9f1ad5d5a6664cf0d15d03936b9b99935fdb9"
+    },
+    "src/pso/enemy/DarkGunner.cpp": {
+      "historical_row": 1053,
+      "fork_blob": "4cec24062553c780dd8e544c433ab406cb6a11c6",
+      "historical_source_sha256": "b38b52d0f266533726ae6360e1ca430410ca0f42ce38b9b9c1b9d4b3ad30ec2b",
+      "source_resolution": "The shared BML descriptor selects the body, shadows and pulse texture. GVM and archive textures remain typed through the renderer, which uses the Ninja float-channel record for pulse and restore. The group state, ground probe, death-gunner selection and original sound and ripple positions remain on their native owners.",
+      "exact_linked_functions": 43,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 56,
+          "exact_bytes": 56,
+          "owners": [
+            "src/pso/enemy/darkgunner/DarkGunner.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 912,
+          "exact_bytes": 912,
+          "owners": [
+            "src/pso/enemy/darkgunner/DarkGunner.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/enemy/darkgunner/DarkGunner.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 88,
+          "exact_bytes": 88,
+          "owners": [
+            "src/pso/enemy/darkgunner/DarkGunner.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "alignment_padding": [],
+      "canonical_blobs": {
+        "src/pso/enemy/darkgunner/DarkGunner.cpp": "b97fa9cbaac7a7398319f7c09774185397d5dcdc",
+        "src/pso/enemy/darkgunner/TObjEneDarkGunCenter.cpp": "18c3e6601ca303e04d0a7743914aea73d38c00bd"
+      },
+      "matched_examples": {
+        "0x800a10a0": {
+          "old": "step_along_ground__10TObjPlayerFv",
+          "current": "step_along_ground__17TObjEneDarkGunnerFv",
+          "owner": "src/pso/enemy/darkgunner/DarkGunner.cpp"
+        },
+        "0x800a16c4": {
+          "old": "TObjPlayer__sub_800A16C4",
+          "current": "update_state_machine__17TObjEneDarkGunnerFv",
+          "owner": "src/pso/enemy/darkgunner/DarkGunner.cpp"
+        },
+        "0x800a1814": {
+          "old": "spawn_hamon_effects__10TObjPlayerFllf",
+          "current": "spawn_hamon_effects__17TObjEneDarkGunnerFllf",
+          "owner": "src/pso/enemy/darkgunner/DarkGunner.cpp"
+        },
+        "0x800a1900": {
+          "old": "render_shadow__10TObjPlayerFv",
+          "current": "render_shadow__17TObjEneDarkGunnerFv",
+          "owner": "src/pso/enemy/darkgunner/DarkGunner.cpp"
+        },
+        "0x800a2d74": {
+          "old": "cleanup_effects__10TObjPlayerFv",
+          "current": "cleanup_effects__17TObjEneDarkGunnerFv",
+          "owner": "src/pso/enemy/darkgunner/DarkGunner.cpp"
+        }
+      },
+      "historical_diff_sha256": "97eff79a60576a02095d67b6d70f532e573948857c8379060c487f37ab5ba389"
+    },
+    "src/pso/enemy/SaverLifecycle.cpp": {
+      "historical_row": 1116,
+      "fork_blob": "9b93715c06d40111f6e840a5990c2cca6223a41c",
+      "historical_source_sha256": "bab7b08eb0524284930eb23235466be2f6bbcdd8f1fe209f5959eb021189bbcf",
+      "source_resolution": "The native BML descriptor, chunk polygon accessor and sampled-motion records own the archive, scrolling UVs and three trails. The native combat table keeps the three attack rows in their original order, and the state, render callback, particle and resource teardown retain their real owners.",
+      "exact_linked_functions": 42,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 16,
+          "exact_bytes": 16,
+          "owners": [
+            "src/pso/enemy/saver/SaverLifecycle.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 732,
+          "exact_bytes": 732,
+          "owners": [
+            "src/pso/enemy/saver/SaverLifecycle.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/enemy/saver/SaverLifecycle.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 144,
+          "exact_bytes": 144,
+          "owners": [
+            "src/pso/enemy/saver/SaverLifecycle.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "alignment_padding": [],
+      "canonical_blobs": {
+        "src/pso/enemy/saver/SaverLifecycle.cpp": "1c0504795b566116e121016fb062812534d2f889"
+      },
+      "matched_examples": {
+        "0x800a435c": {
+          "old": "sub_800A435C__12TObjEneSaverFv",
+          "current": "update_particle_effect__12TObjEneSaverFv",
+          "owner": "src/pso/enemy/saver/SaverLifecycle.cpp"
+        },
+        "0x800a5dc4": {
+          "old": "update_move_toward_target__12TObjEneSaverFv",
+          "current": "update_move_toward_target__12TObjEneSaverFv",
+          "owner": "src/pso/enemy/saver/SaverLifecycle.cpp"
+        },
+        "0x800a6488": {
+          "old": "init_render_flags__12TObjEneSaverFv",
+          "current": "init_render_flags__12TObjEneSaverFv",
+          "owner": "src/pso/enemy/saver/SaverLifecycle.cpp"
+        },
+        "0x800a6c54": {
+          "old": "render__12TObjEneSaverFv",
+          "current": "render__12TObjEneSaverFv",
+          "owner": "src/pso/enemy/saver/SaverLifecycle.cpp"
+        },
+        "0x800a70b8": {
+          "old": "free_resources__10TObjPlayerFv",
+          "current": "free_resources__12TObjEneSaverFv",
+          "owner": "src/pso/enemy/saver/SaverLifecycle.cpp"
+        },
+        "0x800a715c": {
+          "old": "initialize_saver_resources",
+          "current": "initialize_saver_resources",
+          "owner": "src/pso/enemy/saver/SaverLifecycle.cpp"
+        }
+      },
+      "historical_diff_sha256": "a4ffb7f53457a3c1271ec3e2675c09f0c85a86a48b62ccdcf5a71b18f9c85bdf"
+    },
+    "src/pso/enemy/TObjEneBm5GibonU.cpp": {
+      "historical_row": 1167,
+      "fork_blob": "4d5d56979e94408e4295f269d67f027493758b30",
+      "historical_source_sha256": "788badc4fb1fbc254b9b99e2a11d2e946f588466f462e23a8d75080b9552452b",
+      "source_resolution": "Gibon uses the typed model and motion tables for standard and low-detail archives. NPC slots keep the two variants with their own textures. The node owner, linked lists, actor center, target vector, frame callback and recoil path use their native records and preserve source linkage.",
+      "exact_linked_functions": 83,
+      "exact_non_text_sections": {
+        ".ctors": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp"
+          ],
+          "uncovered": []
+        },
+        ".rodata": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 1124,
+          "exact_bytes": 1124,
+          "owners": [
+            "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp"
+          ],
+          "uncovered": []
+        },
+        ".bss": {
+          "source_bytes": 88,
+          "exact_bytes": 88,
+          "owners": [
+            "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 256,
+          "exact_bytes": 256,
+          "owners": [
+            "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "alignment_padding": [],
+      "canonical_blobs": {
+        "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp": "505f4b5dc623476984ccb989f1653a27f34f4422"
+      },
+      "matched_examples": {
+        "0x800cd204": {
+          "old": "render__16TObjEneBm5GibonUFv",
+          "current": "render__16TObjEneBm5GibonUFv",
+          "owner": "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp"
+        },
+        "0x800cd570": {
+          "old": "advance_anim_frame__16TObjEneBm5GibonUFP10NJS_OBJECT",
+          "current": "advance_anim_frame__16TObjEneBm5GibonUFP10NJS_OBJECT",
+          "owner": "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp"
+        },
+        "0x800cebd8": {
+          "old": "TObjEneBm5GibonU__sub_800CEBD8",
+          "current": "update_lunge__16TObjEneBm5GibonUFl",
+          "owner": "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp"
+        },
+        "0x800d0ae8": {
+          "old": "TObjEneBm5GibonU__sub_800D0AE8",
+          "current": "spawn_recoil_dust__16TObjEneBm5GibonUFP3Vec",
+          "owner": "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp"
+        },
+        "0x800d0d14": {
+          "old": "calc_rotated_vector__16TObjEneBm5GibonUFPviPvPv",
+          "current": "calc_rotated_vector__16TObjEneBm5GibonUFlP3VecPl",
+          "owner": "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp"
+        },
+        "0x800d10a0": {
+          "old": "sub_800D10A0__16TObjEneBm5GibonUFv",
+          "current": "select_subtype__16TObjEneBm5GibonUFv",
+          "owner": "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp"
+        },
+        "0x800d11ac": {
+          "old": "update_center_position__16TObjEneBm5GibonUFv",
+          "current": "update_center_position__16TObjEneBm5GibonUFv",
+          "owner": "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp"
+        },
+        "0x800d1990": {
+          "old": "load_resources__16TObjEneBm5GibonUFv",
+          "current": "load_resources__16TObjEneBm5GibonUFv",
+          "owner": "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp"
+        },
+        "0x800d1c40": {
+          "old": "push_list_node__16TObjEneBm5GibonUFPPvPPv",
+          "current": "append_to__20TObjEneBm5GibonUNodeFPP20TObjEneBm5GibonUNodePP20TObjEneBm5GibonUNode",
+          "owner": "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp"
+        },
+        "0x800d1c78": {
+          "old": "unlink_list_node__16TObjEneBm5GibonUFPPPvPPv",
+          "current": "unlink_from__20TObjEneBm5GibonUNodeFPP20TObjEneBm5GibonUNodePP20TObjEneBm5GibonUNode",
+          "owner": "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp"
+        }
+      },
+      "historical_diff_sha256": "601775218b9a237503030858ff2c6805df53c1411d56f1fc2f187981602e163e"
+    },
+    "src/pso/enemy/TObjEneRe4Sorcerer_800EDB98.cpp": {
+      "historical_row": 1168,
+      "fork_blob": "4f07f4646222e4b4861a3b593136463172561c37",
+      "historical_source_sha256": "aefa703e183092c9674737f3f9946265beb4408525533dacaef5f119098359ba",
+      "source_resolution": "The Sorcerer keeps standard and alternate BML names, native node and texture binding, native Bit teardown, and the typed strip buffer. The render callback and cast effects use the established node and actor types. Target and attack state logic retains its original parameters and effect frames.",
+      "exact_linked_functions": 50,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 16,
+          "exact_bytes": 16,
+          "owners": [
+            "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 732,
+          "exact_bytes": 732,
+          "owners": [
+            "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 104,
+          "exact_bytes": 104,
+          "owners": [
+            "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "alignment_padding": [],
+      "canonical_blobs": {
+        "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp": "93ffbf39ed907663c7c6fb44172c905ddacc5dc4"
+      },
+      "matched_examples": {
+        "0x800edb98": {
+          "old": "vfunc_106__18TObjEneRe4SorcererFv",
+          "current": "render_demo__18TObjEneRe4SorcererFv",
+          "owner": "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp"
+        },
+        "0x800edf94": {
+          "old": "step_effect_sequence__18TObjEneRe4SorcererFP10NJS_OBJECT",
+          "current": "step_effect_sequence__18TObjEneRe4SorcererFP10NJS_OBJECT",
+          "owner": "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp"
+        },
+        "0x800ee7dc": {
+          "old": "TObjEneRe4Sorcerer__sub_800EE7DC",
+          "current": "update_attack_state__18TObjEneRe4SorcererFl",
+          "owner": "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp"
+        },
+        "0x800ef25c": {
+          "old": "create_effect__18TObjEneRe4SorcererFv",
+          "current": "create_effect__18TObjEneRe4SorcererFv",
+          "owner": "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp"
+        },
+        "0x800ef6a4": {
+          "old": "update_farthest_target__18TObjEneRe4SorcererFlPf",
+          "current": "update_farthest_target__18TObjEneRe4SorcererFP9TObjCharaPf",
+          "owner": "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp"
+        },
+        "0x800f03c0": {
+          "old": "free_bits__18TObjEneRe4SorcererFv",
+          "current": "free_bits__18TObjEneRe4SorcererFv",
+          "owner": "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp"
+        },
+        "0x800f0464": {
+          "old": "load_resources__18TObjEneRe4SorcererFv",
+          "current": "load_resources__18TObjEneRe4SorcererFv",
+          "owner": "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp"
+        }
+      },
+      "historical_diff_sha256": "398fc832157fd7875c2c861b0120becccb50e633233abb9306115fd525b67048"
+    },
+    "src/pso/enemy/TObjEneBm5Wolf.cpp": {
+      "historical_row": 1169,
+      "fork_blob": "cbba29e84410f4173b28c0342d2ed9e6990355cf",
+      "historical_source_sha256": "91c3973c9fee21b9ed027eb5583dbef1cdb3c766927e8a33da3a7acc9a830bcd",
+      "source_resolution": "Wolf keeps the variant archive name, both NPC slots with their original shared texture, and native pack ownership. The collider uses the native jump height, the ground rotation uses the actor normal, and the model callback retains its two joint indices. Native vectors govern pursuit, lunge, recoil and pack motion.",
+      "exact_linked_functions": 76,
+      "exact_non_text_sections": {
+        ".ctors": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp"
+          ],
+          "uncovered": []
+        },
+        ".rodata": {
+          "source_bytes": 24,
+          "exact_bytes": 24,
+          "owners": [
+            "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 1052,
+          "exact_bytes": 1052,
+          "owners": [
+            "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp"
+          ],
+          "uncovered": []
+        },
+        ".bss": {
+          "source_bytes": 88,
+          "exact_bytes": 88,
+          "owners": [
+            "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 240,
+          "exact_bytes": 236,
+          "owners": [
+            "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp"
+          ],
+          "uncovered": [
+            [
+              "0x805d9e5c",
+              "0x805d9e60"
+            ]
+          ]
+        }
+      },
+      "alignment_padding": [
+        {
+          "module": "psov3",
+          "section": ".sdata2",
+          "address": "0x805d9e5c",
+          "size": 4
+        }
+      ],
+      "canonical_blobs": {
+        "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp": "e89c8d34576523e2a527181d75b6dcbbf5a48a25"
+      },
+      "matched_examples": {
+        "0x800b4ad4": {
+          "old": "render__14TObjEneBm5WolfFv",
+          "current": "render__14TObjEneBm5WolfFv",
+          "owner": "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp"
+        },
+        "0x800b4d04": {
+          "old": "advance_spawn_timer__14TObjEneBm5WolfFP10NJS_OBJECT",
+          "current": "advance_spawn_timer__14TObjEneBm5WolfFP10NJS_OBJECT",
+          "owner": "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp"
+        },
+        "0x800b5924": {
+          "old": "update_lunge__14TObjEneBm5WolfFl",
+          "current": "update_lunge__14TObjEneBm5WolfFl",
+          "owner": "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp"
+        },
+        "0x800b7808": {
+          "old": "spawn_recoil_dust__14TObjEneBm5WolfFiPv",
+          "current": "spawn_recoil_dust__14TObjEneBm5WolfFP3Vec",
+          "owner": "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp"
+        },
+        "0x800b7b14": {
+          "old": "calc_rotated_vector__14TObjEneBm5WolfFPviPvPv",
+          "current": "calc_rotated_vector__14TObjEneBm5WolfFlP3VecPl",
+          "owner": "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp"
+        },
+        "0x800b7ea0": {
+          "old": "select_subtype__14TObjEneBm5WolfFv",
+          "current": "select_subtype__14TObjEneBm5WolfFv",
+          "owner": "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp"
+        },
+        "0x800b7f60": {
+          "old": "update_collision_center__14TObjEneBm5WolfFv",
+          "current": "update_collision_center__14TObjEneBm5WolfFv",
+          "owner": "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp"
+        },
+        "0x800b86b4": {
+          "old": "load_resources__14TObjEneBm5WolfFv",
+          "current": "load_resources__14TObjEneBm5WolfFv",
+          "owner": "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp"
+        },
+        "0x800b896c": {
+          "old": "push_list_node__14TObjEneBm5WolfFPPvPPv",
+          "current": "append_to__18TObjEneBm5WolfNodeFPP18TObjEneBm5WolfNodePP18TObjEneBm5WolfNode",
+          "owner": "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp"
+        },
+        "0x800b89a4": {
+          "old": "unlink_list_node__14TObjEneBm5WolfFPPPvPPv",
+          "current": "unlink_from__18TObjEneBm5WolfNodeFPP18TObjEneBm5WolfNodePP18TObjEneBm5WolfNode",
+          "owner": "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp"
+        }
+      },
+      "historical_diff_sha256": "43565705a3393968da8712edd44963b7b1d29ae4add9d52ebad60a7899b0b015"
+    }
+  },
+  "whole_historical_comparisons_remaining": 73,
+  "runtime": {
+    "images": [
+      "retail",
+      "Great Merge source",
+      "materialized fork"
+    ],
+    "cases": {
+      "resources": "eight resource cases passed for Saver, Dark Gunner, Sorcerer Bit, Ill Gill, Gibon and Wolf.",
+      "formation": "room and group membership, ordered gunner selection, attack dispatch and movement parameters passed"
+    },
+    "probe_scope": "Resource initializers execute original image instructions with mock archive objects, memory allocation, motion sampling and registry calls.",
+    "formation_probe_labels_at_original_addresses": [
+      "Alias lbl_805D5870 = registered_enemy_count at 805D5870",
+      "Alias lbl_805D5004 = TObjEneDarkGunner__behavior_params at 805D5004",
+      "Alias sub_800A0994__20TObjEneDarkGunCenterFv = gather_gunners__20TObjEneDarkGunCenterFv at 800A0994",
+      "Alias fn_800A0884 = select_death_gunner__20TObjEneDarkGunCenterFv at 800A0884",
+      "Alias TObjPlayer__sub_800A3210 = get_int_parameter__17TObjEneDarkGunnerFl at 800A3210",
+      "Alias check_value_equals__13TUnk_804B6C24CFl = check_value_equals__7TObjectCFPCc at 8003F3C8",
+      "Alias trigger_targets_action__20TObjEneDarkGunCenterFv = hide_gunners__20TObjEneDarkGunCenterFv at 800A0728"
+    ]
+  },
+  "source_quality": {
+    "removed": 10,
+    "added": 0,
+    "symbol_label_changes": 0,
+    "newly_stale_retention": 0
+  },
+  "compiler_constraints": {
+    "dark_gunner_velocity_copy": "The existing byte overlay is retained inside step_along_ground. Direct Vec assignment changes six instructions at 0x800A10CC\u20130x800A10E4. The memcpy variant also fails the retail hash.",
+    "effect_texture_boundary": "The loaded textures carry GinjaTextureList pointers. Conversion to an address remains at the existing free_if_valid interface and at the inherited motion texture handle."
+  },
+  "fork_tooling": {
+    "overlay_paths": 130,
+    "retention_entries": 27007,
+    "checks": {
+      "tool": 294,
+      "fork": 11,
+      "host": [
+        "./vector_math_fallbacks",
+        "./item_factory_callbacks",
+        "./loader_transfer",
+        "./ginja_parameter_callbacks",
+        "./exi_ethernet_fallbacks"
+      ]
+    }
+  },
+  "fork_main_comparison": {
+    "non_padding_data_or_linkage_loss": 0,
+    "matched_function_loss": 0,
+    "omitted_alignment_bytes": 2565,
+    "added_covered_bytes": 159
+  },
+  "evidence_sha256": {
+    "source.patch": "88a11552fb7a2ea4760671ebab6dc495520e6032d3e704f10d55b4b91c7bb45d",
+    "address-ownership.json": "b9f4bc90a7abfc825492d46acec1cac21ce7aac5aa73d22ad095ed95bb59e447",
+    "final-quality.json": "c6f2b11fba2ff3feb63cc84449f7978723f7a4be40224d6e15ebdca67e3ec280",
+    "fork-main-coverage.json": "1a226ee42b9acb87613c1dfd23a35d3de31ca004bb9b089ea436caca3284ef33",
+    "probe-resources.py": "2745c52b759bea83b609f6874f0a5b69648b83d7da954088203eaa1769a6dc14",
+    "probe-resources.log": "965aca12b73a260afa26ed3b770c4beed5d589e2d56672a82ea6fa7c754e33b5",
+    "probe-formation.log": "d3a7fb6c531fbcf2b06e2c73e064f0b8389b5b384818919ea0718d480de99b37",
+    "formation-aliases.log": "f8c0000687d40e2ce4ba6424a8d29ef5a2926b35fa667291c0af54fc79e1dcb9",
+    "tool-overlay.patch": "d93d879f1cd3c199a515f8c3518b452d719a7113f7f7556fc7f06c7aa1ce45c3"
+  }
+}

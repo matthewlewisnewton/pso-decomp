@@ -1,0 +1,181 @@
+{
+  "source": "2b2b2d3b36365a4ab31cc7677faba4a80963c122",
+  "previous_source": "a52954285fbb393cf1816beb007b2bc9080822e7",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/boss/barbaray/TBoss7DeRolLeC.h",
+    "include/pso/boss/barbaray/TBoss7Tentacle.h",
+    "include/pso/boss/derolle/TBoss2Tentacle.h",
+    "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+    "src/pso/boss/barbaray/TBoss7TentacleNeedle.cpp",
+    "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+    "src/pso/boss/derolle/TBoss2Tentacle.cpp"
+  ],
+  "combined_paths_from_upstream": 1071,
+  "historical_preview": {
+    "donor": "7b8b4a2d487847463fbc81581f1224fe1ebb1aeb",
+    "previous_source": "e2d1a76e358fc0862e9f4d67e6f51e2348754443",
+    "paths": {
+      "overlapping": 25,
+      "same additions": 3,
+      "folded paths": 3
+    },
+    "preview_sha256": "e1f33133769f5c6737113928c8e38ef302aaa5c9e480119e39836aa4b07a8595"
+  },
+  "validation": {
+    "source": {
+      "baseline": "a52954285fbb393cf1816beb007b2bc9080822e7",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x80039F50",
+          "before": "__ct__14TBoss2TentacleFP7TObjectll",
+          "after": "__ct__14TBoss2TentacleFP7TObjectPA4_Cfl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802F0B08",
+          "before": "start_attack_at_position__14TBoss7TentacleFPUcl",
+          "after": "start_attack_at_position__14TBoss7TentacleFPC3Vecl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802F0BE8",
+          "before": "__ct__14TBoss7TentacleFP7TObjectll",
+          "after": "__ct__14TBoss7TentacleFP7TObjectPA4_Cfl"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "066db683dc85f9aed453eccf43e723186a7715dd3307ed5342f9e4497acb8246",
+      "report_sha256": "ac9bd487f836fb3b7eca1591ae95e814830b459ffa4ce9d263829057d2a63b7d"
+    },
+    "layer": {
+      "baseline": "2b2b2d3b36365a4ab31cc7677faba4a80963c122",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "52e7b7c44c895ea98e91fe1a9ea21805885753879d1966b15b6b684ebe565d0b",
+      "report_sha256": "ac9bd487f836fb3b7eca1591ae95e814830b459ffa4ce9d263829057d2a63b7d"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "4f12b4c29c52d0ad5893c3d44814a9b0b6a98a0951392371952320beba91f2f4"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "81aa73521f02de7d6cb87b3e3caa1b3416fca6aa35c0bdb756a20d8fcc245a13"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "images": [
+      "retail",
+      "source",
+      "materialized fork workspace"
+    ],
+    "tentacles": {
+      "attack_cases": 48,
+      "constructors": 8,
+      "probe_sha256": "7c75d60eca9166dd2f693c24bf852e1c5ef52a49f5689f9672612b382d7d45a8",
+      "log_sha256": "e3872e6e8e742290c0b4a720dfcdb86cbeebe85f22694e536956bd8327f990c7"
+    },
+    "arena": {
+      "coverage": "Tunnel model flags, particle paths, debris, tentacle and mine targets, and shared motion curves passed",
+      "probe_sha256": "7a2ef251ba4b5d3c6dec38cd5d2aa8572143657531d936205bee638d3ba09ea3",
+      "log_sha256": "d018b9d5dfda1df6aecc08256e652f9ed52492eeeab9d0c95bc61bfbb57e6635"
+    }
+  },
+  "historical": {
+    "closed_rows": [
+      {
+        "row": 404,
+        "fork_path": "include/pso/boss/TBoss7DeRolLeC.h",
+        "owner": "include/pso/boss/barbaray/TBoss7DeRolLeC.h",
+        "checked_offsets": {
+          "unk_3C0": "3C0",
+          "part_group": "690",
+          "action_index": "6B4",
+          "tentacle_matrices": "6D8",
+          "tentacles": "6DC",
+          "unk_7AC": "7AC"
+        },
+        "fork_delta_sha256": "9cdadd2aad0b4c7e8f57aeeed1c216624c652c6374a7cab14980f5e8e4cde3e9",
+        "evidence": "Compared the complete first-parent header delta from 1f2ecc1887. The native class retains the virtual dispatch, typed crawfish position and rotation, hit position, collision and joint targets, motion records, part group, matrix arrays and laser and particle owners. The motion records replace the historical float blocks and the compiler verifies the original offsets. The native constructor replaces the C declaration."
+      }
+    ],
+    "scoped_rows": [
+      [
+        424,
+        "include/pso/boss/TObjBoss2Tunnel.h",
+        "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+      ],
+      [
+        842,
+        "src/pso/boss/TObjBoss2Tunnel.cpp",
+        "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+      ],
+      [
+        951,
+        "src/pso/boss/Boss7DeRolLeCBehavior.cpp",
+        "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp"
+      ],
+      [
+        1125,
+        "src/pso/boss/TBoss2DeRolLe.cpp",
+        "src/pso/boss/derolle/TBoss2DeRolLe.cpp"
+      ]
+    ],
+    "open_rows": 374
+  },
+  "fork_workspace": {
+    "trial": "c7d6ac9deed7ef5b16f3670086e7f47ab58e1c44",
+    "overlay_paths": 130,
+    "updated_overlay_paths": [],
+    "archive_sha256": "1981bb9e90ef03a7051006e33a10eae3ece40516f90be27ac375a0ea2b91d1c3",
+    "materialized_tree": "fbf9e260f47c0251da6991110a728aaf4fc7b0db",
+    "force_active": 27027
+  }
+}

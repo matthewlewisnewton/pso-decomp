@@ -1,0 +1,598 @@
+{
+  "source": "cbc93216bbe1dfc6535db99bf752461e53275b55",
+  "previous_source": "491cc9fed017610225881b86dc8da7d4111b83e0",
+  "upstream": "5a4e7ced56fe7072359b6d279e94f4be3b8453c0",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "source_paths": 1238,
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/ui/TUnk_804E0B28.h",
+    "include/pso/ui/chat/TWindowSubSymbolChat.h",
+    "include/pso/ui/chat/TWindowSubSymbolChatParts.h",
+    "include/pso/ui/frontend/TAdAgreementBaseGC.h",
+    "include/pso/ui/frontend/TAdEnterSerialAccessGC.h",
+    "include/pso/ui/frontend/TAdEp3Exist.h",
+    "include/pso/ui/window/TWindowCallBack.h",
+    "include/pso/ui/window/TWindowKeyBoardBase.h",
+    "include/pso/ui/window/TWindowKeyBoardHard.h",
+    "include/pso/ui/window/TWindowSubStatusDisp.h",
+    "include/pso/ui/window/WindowCallback.h",
+    "src/pso/ui/chat/TWindowSubSymbolChat.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChat_802ACF5C.cpp",
+    "src/pso/ui/frontend/TAdAgreementBaseGC.cpp",
+    "src/pso/ui/frontend/TAdEnterBaseGC.cpp",
+    "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+    "src/pso/ui/frontend/TAdEnterSerialAccessGC_802ACF04.cpp",
+    "src/pso/ui/frontend/TAdEp3Exist.cpp",
+    "src/pso/ui/frontend/TAdMultiPlyChrSelectGC_802C6F88.cpp",
+    "src/pso/ui/frontend/TAdPlyStatusGC.cpp",
+    "src/pso/ui/window/TWindowCallBack.cpp",
+    "src/pso/ui/window/TWindowKeyBoardBase.cpp",
+    "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+    "src/pso/ui/window/TWindowKeyBoardSoft.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_8024FBA8.cpp",
+    "src/pso/ui/window/WindowDrawContext.cpp"
+  ],
+  "author": {
+    "name": "matthewlewisnewton",
+    "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+    "coauthor_trailers": 0
+  },
+  "draw_context": {
+    "linked_functions": {
+      "scale_point_about_pivot__17WindowDrawContextFPf": 76,
+      "transform_quad__17WindowDrawContextFP12TexturedQuad": 124,
+      "apply_closing_stretch__17WindowDrawContextFi": 100,
+      "set_open_tick__17WindowDrawContextFl": 128,
+      "set_bounds__17WindowDrawContextFffff": 20,
+      "shrink_clip_right__17WindowDrawContextFv": 32,
+      "animate_scale__17WindowDrawContextFv": 44,
+      "is_point_in_bounds__17WindowDrawContextFP12TexturedQuad": 80,
+      "clip_textured_quad__17WindowDrawContextFP12TexturedQuad": 280,
+      "clip_and_transform_quad__17WindowDrawContextFP12TexturedQuad": 80,
+      "init_layout__17WindowDrawContextFPfPfPfUlf": 484,
+      "adjust_pos_for_split_screen__17WindowDrawContextFP10NJS_POINT2l": 168,
+      "get_viewport_offset__17WindowDrawContextFl": 196,
+      "open_singleton__17WindowDrawContextFPfPfPffUl": 88,
+      "get_or_create_instance__17WindowDrawContextFv": 76,
+      "__dt__17WindowDrawContextFv": 84,
+      "__ct__17WindowDrawContextFv": 96,
+      "free_shared_draw_context__15TWindowCtrlMainFv": 56,
+      "TWindowCtrlMain__sub_8024EF30": 12
+    },
+    "objdiff_sha256": "6d860b214596984fcc919905a4fc484a0763bc62eccc9ff9cbbfdef893c8ae64"
+  },
+  "preserved_names": {
+    "0x800F0AE4": {
+      "fork": "destroy_resources__16TObjEneMe3StelthFv",
+      "current": "release_blob_shadow_texture__Fv",
+      "size": "0x3C"
+    },
+    "0x800FC400": {
+      "fork": "bind_small_font_texture_list",
+      "current": "begin_render__20TWindowSubStatusDispFv",
+      "size": "0x24"
+    },
+    "0x801E25A4": {
+      "fork": "poll_load_status__15TAdPlayerLoadGCFlPCc",
+      "current": "delete_memcard_file__15TAdPlayerLoadGCFlPCc",
+      "size": "0x98"
+    },
+    "0x80201204": {
+      "fork": "TAdSinglePlyChrSelectGC__sub_80201204",
+      "current": "calc_crc32_bitwise",
+      "size": "0x50"
+    },
+    "0x8025FE9C": {
+      "fork": "enable_keyboard_led__19TWindowKeyBoardHardFv",
+      "current": "set_mode3__19TWindowKeyBoardHardFv",
+      "size": "0x50"
+    },
+    "0x8025FEEC": {
+      "fork": "enable_kana_led__19TWindowKeyBoardHardFv",
+      "current": "set_mode2__19TWindowKeyBoardHardFv",
+      "size": "0x50"
+    },
+    "0x8025FF3C": {
+      "fork": "enable_caps_led__19TWindowKeyBoardHardFv",
+      "current": "set_mode1__19TWindowKeyBoardHardFv",
+      "size": "0x50"
+    },
+    "0x8025FF8C": {
+      "fork": "reset_composer_input_flags__19TWindowKeyBoardHardFv",
+      "current": "set_mode0__19TWindowKeyBoardHardFv",
+      "size": "0x68"
+    },
+    "0x803DA798": {
+      "fork": "set_current_texture_list",
+      "current": "set_global_param",
+      "size": "0x10"
+    }
+  },
+  "historical_comparison": {
+    "prior_verified_sources": [
+      "8263d90f97057dea78b9db82abc137d0c73bf136",
+      "4a784b7ec917af9089387b5ba9bb00a56ef1a863",
+      "6d9c527699fd531fc22f8bdd9bca3b4ef67bac5a",
+      "4640c9991920ba2a74f1a2fd925d27af09384dbe"
+    ],
+    "prior_open_rows": 443,
+    "open_rows": 435,
+    "closed": [
+      232,
+      253,
+      255,
+      256,
+      273,
+      277,
+      289,
+      5528
+    ],
+    "touched_rows": [
+      {
+        "row": 204,
+        "description": "The composer declares its native input-mode setter using the full-width retail argument and an eight-bit destination.",
+        "historical_path": "include/pso/misc/TKeyBoardControl_8025CB70.h",
+        "current_path": "include/pso/ui/window/TWindowKeyBoardBase.h",
+        "fork_blob": "761902dec56257ec408d7db33fa5216ae4f26d0f",
+        "current_blob": "f93d1e6129de7bc8bc25ec8c85f942aaeff602b5",
+        "previous_status": "Complete historical source retained at native owners",
+        "current_status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 210,
+        "description": "The active text pointer and six IME fields are typed at the exact existing offsets. The draw helpers and callbacks carry actual window, vector and point records.",
+        "historical_path": "include/pso/misc/TWindowKeyBoardBase.h",
+        "current_path": "include/pso/ui/window/TWindowKeyBoardBase.h",
+        "fork_blob": "892db85cd9bc4fe52f10e38ffff4150142212577",
+        "current_blob": "f93d1e6129de7bc8bc25ec8c85f942aaeff602b5",
+        "previous_status": "Complete historical source retained at native owners",
+        "current_status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 217,
+        "description": "The native Parts declaration restores the selection, resize and open methods and selection pointer at +0x78.",
+        "historical_path": "include/pso/misc/TWindowSubSymbolChatParts.h",
+        "current_path": "include/pso/ui/chat/TWindowSubSymbolChatParts.h",
+        "fork_blob": "c4c5cc55affe04fbbd24be39d525ad1cb50e392a",
+        "current_blob": "101daff500806cb2c74b11e27a85d6a246ca3d94",
+        "previous_status": "Complete historical source retained at native owners",
+        "current_status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 230,
+        "description": "The original composer edits use the live IME candidate buffer, index, count and byte capacity. Caret and glyph paths use native context, cursor and quad types. The broader historical unit remains open.",
+        "historical_path": "src/pso/misc/TWindowKeyBoardBase.cpp",
+        "current_path": "src/pso/ui/window/TWindowKeyBoardBase.cpp",
+        "fork_blob": "131034a1d578f2b9c04e61050ee3b4be812bfe56",
+        "current_blob": "c39ecfe5eb7aed3089e9cbb31863c0741145a794",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 232,
+        "description": "The folded 19-function owner carries the original typed rectangle and clipping, viewport, singleton lifetime and instance initialization. The keyboard negative fade expression and host clamp are restored at 0x8024E7B8.",
+        "historical_path": "src/pso/misc/TWindowKeyBoardSoft_8024E68C.cpp",
+        "current_path": "src/pso/ui/window/WindowDrawContext.cpp",
+        "fork_blob": "ff0e329298c76653a27af890729aea4642b66841",
+        "current_blob": "fa89f240671224fb2dd7db4d9ee5e44b091537f2",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete native draw context and fade historical source reconciled",
+        "authored_delta_sha256": "c1c49b10198bf06461452a07995cb7c765b06d0bddd523de2e7c0dcf700c72b7"
+      },
+      {
+        "row": 237,
+        "description": "The factory at 0x802ACF5C stays under the landed name and forwards the typed callback to the native window factory.",
+        "historical_path": "src/pso/misc/TWindowSubSymbolChat_802ACF5C.cpp",
+        "current_path": "src/pso/ui/chat/TWindowSubSymbolChat_802ACF5C.cpp",
+        "fork_blob": "3944768bfd493bb09d5df0b2b7f3f52e34c094e9",
+        "current_blob": "33a193b98960c45c69f36658208b0955fa08038e",
+        "previous_status": "Complete fork window callback source reconciled",
+        "current_status": "Complete fork window callback source reconciled"
+      },
+      {
+        "row": 249,
+        "description": "The Parts operations have their native receiver and share the actual editor selection byte. The larger source comparison stays open.",
+        "historical_path": "src/pso/misc/TWindowSubSymbolChatPartsSet_80247EFC.cpp",
+        "current_path": "src/pso/ui/chat/TWindowChatSymbol.cpp",
+        "fork_blob": "912de17f60358c652c10b97ccda2ee79653fb4dc",
+        "current_blob": "9a751deb3103040dc664e8d5fcf2127a584c58f3",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 253,
+        "description": "The native hard window declares its typed composer, signed status timer and draw context. Hard-key and mode operations retain the landed names at the fork addresses.",
+        "historical_path": "include/pso/misc/TWindowKeyBoardHard.h",
+        "current_path": "include/pso/ui/window/TWindowKeyBoardHard.h",
+        "fork_blob": "71d6046a31ee8a64b5e9546a5a3ea39e2182a591",
+        "current_blob": "bdc05c5c3e4a739d89be98f3dd81d115bb056b00",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete native hard keyboard declaration historical source reconciled",
+        "authored_delta_sha256": "b8bf00c3f3fac6c917c9cf0c5b5ff5fd41d1037353d5db32980d803edd0a29fb"
+      },
+      {
+        "row": 254,
+        "description": "The Parts source owns the original three control methods and borrowed selection storage. Other historical editor draw and input hunks remain open.",
+        "historical_path": "src/pso/misc/TWindowSubSymbolChatParts.cpp",
+        "current_path": "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp",
+        "fork_blob": "c90f4ddcf0f12af227fadf4553217ea9afe438fd",
+        "current_blob": "d4d07db2a66a692179b80d488d85cf05cb904a64",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 255,
+        "description": "The active window owns its descriptor, UV records, flags, selection and toggle pointers, native lifetime and bounds-checked cycling. The renderer reaches the same texture and font operations under upstream names.",
+        "historical_path": "src/pso/misc/TWindowSubSymbolChatHelp.cpp",
+        "current_path": "src/pso/ui/chat/TWindowSubSymbolChatHelp.cpp",
+        "fork_blob": "a294c652737f388dbaa962204c5f356e3efa40b7",
+        "current_blob": "2dc900a0de4723962f4d94073be4ab290bb44153",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete native Symbol Chat Help code historical source reconciled",
+        "authored_delta_sha256": "20052e11c08fc614b78e2edb3dfb2a55abab4537db980d1d40fbfca3d874b6fe"
+      },
+      {
+        "row": 256,
+        "description": "The 0x70 native soft child has the actual parent, child and frame APIs, typed depth and draw context. The split viewport, clipping and singleton operations live on the draw-context owner now.",
+        "historical_path": "include/pso/misc/TWindowKeyBoardSoft.h",
+        "current_path": "include/pso/ui/window/TWindowKeyBoardSoft.h",
+        "fork_blob": "107369b9add7a2498098b6c43091764f69b0f7cb",
+        "current_blob": "c4da324f7e966a45f07ec5d12a8704c7a2dd8c12",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete native soft keyboard declaration historical source reconciled",
+        "authored_delta_sha256": "86988329fbeffa82c5b81ad6a221c57b63846ab64e2d55cc760e72ae590c08a8"
+      },
+      {
+        "row": 264,
+        "description": "The hard key processor calls the native composer setter, and the status renderer follows signed timer and native draw context. The broader hard-key source comparison stays open.",
+        "historical_path": "src/pso/misc/TKeyBoardControl_8025EC04.cpp",
+        "current_path": "src/pso/ui/window/TWindowKeyBoardHard.cpp",
+        "fork_blob": "8c82c62d48b9d480d63548115c4f885c027d2694",
+        "current_blob": "bdf75f495ce2b16e783bc0149d559f4111ea8719",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 268,
+        "description": "The soft key uses the native composer mode setter. The broader soft-key source comparison stays open.",
+        "historical_path": "src/pso/misc/TKeyBoardControl.cpp",
+        "current_path": "src/pso/ui/window/TWindowKeyBoardSoft.cpp",
+        "fork_blob": "a43ef1941e770275170d7fc0b959355380c44712",
+        "current_blob": "69dd23db54d2c45131ed57c6bf52ff5b6f92965b",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 273,
+        "description": "The three original filenames use the linked character, Guild Card and system data names. Their loaded-card operations and checksum retain the original addresses and pointer releases. The Ginja draw uses the typed model pointer.",
+        "historical_path": "src/pso/misc/TWindowKeyBoardHard_801FBA48.cpp",
+        "current_path": "src/pso/ui/window/TWindowKeyBoardHard_801FBA48.cpp",
+        "fork_blob": "7a1125a03c0cc3dd1614d0a30885eec6bfdcf9c1",
+        "current_blob": "258fe2f6d8d40bf34b3af78833bffb18cf714b16",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete card and draw caller at its active owner historical source reconciled",
+        "authored_delta_sha256": "4fc296c599bc65481a793c1c8139e64b313a607c8fcd66b6a8ccd6137ac962c5"
+      },
+      {
+        "row": 277,
+        "description": "The controller initialization has the original literal GX colors and light position. The active snapshot and blob-shadow calls keep the original addresses and startup and shutdown order. Descriptive upstream names retain the same archive and system calls.",
+        "historical_path": "src/pso/misc/TKeyBoardControl_8000F764.cpp",
+        "current_path": "src/pso/ui/keyboard/TKeyBoardControl_8000F764.cpp",
+        "fork_blob": "1a47385bd7c9897db001e5d67082bb1d2b4b8485",
+        "current_blob": "64d73d67cef77c514657eaef24293b07e6bee934",
+        "previous_status": "Owner comparison required",
+        "current_status": "Complete landed startup and shutdown interfaces historical source reconciled",
+        "authored_delta_sha256": "bf5fd4a3a0ee845361b596f27cc2521b20373135d445e188c49c7fd421dad6c7"
+      },
+      {
+        "row": 283,
+        "description": "The typed glyph renderer and composer cursor share the native draw context. The rest of the original folded source remains open.",
+        "historical_path": "src/pso/misc/TWindowKeyBoardSoft.cpp",
+        "current_path": "src/pso/ui/window/TWindowKeyBoardBase.cpp",
+        "fork_blob": "a9a8b126b76551f6d627caaa14f825f95f9ecff9",
+        "current_blob": "c39ecfe5eb7aed3089e9cbb31863c0741145a794",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 289,
+        "description": "The registered controller close callback receives the borrowed arguments. Selection, resize and open live on Parts. Help owns the flag and mode API. The shared callback factory retains upstream's create_callback_at_zero_vec2 name.",
+        "historical_path": "include/pso/misc/TWindowSubSymbolChat.h",
+        "current_path": "include/pso/ui/chat/TWindowSubSymbolChatHelp.h",
+        "fork_blob": "113d49977d7bcb34e99b97b800a870d680e04ba5",
+        "current_blob": "c04019963c3a85d0c88d4ae82af3dbe74ae1380d",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete native Symbol Chat controller and child declarations historical source reconciled",
+        "authored_delta_sha256": "3bc34ea50612bbb626ebf0a27892fbb52cf9601f6d82b231180a613ad23a2a7d"
+      },
+      {
+        "row": 293,
+        "description": "All five Parts interactions use the native receiver and the editor registers the borrowed callback directly. The broader original editor source comparison remains open.",
+        "historical_path": "src/pso/misc/TWindowSubSymbolChat_80281814.cpp",
+        "current_path": "src/pso/ui/chat/TWindowSubSymbolChat.cpp",
+        "fork_blob": "e3e69f1db6fdcaa218015ddfb51033c44efd7b0f",
+        "current_blob": "e2c78fdb61e623cbf377d28f83efbaa0c091fbca",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 2283,
+        "description": "The upstream factory now constructs its callback window from the shared borrowed callback function type.",
+        "historical_path": "src/pso/ui/TAdEnterSerialAccessGC_802ACF04.cpp",
+        "current_path": "src/pso/ui/frontend/TAdEnterSerialAccessGC_802ACF04.cpp",
+        "fork_blob": "654940a15468e83bb715af7f3a7f866296f399e8",
+        "current_blob": "82efb3896cede43fb55602d5fd288d168f3bd96e",
+        "previous_status": "Complete fork window callback source reconciled",
+        "current_status": "Complete fork window callback source reconciled"
+      },
+      {
+        "row": 2559,
+        "description": "The agreement callback receives and forwards the actual window and frame context. Other screen initialization changes remain open.",
+        "historical_path": "src/pso/ui/TAdAgreementBaseGC.cpp",
+        "current_path": "src/pso/ui/frontend/TAdAgreementBaseGC.cpp",
+        "fork_blob": "d2facf4b8f85d386de7d8099af704782797afbb2",
+        "current_blob": "c4f69ef0fb1a4771799c96f8b16edcfe6124ffbc",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 2634,
+        "description": "The episode message callback receives and forwards the actual window and frame context. The broader source comparison stays open.",
+        "historical_path": "src/pso/ui/TAdEp3Exist.cpp",
+        "current_path": "src/pso/ui/frontend/TAdEp3Exist.cpp",
+        "fork_blob": "88e582ec5823899cdfcef1f17984aa076f02fbd8",
+        "current_blob": "3cf8fbf08e684723ef30514e50565ae7aeba663f",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Some anchored text changes found"
+      },
+      {
+        "row": 5454,
+        "description": "The typed native constructor, setter and run method use the original callback slot at +0x60 and keep their upstream names.",
+        "historical_path": "include/pso/misc/TWindowCallBack.h",
+        "current_path": "include/pso/ui/window/TWindowCallBack.h",
+        "fork_blob": "f580e9fe27b63bc6e60c1988db91d24372a49fad",
+        "current_blob": "15ec10324f6f0f4946af8f250b9c513c8f0bc093",
+        "previous_status": "Complete fork window callback source reconciled",
+        "current_status": "Complete fork window callback source reconciled"
+      },
+      {
+        "row": 5505,
+        "description": "The borrowed callback contract is restored in the active shared header and used by all live registration sites.",
+        "historical_path": "include/pso/misc/WindowCallback.h",
+        "current_path": "include/pso/ui/window/WindowCallback.h",
+        "fork_blob": "03dcb1c3e207688e0734ba3caa171857eb178e92",
+        "current_blob": "3cef39fdd80d180eb5acb50d5e5b947ed0e6b53a",
+        "previous_status": "Complete fork window callback source reconciled",
+        "current_status": "Complete fork window callback source reconciled"
+      },
+      {
+        "row": 5528,
+        "description": "The editor and frontend use the actual callback receiver, native lifetime, original descriptor, typed callback storage and draw-context dispatch. The adjacent Olga Flow helpers are present on the linked action packet and boss owners.",
+        "historical_path": "src/pso/misc/TWindowCallBack.cpp",
+        "current_path": "src/pso/ui/window/TWindowCallBack.cpp",
+        "fork_blob": "49d93a733a02f0b81b62f2af1064801e445f14d0",
+        "current_blob": "f8dc0e4bbc47921b7aa7d0fc7914861460d5cdb6",
+        "previous_status": "Some anchored text changes found",
+        "current_status": "Complete native window callback and inherited action packet owners historical source reconciled",
+        "authored_delta_sha256": "00d1245c36b779e60ab182179640b335b19ca92b2841a6e86e41db6cdfc76820"
+      }
+    ]
+  },
+  "validation": {
+    "stock": {
+      "baseline": "491cc9fed017610225881b86dc8da7d4111b83e0",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8024FBA8",
+          "before": "set_input_mode__20TWindowSubStatusDispFUc",
+          "after": "set_input_mode__19TWindowKeyBoardBaseFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8025DECC",
+          "before": "draw_text_glyphs__19TWindowKeyBoardBaseFPvPv",
+          "after": "draw_text_glyphs__19TWindowKeyBoardBaseFP17WindowDrawContextP10NJS_POINT2"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8025E148",
+          "before": "sub_8025E148__19TWindowKeyBoardBaseFP17WindowDrawContextPfPUsUl",
+          "after": "sub_8025E148__19TWindowKeyBoardBaseFP17WindowDrawContextP10NJS_POINT2PUsUl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8025E350",
+          "before": "draw_wrapped_text__19TWindowKeyBoardBaseFPvPv",
+          "after": "draw_wrapped_text__19TWindowKeyBoardBaseFP17WindowDrawContextP10NJS_POINT2"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8025E530",
+          "before": "sub_8025E530__19TWindowKeyBoardBaseFP17WindowDrawContextPfPUsUll",
+          "after": "sub_8025E530__19TWindowKeyBoardBaseFP17WindowDrawContextP10NJS_POINT2PUsUll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8025E6DC",
+          "before": "sub_8025E6DC__19TWindowKeyBoardBaseFPUc",
+          "after": "sub_8025E6DC__19TWindowKeyBoardBaseFP17WindowDrawContext"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80260020",
+          "before": "draw_status_text__19TWindowKeyBoardHardFPv",
+          "after": "draw_status_text__19TWindowKeyBoardHardFP17WindowDrawContext"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80281814",
+          "before": "close_child__20TWindowSubSymbolChatFv",
+          "after": "close_child__20TWindowSubSymbolChatFPvPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80284D68",
+          "before": "select_index_and_scroll__20TWindowSubSymbolChatFl",
+          "after": "select_index_and_scroll__25TWindowSubSymbolChatPartsFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802859A8",
+          "before": "update_height__20TWindowSubSymbolChatFv",
+          "after": "update_height__25TWindowSubSymbolChatPartsFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802859E8",
+          "before": "open__20TWindowSubSymbolChatFl",
+          "after": "open__25TWindowSubSymbolChatPartsFPSc"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802ACDA8",
+          "before": "set_field_60__15TWindowCallBackFPvi",
+          "after": "set_field_60__15TWindowCallBackFPFPvPv_v"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802ACE84",
+          "before": "__ct__15TWindowCallBackFlPUcl",
+          "after": "__ct__15TWindowCallBackFPUcPUcPFPvPv_v"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802ACF04",
+          "before": "create_callback__22TAdEnterSerialAccessGCFPvPvPv",
+          "after": "create_callback__22TAdEnterSerialAccessGCFPvPvPFPvPv_v"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802C6FB0",
+          "before": "update_transition_anim_if_active__13TUnk_804E0B28Fv",
+          "after": "update_transition_anim_if_active__13TUnk_804E0B28FPvPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803296E8",
+          "before": "draw_agreement_text__18TAdAgreementBaseGCFv",
+          "after": "draw_agreement_text__18TAdAgreementBaseGCFPvPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8036EFBC",
+          "before": "draw_message_window__11TAdEp3ExistFl",
+          "after": "draw_message_window__11TAdEp3ExistFPvPv"
+        }
+      ],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "c37647b3b4cdc82c8e682598fc9e08bb41fc5e7c5edbd1399f449c71cbcc618c",
+      "report_sha256": "e2ba4598cf4a14c7c3231e04dc24eb6443e503e97f266b3b789bb8d07ffb1b9f"
+    },
+    "workspace": {
+      "baseline": "cbc93216bbe1dfc6535db99bf752461e53275b55",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "e2ba4598cf4a14c7c3231e04dc24eb6443e503e97f266b3b789bb8d07ffb1b9f"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "a036425764cc41e30ec5cee42d34bc43e83b184a16644f14590bcec8cb366e96"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "04573d1d0fb8c916a9f02b81457744c7d16b834d62f214084da14f332f74f2fc"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    },
+    "keyboard_runtime": {
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "checks": [
+        "Keyboard draw-context alpha for negative ticks and preserved color for nonnegative ticks",
+        "Full-width input-mode argument writes a single byte in the actual composer",
+        "Encoded name and text, cursor records and signed remaining capacity",
+        "Hard keyboard's status guard, all six Japanese modes, position and draw depth",
+        "Native Symbol Chat Parts open, resize, selection clamp and scroll arguments",
+        "Callback storage, borrowed window and context arguments, and null callback guard"
+      ],
+      "emulation": "The harness executes the matching PowerPC routines and observes downstream UI services with hooks.",
+      "log_sha256": "6034665c4fa1663a135b590c4b18f5979d375bc0bf4e462e660072da8e03aaaa",
+      "probe_sha256": "5da1f17d23ae71e34639fc6493cada24304ec919de7fde64dd00587daebb5a31"
+    }
+  },
+  "fork_workspace": {
+    "overlay_paths": 130,
+    "overlay_patch_sha256": "b6d8e332d204299b5d2e50b868dfa87eabf174bb0c1a0d765609554880df450b",
+    "updated_overlay_paths": [
+      "config/GPOE8P/psov3/config.yml"
+    ],
+    "force_active": {
+      "names_before": 27033,
+      "names_after": 27033,
+      "mappings": {
+        "close_child__20TWindowSubSymbolChatFv": "close_child__20TWindowSubSymbolChatFPvPv",
+        "draw_agreement_text__18TAdAgreementBaseGCFv": "draw_agreement_text__18TAdAgreementBaseGCFPvPv",
+        "draw_message_window__11TAdEp3ExistFl": "draw_message_window__11TAdEp3ExistFPvPv",
+        "draw_status_text__19TWindowKeyBoardHardFPv": "draw_status_text__19TWindowKeyBoardHardFP17WindowDrawContext",
+        "draw_text_glyphs__19TWindowKeyBoardBaseFPvPv": "draw_text_glyphs__19TWindowKeyBoardBaseFP17WindowDrawContextP10NJS_POINT2",
+        "draw_wrapped_text__19TWindowKeyBoardBaseFPvPv": "draw_wrapped_text__19TWindowKeyBoardBaseFP17WindowDrawContextP10NJS_POINT2",
+        "set_field_60__15TWindowCallBackFPvi": "set_field_60__15TWindowCallBackFPFPvPv_v",
+        "sub_8025E148__19TWindowKeyBoardBaseFP17WindowDrawContextPfPUsUl": "sub_8025E148__19TWindowKeyBoardBaseFP17WindowDrawContextP10NJS_POINT2PUsUl",
+        "sub_8025E530__19TWindowKeyBoardBaseFP17WindowDrawContextPfPUsUll": "sub_8025E530__19TWindowKeyBoardBaseFP17WindowDrawContextP10NJS_POINT2PUsUll",
+        "sub_8025E6DC__19TWindowKeyBoardBaseFPUc": "sub_8025E6DC__19TWindowKeyBoardBaseFP17WindowDrawContext",
+        "update_transition_anim_if_active__13TUnk_804E0B28Fv": "update_transition_anim_if_active__13TUnk_804E0B28FPvPv"
+      }
+    },
+    "archive_test_head": "60affe4c8896df35b09438e230745dc17db94463",
+    "tested_materialized_tree": "8baf39851cd04d95f914a316a8f019f18f823e93"
+  }
+}

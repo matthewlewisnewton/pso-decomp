@@ -1,0 +1,673 @@
+{
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "upstream": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+  "fork_point": "fba938223515e7ab721bd5574ee97eba57671de6",
+  "builds": {
+    "plain": {
+      "head": "831baac8ecba4fa897121bf99e241c2e2e3c0390",
+      "tree": "e04856aaea72ae87f213d3b4e1129a671917e33a",
+      "coverage_baseline": "6aff393c9d5ac3fa4369268d8d273812c4e499aa",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "plain-report.json": "ba9b31ad68ddaf1cbe91575ca1df36f72a87e134feddd9d268405e2e76f31c5e",
+        "plain-check.json": "ec167389dbd490e17ac3a61384def77d8d58a7485e34e9bf913ffed6e489dc0a"
+      }
+    },
+    "final": {
+      "head": "33e008c73233f3ce095f752b2da6e49d87fb2c5f",
+      "tree": "0d4b1f145352081920e27fdb8bf2a160d8d50c88",
+      "coverage_baseline": "878ffa6ca98b6e48618fcf755c3b54a56d6635eb",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "final-report.json": "3bf3e15429177294d20b658e95ddad93ba7cd62bd720384855002e49671729d0",
+        "final-check.json": "ec167389dbd490e17ac3a61384def77d8d58a7485e34e9bf913ffed6e489dc0a"
+      }
+    },
+    "ave": {
+      "head": "fbdf4ea3c524f1e0133efe139fe43e8844ef62aa",
+      "tree": "40a3c1c77b7ef1b2cec7fdb6479589a80a76526c",
+      "coverage_baseline": "33e008c73233f3ce095f752b2da6e49d87fb2c5f",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "ave-report.json": "3bf3e15429177294d20b658e95ddad93ba7cd62bd720384855002e49671729d0",
+        "ave-check.json": "ec167389dbd490e17ac3a61384def77d8d58a7485e34e9bf913ffed6e489dc0a"
+      }
+    },
+    "plain-private": {
+      "head": "f3a6e4fafadd8978994d88c7fadc31acc9bea64a",
+      "tree": "5e97624a73ac507005333244c134cf75562a43ac",
+      "coverage_baseline": "831baac8ecba4fa897121bf99e241c2e2e3c0390",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "plain-private-report.json": "ba9b31ad68ddaf1cbe91575ca1df36f72a87e134feddd9d268405e2e76f31c5e",
+        "plain-private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011"
+      }
+    },
+    "ave-private": {
+      "head": "de511f2901cfe59de26c0c7b826a362266538704",
+      "tree": "8b7e4c5d92ac23c3d40b96b22d9c2f411d1bb6cf",
+      "coverage_baseline": "fbdf4ea3c524f1e0133efe139fe43e8844ef62aa",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "fork_inventory": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "ave-private-report.json": "3bf3e15429177294d20b658e95ddad93ba7cd62bd720384855002e49671729d0",
+        "ave-private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011"
+      }
+    }
+  },
+  "historical_address_audit": {
+    "rows_examined": 110,
+    "rows_with_fork_linker_splits": 105,
+    "rows_without_standalone_ranges": 5,
+    "exact_linked_function_addresses": 6622,
+    "historical_data_bytes": 288477,
+    "exact_linked_data_bytes": 288465,
+    "padding_gaps": [
+      {
+        "path": "pso/misc/TWindowFukidasi.cpp",
+        "section": ".sdata2",
+        "start": "0x805dcdc4",
+        "end_exclusive": "0x805dcdc8",
+        "classification": "alignment padding"
+      },
+      {
+        "path": "pso/boss/Boss7DeRolLeCBehavior.cpp",
+        "section": ".sdata2",
+        "start": "0x805deba4",
+        "end_exclusive": "0x805deba8",
+        "classification": "alignment padding"
+      },
+      {
+        "path": "pso/enemy/TObjEneBm5Wolf.cpp",
+        "section": ".sdata2",
+        "start": "0x805d9e5c",
+        "end_exclusive": "0x805d9e60",
+        "classification": "alignment padding"
+      }
+    ],
+    "ownership_report_sha256": "6b36cbd48990d803a61e0111e35ec603337748506a984bbe706fa2bd2b071aa1"
+  },
+  "whole_source_comparisons_closed": [
+    {
+      "historical_path": "src/pso/player/TObjPlayer_801D84CC.cpp",
+      "original_blob": "2761c0648d601fbeb6e6b23dfe107b7892e8f1f1",
+      "comparison_path": "src/pso/player/TObjPlayer_801D8ADC.cpp",
+      "evidence": "Trade equip calls the native flag setter and clearer. The ending render uses the named body texture storage and existing rotation member. Starting inventory and growth rows now return native records from the relocated lookup unit. The class-cap table remains read-only through its public accessor. The original clamp retains its matching byte reads.",
+      "address_coverage": {
+        "functions": {
+          "0x801d859c": {
+            "old": "process_trade_target__10TObjPlayerFiPv",
+            "current": "process_trade_target__10TObjPlayerFiPv",
+            "owner": "src/pso/player/TObjPlayer_801D84CC.cpp"
+          },
+          "0x801d8664": {
+            "old": "TObjPlayer__sub_801D8664",
+            "current": "TObjPlayer__sub_801D8664",
+            "owner": "src/pso/player/TObjPlayer_801D84CC.cpp"
+          },
+          "0x801d86b8": {
+            "old": "set_position_from__13TUnk_804C4540FPv",
+            "current": "set_position_from__13TUnk_804C4540FPv",
+            "owner": "src/pso/player/TObjPlayer_801D84CC.cpp"
+          },
+          "0x801d86d8": {
+            "old": "set_animation_default__13TUnk_804C4540Fs",
+            "current": "set_animation_default__13TUnk_804C4540Fs",
+            "owner": "src/pso/player/TObjPlayer_801D84CC.cpp"
+          },
+          "0x801d86f8": {
+            "old": "create__13TUnk_804C4540FP12TPlyCharData",
+            "current": "create__13TUnk_804C4540FP12TPlyCharData",
+            "owner": "src/pso/player/TObjPlayer_801D84CC.cpp"
+          },
+          "0x801d877c": {
+            "old": "TObjPlayer__sub_801D877C",
+            "current": "render__13TUnk_804C4540Fv",
+            "owner": "src/pso/player/TObjPlayer_801D84CC.cpp"
+          },
+          "0x801d8864": {
+            "old": "TObjPlayer__sub_801D8864",
+            "current": "run_task__13TUnk_804C4540Fv",
+            "owner": "src/pso/player/TObjPlayer_801D84CC.cpp"
+          },
+          "0x801d8868": {
+            "old": "free_shared_lobby_data__10TObjPlayerFv",
+            "current": "free_shared_lobby_data__10TObjPlayerFv",
+            "owner": "src/pso/player/TObjPlayer_801D84CC.cpp"
+          },
+          "0x801d8898": {
+            "old": "create_player_ending_motion__Fv",
+            "current": "create_player_ending_motion__Fv",
+            "owner": "src/pso/player/TObjPlayer_801D84CC.cpp"
+          },
+          "0x801d88c8": {
+            "old": "create_ending_sequence_player",
+            "current": "__ct__13TUnk_804C4540FP7TObjectP13TUnk_801D8A4C",
+            "owner": "src/pso/player/TObjPlayer_801D84CC.cpp"
+          },
+          "0x801d89e0": {
+            "old": "__dt__13TUnk_804C4540Fv",
+            "current": "__dt__13TUnk_804C4540Fv",
+            "owner": "src/pso/player/TObjPlayer_801D84CC.cpp"
+          },
+          "0x801d8a38": {
+            "old": "TObjPlayer__sub_801D8A38",
+            "current": "TObjPlayer__sub_801D8A38",
+            "owner": "src/pso/player/TObjPlayer_801D84CC.cpp"
+          },
+          "0x801d8a4c": {
+            "old": "init_inventory__10TObjPlayerFv",
+            "current": "init_inventory__10TObjPlayerFv",
+            "owner": "src/pso/player/TObjPlayer_801D84CC.cpp"
+          },
+          "0x801d8a90": {
+            "old": "init_inventory_items__10TObjPlayerFl",
+            "current": "init_inventory_items__10TObjPlayerFl",
+            "owner": "src/pso/player/TObjPlayer_801D84CC.cpp"
+          },
+          "0x801d8adc": {
+            "old": "get_getup_protection_ticks__10TObjPlayerFv",
+            "current": "get_getup_protection_ticks__10TObjPlayerFv",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d8b8c": {
+            "old": "get_hurt_protection_ticks__10TObjPlayerFv",
+            "current": "get_hurt_protection_ticks__10TObjPlayerFv",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d8c3c": {
+            "old": "TObjPlayer__sub_801D8C3C",
+            "current": "TObjPlayer__sub_801D8C3C",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d8c6c": {
+            "old": "get_lobby_entry_ptr__10TObjPlayerFv",
+            "current": "get_lobby_entry_ptr__10TObjPlayerFv",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d8c9c": {
+            "old": "get_guild_return_yaw__10TObjPlayerFv",
+            "current": "get_guild_return_yaw__10TObjPlayerFv",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d8ccc": {
+            "old": "get_guild_return_position__10TObjPlayerFPv",
+            "current": "get_guild_return_position__10TObjPlayerFv",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d8d14": {
+            "old": "get_hospital_yaw__10TObjPlayerFv",
+            "current": "get_hospital_yaw__10TObjPlayerFv",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d8d44": {
+            "old": "get_hospital_position__10TObjPlayerFv",
+            "current": "get_hospital_position__10TObjPlayerFv",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d8d8c": {
+            "old": "get_class_starting_inventory",
+            "current": "get_class_starting_inventory",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d8dcc": {
+            "old": "TObjPlayer__sub_801D8DCC",
+            "current": "TObjPlayer__sub_801D8DCC",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d8e1c": {
+            "old": "get_anim_table_entry__10TObjPlayerFl",
+            "current": "get_anim_table_entry__10TObjPlayerFl",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d8e60": {
+            "old": "get_table_entry_by_clamped_index__10TObjPlayerFv",
+            "current": "get_table_entry_by_clamped_index__10TObjPlayerFv",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d8e90": {
+            "old": "get_footstep_floor_index__10TObjPlayerFv",
+            "current": "get_footstep_floor_index__10TObjPlayerFv",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d8f0c": {
+            "old": "get_photon_blast_complete_threshold__10TObjPlayerFv",
+            "current": "get_photon_blast_complete_threshold__10TObjPlayerFv",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d8f60": {
+            "old": "get_photon_blast_upper_bound__10TObjPlayerFv",
+            "current": "get_photon_blast_upper_bound__10TObjPlayerFv",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d8fb4": {
+            "old": "get_photon_blast_hold_frame__10TObjPlayerFv",
+            "current": "get_photon_blast_hold_frame__10TObjPlayerFv",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d9004": {
+            "old": "get_attack_recovery_count__10TObjPlayerFv",
+            "current": "get_attack_recovery_count__10TObjPlayerFv",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d9078": {
+            "old": "select_normal_attack_marker__10TObjPlayerFv",
+            "current": "select_normal_attack_marker__10TObjPlayerFv",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d90dc": {
+            "old": "lookup_attack_marker__Flssl",
+            "current": "lookup_attack_marker__Flssl",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d91b8": {
+            "old": "TObjPlayer__sub_801D91B8",
+            "current": "TObjPlayer__sub_801D91B8",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d91f8": {
+            "old": "get_current_state_field__10TObjPlayerFcl",
+            "current": "get_current_state_field__10TObjPlayerFll",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d921c": {
+            "old": "get_class_state_field__10TObjPlayerFl",
+            "current": "get_class_state_field__10TObjPlayerFl",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d9250": {
+            "old": "get_ply_level_table_row__Fcl",
+            "current": "get_ply_level_table_row__Fll",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d92a4": {
+            "old": "TObjPlayer__sub_801D92A4",
+            "current": "TObjPlayer__sub_801D92A4",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d92c8": {
+            "old": "load_ply_level_tbl__Fv",
+            "current": "load_ply_level_tbl__Fv",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d92f4": {
+            "old": "get_class_attack_template",
+            "current": "get_class_attack_template",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d9328": {
+            "old": "get_class_defense_template",
+            "current": "get_class_defense_template",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d935c": {
+            "old": "get_class_base_stats",
+            "current": "get_class_base_stats",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d9390": {
+            "old": "get_class_stat_caps",
+            "current": "get_class_stat_caps",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d93c4": {
+            "old": "get_class_stat_entry__10TObjPlayerFPUc",
+            "current": "get_class_stat_entry__10TObjPlayerFPUc",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d93f8": {
+            "old": "get_tp_class_factor__10TObjPlayerFv",
+            "current": "get_tp_class_factor__10TObjPlayerFv",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d9440": {
+            "old": "get_class_hp_factor__10TObjPlayerFv",
+            "current": "get_class_hp_factor__10TObjPlayerFv",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d9470": {
+            "old": "get_floor_surface_type__10TObjPlayerFv",
+            "current": "get_floor_surface_type__10TObjPlayerFv",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d9494": {
+            "old": "get_falz_phase__10TObjPlayerFv",
+            "current": "get_falz_phase__10TObjPlayerFv",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d94b8": {
+            "old": "get_instance_count__14TBoss4DarkFalzFv",
+            "current": "get_instance_count__14TBoss4DarkFalzFv",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          },
+          "0x801d94c0": {
+            "old": "TBoss4DarkFalz__sub_801D94C0",
+            "current": "TBoss4DarkFalz__sub_801D94C0",
+            "owner": "src/pso/player/TObjPlayer_801D8ADC.cpp"
+          }
+        },
+        "unaccounted_functions": [],
+        "data": {
+          ".rodata": {
+            "source_bytes": 8,
+            "exact_bytes": 8,
+            "owners": [
+              "src/pso/player/TObjPlayer_801D8ADC.cpp"
+            ],
+            "uncovered": []
+          },
+          ".data": {
+            "source_bytes": 832,
+            "exact_bytes": 832,
+            "owners": [
+              "src/pso/player/TObjPlayer_801D8ADC.cpp"
+            ],
+            "uncovered": []
+          }
+        }
+      }
+    },
+    {
+      "historical_path": "src/pso/unk/text_80357058.cpp",
+      "original_blob": "d227d37a4e201c919307d753509913605de17837",
+      "comparison_path": "src/pso/unk/text_80357058.cpp",
+      "evidence": "The projectile keeps its native run method, constructor, destructor and new-expression factory. Its trail width, length, growth and normalization use the same eight source-linked constants as fork main. The clamped step retains the current source name and the original helper entry at 0x80115B80.",
+      "address_coverage": {
+        "functions": {
+          "0x80357058": {
+            "old": "send_6xAD_olga_flow_subordinate_boss_actions__FPUc",
+            "current": "send_6xAD_olga_flow_subordinate_boss_actions__FPUc",
+            "owner": "src/pso/unk/text_80357058.cpp"
+          },
+          "0x803570c8": {
+            "old": "TBoss6Type2__sub_803570C8",
+            "current": "TBoss6Type2__sub_803570C8",
+            "owner": "src/pso/unk/text_80357058.cpp"
+          },
+          "0x803570e4": {
+            "old": "handle_6xAD_olga_flow_subordinate_boss_actions",
+            "current": "handle_6xAD_olga_flow_subordinate_boss_actions",
+            "owner": "src/pso/unk/text_80357058.cpp"
+          },
+          "0x80357204": {
+            "old": "TItemEffOrgaFlowShot__sub_80357204",
+            "current": "TItemEffOrgaFlowShot__sub_80357204",
+            "owner": "src/pso/unk/text_80357058.cpp"
+          },
+          "0x80357210": {
+            "old": "TItemEffOrgaFlowShot__sub_80357210",
+            "current": "TItemEffOrgaFlowShot__sub_80357210",
+            "owner": "src/pso/unk/text_80357058.cpp"
+          },
+          "0x8035721c": {
+            "old": "bswap_6xAD_subordinate_action__20TItemEffOrgaFlowShotFv",
+            "current": "bswap_6xAD_subordinate_action__20TItemEffOrgaFlowShotFv",
+            "owner": "src/pso/unk/text_80357058.cpp"
+          },
+          "0x80357250": {
+            "old": "read_be16_field2_forward__FPv",
+            "current": "read_be16_field2_forward__FPv",
+            "owner": "src/pso/unk/text_80357058.cpp"
+          },
+          "0x80357270": {
+            "old": "build_6xAD_olga_flow_subordinate_boss_actions__FPv",
+            "current": "build_6xAD_olga_flow_subordinate_boss_actions__FPv",
+            "owner": "src/pso/unk/text_80357058.cpp"
+          },
+          "0x80357284": {
+            "old": "update_segments__20TItemEffOrgaFlowShotFv",
+            "current": "update_segments__20TItemEffOrgaFlowShotFv",
+            "owner": "src/pso/unk/text_80357058.cpp"
+          },
+          "0x80357358": {
+            "old": "update_position_from_velocity__20TItemEffOrgaFlowShotFv",
+            "current": "update_position_from_velocity__20TItemEffOrgaFlowShotFv",
+            "owner": "src/pso/unk/text_80357058.cpp"
+          },
+          "0x803573a4": {
+            "old": "render__20TItemEffOrgaFlowShotFv",
+            "current": "render__20TItemEffOrgaFlowShotFv",
+            "owner": "src/pso/unk/text_80357058.cpp"
+          },
+          "0x8035740c": {
+            "old": "run_task__20TItemEffOrgaFlowShotFv",
+            "current": "run_task__20TItemEffOrgaFlowShotFv",
+            "owner": "src/pso/unk/text_80357058.cpp"
+          },
+          "0x803574f0": {
+            "old": "__dt__20TItemEffOrgaFlowShotFv",
+            "current": "__dt__20TItemEffOrgaFlowShotFv",
+            "owner": "src/pso/unk/text_80357058.cpp"
+          },
+          "0x80357548": {
+            "old": "__ct__20TItemEffOrgaFlowShotFP7TObjectPv",
+            "current": "__ct__20TItemEffOrgaFlowShotFP7TObjectP18OrgaFlowShotParams",
+            "owner": "src/pso/unk/text_80357058.cpp"
+          },
+          "0x803576ec": {
+            "old": "create__20TItemEffOrgaFlowShotFPvPv",
+            "current": "create__20TItemEffOrgaFlowShotFPvPv",
+            "owner": "src/pso/unk/text_80357058.cpp"
+          }
+        },
+        "unaccounted_functions": [],
+        "data": {
+          ".data": {
+            "source_bytes": 28,
+            "exact_bytes": 28,
+            "owners": [
+              "src/pso/unk/text_80357058.cpp"
+            ],
+            "uncovered": []
+          },
+          ".sdata2": {
+            "source_bytes": 32,
+            "exact_bytes": 32,
+            "owners": [
+              "src/pso/unk/text_80357058.cpp"
+            ],
+            "uncovered": []
+          }
+        }
+      }
+    },
+    {
+      "historical_path": "src/pso/unk/text_803D96A8.cpp",
+      "original_blob": "304b1b7eb2cc7e0f04a7ca3c57295acb50737d5d",
+      "comparison_path": "src/pso/unk/text_803D96A8.cpp",
+      "evidence": "The native matrix pointer signatures, stack copy, quaternion operations and archive header copy retain their original addresses and storage. Both remaining pragma groups can be removed without changing the CodeWarrior object. The original normalize-vector output stays in the GameCube build, and the fork-only patch restores the original scalar fallback.",
+      "address_coverage": {
+        "functions": {
+          "0x803d96a8": {
+            "old": "rotate_matrix_x",
+            "current": "rotate_matrix_x",
+            "owner": "src/pso/unk/text_803D96A8.cpp"
+          },
+          "0x803d9730": {
+            "old": "concat_matrix",
+            "current": "concat_matrix",
+            "owner": "src/pso/unk/text_803D96A8.cpp"
+          },
+          "0x803d976c": {
+            "old": "concat_matrix__11TCameraCtrlFUlUl",
+            "current": "premultiply_matrix__FPA4_fPA4_Cf",
+            "owner": "src/pso/unk/text_803D96A8.cpp"
+          },
+          "0x803d97b4": {
+            "old": "normalize_vector",
+            "current": "normalize_vector",
+            "owner": "src/pso/unk/text_803D96A8.cpp"
+          },
+          "0x803d97f0": {
+            "old": "push_matrix_from",
+            "current": "push_matrix_from",
+            "owner": "src/pso/unk/text_803D96A8.cpp"
+          },
+          "0x803d9858": {
+            "old": "pop_matrices",
+            "current": "pop_matrices__Fl",
+            "owner": "src/pso/unk/text_803D96A8.cpp"
+          },
+          "0x803d9884": {
+            "old": "transform_point_by_current_matrix",
+            "current": "transform_point_by_current_matrix",
+            "owner": "src/pso/unk/text_803D96A8.cpp"
+          },
+          "0x803d98e4": {
+            "old": "concat_quaternion_rotation__10TObjPlayerFv",
+            "current": "concat_quaternion_rotation__10TObjPlayerFv",
+            "owner": "src/pso/unk/text_803D96A8.cpp"
+          },
+          "0x803d993c": {
+            "old": "apply_quat_rotation__10TObjPlayerFf",
+            "current": "apply_quat_rotation__FfPf",
+            "owner": "src/pso/unk/text_803D96A8.cpp"
+          },
+          "0x803d9990": {
+            "old": "rotate_vector_by_current_matrix",
+            "current": "rotate_vector_by_current_matrix",
+            "owner": "src/pso/unk/text_803D96A8.cpp"
+          },
+          "0x803d99f8": {
+            "old": "rotate_matrix_by_node_angles",
+            "current": "rotate_matrix_by_node_angles",
+            "owner": "src/pso/unk/text_803D96A8.cpp"
+          },
+          "0x803d9b2c": {
+            "old": "push_matrix",
+            "current": "push_matrix",
+            "owner": "src/pso/unk/text_803D96A8.cpp"
+          },
+          "0x803d9b78": {
+            "old": "pop_matrix",
+            "current": "pop_matrix",
+            "owner": "src/pso/unk/text_803D96A8.cpp"
+          },
+          "0x803d9ba0": {
+            "old": "scale_current_matrix",
+            "current": "scale_current_matrix",
+            "owner": "src/pso/unk/text_803D96A8.cpp"
+          },
+          "0x803d9c00": {
+            "old": "post_translate_matrix",
+            "current": "post_translate_matrix",
+            "owner": "src/pso/unk/text_803D96A8.cpp"
+          },
+          "0x803d9c60": {
+            "old": "TObjPlayer__sub_803D9C60",
+            "current": "TObjPlayer__sub_803D9C60",
+            "owner": "src/pso/unk/text_803D96A8.cpp"
+          },
+          "0x803d9c98": {
+            "old": "find_gvrt_texture_chunk__FP6TLobbyPUlPUl",
+            "current": "find_gvrt_texture_chunk__FP6TLobbyPUlPUl",
+            "owner": "src/pso/unk/text_803D96A8.cpp"
+          },
+          "0x803d9da8": {
+            "old": "TObjPlayer__sub_803D9DA8",
+            "current": "TObjPlayer__sub_803D9DA8",
+            "owner": "src/pso/unk/text_803D96A8.cpp"
+          },
+          "0x803d9e04": {
+            "old": "is_gvm_load_ok__10TObjPlayerFv",
+            "current": "is_gvm_load_ok__10TObjPlayerFv",
+            "owner": "src/pso/unk/text_803D96A8.cpp"
+          },
+          "0x803d9e38": {
+            "old": "TObjPlayer__sub_803D9E38",
+            "current": "TObjPlayer__sub_803D9E38",
+            "owner": "src/pso/unk/text_803D96A8.cpp"
+          }
+        },
+        "unaccounted_functions": [],
+        "data": {
+          ".sdata2": {
+            "source_bytes": 8,
+            "exact_bytes": 8,
+            "owners": [
+              "src/pso/unk/text_803D96A8.cpp"
+            ],
+            "uncovered": []
+          }
+        }
+      }
+    }
+  ],
+  "source_comparisons_still_open": 107,
+  "changed_source_blobs": {
+    "src/pso/player/TObjPlayer_801D84CC.cpp": "cce6f5bf62734a6f346216471375cf56723d7dd2",
+    "src/pso/player/TObjPlayer_801D8ADC.cpp": "1e6eb2006f194e39cfda5803f8449f37e929aa98",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp": "69f88512d20edb1a4f15a8d246bd9b2ebe462380",
+    "src/pso/unk/text_80357058.cpp": "2b5f0f4d9cfff8f0e8966a75f88206172c897cd7",
+    "src/pso/unk/text_803D96A8.cpp": "5dacedd7ee396e4ec72cd30e1b594e8c27f552d4"
+  },
+  "partial_findings": {
+    "window_glyphs": "The native texture-quad and read-only parse interfaces now match retail. The isolated trial with fully narrowed glyph lookup arguments changed the retail instruction schedule. Existing width conventions remain at the clipped draw call sites.",
+    "breakup_model": "The historical patch uses array new and delete, while TUnk_804E3BD8 callers in the current breakup unit still spell the memory entry points directly. This needs a source review even though the linked bytes match."
+  },
+  "source_quality": {
+    "removed": 33,
+    "added": 0,
+    "changed_labels": 0,
+    "newly_stale_retention": 0,
+    "sha256": "55f9e7dc4a982face1587243906b59c7c526f33f8b89abd2a55b4d412db6d6ba"
+  },
+  "tooling": {
+    "patch_paths": 130,
+    "checks": 310,
+    "retention_entries": 27007,
+    "evidence_sha256": {
+      "plain-overlay.patch": "1d851cb61f541af94502e18d18bec0e6421af1f7dc15ad358e2108affa906a38",
+      "ave-overlay.patch": "5cfd48518a64fc6257d36bee5a7bbbaff5204302912a209bb0bf3d9d0ccdb41e",
+      "plain-private-tool-tests.log": "714d1f38cd6c1de7b5e6a09edfebcc6c4be73f502d1855052fa77e124b83d1c6",
+      "plain-private-fork-tests.log": "3ecf95a1f6a9fde6495f55885b2cee492e050d573543e03bb672e321b549ce87",
+      "plain-private-host-tests.log": "56f699c9d8ff5a32cc196940d8bb95e7f6799e211464315f7d77688b6ab4fccc"
+    }
+  },
+  "checks_sha256": {
+    "glyph-probe.log": "0ebab3074620446a46daff9675cb840fcc02051ebe5cda0b32b2c5b918790779",
+    "growth-probe.log": "db9c82fd62bf06b724675f8d6d062e9c362c52bbaa29e680f93287c28a84f7bd",
+    "matrix-trial/comparison.json": "d59e6cd45e92681c827377122eac6f63b29f1898d042e5d78eed3cdec8ea3453",
+    "master-coverage.json": "70b87390e9371661f7ebe48bf2eb9c7029d51ab468f5d44c2bed44c5292f004d",
+    "fork-main-coverage.json": "17869d026307808953efa2b5f8444060ebbc3c60f3c41230bb55427c966221b8"
+  }
+}

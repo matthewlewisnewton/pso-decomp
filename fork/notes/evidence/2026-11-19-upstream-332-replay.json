@@ -1,0 +1,1781 @@
+{
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "previous_upstream": "6b080e67ab66fd3fe6d82b76e27441a01457b4d2",
+  "source": "4e6278824e3b24bf601cbc816d51af59053c75cc",
+  "landing": "4cd20817005fd4adb805ea481bde77dbc3f2d20d",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "source_files_changed": 47,
+  "overlap_paths": [
+    "include/pso/player/TObjPlayer_801BF6B0.h",
+    "include/pso/ui/window/TWindowActionPalette.h",
+    "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/player/TObjPlayer_801BC194.cpp",
+    "src/pso/ui/hud/TLockOnCursor.cpp",
+    "src/pso/ui/hud/TMainCursor.cpp",
+    "src/pso/ui/window/TWindowActionPalette.cpp"
+  ],
+  "review_ports": {
+    "delivery-network-render-window": {
+      "old_full": "ad2a91dacd48e3d14aed8e5821fa9b2d1bbc6549",
+      "head": "1496234cc63d76e1ab71f20bd16636ba41aa193d",
+      "files": 924
+    },
+    "delivery-network-world": {
+      "old_full": "2715532ccc752b57964fd0c78694ffbde251c307",
+      "head": "85b363a08893738b2101d76dbab84c9bc108e01d",
+      "files": 876
+    },
+    "delivery-network-player-spatial": {
+      "old_full": "67fca574b81fa12f0872f2f76b90cbcfb4a3d5fb",
+      "head": "94581b29e7d1ff919d02f37119a2950b92e5f0e5",
+      "files": 804
+    },
+    "delivery-network-actor": {
+      "old_full": "f46dbc341346f23730e0c681c175a6d343878bf7",
+      "head": "570ad35a4c0ea188b16b23c9c6c05652f2cb6d78",
+      "files": 441
+    }
+  },
+  "queue": [
+    {
+      "name": "network-startup-and-packet-lifetime",
+      "lane": "queued",
+      "parent": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "head": "fbfa587ae95c1cab294ea82483ced3f5e1f95d26",
+      "old_head": "d892292ba8a12734c8ae42602b20b2d158d584da",
+      "changed_files": 60,
+      "retail": true,
+      "parent_gate": "pass",
+      "upstream_gate": "pass"
+    },
+    {
+      "name": "stage-objects-and-weather",
+      "lane": "queued",
+      "parent": "fbfa587ae95c1cab294ea82483ced3f5e1f95d26",
+      "head": "de6be2385a881bc3ea77b2b87b627fdba90fa8ba",
+      "old_head": "18e59bbce08d754b756b3266f5e9508afd8f339b",
+      "changed_files": 37,
+      "retail": true,
+      "parent_gate": "pass",
+      "upstream_gate": "pass"
+    },
+    {
+      "name": "quest-inventory-and-resource-lists",
+      "lane": "queued",
+      "parent": "de6be2385a881bc3ea77b2b87b627fdba90fa8ba",
+      "head": "4624395d33f760a0698cb62a64be2c76cb626916",
+      "old_head": "ad92039b866cda092d759f5940eb8a0158c8ba89",
+      "changed_files": 51,
+      "retail": true,
+      "parent_gate": "pass",
+      "upstream_gate": "pass"
+    },
+    {
+      "name": "audio-streaming-and-disc-archives",
+      "lane": "queued",
+      "parent": "4624395d33f760a0698cb62a64be2c76cb626916",
+      "head": "c206132bb8d37b7e3f3cacda054941547d00c496",
+      "old_head": "945f268e06c2e6231c393220e46bc7899e3c0abd",
+      "changed_files": 99,
+      "retail": true,
+      "parent_gate": "pass",
+      "upstream_gate": "pass"
+    },
+    {
+      "name": "challenge-and-duel-results",
+      "lane": "queued",
+      "parent": "c206132bb8d37b7e3f3cacda054941547d00c496",
+      "head": "10981dedb0c565fe39820e7831f99ab2abf404bc",
+      "old_head": "f743133b554764b948bcd64cb48e6edef6031adc",
+      "changed_files": 51,
+      "retail": true,
+      "parent_gate": "pass",
+      "upstream_gate": "pass"
+    },
+    {
+      "name": "challenge-standalone",
+      "lane": "standalone",
+      "parent": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "head": "32719bf02dff71511effa1d71e9a28726a5a8b40",
+      "old_head": "e28750375126fdfd6fcc08ead503231369fbb0aa",
+      "changed_files": 51,
+      "retail": true,
+      "parent_gate": "pass",
+      "upstream_gate": "pass"
+    }
+  ],
+  "coverage": {
+    "matched_functions": {
+      "before": 27572,
+      "after": 27572,
+      "delta": 0
+    },
+    "matched_code": {
+      "before": 4353092,
+      "after": 4353092,
+      "delta": 0
+    },
+    "matched_data": {
+      "before": 1758110,
+      "after": 1758510,
+      "delta": 400
+    },
+    "complete_code": {
+      "before": 4353092,
+      "after": 4353092,
+      "delta": 0
+    },
+    "complete_data": {
+      "before": 1758330,
+      "after": 1758510,
+      "delta": 180
+    },
+    "total_functions": {
+      "before": 27572,
+      "after": 27572,
+      "delta": 0
+    },
+    "total_code": {
+      "before": 4353092,
+      "after": 4353092,
+      "delta": 0
+    },
+    "total_data": {
+      "before": 1758510,
+      "after": 1758510,
+      "delta": 0
+    }
+  },
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "fork_only_tooling_paths": 133,
+  "fork_layer_tests": 11,
+  "historical_alignment": {
+    "ranges": [
+      {
+        "module": "psov3",
+        "section": ".data",
+        "address": "0x804C2304",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".data",
+        "address": "0x804CC764",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".data",
+        "address": "0x804CCCFC",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".data",
+        "address": "0x804DC7DC",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".data",
+        "address": "0x804F00A4",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".rodata",
+        "address": "0x8044F574",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".rodata",
+        "address": "0x80477CDC",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".sbss",
+        "address": "0x805D4BFC",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".sbss",
+        "address": "0x805D4C0C",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".sbss",
+        "address": "0x805D7964",
+        "size": 28
+      },
+      {
+        "module": "psov3",
+        "section": ".sbss",
+        "address": "0x805D7988",
+        "size": 24
+      },
+      {
+        "module": "psov3",
+        "section": ".sbss2",
+        "address": "0x805E1204",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".sdata",
+        "address": "0x805D2B24",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".sdata",
+        "address": "0x805D2B2C",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".sdata",
+        "address": "0x805D2C74",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".sdata",
+        "address": "0x805D2C7C",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".sdata",
+        "address": "0x805D4694",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".sdata",
+        "address": "0x805D469C",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".sdata2",
+        "address": "0x805D85DC",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".sdata2",
+        "address": "0x805D8AF4",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".sdata2",
+        "address": "0x805DB164",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".sdata2",
+        "address": "0x805DD894",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".sdata2",
+        "address": "0x805DE7DC",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".sdata2",
+        "address": "0x805DEC6C",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".sdata2",
+        "address": "0x805DEC94",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".sdata2",
+        "address": "0x805DFD94",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".sdata2",
+        "address": "0x805DFDFC",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".sdata2",
+        "address": "0x805DFE04",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".sdata2",
+        "address": "0x805DFFBC",
+        "size": 4
+      },
+      {
+        "module": "psov3",
+        "section": ".sdata2",
+        "address": "0x805E0D84",
+        "size": 4
+      }
+    ],
+    "count": 30,
+    "bytes": 164
+  },
+  "moved_source_units": {
+    "counts": {
+      "src/pso/player/TPlyDispConfig_80071F1C.cpp": 2,
+      "src/pso/unk/text_80071F90.cpp": 1,
+      "src/pso/unk/text_80072004.cpp": 2,
+      "src/pso/ui/hud/TLockOnCursor.cpp": 166
+    },
+    "owners": {
+      "src/pso/ui/hud/TLockOnCursor.cpp": "src/pso/ui/hud/TMainCursor.cpp",
+      "src/pso/player/TPlyDispConfig_80071F1C.cpp": "src/pso/player/TPlyDispConfig.cpp",
+      "src/pso/unk/text_80071F90.cpp": "src/pso/player/TPlyDispConfig.cpp",
+      "src/pso/unk/text_80072004.cpp": "src/pso/player/TPlyDispConfig.cpp"
+    },
+    "functions": [
+      {
+        "address": "0x80071f1c",
+        "size": 60,
+        "old_path": "src/pso/player/TPlyDispConfig_80071F1C.cpp",
+        "old_name": "free_if_valid__14TPlyDispConfigFls",
+        "new_path": "src/pso/player/TPlyDispConfig.cpp",
+        "new_name": "__dt__6gc_tagFv"
+      },
+      {
+        "address": "0x80071f58",
+        "size": 56,
+        "old_path": "src/pso/player/TPlyDispConfig_80071F1C.cpp",
+        "old_name": "__ct__14TPlyDispConfigFv",
+        "new_path": "src/pso/player/TPlyDispConfig.cpp",
+        "new_name": "__ct__14TPlyDispConfigFv"
+      },
+      {
+        "address": "0x80071f90",
+        "size": 116,
+        "old_path": "src/pso/unk/text_80071F90.cpp",
+        "old_name": "fn_80071F90",
+        "new_path": "src/pso/player/TPlyDispConfig.cpp",
+        "new_name": "__ct__18TPlyDispConfigSmthFv"
+      },
+      {
+        "address": "0x80072004",
+        "size": 48,
+        "old_path": "src/pso/unk/text_80072004.cpp",
+        "old_name": "init_gc_tag__Fl",
+        "new_path": "src/pso/player/TPlyDispConfig.cpp",
+        "new_name": "__ct__6gc_tagFv"
+      },
+      {
+        "address": "0x80072034",
+        "size": 20,
+        "old_path": "src/pso/unk/text_80072004.cpp",
+        "old_name": "init__6gc_tagFv",
+        "new_path": "src/pso/player/TPlyDispConfig.cpp",
+        "new_name": "init__6gc_tagFv"
+      },
+      {
+        "address": "0x8013d91c",
+        "size": 328,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "render__13TLockOnCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "render__13TLockOnCursorFv"
+      },
+      {
+        "address": "0x8013da64",
+        "size": 76,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "run_task__13TLockOnCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "run_task__13TLockOnCursorFv"
+      },
+      {
+        "address": "0x8013dab0",
+        "size": 324,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "reset_and_spawn_cursors__13TLockOnCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "reset_and_spawn_cursors__13TLockOnCursorFv"
+      },
+      {
+        "address": "0x8013dbf4",
+        "size": 68,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "free_cursor_resources__13TLockOnCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "free_cursor_resources__13TLockOnCursorFv"
+      },
+      {
+        "address": "0x8013dc38",
+        "size": 148,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "load_target_cursor_models__Fv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "load_target_cursor_models__Fv"
+      },
+      {
+        "address": "0x8013dccc",
+        "size": 292,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "__dt__13TLockOnCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "__dt__13TLockOnCursorFv"
+      },
+      {
+        "address": "0x8013ddf0",
+        "size": 76,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "dt__13TLockOnCursorFls",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "__dt__13TUnk_8013F0A0Fv"
+      },
+      {
+        "address": "0x8013de3c",
+        "size": 188,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TLockOnCursor__ct",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "__ct__13TLockOnCursorFP7TObjectl"
+      },
+      {
+        "address": "0x8013def8",
+        "size": 16,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TObjPlayer__sub_8013DEF8",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TObjPlayer__sub_8013DEF8"
+      },
+      {
+        "address": "0x8013df08",
+        "size": 20,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "is_channel_active__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "is_channel_active__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013df1c",
+        "size": 32,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "check_visible__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "check_visible__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013df3c",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "get_enabled__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "get_enabled__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013df44",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "get_type__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "get_type__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013df4c",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "set_slot__20TWindowActionPaletteFUc",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "set_slot__20TWindowActionPaletteFUc"
+      },
+      {
+        "address": "0x8013df54",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "set_mode__20TWindowActionPaletteFUc",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "set_mode__20TWindowActionPaletteFUc"
+      },
+      {
+        "address": "0x8013df5c",
+        "size": 104,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "matches_type_and_enabled__11TMainCursorFiUcUc",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "matches_type_and_enabled__11TMainCursorFiUcUc"
+      },
+      {
+        "address": "0x8013dfc4",
+        "size": 16,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013DFC4",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013DFC4"
+      },
+      {
+        "address": "0x8013dfd4",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "get_state__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "get_state__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013dfdc",
+        "size": 60,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "destroy__13TForceOperateFls",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "__dt__13TUnk_8013E020Fv"
+      },
+      {
+        "address": "0x8013e018",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "set_field_0__13TForceOperateFs",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "set_field_0__13TUnk_8013E020FUs"
+      },
+      {
+        "address": "0x8013e020",
+        "size": 28,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "fn_8013E020",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "__ct__13TUnk_8013E020Fv"
+      },
+      {
+        "address": "0x8013e03c",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013E03C",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013E03C"
+      },
+      {
+        "address": "0x8013e044",
+        "size": 104,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "destroy_cursor__13TUnk_804A7260Fs",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "__dt__13TUnk_804A7260Fv"
+      },
+      {
+        "address": "0x8013e0ac",
+        "size": 36,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "destroy_lock_on__11TMainCursorFl",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "destroy_lock_on__11TMainCursorFl"
+      },
+      {
+        "address": "0x8013e0d0",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TLockOnCursor__sub_8013E0D0",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TLockOnCursor__sub_8013E0D0"
+      },
+      {
+        "address": "0x8013e0d8",
+        "size": 92,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "init__13TUnk_804A7260FPvPv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "__ct__13TUnk_804A7260FP7TObjectUs"
+      },
+      {
+        "address": "0x8013e134",
+        "size": 72,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "publish_nearest_target__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "publish_nearest_target__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013e17c",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013E17C",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013E17C"
+      },
+      {
+        "address": "0x8013e184",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013E184",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013E184"
+      },
+      {
+        "address": "0x8013e18c",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013E18C",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013E18C"
+      },
+      {
+        "address": "0x8013e194",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013E194",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013E194"
+      },
+      {
+        "address": "0x8013e19c",
+        "size": 36,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "set_target__11TMainCursorFl",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "set_target__11TMainCursorFl"
+      },
+      {
+        "address": "0x8013e1c0",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013E1C0",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013E1C0"
+      },
+      {
+        "address": "0x8013e1c8",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "set_target_index__11TMainCursorFs",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "set_target_index__11TMainCursorFs"
+      },
+      {
+        "address": "0x8013e1d0",
+        "size": 44,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "update_cursor_pos__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "update_cursor_pos__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013e1fc",
+        "size": 68,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "copy_from__11TMainCursorFPv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "copy_from__11TMainCursorFPv"
+      },
+      {
+        "address": "0x8013e240",
+        "size": 44,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "reset_nearest_target_record__FPv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "reset_nearest_target_record__FPv"
+      },
+      {
+        "address": "0x8013e26c",
+        "size": 36,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "set_sub_cursor_value__11TMainCursorFl",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "set_sub_cursor_value__11TMainCursorFl"
+      },
+      {
+        "address": "0x8013e290",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013E290",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013E290"
+      },
+      {
+        "address": "0x8013e298",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013E298",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013E298"
+      },
+      {
+        "address": "0x8013e2a0",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013E2A0",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013E2A0"
+      },
+      {
+        "address": "0x8013e2a8",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "get_index__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "get_index__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013e2b0",
+        "size": 16,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013E2B0",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "__ct__13TUnk_8013E2B0Fv"
+      },
+      {
+        "address": "0x8013e2c0",
+        "size": 12,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "reset_slot__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "reset_slot__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013e2cc",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "set_type__11TMainCursorFl",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "set_type__11TMainCursorFl"
+      },
+      {
+        "address": "0x8013e2d4",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "get_cursor_state__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "get_cursor_state__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013e2dc",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013E2DC",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013E2DC"
+      },
+      {
+        "address": "0x8013e2e4",
+        "size": 36,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "check_field_24__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "check_field_24__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013e308",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "get_id__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "get_id__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013e310",
+        "size": 40,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013E310",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013E310"
+      },
+      {
+        "address": "0x8013e338",
+        "size": 32,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013E338",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013E338"
+      },
+      {
+        "address": "0x8013e358",
+        "size": 32,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013E358",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013E358"
+      },
+      {
+        "address": "0x8013e378",
+        "size": 148,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "is_same_target__11TMainCursorFPv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "is_same_target__11TMainCursorFPv"
+      },
+      {
+        "address": "0x8013e40c",
+        "size": 64,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013E40C",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013E40C"
+      },
+      {
+        "address": "0x8013e44c",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "get_list__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "get_list__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013e454",
+        "size": 40,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "update_target_sub__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "update_target_sub__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013e47c",
+        "size": 36,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "get_render_flag__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "get_render_flag__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013e4a0",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013E4A0",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013E4A0"
+      },
+      {
+        "address": "0x8013e4a8",
+        "size": 40,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "test_flag_2_at_20__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "test_flag_2_at_20__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013e4d0",
+        "size": 40,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "init_render_flags__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "init_render_flags__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013e4f8",
+        "size": 40,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "update__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "update__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013e520",
+        "size": 40,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "check_flag_1__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "check_flag_1__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013e548",
+        "size": 40,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "is_position_moved__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "is_position_moved__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013e570",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013E570",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013E570"
+      },
+      {
+        "address": "0x8013e578",
+        "size": 40,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "check_flag_4__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "check_flag_4__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013e5a0",
+        "size": 36,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "forward_13E338_at_60__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "forward_13E338_at_60__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013e5c4",
+        "size": 36,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "update_sub_60__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "update_sub_60__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013e5e8",
+        "size": 60,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "delete_this__11TMainCursorFs",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "__dt__13TUnk_8013E800Fv"
+      },
+      {
+        "address": "0x8013e624",
+        "size": 76,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "destroy__11TMainCursorFis",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "__dt__13TUnk_8013E780Fv"
+      },
+      {
+        "address": "0x8013e670",
+        "size": 36,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "set_offset_y__11TMainCursorFs",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "set_offset_y__11TMainCursorFs"
+      },
+      {
+        "address": "0x8013e694",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013E694",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013E694"
+      },
+      {
+        "address": "0x8013e69c",
+        "size": 36,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "init_field_60__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "init_field_60__11TMainCursorFUc"
+      },
+      {
+        "address": "0x8013e6c0",
+        "size": 32,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "get_action_palette__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "get_action_palette__11TMainCursorFUc"
+      },
+      {
+        "address": "0x8013e6e0",
+        "size": 36,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013E6E0",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013E6E0"
+      },
+      {
+        "address": "0x8013e704",
+        "size": 32,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "update_action_palette__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "update_action_palette__11TMainCursorFUc"
+      },
+      {
+        "address": "0x8013e724",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "sub_8013E724__11TMainCursorFf",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "sub_8013E724__11TMainCursorFf"
+      },
+      {
+        "address": "0x8013e72c",
+        "size": 40,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "set_target_id_at_60__11TMainCursorFUc",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "set_target_id_at_60__11TMainCursorFUc"
+      },
+      {
+        "address": "0x8013e754",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "set_target_id__11TMainCursorFs",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "set_target_id__11TMainCursorFs"
+      },
+      {
+        "address": "0x8013e75c",
+        "size": 36,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "set_target_index_at_60__11TMainCursorFPv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "set_target_index_at_60__11TMainCursorFPv"
+      },
+      {
+        "address": "0x8013e780",
+        "size": 56,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "reset__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "__ct__13TUnk_8013E780Fv"
+      },
+      {
+        "address": "0x8013e7b8",
+        "size": 72,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "reset_target__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "reset_target__13TUnk_8013E780Fv"
+      },
+      {
+        "address": "0x8013e800",
+        "size": 16,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013E800",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "__ct__13TUnk_8013E800Fv"
+      },
+      {
+        "address": "0x8013e810",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "get_body_exclude_mask__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "get_body_exclude_mask__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013e818",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "get_body_include_mask__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "get_body_include_mask__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013e820",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "get_actor_exclude_mask__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "get_actor_exclude_mask__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013e828",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "get_actor_include_mask__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "get_actor_include_mask__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013e830",
+        "size": 36,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "store_sorted_record__11TMainCursorFPvPvPv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "store_sorted_record__11TMainCursorFPvPvPv"
+      },
+      {
+        "address": "0x8013e854",
+        "size": 28,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "copy_target_record__11TMainCursorFPvPv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "copy_target_record__11TMainCursorFPvPv"
+      },
+      {
+        "address": "0x8013e870",
+        "size": 48,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "init_slot__11TMainCursorFl",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "init_slot__11TMainCursorFl"
+      },
+      {
+        "address": "0x8013e8a0",
+        "size": 32,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013E8A0",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013E8A0"
+      },
+      {
+        "address": "0x8013e8c0",
+        "size": 32,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "get_selected_entry__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "get_selected_entry__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013e8e0",
+        "size": 32,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "get_active__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "get_active__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013e900",
+        "size": 32,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013E900",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013E900"
+      },
+      {
+        "address": "0x8013e920",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013E920",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013E920"
+      },
+      {
+        "address": "0x8013e928",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013E928",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013E928"
+      },
+      {
+        "address": "0x8013e930",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013E930",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013E930"
+      },
+      {
+        "address": "0x8013e938",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "get_target_id__13TLockOnCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "get_target_id__13TLockOnCursorFv"
+      },
+      {
+        "address": "0x8013e940",
+        "size": 48,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "is_cursor_clear__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "is_cursor_clear__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013e970",
+        "size": 16,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013E970",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013E970"
+      },
+      {
+        "address": "0x8013e980",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "set_color_mode__11TMainCursorFl",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "set_color_mode__11TMainCursorFl"
+      },
+      {
+        "address": "0x8013e988",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "set_color__11TMainCursorFl",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "set_color__11TMainCursorFl"
+      },
+      {
+        "address": "0x8013e990",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "set_field_0c__11TMainCursorFl",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "set_field_0c__11TMainCursorFl"
+      },
+      {
+        "address": "0x8013e998",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "set_flags__11TMainCursorFl",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "set_flags__11TMainCursorFl"
+      },
+      {
+        "address": "0x8013e9a0",
+        "size": 32,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013E9A0",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013E9A0"
+      },
+      {
+        "address": "0x8013e9c0",
+        "size": 32,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013E9C0",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013E9C0"
+      },
+      {
+        "address": "0x8013e9e0",
+        "size": 32,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013E9E0",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013E9E0"
+      },
+      {
+        "address": "0x8013ea00",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013EA00",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013EA00"
+      },
+      {
+        "address": "0x8013ea08",
+        "size": 40,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "render_part__13TLockOnCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "render_part__13TLockOnCursorFv"
+      },
+      {
+        "address": "0x8013ea30",
+        "size": 44,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "update_cursor_pos__13TLockOnCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "update_cursor_pos__13TLockOnCursorFv"
+      },
+      {
+        "address": "0x8013ea5c",
+        "size": 40,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "set_flag_8_bit0__13TLockOnCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "set_flag_8_bit0__13TLockOnCursorFv"
+      },
+      {
+        "address": "0x8013ea84",
+        "size": 40,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "update_ring__13TLockOnCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "update_ring__13TLockOnCursorFv"
+      },
+      {
+        "address": "0x8013eaac",
+        "size": 40,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "is_bit1_set__13TLockOnCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "is_bit1_set__13TLockOnCursorFv"
+      },
+      {
+        "address": "0x8013ead4",
+        "size": 48,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "is_inactive__13TLockOnCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "is_inactive__13TLockOnCursorFv"
+      },
+      {
+        "address": "0x8013eb04",
+        "size": 40,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "update_ring_sub__13TLockOnCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "update_ring_sub__13TLockOnCursorFv"
+      },
+      {
+        "address": "0x8013eb2c",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TLockOnCursor__sub_8013EB2C",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TLockOnCursor__sub_8013EB2C"
+      },
+      {
+        "address": "0x8013eb34",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TLockOnCursor__sub_8013EB34",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TLockOnCursor__sub_8013EB34"
+      },
+      {
+        "address": "0x8013eb3c",
+        "size": 40,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "test_flag_1_at_8__13TLockOnCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "test_flag_1_at_8__13TLockOnCursorFv"
+      },
+      {
+        "address": "0x8013eb64",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "get_target__13TLockOnCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "get_target__13TLockOnCursorFv"
+      },
+      {
+        "address": "0x8013eb6c",
+        "size": 20,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TLockOnCursor__sub_8013EB6C",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TLockOnCursor__sub_8013EB6C"
+      },
+      {
+        "address": "0x8013eb80",
+        "size": 12,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TLockOnCursor__sub_8013EB80",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TLockOnCursor__sub_8013EB80"
+      },
+      {
+        "address": "0x8013eb8c",
+        "size": 12,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TLockOnCursor__sub_8013EB8C",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TLockOnCursor__sub_8013EB8C"
+      },
+      {
+        "address": "0x8013eb98",
+        "size": 36,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "release_target__13TLockOnCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "release_target__13TLockOnCursorFv"
+      },
+      {
+        "address": "0x8013ebbc",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TLockOnCursor__sub_8013EBBC",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TLockOnCursor__sub_8013EBBC"
+      },
+      {
+        "address": "0x8013ebc4",
+        "size": 36,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "cleanup_field__13TLockOnCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "cleanup_field__13TLockOnCursorFv"
+      },
+      {
+        "address": "0x8013ebe8",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TLockOnCursor__sub_8013EBE8",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TLockOnCursor__sub_8013EBE8"
+      },
+      {
+        "address": "0x8013ebf0",
+        "size": 36,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "cleanup_field_3c__13TLockOnCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "cleanup_field_3c__13TLockOnCursorFv"
+      },
+      {
+        "address": "0x8013ec14",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TLockOnCursor__sub_8013EC14",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TLockOnCursor__sub_8013EC14"
+      },
+      {
+        "address": "0x8013ec1c",
+        "size": 28,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TLockOnCursor__sub_8013EC1C",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TLockOnCursor__sub_8013EC1C"
+      },
+      {
+        "address": "0x8013ec38",
+        "size": 92,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "reset_state__13TLockOnCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "reset_state__13TUnk_8013EF6CFv"
+      },
+      {
+        "address": "0x8013ec94",
+        "size": 60,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "free_if_owned__13TLockOnCursorFls",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "__dt__13TUnk_8013F114Fv"
+      },
+      {
+        "address": "0x8013ecd0",
+        "size": 60,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "__dt__13TLockOnCursorFis",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "__dt__13TUnk_8013F08CFv"
+      },
+      {
+        "address": "0x8013ed0c",
+        "size": 92,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "__dt_deleting__13TLockOnCursorFis",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "__dt__13TUnk_8013EFB8Fv"
+      },
+      {
+        "address": "0x8013ed68",
+        "size": 92,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TLockOnCursor__sub_8013ED68",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TLockOnCursor__sub_8013ED68"
+      },
+      {
+        "address": "0x8013edc4",
+        "size": 60,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TLockOnCursor__sub_8013EDC4",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TLockOnCursor__sub_8013EDC4"
+      },
+      {
+        "address": "0x8013ee00",
+        "size": 104,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "destroy__13TLockOnCursorFis",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "__dt__13TUnk_8013EF6CFv"
+      },
+      {
+        "address": "0x8013ee68",
+        "size": 88,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "destroy__13TLockOnCursorFs",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "__dt__13TUnk_804A7248Fv"
+      },
+      {
+        "address": "0x8013eec0",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "sub_8013EEC0__13TLockOnCursorFs",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "sub_8013EEC0__13TLockOnCursorFl"
+      },
+      {
+        "address": "0x8013eec8",
+        "size": 68,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "init_vtable__13TLockOnCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "__ct__13TUnk_804A7248Fv"
+      },
+      {
+        "address": "0x8013ef0c",
+        "size": 48,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "init_cursor__13TLockOnCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "__ct__13TUnk_8013EF0CFv"
+      },
+      {
+        "address": "0x8013ef3c",
+        "size": 48,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "init_forward__13TLockOnCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "__ct__13TUnk_8013EF3CFv"
+      },
+      {
+        "address": "0x8013ef6c",
+        "size": 76,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "cleanup__13TLockOnCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "__ct__13TUnk_8013EF6CFv"
+      },
+      {
+        "address": "0x8013efb8",
+        "size": 72,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TLockOnCursor__sub_8013EFB8",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "__ct__13TUnk_8013EFB8Fv"
+      },
+      {
+        "address": "0x8013f000",
+        "size": 84,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TLockOnCursor__sub_8013F000",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TLockOnCursor__sub_8013F000"
+      },
+      {
+        "address": "0x8013f054",
+        "size": 56,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "init_sub__13TLockOnCursorFPv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "init_sub__13TLockOnCursorFPv"
+      },
+      {
+        "address": "0x8013f08c",
+        "size": 20,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "reset_fields__13TLockOnCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "__ct__13TUnk_8013F08CFv"
+      },
+      {
+        "address": "0x8013f0a0",
+        "size": 100,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "fn_8013F0A0",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "__ct__13TUnk_8013F0A0Fv"
+      },
+      {
+        "address": "0x8013f104",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013F104",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013F104"
+      },
+      {
+        "address": "0x8013f10c",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013F10C",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013F10C"
+      },
+      {
+        "address": "0x8013f114",
+        "size": 16,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013F114",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "__ct__13TUnk_8013F114Fv"
+      },
+      {
+        "address": "0x8013f124",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "set_cursor_id__11TMainCursorFs",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "set_cursor_id__11TMainCursorFs"
+      },
+      {
+        "address": "0x8013f12c",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "set_field2__11TMainCursorFs",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "set_field2__11TMainCursorFs"
+      },
+      {
+        "address": "0x8013f134",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "set_size__11TMainCursorFf",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "set_size__11TMainCursorFf"
+      },
+      {
+        "address": "0x8013f13c",
+        "size": 16,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013F13C",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013F13C"
+      },
+      {
+        "address": "0x8013f14c",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013F14C",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013F14C"
+      },
+      {
+        "address": "0x8013f154",
+        "size": 20,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "get_record_at__11TMainCursorFPvi",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "get_record_at__11TMainCursorFPvi"
+      },
+      {
+        "address": "0x8013f168",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013F168",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013F168"
+      },
+      {
+        "address": "0x8013f170",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013F170",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013F170"
+      },
+      {
+        "address": "0x8013f178",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "get_pos__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "get_pos__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013f180",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013F180",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013F180"
+      },
+      {
+        "address": "0x8013f188",
+        "size": 32,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "get_rader_map__11TMainCursorFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "get_rader_map__11TMainCursorFv"
+      },
+      {
+        "address": "0x8013f1a8",
+        "size": 72,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "destroy__11TMainCursorFs",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "__dt__13TUnk_804A7254Fv"
+      },
+      {
+        "address": "0x8013f1f0",
+        "size": 60,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013F1F0",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "__ct__13TUnk_804A7254Fv"
+      },
+      {
+        "address": "0x8013f22c",
+        "size": 24,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013F22C",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013F22C"
+      },
+      {
+        "address": "0x8013f244",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "TMainCursor__sub_8013F244",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "TMainCursor__sub_8013F244"
+      },
+      {
+        "address": "0x8013f24c",
+        "size": 16,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "fn_8013F24C",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "fn_8013F24C"
+      },
+      {
+        "address": "0x8013f25c",
+        "size": 8,
+        "old_path": "src/pso/ui/hud/TLockOnCursor.cpp",
+        "old_name": "get_mode__11TCameraCtrlFv",
+        "new_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "new_name": "get_mode__11TCameraCtrlFv"
+      }
+    ]
+  },
+  "ledger_owner_updates": {
+    "src/pso/unk/text_80071F90.cpp": 1,
+    "src/pso/ui/hud/TLockOnCursor.cpp": 44,
+    "src/pso/player/TPlyDispConfig_80071F1C.cpp": 2,
+    "include/pso/player/TObjPlayer_801BF6B0.h": 1
+  },
+  "historical_body_audit": {
+    "before": {
+      "same address and exact size": 19733,
+      "unique parseable bodies": 16391,
+      "retained exact source bodies": 6062,
+      "same body already in branch point": 4683,
+      "fork body changes retained": 982,
+      "baseline source owner unavailable": 397
+    },
+    "after": {
+      "same address and exact size": 19733,
+      "unique parseable bodies": 16391,
+      "retained exact source bodies": 6052,
+      "same body already in branch point": 4678,
+      "fork body changes retained": 980,
+      "baseline source owner unavailable": 394
+    },
+    "equivalent_source_changes": {
+      "0x8013D7E0": {
+        "address": "0x8013D7E0",
+        "size": 316,
+        "historical_path": "src/pso/misc/TMainCursor.cpp",
+        "historical_symbol": "renderSecondaryCursor__13TLockOnCursorFPUcll",
+        "current_path": "src/pso/ui/hud/TMainCursor.cpp",
+        "current_symbol": "renderSecondaryCursor__13TLockOnCursorFPUcll",
+        "status": "fork body changes retained",
+        "body_sha256": "e7c5c65a1404b9d67e7458b8054a9a2628a553178802a57081c03dd336f4dfd4",
+        "review_rows": [
+          2484
+        ],
+        "resolution": "The existing typed texture call differs only by parentheses around the same expression."
+      },
+      "0x80244094": {
+        "address": "0x80244094",
+        "size": 116,
+        "historical_path": "src/pso/misc/TWindowActionPalette.cpp",
+        "historical_symbol": "__dt__20TWindowActionPaletteFv",
+        "current_path": "src/pso/ui/window/TWindowActionPalette.cpp",
+        "current_symbol": "__dt__20TWindowActionPaletteFv",
+        "status": "fork body changes retained",
+        "body_sha256": "8e371f724a4786272468d199a38d49dc81fc2deb4fac2d26e382ca6b281c3943",
+        "review_rows": [
+          5524
+        ],
+        "resolution": "The native gc_tag[3] member emits the same three 4-byte resource destructions in the unchanged exact destructor. The source no longer needs an explicit array-destruction call."
+      }
+    }
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "source_head": "a42a267764f5f01577c9df6c1bf57c819e1ad633",
+  "source_tree": "9fc9d70a225ad3269d0134c52345ba0fb3510957",
+  "previous_cumulative_head": "ae66e1167dd98eff818c9a2430c79d371aab7f4d",
+  "upstream_base": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+  "original_fork": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "historical_audit": {
+    "population": 177,
+    "partial_anchors": 79,
+    "full_token_matches": 0,
+    "source_comparisons_closed": {
+      "src/pso/misc/TWindowKeyBoardBase_8008102C.cpp": [
+        "src/pso/ui/window/TWindowKeyBoardBase_8008102C.cpp",
+        "The native 0x18 keyboard buffer owns its constructor, destructor and reset allocation and uses the same array allocation and release addresses (0x80147AA8 and 0x80147A80). The native lens-flare factory uses its real constructor, split-screen guard, and pointer parameters. Player range uses the native positions. Five exact functions and eight data bytes remain linked."
+      ],
+      "include/pso/object/TObjFish.h": [
+        "include/pso/object/ambient/TObjFish.h",
+        "The native fish constructor, update result, count, radius and entry pointer remain declared. The object and entry size checks and ten entry offset checks remain. The shared texture setter takes its Ginja pointer, and the two boss animation declarations belong to TBoss7DeRolLeC at 0x802ECF50 and 0x802ED068, where retail matches."
+      ]
+    },
+    "remaining": 175,
+    "remaining_by_subsystem": {
+      "Audio and disc streaming": 2,
+      "Build, verification and automation": 1,
+      "Chat and text entry": 9,
+      "Enemy and boss behavior": 55,
+      "Front-end scenes and UI": 21,
+      "Network and protocol": 9,
+      "Player combat, techniques and items": 26,
+      "Rendering, camera and effects": 7,
+      "Shared ABI declarations by owning caller": 1,
+      "Window layout, menus and results": 21,
+      "World objects, NPCs and quests": 23
+    },
+    "old_ledger_sha256": "d5a465216c0828c8c01cf6b8b59813c9457ad28985b7f10bb5c37ecc6286858e",
+    "new_ledger_sha256": "70ba71d7a73eb6b8180c68322de2a5844c43ed432642bef9224e27bfc8f634ff"
+  },
+  "keyboard": {
+    "allocation_symbols": {
+      "__nwa__FUl": {
+        "current_name": "mem_alloc",
+        "address": "0x80147AA8"
+      },
+      "__dla__FPv": {
+        "current_name": "mem_free",
+        "address": "0x80147A80"
+      }
+    },
+    "exact_functions": [
+      {
+        "address": "0x8008102c",
+        "size": 236,
+        "old": "init_keyboard_text_buffer__FPUcUlUl",
+        "current": "init__18KeyboardTextBufferFUlUl"
+      },
+      {
+        "address": "0x80081118",
+        "size": 84,
+        "old": "destroy__19TWindowKeyBoardBaseFPvs",
+        "current": "__dt__18KeyboardTextBufferFv"
+      },
+      {
+        "address": "0x8008116c",
+        "size": 64,
+        "old": "init_text_buffer_holder__19TWindowKeyBoardBaseFv",
+        "current": "__ct__18KeyboardTextBufferFv"
+      },
+      {
+        "address": "0x800811ac",
+        "size": 108,
+        "old": "is_player_near__13TEF_LensFlareFf",
+        "current": "is_player_out_of_range__13TEF_LensFlareFf"
+      },
+      {
+        "address": "0x80081218",
+        "size": 96,
+        "old": "TEF_LensFlare__create",
+        "current": "TEF_LensFlare__create"
+      }
+    ],
+    "linked_data_bytes": 8,
+    "factory_probe_cases": [
+      "split screen",
+      "allocation failure",
+      "native construction"
+    ],
+    "probe_images": [
+      "retail",
+      "built"
+    ],
+    "probe_report_sha256": "576afbc3301b135a2843d930c007b0ef6f983d7bd0d779f2ffff0a64ac779a90"
+  },
+  "fish_header": {
+    "historical": "include/pso/object/TObjFish.h",
+    "native": "include/pso/object/ambient/TObjFish.h",
+    "boss_methods": [
+      {
+        "address": "0x802ecf50",
+        "label": "update_phase_rising__14TBoss7DeRolLeCFv",
+        "size": 280,
+        "owner": "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp"
+      },
+      {
+        "address": "0x802ed068",
+        "label": "update_tail_anim_state__14TBoss7DeRolLeCFv",
+        "size": 220,
+        "owner": "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp"
+      }
+    ]
+  },
+  "validation": {
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "functions": 27572,
+    "linked_units": 2368,
+    "check_pr": "3cbdaf6212f9089a63145b3c094d273e05ea61c0a08cc968db0497d2f9606b77",
+    "private_check_pr": "9fb29432a108ad77e2244566ac3ec7cd50ccedda83d37c0c537fb0c3cd823ee5",
+    "fork_checks": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    },
+    "quality": {
+      "totals": {
+        "base": 147293,
+        "head": 143260,
+        "added": 251,
+        "removed": 4284
+      },
+      "flagged_labels": 8,
+      "new_stale_retention": 0
+    }
+  }
+}

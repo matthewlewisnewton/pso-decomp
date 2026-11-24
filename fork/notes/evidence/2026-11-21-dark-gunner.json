@@ -1,0 +1,476 @@
+{
+  "source": "ec6c29f95412fc1e94fe8063798d69078dc634dd",
+  "previous_source": "865dfa4b44f3318faf0fdd8c7c289e5d1c2284d0",
+  "review": {
+    "ref": "great-merge/consolidated/single-review-with-dark-gunner",
+    "head": "079a8157ab210450366900e449a297e468899b5d",
+    "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+    "tree": "d4ca7e31717ef5a30973cb1d88120606b84f1562",
+    "tree_equivalent_to": "41e970189e5a00b566028b05243eecca8580c786",
+    "commits": [
+      {
+        "head": "2e33ab4cdde76248b1f7df05b7c4f436b362e8a3",
+        "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+        "tree": "fe39682610e91a6a5869bb6c9d9b567aece07cb5",
+        "checked_tree": "2e33ab4cdde76248b1f7df05b7c4f436b362e8a3",
+        "files_changed": 654,
+        "insertions": 10749,
+        "deletions": 12282
+      },
+      {
+        "head": "1cc9300b6775dabe89b368ed969daa9ba29da98d",
+        "base": "2e33ab4cdde76248b1f7df05b7c4f436b362e8a3",
+        "tree": "f46ca862dc64ee3d1a1b03ff8abba3d80a393ae8",
+        "checked_tree": "1cc9300b6775dabe89b368ed969daa9ba29da98d",
+        "files_changed": 679,
+        "insertions": 5760,
+        "deletions": 6296
+      },
+      {
+        "head": "a2b4e66a560d53d69d13ad12ff63d3aa713666eb",
+        "base": "1cc9300b6775dabe89b368ed969daa9ba29da98d",
+        "tree": "cda887a5d1594fc4b1cd88e7d0fac24e44512077",
+        "checked_tree": "a2b4e66a560d53d69d13ad12ff63d3aa713666eb",
+        "files_changed": 21,
+        "insertions": 372,
+        "deletions": 480
+      },
+      {
+        "head": "351a101687ff50b5832af3aad322bf0a4e151418",
+        "base": "a2b4e66a560d53d69d13ad12ff63d3aa713666eb",
+        "tree": "d49cf53e9c97ca59d1f44be73291cedf68c5398c",
+        "checked_tree": "351a101687ff50b5832af3aad322bf0a4e151418",
+        "files_changed": 968,
+        "insertions": 12597,
+        "deletions": 13408
+      },
+      {
+        "head": "5bf970f9ccfdfc2624052ef200039a06b6a8543e",
+        "base": "351a101687ff50b5832af3aad322bf0a4e151418",
+        "tree": "72d4f38d9a80fb43b3956ce73993e40c9601f25c",
+        "checked_tree": "5bf970f9ccfdfc2624052ef200039a06b6a8543e",
+        "files_changed": 24,
+        "insertions": 331,
+        "deletions": 396
+      },
+      {
+        "head": "2cd01e82147e0ad3ac02d70cabdb57538a02c6d4",
+        "base": "5bf970f9ccfdfc2624052ef200039a06b6a8543e",
+        "tree": "3b69faa170d4f4a38fe53e839557768ed7f8564f",
+        "checked_tree": "2cd01e82147e0ad3ac02d70cabdb57538a02c6d4",
+        "files_changed": 38,
+        "insertions": 646,
+        "deletions": 735
+      },
+      {
+        "head": "176bfd42251f7438d8f77a813b74e676430cdfe6",
+        "base": "2cd01e82147e0ad3ac02d70cabdb57538a02c6d4",
+        "tree": "00cf9b80b0e7a0cc7837b55717bf314ab98ad79f",
+        "checked_tree": "176bfd42251f7438d8f77a813b74e676430cdfe6",
+        "files_changed": 17,
+        "insertions": 256,
+        "deletions": 341
+      },
+      {
+        "head": "ce6336208b3c35a7acef029893bec424a17d3498",
+        "base": "176bfd42251f7438d8f77a813b74e676430cdfe6",
+        "tree": "f24560ce3c35902ce35af35ea229e7e1c817f3a4",
+        "checked_tree": "ce6336208b3c35a7acef029893bec424a17d3498",
+        "files_changed": 31,
+        "insertions": 475,
+        "deletions": 502
+      },
+      {
+        "head": "be4ac3f8f422c217d576331fa45a7bd7bd364b08",
+        "base": "ce6336208b3c35a7acef029893bec424a17d3498",
+        "tree": "40b91d2c9ea210f0d8aa5a0a4d587db8cccb1a25",
+        "checked_tree": "be4ac3f8f422c217d576331fa45a7bd7bd364b08",
+        "files_changed": 18,
+        "insertions": 341,
+        "deletions": 416
+      },
+      {
+        "head": "75396834cdfa4fc14d991dd37aefe500037e71a8",
+        "base": "be4ac3f8f422c217d576331fa45a7bd7bd364b08",
+        "tree": "de5d4633e8997367ca383c419883baae8a69be7b",
+        "checked_tree": "20a4bdc054f562084d67832e4c2ee2157d8129b4",
+        "files_changed": 18,
+        "insertions": 448,
+        "deletions": 448
+      },
+      {
+        "head": "ecae8df53cd5f570252fff8e0c10a65b517f1c95",
+        "base": "75396834cdfa4fc14d991dd37aefe500037e71a8",
+        "tree": "cba6fc1eb860a10cd0e81264e1a3994ba723f0d3",
+        "checked_tree": "5170c577c9ddd200b1558955af9437e4dc5216c6",
+        "files_changed": 11,
+        "insertions": 318,
+        "deletions": 625
+      },
+      {
+        "head": "079a8157ab210450366900e449a297e468899b5d",
+        "base": "ecae8df53cd5f570252fff8e0c10a65b517f1c95",
+        "tree": "d4ca7e31717ef5a30973cb1d88120606b84f1562",
+        "checked_tree": "41e970189e5a00b566028b05243eecca8580c786",
+        "files_changed": 12,
+        "insertions": 136,
+        "deletions": 139
+      }
+    ],
+    "commit_attribution": {
+      "audited_commits": 12,
+      "codex_attribution": 0,
+      "coauthor_trailers": 0
+    },
+    "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+    "files_changed": 1803,
+    "insertions": 31659,
+    "deletions": 35298
+  },
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/TUnk_804909C4.h",
+    "include/pso/enemy/darkgunner/DarkGunner.h",
+    "include/pso/enemy/darkgunner/TObjEneDarkGunCenter.h",
+    "include/pso/enemy/darkgunner/TObjEneDarkGunner.h",
+    "include/pso/player/TObjPlayer.h",
+    "src/pso/effect/enemy/TEneEffHamon.cpp",
+    "src/pso/enemy/TUnk_804909C4.cpp",
+    "src/pso/enemy/darkgunner/DarkGunner.cpp",
+    "src/pso/enemy/darkgunner/TObjEneDarkGunCenter.cpp",
+    "src/pso/render/TUnk_80490470.cpp"
+  ],
+  "patch_sha256": "0b1534319ec5b1307978656a291b1bf53120fde439b8c73abae37b5fd22485c2",
+  "checked_original_functions": [
+    "TObjEneDarkGunCenter::sub_800A0994",
+    "fn_800A0884",
+    "TObjEneDarkGunCenter::trigger_targets_action",
+    "TObjEneDarkGunCenter::run_task",
+    "TObjEneDarkGunner::step_along_ground",
+    "TUnk_804909C4::TUnk_804909C4",
+    "TObjPlayer__sub_800A3210"
+  ],
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "validation": {
+    "combat": {
+      "check_sha256": "8f7de99d892fe0caa3dacb7fba44bcb76526aa258110dbdf667e671a8d519b28",
+      "source_report_sha256": "cf6f6e7e0223401340c9cabb1a8c42ca712c3b43d18702c7ca719de64a88a9b1",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x800A0728",
+          "trigger_targets_action__10TObjPlayerFv",
+          "trigger_targets_action__20TObjEneDarkGunCenterFv"
+        ],
+        [
+          "0x800A0EDC",
+          "TObjEneDarkGunCenter__ct",
+          "__ct__20TObjEneDarkGunCenterFP7TObjectPv"
+        ],
+        [
+          "0x800A0FAC",
+          "clear_lappy_flag_set_param",
+          "clear_dark_gunner_flag_set_param"
+        ],
+        [
+          "0x800A10A0",
+          "step_along_ground__10TObjPlayerFv",
+          "step_along_ground__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A12C0",
+          "update_move_to_destination__10TObjPlayerFv",
+          "update_move_to_destination__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A13D4",
+          "update_hide_sequence__10TObjPlayerFv",
+          "update_hide_sequence__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A14E4",
+          "trigger_action_if_not_flagged__10TObjPlayerFv",
+          "trigger_action_if_not_flagged__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A1900",
+          "render_shadow__10TObjPlayerFv",
+          "render_shadow__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A2784",
+          "set_hidden_flag__10TObjPlayerFv",
+          "set_hidden_flag__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A2850",
+          "apply_fall_damage_flag__10TObjPlayerFv",
+          "apply_fall_damage_flag__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A3224",
+          "is_flag_set_388_bit26__10TObjPlayerFv",
+          "is_flag_set_388_bit26__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A34E8",
+          "__ct__13TUnk_804909C4FPUcll",
+          "__ct__13TUnk_804909C4FP17TObjEneDarkGunnerPC3VecPC3Vec"
+        ]
+      ]
+    },
+    "full": {
+      "check_sha256": "8f7de99d892fe0caa3dacb7fba44bcb76526aa258110dbdf667e671a8d519b28",
+      "source_report_sha256": "cf6f6e7e0223401340c9cabb1a8c42ca712c3b43d18702c7ca719de64a88a9b1",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x800A0728",
+          "trigger_targets_action__10TObjPlayerFv",
+          "trigger_targets_action__20TObjEneDarkGunCenterFv"
+        ],
+        [
+          "0x800A0EDC",
+          "TObjEneDarkGunCenter__ct",
+          "__ct__20TObjEneDarkGunCenterFP7TObjectPv"
+        ],
+        [
+          "0x800A0FAC",
+          "clear_lappy_flag_set_param",
+          "clear_dark_gunner_flag_set_param"
+        ],
+        [
+          "0x800A10A0",
+          "step_along_ground__10TObjPlayerFv",
+          "step_along_ground__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A12C0",
+          "update_move_to_destination__10TObjPlayerFv",
+          "update_move_to_destination__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A13D4",
+          "update_hide_sequence__10TObjPlayerFv",
+          "update_hide_sequence__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A14E4",
+          "trigger_action_if_not_flagged__10TObjPlayerFv",
+          "trigger_action_if_not_flagged__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A1900",
+          "render_shadow__10TObjPlayerFv",
+          "render_shadow__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A2784",
+          "set_hidden_flag__10TObjPlayerFv",
+          "set_hidden_flag__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A2850",
+          "apply_fall_damage_flag__10TObjPlayerFv",
+          "apply_fall_damage_flag__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A3224",
+          "is_flag_set_388_bit26__10TObjPlayerFv",
+          "is_flag_set_388_bit26__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A34E8",
+          "__ct__13TUnk_804909C4FPUcll",
+          "__ct__13TUnk_804909C4FP17TObjEneDarkGunnerPC3VecPC3Vec"
+        ]
+      ]
+    },
+    "linear-full": {
+      "check_sha256": "8f7de99d892fe0caa3dacb7fba44bcb76526aa258110dbdf667e671a8d519b28",
+      "source_report_sha256": "cf6f6e7e0223401340c9cabb1a8c42ca712c3b43d18702c7ca719de64a88a9b1",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x800A0728",
+          "trigger_targets_action__10TObjPlayerFv",
+          "trigger_targets_action__20TObjEneDarkGunCenterFv"
+        ],
+        [
+          "0x800A0EDC",
+          "TObjEneDarkGunCenter__ct",
+          "__ct__20TObjEneDarkGunCenterFP7TObjectPv"
+        ],
+        [
+          "0x800A0FAC",
+          "clear_lappy_flag_set_param",
+          "clear_dark_gunner_flag_set_param"
+        ],
+        [
+          "0x800A10A0",
+          "step_along_ground__10TObjPlayerFv",
+          "step_along_ground__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A12C0",
+          "update_move_to_destination__10TObjPlayerFv",
+          "update_move_to_destination__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A13D4",
+          "update_hide_sequence__10TObjPlayerFv",
+          "update_hide_sequence__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A14E4",
+          "trigger_action_if_not_flagged__10TObjPlayerFv",
+          "trigger_action_if_not_flagged__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A1900",
+          "render_shadow__10TObjPlayerFv",
+          "render_shadow__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A2784",
+          "set_hidden_flag__10TObjPlayerFv",
+          "set_hidden_flag__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A2850",
+          "apply_fall_damage_flag__10TObjPlayerFv",
+          "apply_fall_damage_flag__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A3224",
+          "is_flag_set_388_bit26__10TObjPlayerFv",
+          "is_flag_set_388_bit26__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A34E8",
+          "__ct__13TUnk_804909C4FPUcll",
+          "__ct__13TUnk_804909C4FP17TObjEneDarkGunnerPC3VecPC3Vec"
+        ]
+      ]
+    },
+    "layer": {
+      "check_sha256": "3e4dda6745109723aa8ea598f2aa5370bd278b1a900ca8428cd2f9cd9c0ced75",
+      "source_report_sha256": "cf6f6e7e0223401340c9cabb1a8c42ca712c3b43d18702c7ca719de64a88a9b1",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x800A0728",
+          "trigger_targets_action__10TObjPlayerFv",
+          "trigger_targets_action__20TObjEneDarkGunCenterFv"
+        ],
+        [
+          "0x800A0EDC",
+          "TObjEneDarkGunCenter__ct",
+          "__ct__20TObjEneDarkGunCenterFP7TObjectPv"
+        ],
+        [
+          "0x800A0FAC",
+          "clear_lappy_flag_set_param",
+          "clear_dark_gunner_flag_set_param"
+        ],
+        [
+          "0x800A10A0",
+          "step_along_ground__10TObjPlayerFv",
+          "step_along_ground__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A12C0",
+          "update_move_to_destination__10TObjPlayerFv",
+          "update_move_to_destination__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A13D4",
+          "update_hide_sequence__10TObjPlayerFv",
+          "update_hide_sequence__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A14E4",
+          "trigger_action_if_not_flagged__10TObjPlayerFv",
+          "trigger_action_if_not_flagged__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A1900",
+          "render_shadow__10TObjPlayerFv",
+          "render_shadow__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A2784",
+          "set_hidden_flag__10TObjPlayerFv",
+          "set_hidden_flag__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A2850",
+          "apply_fall_damage_flag__10TObjPlayerFv",
+          "apply_fall_damage_flag__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A3224",
+          "is_flag_set_388_bit26__10TObjPlayerFv",
+          "is_flag_set_388_bit26__17TObjEneDarkGunnerFv"
+        ],
+        [
+          "0x800A34E8",
+          "__ct__13TUnk_804909C4FPUcll",
+          "__ct__13TUnk_804909C4FP17TObjEneDarkGunnerPC3VecPC3Vec"
+        ]
+      ]
+    }
+  },
+  "runtime_probes": {
+    "retail": "40d7ef2a71b3d36e9f80ff00346e2d9a28065e44d77f4b39ceb9aed07e271f78",
+    "review": "193c16eb037134a6afc8bfc39e0db3afaac50fbf96d377a33283f20850f6524c",
+    "layer": "24c65579130f2d048e4462f2594aa4e77eeadbcfb0b07722d5154baf929fa453"
+  },
+  "overlay_sha256": "6b3cf371cf8c131e1b75e8e8968fd35581a94780dbf120ca241b7bf89969334a",
+  "fork_overlay_paths": 130,
+  "retained_symbols": 27031,
+  "workspace_checks": {
+    "tool": 294,
+    "fork": 11,
+    "host": [
+      "./vector_math_fallbacks",
+      "./item_factory_callbacks",
+      "./loader_transfer",
+      "./ginja_parameter_callbacks",
+      "./exi_ethernet_fallbacks"
+    ]
+  },
+  "historical_rows_closed": {},
+  "historical_rows_with_added_evidence": {
+    "1053": "The current gunner methods own ground movement, the hide sequence and shadow drawing. The native projectile constructor accepts the shooter and typed start and target vectors. The model archive and four battle tables use the shared types. Lower-level state and collision call sites still need comparison"
+  },
+  "historical_rows_reconfirmed": {
+    "451": "The current native 0x3A8 class declares the 16 IDs and has layout checks for the six recovered offsets. Creation uses a native C++ constructor",
+    "583": "The current native center constructor and destructor emit the original vtable. The seven-state controller is byte exact and the emulator checks room and group filtering, ordering and dispatch",
+    "656": "The current native hide handler walks the typed ID array, calls the gunner receivers, and writes the original timeout and state",
+    "870": "The current header removes the manual center construction and projectile destructor bridges. The center and Dark Gunner keep their existing native factory names"
+  },
+  "existing_upstream_interfaces_kept": {},
+  "historical_rows_open": 595,
+  "public_refs_changed": false
+}

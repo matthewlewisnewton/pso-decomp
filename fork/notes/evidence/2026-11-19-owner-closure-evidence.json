@@ -1,0 +1,3290 @@
+{
+  "source": "7368e6ed1cb04a512314b8c57dd0113d600aa815",
+  "landing": "cee9e7eff56d577f86a8b27a7274d8e98e6caf92",
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "source_files": 79,
+  "batches": {
+    "window-menu": {
+      "head": "0bb0919647ff5d4c92cf70dd61d8aa1ab8ae7b4c",
+      "files": 34
+    },
+    "gal-gryphon": {
+      "head": "e7acafc59871b3ac3b628328ac5abdc574599016",
+      "files": 10
+    },
+    "indirect-scene": {
+      "head": "7c4ff11d41a000639573bd14b5b01b75d342a7b2",
+      "files": 10
+    },
+    "compiler-directives": {
+      "head": "f3f7352d1500f405776faacb7aff6ef2105f8981",
+      "files": 28
+    }
+  },
+  "symbol_retention": 27065,
+  "source_coverage": {
+    "fuzzy_match_percent": 99.99999,
+    "total_code": "4353092",
+    "matched_code": "4353092",
+    "matched_code_percent": 100.0,
+    "total_data": "1758510",
+    "matched_data": "1758510",
+    "matched_data_percent": 100.0,
+    "total_functions": 27572,
+    "matched_functions": 27572,
+    "matched_functions_percent": 100.0,
+    "complete_code": "4353092",
+    "complete_code_percent": 100.0,
+    "complete_data": "1758510",
+    "complete_data_percent": 100.0,
+    "total_units": 2447,
+    "complete_units": 2447
+  },
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "fork_only_paths": 133,
+  "layer_tests": 11,
+  "coverage_comparisons": 25,
+  "delivery": {
+    "delivery-network-render-window": {
+      "old": "3b8fd12a2f8c2db95688b844042da4e2e2fbaa0a",
+      "head": "8d7fc86f08a1d452734533735e83ab1125181e10",
+      "files": 34,
+      "upstream_diff_paths": 939
+    },
+    "delivery-network-world": {
+      "old": "4f1237edb0907565f3dd491e15329205e05f2003",
+      "head": "b144f74c5cef51c2c4973df19fd0c80d443d2bea",
+      "files": 18,
+      "upstream_diff_paths": 903
+    }
+  },
+  "source_audit": {
+    "source": "7368e6ed1cb04a512314b8c57dd0113d600aa815",
+    "remaining": {
+      "Owner comparison required": 848,
+      "Some anchored text changes found": 1018
+    },
+    "closed_rows": [
+      352,
+      353,
+      354,
+      360,
+      393,
+      409,
+      462,
+      516,
+      517,
+      667,
+      674,
+      692,
+      1082,
+      2110,
+      2191,
+      2540,
+      2746,
+      3631,
+      3968,
+      4043,
+      4923,
+      5004,
+      5303,
+      5319,
+      5413,
+      5785,
+      5972,
+      6658,
+      6876
+    ],
+    "entries": [
+      {
+        "row": 39,
+        "historical_path": "src/pso/misc/TLobby_802409AC.cpp",
+        "owners": {
+          "src/pso/unk/TLobby_802409AC.cpp": "d2b43e86f3a9372ccef5e0697eb9b3d5e95ba4fb"
+        },
+        "evidence": [
+          {
+            "group": "Compiler directives",
+            "proof": "Original source-level pragma removals at verified source anchors passed the exact retail build. Other historical source edits in this record are tracked separately."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 75,
+        "historical_path": "src/pso/misc/TLobby_8023F734.cpp",
+        "owners": {
+          "src/pso/unk/TLobby_8023F734.cpp": "e5e213367f53c98f3cf7915d9deeb124fd3c0ae9"
+        },
+        "evidence": [
+          {
+            "group": "Compiler directives",
+            "proof": "Original source-level pragma removals at verified source anchors passed the exact retail build. Other historical source edits in this record are tracked separately."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 154,
+        "historical_path": "config/GPOE8P/psov3/config.yml",
+        "owners": {
+          "config/GPOE8P/psov3/config.yml": "9df38d3aa2d1a7cfdbb375519557862cd4c7b2d7"
+        },
+        "evidence": [
+          {
+            "group": "Indirect scene effects",
+            "proof": "Symbol spelling and force-active metadata follow the compiler-emitted indirect effect functions"
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 157,
+        "historical_path": "config/GPOE8P/psov3/symbols.txt",
+        "owners": {
+          "config/GPOE8P/psov3/symbols.txt": "1324781b886c16efd7c358c2382820fb39006469"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Rename exact 0x80265F60 / 0x118 bytes to calc_window_size__11TWindowMenuFv."
+          },
+          {
+            "group": "Indirect scene effects",
+            "proof": "Symbol spelling and force-active metadata follow the compiler-emitted indirect effect functions"
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 352,
+        "historical_path": "include/pso/TBoss5GryphonLightning.h",
+        "owners": {
+          "include/pso/boss/galgryphon/TBoss5GryphonLightning.h": "1e8922c3634c63ad897b3cc86718e999d08c7f50"
+        },
+        "evidence": [
+          {
+            "group": "Gal Gryphon",
+            "proof": "Recovered the base constructor and all historical field, offset and size assertions at the current native header."
+          }
+        ],
+        "status": "Complete historical Gryphon native source recovered"
+      },
+      {
+        "row": 353,
+        "historical_path": "include/pso/TBoss5GryphonLightningHorn.h",
+        "owners": {
+          "include/pso/boss/galgryphon/TBoss5GryphonLightningHorn.h": "1bb0f8a7eb879221786747f453b8bf151988639d"
+        },
+        "evidence": [
+          {
+            "group": "Gal Gryphon",
+            "proof": "Recovered the Horn constructor, velocity/angle storage and exact layout assertions at the current native header."
+          }
+        ],
+        "status": "Complete historical Gryphon native source recovered"
+      },
+      {
+        "row": 354,
+        "historical_path": "include/pso/TBoss5GryphonLightningWing.h",
+        "owners": {
+          "include/pso/boss/galgryphon/TBoss5GryphonLightningWing.h": "4904bfb4b2368e1762818a3ef462763b57691d69"
+        },
+        "evidence": [
+          {
+            "group": "Gal Gryphon",
+            "proof": "Recovered the Wing constructor, timing storage and exact layout assertions at the current native header."
+          }
+        ],
+        "status": "Complete historical Gryphon native source recovered"
+      },
+      {
+        "row": 360,
+        "historical_path": "include/pso/TBoss7Tentacle.h",
+        "owners": {
+          "include/pso/boss/barbaray/TBoss7Tentacle.h": "13c7c08d21de5fc4ba537fe6177316eb2855d692"
+        },
+        "evidence": [
+          {
+            "group": "Relocated source",
+            "proof": "The complete historical body (247 source tokens) is retained. Every original direct include resolves; the active owner is recorded in the exact build."
+          }
+        ],
+        "status": "Complete historical source and active includes retained"
+      },
+      {
+        "row": 393,
+        "historical_path": "include/pso/boss/TBoss5GryphonLightningWing.h",
+        "owners": {
+          "include/pso/boss/galgryphon/TBoss5GryphonLightningWing.h": "4904bfb4b2368e1762818a3ef462763b57691d69"
+        },
+        "evidence": [
+          {
+            "group": "Gal Gryphon",
+            "proof": "Removed obsolete C wrapper declarations and retained both typed spawn helper declarations in the consolidated Wing header."
+          }
+        ],
+        "status": "Complete historical Gryphon native source recovered"
+      },
+      {
+        "row": 409,
+        "historical_path": "include/pso/boss/TBoss7TentacleNeedle.h",
+        "owners": {
+          "include/pso/boss/barbaray/TBoss7TentacleNeedle.h": "8d8d06703c3514e2da24d5a9fe297972544cc07a"
+        },
+        "evidence": [
+          {
+            "group": "Relocated source",
+            "proof": "The complete historical body (212 source tokens) is retained. Every original direct include resolves; the active owner is recorded in the exact build."
+          }
+        ],
+        "status": "Complete historical source and active includes retained"
+      },
+      {
+        "row": 462,
+        "historical_path": "include/pso/enemy/TObjEneMerillLia.h",
+        "owners": {
+          "include/pso/enemy/merilllia/TObjEneMerillLia.h": "4233d9eadf224f371887450fdc5961925ccd1442"
+        },
+        "evidence": [
+          {
+            "group": "Relocated source",
+            "proof": "The complete historical body (478 source tokens) is retained. Every original direct include resolves; the active owner is recorded in the exact build."
+          }
+        ],
+        "status": "Complete historical source and active includes retained"
+      },
+      {
+        "row": 516,
+        "historical_path": "src/pso/boss/TBoss5GryphonLightningHorn.cpp",
+        "owners": {
+          "src/pso/boss/galgryphon/TBoss5GryphonLightningHorn.cpp": "215f498ce2ea70c445566907dfb03db159625ca5"
+        },
+        "evidence": [
+          {
+            "group": "Gal Gryphon",
+            "proof": "Recovered native Horn construction and typed ground factory. The canonical CsnHit query and source-owned scalar storage remain exact."
+          }
+        ],
+        "status": "Complete historical Gryphon native source recovered"
+      },
+      {
+        "row": 517,
+        "historical_path": "src/pso/boss/TBoss5GryphonLightningWing.cpp",
+        "owners": {
+          "src/pso/boss/galgryphon/TBoss5GryphonLightningWing.cpp": "6b812959ee178a4959c05f7478fa58480a6bc2fb"
+        },
+        "evidence": [
+          {
+            "group": "Gal Gryphon",
+            "proof": "Recovered native Wing task, construction and typed endpoint factories, retaining mutable middle-point borrow and real base-subobject view."
+          }
+        ],
+        "status": "Complete historical Gryphon native source recovered"
+      },
+      {
+        "row": 588,
+        "historical_path": "src/pso/enemy/TObjEneGyaranzo.cpp",
+        "owners": {
+          "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp": "35dfc13ee64e6efe95bc0b59902ee9c8bc7c4359"
+        },
+        "evidence": [
+          {
+            "group": "Compiler directives",
+            "proof": "Original source-level pragma removals at verified source anchors passed the exact retail build. Other historical source edits in this record are tracked separately."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 667,
+        "historical_path": "src/pso/unk/text_80324F4C.cpp",
+        "owners": {
+          "src/pso/boss/galgryphon/TBoss5GryphonLightning.cpp": "fffb30e726241b0557d7faacb572dc3e094f0457"
+        },
+        "evidence": [
+          {
+            "group": "Gal Gryphon",
+            "proof": "Recovered native base construction at the relocated owner, with class name, vector and emitter initialization, four points and exact local scalar storage."
+          }
+        ],
+        "status": "Complete historical Gryphon native source recovered"
+      },
+      {
+        "row": 674,
+        "historical_path": "include/pso/boss/TUnk_804F1280.h",
+        "owners": {
+          "include/pso/boss/TUnk_804F1280.h": "1ffb52d98f483ecbb09fe21c02cffa0d41fd550e"
+        },
+        "evidence": [
+          {
+            "group": "Relocated source",
+            "proof": "The complete historical declaration body survives. Its Vec type reaches the same SDK declaration formerly imported by vector.h."
+          }
+        ],
+        "status": "Complete historical header and type provider retained"
+      },
+      {
+        "row": 692,
+        "historical_path": "src/pso/enemy/TEnemyTaskList.cpp",
+        "owners": {
+          "src/pso/enemy/TEnemyTaskList.cpp": "d74235f207bbd330948bd26cbcd3cc605071c07c"
+        },
+        "evidence": [
+          {
+            "group": "Relocated source",
+            "proof": "The complete historical source body and resolved includes are retained. The exact owning object directly includes ArrayAllocation.h through the current include order."
+          }
+        ],
+        "status": "Complete historical source and active includes retained"
+      },
+      {
+        "row": 705,
+        "historical_path": "src/pso/unk/text_80325F7C.cpp",
+        "owners": {
+          "src/pso/boss/galgryphon/TBoss5GryphonLightningHorn.cpp": "215f498ce2ea70c445566907dfb03db159625ca5"
+        },
+        "evidence": [
+          {
+            "group": "Gal Gryphon",
+            "proof": "TBoss5GryphonLightningHorn.cpp already uses normalize_vector_checked in both sites and the typed CsnHit ground query."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 718,
+        "historical_path": "src/pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp",
+        "owners": {
+          "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp": "67b3330e42d339784d040f55394803955319e9b2"
+        },
+        "evidence": [
+          {
+            "group": "Compiler directives",
+            "proof": "Original source-level pragma removals at verified source anchors passed the exact retail build. Other historical source edits in this record are tracked separately."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 750,
+        "historical_path": "src/pso/boss/TBoss5GryphonDemo.cpp",
+        "owners": {
+          "src/pso/boss/galgryphon/TBoss5GryphonDemo.cpp": "165aeced29ce5f1743b83ffd9e1e9bd18a1340f4"
+        },
+        "evidence": [
+          {
+            "group": "Gal Gryphon",
+            "proof": "TBoss5GryphonDemo.cpp already uses CameraPlayback for scripted flags/bank/index/frame and calls its cache_target_and_forward method."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 874,
+        "historical_path": "src/pso/boss/TBoss8Dragon.cpp",
+        "owners": {
+          "src/pso/boss/goldragon/TBoss8Dragon.cpp": "7927c241a6a94af8c586246b23c10cd37380c284"
+        },
+        "evidence": [
+          {
+            "group": "Compiler directives",
+            "proof": "Original source-level pragma removals at verified source anchors passed the exact retail build. Other historical source edits in this record are tracked separately."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 966,
+        "historical_path": "src/pso/unk/text_803554F0.cpp",
+        "owners": {
+          "src/pso/boss/galgryphon/TBoss5GryphonTornado.cpp": "09cb96387f517842c9215fe37776b3247637d726"
+        },
+        "evidence": [
+          {
+            "group": "Gal Gryphon",
+            "proof": "TBoss5GryphonTornado::sub_803554F0 already calls normalize_vector_checked."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 982,
+        "historical_path": "src/pso/boss/TBoss5GryphonShockWave.cpp",
+        "owners": {
+          "src/pso/boss/galgryphon/TBoss5GryphonShockWave.cpp": "6fb50fe8a0eab7fe5b7781f42a3f8eba11275aa7"
+        },
+        "evidence": [
+          {
+            "group": "Gal Gryphon",
+            "proof": "ShockWave already uses the typed BML resource globals/accessors, native state query, positional sound, scalar literals and normalize_vector_checked."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 992,
+        "historical_path": "src/pso/boss/Boss5GryphonBehavior.cpp",
+        "owners": {
+          "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp": "5c301940b5f3e87ad4758d34f90de2db271c0146"
+        },
+        "evidence": [
+          {
+            "group": "Gal Gryphon",
+            "proof": "The three current behavior callers pass typed object/vector arguments to the native lightning helpers. Removed 268 directive lines in 57 complete scopes identified from the historical donor. Other behavior hunks remain outside this proof."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 993,
+        "historical_path": "src/pso/boss/TBoss5GryphonSnarl.cpp",
+        "owners": {
+          "src/pso/boss/galgryphon/TBoss5GryphonSnarl.cpp": "e4def56fc13adedb56de676569dde9cbde1ad8da"
+        },
+        "evidence": [
+          {
+            "group": "Gal Gryphon",
+            "proof": "Snarl already uses typed BML model retrieval, no-argument state setup, safe_free and native BmlResource deletion."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 998,
+        "historical_path": "include/pso/boss/TBoss5GryphonSnarl.h",
+        "owners": {
+          "src/pso/boss/galgryphon/TBoss5GryphonSnarl.cpp": "e4def56fc13adedb56de676569dde9cbde1ad8da"
+        },
+        "evidence": [
+          {
+            "group": "Gal Gryphon",
+            "proof": "The current Snarl header/definition already has the no-argument state function, with the historical duplicate declarations consolidated."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1033,
+        "historical_path": "src/pso/boss/TObjBoss5PillarCtrl.cpp",
+        "owners": {
+          "src/pso/boss/galgryphon/TObjBoss5PillarCtrl.cpp": "3489721d87e00fd28c3b92f7d1a61cb7a40e078c"
+        },
+        "evidence": [
+          {
+            "group": "Gal Gryphon",
+            "proof": "PillarCtrl already uses true ::operator new[]/::operator delete[] and the sound provider."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1071,
+        "historical_path": "src/pso/boss/TBoss5GryphonTornado.cpp",
+        "owners": {
+          "src/pso/boss/galgryphon/TBoss5GryphonTornado.cpp": "09cb96387f517842c9215fe37776b3247637d726"
+        },
+        "evidence": [
+          {
+            "group": "Gal Gryphon",
+            "proof": "Tornado already uses typed ground contact, BML accessors/resources and the persistent sound provider."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1072,
+        "historical_path": "src/pso/boss/TObjBoss5Pillar.cpp",
+        "owners": {
+          "src/pso/boss/galgryphon/TObjBoss5Pillar.cpp": "5fac6ff91ac1c2d675f1573d5b1b498a71ba9476"
+        },
+        "evidence": [
+          {
+            "group": "Gal Gryphon",
+            "proof": "Pillar already uses set_current_texture_list and source-owned 0.0f/1.0f values."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1082,
+        "historical_path": "include/pso/misc/TOBoss4Bird.h",
+        "owners": {
+          "include/pso/boss/darkfalz/TOBoss4Bird.h": "3d67b6986f1d6363816fa01d175f72a3645419e8"
+        },
+        "evidence": [
+          {
+            "group": "Relocated source",
+            "proof": "The complete historical declaration body survives. Its Vec type reaches the same SDK declaration formerly imported by vector.h."
+          }
+        ],
+        "status": "Complete historical header and type provider retained"
+      },
+      {
+        "row": 1084,
+        "historical_path": "src/pso/boss/TBoss1Dragon.cpp",
+        "owners": {
+          "src/pso/boss/dragon/TBoss1Dragon.cpp": "b1f10fd1f4ff2ae2ae4fc79f501e1390a37d4c86"
+        },
+        "evidence": [
+          {
+            "group": "Compiler directives",
+            "proof": "Original source-level pragma removals at verified source anchors passed the exact retail build. Other historical source edits in this record are tracked separately."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1086,
+        "historical_path": "src/pso/boss/TBoss5GryphonColli.cpp",
+        "owners": {
+          "src/pso/boss/galgryphon/TBoss5GryphonColli.cpp": "d4c01c7afce5090431d56adf5f19566f8c0d23da"
+        },
+        "evidence": [
+          {
+            "group": "Gal Gryphon",
+            "proof": "The relocated collision constructor uses ::operator new[](body_count * sizeof(CollisionBody)); the old segment array is the typed bodies member."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1119,
+        "historical_path": "include/pso/boss/Boss5GryphonBehavior.h",
+        "owners": {
+          "include/pso/boss/galgryphon/Boss5GryphonBehavior.h": "13492c7ac2e45717b3590ae2428bfa6ea1e1b5e5"
+        },
+        "evidence": [
+          {
+            "group": "Gal Gryphon",
+            "proof": "The header already declares the NJS_OBJECT callback and typed G_GalGryphonBossActions_6xA0 packet; TBoss5Gryphon owns apply_remote_action as a method."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1127,
+        "historical_path": "src/pso/boss/TBoss5GryphonLightningEff.cpp",
+        "owners": {
+          "src/pso/boss/galgryphon/TBoss5GryphonLightningEff.cpp": "ee8ecccceb291fa4d7bfa2d753044402f66ef2dd"
+        },
+        "evidence": [
+          {
+            "group": "Gal Gryphon",
+            "proof": "LightningEff already invokes normalize_vector_checked for both vector accumulations."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 1143,
+        "historical_path": "src/pso/enemy/TObjEneDubchik.cpp",
+        "owners": {
+          "src/pso/enemy/dubchik/TObjEneDubchik.cpp": "fb5e80e4e6a5b846ab3f560ca8aee12e3d97e766"
+        },
+        "evidence": [
+          {
+            "group": "Compiler directives",
+            "proof": "Original source-level pragma removals at verified source anchors passed the exact retail build. Other historical source edits in this record are tracked separately."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2110,
+        "historical_path": "include/pso/TAdRicoRing.h",
+        "owners": {
+          "include/pso/ui/frontend/TAdRicoRing.h": "797eb8af06d28553536c94332dd84eb59f7251eb"
+        },
+        "evidence": [
+          {
+            "group": "Relocated source",
+            "proof": "The complete historical body (196 source tokens) is retained. Every original direct include resolves; the active owner is recorded in the exact build."
+          }
+        ],
+        "status": "Complete historical source and active includes retained"
+      },
+      {
+        "row": 2191,
+        "historical_path": "include/pso/ui/TAdRicoRingCtrl.h",
+        "owners": {
+          "include/pso/ui/frontend/TAdRicoRingCtrl.h": "9abe8f858464430734fb09321a2def9754875d90"
+        },
+        "evidence": [
+          {
+            "group": "Relocated source",
+            "proof": "The complete historical body (152 source tokens) is retained. Every original direct include resolves; the active owner is recorded in the exact build."
+          }
+        ],
+        "status": "Complete historical source and active includes retained"
+      },
+      {
+        "row": 2302,
+        "historical_path": "src/pso/ui/TAdSinglePlyChrSelectGC.cpp",
+        "owners": {
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp": "436b9fca6b3d5684f947e63ee0e568f0c88dee35"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2393,
+        "historical_path": "src/pso/ui/TAdSinglePlyChrSelectGC_802D3AB8.cpp",
+        "owners": {
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp": "436b9fca6b3d5684f947e63ee0e568f0c88dee35"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2452,
+        "historical_path": "include/pso/misc/TCheckRoomSequence.h",
+        "owners": {
+          "src/pso/ui/city/TCheckRoomSequence.cpp": "cc57ba954643bb00834c4a5af27e75bd2ce5fee7"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Three room choice handlers use the actual TWindowMenu at +0x3C for creation, size, alignment, decision, cancel and close."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2498,
+        "historical_path": "src/pso/misc/TShopEquipmentGearSequence_8021B438.cpp",
+        "owners": {
+          "src/pso/ui/city/TShopEquipmentGearSequence.cpp": "d5270801a2c6ae46177653f8caa73177d2ee99f7"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Use choice_menu at +0x2C throughout the buy/sell menu lifecycle."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2509,
+        "historical_path": "include/pso/misc/TShopEquipmentGearSequence.h",
+        "owners": {
+          "src/pso/ui/city/TShopEquipmentGearSequence.cpp": "d5270801a2c6ae46177653f8caa73177d2ee99f7"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Use choice_menu at +0x2C throughout the buy/sell menu lifecycle."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2540,
+        "historical_path": "src/pso/misc/THunterGuildSeqOffline_802126C4.cpp",
+        "owners": {
+          "src/pso/ui/city/THunterGuildSeqOffline_802126C4.cpp": "01754723104da5eac3c950e3a1dd2318ed428c99"
+        },
+        "evidence": [
+          {
+            "group": "Relocated source",
+            "proof": "The complete historical body (94 source tokens) is retained. Every original direct include resolves; the active owner is recorded in the exact build."
+          }
+        ],
+        "status": "Complete historical source and active includes retained"
+      },
+      {
+        "row": 2557,
+        "historical_path": "include/pso/ui/TAdSinglePlyChrSelectGC.h",
+        "owners": {
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp": "436b9fca6b3d5684f947e63ee0e568f0c88dee35"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2577,
+        "historical_path": "src/pso/ui/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+        "owners": {
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp": "9c2807f1f947c334e49ce7ba779ccf3306e8d62c"
+        },
+        "evidence": [
+          {
+            "group": "Compiler directives",
+            "proof": "Original source-level pragma removals at verified source anchors passed the exact retail build. Other historical source edits in this record are tracked separately."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2618,
+        "historical_path": "include/pso/misc/TShopEquipmentSequence.h",
+        "owners": {
+          "src/pso/ui/city/TShopEquipmentSequence.cpp": "0fccd3ba5370e591fd36b7fc54c3823fc7d10600"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Use choice_menu at +0x2C throughout the buy/sell menu lifecycle."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2630,
+        "historical_path": "include/pso/misc/TShopItemTecSequence.h",
+        "owners": {
+          "src/pso/ui/city/TShopItemTecSequence.cpp": "a889dbb69c4e425c65a0477a264cd6a6fba4059f"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Use choice_menu at +0x30 throughout the buy/sell menu lifecycle."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2646,
+        "historical_path": "src/pso/misc/TShopEquipmentSequence.cpp",
+        "owners": {
+          "src/pso/ui/city/TShopEquipmentSequence.cpp": "0fccd3ba5370e591fd36b7fc54c3823fc7d10600"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Use choice_menu at +0x2C throughout the buy/sell menu lifecycle."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2647,
+        "historical_path": "src/pso/misc/TShopItemTecSequence.cpp",
+        "owners": {
+          "src/pso/ui/city/TShopItemTecSequence.cpp": "a889dbb69c4e425c65a0477a264cd6a6fba4059f"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Use choice_menu at +0x30 throughout the buy/sell menu lifecycle."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2699,
+        "historical_path": "src/pso/misc/TCheckRoomSequence.cpp",
+        "owners": {
+          "src/pso/ui/city/TCheckRoomSequence.cpp": "cc57ba954643bb00834c4a5af27e75bd2ce5fee7"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Three room choice handlers use the actual TWindowMenu at +0x3C for creation, size, alignment, decision, cancel and close."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2746,
+        "historical_path": "src/pso/unk/text_80309890.cpp",
+        "owners": {
+          "src/pso/unk/text_80309890.cpp": "0d05e1e81edf866bbfa0240a6bd138a29080ea6e"
+        },
+        "evidence": [
+          {
+            "group": "Relocated source",
+            "proof": "The complete historical body (66 source tokens) is retained. Every original direct include resolves; the active owner is recorded in the exact build."
+          }
+        ],
+        "status": "Complete historical source and active includes retained"
+      },
+      {
+        "row": 3004,
+        "historical_path": "src/pso/network/TProtocol.cpp",
+        "owners": {
+          "src/pso/network/TProtocol.cpp": "065f5ff403f5271f834becee7489423efec87790"
+        },
+        "evidence": [
+          {
+            "group": "Compiler directives",
+            "proof": "Original source-level pragma removals at verified source anchors passed the exact retail build. Other historical source edits in this record are tracked separately."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 3061,
+        "historical_path": "src/pso/misc/TPlyJoinLobbyEntry.cpp",
+        "owners": {
+          "src/pso/network/TPlyJoinLobbyEntry.cpp": "40ab722da05a64e603219070353ef1fdc84f0e5f"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 3066,
+        "historical_path": "src/pso/misc/TPlyMeetUserExtension_801DAC6C.cpp",
+        "owners": {
+          "src/pso/network/TPlyMeetUserExtension_801DAC6C.cpp": "3ced9571c24553564ec8261d269e714b721de7d9"
+        },
+        "evidence": [
+          {
+            "group": "Compiler directives",
+            "proof": "Original source-level pragma removals at verified source anchors passed the exact retail build. Other historical source edits in this record are tracked separately."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 3631,
+        "historical_path": "src/pso/misc/ShopWeaponTables.cpp",
+        "owners": {
+          "src/pso/item/shop/ShopWeaponTables.cpp": "375ba2ef0ae505d03e451825dfb1601dcde63ae1"
+        },
+        "evidence": [
+          {
+            "group": "Relocated source",
+            "proof": "The complete historical body (646 source tokens) is retained. Every original direct include resolves; the active owner is recorded in the exact build."
+          }
+        ],
+        "status": "Complete historical source and active includes retained"
+      },
+      {
+        "row": 3637,
+        "historical_path": "src/pso/misc/TPlayerBattleCtrl4P_80311800.cpp",
+        "owners": {
+          "src/pso/player/TPlayerBattleCtrl4P.cpp": "09420d83934fcd6ca339e51f39aad74f34a3ea84"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 3968,
+        "historical_path": "include/pso/item/TItem.h",
+        "owners": {
+          "include/pso/item/TItem.h": "786e78d3e2ef1432d8ea8ab0c0bcf44b27fd65c3"
+        },
+        "evidence": [
+          {
+            "group": "Relocated source",
+            "proof": "The complete historical body (1443 source tokens) is retained. Every original direct include resolves; the active owner is recorded in the exact build."
+          }
+        ],
+        "status": "Complete historical source and active includes retained"
+      },
+      {
+        "row": 4015,
+        "historical_path": "include/pso/player/TObjPlayer_802A8368.h",
+        "owners": {
+          "include/pso/player/TObjPlayer_802A8368.h": "7ec7fcd9e7e13227dd813f20561626c3d458eca4"
+        },
+        "evidence": [
+          {
+            "group": "Indirect scene effects",
+            "proof": "Existing controller passed to GPU setup by native pointer"
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4043,
+        "historical_path": "src/pso/item/TItemBuff.cpp",
+        "owners": {
+          "src/pso/item/TItemBuff.cpp": "a4e9cf416cd20b8e3c93dffa0318d8a2be24ac19"
+        },
+        "evidence": [
+          {
+            "group": "Relocated source",
+            "proof": "The complete historical source body and resolved includes are retained. The exact owning object directly includes ArrayAllocation.h through the current include order."
+          }
+        ],
+        "status": "Complete historical source and active includes retained"
+      },
+      {
+        "row": 4114,
+        "historical_path": "src/pso/player/TObjPlayer_801542CC.cpp",
+        "owners": {
+          "src/pso/player/TObjPlayer_801542CC.cpp": "e5dd4dd63e07363f807e25ff8a88c5945ff23ed0"
+        },
+        "evidence": [
+          {
+            "group": "Compiler directives",
+            "proof": "Original source-level pragma removals at verified source anchors passed the exact retail build. Other historical source edits in this record are tracked separately."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4138,
+        "historical_path": "src/pso/player/TObjPlayer_801C7430.cpp",
+        "owners": {
+          "src/pso/player/TObjPlayer_801C7430.cpp": "126102c84f3001362a9a101136d5c32f2d04187d"
+        },
+        "evidence": [
+          {
+            "group": "Compiler directives",
+            "proof": "Original source-level pragma removals at verified source anchors passed the exact retail build. Other historical source edits in this record are tracked separately."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4180,
+        "historical_path": "src/pso/player/TObjPlayer_803E21B8.cpp",
+        "owners": {
+          "src/pso/player/TObjPlayer_803E21B8.cpp": "a57f20a0b369e4f9a4b6b113e40322f0542f9f16"
+        },
+        "evidence": [
+          {
+            "group": "Compiler directives",
+            "proof": "Original source-level pragma removals at verified source anchors passed the exact retail build. Other historical source edits in this record are tracked separately."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4236,
+        "historical_path": "include/pso/misc/TTecRaFoie.h",
+        "owners": {
+          "src/pso/technique/TTecRaFoie.cpp": "9ab93cd3df3b682aef13d0e1b373e72f772ec208"
+        },
+        "evidence": [
+          {
+            "group": "Indirect scene effects",
+            "proof": "RaFoie producer and static/animated material enable and disable use the same typed scene handle"
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4382,
+        "historical_path": "src/pso/misc/TTecRaFoie.cpp",
+        "owners": {
+          "src/pso/technique/TTecRaFoie.cpp": "9ab93cd3df3b682aef13d0e1b373e72f772ec208"
+        },
+        "evidence": [
+          {
+            "group": "Indirect scene effects",
+            "proof": "RaFoie producer and static/animated material enable and disable use the same typed scene handle"
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4478,
+        "historical_path": "src/pso/unk/text_803E2D70.cpp",
+        "owners": {
+          "src/pso/unk/text_803E2F28.cpp": "3cfe944dd1cdf53daeb5b37580192e1d1a86b012"
+        },
+        "evidence": [
+          {
+            "group": "Compiler directives",
+            "proof": "Original source-level pragma removals at verified source anchors passed the exact retail build. Other historical source edits in this record are tracked separately."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4510,
+        "historical_path": "src/pso/misc/TLobby_801C25B4.cpp",
+        "owners": {
+          "src/pso/unk/TLobby_801C25B4.cpp": "b83ea32e01b84635b641dfe44e9a7bd5c4a82d51"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4898,
+        "historical_path": "src/pso/misc/TCameraCtrl_803D6538.cpp",
+        "owners": {
+          "src/pso/camera/TCameraCtrl_803D6538.cpp": "f1af3eddd3e543f4830dfb843ddfbd82986e8941"
+        },
+        "evidence": [
+          {
+            "group": "Compiler directives",
+            "proof": "Original source-level pragma removals at verified source anchors passed the exact retail build. Other historical source edits in this record are tracked separately."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4923,
+        "historical_path": "include/pso/effect/TEffClitical.h",
+        "owners": {
+          "include/pso/effect/TEffClitical.h": "10031c37e72fa266a3c2b5b709c37a19b91b2123"
+        },
+        "evidence": [
+          {
+            "group": "Relocated source",
+            "proof": "The complete historical body (149 source tokens) is retained. Every original direct include resolves; the active owner is recorded in the exact build."
+          }
+        ],
+        "status": "Complete historical source and active includes retained"
+      },
+      {
+        "row": 4924,
+        "historical_path": "include/pso/effect/TEffIndirectCtrl.h",
+        "owners": {
+          "include/pso/effect/TEffIndirectCtrl.h": "d685deb9181521faecf222be1656c9b28d561dec",
+          "src/pso/effect/TEffIndirectCtrl.cpp": "9d5e1146fad2ac335dca3555bf4fd412f55dea50"
+        },
+        "evidence": [
+          {
+            "group": "Indirect scene effects",
+            "proof": "Indirect recipe and texture source layouts, borrowed texture pixels and typed scene effect binding"
+          },
+          {
+            "group": "Indirect scene effects",
+            "proof": "Typed owned images, signed motion recipes, flush and sampling APIs, and native effect receiver dispatch"
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4925,
+        "historical_path": "include/pso/effect/TEffIndirectCtrl_802A88AC.h",
+        "owners": {
+          "include/pso/effect/TEffIndirectCtrl_802A88AC.h": "db6c009b8bf3a04ff4123972a82fdfa28dc5d0a3"
+        },
+        "evidence": [
+          {
+            "group": "Indirect scene effects",
+            "proof": "Texture sampling and update helper signatures"
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4936,
+        "historical_path": "src/pso/effect/TEffIndirectCtrl.cpp",
+        "owners": {
+          "src/pso/effect/TEffIndirectCtrl.cpp": "9d5e1146fad2ac335dca3555bf4fd412f55dea50"
+        },
+        "evidence": [
+          {
+            "group": "Indirect scene effects",
+            "proof": "Typed owned images, signed motion recipes, flush and sampling APIs, and native effect receiver dispatch"
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4985,
+        "historical_path": "src/pso/system/GinjaMaterial.cpp",
+        "owners": {
+          "src/pso/render/GinjaMaterial.cpp": "ebc419aa9afa85e77490d88f17996339b217d660"
+        },
+        "evidence": [
+          {
+            "group": "Compiler directives",
+            "proof": "Original source-level pragma removals at verified source anchors passed the exact retail build. Other historical source edits in this record are tracked separately."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5004,
+        "historical_path": "include/pso/player/TUnk_80490470.h",
+        "owners": {
+          "include/pso/render/TUnk_80490470.h": "353bb3be5842dc1500594700b3e710ed50569d7b"
+        },
+        "evidence": [
+          {
+            "group": "Relocated source",
+            "proof": "The complete historical body (86 source tokens) is retained. Every original direct include resolves; the active owner is recorded in the exact build."
+          }
+        ],
+        "status": "Complete historical source and active includes retained"
+      },
+      {
+        "row": 5011,
+        "historical_path": "src/pso/misc/TCameraCtrl_803D6960.cpp",
+        "owners": {
+          "src/pso/camera/TCameraCtrl_803D6960.cpp": "9c3f52a339268d53763f324372314d028ea03dee"
+        },
+        "evidence": [
+          {
+            "group": "Compiler directives",
+            "proof": "Original source-level pragma removals at verified source anchors passed the exact retail build. Other historical source edits in this record are tracked separately."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5014,
+        "historical_path": "src/pso/misc/TCameraCtrl_803D749C.cpp",
+        "owners": {
+          "src/pso/camera/TCameraCtrl_803D749C.cpp": "b3bb26b08c3c6ecd2816434fef359ea7db77e9f7"
+        },
+        "evidence": [
+          {
+            "group": "Compiler directives",
+            "proof": "Original source-level pragma removals at verified source anchors passed the exact retail build. Other historical source edits in this record are tracked separately."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5042,
+        "historical_path": "src/pso/system/ChunkMaterialState.cpp",
+        "owners": {
+          "src/pso/render/ChunkMaterialState.cpp": "e9576147180d086c559f0149d011b72092d1c57e"
+        },
+        "evidence": [
+          {
+            "group": "Compiler directives",
+            "proof": "Original source-level pragma removals at verified source anchors passed the exact retail build. Other historical source edits in this record are tracked separately."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5295,
+        "historical_path": "include/pso/misc/TScene.h",
+        "owners": {
+          "include/pso/system/scene/TScene.h": "23806d348dc61a9ab56733f32252a4be38d40b90",
+          "src/pso/system/scene/TScene.cpp": "494a9342391b8c6d04b3c5cb970efedc1da04ace"
+        },
+        "evidence": [
+          {
+            "group": "Indirect scene effects",
+            "proof": "Indirect object helpers replace fake scene methods"
+          },
+          {
+            "group": "Indirect scene effects",
+            "proof": "Static and animated scene material paths pass native indirect handles"
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5299,
+        "historical_path": "src/pso/misc/TScene.cpp",
+        "owners": {
+          "src/pso/system/scene/TScene.cpp": "494a9342391b8c6d04b3c5cb970efedc1da04ace"
+        },
+        "evidence": [
+          {
+            "group": "Indirect scene effects",
+            "proof": "Static and animated scene material paths pass native indirect handles"
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5303,
+        "historical_path": "src/pso/unk/text_8010F168.cpp",
+        "owners": {
+          "src/pso/unk/text_8010F168.cpp": "6b2361f23a46103fa4b85d0a32699df1ddfa18ac"
+        },
+        "evidence": [
+          {
+            "group": "Relocated source",
+            "proof": "The complete historical source body and resolved includes are retained. The exact owning object directly includes ArrayAllocation.h through the current include order."
+          }
+        ],
+        "status": "Complete historical source and active includes retained"
+      },
+      {
+        "row": 5319,
+        "historical_path": "src/pso/misc/TLobby_80209524.cpp",
+        "owners": {
+          "src/pso/unk/TLobby_80209524.cpp": "5127012b185c5531c1227f28b0ac13252d5c1a5b"
+        },
+        "evidence": [
+          {
+            "group": "Relocated source",
+            "proof": "The complete historical source body and resolved includes are retained. The exact owning object directly includes ArrayAllocation.h through the current include order."
+          }
+        ],
+        "status": "Complete historical source and active includes retained"
+      },
+      {
+        "row": 5413,
+        "historical_path": "src/pso/unk/text_803D9FF0.cpp",
+        "owners": {
+          "src/pso/unk/text_803D9FF0.cpp": "ae21efd76796d2bfa9f553771d061920e0f29a43"
+        },
+        "evidence": [
+          {
+            "group": "Relocated source",
+            "proof": "The complete conversion routine survives in the linked owner. Its byte lookup uses the same 256-entry __upper_map through the current direct declaration."
+          }
+        ],
+        "status": "Complete historical body and byte table provider retained"
+      },
+      {
+        "row": 5568,
+        "historical_path": "src/pso/misc/TWindowShortListCtrl_8026E7DC.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp": "fd38c30367d7741962f6a019317576621a5e1388"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Keep the factory result and its inherited open timer typed."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5685,
+        "historical_path": "src/pso/misc/TShopItemListWindow.cpp",
+        "owners": {
+          "src/pso/ui/city/TShopItemListWindow.cpp": "b597d61e10f6451e8d88e427f8fa840dc93565a4"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5707,
+        "historical_path": "include/pso/misc/TWindowMenu.h",
+        "owners": {
+          "include/pso/ui/window/TWindowMenu.h": "36e7b4d06e7c6ae4d23736161bfe0729522177c0"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "TWindowMenu owns the sizing method and a checked floating layout height at +0x7C."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5717,
+        "historical_path": "include/pso/misc/TWindowMakeTeam.h",
+        "owners": {
+          "src/pso/ui/window/TWindowMakeTeam.cpp": "4b32b41bc79b1e6b852148b429cf38a54a8db9ad"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5785,
+        "historical_path": "include/pso/misc/TWindowSubEquip.h",
+        "owners": {
+          "include/pso/ui/window/TWindowSubEquip.h": "3a46a93d55c76bb5404d32a5b376744524afda59"
+        },
+        "evidence": [
+          {
+            "group": "Relocated source",
+            "proof": "The complete historical body (116 source tokens) is retained. Every original direct include resolves; the active owner is recorded in the exact build."
+          }
+        ],
+        "status": "Complete historical source and active includes retained"
+      },
+      {
+        "row": 5803,
+        "historical_path": "src/pso/misc/TShopEquipmentSellWindow.cpp",
+        "owners": {
+          "src/pso/ui/city/TShopEquipmentSellWindow.cpp": "4fb971c0d2c9fbb5f1750b57cb0e089908318089"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "The two confirmation producers use a menu pointer at +0x390 and release it with the normal menu lifetime."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5854,
+        "historical_path": "src/pso/misc/TWindowSubComCard_80265410.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowSubComCard_80265410.cpp": "aafb6da9c4d501fe4522a6db47394036afeccddc"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Size computation uses the actual TWindowMenu, retained signed count field, +0x7C height and shared target geometry; yes/no factory and inherited card list height use the same type."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5880,
+        "historical_path": "include/pso/misc/TWindowSubComCard.h",
+        "owners": {
+          "include/pso/ui/window/TWindowSubComCard.h": "9b0f9aaf3d390906d035d86f7c5c8069b9f498c1"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Remove the previous invalid sizing member declaration."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5917,
+        "historical_path": "src/pso/misc/TWindowMakeTeam.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowMakeTeam.cpp": "4b32b41bc79b1e6b852148b429cf38a54a8db9ad"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5958,
+        "historical_path": "src/pso/misc/TShopArmorListWindow.cpp",
+        "owners": {
+          "src/pso/ui/city/TShopArmorListWindow.cpp": "aa292e4231ac8f9e610769e82afbe65cd0414636"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5959,
+        "historical_path": "src/pso/misc/TShopEquipmentListWindow.cpp",
+        "owners": {
+          "src/pso/ui/city/TShopEquipmentListWindow.cpp": "34d624da569adf0aa394893a02508e9cc3e0ba8b"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5972,
+        "historical_path": "src/pso/misc/TWindowDD_80342AA0.cpp",
+        "owners": {
+          "src/pso/ui/window/TWindowDD_80342AA0.cpp": "d620d13c9ca3adff493ad723535670cc5d90d854"
+        },
+        "evidence": [
+          {
+            "group": "Relocated source",
+            "proof": "The complete historical body retains its word-selection call. The active owner includes the same signed result and byte receiver declaration from the native word-window header."
+          }
+        ],
+        "status": "Complete historical source and native declaration retained"
+      },
+      {
+        "row": 6023,
+        "historical_path": "src/pso/unk/text_803D96A8.cpp",
+        "owners": {
+          "src/pso/unk/text_803D96A8.cpp": "18cbbca34fcad5411c4c9b81ef265889678a77c0"
+        },
+        "evidence": [
+          {
+            "group": "Compiler directives",
+            "proof": "Original source-level pragma removals at verified source anchors passed the exact retail build. Other historical source edits in this record are tracked separately."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6058,
+        "historical_path": "src/pso/misc/TLobby_800726F0.cpp",
+        "owners": {
+          "src/pso/unk/TLobby_800726F0.cpp": "ac5fac4aa22eb3a6147cb3707f18a02d88cf5c90"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6061,
+        "historical_path": "src/pso/misc/TLobby_80299A60.cpp",
+        "owners": {
+          "src/pso/unk/TLobby_80299C4C.cpp": "f65c6f756de69da81a28b2c603d0efab3b3f6173"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6485,
+        "historical_path": "src/pso/misc/TSetManager_8020D918.cpp",
+        "owners": {
+          "src/pso/map/TSetManager.cpp": "e86d0cfe2f2d0c8b1822fab6b49b86e9fbdfd475"
+        },
+        "evidence": [
+          {
+            "group": "Compiler directives",
+            "proof": "Original source-level pragma removals at verified source anchors passed the exact retail build. Other historical source edits in this record are tracked separately."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6528,
+        "historical_path": "src/pso/object/TObjWarpJungMain.cpp",
+        "owners": {
+          "src/pso/object/warp/TObjWarpJungMain.cpp": "140d2a802586ba3b269b236678737803820bcfc5"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6530,
+        "historical_path": "src/pso/object/TObjWarpLobby.cpp",
+        "owners": {
+          "src/pso/object/warp/TObjWarpLobby.cpp": "db64faa0c2d484ea7e4b1a3540bdd19b8423a396"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6658,
+        "historical_path": "include/pso/quest/TQuestListVM.h",
+        "owners": {
+          "include/pso/quest/TQuestListVM.h": "90025caf26ef37fac6d8862786bbc1e0d3d80a21"
+        },
+        "evidence": [
+          {
+            "group": "Relocated source",
+            "proof": "The complete historical body (562 source tokens) is retained. Every original direct include resolves; the active owner is recorded in the exact build."
+          }
+        ],
+        "status": "Complete historical source and active includes retained"
+      },
+      {
+        "row": 6668,
+        "historical_path": "src/pso/map/CsnQuery.cpp",
+        "owners": {
+          "src/pso/map/CsnQuery.cpp": "5e1d6d765efee428dfa4d608f1f93da5cbb21088"
+        },
+        "evidence": [
+          {
+            "group": "Compiler directives",
+            "proof": "Original source-level pragma removals at verified source anchors passed the exact retail build. Other historical source edits in this record are tracked separately."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6721,
+        "historical_path": "src/pso/object/TObjChip.cpp",
+        "owners": {
+          "src/pso/object/TObjChip.cpp": "aa6959eebacb518bec4a4f032447fba693852501"
+        },
+        "evidence": [
+          {
+            "group": "Compiler directives",
+            "proof": "Original source-level pragma removals at verified source anchors passed the exact retail build. Other historical source edits in this record are tracked separately."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6728,
+        "historical_path": "src/pso/object/TObjLuker.cpp",
+        "owners": {
+          "src/pso/object/TObjLuker.cpp": "45c35ef8720d3c4e64c72a2cd59d83ef3c6bc62c"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6742,
+        "historical_path": "src/pso/quest/QuestOpcodeHandlers.cpp",
+        "owners": {
+          "src/pso/quest/QuestOpcodeHandlers.cpp": "e98f6d3a4eef3ad0fd88ee16bbf8aa8bd1df5be3"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6804,
+        "historical_path": "src/pso/object/TObjWarpLobby_801A0760.cpp",
+        "owners": {
+          "src/pso/object/warp/TObjWarpLobby.cpp": "db64faa0c2d484ea7e4b1a3540bdd19b8423a396"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6876,
+        "historical_path": "include/pso/object/TObjLight_803DF220.h",
+        "owners": {
+          "include/pso/object/ambient/TObjLight_803DF220.h": "b8d398871bcd279d9e2fb8bd540a35a8c393383f"
+        },
+        "evidence": [
+          {
+            "group": "Relocated source",
+            "proof": "The full light header declaration body remains. The linked light source imports both trail draw signatures directly from their shared header."
+          }
+        ],
+        "status": "Complete historical declarations and trail provider retained"
+      },
+      {
+        "row": 6985,
+        "historical_path": "src/pso/object/TObjLaboMapWarp_80185248.cpp",
+        "owners": {
+          "src/pso/object/warp/TObjLaboMapWarp.cpp": "2e6d35c705c3ed917ed963e0be2b44dfa45b8359"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7071,
+        "historical_path": "src/pso/object/TObjAreaWarpEndingJung.cpp",
+        "owners": {
+          "src/pso/object/warp/TObjAreaWarpEndingJung.cpp": "4824490e082778c33e61e841a41c8fe9e5a43240"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7072,
+        "historical_path": "src/pso/object/TObjCityMainWarp_80186E24.cpp",
+        "owners": {
+          "src/pso/object/warp/TObjCityMainWarp_80186E24.cpp": "d65f0f59e351160f954aee5e6cab3519ddb20dc8"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses."
+          },
+          {
+            "group": "Relocated source",
+            "proof": "The former dispatch header is represented by the active window callback header. Its two suppression declarations still serve all three original calls."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7135,
+        "historical_path": "src/pso/object/TObjLight_803DF220.cpp",
+        "owners": {
+          "src/pso/object/ambient/TObjLight_803DF220.cpp": "723427e170c5dfdac443353aa05a779487689ab3"
+        },
+        "evidence": [
+          {
+            "group": "Compiler directives",
+            "proof": "Original source-level pragma removals at verified source anchors passed the exact retail build. Other historical source edits in this record are tracked separately."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7213,
+        "historical_path": "src/pso/object/TObjWarpBossMulti.cpp",
+        "owners": {
+          "src/pso/object/warp/TObjWarpBossMulti.cpp": "9f94f8015d3829ae37cda9a01de8b8ed1071a724"
+        },
+        "evidence": [
+          {
+            "group": "Menu sizing",
+            "proof": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7277,
+        "historical_path": "src/pso/misc/TNpcPlayer.cpp",
+        "owners": {
+          "src/pso/npc/TNpcPlayer.cpp": "2aff527b42dc955b73f7e569e5d9633405d80e69"
+        },
+        "evidence": [
+          {
+            "group": "Compiler directives",
+            "proof": "Original source-level pragma removals at verified source anchors passed the exact retail build. Other historical source edits in this record are tracked separately."
+          }
+        ],
+        "status": "Some anchored text changes found"
+      }
+    ],
+    "retained_body_proof": [
+      {
+        "row": 360,
+        "fork_path": "include/pso/TBoss7Tentacle.h",
+        "owner": "include/pso/boss/barbaray/TBoss7Tentacle.h",
+        "historical_blob": "2b2a44acd723de84a615dbbf703c8af509f8ff06",
+        "active_blob": "13c7c08d21de5fc4ba537fe6177316eb2855d692",
+        "kind": "complete identical token stream",
+        "tokens": 247,
+        "dependencies": 2,
+        "includes": [
+          {
+            "from": "pso/TObject.h",
+            "to": "pso/system/task/TObject.h",
+            "method": "same uniquely relocated direct include"
+          },
+          {
+            "from": "pso/system/NinjaTypes.h",
+            "to": "pso/system/NinjaTypes.h",
+            "method": "unchanged direct include"
+          },
+          {
+            "from": "pso/system/vector.h",
+            "to": "pso/system/vector.h",
+            "method": "unchanged direct include"
+          },
+          {
+            "from": "types.h",
+            "to": "types.h",
+            "method": "unchanged direct include"
+          },
+          {
+            "from": "stddef.h",
+            "to": "stddef.h",
+            "method": "unchanged direct include"
+          }
+        ]
+      },
+      {
+        "row": 409,
+        "fork_path": "include/pso/boss/TBoss7TentacleNeedle.h",
+        "owner": "include/pso/boss/barbaray/TBoss7TentacleNeedle.h",
+        "historical_blob": "1c3a1841c902767993b00259616327631a4971ed",
+        "active_blob": "8d8d06703c3514e2da24d5a9fe297972544cc07a",
+        "kind": "complete identical token stream",
+        "tokens": 212,
+        "dependencies": 2,
+        "includes": [
+          {
+            "from": "types.h",
+            "to": "types.h",
+            "method": "unchanged direct include"
+          },
+          {
+            "from": "pso/TObject.h",
+            "to": "pso/system/task/TObject.h",
+            "method": "same uniquely relocated direct include"
+          },
+          {
+            "from": "pso/system/NinjaTypes.h",
+            "to": "pso/system/NinjaTypes.h",
+            "method": "unchanged direct include"
+          },
+          {
+            "from": "dolphin/mtx/GeoTypes.h",
+            "to": "dolphin/mtx/GeoTypes.h",
+            "method": "unchanged direct include"
+          },
+          {
+            "from": "stddef.h",
+            "to": "stddef.h",
+            "method": "unchanged direct include"
+          }
+        ]
+      },
+      {
+        "row": 462,
+        "fork_path": "include/pso/enemy/TObjEneMerillLia.h",
+        "owner": "include/pso/enemy/merilllia/TObjEneMerillLia.h",
+        "historical_blob": "1e9878c9ac44f6893023931efad4cb8fa502ce65",
+        "active_blob": "4233d9eadf224f371887450fdc5961925ccd1442",
+        "kind": "complete identical token stream",
+        "tokens": 478,
+        "dependencies": 3,
+        "includes": [
+          {
+            "from": "types.h",
+            "to": "types.h",
+            "method": "unchanged direct include"
+          },
+          {
+            "from": "stddef.h",
+            "to": "stddef.h",
+            "method": "unchanged direct include"
+          },
+          {
+            "from": "pso/enemy/TUnk_80493450.h",
+            "to": "pso/enemy/TUnk_80493450.h",
+            "method": "unchanged direct include"
+          },
+          {
+            "from": "pso/misc/MaterialOpacityFade.h",
+            "to": "pso/render/MaterialOpacityFade.h",
+            "method": "same uniquely relocated direct include"
+          }
+        ]
+      },
+      {
+        "row": 2110,
+        "fork_path": "include/pso/TAdRicoRing.h",
+        "owner": "include/pso/ui/frontend/TAdRicoRing.h",
+        "historical_blob": "f8485ef9fe680f09e320dd545a063b967b65e454",
+        "active_blob": "797eb8af06d28553536c94332dd84eb59f7251eb",
+        "kind": "complete identical token stream",
+        "tokens": 196,
+        "dependencies": 11,
+        "includes": [
+          {
+            "from": "pso/TObject.h",
+            "to": "pso/system/task/TObject.h",
+            "method": "same uniquely relocated direct include"
+          },
+          {
+            "from": "pso/system/FlagWord.h",
+            "to": "pso/system/data/FlagWord.h",
+            "method": "same uniquely relocated direct include"
+          },
+          {
+            "from": "dolphin/mtx.h",
+            "to": "dolphin/mtx.h",
+            "method": "unchanged direct include"
+          },
+          {
+            "from": "stddef.h",
+            "to": "stddef.h",
+            "method": "unchanged direct include"
+          }
+        ]
+      },
+      {
+        "row": 2191,
+        "fork_path": "include/pso/ui/TAdRicoRingCtrl.h",
+        "owner": "include/pso/ui/frontend/TAdRicoRingCtrl.h",
+        "historical_blob": "3404e4102fbbd951f4b90d4d68895c1cebf4e5ce",
+        "active_blob": "9abe8f858464430734fb09321a2def9754875d90",
+        "kind": "complete identical token stream",
+        "tokens": 152,
+        "dependencies": 4,
+        "includes": [
+          {
+            "from": "pso/TObject.h",
+            "to": "pso/system/task/TObject.h",
+            "method": "same uniquely relocated direct include"
+          },
+          {
+            "from": "dolphin/mtx.h",
+            "to": "dolphin/mtx.h",
+            "method": "unchanged direct include"
+          },
+          {
+            "from": "stddef.h",
+            "to": "stddef.h",
+            "method": "unchanged direct include"
+          }
+        ]
+      },
+      {
+        "row": 2540,
+        "fork_path": "src/pso/misc/THunterGuildSeqOffline_802126C4.cpp",
+        "owner": "src/pso/ui/city/THunterGuildSeqOffline_802126C4.cpp",
+        "historical_blob": "ffeb000aed098078f9056cba2b768ce8604f1549",
+        "active_blob": "01754723104da5eac3c950e3a1dd2318ed428c99",
+        "kind": "complete identical token stream",
+        "tokens": 94,
+        "dependencies": 0,
+        "includes": [
+          {
+            "from": "types.h",
+            "to": "types.h",
+            "method": "unchanged direct include"
+          },
+          {
+            "from": "pso/TMainTask.h",
+            "to": "pso/system/task/TMainTask.h",
+            "method": "same uniquely relocated direct include"
+          },
+          {
+            "from": "pso/TShopWindowBase.h",
+            "to": "pso/ui/city/TShopWindowBase.h",
+            "method": "same uniquely relocated direct include"
+          },
+          {
+            "from": "pso/misc/THunterGuildSeqOffline.h",
+            "to": "pso/ui/city/THunterGuildSeqOffline.h",
+            "method": "same uniquely relocated direct include"
+          },
+          {
+            "from": "pso/quest/TQuestListVM.h",
+            "to": "pso/quest/TQuestListVM.h",
+            "method": "unchanged direct include"
+          }
+        ]
+      },
+      {
+        "row": 2746,
+        "fork_path": "src/pso/unk/text_80309890.cpp",
+        "owner": "src/pso/unk/text_80309890.cpp",
+        "historical_blob": "266613b96ebe0a3634f28b1f1d75ea277dc0c99b",
+        "active_blob": "0d05e1e81edf866bbfa0240a6bd138a29080ea6e",
+        "kind": "complete identical token stream",
+        "tokens": 66,
+        "dependencies": 0,
+        "includes": [
+          {
+            "from": "types.h",
+            "to": "types.h",
+            "method": "unchanged direct include"
+          },
+          {
+            "from": "pso/TChCrTagInformationStr.h",
+            "to": "pso/ui/charcreate/TChCrTagInformationStr.h",
+            "method": "same uniquely relocated direct include"
+          },
+          {
+            "from": "pso/unk/text_80309890.h",
+            "to": "pso/unk/text_80309890.h",
+            "method": "unchanged direct include"
+          }
+        ]
+      },
+      {
+        "row": 3631,
+        "fork_path": "src/pso/misc/ShopWeaponTables.cpp",
+        "owner": "src/pso/item/shop/ShopWeaponTables.cpp",
+        "historical_blob": "2b02dbc650eed364045f08dd622a5503089ec445",
+        "active_blob": "375ba2ef0ae505d03e451825dfb1601dcde63ae1",
+        "kind": "complete identical token stream",
+        "tokens": 646,
+        "dependencies": 0,
+        "includes": [
+          {
+            "from": "pso/misc/ShopWeaponStock.h",
+            "to": "pso/item/shop/ShopWeaponStock.h",
+            "method": "same uniquely relocated direct include"
+          }
+        ]
+      },
+      {
+        "row": 3968,
+        "fork_path": "include/pso/item/TItem.h",
+        "owner": "include/pso/item/TItem.h",
+        "historical_blob": "173f07c18dbdb7c7ce28cda3bdccd310790d5fb1",
+        "active_blob": "786e78d3e2ef1432d8ea8ab0c0bcf44b27fd65c3",
+        "kind": "complete identical token stream",
+        "tokens": 1443,
+        "dependencies": 250,
+        "includes": [
+          {
+            "from": "types.h",
+            "to": "types.h",
+            "method": "unchanged direct include"
+          },
+          {
+            "from": "stddef.h",
+            "to": "stddef.h",
+            "method": "unchanged direct include"
+          },
+          {
+            "from": "pso/object/TObjMotion.h",
+            "to": "pso/object/base/TObjMotion.h",
+            "method": "same uniquely relocated direct include"
+          },
+          {
+            "from": "pso/system/NinjaTypes.h",
+            "to": "pso/system/NinjaTypes.h",
+            "method": "unchanged direct include"
+          },
+          {
+            "from": "pso/system/FlagWord.h",
+            "to": "pso/system/data/FlagWord.h",
+            "method": "same uniquely relocated direct include"
+          }
+        ]
+      },
+      {
+        "row": 4923,
+        "fork_path": "include/pso/effect/TEffClitical.h",
+        "owner": "include/pso/effect/TEffClitical.h",
+        "historical_blob": "62697b705b46fae2d4e69fd45f3629accff0a61a",
+        "active_blob": "10031c37e72fa266a3c2b5b709c37a19b91b2123",
+        "kind": "complete identical token stream",
+        "tokens": 149,
+        "dependencies": 3,
+        "includes": [
+          {
+            "from": "pso/effect/TEffect.h",
+            "to": "pso/effect/TEffect.h",
+            "method": "unchanged direct include"
+          }
+        ]
+      },
+      {
+        "row": 5004,
+        "fork_path": "include/pso/player/TUnk_80490470.h",
+        "owner": "include/pso/render/TUnk_80490470.h",
+        "historical_blob": "32c8810e93de0b5210b2bd73f43f72d150167854",
+        "active_blob": "353bb3be5842dc1500594700b3e710ed50569d7b",
+        "kind": "complete identical token stream",
+        "tokens": 86,
+        "dependencies": 65,
+        "includes": [
+          {
+            "from": "types.h",
+            "to": "types.h",
+            "method": "unchanged direct include"
+          },
+          {
+            "from": "pso/misc/MaterialColorFade.h",
+            "to": "pso/render/MaterialColorFade.h",
+            "method": "same uniquely relocated direct include"
+          }
+        ]
+      },
+      {
+        "row": 5785,
+        "fork_path": "include/pso/misc/TWindowSubEquip.h",
+        "owner": "include/pso/ui/window/TWindowSubEquip.h",
+        "historical_blob": "52e0c076d90becab478a9111faa83c968eb3ce5d",
+        "active_blob": "3a46a93d55c76bb5404d32a5b376744524afda59",
+        "kind": "complete identical token stream",
+        "tokens": 116,
+        "dependencies": 4,
+        "includes": [
+          {
+            "from": "types.h",
+            "to": "types.h",
+            "method": "unchanged direct include"
+          },
+          {
+            "from": "pso/TObject.h",
+            "to": "pso/system/task/TObject.h",
+            "method": "same uniquely relocated direct include"
+          }
+        ]
+      },
+      {
+        "row": 6658,
+        "fork_path": "include/pso/quest/TQuestListVM.h",
+        "owner": "include/pso/quest/TQuestListVM.h",
+        "historical_blob": "0874b277d9bb18f656953d6f97f8a03f3ea03786",
+        "active_blob": "90025caf26ef37fac6d8862786bbc1e0d3d80a21",
+        "kind": "complete identical token stream",
+        "tokens": 562,
+        "dependencies": 26,
+        "includes": [
+          {
+            "from": "types.h",
+            "to": "types.h",
+            "method": "unchanged direct include"
+          },
+          {
+            "from": "pso/TShopWindowBase.h",
+            "to": "pso/ui/city/TShopWindowBase.h",
+            "method": "same uniquely relocated direct include"
+          }
+        ]
+      }
+    ],
+    "resolved_include_proof": [
+      {
+        "row": 692,
+        "owner": "src/pso/enemy/TEnemyTaskList.cpp",
+        "users": [
+          "build/GPOE8P/src/pso/enemy/TEnemyTaskList.o"
+        ]
+      },
+      {
+        "row": 4043,
+        "owner": "src/pso/item/TItemBuff.cpp",
+        "users": [
+          "build/GPOE8P/src/pso/item/TItemBuff.o"
+        ]
+      },
+      {
+        "row": 5303,
+        "owner": "src/pso/unk/text_8010F168.cpp",
+        "users": [
+          "build/GPOE8P/src/pso/unk/text_8010F168.o"
+        ]
+      },
+      {
+        "row": 5319,
+        "owner": "src/pso/unk/TLobby_80209524.cpp",
+        "users": [
+          "build/GPOE8P/src/pso/unk/TLobby_80209524.o"
+        ]
+      },
+      {
+        "row": 674,
+        "owner": "include/pso/boss/TUnk_804F1280.h",
+        "users": [
+          "build/GPOE8P/src/pso/boss/olgaflow/TBoss6Rock.o"
+        ]
+      },
+      {
+        "row": 1082,
+        "owner": "include/pso/boss/darkfalz/TOBoss4Bird.h",
+        "users": [
+          "build/GPOE8P/src/pso/boss/darkfalz/TOBoss4.o",
+          "build/GPOE8P/src/pso/object/base/ObjectFactoryTables.o"
+        ]
+      },
+      {
+        "row": 5972,
+        "owner": "src/pso/ui/window/TWindowDD_80342AA0.cpp",
+        "users": [
+          "build/GPOE8P/src/pso/ui/window/TWindowDD_80342AA0.o"
+        ]
+      },
+      {
+        "row": 6876,
+        "owner": "include/pso/object/ambient/TObjLight_803DF220.h",
+        "users": [
+          "build/GPOE8P/src/pso/object/ambient/TObjLight_803DF220.o"
+        ]
+      }
+    ],
+    "menu": {
+      "prior": "9f5ed767688d58f3785a9c8f8cad729786a86456",
+      "head": "0bb0919647ff5d4c92cf70dd61d8aa1ab8ae7b4c",
+      "donor_commits": [
+        "0c0128bdc6",
+        "5aae2d4b85",
+        "4b2fa505a6",
+        "cf65d957cd"
+      ],
+      "sizing_address": "0x80265F60",
+      "sizing_size_bytes": 280,
+      "sizing_call_count": 41,
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "entries": [
+        {
+          "current_owner": "config/GPOE8P/psov3/symbols.txt",
+          "sizing_calls_retained": 0,
+          "historical_commit_paths": {
+            "0c0128bdc6": [
+              "config/GPOE8P/psov3/symbols.txt"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 157,
+              "path": "config/GPOE8P/psov3/symbols.txt"
+            }
+          ],
+          "proven_scope": "Rename exact 0x80265F60 / 0x118 bytes to calc_window_size__11TWindowMenuFv.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "include/pso/ui/city/TCheckRoomSequence.h",
+          "sizing_calls_retained": 0,
+          "historical_commit_paths": {},
+          "ledger_rows": [
+            {
+              "row": 2452,
+              "path": "include/pso/misc/TCheckRoomSequence.h"
+            }
+          ],
+          "proven_scope": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "include/pso/ui/city/TShopEquipmentGearSequence.h",
+          "sizing_calls_retained": 0,
+          "historical_commit_paths": {},
+          "ledger_rows": [
+            {
+              "row": 2509,
+              "path": "include/pso/misc/TShopEquipmentGearSequence.h"
+            }
+          ],
+          "proven_scope": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "include/pso/ui/city/TShopEquipmentSellWindow.h",
+          "sizing_calls_retained": 0,
+          "historical_commit_paths": {
+            "5aae2d4b85": [
+              "include/pso/misc/TShopEquipmentSellWindow.h"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5807,
+              "path": "include/pso/misc/TShopEquipmentSellWindow.h"
+            }
+          ],
+          "proven_scope": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "include/pso/ui/city/TShopEquipmentSequence.h",
+          "sizing_calls_retained": 0,
+          "historical_commit_paths": {},
+          "ledger_rows": [
+            {
+              "row": 2618,
+              "path": "include/pso/misc/TShopEquipmentSequence.h"
+            }
+          ],
+          "proven_scope": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "include/pso/ui/city/TShopItemTecSequence.h",
+          "sizing_calls_retained": 0,
+          "historical_commit_paths": {},
+          "ledger_rows": [
+            {
+              "row": 2630,
+              "path": "include/pso/misc/TShopItemTecSequence.h"
+            }
+          ],
+          "proven_scope": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "include/pso/ui/window/TWindowMenu.h",
+          "sizing_calls_retained": 0,
+          "historical_commit_paths": {
+            "0c0128bdc6": [
+              "include/pso/misc/TWindowMenu.h"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5707,
+              "path": "include/pso/misc/TWindowMenu.h"
+            }
+          ],
+          "proven_scope": "TWindowMenu owns the sizing method and a checked floating layout height at +0x7C.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "include/pso/ui/window/TWindowSubComCard.h",
+          "sizing_calls_retained": 0,
+          "historical_commit_paths": {
+            "0c0128bdc6": [
+              "include/pso/misc/TWindowSubComCard.h"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5880,
+              "path": "include/pso/misc/TWindowSubComCard.h"
+            }
+          ],
+          "proven_scope": "Remove the previous invalid sizing member declaration.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/network/TPlyJoinLobbyEntry.cpp",
+          "sizing_calls_retained": 6,
+          "historical_commit_paths": {
+            "0c0128bdc6": [
+              "src/pso/misc/TPlyJoinLobbyEntry.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 3061,
+              "path": "src/pso/misc/TPlyJoinLobbyEntry.cpp"
+            },
+            {
+              "row": 3070,
+              "path": "include/pso/misc/TPlyJoinLobbyEntry.h"
+            }
+          ],
+          "proven_scope": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/object/TObjLuker.cpp",
+          "sizing_calls_retained": 2,
+          "historical_commit_paths": {
+            "0c0128bdc6": [
+              "src/pso/object/TObjLuker.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 6728,
+              "path": "src/pso/object/TObjLuker.cpp"
+            },
+            {
+              "row": 7387,
+              "path": "include/pso/object/TObjLuker.h"
+            }
+          ],
+          "proven_scope": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/object/warp/TObjAreaWarpEndingJung.cpp",
+          "sizing_calls_retained": 3,
+          "historical_commit_paths": {
+            "0c0128bdc6": [
+              "src/pso/object/TObjAreaWarpEndingJung.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 6846,
+              "path": "include/pso/object/TObjAreaWarpEndingJung.h"
+            },
+            {
+              "row": 7071,
+              "path": "src/pso/object/TObjAreaWarpEndingJung.cpp"
+            }
+          ],
+          "proven_scope": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/object/warp/TObjCityMainWarp_80186E24.cpp",
+          "sizing_calls_retained": 1,
+          "historical_commit_paths": {
+            "0c0128bdc6": [
+              "src/pso/object/TObjCityMainWarp_80186E24.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 6892,
+              "path": "include/pso/object/TObjCityMainWarp_80186E24.h"
+            },
+            {
+              "row": 7072,
+              "path": "src/pso/object/TObjCityMainWarp_80186E24.cpp"
+            }
+          ],
+          "proven_scope": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/object/warp/TObjLaboMapWarp.cpp",
+          "sizing_calls_retained": 3,
+          "historical_commit_paths": {
+            "0c0128bdc6": [
+              "src/pso/object/TObjLaboMapWarp_80185248.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 6985,
+              "path": "src/pso/object/TObjLaboMapWarp_80185248.cpp"
+            }
+          ],
+          "proven_scope": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/object/warp/TObjWarpBossMulti.cpp",
+          "sizing_calls_retained": 1,
+          "historical_commit_paths": {
+            "0c0128bdc6": [
+              "src/pso/object/TObjWarpBossMulti.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 7115,
+              "path": "include/pso/object/TObjWarpBossMulti.h"
+            },
+            {
+              "row": 7213,
+              "path": "src/pso/object/TObjWarpBossMulti.cpp"
+            }
+          ],
+          "proven_scope": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/object/warp/TObjWarpJungMain.cpp",
+          "sizing_calls_retained": 1,
+          "historical_commit_paths": {
+            "0c0128bdc6": [
+              "src/pso/object/TObjWarpJungMain.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 6528,
+              "path": "src/pso/object/TObjWarpJungMain.cpp"
+            },
+            {
+              "row": 7022,
+              "path": "include/pso/object/TObjWarpJungMain.h"
+            }
+          ],
+          "proven_scope": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/object/warp/TObjWarpLobby.cpp",
+          "sizing_calls_retained": 1,
+          "historical_commit_paths": {
+            "0c0128bdc6": [
+              "src/pso/object/TObjWarpLobby_801A0760.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 6530,
+              "path": "src/pso/object/TObjWarpLobby.cpp"
+            },
+            {
+              "row": 6804,
+              "path": "src/pso/object/TObjWarpLobby_801A0760.cpp"
+            },
+            {
+              "row": 7023,
+              "path": "include/pso/object/TObjWarpLobby.h"
+            }
+          ],
+          "proven_scope": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/player/TPlayerBattleCtrl4P.cpp",
+          "sizing_calls_retained": 1,
+          "historical_commit_paths": {
+            "0c0128bdc6": [
+              "src/pso/misc/TPlayerBattleCtrl4P_80311800.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 3636,
+              "path": "src/pso/misc/TPlayerBattleCtrl4P.cpp"
+            },
+            {
+              "row": 3637,
+              "path": "src/pso/misc/TPlayerBattleCtrl4P_80311800.cpp"
+            },
+            {
+              "row": 4447,
+              "path": "include/pso/misc/TPlayerBattleCtrl4P.h"
+            }
+          ],
+          "proven_scope": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/quest/QuestOpcodeHandlers.cpp",
+          "sizing_calls_retained": 1,
+          "historical_commit_paths": {
+            "0c0128bdc6": [
+              "src/pso/quest/QuestOpcodeHandlers.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 6742,
+              "path": "src/pso/quest/QuestOpcodeHandlers.cpp"
+            }
+          ],
+          "proven_scope": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/city/TCheckRoomSequence.cpp",
+          "sizing_calls_retained": 4,
+          "historical_commit_paths": {
+            "0c0128bdc6": [
+              "src/pso/misc/TCheckRoomSequence.cpp"
+            ],
+            "5aae2d4b85": [
+              "src/pso/misc/TCheckRoomSequence.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 2452,
+              "path": "include/pso/misc/TCheckRoomSequence.h"
+            },
+            {
+              "row": 2699,
+              "path": "src/pso/misc/TCheckRoomSequence.cpp"
+            }
+          ],
+          "proven_scope": "Three room choice handlers use the actual TWindowMenu at +0x3C for creation, size, alignment, decision, cancel and close.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/city/TShopArmorListWindow.cpp",
+          "sizing_calls_retained": 1,
+          "historical_commit_paths": {
+            "0c0128bdc6": [
+              "src/pso/misc/TShopArmorListWindow.cpp"
+            ],
+            "cf65d957cd": [
+              "src/pso/misc/TShopArmorListWindow.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5958,
+              "path": "src/pso/misc/TShopArmorListWindow.cpp"
+            }
+          ],
+          "proven_scope": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/city/TShopEquipmentGearSequence.cpp",
+          "sizing_calls_retained": 1,
+          "historical_commit_paths": {
+            "0c0128bdc6": [
+              "src/pso/misc/TShopEquipmentGearSequence_8021B438.cpp"
+            ],
+            "4b2fa505a6": [
+              "src/pso/misc/TShopEquipmentGearSequence_8021B438.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 2261,
+              "path": "src/pso/misc/TShopEquipmentGearSequence.cpp"
+            },
+            {
+              "row": 2498,
+              "path": "src/pso/misc/TShopEquipmentGearSequence_8021B438.cpp"
+            },
+            {
+              "row": 2509,
+              "path": "include/pso/misc/TShopEquipmentGearSequence.h"
+            }
+          ],
+          "proven_scope": "Use choice_menu at +0x2C throughout the buy/sell menu lifecycle.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/city/TShopEquipmentListWindow.cpp",
+          "sizing_calls_retained": 1,
+          "historical_commit_paths": {
+            "0c0128bdc6": [
+              "src/pso/misc/TShopEquipmentListWindow.cpp"
+            ],
+            "cf65d957cd": [
+              "src/pso/misc/TShopEquipmentListWindow.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5959,
+              "path": "src/pso/misc/TShopEquipmentListWindow.cpp"
+            }
+          ],
+          "proven_scope": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/city/TShopEquipmentSellWindow.cpp",
+          "sizing_calls_retained": 2,
+          "historical_commit_paths": {
+            "0c0128bdc6": [
+              "src/pso/misc/TShopEquipmentSellWindow.cpp"
+            ],
+            "5aae2d4b85": [
+              "src/pso/misc/TShopEquipmentSellWindow.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5803,
+              "path": "src/pso/misc/TShopEquipmentSellWindow.cpp"
+            }
+          ],
+          "proven_scope": "The two confirmation producers use a menu pointer at +0x390 and release it with the normal menu lifetime.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/city/TShopEquipmentSequence.cpp",
+          "sizing_calls_retained": 1,
+          "historical_commit_paths": {
+            "0c0128bdc6": [
+              "src/pso/misc/TShopEquipmentSequence.cpp"
+            ],
+            "4b2fa505a6": [
+              "src/pso/misc/TShopEquipmentSequence.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 2618,
+              "path": "include/pso/misc/TShopEquipmentSequence.h"
+            },
+            {
+              "row": 2646,
+              "path": "src/pso/misc/TShopEquipmentSequence.cpp"
+            }
+          ],
+          "proven_scope": "Use choice_menu at +0x2C throughout the buy/sell menu lifecycle.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/city/TShopItemListWindow.cpp",
+          "sizing_calls_retained": 2,
+          "historical_commit_paths": {
+            "0c0128bdc6": [
+              "src/pso/misc/TShopItemListWindow.cpp"
+            ],
+            "cf65d957cd": [
+              "src/pso/misc/TShopItemListWindow.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5685,
+              "path": "src/pso/misc/TShopItemListWindow.cpp"
+            }
+          ],
+          "proven_scope": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/city/TShopItemTecSequence.cpp",
+          "sizing_calls_retained": 1,
+          "historical_commit_paths": {
+            "0c0128bdc6": [
+              "src/pso/misc/TShopItemTecSequence.cpp"
+            ],
+            "4b2fa505a6": [
+              "src/pso/misc/TShopItemTecSequence.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 2630,
+              "path": "include/pso/misc/TShopItemTecSequence.h"
+            },
+            {
+              "row": 2647,
+              "path": "src/pso/misc/TShopItemTecSequence.cpp"
+            }
+          ],
+          "proven_scope": "Use choice_menu at +0x30 throughout the buy/sell menu lifecycle.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp",
+          "sizing_calls_retained": 1,
+          "historical_commit_paths": {
+            "0c0128bdc6": [
+              "src/pso/ui/TAdSinglePlyChrSelectGC_802D3AB8.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 2302,
+              "path": "src/pso/ui/TAdSinglePlyChrSelectGC.cpp"
+            },
+            {
+              "row": 2393,
+              "path": "src/pso/ui/TAdSinglePlyChrSelectGC_802D3AB8.cpp"
+            },
+            {
+              "row": 2557,
+              "path": "include/pso/ui/TAdSinglePlyChrSelectGC.h"
+            }
+          ],
+          "proven_scope": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TObjNewFloorWin.cpp",
+          "sizing_calls_retained": 1,
+          "historical_commit_paths": {
+            "0c0128bdc6": [
+              "src/pso/quest/TQuestListVM_80073DC4.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5514,
+              "path": "include/pso/ui/TObjNewFloorWin.h"
+            },
+            {
+              "row": 5653,
+              "path": "include/pso/TObjNewFloorWin.h"
+            },
+            {
+              "row": 5831,
+              "path": "src/pso/quest/TQuestListVM_80073DC4.cpp"
+            },
+            {
+              "row": 5851,
+              "path": "src/pso/ui/TObjNewFloorWin.cpp"
+            }
+          ],
+          "proven_scope": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowMakeTeam.cpp",
+          "sizing_calls_retained": 2,
+          "historical_commit_paths": {
+            "0c0128bdc6": [
+              "src/pso/misc/TWindowMakeTeam.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5717,
+              "path": "include/pso/misc/TWindowMakeTeam.h"
+            },
+            {
+              "row": 5917,
+              "path": "src/pso/misc/TWindowMakeTeam.cpp"
+            }
+          ],
+          "proven_scope": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp",
+          "sizing_calls_retained": 0,
+          "historical_commit_paths": {
+            "cf65d957cd": [
+              "src/pso/misc/TWindowShortListCtrl_8026E7DC.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5568,
+              "path": "src/pso/misc/TWindowShortListCtrl_8026E7DC.cpp"
+            }
+          ],
+          "proven_scope": "Keep the factory result and its inherited open timer typed.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/ui/window/TWindowSubComCard_80265410.cpp",
+          "sizing_calls_retained": 1,
+          "historical_commit_paths": {
+            "0c0128bdc6": [
+              "src/pso/misc/TWindowSubComCard_80265410.cpp"
+            ],
+            "5aae2d4b85": [
+              "src/pso/misc/TWindowSubComCard_80265410.cpp"
+            ],
+            "4b2fa505a6": [
+              "src/pso/misc/TWindowSubComCard_80265410.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 5854,
+              "path": "src/pso/misc/TWindowSubComCard_80265410.cpp"
+            }
+          ],
+          "proven_scope": "Size computation uses the actual TWindowMenu, retained signed count field, +0x7C height and shared target geometry; yes/no factory and inherited card list height use the same type.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/unk/TLobby_800726F0.cpp",
+          "sizing_calls_retained": 1,
+          "historical_commit_paths": {
+            "0c0128bdc6": [
+              "src/pso/misc/TLobby_800726F0.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 6058,
+              "path": "src/pso/misc/TLobby_800726F0.cpp"
+            }
+          ],
+          "proven_scope": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/unk/TLobby_801C25B4.cpp",
+          "sizing_calls_retained": 1,
+          "historical_commit_paths": {
+            "0c0128bdc6": [
+              "src/pso/misc/TLobby_801C25B4.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 1615,
+              "path": "include/pso/misc/TLobby_801C25B4.h"
+            },
+            {
+              "row": 4510,
+              "path": "src/pso/misc/TLobby_801C25B4.cpp"
+            }
+          ],
+          "proven_scope": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses.",
+          "whole_row_reconciled": false
+        },
+        {
+          "current_owner": "src/pso/unk/TLobby_80299C4C.cpp",
+          "sizing_calls_retained": 1,
+          "historical_commit_paths": {
+            "0c0128bdc6": [
+              "src/pso/misc/TLobby_80299A60.cpp"
+            ]
+          },
+          "ledger_rows": [
+            {
+              "row": 6061,
+              "path": "src/pso/misc/TLobby_80299A60.cpp"
+            }
+          ],
+          "proven_scope": "Use TWindowMenu receiver for the exact sizing call(s). Existing flow and providers stay at their retail addresses.",
+          "whole_row_reconciled": false
+        }
+      ]
+    },
+    "gal_gryphon": {
+      "canonical_parent": "9f5ed767688d58f3785a9c8f8cad729786a86456",
+      "candidate": "e7acafc59871b3ac3b628328ac5abdc574599016",
+      "candidate_tree": "b669a5e14444b047f042c708ae3b0c0a52bb0556",
+      "original_fork": "3342e42983",
+      "audit": "/dev/shm/gm-source-retention.IZcYKe/historical-source-audit.json",
+      "historical_donors": [
+        "9be3f5e6c7f7cdd4a2e7c93e2efdfd77f9f70177",
+        "a93d6a1711"
+      ],
+      "strict_renames": {
+        "0x80324F4C": "__ct__22TBoss5GryphonLightningFP7TObjectfPC3Vec",
+        "0x80326314": "__ct__26TBoss5GryphonLightningHornFP7TObjectPC3Vecl",
+        "0x803263A4": "spawn_ground_lightning__12TBoss8DragonFP7TObjectPC3Vecl",
+        "0x80351C18": "__ct__26TBoss5GryphonLightningWingFP7TObjectPC3VecP3VecPC3Vecll"
+      },
+      "scope_details": "directive-scope-evidence.json",
+      "rows": [
+        {
+          "row": 352,
+          "historical_path": "include/pso/TBoss5GryphonLightning.h",
+          "historical_blob": "12d7bbac24333187aac3cfd1df252116363aab28",
+          "owner": "include/pso/boss/galgryphon/TBoss5GryphonLightning.h",
+          "validated_blob": "1e8922c3634c63ad897b3cc86718e999d08c7f50",
+          "status": "complete native source replay",
+          "proof": "Recovered the base constructor and all historical field, offset and size assertions at the current native header."
+        },
+        {
+          "row": 353,
+          "historical_path": "include/pso/TBoss5GryphonLightningHorn.h",
+          "historical_blob": "0d21c6a95d5205827fa89445888cbd89df51523d",
+          "owner": "include/pso/boss/galgryphon/TBoss5GryphonLightningHorn.h",
+          "validated_blob": "1bb0f8a7eb879221786747f453b8bf151988639d",
+          "status": "complete native source replay",
+          "proof": "Recovered the Horn constructor, velocity/angle storage and exact layout assertions at the current native header."
+        },
+        {
+          "row": 354,
+          "historical_path": "include/pso/TBoss5GryphonLightningWing.h",
+          "historical_blob": "5273a267e5733f3f62b8b1e6d6841e7ead82a517",
+          "owner": "include/pso/boss/galgryphon/TBoss5GryphonLightningWing.h",
+          "validated_blob": "4904bfb4b2368e1762818a3ef462763b57691d69",
+          "status": "complete native source replay",
+          "proof": "Recovered the Wing constructor, timing storage and exact layout assertions at the current native header."
+        },
+        {
+          "row": 393,
+          "historical_path": "include/pso/boss/TBoss5GryphonLightningWing.h",
+          "historical_blob": "64c7d66ca6fb62493d5e9d9adc7b3f40f399f428",
+          "owner": "include/pso/boss/galgryphon/TBoss5GryphonLightningWing.h",
+          "validated_blob": "4904bfb4b2368e1762818a3ef462763b57691d69",
+          "status": "complete native source replay",
+          "proof": "Removed obsolete C wrapper declarations and retained both typed spawn helper declarations in the consolidated Wing header."
+        },
+        {
+          "row": 428,
+          "historical_path": "include/pso/boss/TObjBoss5Ctrl.h",
+          "historical_blob": "0c4c31b26130d0e23c3a02680afe3eb0c8665ec5",
+          "owner": "src/pso/boss/galgryphon/TObjBoss5Ctrl.cpp",
+          "validated_blob": "51d578be0b4ce0629edb3ae5f5b72e3f646ec606",
+          "status": "unsettled in this batch",
+          "proof": "Excluded from the lightning and complete matched pragma scopes. A full source comparison was not completed."
+        },
+        {
+          "row": 499,
+          "historical_path": "src/pso/boss/Boss5GryphonConstants.cpp",
+          "historical_blob": "2f593035b9b5d43d4a275d8804a2912abdad32df",
+          "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+          "validated_blob": "5c301940b5f3e87ad4758d34f90de2db271c0146",
+          "status": "unsettled in this batch",
+          "proof": "Excluded from the lightning and complete matched pragma scopes. A full source comparison was not completed."
+        },
+        {
+          "row": 516,
+          "historical_path": "src/pso/boss/TBoss5GryphonLightningHorn.cpp",
+          "historical_blob": "dd75b3bc93107636ebb5832631f5fe1f24afce3d",
+          "owner": "src/pso/boss/galgryphon/TBoss5GryphonLightningHorn.cpp",
+          "validated_blob": "215f498ce2ea70c445566907dfb03db159625ca5",
+          "status": "complete native source replay",
+          "proof": "Recovered native Horn construction and typed ground factory. The canonical CsnHit query and source-owned scalar storage remain exact."
+        },
+        {
+          "row": 517,
+          "historical_path": "src/pso/boss/TBoss5GryphonLightningWing.cpp",
+          "historical_blob": "39bede1b9e3000adead701c7b30d466cb8f1542d",
+          "owner": "src/pso/boss/galgryphon/TBoss5GryphonLightningWing.cpp",
+          "validated_blob": "6b812959ee178a4959c05f7478fa58480a6bc2fb",
+          "status": "complete native source replay",
+          "proof": "Recovered native Wing task, construction and typed endpoint factories, retaining mutable middle-point borrow and real base-subobject view."
+        },
+        {
+          "row": 547,
+          "historical_path": "src/pso/boss/TObjBoss5Ctrl.cpp",
+          "historical_blob": "40482d47a53104950e7b200573883b82f7b5a551",
+          "owner": "src/pso/boss/galgryphon/TObjBoss5Ctrl.cpp",
+          "validated_blob": "51d578be0b4ce0629edb3ae5f5b72e3f646ec606",
+          "status": "unsettled in this batch",
+          "proof": "Excluded from the lightning and complete matched pragma scopes. A full source comparison was not completed."
+        },
+        {
+          "row": 648,
+          "historical_path": "src/pso/unk/data_805D8D28.cpp",
+          "historical_blob": "84d27c50a528bc0dc417e60c22c40fc036b00d60",
+          "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+          "validated_blob": "5c301940b5f3e87ad4758d34f90de2db271c0146",
+          "status": "unsettled in this batch",
+          "proof": "Excluded from the lightning and complete matched pragma scopes. A full source comparison was not completed."
+        },
+        {
+          "row": 667,
+          "historical_path": "src/pso/unk/text_80324F4C.cpp",
+          "historical_blob": "5fbb03562de04b4b02d061825370536b7a81a748",
+          "owner": "src/pso/boss/galgryphon/TBoss5GryphonLightning.cpp",
+          "validated_blob": "fffb30e726241b0557d7faacb572dc3e094f0457",
+          "status": "complete native source replay",
+          "proof": "Recovered native base construction at the relocated owner, with class name, vector and emitter initialization, four points and exact local scalar storage."
+        },
+        {
+          "row": 705,
+          "historical_path": "src/pso/unk/text_80325F7C.cpp",
+          "historical_blob": "b40e0d1f7e6a51c052db64ecc9b0db12956ed2bf",
+          "owner": "src/pso/boss/galgryphon/TBoss5GryphonLightningHorn.cpp",
+          "validated_blob": "215f498ce2ea70c445566907dfb03db159625ca5",
+          "status": "already retained in current owners",
+          "proof": "TBoss5GryphonLightningHorn.cpp already uses normalize_vector_checked in both sites and the typed CsnHit ground query."
+        },
+        {
+          "row": 750,
+          "historical_path": "src/pso/boss/TBoss5GryphonDemo.cpp",
+          "historical_blob": "d4aa69cd8f60af908014be8e711760ad02823351",
+          "owner": "src/pso/boss/galgryphon/TBoss5GryphonDemo.cpp",
+          "validated_blob": "165aeced29ce5f1743b83ffd9e1e9bd18a1340f4",
+          "status": "already retained in current owners",
+          "proof": "TBoss5GryphonDemo.cpp already uses CameraPlayback for scripted flags/bank/index/frame and calls its cache_target_and_forward method."
+        },
+        {
+          "row": 966,
+          "historical_path": "src/pso/unk/text_803554F0.cpp",
+          "historical_blob": "90bb3026fe294547850fdb3eee9945666712b397",
+          "owner": "src/pso/boss/galgryphon/TBoss5GryphonTornado.cpp",
+          "validated_blob": "09cb96387f517842c9215fe37776b3247637d726",
+          "status": "already retained in current owners",
+          "proof": "TBoss5GryphonTornado::sub_803554F0 already calls normalize_vector_checked."
+        },
+        {
+          "row": 982,
+          "historical_path": "src/pso/boss/TBoss5GryphonShockWave.cpp",
+          "historical_blob": "fa06f78d4427f340dda5e8a616a6ddf7113cc4fb",
+          "owner": "src/pso/boss/galgryphon/TBoss5GryphonShockWave.cpp",
+          "validated_blob": "6fb50fe8a0eab7fe5b7781f42a3f8eba11275aa7",
+          "status": "already retained in current owners",
+          "proof": "ShockWave already uses the typed BML resource globals/accessors, native state query, positional sound, scalar literals and normalize_vector_checked."
+        },
+        {
+          "row": 990,
+          "historical_path": "include/pso/boss/TBoss5Gryphon.h",
+          "historical_blob": "fc65ff31ea4e3a012ec91d6a5557a702ed373c2f",
+          "owner": "include/pso/boss/galgryphon/TBoss5Gryphon.h",
+          "validated_blob": "e6ddf54e3e06dabc2b19f9f5b2f4da2062fcfc30",
+          "status": "unsettled in this batch",
+          "proof": "Excluded from the lightning and complete matched pragma scopes. A full source comparison was not completed."
+        },
+        {
+          "row": 992,
+          "historical_path": "src/pso/boss/Boss5GryphonBehavior.cpp",
+          "historical_blob": "b719d83b9fad043a50c574b38b53c31c387fe858",
+          "owner": "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+          "validated_blob": "5c301940b5f3e87ad4758d34f90de2db271c0146",
+          "status": "scoped historical source replay",
+          "proof": "The three current behavior callers pass typed object/vector arguments to the native lightning helpers. Removed 268 directive lines in 57 complete scopes identified from the historical donor. Other behavior hunks remain outside this proof."
+        },
+        {
+          "row": 993,
+          "historical_path": "src/pso/boss/TBoss5GryphonSnarl.cpp",
+          "historical_blob": "2aca42496b1192763259f4ecb4a0f5b785f61c98",
+          "owner": "src/pso/boss/galgryphon/TBoss5GryphonSnarl.cpp",
+          "validated_blob": "e4def56fc13adedb56de676569dde9cbde1ad8da",
+          "status": "already retained in current owners",
+          "proof": "Snarl already uses typed BML model retrieval, no-argument state setup, safe_free and native BmlResource deletion."
+        },
+        {
+          "row": 998,
+          "historical_path": "include/pso/boss/TBoss5GryphonSnarl.h",
+          "historical_blob": "85a93e6a0e05aaee1480f05808fafde5cb79e863",
+          "owner": "src/pso/boss/galgryphon/TBoss5GryphonSnarl.cpp",
+          "validated_blob": "e4def56fc13adedb56de676569dde9cbde1ad8da",
+          "status": "already retained in current owners",
+          "proof": "The current Snarl header/definition already has the no-argument state function, with the historical duplicate declarations consolidated."
+        },
+        {
+          "row": 1033,
+          "historical_path": "src/pso/boss/TObjBoss5PillarCtrl.cpp",
+          "historical_blob": "e7b2cd314b44e789c5b1df054e2234a1df5def98",
+          "owner": "src/pso/boss/galgryphon/TObjBoss5PillarCtrl.cpp",
+          "validated_blob": "3489721d87e00fd28c3b92f7d1a61cb7a40e078c",
+          "status": "already retained in current owners",
+          "proof": "PillarCtrl already uses true ::operator new[]/::operator delete[] and the sound provider."
+        },
+        {
+          "row": 1071,
+          "historical_path": "src/pso/boss/TBoss5GryphonTornado.cpp",
+          "historical_blob": "84b5a18b54712f932d234e6c9ed9b805353f0d10",
+          "owner": "src/pso/boss/galgryphon/TBoss5GryphonTornado.cpp",
+          "validated_blob": "09cb96387f517842c9215fe37776b3247637d726",
+          "status": "already retained in current owners",
+          "proof": "Tornado already uses typed ground contact, BML accessors/resources and the persistent sound provider."
+        },
+        {
+          "row": 1072,
+          "historical_path": "src/pso/boss/TObjBoss5Pillar.cpp",
+          "historical_blob": "86535b15fb0590bad205e413a9665af519efc83a",
+          "owner": "src/pso/boss/galgryphon/TObjBoss5Pillar.cpp",
+          "validated_blob": "5fac6ff91ac1c2d675f1573d5b1b498a71ba9476",
+          "status": "already retained in current owners",
+          "proof": "Pillar already uses set_current_texture_list and source-owned 0.0f/1.0f values."
+        },
+        {
+          "row": 1086,
+          "historical_path": "src/pso/boss/TBoss5GryphonColli.cpp",
+          "historical_blob": "a7621e4c9076d68b1e20c6fcc8bae7d4ab154b6b",
+          "owner": "src/pso/boss/galgryphon/TBoss5GryphonColli.cpp",
+          "validated_blob": "d4c01c7afce5090431d56adf5f19566f8c0d23da",
+          "status": "already retained in current owners",
+          "proof": "The relocated collision constructor uses ::operator new[](body_count * sizeof(CollisionBody)); the old segment array is the typed bodies member."
+        },
+        {
+          "row": 1119,
+          "historical_path": "include/pso/boss/Boss5GryphonBehavior.h",
+          "historical_blob": "4d4f4ad9760453600b7ad1f9d2faeaa16c25a594",
+          "owner": "include/pso/boss/galgryphon/Boss5GryphonBehavior.h",
+          "validated_blob": "13492c7ac2e45717b3590ae2428bfa6ea1e1b5e5",
+          "status": "already retained in current owners",
+          "proof": "The header already declares the NJS_OBJECT callback and typed G_GalGryphonBossActions_6xA0 packet; TBoss5Gryphon owns apply_remote_action as a method."
+        },
+        {
+          "row": 1127,
+          "historical_path": "src/pso/boss/TBoss5GryphonLightningEff.cpp",
+          "historical_blob": "355f2bd08824e44dcb9573b77edd6ac00bd6744f",
+          "owner": "src/pso/boss/galgryphon/TBoss5GryphonLightningEff.cpp",
+          "validated_blob": "ee8ecccceb291fa4d7bfa2d753044402f66ef2dd",
+          "status": "already retained in current owners",
+          "proof": "LightningEff already invokes normalize_vector_checked for both vector accumulations."
+        }
+      ]
+    },
+    "indirect_scene": {
+      "head": "7c4ff11d41a000639573bd14b5b01b75d342a7b2",
+      "parent": "9f5ed767688d58f3785a9c8f8cad729786a86456",
+      "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+      "source_donors": [
+        "fe76519e684dbc04621f67ec73e36819f40f2bcf",
+        "e4c8535d9eb3aa1a7df9475d31558661ef201ecf",
+        "4ef599b4f33c48ee82a3be3e14eacbe78ca0047a",
+        "3163dee594b7f9a520da8f38abaf7789266fdd25",
+        "4472142234822a0cf39e17dbd65772630a851f33"
+      ],
+      "source_paths": [
+        {
+          "path": "config/GPOE8P/psov3/config.yml",
+          "historical_path": null,
+          "recovery": "Symbol spelling and force-active metadata follow the compiler-emitted indirect effect functions",
+          "related_ledger_rows": [
+            {
+              "row": 154,
+              "fork_path": "config/GPOE8P/psov3/config.yml",
+              "covered_scope": "indirect scene effect interfaces only",
+              "other_edits_in_row": "unassessed"
+            }
+          ]
+        },
+        {
+          "path": "config/GPOE8P/psov3/symbols.txt",
+          "historical_path": null,
+          "recovery": "Symbol spelling and force-active metadata follow the compiler-emitted indirect effect functions",
+          "related_ledger_rows": [
+            {
+              "row": 157,
+              "fork_path": "config/GPOE8P/psov3/symbols.txt",
+              "covered_scope": "indirect scene effect interfaces only",
+              "other_edits_in_row": "unassessed"
+            }
+          ]
+        },
+        {
+          "path": "include/pso/effect/TEffIndirectCtrl.h",
+          "historical_path": "include/pso/effect/TEffIndirectCtrl.h",
+          "recovery": "Indirect recipe and texture source layouts, borrowed texture pixels and typed scene effect binding",
+          "related_ledger_rows": [
+            {
+              "row": 4924,
+              "fork_path": "include/pso/effect/TEffIndirectCtrl.h",
+              "covered_scope": "indirect scene effect interfaces only",
+              "other_edits_in_row": "unassessed"
+            }
+          ]
+        },
+        {
+          "path": "include/pso/effect/TEffIndirectCtrl_802A88AC.h",
+          "historical_path": "include/pso/effect/TEffIndirectCtrl_802A88AC.h",
+          "recovery": "Texture sampling and update helper signatures",
+          "related_ledger_rows": [
+            {
+              "row": 4925,
+              "fork_path": "include/pso/effect/TEffIndirectCtrl_802A88AC.h",
+              "covered_scope": "indirect scene effect interfaces only",
+              "other_edits_in_row": "unassessed"
+            }
+          ]
+        },
+        {
+          "path": "include/pso/player/TObjPlayer_802A8368.h",
+          "historical_path": "include/pso/player/TObjPlayer_802A8368.h",
+          "recovery": "Existing controller passed to GPU setup by native pointer",
+          "related_ledger_rows": [
+            {
+              "row": 4015,
+              "fork_path": "include/pso/player/TObjPlayer_802A8368.h",
+              "covered_scope": "indirect scene effect interfaces only",
+              "other_edits_in_row": "unassessed"
+            }
+          ]
+        },
+        {
+          "path": "include/pso/system/scene/TScene.h",
+          "historical_path": "include/pso/misc/TScene.h",
+          "recovery": "Indirect object helpers replace fake scene methods",
+          "related_ledger_rows": [
+            {
+              "row": 5295,
+              "fork_path": "include/pso/misc/TScene.h",
+              "covered_scope": "indirect scene effect interfaces only",
+              "other_edits_in_row": "unassessed"
+            }
+          ]
+        },
+        {
+          "path": "include/pso/unk/TUnk_804CCB28.h",
+          "historical_path": "include/pso/misc/TUnk_804CCB28.h",
+          "recovery": "RaFoie scene effect handle read through owner type",
+          "related_ledger_rows": [
+            {
+              "row": 4471,
+              "fork_path": "include/pso/misc/TUnk_804CCB28.h",
+              "covered_scope": "indirect scene effect interfaces only",
+              "other_edits_in_row": "unassessed"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/effect/TEffIndirectCtrl.cpp",
+          "historical_path": "src/pso/effect/TEffIndirectCtrl.cpp",
+          "recovery": "Typed owned images, signed motion recipes, flush and sampling APIs, and native effect receiver dispatch",
+          "related_ledger_rows": [
+            {
+              "row": 4924,
+              "fork_path": "include/pso/effect/TEffIndirectCtrl.h",
+              "covered_scope": "indirect scene effect interfaces only",
+              "other_edits_in_row": "unassessed"
+            },
+            {
+              "row": 4936,
+              "fork_path": "src/pso/effect/TEffIndirectCtrl.cpp",
+              "covered_scope": "indirect scene effect interfaces only",
+              "other_edits_in_row": "unassessed"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/system/scene/TScene.cpp",
+          "historical_path": "src/pso/misc/TScene.cpp",
+          "recovery": "Static and animated scene material paths pass native indirect handles",
+          "related_ledger_rows": [
+            {
+              "row": 5295,
+              "fork_path": "include/pso/misc/TScene.h",
+              "covered_scope": "indirect scene effect interfaces only",
+              "other_edits_in_row": "unassessed"
+            },
+            {
+              "row": 5299,
+              "fork_path": "src/pso/misc/TScene.cpp",
+              "covered_scope": "indirect scene effect interfaces only",
+              "other_edits_in_row": "unassessed"
+            }
+          ]
+        },
+        {
+          "path": "src/pso/technique/TTecRaFoie.cpp",
+          "historical_path": "src/pso/misc/TTecRaFoie.cpp",
+          "recovery": "RaFoie producer and static/animated material enable and disable use the same typed scene handle",
+          "related_ledger_rows": [
+            {
+              "row": 4236,
+              "fork_path": "include/pso/misc/TTecRaFoie.h",
+              "covered_scope": "indirect scene effect interfaces only",
+              "other_edits_in_row": "unassessed"
+            },
+            {
+              "row": 4382,
+              "fork_path": "src/pso/misc/TTecRaFoie.cpp",
+              "covered_scope": "indirect scene effect interfaces only",
+              "other_edits_in_row": "unassessed"
+            }
+          ]
+        }
+      ],
+      "canonical_attributes_retained": [
+        "Existing scene load/release callbacks",
+        "Typed base and derived constructors",
+        "Current resource loading and texture providers",
+        "Existing combined translation unit, original functions and all generated data"
+      ],
+      "sources_already_present": [
+        {
+          "historical_donor": "f7b5637d97",
+          "owner": "src/pso/object/fence/TOVS2Wall01.cpp",
+          "scope": "The Seabed native destructors and attack overrides are present. Both trees still carry the hand-written constructors."
+        },
+        {
+          "historical_donor": "f9b6b2624f",
+          "owner": "src/pso/object/wreck/TOWreckAncient.cpp",
+          "scope": "Ancient wreck shared resources, collision templates and compiler-generated virtual tables have consolidated native owners."
+        },
+        {
+          "historical_donor": "2312413bf5 / e51054c8cf / c6f1ac64bc",
+          "owner": "src/pso/npc",
+          "scope": "The audited NPC BML and GVM resource methods and filename ownership already follow the corrected class boundaries."
+        }
+      ],
+      "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3"
+    },
+    "pragmas": {
+      "donor": "a93d6a1711a24df25402651dcc6fe25c9c2b1777",
+      "files": 28,
+      "directives": 723,
+      "candidate_paths": [
+        "src/musyx/runtime/Chorus/chorus_fx.c",
+        "src/pso/boss/dragon/TBoss1Dragon.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+        "src/pso/camera/TCameraCtrl_803D6538.cpp",
+        "src/pso/camera/TCameraCtrl_803D6960.cpp",
+        "src/pso/camera/TCameraCtrl_803D749C.cpp",
+        "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+        "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+        "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+        "src/pso/map/CsnQuery.cpp",
+        "src/pso/map/TSetManager.cpp",
+        "src/pso/math/MatrixVector.cpp",
+        "src/pso/network/TPlyMeetUserExtension_801DAC6C.cpp",
+        "src/pso/network/TProtocol.cpp",
+        "src/pso/npc/TNpcPlayer.cpp",
+        "src/pso/object/TObjChip.cpp",
+        "src/pso/object/ambient/TObjLight_803DF220.cpp",
+        "src/pso/player/TObjPlayer_801542CC.cpp",
+        "src/pso/player/TObjPlayer_801C7430.cpp",
+        "src/pso/player/TObjPlayer_801D2E20.cpp",
+        "src/pso/player/TObjPlayer_803E21B8.cpp",
+        "src/pso/render/ChunkMaterialState.cpp",
+        "src/pso/render/GinjaMaterial.cpp",
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+        "src/pso/unk/TLobby_8023F734.cpp",
+        "src/pso/unk/TLobby_802409AC.cpp",
+        "src/pso/unk/text_803D96A8.cpp",
+        "src/pso/unk/text_803E2F28.cpp"
+      ],
+      "original_donor_occurrences": 939,
+      "retained_due_to_match": {
+        "resolve_player_box_contact": "Floating-point contraction scope retained",
+        "lobby_and_game_entry_assignment": "Per-function scheduling directive retained"
+      }
+    }
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "source": "647cf10b15825c09f9cc0c0b2786f28b4e6fde74",
+  "previous_source": "3d651c8b70002b03f02ed8c0bddad537c8bf7480",
+  "upstream": "5a4e7ced56fe7072359b6d279e94f4be3b8453c0",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "source_paths": 1181,
+  "changed_paths": [
+    "include/pso/boss/olgaflow/TBoss6PlotFalz.h",
+    "include/pso/boss/olgaflow/TBoss6Type1.h",
+    "src/pso/boss/olgaflow/TBoss6GravBall.cpp",
+    "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+    "src/pso/boss/olgaflow/TBoss6Rock.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2.cpp"
+  ],
+  "author": {
+    "name": "matthewlewisnewton",
+    "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+    "coauthor_trailers": 0
+  },
+  "layouts": {
+    "collision_body_bytes": 44,
+    "phase_one_collision_bodies": 7,
+    "phase_two_collision_bodies": 3,
+    "phase_one_emitter_slots": 4,
+    "phase_one_emitter_slot_offset": 1272,
+    "phase_two_emitter_slots": 14,
+    "phase_two_emitter_slot_offset": 1916,
+    "phase_two_contact_index_offset": 1312,
+    "phase_two_contact_delta_offset": 1316,
+    "relocation_call": "0x802AC724"
+  },
+  "historical_comparison": {
+    "prior_open_rows": 454,
+    "open_rows": 454,
+    "partial_rows": [
+      {
+        "row": 521,
+        "description": "The body updates and activation masks use the real seven CollisionBody records and captured Vec banks. The arena push uses the player attack virtual and shares the typed relocation call. Emitter placement, creation and release use phase-one slot pointers.",
+        "historical_path": "src/pso/boss/TBoss6Type1.cpp",
+        "current_path": "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+        "fork_blob": "03e7d76a5de112a47beb2df7f5dd1ce14823f9c2",
+        "current_blob": "ccb13e38de512a6862a90a05fa25d3bb9316262c",
+        "authored_diff_sha256": "3a7a3b68e228029980f42c79e4f683f7c24aab6dc2609e4efe985e022f7219f2"
+      },
+      {
+        "row": 738,
+        "description": "Four particle slots use the actual TParticleCtrl pointer layout at 0x4F8, while the current action and motion names are retained.",
+        "historical_path": "include/pso/boss/TBoss6Type1.h",
+        "current_path": "include/pso/boss/olgaflow/TBoss6Type1.h",
+        "fork_blob": "dc2101a829d5c6b5b8b87acfcc7655f81ab90839",
+        "current_blob": "245dcba146bc1ceef42945a268745d43374575a1",
+        "authored_diff_sha256": "bd5fd9d6bcc8e6ebcd700c41b5fdfbf2829ca7887e9030b5b46caf55273ed2aa"
+      },
+      {
+        "row": 906,
+        "description": "The player warp, equipment and camera paths operate on TObjPlayer. The shared relocation entry point retains its C label and uses the native position, collision flags and actor flags. Texture-strip allocation and other plot changes remain under review.",
+        "historical_path": "src/pso/boss/TBoss6PlotFalz.cpp",
+        "current_path": "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+        "fork_blob": "b77e54ffbf137bc5d8a2c0af2de03da0e47b0c25",
+        "current_blob": "e46d5880c55b934f5b025f7cc7deab3aa3e5cebe",
+        "authored_diff_sha256": "45cb199785a8349c2ac8a13223c454e118c4aac2fd63b7fd89962a9d1092fdfa"
+      },
+      {
+        "row": 1076,
+        "description": "The three collision records use the canonical matrix transform, the lower contact uses Vec directly, and 14 emitter slots share the phase-two attachment table for lifecycle and node placement.",
+        "historical_path": "src/pso/boss/TBoss6Type2.cpp",
+        "current_path": "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+        "fork_blob": "af06166ae4643325ade2517569b67c4b636a4d42",
+        "current_blob": "2461def387398148d76813ab9f4bb56a68d26087",
+        "authored_diff_sha256": "98b6abc2822b7f75bd5cb5cd09ae92043e7ac64106cd90ffdd243388a0f95dee"
+      }
+    ]
+  },
+  "validation": {
+    "stock": {
+      "baseline": "3d651c8b70002b03f02ed8c0bddad537c8bf7480",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "b7ef59ce5f05d52a0b99f5c11907f7321b16c8c6c24753265640cf14dc5d402b",
+      "report_sha256": "afea108a6b2788badcd428ac643e3a5d8577e9d09132d73cbdd1a6e6859f51cb"
+    },
+    "workspace": {
+      "baseline": "647cf10b15825c09f9cc0c0b2786f28b4e6fde74",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "afea108a6b2788badcd428ac643e3a5d8577e9d09132d73cbdd1a6e6859f51cb"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "4372108196819e81f879e8e4ac063c64f8fa97d5315c80647c110a6d2ce2d6f5"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "f2440654d2c228e93204dc70d46fe60356f72d188f12e769b562b6267cd9d666"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    },
+    "contact_runtime": {
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "checks": [
+        "Null relocation inputs, previous position, body flags and actor flags",
+        "All four phase-one collision activation modes",
+        "Seven phase-one and three phase-two transforms using their respective node tables",
+        "Lower contact selection, same-node delta and contact switch",
+        "Failed and duplicate emitter creation, owner and node positions, and idempotent release"
+      ],
+      "emulation": "The harness supplies matrix and paired-single vector operations and intercepts particle allocation, movement and release. It executes the boss and player state transitions from each image.",
+      "log_sha256": "568d8871a79f441b593542a02d0878d24ceeaa51b47d755ef12f4f958b172721",
+      "probe_sha256": "0b1e14c0cfce30eec951636691046faad9071ec5c1a0fd111e70a3a89e2b8157"
+    }
+  },
+  "fork_workspace": {
+    "overlay_paths": 130,
+    "overlay_patch_sha256": "deccf0c47860f8ed902f95bc8b3afca1ceea19b186a05e1b0b9cb19292a33cd2",
+    "updated_overlay_paths": [],
+    "force_active_names": 27033,
+    "archive_test_head": "18429753e2124b100dac7e01e331d8ee1496ce04",
+    "tested_materialized_tree": "9ca31c410989be7ab9ed9cdfd4b7fa4b85bb6bf3"
+  }
+}

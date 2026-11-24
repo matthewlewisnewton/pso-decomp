@@ -1,0 +1,524 @@
+{
+  "upstream": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "previous_source": "df9868bce839e3306b0081e71388031d5fe5f975",
+  "source": "0a6ad394941d2f3101b601df36eccd1403326608",
+  "source_tree": "174ce1e2f5ddde98882db74ccd5fd96cb8fcb2d4",
+  "source_review_files": 1020,
+  "recovered_paths": [
+    {
+      "path": "config/GPOE8P/psov3/config.yml",
+      "previous_blob": "100644:850ebc764ec9598688a4a2f09f05932eeea5eea8",
+      "review_blob": "100644:7467d4ec07d795090ef26756a72d9448a8aa6bc8",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "config/GPOE8P/psov3/symbols.txt",
+      "previous_blob": "100644:5f5dd8e78d38602ac6b89c2ae03149fcfc9c329e",
+      "review_blob": "100644:4142b58f681cf10ff2e7c6dc84d6669f9577d967",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "include/pso/system/TGStream.h",
+      "previous_blob": "100644:5efe627c037ec326d38f441c5126ae77dd3c3e2c",
+      "review_blob": "100644:8abe1a6266ebf862277458bd50b3311e9b40c9dc",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "include/pso/system/TLoadCtrl.h",
+      "previous_blob": "100644:bc091775ada263ef1cee8d53e00c9974046d836a",
+      "review_blob": "100644:1389c2fd20de99dcff4eccf141ba76f73d2013a8",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "include/pso/system/movie/TMovie.h",
+      "previous_blob": "100644:bffd94448cf5a57bf80559cac239c42bc92b3aa1",
+      "review_blob": "100644:e80aec1d5087a3da42122f2125002e5910adf955",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "include/pso/system/scene/TSceneMaterial.h",
+      "previous_blob": "100644:9dafda13e4632e14e0cbb9847138aacfc4a27b98",
+      "review_blob": "100644:c630d6964e5f7d779b94c5cf44d4fcabb59055e5",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/system/scene/TSceneSora.h",
+      "previous_blob": "100644:bb0a6b9479084e31a6f578c29ef2ea886dec8385",
+      "review_blob": "100644:8b0c4bae770fb1b5ff401c94fa771a378766f0aa",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/unk/text_80081A30.h",
+      "previous_blob": "100644:23566ab8e92c3b2f3ad78e12a81ec27b90dadaa7",
+      "review_blob": "100644:1fd2b8eba1bfbf3951dda4c159326fb93d8b8faa",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/unk/text_80320358.h",
+      "previous_blob": "100644:3467dc48343b33c832f3a2b53e052ed44d45772a",
+      "review_blob": "100644:668cd47b475fdaec95d318f5722c3bd4cc9b0f50",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "src/pso/effect/TEF_PvrWave.cpp",
+      "previous_blob": "100644:58f8e5e635e3ac95b04e1cb23567625dd6eec49d",
+      "review_blob": "100644:88657d7a8356ca406b2503da98ff9d648148eb35",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/effect/photon/PhotonBlastSummon.cpp",
+      "previous_blob": "100644:c133eca97933d7d95c29c41ee86522ba7151e94a",
+      "review_blob": "100644:0d6a1f1b4b10ae696a8124587c66832ab55c7054",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/render/reflection.cpp",
+      "previous_blob": "100644:3e5b0895fa05c1641b9ed011778785fcec6c9aae",
+      "review_blob": "100644:b64f17bb9816dfababe745a02717f63d273783c4",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/system/TGStream.cpp",
+      "previous_blob": "100644:f4d7d603858634b33efa16bd1dd038cc90c00730",
+      "review_blob": "100644:7dd97cf03734f4cc98649e8cc4c5f281a1f27fdf",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/system/TLoadCtrl.cpp",
+      "previous_blob": "100644:da43523afa910ef1d444104b7186910879532569",
+      "review_blob": "100644:8b68b6a31d3958d80567d92a1a74422f6600fcb1",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "src/pso/system/movie/TMovie.cpp",
+      "previous_blob": "100644:3de9ca5a1c57f4852dea2ffe31003263883b55a6",
+      "review_blob": "100644:e0ed14a39e1e2b8ec00fbcba9621feded8845983",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "upstream names retained"
+    },
+    {
+      "path": "src/pso/system/movie/TMovie_80143988.cpp",
+      "previous_blob": "100644:6b44b9958d078d4b1eb569ae33dc15a38e888b87",
+      "review_blob": "100644:3e464b3416a77f22190b0a7008bc5bca88e42cd6",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/system/scene/TScene.cpp",
+      "previous_blob": "100644:950fcff8278ad2d32050d6b95c74ebb378dc2681",
+      "review_blob": "100644:c64d5ff0a0e94e9408d693f505c0690aad5d34ca",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/system/scene/TSceneSora.cpp",
+      "previous_blob": "100644:442547626e9e5db720f9a399e7f4e5cd16c8e78c",
+      "review_blob": "100644:75b147a3b2e5a1faa394c5a40a3b162a5216a2a0",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+      "previous_blob": "100644:10a02c993cde36cc498a0edc52f9925b0ae0ff98",
+      "review_blob": "100644:cf293f9a058580061120c75e4bcba712363bce98",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/unk/TLobby_800F8AA8.cpp",
+      "previous_blob": "100644:95c908ad2b1a368a0e8cbff7703fe2146090ab90",
+      "review_blob": "100644:c9575c5ced882060518c07e116204c8c955c7927",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/unk/text_80320358.cpp",
+      "previous_blob": "100644:d01a0aede6893a9d72cb099db087258d9b5dd2dd",
+      "review_blob": "100644:324fe9d4920e913e417c9b6dbe387f40b72ef494",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "upstream names retained"
+    }
+  ],
+  "checks": {
+    "movie": {
+      "head": "263e9897e49ee36ee62c560711473420306651a4",
+      "baseline": "df9868bce839e3306b0081e71388031d5fe5f975",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 12,
+      "check_sha256": "e1d5bd87b779895e978fc595c5e30723315fa89935e91963ee71fd0072387929"
+    },
+    "loading": {
+      "head": "3d1a018524509f53c5625eaa25d17d13fe7a4bc7",
+      "baseline": "263e9897e49ee36ee62c560711473420306651a4",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 1,
+      "check_sha256": "79d15130b04764ee525d789d4cb6f340aa0100e03392b98106db4d620047d9be"
+    },
+    "stream": {
+      "head": "dbb78585a7fff2793647bfbd70d958fb00b92ee1",
+      "baseline": "3d1a018524509f53c5625eaa25d17d13fe7a4bc7",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 3,
+      "check_sha256": "ae6277b3789c881c77c2141bb2d13c69bc3738a72c0518c20570b8f0f73a1a67"
+    },
+    "scene": {
+      "head": "0a6ad394941d2f3101b601df36eccd1403326608",
+      "baseline": "dbb78585a7fff2793647bfbd70d958fb00b92ee1",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 1,
+      "check_sha256": "1bac2e229272a178b059122ec4af7bc2e95799ae8fd15166c2cd6519b38fa7d6"
+    },
+    "full-review": {
+      "head": "0a6ad394941d2f3101b601df36eccd1403326608",
+      "baseline": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 430,
+      "check_sha256": "2e4c9c11a1e8df0a856c94e813a51e5ff09c59e8c13b1f8ccf7b573e5b4a0ff0"
+    },
+    "layer": {
+      "head": "e9d99378403600883562c7310ccea8b51854e609",
+      "baseline": "0a6ad394941d2f3101b601df36eccd1403326608",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "294d5d4e65e3db3407ceff097811cede09728d2c21c1257d66d17135be0bdc4b"
+    }
+  },
+  "release_data": {
+    "scene": {
+      "sha256": "fc93302667d43ab80cecb82296eea4f22c26641e0eec958024482b97d4db7c11",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "layer": {
+      "sha256": "fc93302667d43ab80cecb82296eea4f22c26641e0eec958024482b97d4db7c11",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    }
+  },
+  "typed_linker_labels": [
+    {
+      "module": "psov3",
+      "address": "0x80143CE8",
+      "before": "calc_frame_buffer_size__6TMovieFll",
+      "after": "calc_frame_buffer_size__6TMovieFPvPv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80143D9C",
+      "before": "close__6TMovieFis",
+      "after": "close__10MovieStateFP10MovieStates"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80143DF0",
+      "before": "initialize_movie_with_soundtrack__FPUcPSclll",
+      "after": "initialize_movie_with_soundtrack__FP10MovieStatePSclll"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80143E90",
+      "before": "stop_if_advanced__6TMovieFv",
+      "after": "stop_if_advanced__10MovieStateFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80143ECC",
+      "before": "check_finished__6TMovieFv",
+      "after": "check_finished__10MovieStateFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80143EFC",
+      "before": "is_playback_finished__6TMovieFv",
+      "after": "is_playback_finished__10MovieStateFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80143F38",
+      "before": "update_stop__6TMovieFv",
+      "after": "update_stop__10MovieStateFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80143F6C",
+      "before": "release__6TMovieFv",
+      "after": "release__10MovieStateFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80143FB0",
+      "before": "init_sfd_player__6TMovieFll",
+      "after": "init_sfd_player__10MovieStateFll"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80144184",
+      "before": "decode_frame__6TMovieFv",
+      "after": "decode_frame__10MovieStateFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80144250",
+      "before": "copy__6TMovieFPv",
+      "after": "copy__14MovieFrameInfoFPC14MovieFrameInfo"
+    },
+    {
+      "module": "psov3",
+      "address": "0x801442D4",
+      "before": "free_buffer__6TMovieFv",
+      "after": "free_buffer__10MovieStateFv"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8001C828",
+      "before": "__ct__9TLoadCtrlFl",
+      "after": "__ct__9TLoadCtrlFP7TObject"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800FE008",
+      "before": "read_data__8TGStreamFll",
+      "after": "read_data__8TGStreamFPUcl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800FE0C8",
+      "before": "refill_gstream_buffer__Fl",
+      "after": "refill_gstream_buffer__FP10AdxfHandle"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800FE1C4",
+      "before": "__ct__8TGStreamFPvl",
+      "after": "__ct__8TGStreamFPCcl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80207340",
+      "before": "__ct__10TSceneSoraFl",
+      "after": "__ct__10TSceneSoraFP7TObject"
+    }
+  ],
+  "closed_historical_rows": [
+    {
+      "row": 5182,
+      "fork_path": "include/pso/misc/TMovie_80143988.h",
+      "fork_blob": "9c4dcee155e29857954076f56ec8e3eab6677a3e",
+      "historical_delta_sha256": "c39cc9bddd60566c6db1fb8e93c38bdad71f180886b421d2f8f52ea2f1e71ba1",
+      "owner": "src/pso/system/movie/TMovie_80143988.cpp",
+      "owner_blob": "3e464b3416a77f22190b0a7008bc5bca88e42cd6",
+      "final_comparison_sha256": "25a78b0ba521d33d446f1d8b7d3318faeb62efc023630d25ac258d97b1af872f",
+      "status": "Typed historical integration validated",
+      "rationale": "The shared decoder output record reserves all six words, with the original Y, U, and V fields and the second chroma pitch."
+    },
+    {
+      "row": 5204,
+      "fork_path": "src/pso/misc/TLoadCtrl.cpp",
+      "fork_blob": "1d316bf017f8ccc2d2f52c37c2ec6570655c37f8",
+      "historical_delta_sha256": "478a4e6694e78b00d1c808bcd39befbd17fe2a838f81e312b53b29b39f10ae8b",
+      "owner": "src/pso/system/TLoadCtrl.cpp",
+      "owner_blob": "8b68b6a31d3958d80567d92a1a74422f6600fcb1",
+      "final_comparison_sha256": "6e030af208c181785a3eeacd16c5957cbe5c44ce1baa7e4dd25758b555621b37",
+      "status": "Typed historical integration validated",
+      "rationale": "The active loader and fade use their real pointer types. The loading controller uses its members directly and constructs and destroys the appropriate native tasks. Existing quest, floor, camera and audio dispatch names stay in use."
+    },
+    {
+      "row": 5205,
+      "fork_path": "src/pso/misc/TMovie_80143988.cpp",
+      "fork_blob": "feb91530cd2a091466cf747ab850b8ffc990b0ba",
+      "historical_delta_sha256": "55f2833022eaf0342afb4c5f2a2c7b6d0734beb937d82ddabf79dda942b3da06",
+      "owner": "src/pso/system/movie/TMovie_80143988.cpp",
+      "owner_blob": "3e464b3416a77f22190b0a7008bc5bca88e42cd6",
+      "final_comparison_sha256": "4d2577e8e33f970ffa227f3e104df8a37385b15cceb05cf0c3d32762bfff5ed8",
+      "status": "Typed historical integration validated",
+      "rationale": "The native frame packer at 0x80143988 covers the fork routine, including the chroma stride read and centered output. The callback and packer use the shared decoded-plane record."
+    },
+    {
+      "row": 5229,
+      "fork_path": "src/pso/system/TGStream.cpp",
+      "fork_blob": "610d7c1ba8596c5d7866ff38dda2f04e31d2120e",
+      "historical_delta_sha256": "c6f690dad79a4e31078a1b0086aa18f97c48ba4a67f4f0f8638272d6ed9e7a7d",
+      "owner": "src/pso/system/TGStream.cpp",
+      "owner_blob": "7dd97cf03734f4cc98649e8cc4c5f281a1f27fdf",
+      "final_comparison_sha256": "6b0450e2475311760ddff84a1269e3793eb6e200350ad93a21e11fed77072d6b",
+      "status": "Typed historical integration validated",
+      "rationale": "The file and sector helpers already use native stack streams and typed GSL entries, including the decoded size and shared archive handle. The remaining constructor, buffered read and ADXF refill now take the actual pointer types."
+    },
+    {
+      "row": 5240,
+      "fork_path": "src/pso/misc/TEnding_8008C5C0.cpp",
+      "fork_blob": "0f73f364d4015b7d6088527e093d9690fb6b5958",
+      "historical_delta_sha256": "11067e2fdf5fe65542d23757ceb7c03c38ad1e43b92cec7f575a61acea0b7dc9",
+      "owner": "src/pso/system/scene/TEnding_8008C5C0.cpp",
+      "owner_blob": "992de96b9763a566e8cadad0ed31cd0a61a11304",
+      "final_comparison_sha256": "0fa716c378a8dcd45aeac446dd05bf3c615f5ffd12f1490aa89d91da17e6b1f8",
+      "status": "Equivalent current source validated",
+      "rationale": "The ending setup already uses its native void signature, the real camera vectors, the original callback table, the ending soundtrack literal, the native task and render tick."
+    },
+    {
+      "row": 5241,
+      "fork_path": "include/pso/misc/TLoadCtrl.h",
+      "fork_blob": "8fc197b7b9fe007bda28df1791c809614afad655",
+      "historical_delta_sha256": "bf88c6acf28af12a7f47a99bb41bf583069e81579ebb354258946cdc946f4429",
+      "owner": "src/pso/system/TLoadCtrl.cpp",
+      "owner_blob": "8b68b6a31d3958d80567d92a1a74422f6600fcb1",
+      "final_comparison_sha256": "4121d77b155d29f4782f9c974dcddef2e03f7b264f181df9c6a161181d3a2eaf",
+      "status": "Typed historical integration validated",
+      "rationale": "The native loader constructor accepts a task parent. Both instance and fade access share their pointer declarations and the signed state members retain the retail layout."
+    },
+    {
+      "row": 5248,
+      "fork_path": "src/pso/misc/TSceneSora.cpp",
+      "fork_blob": "e836f18f8848952e019b2fb698f74ebd4cb2e12c",
+      "historical_delta_sha256": "f4134ce60e087e468d39dbeecc8e74a25ee1d31084916be3dd4163f3afd8c5ae",
+      "owner": "src/pso/system/scene/TSceneSora.cpp",
+      "owner_blob": "75b147a3b2e5a1faa394c5a40a3b162a5216a2a0",
+      "final_comparison_sha256": "d4ae74f8c3a073026f5a6913061c082e4ee0a536084433ed814c0e71bd20f532",
+      "status": "Typed historical integration validated",
+      "rationale": "The sky keeps its native model, texture and animation fields, original floor selection and resource loader at 0x8002058C. The sky task now has a native constructor and shared instance type. The draw path keeps the existing texture selector."
+    },
+    {
+      "row": 5274,
+      "fork_path": "include/pso/system/Mfci.h",
+      "fork_blob": "8945f0dd24a5f01a497e232f5b2b040c839f95bf",
+      "historical_delta_sha256": "e70fd34ae56613ac5606b44df75732611895dc3c43de86fce42b625d70d20cb0",
+      "owner": "include/pso/system/movie/Mfci.h",
+      "owner_blob": "316a5aee8fd6778f75b288f2305e10289dd0eb26",
+      "final_comparison_sha256": "0c52d4c5e7c4fd3880d2ca9fb7f157e60f7ee6d2ee49e9c6115b923db1030c08",
+      "status": "Equivalent current source validated",
+      "rationale": "The header and callback-table initializer already enforce the signed file-size callback and erased open result through the shared CVFS device interface."
+    },
+    {
+      "row": 5277,
+      "fork_path": "src/pso/misc/TMovie_80143C00.cpp",
+      "fork_blob": "618ffd27065e85d7d72ce3fffc23b5bcd821ad7d",
+      "historical_delta_sha256": "2ae867a6e8c41d9c13c9fbb0634db66127db4a6c6fe4753b9220d1d1ae36c585",
+      "owner": "src/pso/system/movie/TMovie_80143988.cpp",
+      "owner_blob": "3e464b3416a77f22190b0a7008bc5bca88e42cd6",
+      "final_comparison_sha256": "1e76daa7fa2707e9e5e0d98173faf289a6e3c8d4530158652d2bd863169daaf1",
+      "status": "Typed historical integration validated",
+      "rationale": "The original six-word decoder handoff is declared in the frame type. The existing C++ function still alternates both retail display buffers and clears the pending frame token."
+    },
+    {
+      "row": 5295,
+      "fork_path": "include/pso/misc/TScene.h",
+      "fork_blob": "13b3b0a8030cdfbe28c208396dfd81d7a6577dd5",
+      "historical_delta_sha256": "225188cccbe1ba2367eb3aab4cafcc14e4e0e851fc804eacb2afb00b9a179ecf",
+      "owner": "src/pso/system/scene/TScene.cpp",
+      "owner_blob": "c64d5ff0a0e94e9408d693f505c0690aad5d34ca",
+      "final_comparison_sha256": "a86a34f0104508821bb997b10c83e8046d232c91e6466de87caf958579d348e4",
+      "status": "Equivalent current source validated",
+      "rationale": "The static filename helper already exists as get_resource_file_size at the same address and size. The existing name states its responsibility."
+    },
+    {
+      "row": 5299,
+      "fork_path": "src/pso/misc/TScene.cpp",
+      "fork_blob": "2b9e40c31e861136439f8bf1cbab47b6f66099b2",
+      "historical_delta_sha256": "e06ce5caf3480f63e175bc9613c4f86da235207d362f8c418e9501dea072df13",
+      "owner": "src/pso/system/scene/TScene.cpp",
+      "owner_blob": "c64d5ff0a0e94e9408d693f505c0690aad5d34ca",
+      "final_comparison_sha256": "3995d8599954f43cb34595da3d340180c9f2ad0df1f904d4fcd475daad63a65e",
+      "status": "Typed historical integration validated",
+      "rationale": "The scene already uses the current resource filename helper, typed free calls and typed indirect texture inputs. Its root now carries the real room table and texture list for binding, rendering, release and the wave effect. The texture selector stays at 0x803DA798."
+    },
+    {
+      "row": 5301,
+      "fork_path": "src/pso/system/Mfci.cpp",
+      "fork_blob": "d81181116d07b7df852bcc73f4784bb6513b30c0",
+      "historical_delta_sha256": "3def9d8b7b15c445574d5c7cfeeee268768dbbf857426e3726682221853db88b",
+      "owner": "src/pso/system/movie/Mfci.cpp",
+      "owner_blob": "1b693cd95c401a4d2cf7662fa679d2d544e02f9c",
+      "final_comparison_sha256": "090f9078b895b30d52fe2214c642f502dcaf05d941b5146e845ac41b79eef4a8",
+      "status": "Equivalent current source validated",
+      "rationale": "The memory backend already returns the shared open result and signed file-size word, and installs both in the same callback table."
+    }
+  ],
+  "historical_ledger_sha256_before": "5effcd2f5381219d0f3b40857cb2eb48f4aa7b2ecc1b4190ec86a42d6cb3f014",
+  "historical_ledger_sha256": "535648ab76d97793f30a13d7c5e24b44a9bc6075e856f42b72220a975eb5eb05",
+  "historical_rows_open": 514,
+  "deferred_rows": [
+    {
+      "row": 5297,
+      "reason": "The current function at 0x8003F3C8 still belongs to a derived compatibility class. Moving it to TObject requires checking its shared callers across subsystems."
+    }
+  ],
+  "symbol_aliases": {
+    "0x8002058C": {
+      "historical": "init_from_id_lists__FP11BmlResourcelPPvPPvllPv",
+      "current": "init_bin_model_request",
+      "size": "0x30C"
+    },
+    "0x800F9D80": {
+      "historical": "update_lobby_scene__6TSceneFPCv",
+      "current": "get_resource_file_size",
+      "size": "0x20"
+    },
+    "0x80143988": {
+      "historical": "pack_movie_frame",
+      "current": "pack_movie_frame__FP16MovieFramePlanes",
+      "size": "0x234"
+    },
+    "0x803DA798": {
+      "historical": "set_current_texture_list",
+      "current": "set_global_param",
+      "size": "0x10"
+    }
+  },
+  "compiler_sensitive_forms": {
+    "frame_copy": "The sixteen-word frame copy disables scheduling for the original load and store order.",
+    "playback_status": "The skip check tests a full return word. CodeWarrior uses a different return instruction for a native signed equality result."
+  },
+  "runtime_probe": {
+    "builds": [
+      "retail",
+      "stock",
+      "fork"
+    ],
+    "sha256": "586e1f4069f42cb0ed93aa0f4c71b84d7ad11ac74b82b90e76a39876cb619d74",
+    "source_sha256": "479ac7a74886b6767196cc030f4d8f2c742a4bd213bc1063f87f92093ef41a09",
+    "scope": "The emulator checks decoded frame copy and release, the full six-word decoder handoff and both display buffers, the loading timer and expired fade pointer, contiguous and truncated buffered reads, and the scene room and texture lifecycle. The movie REL callbacks, video IO and camera inputs use controlled fixtures."
+  },
+  "overlay_paths": 130,
+  "overlay_sha256": "84ff89c1412a5f1a7d8856306a5f63c642607964d92732e7d408eeec2edab880",
+  "retained_symbols": 27033,
+  "workspace_checks": {
+    "tool": {
+      "count": 294,
+      "sha256": "4f001b0b49bc48a92d37a0594e070bf2b13861f6402aeef9f6fffe3f693408bf"
+    },
+    "fork": {
+      "count": 11,
+      "sha256": "1628cc59d90e414ed075a0d8756568aeb91ae9db77f55213bbfb1dcbf4caf3d2"
+    },
+    "host": {
+      "checks": [
+        "./vector_math_fallbacks",
+        "./item_factory_callbacks",
+        "./loader_transfer",
+        "./ginja_parameter_callbacks",
+        "./exi_ethernet_fallbacks"
+      ],
+      "sha256": "ad1227e7d6dde3aea88d51f241949b30f3d1fe42ec4c3abf078bd6309ee9bbdb"
+    }
+  },
+  "review_commit_attribution": {
+    "commits": 99,
+    "codex_attribution": 0,
+    "coauthor_trailers": 0
+  },
+  "public_refs_changed": false
+}

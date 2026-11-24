@@ -1,0 +1,1156 @@
+{
+  "upstream_master": "412b3b3cf562c5cb4b4655b747ff328777b32969",
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "previous_source": "84c3cbb7f1906a50c400888a3520949433c9d902",
+  "updated_paths": [
+    "include/pso/ui/window/TWindowActionPalette.h",
+    "include/pso/ui/window/TWindowMessage.h",
+    "include/pso/ui/window/TWindowSubAreaMapDisp.h",
+    "src/pso/ui/window/TWindowActionPalette.cpp",
+    "src/pso/ui/window/TWindowCtrlMain.cpp",
+    "src/pso/ui/window/TWindowDD_80341A08.cpp",
+    "src/pso/ui/window/TWindowMessage.cpp",
+    "src/pso/ui/window/TWindowSubAreaMapDisp.cpp",
+    "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+    "src/pso/ui/window/TWindowSubCustomSelect.cpp",
+    "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp"
+  ],
+  "paths_also_in_pr_375": [
+    "src/pso/ui/window/TWindowActionPalette.cpp",
+    "src/pso/ui/window/TWindowCtrlMain.cpp",
+    "src/pso/ui/window/TWindowDD_80341A08.cpp",
+    "src/pso/ui/window/TWindowSubAreaMapDisp.cpp",
+    "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+    "src/pso/ui/window/TWindowSubCustomSelect.cpp",
+    "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp"
+  ],
+  "builds": {
+    "source": {
+      "head": "8e87000764af7dd0bd60f243d6a5448db1b55289",
+      "tree": "f0943ca94418eed22a4136848213912ee2a8b0e0",
+      "coverage_baseline": "84c3cbb7f1906a50c400888a3520949433c9d902",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "historical_fork_data": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "source-report.json": "21b83d4830a9e5c2b309f6fc092ac60571d340a1cc7c40ceae29cb7fe850269e",
+        "source-check.json": "ec167389dbd490e17ac3a61384def77d8d58a7485e34e9bf913ffed6e489dc0a"
+      }
+    },
+    "queue": {
+      "head": "966cdb337b505607beaf6776cc5c63051ffe2f67",
+      "tree": "be87327f2c309f95cc0bd456d156236529b3e62c",
+      "coverage_baseline": "412b3b3cf562c5cb4b4655b747ff328777b32969",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "historical_fork_data": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "queue-report.json": "21b83d4830a9e5c2b309f6fc092ac60571d340a1cc7c40ceae29cb7fe850269e",
+        "queue-check.json": "70df1f97f1477075ecad076c58d30d563c10fbd98e6d69ba1ce01cd29f03a9bb"
+      }
+    },
+    "private": {
+      "head": "0ec64a00f90ad82e7098a8cef7e8ddc2a0dfb4e5",
+      "tree": "61dd63e0a450d7bbb2a4c982771b896766f60372",
+      "coverage_baseline": "8e87000764af7dd0bd60f243d6a5448db1b55289",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "historical_fork_data": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "private-report.json": "21b83d4830a9e5c2b309f6fc092ac60571d340a1cc7c40ceae29cb7fe850269e",
+        "private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011"
+      }
+    }
+  },
+  "source_build_tree_was_tested_at": "c323f5f420f44d8838adcaa8f431c2b89196057a",
+  "whole_historical_comparisons_closed": {
+    "src/pso/misc/TWindowActionPalette.cpp": {
+      "historical_row": 5524,
+      "fork_blob": "c6e161fefbf9fb10fbf281732d8c5595f278e5be",
+      "historical_source_sha256": "667a1dfa554b5d38f14d75a48fd0b8b9f54f0472fc1a817ca5194b42b63b4b3d",
+      "source_resolution": "The active unit keeps the palette art, slot icon and animation paths, input state and consumable lookup. The numeric count uses its real layout entry and retains visibility, right alignment and its original label position.",
+      "exact_linked_functions": 14,
+      "exact_non_text_sections": {
+        ".data": {
+          "source_bytes": 832,
+          "exact_bytes": 832,
+          "owners": [
+            "src/pso/ui/window/TWindowActionPalette.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/ui/window/TWindowActionPalette.cpp": "819fcbc90ed33a385911b36353671ff7633d701c"
+      },
+      "matched_examples": {
+        "0x802434b8": {
+          "old": "get_palette_consumable_count__FUsl",
+          "current": "get_palette_consumable_count__FUsl",
+          "owner": "src/pso/ui/window/TWindowActionPalette.cpp"
+        },
+        "0x80243544": {
+          "old": "update_palette_item_count_label",
+          "current": "update_palette_item_count_label",
+          "owner": "src/pso/ui/window/TWindowActionPalette.cpp"
+        },
+        "0x80243630": {
+          "old": "draw_action_palette_icon",
+          "current": "draw_action_palette_icon",
+          "owner": "src/pso/ui/window/TWindowActionPalette.cpp"
+        },
+        "0x802437c4": {
+          "old": "spawn_action_palette_slot_light",
+          "current": "spawn_action_palette_slot_light",
+          "owner": "src/pso/ui/window/TWindowActionPalette.cpp"
+        },
+        "0x80243968": {
+          "old": "update_slot_icon__20TWindowActionPaletteFPviiUs",
+          "current": "update_slot_icon__20TWindowActionPaletteFiUsUs",
+          "owner": "src/pso/ui/window/TWindowActionPalette.cpp"
+        },
+        "0x80243a5c": {
+          "old": "update_slot_sprites__20TWindowActionPaletteFiiUs",
+          "current": "update_slot_sprites__20TWindowActionPaletteFiUsUs",
+          "owner": "src/pso/ui/window/TWindowActionPalette.cpp"
+        },
+        "0x80243e14": {
+          "old": "run_task__20TWindowActionPaletteFv",
+          "current": "run_task__20TWindowActionPaletteFv",
+          "owner": "src/pso/ui/window/TWindowActionPalette.cpp"
+        }
+      }
+    },
+    "src/pso/misc/TWindowCtrlMain_8024C820.cpp": {
+      "historical_row": 5534,
+      "fork_blob": "6e601569ce39e20368551ef4dabf137122ab93a3",
+      "historical_source_sha256": "e061a5234f357ae6b98b7e7dbd920ddbf320765d2210eaef7bfd63251020e247",
+      "source_resolution": "The main controller owns the clip-out, screen and task group entry points and preserves the camera and viewport switch order. The HUD controller creates and releases its real menu, palette, messages, lock-on and status windows in the original sequence.",
+      "exact_linked_functions": 32,
+      "exact_non_text_sections": {
+        ".data": {
+          "source_bytes": 24,
+          "exact_bytes": 24,
+          "owners": [
+            "src/pso/ui/window/TWindowCtrlMain.cpp"
+          ],
+          "uncovered": []
+        },
+        ".bss": {
+          "source_bytes": 168,
+          "exact_bytes": 168,
+          "owners": [
+            "src/pso/ui/window/TWindowCtrlMain.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/ui/window/TWindowCtrlMain.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 64,
+          "exact_bytes": 64,
+          "owners": [
+            "src/pso/ui/window/TWindowCtrlMain.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/ui/window/TWindowCtrlMain.cpp": "988deec22678b5679d0a3a487ccaad2d719b0aec"
+      },
+      "matched_examples": {
+        "0x8024c8a4": {
+          "old": "render__18TWindowCtrlClipOutFv",
+          "current": "render__18TWindowCtrlClipOutFv",
+          "owner": "src/pso/ui/window/TWindowCtrlMain.cpp"
+        },
+        "0x8024c98c": {
+          "old": "run_task__14TWindowCtrlSubFv",
+          "current": "run_task__14TWindowCtrlSubFv",
+          "owner": "src/pso/ui/window/TWindowCtrlMain.cpp"
+        },
+        "0x8024ca5c": {
+          "old": "render__17TWindowCtrlScreenFv",
+          "current": "render__17TWindowCtrlScreenFv",
+          "owner": "src/pso/ui/window/TWindowCtrlMain.cpp"
+        },
+        "0x8024cb30": {
+          "old": "TWindowCtrlScreen__ct",
+          "current": "__ct__17TWindowCtrlScreenFP7TObject",
+          "owner": "src/pso/ui/window/TWindowCtrlMain.cpp"
+        },
+        "0x8024cb74": {
+          "old": "get_scale__15TWindowCtrlMainFv",
+          "current": "get_scale__15TWindowCtrlMainFv",
+          "owner": "src/pso/ui/window/TWindowCtrlMain.cpp"
+        }
+      }
+    },
+    "src/pso/misc/TWindowDD.cpp": {
+      "historical_row": 5542,
+      "fork_blob": "63b6cd1bab9a3e1a0d760d5ceef0d98eb4f8a7de",
+      "historical_source_sha256": "49ad991b7e08f48100530801494925fd5b8669d6fdff5e1ca5ee444dd74dd8de",
+      "source_resolution": "The active dialog splits retain both keyboard and pad input, range-clamped page selection, vertex reset, and the matching Word Select scrollbar and mode rendering. The two input sources use the shared controller state.",
+      "exact_linked_functions": 19,
+      "exact_non_text_sections": {
+        ".ctors": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/ui/window/TWindowDD_8034055C.cpp"
+          ],
+          "uncovered": []
+        },
+        ".rodata": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/ui/window/TWindowDD_80340A78.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 56,
+          "exact_bytes": 56,
+          "owners": [
+            "src/pso/ui/window/TWindowDD_8034055C.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 12,
+          "exact_bytes": 12,
+          "owners": [
+            "src/pso/ui/window/TWindowDD.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/ui/window/TWindowDD.cpp": "2463e5a8323331a8b194b2a1358c59fd257e473c",
+        "src/pso/ui/window/TWindowDD_8034055C.cpp": "b99c521d262e5fb3a122e8240a94212977051bde",
+        "src/pso/ui/window/TWindowDD_80340A78.cpp": "803752048742c8994188bdef5b3fb6965bcbecfe"
+      },
+      "matched_examples": {
+        "0x803403f8": {
+          "old": "reset_entries__9TWindowDDFf",
+          "current": "reset_entries__9TWindowDDFfl",
+          "owner": "src/pso/ui/window/TWindowDD.cpp"
+        },
+        "0x803404a4": {
+          "old": "apply_both_choices__9TWindowDDFll",
+          "current": "apply_both_choices__9TWindowDDFll",
+          "owner": "src/pso/ui/window/TWindowDD.cpp"
+        },
+        "0x80340508": {
+          "old": "TWindowDD_check_input_mask__FPvl",
+          "current": "TWindowDD_check_input_mask__FPvl",
+          "owner": "src/pso/ui/window/TWindowDD.cpp"
+        },
+        "0x8034055c": {
+          "old": "render__13TUnk_804EFBACFv",
+          "current": "render__21TWindowWordSelectModeFv",
+          "owner": "src/pso/ui/window/TWindowDD_8034055C.cpp"
+        },
+        "0x803407f0": {
+          "old": "set_clamped_page__9TWindowDDFl",
+          "current": "set_clamped_page__9TWindowDDFl",
+          "owner": "src/pso/ui/window/TWindowDD_8034055C.cpp"
+        },
+        "0x8034091c": {
+          "old": "set_clamped_selection__9TWindowDDFl",
+          "current": "set_clamped_selection__9TWindowDDFl",
+          "owner": "src/pso/ui/window/TWindowDD_8034055C.cpp"
+        }
+      }
+    },
+    "src/pso/misc/TWindowDD_803430BC.cpp": {
+      "historical_row": 5545,
+      "fork_blob": "33c667897a802d86624e86beda57db175789228b",
+      "historical_source_sha256": "11ebe8ef6037458fc9f727cea2040d72695f4b8f96481d7baf45a6a50db6640a",
+      "source_resolution": "The dialog task and its state dispatcher retain the original input, numeric parameter prompts, menu-level restore and cancel sequence. The page and entry routes retain the layout application, chat entry copy and buffer cleanup.",
+      "exact_linked_functions": 13,
+      "exact_non_text_sections": {
+        ".data": {
+          "source_bytes": 84,
+          "exact_bytes": 84,
+          "owners": [
+            "src/pso/ui/window/TWindowDD_803430BC.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/ui/window/TWindowDD_80346A84.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/ui/window/TWindowDD_803430BC.cpp": "5717fc2b53592b1752b9a239bfdc7fa3421773af",
+        "src/pso/ui/window/TWindowDD_80346A84.cpp": "bff4c28cd21eeb9cb84a1bdea0a1cbb989f85181"
+      },
+      "matched_examples": {
+        "0x80343108": {
+          "old": "open_numeric_parameter_input__9TWindowDDFPviii",
+          "current": "open_numeric_parameter_input__9TWindowDDFPviii",
+          "owner": "src/pso/ui/window/TWindowDD_803430BC.cpp"
+        },
+        "0x803431c0": {
+          "old": "pop_menu_level__9TWindowDDFPv",
+          "current": "pop_menu_level__9TWindowDDFPv",
+          "owner": "src/pso/ui/window/TWindowDD_803430BC.cpp"
+        },
+        "0x8034330c": {
+          "old": "apply_entry_layout__9TWindowDDFPv",
+          "current": "apply_entry_layout__9TWindowDDFPv",
+          "owner": "src/pso/ui/window/TWindowDD_803430BC.cpp"
+        },
+        "0x80343808": {
+          "old": "run_state__9TWindowDDFPv",
+          "current": "run_state__9TWindowDDFPv",
+          "owner": "src/pso/ui/window/TWindowDD_803430BC.cpp"
+        },
+        "0x803438c4": {
+          "old": "run_task__9TWindowDDFv",
+          "current": "run_task__9TWindowDDFv",
+          "owner": "src/pso/ui/window/TWindowDD_803430BC.cpp"
+        },
+        "0x80343bc0": {
+          "old": "copy_chat_entry__9TWindowDDFPvPv",
+          "current": "copy_chat_entry__9TWindowDDFPvPv",
+          "owner": "src/pso/ui/window/TWindowDD_803430BC.cpp"
+        },
+        "0x80343fec": {
+          "old": "free_buffers__9TWindowDDFv",
+          "current": "free_buffers__9TWindowDDFv",
+          "owner": "src/pso/ui/window/TWindowDD_803430BC.cpp"
+        }
+      }
+    },
+    "src/pso/misc/TWindowMainMenu_802AD538.cpp": {
+      "historical_row": 5555,
+      "fork_blob": "c0c7b5e5470264c1ac642d9336679b9be173a0db",
+      "historical_source_sha256": "36ccc3ef072aa5daa00da79b7ac946ec0b7a7e16da6d6bda04126c051bc1b3c0",
+      "source_resolution": "The active menu uses typed draw context, menu rows and slots. It retains the icon UV source, appearance and tint, disabled-choice behavior and the Symbol Chat row copy. Selection is stored in the active menu slot field.",
+      "exact_linked_functions": 34,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/ui/window/TWindowMainMenu_802AD538.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 120,
+          "exact_bytes": 120,
+          "owners": [
+            "src/pso/ui/window/TWindowMainMenu_802AD538.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/ui/window/TWindowMainMenu_802AD538.cpp": "72abfe179461f69c938b83fa730897f4145a95f4"
+      },
+      "matched_examples": {
+        "0x802ad538": {
+          "old": "draw_item_labels__14TMainMenuEntryFP18TWindowDrawContext",
+          "current": "draw_item_labels__14TMainMenuEntryFP17WindowDrawContext",
+          "owner": "src/pso/ui/window/TWindowMainMenu_802AD538.cpp"
+        },
+        "0x802ad74c": {
+          "old": "sub_802AD74C__14TMainMenuEntryFv",
+          "current": "disable_choice__14TMainMenuEntryFv",
+          "owner": "src/pso/ui/window/TWindowMainMenu_802AD538.cpp"
+        },
+        "0x802ad75c": {
+          "old": "set_symbol_chat_parts__14TMainMenuEntryFP12TMainMenuRow",
+          "current": "set_symbol_chat_parts__14TMainMenuEntryFP12TMainMenuRow",
+          "owner": "src/pso/ui/window/TWindowMainMenu_802AD538.cpp"
+        },
+        "0x802ad790": {
+          "old": "init_row_entry__14TMainMenuEntryFP12TMainMenuRowScSc",
+          "current": "init_row_entry__14TMainMenuEntryFP12TMainMenuRowScSc",
+          "owner": "src/pso/ui/window/TWindowMainMenu_802AD538.cpp"
+        },
+        "0x802ad90c": {
+          "old": "pop_level__19TWindowMenuMainMenuFv",
+          "current": "pop_level__19TWindowMenuMainMenuFv",
+          "owner": "src/pso/ui/window/TWindowMainMenu_802AD538.cpp"
+        },
+        "0x802adadc": {
+          "old": "sub_802ADADC__19TWindowMenuMainMenuFi",
+          "current": "set_selected_slot__19TWindowMenuMainMenuFi",
+          "owner": "src/pso/ui/window/TWindowMainMenu_802AD538.cpp"
+        },
+        "0x802adb00": {
+          "old": "sub_802ADB00__19TWindowMenuMainMenuFv",
+          "current": "get_selected_slot__19TWindowMenuMainMenuFv",
+          "owner": "src/pso/ui/window/TWindowMainMenu_802AD538.cpp"
+        }
+      }
+    },
+    "src/pso/misc/TWindowShortListCtrl_8026E7DC.cpp": {
+      "historical_row": 5568,
+      "fork_blob": "68fe4d017b9272498229330b98129a7feae87b9a",
+      "historical_source_sha256": "c8066deb65bd8e592ee351945d040edc017cd43ff2171eb69fb0827aa24b20a8",
+      "source_resolution": "The active shortlist owns item assignment and technique paging with typed player and menu calls. It retains the 19-entry saved technique order, two-entry swap, window scroll reset and selected row across refresh.",
+      "exact_linked_functions": 18,
+      "exact_non_text_sections": {
+        ".data": {
+          "source_bytes": 48,
+          "exact_bytes": 48,
+          "owners": [
+            "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp": "950435defb5a8a329fd746efc68b5d5e744fc4dc"
+      },
+      "matched_examples": {
+        "0x8026e81c": {
+          "old": "is_technique_usable__20TWindowShortListCtrlFv",
+          "current": "is_technique_usable__20TWindowShortListCtrlFv",
+          "owner": "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp"
+        },
+        "0x8026e8ec": {
+          "old": "swap_card_entries__20TWindowShortListCtrlFll",
+          "current": "swap_card_entries__20TWindowShortListCtrlFll",
+          "owner": "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp"
+        },
+        "0x8026e93c": {
+          "old": "assign_item_to_palette__20TWindowShortListCtrlFUlUl",
+          "current": "assign_item_to_palette__20TWindowShortListCtrlFUlUl",
+          "owner": "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp"
+        },
+        "0x8026ea60": {
+          "old": "cycle_list_page__20TWindowShortListCtrlFv",
+          "current": "cycle_list_page__20TWindowShortListCtrlFv",
+          "owner": "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp"
+        },
+        "0x8026ebb0": {
+          "old": "refresh_technique_rows__20TWindowShortListCtrlFlPv",
+          "current": "refresh_technique_rows__20TWindowShortListCtrlFlPv",
+          "owner": "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp"
+        },
+        "0x8026ecbc": {
+          "old": "run_task__20TWindowShortListCtrlFv",
+          "current": "run_task__20TWindowShortListCtrlFv",
+          "owner": "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp"
+        }
+      }
+    },
+    "src/pso/misc/TWindowSubEquip_80275C0C.cpp": {
+      "historical_row": 5579,
+      "fork_blob": "ce2da0effccba08de5bd9273302a6d15cfd04f3d",
+      "historical_source_sha256": "fc712d65917d0f91bbc9aa944ae9e1bcfecc90ab465364476ff8e3a7d79b0e26",
+      "source_resolution": "The customization help task remains on TUnk_804D1160. It toggles the help window and retains the technique, weapon and item count branches, using the active custom-selection action record and window lifecycle.",
+      "exact_linked_functions": 5,
+      "exact_non_text_sections": {
+        ".data": {
+          "source_bytes": 32,
+          "exact_bytes": 32,
+          "owners": [
+            "src/pso/unk/TUnk_804D1160.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/unk/TUnk_804D1160.cpp": "872107771c7e9c8a674d49f729beb29178854595"
+      },
+      "matched_examples": {
+        "0x802758c8": {
+          "old": "update_customize_help_text__13TUnk_804D1160FPv",
+          "current": "update_customize_help_text__13TUnk_804D1160FPv",
+          "owner": "src/pso/unk/TUnk_804D1160.cpp"
+        },
+        "0x80275a8c": {
+          "old": "run_task__13TUnk_804D1160Fv",
+          "current": "run_task__13TUnk_804D1160Fv",
+          "owner": "src/pso/unk/TUnk_804D1160.cpp"
+        },
+        "0x80275c0c": {
+          "old": "destroy__13TUnk_804D1160Fs",
+          "current": "__dt__13TUnk_804D1160Fv",
+          "owner": "src/pso/unk/TUnk_804D1160.cpp"
+        },
+        "0x80275cb0": {
+          "old": "TWindowSubEquip__sub_80275CB0",
+          "current": "TWindowSubEquip__sub_80275CB0",
+          "owner": "src/pso/unk/TUnk_804D1160.cpp"
+        }
+      }
+    },
+    "src/pso/misc/TWindowDD_80341A08.cpp": {
+      "historical_row": 5619,
+      "fork_blob": "745246283f8f2c4c90410b8cad77ad53a45abb6c",
+      "historical_source_sha256": "70cc41bd84227cb328b5637a671aa523b699cf73612c27dc224aed844143a19f",
+      "source_resolution": "The Word Select owner retains typed row drawing, token IDs and visibility. The cursor takes the actual frame position and signed selected row, and the transition writes the native target position and tween tick fields.",
+      "exact_linked_functions": 25,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/ui/window/TWindowDD_80341A08.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/ui/window/TWindowDD_80341A08.cpp": "6d36118f776907707d5573fe0af4ea3560e49c52"
+      },
+      "matched_examples": {
+        "0x80341500": {
+          "old": "render__17TWindowDD_WS_WordFv",
+          "current": "render__17TWindowDD_WS_WordFv",
+          "owner": "src/pso/ui/window/TWindowDD_80341A08.cpp"
+        },
+        "0x80341674": {
+          "old": "TWindowDD__sub_80341674",
+          "current": "TWindowDD__sub_80341674",
+          "owner": "src/pso/ui/window/TWindowDD_80341A08.cpp"
+        },
+        "0x80341a08": {
+          "old": "can_scroll__17TWindowDD_WS_WordFl",
+          "current": "can_scroll__17TWindowDD_WS_WordFl",
+          "owner": "src/pso/ui/window/TWindowDD_80341A08.cpp"
+        },
+        "0x80341b28": {
+          "old": "run_task__17TWindowDD_WS_WordFv",
+          "current": "run_task__17TWindowDD_WS_WordFv",
+          "owner": "src/pso/ui/window/TWindowDD_80341A08.cpp"
+        },
+        "0x80341f9c": {
+          "old": "init_layout_entries__9TWindowDDFv",
+          "current": "init_layout_entries__17TWindowDD_WS_WordFv",
+          "owner": "src/pso/ui/window/TWindowDD_80341A08.cpp"
+        },
+        "0x80342134": {
+          "old": "set_pos_and_data__9TWindowDDFf",
+          "current": "set_pos_and_data__9TWindowDDFf",
+          "owner": "src/pso/ui/window/TWindowDD_80341A08.cpp"
+        },
+        "0x803421d0": {
+          "old": "get_cursor_pos__9TWindowDDFPUc",
+          "current": "get_cursor_pos__9TWindowDDFPUc",
+          "owner": "src/pso/ui/window/TWindowDD_80341A08.cpp"
+        }
+      },
+      "historical_diff_sha256": "681e0d6cb0f1bb3d80abbbf1eab9a811ef7b1efa831318bcb7f4f322951615e8"
+    },
+    "src/pso/misc/TWindowSubAreaMapDisp.cpp": {
+      "historical_row": 5631,
+      "fork_blob": "4b779b42609974611a9bed89e099910a9a788e19",
+      "historical_source_sha256": "998c1dd61eb20eeb245aaba26b67823f34351d5397e374c974e519b5bef4f219",
+      "source_resolution": "The area map uses its existing typed window draw context and active status window pointer. It retains the area and input visibility gates, reads the original caption state and releases the owned caption.",
+      "exact_linked_functions": 7,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/ui/window/TWindowSubAreaMapDisp.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 44,
+          "exact_bytes": 44,
+          "owners": [
+            "src/pso/ui/window/TWindowSubAreaMapDisp.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 116,
+          "exact_bytes": 116,
+          "owners": [
+            "src/pso/ui/window/TWindowSubAreaMapDisp.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/ui/window/TWindowSubAreaMapDisp.cpp": "6ab9afe14af139cdc4d7f1c8b7b853bc48df73a9"
+      },
+      "matched_examples": {
+        "0x802717b8": {
+          "old": "update_visibility__21TWindowSubAreaMapDispFv",
+          "current": "update_visibility__21TWindowSubAreaMapDispFv",
+          "owner": "src/pso/ui/window/TWindowSubAreaMapDisp.cpp"
+        },
+        "0x80271848": {
+          "old": "fn_80271848",
+          "current": "fn_80271848",
+          "owner": "src/pso/ui/window/TWindowSubAreaMapDisp.cpp"
+        },
+        "0x80271b84": {
+          "old": "render__21TWindowSubAreaMapDispFv",
+          "current": "render__21TWindowSubAreaMapDispFv",
+          "owner": "src/pso/ui/window/TWindowSubAreaMapDisp.cpp"
+        },
+        "0x80271bf4": {
+          "old": "run_task__21TWindowSubAreaMapDispFv",
+          "current": "run_task__21TWindowSubAreaMapDispFv",
+          "owner": "src/pso/ui/window/TWindowSubAreaMapDisp.cpp"
+        },
+        "0x80271c6c": {
+          "old": "__dt__21TWindowSubAreaMapDispFv",
+          "current": "__dt__21TWindowSubAreaMapDispFv",
+          "owner": "src/pso/ui/window/TWindowSubAreaMapDisp.cpp"
+        },
+        "0x80271d00": {
+          "old": "__ct__21TWindowSubAreaMapDispFv",
+          "current": "__ct__21TWindowSubAreaMapDispFv",
+          "owner": "src/pso/ui/window/TWindowSubAreaMapDisp.cpp"
+        }
+      },
+      "historical_diff_sha256": "2c9665b0dacdabafbfb447bd8199ec6a5ccb90abc4d37b47e462b7dd9d6d64ad"
+    },
+    "src/pso/misc/TWindowSubQuestBoardSelect.cpp": {
+      "historical_row": 5680,
+      "fork_blob": "3a133a7516b340ae660ace711e99cb0aa6b28d24",
+      "historical_source_sha256": "26a96c1c2ad339808c2c9888de1c86ca0de0947c8137ea52e0a8fdf9b152e29a",
+      "source_resolution": "The quest board uses the native draw context and entry record, keeps the slot flags, controller paging, confirm and cancel paths, and uses the actual status window member for teardown.",
+      "exact_linked_functions": 12,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 16,
+          "exact_bytes": 16,
+          "owners": [
+            "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 44,
+          "exact_bytes": 44,
+          "owners": [
+            "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 48,
+          "exact_bytes": 48,
+          "owners": [
+            "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp": "6243c3d3ca3c53c107006f592815d9196f011a71"
+      },
+      "matched_examples": {
+        "0x8027d2ec": {
+          "old": "update_slot_display_flags__26TWindowSubQuestBoardSelectFv",
+          "current": "update_slot_display_flags__26TWindowSubQuestBoardSelectFv",
+          "owner": "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp"
+        },
+        "0x8027d3bc": {
+          "old": "select_next__26TWindowSubQuestBoardSelectFv",
+          "current": "select_next__26TWindowSubQuestBoardSelectFv",
+          "owner": "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp"
+        },
+        "0x8027d648": {
+          "old": "handle_decide__26TWindowSubQuestBoardSelectFv",
+          "current": "handle_decide__26TWindowSubQuestBoardSelectFv",
+          "owner": "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp"
+        },
+        "0x8027d6a0": {
+          "old": "handle_page_input__26TWindowSubQuestBoardSelectFv",
+          "current": "handle_page_input__26TWindowSubQuestBoardSelectFv",
+          "owner": "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp"
+        },
+        "0x8027d820": {
+          "old": "render__26TWindowSubQuestBoardSelectFv",
+          "current": "render__26TWindowSubQuestBoardSelectFv",
+          "owner": "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp"
+        },
+        "0x8027d9ac": {
+          "old": "__dt__26TWindowSubQuestBoardSelectFv",
+          "current": "__dt__26TWindowSubQuestBoardSelectFv",
+          "owner": "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp"
+        },
+        "0x8027da14": {
+          "old": "__ct__26TWindowSubQuestBoardSelectFv",
+          "current": "__ct__26TWindowSubQuestBoardSelectFv",
+          "owner": "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp"
+        }
+      },
+      "historical_diff_sha256": "00756f0e8a85100f444ca793ac3b8720067f40ac7f902cff06b481b9aa7ef77b"
+    },
+    "src/pso/misc/TShopEquipmentSellWindow.cpp": {
+      "historical_row": 5803,
+      "fork_blob": "af4163456a61e90980389456a42e749d5f9bad01",
+      "historical_source_sha256": "7ae753f5b065d1641011df5f69a4b3e89a22842a0e1f6a7bda808a45b1493691",
+      "source_resolution": "The city shop uses native player and inventory item records through selection and list building. The list retains quantity and price rules, confirmation stages and message paths.",
+      "exact_linked_functions": 11,
+      "exact_non_text_sections": {
+        ".data": {
+          "source_bytes": 36,
+          "exact_bytes": 36,
+          "owners": [
+            "src/pso/ui/city/TShopEquipmentSellWindow.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/ui/city/TShopEquipmentSellWindow.cpp": "22764f2ee95ef11abba1750ad9a3344149ed935f"
+      },
+      "matched_examples": {
+        "0x8021c870": {
+          "old": "display_message__24TShopEquipmentSellWindowFPCcl",
+          "current": "display_message__24TShopEquipmentSellWindowFPCcl",
+          "owner": "src/pso/ui/city/TShopEquipmentSellWindow.cpp"
+        },
+        "0x8021c968": {
+          "old": "handle_sell_confirm__24TShopEquipmentSellWindowFv",
+          "current": "handle_sell_confirm__24TShopEquipmentSellWindowFv",
+          "owner": "src/pso/ui/city/TShopEquipmentSellWindow.cpp"
+        },
+        "0x8021cab8": {
+          "old": "handle_input_window_result__24TShopEquipmentSellWindowFv",
+          "current": "handle_input_window_result__24TShopEquipmentSellWindowFv",
+          "owner": "src/pso/ui/city/TShopEquipmentSellWindow.cpp"
+        },
+        "0x8021cc44": {
+          "old": "handle_selection__24TShopEquipmentSellWindowFv",
+          "current": "handle_selection__24TShopEquipmentSellWindowFv",
+          "owner": "src/pso/ui/city/TShopEquipmentSellWindow.cpp"
+        },
+        "0x8021cf04": {
+          "old": "build_sell_list__24TShopEquipmentSellWindowFv",
+          "current": "build_sell_list__24TShopEquipmentSellWindowFv",
+          "owner": "src/pso/ui/city/TShopEquipmentSellWindow.cpp"
+        },
+        "0x8021d478": {
+          "old": "TShopEquipmentSellWindow__ct",
+          "current": "__ct__24TShopEquipmentSellWindowFPvPvPvPv",
+          "owner": "src/pso/ui/city/TShopEquipmentSellWindow.cpp"
+        }
+      },
+      "historical_diff_sha256": "3daa762926223d5e1e2fb418034abcb1437f8d322ab6f366241449ef182bc2f0"
+    },
+    "src/pso/misc/TWindowMessage.cpp": {
+      "historical_row": 5818,
+      "fork_blob": "cc4d0847bafe017f9ccfb1a218f55099758bbdda",
+      "historical_source_sha256": "b650e34255aed96832a305c344011a5ef8aa524fe521f2ebc9b52b32826532c3",
+      "source_resolution": "The message window uses its actual line storage, flags, signed circular indices and timer fields. The revealing, aging, scrolling and retirement paths use the active text entries and draw context.",
+      "exact_linked_functions": 19,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/ui/window/TWindowMessage.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 24,
+          "exact_bytes": 24,
+          "owners": [
+            "src/pso/ui/window/TWindowMessage.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 40,
+          "exact_bytes": 40,
+          "owners": [
+            "src/pso/ui/window/TWindowMessage.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/ui/window/TWindowMessage.cpp": "e41c297840e4256ba522e9a477b930253dbd01d2"
+      },
+      "matched_examples": {
+        "0x802694f4": {
+          "old": "scroll_up_line__14TWindowMessageFPUc",
+          "current": "scroll_up_line__14TWindowMessageFPUc",
+          "owner": "src/pso/ui/window/TWindowMessage.cpp"
+        },
+        "0x802695a8": {
+          "old": "advance_reveal_cursor__14TWindowMessageFv",
+          "current": "advance_reveal_cursor__14TWindowMessageFv",
+          "owner": "src/pso/ui/window/TWindowMessage.cpp"
+        },
+        "0x80269664": {
+          "old": "update_line_timers__14TWindowMessageFv",
+          "current": "update_line_timers__14TWindowMessageFv",
+          "owner": "src/pso/ui/window/TWindowMessage.cpp"
+        },
+        "0x802697b4": {
+          "old": "retire_scrolled_lines__14TWindowMessageFv",
+          "current": "retire_scrolled_lines__14TWindowMessageFv",
+          "owner": "src/pso/ui/window/TWindowMessage.cpp"
+        },
+        "0x802698c4": {
+          "old": "update_scroll__14TWindowMessageFv",
+          "current": "update_scroll__14TWindowMessageFv",
+          "owner": "src/pso/ui/window/TWindowMessage.cpp"
+        },
+        "0x80269c6c": {
+          "old": "append_line__14TWindowMessageFii",
+          "current": "append_line__14TWindowMessageFii",
+          "owner": "src/pso/ui/window/TWindowMessage.cpp"
+        }
+      },
+      "historical_diff_sha256": "60b40280055dd900718eff6419bbd1e801d7e3991bc8efbb0bd9530015138b02"
+    },
+    "src/pso/misc/TWindowSubStatusDisp_8024FBA8.cpp": {
+      "historical_row": 5819,
+      "fork_blob": "cbaf83132fd94b09ffe5ecd3f96fc18e0b95cbb6",
+      "historical_source_sha256": "a805d393f021e769b686ccaa87ccdb7756c7b08734c9914192786ab37b0e470e",
+      "source_resolution": "The active status text uses the keyboard input mode and shared clipping and glyph records. It retains both text paths, including control codes, RGBA, the width limit and glyph advance.",
+      "exact_linked_functions": 4,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 16,
+          "exact_bytes": 16,
+          "owners": [
+            "src/pso/ui/window/TWindowSubStatusDisp_8024FBA8.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 24,
+          "exact_bytes": 24,
+          "owners": [
+            "src/pso/ui/window/TWindowSubStatusDisp_8024FBA8.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 16,
+          "exact_bytes": 16,
+          "owners": [
+            "src/pso/ui/window/TWindowSubStatusDisp_8024FBA8.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/ui/window/TWindowSubStatusDisp_8024FBA8.cpp": "fe09aaca5da5d6453d10feb5684f9c024aff491e"
+      },
+      "matched_examples": {
+        "0x8024fba8": {
+          "old": "set_input_mode__19TWindowKeyBoardBaseFl",
+          "current": "set_input_mode__19TWindowKeyBoardBaseFl",
+          "owner": "src/pso/ui/window/TWindowSubStatusDisp_8024FBA8.cpp"
+        },
+        "0x8024fbb0": {
+          "old": "draw_small_font_string_clipped__FPfPCcUlf",
+          "current": "draw_small_font_string_clipped__FPfPCcUlf",
+          "owner": "src/pso/ui/window/TWindowSubStatusDisp_8024FBA8.cpp"
+        },
+        "0x8024fd8c": {
+          "old": "draw_window_text__FPfPCcllf",
+          "current": "draw_window_text__FPfPCcllf",
+          "owner": "src/pso/ui/window/TWindowSubStatusDisp_8024FBA8.cpp"
+        },
+        "0x802500f4": {
+          "old": "set_text_draw_params",
+          "current": "set_text_draw_params",
+          "owner": "src/pso/ui/window/TWindowSubStatusDisp_8024FBA8.cpp"
+        }
+      },
+      "historical_diff_sha256": "56df248e0a3e383a109454b0162f7417397797c434992ef8484e05c4dd1b8f7a"
+    },
+    "src/pso/misc/TWindowSubComCard_80244774.cpp": {
+      "historical_row": 5829,
+      "fork_blob": "9eb07b0b38d68ed03fa2323258d803d9d4df08c4",
+      "historical_source_sha256": "7920dbd1f3dcbd6220ff00be02396087ffacd40730b7e6c598349c252efb836c",
+      "source_resolution": "The shared base-window paths retain draw and viewport setup, lifecycle flags, show and refresh, and the positive scale and sound gates. The proven base-window receivers use the actual client, open tick and window flags.",
+      "exact_linked_functions": 38,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 16,
+          "exact_bytes": 16,
+          "owners": [
+            "src/pso/ui/window/TWindowSubComCard_80244774.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 148,
+          "exact_bytes": 148,
+          "owners": [
+            "src/pso/ui/window/TWindowSubComCard_80244774.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/ui/window/TWindowSubComCard_80244774.cpp": "0c9259abc486c0ba83a013e4a85d178fd315f4f0"
+      },
+      "matched_examples": {
+        "0x80244784": {
+          "old": "TWindowSubComCard__sub_80244784",
+          "current": "TWindowSubComCard__sub_80244784",
+          "owner": "src/pso/ui/window/TWindowSubComCard_80244774.cpp"
+        },
+        "0x802449e0": {
+          "old": "fn_802449E0",
+          "current": "fn_802449E0",
+          "owner": "src/pso/ui/window/TWindowSubComCard_80244774.cpp"
+        },
+        "0x80244a14": {
+          "old": "close__11TWindowBaseFv",
+          "current": "close__11TWindowBaseFv",
+          "owner": "src/pso/ui/window/TWindowSubComCard_80244774.cpp"
+        },
+        "0x80244a4c": {
+          "old": "request_close__11TWindowBaseFv",
+          "current": "request_close__11TWindowBaseFv",
+          "owner": "src/pso/ui/window/TWindowSubComCard_80244774.cpp"
+        },
+        "0x80244b1c": {
+          "old": "window_request_refresh__FPUc",
+          "current": "window_request_refresh__FPUc",
+          "owner": "src/pso/ui/window/TWindowSubComCard_80244774.cpp"
+        },
+        "0x80244b64": {
+          "old": "window_request_show__FPv",
+          "current": "window_request_show__FPv",
+          "owner": "src/pso/ui/window/TWindowSubComCard_80244774.cpp"
+        }
+      },
+      "historical_diff_sha256": "0bc378f1f25cf4a1bff130e031b485bbdc69909ea8acc956343a69deab0d4ddb"
+    },
+    "src/pso/misc/TWindowSubComCard_80271E7C.cpp": {
+      "historical_row": 5941,
+      "fork_blob": "9ca0d5928dfb04eb206742d708874c9f6ebf58cf",
+      "historical_source_sha256": "d6ccb0bb10a08157c6c76bd3da9d5805f0b99601d4385f696fd6a32b4a39c223",
+      "source_resolution": "The Guild Card window uses the established card keyboard, help text and window controls. It keeps selection, wrapped navigation, command IDs and status synchronization.",
+      "exact_linked_functions": 57,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 320,
+          "exact_bytes": 320,
+          "owners": [
+            "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp": "3b2d0a37595c2104627e09bbb61670c6ee16cadc"
+      },
+      "matched_examples": {
+        "0x80271ec0": {
+          "old": "send_state_if_dirty__17TWindowSubComCardFv",
+          "current": "send_state_if_dirty__17TWindowSubComCardFv",
+          "owner": "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp"
+        },
+        "0x802720b0": {
+          "old": "apply_selection__17TWindowSubComCardFi",
+          "current": "apply_selection__17TWindowSubComCardFl",
+          "owner": "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp"
+        },
+        "0x802720fc": {
+          "old": "send_command__17TWindowSubComCardFi",
+          "current": "send_command__17TWindowSubComCardFl",
+          "owner": "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp"
+        },
+        "0x80272134": {
+          "old": "init_layout__17TWindowSubComCardFv",
+          "current": "init_layout__17TWindowSubComCardFv",
+          "owner": "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp"
+        },
+        "0x802721a8": {
+          "old": "cleanup__17TWindowSubComCardFPv",
+          "current": "cleanup__17TWindowSubComCardFPv",
+          "owner": "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp"
+        },
+        "0x80272290": {
+          "old": "set_selected_card__17TWindowSubComCardFl",
+          "current": "set_selected_card__17TWindowSubComCardFl",
+          "owner": "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp"
+        },
+        "0x80272340": {
+          "old": "set_help_message__17TWindowSubComCardFl",
+          "current": "set_help_message__17TWindowSubComCardFl",
+          "owner": "src/pso/ui/window/TWindowSubComCard_80271E7C.cpp"
+        }
+      },
+      "historical_diff_sha256": "e6f8062069e86cba6651d21f2ff261201727cda3288b8765b19dfb4da0de5fc2"
+    },
+    "src/pso/misc/TLobby_80207DA8.cpp": {
+      "historical_row": 6027,
+      "fork_blob": "b9046111f3a26b621237f041da76d19926230ff8",
+      "historical_source_sha256": "d82fdd22443f399cb3e28607b6c17e2196c1358ee6a3669c583a6b1b00d03c43",
+      "source_resolution": "The lobby retains floor transitions, floor map and scene lookup, player setup, drop state and the native event dispatch. AreaEventSet owns the migrated floor and event tables with their original ranges.",
+      "exact_linked_functions": 60,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 32,
+          "exact_bytes": 32,
+          "owners": [
+            "src/pso/map/AreaEventSet.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 864,
+          "exact_bytes": 864,
+          "owners": [
+            "src/pso/unk/TLobby_80207DA8.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/unk/TLobby_80207DA8.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "canonical_blobs": {
+        "src/pso/map/AreaEventSet.cpp": "b02cd31398bc177a0e8a5efd58421d6d20b7a429",
+        "src/pso/unk/TLobby_80207DA8.cpp": "da49ffc21a6366a7a72339c95d8459d6f543bb0a"
+      },
+      "matched_examples": {
+        "0x80207dd4": {
+          "old": "is_scene_ready__6TLobbyFv",
+          "current": "is_scene_ready__6TLobbyFv",
+          "owner": "src/pso/unk/TLobby_80207DA8.cpp"
+        },
+        "0x80207e68": {
+          "old": "lookup_scene_object__6TLobbyFPv",
+          "current": "lookup_floor_map_selection",
+          "owner": "src/pso/unk/TLobby_80207DA8.cpp"
+        },
+        "0x80207e88": {
+          "old": "get_floor_scene_table",
+          "current": "get_floor_scene_table__Fl",
+          "owner": "src/pso/unk/TLobby_80207DA8.cpp"
+        },
+        "0x80207f80": {
+          "old": "run_floor_cleanup_callbacks__6TLobbyFi",
+          "current": "run_floor_cleanup_callbacks__6TLobbyFi",
+          "owner": "src/pso/unk/TLobby_80207DA8.cpp"
+        },
+        "0x80207ffc": {
+          "old": "update_current_floor__6TLobbyFv",
+          "current": "update_current_floor__6TLobbyFv",
+          "owner": "src/pso/unk/TLobby_80207DA8.cpp"
+        },
+        "0x80208020": {
+          "old": "run_floor_initialize_callbacks__Fl",
+          "current": "run_floor_initialize_callbacks__Fl",
+          "owner": "src/pso/unk/TLobby_80207DA8.cpp"
+        }
+      },
+      "historical_diff_sha256": "3ab82979654de63a83d0052cb60406dc0a33dbf0334fb0139fa06c4a4a4f4033"
+    }
+  },
+  "whole_historical_comparisons_remaining": 31,
+  "window_layout_menus_and_results_comparisons_remaining": 0,
+  "runtime": {
+    "images": [
+      "retail",
+      "Great Merge source",
+      "materialized fork"
+    ],
+    "cases_per_image": {
+      "window_show_and_refresh": 11,
+      "word_select_cursor_and_tween": 7,
+      "message_reveal": 6,
+      "choice_flags": 256,
+      "menu_selection": 8
+    },
+    "probe_scope": "Executes the game routines. Window scale and sound, rendering, and message entry lookups use controlled hooks."
+  },
+  "source_quality": {
+    "removed": 182,
+    "added": 59,
+    "symbol_label_changes": 0,
+    "newly_stale_retention": 0,
+    "advisory": "54 additions reference existing offset-named members now accessed through their actual record. Five refer to the established numeric layout entry type. Field and type names follow the current owners."
+  },
+  "compiler_constraints": {
+    "palette": "CustomEquip retains the historical full-width call boundary. Sharing the narrow palette declaration added four halfword masks on the caller path.",
+    "guild_card": "The legacy calc_offset receiver keeps its matching load expression. CodeWarrior changed register allocation for a cast to the native base-window view. The verified base receivers in show and refresh use the existing typed fields."
+  },
+  "fork_tooling": {
+    "overlay_paths": 130,
+    "retention_entries": 27007,
+    "checks": {
+      "tool": 294,
+      "fork": 11,
+      "host": [
+        "./vector_math_fallbacks",
+        "./item_factory_callbacks",
+        "./loader_transfer",
+        "./ginja_parameter_callbacks",
+        "./exi_ethernet_fallbacks"
+      ]
+    }
+  },
+  "fork_main_comparison": {
+    "non_padding_data_or_linkage_loss": 0,
+    "matched_function_loss": 0,
+    "omitted_alignment_bytes": 2565,
+    "added_covered_bytes": 159
+  },
+  "evidence_sha256": {
+    "source.patch": "46fdc9ffbea8d8904cda1cb012865cf5256dba12af13a421833cd0831c72e33c",
+    "address-ownership.json": "c170354969f2e85bc523b77d20ab55fa10833f24f04620a7b51fdf81d89b8d0e",
+    "final-quality.json": "99ab10455e07e4d88c6491bc22e497d21ac0b007bf86ab5abcfe0223b6534fc7",
+    "fork-main-coverage.json": "1a226ee42b9acb87613c1dfd23a35d3de31ca004bb9b089ea436caca3284ef33",
+    "probe-window-state.py": "c2de508130103e093093660628120674e71f0b91359ac5c1a305360b589bfbf5",
+    "probe-window-state.log": "8ee63b8285990286a9b40f31132782be5635eae0aacb2e900d1c0c6f4af773f1",
+    "probe-menu-selection.log": "9a637200dd74ec975c18dc46e8f22f0dfd0b1cb89a19c6a93718b928e0b58b6d",
+    "tool-overlay.patch": "d93d879f1cd3c199a515f8c3518b452d719a7113f7f7556fc7f06c7aa1ce45c3"
+  }
+}

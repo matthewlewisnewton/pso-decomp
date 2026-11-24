@@ -1,0 +1,1529 @@
+{
+  "upstream_master": "412b3b3cf562c5cb4b4655b747ff328777b32969",
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "previous_source": "8e87000764af7dd0bd60f243d6a5448db1b55289",
+  "updated_paths": [
+    "include/pso/ui/chat/TWindowSubShortMail.h",
+    "include/pso/ui/frontend/TAdMultiConfirmGC.h",
+    "include/pso/ui/frontend/TAdMultiOkGC.h",
+    "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp",
+    "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp",
+    "src/pso/ui/frontend/TAdMultiConfirmGC.cpp",
+    "src/pso/ui/frontend/TAdMultiOkGC.cpp",
+    "src/pso/ui/window/TWindowFukidasi.cpp",
+    "src/pso/ui/window/TWindowKeyBoardSoft.cpp"
+  ],
+  "paths_also_in_pr_375": [
+    "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp",
+    "src/pso/ui/window/TWindowFukidasi.cpp",
+    "src/pso/ui/window/TWindowKeyBoardSoft.cpp"
+  ],
+  "builds": {
+    "source": {
+      "head": "e052f813e0b70eefd05c1d422756be0098400eff",
+      "tree": "8548d0f11b87d88c1cbb88f9dcf75f54b04011bd",
+      "coverage_baseline": "8e87000764af7dd0bd60f243d6a5448db1b55289",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "historical_fork_data": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "source-report.json": "21b83d4830a9e5c2b309f6fc092ac60571d340a1cc7c40ceae29cb7fe850269e",
+        "source-check.json": "ec167389dbd490e17ac3a61384def77d8d58a7485e34e9bf913ffed6e489dc0a"
+      }
+    },
+    "queue": {
+      "head": "d03b8affc149651ce4448a03f58125aa5d7972db",
+      "tree": "06ac88a10ee06e124e54a8049d4bc39a7f2458e8",
+      "coverage_baseline": "412b3b3cf562c5cb4b4655b747ff328777b32969",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "historical_fork_data": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "queue-report.json": "21b83d4830a9e5c2b309f6fc092ac60571d340a1cc7c40ceae29cb7fe850269e",
+        "queue-check.json": "70df1f97f1477075ecad076c58d30d563c10fbd98e6d69ba1ce01cd29f03a9bb"
+      }
+    },
+    "private": {
+      "head": "1ee661e00915c25e3c8c18ece9d2e5ab515f0116",
+      "tree": "5a72e33f6adea76d21de073be193c3ea5b5e59ca",
+      "coverage_baseline": "e052f813e0b70eefd05c1d422756be0098400eff",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "historical_fork_data": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "reports_sha256": {
+        "private-report.json": "21b83d4830a9e5c2b309f6fc092ac60571d340a1cc7c40ceae29cb7fe850269e",
+        "private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011"
+      }
+    }
+  },
+  "source_build_tree_was_tested_at": "0ad491fec71f15bd6b5500f35b6e01b428b73c8f",
+  "whole_historical_comparisons_closed": {
+    "src/pso/misc/TWindowSubSymbolChatPartsSet_80247EFC.cpp": {
+      "historical_row": 249,
+      "fork_blob": "912de17f60358c652c10b97ccda2ee79653fb4dc",
+      "historical_source_sha256": "749ea2f0e83602fafd5af77612615b063f6b681456b55fbd64761ade49bdc90a",
+      "source_resolution": "The relocated chat symbol owner retains the original part sprite palette, UV and flip controls, entry dispatch, preview sizing and native preset selection. The linked preview visibility, selection and drawing use the actual preset and window records.",
+      "exact_linked_functions": 19,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 744,
+          "exact_bytes": 744,
+          "owners": [
+            "src/pso/ui/chat/TWindowChatSymbol.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/ui/chat/TWindowChatSymbol.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "alignment": [],
+      "canonical_blobs": {
+        "src/pso/ui/chat/TWindowChatSymbol.cpp": "914b6b7dd4cdcde0c3d7a995ff98d2bacceb2d38"
+      },
+      "matched_examples": {
+        "0x80247efc": {
+          "old": "get_parts_entry__28TWindowSubSymbolChatPartsSetFi",
+          "current": "get_parts_entry__28TWindowSubSymbolChatPartsSetFi",
+          "owner": "src/pso/ui/chat/TWindowChatSymbol.cpp"
+        },
+        "0x80247f68": {
+          "old": "set_part_sprite__28TWindowSubSymbolChatPartsSetFPvsll",
+          "current": "set_part_sprite__28TWindowSubSymbolChatPartsSetFPvsll",
+          "owner": "src/pso/ui/chat/TWindowChatSymbol.cpp"
+        },
+        "0x80248088": {
+          "old": "apply_part_to_window__28TWindowSubSymbolChatPartsSetFPvPvi",
+          "current": "apply_part_to_window__28TWindowSubSymbolChatPartsSetFPvPvi",
+          "owner": "src/pso/ui/chat/TWindowChatSymbol.cpp"
+        },
+        "0x802480ec": {
+          "old": "setup_part_sprites__28TWindowSubSymbolChatPartsSetFPvPvPvUsiiii",
+          "current": "setup_part_sprites__28TWindowSubSymbolChatPartsSetFPvPvPvUsiiii",
+          "owner": "src/pso/ui/chat/TWindowChatSymbol.cpp"
+        },
+        "0x80248494": {
+          "old": "init_layout_entries__20TWindowSubSymbolChatFl",
+          "current": "init_layout_entries__20TWindowSubSymbolChatFl",
+          "owner": "src/pso/ui/chat/TWindowChatSymbol.cpp"
+        },
+        "0x802484c0": {
+          "old": "update_visibility__17TWindowChatSymbolFv",
+          "current": "update_visibility__17TWindowChatSymbolFv",
+          "owner": "src/pso/ui/chat/TWindowChatSymbol.cpp"
+        },
+        "0x80248534": {
+          "old": "set_selection__17TWindowChatSymbolFUl",
+          "current": "set_selection__17TWindowChatSymbolFP16SymbolChatPreset",
+          "owner": "src/pso/ui/chat/TWindowChatSymbol.cpp"
+        },
+        "0x802485a4": {
+          "old": "render__17TWindowChatSymbolFv",
+          "current": "render__17TWindowChatSymbolFv",
+          "owner": "src/pso/ui/chat/TWindowChatSymbol.cpp"
+        }
+      },
+      "historical_diff_sha256": "6c81be8f24026960ca36566503e02f9b2697d6de281f2be03ababea6990fca14"
+    },
+    "src/pso/misc/TWindowSubSymbolChatParts.cpp": {
+      "historical_row": 254,
+      "fork_blob": "c90f4ddcf0f12af227fadf4553217ea9afe438fd",
+      "historical_source_sha256": "0094024ce111bc2823d11b4e2951397a5f464cbf88f321858e1611803edb21a1",
+      "source_resolution": "The part editor keeps the separate part and face grids, mode and controller states, signed cursor coordinates, selection bounds and sound calls. The scroll movement uses the inherited frame and scroll fields and the established scrollbar. Drawing uses the actual WindowDrawContext.",
+      "exact_linked_functions": 20,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 44,
+          "exact_bytes": 44,
+          "owners": [
+            "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 72,
+          "exact_bytes": 72,
+          "owners": [
+            "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "alignment": [],
+      "canonical_blobs": {
+        "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp": "0c59dcb64d5cb8e03d2d3e2be9f20adb1e753531"
+      },
+      "matched_examples": {
+        "0x80284c04": {
+          "old": "fn_80284C04",
+          "current": "fn_80284C04",
+          "owner": "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp"
+        },
+        "0x80284d68": {
+          "old": "select_index_and_scroll__20TWindowSubSymbolChatFl",
+          "current": "select_index_and_scroll__25TWindowSubSymbolChatPartsFl",
+          "owner": "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp"
+        },
+        "0x80284e34": {
+          "old": "handle_cancel__25TWindowSubSymbolChatPartsFv",
+          "current": "handle_cancel__25TWindowSubSymbolChatPartsFv",
+          "owner": "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp"
+        },
+        "0x80284f34": {
+          "old": "handle_add__25TWindowSubSymbolChatPartsFv",
+          "current": "handle_add__25TWindowSubSymbolChatPartsFv",
+          "owner": "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp"
+        },
+        "0x80284fb8": {
+          "old": "fn_80284FB8",
+          "current": "sub_80284FB8__25TWindowSubSymbolChatPartsFv",
+          "owner": "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp"
+        },
+        "0x802857c4": {
+          "old": "fn_802857C4",
+          "current": "fn_802857C4",
+          "owner": "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp"
+        },
+        "0x80285ac4": {
+          "old": "render__25TWindowSubSymbolChatPartsFv",
+          "current": "render__25TWindowSubSymbolChatPartsFv",
+          "owner": "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp"
+        },
+        "0x80285b84": {
+          "old": "run_task__25TWindowSubSymbolChatPartsFv",
+          "current": "run_task__25TWindowSubSymbolChatPartsFv",
+          "owner": "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp"
+        }
+      },
+      "historical_diff_sha256": "f3308054bdbe0e0120fe6e514f6a394d7ad3e2b706d3decdd2857dd73c717ae4"
+    },
+    "src/pso/misc/TWindowFukidasi.cpp": {
+      "historical_row": 262,
+      "fork_blob": "0666de1a4e13ff6f413caccaa5ae4344c19cb2aa",
+      "historical_source_sha256": "720b16b7d1fd2b113ed421ea0350ab5cc048172aef36abb394a59fc67a339405",
+      "source_resolution": "The speech balloon retains its speaker and anchor fields, collision placement, reveal and draw paths. The body and row use the native frame and draw context and share one strip record. The tail preserves the Ninja polygon record, and the name plate remains on the existing draw helper.",
+      "exact_linked_functions": 32,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 24,
+          "exact_bytes": 24,
+          "owners": [
+            "src/pso/ui/window/TWindowFukidasi.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 104,
+          "exact_bytes": 104,
+          "owners": [
+            "src/pso/ui/window/TWindowFukidasi.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 192,
+          "exact_bytes": 188,
+          "owners": [
+            "src/pso/ui/window/TWindowFukidasi.cpp"
+          ],
+          "uncovered": [
+            [
+              "0x805dcdc4",
+              "0x805dcdc8"
+            ]
+          ]
+        }
+      },
+      "alignment": [
+        {
+          "section": ".sdata2",
+          "start": "0x805dcdc4",
+          "end_exclusive": "0x805dcdc8",
+          "bytes": 4
+        }
+      ],
+      "canonical_blobs": {
+        "src/pso/ui/window/TWindowFukidasi.cpp": "54690f961fe76030fd61bdfa2b608fc903498e40"
+      },
+      "matched_examples": {
+        "0x8025010c": {
+          "old": "complete_speech_balloon",
+          "current": "complete_speech_balloon__FPUc",
+          "owner": "src/pso/ui/window/TWindowFukidasi.cpp"
+        },
+        "0x80250314": {
+          "old": "clamp_text_size__15TWindowFukidasiFPvPv",
+          "current": "clamp_text_size__15TWindowFukidasiFPvPv",
+          "owner": "src/pso/ui/window/TWindowFukidasi.cpp"
+        },
+        "0x80250408": {
+          "old": "sync_display_pos__15TWindowFukidasiFv",
+          "current": "sync_display_pos__15TWindowFukidasiFv",
+          "owner": "src/pso/ui/window/TWindowFukidasi.cpp"
+        },
+        "0x80250a24": {
+          "old": "rest_balloon__15TWindowFukidasiFv",
+          "current": "rest_balloon__15TWindowFukidasiFv",
+          "owner": "src/pso/ui/window/TWindowFukidasi.cpp"
+        },
+        "0x80251790": {
+          "old": "TWindowFukidasi__sub_80251790",
+          "current": "update_reveal_timer__15TWindowFukidasiFv",
+          "owner": "src/pso/ui/window/TWindowFukidasi.cpp"
+        },
+        "0x80251d28": {
+          "old": "init_flags__15TWindowFukidasiFPvi",
+          "current": "init_flags__15TWindowFukidasiFPvi",
+          "owner": "src/pso/ui/window/TWindowFukidasi.cpp"
+        },
+        "0x80251ec8": {
+          "old": "draw_name_plate__15TWindowFukidasiFv",
+          "current": "draw_name_plate__15TWindowFukidasiFv",
+          "owner": "src/pso/ui/window/TWindowFukidasi.cpp"
+        },
+        "0x802523cc": {
+          "old": "draw_body_row__13TUnk_804CF0B8FPvPvffff",
+          "current": "draw_body_row__15TWindowFukidasiFPvPvffff",
+          "owner": "src/pso/ui/window/TWindowFukidasi.cpp"
+        },
+        "0x80252558": {
+          "old": "draw_body__13TUnk_804CF0B8FPvUlPff",
+          "current": "draw_body__15TWindowFukidasiFPvUlPff",
+          "owner": "src/pso/ui/window/TWindowFukidasi.cpp"
+        },
+        "0x80252764": {
+          "old": "render__13TUnk_804CF0B8Fv",
+          "current": "render__15TWindowFukidasiFv",
+          "owner": "src/pso/ui/window/TWindowFukidasi.cpp"
+        }
+      },
+      "historical_diff_sha256": "91115aeabe36d348f855846b73eec80b0d257b97fab4c5d29414ebdfa79b53e8"
+    },
+    "src/pso/misc/TKeyBoardControl.cpp": {
+      "historical_row": 268,
+      "fork_blob": "a43ef1941e770275170d7fc0b959355380c44712",
+      "historical_source_sha256": "a79653d16833b062465164899626855c844ba49d02d1dfbe9716b1ee026420d1",
+      "source_resolution": "The historical unit now belongs to the soft keyboard. Page actions, grid movement and wrap, edit-state forwarding and key drawing use the existing owner fields and linked keyboard child. The selection key, page, controller, glyph and mode behavior stay on their original paths.",
+      "exact_linked_functions": 30,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 344,
+          "exact_bytes": 344,
+          "owners": [
+            "src/pso/ui/window/TWindowKeyBoardSoft.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 572,
+          "exact_bytes": 572,
+          "owners": [
+            "src/pso/ui/window/TWindowKeyBoardSoft.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/ui/window/TWindowKeyBoardSoft.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 96,
+          "exact_bytes": 96,
+          "owners": [
+            "src/pso/ui/window/TWindowKeyBoardSoft.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "alignment": [],
+      "canonical_blobs": {
+        "src/pso/ui/window/TWindowKeyBoardSoft.cpp": "ee98ce10f708f2858451011051d487bb1641a98f"
+      },
+      "matched_examples": {
+        "0x80260450": {
+          "old": "calc_cursor_step__19TWindowKeyBoardSoftFiPvPv",
+          "current": "calc_cursor_step__19TWindowKeyBoardSoftFPlPl",
+          "owner": "src/pso/ui/window/TWindowKeyBoardSoft.cpp"
+        },
+        "0x80260760": {
+          "old": "TWindowKeyBoardSoft__sub_80260760",
+          "current": "sub_80260760__19TWindowKeyBoardSoftFlPlPUl",
+          "owner": "src/pso/ui/window/TWindowKeyBoardSoft.cpp"
+        },
+        "0x8026088c": {
+          "old": "update_keyboard_child_input_from_controller__19TWindowKeyBoardSoftFl",
+          "current": "update_keyboard_child_input_from_controller__19TWindowKeyBoardSoftFl",
+          "owner": "src/pso/ui/window/TWindowKeyBoardSoft.cpp"
+        },
+        "0x80260904": {
+          "old": "TWindowKeyBoardSoft__sub_80260904",
+          "current": "sub_80260904__19TWindowKeyBoardSoftFl",
+          "owner": "src/pso/ui/window/TWindowKeyBoardSoft.cpp"
+        },
+        "0x80260e30": {
+          "old": "TWindowKeyBoardSoft__sub_80260E30",
+          "current": "sub_80260E30__19TWindowKeyBoardSoftFl",
+          "owner": "src/pso/ui/window/TWindowKeyBoardSoft.cpp"
+        },
+        "0x8026119c": {
+          "old": "update_focus_flags__19TWindowKeyBoardSoftFv",
+          "current": "update_focus_flags__19TWindowKeyBoardSoftFv",
+          "owner": "src/pso/ui/window/TWindowKeyBoardSoft.cpp"
+        },
+        "0x802614dc": {
+          "old": "TWindowKeyBoardSoft__sub_802614DC",
+          "current": "sub_802614DC__19TWindowKeyBoardSoftFP17WindowDrawContextffff",
+          "owner": "src/pso/ui/window/TWindowKeyBoardSoft.cpp"
+        },
+        "0x80262038": {
+          "old": "draw_key_frame__19TWindowKeyBoardSoftFPvP18TWindowDrawContextffffUll",
+          "current": "draw_key_frame__19TWindowKeyBoardSoftFP17WindowDrawContextffffUll",
+          "owner": "src/pso/ui/window/TWindowKeyBoardSoft.cpp"
+        },
+        "0x802625d4": {
+          "old": "render__19TWindowKeyBoardSoftFv",
+          "current": "render__19TWindowKeyBoardSoftFv",
+          "owner": "src/pso/ui/window/TWindowKeyBoardSoft.cpp"
+        }
+      },
+      "historical_diff_sha256": "7bd7d7231e77d2c72f3db9d6d9bcd0e5dca0af7efebc96ff45f89dd1f7c87711"
+    },
+    "src/pso/misc/TWindowKeyBoardSoft.cpp": {
+      "historical_row": 283,
+      "fork_blob": "a9a8b126b76551f6d627caaa14f825f95f9ecff9",
+      "historical_source_sha256": "41eeb21178ebe4a03bf669d4eac521442a9bdc73abf1ee2d3daa2665d2f7b92f",
+      "source_resolution": "The keyboard base owns the composition candidate, insertion, conversion and selection paths. It retains the conversion exclusions, code and glyph widths, text and caret positions, packed composition flags and native draw context for glyphs and wrapped text.",
+      "exact_linked_functions": 27,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 16,
+          "exact_bytes": 16,
+          "owners": [
+            "src/pso/ui/window/TWindowKeyBoardBase.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 40,
+          "exact_bytes": 40,
+          "owners": [
+            "src/pso/ui/window/TWindowKeyBoardBase.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "alignment": [],
+      "canonical_blobs": {
+        "src/pso/ui/window/TWindowKeyBoardBase.cpp": "001bb9a84246c7742cd6a80d9aeebd8ff2e066c8"
+      },
+      "matched_examples": {
+        "0x8025cd44": {
+          "old": "init_keyboard_text_field__19TWindowKeyBoardBaseFUlUl",
+          "current": "init_keyboard_text_field__19TWindowKeyBoardBaseFUlUl",
+          "owner": "src/pso/ui/window/TWindowKeyBoardBase.cpp"
+        },
+        "0x8025d1c8": {
+          "old": "TWindowKeyBoardSoft__sub_8025D1C8",
+          "current": "sub_8025D1C8__19TWindowKeyBoardBaseFPv",
+          "owner": "src/pso/ui/window/TWindowKeyBoardBase.cpp"
+        },
+        "0x8025d338": {
+          "old": "update_input__19TWindowKeyBoardSoftFPv",
+          "current": "update_input__19TWindowKeyBoardBaseFPv",
+          "owner": "src/pso/ui/window/TWindowKeyBoardBase.cpp"
+        },
+        "0x8025d3cc": {
+          "old": "append_text_entry__19TWindowKeyBoardSoftFPUc",
+          "current": "append_text_entry__19TWindowKeyBoardBaseFPUc",
+          "owner": "src/pso/ui/window/TWindowKeyBoardBase.cpp"
+        },
+        "0x8025d774": {
+          "old": "process_input__19TWindowKeyBoardSoftFv",
+          "current": "process_input__19TWindowKeyBoardBaseFv",
+          "owner": "src/pso/ui/window/TWindowKeyBoardBase.cpp"
+        },
+        "0x8025da18": {
+          "old": "update__19TWindowKeyBoardSoftFv",
+          "current": "update__19TWindowKeyBoardBaseFv",
+          "owner": "src/pso/ui/window/TWindowKeyBoardBase.cpp"
+        },
+        "0x8025decc": {
+          "old": "draw_text_glyphs__19TWindowKeyBoardBaseFPvPv",
+          "current": "draw_text_glyphs__19TWindowKeyBoardBaseFP17WindowDrawContextP10NJS_POINT2",
+          "owner": "src/pso/ui/window/TWindowKeyBoardBase.cpp"
+        },
+        "0x8025e350": {
+          "old": "draw_wrapped_text__19TWindowKeyBoardBaseFPvPv",
+          "current": "draw_wrapped_text__19TWindowKeyBoardBaseFP17WindowDrawContextP10NJS_POINT2",
+          "owner": "src/pso/ui/window/TWindowKeyBoardBase.cpp"
+        },
+        "0x8025e6dc": {
+          "old": "sub_8025E6DC__19TWindowKeyBoardBaseFPUc",
+          "current": "draw_input_text__19TWindowKeyBoardBaseFP17WindowDrawContext",
+          "owner": "src/pso/ui/window/TWindowKeyBoardBase.cpp"
+        }
+      },
+      "historical_diff_sha256": "aee03d99297b933ec621cb8fdbacd9896d54194ffdb1160ac9b58a62377a8737"
+    },
+    "src/pso/misc/TWindowSubShortMail_8027E620.cpp": {
+      "historical_row": 292,
+      "fork_blob": "e29e89be2f179127d6cf19d6857ab083c007294c",
+      "historical_source_sha256": "35e49e03fa3e6b4c1f14092ee54eea1ef71e82fd78a8a2845321f68f0d1da2e0",
+      "source_resolution": "Short Mail uses its actual keyboard child for creation, input and teardown. The native mail entry supplies body and flags at the original offsets. The menu, typed confirmation prompt, message preview and list ownership span Short Mail and the companion task.",
+      "exact_linked_functions": 25,
+      "exact_non_text_sections": {
+        ".data": {
+          "source_bytes": 116,
+          "exact_bytes": 116,
+          "owners": [
+            "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 20,
+          "exact_bytes": 20,
+          "owners": [
+            "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp",
+            "src/pso/unk/TUnk_804D1AD0.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "alignment": [],
+      "canonical_blobs": {
+        "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp": "5f97332831bb4b6143588fbc3c8e72323d5c1b80",
+        "src/pso/unk/TUnk_804D1AD0.cpp": "fc5d8eba6231035f31423b30da82e2672f59b2d8"
+      },
+      "matched_examples": {
+        "0x8027e620": {
+          "old": "TWindowSubShortMail__sub_8027E620",
+          "current": "TWindowSubShortMail__sub_8027E620",
+          "owner": "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp"
+        },
+        "0x8027e6fc": {
+          "old": "update_mail_count__19TWindowSubShortMailFv",
+          "current": "update_mail_count__19TWindowSubShortMailFv",
+          "owner": "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp"
+        },
+        "0x8027e76c": {
+          "old": "open_delete_confirm_dialog__19TWindowSubShortMailFv",
+          "current": "open_delete_confirm_dialog__19TWindowSubShortMailFv",
+          "owner": "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp"
+        },
+        "0x8027ea88": {
+          "old": "open_confirm_prompt__19TWindowSubShortMailFPvi",
+          "current": "open_confirm_prompt__19TWindowSubShortMailFPvi",
+          "owner": "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp"
+        },
+        "0x8027edd4": {
+          "old": "refresh_mail_list__19TWindowSubShortMailFPv",
+          "current": "refresh_mail_list__19TWindowSubShortMailFPv",
+          "owner": "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp"
+        },
+        "0x8027f8e4": {
+          "old": "__dt__19TWindowSubShortMailFv",
+          "current": "__dt__19TWindowSubShortMailFv",
+          "owner": "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp"
+        },
+        "0x8027fad0": {
+          "old": "TWindowSubShortMail__sub_8027FAD0",
+          "current": "TWindowSubShortMail__sub_8027FAD0",
+          "owner": "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp"
+        },
+        "0x8027faf8": {
+          "old": "get_field_cc__19TWindowSubShortMailFPv",
+          "current": "get_field_cc__19TWindowSubShortMailFPv",
+          "owner": "src/pso/ui/chat/TWindowSubShortMail_8027E620.cpp"
+        },
+        "0x8027fc58": {
+          "old": "destroy__13TUnk_804D1AD0Fs",
+          "current": "__dt__13TUnk_804D1AD0Fv",
+          "owner": "src/pso/unk/TUnk_804D1AD0.cpp"
+        }
+      },
+      "historical_diff_sha256": "21df44a57c4625ae356cb7e2f42bdaa6fa8c7857d2596a5ef10fcaf566745a7d"
+    },
+    "src/pso/misc/TWindowSubSymbolChat_80281814.cpp": {
+      "historical_row": 293,
+      "fork_blob": "e3e69f1db6fdcaa218015ddfb51033c44efd7b0f",
+      "historical_source_sha256": "d463d22ef474a6023e6e6f5809a9ef5738e44a8a36820874e13441593638d7f7",
+      "source_resolution": "The editor retains original child dispatch, texture selection, preview drawing, clear and commit, keyboard creation, menu paths and dialog ownership. The parts and preview helpers use the shared preset and native draw types where the active declarations are known.",
+      "exact_linked_functions": 27,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/ui/chat/TWindowSubSymbolChat.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 172,
+          "exact_bytes": 172,
+          "owners": [
+            "src/pso/ui/chat/TWindowSubSymbolChat.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/ui/chat/TWindowSubSymbolChat.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 64,
+          "exact_bytes": 64,
+          "owners": [
+            "src/pso/ui/chat/TWindowSubSymbolChat.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "alignment": [],
+      "canonical_blobs": {
+        "src/pso/ui/chat/TWindowSubSymbolChat.cpp": "49defd7164527d9b637bda10b91f228217b43e1c"
+      },
+      "matched_examples": {
+        "0x80281814": {
+          "old": "close_child__20TWindowSubSymbolChatFPvPv",
+          "current": "close_child__20TWindowSubSymbolChatFPvPv",
+          "owner": "src/pso/ui/chat/TWindowSubSymbolChat.cpp"
+        },
+        "0x80281840": {
+          "old": "TWindowSubSymbolChat__sub_80281840",
+          "current": "TWindowSubSymbolChat__sub_80281840",
+          "owner": "src/pso/ui/chat/TWindowSubSymbolChat.cpp"
+        },
+        "0x80281a94": {
+          "old": "update_state__20TWindowSubSymbolChatFv",
+          "current": "update_state__20TWindowSubSymbolChatFv",
+          "owner": "src/pso/ui/chat/TWindowSubSymbolChat.cpp"
+        },
+        "0x80281d50": {
+          "old": "create_keyboard_control__20TWindowSubSymbolChatFv",
+          "current": "create_keyboard_control__20TWindowSubSymbolChatFv",
+          "owner": "src/pso/ui/chat/TWindowSubSymbolChat.cpp"
+        },
+        "0x80281de8": {
+          "old": "create_confirm_window__20TWindowSubSymbolChatFv",
+          "current": "create_confirm_window__20TWindowSubSymbolChatFv",
+          "owner": "src/pso/ui/chat/TWindowSubSymbolChat.cpp"
+        },
+        "0x80282230": {
+          "old": "create_parts__20TWindowSubSymbolChatFv",
+          "current": "create_parts__20TWindowSubSymbolChatFv",
+          "owner": "src/pso/ui/chat/TWindowSubSymbolChat.cpp"
+        },
+        "0x80282600": {
+          "old": "create_symbol_list_card__20TWindowSubSymbolChatFv",
+          "current": "create_symbol_list_card__20TWindowSubSymbolChatFv",
+          "owner": "src/pso/ui/chat/TWindowSubSymbolChat.cpp"
+        },
+        "0x8028351c": {
+          "old": "__dt__20TWindowSubSymbolChatFv",
+          "current": "__dt__20TWindowSubSymbolChatFv",
+          "owner": "src/pso/ui/chat/TWindowSubSymbolChat.cpp"
+        }
+      },
+      "historical_diff_sha256": "d1b54989b2fbb4159db13d7817d4ce03a40c52ca3232a043caa5e14ac3456eb3"
+    },
+    "src/pso/misc/TLobby_801461EC.cpp": {
+      "historical_row": 308,
+      "fork_blob": "1f39e3da33f38b4677c002fbcb780a91e1d31a96",
+      "historical_source_sha256": "b91adb236809a9e954468d7af9f9775c3231a978a6da2493375052049699b029",
+      "source_resolution": "This mixed keyboard and connection unit retains keyboard buffer allocation and cursor reset, account record and phone slot selection, PPPoE progression, DNS propagation, modem state and cleanup. The native account rows replace the historical duplicate global overlays and preserve the bounded record copies.",
+      "exact_linked_functions": 40,
+      "exact_non_text_sections": {
+        ".data": {
+          "source_bytes": 72,
+          "exact_bytes": 72,
+          "owners": [
+            "src/pso/unk/TLobby_801461EC.cpp"
+          ],
+          "uncovered": []
+        },
+        ".bss": {
+          "source_bytes": 3776,
+          "exact_bytes": 3776,
+          "owners": [
+            "src/pso/unk/TLobby_801461EC.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/unk/TLobby_801461EC.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "alignment": [],
+      "canonical_blobs": {
+        "src/pso/unk/TLobby_801461EC.cpp": "d03410332469e26152382f9582013bc420f1fd23"
+      },
+      "matched_examples": {
+        "0x801461ec": {
+          "old": "init_keyboard_buffer__6TLobbyFv",
+          "current": "init_keyboard_buffer__6TLobbyFv",
+          "owner": "src/pso/unk/TLobby_801461EC.cpp"
+        },
+        "0x801465c0": {
+          "old": "TLobby__sub_801465C0",
+          "current": "TLobby__sub_801465C0",
+          "owner": "src/pso/unk/TLobby_801461EC.cpp"
+        },
+        "0x801468a0": {
+          "old": "cleanup__6TLobbyFv",
+          "current": "cleanup__6TLobbyFv",
+          "owner": "src/pso/unk/TLobby_801461EC.cpp"
+        },
+        "0x80146ca0": {
+          "old": "TLobby__sub_80146CA0",
+          "current": "get_modem_phone_number__Fl",
+          "owner": "src/pso/unk/TLobby_801461EC.cpp"
+        },
+        "0x80146d7c": {
+          "old": "load_network_configs__6TLobbyFv",
+          "current": "load_network_configs__6TLobbyFv",
+          "owner": "src/pso/unk/TLobby_801461EC.cpp"
+        },
+        "0x801471a0": {
+          "old": "set_dns_servers__6TLobbyFv",
+          "current": "set_dns_servers__6TLobbyFv",
+          "owner": "src/pso/unk/TLobby_801461EC.cpp"
+        },
+        "0x8014734c": {
+          "old": "TLobby__sub_8014734C",
+          "current": "connect_modem__Fls",
+          "owner": "src/pso/unk/TLobby_801461EC.cpp"
+        },
+        "0x8014797c": {
+          "old": "init_account_entries__6TLobbyFv",
+          "current": "init_account_entries__6TLobbyFv",
+          "owner": "src/pso/unk/TLobby_801461EC.cpp"
+        },
+        "0x80147a74": {
+          "old": "get_ppp_password_buffer__Fv",
+          "current": "get_ppp_password_buffer__Fv",
+          "owner": "src/pso/unk/TLobby_801461EC.cpp"
+        }
+      },
+      "historical_diff_sha256": "3729dba027173008a24c97582bbdb2bd7a9cff123e07b21b2a0fb278603d1711"
+    },
+    "src/pso/ui/TAdChrSelPlyPlateGC.cpp": {
+      "historical_row": 2350,
+      "fork_blob": "110d1ee77a90dbac04157a7372bd99713036b2c9",
+      "historical_source_sha256": "2c911ce8d84b0083b04df1523668dceb1ecf92517766770a8c7ec36d922082ab",
+      "source_resolution": "Multiplayer selection preserves the typed slot grid, selection order, slot and label animation, cursor jumps and scene setup. The controller connection test now uses the connection field on the pad slot returned by the existing lookup.",
+      "exact_linked_functions": 38,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 640,
+          "exact_bytes": 640,
+          "owners": [
+            "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 224,
+          "exact_bytes": 224,
+          "owners": [
+            "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 24,
+          "exact_bytes": 24,
+          "owners": [
+            "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 64,
+          "exact_bytes": 64,
+          "owners": [
+            "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "alignment": [],
+      "canonical_blobs": {
+        "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp": "7d5aacf6e6d14dd270220f4e9704e5e6293a54f7"
+      },
+      "matched_examples": {
+        "0x802c50ec": {
+          "old": "TAdMultiPlyChrSelectGC__sub_802C50EC",
+          "current": "TAdChrSelPlyPlateGC__draw_slot_tags_shifted",
+          "owner": "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp"
+        },
+        "0x802c54c4": {
+          "old": "render__19TAdChrSelPlyPlateGCFv",
+          "current": "render__19TAdChrSelPlyPlateGCFv",
+          "owner": "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp"
+        },
+        "0x802c5bcc": {
+          "old": "split_slot_index__22TAdMultiPlyChrSelectGCFlPlPl",
+          "current": "split_slot_index__22TAdMultiPlyChrSelectGCFlPlPl",
+          "owner": "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp"
+        },
+        "0x802c5f1c": {
+          "old": "TAdMultiPlyChrSelectGC__sub_802C5F1C",
+          "current": "TAdChrSelPlyPlateGC__update_cell_uvs",
+          "owner": "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp"
+        },
+        "0x802c6488": {
+          "old": "is_selection_confirmed__22TAdMultiPlyChrSelectGCFv",
+          "current": "is_selection_confirmed__22TAdMultiPlyChrSelectGCFv",
+          "owner": "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp"
+        },
+        "0x802c658c": {
+          "old": "TAdMultiPlyChrSelectGC__sub_802C658C",
+          "current": "TAdMultiPlyChrSelectGC__get_multiplayer_character_slot",
+          "owner": "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp"
+        },
+        "0x802c6848": {
+          "old": "TAdMultiPlyChrSelectGC__sub_802C6848",
+          "current": "TAdMultiPlyChrSelectGC__is_controller_connected",
+          "owner": "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp"
+        },
+        "0x802c6dd4": {
+          "old": "__ct__19TAdChrSelPlyPlateGCFP7TObjectPC24TAdChrSelPlyPlateGCPoint",
+          "current": "__ct__19TAdChrSelPlyPlateGCFP7TObjectP5vec2f",
+          "owner": "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp"
+        }
+      },
+      "historical_diff_sha256": "ffff81543c3787c04ce4777426eb83d4b7398153f4bcefb8cd4cbfc987792035"
+    },
+    "src/pso/object/TObjCMName.cpp": {
+      "historical_row": 2397,
+      "fork_blob": "34a30cd0a894e4fa7081cc54a8c5a9fb280c13df",
+      "historical_source_sha256": "fe2c8926f856ad1392f28d8c65775c75a3fc5342cafaf740c3d79246a43462fa",
+      "source_resolution": "The character creation splits retain name entry, menu selection, typed icon and proportion drawing, assignment grid and hair color control. The owner keeps the native Ninja polygon records and its established typed render and input routes, including the separately owned effect setter.",
+      "exact_linked_functions": 71,
+      "exact_non_text_sections": {
+        ".ctors": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/ui/charcreate/TObjCMName.cpp"
+          ],
+          "uncovered": []
+        },
+        ".rodata": {
+          "source_bytes": 16,
+          "exact_bytes": 16,
+          "owners": [
+            "src/pso/ui/charcreate/TObjCMName.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 1136,
+          "exact_bytes": 1136,
+          "owners": [
+            "src/pso/ui/charcreate/TObjCMName.cpp"
+          ],
+          "uncovered": []
+        },
+        ".bss": {
+          "source_bytes": 64,
+          "exact_bytes": 64,
+          "owners": [
+            "src/pso/ui/charcreate/TObjCMName.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/ui/charcreate/TObjCMName.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/ui/charcreate/TObjCMName.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 436,
+          "exact_bytes": 436,
+          "owners": [
+            "src/pso/ui/charcreate/TObjCMName.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "alignment": [],
+      "canonical_blobs": {
+        "src/pso/ui/charcreate/TChCrEffCtrlPl.cpp": "82272b4bdd4a9039c53d77289f4b455bcbf798ae",
+        "src/pso/ui/charcreate/TObjCMName.cpp": "443129fc3d3df7d635dc493021d7c8a3c693803a"
+      },
+      "matched_examples": {
+        "0x802948f4": {
+          "old": "TObjCMName__sub_802948F4",
+          "current": "TObjCMName__sub_802948F4",
+          "owner": "src/pso/ui/charcreate/TObjCMName.cpp"
+        },
+        "0x80294d6c": {
+          "old": "render__16TObjCMProportionFv",
+          "current": "render__16TObjCMProportionFv",
+          "owner": "src/pso/ui/charcreate/TObjCMName.cpp"
+        },
+        "0x802952e0": {
+          "old": "run_task__16TObjCMAutoMkDataFv",
+          "current": "run_task__16TObjCMAutoMkDataFv",
+          "owner": "src/pso/ui/charcreate/TObjCMName.cpp"
+        },
+        "0x80296410": {
+          "old": "create__14TObjCMHairMenuFv",
+          "current": "create__14TObjCMHairMenuFv",
+          "owner": "src/pso/ui/charcreate/TObjCMName.cpp"
+        },
+        "0x80296928": {
+          "old": "render__16TObjCMAssignMenuFv",
+          "current": "render__16TObjCMAssignMenuFv",
+          "owner": "src/pso/ui/charcreate/TObjCMName.cpp"
+        },
+        "0x8029737c": {
+          "old": "confirm_selection__14TObjCMMainMenuFv",
+          "current": "confirm_selection__14TObjCMMainMenuFv",
+          "owner": "src/pso/ui/charcreate/TObjCMName.cpp"
+        },
+        "0x80297b18": {
+          "old": "sub_80297B18__14TObjCMMainMenuFv",
+          "current": "draw_name_warning_and_icons__14TObjCMMainMenuFv",
+          "owner": "src/pso/ui/charcreate/TObjCMName.cpp"
+        },
+        "0x80298314": {
+          "old": "update_random_proportion_action__14TObjCMMainMenuFPv",
+          "current": "update_random_proportion_action__14TObjCMMainMenuFPv",
+          "owner": "src/pso/ui/charcreate/TObjCMName.cpp"
+        },
+        "0x80298b70": {
+          "old": "TObjCMMainMenu__ct",
+          "current": "__ct__14TObjCMMainMenuFP7TObject",
+          "owner": "src/pso/ui/charcreate/TObjCMName.cpp"
+        },
+        "0x80298db0": {
+          "old": "set_speed__14TObjCMMainMenuFf",
+          "current": "set_speed__14TObjCMMainMenuFf",
+          "owner": "src/pso/ui/charcreate/TObjCMName.cpp"
+        }
+      },
+      "historical_diff_sha256": "98cd8ba7f90e61b8e4b6c5e2510e3e5cc3012ccc7465027af934bbfb0fd6e8aa"
+    },
+    "src/pso/menu/TAdTimeSetGC.cpp": {
+      "historical_row": 2428,
+      "fork_blob": "fdf4fafefe6342816638637d0d73a97eb1dc897c",
+      "historical_source_sha256": "60c8ac7518d4320b86cea3acf9f34f4a3d7b96f9809cb6732e54885a6a95ed29",
+      "source_resolution": "The date selection scene and status split preserve the typed state entry and run callbacks, calendar position, save load and polling, window construction and status results. Time and summary formats retain their linked addresses and the native preview accessors retain their owner.",
+      "exact_linked_functions": 92,
+      "exact_non_text_sections": {
+        ".ctors": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/ui/frontend/TAdTimeSetGC.cpp"
+          ],
+          "uncovered": []
+        },
+        ".rodata": {
+          "source_bytes": 120,
+          "exact_bytes": 120,
+          "owners": [
+            "src/pso/ui/frontend/TAdTimeSetGC.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 1260,
+          "exact_bytes": 1260,
+          "owners": [
+            "src/pso/ui/frontend/TAdTimeSetGC.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/ui/frontend/TAdTimeSetGC.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 4,
+          "exact_bytes": 4,
+          "owners": [
+            "src/pso/ui/frontend/TAdTimeSetGC.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 40,
+          "exact_bytes": 40,
+          "owners": [
+            "src/pso/ui/frontend/TAdTimeSetGC.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "alignment": [],
+      "canonical_blobs": {
+        "src/pso/ui/frontend/TAdPlyStatusGC_802E1128.cpp": "8e499dd6eca04780443ed0a64970dd24263f4a81",
+        "src/pso/ui/frontend/TAdTimeSetGC.cpp": "b002554d9d89cfd01947765b40584f8dc7f2f470"
+      },
+      "matched_examples": {
+        "0x802e1128": {
+          "old": "get_field_498__14TAdPlyStatusGCFv",
+          "current": "get_hair_model__24CharacterPreviewLoadDataFv",
+          "owner": "src/pso/ui/frontend/TAdPlyStatusGC_802E1128.cpp"
+        },
+        "0x802e147c": {
+          "old": "create__23TAdSinglePlyChrSelectGCFv",
+          "current": "create__18T_ATS_DrawCalendarFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp"
+        },
+        "0x802e1638": {
+          "old": "poll_load_status__12TAdTimeSetGCFv",
+          "current": "poll_load_status__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp"
+        },
+        "0x802e1bf4": {
+          "old": "close_windows__23TAdSinglePlyChrSelectGCFPv",
+          "current": "close_windows__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp"
+        },
+        "0x802e1f3c": {
+          "old": "finish_settings__12TAdTimeSetGCFv",
+          "current": "update_state__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp"
+        },
+        "0x802e203c": {
+          "old": "show_confirm_dialog__12TAdTimeSetGCFv",
+          "current": "show_confirm_dialog__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp"
+        },
+        "0x802e2374": {
+          "old": "init_menu_window__12TAdTimeSetGCFv",
+          "current": "init_menu_window__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp"
+        },
+        "0x802e2d48": {
+          "old": "update_load_state__12TAdTimeSetGCFv",
+          "current": "update_load_state__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp"
+        },
+        "0x802e2dd8": {
+          "old": "handle_confirm_menu__12TAdTimeSetGCFv",
+          "current": "handle_confirm_menu__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp"
+        },
+        "0x802e3454": {
+          "old": "TAdTimeSetGC__ct",
+          "current": "__ct__12TAdTimeSetGCFP7TObject",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp"
+        }
+      },
+      "historical_diff_sha256": "623fb09c6754817faf017369b0b4d356c998f781d55cd26dd3e07a26fdd3b811"
+    },
+    "src/pso/ui/TAdChrSelASlotGC.cpp": {
+      "historical_row": 2438,
+      "fork_blob": "43ad9084df6070c05ae1847544973cd6a2ae8b79",
+      "historical_source_sha256": "5ca540dae6737d41f25e0096143c7fddc08f2cdb77293c0d5a8f893e5f8d843b",
+      "source_resolution": "The character card slot owner retains the native plate layout and typed windows, record and transfer checks, selection state and original prompt and sound paths. The slot builder preserves index, label, transferred-state information and signed screen coordinates.",
+      "exact_linked_functions": 42,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 208,
+          "exact_bytes": 208,
+          "owners": [
+            "src/pso/ui/frontend/TAdChrSelASlotGC.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 528,
+          "exact_bytes": 528,
+          "owners": [
+            "src/pso/ui/frontend/TAdChrSelASlotGC.cpp"
+          ],
+          "uncovered": []
+        },
+        ".bss": {
+          "source_bytes": 276,
+          "exact_bytes": 276,
+          "owners": [
+            "src/pso/ui/frontend/TAdChrSelASlotGC.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/ui/frontend/TAdChrSelASlotGC.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/ui/frontend/TAdChrSelASlotGC.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "alignment": [],
+      "canonical_blobs": {
+        "src/pso/ui/frontend/TAdChrSelASlotGC.cpp": "55e52b451155d0a67509b56e756901ad6ec9998c"
+      },
+      "matched_examples": {
+        "0x8030c45c": {
+          "old": "TAdChrSelASlotGC__sub_8030C45C",
+          "current": "build_slot_entry__16TAdChrSelASlotGCFllPv",
+          "owner": "src/pso/ui/frontend/TAdChrSelASlotGC.cpp"
+        },
+        "0x8030c688": {
+          "old": "TAdChrSelASlotGC__sub_8030C688",
+          "current": "create_formatted_window__16TAdChrSelASlotGCFl",
+          "owner": "src/pso/ui/frontend/TAdChrSelASlotGC.cpp"
+        },
+        "0x8030c750": {
+          "old": "open_confirm_message__16TAdChrSelASlotGCFll",
+          "current": "open_confirm_message__16TAdChrSelASlotGCFll",
+          "owner": "src/pso/ui/frontend/TAdChrSelASlotGC.cpp"
+        },
+        "0x8030ca84": {
+          "old": "TAdChrSelASlotGC__sub_8030CA84",
+          "current": "open_create_character_prompt__16TAdChrSelASlotGCFl",
+          "owner": "src/pso/ui/frontend/TAdChrSelASlotGC.cpp"
+        },
+        "0x8030cce4": {
+          "old": "sub_8030CCE4__16TAdChrSelASlotGCFv",
+          "current": "populate_slot_entries__16TAdChrSelASlotGCFv",
+          "owner": "src/pso/ui/frontend/TAdChrSelASlotGC.cpp"
+        },
+        "0x8030d5dc": {
+          "old": "sub_8030D5DC__16TAdChrSelASlotGCFv",
+          "current": "show_no_card_message__16TAdChrSelASlotGCFv",
+          "owner": "src/pso/ui/frontend/TAdChrSelASlotGC.cpp"
+        },
+        "0x8030de58": {
+          "old": "create_children__16TAdChrSelASlotGCFl",
+          "current": "create_children__16TAdChrSelASlotGCFl",
+          "owner": "src/pso/ui/frontend/TAdChrSelASlotGC.cpp"
+        },
+        "0x8030e284": {
+          "old": "__ct__16TAdChrSelASlotGCFP7TObjectl",
+          "current": "__ct__16TAdChrSelASlotGCFP7TObjectl",
+          "owner": "src/pso/ui/frontend/TAdChrSelASlotGC.cpp"
+        }
+      },
+      "historical_diff_sha256": "7c7d2435c1f90287aeb584a34f8b469dcec6511e7b2d6e7065331eff39d82c9b"
+    },
+    "src/pso/menu/TAdMultiOkGC.cpp": {
+      "historical_row": 2458,
+      "fork_blob": "b3162fcc215c506026d42e26e5f98710ae7f3fd1",
+      "historical_source_sha256": "10c056acfff302aacaeb234f3fc90dced879d27b08c991d15614722753c9e862",
+      "source_resolution": "The confirmation task owns all twelve native entries, Ginja texture archive, and five shared textured quads per entry. Port mapping, controls, animation, confirmation and cancel flags use the live fields at their original offsets. The parent keeps the actual child pointer.",
+      "exact_linked_functions": 11,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/ui/frontend/TAdMultiOkGC.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 44,
+          "exact_bytes": 44,
+          "owners": [
+            "src/pso/ui/frontend/TAdMultiOkGC.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 48,
+          "exact_bytes": 48,
+          "owners": [
+            "src/pso/ui/frontend/TAdMultiOkGC.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "alignment": [],
+      "canonical_blobs": {
+        "src/pso/ui/frontend/TAdMultiOkGC.cpp": "625f9ce43efc72c48bf150565aa6c43ae44721ee"
+      },
+      "matched_examples": {
+        "0x80306abc": {
+          "old": "multi_confirm_cancel_requested__FPv",
+          "current": "multi_confirm_cancel_requested__FPv",
+          "owner": "src/pso/ui/frontend/TAdMultiOkGC.cpp"
+        },
+        "0x80306ac8": {
+          "old": "are_all_entries_finished",
+          "current": "are_all_entries_finished",
+          "owner": "src/pso/ui/frontend/TAdMultiOkGC.cpp"
+        },
+        "0x80306b04": {
+          "old": "draw_entry__12TAdMultiOkGCFi",
+          "current": "draw_entry__12TAdMultiOkGCFi",
+          "owner": "src/pso/ui/frontend/TAdMultiOkGC.cpp"
+        },
+        "0x80306c70": {
+          "old": "update_entry_animation__12TAdMultiOkGCFi",
+          "current": "update_entry_animation__12TAdMultiOkGCFi",
+          "owner": "src/pso/ui/frontend/TAdMultiOkGC.cpp"
+        },
+        "0x80306df4": {
+          "old": "handle_player_buttons__12TAdMultiOkGCFi",
+          "current": "handle_player_buttons__12TAdMultiOkGCFi",
+          "owner": "src/pso/ui/frontend/TAdMultiOkGC.cpp"
+        },
+        "0x80306f84": {
+          "old": "run_task__12TAdMultiOkGCFv",
+          "current": "run_task__12TAdMultiOkGCFv",
+          "owner": "src/pso/ui/frontend/TAdMultiOkGC.cpp"
+        },
+        "0x80307034": {
+          "old": "__ct__12TAdMultiOkGCFv",
+          "current": "__ct__12TAdMultiOkGCFv",
+          "owner": "src/pso/ui/frontend/TAdMultiOkGC.cpp"
+        },
+        "0x80307298": {
+          "old": "free_multi_confirm_textures__Fv",
+          "current": "free_multi_confirm_textures__Fv",
+          "owner": "src/pso/ui/frontend/TAdMultiOkGC.cpp"
+        },
+        "0x803072cc": {
+          "old": "load_multi_confirm_textures__Fv",
+          "current": "load_multi_confirm_textures__Fv",
+          "owner": "src/pso/ui/frontend/TAdMultiOkGC.cpp"
+        }
+      },
+      "historical_diff_sha256": "6ee3d493896e7b4bdbbeb342460ae5bb7e20ddecad2e67607844c7d7e2490996"
+    },
+    "src/pso/misc/TMainCursor.cpp": {
+      "historical_row": 2484,
+      "fork_blob": "9b9ff55eccd8efd5563fe567cef0b8867084dbdd",
+      "historical_source_sha256": "299db5a336926c28f3c7ef6a5b811423e646de1a33f7c482b50dc14742a01b6a",
+      "source_resolution": "The cursor owner retains typed target and action records, candidate ordering, target bit flags, actor range and visibility, texture state and sound. The active units use shared vector, render and target interfaces for drawing and publishing the selection.",
+      "exact_linked_functions": 30,
+      "exact_non_text_sections": {
+        ".data": {
+          "source_bytes": 280,
+          "exact_bytes": 280,
+          "owners": [
+            "src/pso/ui/hud/TMainCursor.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 24,
+          "exact_bytes": 24,
+          "owners": [
+            "src/pso/ui/hud/TMainCursor.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "alignment": [],
+      "canonical_blobs": {
+        "src/pso/ui/hud/TMainCursor.cpp": "0559f9b6409b03ccf0502bd5c09c0a02e96ee3af"
+      },
+      "matched_examples": {
+        "0x8013b690": {
+          "old": "check_can_pickup__11TMainCursorFv",
+          "current": "check_can_pickup__11TMainCursorFv",
+          "owner": "src/pso/ui/hud/TMainCursor.cpp"
+        },
+        "0x8013b9dc": {
+          "old": "render__11TMainCursorFv",
+          "current": "render__11TMainCursorFv",
+          "owner": "src/pso/ui/hud/TMainCursor.cpp"
+        },
+        "0x8013bbcc": {
+          "old": "update_position__11TMainCursorFv",
+          "current": "update_position__11TMainCursorFv",
+          "owner": "src/pso/ui/hud/TMainCursor.cpp"
+        },
+        "0x8013bf0c": {
+          "old": "target_in_vertical_cone",
+          "current": "target_in_vertical_cone",
+          "owner": "src/pso/ui/hud/TMainCursor.cpp"
+        },
+        "0x8013c260": {
+          "old": "init_target_vector__11TMainCursorFiii",
+          "current": "init_target_vector__11TMainCursorFiii",
+          "owner": "src/pso/ui/hud/TMainCursor.cpp"
+        },
+        "0x8013c7a0": {
+          "old": "quick_sort__11TMainCursorFllll",
+          "current": "quick_sort__11TMainCursorFllll",
+          "owner": "src/pso/ui/hud/TMainCursor.cpp"
+        },
+        "0x8013c924": {
+          "old": "bind_action_channels__11TMainCursorFv",
+          "current": "bind_action_channels__11TMainCursorFv",
+          "owner": "src/pso/ui/hud/TMainCursor.cpp"
+        },
+        "0x8013cde4": {
+          "old": "setup_action_channel__11TMainCursorFiPviii",
+          "current": "setup_action_channel__11TMainCursorFPUclll",
+          "owner": "src/pso/ui/hud/TMainCursor.cpp"
+        },
+        "0x8013d4a0": {
+          "old": "publish_target_list__11TMainCursorFPvi",
+          "current": "publish_target_list__11TMainCursorFPvi",
+          "owner": "src/pso/ui/hud/TMainCursor.cpp"
+        }
+      },
+      "historical_diff_sha256": "0c949df2bc32089bfc04c8cea00c415a182e697032bab190161b227d75111d5a"
+    },
+    "src/pso/ui/TAdSinglePlyChrSelectGC_8028EF14.cpp": {
+      "historical_row": 2577,
+      "fork_blob": "9e6b9d7ff9d977b83c689298e98dd683a6d55fe1",
+      "historical_source_sha256": "e697f9f096d94bb89247dcfe9bce75ba1f77d5231898440a2a27c4390c3f0d84",
+      "source_resolution": "The character preview owner retains the original appearance tables, shape blend and region selection, model binding, texture cache entries and task setup. It keeps the native motion owner and linked tables for character shape and texture resources.",
+      "exact_linked_functions": 41,
+      "exact_non_text_sections": {
+        ".rodata": {
+          "source_bytes": 2624,
+          "exact_bytes": 2624,
+          "owners": [
+            "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp"
+          ],
+          "uncovered": []
+        },
+        ".data": {
+          "source_bytes": 1696,
+          "exact_bytes": 1696,
+          "owners": [
+            "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp"
+          ],
+          "uncovered": []
+        },
+        ".bss": {
+          "source_bytes": 149612,
+          "exact_bytes": 149612,
+          "owners": [
+            "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata": {
+          "source_bytes": 80,
+          "exact_bytes": 80,
+          "owners": [
+            "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sbss": {
+          "source_bytes": 8,
+          "exact_bytes": 8,
+          "owners": [
+            "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp"
+          ],
+          "uncovered": []
+        },
+        ".sdata2": {
+          "source_bytes": 24,
+          "exact_bytes": 24,
+          "owners": [
+            "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp"
+          ],
+          "uncovered": []
+        }
+      },
+      "alignment": [],
+      "canonical_blobs": {
+        "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp": "96a2c188475ac8cfcbe2943802cb36f3e7c4089a"
+      },
+      "matched_examples": {
+        "0x8028ef14": {
+          "old": "update_char_panels__23TAdSinglePlyChrSelectGCFv",
+          "current": "update_char_panels__23TAdSinglePlyChrSelectGCFv",
+          "owner": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp"
+        },
+        "0x8028f2a0": {
+          "old": "blend_creation_proportion_shapes",
+          "current": "blend_creation_proportion_shapes",
+          "owner": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp"
+        },
+        "0x8028f9dc": {
+          "old": "clear_creation_shape_eval_masks__FPfPCfPCfPCf",
+          "current": "clear_creation_shape_eval_masks__FPfPCfPCfPCf",
+          "owner": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp"
+        },
+        "0x8028fd90": {
+          "old": "draw_creation_figure__23TAdSinglePlyChrSelectGCFv",
+          "current": "draw_creation_figure__23TAdSinglePlyChrSelectGCFv",
+          "owner": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp"
+        },
+        "0x8028ff64": {
+          "old": "request_creation_motion__Fl",
+          "current": "request_creation_motion__Fl",
+          "owner": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp"
+        },
+        "0x80290194": {
+          "old": "run_task__12TCMCharacterFv",
+          "current": "run_task__12TCMCharacterFv",
+          "owner": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp"
+        },
+        "0x802902cc": {
+          "old": "reset_creation_parts__23TAdSinglePlyChrSelectGCFv",
+          "current": "bind_character_preview_models",
+          "owner": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp"
+        },
+        "0x80290464": {
+          "old": "reset_creation_body_shapes__Fv",
+          "current": "reset_creation_body_shapes__Fv",
+          "owner": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp"
+        },
+        "0x802905d4": {
+          "old": "reset_model_parts__12TCMCharacterFv",
+          "current": "reset_model_parts__12TCMCharacterFv",
+          "owner": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp"
+        },
+        "0x802907e4": {
+          "old": "init_entry_tables__23TAdSinglePlyChrSelectGCFPv",
+          "current": "init_entry_tables__23TAdSinglePlyChrSelectGCFPv",
+          "owner": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp"
+        }
+      },
+      "historical_diff_sha256": "633228ba9124f83190f375533bd59a71fe38f4ed13be4b9f7895c2bc47b6b265"
+    }
+  },
+  "whole_historical_comparisons_remaining": 16,
+  "chat_text_entry_and_frontend_comparisons_remaining": 0,
+  "runtime": {
+    "images": [
+      "retail",
+      "Great Merge source",
+      "materialized fork"
+    ],
+    "cases_per_image": {
+      "multiplayer_confirmation": 12,
+      "keyboard_input_state": 4,
+      "short_mail_flags": 256,
+      "speech_balloon_widths": 3
+    },
+    "existing_frontend_suite": "typed slot labels, pointer release, color copy, strip drawing, and texture input passed.",
+    "probe_scope": "Executes the game functions with controlled device, base-constructor, sound, and strip-draw callbacks. The emulator skips the six paired-single copies of separately executed scalar stack spills in the speech-balloon row.",
+    "probe_symbol_alias": {
+      "previous": "safe_free__23TAdSinglePlyChrSelectGCFPv",
+      "current": "safe_free__FPv",
+      "address": "0x8007ebb4",
+      "size": 40
+    }
+  },
+  "source_quality": {
+    "removed": 206,
+    "added": 93,
+    "symbol_label_changes": 0,
+    "newly_stale_retention": 0,
+    "advisory": "The 45 offset-member occurrences use existing owner fields. The 18 address-type occurrences reuse the existing speech-balloon strip type. The 30 numbered-parameter occurrences index confirmation entries with the existing argument. The new shared declaration of the MultiOk constructor retains its original entry-point label."
+  },
+  "compiler_constraints": {
+    "confirmation": "Direct array member access preserves the address calculation with the 0x1C base offset in load/store displacements. A local pointer into the array made CodeWarrior materialize that offset separately.",
+    "speech_balloon": "The typed casts at the historical void pointer draw calls keep the existing linker names. Performing a cast once into a new local instead changed the saved register allocation."
+  },
+  "fork_tooling": {
+    "overlay_paths": 130,
+    "retention_entries": 27007,
+    "checks": {
+      "tool": 294,
+      "fork": 11,
+      "host": [
+        "./vector_math_fallbacks",
+        "./item_factory_callbacks",
+        "./loader_transfer",
+        "./ginja_parameter_callbacks",
+        "./exi_ethernet_fallbacks"
+      ]
+    }
+  },
+  "fork_main_comparison": {
+    "non_padding_data_or_linkage_loss": 0,
+    "matched_function_loss": 0,
+    "omitted_alignment_bytes": 2565,
+    "added_covered_bytes": 159
+  },
+  "evidence_sha256": {
+    "source.patch": "1833aea9249ad372328dd6dff469f4ae4856d10185983d0b6405cde5efaeedb6",
+    "address-ownership.json": "4172f19a78cfefdc5af035762ee02b70fe45e8c6bcb4259cc040ad44927cbe98",
+    "final-quality.json": "a86a9a55e7868113981de58257dff23a80c1c458eb2b40b8b9cfe80ebd8eb0b5",
+    "fork-main-coverage.json": "1a226ee42b9acb87613c1dfd23a35d3de31ca004bb9b089ea436caca3284ef33",
+    "probe-chat-frontend.py": "53c5299a60460e4e91df7df128781ddf22c6eef4243d5cc5acf285b9a358f80f",
+    "probe-chat-frontend.log": "13637f66d62661f199a9b9809226b85212dd0543e8edb38d9cacfd0780e77c34",
+    "probe-frontend-existing.log": "82763a02fb03b02751f334f4a429375a97ab79f530e0cb05c8c8cab8e7aa68fa",
+    "tool-overlay.patch": "d93d879f1cd3c199a515f8c3518b452d719a7113f7f7556fc7f06c7aa1ce45c3"
+  }
+}

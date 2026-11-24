@@ -1,0 +1,398 @@
+{
+  "source": "a19b741e05ed83630c22a276adaf09f7dfab833b",
+  "previous_source": "15c165cf89498d815dcd8fcef83c6201850cdbe4",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/panarms/TObjEnePanarmsAtkColli.h",
+    "include/pso/enemy/panarms/TObjEnePanarms_800DCEB8.h",
+    "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarmsAtkColli.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+  ],
+  "combined_paths_from_upstream": 1328,
+  "validation": {
+    "source": {
+      "baseline": "15c165cf89498d815dcd8fcef83c6201850cdbe4",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x800DE430",
+          "before": "TObjEnePanarms__sub_800DE430",
+          "after": "fn_800DE430__14TObjEnePanarmsFll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800DE494",
+          "before": "TObjEnePanarms__sub_800DE494",
+          "after": "no_player_within_range__14TObjEnePanarmsFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800DE528",
+          "before": "TObjEnePanarms__sub_800DE528",
+          "after": "has_ground_around__14TObjEnePanarmsFP3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800DE6A8",
+          "before": "check_ground_along_path__14TObjEnePanarmsFPvPvPvff",
+          "after": "check_ground_along_path__14TObjEnePanarmsFP3VecP3Vecff"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800DEB48",
+          "before": "try_warp_to_position__14TObjEnePanarmsFPvPv",
+          "after": "try_warp_to_position__14TObjEnePanarmsFP3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800DEEF8",
+          "before": "TObjEnePanarms__sub_800DEEF8",
+          "after": "draw_model__14TObjEnePanarmsFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800E1774",
+          "before": "TObjEnePanarms__sub_800E1774",
+          "after": "acquire_target_in_front__14TObjEnePanBARAFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800E18B0",
+          "before": "try_move_with_detour__14TObjEnePanarmsFPvPv",
+          "after": "try_move_with_detour__14TObjEnePanBARAFP3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800E2DF4",
+          "before": "is_phase_12__14TObjEnePanarmsFPv",
+          "after": "is_phase_12__14TObjEnePanBARAFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800E2E08",
+          "before": "check_can_attack__14TObjEnePanarmsFPv",
+          "after": "check_can_attack__14TObjEnePanBARAFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800E2E54",
+          "before": "TObjEnePanarms__sub_800E2E54",
+          "after": "is_in_state_13__14TObjEnePanBARAFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800E2E68",
+          "before": "TObjEnePanarms__sub_800E2E68",
+          "after": "is_in_state_14__14TObjEnePanBARAFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800E2E7C",
+          "before": "is_below_half_hp__14TObjEnePanarmsFPv",
+          "after": "is_below_half_hp__14TObjEnePanBARAFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800E32C0",
+          "before": "sub_800E32C0__22TObjEnePanarmsAtkColliFPv",
+          "after": "sub_800E32C0__22TObjEnePanarmsAtkColliFP9TObjChara"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "7b95d7be25fa55d6146a707d73e06edab0e92b6e4452bc83989f799c64a5908a",
+      "report_sha256": "9980f974fdbc39b65d629c4d4a5ab7c51eb864cb9b22eb1c9a2c6a22f0ebcb8a"
+    },
+    "layer": {
+      "baseline": "a19b741e05ed83630c22a276adaf09f7dfab833b",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "9980f974fdbc39b65d629c4d4a5ab7c51eb864cb9b22eb1c9a2c6a22f0ebcb8a"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "08d109fae6159e8f9ad05c594c4a567a7c83ad7fccbd8b18a22314b593815e76"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "b1e72362f1a662f466aed2658c6e7083187856209693c40a7704ec0a5588994c"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "exact_units": {
+    "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp": {
+      "functions": 53,
+      "sections": {
+        ".ctors": [
+          2151890784,
+          4
+        ],
+        ".data": [
+          2152287872,
+          1496
+        ],
+        ".rodata": [
+          2151926088,
+          992
+        ],
+        ".sbss": [
+          2153599608,
+          16
+        ],
+        ".sdata": [
+          2153589424,
+          4
+        ],
+        ".sdata2": [
+          2153620624,
+          144
+        ],
+        ".text": [
+          2148388536,
+          11336
+        ]
+      }
+    },
+    "src/pso/enemy/panarms/TObjEnePanarms.cpp": {
+      "functions": 72,
+      "sections": {
+        ".ctors": [
+          2151890788,
+          4
+        ],
+        ".data": [
+          2152289368,
+          1576
+        ],
+        ".rodata": [
+          2151927080,
+          176
+        ],
+        ".sbss": [
+          2153599624,
+          16
+        ],
+        ".sdata": [
+          2153589432,
+          4
+        ],
+        ".sdata2": [
+          2153620768,
+          128
+        ],
+        ".text": [
+          2148400080,
+          13356
+        ]
+      }
+    },
+    "src/pso/enemy/panarms/TObjEnePanarmsAtkColli.cpp": {
+      "functions": 10,
+      "sections": {
+        ".data": [
+          2152290944,
+          352
+        ],
+        ".rodata": [
+          2151927256,
+          40
+        ],
+        ".sdata": [
+          2153589440,
+          8
+        ],
+        ".sdata2": [
+          2153620896,
+          24
+        ],
+        ".text": [
+          2148413892,
+          1964
+        ]
+      }
+    }
+  },
+  "historical_mirage_function": {
+    "path": "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+    "address": "0x800E3970",
+    "bytes": 232
+  },
+  "runtime": {
+    "images": [
+      "retail",
+      "source",
+      "materialized fork"
+    ],
+    "checks": {
+      "panarms-contacts": {
+        "cases_per_image": 28,
+        "probe_sha256": "275f7e2eae75d858c354ef563e4a6d85ef8395a2e0241cf1802b75fb9d030c55",
+        "log_sha256": "9b1c1691a89bef7bc8b3b89b9bebe6f9d19b1584054cb1cc20eefcae3f60e421"
+      },
+      "fade-phases": {
+        "cases_per_image": 23,
+        "probe_sha256": "a29e172153c819a0abb2dcc419b34ff50383c8375cad932085b220bbc6c55062",
+        "log_sha256": "5de4f95422f710e763619ff688a1b457cf8b320810a95d2d55664bff7b11e651"
+      }
+    }
+  },
+  "historical": {
+    "closed": {
+      "row": 971,
+      "path": "src/pso/enemy/panarms/TObjEnePanarmsAtkColli.cpp",
+      "hunks": [
+        "The native ModelNodePositionCapture constructor writes the original terminating node table and position records.",
+        "The collider retains its class name pointer, original constructor and destructor, attack constants and factory parameters.",
+        "The same 0x308 direction vector and 0x38 position drive the matching movement calls.",
+        "The shared position sound and persistent interfaces preserve sound IDs 0x4003BC2B and 0x4003BA2A.",
+        "The typed lobby dispatch uses the same index 0x31 and reads the same two tuning values.",
+        "The historical Shinowa Mirage action lives in its own class unit and matches at 0x800E3970."
+      ]
+    },
+    "scoped": {
+      "603": "The split halves own their detour, acquisition, health gate and phase predicates. Five detour callers use the same native provider.",
+      "604": "The body owns its warp, ground check, model capture, rejoin search and particle callback. Its destructor uses the typed half links."
+    },
+    "open_rows": 281,
+    "comparison_sha256": "622196a09510139fba1af9ce4564667aa5d5d63ceea8c78287e3805708d62f1d"
+  },
+  "fork_workspace": {
+    "trial": "b05d39a64df920ff91873b4e7e2016954287d850",
+    "overlay_paths": 130,
+    "force_active_count": 27033,
+    "keep_list_updates": [
+      {
+        "module": "psov3",
+        "address": "0x800DE430",
+        "before": "TObjEnePanarms__sub_800DE430",
+        "after": "fn_800DE430__14TObjEnePanarmsFll"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800DE494",
+        "before": "TObjEnePanarms__sub_800DE494",
+        "after": "no_player_within_range__14TObjEnePanarmsFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800DE528",
+        "before": "TObjEnePanarms__sub_800DE528",
+        "after": "has_ground_around__14TObjEnePanarmsFP3Vec"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800DE6A8",
+        "before": "check_ground_along_path__14TObjEnePanarmsFPvPvPvff",
+        "after": "check_ground_along_path__14TObjEnePanarmsFP3VecP3Vecff"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800DEB48",
+        "before": "try_warp_to_position__14TObjEnePanarmsFPvPv",
+        "after": "try_warp_to_position__14TObjEnePanarmsFP3Vec"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800DEEF8",
+        "before": "TObjEnePanarms__sub_800DEEF8",
+        "after": "draw_model__14TObjEnePanarmsFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800E1774",
+        "before": "TObjEnePanarms__sub_800E1774",
+        "after": "acquire_target_in_front__14TObjEnePanBARAFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800E18B0",
+        "before": "try_move_with_detour__14TObjEnePanarmsFPvPv",
+        "after": "try_move_with_detour__14TObjEnePanBARAFP3Vec"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800E2DF4",
+        "before": "is_phase_12__14TObjEnePanarmsFPv",
+        "after": "is_phase_12__14TObjEnePanBARAFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800E2E08",
+        "before": "check_can_attack__14TObjEnePanarmsFPv",
+        "after": "check_can_attack__14TObjEnePanBARAFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800E2E54",
+        "before": "TObjEnePanarms__sub_800E2E54",
+        "after": "is_in_state_13__14TObjEnePanBARAFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800E2E68",
+        "before": "TObjEnePanarms__sub_800E2E68",
+        "after": "is_in_state_14__14TObjEnePanBARAFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800E2E7C",
+        "before": "is_below_half_hp__14TObjEnePanarmsFPv",
+        "after": "is_below_half_hp__14TObjEnePanBARAFv"
+      },
+      {
+        "module": "psov3",
+        "address": "0x800E32C0",
+        "before": "sub_800E32C0__22TObjEnePanarmsAtkColliFPv",
+        "after": "sub_800E32C0__22TObjEnePanarmsAtkColliFP9TObjChara"
+      }
+    ],
+    "materialized_tree": "aa6dce979637632989f66c8c5186402ed6576f7b",
+    "archive_sha256": "78222b63130dafe518f73d9cf83900bf5881de41d755e022fcf6accf8ecf14dd"
+  }
+}

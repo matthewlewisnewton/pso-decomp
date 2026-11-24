@@ -1,0 +1,931 @@
+{
+  "source": "111ad6f6587e7bc46a917b5b5afe7f8f302ee0e6",
+  "previous_source": "55d610acfa22a20a780070a13300b55c6ae3a3ce",
+  "review": {
+    "ref": "great-merge/consolidated/single-review-with-symbol-chat-and-capture",
+    "head": "eef549f7210abf2ee3313c11408ae19477a10177",
+    "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+    "tree": "de63537bfdd69ed7871ac54075202734d6b47efa",
+    "tree_equivalent_to": "b6a84d2e789c897fced220a9fa8d79b05138cee3",
+    "commits": [
+      {
+        "head": "8890b7fd8b4fbcf9ef7d6d35e4f88f7397ae9bf6",
+        "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+        "tree": "572c96b50f200895bc094534dc75a4a84a87f5d3",
+        "checked_tree": "79892d85f89f6432c95e35a80f47dc8c9ee080fb",
+        "files_changed": 655,
+        "insertions": 10713,
+        "deletions": 12247
+      },
+      {
+        "head": "c42e3238ac5f92b26a9ca4f61bccf057d3815c32",
+        "base": "8890b7fd8b4fbcf9ef7d6d35e4f88f7397ae9bf6",
+        "tree": "d3ef9a7185166805dc73c3217b00d16301c820ae",
+        "checked_tree": "e586ff8f927d627b7e933e44223a816febdfea5e",
+        "files_changed": 679,
+        "insertions": 5760,
+        "deletions": 6296
+      },
+      {
+        "head": "c0206129d91a889510d1110a7f5d8e49d1a1ec76",
+        "base": "c42e3238ac5f92b26a9ca4f61bccf057d3815c32",
+        "tree": "d8f9f298e8e085493b9ae008c37ca520b7b0296d",
+        "checked_tree": "c306842e82985de65583e787f1fa0a1776b51394",
+        "files_changed": 21,
+        "insertions": 372,
+        "deletions": 480
+      },
+      {
+        "head": "018464722d369c4481854eb77fa67f81c3e869be",
+        "base": "c0206129d91a889510d1110a7f5d8e49d1a1ec76",
+        "tree": "115ec496fc647c2aebcf55956d23052ee4368977",
+        "checked_tree": "018464722d369c4481854eb77fa67f81c3e869be",
+        "files_changed": 969,
+        "insertions": 12609,
+        "deletions": 13420
+      },
+      {
+        "head": "10c466c8e9407af9b1109bec3f36273b69a880f6",
+        "base": "018464722d369c4481854eb77fa67f81c3e869be",
+        "tree": "9e60f5d9462f65b9e62ce7b592013f06ad8ed930",
+        "checked_tree": "10c466c8e9407af9b1109bec3f36273b69a880f6",
+        "files_changed": 24,
+        "insertions": 331,
+        "deletions": 396
+      },
+      {
+        "head": "bc801af727e83a81b62ca552b25456671c8723f7",
+        "base": "10c466c8e9407af9b1109bec3f36273b69a880f6",
+        "tree": "5da2f03826a0aae2bed5042ecb19260b5087494a",
+        "checked_tree": "bc801af727e83a81b62ca552b25456671c8723f7",
+        "files_changed": 38,
+        "insertions": 646,
+        "deletions": 735
+      },
+      {
+        "head": "54f12790491275d41d4c96d1760e323fa2884066",
+        "base": "bc801af727e83a81b62ca552b25456671c8723f7",
+        "tree": "f4d94d9370fa61cbbab9355f3e70ced8bc0b9dd7",
+        "checked_tree": "e3819bb0cb6a8e7df497c88475177d94df4750db",
+        "files_changed": 17,
+        "insertions": 256,
+        "deletions": 341
+      },
+      {
+        "head": "b382f026478786b570589c5382b5b6b69a139713",
+        "base": "54f12790491275d41d4c96d1760e323fa2884066",
+        "tree": "e6f0c6768a9233d7a1b3ac55a4b4eb08c6d6b3b1",
+        "checked_tree": "8df47b88222bba050bcc999dc11a1591007c2eb3",
+        "files_changed": 31,
+        "insertions": 475,
+        "deletions": 502
+      },
+      {
+        "head": "eef549f7210abf2ee3313c11408ae19477a10177",
+        "base": "b382f026478786b570589c5382b5b6b69a139713",
+        "tree": "de63537bfdd69ed7871ac54075202734d6b47efa",
+        "checked_tree": "b6a84d2e789c897fced220a9fa8d79b05138cee3",
+        "files_changed": 12,
+        "insertions": 136,
+        "deletions": 139
+      }
+    ],
+    "commit_attribution": {
+      "audited_commits": 9,
+      "codex_attribution": 0,
+      "coauthor_trailers": 0
+    },
+    "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+    "files_changed": 1792,
+    "insertions": 30567,
+    "deletions": 33825
+  },
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/network/protocol/subcmd_6x.h",
+    "include/pso/ui/chat/SymbolChatPayload.h",
+    "include/pso/ui/chat/SymbolChatPreset.h",
+    "include/pso/ui/chat/TWindowChat.h",
+    "include/pso/ui/chat/TWindowChatSymbol.h",
+    "include/pso/ui/chat/TWindowSubSymbolChat.h",
+    "include/pso/ui/chat/TWindowSubSymbolChatPartsSet.h",
+    "include/pso/ui/chat/TWindowSubSymbolChat_80076F88.h",
+    "include/pso/ui/chat/TWindowSubSymbolChat_8028239C.h",
+    "include/pso/unk/TLobby.h",
+    "include/pso/unk/TLobby_8036B204.h",
+    "include/pso/unk/TUnk_804F3640.h",
+    "include/pso/unk/text_80076E84.h",
+    "src/pso/boss/goldragon/TBoss8Dragon_8036AEF8.cpp",
+    "src/pso/network/TGameProtocol.cpp",
+    "src/pso/object/collision/TOSymbolchatColli.cpp",
+    "src/pso/quest/QuestOpcodeHandlers.cpp",
+    "src/pso/ui/chat/TUnk_804CE7D0.cpp",
+    "src/pso/ui/chat/TWindowChat.cpp",
+    "src/pso/ui/chat/TWindowChatSymbol.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChat.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChatPartsSet.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChat_80076F88.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChat_802838C4.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+    "src/pso/ui/window/TWindowShortCut.cpp",
+    "src/pso/ui/window/TWindowSubShortCutList.cpp",
+    "src/pso/unk/TLobby_8036B204.cpp",
+    "src/pso/unk/text_80076E84.cpp"
+  ],
+  "patch_sha256": "a5e0e20682bcb5a74b9d5d1a22a13ac0bab2764cdb25664be4f3f89dab94f38f",
+  "checked_original_functions": [
+    "get_symbol_chat_preset",
+    "SymbolChatPreset::clear_entries",
+    "SymbolChatPreset::commit",
+    "G_SymbolChat_6x07::bswap_symbol_chat_packet",
+    "TUnk_804F3640::start_entry_timer",
+    "TUnk_804F3640::send_slot_entity",
+    "TUnk_804F3640::run_task"
+  ],
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "validation": {
+    "combat": {
+      "check_sha256": "e128d76ca818d3ff5dd980a87d3ec325ea07b5b2ce7d0fd0b09cfa49066af851",
+      "source_report_sha256": "b5a8ce45d4824c01dbff31cd65eb58e1a7ce3a73cb2d67c078b14e1cbc13db76",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x80076F48",
+          "copy_symbol_chat_entry__6TLobbyFPvPv",
+          "copy_symbol_chat_entry__6TLobbyFP17SymbolChatPayloadPC17SymbolChatPayload"
+        ],
+        [
+          "0x80076FEC",
+          "set_entry_name__20TWindowSubSymbolChatFPv",
+          "set_entry_name__16SymbolChatPresetFPCc"
+        ],
+        [
+          "0x80077034",
+          "set_flag_bit9__20TWindowSubSymbolChatFl",
+          "set_flag_bit9__16SymbolChatPresetFl"
+        ],
+        [
+          "0x8007706C",
+          "set_symbol_index__20TWindowSubSymbolChatFl",
+          "set_symbol_index__16SymbolChatPresetFl"
+        ],
+        [
+          "0x80077098",
+          "count_empty_slots__20TWindowSubSymbolChatFv",
+          "count_empty_slots__16SymbolChatPresetFv"
+        ],
+        [
+          "0x800770D0",
+          "count_used_slots__20TWindowSubSymbolChatFv",
+          "count_used_slots__16SymbolChatPresetFv"
+        ],
+        [
+          "0x80077108",
+          "find_free_entry__20TWindowSubSymbolChatFl",
+          "find_free_entry__16SymbolChatPresetFl"
+        ],
+        [
+          "0x8007714C",
+          "remove_slot_shift_down__20TWindowSubSymbolChatFl",
+          "remove_slot_shift_down__16SymbolChatPresetFl"
+        ],
+        [
+          "0x800771E4",
+          "set_entry__20TWindowSubSymbolChatFllllll",
+          "set_entry__16SymbolChatPresetFllllll"
+        ],
+        [
+          "0x80077214",
+          "add__20TWindowSubSymbolChatFlllll",
+          "add__16SymbolChatPresetFlllll"
+        ],
+        [
+          "0x8007728C",
+          "set_entry_bits__20TWindowSubSymbolChatFlllll",
+          "set_entry_bits__16SymbolChatPresetFlllll"
+        ],
+        [
+          "0x800772D8",
+          "set_symbol_flags__20TWindowSubSymbolChatFll",
+          "set_symbol_flags__16SymbolChatPresetFll"
+        ],
+        [
+          "0x80077358",
+          "update_symbol_chat_result__20TWindowSubSymbolChatFv",
+          "update_symbol_chat_result__20TWindowSubSymbolChatFl"
+        ],
+        [
+          "0x8007737C",
+          "update_selected_symbol__20TWindowSubSymbolChatFv",
+          "update_selected_symbol__16SymbolChatPresetFv"
+        ],
+        [
+          "0x80077408",
+          "get_symbol_chat_data__20TWindowSubSymbolChatFv",
+          "get_symbol_chat_data__16SymbolChatPresetFv"
+        ],
+        [
+          "0x800774E4",
+          "clear_entries__20TWindowSubSymbolChatFv",
+          "clear_entries__16SymbolChatPresetFv"
+        ],
+        [
+          "0x80077544",
+          "load_symbol_chat_data__20TWindowSubSymbolChatFv",
+          "load_symbol_chat_data__22SavedSymbolChatPresetsFv"
+        ],
+        [
+          "0x8007763C",
+          "get_data_ptr__20TWindowSubSymbolChatFv",
+          "get_data_ptr__16SymbolChatPresetFv"
+        ],
+        [
+          "0x80077644",
+          "bswap_symbol_chat_packet__20TWindowSubSymbolChatFv",
+          "bswap_symbol_chat_packet__17G_SymbolChat_6x07Fv"
+        ],
+        [
+          "0x80077680",
+          "byteswap_entry__20TWindowSubSymbolChatFv",
+          "byteswap_entry__17SymbolChatPayloadFv"
+        ],
+        [
+          "0x800776D0",
+          "send_symbol_chat__20TWindowSubSymbolChatFv",
+          "send_symbol_chat__17G_SymbolChat_6x07Fv"
+        ],
+        [
+          "0x80077720",
+          "is_initialized__20TWindowSubSymbolChatFv",
+          "is_initialized__16SymbolChatPresetFv"
+        ],
+        [
+          "0x8007772C",
+          "bswap_entry__20TWindowSubSymbolChatFv",
+          "bswap_entry__16SymbolChatPresetFv"
+        ],
+        [
+          "0x80248534",
+          "set_selection__28TWindowSubSymbolChatPartsSetFUl",
+          "set_selection__28TWindowSubSymbolChatPartsSetFP16SymbolChatPreset"
+        ],
+        [
+          "0x80283800",
+          "get_keyboard_ptr__20TWindowSubSymbolChatFv",
+          "get_keyboard_ptr__16SymbolChatPresetFv"
+        ],
+        [
+          "0x80283810",
+          "set_flag_bit1__20TWindowSubSymbolChatFPl",
+          "set_flag_bit1__16SymbolChatPresetFv"
+        ],
+        [
+          "0x80283820",
+          "commit__20TWindowSubSymbolChatFPl",
+          "commit__16SymbolChatPresetFPC16SymbolChatPreset"
+        ],
+        [
+          "0x80283850",
+          "__as__12Obj_80283850FRC12Obj_80283850",
+          "__as__16SymbolChatPresetFRC16SymbolChatPreset"
+        ],
+        [
+          "0x802838C4",
+          "set_flag_bit2__20TWindowSubSymbolChatFPl",
+          "set_flag_bit2__16SymbolChatPresetFv"
+        ],
+        [
+          "0x802838D4",
+          "clear_flag_bit2__20TWindowSubSymbolChatFPl",
+          "clear_flag_bit2__16SymbolChatPresetFv"
+        ],
+        [
+          "0x8036B204",
+          "send_slot_entity_or_local__6TLobbyFUsl",
+          "send_slot_entity_or_local__6TLobbyFUsP17SymbolChatPayload"
+        ],
+        [
+          "0x8036B258",
+          "dispatch_by_index__6TLobbyFUsi",
+          "dispatch_by_index__6TLobbyFUsPC17SymbolChatPayload"
+        ],
+        [
+          "0x8036B2A0",
+          "send_slot_entity__6TLobbyFUsl",
+          "send_slot_entity__13TUnk_804F3640FUsP17SymbolChatPayload"
+        ],
+        [
+          "0x8036B2E8",
+          "start_entry_timer__6TLobbyFUsl",
+          "start_entry_timer__13TUnk_804F3640FUsPC17SymbolChatPayload"
+        ],
+        [
+          "0x8036B424",
+          "TLobby__sub_8036B424",
+          "__ct__13TUnk_804F3640FP7TObject"
+        ]
+      ]
+    },
+    "full": {
+      "check_sha256": "e128d76ca818d3ff5dd980a87d3ec325ea07b5b2ce7d0fd0b09cfa49066af851",
+      "source_report_sha256": "b5a8ce45d4824c01dbff31cd65eb58e1a7ce3a73cb2d67c078b14e1cbc13db76",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x80076F48",
+          "copy_symbol_chat_entry__6TLobbyFPvPv",
+          "copy_symbol_chat_entry__6TLobbyFP17SymbolChatPayloadPC17SymbolChatPayload"
+        ],
+        [
+          "0x80076FEC",
+          "set_entry_name__20TWindowSubSymbolChatFPv",
+          "set_entry_name__16SymbolChatPresetFPCc"
+        ],
+        [
+          "0x80077034",
+          "set_flag_bit9__20TWindowSubSymbolChatFl",
+          "set_flag_bit9__16SymbolChatPresetFl"
+        ],
+        [
+          "0x8007706C",
+          "set_symbol_index__20TWindowSubSymbolChatFl",
+          "set_symbol_index__16SymbolChatPresetFl"
+        ],
+        [
+          "0x80077098",
+          "count_empty_slots__20TWindowSubSymbolChatFv",
+          "count_empty_slots__16SymbolChatPresetFv"
+        ],
+        [
+          "0x800770D0",
+          "count_used_slots__20TWindowSubSymbolChatFv",
+          "count_used_slots__16SymbolChatPresetFv"
+        ],
+        [
+          "0x80077108",
+          "find_free_entry__20TWindowSubSymbolChatFl",
+          "find_free_entry__16SymbolChatPresetFl"
+        ],
+        [
+          "0x8007714C",
+          "remove_slot_shift_down__20TWindowSubSymbolChatFl",
+          "remove_slot_shift_down__16SymbolChatPresetFl"
+        ],
+        [
+          "0x800771E4",
+          "set_entry__20TWindowSubSymbolChatFllllll",
+          "set_entry__16SymbolChatPresetFllllll"
+        ],
+        [
+          "0x80077214",
+          "add__20TWindowSubSymbolChatFlllll",
+          "add__16SymbolChatPresetFlllll"
+        ],
+        [
+          "0x8007728C",
+          "set_entry_bits__20TWindowSubSymbolChatFlllll",
+          "set_entry_bits__16SymbolChatPresetFlllll"
+        ],
+        [
+          "0x800772D8",
+          "set_symbol_flags__20TWindowSubSymbolChatFll",
+          "set_symbol_flags__16SymbolChatPresetFll"
+        ],
+        [
+          "0x80077358",
+          "update_symbol_chat_result__20TWindowSubSymbolChatFv",
+          "update_symbol_chat_result__20TWindowSubSymbolChatFl"
+        ],
+        [
+          "0x8007737C",
+          "update_selected_symbol__20TWindowSubSymbolChatFv",
+          "update_selected_symbol__16SymbolChatPresetFv"
+        ],
+        [
+          "0x80077408",
+          "get_symbol_chat_data__20TWindowSubSymbolChatFv",
+          "get_symbol_chat_data__16SymbolChatPresetFv"
+        ],
+        [
+          "0x800774E4",
+          "clear_entries__20TWindowSubSymbolChatFv",
+          "clear_entries__16SymbolChatPresetFv"
+        ],
+        [
+          "0x80077544",
+          "load_symbol_chat_data__20TWindowSubSymbolChatFv",
+          "load_symbol_chat_data__22SavedSymbolChatPresetsFv"
+        ],
+        [
+          "0x8007763C",
+          "get_data_ptr__20TWindowSubSymbolChatFv",
+          "get_data_ptr__16SymbolChatPresetFv"
+        ],
+        [
+          "0x80077644",
+          "bswap_symbol_chat_packet__20TWindowSubSymbolChatFv",
+          "bswap_symbol_chat_packet__17G_SymbolChat_6x07Fv"
+        ],
+        [
+          "0x80077680",
+          "byteswap_entry__20TWindowSubSymbolChatFv",
+          "byteswap_entry__17SymbolChatPayloadFv"
+        ],
+        [
+          "0x800776D0",
+          "send_symbol_chat__20TWindowSubSymbolChatFv",
+          "send_symbol_chat__17G_SymbolChat_6x07Fv"
+        ],
+        [
+          "0x80077720",
+          "is_initialized__20TWindowSubSymbolChatFv",
+          "is_initialized__16SymbolChatPresetFv"
+        ],
+        [
+          "0x8007772C",
+          "bswap_entry__20TWindowSubSymbolChatFv",
+          "bswap_entry__16SymbolChatPresetFv"
+        ],
+        [
+          "0x80248534",
+          "set_selection__28TWindowSubSymbolChatPartsSetFUl",
+          "set_selection__28TWindowSubSymbolChatPartsSetFP16SymbolChatPreset"
+        ],
+        [
+          "0x80283800",
+          "get_keyboard_ptr__20TWindowSubSymbolChatFv",
+          "get_keyboard_ptr__16SymbolChatPresetFv"
+        ],
+        [
+          "0x80283810",
+          "set_flag_bit1__20TWindowSubSymbolChatFPl",
+          "set_flag_bit1__16SymbolChatPresetFv"
+        ],
+        [
+          "0x80283820",
+          "commit__20TWindowSubSymbolChatFPl",
+          "commit__16SymbolChatPresetFPC16SymbolChatPreset"
+        ],
+        [
+          "0x80283850",
+          "__as__12Obj_80283850FRC12Obj_80283850",
+          "__as__16SymbolChatPresetFRC16SymbolChatPreset"
+        ],
+        [
+          "0x802838C4",
+          "set_flag_bit2__20TWindowSubSymbolChatFPl",
+          "set_flag_bit2__16SymbolChatPresetFv"
+        ],
+        [
+          "0x802838D4",
+          "clear_flag_bit2__20TWindowSubSymbolChatFPl",
+          "clear_flag_bit2__16SymbolChatPresetFv"
+        ],
+        [
+          "0x8036B204",
+          "send_slot_entity_or_local__6TLobbyFUsl",
+          "send_slot_entity_or_local__6TLobbyFUsP17SymbolChatPayload"
+        ],
+        [
+          "0x8036B258",
+          "dispatch_by_index__6TLobbyFUsi",
+          "dispatch_by_index__6TLobbyFUsPC17SymbolChatPayload"
+        ],
+        [
+          "0x8036B2A0",
+          "send_slot_entity__6TLobbyFUsl",
+          "send_slot_entity__13TUnk_804F3640FUsP17SymbolChatPayload"
+        ],
+        [
+          "0x8036B2E8",
+          "start_entry_timer__6TLobbyFUsl",
+          "start_entry_timer__13TUnk_804F3640FUsPC17SymbolChatPayload"
+        ],
+        [
+          "0x8036B424",
+          "TLobby__sub_8036B424",
+          "__ct__13TUnk_804F3640FP7TObject"
+        ]
+      ]
+    },
+    "linear-full": {
+      "check_sha256": "e128d76ca818d3ff5dd980a87d3ec325ea07b5b2ce7d0fd0b09cfa49066af851",
+      "source_report_sha256": "b5a8ce45d4824c01dbff31cd65eb58e1a7ce3a73cb2d67c078b14e1cbc13db76",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x80076F48",
+          "copy_symbol_chat_entry__6TLobbyFPvPv",
+          "copy_symbol_chat_entry__6TLobbyFP17SymbolChatPayloadPC17SymbolChatPayload"
+        ],
+        [
+          "0x80076FEC",
+          "set_entry_name__20TWindowSubSymbolChatFPv",
+          "set_entry_name__16SymbolChatPresetFPCc"
+        ],
+        [
+          "0x80077034",
+          "set_flag_bit9__20TWindowSubSymbolChatFl",
+          "set_flag_bit9__16SymbolChatPresetFl"
+        ],
+        [
+          "0x8007706C",
+          "set_symbol_index__20TWindowSubSymbolChatFl",
+          "set_symbol_index__16SymbolChatPresetFl"
+        ],
+        [
+          "0x80077098",
+          "count_empty_slots__20TWindowSubSymbolChatFv",
+          "count_empty_slots__16SymbolChatPresetFv"
+        ],
+        [
+          "0x800770D0",
+          "count_used_slots__20TWindowSubSymbolChatFv",
+          "count_used_slots__16SymbolChatPresetFv"
+        ],
+        [
+          "0x80077108",
+          "find_free_entry__20TWindowSubSymbolChatFl",
+          "find_free_entry__16SymbolChatPresetFl"
+        ],
+        [
+          "0x8007714C",
+          "remove_slot_shift_down__20TWindowSubSymbolChatFl",
+          "remove_slot_shift_down__16SymbolChatPresetFl"
+        ],
+        [
+          "0x800771E4",
+          "set_entry__20TWindowSubSymbolChatFllllll",
+          "set_entry__16SymbolChatPresetFllllll"
+        ],
+        [
+          "0x80077214",
+          "add__20TWindowSubSymbolChatFlllll",
+          "add__16SymbolChatPresetFlllll"
+        ],
+        [
+          "0x8007728C",
+          "set_entry_bits__20TWindowSubSymbolChatFlllll",
+          "set_entry_bits__16SymbolChatPresetFlllll"
+        ],
+        [
+          "0x800772D8",
+          "set_symbol_flags__20TWindowSubSymbolChatFll",
+          "set_symbol_flags__16SymbolChatPresetFll"
+        ],
+        [
+          "0x80077358",
+          "update_symbol_chat_result__20TWindowSubSymbolChatFv",
+          "update_symbol_chat_result__20TWindowSubSymbolChatFl"
+        ],
+        [
+          "0x8007737C",
+          "update_selected_symbol__20TWindowSubSymbolChatFv",
+          "update_selected_symbol__16SymbolChatPresetFv"
+        ],
+        [
+          "0x80077408",
+          "get_symbol_chat_data__20TWindowSubSymbolChatFv",
+          "get_symbol_chat_data__16SymbolChatPresetFv"
+        ],
+        [
+          "0x800774E4",
+          "clear_entries__20TWindowSubSymbolChatFv",
+          "clear_entries__16SymbolChatPresetFv"
+        ],
+        [
+          "0x80077544",
+          "load_symbol_chat_data__20TWindowSubSymbolChatFv",
+          "load_symbol_chat_data__22SavedSymbolChatPresetsFv"
+        ],
+        [
+          "0x8007763C",
+          "get_data_ptr__20TWindowSubSymbolChatFv",
+          "get_data_ptr__16SymbolChatPresetFv"
+        ],
+        [
+          "0x80077644",
+          "bswap_symbol_chat_packet__20TWindowSubSymbolChatFv",
+          "bswap_symbol_chat_packet__17G_SymbolChat_6x07Fv"
+        ],
+        [
+          "0x80077680",
+          "byteswap_entry__20TWindowSubSymbolChatFv",
+          "byteswap_entry__17SymbolChatPayloadFv"
+        ],
+        [
+          "0x800776D0",
+          "send_symbol_chat__20TWindowSubSymbolChatFv",
+          "send_symbol_chat__17G_SymbolChat_6x07Fv"
+        ],
+        [
+          "0x80077720",
+          "is_initialized__20TWindowSubSymbolChatFv",
+          "is_initialized__16SymbolChatPresetFv"
+        ],
+        [
+          "0x8007772C",
+          "bswap_entry__20TWindowSubSymbolChatFv",
+          "bswap_entry__16SymbolChatPresetFv"
+        ],
+        [
+          "0x80248534",
+          "set_selection__28TWindowSubSymbolChatPartsSetFUl",
+          "set_selection__28TWindowSubSymbolChatPartsSetFP16SymbolChatPreset"
+        ],
+        [
+          "0x80283800",
+          "get_keyboard_ptr__20TWindowSubSymbolChatFv",
+          "get_keyboard_ptr__16SymbolChatPresetFv"
+        ],
+        [
+          "0x80283810",
+          "set_flag_bit1__20TWindowSubSymbolChatFPl",
+          "set_flag_bit1__16SymbolChatPresetFv"
+        ],
+        [
+          "0x80283820",
+          "commit__20TWindowSubSymbolChatFPl",
+          "commit__16SymbolChatPresetFPC16SymbolChatPreset"
+        ],
+        [
+          "0x80283850",
+          "__as__12Obj_80283850FRC12Obj_80283850",
+          "__as__16SymbolChatPresetFRC16SymbolChatPreset"
+        ],
+        [
+          "0x802838C4",
+          "set_flag_bit2__20TWindowSubSymbolChatFPl",
+          "set_flag_bit2__16SymbolChatPresetFv"
+        ],
+        [
+          "0x802838D4",
+          "clear_flag_bit2__20TWindowSubSymbolChatFPl",
+          "clear_flag_bit2__16SymbolChatPresetFv"
+        ],
+        [
+          "0x8036B204",
+          "send_slot_entity_or_local__6TLobbyFUsl",
+          "send_slot_entity_or_local__6TLobbyFUsP17SymbolChatPayload"
+        ],
+        [
+          "0x8036B258",
+          "dispatch_by_index__6TLobbyFUsi",
+          "dispatch_by_index__6TLobbyFUsPC17SymbolChatPayload"
+        ],
+        [
+          "0x8036B2A0",
+          "send_slot_entity__6TLobbyFUsl",
+          "send_slot_entity__13TUnk_804F3640FUsP17SymbolChatPayload"
+        ],
+        [
+          "0x8036B2E8",
+          "start_entry_timer__6TLobbyFUsl",
+          "start_entry_timer__13TUnk_804F3640FUsPC17SymbolChatPayload"
+        ],
+        [
+          "0x8036B424",
+          "TLobby__sub_8036B424",
+          "__ct__13TUnk_804F3640FP7TObject"
+        ]
+      ]
+    },
+    "layer": {
+      "check_sha256": "c8c1e20a1b12bd0c4aead294f56d1bfebf3678feae2b3b4e8d1342fb9eec37a8",
+      "source_report_sha256": "b5a8ce45d4824c01dbff31cd65eb58e1a7ce3a73cb2d67c078b14e1cbc13db76",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x80076F48",
+          "copy_symbol_chat_entry__6TLobbyFPvPv",
+          "copy_symbol_chat_entry__6TLobbyFP17SymbolChatPayloadPC17SymbolChatPayload"
+        ],
+        [
+          "0x80076FEC",
+          "set_entry_name__20TWindowSubSymbolChatFPv",
+          "set_entry_name__16SymbolChatPresetFPCc"
+        ],
+        [
+          "0x80077034",
+          "set_flag_bit9__20TWindowSubSymbolChatFl",
+          "set_flag_bit9__16SymbolChatPresetFl"
+        ],
+        [
+          "0x8007706C",
+          "set_symbol_index__20TWindowSubSymbolChatFl",
+          "set_symbol_index__16SymbolChatPresetFl"
+        ],
+        [
+          "0x80077098",
+          "count_empty_slots__20TWindowSubSymbolChatFv",
+          "count_empty_slots__16SymbolChatPresetFv"
+        ],
+        [
+          "0x800770D0",
+          "count_used_slots__20TWindowSubSymbolChatFv",
+          "count_used_slots__16SymbolChatPresetFv"
+        ],
+        [
+          "0x80077108",
+          "find_free_entry__20TWindowSubSymbolChatFl",
+          "find_free_entry__16SymbolChatPresetFl"
+        ],
+        [
+          "0x8007714C",
+          "remove_slot_shift_down__20TWindowSubSymbolChatFl",
+          "remove_slot_shift_down__16SymbolChatPresetFl"
+        ],
+        [
+          "0x800771E4",
+          "set_entry__20TWindowSubSymbolChatFllllll",
+          "set_entry__16SymbolChatPresetFllllll"
+        ],
+        [
+          "0x80077214",
+          "add__20TWindowSubSymbolChatFlllll",
+          "add__16SymbolChatPresetFlllll"
+        ],
+        [
+          "0x8007728C",
+          "set_entry_bits__20TWindowSubSymbolChatFlllll",
+          "set_entry_bits__16SymbolChatPresetFlllll"
+        ],
+        [
+          "0x800772D8",
+          "set_symbol_flags__20TWindowSubSymbolChatFll",
+          "set_symbol_flags__16SymbolChatPresetFll"
+        ],
+        [
+          "0x80077358",
+          "update_symbol_chat_result__20TWindowSubSymbolChatFv",
+          "update_symbol_chat_result__20TWindowSubSymbolChatFl"
+        ],
+        [
+          "0x8007737C",
+          "update_selected_symbol__20TWindowSubSymbolChatFv",
+          "update_selected_symbol__16SymbolChatPresetFv"
+        ],
+        [
+          "0x80077408",
+          "get_symbol_chat_data__20TWindowSubSymbolChatFv",
+          "get_symbol_chat_data__16SymbolChatPresetFv"
+        ],
+        [
+          "0x800774E4",
+          "clear_entries__20TWindowSubSymbolChatFv",
+          "clear_entries__16SymbolChatPresetFv"
+        ],
+        [
+          "0x80077544",
+          "load_symbol_chat_data__20TWindowSubSymbolChatFv",
+          "load_symbol_chat_data__22SavedSymbolChatPresetsFv"
+        ],
+        [
+          "0x8007763C",
+          "get_data_ptr__20TWindowSubSymbolChatFv",
+          "get_data_ptr__16SymbolChatPresetFv"
+        ],
+        [
+          "0x80077644",
+          "bswap_symbol_chat_packet__20TWindowSubSymbolChatFv",
+          "bswap_symbol_chat_packet__17G_SymbolChat_6x07Fv"
+        ],
+        [
+          "0x80077680",
+          "byteswap_entry__20TWindowSubSymbolChatFv",
+          "byteswap_entry__17SymbolChatPayloadFv"
+        ],
+        [
+          "0x800776D0",
+          "send_symbol_chat__20TWindowSubSymbolChatFv",
+          "send_symbol_chat__17G_SymbolChat_6x07Fv"
+        ],
+        [
+          "0x80077720",
+          "is_initialized__20TWindowSubSymbolChatFv",
+          "is_initialized__16SymbolChatPresetFv"
+        ],
+        [
+          "0x8007772C",
+          "bswap_entry__20TWindowSubSymbolChatFv",
+          "bswap_entry__16SymbolChatPresetFv"
+        ],
+        [
+          "0x80248534",
+          "set_selection__28TWindowSubSymbolChatPartsSetFUl",
+          "set_selection__28TWindowSubSymbolChatPartsSetFP16SymbolChatPreset"
+        ],
+        [
+          "0x80283800",
+          "get_keyboard_ptr__20TWindowSubSymbolChatFv",
+          "get_keyboard_ptr__16SymbolChatPresetFv"
+        ],
+        [
+          "0x80283810",
+          "set_flag_bit1__20TWindowSubSymbolChatFPl",
+          "set_flag_bit1__16SymbolChatPresetFv"
+        ],
+        [
+          "0x80283820",
+          "commit__20TWindowSubSymbolChatFPl",
+          "commit__16SymbolChatPresetFPC16SymbolChatPreset"
+        ],
+        [
+          "0x80283850",
+          "__as__12Obj_80283850FRC12Obj_80283850",
+          "__as__16SymbolChatPresetFRC16SymbolChatPreset"
+        ],
+        [
+          "0x802838C4",
+          "set_flag_bit2__20TWindowSubSymbolChatFPl",
+          "set_flag_bit2__16SymbolChatPresetFv"
+        ],
+        [
+          "0x802838D4",
+          "clear_flag_bit2__20TWindowSubSymbolChatFPl",
+          "clear_flag_bit2__16SymbolChatPresetFv"
+        ],
+        [
+          "0x8036B204",
+          "send_slot_entity_or_local__6TLobbyFUsl",
+          "send_slot_entity_or_local__6TLobbyFUsP17SymbolChatPayload"
+        ],
+        [
+          "0x8036B258",
+          "dispatch_by_index__6TLobbyFUsi",
+          "dispatch_by_index__6TLobbyFUsPC17SymbolChatPayload"
+        ],
+        [
+          "0x8036B2A0",
+          "send_slot_entity__6TLobbyFUsl",
+          "send_slot_entity__13TUnk_804F3640FUsP17SymbolChatPayload"
+        ],
+        [
+          "0x8036B2E8",
+          "start_entry_timer__6TLobbyFUsl",
+          "start_entry_timer__13TUnk_804F3640FUsPC17SymbolChatPayload"
+        ],
+        [
+          "0x8036B424",
+          "TLobby__sub_8036B424",
+          "__ct__13TUnk_804F3640FP7TObject"
+        ]
+      ]
+    }
+  },
+  "runtime_probes": {
+    "retail": "31b66e23893d1fbaea090b87e468f5cc2ffc873ac6e41f939e493111c23ee9c4",
+    "review": "da319f6c9cf6c3f6a10b1e372adbe352db2790bd98836d1400dd062f27d47e56",
+    "layer": "c0db948ba10f7efbbb613204bd6083a71fe9989398e82408b3b9e5c7fbd6ed4d"
+  },
+  "overlay_sha256": "5a419ea428d62a3af6b4af214198a1027831db523e0a1e27f577358c8785a205",
+  "fork_overlay_paths": 130,
+  "retained_symbols": 27031,
+  "workspace_checks": {
+    "tool": 294,
+    "fork": 11,
+    "host": [
+      "./vector_math_fallbacks",
+      "./item_factory_callbacks",
+      "./loader_transfer",
+      "./ginja_parameter_callbacks",
+      "./exi_ethernet_fallbacks"
+    ]
+  },
+  "historical_rows_closed": {
+    "270": "open_symbol_chat returns the native preset. The native save-bank owner reads symbolchat.dat through the linked disc loader, copies the 12 records using move_data, frees the buffer and uses the same six localized names and six cleared entries",
+    "5322": "The capture task owns its 0xF0 allocation as four native payloads and four signed timers. Construction and release keep the original call addresses, and the typed singleton keeps the original BSS slot and clearing order"
+  },
+  "historical_rows_with_added_evidence": {
+    "249": "The preview uses a native preset pointer. Its sprite setup reads the real payload appearance and facial parts and traverses the actual part array",
+    "254": "Part deletion and drawing read native preset entries and facial slots. The associated layout and render work remains scoped separately",
+    "287": "Typed preview selection and palette and part queries use the same live preset. The original PartsSet constructor recovery remains open",
+    "293": "The editor owns a preset pointer. The typed copy, audio feedback, selection and keyboard initialization all use the recovered record"
+  },
+  "existing_upstream_interfaces_kept": {
+    "5960": "The historical source tokens differ only at the declaration and call of create__14TWindowMessageFlPCfUll, replaced on the fork by the void-pointer spelling. The retained upstream call has a float size argument at the existing 0x80269CC0 member"
+  },
+  "historical_rows_open": 599,
+  "public_refs_changed": false
+}

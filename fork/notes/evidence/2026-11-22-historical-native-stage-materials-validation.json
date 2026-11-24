@@ -1,0 +1,188 @@
+{
+  "source_head": "5a168c6e3f07086e601d144e345393cb090893a5",
+  "source_tree": "00ce42eb9151695c6a559521675a7d9525f366b0",
+  "previous_cumulative": "e645fc2f0d636ab346a6d88212de42c71df2cb53",
+  "upstream_master": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "effects_overlap_paths": [
+    "src/pso/boss/volopt/TBoss3VoloptMonitor.cpp",
+    "src/pso/effect/TKomorebi.cpp",
+    "src/pso/item/TItem.cpp",
+    "src/pso/object/TObjComputer.cpp",
+    "src/pso/object/container/TContainerAncient01.cpp",
+    "src/pso/object/door/TObjDoorKey.cpp",
+    "src/pso/object/lobby/TObjLobbyMain.cpp",
+    "src/pso/object/mine/TOCapsuleMachine01.cpp",
+    "src/pso/object/mine/TOComputerMachine01.cpp",
+    "src/pso/object/seabed/TObjSuisoChip.cpp",
+    "src/pso/object/trap/TOTrapAncient02.cpp",
+    "src/pso/system/scene/TScene.cpp"
+  ],
+  "source_paths": [
+    "include/pso/object/lobby/TObjLobbyMain.h",
+    "include/pso/render/GinjaUvScroll.h",
+    "src/pso/boss/volopt/TBoss3VoloptMonitor.cpp",
+    "src/pso/effect/TKomorebi.cpp",
+    "src/pso/item/TItem.cpp",
+    "src/pso/object/TObjComputer.cpp",
+    "src/pso/object/TObjTombstone.cpp",
+    "src/pso/object/container/TContainerAncient01.cpp",
+    "src/pso/object/container/TOContainerAncientEnemy.cpp",
+    "src/pso/object/container/TObjContainerJung.cpp",
+    "src/pso/object/door/TObjDoorKey.cpp",
+    "src/pso/object/fence/TLazerFenceSw.cpp",
+    "src/pso/object/lobby/TObjLobbyMain.cpp",
+    "src/pso/object/mine/TOCapsuleMachine01.cpp",
+    "src/pso/object/mine/TOComputerMachine01.cpp",
+    "src/pso/object/mine/TOComputerMachine01_8023DD0C.cpp",
+    "src/pso/object/mine/TOComputerMachine01_803278B0.cpp",
+    "src/pso/object/mine/TOMonitorMachine01.cpp",
+    "src/pso/object/seabed/TObjSuisoChip.cpp",
+    "src/pso/object/trap/TOTrapAncient01.cpp",
+    "src/pso/object/trap/TOTrapAncient02.cpp",
+    "src/pso/object/trap/TOTrapSeabed01.cpp",
+    "src/pso/object/warp/TObjWarpJungMain.cpp",
+    "src/pso/system/scene/TScene.cpp",
+    "src/pso/unk/text_80327844.cpp",
+    "src/pso/unk/text_803279CC.cpp"
+  ],
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "matching_functions": 27572,
+  "linked_units": 2368,
+  "coverage_regressions": {
+    "regressions": 0,
+    "data_regressions": 0,
+    "data_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0,
+    "failures": 0
+  },
+  "source_benchmark": {
+    "total": {
+      "base": 142773,
+      "head": 142710,
+      "added": 1,
+      "removed": 64
+    },
+    "symbol_changes": [],
+    "stale_retention_entries": 0,
+    "added": [
+      {
+        "key": "local_class",
+        "path": "src/pso/object/container/TOContainerAncientEnemy.cpp",
+        "line": 71,
+        "text": "struct AncientContainerBml"
+      }
+    ],
+    "finding_note": "The one source-local BML record replaces three identical declarations and keeps the established archive labels."
+  },
+  "matching_constraint": "Direct symbol addresses for the three ancient-container descriptors caused the 0x204-byte archive loader to differ. The matching build computes each descriptor from the original shared linker base and the checked record size and field offset.",
+  "runtime": {
+    "images": [
+      "retail",
+      "Great Merge source"
+    ],
+    "uv_scroll_cases": 32,
+    "uv_count_and_copy_cases": 8,
+    "archive_load_release_cases": 7,
+    "total_per_image": 47
+  },
+  "historical_source_comparison": {
+    "closed": {
+      "src/pso/misc/TOTrapAncient01.cpp": "The current source uses the native placement, body radius and shared persistent and one-shot sound calls. The original model and texture slot 3 feeds Motorcycle registration, and slots 0 through 2 feed the floor-specific debris and sound branches. The moved base knockback and Ancient02R entry remain exact at their separate owners.",
+      "src/pso/misc/TOTrapAncient02.cpp": "The original three floor descriptors and mesh indexes, shared archive lifetime, solid and particle render paths, trap clamp helpers and Ancient02R variants retain their linked addresses. The scrolling geometry uses GinjaModel and the shared draw records. The current provider keeps the original word inputs for UV steps, which wrap when stored.",
+      "src/pso/misc/TOTrapSeabed01.cpp": "The source retains separate model/motion and GVM ownership, the six fragment model and placement records, the floor/mode sound choices and the original held-player and damage paths. The linked trigger consumes its real model node. The GVM and BML lifetimes keep their original release calls and ordering.",
+      "src/pso/misc/TOContainerAncientEnemy.cpp": "All six native constructors retain the original resource choices and the equivalent item or enemy variants. Three archive and texture combinations keep the original area dispatch, shared table positions, and release order. The fragment copy and the floor event use the actual typed records at the existing addresses.",
+      "src/pso/misc/TContainerAncient01.cpp": "The original authored matrix, sound and demo checks use their native providers. The typed particle call, source melee contact test, rotation-based HP initialization, action table and native constructor/destructor preserve their original entries. The BML loader and model/texture pair feed the animated Ginja registry at the original address 0x802D70AC."
+    },
+    "address_coverage": {
+      "src/pso/misc/TOTrapAncient01.cpp": {
+        "linked_functions": 18,
+        "covered_data_bytes": 1156,
+        "function_owners": [
+          "src/pso/object/trap/TOTrap.cpp",
+          "src/pso/object/trap/TOTrapAncient01.cpp",
+          "src/pso/object/trap/TOTrapAncient02.cpp"
+        ]
+      },
+      "src/pso/misc/TOTrapAncient02.cpp": {
+        "linked_functions": 32,
+        "covered_data_bytes": 1008,
+        "function_owners": [
+          "src/pso/object/trap/TOTrapAncient02.cpp"
+        ]
+      },
+      "src/pso/misc/TOTrapSeabed01.cpp": {
+        "linked_functions": 19,
+        "covered_data_bytes": 624,
+        "function_owners": [
+          "src/pso/object/trap/TOTrapSeabed01.cpp"
+        ]
+      },
+      "src/pso/misc/TOContainerAncientEnemy.cpp": {
+        "linked_functions": 36,
+        "covered_data_bytes": 3584,
+        "function_owners": [
+          "src/pso/object/container/TOContainerAncientEnemy.cpp"
+        ]
+      },
+      "src/pso/misc/TContainerAncient01.cpp": {
+        "linked_functions": 49,
+        "covered_data_bytes": 576,
+        "function_owners": [
+          "src/pso/object/container/TContainerAncient01.cpp"
+        ]
+      },
+      "src/pso/item/TObjContainerJung.cpp": {
+        "linked_functions": 28,
+        "covered_data_bytes": 1928,
+        "function_owners": [
+          "src/pso/object/container/TObjContainerJung.cpp"
+        ]
+      },
+      "src/pso/item/TObjContainerItem.cpp": {
+        "linked_functions": 58,
+        "covered_data_bytes": 3648,
+        "function_owners": [
+          "src/pso/object/container/TObjContainerItem.cpp"
+        ]
+      }
+    },
+    "coverage_only": [
+      "src/pso/item/TObjContainerItem.cpp",
+      "src/pso/item/TObjContainerJung.cpp"
+    ],
+    "remaining": 163
+  },
+  "historical_fork_data": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "validation_sha256": {
+    "address-ownership.json": "6a5ac3d9c572379a01b9a3082f4ab4b32167db259f23c68994ae4f74d66b81b9",
+    "check.json": "ec167389dbd490e17ac3a61384def77d8d58a7485e34e9bf913ffed6e489dc0a",
+    "delta-04.json": "ef911594f61dd2e5fc3b74eca9ecd722410760145f536c60664429b458ad8fd4",
+    "quality-final.json": "6fd451104381275487cc86be3dd93f3e5a8040120311cb293b044a251817cdf3",
+    "probe-stage-materials.py": "7bdfeaa83005e308e1747baa8127222b049f81dd92f1565a952dda1e5f8f9a6f",
+    "probe-stage.log": "e306dfcdffb3d678a4225b0b96a7a1db17234b4cebfe7a6a10491c9e09fa0918"
+  },
+  "materialized_fork": {
+    "tree": "bb28d3443ece2526417631ef17a8aaebab18b3f6",
+    "retention_entries": 27007,
+    "new_stale_retention_entries": 0,
+    "checks": {
+      "fork": 11,
+      "tool": 294,
+      "host": 5
+    },
+    "validation_sha256": {
+      "private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011",
+      "retention.log": "b3325169ce9d5755b2340e455b52eb7ac52edcb6fa173dc4f2486f46f713350c",
+      "fork-tests.log": "693434c3fdbc557262891dbcc3d41ae407318cf7b1a2df65f22438d242b8989a",
+      "tool-tests.log": "cdf224a965c5eccb79c4bf2cd614e27dd5f05ce42917d95ada8afc862619e974",
+      "host-tests.log": "1f7e67a335ed924fd3c39115cfad4109310ab42cb14f010ab534d17368e820ad"
+    }
+  }
+}

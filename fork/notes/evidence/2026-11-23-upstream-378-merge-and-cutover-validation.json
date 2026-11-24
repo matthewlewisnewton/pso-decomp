@@ -1,0 +1,559 @@
+{
+  "upstream": {
+    "master": "412b3b3cf562c5cb4b4655b747ff328777b32969",
+    "effects_pr_375": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+    "network_pr_376": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+    "inventory_pr_377": "7af394d1c3704a49bc58dcc3149f4d200f4800de",
+    "inventory_preview_with_identical_tree": "97711798d9db2f80908909f5eea7f55da3747ce5",
+    "ave_tcp_pr_378": "412b3b3cf562c5cb4b4655b747ff328777b32969",
+    "combined_preview_with_identical_tree": {
+      "inventory": "97711798d9db2f80908909f5eea7f55da3747ce5",
+      "ave_tcp": "9fe0b1afe490369ceed09b362916563a5565e24b"
+    }
+  },
+  "builds": {
+    "master": {
+      "head": "412b3b3cf562c5cb4b4655b747ff328777b32969",
+      "tree": "f6ab5009dfe0f2b01f3414c9a77a2016a5181058",
+      "comparison": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "historical_fork_data": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "sha256": {
+        "master-report.json": "e833cb79c07725c5be5dbc518231bb65fa70fbca1ae9eaab9e5c2c9a6ed6b62e",
+        "master-check.json": "000178a27d77d91eda1b2da5a63ffa80c43635d26ab0c93052d8ea7781930e2d"
+      }
+    },
+    "saves": {
+      "head": "740c6fbfb076baadbe20e5f07bf71ea636f6f039",
+      "tree": "3e76f954f923ab927eaca4f900db0705d7590223",
+      "comparison": "412b3b3cf562c5cb4b4655b747ff328777b32969",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "historical_fork_data": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "sha256": {
+        "saves-report.json": "f6ef7f380d0254f90ab7b4e3ef888f60f0c0675a69bdf30a725523a1d87ed775",
+        "saves-check.json": "a0ca125a83d7bc469a8af9e487c40b7a927f359549396aa150bcffdb972d96ae"
+      }
+    },
+    "source": {
+      "head": "cd9c88f756b8cea302976d1fccabe81243f661f5",
+      "tree": "2602791e2658e97271dd7c520c2f32c289bb1173",
+      "comparison": "412b3b3cf562c5cb4b4655b747ff328777b32969",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "historical_fork_data": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "sha256": {
+        "source-report.json": "ca1474d6944d15eed3aacc3b03b616910766e6af33516bb985040975a8a3885a",
+        "source-check.json": "1d8d2a4d792c5545664baac1f21116c8fd3419978d7dd6b02b94b64c18a02f95"
+      }
+    },
+    "queue": {
+      "head": "206f390ba5e18834c6c1aa93c9e4acda76cafe35",
+      "tree": "b3816fbe978aa4bc0f6a2210afd874935e6f8b85",
+      "comparison": "412b3b3cf562c5cb4b4655b747ff328777b32969",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "historical_fork_data": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "sha256": {
+        "queue-report.json": "ca1474d6944d15eed3aacc3b03b616910766e6af33516bb985040975a8a3885a",
+        "queue-check.json": "1d8d2a4d792c5545664baac1f21116c8fd3419978d7dd6b02b94b64c18a02f95"
+      }
+    },
+    "private": {
+      "head": "c1590f6bed5a04728767716b69bb473e79c59079",
+      "tree": "a30ddb949457af2605d96c194c711fdadd841043",
+      "comparison": "cd9c88f756b8cea302976d1fccabe81243f661f5",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2368,
+      "coverage_regressions": 0,
+      "historical_fork_data": {
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "sha256": {
+        "private-report.json": "ca1474d6944d15eed3aacc3b03b616910766e6af33516bb985040975a8a3885a",
+        "private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011"
+      }
+    }
+  },
+  "saves_quests_and_assets": {
+    "previous_inventory_preview": "9589a617bea819ad462ad592073a80ffb4785526",
+    "replay": "Three-way merge using the verified inventory preview as the merge base",
+    "paths": 218,
+    "conflicts": 0,
+    "files_also_touched_by_pr_375": [
+      "config/GPOE8P/psov3/config.yml",
+      "config/GPOE8P/psov3/symbols.txt",
+      "include/pso/player/TObjPlayer.h",
+      "include/pso/system/BmlResource.h",
+      "include/pso/unk/TLobby.h",
+      "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+      "src/pso/boss/dragon/TObjBoss1Crater.cpp",
+      "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+      "src/pso/boss/olgaflow/TBoss6Rock.cpp",
+      "src/pso/effect/TBGLightningCtrl.cpp",
+      "src/pso/effect/particle/ParticleResources.cpp",
+      "src/pso/enemy/darkgunner/DarkGunner.cpp",
+      "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+      "src/pso/enemy/lappy/TObjEneLappy.cpp",
+      "src/pso/object/TObjComputer.cpp",
+      "src/pso/object/city/CityDoors.cpp",
+      "src/pso/object/door/TODoorAncient01.cpp",
+      "src/pso/object/door/TODoorAncient03.cpp",
+      "src/pso/object/door/TODoorAncient04.cpp",
+      "src/pso/object/door/TODoorAncient05.cpp",
+      "src/pso/object/door/TODoorAncient08.cpp",
+      "src/pso/object/door/TODoorAncient09.cpp",
+      "src/pso/object/door/TODoorCave01.cpp",
+      "src/pso/object/door/TODoorCave02.cpp",
+      "src/pso/object/door/TODoorMachine01.cpp",
+      "src/pso/object/door/TODoorMachine02.cpp",
+      "src/pso/object/door/TODoorVS2Door01.cpp",
+      "src/pso/object/door/TObjDoorKey.cpp",
+      "src/pso/object/fence/TOFenceAncient01.cpp",
+      "src/pso/object/fence/TOFenceAncient02.cpp",
+      "src/pso/object/fence/TOFenceAncient03.cpp",
+      "src/pso/object/fence/TOFenceAncient04.cpp",
+      "src/pso/object/fence/TObjLazerFenceNorm.cpp",
+      "src/pso/object/key/TOKeyAncient01.cpp",
+      "src/pso/object/key/TOKeyAncient03.cpp",
+      "src/pso/object/key/TOKeyCave01.cpp",
+      "src/pso/object/key/TOKeyGenericSw.cpp",
+      "src/pso/object/key/TOKeyMachine01.cpp",
+      "src/pso/object/lobby/LobbyGoGoBall.cpp",
+      "src/pso/object/seabed/TObjSeabedSuisoBrakable.cpp",
+      "src/pso/object/switch/TOSensorAncient01.cpp",
+      "src/pso/object/switch/TOSensorGeneral01.cpp",
+      "src/pso/player/TObjPlayer_801AF2F0.cpp",
+      "src/pso/player/TObjPlayer_801C1FF8.cpp",
+      "src/pso/player/TPlayerBattleCtrl4P.cpp",
+      "src/pso/player/TPlayerFootStamp.cpp",
+      "src/pso/quest/QuestOpcodeHandlers.cpp",
+      "src/pso/system/scene/TSceneSora.cpp",
+      "src/pso/technique/TTecCtrl.cpp",
+      "src/pso/ui/charcreate/TObjCMMainMenu_8028EA88.cpp",
+      "src/pso/ui/charcreate/TObjCMName.cpp",
+      "src/pso/ui/frontend/TAdMultiConfirmGC_802E03D0.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028EF14.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8033A8EC.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_8036D774.cpp",
+      "src/pso/unk/TLobby_8001EF5C.cpp",
+      "src/pso/unk/TLobby_80070A00.cpp",
+      "src/pso/unk/TLobby_80104374.cpp",
+      "src/pso/unk/TLobby_801C25B4.cpp",
+      "src/pso/unk/TLobby_801E43E4.cpp",
+      "src/pso/unk/TLobby_803382E4.cpp"
+    ],
+    "photon_source_or_header_changes": 0,
+    "commits": 1,
+    "source_quality": {
+      "totals": {
+        "base": 146114,
+        "head": 145073,
+        "added": 26,
+        "removed": 1067
+      },
+      "labels_changed": 40,
+      "flagged_labels": [],
+      "newly_stale_retention": [],
+      "sha256": {
+        "saves-quality.json": "7fdb49426f0e83407dd1b561bf3f473a5007ca402855b2d035b2b8013b734c06"
+      }
+    },
+    "runtime_suites": [
+      "file resources",
+      "BML lifecycle",
+      "footstamp",
+      "card selection",
+      "quest selection",
+      "quest cache",
+      "ARAM",
+      "quest text",
+      "typed quest lookups"
+    ]
+  },
+  "great_merge": {
+    "source_paths": 1166,
+    "source_quality": {
+      "totals": {
+        "base": 146114,
+        "head": 140684,
+        "added": 259,
+        "removed": 5689
+      },
+      "labels_changed": 362,
+      "flagged_labels": [
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x8002E62C",
+          "type": "function",
+          "old": "__ct__13TUnk_80482090FP7TObjectUl",
+          "new": "__ct__13TUnk_80482090FP7TObjectPA4_Cf",
+          "flags": [
+            "member of TUnk_80482090, a class named after an address"
+          ]
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x800D80E4",
+          "type": "function",
+          "old": "__ct__13TUnk_80494A10FP7TObjectP3VecPvllf",
+          "new": "__ct__13TUnk_80494A10FP7TObjectPC3VecP16GinjaTextureListllf",
+          "flags": [
+            "member of TUnk_80494A10, a class named after an address"
+          ]
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802C09A8",
+          "type": "function",
+          "old": "free_static_instance__10TObjPlayerFv",
+          "new": "release_resources__13TUnk_804E0898Fv",
+          "flags": [
+            "member of TUnk_804E0898, a class named after an address"
+          ]
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802C09E0",
+          "type": "function",
+          "old": "load_lobby_pigeon_resource__10TObjPlayerFv",
+          "new": "load_lobby_pigeon_resource__13TUnk_804E0898Fv",
+          "flags": [
+            "member of TUnk_804E0898, a class named after an address"
+          ]
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802C1324",
+          "type": "function",
+          "old": "create_child_object__10TObjPlayerFPv",
+          "new": "create__13TUnk_804E08D4FPv",
+          "flags": [
+            "member of TUnk_804E08D4, a class named after an address"
+          ]
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802C1370",
+          "type": "function",
+          "old": "destroy_instance__10TObjPlayerFv",
+          "new": "release_resources__13TUnk_804E08D4Fv",
+          "flags": [
+            "member of TUnk_804E08D4, a class named after an address"
+          ]
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802C13C8",
+          "type": "function",
+          "old": "load_kamome_resources__10TObjPlayerFv",
+          "new": "load_kamome_resources__13TUnk_804E08D4Fv",
+          "flags": [
+            "member of TUnk_804E08D4, a class named after an address"
+          ]
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802C1AF8",
+          "type": "function",
+          "old": "create__10TObjPlayerFPv",
+          "new": "create__13TUnk_804E0910FPv",
+          "flags": [
+            "member of TUnk_804E0910, a class named after an address"
+          ]
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802C1B44",
+          "type": "function",
+          "old": "free_statics__10TObjPlayerFv",
+          "new": "release_resources__13TUnk_804E0910Fv",
+          "flags": [
+            "member of TUnk_804E0910, a class named after an address"
+          ]
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802C1B9C",
+          "type": "function",
+          "old": "load_jungle_bird_resources__10TObjPlayerFv",
+          "new": "load_jungle_bird_resources__13TUnk_804E0910Fv",
+          "flags": [
+            "member of TUnk_804E0910, a class named after an address"
+          ]
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802C21A0",
+          "type": "function",
+          "old": "create_path_obj__10TObjPlayerFPv",
+          "new": "create__13TUnk_804E094CFPv",
+          "flags": [
+            "member of TUnk_804E094C, a class named after an address"
+          ]
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802C21EC",
+          "type": "function",
+          "old": "free_chr_select__10TObjPlayerFv",
+          "new": "release_resources__13TUnk_804E094CFv",
+          "flags": [
+            "member of TUnk_804E094C, a class named after an address"
+          ]
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802C2244",
+          "type": "function",
+          "old": "load_jungle_ebi_resources__10TObjPlayerFv",
+          "new": "load_jungle_ebi_resources__13TUnk_804E094CFv",
+          "flags": [
+            "member of TUnk_804E094C, a class named after an address"
+          ]
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802C28B4",
+          "type": "function",
+          "old": "TObjPlayer__sub_802C28B4",
+          "new": "create__13TUnk_804E0988FPv",
+          "flags": [
+            "member of TUnk_804E0988, a class named after an address"
+          ]
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802C2900",
+          "type": "function",
+          "old": "TObjPlayer__sub_802C2900",
+          "new": "release_resources__13TUnk_804E0988Fv",
+          "flags": [
+            "member of TUnk_804E0988, a class named after an address"
+          ]
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802C2958",
+          "type": "function",
+          "old": "load_seabed_dolphin__10TObjPlayerFv",
+          "new": "load_seabed_dolphin__13TUnk_804E0988Fv",
+          "flags": [
+            "member of TUnk_804E0988, a class named after an address"
+          ]
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802E6F10",
+          "type": "function",
+          "old": "init_breakup_pieces__10TObjPlayerFPvl",
+          "new": "init_breakup_pieces__13TUnk_804E3BA8FPvPA4_Cf",
+          "flags": [
+            "member of TUnk_804E3BA8, a class named after an address"
+          ]
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802E7474",
+          "type": "function",
+          "old": "alloc_breakup_model__13TUnk_804E3BD8Fl",
+          "new": "alloc_breakup_model__13TUnk_804E3BD8FP10NJS_OBJECT",
+          "flags": [
+            "member of TUnk_804E3BD8, a class named after an address"
+          ]
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x802E7568",
+          "type": "function",
+          "old": "init_zeroed_object__10TObjPlayerFv",
+          "new": "init_zeroed_object__13TUnk_804E3BD8Fv",
+          "flags": [
+            "member of TUnk_804E3BD8, a class named after an address"
+          ]
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x8032BCBC",
+          "type": "function",
+          "old": "dispatch_input_to_instance__18TAdEnterPasswordGCFi",
+          "new": "dispatch_input_to_instance__13TUnk_804EDAC0FP7TObject",
+          "flags": [
+            "member of TUnk_804EDAC0, a class named after an address"
+          ]
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x803375F0",
+          "type": "function",
+          "old": "snap_to_ground__13TObjEneMorfosFll",
+          "new": "snap_to_ground__13TUnk_804EF130FP3Vec",
+          "flags": [
+            "member of TUnk_804EF130, a class named after an address"
+          ]
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x80337824",
+          "type": "function",
+          "old": "__ct__13TUnk_804EF130FP3VeclP13TObjEneMorfos",
+          "new": "__ct__13TUnk_804EF130FPC3VeclP9TObjChara",
+          "flags": [
+            "member of TUnk_804EF130, a class named after an address"
+          ]
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x8035A69C",
+          "type": "function",
+          "old": "draw_node_tree__10TObjPlayerFPv",
+          "new": "draw_node_tree__13TUnk_804F1C58FP10NJS_OBJECT",
+          "flags": [
+            "member of TUnk_804F1C58, a class named after an address"
+          ]
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x8035A740",
+          "type": "function",
+          "old": "draw_node_tree_if_visible__10TObjPlayerFv",
+          "new": "draw_node_tree_if_visible__13TUnk_804F1C58Fv",
+          "flags": [
+            "member of TUnk_804F1C58, a class named after an address"
+          ]
+        },
+        {
+          "file": "config/GPOE8P/psov3/symbols.txt",
+          "section": ".text",
+          "address": "0x8035A860",
+          "type": "function",
+          "old": "__ct__13TUnk_804F1C58FP7TObjectPv",
+          "new": "__ct__13TUnk_804F1C58FP7TObjectP10NJS_OBJECT",
+          "flags": [
+            "member of TUnk_804F1C58, a class named after an address"
+          ]
+        }
+      ],
+      "newly_stale_retention": [],
+      "sha256": {
+        "source-quality.json": "87e01ef55898c5dfe39b4da7b3f03cba2dd67c53700d44102ae8c3db74f1fde2"
+      }
+    },
+    "unfinished_historical_source_comparisons": 104
+  },
+  "photon_effects_runtime": {
+    "comparisons": [
+      "retail and rebuilt saves review",
+      "retail and rebuilt Great Merge source"
+    ],
+    "cases_per_image": {
+      "leilla_setup": 20,
+      "line_constructors": 8,
+      "line_motion_and_hits": 16
+    },
+    "sha256": {
+      "effects-probes.log": "18cfc620fbc415b5c2b516c039ae34eb018754a8beba1cc1a53d22f063608766",
+      "saves-probes.log": "1756ec44dc06b5a6615222a3c6df9789c12e331a4a846e11fb854afdfae75080"
+    }
+  },
+  "fork_main_comparison": {
+    "head": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "lost_exact_functions": 0,
+    "lost_linked_functions": 0,
+    "lost_non_padding_data": 0,
+    "lost_linked_data": 0,
+    "omitted_alignment_bytes": 2565,
+    "added_covered_bytes": 159,
+    "total_data_delta": -2406,
+    "sha256": {
+      "fork-main-coverage.json": "e53b3cb1d5810e287dce5fbf8aba6ae662703a882fa6ec46cdf65574b970b9c6"
+    }
+  },
+  "fork_tooling": {
+    "overlay_paths": 130,
+    "retention_entries": 27007,
+    "tools_tests": 294,
+    "fork_layer_tests": 11,
+    "host_checks": [
+      "./vector_math_fallbacks",
+      "./item_factory_callbacks",
+      "./loader_transfer",
+      "./ginja_parameter_callbacks",
+      "./exi_ethernet_fallbacks"
+    ],
+    "sha256": {
+      "tool-overlay.patch": "32e7cfec77f9cc3a65b59bba32a068f3c759f6d4d4b19314ebf531707cb7006a"
+    }
+  },
+  "build_cleanup": {
+    "root_available_bytes_before_validation": 490992832512,
+    "root_available_bytes_after_validation": 490847137792,
+    "checkpoint_mount": "/media/matt/Checkpoints /dev/sdb ext4   ro,nosuid,nodev,relatime",
+    "removed_files": 0,
+    "idle_checkouts": [
+      {
+        "repo": "pso-decomp-worktrees/pr606-jumptable-data",
+        "untracked": 8685,
+        "logical_bytes": 37956380,
+        "allocated_bytes": 59363328,
+        "tracked_skipped": 0,
+        "special_skipped": 0,
+        "head": "e081855e7d11abe138cb95e1ad333a695ec83db4",
+        "latest_ns": 1794971371872257963,
+        "state": "idle"
+      }
+    ]
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "upstream": "8441b1b4feb550bf1fc4b0a897acd19b003a0437",
+  "source": "5e22b4e7493af1086808bc132ded243bdb8e194f",
+  "source_base": "dd8c8901f1cba744258198696c292215144952ef",
+  "source_commits": 43,
+  "paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/effect/TEffStarLight2D.h",
+    "include/pso/effect/TEffStarLightChild.h",
+    "include/pso/item/TItemMenuCtrl.h",
+    "include/pso/item/TItemMenuCtrl_80115AF0.h",
+    "src/pso/effect/TEffStarLight2D_Base.cpp",
+    "src/pso/item/TItemMenuCtrl.cpp",
+    "src/pso/item/TItemMenuCtrl_80115A78.cpp",
+    "src/pso/item/TItemMenuCtrl_80115AF0.cpp",
+    "src/pso/unk/TLobby_80104374.cpp",
+    "src/pso/weapon/SpecialProjectileWeapons.cpp",
+    "src/pso/weapon/TItemAttackCol.cpp",
+    "src/pso/weapon/shoot/TItemShoot.cpp"
+  ],
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "coverage_losses": {
+    "regressions": 0,
+    "data_coverage_lost": 0,
+    "padding_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0
+  },
+  "linked_labels": [
+    {
+      "module": "psov3",
+      "address": "0x800852C8",
+      "before": "copy_from_subobject__15TEffStarLight2DFPv",
+      "after": "copy_from_subobject__15TEffStarLight2DFPC19StarLightParameters"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800852EC",
+      "before": "copy_from__15TEffStarLight2DFPv",
+      "after": "copy_from__19StarLightParametersFPC19StarLightParameters"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80085388",
+      "before": "__ct__15TEffStarLight2DFPvPvP7TObject",
+      "after": "__ct__15TEffStarLight2DFPC3VecPC19StarLightParametersP7TObject"
+    },
+    {
+      "module": "psov3",
+      "address": "0x800855F8",
+      "before": "__ct__18TEffStarLightChildFv",
+      "after": "__ct__18TEffStarLightChildFP15ColorLineVertexP15ColorLineVertexP7TObjectff"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80115AF0",
+      "before": "set_menu_flags__13TItemMenuCtrlFv",
+      "after": "set_menu_flags__13TItemMenuCtrlFUl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80115B14",
+      "before": "spawn_star_light_2d__Flll",
+      "after": "spawn_star_light_2d__FPC3VecPC19StarLightParametersP7TObject"
+    }
+  ],
+  "original_data_bytes": 1147,
+  "original_data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "runtime": {
+    "source": {
+      "sha256": "abf45fa89ddbd7a40bbb842d01ba7fd9c63e5354d35ce83f2586b903d14b8640",
+      "cases": {
+        "menu_flags": 16,
+        "factory_cases": 4,
+        "light_task_cases": 36,
+        "child_constructors": 15
+      },
+      "menu_lifecycle_and_copy": [
+        "PsoV3.dol: menu allocation, flag query, close and cleanup, and parameter copies passed",
+        "psov3.dol: menu allocation, flag query, close and cleanup, and parameter copies passed"
+      ]
+    },
+    "workspace": {
+      "sha256": "abf45fa89ddbd7a40bbb842d01ba7fd9c63e5354d35ce83f2586b903d14b8640",
+      "cases": {
+        "menu_flags": 16,
+        "factory_cases": 4,
+        "light_task_cases": 36,
+        "child_constructors": 15
+      },
+      "menu_lifecycle_and_copy": [
+        "PsoV3.dol: menu allocation, flag query, close and cleanup, and parameter copies passed",
+        "psov3.dol: menu allocation, flag query, close and cleanup, and parameter copies passed"
+      ]
+    },
+    "child_and_render": {
+      "sha256": "8e3522266b10531d919e431e1d46a4269d4975da2f1acf83331ac8a2d213f2cb",
+      "observations": [
+        "PsoV3.dol: four child update and four render traversal cases passed",
+        "psov3.dol: four child update and four render traversal cases passed"
+      ]
+    }
+  },
+  "historical_audit": {
+    "open_before": 250,
+    "open_after": 249,
+    "resolved": [
+      "src/pso/item/TItemMenuCtrl_80115AF0.cpp"
+    ],
+    "confirmed": [
+      "include/pso/item/TItemMenuCtrl.h",
+      "include/pso/item/TItemMenuCtrl_80115AF0.h",
+      "include/pso/effect/TEffStarLight2D.h",
+      "include/pso/effect/TEffStarLightChild.h",
+      "src/pso/effect/TEffStarLight2D_Base.cpp"
+    ]
+  },
+  "fork_workspace": {
+    "parent": "5e22b4e7493af1086808bc132ded243bdb8e194f",
+    "previous_workspace": "fd00c9c3f54835a1b23a492b5548971de0cb87b1",
+    "overlay_paths": 130,
+    "updated_linker_labels": {
+      "__ct__18TEffStarLightChildFv": "__ct__18TEffStarLightChildFP15ColorLineVertexP15ColorLineVertexP7TObjectff",
+      "copy_from__15TEffStarLight2DFPv": "copy_from__19StarLightParametersFPC19StarLightParameters",
+      "copy_from_subobject__15TEffStarLight2DFPv": "copy_from_subobject__15TEffStarLight2DFPC19StarLightParameters"
+    },
+    "materialized_tree_before_notes_update": "5a37fa50f90c622aa15d56c1ae23fe8e099a439c",
+    "archive_sha256": "6f0d6dca5f2900855cbf4637e5c08a2c91c1face3c76c4f0d5f445ea2f17ccec",
+    "tests": {
+      "tool": 294,
+      "fork": 11,
+      "host": 5
+    },
+    "host_executables": [
+      "vector_math_fallbacks",
+      "item_factory_callbacks",
+      "loader_transfer",
+      "ginja_parameter_callbacks",
+      "exi_ethernet_fallbacks"
+    ]
+  }
+}

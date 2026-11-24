@@ -1,0 +1,1506 @@
+{
+  "source": "d92b462b9774774c58583fca17e19455ca33c3a3",
+  "previous_source": "54384a64aa4affea93749a5eb7c1bd775caedd99",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/boss/TUnk_804F1280.h",
+    "include/pso/boss/TunnelParticle.h",
+    "include/pso/boss/barbaray/TObjBoss7Tunnel.h",
+    "include/pso/boss/darkfalz/DarkFalzActionsMessage.h",
+    "include/pso/boss/darkfalz/DarkFalzPhaseSpawn.h",
+    "include/pso/boss/darkfalz/TBoss4DarkFalz.h",
+    "include/pso/boss/darkfalz/TBoss4Type1.h",
+    "include/pso/boss/darkfalz/TBoss4Type2.h",
+    "include/pso/boss/darkfalz/TBoss4Type3.h",
+    "include/pso/boss/darkfalz/TBoss4Zanzo.h",
+    "include/pso/boss/darkfalz/TObjDFJisin.h",
+    "include/pso/boss/derolle/Boss2Particles.h",
+    "include/pso/boss/derolle/Boss2Resources.h",
+    "include/pso/boss/derolle/TBoss2Tentacle.h",
+    "include/pso/boss/derolle/TObjBoss2CeilJunk.h",
+    "include/pso/boss/derolle/TObjBoss2Tunnel.h",
+    "include/pso/boss/derolle/TObjBoss2Tunnel_8007EA74.h",
+    "include/pso/boss/dragon/TBoss1Dragon.h",
+    "include/pso/boss/dragon/TBoss1DragonColli_C.h",
+    "include/pso/boss/dragon/TBoss1DragonDemo.h",
+    "include/pso/boss/dragon/TObjBoss1MokoHill_SoloM.h",
+    "include/pso/boss/goldragon/TBoss8Dragon.h",
+    "include/pso/boss/goldragon/TBoss8Dragon_8002CC48.h",
+    "include/pso/boss/olgaflow/Boss6PhaseSpawn.h",
+    "include/pso/boss/olgaflow/Boss6Type2Data.h",
+    "include/pso/boss/olgaflow/OlgaFlowActions.h",
+    "include/pso/boss/olgaflow/TBoss6DPB.h",
+    "include/pso/boss/olgaflow/TBoss6Demo15_TYPE2_WAIT.h",
+    "include/pso/boss/olgaflow/TBoss6EmptyWarp.h",
+    "include/pso/boss/olgaflow/TBoss6EmptyWarp_802B0E2C.h",
+    "include/pso/boss/olgaflow/TBoss6Kakusan.h",
+    "include/pso/boss/olgaflow/TBoss6Mag.h",
+    "include/pso/boss/olgaflow/TBoss6Mine.h",
+    "include/pso/boss/olgaflow/TBoss6PlotFalz.h",
+    "include/pso/boss/olgaflow/TBoss6PlotFalz_802AABEC.h",
+    "include/pso/boss/olgaflow/TBoss6SwordWave.h",
+    "include/pso/boss/olgaflow/TBoss6Tube.h",
+    "include/pso/boss/olgaflow/TBoss6Type1.h",
+    "include/pso/boss/olgaflow/TBoss6Type1_802B20C0.h",
+    "include/pso/boss/olgaflow/TBoss6Type2.h",
+    "include/pso/boss/olgaflow/TBoss6Type2_8032E708.h",
+    "include/pso/boss/olgaflow/TBoss6Type2_8036A92C.h",
+    "include/pso/boss/volopt/TBoss3Volopt.h",
+    "include/pso/boss/volopt/TBoss3VoloptP01.h",
+    "include/pso/boss/volopt/TObjVoloptCage.h",
+    "include/pso/boss/volopt/TObjVoloptShutter.h",
+    "include/pso/collision/ActorGroundQuery.h",
+    "include/pso/effect/BreakupModelParams.h",
+    "include/pso/effect/PositionSoundEffects.h",
+    "include/pso/enemy/BattleParameters.h",
+    "include/pso/enemy/EnemyPlacement.h",
+    "include/pso/enemy/TObjEnePanBARA.h",
+    "include/pso/enemy/TObjEnemy.h",
+    "include/pso/enemy/TUnk_80486924.h",
+    "include/pso/enemy/TUnk_804909C4.h",
+    "include/pso/enemy/TUnk_804EF130.h",
+    "include/pso/enemy/TUnk_804F322C.h",
+    "include/pso/enemy/balclaw/TObjEneBalClawBody.h",
+    "include/pso/enemy/balclaw/TObjEneBalClawClaw.h",
+    "include/pso/enemy/canadin/TObjEneMe1Canadin.h",
+    "include/pso/enemy/canadin/TObjEneMe1CanadinLeader.h",
+    "include/pso/enemy/darkgunner/DarkGunner.h",
+    "include/pso/enemy/darkgunner/TObjEneDarkGunCenter.h",
+    "include/pso/enemy/darkgunner/TObjEneDarkGunner.h",
+    "include/pso/enemy/dd/EnemyGroundMovement.h",
+    "include/pso/enemy/dd/TObjEneDD_ST.h",
+    "include/pso/enemy/epsilon/TObjEneEpsilon.h",
+    "include/pso/enemy/epsilon/TObjEneEpsilonBody.h",
+    "include/pso/enemy/epsilon/TObjEneEpsilonGuard.h",
+    "include/pso/enemy/epsilon/TObjEneEpsilon_800B92AC.h",
+    "include/pso/enemy/flower/TObjEneRe2Flower.h",
+    "include/pso/enemy/fly/TObjEneBm3FlyNest.h",
+    "include/pso/enemy/fly/TObjEneBm3FlyNest_CarryFly.h",
+    "include/pso/enemy/gee/TObjEneMe1Gee.h",
+    "include/pso/enemy/gee/TUnk_8049387C.h",
+    "include/pso/enemy/gibbles/TObjEneGibbles.h",
+    "include/pso/enemy/gigue/TObjEneMe1GiGue.h",
+    "include/pso/enemy/gigue/TObjEneMe1GiGueBarrier.h",
+    "include/pso/enemy/gigue/TObjEneMe1GiGueMissile.h",
+    "include/pso/enemy/gyaranzo/TObjEneGyaranzo.h",
+    "include/pso/enemy/gyaranzo/TObjGyaranzoMissile.h",
+    "include/pso/enemy/illgill/TObjIllGillKage.h",
+    "include/pso/enemy/morfos/TObjEneMorfos.h",
+    "include/pso/enemy/morfos/TObjEneMorfosArm.h",
+    "include/pso/enemy/panarms/TObjEnePanarms.h",
+    "include/pso/enemy/panarms/TObjEnePanarmsAtkColli.h",
+    "include/pso/enemy/panarms/TObjEnePanarms_800DFB74.h",
+    "include/pso/enemy/recon/TObjEneRecobox.h",
+    "include/pso/enemy/recon/TObjEneRecon.h",
+    "include/pso/enemy/shinowa/TObjEneMe3ShinowaMirage.h",
+    "include/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.h",
+    "include/pso/enemy/sorcerer/TObjEneRe4Bit.h",
+    "include/pso/network/protocol/GameplaySoundPacket.h",
+    "include/pso/object/trap/TOTrapAncient01.h",
+    "include/pso/object/trap/TOTrapAncient01_80226534.h",
+    "include/pso/player/TObjPlayer_800D8FDC.h",
+    "include/pso/render/StripBufferPair.h",
+    "include/pso/system/PersistentSound.h",
+    "include/pso/unk/TLobby_80227A2C.h",
+    "include/pso/unk/TLobby_80227AA0.h",
+    "src/pso/boss/TUnk_80484A94.cpp",
+    "src/pso/boss/TUnk_80484AFC.cpp",
+    "src/pso/boss/barbaray/TBoss7Crawfish.cpp",
+    "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp",
+    "src/pso/boss/barbaray/TBoss7PhotonBullet_802EF26C.cpp",
+    "src/pso/boss/barbaray/TBoss7TentacleNeedle.cpp",
+    "src/pso/boss/barbaray/TObjBoss7RaftSplash.cpp",
+    "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp",
+    "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+    "src/pso/boss/darkfalz/TBoss4Type3.cpp",
+    "src/pso/boss/darkfalz/TBoss4Zako.cpp",
+    "src/pso/boss/darkfalz/TBoss4Zanzo.cpp",
+    "src/pso/boss/darkfalz/TObjDFHorming.cpp",
+    "src/pso/boss/derolle/TBoss2DeRolLe.cpp",
+    "src/pso/boss/derolle/TBoss2PhotonBullet_80038DCC.cpp",
+    "src/pso/boss/derolle/TBoss2Tentacle.cpp",
+    "src/pso/boss/derolle/TObjBoss2CeilJunk_8003A81C.cpp",
+    "src/pso/boss/derolle/TObjBoss2RaftSplash.cpp",
+    "src/pso/boss/derolle/TObjBoss2Tunnel.cpp",
+    "src/pso/boss/derolle/TObjBoss2Tunnel_8003B138.cpp",
+    "src/pso/boss/dragon/TBoss1Dragon.cpp",
+    "src/pso/boss/dragon/TBoss1DragonColli.cpp",
+    "src/pso/boss/dragon/TBoss1DragonDemo.cpp",
+    "src/pso/boss/dragon/TBoss1DragonEffBullet.cpp",
+    "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp",
+    "src/pso/boss/galgryphon/TBoss5GryphonDemo.cpp",
+    "src/pso/boss/galgryphon/TBoss5GryphonTornado.cpp",
+    "src/pso/boss/goldragon/TBoss8Dragon.cpp",
+    "src/pso/boss/goldragon/TBoss8DragonDemo.cpp",
+    "src/pso/boss/olgaflow/TBoss6CrushRock.cpp",
+    "src/pso/boss/olgaflow/TBoss6DPB.cpp",
+    "src/pso/boss/olgaflow/TBoss6Demo11_TYPE1_DEAD.cpp",
+    "src/pso/boss/olgaflow/TBoss6Demo20_TYPE2_APPEAR.cpp",
+    "src/pso/boss/olgaflow/TBoss6Demo21_TYPE2_DEAD.cpp",
+    "src/pso/boss/olgaflow/TBoss6GravBall.cpp",
+    "src/pso/boss/olgaflow/TBoss6Kakusan.cpp",
+    "src/pso/boss/olgaflow/TBoss6MagMine.cpp",
+    "src/pso/boss/olgaflow/TBoss6Mine.cpp",
+    "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+    "src/pso/boss/olgaflow/TBoss6PlotFalz_802AABEC.cpp",
+    "src/pso/boss/olgaflow/TBoss6PlotFalz_802B0228.cpp",
+    "src/pso/boss/olgaflow/TBoss6Rock.cpp",
+    "src/pso/boss/olgaflow/TBoss6RockChase.cpp",
+    "src/pso/boss/olgaflow/TBoss6SwordShot.cpp",
+    "src/pso/boss/olgaflow/TBoss6Tube.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type1_802B20C0.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2_802BE588.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2_803309D8.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2_80336E6C.cpp",
+    "src/pso/boss/volopt/TBoss3Volopt.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptCore.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptHiraisin.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptP01.cpp",
+    "src/pso/boss/volopt/TBoss3VoloptP02.cpp",
+    "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp",
+    "src/pso/boss/volopt/TObjVoloptCage.cpp",
+    "src/pso/boss/volopt/TObjVoloptShutter.cpp",
+    "src/pso/effect/item/TItemEffPG.cpp",
+    "src/pso/effect/photon/TPhotonEstlla.cpp",
+    "src/pso/effect/photon/TPhotonFarlla.cpp",
+    "src/pso/effect/photon/TPhotonGolla.cpp",
+    "src/pso/effect/photon/TPhotonLeilla.cpp",
+    "src/pso/effect/photon/TPhotonMylla.cpp",
+    "src/pso/effect/photon/TPhotonPilla.cpp",
+    "src/pso/enemy/EnemyFactoryTables.cpp",
+    "src/pso/enemy/TUnk_804909C4.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClaw.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+    "src/pso/enemy/beast/TObjEneBeast.cpp",
+    "src/pso/enemy/beast/TObjEneBeast_800C4E08.cpp",
+    "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+    "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp",
+    "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+    "src/pso/enemy/darkgunner/DarkGunner.cpp",
+    "src/pso/enemy/darkgunner/TObjEneDarkGunCenter.cpp",
+    "src/pso/enemy/dd/TObjEneDD.cpp",
+    "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+    "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+    "src/pso/enemy/dimedian/TObjEneDimedian.cpp",
+    "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp",
+    "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035DD68.cpp",
+    "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+    "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+    "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+    "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+    "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+    "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+    "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGueBarrier.cpp",
+    "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp",
+    "src/pso/enemy/gyaranzo/TObjGyaranzoMissile.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/enemy/illgill/TObjIllGillKage.cpp",
+    "src/pso/enemy/lappy/TObjEneLappy.cpp",
+    "src/pso/enemy/lappy/TObjEneLappy_800F5DE0.cpp",
+    "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+    "src/pso/enemy/merilllia/TObjEneMerillLia.cpp",
+    "src/pso/enemy/moja/TObjEneMoja.cpp",
+    "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+    "src/pso/enemy/morfos/TObjEneMorfosArm.cpp",
+    "src/pso/enemy/morfos/TObjEneMorfos_80337500.cpp",
+    "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+    "src/pso/enemy/nanodrago/TObjEneNanoDrago_800D9BBC.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarmsAtkColli.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms_800DFB00.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms_800DFB74.cpp",
+    "src/pso/enemy/recon/TObjEneRecobox_8031F800.cpp",
+    "src/pso/enemy/recon/TObjEneRecon.cpp",
+    "src/pso/enemy/recon/TObjEneRecon_80320350.cpp",
+    "src/pso/enemy/saver/SaverLifecycle.cpp",
+    "src/pso/enemy/shark/TObjEneShark.cpp",
+    "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+    "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+    "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+    "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+    "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp",
+    "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp",
+    "src/pso/object/TObjControl.cpp",
+    "src/pso/object/TObjLuker.cpp",
+    "src/pso/object/ambient/TOBiwaMushi.cpp",
+    "src/pso/object/ambient/TObjEnvSoundGlobal.cpp",
+    "src/pso/object/ambient/TObjGrass.cpp",
+    "src/pso/object/cave/TOHangceilingCave01.cpp",
+    "src/pso/object/city/CityTraffic.cpp",
+    "src/pso/object/collision/TObjFogCollision.cpp",
+    "src/pso/object/container/TObjContainerIdo_8018BEE4.cpp",
+    "src/pso/object/door/TODoorAncient05.cpp",
+    "src/pso/object/door/TODoorAncient06.cpp",
+    "src/pso/object/door/TODoorAncient07.cpp",
+    "src/pso/object/door/TODoorBase.cpp",
+    "src/pso/object/door/TODoorCave03.cpp",
+    "src/pso/object/door/TODoorJungleMain.cpp",
+    "src/pso/object/door/TObjDoor_8018E358.cpp",
+    "src/pso/object/fence/TOBarrierEnergy01.cpp",
+    "src/pso/object/fence/TOFenceBase.cpp",
+    "src/pso/object/ruins/TOMonumentAncient02.cpp",
+    "src/pso/object/switch/TOSensor.cpp",
+    "src/pso/object/switch/TOSwitchTimer.cpp",
+    "src/pso/object/trap/TOTrapAncient01.cpp",
+    "src/pso/object/trap/TOTrapAncient02.cpp",
+    "src/pso/object/trap/TOTrapChainSawEdge.cpp",
+    "src/pso/player/TObjPlayer_8002E784.cpp",
+    "src/pso/player/TObjPlayer_801C7430.cpp",
+    "src/pso/technique/TTecLuker.cpp",
+    "src/pso/ui/frontend/TAdPlyStatusGC_8033FD48.cpp",
+    "src/pso/ui/hud/TLoadingCur.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_80259DB0.cpp",
+    "src/pso/unk/TLobby_80226070.cpp",
+    "src/pso/unk/TLobby_80227AA0.cpp",
+    "src/pso/unk/text_800C2A88.cpp",
+    "src/pso/unk/text_800D8830.cpp",
+    "src/pso/unk/text_803626A8.cpp"
+  ],
+  "combined_paths_from_upstream": 881,
+  "historical_basis": {
+    "pre_feature": "5a4e7ced56",
+    "matching_replay": "1e41348776",
+    "preview_dispositions": {
+      "clean authored blob": 61,
+      "conflict": 51,
+      "clean merge": 34,
+      "deleted or added on both": 1
+    },
+    "equal_or_identifier_only_paths_skipped": [
+      "include/pso/boss/darkfalz/TObjDFHorming.h",
+      "include/pso/enemy/TNeedleShoot.h",
+      "include/pso/enemy/TUnk_80493450.h",
+      "include/pso/enemy/berura/TObjEneRe7Berura.h",
+      "include/pso/enemy/fly/TObjEneBm3Fly.h",
+      "include/pso/enemy/sinowzoa/TObjEneMe3SinowZoaReal.h",
+      "src/pso/boss/galgryphon/TBoss5GryphonShockWave.cpp",
+      "src/pso/boss/olgaflow/TBoss6Type2_8036A92C.cpp"
+    ]
+  },
+  "source_scope": [
+    "boss phase placement and projectile layouts",
+    "Pan Arms parent, half, attack and motion ownership",
+    "Canadin and enemy factory contracts",
+    "enemy combat and persistent sound interfaces",
+    "native effect positions, model breakup and animation inputs"
+  ],
+  "validation": {
+    "source": {
+      "baseline": "54384a64aa4affea93749a5eb7c1bd775caedd99",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8002AC4C",
+          "before": "cloneModelHierarchy__12TBoss1DragonFP15DragonModelNodeP15DragonModelNodePv",
+          "after": "cloneModelHierarchy__12TBoss1DragonFP10NJS_OBJECTP10NJS_OBJECTPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8002AD54",
+          "before": "countModelNodes__12TBoss1DragonFP15DragonModelNode",
+          "after": "countModelNodes__12TBoss1DragonFP10NJS_OBJECT"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80039E88",
+          "before": "start_attack_at_target__14TBoss2TentacleFPUcl",
+          "after": "start_attack_at_target__14TBoss2TentacleFPC3Vecl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8003A81C",
+          "before": "create__17TObjBoss2CeilJunkFPv",
+          "after": "create__17TObjBoss2CeilJunkFPC3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8003B07C",
+          "before": "create_particle__17TObjBoss2CeilJunkFPCvl",
+          "after": "create_particle__17TObjBoss2CeilJunkFPC3Vecl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8003B138",
+          "before": "create_particle_effect__15TObjBoss2TunnelFPCvlf",
+          "after": "create_particle_effect__15TObjBoss2TunnelFPC3Veclf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8003F0E8",
+          "before": "reset_photon_effect__12TBoss3VoloptFv",
+          "after": "reset_photon_effect__9TObjEnemyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8004C244",
+          "before": "swap_and_send__14TBoss4DarkFalzFv",
+          "after": "swap_and_send__22DarkFalzActionsMessageFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8004C278",
+          "before": "swap_bytes__14TBoss4DarkFalzFv",
+          "after": "swap_bytes__22DarkFalzActionsMessageFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8004C2C4",
+          "before": "set_code_25_4__14TBoss4DarkFalzFv",
+          "after": "set_code_25_4__22DarkFalzActionsMessageFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80054A1C",
+          "before": "__ct__11TBoss4Type1FP7TObjectPl",
+          "after": "__ct__11TBoss4Type1FP7TObjectP18DarkFalzPhaseSpawn"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80054D40",
+          "before": "create__11TBoss4Type1Fl",
+          "after": "create__11TBoss4Type1FP18DarkFalzPhaseSpawn"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800579A0",
+          "before": "__ct__13TUnk_80486924FP7TObjectPl",
+          "after": "__ct__13TUnk_80486924FP7TObjectP18DarkFalzPhaseSpawn"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80057CA0",
+          "before": "create__11TBoss4Type2Fl",
+          "after": "create__11TBoss4Type2FP18DarkFalzPhaseSpawn"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8005AE60",
+          "before": "__ct__11TBoss4Type3FP7TObjectPl",
+          "after": "__ct__11TBoss4Type3FP7TObjectP18DarkFalzPhaseSpawn"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8005B1AC",
+          "before": "create__11TBoss4Type3Fl",
+          "after": "create__11TBoss4Type3FP18DarkFalzPhaseSpawn"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8007E884",
+          "before": "transform_vec_by_camera__15TObjBoss2TunnelFlll",
+          "after": "transform_vec_by_camera__15TObjBoss2TunnelFPvPC3VecP3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80090264",
+          "before": "__ct__18TObjEneBalClawBodyFP7TObjectPv",
+          "after": "__ct__18TObjEneBalClawBodyFP7TObjectP14EnemyPlacement"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80091970",
+          "before": "create__18TObjEneBalClawClawFv",
+          "after": "create__18TObjEneBalClawClawFPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80091C58",
+          "before": "__ct__18TObjEneBalClawClawFP7TObjectPv",
+          "after": "__ct__18TObjEneBalClawClawFP7TObjectP14EnemyPlacement"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009B274",
+          "before": "remove_member__23TObjEneMe1CanadinLeaderFUl",
+          "after": "remove_member__23TObjEneMe1CanadinLeaderFP17TObjEneMe1Canadin"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8009E2FC",
+          "before": "remove_member__17TObjEneMe1CanadinFUl",
+          "after": "remove_member__17TObjEneMe1CanadinFP17TObjEneMe1Canadin"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800A0EDC",
+          "before": "TObjEneDarkGunCenter__ct",
+          "after": "__ct__20TObjEneDarkGunCenterFP7TObjectPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800A34E8",
+          "before": "__ct__13TUnk_804909C4FPUcll",
+          "after": "__ct__13TUnk_804909C4FP17TObjEneDarkGunnerPC3VecPC3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800B2A5C",
+          "before": "remove_child__17TObjEneBm3FlyNestFPUc",
+          "after": "remove_child__17TObjEneBm3FlyNestFP14TObjCollidable"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800B3AC8",
+          "before": "sub_800B3AC8__17TObjEneBm3FlyNestFv",
+          "after": "sub_800B3AC8__17TObjEneBm3FlyNestCFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800B3EB8",
+          "before": "__ct__17TObjEneBm3FlyNestFP7TObjectP17Bm3FlyNestSetData",
+          "after": "__ct__17TObjEneBm3FlyNestFP7TObjectP14EnemyPlacement"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800B4688",
+          "before": "__ct__26TObjEneBm3FlyNest_CarryFlyFP7TObjectP3VecP3VecP3VecPll",
+          "after": "__ct__26TObjEneBm3FlyNest_CarryFlyFP17TObjEneBm3FlyNestPC3VecPC3VecPC3VecPCll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C32DC",
+          "before": "fn_800C32DC",
+          "after": "fn_800C32DC__16TObjEneRe2FlowerFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C34FC",
+          "before": "state_chase_target__12TObjEneDD_STFl",
+          "after": "state_chase_target__16TObjEneRe2FlowerFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C37D8",
+          "before": "handle_flower_state_change__FP9TObjEneDDl",
+          "after": "handle_flower_state_change__16TObjEneRe2FlowerFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800C38D0",
+          "before": "handle_state__9TObjEneDDFl",
+          "after": "handle_state__16TObjEneRe2FlowerFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800CB764",
+          "before": "sub_800CB764__13TUnk_8049387CFl",
+          "after": "sub_800CB764__13TObjEneMe1GeeFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800D4BD0",
+          "before": "__ct__19TObjGyaranzoMissileFPUcPUcUs",
+          "after": "__ct__19TObjGyaranzoMissileFP8TObjBaseP13Desc_800D23D4Us"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800D8ACC",
+          "before": "create_breakup_mdl__12TBoss3VoloptFlllll",
+          "after": "create_breakup_mdl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800D907C",
+          "before": "set_field_e4__10TObjPlayerFll",
+          "after": "set_field_e4"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800D9168",
+          "before": "trigger_dell_biter_events__10TObjPlayerFv",
+          "after": "trigger_dell_biter_events"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800D91B0",
+          "before": "spawn_ground_effect__10TObjPlayerFl",
+          "after": "spawn_ground_effect"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800D91F4",
+          "before": "spawn_effect_at_ground__10TObjPlayerFl",
+          "after": "spawn_effect_at_ground"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800DE7EC",
+          "before": "find_combine_position__14TObjEnePanarmsFPv",
+          "after": "find_combine_position__14TObjEnePanarmsFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800DF2B8",
+          "before": "__ct__14TObjEnePanarmsFP7TObjectPv",
+          "after": "__ct__14TObjEnePanarmsFP7TObjectP14EnemyPlacement"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800DF6E0",
+          "before": "create__14TObjEnePanarmsFl",
+          "after": "create__14TObjEnePanarmsFPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800DFB44",
+          "before": "TObjEnePanarms__sub_800DFB44",
+          "after": "is_in_state_7_or_8__14TObjEnePanBARAFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800DFB68",
+          "before": "get_state_flag__14TObjEnePanarmsFv",
+          "after": "get_state_flag__14TObjEnePanBARAFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800DFB74",
+          "before": "TObjEnePanarms__sub_800DFB74",
+          "after": "is_state_4_timer_expired__14TObjEnePanBARAFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800DFB9C",
+          "before": "TObjEnePanarms__sub_800DFB9C",
+          "after": "is_in_state_11__14TObjEnePanBARAFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800DFBB0",
+          "before": "TObjEnePanarms__sub_800DFBB0",
+          "after": "is_in_state_8__14TObjEnePanBARAFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800E1B78",
+          "before": "calc_part_position__14TObjEnePanBARAFPUcPl",
+          "after": "calc_part_position__14TObjEnePanBARAFP3VecPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800E1C8C",
+          "before": "TObjEnePanarms__sub_800E1C8C",
+          "after": "bind_parts__14TObjEnePanBARAFP14TObjEnePanarmsP14TObjEnePanBARA"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800E252C",
+          "before": "__ct__14TObjEnePanBARAFP7TObjectPvl",
+          "after": "__ct__14TObjEnePanBARAFP7TObjectP14EnemyPlacementl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800E28F4",
+          "before": "create_bara__14TObjEnePanarmsFPvl",
+          "after": "create_bara__14TObjEnePanarmsFP14EnemyPlacementl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800E372C",
+          "before": "create__22TObjEnePanarmsAtkColliFPvPvPv",
+          "after": "create__22TObjEnePanarmsAtkColliFP7TObjectPC3VecPC3Vecl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800E37E4",
+          "before": "__ct__22TObjEnePanarmsAtkColliFP7TObjectPvPvPv",
+          "after": "__ct__22TObjEnePanarmsAtkColliFP7TObjectPC3VecPC3Vecl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800F7478",
+          "before": "bind_enemy_combat_stats__9TObjEnemyFPUcPUcPUc",
+          "after": "bind_enemy_combat_stats__9TObjEnemyFP12player_statsP12AttackParamsP15ActorParamBlock"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80226534",
+          "before": "check_trigger_flag__15TOTrapAncient01Fll",
+          "after": "check_trigger_flag__15TOTrapAncient01FPC3Vecl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80227D5C",
+          "before": "normalize_sound_request__FUlllll",
+          "after": "normalize_sound_request__FUlPCvPC3Vecll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802ABE3C",
+          "before": "apply_radial_effect_to_players__14TBoss6PlotFalzFPvssf",
+          "after": "apply_radial_effect_to_players__14TBoss6PlotFalzFPC3Vecssf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802B1654",
+          "before": "__ct__10TBoss6TubeFP7TObject",
+          "after": "__ct__10TBoss6TubeFP14TBoss6PlotFalz"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802B52E0",
+          "before": "pick_random_entry__11TBoss6Type1Flll",
+          "after": "pick_random_entry__11TBoss6Type1FPCll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802B5378",
+          "before": "rand_range_inclusive__11TBoss6Type1Flii",
+          "after": "rand_range_inclusive__11TBoss6Type1Fii"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802B6078",
+          "before": "set_part_default_value__11TBoss6Type1FiPv",
+          "after": "set_part_default_value__11TBoss6Type1FP3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802B85E8",
+          "before": "copy_transform__11TBoss6Type1FPv",
+          "after": "copy_transform__15Boss6PartMotionFPC15Boss6PartMotion"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802B9178",
+          "before": "send_6xA4_action__11TBoss6Type1FlPl",
+          "after": "send_6xA4_action__11TBoss6Type1FlPC15Boss6ActionArgs"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802B96DC",
+          "before": "create__11TBoss6Type1Fl",
+          "after": "create__11TBoss6Type1FP15Boss6PhaseSpawn"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802BAFEC",
+          "before": "drop_random_rocks__11TBoss6Type2Fll",
+          "after": "drop_random_rocks__11TBoss6Type2Fl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802BE504",
+          "before": "create__11TBoss6Type2Fl",
+          "after": "create__11TBoss6Type2FP15Boss6PhaseSpawn"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802CB8F0",
+          "before": "move_around_center__15TObjEneMe1GiGueFPvf",
+          "after": "move_around_center__15TObjEneMe1GiGueFP3Vecf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802F178C",
+          "before": "create_particle__15TObjBoss7TunnelFPCvl",
+          "after": "create_particle__15TObjBoss7TunnelFPC3Vecl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802F1848",
+          "before": "create_particle_effect__15TObjBoss7TunnelFPCvlf",
+          "after": "create_particle_effect__15TObjBoss7TunnelFPC3Veclf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031E69C",
+          "before": "create__12TObjEneReconFPvPvPvPvPv",
+          "after": "create__12TObjEneReconFP14TObjEneRecoboxUslPC3VecPC3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8031EF14",
+          "before": "remove_child_entity__14TObjEneRecoboxFPUc",
+          "after": "remove_child_entity__14TObjEneRecoboxFP12TObjEneRecon"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80320350",
+          "before": "get_field_38_ptr__12TObjEneReconFv",
+          "after": "get_field_38_ptr__14TObjEneRecoboxFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80325BCC",
+          "before": "__ct__22TObjEneMe1GiGueBarrierFP7TObjectPv",
+          "after": "__ct__22TObjEneMe1GiGueBarrierFP7TObjectP15TObjEneMe1GiGue"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032E718",
+          "before": "set_target_nodes__11TBoss6Type2FPvPv",
+          "after": "set_target_nodes__9TBoss6MagFUlUl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032E770",
+          "before": "destroy_part_object__11TBoss6Type2Fl",
+          "after": "destroy_part_object__9TBoss6MagFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032E7B4",
+          "before": "ensure_particle_emitter__11TBoss6Type2Fl",
+          "after": "ensure_particle_emitter__9TBoss6MagFl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032EA34",
+          "before": "step_angle_toward__11TBoss6Type2Flll",
+          "after": "step_angle_toward__9TBoss6MagFlll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032EAD0",
+          "before": "apply_direction_sign__11TBoss6Type2Ff",
+          "after": "apply_direction_sign__9TBoss6MagFf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032EAE4",
+          "before": "enforce_min_distance__11TBoss6Type2Fv",
+          "after": "enforce_min_distance__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032EBB4",
+          "before": "push_out_from_points__11TBoss6Type2Fv",
+          "after": "push_out_from_points__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032ECE0",
+          "before": "push_out_from_target__11TBoss6Type2Fv",
+          "after": "push_out_from_target__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032F304",
+          "before": "spawn_mag_mines__11TBoss6Type2Fv",
+          "after": "spawn_mag_mines__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032F5FC",
+          "before": "apply_random_drift__11TBoss6Type2Fv",
+          "after": "apply_random_drift__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032F690",
+          "before": "turn_toward_target__11TBoss6Type2Fv",
+          "after": "turn_toward_target__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032F824",
+          "before": "fly_toward_target__11TBoss6Type2Fv",
+          "after": "fly_toward_target__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032FBF8",
+          "before": "update_segment_angles__11TBoss6Type2Fv",
+          "after": "update_segment_angles__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8032FCA4",
+          "before": "init_segment_angle_range__11TBoss6Type2Fv",
+          "after": "init_segment_angle_range__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803309D8",
+          "before": "create_mag__11TBoss6Type2Fl",
+          "after": "create_mag__11TBoss6Type2FP13Boss6MagSpawn"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80334F88",
+          "before": "__ct__13TObjEneMorfosFP7TObjectPv",
+          "after": "__ct__13TObjEneMorfosFP7TObjectP14EnemyPlacement"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80335060",
+          "before": "create__13TObjEneMorfosFv",
+          "after": "create__13TObjEneMorfosFPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80335354",
+          "before": "__ct__16TObjEneMorfosArmFP7TObjectPv",
+          "after": "__ct__16TObjEneMorfosArmFP7TObjectP13TObjEneMorfos"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80336E6C",
+          "before": "update_recover_timer__11TBoss6Type2Fv",
+          "after": "update_recover_timer__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80336F00",
+          "before": "sub_80336F00__11TBoss6Type2Fv",
+          "after": "sub_80336F00__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80336F54",
+          "before": "update_ramp_timer__11TBoss6Type2Fv",
+          "after": "update_ramp_timer__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80336FB8",
+          "before": "sub_80336FB8__11TBoss6Type2Fv",
+          "after": "sub_80336FB8__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80336FE4",
+          "before": "tick_attack_timer__11TBoss6Type2Fv",
+          "after": "tick_attack_timer__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80337054",
+          "before": "start_mag_mines_state__11TBoss6Type2Fv",
+          "after": "start_mag_mines_state__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803370A4",
+          "before": "update_effect_subsystems__11TBoss6Type2Fv",
+          "after": "update_effect_subsystems__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80337108",
+          "before": "sub_80337108__11TBoss6Type2Fv",
+          "after": "sub_80337108__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8033710C",
+          "before": "update_attack_state__11TBoss6Type2Fv",
+          "after": "update_attack_state__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80337160",
+          "before": "sub_80337160__11TBoss6Type2Fv",
+          "after": "sub_80337160__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80337164",
+          "before": "advance_phase_counter__11TBoss6Type2Fv",
+          "after": "advance_phase_counter__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803371B4",
+          "before": "sub_803371B4__11TBoss6Type2Fv",
+          "after": "sub_803371B4__9TBoss6MagFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803375F0",
+          "before": "snap_to_ground__13TObjEneMorfosFll",
+          "after": "snap_to_ground__13TUnk_804EF130FP3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80337824",
+          "before": "__ct__13TUnk_804EF130FP3VeclP13TObjEneMorfos",
+          "after": "__ct__13TUnk_804EF130FPC3VeclP9TObjChara"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803403B0",
+          "before": "alloc__8TObjFishFPv",
+          "after": "alloc__23TBoss6Demo15_TYPE2_WAITFP14TBoss6PlotFalz"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803537D4",
+          "before": "set_target__13TUnk_804F1280FlP3VecPlllf",
+          "after": "set_target__13TUnk_804F1280FlPC3VecPlP16GinjaTextureListP10NJS_OBJECTf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80356C10",
+          "before": "create__15TBoss6SwordWaveFP7TObjectPC3Vecllf",
+          "after": "create__15TBoss6SwordWaveFP11TBoss6Type2PC3Vecllf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80356CDC",
+          "before": "split_bit_index__15TBoss6SwordWaveFlUcPvPv",
+          "after": "split_bit_index__15TBoss6SwordWaveFPCllPlPl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80356D64",
+          "before": "fill_range__15TBoss6SwordWaveFPvPv",
+          "after": "fill_range__15TBoss6SwordWaveFPlll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8035DB70",
+          "before": "__ct__9TBoss6DPBFP7TObjectlf",
+          "after": "__ct__9TBoss6DPBFP7TObjectPC3Vecf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8035FC8C",
+          "before": "all_children_gone__19TObjEneEpsilonGuardFv",
+          "after": "all_children_gone__18TObjEneEpsilonBodyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8035FFA8",
+          "before": "update_attack_pattern__19TObjEneEpsilonGuardFPv",
+          "after": "update_attack_pattern__18TObjEneEpsilonBodyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80360638",
+          "before": "draw_debug_line__19TObjEneEpsilonGuardFv",
+          "after": "draw_debug_line__18TObjEneEpsilonBodyFv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803655F8",
+          "before": "__ct__15TObjIllGillKageFlUl",
+          "after": "__ct__15TObjIllGillKageFP7TObjectP8TObjBase"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80369228",
+          "before": "__ct__13TUnk_804F322CFP7TObjectl",
+          "after": "__ct__13TUnk_804F322CFP7TObjectP19Boss6MagMineSetData"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "baf8a209dec981c801b9bffcd288649f6382c6ee6a5f62676a0b3674d01b9faa",
+      "report_sha256": "469f5efa0dd11242eac64aa84798122f549170eda39767f5d737d7b26dde48f4"
+    },
+    "layer": {
+      "baseline": "d92b462b9774774c58583fca17e19455ca33c3a3",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "52e7b7c44c895ea98e91fe1a9ea21805885753879d1966b15b6b684ebe565d0b",
+      "report_sha256": "469f5efa0dd11242eac64aa84798122f549170eda39767f5d737d7b26dde48f4"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "43654fd0e8ad75d2e11a2b9d81ece953d7c8198c4aaeeefae0157e7a296be3bd"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "922d842a6002319a4407010594c014b64ae904f6a1e3c9886575a8f1fdcb3c15"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "images": [
+      "retail",
+      "source",
+      "materialized fork workspace"
+    ],
+    "coverage": [
+      "Pan Arms parent and sibling binding",
+      "Pan Arms state and timer gates",
+      "Canadin member removal"
+    ],
+    "probe_sha256": "ebd002de558f05094d5451a98537548c68b33549baf3ee53b765a8b927766099",
+    "log_sha256": "e2abc149635d6858e5aaefbeec259d084c9e62aed27ec204ec588adaa73a6d75"
+  },
+  "historical": {
+    "open_rows": 415,
+    "scoped_rows": [
+      [
+        157,
+        "config/GPOE8P/psov3/symbols.txt",
+        "config/GPOE8P/psov3/symbols.txt"
+      ],
+      [
+        424,
+        "include/pso/boss/TObjBoss2Tunnel.h",
+        "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+      ],
+      [
+        453,
+        "include/pso/enemy/TObjEneGibbles.h",
+        "src/pso/enemy/gibbles/TObjEneGibbles.cpp"
+      ],
+      [
+        456,
+        "include/pso/enemy/TObjEneMe1Canadin.h",
+        "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp"
+      ],
+      [
+        458,
+        "include/pso/enemy/TObjEneMe1Gee.h",
+        "include/pso/enemy/gee/TObjEneMe1Gee.h"
+      ],
+      [
+        459,
+        "include/pso/enemy/TObjEneMe1GiGue.h",
+        "include/pso/enemy/gigue/TObjEneMe1GiGue.h"
+      ],
+      [
+        463,
+        "include/pso/enemy/TObjEneMorfos.h",
+        "include/pso/enemy/morfos/TObjEneMorfos.h"
+      ],
+      [
+        467,
+        "include/pso/enemy/TObjEneRe2Flower.h",
+        "src/pso/enemy/flower/TObjEneRe2Flower.cpp"
+      ],
+      [
+        476,
+        "include/pso/enemy/TObjEneShark.h",
+        "src/pso/enemy/shark/TObjEneShark.cpp"
+      ],
+      [
+        521,
+        "src/pso/boss/TBoss6Type1.cpp",
+        "src/pso/boss/olgaflow/TBoss6Type1.cpp"
+      ],
+      [
+        565,
+        "src/pso/enemy/TObjEneBm3FlyNest.cpp",
+        "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp"
+      ],
+      [
+        587,
+        "src/pso/enemy/TObjEneGibbles.cpp",
+        "src/pso/enemy/gibbles/TObjEneGibbles.cpp"
+      ],
+      [
+        588,
+        "src/pso/enemy/TObjEneGyaranzo.cpp",
+        "src/pso/enemy/gyaranzo/TObjEneGyaranzo.cpp"
+      ],
+      [
+        589,
+        "src/pso/enemy/TObjEneMe1Canadin.cpp",
+        "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp"
+      ],
+      [
+        590,
+        "src/pso/enemy/TObjEneMe1Gee.cpp",
+        "src/pso/enemy/gee/TObjEneMe1Gee.cpp"
+      ],
+      [
+        591,
+        "src/pso/enemy/TObjEneMe1GiGue.cpp",
+        "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp"
+      ],
+      [
+        597,
+        "src/pso/enemy/TObjEneMe3Stelth_800F0EC4.cpp",
+        "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp"
+      ],
+      [
+        598,
+        "src/pso/enemy/TObjEneMerillLia.cpp",
+        "src/pso/enemy/merilllia/TObjEneMerillLia.cpp"
+      ],
+      [
+        599,
+        "src/pso/enemy/TObjEneMorfos.cpp",
+        "src/pso/enemy/morfos/TObjEneMorfos.cpp"
+      ],
+      [
+        603,
+        "src/pso/enemy/TObjEnePanarms.cpp",
+        "src/pso/enemy/panarms/TObjEnePanarms.cpp"
+      ],
+      [
+        604,
+        "src/pso/enemy/TObjEnePanarms_800DCEB8.cpp",
+        "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp"
+      ],
+      [
+        607,
+        "src/pso/enemy/TObjEneRe2Flower_800C3E14.cpp",
+        "src/pso/enemy/flower/TObjEneRe2Flower.cpp"
+      ],
+      [
+        608,
+        "src/pso/enemy/TObjEneRe7Berura.cpp",
+        "src/pso/enemy/berura/TObjEneRe7Berura.cpp"
+      ],
+      [
+        621,
+        "src/pso/enemy/TObjEneRecon_8031C250.cpp",
+        "src/pso/enemy/recon/TObjEneRecon.cpp"
+      ],
+      [
+        629,
+        "src/pso/enemy/TObjEneRecon_8031DFD0.cpp",
+        "src/pso/enemy/recon/TObjEneRecon.cpp"
+      ],
+      [
+        635,
+        "src/pso/enemy/TObjEneShark.cpp",
+        "src/pso/enemy/shark/TObjEneShark.cpp"
+      ],
+      [
+        637,
+        "src/pso/enemy/TObjEneSlimeTailAttack.cpp",
+        "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp"
+      ],
+      [
+        689,
+        "src/pso/boss/TUnk_80484AFC.cpp",
+        "src/pso/boss/TUnk_80484AFC.cpp"
+      ],
+      [
+        698,
+        "src/pso/player/TObjPlayer_800D8FDC.cpp",
+        "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp"
+      ],
+      [
+        701,
+        "src/pso/unk/text_800C3088.cpp",
+        "src/pso/enemy/flower/TObjEneRe2Flower.cpp"
+      ],
+      [
+        718,
+        "src/pso/enemy/TObjEneEpsilonGuard_8035F5C8.cpp",
+        "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp"
+      ],
+      [
+        727,
+        "include/pso/enemy/TObjEneMe3SinowZoa.h",
+        "include/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.h"
+      ],
+      [
+        743,
+        "include/pso/boss/TBoss8Dragon.h",
+        "include/pso/boss/goldragon/TBoss8Dragon.h"
+      ],
+      [
+        778,
+        "src/pso/enemy/TObjEneMe3Shinowa.cpp",
+        "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp"
+      ],
+      [
+        794,
+        "src/pso/boss/TBoss4DarkFalz_8004C93C.cpp",
+        "src/pso/boss/darkfalz/TBoss4DarkFalz_8004C93C.cpp"
+      ],
+      [
+        802,
+        "src/pso/enemy/TObjEneDolmOlm.cpp",
+        "src/pso/enemy/dolmolm/TObjEneDolmOlm.cpp"
+      ],
+      [
+        813,
+        "src/pso/enemy/TObjEneMoja.cpp",
+        "src/pso/enemy/moja/TObjEneMoja.cpp"
+      ],
+      [
+        814,
+        "src/pso/enemy/TObjEneMe3SinowZoa.cpp",
+        "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp"
+      ],
+      [
+        842,
+        "src/pso/boss/TObjBoss2Tunnel.cpp",
+        "src/pso/boss/derolle/TObjBoss2Tunnel.cpp"
+      ],
+      [
+        874,
+        "src/pso/boss/TBoss8Dragon.cpp",
+        "src/pso/boss/goldragon/TBoss8Dragon.cpp"
+      ],
+      [
+        895,
+        "src/pso/enemy/TObjEneDellBiter.cpp",
+        "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp"
+      ],
+      [
+        913,
+        "src/pso/boss/TBoss4Type1.cpp",
+        "src/pso/boss/darkfalz/TBoss4Type1.cpp"
+      ],
+      [
+        932,
+        "src/pso/object/TObjVoloptCage.cpp",
+        "src/pso/boss/volopt/TObjVoloptCage.cpp"
+      ],
+      [
+        933,
+        "src/pso/enemy/TObjEneBeast_800C4E08.cpp",
+        "src/pso/enemy/beast/TObjEneBeast_800C4E08.cpp"
+      ],
+      [
+        934,
+        "src/pso/enemy/TObjEneBm9Mericarol.cpp",
+        "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp"
+      ],
+      [
+        944,
+        "src/pso/object/TObjDFHorming.cpp",
+        "src/pso/boss/darkfalz/TObjDFHorming.cpp"
+      ],
+      [
+        948,
+        "src/pso/enemy/TObjEneLappy.cpp",
+        "src/pso/enemy/lappy/TObjEneLappy.cpp"
+      ],
+      [
+        951,
+        "src/pso/boss/Boss7DeRolLeCBehavior.cpp",
+        "src/pso/boss/barbaray/TBoss7DeRolLeC.cpp"
+      ],
+      [
+        956,
+        "src/pso/enemy/TObjEneIllGill.cpp",
+        "src/pso/enemy/illgill/TObjEneIllGill.cpp"
+      ],
+      [
+        958,
+        "src/pso/enemy/TObjEneMe3Stelth.cpp",
+        "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp"
+      ],
+      [
+        971,
+        "src/pso/enemy/TObjEnePanarmsAtkColli.cpp",
+        "src/pso/enemy/panarms/TObjEnePanarmsAtkColli.cpp"
+      ],
+      [
+        986,
+        "src/pso/enemy/TObjEneDf2Bringer_800972B0.cpp",
+        "src/pso/enemy/bringer/TObjEneDf2Bringer.cpp"
+      ],
+      [
+        987,
+        "src/pso/unk/text_802CE68C.cpp",
+        "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp"
+      ],
+      [
+        992,
+        "src/pso/boss/Boss5GryphonBehavior.cpp",
+        "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp"
+      ],
+      [
+        1015,
+        "src/pso/enemy/TObjEneNanoDrago.cpp",
+        "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp"
+      ],
+      [
+        1026,
+        "src/pso/enemy/TObjEneBeast.cpp",
+        "src/pso/enemy/beast/TObjEneBeast.cpp"
+      ],
+      [
+        1027,
+        "src/pso/enemy/TObjEneDelDepth.cpp",
+        "src/pso/enemy/deldepth/TObjEneDelDepth.cpp"
+      ],
+      [
+        1053,
+        "src/pso/enemy/DarkGunner.cpp",
+        "src/pso/enemy/darkgunner/DarkGunner.cpp"
+      ],
+      [
+        1055,
+        "src/pso/enemy/TObjEneDimedian.cpp",
+        "src/pso/enemy/dimedian/TObjEneDimedian.cpp"
+      ],
+      [
+        1058,
+        "src/pso/enemy/TObjEneBm9Mericarol_802CECE0.cpp",
+        "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp"
+      ],
+      [
+        1076,
+        "src/pso/boss/TBoss6Type2.cpp",
+        "src/pso/boss/olgaflow/TBoss6Type2.cpp"
+      ],
+      [
+        1084,
+        "src/pso/boss/TBoss1Dragon.cpp",
+        "src/pso/boss/dragon/TBoss1Dragon.cpp"
+      ],
+      [
+        1114,
+        "src/pso/enemy/TObjEneBm3Fly.cpp",
+        "src/pso/enemy/fly/TObjEneBm3Fly.cpp"
+      ],
+      [
+        1116,
+        "src/pso/enemy/SaverLifecycle.cpp",
+        "src/pso/enemy/saver/SaverLifecycle.cpp"
+      ],
+      [
+        1125,
+        "src/pso/boss/TBoss2DeRolLe.cpp",
+        "src/pso/boss/derolle/TBoss2DeRolLe.cpp"
+      ],
+      [
+        1129,
+        "src/pso/boss/TBoss3Volopt.cpp",
+        "src/pso/boss/volopt/TBoss3Volopt.cpp"
+      ],
+      [
+        1139,
+        "src/pso/boss/TBoss4Zanzo.cpp",
+        "src/pso/boss/darkfalz/TBoss4Zanzo.cpp"
+      ],
+      [
+        1143,
+        "src/pso/enemy/TObjEneDubchik.cpp",
+        "src/pso/enemy/dubchik/TObjEneDubchik.cpp"
+      ],
+      [
+        1149,
+        "src/pso/boss/TBoss4Type3.cpp",
+        "src/pso/boss/darkfalz/TBoss4Type3.cpp"
+      ],
+      [
+        1167,
+        "src/pso/enemy/TObjEneBm5GibonU.cpp",
+        "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp"
+      ],
+      [
+        1168,
+        "src/pso/enemy/TObjEneRe4Sorcerer_800EDB98.cpp",
+        "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp"
+      ],
+      [
+        1169,
+        "src/pso/enemy/TObjEneBm5Wolf.cpp",
+        "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp"
+      ],
+      [
+        1171,
+        "src/pso/boss/TBoss4Zako.cpp",
+        "src/pso/boss/darkfalz/TBoss4Zako.cpp"
+      ],
+      [
+        1200,
+        "src/pso/unk/text_800C2A88.cpp",
+        "src/pso/unk/text_800C2A88.cpp"
+      ],
+      [
+        2523,
+        "src/pso/boss/TBoss4Type2_80340160.cpp",
+        "src/pso/ui/frontend/TAdPlyStatusGC_8033FD48.cpp"
+      ],
+      [
+        2728,
+        "src/pso/misc/TLobby_80226070.cpp",
+        "src/pso/unk/TLobby_80226070.cpp"
+      ],
+      [
+        4138,
+        "src/pso/player/TObjPlayer_801C7430.cpp",
+        "src/pso/player/TObjPlayer_801C7430.cpp"
+      ],
+      [
+        4417,
+        "src/pso/misc/TTecLuker.cpp",
+        "src/pso/technique/TTecLuker.cpp"
+      ],
+      [
+        6450,
+        "src/pso/misc/TOTrapAncient01.cpp",
+        "src/pso/object/trap/TOTrapAncient01.cpp"
+      ],
+      [
+        6451,
+        "src/pso/misc/TOTrapAncient02.cpp",
+        "src/pso/object/trap/TOTrapAncient02.cpp"
+      ],
+      [
+        6723,
+        "src/pso/object/TObjControl.cpp",
+        "src/pso/object/TObjControl.cpp"
+      ],
+      [
+        6728,
+        "src/pso/object/TObjLuker.cpp",
+        "src/pso/object/TObjLuker.cpp"
+      ],
+      [
+        6950,
+        "src/pso/object/TObjGrass.cpp",
+        "src/pso/object/ambient/TObjGrass.cpp"
+      ]
+    ]
+  },
+  "fork_workspace": {
+    "trial": "aa9b90ab18f5fd1d7bbc24265d0435765c4dc007",
+    "overlay_paths": 130,
+    "updated_overlay_paths": [
+      "config/GPOE8P/psov3/config.yml"
+    ],
+    "archive_sha256": "4be5442637668cdc2ce9163d2125bd435ce1f8dfcb481686af72620e3f418536",
+    "materialized_tree": "dc7f16adf9d37494af3e00641376d5fabaa4392d",
+    "force_active": 27027
+  }
+}

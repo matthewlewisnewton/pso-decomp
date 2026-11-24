@@ -1,0 +1,123 @@
+{
+  "upstream": "8441b1b4feb550bf1fc4b0a897acd19b003a0437",
+  "source": "616e0968a25f87e9e9a39cc5c9b877ad17ef133a",
+  "source_base": "3cdbfc86523af2f997c6072fc644e09311a275b9",
+  "source_commits": 47,
+  "paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/npc/NpcModelRegistry.h",
+    "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+    "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+    "src/pso/enemy/berura/TObjEneRe7Berura.cpp",
+    "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+    "src/pso/enemy/darkgunner/DarkGunner.cpp",
+    "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+    "src/pso/enemy/dellbiter/TObjEneDellBiter.cpp",
+    "src/pso/enemy/flower/TObjEneRe2Flower.cpp",
+    "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+    "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+    "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+    "src/pso/enemy/gibbles/TObjEneGibbles.cpp",
+    "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+    "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp",
+    "src/pso/enemy/illgill/TObjEneIllGill.cpp",
+    "src/pso/enemy/lappy/TObjEneLappy.cpp",
+    "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+    "src/pso/enemy/nanodrago/TObjEneNanoDrago.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+    "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+    "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp",
+    "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp",
+    "src/pso/enemy/sorcerer/TObjEneRe4Sorcerer_800EDB98.cpp",
+    "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp",
+    "src/pso/npc/TObjNpcEnemy.cpp",
+    "src/pso/object/ambient/TObjCGrass.cpp",
+    "src/pso/object/ambient/TObjGrass.cpp",
+    "src/pso/object/lobby/LobbyPigeonPath.cpp",
+    "src/pso/unk/text_8035B6B0.cpp",
+    "src/pso/unk/text_8035B750.cpp"
+  ],
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "exact_functions": 27572,
+  "linked_units": 2417,
+  "coverage_losses": {
+    "regressions": 0,
+    "data_coverage_lost": 0,
+    "padding_coverage_lost": 0,
+    "linked_functions_lost": 0,
+    "linked_data_lost": 0
+  },
+  "linked_labels": [
+    {
+      "module": "psov3",
+      "address": "0x802D71E0",
+      "before": "register_animated_chunk__16NpcModelRegistryFsPvPvPC19NpcAnimationBindingff",
+      "after": "register_animated_chunk__16NpcModelRegistryFsP10NJS_OBJECTP16GinjaTextureListPC19NpcAnimationBindingff"
+    }
+  ],
+  "original_data_bytes": 1147,
+  "original_data_ranges": {
+    "ranges": 90,
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "runtime": {
+    "source": {
+      "sha256": "c4f58d85accd16c8e96da5289c204784088f69f852ddc5453e248e48682b090b",
+      "observations": [
+        "Four resource cases preserved archive selection, phase/attack banks, model registration and sampled trail nodes",
+        "Three Mericarol color variants drew the original shadow and restored the live texture entries",
+        "Animated registry preserved prepared-slot writes and the rejected-slot no-op",
+        "Dolphin archive allocation, registration, release order and repeated cleanup passed"
+      ]
+    },
+    "workspace": {
+      "sha256": "c4f58d85accd16c8e96da5289c204784088f69f852ddc5453e248e48682b090b",
+      "observations": [
+        "Four resource cases preserved archive selection, phase/attack banks, model registration and sampled trail nodes",
+        "Three Mericarol color variants drew the original shadow and restored the live texture entries",
+        "Animated registry preserved prepared-slot writes and the rejected-slot no-op",
+        "Dolphin archive allocation, registration, release order and repeated cleanup passed"
+      ]
+    }
+  },
+  "historical_audit": {
+    "open_before": 246,
+    "open_after": 245,
+    "resolved": [
+      "src/pso/unk/text_802CE68C.cpp"
+    ],
+    "refreshed": [
+      "include/pso/enemy/MericarolResources.h",
+      "src/pso/enemy/TObjEneBm9Mericarol.cpp",
+      "src/pso/enemy/TObjEneGibbles.cpp",
+      "src/pso/enemy/TObjEneRe2Flower_800C3E14.cpp",
+      "src/pso/object/LobbyPigeonPath.cpp"
+    ],
+    "deferred_gibbles_joint_combat": [
+      "0x802D9644",
+      "0x802D9824"
+    ]
+  },
+  "fork_workspace": {
+    "parent": "616e0968a25f87e9e9a39cc5c9b877ad17ef133a",
+    "previous_workspace": "2de013c6e21bd7aace2f883463e34bd598ba7879",
+    "overlay_paths": 130,
+    "updated_linker_labels": 0,
+    "materialized_tree_before_notes_update": "f6bad890556592d428f213683b6380963a133b4d",
+    "archive_sha256": "8fcebede89bc141f6f496711a5212b23dfd3b5c4cf51e081b71a7d78accdad20",
+    "tests": {
+      "tool": 294,
+      "fork": 11,
+      "host": 5
+    },
+    "host_executables": [
+      "vector_math_fallbacks",
+      "item_factory_callbacks",
+      "loader_transfer",
+      "ginja_parameter_callbacks",
+      "exi_ethernet_fallbacks"
+    ]
+  }
+}

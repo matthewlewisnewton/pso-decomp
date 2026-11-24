@@ -1,0 +1,444 @@
+{
+  "upstream": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "previous_source": "9735e0a125393c53a8fc8dceb8151f901e8f2bb9",
+  "source": "c2c00dc55b2d808504d3f44afd4f493e0382eb81",
+  "source_tree": "9fe0e2f9e6117d12104184f366dd1bc33fe35ca0",
+  "source_review_files": 969,
+  "recovered_paths": [
+    {
+      "path": "config/GPOE8P/psov3/symbols.txt",
+      "previous_blob": "100644:18c2299df292eac113aec01f1f4a10eb02f4fae0",
+      "review_blob": "100644:f11c7947651cfb6b1c182e62a6092e0957e8821c",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "include/pso/boss/olgaflow/TBoss6DPB.h",
+      "previous_blob": "100644:8d21286bd0fc90b3e268da76b531558390bc4c47",
+      "review_blob": "100644:2c7a9f34ddf2dfc9ce33255ed0cf4a7f61bd862f",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/boss/olgaflow/TBoss6Kakusan.h",
+      "previous_blob": "100644:5b1faf41ad0dda4ccad108b57b8431541fd5ac2c",
+      "review_blob": "100644:7bf489bd837c5d13b773cf628b02457b333379d0",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/boss/olgaflow/TBoss6Mine.h",
+      "previous_blob": "100644:c71b47483edf7b11fc89cab1641192dc9a227a6a",
+      "review_blob": "100644:3422f59a6745ea2c3c0a19c8338452956a645799",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/boss/olgaflow/TBoss6PlotFalz.h",
+      "previous_blob": "100644:d5a9982a5df47eacb9c4303c14d840f407513244",
+      "review_blob": "100644:625d8f2ce36d7150c29f27336aed20d7fbb8b07e",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "include/pso/boss/olgaflow/TBoss6Type1.h",
+      "previous_blob": "100644:5b491c7e2c1325e9fed8ce5dba464b18d55c5a20",
+      "review_blob": "100644:5fa5a9efbb5a71f4d0c84531ef789cbde0635a5d",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "include/pso/boss/olgaflow/TBoss6Type2.h",
+      "previous_blob": "100644:5949a53346b75577637d51ab58fa63c41a681db0",
+      "review_blob": "100644:f3911cc845dfd61c29bf602bc19005c8778d6de0",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "include/pso/boss/olgaflow/TBoss6Type2_8032E708.h",
+      "previous_blob": "100644:903984d12bb9e134ae9e16a494124029b457dd8d",
+      "review_blob": "100644:26db6735c63d47079f37b27bd644f2595a5afc53",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/boss/olgaflow/TBoss6Type2_8036A92C.h",
+      "previous_blob": "100644:e67a8a7021d129f35b5da85a79d63fef4621a974",
+      "review_blob": "100644:e02d78a577d6c6ee1901d4b1cd226d1b82523a1a",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "include/pso/enemy/TUnk_804F322C.h",
+      "previous_blob": "100644:ec8c4d8326fa0a9fcce073356a1fb87257bd6364",
+      "review_blob": "100644:8f09a66b592ab48735ccd309a62479cc02552544",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6CrushRock.cpp",
+      "previous_blob": "100644:d32bb5a561b45afeb4edc644e082ff86d6ffcba4",
+      "review_blob": "100644:c760b5cbeb24fa395974b8b03de948583edd313f",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6DPB.cpp",
+      "previous_blob": "100644:e16b34a3967416fc92f3785b8d4735a629c91315",
+      "review_blob": "100644:7fd461f45f586b06758cf59e82f608c341fbc99c",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Kakusan.cpp",
+      "previous_blob": "100644:e541cb3afe60fc9d119e6525a78b40deaf97b9dc",
+      "review_blob": "100644:50832e92958f3ed6579d4febd3450a0e93105d3c",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6MagMine.cpp",
+      "previous_blob": "100644:ffb65e90abd999b04b5979bc8121ad66a634b57a",
+      "review_blob": "100644:71bdee8eaec86d704a0591f464af4f3ca86a804f",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Mine.cpp",
+      "previous_blob": "100644:ac5010599a39363c7719a580f30c4d810ce3fd1c",
+      "review_blob": "100644:9916d6a70aa7408534f7e148e7e57b4cbe507a7d",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+      "previous_blob": "100644:de0c754e8c1c6ad8280cbfe4fcbf43e538c1fe02",
+      "review_blob": "100644:a71ce9c24700d57c2bd26cd1904b9e22382821ad",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6PlotFalz_802AABEC.cpp",
+      "previous_blob": "100644:c95fdb664328066cbbb98508cd18504276765a1a",
+      "review_blob": "100644:eee7f93aefc78db25e16fc25eb8a4e2696d8d08d",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "exact prior source"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6RockChase.cpp",
+      "previous_blob": "100644:37fd4444614bbf492377e88e24b9998b3701f559",
+      "review_blob": "100644:3903b6115554c12827fe0b7c236517c334b5c3a5",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Type1.cpp",
+      "previous_blob": "100644:7144a899e87f5ad3e06e2c5547f2c06443adcb1a",
+      "review_blob": "100644:3bab29ed4eb292f9b31a7cc5bac0867bc8a1951a",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+      "previous_blob": "100644:38a9588650c7d25867ec28355ebf149f31dc200e",
+      "review_blob": "100644:b9242762a48494078361939775a6ff9ef15963b5",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Type2_802BE588.cpp",
+      "previous_blob": "100644:defc6294eff2699c733318174718ad0b134a74d4",
+      "review_blob": "100644:1ae2366dd0c9dc4326eb5b2c92dfe53677e19fd0",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "equivalent source retained"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Type2_8032E708.cpp",
+      "previous_blob": "100644:0be4634130d235039f18067664eb6441ab5a7dba",
+      "review_blob": "100644:88ca57c86c36c63d198bef7eea0485c9c6d13f3e",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "validated historical owner recovery"
+    },
+    {
+      "path": "src/pso/boss/olgaflow/TBoss6Type2_8036A92C.cpp",
+      "previous_blob": "100644:963dfa6ace52efcfde648518fdd70002e8dcf5cc",
+      "review_blob": "100644:419f2626e21cb540b2d13b19544139691882958b",
+      "in_previous_replay_ledger": false
+    },
+    {
+      "path": "src/pso/object/ambient/TOBiwaMushi.cpp",
+      "previous_blob": "100644:2db3cd4d3ed665da992b4daadffb3f1a7cf856ad",
+      "review_blob": "100644:c4bca03891cbabe023a1d422aa7e7ce956eabd6b",
+      "in_previous_replay_ledger": true,
+      "previous_replay_status": "same change already in upstream"
+    }
+  ],
+  "checks": {
+    "phase-two": {
+      "head": "99f367f3d90156c4ee74bc9407994a92cd7cc1bd",
+      "baseline": "9735e0a125393c53a8fc8dceb8151f901e8f2bb9",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 2,
+      "check_sha256": "3bc2d980e917aaf3b48728d262b31656d08ed92b465d43074f74e62cc1f9f501"
+    },
+    "attacks": {
+      "head": "faa1fd223fc1c67ddd9eb0d808b205d594e8b9ef",
+      "baseline": "99f367f3d90156c4ee74bc9407994a92cd7cc1bd",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 2,
+      "check_sha256": "f5fd542707f35c5ef92915f785583d593015b23289a334b2ec1cde2060491d98"
+    },
+    "mines": {
+      "head": "08c5e7cf637927c66733cb6ea2342f36492a3a88",
+      "baseline": "faa1fd223fc1c67ddd9eb0d808b205d594e8b9ef",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 1,
+      "check_sha256": "692500895c9195ede0f09c4441712f6628a158fba71a773dad5fdaf1f1d779d8"
+    },
+    "plot": {
+      "head": "c2c00dc55b2d808504d3f44afd4f493e0382eb81",
+      "baseline": "08c5e7cf637927c66733cb6ea2342f36492a3a88",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 1,
+      "check_sha256": "f180634b53789a98d679134fcc82ebf2916d9234136143cbd8d1bc02488b3eb5"
+    },
+    "full-review": {
+      "head": "c2c00dc55b2d808504d3f44afd4f493e0382eb81",
+      "baseline": "859acff6836f80dcc0f216b3a73e321e1bfc1029",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 378,
+      "check_sha256": "0a04f90936b99144d984867cef0bab38c58b4838a7b5b6cc545f8d4f2ebeeefc"
+    },
+    "layer": {
+      "head": "77014b5526f9a7cd5984020da8ba1e260c3c557a",
+      "baseline": "c2c00dc55b2d808504d3f44afd4f493e0382eb81",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "labels_changed": 0,
+      "check_sha256": "294d5d4e65e3db3407ceff097811cede09728d2c21c1257d66d17135be0bdc4b"
+    }
+  },
+  "release_data": {
+    "plot": {
+      "sha256": "0da6b856c4f4abd3779aa153161c40c924ba9389a2b3d0f0506da967f313ad53",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "layer": {
+      "sha256": "0da6b856c4f4abd3779aa153161c40c924ba9389a2b3d0f0506da967f313ad53",
+      "ranges": 90,
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    }
+  },
+  "typed_linker_labels": [
+    {
+      "module": "psov3",
+      "address": "0x802BAFEC",
+      "before": "drop_random_rocks__11TBoss6Type2Fll",
+      "after": "drop_random_rocks__11TBoss6Type2Fl"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8036A98C",
+      "before": "create_flow_soul__11TBoss6Type2FPvPvPvPv",
+      "after": "create_flow_soul__11TBoss6Type2FP7TObjectP3Vecll"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8035DB70",
+      "before": "__ct__9TBoss6DPBFP7TObjectlf",
+      "after": "__ct__9TBoss6DPBFP7TObjectPC3Vecf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x8035DC60",
+      "before": "create_dpb__11TBoss6Type2Fllf",
+      "after": "create_dpb__11TBoss6Type2FP7TObjectPC3Vecf"
+    },
+    {
+      "module": "psov3",
+      "address": "0x80369228",
+      "before": "__ct__13TUnk_804F322CFP7TObjectl",
+      "after": "__ct__13TUnk_804F322CFP7TObjectP19Boss6MagMineSetData"
+    },
+    {
+      "module": "psov3",
+      "address": "0x802ABE3C",
+      "before": "apply_radial_effect_to_players__14TBoss6PlotFalzFPvssf",
+      "after": "apply_radial_effect_to_players__14TBoss6PlotFalzFPC3Vecssf"
+    }
+  ],
+  "closed_historical_rows": [
+    {
+      "row": 789,
+      "fork_path": "src/pso/boss/TBoss6Type2_802BE588.cpp",
+      "fork_blob": "038b84e8deae210401d32ba03d6ea06bfb3ed865",
+      "historical_delta_sha256": "c236f2e56664c4888201fe55f42cb9e2c2063c72bd4c777bb94880904e740a9d",
+      "owner": "src/pso/boss/olgaflow/TBoss6Type2_802BE588.cpp",
+      "owner_blob": "1ae2366dd0c9dc4326eb5b2c92dfe53677e19fd0",
+      "final_comparison_sha256": "183686e3028aacd742d43c7f96e95124a564cd71ed23a2118e30e5cfae4be947",
+      "status": "Typed historical integration validated",
+      "rationale": "The original phase-two callbacks now read live timers, actor position, player target and mag slots. Attack and death handlers remain native members, the shared flow-soul factory receives the real arguments, and persistent sound receives the owner and optional position. The timing words and their guards are still source-linked at the original seven address pairs."
+    },
+    {
+      "row": 811,
+      "fork_path": "src/pso/boss/TBoss6Type2_802BF558.cpp",
+      "fork_blob": "c7d4d528deeda6c8eeed4df85960e35131ac7491",
+      "historical_delta_sha256": "d5ec0062b5e0dc8c851da8943d5171ea2da615c02fa64aa0a45a3c504593f058",
+      "owner": "src/pso/boss/olgaflow/TBoss6Type2_802BE588.cpp",
+      "owner_blob": "1ae2366dd0c9dc4326eb5b2c92dfe53677e19fd0",
+      "final_comparison_sha256": "37be2d223d02d0e78fee33c75f48437880dcdc81f02a2b2e0c06816b3bf8479d",
+      "status": "Typed historical integration validated",
+      "rationale": "The death start uses the native state duration and timer, preserves the three sound IDs and clears the same particle slot. The following state handlers uses the live timer and target fields, original spatial sound arguments, and native phase-two helper and position for the Zako particle."
+    },
+    {
+      "row": 854,
+      "fork_path": "src/pso/boss/TBoss6Kakusan.cpp",
+      "fork_blob": "8dd4e24ebf0c0ab028424c1846f3e501ad022bbc",
+      "historical_delta_sha256": "14dcd3c44f1abfc477050824308a398e620daeac11a6422a77906039aaba1ea6",
+      "owner": "src/pso/boss/olgaflow/TBoss6Kakusan.cpp",
+      "owner_blob": "50832e92958f3ed6579d4febd3450a0e93105d3c",
+      "final_comparison_sha256": "18658e5eb9fa41623505a6941fd4ee7e3157551ef08a9b4dbba41746db456f3d",
+      "status": "Typed historical integration validated",
+      "rationale": "Kakusan uses three native Vec fields, the real emitter, the native constructor and typed factory. The movement-table calls and homing statics use their original addresses. Ten source-linked geometry and homing constants have the original values, including the zero-length direction fallback."
+    },
+    {
+      "row": 1051,
+      "fork_path": "src/pso/boss/TBoss6MagMine.cpp",
+      "fork_blob": "264801940573ff5dc46eec4d20bdb9055cf6310c",
+      "historical_delta_sha256": "1ce9aa0bc957e07ea7ce11b4ad1f72666a1b8ab87d3bb91d990b68a7f8e8b731",
+      "owner": "src/pso/boss/olgaflow/TBoss6MagMine.cpp",
+      "owner_blob": "71bdee8eaec86d704a0591f464af4f3ca86a804f",
+      "final_comparison_sha256": "7f5a1cb8b68c92623405974e583dcb9862cdffc69f5274753d3bc109adf23f2e",
+      "status": "Typed historical integration validated",
+      "rationale": "The Mag Mine uses its actual spawn record, BML archive, model, texture, motion, position and emitter. The inherited destructor and collision body cleanup stay at the original addresses, and battle table and texture bindings preserve their original call targets. The live scene pointer now reaches the factory without an integer conversion."
+    }
+  ],
+  "historical_ledger_sha256_before": "146fd2bad8db81adc798863efb1fdea54e48bd653ea52b215a7007dd20f9aa40",
+  "historical_ledger_sha256": "65d049cf5abda5bc47b9bc7a7fbb6fed697ac14ab5255a4f3dc72abcc9dbae33",
+  "historical_rows_open": 544,
+  "partially_reconciled_rows": [
+    {
+      "row": 906,
+      "path": "src/pso/boss/olgaflow/TBoss6PlotFalz.cpp",
+      "current_blob": "a71ce9c24700d57c2bd26cd1904b9e22382821ad",
+      "scope": "The scene owner uses its real instance, timers, players, collision body flags and arena points. The larger authored scene archive, script and rendering edits remain under comparison. The broader historical row is still open."
+    },
+    {
+      "row": 983,
+      "path": "src/pso/boss/olgaflow/TBoss6Mine.cpp",
+      "current_blob": "9916d6a70aa7408534f7e148e7e57b4cbe507a7d",
+      "scope": "The native mine gains its real archive, texture, model and motion, typed pose and movement vectors, and emitter lifetime. Some historical damage and persistent playback forms still need review. The broader historical row is still open."
+    },
+    {
+      "row": 1076,
+      "path": "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+      "current_blob": "b9242762a48494078361939775a6ff9ef15963b5",
+      "scope": "The phase owner uses the actual mag and player objects and a typed arena distance and shower factory. The generated instructions retain the original two raw action-word boundaries. The broader movement, rendering and boss assembly row remains open. The broader historical row is still open."
+    }
+  ],
+  "symbol_aliases": {
+    "0x8001E1D8": {
+      "historical": "get_battle_movement_params",
+      "current": "dispatch_shared_handler_a__6TLobbyFl",
+      "size": "0x28"
+    },
+    "0x8001E210": {
+      "historical": "get_battle_resistance_params",
+      "current": "register_object__6TLobbyFl",
+      "size": "0x28"
+    },
+    "0x8001E248": {
+      "historical": "get_battle_attack_params",
+      "current": "dispatch_shared_handler_b__6TLobbyFl",
+      "size": "0x28"
+    },
+    "0x8001E280": {
+      "historical": "get_battle_base_stats",
+      "current": "register_boss__6TLobbyFl",
+      "size": "0x28"
+    },
+    "0x8001EDB0": {
+      "historical": "TObjFish__sub_8001EDB0",
+      "current": "get_bml_texlist",
+      "size": "0x14"
+    },
+    "0x803DA798": {
+      "historical": "set_current_texture_list",
+      "current": "set_global_param",
+      "size": "0x10"
+    }
+  },
+  "phase_static_words_and_guards": [
+    [
+      "0x805D6758",
+      "0x805D675C"
+    ],
+    [
+      "0x805D6760",
+      "0x805D6764"
+    ],
+    [
+      "0x805D6768",
+      "0x805D676C"
+    ],
+    [
+      "0x805D6770",
+      "0x805D6774"
+    ],
+    [
+      "0x805D6778",
+      "0x805D677C"
+    ],
+    [
+      "0x805D6780",
+      "0x805D6784"
+    ],
+    [
+      "0x805D6790",
+      "0x805D6794"
+    ]
+  ],
+  "compiler_sensitive_forms": {
+    "action_word": "The two calls to the packet sender pass the full action word through the existing symbol. A source cast to s8 added an extsb unavailable in the original instruction sequence.",
+    "shake": "The shake enable value uses the original signed comparison.",
+    "arena_test": "The arena sphere helper accepts a Vec pointer. Adding const to that parameter reordered the three word loads in CodeWarrior."
+  },
+  "runtime_probe": {
+    "builds": [
+      "retail",
+      "stock",
+      "fork"
+    ],
+    "sha256": "2546423072e729b15df05417b5941d0c10f37cfa9971e716e0d5d039ea7c53f7",
+    "source_sha256": "b85826bad1ca9a8fd0264c9a09225415a9322d7a7fb33e3b8e3a28e6b0eb5393",
+    "scope": "The probe covers horizontal arena range, attack thresholds, mag flags, timer initialization, full-width action dispatch, active mag shower placement and beam construction and fallback. Math helpers, packet sending, factories and effects use controlled fixtures."
+  },
+  "overlay_paths": 130,
+  "overlay_sha256": "243406819e224dfcb49d7b5ad9a588a373e3b443b4d4acf449f0d529eeeb0d32",
+  "retained_symbols": 27033,
+  "workspace_checks": {
+    "tool": {
+      "count": 294,
+      "sha256": "ffadb2c4b969f504b709ad81fe96ec2d6c6dd55570b58f28a1901050288dfd92"
+    },
+    "fork": {
+      "count": 11,
+      "sha256": "0598fc4352542defc2263045098140bcb6c5012332f3826684f5e044181b6111"
+    },
+    "host": {
+      "checks": [
+        "./vector_math_fallbacks",
+        "./item_factory_callbacks",
+        "./loader_transfer",
+        "./ginja_parameter_callbacks",
+        "./exi_ethernet_fallbacks"
+      ],
+      "sha256": "ad1227e7d6dde3aea88d51f241949b30f3d1fe42ec4c3abf078bd6309ee9bbdb"
+    }
+  },
+  "review_commit_attribution": {
+    "commits": 83,
+    "codex_attribution": 0,
+    "coauthor_trailers": 0
+  },
+  "public_refs_changed": false
+}

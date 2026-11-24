@@ -1,0 +1,1442 @@
+{
+  "source": "f764ab538a116d696a0cd598e21037263f05421d",
+  "previous_source": "52b5e0bb2c4054799dd9f83da27803065ec5dab4",
+  "upstream": "5a4e7ced56fe7072359b6d279e94f4be3b8453c0",
+  "fork_main": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "source_paths": 1173,
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/render/GinjaTextureInput.h",
+    "include/pso/system/BmlResource.h",
+    "include/pso/ui/charcreate/TChCrLoadGmNjReq.h",
+    "src/pso/effect/TEffIndirectCtrl.cpp",
+    "src/pso/enemy/flower/TObjEneRe2Flower_800C4B78.cpp",
+    "src/pso/object/TObjSinBoard.cpp",
+    "src/pso/player/TObjPlayer_80083594.cpp",
+    "src/pso/player/TObjPlayer_8029F694.cpp",
+    "src/pso/player/TObjPlayer_803DA204.cpp",
+    "src/pso/system/scene/TSceneSora.cpp",
+    "src/pso/ui/charcreate/TChCrLoadAfs.cpp",
+    "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp",
+    "src/pso/ui/charcreate/TChCrLoadGmNjReq.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80145778.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801E4CF0.cpp",
+    "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C650.cpp",
+    "src/pso/unk/TLobby_8001EF5C.cpp",
+    "src/pso/unk/text_802D1C84.cpp"
+  ],
+  "author": {
+    "name": "matthewlewisnewton",
+    "email": "19641807+matthewlewisnewton@users.noreply.github.com",
+    "coauthor_trailers": 0
+  },
+  "resource_calls": {
+    "branch_counts": {
+      "0x80020004": 267,
+      "0x8002058c": 3,
+      "0x803da204": 10,
+      "0x803da218": 10
+    },
+    "direct_calls": {
+      "0x80020004": [
+        {
+          "address": "0x8001beb4",
+          "link_register": true
+        },
+        {
+          "address": "0x8003a904",
+          "link_register": true
+        },
+        {
+          "address": "0x8003ee54",
+          "link_register": true
+        },
+        {
+          "address": "0x8003ee8c",
+          "link_register": true
+        },
+        {
+          "address": "0x8004c108",
+          "link_register": true
+        },
+        {
+          "address": "0x800765f4",
+          "link_register": true
+        },
+        {
+          "address": "0x800820b4",
+          "link_register": true
+        },
+        {
+          "address": "0x80088750",
+          "link_register": true
+        },
+        {
+          "address": "0x8008d960",
+          "link_register": true
+        },
+        {
+          "address": "0x80092494",
+          "link_register": true
+        },
+        {
+          "address": "0x800a2e04",
+          "link_register": true
+        },
+        {
+          "address": "0x800a7198",
+          "link_register": true
+        },
+        {
+          "address": "0x800a8178",
+          "link_register": true
+        },
+        {
+          "address": "0x800aa894",
+          "link_register": true
+        },
+        {
+          "address": "0x800ac378",
+          "link_register": true
+        },
+        {
+          "address": "0x800af5b8",
+          "link_register": true
+        },
+        {
+          "address": "0x800af5ec",
+          "link_register": true
+        },
+        {
+          "address": "0x800b8e20",
+          "link_register": true
+        },
+        {
+          "address": "0x800bb9e4",
+          "link_register": true
+        },
+        {
+          "address": "0x800bf6c8",
+          "link_register": true
+        },
+        {
+          "address": "0x800c1850",
+          "link_register": true
+        },
+        {
+          "address": "0x800c1884",
+          "link_register": true
+        },
+        {
+          "address": "0x800c18c8",
+          "link_register": true
+        },
+        {
+          "address": "0x800c18fc",
+          "link_register": true
+        },
+        {
+          "address": "0x800c1940",
+          "link_register": true
+        },
+        {
+          "address": "0x800c1974",
+          "link_register": true
+        },
+        {
+          "address": "0x800c19b8",
+          "link_register": true
+        },
+        {
+          "address": "0x800c19ec",
+          "link_register": true
+        },
+        {
+          "address": "0x800c1a30",
+          "link_register": true
+        },
+        {
+          "address": "0x800c1a64",
+          "link_register": true
+        },
+        {
+          "address": "0x800d3c64",
+          "link_register": true
+        },
+        {
+          "address": "0x800d6dac",
+          "link_register": true
+        },
+        {
+          "address": "0x800d6de0",
+          "link_register": true
+        },
+        {
+          "address": "0x800d953c",
+          "link_register": true
+        },
+        {
+          "address": "0x800dc05c",
+          "link_register": true
+        },
+        {
+          "address": "0x800df668",
+          "link_register": true
+        },
+        {
+          "address": "0x800ebd6c",
+          "link_register": true
+        },
+        {
+          "address": "0x80110678",
+          "link_register": true
+        },
+        {
+          "address": "0x8013dc78",
+          "link_register": true
+        },
+        {
+          "address": "0x8014976c",
+          "link_register": true
+        },
+        {
+          "address": "0x80149968",
+          "link_register": true
+        },
+        {
+          "address": "0x80149b40",
+          "link_register": true
+        },
+        {
+          "address": "0x80149e14",
+          "link_register": true
+        },
+        {
+          "address": "0x80149fec",
+          "link_register": true
+        },
+        {
+          "address": "0x8014a1c4",
+          "link_register": true
+        },
+        {
+          "address": "0x8014a39c",
+          "link_register": true
+        },
+        {
+          "address": "0x8014a574",
+          "link_register": true
+        },
+        {
+          "address": "0x8014a74c",
+          "link_register": true
+        },
+        {
+          "address": "0x8014a924",
+          "link_register": true
+        },
+        {
+          "address": "0x8014abf8",
+          "link_register": true
+        },
+        {
+          "address": "0x8014b9d8",
+          "link_register": true
+        },
+        {
+          "address": "0x8014bbb0",
+          "link_register": true
+        },
+        {
+          "address": "0x8014bd88",
+          "link_register": true
+        },
+        {
+          "address": "0x8014bf60",
+          "link_register": true
+        },
+        {
+          "address": "0x8014c138",
+          "link_register": true
+        },
+        {
+          "address": "0x8014c310",
+          "link_register": true
+        },
+        {
+          "address": "0x8014c4e8",
+          "link_register": true
+        },
+        {
+          "address": "0x8014d450",
+          "link_register": true
+        },
+        {
+          "address": "0x8014d628",
+          "link_register": true
+        },
+        {
+          "address": "0x8014d800",
+          "link_register": true
+        },
+        {
+          "address": "0x8014d9d8",
+          "link_register": true
+        },
+        {
+          "address": "0x80156fd0",
+          "link_register": true
+        },
+        {
+          "address": "0x8015720c",
+          "link_register": true
+        },
+        {
+          "address": "0x801580ac",
+          "link_register": true
+        },
+        {
+          "address": "0x8015880c",
+          "link_register": true
+        },
+        {
+          "address": "0x80159d58",
+          "link_register": true
+        },
+        {
+          "address": "0x8015a13c",
+          "link_register": true
+        },
+        {
+          "address": "0x8015a44c",
+          "link_register": true
+        },
+        {
+          "address": "0x8015a768",
+          "link_register": true
+        },
+        {
+          "address": "0x8015b578",
+          "link_register": true
+        },
+        {
+          "address": "0x8015c6e8",
+          "link_register": true
+        },
+        {
+          "address": "0x8015c790",
+          "link_register": true
+        },
+        {
+          "address": "0x8015c814",
+          "link_register": true
+        },
+        {
+          "address": "0x8015d348",
+          "link_register": true
+        },
+        {
+          "address": "0x8015e0d0",
+          "link_register": true
+        },
+        {
+          "address": "0x8015e57c",
+          "link_register": true
+        },
+        {
+          "address": "0x8015ea28",
+          "link_register": true
+        },
+        {
+          "address": "0x8015ef00",
+          "link_register": true
+        },
+        {
+          "address": "0x8015f474",
+          "link_register": true
+        },
+        {
+          "address": "0x8015f9ec",
+          "link_register": true
+        },
+        {
+          "address": "0x801605e4",
+          "link_register": true
+        },
+        {
+          "address": "0x80161114",
+          "link_register": true
+        },
+        {
+          "address": "0x80161aec",
+          "link_register": true
+        },
+        {
+          "address": "0x80161b38",
+          "link_register": true
+        },
+        {
+          "address": "0x80162174",
+          "link_register": true
+        },
+        {
+          "address": "0x801621c0",
+          "link_register": true
+        },
+        {
+          "address": "0x8016278c",
+          "link_register": true
+        },
+        {
+          "address": "0x801627c4",
+          "link_register": true
+        },
+        {
+          "address": "0x80163060",
+          "link_register": true
+        },
+        {
+          "address": "0x801630ac",
+          "link_register": true
+        },
+        {
+          "address": "0x80163668",
+          "link_register": true
+        },
+        {
+          "address": "0x801636b4",
+          "link_register": true
+        },
+        {
+          "address": "0x80163bc0",
+          "link_register": true
+        },
+        {
+          "address": "0x80164288",
+          "link_register": true
+        },
+        {
+          "address": "0x801644ec",
+          "link_register": true
+        },
+        {
+          "address": "0x80164524",
+          "link_register": true
+        },
+        {
+          "address": "0x80165468",
+          "link_register": true
+        },
+        {
+          "address": "0x80166648",
+          "link_register": true
+        },
+        {
+          "address": "0x80166c74",
+          "link_register": true
+        },
+        {
+          "address": "0x80167054",
+          "link_register": true
+        },
+        {
+          "address": "0x801673f8",
+          "link_register": true
+        },
+        {
+          "address": "0x80167790",
+          "link_register": true
+        },
+        {
+          "address": "0x80168b00",
+          "link_register": true
+        },
+        {
+          "address": "0x80168b7c",
+          "link_register": true
+        },
+        {
+          "address": "0x80168fc8",
+          "link_register": true
+        },
+        {
+          "address": "0x8016976c",
+          "link_register": true
+        },
+        {
+          "address": "0x801697a4",
+          "link_register": true
+        },
+        {
+          "address": "0x8016afb8",
+          "link_register": true
+        },
+        {
+          "address": "0x8016b5d8",
+          "link_register": true
+        },
+        {
+          "address": "0x8016bcb8",
+          "link_register": true
+        },
+        {
+          "address": "0x8016c4d0",
+          "link_register": true
+        },
+        {
+          "address": "0x8016c544",
+          "link_register": true
+        },
+        {
+          "address": "0x8016cd88",
+          "link_register": true
+        },
+        {
+          "address": "0x8016cdbc",
+          "link_register": true
+        },
+        {
+          "address": "0x8016ce48",
+          "link_register": true
+        },
+        {
+          "address": "0x8016ce7c",
+          "link_register": true
+        },
+        {
+          "address": "0x8016d748",
+          "link_register": true
+        },
+        {
+          "address": "0x8016e834",
+          "link_register": true
+        },
+        {
+          "address": "0x8016eb70",
+          "link_register": true
+        },
+        {
+          "address": "0x80171204",
+          "link_register": true
+        },
+        {
+          "address": "0x801724a0",
+          "link_register": true
+        },
+        {
+          "address": "0x8017278c",
+          "link_register": true
+        },
+        {
+          "address": "0x80172da4",
+          "link_register": true
+        },
+        {
+          "address": "0x80172dd8",
+          "link_register": true
+        },
+        {
+          "address": "0x80172e0c",
+          "link_register": true
+        },
+        {
+          "address": "0x80173364",
+          "link_register": true
+        },
+        {
+          "address": "0x80173648",
+          "link_register": true
+        },
+        {
+          "address": "0x80175288",
+          "link_register": true
+        },
+        {
+          "address": "0x801752b8",
+          "link_register": true
+        },
+        {
+          "address": "0x801752ec",
+          "link_register": true
+        },
+        {
+          "address": "0x8017531c",
+          "link_register": true
+        },
+        {
+          "address": "0x80175350",
+          "link_register": true
+        },
+        {
+          "address": "0x80175380",
+          "link_register": true
+        },
+        {
+          "address": "0x80175d40",
+          "link_register": true
+        },
+        {
+          "address": "0x8017633c",
+          "link_register": true
+        },
+        {
+          "address": "0x8017678c",
+          "link_register": true
+        },
+        {
+          "address": "0x80176b40",
+          "link_register": true
+        },
+        {
+          "address": "0x80176f84",
+          "link_register": true
+        },
+        {
+          "address": "0x80177364",
+          "link_register": true
+        },
+        {
+          "address": "0x80179e6c",
+          "link_register": true
+        },
+        {
+          "address": "0x8017b568",
+          "link_register": true
+        },
+        {
+          "address": "0x8017b5c8",
+          "link_register": true
+        },
+        {
+          "address": "0x8017b628",
+          "link_register": true
+        },
+        {
+          "address": "0x8017c814",
+          "link_register": true
+        },
+        {
+          "address": "0x8017d250",
+          "link_register": true
+        },
+        {
+          "address": "0x8017dddc",
+          "link_register": true
+        },
+        {
+          "address": "0x8017de10",
+          "link_register": true
+        },
+        {
+          "address": "0x8017f490",
+          "link_register": true
+        },
+        {
+          "address": "0x8017fcb4",
+          "link_register": true
+        },
+        {
+          "address": "0x80181a80",
+          "link_register": true
+        },
+        {
+          "address": "0x80184ec8",
+          "link_register": true
+        },
+        {
+          "address": "0x80185008",
+          "link_register": true
+        },
+        {
+          "address": "0x8018505c",
+          "link_register": true
+        },
+        {
+          "address": "0x801850a8",
+          "link_register": true
+        },
+        {
+          "address": "0x80185548",
+          "link_register": true
+        },
+        {
+          "address": "0x80187dfc",
+          "link_register": true
+        },
+        {
+          "address": "0x801883b4",
+          "link_register": true
+        },
+        {
+          "address": "0x80188404",
+          "link_register": true
+        },
+        {
+          "address": "0x8018a2ec",
+          "link_register": true
+        },
+        {
+          "address": "0x8018a334",
+          "link_register": true
+        },
+        {
+          "address": "0x8018a44c",
+          "link_register": true
+        },
+        {
+          "address": "0x8018a4cc",
+          "link_register": true
+        },
+        {
+          "address": "0x8018bbb0",
+          "link_register": true
+        },
+        {
+          "address": "0x8018bbfc",
+          "link_register": true
+        },
+        {
+          "address": "0x8018c71c",
+          "link_register": true
+        },
+        {
+          "address": "0x8018d4b0",
+          "link_register": true
+        },
+        {
+          "address": "0x8018d9e4",
+          "link_register": true
+        },
+        {
+          "address": "0x8018e214",
+          "link_register": true
+        },
+        {
+          "address": "0x8018f340",
+          "link_register": true
+        },
+        {
+          "address": "0x8018f4e4",
+          "link_register": true
+        },
+        {
+          "address": "0x801901fc",
+          "link_register": true
+        },
+        {
+          "address": "0x80191374",
+          "link_register": true
+        },
+        {
+          "address": "0x80191570",
+          "link_register": true
+        },
+        {
+          "address": "0x80191764",
+          "link_register": true
+        },
+        {
+          "address": "0x80192410",
+          "link_register": true
+        },
+        {
+          "address": "0x80193074",
+          "link_register": true
+        },
+        {
+          "address": "0x801930bc",
+          "link_register": true
+        },
+        {
+          "address": "0x80193d10",
+          "link_register": true
+        },
+        {
+          "address": "0x80193d58",
+          "link_register": true
+        },
+        {
+          "address": "0x801950ec",
+          "link_register": true
+        },
+        {
+          "address": "0x80198f88",
+          "link_register": true
+        },
+        {
+          "address": "0x8019a9ec",
+          "link_register": true
+        },
+        {
+          "address": "0x8019ad84",
+          "link_register": true
+        },
+        {
+          "address": "0x8019b108",
+          "link_register": true
+        },
+        {
+          "address": "0x8019dbe8",
+          "link_register": true
+        },
+        {
+          "address": "0x8019f7b8",
+          "link_register": true
+        },
+        {
+          "address": "0x8019f878",
+          "link_register": true
+        },
+        {
+          "address": "0x8019f91c",
+          "link_register": true
+        },
+        {
+          "address": "0x801a05ac",
+          "link_register": true
+        },
+        {
+          "address": "0x801a0b6c",
+          "link_register": true
+        },
+        {
+          "address": "0x801aa4b4",
+          "link_register": true
+        },
+        {
+          "address": "0x801fb938",
+          "link_register": true
+        },
+        {
+          "address": "0x8022f120",
+          "link_register": true
+        },
+        {
+          "address": "0x80289434",
+          "link_register": true
+        },
+        {
+          "address": "0x8028960c",
+          "link_register": true
+        },
+        {
+          "address": "0x8028a884",
+          "link_register": true
+        },
+        {
+          "address": "0x8028a8cc",
+          "link_register": true
+        },
+        {
+          "address": "0x8028eb28",
+          "link_register": true
+        },
+        {
+          "address": "0x80290a38",
+          "link_register": true
+        },
+        {
+          "address": "0x8029b3fc",
+          "link_register": true
+        },
+        {
+          "address": "0x8029cbc8",
+          "link_register": true
+        },
+        {
+          "address": "0x8029cd40",
+          "link_register": true
+        },
+        {
+          "address": "0x8029d020",
+          "link_register": true
+        },
+        {
+          "address": "0x8029e654",
+          "link_register": true
+        },
+        {
+          "address": "0x8029e690",
+          "link_register": true
+        },
+        {
+          "address": "0x8029e6cc",
+          "link_register": true
+        },
+        {
+          "address": "0x8029e708",
+          "link_register": true
+        },
+        {
+          "address": "0x8029e744",
+          "link_register": true
+        },
+        {
+          "address": "0x8029f9b0",
+          "link_register": true
+        },
+        {
+          "address": "0x8029fcbc",
+          "link_register": true
+        },
+        {
+          "address": "0x8029ff5c",
+          "link_register": true
+        },
+        {
+          "address": "0x8029ffb4",
+          "link_register": true
+        },
+        {
+          "address": "0x802a0254",
+          "link_register": true
+        },
+        {
+          "address": "0x802a02ac",
+          "link_register": true
+        },
+        {
+          "address": "0x802a3a8c",
+          "link_register": true
+        },
+        {
+          "address": "0x802a3c64",
+          "link_register": true
+        },
+        {
+          "address": "0x802a6fec",
+          "link_register": true
+        },
+        {
+          "address": "0x802a70a0",
+          "link_register": true
+        },
+        {
+          "address": "0x802aa388",
+          "link_register": true
+        },
+        {
+          "address": "0x802aa678",
+          "link_register": true
+        },
+        {
+          "address": "0x802aa968",
+          "link_register": true
+        },
+        {
+          "address": "0x802acc18",
+          "link_register": true
+        },
+        {
+          "address": "0x802af334",
+          "link_register": true
+        },
+        {
+          "address": "0x802b1798",
+          "link_register": true
+        },
+        {
+          "address": "0x802c0a14",
+          "link_register": true
+        },
+        {
+          "address": "0x802c13fc",
+          "link_register": true
+        },
+        {
+          "address": "0x802c1bd0",
+          "link_register": true
+        },
+        {
+          "address": "0x802c2278",
+          "link_register": true
+        },
+        {
+          "address": "0x802c298c",
+          "link_register": true
+        },
+        {
+          "address": "0x802c9a90",
+          "link_register": true
+        },
+        {
+          "address": "0x802ca854",
+          "link_register": true
+        },
+        {
+          "address": "0x802cd674",
+          "link_register": true
+        },
+        {
+          "address": "0x802cd6a8",
+          "link_register": true
+        },
+        {
+          "address": "0x802db808",
+          "link_register": true
+        },
+        {
+          "address": "0x802db83c",
+          "link_register": true
+        },
+        {
+          "address": "0x802e110c",
+          "link_register": true
+        },
+        {
+          "address": "0x802e52ec",
+          "link_register": true
+        },
+        {
+          "address": "0x802ee5a8",
+          "link_register": true
+        },
+        {
+          "address": "0x802f0ec8",
+          "link_register": true
+        },
+        {
+          "address": "0x802feb0c",
+          "link_register": true
+        },
+        {
+          "address": "0x802fece4",
+          "link_register": true
+        },
+        {
+          "address": "0x802ff10c",
+          "link_register": true
+        },
+        {
+          "address": "0x803027cc",
+          "link_register": true
+        },
+        {
+          "address": "0x80302800",
+          "link_register": true
+        },
+        {
+          "address": "0x803094a0",
+          "link_register": true
+        },
+        {
+          "address": "0x8030b07c",
+          "link_register": true
+        },
+        {
+          "address": "0x8030b68c",
+          "link_register": true
+        },
+        {
+          "address": "0x80315b58",
+          "link_register": true
+        },
+        {
+          "address": "0x80315b8c",
+          "link_register": true
+        },
+        {
+          "address": "0x8035083c",
+          "link_register": true
+        },
+        {
+          "address": "0x8035172c",
+          "link_register": true
+        },
+        {
+          "address": "0x80352824",
+          "link_register": true
+        },
+        {
+          "address": "0x803536b8",
+          "link_register": true
+        },
+        {
+          "address": "0x80354b4c",
+          "link_register": true
+        },
+        {
+          "address": "0x80359390",
+          "link_register": true
+        },
+        {
+          "address": "0x80359978",
+          "link_register": true
+        },
+        {
+          "address": "0x8035b310",
+          "link_register": true
+        },
+        {
+          "address": "0x8035b6e4",
+          "link_register": true
+        },
+        {
+          "address": "0x8035b7bc",
+          "link_register": true
+        },
+        {
+          "address": "0x8035bb00",
+          "link_register": true
+        },
+        {
+          "address": "0x8035beec",
+          "link_register": true
+        },
+        {
+          "address": "0x8036282c",
+          "link_register": true
+        },
+        {
+          "address": "0x80364a50",
+          "link_register": true
+        },
+        {
+          "address": "0x80365418",
+          "link_register": true
+        },
+        {
+          "address": "0x8036885c",
+          "link_register": true
+        },
+        {
+          "address": "0x80369e24",
+          "link_register": true
+        },
+        {
+          "address": "0x8036b704",
+          "link_register": true
+        }
+      ],
+      "0x8002058c": [
+        {
+          "address": "0x802075cc",
+          "link_register": true
+        },
+        {
+          "address": "0x8028c5a4",
+          "link_register": true
+        },
+        {
+          "address": "0x8028c6b4",
+          "link_register": true
+        }
+      ],
+      "0x803da204": [
+        {
+          "address": "0x80083f58",
+          "link_register": true
+        },
+        {
+          "address": "0x80084708",
+          "link_register": true
+        },
+        {
+          "address": "0x800c4dc0",
+          "link_register": true
+        },
+        {
+          "address": "0x8014585c",
+          "link_register": true
+        },
+        {
+          "address": "0x80198038",
+          "link_register": true
+        },
+        {
+          "address": "0x801e4e18",
+          "link_register": true
+        },
+        {
+          "address": "0x8028bf34",
+          "link_register": true
+        },
+        {
+          "address": "0x8029f6f8",
+          "link_register": true
+        },
+        {
+          "address": "0x802a8c5c",
+          "link_register": true
+        },
+        {
+          "address": "0x802d1d00",
+          "link_register": true
+        }
+      ],
+      "0x803da218": [
+        {
+          "address": "0x80083f74",
+          "link_register": true
+        },
+        {
+          "address": "0x80084724",
+          "link_register": true
+        },
+        {
+          "address": "0x800c4dd8",
+          "link_register": true
+        },
+        {
+          "address": "0x80145878",
+          "link_register": true
+        },
+        {
+          "address": "0x8019804c",
+          "link_register": true
+        },
+        {
+          "address": "0x801e4e2c",
+          "link_register": true
+        },
+        {
+          "address": "0x8028bf50",
+          "link_register": true
+        },
+        {
+          "address": "0x8029f70c",
+          "link_register": true
+        },
+        {
+          "address": "0x802a8c70",
+          "link_register": true
+        },
+        {
+          "address": "0x802d1d18",
+          "link_register": true
+        }
+      ]
+    },
+    "retail_and_rebuilt_equal": true
+  },
+  "resource_layout": {
+    "bml_size": 1088,
+    "bml_callback": 1052,
+    "archive_entry_size": 64,
+    "archive_entries": 64,
+    "packed_size": 40,
+    "unpacked_size": 44,
+    "texture_input_size": 36,
+    "texture_width": 16,
+    "texture_height": 20
+  },
+  "historical_comparison": {
+    "prior_open_rows": 465,
+    "open_rows": 460,
+    "closed_rows": [
+      {
+        "row": 947,
+        "description": "The curse uses its original class name, shared particle entry and normalization address. The typed rendering input and retail scratch-buffer allocation complete this file-level edit.",
+        "historical_path": "src/pso/enemy/TObjEneRe2Flower_800C4B78.cpp",
+        "current_path": "src/pso/enemy/flower/TObjEneRe2Flower_800C4B78.cpp",
+        "fork_blob": "c944ee9354b542db631f76ddf93f94577ae34a66",
+        "current_blob": "89119a6be7cef1b808940c647a83a3e8aef83c35",
+        "authored_diff_sha256": "cedeb78c3fb1c60361ceca4f94b1f1942de109e6e886276cfb89ba8a54459282"
+      },
+      {
+        "row": 2474,
+        "description": "The native AFS handle is stopped and closed on the original error and shutdown paths. The destructor frees the original scratch slots and finishing a model load advances its buffer, clears the requested flag and queues destruction. Both BML request paths use the shared typed initializer.",
+        "historical_path": "src/pso/misc/TChCrLoadAfsTextureReq.cpp",
+        "current_path": "src/pso/ui/charcreate/TChCrLoadAfsTextureReq.cpp",
+        "fork_blob": "e46b6e65a4632d110193ebc62b012d38652f9b95",
+        "current_blob": "7becaed364c790dced3ca811bb038537a48bb325",
+        "authored_diff_sha256": "5f83a7b18f620cc4be69489aea4b4dd45ad85decd37b1ac678ad56080afd1e25"
+      },
+      {
+        "row": 5318,
+        "description": "The 0x24-byte input and texture list keep their original storage addresses. The 0x800-byte buffer is acquired and freed through the existing allocator labels. Texture release and buffer reset remain in the original cleanup routine.",
+        "historical_path": "src/pso/unk/text_802D1C84.cpp",
+        "current_path": "src/pso/unk/text_802D1C84.cpp",
+        "fork_blob": "298a1cb0a78dfbf086b6cbac4f8d2c2987412a46",
+        "current_blob": "6729f0cbab3a064db3c9b0bfcda22203e10f2fe4",
+        "authored_diff_sha256": "8ead26887b05170b274fa2c861bbe911edabd2b5786f4064e78f8bb784772f8b"
+      },
+      {
+        "row": 5321,
+        "description": "The active player renderer owns sixteen 0x24-byte entries. Its constructor and destructor preserve the original addresses, 0x240-byte array lifetime, initialization and global receiver. The original texture-list bind sites were separately checked.",
+        "historical_path": "src/pso/misc/TLobby_8033ECB0.cpp",
+        "current_path": "src/pso/player/TObjPlayer_8033E910.cpp",
+        "fork_blob": "c053b6edae8ab33d69b3c2c89c310d4beb04dac5",
+        "current_blob": "51dcdcc91fe27d75746656568e9a9feb29e9437d",
+        "authored_diff_sha256": "b674c69c90f1db8728c07ce88192bbc3f8975a88c7f914affc2330684abd3a06"
+      },
+      {
+        "row": 5328,
+        "description": "The native model, motion and archive records cover both queued and direct loading, arena selection, temporary buffer release and callback completion. The initializer and chunk allocator retain their existing provider names and addresses. The compressed-motion branch retains its original counter and the synchronous and asynchronous readers share the same archive entry.",
+        "historical_path": "src/pso/misc/TLobby_8001EF5C.cpp",
+        "current_path": "src/pso/unk/TLobby_8001EF5C.cpp",
+        "fork_blob": "1a190efb09543834a02b379bec0449dc9ccbc625",
+        "current_blob": "ca36f9132263c658af3a76b23f3baa4ab4881011",
+        "authored_diff_sha256": "e6c25400607c4bdace94f4c9966a817e79c7938d51e5ee0a5459299a74aee2ae"
+      }
+    ],
+    "partial_rows": {
+      "2436": "The texture descriptor and both texture entry binding calls use the shared checked layout. The broader AFS loader ownership remains under review.",
+      "3632": "Native texture input and entry signatures cover capture and shadow initialization. The other player rendering paths remain under review.",
+      "3653": "Capture and shadow use the checked texture input and native texture entry at their original calls. Other window and rendering edits remain under review.",
+      "4924": "The effect texture input and registration now share the real fields and entry signatures. Other effect storage fields remain under review.",
+      "4936": "Indirect effects use the shared texture input and registration at the original addresses. The remaining effect implementation requires separate comparison."
+    },
+    "same_address_names": {
+      "0x8001EF8C": [
+        "alloc_load_data__6TLobbyFPviii",
+        "allocate_bml_chunk"
+      ],
+      "0x8002058C": [
+        "init_from_id_lists__FP11BmlResourcelPPvPPvllPv",
+        "init_bin_model_request"
+      ],
+      "0x8007E9EC": [
+        "normalize_vector_checked",
+        "normalize_vector_safe__FP3Vec"
+      ],
+      "0x80147A80": [
+        "__dla__FPv",
+        "mem_free"
+      ],
+      "0x80147AA8": [
+        "__nwa__FUl",
+        "mem_alloc"
+      ]
+    }
+  },
+  "validation": {
+    "stock": {
+      "baseline": "52b5e0bb2c4054799dd9f83da27803065ec5dab4",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8001F018",
+          "before": "load_texture_sub__11BmlResourceFPvl",
+          "after": "load_texture_sub__11BmlResourceFPCcl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8001FCC4",
+          "before": "load_bin_motion__11BmlResourceFPvl",
+          "after": "load_bin_motion__11BmlResourceFPCcl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8001FD98",
+          "before": "load_bin_model__11BmlResourceFPvl",
+          "after": "load_bin_model__11BmlResourceFPCcl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80020004",
+          "before": "__ct__11BmlResourceFlP21BmlResourceDescriptorllPv",
+          "after": "__ct__11BmlResourceFlP21BmlResourceDescriptorPFPv_vPvPv"
+        },
+        {
+          "module": "psov3",
+          "address": "0x803DA204",
+          "before": "set_render_rect__10TObjPlayerFllll",
+          "after": "set_render_rect__17GinjaTextureInputFPvlll"
+        }
+      ],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "e65d5d684704ac06e9b6b6df158d1045c39f2642f7031506ef945d2df02270f2",
+      "report_sha256": "31865b14c8c49b9f8b3374e6dcc8f64ccdf70e767ecce17c8f68b24d6d726cdd"
+    },
+    "workspace": {
+      "baseline": "f764ab538a116d696a0cd598e21037263f05421d",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "matched_functions": 27572,
+      "linked_units": 2447,
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "linker_label_changes": [],
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "31865b14c8c49b9f8b3374e6dcc8f64ccdf70e767ecce17c8f68b24d6d726cdd"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "acb3edadb8679e626ac3874bbf0dd5d9b851b64dbb1fda9e1e3b08bb5af42dbb"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "c6448f9d20721e0b1cf4de62f9e2963c4f22457e52f7c3b9415e621cfa7b6607"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    },
+    "resource_lifecycle": {
+      "results": [
+        "BML initialization, named requests, archive reads, completion and cancellation passed.",
+        "Texture input layout and both entry flag paths passed."
+      ],
+      "images": [
+        "retail",
+        "source",
+        "materialized workspace"
+      ],
+      "checks": [
+        "Arena and resource initialization",
+        "Model and motion list insertion",
+        "Native model and motion chunk binding",
+        "Asynchronous read and cancellation order",
+        "Compressed motion advances the original model counter",
+        "Texture input and entry fields"
+      ],
+      "log_sha256": "dc6b651e684da7c51f3bdf6508e54f9b54206aec164da738a88a716fe6205516",
+      "probe_sha256": "4eef472b705cb30cb49c5e100d68f31debbd7741bd1be645bf17c479cbd051ca"
+    }
+  },
+  "fork_workspace": {
+    "overlay_paths": 130,
+    "overlay_patch_sha256": "173c1661dbd1b9d886b7fb86fe7b6056ec749b0c66aaece2c31c6daba26f6a91",
+    "updated_overlay_paths": [
+      "config/GPOE8P/psov3/config.yml"
+    ],
+    "force_active_names": 27033,
+    "force_active_symbol_changes": [
+      "-  - load_bin_model__11BmlResourceFPvl",
+      "+  - load_bin_model__11BmlResourceFPCcl",
+      "-  - load_bin_motion__11BmlResourceFPvl",
+      "+  - load_bin_motion__11BmlResourceFPCcl",
+      "-  - load_texture_sub__11BmlResourceFPvl",
+      "+  - load_texture_sub__11BmlResourceFPCcl"
+    ],
+    "archive_test_head": "e0458068e63f1177bfb4d8b89ebcd69ae4a7ae37",
+    "tested_materialized_tree": "7f245ca7ff6e1a5abf5c97d0e00255353b1a501d"
+  }
+}

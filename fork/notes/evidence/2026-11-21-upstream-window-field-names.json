@@ -1,0 +1,262 @@
+{
+  "source": "91d8ae494d82afebd8f2880d6f3e4d21a9929bcf",
+  "previous_source": "ce21d8fc43bfd18a266e83aa0f1aac64a4b76a59",
+  "ordered_heads": {
+    "front": "79892d85f89f6432c95e35a80f47dc8c9ee080fb",
+    "resources": "f5f594cd647fb33b063f2571ede16a0a95249741",
+    "combat": "c2a19c01fd8c17f858fd056d2b0a701d7d2775e5",
+    "full": "7c7ee5e36ad91a2b129bc9f1603489032702e44c"
+  },
+  "ordered_refs": {
+    "front": "great-merge/consolidated/ordered-frontend-with-upstream-window-names",
+    "resources": "great-merge/consolidated/ordered-resources-with-upstream-window-names",
+    "combat": "great-merge/consolidated/ordered-combat-with-upstream-window-names",
+    "full": "great-merge/consolidated/ordered-full-with-upstream-window-names"
+  },
+  "single_review": {
+    "ref": "great-merge/consolidated/single-review-with-upstream-window-names",
+    "head": "fcf264272862ac84e8cac94fa91c347d0b679434",
+    "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+    "tree": "8396256a50143a1f9ef478000e7c49aeb0e60456",
+    "tree_equivalent_to": "7c7ee5e36ad91a2b129bc9f1603489032702e44c",
+    "commits": [
+      {
+        "head": "8890b7fd8b4fbcf9ef7d6d35e4f88f7397ae9bf6",
+        "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+        "tree": "572c96b50f200895bc094534dc75a4a84a87f5d3",
+        "checked_tree": "79892d85f89f6432c95e35a80f47dc8c9ee080fb",
+        "files_changed": 655,
+        "insertions": 10713,
+        "deletions": 12247
+      },
+      {
+        "head": "6329e26030728a01a738ace16e508e695d54e358",
+        "base": "8890b7fd8b4fbcf9ef7d6d35e4f88f7397ae9bf6",
+        "tree": "45fa96298115b9562d192a314385cf2bd8a571a7",
+        "checked_tree": "f5f594cd647fb33b063f2571ede16a0a95249741",
+        "files_changed": 679,
+        "insertions": 5762,
+        "deletions": 6298
+      },
+      {
+        "head": "ece831cbb5775a0b8aaf056548dd69af9240ce0f",
+        "base": "6329e26030728a01a738ace16e508e695d54e358",
+        "tree": "1d6aa0c3d829cd5727261129dd530ea4d0929c0d",
+        "checked_tree": "c2a19c01fd8c17f858fd056d2b0a701d7d2775e5",
+        "files_changed": 969,
+        "insertions": 12609,
+        "deletions": 13420
+      },
+      {
+        "head": "fcf264272862ac84e8cac94fa91c347d0b679434",
+        "base": "ece831cbb5775a0b8aaf056548dd69af9240ce0f",
+        "tree": "8396256a50143a1f9ef478000e7c49aeb0e60456",
+        "checked_tree": "7c7ee5e36ad91a2b129bc9f1603489032702e44c",
+        "files_changed": 12,
+        "insertions": 136,
+        "deletions": 139
+      }
+    ],
+    "commit_attribution": {
+      "audited_commits": 4,
+      "codex_attribution": 0,
+      "coauthor_trailers": 0
+    },
+    "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+    "files_changed": 1745,
+    "insertions": 28542,
+    "deletions": 31426
+  },
+  "review_files_removed": [
+    "src/pso/ui/window/TWindowCheckBox.cpp",
+    "src/pso/ui/window/TWindowHelpItem_802530D0.cpp",
+    "src/pso/unk/TLobby_80338E9C.cpp"
+  ],
+  "review_changed_lines_removed": 250,
+  "restored_names": [
+    {
+      "owner": "TWindowBase",
+      "offset": "0x20",
+      "field": "m_20"
+    },
+    {
+      "owner": "TWindowBase",
+      "offset": "0x2C",
+      "field": "m_2c"
+    },
+    {
+      "owner": "TWindowBase",
+      "offset": "0x5C",
+      "field": "m_5c"
+    },
+    {
+      "owner": "TWindowMainMenu",
+      "offset": "0x54",
+      "field": "m_54"
+    }
+  ],
+  "changed_paths": [
+    "include/pso/ui/window/TWindowBase.h",
+    "include/pso/ui/window/TWindowMainMenu.h",
+    "src/pso/ui/chat/TWindowChatSymbol.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChatFaceType.cpp",
+    "src/pso/ui/chat/TWindowSubSymbolChatPartsSet.cpp",
+    "src/pso/ui/keyboard/TKeyBoardControl_8025CB70.cpp",
+    "src/pso/ui/window/TWindowActionPalette.cpp",
+    "src/pso/ui/window/TWindowCheckBox.cpp",
+    "src/pso/ui/window/TWindowChoiceSetting.cpp",
+    "src/pso/ui/window/TWindowChoiceSetting_80249078.cpp",
+    "src/pso/ui/window/TWindowCtrl_8024C6CC.cpp",
+    "src/pso/ui/window/TWindowDD_80341334.cpp",
+    "src/pso/ui/window/TWindowDD_80341A08.cpp",
+    "src/pso/ui/window/TWindowDuelResult.cpp",
+    "src/pso/ui/window/TWindowFukidasi.cpp",
+    "src/pso/ui/window/TWindowHelpItem_802530D0.cpp",
+    "src/pso/ui/window/TWindowHelpItem_802531A0.cpp",
+    "src/pso/ui/window/TWindowHelpItem_802540AC.cpp",
+    "src/pso/ui/window/TWindowHelpItem_80255AB4.cpp",
+    "src/pso/ui/window/TWindowInputNumber.cpp",
+    "src/pso/ui/window/TWindowKeyBoardBase.cpp",
+    "src/pso/ui/window/TWindowLockOn_80262C3C.cpp",
+    "src/pso/ui/window/TWindowMainMenu.cpp",
+    "src/pso/ui/window/TWindowMainMenu1P.cpp",
+    "src/pso/ui/window/TWindowMainMenu4P.cpp",
+    "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+    "src/pso/ui/window/TWindowMenuMainMenu.cpp",
+    "src/pso/ui/window/TWindowMessage.cpp",
+    "src/pso/ui/window/TWindowMessageLog.cpp",
+    "src/pso/ui/window/TWindowMessagePage.cpp",
+    "src/pso/ui/window/TWindowPartyStatus.cpp",
+    "src/pso/ui/window/TWindowShortCut.cpp",
+    "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp",
+    "src/pso/ui/window/TWindowSnapShot.cpp",
+    "src/pso/ui/window/TWindowSubAreaMapDisp.cpp",
+    "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+    "src/pso/ui/window/TWindowSubComCard_80265410.cpp",
+    "src/pso/ui/window/TWindowSubCustomEquip.cpp",
+    "src/pso/ui/window/TWindowSubCustomSelect.cpp",
+    "src/pso/ui/window/TWindowSubMagPhoton.cpp",
+    "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_80248BE8.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_80257BC0.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_8025B050.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_802671F0.cpp",
+    "src/pso/ui/window/TWindowSubStatusDisp_8027FD88.cpp",
+    "src/pso/unk/TLobby_80338E9C.cpp",
+    "src/pso/unk/text_80278460.cpp"
+  ],
+  "patch_sha256": "75fe5c4a603e023a490611f88f8c219cd47151932a5359d6a2db3937c01a190c",
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "matched_functions": 27572,
+  "compiled_source_units": 2448,
+  "historical_rows_closed": {
+    "303": "The live text record owns set_text_from_string(char *) at 0x8008081C. It retains the same first-argument storage and C++ callers use KeyboardTextBuffer.",
+    "2379": "The public native TNowLoading constructor receives the object parent and Vec position. The native constructor links at the fork wrapper address 0x8001D3A8.",
+    "2441": "The heading flag remains the 32-bit object at 0x805D3D0C, with its owner in TChCrEffTag.cpp. The public factory takes TObject * and returns TChCrEffTag *.",
+    "2612": "The ending sequence uses the original 1.0 and 0.85 constants and constructs TUnk_804E71A0, whose linked constructor is the same 0x80307964 target as the fork raw call.",
+    "2627": "The story-select constructor uses the typed draw-line and sound declarations. The call retains the draw group 0xA and original zero depth at 0x805DE528.",
+    "2672": "The selector returns the signed slot query result and calls the native menu height and draw-line helpers. The original 206.0 height and zero depth are present.",
+    "2696": "The TNowLoading constructor at 0x8001D3A8 copies the supplied Vec position and uses the native TObject initializer. The native method takes the place of the fork wrapper.",
+    "5665": "The choice-setting method at 0x80249078 uses the live scroll_offset[1] field at 0x6C, with the original immediate assignment and interpolated update branches.",
+    "5713": "The truncation helper retains the original zero comparison at 0x805E0DE0 and the same two floor expressions.",
+    "5774": "The board passes the current card-window text and layout 0xBB to the typed keyboard. set_sub_position and set_flag62_bit2 keep the upstream names and the fork call destinations 0x80131B54 and 0x80131A5C.",
+    "5779": "The combined information-board unit uses the same card-list scroll target helper with 223.0 and 184.0. Both values match the fork pool addresses.",
+    "5975": "The technical disk details method applies the original 152.0 value at the sprite UV setter. The float pool at 0x805DCDE8 is exact.",
+    "6052": "The native TWindowMenuTeamStatus constructor links at 0x80338F3C. It passes the heading, layout 0xB0, window ID 0x40 and the descriptor at 0x804EF4CC to the native TWindowShop base.",
+    "6062": "The historical forwarding header exposed the native status window. TWindowMenuTeamStatus is declared through the existing window header and its constructor has the same linked address 0x80338F3C.",
+    "6064": "The old raw factory declaration has been replaced by the native declaration through TWindowMenuTeamStatus, with the same constructor address 0x80338F3C."
+  },
+  "historical_rows_open": 618,
+  "retail_float_confirmations": {
+    "0x805DCDE8": 152.0,
+    "0x805E0DE0": 0.0,
+    "0x805DFDD8": 223.0,
+    "0x805DFDDC": 184.0,
+    "0x805DE528": 0.0,
+    "0x805DEF40": 206.0,
+    "0x805DEF44": 0.0,
+    "0x805DF0B0": 1.0,
+    "0x805DF0B4": 0.85
+  },
+  "validation": {
+    "front": {
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+      "source_report_sha256": "b6b75dcb195a3a2ace2c3586eb0c05977064d701eae8f389e43acd2e82783d37",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "changed_function_labels_from_previous_tree": 0
+    },
+    "resources": {
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+      "source_report_sha256": "ee8e25b7f85874c65b46e14db927225e4e5e45cb245fec04bdf3971d8bb82042",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "changed_function_labels_from_previous_tree": 0
+    },
+    "combat": {
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+      "source_report_sha256": "f2ca31fa6d01d4d2259c1bb620c48aacaf8950f796669f6c4c2a56e0ff0d08e2",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "changed_function_labels_from_previous_tree": 0
+    },
+    "full": {
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+      "source_report_sha256": "f2ca31fa6d01d4d2259c1bb620c48aacaf8950f796669f6c4c2a56e0ff0d08e2",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "changed_function_labels_from_previous_tree": 0
+    },
+    "layer": {
+      "check_sha256": "b4d93864c6c48b13733e46b7a31e201ac7304fc2d7522904a7365cf68fa6b312",
+      "source_report_sha256": "f2ca31fa6d01d4d2259c1bb620c48aacaf8950f796669f6c4c2a56e0ff0d08e2",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "changed_function_labels_from_previous_tree": 0
+    },
+    "single_review": {
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+      "source_report_sha256": "f2ca31fa6d01d4d2259c1bb620c48aacaf8950f796669f6c4c2a56e0ff0d08e2",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "changed_function_labels_from_previous_tree": 0
+    }
+  },
+  "fork_overlay_paths": 130,
+  "fork_overlay_sha256": "0837fcbd628b12a65ae72fcac20c34c6eeb9890cbe6189d7e2d2fb22fe4bbdf3",
+  "retained_symbols": 27031,
+  "tool_tests": 294,
+  "fork_layer_tests": 11,
+  "host_checks": [
+    "./vector_math_fallbacks",
+    "./item_factory_callbacks",
+    "./loader_transfer",
+    "./ginja_parameter_callbacks",
+    "./exi_ethernet_fallbacks"
+  ],
+  "public_refs_changed": false
+}

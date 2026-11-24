@@ -1,0 +1,407 @@
+{
+  "source": "15201748bd3a0450053d84001294eca3e6de3a01",
+  "previous_source": "28b1b83ec01487331f6a9597faa0ef3f2c2c24e0",
+  "upstream": "2ea1c02d4c0b7fa917ede02beac56fcaf3f4b87e",
+  "paths": [
+    "config/GPOE8P/psov3/config.yml",
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/ui/window/TWindowSoundBalance.h",
+    "src/pso/ui/window/TWindowSoundBalance.cpp"
+  ],
+  "sound_review": {
+    "head": "a94738117b5df43522088adc726ffb98bd82644f",
+    "base": "773c658eccd69066f6592db2bc4cfc6add2fbb02",
+    "paths": 166,
+    "commits": [
+      "02c918ce3b8548ea80f772f61b4dad5ba6535630",
+      "dfd193036e5c8030eef626744c71043a7379ba3b",
+      "73d8c09f66853788ef0b51f97b2f5a827467c536",
+      "a94738117b5df43522088adc726ffb98bd82644f"
+    ],
+    "replay_map": [
+      {
+        "donor": "ed223ecfca2ba45ababdcd78576a48829d2750de",
+        "head": "02c918ce3b8548ea80f772f61b4dad5ba6535630",
+        "tree": "1d6176eca9569dc994d171ccb2ef55afb97eb02a"
+      },
+      {
+        "donor": "07922072f1940a7781d831b87969d4987d53d648",
+        "head": "dfd193036e5c8030eef626744c71043a7379ba3b",
+        "tree": "341ccf3edf34f84c4750dc5fa91f1d33f541717e"
+      }
+    ],
+    "components": [
+      "2026-11-22-upstream-365-positional-sound-validation.json",
+      "2026-11-22-upstream-365-one-shot-sound-validation.json"
+    ]
+  },
+  "residual": {
+    "rehearsal_head": "b92f41bf71f80d92f3af1a4c7510ff3440192946",
+    "before": 482,
+    "after": 381,
+    "newly_identical_paths": [
+      "include/pso/audio/SoundRequestVoice.h",
+      "include/pso/system/SoundEffect.h",
+      "include/pso/unk/TLobby_8023F734.h",
+      "include/pso/unk/text_800D8830.h",
+      "src/pso/boss/darkfalz/TBoss4Type1.cpp",
+      "src/pso/boss/darkfalz/TBoss4Type3.cpp",
+      "src/pso/boss/darkfalz/TBoss4Zanzo.cpp",
+      "src/pso/boss/galgryphon/TBoss5GryphonLightningWing.cpp",
+      "src/pso/boss/galgryphon/TBoss5GryphonShockWave.cpp",
+      "src/pso/boss/volopt/TBoss3VoloptCore.cpp",
+      "src/pso/boss/volopt/TBoss3Volopt_800D8ACC.cpp",
+      "src/pso/effect/TEffGuard.cpp",
+      "src/pso/effect/item/TItemEffArmor.cpp",
+      "src/pso/effect/item/TItemEffShield.cpp",
+      "src/pso/enemy/balclaw/TObjEneBalClawBody.cpp",
+      "src/pso/enemy/balclaw/TObjEneBalClawClaw.cpp",
+      "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp",
+      "src/pso/enemy/darkgunner/DarkGunner.cpp",
+      "src/pso/enemy/deldepth/TObjEneDelDepth.cpp",
+      "src/pso/enemy/dubchik/TObjEneDubchik.cpp",
+      "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp",
+      "src/pso/enemy/flower/TObjEneRe2Flower_800C20D0.cpp",
+      "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp",
+      "src/pso/enemy/gigue/TObjEneMe1GiGueBarrier.cpp",
+      "src/pso/enemy/gyaranzo/TObjGyaranzoMissile_800D40D8.cpp",
+      "src/pso/enemy/mericarol/TObjEneBm9Mericarol.cpp",
+      "src/pso/enemy/morfos/TObjEneMorfos.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarms.cpp",
+      "src/pso/enemy/panarms/TObjEnePanarms_800DCEB8.cpp",
+      "src/pso/enemy/slime/TObjEneSlimeTailAttack.cpp",
+      "src/pso/item/item_pmt.cpp",
+      "src/pso/object/TObjDoaEx01.cpp",
+      "src/pso/object/ambient/TObjLight_8022F9E8.cpp",
+      "src/pso/object/ambient/TObjLight_80236D60.cpp",
+      "src/pso/object/collision/TObjFogCollision.cpp",
+      "src/pso/object/door/TObjDoorKey.cpp",
+      "src/pso/object/fence/TOVS2Wall01.cpp",
+      "src/pso/object/lobby/LobbyGoGoBall.cpp",
+      "src/pso/object/warp/TObjCityMainWarp_80186F84.cpp",
+      "src/pso/object/wreck/TOWreckAncient.cpp",
+      "src/pso/player/TObjPlayer_800DCC90.cpp",
+      "src/pso/technique/TTecAnti.cpp",
+      "src/pso/technique/TTecLuker.cpp",
+      "src/pso/technique/TTecMegid_80235B24.cpp",
+      "src/pso/technique/TTecReverser.cpp",
+      "src/pso/technique/TTecSifta.cpp",
+      "src/pso/technique/TTecSlicer.cpp",
+      "src/pso/ui/TUnk_804EE458.cpp",
+      "src/pso/ui/charcreate/TChCrCharSelect.cpp",
+      "src/pso/ui/chat/TWindowSubSymbolChatParts.cpp",
+      "src/pso/ui/city/TMedicalCenterSequence.cpp",
+      "src/pso/ui/city/TShopArmorListWindow.cpp",
+      "src/pso/ui/city/TShopEquipmentListWindow.cpp",
+      "src/pso/ui/city/TShopEquipmentSellWindow.cpp",
+      "src/pso/ui/city/TShopJudgmentItemWindow.cpp",
+      "src/pso/ui/city/TShopKeepItemWindow.cpp",
+      "src/pso/ui/frontend/TAdChrSelPlyPlateGC.cpp",
+      "src/pso/ui/frontend/TAdMultiOkGC.cpp",
+      "src/pso/ui/frontend/TAdMultiPlyChrSelectGC.cpp",
+      "src/pso/ui/frontend/TAdSelectCurGC_802AED98.cpp",
+      "src/pso/ui/frontend/TAdSelectGameModeGC_802C4748.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC.cpp",
+      "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801C50A8.cpp",
+      "src/pso/ui/frontend/TAdStorySelectGC_802C3284.cpp",
+      "src/pso/ui/frontend/TAdWarningBaseGC.cpp",
+      "src/pso/ui/hud/TMainCursor.cpp",
+      "src/pso/ui/window/TWindowChoiceSetting.cpp",
+      "src/pso/ui/window/TWindowDD_8034725C.cpp",
+      "src/pso/ui/window/TWindowGetComCard.cpp",
+      "src/pso/ui/window/TWindowInputNumber.cpp",
+      "src/pso/ui/window/TWindowKeyBoardSoft.cpp",
+      "src/pso/ui/window/TWindowMainMenu_802AD538.cpp",
+      "src/pso/ui/window/TWindowOptionCtrl.cpp",
+      "src/pso/ui/window/TWindowOptionCtrl_8034C384.cpp",
+      "src/pso/ui/window/TWindowShortListCtrl_8026E7DC.cpp",
+      "src/pso/ui/window/TWindowSnapShot.cpp",
+      "src/pso/ui/window/TWindowSoundBalance.cpp",
+      "src/pso/ui/window/TWindowSubAreaMap.cpp",
+      "src/pso/ui/window/TWindowSubComCard_80244774.cpp",
+      "src/pso/ui/window/TWindowSubCustomEquip.cpp",
+      "src/pso/ui/window/TWindowSubCustomSelect.cpp",
+      "src/pso/ui/window/TWindowSubEquip_80277DF8.cpp",
+      "src/pso/ui/window/TWindowSubItem.cpp",
+      "src/pso/ui/window/TWindowSubLog.cpp",
+      "src/pso/ui/window/TWindowSubMag.cpp",
+      "src/pso/ui/window/TWindowSubMagPhoton.cpp",
+      "src/pso/ui/window/TWindowSubQuestBoardSelect.cpp",
+      "src/pso/ui/window/TWindowSubStatusDisp_8025737C.cpp",
+      "src/pso/ui/window/TWindowSubTechnique.cpp",
+      "src/pso/unk/TLobby_800726F0.cpp",
+      "src/pso/unk/TLobby_80226070.cpp",
+      "src/pso/unk/TLobby_80227AA0.cpp",
+      "src/pso/unk/TLobby_8023F734.cpp",
+      "src/pso/unk/TLobby_802409AC.cpp",
+      "src/pso/unk/TLobby_80299C4C.cpp",
+      "src/pso/unk/text_800C2CE0.cpp",
+      "src/pso/unk/text_800D8830.cpp",
+      "src/pso/unk/text_800D8988.cpp",
+      "src/pso/unk/text_8026C664.cpp",
+      "src/pso/weapon/TUnk_804A3070.cpp",
+      "src/pso/weapon/TUnk_804A69DC.cpp"
+    ]
+  },
+  "combined_paths_from_upstream": 1211,
+  "validation": {
+    "source": {
+      "baseline": "28b1b83ec01487331f6a9597faa0ef3f2c2c24e0",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x80270860",
+          "before": "apply_balance__19TWindowSoundBalanceFPv",
+          "after": "apply_balance__19TWindowSoundBalanceFP17WindowDrawContext"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "ec8c5fb522fbddae49130010a86324dbd0277b994db3aa52e637a15349403972",
+      "report_sha256": "b6337ebe2af9ab0f562ef4c3cb09d313d531469c35c853d71ef446a589879ac8"
+    },
+    "layer": {
+      "baseline": "15201748bd3a0450053d84001294eca3e6de3a01",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "804346603b2c733160bf538675122c8896411c60665712bc5f2b347a2d1f58df",
+      "report_sha256": "b6337ebe2af9ab0f562ef4c3cb09d313d531469c35c853d71ef446a589879ac8"
+    },
+    "review-final": {
+      "baseline": "773c658eccd69066f6592db2bc4cfc6add2fbb02",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x8023F944",
+          "before": "alloc_looping_sound_slot__FUllPCvll",
+          "after": "alloc_looping_sound_slot__FUlPCvPC3Vecll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8023FA8C",
+          "before": "alloc_one_shot_sound_slot__FUlPCvll",
+          "after": "alloc_one_shot_sound_slot__FUlPC3Vecll"
+        },
+        {
+          "module": "psov3",
+          "address": "0x80270860",
+          "before": "apply_balance__19TWindowSoundBalanceFPv",
+          "after": "apply_balance__19TWindowSoundBalanceFP17WindowDrawContext"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "fe9759669a0d523becebc935405054e3aa6e6b3d6768601429a46cfff0d0edb2",
+      "report_sha256": "7daa8a99e7d34303ea0b88569b85ec62de208e119e43f2ec1db377b4e2923738"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "7da241d13cb57a23f457ea8346d38be01a19dcf41f1fb5979a376a71045d1f99"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "456bba01009f9f2904171c845cf6dbb8094fdac27193464a0771cf94afffb12e"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "exact_units": {
+    "source": {
+      "pso/unk/TLobby_80226070": {
+        "functions": 24,
+        "data_bytes": 1792
+      },
+      "pso/unk/TLobby_802409AC": {
+        "functions": 47,
+        "data_bytes": 2312
+      },
+      "pso/ui/window/TWindowSoundBalance": {
+        "functions": 11,
+        "data_bytes": 256
+      }
+    },
+    "layer": {
+      "pso/unk/TLobby_80226070": {
+        "functions": 24,
+        "data_bytes": 1792
+      },
+      "pso/unk/TLobby_802409AC": {
+        "functions": 47,
+        "data_bytes": 2312
+      },
+      "pso/ui/window/TWindowSoundBalance": {
+        "functions": 11,
+        "data_bytes": 256
+      }
+    },
+    "review-final": {
+      "pso/unk/TLobby_80226070": {
+        "functions": 24,
+        "data_bytes": 1792
+      },
+      "pso/unk/TLobby_802409AC": {
+        "functions": 47,
+        "data_bytes": 2312
+      },
+      "pso/ui/window/TWindowSoundBalance": {
+        "functions": 11,
+        "data_bytes": 256
+      }
+    }
+  },
+  "runtime": {
+    "direct_calls": {
+      "0x80226578": {
+        "entry": "play_persistent_sound",
+        "count": 195,
+        "sha256": "52b50721738810914b99b7e79f4a75ed0d5349744d0d16c257e553abad5541ee"
+      },
+      "0x8022675C": {
+        "entry": "play_sound_effect",
+        "count": 1198,
+        "sha256": "9bb937d3ee072fddafdbd87e87e468ae612a4f3e5eb7947a21283532b6ead432"
+      }
+    },
+    "address_encoding": "Sorted big-endian 32-bit instruction addresses",
+    "probe-audio-owner": {
+      "cases": "lobby gain, slot pitch, sound balance draw and text calls passed",
+      "images": 3,
+      "log_sha256": "9e8d3a9a6b55552dfd614d77583131d3a0b4aed91b3c6e08d08ecb00c595f7cc"
+    },
+    "probe-audio-owner-review": {
+      "cases": "lobby gain, slot pitch, sound balance draw and text calls passed",
+      "images": 2,
+      "log_sha256": "a10e3d996c7cf3a046a3f62b5f70c45e4549907d25d0aafd78b0034e61ab3eb1"
+    },
+    "probe-persistent": {
+      "cases": "persistent slot checks and four dispatch routines on all 36 floors passed",
+      "images": 2,
+      "log_sha256": "10ba1f63a3ce3434a505704a46dd6243b3d01a58c96a060942a61927242c3823"
+    },
+    "probe-voice": {
+      "cases": "voice reuse, distinct identity and full-pool rejection passed",
+      "images": 2,
+      "log_sha256": "7b3ea85f45968cedc7d90067c885e13d5387f86ee6b4f10110825c8b7e31d77a"
+    },
+    "probe-floor": {
+      "cases": "recent one-shot reuse, new position, and full-pool rejection passed",
+      "images": 2,
+      "log_sha256": "2dc6e3f2f6e630d477be260bb6d1508dbe586b08fb4619255bb136a05d5248bc"
+    },
+    "probe-one-shot": {
+      "cases": "8 one-shot sound cases passed",
+      "images": 2,
+      "log_sha256": "ee76fb16412841f3f87185fd557b1bd42cc0b3af2bd484eb0c4ec395c5dd4daa"
+    },
+    "owner_probe_sha256": "d1b4a988210d81cf98c2e84a9c867ce475ea52705c084b578d514019b5efafa2"
+  },
+  "historical": {
+    "decisions": {
+      "2728": {
+        "closed": true,
+        "reason": "The native lobby owner retains all nine historical hunks: the typed pitch declaration and signed slot guard, the native output-mode method and wrapper, four layout globals and both exact gain constants. The runtime checks cover all three output modes and both limits of the slot guard.",
+        "needles": [
+          "void set_sound_slot_pitch(s32 slot, s32 pitch, s32 duration);",
+          "if (TLobby::init_sound_mode() == 1)",
+          "set_sound_slot_pitch(slot, pitch, duration);",
+          "(slot >= 0) && (slot < 0x28)",
+          "return TLobby::init_sound_mode();",
+          "2.3622048f *",
+          "0.42333332f *",
+          "int lobby_layout_offset_c;",
+          "s32 lbl_805D629C;",
+          "s32 lbl_805D62A0;",
+          "s32 lobby_layout_start_position;"
+        ],
+        "path": "src/pso/unk/TLobby_80226070.cpp",
+        "historical_hunks": 9
+      },
+      "5656": {
+        "closed": false,
+        "reason": "The typed draw context and direct label-width calls retain the original register arguments, row selection, label centering and saved gain dispatch. The historical constructor position still crosses an integer boundary at the option-screen call.",
+        "needles": [
+          "apply_balance(WindowDrawContext *context)",
+          "draw_selection_bar(context, entry, is_active());",
+          "calc_text_width(label)",
+          "measure_message_text_width_default(e);",
+          "TWindowSoundBalance::TWindowSoundBalance(saddr arg1)"
+        ],
+        "path": "src/pso/ui/window/TWindowSoundBalance.cpp",
+        "historical_hunks": 16
+      }
+    },
+    "open_rows": 262,
+    "comparison_sha256": "622196a09510139fba1af9ce4564667aa5d5d63ceea8c78287e3805708d62f1d"
+  },
+  "fork_workspace": {
+    "trial": "01bb1d08ce3b020f2c755560a0846b052bab1d90",
+    "overlay_paths": 130,
+    "force_active_count": 27033,
+    "keep_list_updates": [
+      {
+        "module": "psov3",
+        "address": "0x80270860",
+        "before": "apply_balance__19TWindowSoundBalanceFPv",
+        "after": "apply_balance__19TWindowSoundBalanceFP17WindowDrawContext"
+      }
+    ],
+    "materialized_tree": "13273a3f3d4e71ebb081d58ab37bb4bbe170c235",
+    "archive_sha256": "f5845b79abd20386ed1f41143d2a90938ffadb593c5d27a31c1f169258d13a7a"
+  }
+}

@@ -1,0 +1,365 @@
+{
+  "source": "2ba14c9b1013a6dcbc80036d94c437ce2f370479",
+  "movement_source": "eecf9e89deba28344b4aa39919d8467e8dc96b68",
+  "previous_source": "017a2a87d4b29f51354082fc982a162c30f48814",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "flight_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/enemy/dd/TObjEneDD_ST.h",
+    "include/pso/enemy/fly/TObjEneBm3Fly.h",
+    "include/pso/enemy/gee/TObjEneMe1Gee.h",
+    "src/pso/enemy/dd/TObjEneDD.cpp",
+    "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+    "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+    "src/pso/enemy/gee/TObjEneMe1Gee.cpp"
+  ],
+  "phase_factory_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/boss/olgaflow/TBoss6Type2.h",
+    "include/pso/boss/olgaflow/TBoss6Type2_8036A92C.h",
+    "src/pso/boss/olgaflow/TBoss6DPB.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2_802BE588.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2_8036A92C.cpp"
+  ],
+  "combined_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/boss/olgaflow/TBoss6Type2.h",
+    "include/pso/boss/olgaflow/TBoss6Type2_8036A92C.h",
+    "include/pso/enemy/dd/TObjEneDD_ST.h",
+    "include/pso/enemy/fly/TObjEneBm3Fly.h",
+    "include/pso/enemy/gee/TObjEneMe1Gee.h",
+    "src/pso/boss/olgaflow/TBoss6DPB.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2_802BE588.cpp",
+    "src/pso/boss/olgaflow/TBoss6Type2_8036A92C.cpp",
+    "src/pso/enemy/dd/TObjEneDD.cpp",
+    "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+    "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+    "src/pso/enemy/gee/TObjEneMe1Gee.cpp"
+  ],
+  "combined_paths_from_upstream": 1098,
+  "flight_replay_preview": {
+    "base": "ca5a3f1e2d",
+    "donor": "48fb8d6639",
+    "live": "017a2a87d4b29f51354082fc982a162c30f48814",
+    "paths": {
+      "config/GPOE8P/psov3/symbols.txt": "conflict",
+      "include/pso/enemy/EnemyPlacement.h": "conflict",
+      "include/pso/enemy/dd/EnemyGroundMovement.h": "separate owner comparison",
+      "include/pso/enemy/dd/TObjEneDD_ST.h": "conflict",
+      "include/pso/enemy/epsilon/TObjEneEpsilon.h": "same blob",
+      "include/pso/enemy/epsilon/TObjEneEpsilon_800B92AC.h": "conflict",
+      "include/pso/enemy/fly/TObjEneBm3Fly.h": "conflict",
+      "include/pso/enemy/fly/TObjEneBm3FlyNest.h": "same blob",
+      "include/pso/enemy/fly/TObjEneBm3FlyNest_CarryFly.h": "same blob",
+      "include/pso/enemy/gee/TObjEneMe1Gee.h": "clean",
+      "include/pso/enemy/gee/TUnk_8049387C.h": "same blob",
+      "include/pso/enemy/gigue/TObjEneMe1GiGue.h": "already mapped",
+      "src/pso/boss/dragon/TBoss1Dragon.cpp": "conflict",
+      "src/pso/boss/galgryphon/Boss5GryphonBehavior.cpp": "conflict",
+      "src/pso/boss/goldragon/TBoss8Dragon.cpp": "conflict",
+      "src/pso/enemy/canadin/TObjEneMe1Canadin.cpp": "conflict",
+      "src/pso/enemy/dd/TObjEneDD.cpp": "conflict",
+      "src/pso/enemy/epsilon/TObjEneEpsilonGuard_8035F5C8.cpp": "conflict",
+      "src/pso/enemy/fly/TObjEneBm3Fly.cpp": "conflict",
+      "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp": "conflict",
+      "src/pso/enemy/gee/TObjEneMe1Gee.cpp": "conflict",
+      "src/pso/enemy/gibon/TObjEneBm5GibonU.cpp": "conflict",
+      "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp": "conflict",
+      "src/pso/enemy/recon/TObjEneRecon.cpp": "conflict",
+      "src/pso/enemy/shinowa/TObjEneMe3Shinowa.cpp": "conflict",
+      "src/pso/enemy/sinowzoa/TObjEneMe3SinowZoa.cpp": "conflict",
+      "src/pso/enemy/stelth/TObjEneMe3Stelth.cpp": "already mapped",
+      "src/pso/enemy/wolf/TObjEneBm5Wolf.cpp": "conflict"
+    }
+  },
+  "validation": {
+    "source": {
+      "baseline": "017a2a87d4b29f51354082fc982a162c30f48814",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [
+        {
+          "module": "psov3",
+          "address": "0x800B225C",
+          "before": "create__13TObjEneBm3FlyFllPC3VecPC3Vec",
+          "after": "create__13TObjEneBm3FlyFP17TObjEneBm3FlyNestllPC3VecPC3Vec"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800B93C4",
+          "before": "fire_attack_a__12TObjEneDD_STFllf",
+          "after": "fire_attack_a__12TObjEneDD_STFP3Veclf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800B9434",
+          "before": "fire_attack_b__12TObjEneDD_STFllf",
+          "after": "fire_attack_b__12TObjEneDD_STFP3Veclf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800B94A4",
+          "before": "fire_attack_c__12TObjEneDD_STFllf",
+          "after": "fire_attack_c__12TObjEneDD_STFP3Veclf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x800CB5A0",
+          "before": "sub_800CB5A0__13TObjEneMe1GeeFl",
+          "after": "sub_800CB5A0__13TObjEneMe1GeeFUl"
+        },
+        {
+          "module": "psov3",
+          "address": "0x802BE0D4",
+          "before": "__ct__11TBoss6Type2FP7TObjectPl",
+          "after": "__ct__11TBoss6Type2FP7TObjectP15Boss6PhaseSpawn"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8035DC60",
+          "before": "create_dpb__11TBoss6Type2Fllf",
+          "after": "create_dpb__11TBoss6Type2FP7TObjectPC3Vecf"
+        },
+        {
+          "module": "psov3",
+          "address": "0x8036A98C",
+          "before": "create_flow_soul__11TBoss6Type2FPvPvll",
+          "after": "create_flow_soul__11TBoss6Type2FP7TObjectP3Vecll"
+        }
+      ],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "584886286b453444f380ec16c9d301fd9351eb8323f48ee4607065f72b342866",
+      "report_sha256": "ea6e8883a9887628dd55af335a944067c84b44a3ee871bf715e0878a26957ffb"
+    },
+    "layer": {
+      "baseline": "2ba14c9b1013a6dcbc80036d94c437ce2f370479",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "52e7b7c44c895ea98e91fe1a9ea21805885753879d1966b15b6b684ebe565d0b",
+      "report_sha256": "ea6e8883a9887628dd55af335a944067c84b44a3ee871bf715e0878a26957ffb"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "282f1b0b21584966b49dbdce614b0064b15de2427ed39137f2756246d4dba778"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "a88d4f80cf44169daef849d56f79503054bee096290f240222eab3322ee9ed19"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "4fdc5ebed65c94dbac14b0ec763501f0a9d5ddfa206877b5934e86804d618c7d"
+    }
+  },
+  "runtime": {
+    "images": [
+      "retail",
+      "source",
+      "materialized fork workspace"
+    ],
+    "probes": {
+      "flight": {
+        "checks": "movement destinations, Fly family lifecycle, Gee color state and Gi Gue parameters",
+        "program_sha256": "a144c67dd17d8e4606db608d7731a8c9cfa8e743891dcf2248e98db283534132",
+        "log_sha256": "f237861c21ba0641f67e9d13b4af9eae715c1c24f3f035b5d5ce35f52c55053b"
+      },
+      "phase-factories": {
+        "checks": "phase-two spawn, effect construction, and active Mag shower positions",
+        "program_sha256": "75e3ff6d3d00de083e98b13c6671457f551a6d4f32248b1b68a67626ca061f94",
+        "log_sha256": "9f9864dbc9a63bdd97a3a7c8894f01a503f188caef7ace75e28629d5edbb96a5"
+      }
+    }
+  },
+  "historical": {
+    "closed_rows": [
+      {
+        "row": 2517,
+        "fork_path": "src/pso/misc/TChCrTagPlBack.cpp",
+        "owners": [
+          "src/pso/ui/charcreate/TChCrTagPlBack.cpp",
+          "src/pso/ui/window/TWindowSubComCard_802A559C.cpp"
+        ],
+        "detail": "The native tag constructor assigns the class-name pointer directly. The original position-offset method now lives with the related Guild Card window code. Its 111.0f and 10.0f operands remain in that exact linked unit.",
+        "fork_delta_sha256": "b6aa8c158e787994eb8ff340edb22dc407bc11e608170255fff5240a5b140229",
+        "owner_blobs": {
+          "src/pso/ui/charcreate/TChCrTagPlBack.cpp": "f0e078bb2e89346c604862d529f7454846ee360c",
+          "src/pso/ui/window/TWindowSubComCard_802A559C.cpp": "a7a9a806e673c6da481297b9064bfb0c54a5a0ec"
+        }
+      },
+      {
+        "row": 3018,
+        "fork_path": "src/pso/player/TObjPlayer_80309D80.cpp",
+        "owners": [
+          "src/pso/effect/particle/TPlyFollowParticleCtrl.cpp"
+        ],
+        "detail": "The exact emitter forwards the const position and numeric effect ID through the shared ParticleFactory header. The original zero constant remains in the owning unit, where all three vector components are set to zero.",
+        "fork_delta_sha256": "8917e96d663a4eceee5422dfe751caaa1d089e8e39e01467f8a04250033c9154",
+        "owner_blobs": {
+          "src/pso/effect/particle/TPlyFollowParticleCtrl.cpp": "288d149cebfb9c997365e1d262ad5b57edec3694"
+        }
+      },
+      {
+        "row": 3648,
+        "fork_path": "src/pso/player/TItemWeaponFist.cpp",
+        "owners": [
+          "src/pso/weapon/TItemWeaponFist.cpp"
+        ],
+        "detail": "The exact fist effect uses the shared ParticleFactory declaration and sends the original position and effect ID 0x1D0. All 18 entries of the marker joint table are present at the original data address.",
+        "fork_delta_sha256": "dc14d949d24f0e0582de8650934e5bc814abbeb3fe45fd45abb9d5361d8343c1",
+        "owner_blobs": {
+          "src/pso/weapon/TItemWeaponFist.cpp": "8431357930d75c622e2698931836b673facd2928"
+        }
+      },
+      {
+        "row": 4110,
+        "fork_path": "src/pso/player/TObjPlayer_8010A050.cpp",
+        "owners": [
+          "src/pso/effect/item/TItemEffShield.cpp"
+        ],
+        "detail": "Both lookups use the native player. The area accessor retains upstream's get_area name at the same address, and the floor accessor gates the same branch. The particle call uses the shared declaration and typed position at +0x2FC.",
+        "fork_delta_sha256": "7f006e3c6292b475a5fdf8999a2c20465030c7b198d2b08e52fd30f5aa64f954",
+        "owner_blobs": {
+          "src/pso/effect/item/TItemEffShield.cpp": "67752d2d543d532d286f67077fcce1c48e62b004"
+        }
+      },
+      {
+        "row": 4167,
+        "fork_path": "src/pso/player/TObjPlayer_8033E910.cpp",
+        "owners": [
+          "src/pso/player/TObjPlayer_8033E910.cpp"
+        ],
+        "detail": "Both capture texture callers use TObjFish::set_global_param with a texture-list pointer. The original three projection constants remain local in the exact unit and have their retail encodings.",
+        "fork_delta_sha256": "e1892b30aab8632a86f4ec1b83d3e8dd5c2ec5e9dd142006daa9ea38a3b4b4ff",
+        "owner_blobs": {
+          "src/pso/player/TObjPlayer_8033E910.cpp": "10e404c7d660e0f16de56966a840147f577be594"
+        }
+      },
+      {
+        "row": 4489,
+        "fork_path": "src/pso/unk/text_80236EE8.cpp",
+        "owners": [
+          "src/pso/technique/TTecPlayerInfluence.cpp"
+        ],
+        "detail": "The native TTecCtrl distance-band method consumes the technique, level and slot. The three effects use the shared particle declaration with a Vec and the existing effect IDs.",
+        "fork_delta_sha256": "d78326d6cfd074ba5f9a3e8df433c87ba09f2fa8b10c76e730b2ca58d6e27f94",
+        "owner_blobs": {
+          "src/pso/technique/TTecPlayerInfluence.cpp": "aae867e5113599ff68ee283c1c7fefca1557c3b1"
+        }
+      },
+      {
+        "row": 4490,
+        "fork_path": "src/pso/unk/text_801D94C8.cpp",
+        "owners": [
+          "src/pso/unk/text_801D94C8.cpp"
+        ],
+        "detail": "The two C-linkage declarations and the implementation use the signed s8 type. The game's compiler sets plain char to signed, so the fork's spelling accepts the same signed byte and leaves both entry points unchanged.",
+        "fork_delta_sha256": "8cef24af006957e1d708b40695f070f02743cda0c3e133a1580a1c24ae7fcc81",
+        "owner_blobs": {
+          "src/pso/unk/text_801D94C8.cpp": "a79a67d7e2b48e34c1c4b9c69900eead154c2e5b"
+        }
+      },
+      {
+        "row": 5842,
+        "fork_path": "src/pso/misc/TWindowActionPalette_801C1890.cpp",
+        "owners": [
+          "src/pso/ui/window/TWindowActionPalette_801C1890.cpp"
+        ],
+        "detail": "All four mode and slot writes use the native ActionPaletteTag pointer and the shared helpers. The low byte and the original index are forwarded at the same call sites. The equipment query already uses the native item and both flag checks.",
+        "fork_delta_sha256": "8b7026a72f25bcfb6abb8196b851b832d343b45184c33545c7615e6a83eb3612",
+        "owner_blobs": {
+          "src/pso/ui/window/TWindowActionPalette_801C1890.cpp": "a12d0f9a68abb0d8d52fdb9ad2f6e05ae9f6dbbd"
+        }
+      }
+    ],
+    "scoped_rows": [
+      {
+        "row": 458,
+        "fork_path": "include/pso/enemy/TObjEneMe1Gee.h",
+        "owner": "include/pso/enemy/gee/TObjEneMe1Gee.h",
+        "evidence": "The original child factory and ground destination use their typed arguments. This is scoped evidence for the matching actor owner."
+      },
+      {
+        "row": 565,
+        "fork_path": "src/pso/enemy/TObjEneBm3FlyNest.cpp",
+        "owner": "src/pso/enemy/fly/TObjEneBm3FlyNest.cpp",
+        "evidence": "The original child factory and ground destination use their typed arguments. This is scoped evidence for the matching actor owner."
+      },
+      {
+        "row": 590,
+        "fork_path": "src/pso/enemy/TObjEneMe1Gee.cpp",
+        "owner": "src/pso/enemy/gee/TObjEneMe1Gee.cpp",
+        "evidence": "The original child factory and ground destination use their typed arguments. This is scoped evidence for the matching actor owner."
+      },
+      {
+        "row": 1076,
+        "fork_path": "src/pso/boss/TBoss6Type2.cpp",
+        "owner": "src/pso/boss/olgaflow/TBoss6Type2.cpp",
+        "evidence": "The phase-two constructor takes Boss6PhaseSpawn and forwards its real set data. The boss and both active Mag slots pass their positions to the typed shower factory. Soul factories and callers use native objects."
+      },
+      {
+        "row": 1114,
+        "fork_path": "src/pso/enemy/TObjEneBm3Fly.cpp",
+        "owner": "src/pso/enemy/fly/TObjEneBm3Fly.cpp",
+        "evidence": "The original child factory and ground destination use their typed arguments. This is scoped evidence for the matching actor owner."
+      }
+    ],
+    "open_rows": 353,
+    "verified_retail_data": {
+      "0x805ddff0": "42de000041200000",
+      "0x805df130": "00000000",
+      "0x804783b0": "3f76800000000000",
+      "0x805dfac8": "3f9111123f000000",
+      "0x804a2b50": "000000090000001200000030000000300000001200000012000000300000003000000030000000230000003000000030000000230000003000000012000000300000001200000012"
+    }
+  },
+  "fork_workspace": {
+    "trial": "20a9e980ef4647b1927bb0581bb2a0fa77971e52",
+    "overlay_paths": 130,
+    "updated_overlay_paths": [
+      "config/GPOE8P/psov3/config.yml"
+    ],
+    "archive_sha256": "70864af8efa0040f90019c2bfbe39c6aaacd4de5699947068476b0df9cae541c",
+    "materialized_tree": "a3a52db7a76dc2faab0c9116fe22489ac06a9edd",
+    "force_active": 27027
+  }
+}

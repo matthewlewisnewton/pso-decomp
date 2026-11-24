@@ -1,0 +1,23 @@
+original_group	source_review_branch	commit	changed_paths	validation
+radar-camera	great-merge/upstream/radar-camera	940a3997cdd7b499f89f4a699972180858956b84	20	Upstream checks and retail SHA-1 passed
+quest-cache	great-merge/upstream/quest-cache	f438bf695dbc9c3ebfa423f24acce31a0de52ee5	25	Stock checks and retail SHA-1 passed; quest cache, card operations and save images verified
+guild-card-chat	great-merge/upstream/guild-card-chat	9df0829de9b79eba7804e59f478f6569fa77932e	82	Upstream checks and retail SHA-1 passed
+archive-lifecycle	great-merge/upstream/archive-lifecycle	5cc35436e8cedfb13962de16e15fc5e4af5882f3	130	Stock checks and retail SHA-1 passed; movie REL lifetime, GVM file buffers, directory flags and named entries verified
+runtime-array-allocation	great-merge/upstream/runtime-array-allocation	d69da2f8d4dd7c8ae428bb061801317d5ff83bce	157	Upstream checks and retail SHA-1 passed
+link-verification				Fork-only linker tooling
+window-lists	great-merge/upstream/window-lists	00a67bf03d839b4bad38bb0b06b87442af6f1db9	55	Upstream checks and retail SHA-1 passed
+result-windows	great-merge/upstream/result-windows	b0d8f1e29c2920fb070a1d5f3cadcc849034fe35	51	Upstream checks and retail SHA-1 passed
+texture-strips	great-merge/upstream/texture-strips	7eef03d80f5563662ba810acf550e2c2e2a6b062	33	Upstream checks and retail SHA-1 passed
+raft-encounters	great-merge/upstream/raft-encounters	386c99255b0da791623ffb3694b9beea73fc54a0	21	Upstream checks and retail SHA-1 passed
+player-techniques	great-merge/upstream/player-techniques	cca246ec26209c1f9b4089aa7bc6e9d9e2019554	48	Upstream checks and retail SHA-1 passed; player combat, shared clamping, weapon canopy lifetimes and trail joints verified
+enemy-motion	great-merge/upstream/enemy-motion	60db6b0137c510fb60d9deca2cddcbaa6b5b70ee	74	Stock checks and retail SHA-1 passed; shared movement and target layout, player candidates and target validation verified
+battle-parameters	great-merge/upstream/battle-parameters	40a3122ce71953c0102d2d0e7ebf2626a199ae0b	79	Upstream checks and retail SHA-1 passed
+boss-effects	great-merge/upstream/boss-effects	b85422c3e074329e8d9c439d8f4cbe76b7e7c725	52	Stock checks and retail SHA-1 passed; Olga Flow frame lifetime, fade, rendering calls and triangle fan modes verified
+audio-streams	great-merge/upstream/audio-streams	50a99fbc96cc511f66c574e3fa51faaeb907c9bb	82	Upstream checks and retail SHA-1 passed; audio pitch and AFS loader checks passed; signed channel count and stream callers verified
+host-portability	great-merge/upstream/native-callbacks-sdk	d8c3791adee9d8a777bcc04bff425027f193651e	11	Upstream checks and retail SHA-1 passed; shared matrix constants verified
+collision-results	great-merge/upstream/collision-results	f71b7189b4f48d26b2b91691ce643e28ad82e61a	62	Stock checks and retail SHA-1 passed; contact pool, radial selection, downward queries, aliased projection and grounded effects verified
+memory-moves	great-merge/upstream/memory-moves	4b7aba01b4bcb020f5c96a124edca7c6764dfca4	117	Stock checks and retail SHA-1 passed; guarded byte and word copies, heap release and the data-file wrapper verified
+positional-sound	great-merge/upstream/positional-sound	cc23e836c9793f3629a5a85464a1cd91e7805016	259	Upstream checks and retail SHA-1 passed; one-shot, persistent, floor dispatch and particle checks passed
+particle-factories	great-merge/upstream/particle-factories	4137dcb168bf0811b64643844e59a842b92c4ede	188	Stock checks, retail SHA-1, factory boundary tests and compiled caller accounting passed
+demo-playback	great-merge/upstream/demo-playback	a4bc4be6f8e542ef658cb42d9c42418a2551c2f9	112	Stock checks, retail SHA-1, demo predicate cases and all compiled callers verified
+actor-camera-angles	great-merge/upstream/actor-camera-angles	23f4e183f5390f8c4f3988939a0ad984ae27402c	338	Stock checks and retail SHA-1 passed for all three builds. Camera playback, character vectors and all 99 shared position-copy calls verified.

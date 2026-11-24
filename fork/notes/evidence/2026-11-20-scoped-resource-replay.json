@@ -1,0 +1,676 @@
+{
+  "source": "9a27677f8696d4071f35ba68a01676e3280862b0",
+  "previous_source": "89b1ccecd758f7f4c6e15afdefcb981fc4dc56ce",
+  "landing": "3986c9a8083e8efd64f9a7bb02a2e9446ae1ca98",
+  "working_fork_build": "44d75d6bbee8e341a1e907acc218d0220f21b915",
+  "source_files": 33,
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "review_queue": {
+    "head": "da428093d140028a63ba3617a4f4eb7e952a939b",
+    "tree": "b3e49405b94a31d28fa0be45c74c0f769476cb49",
+    "previous": "901e8acd21568584735f9e57286ad34b268dfa0d",
+    "inputs": [
+      "b75c6f38a72228b2c5dc79f3198981f324474018",
+      "a4d7a8d2d908dc795ed2d7e929357d807e547955",
+      "5fec2a2794b87cf105d2c10473d187633a78ff1b",
+      "9a9d704b899922b8d4439be16dad34a85c23fd97",
+      "c3e7f90c1fd3d467ffef36be945b0d42d832cc59",
+      "d9e7ee7f3dfdbb7018ef9d50b394972b625fd72e",
+      "bb0a2828e3a31ddc506164215d32f5cd834ff234",
+      "cdfbc9ea796425975e1c113c20af714744ff6061",
+      "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
+      "f05429eb8e62847890602a9bf209cd4a59181a27",
+      "23248abd7b4e9a0aab2f9294690cff0da309d409",
+      "9bbc668b6121ceb6bc03f83427c98aaa931a0d31",
+      "a5aed4817c6718d9ea584baaa3f5f29fdd72d1ee",
+      "ac5aa002909d739722e26f4c3c9aef7f681b4425",
+      "12bdb900e51d333a482062d8cd0d9edab5a09a80",
+      "7bdbdaf5ba01344982227ac6b25f5315e800d9f5",
+      "f7a0122c73c00062937eac73bc56ea913630e522",
+      "9a277f6b061ec44eecf9395be11f3112c378a33c",
+      "ba580a76cbb0992a985eb947d48a178cbb36d1b2",
+      "04e0a137422e25a50c7ea48df4c35c9bcc7b14fb",
+      "182fb702e6a21c01f05a822fa77a49c1e484d0bd",
+      "0895f1cbb38bc55767e2428439e698a94b5bccf4",
+      "b18e36657fcb0ddb6227ce1cd1f5b869f53cdab8",
+      "8f26a3c7a707d4076bf84134da09276bc62991f9",
+      "501edde10f0683bd47469495199a13dd0ebeacb1",
+      "ae3da5ccb25c52f727ab0f41adcc3a3afbf0c4ef",
+      "592b79a3fb7e79a38452d656de25a7dc46d89868"
+    ],
+    "files": 2112,
+    "reviews": {
+      "standalone-ginja-texture-uploads": {
+        "head": "d41b1747d443d80e080cdd13eecbb2a379f8c315",
+        "previous": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 18,
+        "create": true,
+        "live_tip": null,
+        "queue_input": "12bdb900e51d333a482062d8cd0d9edab5a09a80",
+        "report": "/dev/shm/gm-ppp-frame-contract.xC7MSw/scoped-resource-wave/ginja-font-direct-report.json",
+        "strict": "/dev/shm/gm-ppp-frame-contract.xC7MSw/scoped-resource-wave/ginja-font-direct-check.json"
+      },
+      "standalone-enemy-registration-and-formations": {
+        "head": "23248abd7b4e9a0aab2f9294690cff0da309d409",
+        "previous": "debe0d671325de1605cddb35b551edbb229b036c",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 227,
+        "create": false,
+        "live_tip": "debe0d671325de1605cddb35b551edbb229b036c",
+        "queue_input": "23248abd7b4e9a0aab2f9294690cff0da309d409",
+        "report": "/dev/shm/gm-enemy-20565490-review/dark-standalone-report.json.gz",
+        "strict": "/dev/shm/gm-enemy-20565490-review/dark-standalone-strict.json"
+      },
+      "standalone-online-quest-transfers": {
+        "head": "d9e7ee7f3dfdbb7018ef9d50b394972b625fd72e",
+        "previous": "48d90158a3daa5ef7023d81191f926e3bafe7d96",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 118,
+        "create": false,
+        "live_tip": "48d90158a3daa5ef7023d81191f926e3bafe7d96",
+        "queue_input": "d9e7ee7f3dfdbb7018ef9d50b394972b625fd72e",
+        "report": "/dev/shm/gm-quest-dictionary-cache.l2grNs/direct-report.json.gz",
+        "strict": "/dev/shm/gm-quest-dictionary-cache.l2grNs/direct-check.json"
+      },
+      "standalone-equipment-and-item-list-windows": {
+        "head": "f05429eb8e62847890602a9bf209cd4a59181a27",
+        "previous": "282871cc20b1504be1e2df79db96303bb7889989",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 532,
+        "create": false,
+        "live_tip": "282871cc20b1504be1e2df79db96303bb7889989",
+        "queue_input": "f05429eb8e62847890602a9bf209cd4a59181a27",
+        "report": "/dev/shm/gm-speech-window-20261120/direct/report.json.gz",
+        "strict": "/dev/shm/gm-speech-window-20261120/direct/strict.json"
+      }
+    },
+    "replays": {
+      "ginja": {
+        "canonical": "eb2e1c0499de416cb1d2a197b9b3f1ea7496c25f",
+        "standalone": "d41b1747d443d80e080cdd13eecbb2a379f8c315",
+        "queue": "71375d5b6859fed34f5ff6f34077dea5512cecde"
+      },
+      "dark": {
+        "canonical": "6d9868538aa4bdc3c0783b782efa598f5fc497ea",
+        "standalone": "23248abd7b4e9a0aab2f9294690cff0da309d409",
+        "queue": "82dab6d2f596727f3ed5b5784ce926b61a37e89a"
+      },
+      "quest": {
+        "canonical": "2156f46ddf8c6bdaca5bdcfb58f80ed30963ff87",
+        "standalone": "d9e7ee7f3dfdbb7018ef9d50b394972b625fd72e",
+        "queue": "eb0de95a4a89afe41e512f62a91ff500294344dc"
+      },
+      "speech": {
+        "canonical": "f432b60470ec4ba0149c0cbbee92be79d09701b2",
+        "standalone": "f05429eb8e62847890602a9bf209cd4a59181a27",
+        "queue": "4ccbbfb4ce64736d9d0a7bab88da6c5b0fe51ed4"
+      }
+    },
+    "increment": 50
+  },
+  "reviews": {
+    "standalone-ginja-texture-uploads": {
+      "head": "d41b1747d443d80e080cdd13eecbb2a379f8c315",
+      "previous": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 18,
+      "create": true,
+      "live_tip": null,
+      "queue_input": "12bdb900e51d333a482062d8cd0d9edab5a09a80",
+      "report_sha256": "3be01c6fcf4bfeab5b2606641184f787f1f15e0e5b8f6a5608822b09be68af14",
+      "strict_sha256": "9c615f959fa1a7bf9bb3f5f91339497318f3273f801c2308e9946f3f6ba960a9"
+    },
+    "standalone-enemy-registration-and-formations": {
+      "head": "23248abd7b4e9a0aab2f9294690cff0da309d409",
+      "previous": "debe0d671325de1605cddb35b551edbb229b036c",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 227,
+      "create": false,
+      "live_tip": "debe0d671325de1605cddb35b551edbb229b036c",
+      "queue_input": "23248abd7b4e9a0aab2f9294690cff0da309d409",
+      "report_sha256": "9edd9002570c40cd95910dbcc7c3a5dd802d59b1e1e8a5b08850f1851796d6b3",
+      "strict_sha256": "3110506b4bf977223b76dda49aaca5124d6bae83a49767dc91a807b4ccf4649b"
+    },
+    "standalone-online-quest-transfers": {
+      "head": "d9e7ee7f3dfdbb7018ef9d50b394972b625fd72e",
+      "previous": "48d90158a3daa5ef7023d81191f926e3bafe7d96",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 118,
+      "create": false,
+      "live_tip": "48d90158a3daa5ef7023d81191f926e3bafe7d96",
+      "queue_input": "d9e7ee7f3dfdbb7018ef9d50b394972b625fd72e",
+      "report_sha256": "e6beada888f2a9c94dd6494758dc12f5c06feeb41073005a594dc2442515331b",
+      "strict_sha256": "0b74701f10bed7663542a9e6abe8c36e74fd131e2b2d0e142336aa876c697ace"
+    },
+    "standalone-equipment-and-item-list-windows": {
+      "head": "f05429eb8e62847890602a9bf209cd4a59181a27",
+      "previous": "282871cc20b1504be1e2df79db96303bb7889989",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 532,
+      "create": false,
+      "live_tip": "282871cc20b1504be1e2df79db96303bb7889989",
+      "queue_input": "f05429eb8e62847890602a9bf209cd4a59181a27",
+      "report_sha256": "3a9c4ccfaa0830265085b8e59e5a61de75ac74ac3ece63212bad29307c71484e",
+      "strict_sha256": "ac615cc5efe81e37d2c5c1fd5fb3eab6b7957ddc85e8a1ae97ffb3531911324e"
+    }
+  },
+  "source_audit": {
+    "source": "9a27677f8696d4071f35ba68a01676e3280862b0",
+    "previous": "89b1ccecd758f7f4c6e15afdefcb981fc4dc56ce",
+    "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "entries": [
+      {
+        "row": 2129,
+        "historical_path": "include/pso/TNECFontEORFunction.h",
+        "historical_blob": "37ace42fe7988998c4d38176879c48cd620066f9",
+        "owners": {
+          "include/pso/ui/font/TNECFontEORFunction.h": "1b3e44a0db9876ac1d966e0e11d5d54ffa8182c6",
+          "src/pso/ui/font/TNECFontEORFunction.cpp": "36b980699bc5f86d210756856fcf3dfe5cc8e795",
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80145778.cpp": "923e9ca3cb087312ab39ff22d1526b38f0e072ac"
+        },
+        "proofs": [
+          {
+            "group": "ginja-source",
+            "evidence": "The native font header declares the original palette, unsigned upload flags, glyph generation byte, derived font object, texture list and two texture entries. Their two definitions share those types and retain the original constructor, destructor and task entry points.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2271,
+        "historical_path": "src/pso/system/TNECFontEORFunction.cpp",
+        "historical_blob": "bb18229adf4720b3dcd867a3a00d74f9caf7e4b9",
+        "owners": {
+          "src/pso/ui/font/TNECFontEORFunction.cpp": "36b980699bc5f86d210756856fcf3dfe5cc8e795",
+          "include/pso/ui/font/TNECFontEORFunction.h": "1b3e44a0db9876ac1d966e0e11d5d54ffa8182c6",
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80145778.cpp": "923e9ca3cb087312ab39ff22d1526b38f0e072ac"
+        },
+        "proofs": [
+          {
+            "group": "ginja-source",
+            "evidence": "The consolidated font owner retains all 191 character advances, the 8-byte two-entry texture list at 0x804A74E8, the run task at 0x801449FC, and the destructor at 0x80144A70. The run task uses the original flags for the cache flush and TLUT upload and increments the generation byte when required.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 2331,
+        "historical_path": "src/pso/unk/text_80145804.cpp",
+        "historical_blob": "765955ca7fb2eb79501adc5c2d6d22418ee3d5c9",
+        "owners": {
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80145778.cpp": "923e9ca3cb087312ab39ff22d1526b38f0e072ac",
+          "include/pso/ui/font/TNECFontEORFunction.h": "1b3e44a0db9876ac1d966e0e11d5d54ffa8182c6",
+          "include/pso/render/GinjaTextureInput.h": "ddd5fd6b1592dd499b2bc1f50a96df4486c9d035"
+        },
+        "proofs": [
+          {
+            "group": "ginja-source",
+            "evidence": "The native loader at 0x80145804 opens S18all04.fon at the original disc helper, configures both 0x24-byte texture inputs, uploads their entries and clears the original pixel spans. It keeps the 0x100 and 0xB40 array allocations, the glyph table loops and native font constructor. The shared header now preserves its derived owner and unsigned upload flags.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4998,
+        "historical_path": "include/pso/system/GinjaMaterialState.h",
+        "historical_blob": "8f87663a03b329815da45bf294cd440162d9238f",
+        "owners": {
+          "include/pso/render/GinjaMaterialState.h": "19d49b360b5e420b7abe7586caaf884c3ffa254b",
+          "src/pso/object/door/TObjDoorJung_8023DBEC.cpp": "c4a07f40a9306c79ea01f3a49355b445a39e45ca",
+          "include/pso/render/GvmTextureArchive.h": "474a56bae3b8c7e90d6e387c7db5fad5ed108a90"
+        },
+        "proofs": [
+          {
+            "group": "ginja-source",
+            "evidence": "The shared Ginja layout retains the original +0x20 surface pixel pointer and the typed list name lookup. The exact 0x8023DBEC implementation takes its actual list and const name, tests a null list and null entries, and keeps the first matching index or -1. The active entry field keeps the upstream value04 spelling.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5966,
+        "historical_path": "src/pso/misc/TWindowSubStatusDisp_80144B14.cpp",
+        "historical_blob": "b5cc930e0f64082f130f87daab50907f20922a3b",
+        "owners": {
+          "src/pso/ui/font/TNECFontEORFunction.cpp": "36b980699bc5f86d210756856fcf3dfe5cc8e795",
+          "include/pso/ui/font/TNECFontEORFunction.h": "1b3e44a0db9876ac1d966e0e11d5d54ffa8182c6",
+          "include/pso/render/GinjaMaterialState.h": "19d49b360b5e420b7abe7586caaf884c3ffa254b"
+        },
+        "proofs": [
+          {
+            "group": "ginja-source",
+            "evidence": "The consolidated status gauge uses the shared typed font list and generation state. The existing u16 glyph enters the exact cached-glyph lookup directly, and draw_menu_font_string passes the mapped glyph, quad and color through the native helper. The fake texture-list overlay is absent from the active owner.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 583,
+        "historical_path": "src/pso/enemy/TObjEneDarkGunCenter.cpp",
+        "historical_blob": "2d06210916e5d5f4f3968dc68312e298a75a8626",
+        "owners": {
+          "src/pso/enemy/darkgunner/TObjEneDarkGunCenter.cpp": "4305990ac9b137c33d69ca71ff441cbf8e1cd21a"
+        },
+        "proofs": [
+          {
+            "group": "dark-source",
+            "evidence": "Native center destructor and compiler vtable plus native ctor/control-child factory; run_task keeps all seven states, player-facing yaw, cadence, 16-enemy group scan and timeout, and render stays empty. Original 0x14C vtable and the immediately following 0x1C state switch table remain in the same order.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 870,
+        "historical_path": "include/pso/enemy/DarkGunner.h",
+        "historical_blob": "3e6c700ede310bb03cab880b5253c32b116c4ba7",
+        "owners": {
+          "include/pso/enemy/darkgunner/DarkGunner.h": "c0d6dc230aa156f53b28956b9965bceaf4506370"
+        },
+        "proofs": [
+          {
+            "group": "dark-source",
+            "evidence": "All substantive historical header changes accounted for. Center constructor now takes TObject parent and set-data pointers as a native declaration, integer tuning lookup takes exactly one signed index, and unused cross-class destructor declaration is removed.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 1053,
+        "historical_path": "src/pso/enemy/DarkGunner.cpp",
+        "historical_blob": "4cec24062553c780dd8e544c433ab406cb6a11c6",
+        "owners": {
+          "src/pso/enemy/darkgunner/DarkGunner.cpp": "c07ef4ab01a962e3aa22f8a229867cc17c7ed4aa"
+        },
+        "proofs": [
+          {
+            "group": "dark-source",
+            "evidence": "Native center creation, real linked gunner/controller receivers and one-index integer tuning recovered. The gunner actor itself still uses a manual constructor and vtable, and additional historical constituent changes are unverified.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6410,
+        "historical_path": "src/pso/misc/QuestDownloadBuffers.cpp",
+        "historical_blob": "ba1122ad1c6aa204506acaee6982a7a7d836864f",
+        "owners": {
+          "src/pso/quest/TQuestVmDownLoadServer_803E6970.cpp": "c2963294b9aceb95c8f7bc35d6f0554e44f004f6",
+          "src/pso/quest/TQuestVmDownLoadServer_803E8918.cpp": "54768757ffcef738a698bfaef681dc00a574a632",
+          "src/pso/quest/QuestDownloadBuffers.cpp": "62f7352ab5e74674a7f45956901c73148008b896"
+        },
+        "proofs": [
+          {
+            "group": "quest-source",
+            "evidence": "All ten historical BSS declarations are represented at the original addresses in the native owners. This replay provides char[0x44] at 8058DE08 and 1024 four-byte keys at 80590AC4; the typed 128-entry/ten-page file cache, 0x404 ASK read buffer, eight cache pages, 80 buckets plus 512 nodes, 0x990 query workspace, 80 slots, 12-byte display prefix and 0x404 text buffer at 8058DE4C/80591AC4/80591EC8/80593EC8/80595008/80595998/80596258/80596264 remain exact. The layout and all query/prefix uses are already verified at their existing owners.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6480,
+        "historical_path": "src/pso/misc/TQuestVmDownLoadServer_803E5668.cpp",
+        "historical_blob": "385a2d2f403da2497bf7c9a9d762a79c235145ba",
+        "owners": {
+          "src/pso/quest/TQuestVmDownLoadServer_803E5668.cpp": "9796e4e4a08cd4fef4b480e18638ae4e71332eba"
+        },
+        "proofs": [
+          {
+            "group": "quest-source",
+            "evidence": "The existing parser uses the true 0x404 ASK input buffer (and its +0x4E substring) and the existing typed display prefix, with no historical dialogue/request body changes in this batch.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6481,
+        "historical_path": "src/pso/misc/TQuestVmDownLoadServer_803E6970.cpp",
+        "historical_blob": "ab19d65d94760b812553182cb3ad21aed175a76d",
+        "owners": {
+          "src/pso/quest/TQuestVmDownLoadServer_803E6970.cpp": "c2963294b9aceb95c8f7bc35d6f0554e44f004f6",
+          "src/pso/quest/QuestDownloadAramFile.cpp": "11de33520eba50f233d6e80d8902d1153503b798"
+        },
+        "proofs": [
+          {
+            "group": "quest-source",
+            "evidence": "Recovers the historical true four-byte key rows, real filename, typed order-based search and explicit filename open contract. The +0x3CBC ASK and +0x44 page cache overlays are replaced with their actual independent global owners. The exact read uses the original s32 mode-load before the filename is moved into r3. Other history in the large merged owner remains scoped.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6482,
+        "historical_path": "src/pso/misc/TQuestVmDownLoadServer_803E9A24.cpp",
+        "historical_blob": "aaf8907f2b5d613ec2085c8195a8d37262117ea7",
+        "owners": {
+          "src/pso/quest/TQuestVmDownLoadServer_803E9A24.cpp": "8e1a51df1d9bf78816693d920d10b55dfc1f2fef"
+        },
+        "proofs": [
+          {
+            "group": "quest-source",
+            "evidence": "All six local scratch-byte reads use the real 0x28 byte buffer and preserve existing bounds, decisions and encoded-byte order. The larger original matcher, slot and opcodes remain partially audited.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 6483,
+        "historical_path": "src/pso/misc/TQuestVmDownLoadServer_803ED0CC.cpp",
+        "historical_blob": "2d1824f011b2c6977219935d4e0a71e7d6cac98a",
+        "owners": {
+          "src/pso/quest/TQuestVmDownLoadServer_803EB0D8.cpp": "ec62125bc640025bfb4f9b1d73142383a5ea09cf"
+        },
+        "proofs": [
+          {
+            "group": "quest-source",
+            "evidence": "True scratch-byte cursor owners, aligned u16 buffer, explicit name key and filename receivers. The merged query engine contains many independent historical functions outside this source audit.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7299,
+        "historical_path": "include/pso/misc/QuestDownloadInternal.h",
+        "historical_blob": "cbf412c0287664815abbcb7c7648784d197d1d92",
+        "owners": {
+          "include/pso/quest/QuestDownloadServer.h": "047819d7dcf25b5265e8aa97d48657b069c1b0da",
+          "include/pso/quest/TQuestVmDownLoadServer_803E6970.h": "d5ac8aff801edfa44ecc633888c1e1760ac2bef1"
+        },
+        "proofs": [
+          {
+            "group": "quest-source",
+            "evidence": "Real declarations for the 68-byte filename, 1024 key rows, byte scratch positions, ARAM filename/mode compatibility, and shared elimination of old per-function storage overlays. Historical matcher and decompression internals remain broader.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 7315,
+        "historical_path": "include/pso/misc/QuestDownloadRecords.h",
+        "historical_blob": "78849626074366ee1c27b237ec554a5a1b3de428",
+        "owners": {
+          "include/pso/quest/QuestDownloadRecords.h": "3e43aac1ed3b701f0e8768d72dfa0064f68145d6",
+          "include/pso/quest/QuestDownloadCacheTypes.h": "7727161cb22e77169ee960598af077ea5588a6e9"
+        },
+        "proofs": [
+          {
+            "group": "quest-source",
+            "evidence": "The canonical first-parent types and 8-byte input/cache record shapes remain intact. The upstream branch now shares the actual cache entry and 0x40C page definitions and no longer aliases pages as adjacent filename bytes. Broader historical node types are accounted for in prior focused waves and not closed here.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 208,
+        "historical_path": "include/pso/misc/TWindowFukidasi.h",
+        "historical_blob": "e9f7e4fc4d8eef471bc9e26eba94026a34136b7b",
+        "owners": {
+          "include/pso/ui/window/TWindowFukidasi.h": "3620206568b78c8d7744a6843c26708842610ebd",
+          "include/pso/ui/window/TUnk_804CF0B8.h": "ae3c85b90c6fb54aba6718048ec8773119fc9562",
+          "src/pso/ui/window/TWindowFukidasi.cpp": "d537e654a68470fc8595304cd84147f336f85012",
+          "src/pso/ui/window/TWindowChoiceSetting_80249610.cpp": "c7e5130ee92bcac325f0d4bf8c1e6376b03d5622"
+        },
+        "proofs": [
+          {
+            "group": "speech-source",
+            "evidence": "The borrowed collision view preserves the four physical offsets for sibling, position, extent, and rise. The active placement lookup returns a typed balloon pointer. Display synchronization and interpolation belong to the actual TUnk_804CF0B8 owner; all remaining historical flag, text, and completion interfaces exist at their compiled providers.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 209,
+        "historical_path": "include/pso/misc/TWindowFukidasi_80252B74.h",
+        "historical_blob": "95a13198fec8513b41ada6266ee1d36a7cbb6e65",
+        "owners": {
+          "include/pso/ui/window/TUnk_804CF0B8.h": "ae3c85b90c6fb54aba6718048ec8773119fc9562",
+          "src/pso/ui/window/TWindowFukidasi.cpp": "d537e654a68470fc8595304cd84147f336f85012"
+        },
+        "proofs": [
+          {
+            "group": "speech-source",
+            "evidence": "The historical added header consisted only of an include for the actual balloon declaration. That same declaration is now directly included at the native constructor and its callers. The folded implementation retains the original constructor address.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 228,
+        "historical_path": "src/pso/misc/TWindowFukidasi_80252AE4.cpp",
+        "historical_blob": "5f50c3ba79d28ea5e946f9837f1994d681ace12d",
+        "owners": {
+          "src/pso/ui/window/TWindowFukidasi.cpp": "d537e654a68470fc8595304cd84147f336f85012",
+          "include/pso/ui/window/TUnk_804CF0B8.h": "ae3c85b90c6fb54aba6718048ec8773119fc9562"
+        },
+        "proofs": [
+          {
+            "group": "speech-source",
+            "evidence": "The original destructor checks the balloon flag, clears the inherited visibility flag, releases its +0x73 slot, frees its owned name at +0x78 and clears that pointer. All source-linked variants retain the same native destructor and exact release/free destinations under their allocator spellings.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 229,
+        "historical_path": "src/pso/misc/TWindowFukidasi_80252B74.cpp",
+        "historical_blob": "27b19716f2bc242abdfddc6d1cf37e85d5f396b5",
+        "owners": {
+          "src/pso/ui/window/TWindowFukidasi.cpp": "d537e654a68470fc8595304cd84147f336f85012",
+          "include/pso/ui/window/TUnk_804CF0B8.h": "ae3c85b90c6fb54aba6718048ec8773119fc9562",
+          "src/pso/ui/window/TWindowCtrl_8024A1A8.cpp": "61cc3241428fa185f2467dfac6cba2ea9930e7e6"
+        },
+        "proofs": [
+          {
+            "group": "speech-source",
+            "evidence": "The historical unsigned speaker, client, scale and optional name feed the actual 0x98 derived constructor. The base initializer takes the original window descriptor and zero vector and calls the existing setup body. Canonical and queue now express the original borrowed name as a const char pointer, then make the same owned copy. Source and layout account for the entire historical added constructor.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5618,
+        "historical_path": "src/pso/misc/TWindowChoiceSetting_80249610.cpp",
+        "historical_blob": "752a009638252e2496ed80c40850b0442acc945e",
+        "owners": {
+          "src/pso/ui/window/TWindowChoiceSetting_80249610.cpp": "c7e5130ee92bcac325f0d4bf8c1e6376b03d5622",
+          "include/pso/ui/window/TWindowFukidasi.h": "3620206568b78c8d7744a6843c26708842610ebd",
+          "src/pso/ui/window/TWindowSubComCard_80244774.cpp": "5a37128ea277df11eeeb6e009ec6fb2faf6f573b"
+        },
+        "proofs": [
+          {
+            "group": "speech-source",
+            "evidence": "The active overlap-select function returns a typed balloon and starts at the original viewport root child at +0x14. Its six-viewport pass walks the original two chains and same flag/rise comparisons with typed next nodes. The unaffected window setting predicate retains its exact source.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5661,
+        "historical_path": "include/pso/misc/TUnk_804CF0B8.h",
+        "historical_blob": "c695423140dd1154f9e2b7233a5e4d30d395bd37",
+        "owners": {
+          "include/pso/ui/window/TUnk_804CF0B8.h": "ae3c85b90c6fb54aba6718048ec8773119fc9562",
+          "src/pso/ui/window/TWindowFukidasi.cpp": "d537e654a68470fc8595304cd84147f336f85012",
+          "include/pso/ui/window/TWindowAddition.h": "5b8f24744021b9e88454370c6937f2b97e5a979e"
+        },
+        "proofs": [
+          {
+            "group": "speech-source",
+            "evidence": "The full authored receiver declaration survives as a 0x98 TWindowAddition subclass with native run, destruction, initialization and original draw entries. Inherited storage ends at +0x70; speaker ID at +0x76 is unsigned, the name pointer remains at +0x78, and the following float and scale remain at +0x7C and +0x80. Offset checks are carried with the source.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5843,
+        "historical_path": "src/pso/misc/TWindowCtrl_8024B1A0.cpp",
+        "historical_blob": "2b7ed475b93e110baa14e5a710cab414465a2d05",
+        "owners": {
+          "src/pso/ui/window/TWindowCtrl_8024B1A0.cpp": "9e60851839ec85040771fe8f4441db232a4c2a30",
+          "src/pso/ui/window/TWindowCtrl_8024A1A8.cpp": "61cc3241428fa185f2467dfac6cba2ea9930e7e6",
+          "include/pso/ui/window/TWindowCtrl.h": "7a3cedba889aca2c90c7c4e70d6b72cc04d0e260"
+        },
+        "proofs": [
+          {
+            "group": "speech-source",
+            "evidence": "Every authored behavioral change in the old unit survives: the three close/complete/readiness loops check each live balloon\u2019s own speaker, and the open path calls the actual controller allocation member. The actual four-slot array is at +0x84, the same caller selection and completion checks remain, and erased C aliases are superseded by their true declarations.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5678,
+        "historical_path": "src/pso/misc/TWindowCtrl_8024A1A8.cpp",
+        "historical_blob": "8dd84bcbf0ba2cc269b0d1ac91c15fe0377cdeb9",
+        "owners": {
+          "src/pso/ui/window/TWindowCtrl_8024A1A8.cpp": "61cc3241428fa185f2467dfac6cba2ea9930e7e6",
+          "include/pso/ui/window/TWindowCtrl_8024A1A8.h": "e618d52a02482080a3dd661f26b0e47ae7063417",
+          "include/pso/ui/window/TWindowCtrl.h": "7a3cedba889aca2c90c7c4e70d6b72cc04d0e260"
+        },
+        "proofs": [
+          {
+            "group": "speech-source",
+            "evidence": "Verified the complete historical speech subset: u16 entity lookup and eligibility, name/anchor, squared distance call, four-slot iteration, replacement, lifetime and allocator, known C entry compatibility. Queue and canonical also carry the independently-verified typed player-window dispatch and chat child gate. The standalone retains its existing dispatcher carrier, so this receipt only closes the speech slice across all variants.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 262,
+        "historical_path": "src/pso/misc/TWindowFukidasi.cpp",
+        "historical_blob": "0666de1a4e13ff6f413caccaa5ae4344c19cb2aa",
+        "owners": {
+          "src/pso/ui/window/TWindowFukidasi.cpp": "d537e654a68470fc8595304cd84147f336f85012",
+          "include/pso/ui/window/TUnk_804CF0B8.h": "ae3c85b90c6fb54aba6718048ec8773119fc9562",
+          "include/pso/ui/window/TWindowFukidasi.h": "3620206568b78c8d7744a6843c26708842610ebd",
+          "src/pso/ui/window/TWindowChoiceSetting_80249610.cpp": "c7e5130ee92bcac325f0d4bf8c1e6376b03d5622",
+          "src/pso/ui/window/TWindowSubComCard_80244774.cpp": "5a37128ea277df11eeeb6e009ec6fb2faf6f573b"
+        },
+        "proofs": [
+          {
+            "group": "speech-source",
+            "evidence": "Verified native construction, destruction, drawing bounds and scale, typed viewport placement and the shifted/overlap chain. The inherited mixed file still contains other authored render/text and symbolic dispatch work, so this row stays open.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      }
+    ],
+    "closed_rows": [
+      208,
+      209,
+      228,
+      229,
+      583,
+      870,
+      2129,
+      2271,
+      2331,
+      4998,
+      5618,
+      5661,
+      5843,
+      5966,
+      6410
+    ],
+    "remaining": {
+      "Owner comparison required": 251,
+      "Some anchored text changes found": 710
+    }
+  },
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "data_ranges": 90,
+  "local_tool_tests": 294,
+  "layer_tests": 11,
+  "fork_only_paths": 133,
+  "replay_validation": {
+    "ginja-source": {
+      "head": "eb2e1c0499de416cb1d2a197b9b3f1ea7496c25f",
+      "report_sha256": "3e8088edb24bbf3e3016c6d682ed62606bc97c53fd55bf4961cad0cf10e2aab2",
+      "strict_sha256": "9c615f959fa1a7bf9bb3f5f91339497318f3273f801c2308e9946f3f6ba960a9"
+    },
+    "dark-source": {
+      "head": "6d9868538aa4bdc3c0783b782efa598f5fc497ea",
+      "report_sha256": "3e504dc81fbe2551f624259389f822eb5b3ebe840fb7d313709b77307bc115a7",
+      "strict_sha256": "3110506b4bf977223b76dda49aaca5124d6bae83a49767dc91a807b4ccf4649b"
+    },
+    "quest-source": {
+      "head": "2156f46ddf8c6bdaca5bdcfb58f80ed30963ff87",
+      "report_sha256": "3e8088edb24bbf3e3016c6d682ed62606bc97c53fd55bf4961cad0cf10e2aab2",
+      "strict_sha256": "9c615f959fa1a7bf9bb3f5f91339497318f3273f801c2308e9946f3f6ba960a9"
+    },
+    "speech-source": {
+      "head": "f432b60470ec4ba0149c0cbbee92be79d09701b2",
+      "report_sha256": "e76a9a914684237287a827e2c4b1a8261849f89427c3a7aff8c97f9ad5aa5efc",
+      "strict_sha256": "321154f213db47721041749621f723951dcaefe441de37a36704bf29cf976eb2"
+    }
+  },
+  "combined_validation": {
+    "combined-source": {
+      "report_sha256": "5a63f7b32918b69891d9c720e4958ab5c53b22758ca2dc44aeb7ed5f877cca95",
+      "strict_sha256": "1750ddfe2ed61a2046de3428f65fd7117fbf9537bc9ce59109f0caa7dc438c5d"
+    },
+    "direct-union": {
+      "report_sha256": "642ab77bd4964abec17ac4134e1b452e113d8b04570309f629cc6cf5dc2e5b47",
+      "strict_sha256": "221cfda722311e4e0c19a787f50df4ae886d4fbe5b4c444bb87d6fd05a55ab2f"
+    },
+    "working-final": {
+      "report_sha256": "5a63f7b32918b69891d9c720e4958ab5c53b22758ca2dc44aeb7ed5f877cca95",
+      "strict_sha256": "b01e9b5f35eecdd7879ba0f1ecfebffdaa31b5937330572faaff024114ee0309"
+    }
+  },
+  "ginja_review": {
+    "standalone": "d41b1747d443d80e080cdd13eecbb2a379f8c315",
+    "standalone_base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+    "standalone_files": 18,
+    "broad_head": "12bdb900e51d333a482062d8cd0d9edab5a09a80",
+    "broad_files": 422,
+    "overlap_with_published_stage": [
+      "include/pso/render/GinjaMaterialState.h",
+      "include/pso/render/GinjaTexture.h",
+      "src/pso/effect/TEffIndirectCtrl.cpp"
+    ],
+    "broad_overlap_with_published_stage": 170,
+    "stage_validation": {
+      "head": "169f8def873781e714274791eb91c0349196c8ed",
+      "base": "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
+      "changes": 17,
+      "resolved_paths": [
+        "include/pso/render/GinjaMaterialState.h",
+        "src/pso/effect/TEffIndirectCtrl.cpp"
+      ],
+      "report_sha256": "c347d5230713c8c15460d206ea87b95c0b726c3e7e7031550fe1987e78b0cf4d",
+      "strict_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3"
+    }
+  }
+}

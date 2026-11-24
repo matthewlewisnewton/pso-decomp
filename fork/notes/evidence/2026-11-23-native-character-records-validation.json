@@ -1,0 +1,981 @@
+{
+  "cumulative": {
+    "head": "7695eb36d3bfc474997abf6a696769edb52a8e9d",
+    "tree": "ed41bf0f2ba3ee0a14623c7926d2125f04874375",
+    "coverage_baseline": "89dbb03806f7fe1918c56d7373734c9627b05614",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "fork_inventory": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "reports_sha256": {
+      "source-report.json": "515851d914c4ece6cbf934f5c9ac9a4833b8a7bda316c4485f468710a2518ecf",
+      "source-check.json": "ec167389dbd490e17ac3a61384def77d8d58a7485e34e9bf913ffed6e489dc0a",
+      "source-quality.json": "ef27409c8f8604df9e0c14b188b5ab4c71173ddc64e0b3c559c296a60d963409"
+    },
+    "quality": {
+      "removed": 87,
+      "added": 2,
+      "changed_labels": 0,
+      "flagged_labels": 0,
+      "newly_stale_retention": 0,
+      "findings": [
+        {
+          "key": "address_type",
+          "path": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+          "line": 1627,
+          "text": "Ent_801FE468_801FBF54"
+        },
+        {
+          "key": "address_type",
+          "path": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+          "line": 1628,
+          "text": "Ent_801FE468_801FBF54"
+        }
+      ]
+    }
+  },
+  "independent_saves_review": {
+    "head": "d9537252e154ef0055cfe0d2d51ecb85f6c71086",
+    "tree": "f3452aebfadabb371446d70c4d62f0bc7ff26d0b",
+    "coverage_baseline": "63ba63fe8b74f6d23b50b0a25b796753fd61b83e",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "fork_inventory": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "reports_sha256": {
+      "direct-report.json": "735b4c5e6a41ba98db1d913204f7749b951cf4c4812bf36d9a69a1c814018663",
+      "direct-check.json": "30828168da0bf969859b524df0664de00cbb30ed42cc443890024f192fb652b0",
+      "direct-quality.json": "75f8bed16e11e8445756917cec0c7d31746d244b438f4442a68f3d3204e1697f"
+    },
+    "quality": {
+      "removed": 1032,
+      "added": 23,
+      "changed_labels": 36,
+      "flagged_labels": 0,
+      "newly_stale_retention": 0,
+      "findings": [
+        {
+          "key": "local_class",
+          "path": "src/pso/quest/QuestDownloadAramFile.cpp",
+          "line": 10,
+          "text": "struct QuestDownloadAramFile"
+        },
+        {
+          "key": "local_class",
+          "path": "src/pso/quest/QuestDownloadAramFile.cpp",
+          "line": 28,
+          "text": "struct QuestDownloadAramDmaBuffer"
+        },
+        {
+          "key": "extern_c",
+          "path": "src/pso/quest/QuestDownloadAramFile.cpp",
+          "line": 39,
+          "text": "extern \"C\" quest_download_aram_dma_buffer"
+        },
+        {
+          "key": "slot_name",
+          "path": "src/pso/quest/TQuestListOnline.cpp",
+          "line": 145,
+          "text": "vfunc_10"
+        },
+        {
+          "key": "slot_name",
+          "path": "src/pso/quest/TQuestListOnline.cpp",
+          "line": 206,
+          "text": "vfunc_10"
+        },
+        {
+          "key": "local_class",
+          "path": "src/pso/quest/TQuestVmDownLoadServer_803EB0D8.cpp",
+          "line": 2226,
+          "text": "struct QuestDownloadRequestStorage"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/ui/city/TCheckRoomSequence.cpp",
+          "line": 240,
+          "text": "m_28"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/ui/city/TCheckRoomSequence.cpp",
+          "line": 241,
+          "text": "m_2c"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/ui/city/TCheckRoomSequence.cpp",
+          "line": 254,
+          "text": "m_60"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/ui/city/TCheckRoomSequence.cpp",
+          "line": 255,
+          "text": "m_64"
+        },
+        {
+          "key": "address_type",
+          "path": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+          "line": 1626,
+          "text": "Ent_801FE468_801FBF54"
+        },
+        {
+          "key": "address_type",
+          "path": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+          "line": 1627,
+          "text": "Ent_801FE468_801FBF54"
+        },
+        {
+          "key": "local_class",
+          "path": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+          "line": 3091,
+          "text": "struct CardSaveMetadataBlock"
+        },
+        {
+          "key": "extern_c",
+          "path": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+          "line": 3100,
+          "text": "extern \"C\" offsetof"
+        },
+        {
+          "key": "address_type",
+          "path": "src/pso/ui/window/TWindowDeposit.cpp",
+          "line": 69,
+          "text": "TUnk_804CF9C8"
+        },
+        {
+          "key": "address_type",
+          "path": "src/pso/ui/window/TWindowDeposit.cpp",
+          "line": 69,
+          "text": "TUnk_804CF9C8"
+        },
+        {
+          "key": "local_class",
+          "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+          "line": 49,
+          "text": "struct BmlArchiveEntry"
+        },
+        {
+          "key": "local_class",
+          "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+          "line": 58,
+          "text": "struct BmlArchiveHeader"
+        },
+        {
+          "key": "data_label",
+          "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+          "line": 81,
+          "text": "lbl_805D4AE0"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+          "line": 366,
+          "text": "m_0"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+          "line": 388,
+          "text": "m_0"
+        },
+        {
+          "key": "offset_member",
+          "path": "src/pso/unk/TLobby_8001EF5C.cpp",
+          "line": 839,
+          "text": "m_0"
+        },
+        {
+          "key": "extern_c",
+          "path": "src/pso/unk/text_803CE568.cpp",
+          "line": 23,
+          "text": "extern \"C\" ATTRIBUTE_ALIGN"
+        }
+      ]
+    },
+    "paths": 204
+  },
+  "inventory_preview": {
+    "head": "d8ae552bd4df1241701006d00ad5f20c26e9ae71",
+    "tree": "48d4b0fd4a9b8ec2ffc98e8c0338636c0a438c7b",
+    "coverage_baseline": "45c84c302812ff817c3cbe228c8081108693c4a8",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "fork_inventory": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "reports_sha256": {
+      "inventory-report.json": "81758b0fe198504f962c3b5f643072ce0d37d7f1b3f48c561b11efb11dfb2d80",
+      "inventory-check.json": "ec167389dbd490e17ac3a61384def77d8d58a7485e34e9bf913ffed6e489dc0a"
+    }
+  },
+  "actor_saves_inventory_and_avetcp": {
+    "head": "5a98123bb6b30ff8953328302d549e3ea99e703a",
+    "tree": "08642a886a425fcacb8921a9cb6a833b53a13feb",
+    "coverage_baseline": "857b51578190107ff66f7a5b349379773efb220d",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "fork_inventory": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "reports_sha256": {
+      "queue-report.json": "d89d3b653352acdb61e1385ffa802f279ed954eea79a69afa37b5e83ea1a49c6",
+      "queue-check.json": "ec167389dbd490e17ac3a61384def77d8d58a7485e34e9bf913ffed6e489dc0a"
+    }
+  },
+  "cumulative_with_avetcp": {
+    "head": "f6d24f7b19ba254dbe588cd6958149d90bfe3c1e",
+    "tree": "cbb4e5572cd72c1c4865e85e5f7fbb1eaba9c423",
+    "coverage_baseline": "6c0fe3dbc19078914a12955e93ddb3c8fc2fd82e",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "fork_inventory": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "reports_sha256": {
+      "ave-report.json": "dd30e3e81ebdd845045e7f1b97c56b2159481b45786b20aea70f2f37d5a30b89",
+      "ave-check.json": "ec167389dbd490e17ac3a61384def77d8d58a7485e34e9bf913ffed6e489dc0a"
+    }
+  },
+  "materialized_fork": {
+    "head": "064f695c2dbd20cf8f1af48861e829dd7fca3bed",
+    "tree": "ce818da24aa4d8f2d1648a94c95c8cffadaaf7c9",
+    "coverage_baseline": "7695eb36d3bfc474997abf6a696769edb52a8e9d",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "fork_inventory": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "reports_sha256": {
+      "private-report.json": "515851d914c4ece6cbf934f5c9ac9a4833b8a7bda316c4485f468710a2518ecf",
+      "private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011"
+    }
+  },
+  "materialized_fork_with_avetcp": {
+    "head": "789eb92328cee0a11bdfb2a57e2e30c66787a16e",
+    "tree": "3843439f0d4efea06879aa7fc13a2f56fe658935",
+    "coverage_baseline": "f6d24f7b19ba254dbe588cd6958149d90bfe3c1e",
+    "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+    "exact_functions": 27572,
+    "linked_units": 2368,
+    "coverage_regressions": 0,
+    "fork_inventory": {
+      "linked": 980,
+      "padding": 167,
+      "remaining": 0
+    },
+    "reports_sha256": {
+      "ave-private-report.json": "dd30e3e81ebdd845045e7f1b97c56b2159481b45786b20aea70f2f37d5a30b89",
+      "ave-private-check.json": "159912339bde91b74c337687254b9baa9f2e1c2636d658bfe62d2ab57392c011"
+    }
+  },
+  "inventory_review": "39848c3108c370a24eff842e241a1ea0d70a2da8",
+  "avetcp_review": "5cdc5937e9dc917c26d4429734184e47855d3fc4",
+  "effects_merge": "72029bba4d78953c3e329e60426305cdfdf7dee8",
+  "historical_source": {
+    "character_selector_header": {
+      "fork_path": "include/pso/ui/TAdSinglePlyChrSelectGC.h",
+      "current_path": "include/pso/ui/frontend/TAdSinglePlyChrSelectGC.h",
+      "functions": {
+        "0x8007EBB4": {
+          "current_name": "safe_free__FPv",
+          "owner": "src/pso/quest/TQuestListVM_8007EAF8.cpp",
+          "size": 40,
+          "fork_name": "safe_free__23TAdSinglePlyChrSelectGCFPv",
+          "fork_point_name": "safe_free__23TAdSinglePlyChrSelectGCFUl"
+        },
+        "0x801D5DB4": {
+          "current_name": "is_both_confirmed__23TAdSinglePlyChrSelectGCFv",
+          "owner": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801D5DAC.cpp",
+          "size": 40,
+          "fork_name": "is_both_confirmed__23TAdSinglePlyChrSelectGCFv",
+          "fork_point_name": "is_both_confirmed__23TAdSinglePlyChrSelectGCFv"
+        },
+        "0x801FE468": {
+          "current_name": "get_entry__23TAdSinglePlyChrSelectGCFi",
+          "owner": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+          "size": 84,
+          "fork_name": "get_entry__23TAdSinglePlyChrSelectGCFi",
+          "fork_point_name": "get_entry__23TAdSinglePlyChrSelectGCFi"
+        },
+        "0x801FE7EC": {
+          "current_name": "get_char_table_entry__23TAdSinglePlyChrSelectGCFi",
+          "owner": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+          "size": 20,
+          "fork_name": "get_char_table_entry__23TAdSinglePlyChrSelectGCFi",
+          "fork_point_name": "get_char_table_entry__23TAdSinglePlyChrSelectGCFi"
+        },
+        "0x801FE938": {
+          "current_name": "load_guild_card_save",
+          "owner": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+          "size": 152,
+          "fork_name": "load_player__23TAdSinglePlyChrSelectGCFv",
+          "fork_point_name": "load_player__23TAdSinglePlyChrSelectGCFv"
+        },
+        "0x802029E8": {
+          "current_name": "get_char_index__23TAdSinglePlyChrSelectGCFUi",
+          "owner": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_801FBF54.cpp",
+          "size": 88,
+          "fork_name": "get_char_index__23TAdSinglePlyChrSelectGCFUi",
+          "fork_point_name": "get_char_index__23TAdSinglePlyChrSelectGCFUi"
+        },
+        "0x80243274": {
+          "current_name": "load_player__23TAdSinglePlyChrSelectGCFllll",
+          "owner": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80243218.cpp",
+          "size": 88,
+          "fork_name": "load_player__23TAdSinglePlyChrSelectGCFllll",
+          "fork_point_name": "load_player__23TAdSinglePlyChrSelectGCFllll"
+        },
+        "0x8028C650": {
+          "current_name": "start_character_load_task__16TChCrLoadGmNjReqFv",
+          "owner": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C650.cpp",
+          "size": 156,
+          "fork_name": "start_character_load_task__16TChCrLoadGmNjReqFv",
+          "fork_point_name": "start_character_load_task__23TAdSinglePlyChrSelectGCFv"
+        },
+        "0x8028C8E0": {
+          "current_name": "try_acquire_slot__16TChCrLoadGmNjReqFv",
+          "owner": "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_8028C8E0.cpp",
+          "size": 88,
+          "fork_name": "try_acquire_slot__16TChCrLoadGmNjReqFv",
+          "fork_point_name": "try_acquire_slot__23TAdSinglePlyChrSelectGCFv"
+        },
+        "0x802E1C6C": {
+          "current_name": "create_backgrounds__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+          "size": 128,
+          "fork_name": "create_backgrounds__23TAdSinglePlyChrSelectGCFPv",
+          "fork_point_name": "create_backgrounds__23TAdSinglePlyChrSelectGCFPv"
+        },
+        "0x802E1CEC": {
+          "current_name": "check_capacity__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+          "size": 112,
+          "fork_name": "check_capacity__12TAdTimeSetGCFv",
+          "fork_point_name": "check_capacity__23TAdSinglePlyChrSelectGCFv"
+        },
+        "0x802E1D5C": {
+          "current_name": "count_selected_flags__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+          "size": 108,
+          "fork_name": "count_selected_flags__12TAdTimeSetGCFv",
+          "fork_point_name": "count_selected_flags__23TAdSinglePlyChrSelectGCFv"
+        },
+        "0x802E215C": {
+          "current_name": "create_result_bg__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+          "size": 80,
+          "fork_name": "create_result_bg__12TAdTimeSetGCFv",
+          "fork_point_name": "create_result_bg__23TAdSinglePlyChrSelectGCFl"
+        },
+        "0x802E21AC": {
+          "current_name": "build_selection_summary__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+          "size": 248,
+          "fork_name": "build_selection_summary__12TAdTimeSetGCFv",
+          "fork_point_name": "build_selection_summary__23TAdSinglePlyChrSelectGCFv"
+        },
+        "0x802E2374": {
+          "current_name": "init_menu_window__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+          "size": 116,
+          "fork_name": "init_menu_window__12TAdTimeSetGCFv",
+          "fork_point_name": "init_menu_window__23TAdSinglePlyChrSelectGCFv"
+        },
+        "0x802E2670": {
+          "current_name": "update_close_on_load__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+          "size": 104,
+          "fork_name": "update_close_on_load__12TAdTimeSetGCFv",
+          "fork_point_name": "update_close_on_load__23TAdSinglePlyChrSelectGCFv"
+        },
+        "0x802E26D8": {
+          "current_name": "try_setup__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+          "size": 80,
+          "fork_name": "try_setup__12TAdTimeSetGCFv",
+          "fork_point_name": "try_setup__23TAdSinglePlyChrSelectGCFv"
+        },
+        "0x802E2790": {
+          "current_name": "update_close_timer__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+          "size": 184,
+          "fork_name": "update_close_timer__12TAdTimeSetGCFv",
+          "fork_point_name": "update_close_timer__23TAdSinglePlyChrSelectGCFv"
+        },
+        "0x802E2954": {
+          "current_name": "init_screen__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+          "size": 132,
+          "fork_name": "init_screen__12TAdTimeSetGCFv",
+          "fork_point_name": "init_screen__23TAdSinglePlyChrSelectGCFv"
+        },
+        "0x802E29D8": {
+          "current_name": "update_char_timer__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+          "size": 164,
+          "fork_name": "update_char_timer__12TAdTimeSetGCFv",
+          "fork_point_name": "update_char_timer__23TAdSinglePlyChrSelectGCFv"
+        },
+        "0x802E2A88": {
+          "current_name": "advance_when_load_done__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+          "size": 76,
+          "fork_name": "advance_when_load_done__12TAdTimeSetGCFv",
+          "fork_point_name": "advance_when_load_done__23TAdSinglePlyChrSelectGCFi"
+        },
+        "0x802E2AD4": {
+          "current_name": "sub_802E2AD4__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+          "size": 80,
+          "fork_name": "create_backgrounds__12TAdTimeSetGCFv",
+          "fork_point_name": "create_backgrounds__23TAdSinglePlyChrSelectGCFl"
+        },
+        "0x802E2B24": {
+          "current_name": "update_timer__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+          "size": 164,
+          "fork_name": "update_timer__12TAdTimeSetGCFv",
+          "fork_point_name": "update_timer__23TAdSinglePlyChrSelectGCFv"
+        },
+        "0x802E2C20": {
+          "current_name": "close_scene__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+          "size": 80,
+          "fork_name": "close_scene__12TAdTimeSetGCFv",
+          "fork_point_name": "close_scene__23TAdSinglePlyChrSelectGCFl"
+        },
+        "0x802E2C70": {
+          "current_name": "update_load_countdown__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+          "size": 204,
+          "fork_name": "update_load_countdown__12TAdTimeSetGCFv",
+          "fork_point_name": "update_load_countdown__23TAdSinglePlyChrSelectGCFv"
+        },
+        "0x802E2D48": {
+          "current_name": "update_load_state__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+          "size": 96,
+          "fork_name": "update_load_state__12TAdTimeSetGCFv",
+          "fork_point_name": "update_load_state__23TAdSinglePlyChrSelectGCFv"
+        },
+        "0x802E2DA8": {
+          "current_name": "close_and_next_cancel__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+          "size": 48,
+          "fork_name": "close_and_next_cancel__12TAdTimeSetGCFv",
+          "fork_point_name": "close_and_next_cancel__23TAdSinglePlyChrSelectGCFv"
+        },
+        "0x802E2DD8": {
+          "current_name": "handle_confirm_menu__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+          "size": 136,
+          "fork_name": "handle_confirm_menu__12TAdTimeSetGCFv",
+          "fork_point_name": "handle_confirm_menu__23TAdSinglePlyChrSelectGCFv"
+        },
+        "0x802E2E60": {
+          "current_name": "open_char_select__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+          "size": 120,
+          "fork_name": "open_char_select__12TAdTimeSetGCFv",
+          "fork_point_name": "open_char_select__23TAdSinglePlyChrSelectGCFv"
+        },
+        "0x802E2ED8": {
+          "current_name": "reset_on_load_complete__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+          "size": 72,
+          "fork_name": "reset_on_load_complete__12TAdTimeSetGCFv",
+          "fork_point_name": "reset_on_load_complete__23TAdSinglePlyChrSelectGCFv"
+        },
+        "0x802E2F24": {
+          "current_name": "ensure_player_loaded__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+          "size": 68,
+          "fork_name": "ensure_player_loaded__12TAdTimeSetGCFv",
+          "fork_point_name": "ensure_player_loaded__23TAdSinglePlyChrSelectGCFv"
+        },
+        "0x802E2F88": {
+          "current_name": "sub_802E2F88__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+          "size": 100,
+          "fork_name": "poll_loaded_player__12TAdTimeSetGCFv",
+          "fork_point_name": "update_load_state__23TAdSinglePlyChrSelectGCFPv"
+        },
+        "0x802E2FF0": {
+          "current_name": "ensure_system_file_loaded__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+          "size": 72,
+          "fork_name": "ensure_system_file_loaded__12TAdTimeSetGCFv",
+          "fork_point_name": "ensure_system_file_loaded__23TAdSinglePlyChrSelectGCFv"
+        },
+        "0x802E3058": {
+          "current_name": "report_card_status__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+          "size": 568,
+          "fork_name": "report_card_status__12TAdTimeSetGCFv",
+          "fork_point_name": "report_card_status__23TAdSinglePlyChrSelectGCFv"
+        },
+        "0x802E3290": {
+          "current_name": "rebuild_and_maybe_close__12TAdTimeSetGCFv",
+          "owner": "src/pso/ui/frontend/TAdTimeSetGC.cpp",
+          "size": 88,
+          "fork_name": "rebuild_and_maybe_close__12TAdTimeSetGCFv",
+          "fork_point_name": "rebuild_and_maybe_close__23TAdSinglePlyChrSelectGCFv"
+        },
+        "0x8042BF48": {
+          "current_name": "wake_load_thread__23TAdSinglePlyChrSelectGCFlP9OSContext",
+          "owner": "src/pso/network/ModemRuntime.cpp",
+          "size": 36,
+          "fork_name": "wake_load_thread__23TAdSinglePlyChrSelectGCFlP9OSContext",
+          "fork_point_name": "wake_load_thread__23TAdSinglePlyChrSelectGCFv"
+        },
+        "0x8042E84C": {
+          "current_name": "send_modem_hangup__23TAdSinglePlyChrSelectGCFi",
+          "owner": "src/pso/network/ModemRuntime.cpp",
+          "size": 108,
+          "fork_name": "send_modem_hangup__23TAdSinglePlyChrSelectGCFi",
+          "fork_point_name": "send_modem_hangup__23TAdSinglePlyChrSelectGCFl"
+        }
+      },
+      "source_notes": [
+        "The three native selectors return TPlyCharData pointers, including the original check for a valid secondary-card entry. The record stays 0x41C bytes with appearance at 0x370.",
+        "The real selector is 0x60 bytes. Offset 0x24 is read and written as scene state, including the state copied at the end of task dispatch.",
+        "The extra model, BML and timer fields belong to the separately allocated 0x78-byte TChCrLoadGmNjReq. The native class shares the model-list terminator with the empty motion list.",
+        "The time-setting, request and release declarations use their active owners. The existing OS-context, modem and signed-result signatures account for the other historical changes."
+      ]
+    },
+    "serial_access_source": {
+      "fork_path": "src/pso/ui/TAdEnterSerialAccessGC.cpp",
+      "current_path": "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+      "functions": {
+        "0x803212D4": {
+          "current_name": "render__22TAdEnterSerialAccessGCFv",
+          "owner": "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+          "size": 36,
+          "fork_name": "render__22TAdEnterSerialAccessGCFPv",
+          "fork_point_name": "render__22TAdEnterSerialAccessGCFPv"
+        },
+        "0x803212F8": {
+          "current_name": "draw_screen__22TAdEnterSerialAccessGCFPvPv",
+          "owner": "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+          "size": 96,
+          "fork_name": "draw_screen__22TAdEnterSerialAccessGCFPvPv",
+          "fork_point_name": "draw_screen__22TAdEnterSerialAccessGCFPvPv"
+        },
+        "0x80321358": {
+          "current_name": "draw_serial_chars__22TAdEnterSerialAccessGCFl",
+          "owner": "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+          "size": 288,
+          "fork_name": "draw_serial_chars__22TAdEnterSerialAccessGCFl",
+          "fork_point_name": "draw_serial_chars__22TAdEnterSerialAccessGCFl"
+        },
+        "0x80321478": {
+          "current_name": "draw_serial_separators__22TAdEnterSerialAccessGCFv",
+          "owner": "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+          "size": 76,
+          "fork_name": "draw_serial_separators__22TAdEnterSerialAccessGCFv",
+          "fork_point_name": "draw_serial_separators__22TAdEnterSerialAccessGCFv"
+        },
+        "0x803214C4": {
+          "current_name": "draw_serial_plates__22TAdEnterSerialAccessGCFv",
+          "owner": "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+          "size": 420,
+          "fork_name": "draw_serial_plates__22TAdEnterSerialAccessGCFv",
+          "fork_point_name": "draw_serial_plates__22TAdEnterSerialAccessGCFv"
+        },
+        "0x80321668": {
+          "current_name": "format_dashed_serial__22TAdEnterSerialAccessGCFPUcUlPUl",
+          "owner": "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+          "size": 88,
+          "fork_name": "format_dashed_serial__22TAdEnterSerialAccessGCFPUcUlPUl",
+          "fork_point_name": "format_dashed_serial__22TAdEnterSerialAccessGCFPUcUlPUl"
+        },
+        "0x803216C0": {
+          "current_name": "get_formatted_serial__22TAdEnterSerialAccessGCFv",
+          "owner": "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+          "size": 120,
+          "fork_name": "get_formatted_serial__22TAdEnterSerialAccessGCFv",
+          "fork_point_name": "get_formatted_serial__22TAdEnterSerialAccessGCFv"
+        },
+        "0x80321738": {
+          "current_name": "TAdEnterSerialAccessGC__sub_80321738",
+          "owner": "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+          "size": 128,
+          "fork_name": "TAdEnterSerialAccessGC__sub_80321738",
+          "fork_point_name": "TAdEnterSerialAccessGC__sub_80321738"
+        },
+        "0x803217B8": {
+          "current_name": "TAdEnterSerialAccessGC__sub_803217B8",
+          "owner": "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+          "size": 116,
+          "fork_name": "TAdEnterSerialAccessGC__sub_803217B8",
+          "fork_point_name": "TAdEnterSerialAccessGC__sub_803217B8"
+        },
+        "0x8032182C": {
+          "current_name": "parse_serial_value__22TAdEnterSerialAccessGCFv",
+          "owner": "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+          "size": 72,
+          "fork_name": "parse_serial_value__22TAdEnterSerialAccessGCFv",
+          "fork_point_name": "parse_serial_value__22TAdEnterSerialAccessGCFv"
+        },
+        "0x80321874": {
+          "current_name": "TAdEnterSerialAccessGC__sub_80321874",
+          "owner": "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+          "size": 116,
+          "fork_name": "TAdEnterSerialAccessGC__sub_80321874",
+          "fork_point_name": "TAdEnterSerialAccessGC__sub_80321874"
+        },
+        "0x803218E8": {
+          "current_name": "initialize_serial_input",
+          "owner": "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+          "size": 36,
+          "fork_name": "init__22TAdEnterSerialAccessGCFv",
+          "fork_point_name": "init__22TAdEnterSerialAccessGCFv"
+        },
+        "0x8032190C": {
+          "current_name": "TAdEnterSerialAccessGC__sub_8032190C",
+          "owner": "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+          "size": 80,
+          "fork_name": "TAdEnterSerialAccessGC__sub_8032190C",
+          "fork_point_name": "TAdEnterSerialAccessGC__sub_8032190C"
+        },
+        "0x8032195C": {
+          "current_name": "TAdEnterSerialAccessGC__sub_8032195C",
+          "owner": "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+          "size": 80,
+          "fork_name": "TAdEnterSerialAccessGC__sub_8032195C",
+          "fork_point_name": "TAdEnterSerialAccessGC__sub_8032195C"
+        },
+        "0x803219AC": {
+          "current_name": "convert_serial_hex_to_decimal__22TAdEnterSerialAccessGCFPCc",
+          "owner": "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+          "size": 120,
+          "fork_name": "convert_serial_hex_to_decimal__22TAdEnterSerialAccessGCFi",
+          "fork_point_name": "convert_serial_hex_to_decimal__22TAdEnterSerialAccessGCFi"
+        },
+        "0x80321A24": {
+          "current_name": "hex_to_decimal_string__22TAdEnterSerialAccessGCFPCc",
+          "owner": "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+          "size": 108,
+          "fork_name": "hex_to_decimal_string__22TAdEnterSerialAccessGCFi",
+          "fork_point_name": "hex_to_decimal_string__22TAdEnterSerialAccessGCFi"
+        },
+        "0x80321A90": {
+          "current_name": "create_draw_callback__22TAdEnterSerialAccessGCFv",
+          "owner": "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+          "size": 56,
+          "fork_name": "create_draw_callback__22TAdEnterSerialAccessGCFv",
+          "fork_point_name": "create_draw_callback__22TAdEnterSerialAccessGCFv"
+        },
+        "0x80321AC8": {
+          "current_name": "open_message_window__22TAdEnterSerialAccessGCFPvPv",
+          "owner": "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+          "size": 96,
+          "fork_name": "open_message_window__22TAdEnterSerialAccessGCFPvPv",
+          "fork_point_name": "open_message_window__22TAdEnterSerialAccessGCFPvPv"
+        },
+        "0x80321B28": {
+          "current_name": "TAdEnterSerialAccessGC__sub_80321B28",
+          "owner": "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+          "size": 1008,
+          "fork_name": "TAdEnterSerialAccessGC__sub_80321B28",
+          "fork_point_name": "TAdEnterSerialAccessGC__sub_80321B28"
+        },
+        "0x80321F18": {
+          "current_name": "TAdEnterSerialAccessGC__sub_80321F18",
+          "owner": "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+          "size": 36,
+          "fork_name": "TAdEnterSerialAccessGC__sub_80321F18",
+          "fork_point_name": "TAdEnterSerialAccessGC__sub_80321F18"
+        },
+        "0x80321F3C": {
+          "current_name": "TAdEnterSerialAccessGC__sub_80321F3C",
+          "owner": "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+          "size": 36,
+          "fork_name": "TAdEnterSerialAccessGC__sub_80321F3C",
+          "fork_point_name": "TAdEnterSerialAccessGC__sub_80321F3C"
+        },
+        "0x80321F60": {
+          "current_name": "run_task__22TAdEnterSerialAccessGCFv",
+          "owner": "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+          "size": 628,
+          "fork_name": "run_task__22TAdEnterSerialAccessGCFv",
+          "fork_point_name": "run_task__22TAdEnterSerialAccessGCFv"
+        },
+        "0x803221D4": {
+          "current_name": "__dt__22TAdEnterSerialAccessGCFv",
+          "owner": "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+          "size": 164,
+          "fork_name": "__dt__22TAdEnterSerialAccessGCFv",
+          "fork_point_name": "__dt__22TAdEnterSerialAccessGCFv"
+        },
+        "0x80322278": {
+          "current_name": "TAdEnterSerialAccessGC__ct",
+          "owner": "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+          "size": 364,
+          "fork_name": "TAdEnterSerialAccessGC__ct",
+          "fork_point_name": "TAdEnterSerialAccessGC__ct"
+        },
+        "0x803223E4": {
+          "current_name": "get_cursor_position__16TKeyBoardControlFv",
+          "owner": "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+          "size": 52,
+          "fork_name": "get_field20_state__22TAdEnterSerialAccessGCFv",
+          "fork_point_name": "get_field20_state__22TAdEnterSerialAccessGCFv"
+        },
+        "0x80322418": {
+          "current_name": "TAdEnterSerialAccessGC__sub_80322418",
+          "owner": "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+          "size": 20,
+          "fork_name": "TAdEnterSerialAccessGC__sub_80322418",
+          "fork_point_name": "TAdEnterSerialAccessGC__sub_80322418"
+        },
+        "0x8032242C": {
+          "current_name": "request_navigation_unlock__14TAdSelectCurGCFv",
+          "owner": "src/pso/ui/frontend/TAdEnterSerialAccessGC.cpp",
+          "size": 12,
+          "fork_name": "set_state_3__22TAdEnterSerialAccessGCFv",
+          "fork_point_name": "set_state_3__22TAdEnterSerialAccessGCFv"
+        }
+      },
+      "providers": {
+        "0x80131BC4": {
+          "current_name": "realloc_buffer__16TKeyBoardControlFv",
+          "owner": "src/pso/ui/keyboard/TKeyBoardControl_80131BC4.cpp",
+          "size": 76,
+          "fork_name": "allocate_text_copy__16TKeyBoardControlFv",
+          "fork_point_name": "realloc_buffer__17TWindowSubComCardFv"
+        },
+        "0x80131C34": {
+          "current_name": "is_confirmed__16TKeyBoardControlFv",
+          "owner": "src/pso/ui/keyboard/TKeyBoardControl_80131BC4.cpp",
+          "size": 36,
+          "fork_name": "is_key_active__16TKeyBoardControlFv",
+          "fork_point_name": "update_keyboard__17TWindowSubComCardFv"
+        },
+        "0x801F64F4": {
+          "current_name": "clear_keyboard_flag60_bit1__16TKeyBoardControlFv",
+          "owner": "src/pso/quest/TQuestThread.cpp",
+          "size": 44,
+          "fork_name": "clear_keyboard_flag60_bit1__16TKeyBoardControlFv",
+          "fork_point_name": "free_menu_object"
+        },
+        "0x80147A80": {
+          "current_name": "mem_free",
+          "owner": "src/pso/boss/darkfalz/TOBoss4Rock.cpp",
+          "size": 40,
+          "fork_name": "__dla__FPv",
+          "fork_point_name": "mem_free"
+        },
+        "0x802C4B64": {
+          "current_name": "draw_selection_plate",
+          "owner": "src/pso/ui/frontend/TAdPlyChrSelPlateGC.cpp",
+          "size": 316,
+          "fork_name": "draw_selection_plate",
+          "fork_point_name": "TAdEnterSerialAccessGC__sub_802C4B64"
+        }
+      },
+      "data": {
+        "0x804764C8": {
+          "name": "lbl_804764C8",
+          "size": 8,
+          "values": [
+            46.0,
+            110.0
+          ]
+        },
+        "0x804764D0": {
+          "name": "lbl_804764D0",
+          "size": 8,
+          "values": [
+            548.0,
+            120.0
+          ]
+        },
+        "0x804764D8": {
+          "name": "lbl_804764D8",
+          "size": 8,
+          "values": [
+            85.0,
+            220.0
+          ]
+        },
+        "0x804764E0": {
+          "name": "lbl_804764E0",
+          "size": 8,
+          "values": [
+            470.0,
+            60.0
+          ]
+        },
+        "0x804764E8": {
+          "name": "TAdEnterSerialAccessGC__selection_positions",
+          "size": 16,
+          "values": [
+            155.0,
+            231.0,
+            155.0,
+            251.0
+          ]
+        },
+        "0x804764F8": {
+          "name": "lbl_804764F8",
+          "size": 8,
+          "values": [
+            330.0,
+            20.0
+          ]
+        },
+        "0x80476548": {
+          "name": "lbl_80476548",
+          "size": 8,
+          "values": [
+            234.0,
+            230.0
+          ]
+        },
+        "0x80476550": {
+          "name": "serial_plate_position_table",
+          "size": 24,
+          "values": [
+            258.0,
+            230.0,
+            293.0,
+            230.0,
+            352.0,
+            230.0
+          ]
+        },
+        "0x80476568": {
+          "name": "serial_char_row_x_table",
+          "size": 104,
+          "values": [
+            258,
+            270,
+            293,
+            305,
+            317,
+            329,
+            352,
+            364,
+            376,
+            388,
+            400,
+            0,
+            0,
+            234,
+            246,
+            258,
+            270,
+            293,
+            305,
+            317,
+            329,
+            352,
+            364,
+            376,
+            388,
+            400
+          ]
+        },
+        "0x80476518": {
+          "name": "lbl_80476518",
+          "size": 12,
+          "values": [
+            2,
+            4,
+            4
+          ]
+        },
+        "0x80476524": {
+          "name": "lbl_80476524",
+          "size": 12,
+          "values": [
+            4,
+            4,
+            4
+          ]
+        },
+        "0x80476530": {
+          "name": "lbl_80476530",
+          "size": 12,
+          "values": [
+            2,
+            4,
+            4
+          ]
+        },
+        "0x8047653C": {
+          "name": "lbl_8047653C",
+          "size": 12,
+          "values": [
+            4,
+            4,
+            4
+          ]
+        }
+      },
+      "source_notes": [
+        "Keyboard extraction, confirmation and flag clear use the native control class and the same linked providers. The array-release spelling and current mem_free target the same function.",
+        "The shared frame and plate calls retain the actual point and color values. Cursor append, construction and indexed serial-row reads use the exact locally owned position arrays.",
+        "The older external declarations would replace typed local data and class-name definitions. The placements, grouping records and constructor class label remain in the current owners."
+      ]
+    }
+  },
+  "open_historical_comparisons": 110,
+  "runtime": {
+    "selector_cases": 12,
+    "character_field_cases": 7,
+    "images": 7,
+    "evidence_sha256": {
+      "probe-character-records.py": "6dcc9c7a7792d31807a87f2afa2ca286fff4ec5d9ca4b683e8b6e39319338499",
+      "all-probes.log": "6ff4606dfea51b4f087174f12370d1b6634ba01042d565a61ab76ccf050f297e"
+    }
+  },
+  "fork_tooling": {
+    "patched_paths": 130,
+    "tests": 310,
+    "evidence_sha256": {
+      "ave-private-retention.log": "b3325169ce9d5755b2340e455b52eb7ac52edcb6fa173dc4f2486f46f713350c",
+      "ave-private-fork-tests.log": "d6456f8ea0103ed7b10679642077347ebdc0a6156b88877ca330d42c31f44c2d",
+      "ave-private-tool-tests.log": "9b070b77ca4d702bdfd79ebae05935b978fea946fa8864dca171916a03016fde",
+      "ave-private-host-tests.log": "56f699c9d8ff5a32cc196940d8bb95e7f6799e211464315f7d77688b6ab4fccc",
+      "private-before.patch": "2f9f86d25351dedee637ae8bb699182a7305762be3786c974100bdc813787b5d",
+      "private-overlay.patch": "765a274e1b96a5ca5dcd4c6a5a441cede24374c418f9c79464655b816aa0c31b",
+      "ave-private-before.patch": "f0da9a744c37bdf835f6f9bc2da1ed577dda80b93a013742395860b7c42e0c55",
+      "ave-private-overlay.patch": "2989b62b45c2839fb3a0767ebc3a205ee25dd049cf961aa21ad3358c652d7897"
+    }
+  },
+  "source_decisions": [
+    "The status formatter reads the named flag, class and section bytes as signed. Numeric casts changed the CodeWarrior register assignment.",
+    "The standalone review uses the existing export and spawn ABI at the boundaries. The combined queue uses the native inventory callers where already present.",
+    "Both occurrences of the existing Ent_801FE468_801FBF54 type describe the exact secondary-card slot stride and character field offset."
+  ]
+}

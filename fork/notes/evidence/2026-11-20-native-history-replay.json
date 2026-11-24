@@ -1,0 +1,587 @@
+{
+  "source": "89b1ccecd758f7f4c6e15afdefcb981fc4dc56ce",
+  "previous_source": "195c6e16c206b9595c2e883a5b95678ca19d77bc",
+  "landing": "40d3c9ff832014fa985c488447434e5f2eed6a49",
+  "working_fork_build": "7a5a8057f23b545d87fc19ed61b1cc172b2b082f",
+  "source_files": 33,
+  "upstream": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+  "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+  "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "review_queue": {
+    "head": "901e8acd21568584735f9e57286ad34b268dfa0d",
+    "tree": "8bc21cb7864f9b5badf1aecc36e23e88db239718",
+    "previous": "6f12bb5fe8c1e6c2f5a666bff1d1d147a051f0de",
+    "inputs": [
+      "b75c6f38a72228b2c5dc79f3198981f324474018",
+      "a4d7a8d2d908dc795ed2d7e929357d807e547955",
+      "5fec2a2794b87cf105d2c10473d187633a78ff1b",
+      "9a9d704b899922b8d4439be16dad34a85c23fd97",
+      "c3e7f90c1fd3d467ffef36be945b0d42d832cc59",
+      "48d90158a3daa5ef7023d81191f926e3bafe7d96",
+      "bb0a2828e3a31ddc506164215d32f5cd834ff234",
+      "cdfbc9ea796425975e1c113c20af714744ff6061",
+      "ec0fac84358e193ff77e54e988cde8ce9f2f6d35",
+      "282871cc20b1504be1e2df79db96303bb7889989",
+      "debe0d671325de1605cddb35b551edbb229b036c",
+      "9bbc668b6121ceb6bc03f83427c98aaa931a0d31",
+      "a5aed4817c6718d9ea584baaa3f5f29fdd72d1ee",
+      "ac5aa002909d739722e26f4c3c9aef7f681b4425",
+      "12bdb900e51d333a482062d8cd0d9edab5a09a80",
+      "7bdbdaf5ba01344982227ac6b25f5315e800d9f5",
+      "f7a0122c73c00062937eac73bc56ea913630e522",
+      "9a277f6b061ec44eecf9395be11f3112c378a33c",
+      "ba580a76cbb0992a985eb947d48a178cbb36d1b2",
+      "04e0a137422e25a50c7ea48df4c35c9bcc7b14fb",
+      "182fb702e6a21c01f05a822fa77a49c1e484d0bd",
+      "0895f1cbb38bc55767e2428439e698a94b5bccf4",
+      "b18e36657fcb0ddb6227ce1cd1f5b869f53cdab8",
+      "8f26a3c7a707d4076bf84134da09276bc62991f9",
+      "501edde10f0683bd47469495199a13dd0ebeacb1",
+      "ae3da5ccb25c52f727ab0f41adcc3a3afbf0c4ef",
+      "592b79a3fb7e79a38452d656de25a7dc46d89868"
+    ],
+    "files": 2106,
+    "reviews": {
+      "standalone-adx-streaming": {
+        "head": "a4d7a8d2d908dc795ed2d7e929357d807e547955",
+        "previous": "bdc95f97e24a9c0a48f3ed7fec7ca13dd974c8dd",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 122,
+        "create": false,
+        "live_tip": "bdc95f97e24a9c0a48f3ed7fec7ca13dd974c8dd",
+        "report": "/dev/shm/gm-ppp-frame-contract.xC7MSw/native-history-wave/adxf-direct-report.json",
+        "strict": "/dev/shm/gm-ppp-frame-contract.xC7MSw/native-history-wave/adxf-direct-check.json"
+      },
+      "standalone-enemy-registration-and-formations": {
+        "head": "debe0d671325de1605cddb35b551edbb229b036c",
+        "previous": "ae1bf2b7c68ed6873195aaaf8f2bf9495d87e1a8",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 226,
+        "create": false,
+        "live_tip": "ae1bf2b7c68ed6873195aaaf8f2bf9495d87e1a8",
+        "report": "/dev/shm/gm-enemy-20565490-review/gigue-standalone-report.json.gz",
+        "strict": "/dev/shm/gm-enemy-20565490-review/gigue-standalone-strict.json"
+      },
+      "standalone-bml-model-and-texture-accessors": {
+        "head": "12bdb900e51d333a482062d8cd0d9edab5a09a80",
+        "previous": "56180c4c261f4076fb3def25d0f995adbcb15400",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 422,
+        "create": false,
+        "live_tip": "56180c4c261f4076fb3def25d0f995adbcb15400",
+        "report": "/dev/shm/gm-ginja-load.CU5Nae/direct-report.json.gz",
+        "strict": "/dev/shm/gm-ginja-load.CU5Nae/direct-check.json"
+      },
+      "standalone-main-menu-and-child-windows": {
+        "head": "592b79a3fb7e79a38452d656de25a7dc46d89868",
+        "previous": "0b2d5f0f9cff76e92355c5578950c8d472550ce8",
+        "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+        "files": 121,
+        "create": false,
+        "live_tip": "0b2d5f0f9cff76e92355c5578950c8d472550ce8",
+        "report": "/run/user/1000/gm-main-menu-native-20261120/direct/final-report.json.gz",
+        "strict": "/run/user/1000/gm-main-menu-native-20261120/direct/final-strict.json"
+      }
+    },
+    "replays": {
+      "adxf": {
+        "canonical": "78b3bc0ba88cc422b484a690b8191d4fdc59e11e",
+        "standalone": "a4d7a8d2d908dc795ed2d7e929357d807e547955",
+        "queue": "a8e60dba33694af8e68cdc9037baefbbd97d100f"
+      },
+      "gigue": {
+        "canonical": "a335f124eec6c473a9844c088850352653fe4dc3",
+        "standalone": "debe0d671325de1605cddb35b551edbb229b036c",
+        "queue": "da1b5c3b078d9ea10278dd3683e3cacdb380def7"
+      },
+      "ginja": {
+        "canonical": "e1e60ecc6f8d4ffb0b05264bc6f5ed18e6d0e652",
+        "standalone": "12bdb900e51d333a482062d8cd0d9edab5a09a80",
+        "queue": "494e3387ca27f6d947e632e200375fbb56c5748b"
+      },
+      "menu": {
+        "canonical": "fc8eac23eec01236c2875d8620a04ddbe4c93901",
+        "standalone": "592b79a3fb7e79a38452d656de25a7dc46d89868",
+        "queue": "2dcb7ce4ee4f38ba3c5b164c34bccb53e62f2a1f"
+      }
+    },
+    "increment": 61
+  },
+  "reviews": {
+    "standalone-adx-streaming": {
+      "head": "a4d7a8d2d908dc795ed2d7e929357d807e547955",
+      "previous": "bdc95f97e24a9c0a48f3ed7fec7ca13dd974c8dd",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 122,
+      "create": false,
+      "live_tip": "bdc95f97e24a9c0a48f3ed7fec7ca13dd974c8dd",
+      "report_sha256": "efae3ecf3d34d9e2758a9a64c4b8e8355a5fdb0011225ebf5ddd9ff240ddef8f",
+      "strict_sha256": "942df00a021f8b334b259840c1194764a51320a9dec85b2edbdd6e3644abe74c"
+    },
+    "standalone-enemy-registration-and-formations": {
+      "head": "debe0d671325de1605cddb35b551edbb229b036c",
+      "previous": "ae1bf2b7c68ed6873195aaaf8f2bf9495d87e1a8",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 226,
+      "create": false,
+      "live_tip": "ae1bf2b7c68ed6873195aaaf8f2bf9495d87e1a8",
+      "report_sha256": "8d0c8721db4f98d2c9452fe718e51282b1b46adf709f31105d66b5000f5529a9",
+      "strict_sha256": "cadd4310e89049b4a186d16a9a2bb55dd1f60e5e2d5df526a590d01f8c6aec59"
+    },
+    "standalone-bml-model-and-texture-accessors": {
+      "head": "12bdb900e51d333a482062d8cd0d9edab5a09a80",
+      "previous": "56180c4c261f4076fb3def25d0f995adbcb15400",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 422,
+      "create": false,
+      "live_tip": "56180c4c261f4076fb3def25d0f995adbcb15400",
+      "report_sha256": "de30095f8981fc0e96cf0968e327d22696e580a98f80d5eb0e092ad297cfdb7d",
+      "strict_sha256": "fff1a2e40719705d0b8f296bc81ad150287482d7781e3cd9408fe29219f63d75"
+    },
+    "standalone-main-menu-and-child-windows": {
+      "head": "592b79a3fb7e79a38452d656de25a7dc46d89868",
+      "previous": "0b2d5f0f9cff76e92355c5578950c8d472550ce8",
+      "base": "49b48c32e6b47afbb55426ad7ac41c0ec6633480",
+      "files": 121,
+      "create": false,
+      "live_tip": "0b2d5f0f9cff76e92355c5578950c8d472550ce8",
+      "report_sha256": "649920af9ee2b446f2cbd96f870e419ca4a80f478433c9d40520c68a2639860a",
+      "strict_sha256": "9c615f959fa1a7bf9bb3f5f91339497318f3273f801c2308e9946f3f6ba960a9"
+    }
+  },
+  "source_audit": {
+    "source": "89b1ccecd758f7f4c6e15afdefcb981fc4dc56ce",
+    "previous": "195c6e16c206b9595c2e883a5b95678ca19d77bc",
+    "historical": "3342e42983535b393148deb5b719202b9bf4b7d8",
+    "entries": [
+      {
+        "row": 62,
+        "historical_path": "src/pso/unk/text_803CC294.cpp",
+        "historical_blob": "690eb1fe5cf67a388e3af68c217c0f098fe028d9",
+        "owners": {
+          "src/pso/unk/text_803CC294.cpp": "05478161f093a5c2aef30be0ec604e60d675d6e6",
+          "src/pso/unk/text_803CC134.cpp": "3a3c1a83711b39d07558128f3ee8647cec1beebb",
+          "include/pso/audio/AdxfInternal.h": "b34e9920b7c618b9c78f491398996c673c0d7906"
+        },
+        "proofs": [
+          {
+            "group": "adxf-source",
+            "evidence": "ADXF open, archive open, close, read, stop and seek share the native 16-byte history entry and six sequence slots. The journal writes native name, file and destination pointers. The owning initializer clears the same counter and 256-entry spans. The archive directory and file-slot comparisons remain open.",
+            "details": {
+              "history_header": "0x8057B7B0",
+              "history_entries": "0x8057B7D0",
+              "entries": 256,
+              "entry_size": 16,
+              "command_sequences": [
+                2,
+                4,
+                6,
+                8,
+                10,
+                12
+              ]
+            }
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 459,
+        "historical_path": "include/pso/enemy/TObjEneMe1GiGue.h",
+        "historical_blob": "9ddca8a98139c3a7ac8f15b862306e49671dc28e",
+        "owners": {
+          "include/pso/enemy/gigue/TObjEneMe1GiGue.h": "cb7c9842edcefa89b715dc218fb465e1fe77434c"
+        },
+        "proofs": [
+          {
+            "group": "gigue-source",
+            "evidence": "Recovered native lifecycle, three member methods and vector-typed navigation. Four flight/launch Vec fields and the twelve-target list already have matching types and layout; all six existing field names are retained. Historical tuning and attack parameters remain open.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 591,
+        "historical_path": "src/pso/enemy/TObjEneMe1GiGue.cpp",
+        "historical_blob": "7dd40a4be413aebf2c1586cc0ea3d5d8a76924c7",
+        "owners": {
+          "src/pso/enemy/gigue/TObjEneMe1GiGue.cpp": "51806b7d4e1933d46d641fcce1732bc8fb5c1900"
+        },
+        "proofs": [
+          {
+            "group": "gigue-source",
+            "evidence": "Actual lifecycle replaces manually constructed bases/subobjects and vtable, factory owns control and actor. Tuning and attack-parameter ownership remain open.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 592,
+        "historical_path": "src/pso/enemy/TObjEneMe1GiGueBarrier.cpp",
+        "historical_blob": "d027ccd245fd19ddb6bfb8a95300f67447147d15",
+        "owners": {
+          "src/pso/enemy/gigue/TObjEneMe1GiGueBarrier.cpp": "188e799669b9d7b485e969d057dbd18bb1cede18"
+        },
+        "proofs": [
+          {
+            "group": "gigue-source",
+            "evidence": "Shared owner at construction and factory, with existing visibility, tracked position/yaw, Tower sounds, animation and timed expiration, destructor clearing owner state.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 739,
+        "historical_path": "include/pso/enemy/TObjEneMe1GiGueBarrier.h",
+        "historical_blob": "2ceeda83d0e79b5b9613acc17155ab66b8bb2e54",
+        "owners": {
+          "include/pso/enemy/gigue/TObjEneMe1GiGueBarrier.h": "41b34d62e9ab959c567b4b9a06cfc10e897dcf7d"
+        },
+        "proofs": [
+          {
+            "group": "gigue-source",
+            "evidence": "0x10C motion-derived barrier, typed actor at +FC, ID at +100, state at +104, timer at +108. Canonical signed timer expresses the historical signed comparison.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 682,
+        "historical_path": "include/pso/enemy/TUnk_804E14E8.h",
+        "historical_blob": "dd9b962ea55360a2791b3ca00fb829fa61bd3726",
+        "owners": {
+          "include/pso/enemy/TUnk_804E14E8.h": "188441db3c48bd94df0c5aff83e0cc44fdc6b490"
+        },
+        "proofs": [
+          {
+            "group": "gigue-source",
+            "evidence": "Existing collidable shot holds three vectors, delayed origin, homing accelerator, two particles, source/target halfword IDs at size 0x10C.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 593,
+        "historical_path": "src/pso/enemy/TObjEneMe1GiGue_802CDB1C.cpp",
+        "historical_blob": "4986d5277f1b9cdea68aefbd1d225b81fd1bbb0f",
+        "owners": {
+          "src/pso/enemy/gigue/TObjEneMe1GiGue_802CDB1C.cpp": "3c2a8725c148ffc44f30df80c9cc87ebbe221f24"
+        },
+        "proofs": [
+          {
+            "group": "gigue-source",
+            "evidence": "Existing constructor creates particles 0x201/202. Shot steers, collides, conditionally applies second hit kind 0x12 and retires particles in destructor.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 1014,
+        "historical_path": "src/pso/enemy/TObjEneMe1GiGueMissile.cpp",
+        "historical_blob": "128a00d4e549ae605cdcfecead819d1829fda88b",
+        "owners": {
+          "src/pso/enemy/gigue/TObjEneMe1GiGueMissile.cpp": "dd55127c6ff2230b7d1a8215bf81887460b2e223"
+        },
+        "proofs": [
+          {
+            "group": "gigue-source",
+            "evidence": "Existing BmlResource texture/model calls, Vec sound arguments, contact handler and get_resources cover historical authored delta. Typed firing source and vectors supplied in this wave.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4149,
+        "historical_path": "src/pso/player/TObjPlayer_8023E480.cpp",
+        "historical_blob": "ea1c71625b92a2796647b579915776e1d7dd0b56",
+        "owners": {
+          "src/pso/player/TObjPlayer_8023E480.cpp": "8bb56675e5ee36af1cb750887f5ebfd71fe22db8"
+        },
+        "proofs": [
+          {
+            "group": "ginja-source",
+            "evidence": "Canonical already has the whole authored handoff: current texture list, streamed disc-file and checked allocation/decompression, pointer cleanup, then explicit ADXF open/sector query/close in the immediate source owners. The signboard now additionally supplies its real GinjaTextureList to the existing load_texture_if_valid entry point.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 4153,
+        "historical_path": "src/pso/player/TObjPlayer_8029F694.cpp",
+        "historical_blob": "c000f434ff552865d882b11efe54f2e19d73eb5a",
+        "owners": {
+          "src/pso/player/TObjPlayer_8029F694.cpp": "6e42f91334514954d976fba5dce8160c53b28f0b"
+        },
+        "proofs": [
+          {
+            "group": "ginja-source",
+            "evidence": "Whole fork-point edit was previously present on the native canonical texture setup at 0x8029F6C0: real GinjaTextureInput and its configure receiver and same 4/0x280/0x1E0 payload. This wave unifies the loader/release argument. The old raw render-target receiver remains inherited; standalone retains legacy configure ABI.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5104,
+        "historical_path": "src/pso/unk/text_803DD5E0.cpp",
+        "historical_blob": "b9d1b6cba0016ebb9790cd11e786171e6ed02045",
+        "owners": {
+          "src/pso/unk/text_803DD5E0.cpp": "f15badcc312293a2bffd6400a448f47528eb6578"
+        },
+        "proofs": [
+          {
+            "group": "ginja-source",
+            "evidence": "All final historical edits from the branch point are present on canonical: real move_data in the GVM directory and NJ chunk header/data/relocation paths and the exact light, polygon-cache and GVRT work buffers. The reachable authored donor additionally replaces the implicit four-handler return path; the current cohort restores and completes that provider with genuine list types, declared return and return-preserving dispatch.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5114,
+        "historical_path": "src/pso/unk/text_803DA798.cpp",
+        "historical_blob": "3fda21db227de4a062606679d8d68f764b933511",
+        "owners": {
+          "src/pso/unk/text_803DA798.cpp": "e460aaf0d291153817d4c86ed7db4468ba9579dd"
+        },
+        "proofs": [
+          {
+            "group": "ginja-source",
+            "evidence": "Canonical already uses the actual current texture list pointer and explicit shared move_data and flush behind the upstream name TObjPlayer__sub_803DA808. The two historical copy_and_flush callers reach that same implementation/address; this wave also types the texture slot registration and allocation receiver.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 6023,
+        "historical_path": "src/pso/unk/text_803D96A8.cpp",
+        "historical_blob": "304b1b7eb2cc7e0f04a7ca3c57295acb50737d5d",
+        "owners": {
+          "src/pso/unk/text_803D96A8.cpp": "3ffe22f7175b9a8a23fa92e223a2a311b4a32e63"
+        },
+        "proofs": [
+          {
+            "group": "ginja-source",
+            "evidence": "Typed list decoder is proven through the exact native retail fingerprint. The earlier historical matrix and vector owner and pragma changes are not promoted to whole-file status by the decoder update.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 4936,
+        "historical_path": "src/pso/effect/TEffIndirectCtrl.cpp",
+        "historical_blob": "523c86e66e78bd7a3cb81dbc4fac240039b0f020",
+        "owners": {
+          "src/pso/effect/TEffIndirectCtrl.cpp": "d0f87e771decc8b5e49688f9ba76f2c62489f9de"
+        },
+        "proofs": [
+          {
+            "group": "ginja-source",
+            "evidence": "Canonical uses the original list pointer/count, authentic texture input and disposition; the direct/queue source now has genuine single-entry storage at +0x30 and list at +0x2C. One shared declared list call replaces the untyped local declaration. Large historical construction/scene split remains a scope-specific claim.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2331,
+        "historical_path": "src/pso/unk/text_80145804.cpp",
+        "historical_blob": "765955ca7fb2eb79501adc5c2d6d22418ee3d5c9",
+        "owners": {
+          "src/pso/ui/frontend/TAdSinglePlyChrSelectGC_80145778.cpp": "aaa602390a57dd34fbeba0cd4f2a6fb16fe4c02f"
+        },
+        "proofs": [
+          {
+            "group": "ginja-source",
+            "evidence": "Single real menu_font_texture_list record and two actual GinjaTextureEntry backing entries at their retail sections; unchanged per-word pixel clears and selected texture. Broad authored font owner changes outside this contract are not marked settled.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 2436,
+        "historical_path": "src/pso/misc/TChCrLoadAfs.cpp",
+        "historical_blob": "8f724e0c7d5390418d0b7814936b47c14789442d",
+        "owners": {
+          "src/pso/ui/charcreate/TChCrLoadAfs.cpp": "433fe1bbbc7ccefc82689568a1f38c359a2847ce"
+        },
+        "proofs": [
+          {
+            "group": "ginja-source",
+            "evidence": "Existing texture receiver now uses the single accurate loader declaration. AFS disc transfer and remaining character creation historical bodies were not addressed in this wave.",
+            "details": null
+          }
+        ],
+        "status": "Some anchored text changes found"
+      },
+      {
+        "row": 5554,
+        "historical_path": "src/pso/misc/TWindowMainMenu1P.cpp",
+        "historical_blob": "6eaa7ee5bf65d9957a4b3e524dcd6fed4df41e80",
+        "owners": {
+          "src/pso/ui/window/TWindowMainMenu1P.cpp": "f7fd7971f175a1f9f0a9002e510531b8174dd0d5",
+          "include/pso/ui/window/TWindowMainMenu1P.h": "31c26a0e3310be51071df753bc6529510f8fe60a",
+          "src/pso/ui/window/TWindowUserSort.cpp": "3f61e90f05b383f9a397bdf80a8236bcf559f1e2"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "The active source supplies the complete single-player owner. Both coordinate tables match every authored x/y entry and retain their original addresses and sizes. The debug name retains its original string and pointer. The signed transition branches, camera apply/reset, task and render slots and whole destructor survive. The real constructor delegates to TWindowMainMenu(parent, client), sets the debug name and initializes all ten recovered floats at their original offsets.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5694,
+        "historical_path": "include/pso/misc/TWindowMainMenu1P.h",
+        "historical_blob": "3c24499c17af1ec137576891bf6c224149644d8f",
+        "owners": {
+          "include/pso/ui/window/TWindowMainMenu1P.h": "31c26a0e3310be51071df753bc6529510f8fe60a",
+          "include/pso/camera/CameraViewParams.h": "7ce8761b8f9229fe671ec723a01535cd04bbc41f",
+          "src/pso/ui/window/TWindowMainMenu1P.cpp": "f7fd7971f175a1f9f0a9002e510531b8174dd0d5",
+          "src/pso/ui/window/TWindowUserSort.cpp": "3f61e90f05b383f9a397bdf80a8236bcf559f1e2"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "The actual 0xAC class preserves transition bytes +0x60/+0x61, the camera block +0x64 through +0xAB, and the inherited flags/client at +0x4C/+0x54. CameraViewParams represents the original floats at +0x6C/+0x70, +0x8C/+0x90 and +0x94 through +0xA8. The same four virtual declarations and character-select helper remain. The native constructor and destructor replace external linker-shape declarations; there is no live raw destructor caller.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5763,
+        "historical_path": "include/pso/misc/TWindowCtrl_8024A1A8.h",
+        "historical_blob": "cc29349e3e3d30284c5c16ece42b5dfeab7c2b54",
+        "owners": {
+          "include/pso/ui/window/TWindowCtrl_8024A1A8.h": "e618d52a02482080a3dd661f26b0e47ae7063417",
+          "src/pso/ui/window/TWindowCtrl_8024A1A8.cpp": "d0472ac75282c9f2aea90a8280778b807430604e"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "The sole authored change after tracked include relocation is the entity lookup argument from s32 to u16. The canonical header and actual inline definition both use u16 and call find_entity_by_id with its native declaration inside the speaker anchor. The standalone and batch retain their pre-existing s32 carrier until the complete balloon allocation chain is independently replayable.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5824,
+        "historical_path": "src/pso/misc/TWindowCtrl_8024C598.cpp",
+        "historical_blob": "a6dca711b0b8d61a27ec00fc6c0a38fff5886103",
+        "owners": {
+          "src/pso/ui/window/TWindowCtrl_8024C598.cpp": "7f20fab4c7b5e313f2e2785bd1098d88a9582486",
+          "include/pso/ui/window/TWindowCtrl_8024A1A8.h": "e618d52a02482080a3dd661f26b0e47ae7063417",
+          "src/pso/ui/window/TWindowCtrl_8024A1A8.cpp": "d0472ac75282c9f2aea90a8280778b807430604e",
+          "include/pso/ui/window/TUnk_804CF0B8.h": "6679005f9d12525d02702bbfc0f161b2a33dc161",
+          "include/pso/ui/chat/TWindowChat.h": "f91144b18ddb804f69e809f5f5dc3f0111e42433"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "The authored ownership fix is carried: the linked 0x8024C5E8 reader belongs to TUnk_804CF0B8, returns its unsigned +0x76 id, and is called on actual speech balloon receivers. The remaining six bodies retain their flag semantics, including the focused child test now reading the true TWindowChat flags at +0x1E. The standalone and queue carry the focused child test and retain their existing speaker accessor carrier.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      },
+      {
+        "row": 5962,
+        "historical_path": "src/pso/misc/TWindowMainMenu_80263B70.cpp",
+        "historical_blob": "3423a6e3663581391c12a318cdd7ac9e78e6ef64",
+        "owners": {
+          "src/pso/ui/window/TWindowMainMenu.cpp": "abb3239f88c3ea6b1606560918b6c92c6f619e17",
+          "src/pso/ui/window/TWindowMessage.cpp": "cb6ecf2577842f0854282470cb1d554cdbebca2c",
+          "include/pso/ui/window/TWindowMessage.h": "afdbd9a0d65530346f8613732ec98f17b1ded75e"
+        },
+        "proofs": [
+          {
+            "group": "menu-source",
+            "evidence": "After include reorganization the historical delta is one factory declaration and its one calling site, corrected from a float-pointer guess to the general ABI at 0x80269CC0. The folded canonical and queue owner calls the real TWindowMessage::create overload with the native NJS_POINT2 pointer from window position 0x1B, the existing extent table, row count 1, and client context. The older standalone carries an integer position argument, so whole historical agreement is certified on canonical and queue.",
+            "details": null
+          }
+        ],
+        "status": "Complete historical source retained at native owners"
+      }
+    ],
+    "closed_rows": [
+      592,
+      593,
+      682,
+      739,
+      1014,
+      4149,
+      4153,
+      5104,
+      5114,
+      5554,
+      5694,
+      5763,
+      5824,
+      5962
+    ],
+    "remaining": {
+      "Owner comparison required": 258,
+      "Some anchored text changes found": 718
+    }
+  },
+  "original_1147_bytes": {
+    "linked": 980,
+    "padding": 167,
+    "remaining": 0
+  },
+  "data_ranges": 90,
+  "local_tool_tests": 294,
+  "layer_tests": 11,
+  "fork_only_paths": 133,
+  "replay_validation": {
+    "adxf-source": {
+      "head": "78b3bc0ba88cc422b484a690b8191d4fdc59e11e",
+      "report_sha256": "a811ade9d0fc8c3aaf5f6fbe8b78c7b52bae0c8aae45b931d1bfd7632af3bffd",
+      "strict_sha256": "9c615f959fa1a7bf9bb3f5f91339497318f3273f801c2308e9946f3f6ba960a9"
+    },
+    "gigue-source": {
+      "head": "a335f124eec6c473a9844c088850352653fe4dc3",
+      "report_sha256": "3e8088edb24bbf3e3016c6d682ed62606bc97c53fd55bf4961cad0cf10e2aab2",
+      "strict_sha256": "cadd4310e89049b4a186d16a9a2bb55dd1f60e5e2d5df526a590d01f8c6aec59"
+    },
+    "ginja-source": {
+      "head": "e1e60ecc6f8d4ffb0b05264bc6f5ed18e6d0e652",
+      "report_sha256": "a811ade9d0fc8c3aaf5f6fbe8b78c7b52bae0c8aae45b931d1bfd7632af3bffd",
+      "strict_sha256": "9c615f959fa1a7bf9bb3f5f91339497318f3273f801c2308e9946f3f6ba960a9"
+    },
+    "menu-source": {
+      "head": "fc8eac23eec01236c2875d8620a04ddbe4c93901",
+      "report_sha256": "a811ade9d0fc8c3aaf5f6fbe8b78c7b52bae0c8aae45b931d1bfd7632af3bffd",
+      "strict_sha256": "9c615f959fa1a7bf9bb3f5f91339497318f3273f801c2308e9946f3f6ba960a9"
+    }
+  },
+  "combined_validation": {
+    "combined-source": {
+      "report_sha256": "3e8088edb24bbf3e3016c6d682ed62606bc97c53fd55bf4961cad0cf10e2aab2",
+      "strict_sha256": "e0392051f54e7a1749ca3bfe2f7192f161e21cc6a0118ca6f57b1e90791d463a"
+    },
+    "direct-union": {
+      "report_sha256": "3186bd0bd093c891bf0b4e211f04b62ab14d6b40c0efca377a8b443b4f8b3131",
+      "strict_sha256": "022eaaf32b83b6646adb837449b906e8b3a09974a8d38b21f84feb5ded8acf7a"
+    },
+    "working-final": {
+      "report_sha256": "3e8088edb24bbf3e3016c6d682ed62606bc97c53fd55bf4961cad0cf10e2aab2",
+      "strict_sha256": "0e47b3c9930fdd586829680278b32d80f5c58d6ea1f4b85a61b3e2b76bf75625"
+    }
+  }
+}

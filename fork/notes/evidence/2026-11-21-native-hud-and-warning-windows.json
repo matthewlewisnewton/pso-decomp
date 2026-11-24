@@ -1,0 +1,181 @@
+{
+  "source": "7286601fc82ce6e72a549b8acf912663ce2c1396",
+  "previous_source": "86578b66cc8c999f2870e6724cfb595ae2c8b841",
+  "earlier_verified_components": {
+    "hud": "48cfcc47904b93cbfc0bed2c89a708069ad588f4",
+    "information_window": "a0ae8422d0940e24c0e5ce3298747d5991d40472",
+    "warning_windows": "c90f93d3b0a456abbdc1eb422876c4407ef3ae43"
+  },
+  "single_review_candidate": "9a3b2715c5542b39a742caf88c9e208d69f1d5b5",
+  "compiled_source_units": 2448,
+  "matched_functions": 27572,
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/player/TObjPlayer.h",
+    "include/pso/ui/window/TObjBagWarnWin4P.h",
+    "include/pso/ui/window/TObjDeadListWin.h",
+    "include/pso/ui/window/TWindowCtrlPlayer.h",
+    "include/pso/ui/window/TWindowLockOn.h",
+    "include/pso/unk/text_8006EBC4.h",
+    "include/pso/unk/text_80269FE8.h",
+    "include/pso/unk/text_80271400.h",
+    "src/pso/map/area/AreaCity.cpp",
+    "src/pso/player/TObjPlayer_801AF2F0.cpp",
+    "src/pso/ui/window/TObjBagWarnWin.cpp",
+    "src/pso/ui/window/TObjDeadListWin.cpp",
+    "src/pso/ui/window/TWindowCtrlMain.cpp",
+    "src/pso/ui/window/TWindowLockOn_80262C3C.cpp",
+    "src/pso/ui/window/TWindowStatus.cpp",
+    "src/pso/unk/text_80269FE8.cpp"
+  ],
+  "source_fixes": [
+    "The player HUD owns its main menu, information, status, action palette, lock-on, and short-list windows through native types and original offsets.",
+    "Status and information providers return their actual window types. Lock-on dispatch uses the existing methods with the 16-bit target ID.",
+    "The four-player warning uses a native constructor and checked fields for the message, text, and delay. The dead list stores its real message-window pointer."
+  ],
+  "ledger_scan": {
+    "baseline": "86578b66cc8c999f2870e6724cfb595ae2c8b841",
+    "population": 659,
+    "whole_delta_token_matches": 0,
+    "partial_token_matches": 215,
+    "method": "Compared fork and ancestor token deltas in live candidate owners and tracked direct dependencies. Partial matches guide manual comparisons."
+  },
+  "historical_rows_closed": {
+    "2450": {
+      "historical_path": "include/pso/TChCrLoadAfs.h",
+      "owner": "include/pso/ui/charcreate/TChCrLoadAfs.h",
+      "owner_blob": "825b64e823de5670d3409318fa024778966e6813",
+      "decision": "The live header uses the ADXF handle at +0x1C and a byte-buffer pointer at +0x28. The three raw declarations are gone, with the operations defined as native methods. The texture-name ordinal helper remains declared where upstream puts it and is used by the current archive loader."
+    },
+    "4446": {
+      "historical_path": "include/pso/item/TItemMagSub.h",
+      "owner": "include/pso/item/mag/TItemMagSub.h",
+      "owner_blob": "f831f262fabe32b73791842c5eeb3941abb1390e",
+      "decision": "The full authored change is the NJS_OBJECT forward declaration and the typed update_node_oscillation callback. Both are present in the original upstream owner, and the source passes that callback directly to the chunk renderer."
+    },
+    "6802": {
+      "historical_path": "include/pso/misc/TOVS2.h",
+      "owner": "include/pso/object/TOVS2.h",
+      "owner_blob": "7d4c57904dca20f3edafe6ff97687d1ab0bc722b",
+      "decision": "The collision object at +0xC8 uses TObjMapCsn. The handwritten destructor declaration is gone. The six native wreck constructors invoke the native TOVS2 base constructor, and the base constructor and destructor retain their retail linkage."
+    },
+    "7279": {
+      "historical_path": "src/pso/object/TObjLight_80235C44.cpp",
+      "owner": "src/pso/object/ambient/TObjLight_80235C44.cpp",
+      "owner_blob": "677bb695d3d1fbf72ce6c68da74f7fd778854cc4",
+      "decision": "All three authored pitch and yaw expressions are present. Shared player and collision lookup headers supply the calls at their native types, replacing the two duplicate player declarations and one duplicate entity declaration."
+    }
+  },
+  "hud_rows_with_added_evidence": {
+    "5533": "The view controller now dispatches to the native main menu and stores six typed children in the live player controller.",
+    "5534": "The typed HUD update uses the existing controller queries and preserves their retail instructions.",
+    "5846": "The native player controller declares the six child types and verifies their original field offsets."
+  },
+  "historical_rows_open": 655,
+  "validation": {
+    "frontend": {
+      "check_sha256": "7bdd57c775943d24af2596219b28d2113dc18f286e726f69be6557cc7233ecf8",
+      "changed_function_labels_from_previous_tree": [
+        {
+          "module": "psov3",
+          "address": "0x8006EB74",
+          "before": "__ct__16TObjBagWarnWin4PFv",
+          "after": "__ct__16TObjBagWarnWin4PFP7TObject"
+        }
+      ],
+      "source_report_sha256": "8a72c91e2962fbeb5a55417ffebf6e3fa0603ccf6d1f4398d9e76f5b634c02ed",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      }
+    },
+    "resources": {
+      "check_sha256": "7bdd57c775943d24af2596219b28d2113dc18f286e726f69be6557cc7233ecf8",
+      "changed_function_labels_from_previous_tree": [
+        {
+          "module": "psov3",
+          "address": "0x8006EB74",
+          "before": "__ct__16TObjBagWarnWin4PFv",
+          "after": "__ct__16TObjBagWarnWin4PFP7TObject"
+        }
+      ],
+      "source_report_sha256": "31b0a2ce398130e6cfc85a47078fd113d330d88133553e575d47a12d50a17abf",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      }
+    },
+    "combat": {
+      "check_sha256": "7bdd57c775943d24af2596219b28d2113dc18f286e726f69be6557cc7233ecf8",
+      "changed_function_labels_from_previous_tree": [
+        {
+          "module": "psov3",
+          "address": "0x8006EB74",
+          "before": "__ct__16TObjBagWarnWin4PFv",
+          "after": "__ct__16TObjBagWarnWin4PFP7TObject"
+        }
+      ],
+      "source_report_sha256": "05db118c6ab3e19884c2a79d95063c12f0bfa788a9a844859b5e05a34efa99b4",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      }
+    },
+    "full": {
+      "check_sha256": "7bdd57c775943d24af2596219b28d2113dc18f286e726f69be6557cc7233ecf8",
+      "changed_function_labels_from_previous_tree": [
+        {
+          "module": "psov3",
+          "address": "0x8006EB74",
+          "before": "__ct__16TObjBagWarnWin4PFv",
+          "after": "__ct__16TObjBagWarnWin4PFP7TObject"
+        }
+      ],
+      "source_report_sha256": "05db118c6ab3e19884c2a79d95063c12f0bfa788a9a844859b5e05a34efa99b4",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      }
+    },
+    "hud": {
+      "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+      "changed_function_labels_from_previous_tree": []
+    },
+    "fork": {
+      "check_sha256": "23fa042ff09879c8a3b1ab8becf302e3072d6cc537ea6cce62013245fe2f3527",
+      "changed_function_labels_from_previous_tree": [
+        {
+          "module": "psov3",
+          "address": "0x8006EB74",
+          "before": "__ct__16TObjBagWarnWin4PFv",
+          "after": "__ct__16TObjBagWarnWin4PFP7TObject"
+        }
+      ]
+    }
+  },
+  "fork_overlay_paths": 130,
+  "fork_overlay_sha256": "472a0608dee94468b2cc3e94b648086a12cda36f9969ff88cd222f2fef460336",
+  "tool_tests": 294,
+  "fork_layer_tests": 11,
+  "host_checks": [
+    "./vector_math_fallbacks",
+    "./item_factory_callbacks",
+    "./loader_transfer",
+    "./ginja_parameter_callbacks",
+    "./exi_ethernet_fallbacks"
+  ],
+  "commit_attribution": {
+    "audited_commits": 67,
+    "codex_attribution": 0,
+    "coauthor_trailers": 0
+  }
+}

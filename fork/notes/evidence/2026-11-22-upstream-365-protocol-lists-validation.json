@@ -1,0 +1,195 @@
+{
+  "source": "74571468c855113701d6297933945e510ea94bd6",
+  "previous_source": "71531f4dfd54d86482371cabce50fa3b15fc671e",
+  "upstream": "b2d2912058829d0f0c9260f6272dc2a303c90110",
+  "paths": [
+    "include/pso/network/TProtocol.h",
+    "include/pso/network/protocol/packet_classes.h",
+    "src/pso/network/TPlyJoinLobbyEntry.cpp",
+    "src/pso/network/TProtocol.cpp"
+  ],
+  "combined_paths_from_upstream": 1299,
+  "validation": {
+    "source": {
+      "baseline": "71531f4dfd54d86482371cabce50fa3b15fc671e",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "b7ef59ce5f05d52a0b99f5c11907f7321b16c8c6c24753265640cf14dc5d402b",
+      "report_sha256": "5651baaad2c4967d332d56742930c0b22cf7931fa2ccc9dbbb0713f2360f124b"
+    },
+    "layer": {
+      "baseline": "74571468c855113701d6297933945e510ea94bd6",
+      "retail_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+      "exact_functions": 27572,
+      "linked_units": 2447,
+      "linker_label_changes": [],
+      "coverage_losses": {
+        "regressions": 0,
+        "data_regressions": 0,
+        "linked_functions_lost": 0,
+        "linked_data_lost": 0,
+        "data_coverage_lost": 0,
+        "padding_coverage_lost": 0
+      },
+      "data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "check_sha256": "0d0505ff2d6750e611c1caeddd6c815b7e23c1307e306f42ee8cc59bb78deb14",
+      "report_sha256": "5651baaad2c4967d332d56742930c0b22cf7931fa2ccc9dbbb0713f2360f124b"
+    }
+  },
+  "tests": {
+    "tool": {
+      "count": 294,
+      "log_sha256": "e2b7c73ea2e13064c2d45abefb62c8efe6a253b48f275df04ed46fe63569a6f1"
+    },
+    "fork": {
+      "count": 11,
+      "log_sha256": "32fd2c95100c60a0e6f794220e035f3bb507000948b964c4395ff3e13a09ca90"
+    },
+    "host": {
+      "executables": [
+        "vector_math_fallbacks",
+        "item_factory_callbacks",
+        "loader_transfer",
+        "ginja_parameter_callbacks",
+        "exi_ethernet_fallbacks"
+      ],
+      "log_sha256": "ad1227e7d6dde3aea88d51f241949b30f3d1fe42ec4c3abf078bd6309ee9bbdb"
+    }
+  },
+  "runtime": {
+    "cases_per_image": 15,
+    "images": [
+      "retail",
+      "source",
+      "materialized fork"
+    ],
+    "cases": {
+      "direct_assignment": 8,
+      "room_info_receive": 4,
+      "game_text_directory_receive": 3
+    },
+    "probe_sha256": "09689163f31e25b439c7ab8d3e1e1045f1f4e4340a625a102ef3975a12001c77",
+    "log_sha256": "32fd2c95100c60a0e6f794220e035f3bb507000948b964c4395ff3e13a09ca90"
+  },
+  "matching_units": {
+    "src/pso/network/TProtocol.cpp": {
+      "functions": 93,
+      "code": "15112",
+      "data": "2080"
+    },
+    "src/pso/network/TPlyJoinLobbyEntry.cpp": {
+      "functions": 129,
+      "code": "23052",
+      "data": "22916"
+    }
+  },
+  "providers": [
+    {
+      "owner": "LobbyListEntry::operator=",
+      "linker_label": "__as__14LobbyListEntryFRC14LobbyListEntry",
+      "address": "0x801dd260",
+      "bytes": 28,
+      "path": "src/pso/network/TProtocol.cpp"
+    },
+    {
+      "owner": "GameListEntry::operator=",
+      "linker_label": "__as__13GameListEntryFRC13GameListEntry",
+      "address": "0x801ddb44",
+      "bytes": 84,
+      "path": "src/pso/network/TProtocol.cpp"
+    },
+    {
+      "owner": "TLobby::handle_team_select",
+      "linker_label": "handle_team_select__6TLobbyFv",
+      "address": "0x801395d8",
+      "bytes": 184,
+      "path": "src/pso/network/TPlyJoinLobbyEntry.cpp"
+    },
+    {
+      "owner": "TLobby::handle_game_list_select",
+      "linker_label": "handle_game_list_select__6TLobbyFv",
+      "address": "0x80139538",
+      "bytes": 160,
+      "path": "src/pso/network/TPlyJoinLobbyEntry.cpp"
+    },
+    {
+      "owner": "TLobby::update_game_list_menu",
+      "linker_label": "update_game_list_menu__6TLobbyFv",
+      "address": "0x801392f8",
+      "bytes": 256,
+      "path": "src/pso/network/TPlyJoinLobbyEntry.cpp"
+    },
+    {
+      "owner": "TLobby::update_ship_select_window",
+      "linker_label": "update_ship_select_window__6TLobbyFv",
+      "address": "0x801391bc",
+      "bytes": 184,
+      "path": "src/pso/network/TPlyJoinLobbyEntry.cpp"
+    },
+    {
+      "owner": "TLobby::update_block_jump_list",
+      "linker_label": "update_block_jump_list__6TLobbyFv",
+      "address": "0x80139104",
+      "bytes": 184,
+      "path": "src/pso/network/TPlyJoinLobbyEntry.cpp"
+    },
+    {
+      "owner": "TLobby::handle_comcard_window",
+      "linker_label": "handle_comcard_window__6TLobbyFv",
+      "address": "0x80138d3c",
+      "bytes": 192,
+      "path": "src/pso/network/TPlyJoinLobbyEntry.cpp"
+    }
+  ],
+  "tool_suite_retry": {
+    "initial_result": "temporary bare Git repository initialization failed",
+    "initial_log_sha256": "05fe9d0e3d5edb2b80aae9bafbdcfb0cf2a5c75bfd5611cdf5e952953143c9e8",
+    "scratch_free_space_log_sha256": "b8f1036a944bba36cd122fd3d333dc835977115927e9b6d934b61f04b355f5f8"
+  },
+  "historical": {
+    "closed": [
+      {
+        "row": 3004,
+        "path": "src/pso/network/TProtocol.cpp",
+        "detail": "Both entry copies are class assignment operators at the original addresses and sizes. The two lobby loops and three game, text and directory loops use the native records. The scheduling scope keeps the original seven and 21 instructions without the older inline settings."
+      }
+    ],
+    "scoped": {
+      "3061": "Verified direct access to the existing TProtocol game entries, flags, count and guild-card tags from the team, game, ship and block selection paths, including password continuation and invalid-packet reset. The remaining historical window, controller and client-data changes still need comparison."
+    },
+    "open_rows": 306
+  },
+  "specialization_trial": {
+    "status": "deferred",
+    "reason": "Direct class arrays in the packet copy constructors introduce additional default construction.",
+    "object_comparison_sha256": "596c7d464857f0c3b5dee5b8c0fe13bda1774f8213f91899026cb252d5b258f8"
+  },
+  "fork_workspace": {
+    "trial": "dbeecbe732b62601a1e85e0bfd7daa9ae851160c",
+    "overlay_paths": 130,
+    "archive_sha256": "8a11c6ff1dbfeda0779bd33cb8e9d55c708414d562815c877d548734a338e683",
+    "materialized_tree": "971a14d6bcd8c2fb627908f1b45af074b4503274",
+    "force_active": 27029
+  }
+}

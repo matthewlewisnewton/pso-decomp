@@ -1,0 +1,822 @@
+{
+  "source": "55d610acfa22a20a780070a13300b55c6ae3a3ce",
+  "previous_source": "4afc3ef4d0ca07871e9351699b05c078ff744b0f",
+  "review": {
+    "ref": "great-merge/consolidated/single-review-with-adxf-partitions-and-decoder",
+    "head": "43c3a0ca217f3272ba42e5413466d47706f9ff61",
+    "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+    "tree": "7483dcabdd3326e772464e5695d2bbb79d88de86",
+    "tree_equivalent_to": "1b7ef0d0e55c32c25d0d9c7990e29e431d6724b3",
+    "commits": [
+      {
+        "head": "8890b7fd8b4fbcf9ef7d6d35e4f88f7397ae9bf6",
+        "base": "1fd561eae2a2185d4f93c411c9f6bbde9ce6b202",
+        "tree": "572c96b50f200895bc094534dc75a4a84a87f5d3",
+        "checked_tree": "79892d85f89f6432c95e35a80f47dc8c9ee080fb",
+        "files_changed": 655,
+        "insertions": 10713,
+        "deletions": 12247
+      },
+      {
+        "head": "c42e3238ac5f92b26a9ca4f61bccf057d3815c32",
+        "base": "8890b7fd8b4fbcf9ef7d6d35e4f88f7397ae9bf6",
+        "tree": "d3ef9a7185166805dc73c3217b00d16301c820ae",
+        "checked_tree": "e586ff8f927d627b7e933e44223a816febdfea5e",
+        "files_changed": 679,
+        "insertions": 5760,
+        "deletions": 6296
+      },
+      {
+        "head": "c0206129d91a889510d1110a7f5d8e49d1a1ec76",
+        "base": "c42e3238ac5f92b26a9ca4f61bccf057d3815c32",
+        "tree": "d8f9f298e8e085493b9ae008c37ca520b7b0296d",
+        "checked_tree": "c306842e82985de65583e787f1fa0a1776b51394",
+        "files_changed": 21,
+        "insertions": 372,
+        "deletions": 480
+      },
+      {
+        "head": "018464722d369c4481854eb77fa67f81c3e869be",
+        "base": "c0206129d91a889510d1110a7f5d8e49d1a1ec76",
+        "tree": "115ec496fc647c2aebcf55956d23052ee4368977",
+        "checked_tree": "018464722d369c4481854eb77fa67f81c3e869be",
+        "files_changed": 969,
+        "insertions": 12609,
+        "deletions": 13420
+      },
+      {
+        "head": "10c466c8e9407af9b1109bec3f36273b69a880f6",
+        "base": "018464722d369c4481854eb77fa67f81c3e869be",
+        "tree": "9e60f5d9462f65b9e62ce7b592013f06ad8ed930",
+        "checked_tree": "10c466c8e9407af9b1109bec3f36273b69a880f6",
+        "files_changed": 24,
+        "insertions": 331,
+        "deletions": 396
+      },
+      {
+        "head": "bc801af727e83a81b62ca552b25456671c8723f7",
+        "base": "10c466c8e9407af9b1109bec3f36273b69a880f6",
+        "tree": "5da2f03826a0aae2bed5042ecb19260b5087494a",
+        "checked_tree": "bc801af727e83a81b62ca552b25456671c8723f7",
+        "files_changed": 38,
+        "insertions": 646,
+        "deletions": 735
+      },
+      {
+        "head": "54f12790491275d41d4c96d1760e323fa2884066",
+        "base": "bc801af727e83a81b62ca552b25456671c8723f7",
+        "tree": "f4d94d9370fa61cbbab9355f3e70ced8bc0b9dd7",
+        "checked_tree": "e3819bb0cb6a8e7df497c88475177d94df4750db",
+        "files_changed": 17,
+        "insertions": 256,
+        "deletions": 341
+      },
+      {
+        "head": "43c3a0ca217f3272ba42e5413466d47706f9ff61",
+        "base": "54f12790491275d41d4c96d1760e323fa2884066",
+        "tree": "7483dcabdd3326e772464e5695d2bbb79d88de86",
+        "checked_tree": "1b7ef0d0e55c32c25d0d9c7990e29e431d6724b3",
+        "files_changed": 12,
+        "insertions": 136,
+        "deletions": 139
+      }
+    ],
+    "commit_attribution": {
+      "audited_commits": 8,
+      "codex_attribution": 0,
+      "coauthor_trailers": 0
+    },
+    "check_sha256": "ed022c1f8a5134e6594bd2440acb38f21ccf8b5285799c27fa0061cea7209068",
+    "files_changed": 1779,
+    "insertions": 30096,
+    "deletions": 33327
+  },
+  "changed_paths": [
+    "config/GPOE8P/psov3/symbols.txt",
+    "include/pso/audio/AdxbDecoder.h",
+    "include/pso/audio/AdxfInternal.h",
+    "include/pso/audio/AdxfPartition.h",
+    "include/pso/unk/TLobby.h",
+    "include/pso/unk/TLobby_801E2F94.h",
+    "include/pso/unk/TLobby_803BFE50.h",
+    "include/pso/unk/TLobby_803C1A58.h",
+    "include/pso/unk/text_803C1780.h",
+    "src/pso/audio/AdxBsc.cpp",
+    "src/pso/audio/AdxTalk.cpp",
+    "src/pso/audio/AdxtServer.cpp",
+    "src/pso/item/TItemLoad.cpp",
+    "src/pso/item/TItemTexLoad.cpp",
+    "src/pso/ui/charcreate/TCharaMaking.cpp",
+    "src/pso/unk/TLobby_801E2F94.cpp",
+    "src/pso/unk/TLobby_80226C3C.cpp",
+    "src/pso/unk/TLobby_8023F734.cpp",
+    "src/pso/unk/TLobby_803BFE50.cpp",
+    "src/pso/unk/text_803CC134.cpp",
+    "src/pso/unk/text_803CC294.cpp"
+  ],
+  "patch_sha256": "be79d3e1c9741e841b31f8c20e620b39ef52ca73f1c87901046a9e76eb65d5c1",
+  "checked_original_functions": [
+    "TLobby::get_afs_file_info",
+    "TLobby::read_afs_toc",
+    "TLobby::adxf_open_file",
+    "TLobby__sub_803C0628",
+    "get_progress_info__6TLobbyFPvPvPvPv"
+  ],
+  "retail_dol_sha1": "0d85744b51d7379efb025a943d0cd5aaae2191a3",
+  "validation": {
+    "resources": {
+      "check_sha256": "2730cc5256616c9bdda199efed9ffe3919c7f6cb9385892f6eba01874e2fdd3f",
+      "source_report_sha256": "e692405b573723e0c98fe652f64cfcc2a69694284676c3b0d790df8cb686b0fe",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x803C0F98",
+          "convert_pcm_u8_to_s16__6TLobbyFv",
+          "convert_pcm_u8_to_s16__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3974",
+          "get_field_a0__6TLobbyFv",
+          "get_field_a0__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C397C",
+          "get_field_0xa4__6TLobbyFv",
+          "get_field_0xa4__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3A1C",
+          "init_scroll__6TLobbyFll",
+          "init_scroll__11AdxbDecoderFPUcl"
+        ],
+        [
+          "0x803C3A8C",
+          "get_entry_id__6TLobbyFv",
+          "get_entry_id__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3A94",
+          "get_field_34__6TLobbyFv",
+          "get_field_34__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3A9C",
+          "get_field30__6TLobbyFv",
+          "get_field30__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3AA4",
+          "get_field_2c__6TLobbyFv",
+          "get_field_2c__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3AAC",
+          "get_field_28__6TLobbyFv",
+          "get_field_28__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3AB4",
+          "get_slot__6TLobbyFv",
+          "get_slot__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3ACC",
+          "get_packet_flag_for_state__6TLobbyFv",
+          "get_packet_flag_for_state__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3B4C",
+          "get_field_a8__6TLobbyFv",
+          "get_field_a8__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3B54",
+          "get_field_0x3c__6TLobbyFv",
+          "get_field_0x3c__11AdxbDecoderFv"
+        ],
+        [
+          "0x803CD840",
+          "adxf_open_file__6TLobbyFiPviPv",
+          "adxf_open_file__6TLobbyFiPCciP13AdxfPartition"
+        ]
+      ]
+    },
+    "combat": {
+      "check_sha256": "2730cc5256616c9bdda199efed9ffe3919c7f6cb9385892f6eba01874e2fdd3f",
+      "source_report_sha256": "407ebe1adce18d27e78bcdebf554d4ba78e6a4803981e411e004f38db57f56c6",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x803C0F98",
+          "convert_pcm_u8_to_s16__6TLobbyFv",
+          "convert_pcm_u8_to_s16__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3974",
+          "get_field_a0__6TLobbyFv",
+          "get_field_a0__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C397C",
+          "get_field_0xa4__6TLobbyFv",
+          "get_field_0xa4__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3A1C",
+          "init_scroll__6TLobbyFll",
+          "init_scroll__11AdxbDecoderFPUcl"
+        ],
+        [
+          "0x803C3A8C",
+          "get_entry_id__6TLobbyFv",
+          "get_entry_id__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3A94",
+          "get_field_34__6TLobbyFv",
+          "get_field_34__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3A9C",
+          "get_field30__6TLobbyFv",
+          "get_field30__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3AA4",
+          "get_field_2c__6TLobbyFv",
+          "get_field_2c__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3AAC",
+          "get_field_28__6TLobbyFv",
+          "get_field_28__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3AB4",
+          "get_slot__6TLobbyFv",
+          "get_slot__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3ACC",
+          "get_packet_flag_for_state__6TLobbyFv",
+          "get_packet_flag_for_state__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3B4C",
+          "get_field_a8__6TLobbyFv",
+          "get_field_a8__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3B54",
+          "get_field_0x3c__6TLobbyFv",
+          "get_field_0x3c__11AdxbDecoderFv"
+        ],
+        [
+          "0x803CD840",
+          "adxf_open_file__6TLobbyFiPviPv",
+          "adxf_open_file__6TLobbyFiPCciP13AdxfPartition"
+        ]
+      ]
+    },
+    "full": {
+      "check_sha256": "2730cc5256616c9bdda199efed9ffe3919c7f6cb9385892f6eba01874e2fdd3f",
+      "source_report_sha256": "407ebe1adce18d27e78bcdebf554d4ba78e6a4803981e411e004f38db57f56c6",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x803C0F98",
+          "convert_pcm_u8_to_s16__6TLobbyFv",
+          "convert_pcm_u8_to_s16__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3974",
+          "get_field_a0__6TLobbyFv",
+          "get_field_a0__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C397C",
+          "get_field_0xa4__6TLobbyFv",
+          "get_field_0xa4__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3A1C",
+          "init_scroll__6TLobbyFll",
+          "init_scroll__11AdxbDecoderFPUcl"
+        ],
+        [
+          "0x803C3A8C",
+          "get_entry_id__6TLobbyFv",
+          "get_entry_id__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3A94",
+          "get_field_34__6TLobbyFv",
+          "get_field_34__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3A9C",
+          "get_field30__6TLobbyFv",
+          "get_field30__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3AA4",
+          "get_field_2c__6TLobbyFv",
+          "get_field_2c__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3AAC",
+          "get_field_28__6TLobbyFv",
+          "get_field_28__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3AB4",
+          "get_slot__6TLobbyFv",
+          "get_slot__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3ACC",
+          "get_packet_flag_for_state__6TLobbyFv",
+          "get_packet_flag_for_state__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3B4C",
+          "get_field_a8__6TLobbyFv",
+          "get_field_a8__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3B54",
+          "get_field_0x3c__6TLobbyFv",
+          "get_field_0x3c__11AdxbDecoderFv"
+        ],
+        [
+          "0x803CD840",
+          "adxf_open_file__6TLobbyFiPviPv",
+          "adxf_open_file__6TLobbyFiPCciP13AdxfPartition"
+        ]
+      ]
+    },
+    "linear-full": {
+      "check_sha256": "2730cc5256616c9bdda199efed9ffe3919c7f6cb9385892f6eba01874e2fdd3f",
+      "source_report_sha256": "407ebe1adce18d27e78bcdebf554d4ba78e6a4803981e411e004f38db57f56c6",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x803C0F98",
+          "convert_pcm_u8_to_s16__6TLobbyFv",
+          "convert_pcm_u8_to_s16__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3974",
+          "get_field_a0__6TLobbyFv",
+          "get_field_a0__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C397C",
+          "get_field_0xa4__6TLobbyFv",
+          "get_field_0xa4__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3A1C",
+          "init_scroll__6TLobbyFll",
+          "init_scroll__11AdxbDecoderFPUcl"
+        ],
+        [
+          "0x803C3A8C",
+          "get_entry_id__6TLobbyFv",
+          "get_entry_id__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3A94",
+          "get_field_34__6TLobbyFv",
+          "get_field_34__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3A9C",
+          "get_field30__6TLobbyFv",
+          "get_field30__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3AA4",
+          "get_field_2c__6TLobbyFv",
+          "get_field_2c__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3AAC",
+          "get_field_28__6TLobbyFv",
+          "get_field_28__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3AB4",
+          "get_slot__6TLobbyFv",
+          "get_slot__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3ACC",
+          "get_packet_flag_for_state__6TLobbyFv",
+          "get_packet_flag_for_state__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3B4C",
+          "get_field_a8__6TLobbyFv",
+          "get_field_a8__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3B54",
+          "get_field_0x3c__6TLobbyFv",
+          "get_field_0x3c__11AdxbDecoderFv"
+        ],
+        [
+          "0x803CD840",
+          "adxf_open_file__6TLobbyFiPviPv",
+          "adxf_open_file__6TLobbyFiPCciP13AdxfPartition"
+        ]
+      ]
+    },
+    "layer": {
+      "check_sha256": "a45d10b823713e165ecb808387b082f2783b533dc20cd09efeb39d3677951780",
+      "source_report_sha256": "407ebe1adce18d27e78bcdebf554d4ba78e6a4803981e411e004f38db57f56c6",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x803C0F98",
+          "convert_pcm_u8_to_s16__6TLobbyFv",
+          "convert_pcm_u8_to_s16__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3974",
+          "get_field_a0__6TLobbyFv",
+          "get_field_a0__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C397C",
+          "get_field_0xa4__6TLobbyFv",
+          "get_field_0xa4__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3A1C",
+          "init_scroll__6TLobbyFll",
+          "init_scroll__11AdxbDecoderFPUcl"
+        ],
+        [
+          "0x803C3A8C",
+          "get_entry_id__6TLobbyFv",
+          "get_entry_id__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3A94",
+          "get_field_34__6TLobbyFv",
+          "get_field_34__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3A9C",
+          "get_field30__6TLobbyFv",
+          "get_field30__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3AA4",
+          "get_field_2c__6TLobbyFv",
+          "get_field_2c__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3AAC",
+          "get_field_28__6TLobbyFv",
+          "get_field_28__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3AB4",
+          "get_slot__6TLobbyFv",
+          "get_slot__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3ACC",
+          "get_packet_flag_for_state__6TLobbyFv",
+          "get_packet_flag_for_state__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3B4C",
+          "get_field_a8__6TLobbyFv",
+          "get_field_a8__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3B54",
+          "get_field_0x3c__6TLobbyFv",
+          "get_field_0x3c__11AdxbDecoderFv"
+        ],
+        [
+          "0x803CD840",
+          "adxf_open_file__6TLobbyFiPviPv",
+          "adxf_open_file__6TLobbyFiPCciP13AdxfPartition"
+        ]
+      ]
+    }
+  },
+  "intermediate_checkpoints": {
+    "linear-4": {
+      "check_sha256": "2730cc5256616c9bdda199efed9ffe3919c7f6cb9385892f6eba01874e2fdd3f",
+      "source_report_sha256": "b3bffbb1af2639788d6b47e38c2de337a241116d1e4a262561edf6bf95b3962d",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x803C0F98",
+          "convert_pcm_u8_to_s16__6TLobbyFv",
+          "convert_pcm_u8_to_s16__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3974",
+          "get_field_a0__6TLobbyFv",
+          "get_field_a0__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C397C",
+          "get_field_0xa4__6TLobbyFv",
+          "get_field_0xa4__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3A1C",
+          "init_scroll__6TLobbyFll",
+          "init_scroll__11AdxbDecoderFPUcl"
+        ],
+        [
+          "0x803C3A8C",
+          "get_entry_id__6TLobbyFv",
+          "get_entry_id__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3A94",
+          "get_field_34__6TLobbyFv",
+          "get_field_34__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3A9C",
+          "get_field30__6TLobbyFv",
+          "get_field30__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3AA4",
+          "get_field_2c__6TLobbyFv",
+          "get_field_2c__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3AAC",
+          "get_field_28__6TLobbyFv",
+          "get_field_28__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3AB4",
+          "get_slot__6TLobbyFv",
+          "get_slot__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3ACC",
+          "get_packet_flag_for_state__6TLobbyFv",
+          "get_packet_flag_for_state__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3B4C",
+          "get_field_a8__6TLobbyFv",
+          "get_field_a8__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3B54",
+          "get_field_0x3c__6TLobbyFv",
+          "get_field_0x3c__11AdxbDecoderFv"
+        ],
+        [
+          "0x803CD840",
+          "adxf_open_file__6TLobbyFiPviPv",
+          "adxf_open_file__6TLobbyFiPCciP13AdxfPartition"
+        ]
+      ]
+    },
+    "linear-5": {
+      "check_sha256": "2730cc5256616c9bdda199efed9ffe3919c7f6cb9385892f6eba01874e2fdd3f",
+      "source_report_sha256": "7aa902671262dd3bbe64840fcf04aa47f56230c9dd3c027a78f6556370019401",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x803C0F98",
+          "convert_pcm_u8_to_s16__6TLobbyFv",
+          "convert_pcm_u8_to_s16__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3974",
+          "get_field_a0__6TLobbyFv",
+          "get_field_a0__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C397C",
+          "get_field_0xa4__6TLobbyFv",
+          "get_field_0xa4__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3A1C",
+          "init_scroll__6TLobbyFll",
+          "init_scroll__11AdxbDecoderFPUcl"
+        ],
+        [
+          "0x803C3A8C",
+          "get_entry_id__6TLobbyFv",
+          "get_entry_id__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3A94",
+          "get_field_34__6TLobbyFv",
+          "get_field_34__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3A9C",
+          "get_field30__6TLobbyFv",
+          "get_field30__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3AA4",
+          "get_field_2c__6TLobbyFv",
+          "get_field_2c__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3AAC",
+          "get_field_28__6TLobbyFv",
+          "get_field_28__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3AB4",
+          "get_slot__6TLobbyFv",
+          "get_slot__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3ACC",
+          "get_packet_flag_for_state__6TLobbyFv",
+          "get_packet_flag_for_state__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3B4C",
+          "get_field_a8__6TLobbyFv",
+          "get_field_a8__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3B54",
+          "get_field_0x3c__6TLobbyFv",
+          "get_field_0x3c__11AdxbDecoderFv"
+        ],
+        [
+          "0x803CD840",
+          "adxf_open_file__6TLobbyFiPviPv",
+          "adxf_open_file__6TLobbyFiPCciP13AdxfPartition"
+        ]
+      ]
+    },
+    "linear-6": {
+      "check_sha256": "2730cc5256616c9bdda199efed9ffe3919c7f6cb9385892f6eba01874e2fdd3f",
+      "source_report_sha256": "2940bba85b178283af73bcb6ab500fa8f244a2c38e615cefda93b7f1c82fde55",
+      "original_data_inventory": {
+        "ranges": 90,
+        "linked": 980,
+        "padding": 167,
+        "remaining": 0
+      },
+      "typed_linker_labels": [
+        [
+          "0x803C0F98",
+          "convert_pcm_u8_to_s16__6TLobbyFv",
+          "convert_pcm_u8_to_s16__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3974",
+          "get_field_a0__6TLobbyFv",
+          "get_field_a0__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C397C",
+          "get_field_0xa4__6TLobbyFv",
+          "get_field_0xa4__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3A1C",
+          "init_scroll__6TLobbyFll",
+          "init_scroll__11AdxbDecoderFPUcl"
+        ],
+        [
+          "0x803C3A8C",
+          "get_entry_id__6TLobbyFv",
+          "get_entry_id__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3A94",
+          "get_field_34__6TLobbyFv",
+          "get_field_34__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3A9C",
+          "get_field30__6TLobbyFv",
+          "get_field30__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3AA4",
+          "get_field_2c__6TLobbyFv",
+          "get_field_2c__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3AAC",
+          "get_field_28__6TLobbyFv",
+          "get_field_28__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3AB4",
+          "get_slot__6TLobbyFv",
+          "get_slot__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3ACC",
+          "get_packet_flag_for_state__6TLobbyFv",
+          "get_packet_flag_for_state__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3B4C",
+          "get_field_a8__6TLobbyFv",
+          "get_field_a8__11AdxbDecoderFv"
+        ],
+        [
+          "0x803C3B54",
+          "get_field_0x3c__6TLobbyFv",
+          "get_field_0x3c__11AdxbDecoderFv"
+        ],
+        [
+          "0x803CD840",
+          "adxf_open_file__6TLobbyFiPviPv",
+          "adxf_open_file__6TLobbyFiPCciP13AdxfPartition"
+        ]
+      ]
+    }
+  },
+  "runtime_probes": {
+    "adxf": {
+      "retail": "37da977ca273c18706c0d5768f2fdbf42588f649c51df927d93bb756d47826cb",
+      "review": "ec3fb3c3e2bf7d6674c0a55a5b976ea77b802eb2adfbfde17e9610ecf903487c",
+      "layer": "f6d0fe18b13a6951df0d2ff81b85a0c0ee982a421933a15d28cdfae5e9b6ea56"
+    },
+    "decoder": {
+      "retail": "d2abc395e121100a5485b07e8cb8c50f0710f90b508855ca258b178d74b0b4b7",
+      "review": "b5961e47c60d31919fe18ca3068d43a328c6fb3dfcdad1d278ae4332a104e796",
+      "layer": "c092ca886b2aa348309f401e385ae8fed9a55cf9d0e0f089e853b342762f97b5"
+    }
+  },
+  "overlay_sha256": "063c992d4d7c79c814a0bc96911e24eb2bf9e70a67701094e09c0e36a3b64a26",
+  "fork_overlay_paths": 130,
+  "retained_symbols": 27031,
+  "workspace_checks": {
+    "tool": 294,
+    "fork": 11,
+    "host": [
+      "./vector_math_fallbacks",
+      "./item_factory_callbacks",
+      "./loader_transfer",
+      "./ginja_parameter_callbacks",
+      "./exi_ethernet_fallbacks"
+    ]
+  },
+  "historical_rows_closed": {
+    "24": "The shared AdxStreamRuntime, AdxStreamFile, AdxStream, AdxEncoder, AdxManager and AdxbDecoder declarations carry the native player and 0x40 file records, callbacks, encoder interfaces and signed stream state. The decoder now owns the full format record used by playback",
+    "47": "The decode entry uses the real decoder pointer, shared SJ ring interface, native callback context and typed output spans. The in-use pool, header parse, feed, drain, format-10 counters and callback conditions all use their existing names and match at their original addresses",
+    "62": "The current owners carry the native file handle, command journal, typed buffer calls and complete archive partition. The shared AFS directory writes its terminal sector table and reads the sparse override format. The existing diagnostics keep their retail offsets. The pool, linked directory, seeks, reads and cancellation pass the executable probe"
+  },
+  "historical_rows_with_added_evidence": {
+    "28": "The ADX block decoder and its PCM, SPSD and AU consumers use the full decoder record and live callback pointers. The signed AIFF parser already uses the correct size field; the historical unsigned byte-shift expressions remain for separate comparison"
+  },
+  "historical_rows_open": 602,
+  "public_refs_changed": false
+}
